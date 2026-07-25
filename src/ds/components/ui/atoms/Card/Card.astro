@@ -1,0 +1,21 @@
+---
+import "./Card.css";
+import type { CardProps } from "./Card.types";
+
+const {
+    padding = "md",
+    bordered = true,
+    shadow = false
+}: CardProps = Astro.props;
+
+const className = [
+    "card",
+    `card--${padding}`,
+    bordered && "card--bordered",
+    shadow && "card--shadow"
+].filter(Boolean).join(" ");
+---
+
+<div class={className}>
+    <slot />
+</div>

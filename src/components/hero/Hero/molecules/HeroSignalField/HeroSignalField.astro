@@ -1,0 +1,135 @@
+---
+// Noise → Signal — the hero's acoustic signature (DESIGN_SYSTEM_GUIDE §6).
+// Decorative only (aria-hidden). Scattered faint lines resolve into one aligned
+// blue signal, emerging from the centre outward.
+//
+// Robustness: the *default* (no data-anim) state is the final aligned signal.
+// The scattered start is only armed by Hero's script once it can animate it,
+// so if JS never runs the field simply renders resolved — never stuck hidden.
+// Motion is transform/opacity only (compositor-friendly).
+
+const LINE_COUNT = 9;
+const CENTER = (LINE_COUNT + 1) / 2; // 5
+
+// Deterministic scatter/jitter — art-directed, not random, so SSR and client
+// agree and the "noise" always looks intentional.
+const SCATTER = [-34, 22, -14, 30, -6, -28, 16, -20, 26];
+const JITTER = [8, -6, 5, -9, 0, 7, -5, 6, -8];
+
+const lines = Array.from({ length: LINE_COUNT }, (_, idx) => {
+  const i = idx + 1;
+  const d = Math.abs(i - CENTER); // distance from centre
+  return {
+    i,
+    d,
+    width: 100 - d * 9, // % — tapers from centre (100%) to edges (~64%)
+    opacity: +(1 - d * 0.13).toFixed(3), // brightest at centre
+    scatter: SCATTER[idx],
+    jitter: JITTER[idx],
+  };
+});
+---
+
+<div class="hero-signal" aria-hidden="true">
+  <div class="hero-signal__band">
+    {
+      lines.map((l) => (
+        <span
+          class="hero-signal__line"
+          style={`--i:${l.i};--d:${l.d};--w:${l.width}%;--op:${l.opacity};--scatter:${l.scatter}px;--jitter:${l.jitter}px`}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .hero-signal {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    z-index: 0;
+    /* Own compositor layer: masked content with 9 actively-transitioning
+       children is expensive to recompute on every scroll repaint otherwise
+       — this is what caused the flicker/jank while the hero was in view. */
+    will-change: transform;
+    /* Fade the field out toward the edges so it reads as light, never a block. */
+    -webkit-mask-image: radial-gradient(
+      80% 72% at 50% 50%,
+      #000 42%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(80% 72% at 50% 50%, #000 42%, transparent 100%);
+  }
+
+  .hero-signal__band {
+    position: relative;
+    width: min(112%, 1160px);
+    height: clamp(180px, 30vh, 280px);
+  }
+
+  /* Base = final, aligned signal. */
+  .hero-signal__line {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--w);
+    height: 2px;
+    border-radius: var(--radius-full);
+    background: var(--hero-signal-idle, #e2e8f0);
+    opacity: var(--op);
+    transform: translate(
+      -50%,
+      calc((var(--i) - 5) * var(--hero-signal-gap, 12px))
+    );
+    will-change: transform, opacity;
+  }
+
+  /* The resolved line — the "signal". */
+  .hero-signal__line:nth-child(5) {
+    height: 3px;
+    background: var(--hero-signal, #2563eb);
+    opacity: 1;
+    box-shadow: 0 0 12px 0 rgb(37 99 235 / 0.5);
+  }
+
+  /* Scattered start — only present while Hero has armed the animation. */
+  :global(.hero[data-anim="pending"]) .hero-signal__line {
+    transform: translate(
+      calc(-50% + var(--jitter)),
+      calc((var(--i) - 5) * var(--hero-signal-gap, 12px) + var(--scatter))
+    );
+    opacity: calc(var(--op) * 0.35);
+    background: var(--hero-signal-idle, #e2e8f0);
+  }
+
+  :global(.hero[data-anim="pending"]) .hero-signal__line:nth-child(5) {
+    height: 2px;
+    background: var(--hero-signal-idle, #e2e8f0);
+    box-shadow: none;
+  }
+
+  /* Convergence — scattered → aligned, emerging from the centre outward. */
+  :global(.hero[data-anim="in"]) .hero-signal__line {
+    transition:
+      transform 700ms var(--hero-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+      opacity 700ms var(--hero-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+      background-color 700ms var(--hero-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+      box-shadow 700ms var(--hero-ease, cubic-bezier(0.22, 1, 0.36, 1));
+    transition-delay: calc(var(--d) * 70ms + 120ms);
+  }
+
+  /* Retire the compositing hint once the entrance has settled — nine
+     permanently promoted layers outlive their usefulness after ~1.7s. */
+  :global(.hero[data-anim="done"]) .hero-signal__line {
+    will-change: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.hero[data-anim="in"]) .hero-signal__line {
+      transition: none;
+    }
+  }
+</style>

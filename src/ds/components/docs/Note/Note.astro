@@ -1,0 +1,39 @@
+---
+import "./Note.css";
+
+type Variant = "info" | "success" | "warning" | "danger";
+
+interface Props {
+    title?: string;
+    variant?: Variant;
+}
+
+const {
+    title,
+    variant = "info"
+} = Astro.props;
+
+const titleId = "note-title";
+---
+
+<aside
+    class={`note note--${variant}`}
+    aria-labelledby={title ? titleId : undefined}
+>
+
+    {
+        title && (
+            <h3
+                id={titleId}
+                class="note__title"
+            >
+                {title}
+            </h3>
+        )
+    }
+
+    <div class="note__content">
+        <slot />
+    </div>
+
+</aside>

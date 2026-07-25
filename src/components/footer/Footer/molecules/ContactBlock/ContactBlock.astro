@@ -1,0 +1,214 @@
+---
+import FooterHeading from "../../atoms/FooterHeading/FooterHeading.astro";
+import { footerIcons } from "../../footer.icons";
+import type { CompanyInfo } from "../../footer.types";
+
+interface Props {
+  title: string;
+  company: CompanyInfo;
+}
+
+const { title, company } = Astro.props;
+
+const Pin = footerIcons.pin as any;
+const PhoneIcon = footerIcons.phone as any;
+const MailIcon = footerIcons.mail as any;
+const ClockIcon = footerIcons.clock as any;
+---
+
+<div class="contact-block">
+  <FooterHeading title={title} />
+
+  <ul class="contact-block__list">
+    <li class="contact-block__row">
+      <span class="contact-block__icon" aria-hidden="true">
+        <Pin size={18} stroke-width={1.75} />
+      </span>
+      <div class="contact-block__body">
+        <address class="contact-block__address">{company.address}</address>
+        {
+          company.directionsHref && (
+            <a class="contact-block__action" href={company.directionsHref}>
+              Yol tarifi al
+            </a>
+          )
+        }
+      </div>
+    </li>
+
+    <li class="contact-block__row">
+      <span class="contact-block__icon" aria-hidden="true">
+        <PhoneIcon size={18} stroke-width={1.75} />
+      </span>
+      <div class="contact-block__body">
+        {
+          company.phones.map((phone) => (
+            <a class="contact-block__phone" href={phone.href}>
+              <span class="contact-block__phone-number">{phone.number}</span>
+              {phone.label && (
+                <span class="contact-block__phone-label">{phone.label}</span>
+              )}
+            </a>
+          ))
+        }
+      </div>
+    </li>
+
+    <li class="contact-block__row">
+      <span class="contact-block__icon" aria-hidden="true">
+        <MailIcon size={18} stroke-width={1.75} />
+      </span>
+      <div class="contact-block__body">
+        <a class="contact-block__mail" href={`mailto:${company.email}`}>
+          {company.email}
+        </a>
+      </div>
+    </li>
+
+    <li class="contact-block__row">
+      <span class="contact-block__icon" aria-hidden="true">
+        <ClockIcon size={18} stroke-width={1.75} />
+      </span>
+      <div class="contact-block__body">
+        <dl class="contact-block__hours">
+          {
+            company.hours.map((entry) => (
+              <div class="contact-block__hours-row">
+                <dt>{entry.days}</dt>
+                <dd>{entry.time}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .contact-block {
+    min-width: 0;
+  }
+
+  .contact-block__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact-block__row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+
+  .contact-block__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    margin-top: -4px;
+    border-radius: var(--radius-md);
+    color: var(--footer-accent);
+  }
+
+  .contact-block__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+    color: var(--footer-text);
+  }
+
+  .contact-block__address {
+    font-style: normal;
+  }
+
+  .contact-block__action,
+  .contact-block__mail,
+  .contact-block__phone {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    width: fit-content;
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+    color: var(--footer-link);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .contact-block__action:hover,
+  .contact-block__mail:hover,
+  .contact-block__phone:hover {
+    color: var(--footer-link-hover);
+  }
+
+  .contact-block__action:focus-visible,
+  .contact-block__mail:focus-visible,
+  .contact-block__phone:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .contact-block__action {
+    color: var(--footer-accent);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .contact-block__mail {
+    /* Long addresses must not push the column open. */
+    overflow-wrap: anywhere;
+  }
+
+  /* The number carries the weight; the label stays a quiet caption. */
+  .contact-block__phone-number {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    color: var(--footer-heading);
+  }
+
+  .contact-block__phone:hover .contact-block__phone-number {
+    color: var(--footer-link-hover);
+  }
+
+  .contact-block__phone-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--footer-muted);
+  }
+
+  .contact-block__hours {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: 0;
+  }
+
+  .contact-block__hours-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .contact-block__hours-row dt {
+    color: var(--footer-muted);
+  }
+
+  .contact-block__hours-row dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    color: var(--footer-text);
+  }
+</style>

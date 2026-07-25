@@ -1,0 +1,530 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Select/SelectPatterns.css";
+
+import Select from "../../../ds/components/ui/atoms/Select/Select.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    travelCabins,
+    travelPassengers,
+    travelOrigins,
+    travelDestinations,
+    travelTrust,
+    dinerParty,
+    dinerTimes,
+    dinerRooms,
+    dinerSlots,
+    clinicSpecialties,
+    clinicPractitioners,
+    clinicLocations,
+    clinicInsurers,
+    clinicSteps,
+    devRegions,
+    devRuntimes,
+    devBranches,
+    devVisibility,
+    atelierLeathers,
+    atelierSoles,
+    atelierSizes,
+    atelierWidths,
+    atelierMonogram,
+    atelierSummary
+} from "../../../ds/patterns/Select/select.data";
+---
+
+<DSLayout title="Select">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Select</h1>
+
+        <p class="pl-head__lede">
+            Five industries, five ways to ask someone to choose — an airline
+            search bar, a restaurant booking, a clinic intake, a project
+            settings page and a made-to-order configurator.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Travel
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Flight Search</span>
+            <span class="pl-example__tags">Fused booking bar · Borderless selects · Deep blue</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="select-travel">
+
+                <div class="select-travel__inner">
+
+                    <span class="select-travel__kicker">Summer routes now open</span>
+
+                    <h2 class="select-travel__title">Portugal, direct, from €89</h2>
+
+                    <p class="select-travel__lede">
+                        Nineteen weekly departures from Amsterdam and Rotterdam.
+                        Hold any fare for 48 hours at no cost.
+                    </p>
+
+                    <div class="select-travel__bar">
+
+                        <div class="select-travel__cell">
+                            <label class="select-travel__label">From</label>
+                            <Select fullWidth>
+                                {travelOrigins.map(origin => <option>{origin}</option>)}
+                            </Select>
+                        </div>
+
+                        <div class="select-travel__cell">
+                            <label class="select-travel__label">To</label>
+                            <Select fullWidth>
+                                {travelDestinations.map(dest => <option>{dest}</option>)}
+                            </Select>
+                        </div>
+
+                        <div class="select-travel__cell">
+                            <label class="select-travel__label">Cabin</label>
+                            <Select fullWidth>
+                                {travelCabins.map(cabin => <option>{cabin}</option>)}
+                            </Select>
+                        </div>
+
+                        <div class="select-travel__cell">
+                            <label class="select-travel__label">Passengers</label>
+                            <Select fullWidth>
+                                {travelPassengers.map(p => <option>{p}</option>)}
+                            </Select>
+                        </div>
+
+                        <div class="select-travel__go">
+                            <Button size="lg">Search flights</Button>
+                        </div>
+
+                    </div>
+
+                    <div class="select-travel__trust">
+                        {travelTrust.map(item => <span>{item}</span>)}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Restaurant
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Table Reservation</span>
+            <span class="pl-example__tags">Centered card · Serif · Slot picker</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="select-diner">
+
+                <div class="select-diner__card">
+
+                    <span class="select-diner__mark">Osteria Vela</span>
+
+                    <h2 class="select-diner__title">Book a table</h2>
+
+                    <p class="select-diner__lede">
+                        We hold a handful of counter seats for walk-ins every
+                        evening. Everything else is by reservation.
+                    </p>
+
+                    <div class="select-diner__rule">Your table</div>
+
+                    <div class="select-diner__fields">
+
+                        <div class="select-diner__row">
+                            <div>
+                                <label class="select-diner__label">Party size</label>
+                                <Select fullWidth>
+                                    {dinerParty.map(p => <option>{p}</option>)}
+                                </Select>
+                            </div>
+                            <div>
+                                <label class="select-diner__label">Preferred time</label>
+                                <Select fullWidth>
+                                    {dinerTimes.map(t => <option>{t}</option>)}
+                                </Select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="select-diner__label">Seating</label>
+                            <Select fullWidth>
+                                {dinerRooms.map(r => <option>{r}</option>)}
+                            </Select>
+                        </div>
+
+                    </div>
+
+                    <div class="select-diner__slots">
+
+                        <span class="select-diner__slots-label">
+                            Available on Saturday 25 July
+                        </span>
+
+                        <div class="select-diner__slot-row">
+                            {dinerSlots.map((slot, i) => (
+                                <button
+                                    type="button"
+                                    class:list={[
+                                        "select-diner__slot",
+                                        i === 1 && "select-diner__slot--active"
+                                    ]}
+                                >
+                                    {slot}
+                                </button>
+                            ))}
+                        </div>
+
+                    </div>
+
+                    <div class="select-diner__action">
+                        <Button size="lg" fullWidth>Reserve for 19:00</Button>
+                    </div>
+
+                    <p class="select-diner__note">
+                        We hold your table for 15 minutes. Cancel free up to 24 hours before.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Clinic
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Clinic Intake</span>
+            <span class="pl-example__tags">Healthcare · Stepped rail · Calm mint</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="select-clinic">
+
+                <div class="select-clinic__inner">
+
+                    <header class="select-clinic__head">
+                        <span class="select-clinic__kicker">Book an appointment</span>
+                        <h2 class="select-clinic__title">
+                            Tell us what you need and we will find the soonest slot
+                        </h2>
+                        <p class="select-clinic__lede">
+                            Most appointments are available within three days.
+                            Urgent same-day requests are triaged by a nurse.
+                        </p>
+                    </header>
+
+                    <div class="select-clinic__grid">
+
+                        <aside class="select-clinic__steps">
+                            {clinicSteps.map(step => (
+                                <div class:list={["select-clinic__step", `select-clinic__step--${step.state}`]}>
+                                    <span class="select-clinic__step-n">{step.n}</span>
+                                    {step.label}
+                                </div>
+                            ))}
+                        </aside>
+
+                        <div class="select-clinic__panel">
+
+                            <div class="select-clinic__field">
+                                <label class="select-clinic__label">What do you need to see someone about?</label>
+                                <Select fullWidth>
+                                    {clinicSpecialties.map(s => <option>{s}</option>)}
+                                </Select>
+                            </div>
+
+                            <div class="select-clinic__row">
+                                <div class="select-clinic__field">
+                                    <label class="select-clinic__label">Practitioner</label>
+                                    <Select fullWidth>
+                                        {clinicPractitioners.map(p => <option>{p}</option>)}
+                                    </Select>
+                                    <span class="select-clinic__hint">
+                                        Choosing "first available" is usually faster.
+                                    </span>
+                                </div>
+                                <div class="select-clinic__field">
+                                    <label class="select-clinic__label">Location</label>
+                                    <Select fullWidth>
+                                        {clinicLocations.map(l => <option>{l}</option>)}
+                                    </Select>
+                                    <span class="select-clinic__hint">
+                                        Video consultations are available same day.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="select-clinic__field">
+                                <label class="select-clinic__label">Insurer</label>
+                                <Select fullWidth>
+                                    {clinicInsurers.map(i => <option>{i}</option>)}
+                                </Select>
+                            </div>
+
+                            <div class="select-clinic__foot">
+                                <p class="select-clinic__foot-note">
+                                    If this is an emergency, call 112 rather than
+                                    booking online.
+                                </p>
+                                <Button size="lg">Find available times</Button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Developer settings
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Project Settings</span>
+            <span class="pl-example__tags">Dense rows · Monospace values · Save bar</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="select-dev">
+
+                <div class="select-dev__inner">
+
+                    <span class="select-dev__crumb">
+                        relay <span>/</span> <strong>settings</strong> <span>/</span> build
+                    </span>
+
+                    <h2 class="select-dev__title">Build &amp; deployment</h2>
+
+                    <p class="select-dev__lede">
+                        These settings apply to every future deployment. Existing
+                        deployments keep the configuration they were built with.
+                    </p>
+
+                    <div class="select-dev__panel">
+
+                        <div class="select-dev__panel-head">
+                            <span>Configuration</span>
+                            <Badge variant="neutral" size="sm">4 settings</Badge>
+                        </div>
+
+                        <div class="select-dev__row">
+                            <div>
+                                <div class="select-dev__row-label">Production region</div>
+                                <p class="select-dev__row-hint">
+                                    Where builds run and functions are deployed.
+                                </p>
+                            </div>
+                            <Select fullWidth>
+                                {devRegions.map(r => <option>{r}</option>)}
+                            </Select>
+                        </div>
+
+                        <div class="select-dev__row">
+                            <div>
+                                <div class="select-dev__row-label">Runtime</div>
+                                <p class="select-dev__row-hint">
+                                    Applies to new deployments only.
+                                </p>
+                            </div>
+                            <Select fullWidth>
+                                {devRuntimes.map(r => <option>{r}</option>)}
+                            </Select>
+                        </div>
+
+                        <div class="select-dev__row">
+                            <div>
+                                <div class="select-dev__row-label">Production branch</div>
+                                <p class="select-dev__row-hint">
+                                    Merges here deploy straight to production.
+                                </p>
+                            </div>
+                            <Select fullWidth>
+                                {devBranches.map(b => <option>{b}</option>)}
+                            </Select>
+                        </div>
+
+                        <div class="select-dev__row">
+                            <div>
+                                <div class="select-dev__row-label">Preview visibility</div>
+                                <p class="select-dev__row-hint">
+                                    Who can open a preview URL without signing in.
+                                </p>
+                            </div>
+                            <Select fullWidth>
+                                {devVisibility.map(v => <option>{v}</option>)}
+                            </Select>
+                        </div>
+
+                        <div class="select-dev__foot">
+                            <span class="select-dev__foot-note">
+                                Changes take effect on the next deployment.
+                            </span>
+                            <div class="select-dev__foot-actions">
+                                <Button variant="ghost" size="sm">Discard</Button>
+                                <Button size="sm">Save changes</Button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Atelier
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Made to Order</span>
+            <span class="pl-example__tags">Dark configurator · Object stage · Serif</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="select-atelier">
+
+                <div class="select-atelier__inner">
+
+                    <div class="select-atelier__stage">
+                        <span class="select-atelier__stage-tag">Preview</span>
+                        <span class="select-atelier__object" aria-hidden="true"></span>
+                    </div>
+
+                    <div>
+
+                        <span class="select-atelier__edition">Bespoke programme</span>
+
+                        <h2 class="select-atelier__title">The Wentworth Oxford</h2>
+
+                        <p class="select-atelier__lede">
+                            Hand-lasted over nine weeks in Northampton. Every pair is
+                            cut to your measurements and finished to your specification.
+                        </p>
+
+                        <div class="select-atelier__fields">
+
+                            <div>
+                                <label class="select-atelier__label">
+                                    Leather
+                                    <span>Step 1 of 5</span>
+                                </label>
+                                <Select fullWidth>
+                                    {atelierLeathers.map(l => <option>{l}</option>)}
+                                </Select>
+                            </div>
+
+                            <div class="select-atelier__row">
+                                <div>
+                                    <label class="select-atelier__label">Sole</label>
+                                    <Select fullWidth>
+                                        {atelierSoles.map(s => <option>{s}</option>)}
+                                    </Select>
+                                </div>
+                                <div>
+                                    <label class="select-atelier__label">Monogram</label>
+                                    <Select fullWidth>
+                                        {atelierMonogram.map(m => <option>{m}</option>)}
+                                    </Select>
+                                </div>
+                            </div>
+
+                            <div class="select-atelier__row">
+                                <div>
+                                    <label class="select-atelier__label">Size</label>
+                                    <Select fullWidth>
+                                        {atelierSizes.map(s => <option>{s}</option>)}
+                                    </Select>
+                                </div>
+                                <div>
+                                    <label class="select-atelier__label">Width</label>
+                                    <Select fullWidth>
+                                        {atelierWidths.map(w => <option>{w}</option>)}
+                                    </Select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <dl class="select-atelier__summary">
+                            {atelierSummary.map(item => (
+                                <div>
+                                    <dt>{item.key}</dt>
+                                    <dd>{item.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                        <div class="select-atelier__actions">
+                            <span class="select-atelier__price">£1,450</span>
+                            <Button variant="glass" size="lg">Begin your order</Button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

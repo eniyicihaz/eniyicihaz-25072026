@@ -1,0 +1,48 @@
+---
+import "./Banner.css";
+import type { BannerProps } from "./Banner.types";
+
+const {
+  variant = "primary",
+  title,
+  bordered = true,
+  class: className = "",
+} = Astro.props as BannerProps;
+
+const classes = [
+  "ds-banner",
+  `ds-banner--${variant}`,
+  !bordered && "ds-banner--borderless",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<section
+  class={classes}
+  role="region"
+  aria-label={title}
+>
+  <div class="ds-banner__icon">
+    <slot name="icon" />
+  </div>
+
+  <div class="ds-banner__content">
+    {
+      title && (
+        <h2 class="ds-banner__title">
+          {title}
+        </h2>
+      )
+    }
+
+    <div class="ds-banner__text">
+      <slot />
+    </div>
+  </div>
+
+  <div class="ds-banner__actions">
+    <slot name="actions" />
+  </div>
+</section>

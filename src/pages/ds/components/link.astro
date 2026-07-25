@@ -1,0 +1,260 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Link/LinkPatterns.css";
+
+import Link from "../../../ds/components/ui/atoms/Link/Link.astro";
+
+import {
+    clinicFooterGroups,
+    clinicExternal,
+    docsRelated,
+    docsExternal,
+    articleParagraphs,
+    pricingLinks,
+    dangerActions
+} from "../../../ds/patterns/Link/link.data";
+---
+
+<DSLayout title="Link">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Link</h1>
+
+        <p class="pl-head__lede">
+            Five contexts where a link carries different weight — a site
+            footer, API documentation, an inline citation, a pricing card
+            and a destructive account action.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic site footer -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Site Footer</span>
+            <span class="pl-example__tags">Hearing care · Dark · External link</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lnk-footer">
+
+                <div class="lnk-footer__inner">
+
+                    <div class="lnk-footer__brand">eniyicihaz.com</div>
+                    <p class="lnk-footer__tag">İşitme sağlığında 20 yıllık deneyim</p>
+
+                    <div class="lnk-footer__grid">
+                        {clinicFooterGroups.map(group => (
+                            <div>
+                                <h3 class="lnk-footer__heading">{group.title}</h3>
+                                <div class="lnk-footer__list">
+                                    {group.links.map(label => (
+                                        <Link href="#0" underline={false}>{label}</Link>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="lnk-footer__bottom">
+                        <span class="lnk-footer__copy">© 2026 eniyicihaz.com</span>
+                        <Link
+                            class="link--sgk"
+                            href={clinicExternal.href}
+                            external
+                            target="_blank"
+                        >
+                            {clinicExternal.label}
+                        </Link>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — API documentation "see also" -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Documentation Panel</span>
+            <span class="pl-example__tags">Developer docs · Internal + external links</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lnk-docs">
+
+                <div class="lnk-docs__card">
+
+                    <span class="lnk-docs__crumb">Docs / Guides / Webhooks</span>
+                    <h2 class="lnk-docs__title">Receiving webhook events</h2>
+                    <p class="lnk-docs__body">
+                        Every event is signed and delivered at-least-once. Verify the
+                        signature before trusting the payload.
+                    </p>
+
+                    <div class="lnk-docs__section">
+                        <h3 class="lnk-docs__heading">See also</h3>
+                        <div class="lnk-docs__list">
+                            {docsRelated.map(item => (
+                                <Link href={item.href} variant="default">{item.label}</Link>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div class="lnk-docs__section">
+                        <h3 class="lnk-docs__heading">External resources</h3>
+                        <div class="lnk-docs__external">
+                            {docsExternal.map(item => (
+                                <Link href={item.href} external target="_blank">{item.label}</Link>
+                            ))}
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Dark editorial article, inline citations -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Editorial Article</span>
+            <span class="pl-example__tags">News · Dark · Inline citation links</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lnk-article">
+
+                <div class="lnk-article__inner">
+
+                    <span class="lnk-article__kicker">Breaking</span>
+                    <h2 class="lnk-article__title">
+                        Regulator closes cross-border data transfer loophole
+                    </h2>
+                    <p class="lnk-article__byline">By Amara Solis · 4 min read</p>
+
+                    {articleParagraphs.map(p => (
+                        <p class="lnk-article__para">
+                            {p.before}<Link href={p.link.href} underline>{p.link.label}</Link>{p.after}
+                        </p>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Pricing plan, feature links -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Pricing Card</span>
+            <span class="pl-example__tags">SaaS · Feature detail links</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lnk-pricing">
+
+                <div class="lnk-pricing__card">
+
+                    <span class="lnk-pricing__plan">Growth</span>
+
+                    <div class="lnk-pricing__price">
+                        <span class="lnk-pricing__amount">$79</span>
+                        <span class="lnk-pricing__cycle">/ month</span>
+                    </div>
+
+                    <ul class="lnk-pricing__features">
+                        <li><span class="lnk-pricing__check">✓</span> 50,000 tracked events / month</li>
+                        <li><span class="lnk-pricing__check">✓</span> Unlimited team seats</li>
+                        <li><span class="lnk-pricing__check">✓</span> 90-day data retention</li>
+                    </ul>
+
+                    <div class="lnk-pricing__links">
+                        {pricingLinks.map(item => (
+                            <Link href={item.href} variant="secondary">{item.label}</Link>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Danger zone, destructive actions -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Danger Zone</span>
+            <span class="pl-example__tags">Account settings · Danger variant</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lnk-danger">
+
+                <div class="lnk-danger__card">
+
+                    <header class="lnk-danger__head">
+                        <div class="lnk-danger__title">Danger zone</div>
+                        <p class="lnk-danger__sub">These actions are permanent and cannot be undone</p>
+                    </header>
+
+                    {dangerActions.map(action => (
+                        <div class="lnk-danger__row">
+                            <div>
+                                <div class="lnk-danger__label">{action.label}</div>
+                            </div>
+                            <Link href={action.href} variant={action.variant} underline>
+                                {action.variant === "danger" ? "Delete" : "Manage"}
+                            </Link>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

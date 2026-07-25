@@ -1,0 +1,150 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+
+const tokenGroups = [
+    {
+        title: "Colors",
+        tokens: [
+            "--primary",
+            "--primary-dark",
+            "--primary-light",
+            "--surface",
+            "--background",
+            "--border"
+        ]
+    },
+    {
+        title: "Typography",
+        tokens: [
+            "--font-family",
+            "--font-size-base",
+            "--line-height",
+            "--font-weight"
+        ]
+    },
+    {
+        title: "Spacing",
+        tokens: [
+            "--space-1",
+            "--space-2",
+            "--space-3",
+            "--space-4",
+            "--space-5"
+        ]
+    },
+    {
+        title: "Radius",
+        tokens: [
+            "--radius-sm",
+            "--radius-md",
+            "--radius-lg",
+            "--radius-xl"
+        ]
+    },
+    {
+        title: "Elevation",
+        tokens: [
+            "--shadow-sm",
+            "--shadow-md",
+            "--shadow-lg"
+        ]
+    },
+    {
+        title: "Motion",
+        tokens: [
+            "--duration-fast",
+            "--duration-normal",
+            "--duration-slow"
+        ]
+    }
+];
+---
+
+<DSLayout title="Design Tokens">
+
+    <PageHeader
+        badge="Foundation"
+        title="Design Tokens"
+        description="Design tokens are the single source of truth for every visual decision in the design system."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Components should always consume tokens instead of hard-coded values.
+    </Note>
+
+    <Divider label="Token Library" />
+
+    <Section
+        title="Available Tokens"
+        description="All design decisions originate from reusable token groups."
+    >
+
+        <Preview title="Token Reference">
+
+            <div
+                style="
+                    display:grid;
+                    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+                    gap:24px;
+                "
+            >
+
+                {
+                    tokenGroups.map(group => (
+                        <div
+                            style="
+                                border:1px solid var(--border);
+                                border-radius:16px;
+                                padding:24px;
+                                background:var(--surface);
+                            "
+                        >
+                            <h3 style="margin:0 0 16px;">
+                                {group.title}
+                            </h3>
+
+                            <ul
+                                style="
+                                    margin:0;
+                                    padding-left:18px;
+                                    display:flex;
+                                    flex-direction:column;
+                                    gap:10px;
+                                "
+                            >
+                                {
+                                    group.tokens.map(token => (
+                                        <li>
+                                            <code>{token}</code>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+
+                        </div>
+                    ))
+                }
+
+            </div>
+
+        </Preview>
+
+    </Section>
+
+</DSLayout>

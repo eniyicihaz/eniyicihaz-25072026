@@ -1,0 +1,74 @@
+.ds-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  width: fit-content;
+
+  padding: 0.25rem;
+
+  border: 1px solid var(--ds-border-color, #dbe2ea);
+  border-radius: var(--ds-radius-md, 10px);
+
+  background: var(--ds-surface, #fff);
+}
+
+.ds-counter__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: var(--ds-surface-secondary, #f8fafc);
+  color: var(--ds-text, #0f172a);
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.ds-counter__button:hover:not(:disabled) {
+  background: var(--ds-primary, #2563eb);
+  color: #fff;
+}
+
+.ds-counter__button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.ds-counter__input {
+  width: 72px;
+  height: 40px;
+
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  text-align: center;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ds-text, #0f172a);
+}
+
+.ds-counter__input:focus {
+  outline: none;
+}
+
+.ds-counter__input::-webkit-outer-spin-button,
+.ds-counter__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ds-counter__input[type="number"] {
+  -moz-appearance: textfield;
+}

@@ -1,0 +1,562 @@
+/* ==========================================================
+   Icon — five patterns
+
+   01  icon-device   Hearing aid feature grid (eniyicihaz.com)
+   02  icon-weather  Forecast strip + system status, dashboard
+   03  icon-toolbar  Editor toolbar, dark
+   04  icon-deliver  Delivery tracking steps
+   05  icon-player   Music player controls
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Feature grid
+   ========================================================== */
+
+.icon-device{
+    padding:72px 32px 88px;
+
+    background:
+        radial-gradient(55% 45% at 15% 0%, rgb(13 148 136 / .1), transparent 62%),
+        #f6fbfa;
+}
+
+.icon-device__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.icon-device__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.icon-device__title{
+    margin:16px 0 36px;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.icon-device__grid{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:16px;
+}
+
+.icon-device__card{
+    padding:26px 22px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.icon-device__glyph{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:44px;
+    height:44px;
+    margin-bottom:18px;
+
+    border-radius:var(--pat-radius-sm);
+    background:rgb(15 118 110 / .1);
+    color:#0f766e;
+}
+
+.icon-device__card-title{
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:#123b36;
+}
+
+.icon-device__card-body{
+    margin-top:8px;
+
+    font-size:.85rem;
+    line-height:1.6;
+    color:#4a6b66;
+}
+
+
+/* ==========================================================
+   02 — Weather strip + system status
+   ========================================================== */
+
+.icon-weather{
+    padding:56px 32px 88px;
+    background:#fbfcfe;
+}
+
+.icon-weather__inner{
+    max-width:800px;
+    margin:0 auto;
+}
+
+.icon-weather__title{
+    margin:0 0 20px;
+
+    font-size:1.3rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.icon-weather__strip{
+    display:grid;
+    grid-template-columns:repeat(5, minmax(0, 1fr));
+    gap:12px;
+
+    padding:22px;
+    margin-bottom:24px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.icon-weather__day{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:9px;
+
+    padding:10px 0;
+
+    border-right:1px solid var(--pat-line);
+}
+
+.icon-weather__day:last-child{
+    border-right:none;
+}
+
+.icon-weather__day-label{
+    font-size:.78rem;
+    font-weight:650;
+    color:var(--pat-body);
+}
+
+.icon-weather__icon{
+    color:#f59e0b;
+}
+
+.icon-weather__temp{
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+    color:var(--pat-ink);
+}
+
+.icon-weather__status-title{
+    margin:0 0 12px;
+
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.icon-weather__status-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px 16px;
+    margin-bottom:6px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+
+    font-size:.9rem;
+    color:var(--pat-ink);
+}
+
+.icon-weather__status-glyph--success{ color:#16a34a; }
+.icon-weather__status-glyph--warning{ color:#d97706; }
+.icon-weather__status-glyph--danger{ color:#dc2626; }
+.icon-weather__status-glyph--info{ color:var(--pat-blue); }
+
+
+/* ==========================================================
+   03 — Editor toolbar, dark
+   ========================================================== */
+
+.icon-toolbar{
+    padding:56px 32px 88px;
+    background:#0a0f19;
+}
+
+.icon-toolbar__inner{
+    max-width:760px;
+    margin:0 auto;
+}
+
+.icon-toolbar__title{
+    margin:0 0 20px;
+
+    font-size:1.3rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#f8fafc;
+}
+
+.icon-toolbar__bar{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    padding:10px 14px;
+    margin-bottom:24px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.icon-toolbar__group{
+    display:flex;
+    gap:4px;
+    padding:0 8px;
+}
+
+.icon-toolbar__group + .icon-toolbar__group{
+    border-left:1px solid rgb(255 255 255 / .1);
+}
+
+.icon-toolbar__btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:34px;
+    height:34px;
+
+    border-radius:7px;
+    color:rgb(248 250 252 / .6);
+
+    transition:background .2s ease, color .2s ease;
+}
+
+.icon-toolbar__btn:hover{
+    background:rgb(255 255 255 / .08);
+    color:#f8fafc;
+}
+
+.icon-toolbar__files{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.icon-toolbar__file{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:11px 14px;
+
+    border-radius:var(--pat-radius-xs);
+    color:rgb(248 250 252 / .78);
+}
+
+.icon-toolbar__file:hover{
+    background:rgb(255 255 255 / .05);
+}
+
+.icon-toolbar__file-icon{
+    color:rgb(248 250 252 / .5);
+}
+
+.icon-toolbar__file-name{
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+}
+
+
+/* ==========================================================
+   04 — Delivery tracking
+   ========================================================== */
+
+.icon-deliver{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 88px;
+    background:#faf9f7;
+}
+
+.icon-deliver__card{
+    width:100%;
+    max-width:520px;
+    padding:32px;
+
+    border:1px solid rgb(35 31 28 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 22px 52px rgb(35 31 28 / .08);
+}
+
+.icon-deliver__title{
+    margin:0 0 4px;
+
+    font-size:1.15rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#231f1c;
+}
+
+.icon-deliver__order{
+    font-size:.82rem;
+    color:#8b8177;
+}
+
+.icon-deliver__steps{
+    margin-top:26px;
+}
+
+.icon-deliver__step{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+
+    padding-bottom:24px;
+    position:relative;
+}
+
+.icon-deliver__step:last-child{
+    padding-bottom:0;
+}
+
+.icon-deliver__step::before{
+    content:"";
+
+    position:absolute;
+    top:36px;
+    bottom:0;
+    left:17px;
+
+    width:1px;
+
+    background:rgb(35 31 28 / .12);
+}
+
+.icon-deliver__step:last-child::before{
+    display:none;
+}
+
+.icon-deliver__step-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+
+    width:36px;
+    height:36px;
+
+    border-radius:50%;
+    background:rgb(35 31 28 / .06);
+    color:rgb(35 31 28 / .3);
+}
+
+.icon-deliver__step--done .icon-deliver__step-icon{
+    background:rgb(180 121 74 / .14);
+    color:#b4794a;
+}
+
+.icon-deliver__step-label{
+    margin-top:6px;
+
+    font-size:.92rem;
+    font-weight:650;
+    color:#a39a90;
+}
+
+.icon-deliver__step--done .icon-deliver__step-label{
+    color:#231f1c;
+}
+
+.icon-deliver__contact{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    margin-top:22px;
+    padding-top:22px;
+
+    border-top:1px solid rgb(35 31 28 / .1);
+}
+
+.icon-deliver__contact-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:.86rem;
+    color:#4a453e;
+}
+
+.icon-deliver__contact-icon{
+    color:#b4794a;
+}
+
+
+/* ==========================================================
+   05 — Music player
+   ========================================================== */
+
+.icon-player{
+    display:flex;
+    justify-content:center;
+
+    padding:72px 32px 88px;
+
+    background:
+        radial-gradient(50% 45% at 50% 0%, rgb(168 85 247 / .18), transparent 60%),
+        linear-gradient(170deg, #14101f 0%, #0b0912 100%);
+}
+
+.icon-player__card{
+    width:100%;
+    max-width:440px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+    backdrop-filter:blur(20px);
+}
+
+.icon-player__art{
+    aspect-ratio:1;
+    margin-bottom:22px;
+
+    border-radius:var(--pat-radius-md);
+    background:linear-gradient(150deg, #6d28d9, #1e1b4b);
+}
+
+.icon-player__title{
+    font-size:1.1rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:#faf5ff;
+}
+
+.icon-player__artist{
+    margin-top:4px;
+
+    font-size:.86rem;
+    color:rgb(250 245 255 / .5);
+}
+
+.icon-player__controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+
+    margin-top:24px;
+}
+
+.icon-player__control{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+    color:rgb(250 245 255 / .8);
+
+    transition:background .2s ease, color .2s ease;
+}
+
+.icon-player__control:hover{
+    background:rgb(255 255 255 / .08);
+    color:#faf5ff;
+}
+
+.icon-player__control--play{
+    width:56px;
+    height:56px;
+
+    background:linear-gradient(150deg, #a855f7, #7c3aed);
+    color:#fff;
+}
+
+.icon-player__control--play:hover{
+    background:linear-gradient(150deg, #c084fc, #a855f7);
+}
+
+.icon-player__meta{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+
+    margin-top:24px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(255 255 255 / .1);
+}
+
+.icon-player__meta-item{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    font-size:.76rem;
+    color:rgb(250 245 255 / .45);
+}
+
+.icon-player__meta-icon{
+    color:rgb(216 180 254 / .8);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .icon-device__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+    .icon-weather__strip{ grid-template-columns:repeat(5, minmax(0, 1fr)); gap:6px; padding:16px; }
+
+}
+
+@media (max-width:720px){
+
+    .icon-device{ padding:44px 16px 56px; }
+    .icon-device__grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .icon-weather{ padding:40px 16px 56px; }
+    .icon-weather__strip{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+    .icon-weather__day:nth-child(n+4){ display:none; }
+
+    .icon-toolbar{ padding:40px 16px 56px; }
+    .icon-toolbar__bar{ flex-wrap:wrap; }
+
+    .icon-deliver{ padding:40px 16px 56px; }
+    .icon-deliver__card{ padding:24px 20px; }
+
+    .icon-player{ padding:48px 16px 56px; }
+    .icon-player__card{ padding:24px 20px; }
+    .icon-player__meta{ flex-direction:column; gap:10px; }
+
+}

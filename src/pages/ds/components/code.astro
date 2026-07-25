@@ -1,0 +1,346 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Code/CodePatterns.css";
+
+import Code from "../../../ds/components/ui/atoms/Code/Code.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    installSnippet,
+    usageSnippet,
+    quickstartSteps,
+    releaseNotes,
+    releaseMeta,
+    runbookSteps,
+    runbookMeta,
+    configRows,
+    configSnippet,
+    lessonMeta,
+    lessonBefore,
+    lessonAfter,
+    lessonPoints
+} from "../../../ds/patterns/Code/code.data";
+
+/* Splits prose containing {code:…} markers into plain and
+   code segments so inline <Code> can be rendered in text. */
+function splitInline(text: string) {
+    return text
+        .split(/\{code:(.*?)\}/g)
+        .map((part, i) => ({ text: part, isCode: i % 2 === 1 }));
+}
+---
+
+<DSLayout title="Code">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Code</h1>
+
+        <p class="pl-head__lede">
+            Five places code has to read well — a quickstart, release notes
+            with code in the prose, an incident runbook, a config
+            reference and a before/after lesson.
+        </p>
+
+    </header>
+
+    <!-- 01 — Quickstart -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">SDK Quickstart</span>
+            <span class="pl-example__tags">Docs · Install + usage · Step rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="code-start">
+
+                <div class="code-start__inner">
+
+                    <span class="code-start__crumb">Docs / Quickstart</span>
+
+                    <h2 class="code-start__title">Send your first event</h2>
+
+                    <p class="code-start__lede">
+                        Two commands and nine lines. If you already have a token
+                        in your environment, skip straight to the second block.
+                    </p>
+
+                    <div class="code-start__steps">
+                        {quickstartSteps.map(step => (
+                            <span class:list={["code-start__step", step.done && "code-start__step--done"]}>
+                                <span class="code-start__step-n">
+                                    {step.done ? "✓" : step.n}
+                                </span>
+                                {step.label}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div class="code-start__group">
+                        <p class="code-start__label">
+                            Install
+                            <span class="code-start__copy">Copy</span>
+                        </p>
+                        <pre class="code-block"><Code>{installSnippet}</Code></pre>
+                    </div>
+
+                    <div class="code-start__group">
+                        <p class="code-start__label">
+                            Send an event
+                            <span class="code-start__copy">Copy</span>
+                        </p>
+                        <pre class="code-block"><Code>{usageSnippet}</Code></pre>
+                    </div>
+
+                    <div class="code-start__foot">
+                        <span>Node 18+, Deno 2 and Bun 1.1 are supported.</span>
+                        <Button variant="ghost" size="sm">Full API reference →</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Release notes -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Release Notes</span>
+            <span class="pl-example__tags">Inline code in prose · Typed changes</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="code-notes">
+
+                <div class="code-notes__inner">
+
+                    <header class="code-notes__head">
+                        <span class="code-notes__version">{releaseMeta.version}</span>
+                        <span class="code-notes__date">{releaseMeta.date}</span>
+                        <span class="code-notes__tag">{releaseMeta.tag}</span>
+                    </header>
+
+                    {releaseNotes.map(note => (
+                        <div class="code-notes__item">
+                            <span class:list={["code-notes__type", `code-notes__type--${note.tone}`]}>
+                                {note.type}
+                            </span>
+                            <p class="code-notes__body">
+                                {splitInline(note.body).map(part => (
+                                    part.isCode ? <Code>{part.text}</Code> : <Fragment>{part.text}</Fragment>
+                                ))}
+                            </p>
+                        </div>
+                    ))}
+
+                    <p class="code-notes__foot">
+                        Breaking changes are always announced one minor version ahead.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Incident runbook -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Incident Runbook</span>
+            <span class="pl-example__tags">Dark · Numbered steps · Exact commands</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="code-run">
+
+                <div class="code-run__inner">
+
+                    <header class="code-run__head">
+                        <div>
+                            <span class="code-run__sev">{runbookMeta.severity}</span>
+                            <h2 class="code-run__title">{runbookMeta.title}</h2>
+                        </div>
+                        <div class="code-run__meta">
+                            owner: {runbookMeta.owner}<br />
+                            {runbookMeta.updated}
+                        </div>
+                    </header>
+
+                    {runbookSteps.map(step => (
+                        <div class="code-run__step">
+                            <span class="code-run__n">{step.n}</span>
+                            <div>
+                                <h3 class="code-run__step-title">{step.title}</h3>
+                                <p class="code-run__step-body">{step.body}</p>
+                                <div class="code-run__term">
+                                    <Code>
+                                        <span class="code-run__prompt">$</span>{step.cmd}
+                                    </Code>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+
+                    <div class="code-run__foot">
+                        <span>runbooks/delivery-latency.md</span>
+                        <span>Escalate to #platform-oncall after 15 minutes</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Config reference -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Config Reference</span>
+            <span class="pl-example__tags">Key table · Typed defaults · Source file</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="code-config">
+
+                <div class="code-config__inner">
+
+                    <h2 class="code-config__title">relay.config.ts</h2>
+
+                    <p class="code-config__lede">
+                        Every key is optional. Anything you omit falls back to the
+                        default shown below, which is what most projects ship with.
+                    </p>
+
+                    <div class="code-config__grid">
+
+                        <div class="code-config__table">
+
+                            <div class="code-config__row code-config__row--head">
+                                <span>Key</span>
+                                <span>Type</span>
+                                <span>Default</span>
+                            </div>
+
+                            {configRows.map(row => (
+                                <div class="code-config__row">
+                                    <span class="code-config__key"><Code>{row.key}</Code></span>
+                                    <span class="code-config__type"><Code>{row.type}</Code></span>
+                                    <span class="code-config__default"><Code>{row.def}</Code></span>
+                                    <span class="code-config__note">{row.note}</span>
+                                </div>
+                            ))}
+
+                        </div>
+
+                        <div class="code-config__file">
+                            <div class="code-config__file-bar">
+                                <span class="code-config__file-dot"></span>
+                                <span class="code-config__file-dot"></span>
+                                <span class="code-config__file-dot"></span>
+                                relay.config.ts
+                            </div>
+                            <pre class="code-block"><Code>{configSnippet}</Code></pre>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Before / after lesson -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Before &amp; After</span>
+            <span class="pl-example__tags">Teaching · Two panels · Inline takeaways</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="code-lesson">
+
+                <div class="code-lesson__inner">
+
+                    <span class="code-lesson__course">{lessonMeta.course}</span>
+
+                    <h2 class="code-lesson__title">{lessonMeta.lesson}</h2>
+
+                    <p class="code-lesson__module">{lessonMeta.module}</p>
+
+                    <div class="code-lesson__compare">
+
+                        <div class="code-lesson__panel code-lesson__panel--bad">
+                            <div class="code-lesson__panel-head">
+                                <span aria-hidden="true">✕</span> Avoid
+                            </div>
+                            <pre class="code-block"><Code>{lessonBefore}</Code></pre>
+                        </div>
+
+                        <div class="code-lesson__panel code-lesson__panel--good">
+                            <div class="code-lesson__panel-head">
+                                <span aria-hidden="true">✓</span> Prefer
+                            </div>
+                            <pre class="code-block"><Code>{lessonAfter}</Code></pre>
+                        </div>
+
+                    </div>
+
+                    <ul class="code-lesson__points">
+                        {lessonPoints.map(point => (
+                            <li>
+                                <span>
+                                    {splitInline(point).map(part => (
+                                        part.isCode ? <Code>{part.text}</Code> : <Fragment>{part.text}</Fragment>
+                                    ))}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

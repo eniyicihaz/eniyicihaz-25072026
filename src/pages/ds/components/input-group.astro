@@ -1,0 +1,278 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/InputGroup/InputGroupPatterns.css";
+
+import InputGroup from "../../../ds/components/ui/atoms/InputGroup/InputGroup.astro";
+import Input from "../../../ds/components/ui/atoms/Input/Input.astro";
+import Select from "../../../ds/components/ui/atoms/Select/Select.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    clinicCategories,
+    clinicResults,
+    transferCurrencies,
+    transferRate,
+    domainTlds,
+    domainResults,
+    phoneCountries,
+    checkoutSteps,
+    inventoryUnits,
+    inventoryRows
+} from "../../../ds/patterns/InputGroup/inputgroup.data";
+---
+
+<DSLayout title="Input Group">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Input Group</h1>
+
+        <p class="pl-head__lede">
+            Five fused controls that read as one field — a clinic search,
+            a currency amount, a domain check, a phone number
+            and a quantity with a unit.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic search bar -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Clinic Search</span>
+            <span class="pl-example__tags">Hearing care · Category + search + button</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ig-clinic">
+
+                <div class="ig-clinic__inner">
+
+                    <span class="ig-clinic__kicker">Şube bulun</span>
+                    <h2 class="ig-clinic__title">Size en yakın şubeyi arayın</h2>
+
+                    <InputGroup class="ig-clinic__group">
+                        <Select>
+                            {clinicCategories.map(cat => <option>{cat}</option>)}
+                        </Select>
+                        <Input type="search" placeholder="Semt veya şube adı" fullWidth />
+                        <Button variant="primary">Ara</Button>
+                    </InputGroup>
+
+                    <div class="ig-clinic__results">
+                        {clinicResults.map(result => (
+                            <div class="ig-clinic__result">
+                                <span class="ig-clinic__result-name">{result.name}</span>
+                                <span class="ig-clinic__result-detail">{result.detail}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Currency amount -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Currency Amount</span>
+            <span class="pl-example__tags">Money transfer · Select + amount</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ig-transfer">
+
+                <div class="ig-transfer__card">
+
+                    <label class="ig-transfer__label">{transferRate.label}</label>
+
+                    <InputGroup class="ig-transfer__group">
+                        <Select>
+                            {transferCurrencies.map(c => <option>{c}</option>)}
+                        </Select>
+                        <Input type="text" value="1,000.00" fullWidth />
+                    </InputGroup>
+
+                    <div class="ig-transfer__convert" aria-hidden="true">↓</div>
+
+                    <div class="ig-transfer__result">
+                        <strong>{transferRate.converted}</strong>
+                        <span>{transferRate.fee}</span>
+                    </div>
+
+                    <div class="ig-transfer__action">
+                        <Button size="lg" fullWidth>Continue transfer</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Domain availability -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Domain Availability</span>
+            <span class="pl-example__tags">Dark · Dev tool · Monospace results</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ig-domain">
+
+                <div class="ig-domain__inner">
+
+                    <h2 class="ig-domain__title">Find your domain</h2>
+
+                    <InputGroup class="ig-domain__group">
+                        <Input type="text" placeholder="relay-cli" fullWidth />
+                        <Select>
+                            {domainTlds.map(tld => <option>{tld}</option>)}
+                        </Select>
+                        <Button variant="primary">Check</Button>
+                    </InputGroup>
+
+                    <div class="ig-domain__results">
+                        {domainResults.map(result => (
+                            <div class="ig-domain__row">
+                                {result.name}
+                                <span class="ig-domain__row-price">{result.price}</span>
+                                <span class:list={["ig-domain__row-status", `ig-domain__row-status--${result.tone}`]}>
+                                    {result.status}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Phone number, checkout -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Phone Number</span>
+            <span class="pl-example__tags">Checkout · Country select + number · Step rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ig-phone">
+
+                <div class="ig-phone__card">
+
+                    <div class="ig-phone__steps">
+                        {checkoutSteps.map(step => (
+                            <span class:list={["ig-phone__step", `ig-phone__step--${step.state}`]}>
+                                <span class="ig-phone__step-n">
+                                    {step.state === "done" ? "✓" : step.n}
+                                </span>
+                                {step.label}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div class="ig-phone__field">
+                        <label class="ig-phone__label">Phone number</label>
+                        <InputGroup class="ig-phone__group">
+                            <Select>
+                                {phoneCountries.map(c => <option>{c}</option>)}
+                            </Select>
+                            <Input type="tel" placeholder="6 1234 5678" fullWidth />
+                        </InputGroup>
+                    </div>
+
+                    <div class="ig-phone__foot">
+                        <span class="ig-phone__foot-note">Step 2 of 3</span>
+                        <Button>Continue to payment</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Quantity + unit, inventory -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Quantity + Unit</span>
+            <span class="pl-example__tags">Inventory · Number + unit select</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ig-stock">
+
+                <div class="ig-stock__inner">
+
+                    <h2 class="ig-stock__title">Update stock levels</h2>
+
+                    {inventoryRows.map(row => (
+                        <div class="ig-stock__row">
+                            <div>
+                                <div class="ig-stock__name">{row.name}</div>
+                                <div class="ig-stock__sku">{row.sku}</div>
+                            </div>
+                            <InputGroup class="ig-stock__group">
+                                <Input type="number" value={row.stock.split(" ")[0]} />
+                                <Select>
+                                    {inventoryUnits.map(unit => (
+                                        <option selected={row.stock.endsWith(unit)}>{unit}</option>
+                                    ))}
+                                </Select>
+                            </InputGroup>
+                        </div>
+                    ))}
+
+                    <div class="ig-stock__foot">
+                        <span class="ig-stock__foot-note">Changes save automatically</span>
+                        <Button size="sm" variant="outline">View full inventory</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

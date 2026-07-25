@@ -1,0 +1,65 @@
+---
+// A single beat of the Empathy story (EMPATHY_SPECIFICATION.md §2/§4).
+// Reveals independently as it scrolls into view — sequential, not a
+// section-wide batch entrance (that's Hero's pattern; this one differs).
+interface Props {
+  text: string;
+  emphasis?: boolean;
+}
+const { text, emphasis = false } = Astro.props;
+---
+
+<p
+  class:list={["empathy-line", { "empathy-line--emphasis": emphasis }]}
+  data-rise
+  data-emphasis={emphasis ? "true" : undefined}
+>
+  {text}
+</p>
+
+<style>
+  .empathy-line {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.25rem + 1.1vw, 1.875rem);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+    /* Muted → full text color is the line-level echo of Noise→Signal (soluktan
+       nete) — a color-token swap, never opacity, so contrast stays guaranteed. */
+    color: var(--color-text-muted);
+    text-wrap: balance;
+  }
+
+  .empathy-line--emphasis {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  /* Hidden start only while armed; if JS never runs, the line is visible
+     (same robustness rule as Hero's [data-rise]). */
+  .empathy-line[data-anim="pending"] {
+    opacity: 0;
+  }
+
+  .empathy-line[data-anim="in"] {
+    animation: empathy-line-rise var(--empathy-rise-dur, 700ms)
+      var(--empathy-ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
+  }
+
+  @keyframes empathy-line-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .empathy-line[data-anim="in"] {
+      animation: none;
+    }
+  }
+</style>

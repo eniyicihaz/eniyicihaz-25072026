@@ -1,0 +1,46 @@
+---
+import "./Step.css";
+import type { StepProps } from "./Step.types";
+
+const {
+  number = 1,
+  label,
+  description,
+  active = false,
+  completed = false,
+  disabled = false,
+  class: className = "",
+} = Astro.props as StepProps;
+
+const classes = [
+  "ds-step",
+  active && "ds-step--active",
+  completed && "ds-step--completed",
+  disabled && "ds-step--disabled",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <div class="ds-step__indicator">
+    {completed ? "✓" : number}
+  </div>
+
+  <div class="ds-step__content">
+    <div class="ds-step__label">
+      {label}
+    </div>
+
+    {
+      description && (
+        <div class="ds-step__description">
+          {description}
+        </div>
+      )
+    }
+
+    <slot />
+  </div>
+</div>

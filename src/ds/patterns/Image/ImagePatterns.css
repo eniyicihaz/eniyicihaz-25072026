@@ -1,0 +1,380 @@
+/* ==========================================================
+   Image — five patterns
+
+   01  img-device    Hearing aid product gallery (eniyicihaz.com)
+   02  img-property  Real estate listing, hero + thumbnails
+   03  img-article   News article hero, editorial
+   04  img-recipe    Recipe method photos, sequential
+   05  img-team      Team portraits, about page
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Product gallery
+   ========================================================== */
+
+.img-device{
+    padding:64px 32px 88px;
+
+    background:
+        radial-gradient(55% 45% at 15% 0%, rgb(13 148 136 / .1), transparent 62%),
+        #f6fbfa;
+}
+
+.img-device__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.img-device__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.img-device__title{
+    margin:16px 0 32px;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.img-device__grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:20px;
+}
+
+.img-device__grid .ds-image{
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.img-device__grid .ds-image__img{
+    aspect-ratio:4 / 3;
+    border-radius:0;
+}
+
+.img-device__grid .ds-image__caption{
+    padding:14px 16px 16px;
+
+    font-size:.85rem;
+    font-weight:600;
+    text-align:left;
+    color:#123b36;
+}
+
+
+/* ==========================================================
+   02 — Property listing
+
+   A large hero above a thumbnail row — the standard
+   real-estate gallery composition.
+   ========================================================== */
+
+.img-property{
+    padding:56px 32px 88px;
+    background:#fbfcfe;
+}
+
+.img-property__inner{
+    max-width:960px;
+    margin:0 auto;
+}
+
+.img-property__title{
+    margin:0;
+
+    font-size:1.4rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:var(--pat-ink);
+}
+
+.img-property__location{
+    margin-top:8px;
+
+    font-size:.9rem;
+    color:var(--pat-soft);
+}
+
+.img-property__hero{
+    margin-top:22px;
+}
+
+.img-property__hero .ds-image__img{
+    aspect-ratio:16 / 9;
+}
+
+.img-property__hero .ds-image__caption{
+    margin-top:2px;
+
+    font-size:.82rem;
+    text-align:left;
+    color:var(--pat-soft);
+}
+
+.img-property__thumbs{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:12px;
+
+    margin-top:14px;
+}
+
+.img-property__thumbs .ds-image__img{
+    aspect-ratio:1;
+}
+
+
+/* ==========================================================
+   03 — Article hero
+
+   A full-bleed editorial photograph with a caption, the
+   masthead and headline sitting above it.
+   ========================================================== */
+
+.img-article{
+    padding:0 0 88px;
+    background:#fff;
+}
+
+.img-article__bar{
+    padding:16px 32px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.img-article__inner{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 32px;
+}
+
+.img-article__kicker{
+    display:block;
+    margin-top:36px;
+
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--pat-blue);
+}
+
+.img-article__title{
+    margin:16px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(2rem, 3.8vw, 2.8rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    line-height:1.12;
+
+    color:#12161c;
+}
+
+.img-article__byline{
+    margin:16px 0 32px;
+
+    font-size:.86rem;
+    color:var(--pat-soft);
+}
+
+.img-article__hero .ds-image__img{
+    aspect-ratio:2 / 1;
+}
+
+.img-article__hero .ds-image__caption{
+    margin-top:10px;
+
+    font-size:.82rem;
+    font-style:italic;
+    text-align:left;
+    color:var(--pat-soft);
+}
+
+.img-article__body{
+    max-width:640px;
+    margin:32px auto 0;
+
+    font-size:1.02rem;
+    line-height:1.85;
+    color:#3b352b;
+}
+
+
+/* ==========================================================
+   04 — Recipe method photos
+
+   Sequential photographs, each paired with a numbered
+   step label — a cooking-magazine method spread.
+   ========================================================== */
+
+.img-recipe{
+    padding:64px 32px 88px;
+    background:#faf8f4;
+}
+
+.img-recipe__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.img-recipe__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.img-recipe__title{
+    margin:16px 0 32px;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.9rem, 3.6vw, 2.5rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    color:#1c1812;
+}
+
+.img-recipe__grid{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:18px;
+}
+
+.img-recipe__step{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.img-recipe__step .ds-image__img{
+    aspect-ratio:1;
+    border-radius:var(--pat-radius-sm);
+}
+
+.img-recipe__label{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+
+    font-size:.9rem;
+    color:#3b352b;
+}
+
+.img-recipe__n{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:#a3937a;
+}
+
+
+/* ==========================================================
+   05 — Team portraits
+
+   A dark about-page grid. Each portrait is `rounded={false}`
+   and cropped to a square, with name and role beneath.
+   ========================================================== */
+
+.img-team{
+    padding:64px 32px 88px;
+    background:#141213;
+}
+
+.img-team__inner{
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.img-team__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:rgb(255 255 255 / .4);
+}
+
+.img-team__title{
+    margin:16px 0 32px;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#fff;
+}
+
+.img-team__grid{
+    display:grid;
+    grid-template-columns:repeat(5, minmax(0, 1fr));
+    gap:18px;
+}
+
+.img-team__grid .ds-image__img{
+    aspect-ratio:4 / 5;
+}
+
+.img-team__name{
+    margin-top:12px;
+
+    font-size:.88rem;
+    font-weight:650;
+    color:#fff;
+}
+
+.img-team__role{
+    margin-top:3px;
+
+    font-size:.78rem;
+    color:rgb(255 255 255 / .45);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .img-device__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+    .img-property__thumbs{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+    .img-recipe__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+    .img-team__grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+
+}
+
+@media (max-width:720px){
+
+    .img-device{ padding:44px 16px 56px; }
+    .img-device__grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .img-property{ padding:40px 16px 56px; }
+    .img-property__thumbs{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+    .img-article__bar{ padding:14px 20px; }
+    .img-article__inner{ padding:0 20px; }
+
+    .img-recipe{ padding:40px 16px 56px; }
+    .img-recipe__grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .img-team{ padding:40px 16px 56px; }
+    .img-team__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+}

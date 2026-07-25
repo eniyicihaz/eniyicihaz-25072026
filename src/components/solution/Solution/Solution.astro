@@ -1,0 +1,170 @@
+---
+// Solution — "Neden böyle oluyor?". A deliberate rest after Sound Room's
+// peak: explains the experience, owns no conversion (no CTA — that belongs
+// to the following section, per SOLUTION_SPECIFICATION.md §1).
+// Spec: docs/SOLUTION_SPECIFICATION.md · DNA: PRINCIPLES §1 · Visual: DESIGN_SYSTEM §6.
+import SolutionFactCard from "./atoms/SolutionFactCard/SolutionFactCard.astro";
+import { solution } from "./solution.data";
+---
+
+<section class="solution" aria-labelledby="solution-title">
+  <h2 class="solution__heading" id="solution-title">{solution.heading}</h2>
+
+  <div class="solution__inner">
+    <p class="solution__context" data-rise>{solution.contextSentence}</p>
+
+    <div class="solution__cards">
+      {
+        solution.facts.map((fact) => (
+          <SolutionFactCard title={fact.title} body={fact.body} />
+        ))
+      }
+    </div>
+
+    <p class="solution__closing" data-rise>{solution.closingSentence}</p>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".solution");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Single-shot entrance (Hero's pattern) — if this script never runs,
+    // everything renders visible.
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .solution {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --solution-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --solution-rise-dur: 700ms;
+  }
+
+  /* sr-only: names the section for the document outline/screen readers
+     (same recipe as Empathy/Sound Room). */
+  .solution__heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .solution__inner {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  .solution__context,
+  .solution__closing {
+    margin: 0;
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .solution__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    width: 100%;
+  }
+
+  /* --- Entrance: organism owns the state machine, targets [data-rise]
+     descendants directly (Hero's pattern) — cards get a light stagger,
+     context/closing sentences settle together, no stagger needed. --- */
+
+  .solution[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .solution[data-anim="in"] [data-rise] {
+    animation: solution-rise var(--solution-rise-dur) var(--solution-ease) both;
+  }
+
+  .solution[data-anim="in"] :global(.solution-card):nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .solution[data-anim="in"] :global(.solution-card):nth-child(2) {
+    animation-delay: 120ms;
+  }
+  .solution[data-anim="in"] :global(.solution-card):nth-child(3) {
+    animation-delay: 240ms;
+  }
+
+  @keyframes solution-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 1023px) {
+    .solution__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .solution {
+      padding-block: var(--space-16);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solution[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+/* ==========================================================
+   Hero — semantic token layer
+   Derived from DS primitives (variables.css); scoped to .hero.
+   Components reference these tokens (with fallbacks) — no raw values.
+   ========================================================== */
+
+.hero {
+  /* One easing + timing vocabulary for the whole section, so every motion
+     reads as a single choreographed gesture (HERO_SPECIFICATION §6). */
+  --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --hero-rise-dur: 520ms; /* per-element entrance */
+  --hero-btn-dur: 300ms; /* CTA hover/press */
+
+  /* Noise → Signal field (DESIGN_SYSTEM_GUIDE §6). */
+  --hero-signal: var(--color-primary); /* the resolved line */
+  --hero-signal-idle: var(--color-border); /* scattered / neutral lines */
+  --hero-signal-gap: var(--space-3); /* vertical rhythm between lines */
+  --hero-glow: rgb(37 99 235 / 0.06); /* soft brand glow behind signal */
+
+  /* Vertical footprint — generous but never taller than the viewport. */
+  --hero-min-h: min(88vh, 900px);
+}
+
+/* Full-width layer backgrounds, centred content — same rhythm as the site
+   master grid (1440 / 48px), kept local so Hero owns no external dependency. */
+.hero-container {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+  padding-inline: var(--space-12);
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    --hero-min-h: min(90vh, 760px);
+  }
+  .hero-container {
+    padding-inline: var(--space-6);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-container {
+    padding-inline: var(--space-4);
+  }
+}

@@ -1,0 +1,52 @@
+---
+import "./TimePicker.css";
+import type { TimePickerProps } from "./TimePicker.types";
+
+const {
+  id,
+  name,
+  value = "",
+  min,
+  max,
+  step,
+  disabled = false,
+  readonly = false,
+  required = false,
+  invalid = false,
+  class: className = "",
+} = Astro.props as TimePickerProps;
+
+const classes = [
+  "ds-time-picker",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <input
+    class:list={[
+      "ds-time-picker__field",
+      invalid && "ds-time-picker__field--invalid",
+    ]}
+    id={id}
+    name={name}
+    type="time"
+    value={value}
+    min={min}
+    max={max}
+    step={step}
+    disabled={disabled}
+    readonly={readonly}
+    required={required}
+    aria-invalid={invalid}
+  />
+
+  <span
+    class="ds-time-picker__icon"
+    aria-hidden="true"
+  >
+    🕒
+  </span>
+</div>

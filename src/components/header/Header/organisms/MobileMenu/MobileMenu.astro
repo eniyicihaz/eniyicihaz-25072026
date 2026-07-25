@@ -1,0 +1,363 @@
+---
+import { ChevronDown, X, Phone } from "lucide-astro";
+import { icons } from "../../icons";
+import type { HeaderData } from "../../header.types";
+
+interface Props {
+  brand: HeaderData["brand"];
+  items: HeaderData["nav"];
+  phone: HeaderData["phone"];
+  cta: HeaderData["cta"];
+}
+
+const { brand, items, phone, cta } = Astro.props;
+const CtaIcon = icons[cta.icon] as any;
+---
+
+<div class="hd-mobile" data-mobile aria-hidden="true">
+  <div class="hd-mobile__backdrop" data-action="close-mobile"></div>
+
+  <aside class="hd-mobile__panel" role="dialog" aria-modal="true" aria-label="Menü">
+    <div class="hd-mobile__head">
+      <span class="hd-mobile__brand">
+        <span class="hd-mobile__brand-a">ENİYİ</span><span class="hd-mobile__brand-b">CİHAZ</span>
+      </span>
+      <button
+        type="button"
+        class="hd-mobile__close"
+        data-action="close-mobile"
+        aria-label="Menüyü kapat"
+      >
+        <X size={22} aria-hidden="true" />
+      </button>
+    </div>
+
+    <nav class="hd-mobile__nav" aria-label="Mobil menü">
+      <ul class="hd-mobile__list">
+        {
+          items.map((item) =>
+            item.mega ? (
+              <li class="hd-mobile__group" data-accordion>
+                <button
+                  type="button"
+                  class="hd-mobile__acc-trigger"
+                  data-action="toggle-accordion"
+                  aria-expanded="false"
+                >
+                  <span>{item.label}</span>
+                  <ChevronDown class="hd-mobile__acc-chev" size={18} aria-hidden="true" />
+                </button>
+                <div class="hd-mobile__acc-panel">
+                  {item.mega.columns.map((col) => {
+                    const ColIcon = icons[col.icon] as any;
+                    return (
+                      <div class="hd-mobile__sub">
+                        <p class="hd-mobile__sub-title">
+                          <span class="hd-mobile__sub-icon" aria-hidden="true">
+                            <ColIcon size={16} />
+                          </span>
+                          {col.title}
+                        </p>
+                        <ul class="hd-mobile__sub-list">
+                          {col.links.map((link) => (
+                            <li>
+                              <a class="hd-mobile__sub-link" href={link.href}>
+                                {link.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                  <a class="hd-mobile__sub-all" href={item.mega.support.footer.href}>
+                    {item.mega.support.footer.label}
+                  </a>
+                </div>
+              </li>
+            ) : (
+              <li>
+                <a class="hd-mobile__link" href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            )
+          )
+        }
+      </ul>
+    </nav>
+
+    <div class="hd-mobile__foot">
+      <a class="hd-mobile__phone" href={phone.href}>
+        <Phone size={18} aria-hidden="true" />
+        <span>
+          <strong>{phone.number}</strong>
+          <small>{phone.label}</small>
+        </span>
+      </a>
+      <a class="hd-mobile__cta" href={cta.href}>
+        <CtaIcon size={18} aria-hidden="true" />
+        <span>{cta.label}</span>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<style>
+  .hd-mobile {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .hd-mobile[data-open] {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .hd-mobile__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(15 23 42 / 0.5);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .hd-mobile[data-open] .hd-mobile__backdrop {
+    opacity: 1;
+  }
+
+  .hd-mobile__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(400px, 88vw);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    box-shadow: var(--shadow-xl);
+    transform: translateX(100%);
+    transition: transform var(--transition-base);
+  }
+
+  .hd-mobile[data-open] .hd-mobile__panel {
+    transform: translateX(0);
+  }
+
+  .hd-mobile__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    flex: none;
+  }
+
+  .hd-mobile__brand {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.021em;
+  }
+  .hd-mobile__brand-a {
+    color: var(--color-text);
+  }
+  .hd-mobile__brand-b {
+    color: var(--color-primary);
+  }
+
+  .hd-mobile__close {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+  }
+  .hd-mobile__close:hover {
+    color: var(--color-text);
+    background: var(--color-surface-hover);
+  }
+  .hd-mobile__close:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-mobile__nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .hd-mobile__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hd-mobile__link,
+  .hd-mobile__acc-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-3);
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+  }
+
+  .hd-mobile__link:hover,
+  .hd-mobile__acc-trigger:hover {
+    background: var(--color-surface);
+  }
+  .hd-mobile__link:focus-visible,
+  .hd-mobile__acc-trigger:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-mobile__acc-chev {
+    transition: transform var(--transition-base);
+    color: var(--color-text-soft);
+    flex: none;
+  }
+  .hd-mobile__group[data-open] .hd-mobile__acc-chev {
+    transform: rotate(180deg);
+  }
+
+  .hd-mobile__acc-panel {
+    display: none;
+    padding: var(--space-2) var(--space-2) var(--space-4);
+  }
+  .hd-mobile__group[data-open] .hd-mobile__acc-panel {
+    display: block;
+  }
+
+  .hd-mobile__sub {
+    padding: var(--space-2) 0;
+  }
+  .hd-mobile__sub-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-1);
+    padding-inline: var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-soft);
+  }
+  .hd-mobile__sub-icon {
+    display: grid;
+    place-items: center;
+    color: var(--color-primary);
+  }
+  .hd-mobile__sub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .hd-mobile__sub-link {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-md);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+  }
+  .hd-mobile__sub-link:hover {
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+  .hd-mobile__sub-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+  .hd-mobile__sub-all {
+    display: inline-block;
+    margin-top: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .hd-mobile__foot {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .hd-mobile__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .hd-mobile__phone span {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .hd-mobile__phone strong {
+    font-size: var(--font-size-md);
+    color: var(--color-text);
+  }
+  .hd-mobile__phone small {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+  }
+
+  .hd-mobile__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 50px;
+    border-radius: var(--radius-lg);
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: background-color var(--transition-base);
+  }
+  .hd-mobile__cta:hover {
+    background: var(--color-primary-active);
+  }
+  .hd-mobile__cta:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hd-mobile__backdrop,
+    .hd-mobile__panel {
+      transition: none;
+    }
+  }
+</style>

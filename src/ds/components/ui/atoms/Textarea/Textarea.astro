@@ -1,0 +1,69 @@
+---
+import "./Textarea.css";
+import type { TextareaProps } from "./Textarea.types";
+
+const {
+  value = "",
+  placeholder = "",
+  rows = 5,
+  variant = "default",
+  size = "md",
+  disabled = false,
+  readonly = false,
+  required = false,
+  fullWidth = false,
+  error = false,
+  success = false,
+  helperText,
+  maxLength,
+  class: className = "",
+  name,
+  id
+}: TextareaProps = Astro.props;
+
+const classes = [
+  "textarea",
+  `textarea--${variant}`,
+  `textarea--${size}`,
+  fullWidth && "textarea--full",
+  error && "is-error",
+  success && "is-success",
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class="textarea-field">
+
+  <textarea
+    class={classes}
+    placeholder={placeholder}
+    rows={rows}
+    disabled={disabled}
+    readonly={readonly}
+    required={required}
+    maxlength={maxLength}
+    name={name}
+    id={id}
+  >{value}</textarea>
+
+  {(helperText || maxLength) && (
+    <div class="textarea-footer">
+
+      {helperText && (
+        <p class="textarea-helper">
+          {helperText}
+        </p>
+      )}
+
+      {maxLength && (
+        <span class="textarea-counter">
+          {value.length}/{maxLength}
+        </span>
+      )}
+
+    </div>
+  )}
+
+</div>

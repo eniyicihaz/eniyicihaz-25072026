@@ -1,0 +1,198 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Skeleton from "../../../ds/components/ui/atoms/Skeleton/Skeleton.astro";
+---
+
+<DSLayout>
+
+<section class="page">
+
+    <PageHeader
+        category="ATOM"
+        title="Skeleton"
+        description="İçerik yüklenirken gösterilen premium Skeleton bileşeni."
+    />
+
+    <ComponentMeta
+        version="1.0.0"
+        status="stable"
+    />
+
+    <Preview title="Text">
+
+        <div class="demo-column">
+
+            <Skeleton lines={1} />
+
+            <Skeleton lines={2} />
+
+            <Skeleton lines={3} />
+
+            <Skeleton
+                lines={4}
+                lastLineWidth="45%"
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Rectangle">
+
+        <div class="demo-row">
+
+            <Skeleton
+                variant="rectangle"
+                width="180px"
+                height="100px"
+            />
+
+            <Skeleton
+                variant="rectangle"
+                width="280px"
+                height="160px"
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Rounded">
+
+        <div class="demo-row">
+
+            <Skeleton
+                variant="rounded"
+                width="180px"
+                height="100px"
+            />
+
+            <Skeleton
+                variant="rounded"
+                width="280px"
+                height="160px"
+                radius="1rem"
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Circle">
+
+        <div class="demo-row">
+
+            <Skeleton
+                variant="circle"
+                width="48px"
+                height="48px"
+            />
+
+            <Skeleton
+                variant="circle"
+                width="72px"
+                height="72px"
+            />
+
+            <Skeleton
+                variant="circle"
+                width="96px"
+                height="96px"
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Animations">
+
+        <div class="demo-column">
+
+            <Skeleton
+                lines={3}
+                animation="wave"
+            />
+
+            <Skeleton
+                lines={3}
+                animation="pulse"
+            />
+
+            <Skeleton
+                lines={3}
+                animation="none"
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Card Example">
+
+        <div class="card-demo">
+
+            <Skeleton
+                variant="rounded"
+                width="100%"
+                height="180px"
+            />
+
+            <Skeleton
+                width="65%"
+                height="1.4rem"
+            />
+
+            <Skeleton
+                lines={3}
+            />
+
+            <Skeleton
+                variant="rounded"
+                width="140px"
+                height="42px"
+            />
+
+        </div>
+
+    </Preview>
+
+</section>
+
+<style>
+
+.page{
+    max-width:1300px;
+}
+
+.demo-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.5rem;
+    align-items:center;
+}
+
+.demo-column{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    max-width:700px;
+}
+
+.card-demo{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    max-width:360px;
+    padding:1.5rem;
+    border:1px solid var(--color-border,#e5e7eb);
+    border-radius:1rem;
+}
+
+</style>
+
+</DSLayout>

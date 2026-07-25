@@ -1,0 +1,33 @@
+.ds-color-picker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-color-picker__input {
+  width: 44px;
+  height: 44px;
+  padding: 2px;
+  border: 1px solid var(--ds-border, #d1d5db);
+  border-radius: 10px;
+  background: var(--ds-surface, #fff);
+  cursor: pointer;
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.ds-color-picker__input:hover {
+  border-color: var(--ds-primary, #2563eb);
+}
+
+.ds-color-picker__input:focus-visible {
+  outline: none;
+  border-color: var(--ds-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.18);
+}
+
+.ds-color-picker__input:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}

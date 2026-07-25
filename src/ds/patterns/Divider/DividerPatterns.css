@@ -1,0 +1,550 @@
+/* ==========================================================
+   Divider — five patterns
+
+   01  div-appt    Appointment summary sections (eniyicihaz.com)
+   02  div-price   Two pricing tiers split by "or"
+   03  div-article Long-form article with section breaks
+   04  div-settings Dark settings groups
+   05  div-recipe  Editorial recipe method, vertical rail
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Appointment summary
+
+   Labelled dividers separate a receipt-like summary into
+   named sections.
+   ========================================================== */
+
+.div-appt{
+    display:flex;
+    justify-content:center;
+
+    padding:72px 32px 80px;
+
+    background:
+        radial-gradient(55% 45% at 50% 0%, rgb(13 148 136 / .12), transparent 64%),
+        #f6fbfa;
+}
+
+.div-appt__card{
+    width:100%;
+    max-width:520px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.div-appt__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.div-appt__title{
+    margin:16px 0 0;
+
+    font-size:1.4rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#123b36;
+}
+
+.div-appt__section{
+    margin-top:22px;
+}
+
+.div-appt .divider{
+    margin:22px 0;
+}
+
+.div-appt .divider-line{
+    background:rgb(18 59 54 / .14);
+}
+
+.div-appt .divider-label{
+    padding:0 12px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.div-appt__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:7px 0;
+
+    font-size:.9rem;
+}
+
+.div-appt__row dt{
+    color:#4a6b66;
+}
+
+.div-appt__row dd{
+    margin:0;
+
+    font-weight:650;
+    color:#123b36;
+}
+
+.div-appt__action{
+    margin-top:8px;
+}
+
+.div-appt .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.div-appt .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Pricing "or" split
+
+   A vertical divider with a label splits two cards on
+   wide screens, becoming horizontal on narrow ones.
+   ========================================================== */
+
+.div-price{
+    display:flex;
+    justify-content:center;
+
+    padding:80px 32px 88px;
+    background:#fbfcfe;
+}
+
+.div-price__inner{
+    display:flex;
+    align-items:stretch;
+
+    width:100%;
+    max-width:720px;
+}
+
+.div-price__plan{
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.div-price__plan--annual{
+    border-color:rgb(29 78 216 / .3);
+    box-shadow:0 20px 48px rgb(29 78 216 / .1);
+}
+
+.div-price__name{
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.div-price__amount{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+
+    margin-top:16px;
+}
+
+.div-price__amount strong{
+    font-size:2.4rem;
+    font-weight:800;
+    letter-spacing:-.05em;
+    color:var(--pat-ink);
+}
+
+.div-price__amount span{
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.div-price__note{
+    margin-top:14px;
+
+    font-size:.86rem;
+    color:var(--pat-body);
+}
+
+.div-price__action{
+    margin-top:auto;
+    padding-top:24px;
+}
+
+.div-price__split{
+    position:relative;
+
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+
+    padding:0 28px;
+}
+
+.div-price__split .divider--vertical{
+    height:100%;
+}
+
+.div-price__split .divider-line{
+    background:var(--pat-line);
+}
+
+.div-price__or{
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:38px;
+    height:38px;
+
+    transform:translate(-50%, -50%);
+
+    border:1px solid var(--pat-line);
+    border-radius:50%;
+
+    background:#fff;
+
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   03 — Article section breaks
+
+   Plain, unlabelled dividers mark the boundary between
+   long-form sections — quiet, editorial.
+   ========================================================== */
+
+.div-article{
+    padding:80px 32px 88px;
+    background:#fff;
+}
+
+.div-article__inner{
+    max-width:640px;
+    margin:0 auto;
+}
+
+.div-article__meta{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.div-article__title{
+    margin:16px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.9rem, 3.6vw, 2.6rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    line-height:1.12;
+
+    color:#12161c;
+}
+
+.div-article__section{
+    margin-top:36px;
+}
+
+.div-article__heading{
+    margin:0 0 14px;
+
+    font-family:var(--pat-serif);
+    font-size:1.3rem;
+    font-weight:400;
+    letter-spacing:-.02em;
+    color:#12161c;
+}
+
+.div-article__body{
+    margin:0;
+
+    font-size:1.02rem;
+    line-height:1.85;
+    color:#3b352b;
+}
+
+.div-article .divider{
+    margin:40px 0;
+    max-width:80px;
+}
+
+.div-article .divider-line{
+    height:2px;
+    background:#12161c;
+}
+
+
+/* ==========================================================
+   04 — Settings groups
+
+   Dark. Section dividers with labels sit between rows of
+   settings items — a real preferences panel.
+   ========================================================== */
+
+.div-settings{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 76px;
+    background:#0a0f19;
+}
+
+.div-settings__card{
+    width:100%;
+    max-width:520px;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .02);
+}
+
+.div-settings__head{
+    padding:20px 24px;
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.div-settings__title{
+    margin:0;
+
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:-.025em;
+    color:#f8fafc;
+}
+
+.div-settings__body{
+    padding:8px 24px 20px;
+}
+
+.div-settings .divider{
+    margin:16px 0 6px;
+}
+
+.div-settings .divider-line{
+    background:rgb(255 255 255 / .1);
+}
+
+.div-settings .divider-label{
+    padding:0 10px;
+
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .32);
+}
+
+.div-settings__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:11px 4px;
+
+    font-size:.9rem;
+    color:rgb(248 250 252 / .82);
+}
+
+.div-settings__row:hover{
+    color:#f8fafc;
+}
+
+.div-settings__row-arrow{
+    color:rgb(248 250 252 / .28);
+}
+
+.div-settings__group--danger .div-settings__row{
+    color:#fca5a5;
+}
+
+
+/* ==========================================================
+   05 — Recipe method
+
+   Vertical dividers form a connecting rail between
+   numbered steps, editorial and warm.
+   ========================================================== */
+
+.div-recipe{
+    padding:80px 32px 88px;
+    background:#faf8f4;
+}
+
+.div-recipe__inner{
+    max-width:600px;
+    margin:0 auto;
+}
+
+.div-recipe__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.div-recipe__title{
+    margin:16px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.9rem, 3.6vw, 2.5rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    color:#1c1812;
+}
+
+.div-recipe__method{
+    margin-top:36px;
+}
+
+.div-recipe__step{
+    display:grid;
+    grid-template-columns:40px minmax(0, 1fr);
+    gap:20px;
+}
+
+.div-recipe__rail{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.div-recipe__n{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:34px;
+    height:34px;
+    flex-shrink:0;
+
+    border:1px solid rgb(28 24 18 / .2);
+    border-radius:50%;
+    background:#fff;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    font-weight:700;
+    color:#1c1812;
+}
+
+.div-recipe__rail .divider{
+    flex:1;
+    min-height:24px;
+}
+
+.div-recipe__rail .divider-line{
+    background:rgb(28 24 18 / .16);
+}
+
+.div-recipe__step-body{
+    padding-bottom:28px;
+}
+
+.div-recipe__step-title{
+    margin:6px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:1.15rem;
+    font-weight:400;
+    letter-spacing:-.02em;
+    color:#1c1812;
+}
+
+.div-recipe__step-text{
+    margin:8px 0 0;
+    max-width:52ch;
+
+    font-size:.96rem;
+    line-height:1.75;
+    color:#3b352b;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .div-price__inner{ flex-direction:column; }
+
+    .div-price__split{
+        padding:20px 0;
+    }
+
+    .div-price__split .divider--vertical{
+        display:none;
+    }
+
+    .div-price__split::before{
+        content:"";
+
+        position:absolute;
+        top:50%;
+        right:0;
+        left:0;
+
+        height:1px;
+
+        background:var(--pat-line);
+    }
+
+}
+
+@media (max-width:720px){
+
+    .div-appt{ padding:44px 16px 56px; }
+    .div-appt__card{ padding:24px 20px; }
+
+    .div-price{ padding:56px 16px 64px; }
+    .div-price__plan{ padding:24px 20px; }
+
+    .div-article{ padding:56px 20px 64px; }
+
+    .div-settings{ padding:44px 16px 56px; }
+
+    .div-recipe{ padding:56px 20px 64px; }
+
+}

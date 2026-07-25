@@ -1,0 +1,219 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/PhoneInput/PhoneInputPatterns.css";
+
+import PhoneInput from "../../../ds/components/ui/atoms/PhoneInput/PhoneInput.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    bookingField,
+    checkoutField,
+    securityField,
+    profileField,
+    supportField
+} from "../../../ds/patterns/PhoneInput/phoneinput.data";
+---
+
+<DSLayout title="Phone Input">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Phone Input</h1>
+
+        <p class="pl-head__lede">
+            Five phone number moments — a clinic booking form, an invalid
+            checkout field, a 2FA setup, a verified profile entry and a
+            locked support ticket field.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic appointment booking -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment Booking</span>
+            <span class="pl-example__tags">Hearing care · Required</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="phi-booking">
+
+                <div class="phi-booking__card">
+
+                    <span class="phi-booking__kicker">Randevu</span>
+                    <h2 class="phi-booking__title">İletişim bilgileriniz</h2>
+
+                    <label class="phi-booking__label" for={bookingField.id}>{bookingField.label}</label>
+                    <PhoneInput
+                        id={bookingField.id}
+                        placeholder={bookingField.placeholder}
+                        required
+                    />
+
+                    <div class="phi-booking__action">
+                        <Button size="lg" fullWidth>Devam et</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Checkout shipping contact, invalid -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Checkout Contact</span>
+            <span class="pl-example__tags">Retail · Invalid state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="phi-checkout">
+
+                <div class="phi-checkout__card">
+
+                    <span class="phi-checkout__crumb">Checkout / Shipping details</span>
+                    <h2 class="phi-checkout__title">How can we reach you about delivery?</h2>
+
+                    <label class="phi-checkout__label" for={checkoutField.id}>{checkoutField.label}</label>
+                    <PhoneInput
+                        id={checkoutField.id}
+                        value={checkoutField.value}
+                        invalid
+                    />
+                    <p class="phi-checkout__error">⚠ {checkoutField.error}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Account security, 2FA -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Two-Factor Setup</span>
+            <span class="pl-example__tags">Account security · Dark</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="phi-security">
+
+                <div class="phi-security__card">
+
+                    <span class="phi-security__crumb">Settings / Security / Recovery</span>
+                    <h2 class="phi-security__title">Add a recovery phone number</h2>
+
+                    <label class="phi-security__label" for={securityField.id}>{securityField.label}</label>
+                    <PhoneInput
+                        id={securityField.id}
+                        placeholder={securityField.placeholder}
+                    />
+                    <p class="phi-security__hint">{securityField.hint}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Verified phone, read-only -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Verified Number</span>
+            <span class="pl-example__tags">Profile · Read-only</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="phi-profile">
+
+                <div class="phi-profile__card">
+
+                    <div class="phi-profile__head">Profil bilgileri</div>
+
+                    <div class="phi-profile__row">
+                        <div class="phi-profile__label-row">
+                            <label class="phi-profile__label" for={profileField.id}>{profileField.label}</label>
+                            <span class="phi-profile__badge">✓ {profileField.note}</span>
+                        </div>
+                        <PhoneInput
+                            id={profileField.id}
+                            value={profileField.value}
+                            readonly
+                        />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Support ticket, disabled/pending -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Pending Verification</span>
+            <span class="pl-example__tags">Support desk · Disabled</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="phi-support">
+
+                <div class="phi-support__card">
+
+                    <div class="phi-support__icon">📨</div>
+                    <div class="phi-support__title">Confirm your phone number</div>
+
+                    <label class="phi-support__label" for={supportField.id}>{supportField.label}</label>
+                    <PhoneInput
+                        id={supportField.id}
+                        value={supportField.value}
+                        disabled
+                    />
+                    <p class="phi-support__note">⏳ {supportField.note}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

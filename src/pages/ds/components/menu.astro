@@ -1,0 +1,197 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Menu/MenuPatterns.css";
+
+import Menu from "../../../ds/components/ui/atoms/Menu/Menu.astro";
+
+import {
+    portalMenu,
+    settingsMenu,
+    docsMenu,
+    contextMenu,
+    tabBarMenu
+} from "../../../ds/patterns/Menu/menu.data";
+---
+
+<DSLayout title="Menu">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Menu</h1>
+
+        <p class="pl-head__lede">
+            Five surfaces built from the same list of menu items — a
+            patient portal sidebar, account settings, a docs top nav,
+            a file context menu and a mobile tab bar.
+        </p>
+
+    </header>
+
+    <!-- 01 — Patient portal sidebar -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Portal Sidebar</span>
+            <span class="pl-example__tags">Hearing care · Vertical · Separator</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="mnu-portal">
+
+                <div class="mnu-portal__frame">
+
+                    <aside class="mnu-portal__side">
+                        <div class="mnu-portal__brand">eniyicihaz.com</div>
+                        <Menu items={portalMenu} orientation="vertical" />
+                    </aside>
+
+                    <div class="mnu-portal__main">
+                        Yaklaşan randevunuz: Yarın, 09:00 — Kontrol muayenesi
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Account settings, dark, disabled item -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Settings Menu</span>
+            <span class="pl-example__tags">Dark · Disabled item · Read-only role</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="mnu-settings">
+
+                <div class="mnu-settings__frame">
+                    <div class="mnu-settings__title">Settings</div>
+                    <Menu items={settingsMenu} orientation="vertical" />
+                    <p class="mnu-settings__hint">
+                        Billing is managed by your organization's owner
+                    </p>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Documentation top nav, horizontal -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Documentation Nav</span>
+            <span class="pl-example__tags">Developer docs · Horizontal · Active tab</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="mnu-docs">
+
+                <div class="mnu-docs__frame">
+
+                    <span class="mnu-docs__crumb">relay-cli documentation</span>
+
+                    <Menu items={docsMenu} orientation="horizontal" />
+
+                    <div class="mnu-docs__panel">
+                        <h3>API Reference</h3>
+                        <p>
+                            Every endpoint, request shape and error code for the
+                            relay-cli platform, generated straight from the
+                            OpenAPI specification.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — File context menu -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Context Menu</span>
+            <span class="pl-example__tags">File manager · Popover · Destructive item</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="mnu-context">
+
+                <div class="mnu-context__stage">
+
+                    <div class="mnu-context__card">
+                        <div class="mnu-context__icon">📄</div>
+                        <div>
+                            <div class="mnu-context__name">Q3 audiology report.pdf</div>
+                            <div class="mnu-context__meta">2.4 MB · Edited 3 hours ago</div>
+                        </div>
+                    </div>
+
+                    <div class="mnu-context__popover">
+                        <Menu items={contextMenu} orientation="vertical" />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Mobile bottom tab bar -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Bottom Tab Bar</span>
+            <span class="pl-example__tags">Mobile app · Horizontal · Icon labels</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="mnu-tabbar">
+
+                <div class="mnu-tabbar__phone">
+                    <div class="mnu-tabbar__screen">Home feed</div>
+                    <Menu items={tabBarMenu} orientation="horizontal" />
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

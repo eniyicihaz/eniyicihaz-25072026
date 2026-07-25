@@ -1,0 +1,13 @@
+.ds-radio-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.ds-radio-group--vertical {
+  flex-direction: column;
+}
+
+.ds-radio-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}

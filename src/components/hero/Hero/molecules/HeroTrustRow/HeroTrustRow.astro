@@ -1,0 +1,65 @@
+---
+// Verifiable trust signals + the dual-brand lockup. Every item must be true
+// (PRINCIPLES §7 — no invented signals); the lockup is never a footnote
+// (PRINCIPLES §2).
+interface Props {
+  items: string[];
+  brandLockup: string;
+}
+const { items, brandLockup } = Astro.props;
+---
+
+<div class="hero-trust">
+  <ul class="hero-trust__list">
+    {items.map((item) => <li class="hero-trust__item">{item}</li>)}
+  </ul>
+  <p class="hero-trust__lockup">{brandLockup}</p>
+</div>
+
+<style>
+  .hero-trust {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .hero-trust__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  /* A hairline dot between items — never before the first, and hidden when an
+     item wraps to a new line's start would look odd, so kept purely decorative. */
+  .hero-trust__item {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .hero-trust__item + .hero-trust__item::before {
+    content: "";
+    width: 3px;
+    height: 3px;
+    margin-inline-end: var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-text-soft);
+  }
+
+  .hero-trust__lockup {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    /* text-muted, not text-soft: this is read copy (dual-brand lockup), and
+       text-soft fails WCAG AA here (~2.6:1 on white vs muted's ~7.6:1). */
+    color: var(--color-text-muted);
+    text-wrap: balance;
+  }
+</style>

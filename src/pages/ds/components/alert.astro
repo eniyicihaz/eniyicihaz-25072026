@@ -1,0 +1,436 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Alert/AlertPatterns.css";
+
+import Alert from "../../../ds/components/ui/atoms/Alert/Alert.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    announcementLinks,
+    orderRows,
+    orderSteps,
+    warningChecklist,
+    maintenanceWindow,
+    maintenanceServices,
+    promoPerks
+} from "../../../ds/patterns/Alert/alert.data";
+
+const siteNav = ["Product", "Solutions", "Docs", "Pricing"];
+---
+
+<DSLayout title="Alert">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Alert</h1>
+
+        <p class="pl-head__lede">
+            Five sections where an alert carries the message — a release
+            announcement, an order confirmation, a migration warning,
+            a maintenance window and a seasonal offer.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Announcement
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Announcement</span>
+            <span class="pl-example__tags">Site header · Release note · Full bleed bar</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="alert-announce">
+
+                <div class="alert-announce__bar">
+                    <div class="alert-announce__bar-inner">
+                        <strong>Northwind 4.0 is here</strong>
+                        <span>·</span>
+                        <span>Faster builds, new editor, same price</span>
+                    </div>
+                </div>
+
+                <nav class="alert-announce__nav">
+                    <span class="alert-announce__logo">▲ Northwind</span>
+                    <div class="alert-announce__links">
+                        {siteNav.map(link => (
+                            <span>{link}</span>
+                        ))}
+                    </div>
+                    <Button variant="outline" size="sm">Sign in</Button>
+                </nav>
+
+                <div class="alert-announce__body">
+
+                    <Alert
+                        variant="info"
+                        size="lg"
+                        icon="✦"
+                        title="Version 4.0 is rolling out to every workspace this week"
+                        fullWidth
+                        dismissible
+                    >
+                        Builds are roughly 40% faster, the editor supports multiplayer
+                        cursors, and the old <strong>v2 config format</strong> stays
+                        supported until March 2027. No action is needed from you today.
+                    </Alert>
+
+                    <div class="alert-announce__meta">
+                        {announcementLinks.map(link => (
+                            <a class="alert-announce__link" href="#0">{link}</a>
+                        ))}
+                    </div>
+
+                    <h2 class="alert-announce__heading">Ship it before the standup</h2>
+
+                    <p class="alert-announce__text">
+                        Connect a repository and Northwind takes it from there —
+                        previews on every pull request, production on every merge,
+                        and a rollback that actually works when you need it at 2am.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Success
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Success</span>
+            <span class="pl-example__tags">Centered · Receipt rows · Next steps</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="alert-success">
+
+                <div class="alert-success__inner">
+
+                    <div class="alert-success__mark" aria-hidden="true">✓</div>
+
+                    <span class="alert-success__eyebrow">Order confirmed</span>
+
+                    <h2 class="alert-success__title">Welcome to Studio</h2>
+
+                    <p class="alert-success__lede">
+                        Payment went through and your workspace is upgraded.
+                        Here is everything in one place.
+                    </p>
+
+                    <Alert
+                        variant="success"
+                        icon="💳"
+                        title="Payment received"
+                        fullWidth
+                        rounded="lg"
+                        shadow
+                    >
+                        $1,188.00 charged to Visa •••• 4242. Settlement usually clears
+                        within two business days.
+                    </Alert>
+
+                    <dl class="alert-success__rows">
+                        {orderRows.map(row => (
+                            <div class="alert-success__row">
+                                <dt>{row.label}</dt>
+                                <dd>{row.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <ol class="alert-success__steps">
+                        {orderSteps.map(step => (
+                            <li>
+                                <div class="alert-success__step-text">
+                                    <strong>{step.title}</strong>
+                                    <span>{step.body}</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+
+                    <div class="alert-success__actions">
+                        <Button size="lg" fullWidth>Open your workspace</Button>
+                        <Button variant="ghost" fullWidth>Download receipt</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Warning
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Warning</span>
+            <span class="pl-example__tags">Split · Amber field · Task checklist</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="alert-warning">
+
+                <div class="alert-warning__inner">
+
+                    <header class="alert-warning__head">
+                        <span class="alert-warning__kicker">Action needed</span>
+                        <h2 class="alert-warning__title">
+                            Your domain migration is half finished
+                        </h2>
+                        <p class="alert-warning__lede">
+                            Traffic is still being served from the old origin. Two
+                            steps remain before we can cut over safely.
+                        </p>
+                    </header>
+
+                    <div class="alert-warning__grid">
+
+                        <div class="alert-warning__col">
+
+                            <Alert
+                                variant="warning"
+                                size="lg"
+                                icon="⚠"
+                                title="TLS certificate expires in 6 days"
+                                fullWidth
+                            >
+                                We could not re-issue automatically because the
+                                <strong> CAA record</strong> on studio.com still points
+                                at your previous provider. Until it is updated, renewal
+                                will keep failing and visitors will see a browser warning.
+                            </Alert>
+
+                            <p class="alert-warning__note">
+                                Last renewal attempt: 20 Jul 2026 · 03:14 UTC — failed (CAA mismatch)
+                            </p>
+
+                        </div>
+
+                        <div class="alert-warning__panel">
+
+                            <h3 class="alert-warning__panel-title">Migration checklist</h3>
+                            <p class="alert-warning__panel-note">Two of four steps complete</p>
+
+                            <ul class="alert-warning__checklist">
+                                {warningChecklist.map(task => (
+                                    <li>
+                                        <div
+                                            class:list={[
+                                                "alert-warning__task",
+                                                task.done && "alert-warning__task--done"
+                                            ]}
+                                        >
+                                            <span class="alert-warning__box" aria-hidden="true">✓</span>
+                                            {task.label}
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div class="alert-warning__panel-action">
+                                <Button variant="warning" fullWidth>Fix CAA record</Button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Maintenance
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Maintenance</span>
+            <span class="pl-example__tags">Dark · Window table · Service states</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="alert-maint">
+
+                <div class="alert-maint__inner">
+
+                    <header class="alert-maint__head">
+
+                        <span class="alert-maint__pulse">
+                            <span class="alert-maint__dot" aria-hidden="true"></span>
+                            Scheduled maintenance
+                        </span>
+
+                        <h2 class="alert-maint__title">Planned database migration</h2>
+
+                        <p class="alert-maint__lede">
+                            We are moving the primary cluster to new hardware. This is
+                            the last window of the year and it will not be extended.
+                        </p>
+
+                    </header>
+
+                    <Alert
+                        variant="info"
+                        size="lg"
+                        icon="🛠"
+                        title="Sunday 27 July · 02:00–04:00 UTC"
+                        fullWidth
+                        dismissible
+                    >
+                        The API stays available in read-only mode for the full window.
+                        Writes are queued and replayed automatically once we are done —
+                        no requests are dropped and no keys need rotating.
+                    </Alert>
+
+                    <dl class="alert-maint__window">
+                        {maintenanceWindow.map(item => (
+                            <div>
+                                <dt>{item.key}</dt>
+                                <dd>{item.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <div class="alert-maint__services">
+
+                        <h3 class="alert-maint__services-title">Expected impact</h3>
+
+                        {maintenanceServices.map(service => (
+                            <div class="alert-maint__row">
+                                <span>{service.name}</span>
+                                <span class:list={["alert-maint__state", `alert-maint__state--${service.tone}`]}>
+                                    {service.state}
+                                </span>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <div class="alert-maint__foot">
+                        <span>Subscribe to status updates by email or RSS.</span>
+                        <Button variant="glass" size="sm">Notify me</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Promotion
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Promotion</span>
+            <span class="pl-example__tags">Colour band · Glass panel · Coupon</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="alert-promo">
+
+                <div class="alert-promo__rings" aria-hidden="true"></div>
+
+                <div class="alert-promo__inner">
+
+                    <div>
+
+                        <span class="alert-promo__tag">Summer offer</span>
+
+                        <h2 class="alert-promo__title">
+                            Switch this month, <span>pay for nine.</span>
+                        </h2>
+
+                        <p class="alert-promo__lede">
+                            Move any annual plan across before the end of July and the
+                            first quarter is on us — including the migration itself.
+                        </p>
+
+                        <ul class="alert-promo__perks">
+                            {promoPerks.map(perk => (
+                                <li>{perk}</li>
+                            ))}
+                        </ul>
+
+                    </div>
+
+                    <div class="alert-promo__panel">
+
+                        <Alert
+                            variant="warning"
+                            icon="⏳"
+                            title="Offer ends 31 July"
+                            fullWidth
+                        >
+                            Eleven days left. Applies to new annual agreements only.
+                        </Alert>
+
+                        <div class="alert-promo__code">
+                            <strong>SUMMER26</strong>
+                            <span>Applied at checkout</span>
+                        </div>
+
+                        <div class="alert-promo__action">
+                            <Button size="lg" fullWidth>Claim the offer</Button>
+                        </div>
+
+                        <span class="alert-promo__small">
+                            No card required until your trial ends.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

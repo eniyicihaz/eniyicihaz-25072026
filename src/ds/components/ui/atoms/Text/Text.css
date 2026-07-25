@@ -1,0 +1,81 @@
+.ds-text {
+  margin: 0;
+  color: var(--ds-text, #0f172a);
+}
+
+/* Variants */
+
+.ds-text--body {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.ds-text--body-sm {
+  font-size: .875rem;
+  line-height: 1.6;
+}
+
+.ds-text--caption {
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
+.ds-text--overline {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.ds-text--lead {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.ds-text--muted {
+  font-size: 1rem;
+  color: var(--ds-text-secondary, #64748b);
+}
+
+/* Weight */
+
+.ds-text--regular {
+  font-weight: 400;
+}
+
+.ds-text--medium {
+  font-weight: 500;
+}
+
+.ds-text--semibold {
+  font-weight: 600;
+}
+
+.ds-text--bold {
+  font-weight: 700;
+}
+
+/* Alignment */
+
+.ds-text--left {
+  text-align: left;
+}
+
+.ds-text--center {
+  text-align: center;
+}
+
+.ds-text--right {
+  text-align: right;
+}
+
+.ds-text--justify {
+  text-align: justify;
+}
+
+/* Utilities */
+
+.ds-text--truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,102 @@
+---
+// A single labeled acoustic thread (SOUND_ROOM_SPECIFICATION.md §3/§9/§10).
+// Same line DNA as Hero's HeroSignalField (thin bar, deterministic scatter),
+// but its alignment is driven continuously by --clarity (set by the slider
+// in SoundRoom.astro) instead of a one-time entrance state. Decorative —
+// meaning is carried for assistive tech via the slider's aria-valuetext
+// (§12), not repeated here.
+interface Props {
+  label: string;
+  alignThreshold: number;
+  order: number;
+}
+const { label, alignThreshold, order } = Astro.props;
+
+const CENTER = 3.5; // (6 + 1) / 2
+const d = Math.abs(order - CENTER);
+const width = 100 - d * 8; // % — tapers from centre outward, same recipe as Hero
+
+// Deterministic scatter/jitter — art-directed, not random (matches Hero's
+// HeroSignalField rule: SSR and client must agree, "noise" must look
+// intentional, never random per render).
+const SCATTER = [-22, 16, -12, 20, -18, 14];
+const JITTER = [6, -8, 5, -6, 7, -5];
+const scatter = SCATTER[order - 1];
+const jitter = JITTER[order - 1];
+---
+
+<div
+  class="sound-room-thread"
+  data-label={label}
+  data-threshold={alignThreshold}
+  style={`--i:${order};--w:${width}%;--threshold:${alignThreshold};--scatter:${scatter}px;--jitter:${jitter}px`}
+>
+  <span class="sound-room-thread__label">{label}</span>
+</div>
+
+<style>
+  .sound-room-thread {
+    /* Continuous alignment progress, derived from the shared --clarity
+       custom property (set on .sound-room by the slider) and this thread's
+       own threshold — no JS per-thread calculation (§13 performance). */
+    --progress: clamp(
+      0,
+      calc(
+        (var(--clarity, 0) - (var(--threshold) - var(--sound-room-spread, 14))) /
+          (var(--sound-room-spread, 14) * 2)
+      ),
+      1
+    );
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--w);
+    height: 2px;
+    border-radius: var(--radius-full);
+    background: var(--color-border-hover);
+    opacity: calc(0.35 + var(--progress) * 0.45);
+    transform: translate(
+      calc(-50% + (1 - var(--progress)) * var(--jitter)),
+      calc(
+        (var(--i) - 3.5) * var(--sound-room-gap, 20px) +
+          (1 - var(--progress)) * var(--scatter)
+      )
+    );
+  }
+
+  /* The resolved overlay — same technique as Hero's centre signal line
+     (separate colour + glow), just continuous instead of state-based. */
+  .sound-room-thread::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--color-primary);
+    opacity: var(--progress);
+    box-shadow: 0 0 10px 0 rgb(37 99 235 / calc(var(--progress) * 0.5));
+  }
+
+  .sound-room-thread__label {
+    position: absolute;
+    left: calc(100% + var(--space-3));
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    /* Only appears once its thread is well into alignment (§3: "erken,
+       dağınık haldeyken metin gösterip okunaksız bir gürültüye çevirmez"). */
+    opacity: clamp(0, calc((var(--progress) - 0.7) / 0.3), 1);
+    pointer-events: none;
+  }
+
+  @media (max-width: 640px) {
+    .sound-room-thread__label {
+      font-size: var(--font-size-xs);
+      left: auto;
+      right: 0;
+      top: calc(-1 * var(--space-3));
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+// Empathy's acoustic signature — a single, barely-visible line
+// (DESIGN_SYSTEM §6; EMPATHY_SPECIFICATION.md §3). The intensity arc's first
+// deliberate "rest" after Hero's poised signal field. Decorative only.
+//
+// No mask-image: Hero's Design Review found mask-image + a large repainted
+// layer caused scroll-time jank. This line is simple enough not to need one —
+// the edge fade is a cheap linear-gradient background instead.
+---
+
+<div class="empathy-signal" aria-hidden="true"></div>
+
+<style>
+  .empathy-signal {
+    width: min(60%, 20rem);
+    height: 1px;
+    margin-inline: auto;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-border-hover) 50%,
+      transparent
+    );
+    opacity: 0.5;
+    transition:
+      opacity var(--empathy-rise-dur, 700ms)
+        var(--empathy-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+      transform var(--empathy-rise-dur, 700ms)
+        var(--empathy-ease, cubic-bezier(0.22, 1, 0.36, 1));
+  }
+
+  /* The emotional-peak line arriving thins the thread further — a sound
+     fading, not vanishing. Settles back to baseline shortly after (script in
+     Empathy.astro toggles this to mirror the peak line's own reveal). */
+  .empathy-signal[data-phase="peak"] {
+    opacity: 0.25;
+    transform: scaleX(0.85);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .empathy-signal {
+      transition: none;
+    }
+  }
+</style>

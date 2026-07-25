@@ -1,0 +1,127 @@
+.ds-progress {
+    --progress-height: 0.5rem;
+    --progress-radius: 999px;
+    --progress-track: #e5e7eb;
+    --progress-fill: var(--color-primary);
+    --progress-value: 0%;
+}
+
+.ds-progress__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    margin-bottom: .5rem;
+
+    font-size: .875rem;
+    font-weight: 500;
+}
+
+.ds-progress__track {
+    position: relative;
+
+    width: 100%;
+    height: var(--progress-height);
+
+    overflow: hidden;
+
+    background: var(--progress-track);
+    border-radius: var(--progress-radius);
+}
+
+.ds-progress__bar {
+    width: var(--progress-value);
+    height: 100%;
+
+    border-radius: inherit;
+    background: var(--progress-fill);
+
+    transition: width .35s ease;
+}
+
+/* Sizes */
+
+.ds-progress.is-sm {
+    --progress-height: .375rem;
+}
+
+.ds-progress.is-md {
+    --progress-height: .5rem;
+}
+
+.ds-progress.is-lg {
+    --progress-height: .75rem;
+}
+
+/* Variants */
+
+.ds-progress.is-primary {
+    --progress-fill: var(--color-primary);
+}
+
+.ds-progress.is-secondary {
+    --progress-fill: var(--color-secondary);
+}
+
+.ds-progress.is-success {
+    --progress-fill: var(--color-success);
+}
+
+.ds-progress.is-warning {
+    --progress-fill: var(--color-warning);
+}
+
+.ds-progress.is-danger {
+    --progress-fill: var(--color-danger);
+}
+
+.ds-progress.is-info {
+    --progress-fill: var(--color-info);
+}
+
+/* Striped */
+
+.ds-progress.is-striped .ds-progress__bar {
+    background-image:
+        repeating-linear-gradient(
+            -45deg,
+            rgba(255,255,255,.22) 0 10px,
+            transparent 10px 20px
+        );
+    background-color: var(--progress-fill);
+}
+
+/* Animated */
+
+.ds-progress.is-animated .ds-progress__bar {
+    background-size: 28px 28px;
+    animation: ds-progress-stripes .8s linear infinite;
+}
+
+/* Indeterminate */
+
+.ds-progress.is-indeterminate .ds-progress__bar {
+    width: 35%;
+    animation: ds-progress-indeterminate 1.3s ease-in-out infinite;
+}
+
+@keyframes ds-progress-stripes {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 28px 0;
+    }
+}
+
+@keyframes ds-progress-indeterminate {
+    0% {
+        transform: translateX(-120%);
+    }
+
+    100% {
+        transform: translateX(320%);
+    }
+}

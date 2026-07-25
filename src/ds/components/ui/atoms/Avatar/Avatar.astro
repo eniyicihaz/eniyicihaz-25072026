@@ -1,0 +1,51 @@
+---
+import "./Avatar.css";
+import type { AvatarProps } from "./Avatar.types";
+
+const {
+  src,
+  alt = "",
+  initials = "A",
+  size = "md",
+  rounded = true,
+  bordered = false,
+  status,
+  class: className = ""
+}: AvatarProps = Astro.props;
+
+const classes = [
+  "avatar",
+  `avatar--${size}`,
+  rounded && "avatar--rounded",
+  bordered && "avatar--bordered",
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+
+  {src ? (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+    />
+  ) : (
+    <span class="avatar-initials">
+      {initials}
+    </span>
+  )}
+
+  {status && (
+    <span
+      class:list={[
+        "avatar-status",
+        `avatar-status--${status}`
+      ]}
+    ></span>
+  )}
+
+</div>

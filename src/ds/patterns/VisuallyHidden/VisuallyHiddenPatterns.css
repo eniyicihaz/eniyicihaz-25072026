@@ -1,0 +1,362 @@
+/* ==========================================================
+   VisuallyHidden — five patterns
+
+   01  vhd-skip      Skip to content link, focusable (eniyicihaz.com)
+   02  vhd-close     Icon-only close button, sr-only label
+   03  vhd-table     Abbreviated table headers, full sr-only text
+   04  vhd-live      Live status region, loading announcement
+   05  vhd-required  Required field indicator, sr-only qualifier
+
+   VisuallyHidden content is invisible by design — every pattern
+   pairs the real usage with a small "Screen reader announces"
+   annotation so the hidden text stays legible on this page.
+   That annotation lives entirely in pattern CSS/markup, outside
+   the component itself.
+   ========================================================== */
+
+.vhd-note{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:12px;
+    padding:5px 10px;
+    border-radius:999px;
+
+    border:1px dashed rgb(15 23 42 / .22);
+
+    font-size:.74rem;
+    color:var(--pat-soft);
+}
+
+.vhd-note__icon{
+    flex-shrink:0;
+}
+
+
+/* ==========================================================
+   01 — Skip to content link
+   ========================================================== */
+
+.vhd-skip{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.vhd-skip__frame{
+    width:100%;
+    max-width:440px;
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.vhd-skip__topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:14px 20px;
+    border-bottom:1px solid rgb(18 59 54 / .08);
+}
+
+.vhd-skip__brand{
+    font-size:.92rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.vhd-skip .ds-visually-hidden--focusable{
+    display:inline-flex;
+    align-items:center;
+
+    padding:8px 14px;
+    border-radius:var(--pat-radius-sm);
+
+    background:#0f766e;
+    color:#fff;
+
+    font-size:.82rem;
+    font-weight:650;
+    text-decoration:none;
+}
+
+.vhd-skip__body{
+    padding:24px 20px;
+
+    font-size:.85rem;
+    color:#3a5551;
+}
+
+.vhd-skip__hint{
+    margin:0 20px 20px;
+    padding-top:16px;
+
+    border-top:1px solid rgb(18 59 54 / .08);
+
+    font-size:.78rem;
+    color:#6b8b86;
+}
+
+
+/* ==========================================================
+   02 — Icon-only close button
+   ========================================================== */
+
+.vhd-close{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.vhd-close__card{
+    width:100%;
+    max-width:380px;
+    padding:20px 22px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.vhd-close__row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+}
+
+.vhd-close__title{
+    font-size:.92rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.vhd-close__body{
+    margin-top:4px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.vhd-close__button{
+    flex-shrink:0;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:999px;
+
+    background:transparent;
+    color:var(--pat-soft);
+
+    font-size:1rem;
+    line-height:1;
+    cursor:pointer;
+}
+
+.vhd-close__button:hover{
+    background:rgb(15 23 42 / .06);
+}
+
+
+/* ==========================================================
+   03 — Abbreviated table headers
+   ========================================================== */
+
+.vhd-table{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.vhd-table__card{
+    width:100%;
+    max-width:440px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.vhd-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.vhd-table th{
+    padding:10px 20px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-align:left;
+    color:var(--pat-soft);
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.vhd-table td{
+    padding:12px 20px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:.86rem;
+    color:var(--pat-ink);
+}
+
+.vhd-table tr:last-child td{
+    border-bottom:none;
+}
+
+.vhd-table__foot{
+    padding:14px 20px;
+
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Live status region
+   ========================================================== */
+
+.vhd-live{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.vhd-live__card{
+    width:100%;
+    max-width:360px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+    text-align:center;
+}
+
+.vhd-live__spinner{
+    width:32px;
+    height:32px;
+    margin:0 auto 16px;
+
+    border-radius:999px;
+    border:3px solid rgb(37 99 235 / .18);
+    border-top-color:#2563eb;
+
+    animation:vhd-live-spin .7s linear infinite;
+}
+
+@keyframes vhd-live-spin{
+    to{ transform:rotate(360deg); }
+}
+
+.vhd-live__text{
+    font-size:.92rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+
+/* ==========================================================
+   05 — Required field indicator
+   ========================================================== */
+
+.vhd-required{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.vhd-required__card{
+    width:100%;
+    max-width:360px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.vhd-required__label{
+    display:flex;
+    align-items:baseline;
+    gap:4px;
+
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.vhd-required__mark{
+    color:#dc2626;
+}
+
+.vhd-required__field{
+    width:100%;
+    height:44px;
+
+    padding:0 1rem;
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    font:inherit;
+    color:var(--pat-ink);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .vhd-skip{ padding:44px 16px 56px; }
+
+    .vhd-close{ padding:44px 16px 56px; }
+    .vhd-close__card{ padding:18px; }
+
+    .vhd-table{ padding:44px 16px 56px; }
+    .vhd-table th, .vhd-table td{ padding:10px 14px; }
+
+    .vhd-live{ padding:44px 16px 56px; }
+    .vhd-live__card{ padding:22px; }
+
+    .vhd-required{ padding:44px 16px 56px; }
+    .vhd-required__card{ padding:22px; }
+
+}

@@ -1,0 +1,940 @@
+/* ==========================================================
+   Checkbox — five patterns
+
+   01  check-consent  Cookie consent sheet
+   02  check-filter   Shop filter rail beside results
+   03  check-onboard  Setup checklist with progress
+   04  check-cover    Insurance cover selector
+   05  check-notify   Notification preference matrix
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Cookie consent
+
+   A consent sheet anchored to the foot of a page.
+   Each category is a bordered row, locked ones dimmed.
+   ========================================================== */
+
+.check-consent{
+    position:relative;
+
+    display:flex;
+    align-items:flex-end;
+
+    min-height:520px;
+    padding:32px;
+
+    background:
+        linear-gradient(180deg, #f8fafc 0%, #eef1f6 100%);
+}
+
+.check-consent__page{
+    position:absolute;
+    inset:0;
+    z-index:0;
+
+    padding:48px 56px;
+    pointer-events:none;
+}
+
+.check-consent__page-title{
+    max-width:16ch;
+
+    font-size:clamp(2rem, 4vw, 3rem);
+    font-weight:800;
+    letter-spacing:-.05em;
+    line-height:1.04;
+
+    color:rgb(11 18 32 / .12);
+}
+
+.check-consent__sheet{
+    position:relative;
+    z-index:1;
+
+    width:100%;
+    max-width:760px;
+    margin:0 auto;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 30px 70px rgb(15 23 42 / .16);
+}
+
+.check-consent__title{
+    margin:0;
+
+    font-size:1.2rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.check-consent__lede{
+    margin:10px 0 24px;
+    max-width:60ch;
+
+    font-size:.92rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+.check-consent__list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.check-consent__item{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:20px;
+    align-items:center;
+
+    padding:16px 18px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fbfcfd;
+}
+
+.check-consent__item--locked{
+    background:#f4f6f8;
+    opacity:.85;
+}
+
+.check-consent__item-name{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    font-size:.94rem;
+    font-weight:650;
+    letter-spacing:-.012em;
+    color:var(--pat-ink);
+}
+
+.check-consent__item-body{
+    margin:6px 0 0;
+    max-width:56ch;
+
+    font-size:.86rem;
+    line-height:1.6;
+    color:var(--pat-body);
+}
+
+.check-consent__count{
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    color:var(--pat-soft);
+}
+
+.check-consent__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:24px;
+    padding-top:22px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.check-consent__policy{
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.check-consent__policy a{
+    color:var(--pat-blue);
+    border-bottom:1px solid rgb(29 78 216 / .25);
+}
+
+.check-consent__actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+
+/* ==========================================================
+   02 — Shop filters
+
+   A sticky filter rail against a result grid. The
+   checkbox is a navigation control here.
+   ========================================================== */
+
+.check-filter{
+    padding:72px 56px 88px;
+    background:#faf9f7;
+}
+
+.check-filter__inner{
+    max-width:1140px;
+    margin:0 auto;
+}
+
+.check-filter__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+
+    padding-bottom:22px;
+    margin-bottom:32px;
+
+    border-bottom:1px solid rgb(35 31 28 / .12);
+}
+
+.check-filter__title{
+    margin:0;
+
+    font-size:clamp(1.8rem, 3.2vw, 2.4rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#231f1c;
+}
+
+.check-filter__count{
+    font-size:.88rem;
+    color:#8b8177;
+}
+
+.check-filter__grid{
+    display:grid;
+    grid-template-columns:236px minmax(0, 1fr);
+    gap:44px;
+    align-items:start;
+}
+
+.check-filter__rail{
+    position:sticky;
+    top:32px;
+}
+
+.check-filter__group{
+    padding-bottom:22px;
+    margin-bottom:22px;
+
+    border-bottom:1px solid rgb(35 31 28 / .1);
+}
+
+.check-filter__group:last-child{
+    border-bottom:none;
+}
+
+.check-filter__group-title{
+    margin:0 0 14px;
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#9a9086;
+}
+
+.check-filter__option{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    padding:5px 0;
+}
+
+.check-filter__option-count{
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    color:#a9a097;
+}
+
+.check-filter__chips{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    flex-wrap:wrap;
+
+    margin-bottom:24px;
+}
+
+.check-filter__chips-label{
+    font-size:.82rem;
+    color:#8b8177;
+}
+
+.check-filter__chip{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    padding:6px 13px;
+
+    border:1px solid rgb(35 31 28 / .16);
+    border-radius:var(--pat-radius-pill);
+
+    background:#fff;
+
+    font-size:.83rem;
+    color:#231f1c;
+}
+
+.check-filter__chip span{
+    color:#a9a097;
+}
+
+.check-filter__results{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:22px;
+}
+
+.check-filter__plate{
+    aspect-ratio:4 / 5;
+    margin-bottom:13px;
+
+    border-radius:var(--pat-radius-md);
+}
+
+.check-filter__plate--sand{
+    background:linear-gradient(155deg, #e4d8c4, #cbb99c);
+}
+
+.check-filter__plate--clay{
+    background:linear-gradient(155deg, #ddc4b8, #bf9c8c);
+}
+
+.check-filter__plate--moss{
+    background:linear-gradient(155deg, #c6cdb9, #97a186);
+}
+
+.check-filter__name{
+    font-size:.95rem;
+    font-weight:650;
+    letter-spacing:-.015em;
+    color:#231f1c;
+}
+
+.check-filter__detail{
+    margin-top:4px;
+
+    font-size:.82rem;
+    color:#8b8177;
+}
+
+.check-filter__price{
+    margin-top:9px;
+
+    font-size:.92rem;
+    font-weight:700;
+    color:#231f1c;
+}
+
+
+/* ==========================================================
+   03 — Onboarding checklist
+
+   Progress-led. Completed rows strike through and fade,
+   the next action is the only thing highlighted.
+   ========================================================== */
+
+.check-onboard{
+    display:flex;
+    justify-content:center;
+
+    padding:80px 32px 88px;
+
+    background:
+        radial-gradient(60% 45% at 50% 0%, rgb(99 102 241 / .1), transparent 66%),
+        #fbfbfe;
+}
+
+.check-onboard__inner{
+    width:100%;
+    max-width:620px;
+}
+
+.check-onboard__head{
+    margin-bottom:28px;
+}
+
+.check-onboard__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#8b87a8;
+}
+
+.check-onboard__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.08;
+
+    color:#171334;
+}
+
+.check-onboard__lede{
+    margin:14px 0 0;
+
+    font-size:1rem;
+    line-height:1.7;
+    color:#544f74;
+}
+
+.check-onboard__progress{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    margin-top:24px;
+}
+
+.check-onboard__track{
+    flex:1;
+    height:6px;
+
+    overflow:hidden;
+    border-radius:var(--pat-radius-pill);
+    background:rgb(23 19 52 / .09);
+}
+
+.check-onboard__fill{
+    display:block;
+    width:40%;
+    height:100%;
+
+    border-radius:var(--pat-radius-pill);
+    background:linear-gradient(90deg, #6366f1, #a855f7);
+}
+
+.check-onboard__progress-label{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    font-weight:600;
+    color:#6b6690;
+}
+
+.check-onboard__list{
+    margin-top:26px;
+    overflow:hidden;
+
+    border:1px solid rgb(23 19 52 / .09);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.check-onboard__task{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+
+    padding:18px 22px;
+
+    border-bottom:1px solid rgb(23 19 52 / .06);
+}
+
+.check-onboard__task:last-child{
+    border-bottom:none;
+}
+
+.check-onboard__task--done{
+    background:#fcfcfe;
+}
+
+.check-onboard__task-body{
+    flex:1;
+    min-width:0;
+}
+
+.check-onboard__task-label{
+    font-size:.96rem;
+    font-weight:650;
+    letter-spacing:-.015em;
+    color:#171334;
+}
+
+.check-onboard__task--done .check-onboard__task-label{
+    color:#8d88ab;
+    text-decoration:line-through;
+    text-decoration-color:rgb(141 136 171 / .45);
+}
+
+.check-onboard__task-note{
+    margin-top:5px;
+
+    font-size:.85rem;
+    line-height:1.6;
+    color:#7c769c;
+}
+
+.check-onboard__task-action{
+    flex-shrink:0;
+}
+
+.check-onboard__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+
+    font-size:.86rem;
+    color:#7c769c;
+}
+
+
+/* ==========================================================
+   04 — Insurance cover
+
+   Each option is a selectable card. Checked cards lift
+   and gain a coloured edge; the total sits in a rail.
+   ========================================================== */
+
+.check-cover{
+    padding:80px 56px 88px;
+
+    background:
+        linear-gradient(180deg, #f3f7fb 0%, #e9eff6 100%);
+}
+
+.check-cover__inner{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 320px;
+    gap:36px;
+    align-items:start;
+
+    max-width:1060px;
+    margin:0 auto;
+}
+
+.check-cover__head{
+    margin-bottom:26px;
+}
+
+.check-cover__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#7d94ae;
+}
+
+.check-cover__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.8rem, 3.4vw, 2.5rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    line-height:1.08;
+
+    color:#123047;
+}
+
+.check-cover__lede{
+    margin:14px 0 0;
+    max-width:52ch;
+
+    font-size:1rem;
+    line-height:1.72;
+    color:#4a6480;
+}
+
+.check-cover__options{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.check-cover__option{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:20px;
+    align-items:flex-start;
+
+    padding:22px;
+
+    border:1px solid rgb(18 48 71 / .12);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+
+    transition:border-color .25s ease, box-shadow .25s ease;
+}
+
+.check-cover__option--on{
+    border-color:rgb(14 116 144 / .45);
+    box-shadow:0 10px 28px rgb(18 48 71 / .08);
+}
+
+.check-cover__option-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.check-cover__option-body{
+    margin:8px 0 0 32px;
+    max-width:52ch;
+
+    font-size:.88rem;
+    line-height:1.65;
+    color:#4a6480;
+}
+
+.check-cover__price{
+    white-space:nowrap;
+
+    font-size:.92rem;
+    font-weight:700;
+    color:#123047;
+}
+
+.check-cover__summary{
+    position:sticky;
+    top:32px;
+
+    padding:26px;
+
+    border:1px solid rgb(18 48 71 / .12);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.check-cover__summary-title{
+    margin:0 0 18px;
+    padding-bottom:16px;
+
+    border-bottom:1px solid rgb(18 48 71 / .1);
+
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#7d94ae;
+}
+
+.check-cover__line{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:8px 0;
+
+    font-size:.88rem;
+    color:#4a6480;
+}
+
+.check-cover__line strong{
+    color:#123047;
+}
+
+.check-cover__total{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:16px;
+    padding-top:18px;
+
+    border-top:1px solid rgb(18 48 71 / .1);
+}
+
+.check-cover__total span{
+    font-size:.86rem;
+    color:#4a6480;
+}
+
+.check-cover__total strong{
+    font-size:1.6rem;
+    font-weight:800;
+    letter-spacing:-.04em;
+    color:#123047;
+}
+
+.check-cover__summary-action{
+    margin-top:20px;
+}
+
+.check-cover__summary-note{
+    display:block;
+    margin-top:14px;
+
+    font-size:.78rem;
+    line-height:1.6;
+    color:#7d94ae;
+}
+
+
+/* ==========================================================
+   05 — Notification matrix
+
+   A table where checkboxes are cells. Dense, dark,
+   and unlike anything else on the page.
+   ========================================================== */
+
+.check-notify{
+    padding:80px 56px 88px;
+
+    background:
+        radial-gradient(50% 40% at 80% 0%, rgb(56 189 248 / .12), transparent 62%),
+        #0a0f19;
+}
+
+.check-notify__inner{
+    max-width:880px;
+    margin:0 auto;
+}
+
+.check-notify__head{
+    margin-bottom:32px;
+}
+
+.check-notify__title{
+    margin:0;
+
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#f8fafc;
+}
+
+.check-notify__lede{
+    margin:14px 0 0;
+    max-width:56ch;
+
+    font-size:1rem;
+    line-height:1.7;
+    color:rgb(248 250 252 / .5);
+}
+
+.check-notify__table{
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .09);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.check-notify__row{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) repeat(3, 92px);
+    gap:16px;
+    align-items:center;
+
+    padding:16px 22px;
+
+    border-bottom:1px solid rgb(255 255 255 / .07);
+}
+
+.check-notify__row:last-child{
+    border-bottom:none;
+}
+
+.check-notify__row--head{
+    background:rgb(255 255 255 / .04);
+}
+
+.check-notify__col{
+    text-align:center;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .38);
+}
+
+.check-notify__col--label{
+    text-align:left;
+}
+
+.check-notify__label{
+    font-size:.94rem;
+    color:rgb(248 250 252 / .86);
+}
+
+.check-notify__cell{
+    display:flex;
+    justify-content:center;
+}
+
+/* Checkbox inverted for the dark table */
+
+.check-notify__table .checkbox-box{
+    border-color:rgb(255 255 255 / .22);
+    background:rgb(255 255 255 / .05);
+}
+
+.check-notify__table .checkbox-input:checked + .checkbox-box{
+    border-color:#38bdf8;
+    background:#38bdf8;
+}
+
+.check-notify__table .checkbox-label{
+    display:none;
+}
+
+.check-notify__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:26px;
+
+    font-size:.86rem;
+    color:rgb(248 250 252 / .4);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .check-consent{
+        min-height:0;
+        padding:24px;
+    }
+
+    .check-consent__page{
+        display:none;
+    }
+
+    .check-filter{
+        padding:56px 32px 64px;
+    }
+
+    .check-filter__grid{
+        grid-template-columns:minmax(0, 1fr);
+        gap:32px;
+    }
+
+    .check-filter__rail{
+        position:static;
+    }
+
+    .check-filter__results{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    .check-cover{
+        padding:64px 32px;
+    }
+
+    .check-cover__inner{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .check-cover__summary{
+        position:static;
+    }
+
+    .check-notify{
+        padding:64px 32px;
+    }
+
+}
+
+@media (max-width:720px){
+
+    .check-consent__sheet{
+        padding:22px;
+    }
+
+    .check-consent__item{
+        grid-template-columns:minmax(0, 1fr);
+        gap:10px;
+    }
+
+    .check-consent__actions{
+        width:100%;
+    }
+
+    .check-consent__actions .btn{
+        flex:1;
+    }
+
+    .check-filter{
+        padding:44px 20px 56px;
+    }
+
+    .check-filter__results{
+        grid-template-columns:minmax(0, 1fr);
+        gap:26px;
+    }
+
+    .check-onboard{
+        padding:52px 20px 64px;
+    }
+
+    .check-onboard__task{
+        flex-wrap:wrap;
+        padding:16px 18px;
+    }
+
+    .check-cover{
+        padding:48px 20px;
+    }
+
+    .check-cover__option{
+        grid-template-columns:minmax(0, 1fr);
+        gap:12px;
+        padding:18px;
+    }
+
+    .check-cover__option-body{
+        margin-left:0;
+    }
+
+    .check-notify{
+        padding:48px 20px;
+    }
+
+    .check-notify__row{
+        grid-template-columns:minmax(0, 1fr) repeat(3, 52px);
+        gap:8px;
+        padding:14px 16px;
+    }
+
+    .check-notify__col{
+        font-size:.62rem;
+        letter-spacing:.06em;
+    }
+
+    .check-notify__label{
+        font-size:.85rem;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .check-cover__option{
+        transition:none;
+    }
+
+}

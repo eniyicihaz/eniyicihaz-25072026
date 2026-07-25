@@ -1,0 +1,77 @@
+---
+import "../ds/styles/base/variables.css";
+import "../ds/styles/base/reset.css";
+// Typography baseline: reset.css deliberately sets no font-family, so without
+// this the page falls back to the UA serif. Imported instead of global.css to
+// avoid its universal `*` transition rule, which would alter every hover.
+import "../ds/styles/base/typography.css";
+import Header from "../components/header/Header/Header.astro";
+import Footer from "../components/footer/Footer/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "EniyiCihaz — İşitme Cihazları",
+  description = "İşitme sağlığınız için en iyi çözümler.",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <a href="#main" class="skip-link">İçeriğe geç</a>
+
+    <Header />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  body {
+    min-height: 100vh;
+    background: var(--color-surface);
+    /* The mega menu breaks out to full viewport width; clip any sub-pixel
+       horizontal overflow without affecting the sticky header. */
+    overflow-x: hidden;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-4);
+    z-index: var(--z-toast);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-semibold);
+    transform: translateY(-200%);
+    transition: transform var(--transition-base);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+</style>

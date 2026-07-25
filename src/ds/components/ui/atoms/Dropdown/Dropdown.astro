@@ -1,0 +1,79 @@
+---
+import "./Dropdown.css";
+import type { DropdownProps } from "./Dropdown.types";
+
+const {
+  items = [],
+  triggerText = "Dropdown",
+  placement = "bottom-start",
+  open = false,
+  class: className = "",
+} = Astro.props as DropdownProps;
+
+const classes = [
+  "ds-dropdown",
+  `ds-dropdown--${placement}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <button
+    class="ds-dropdown__trigger"
+    type="button"
+    aria-haspopup="menu"
+    aria-expanded={open}
+  >
+    <span>{triggerText}</span>
+    <span aria-hidden="true">▾</span>
+  </button>
+
+  {
+    open && (
+      <ul
+        class="ds-dropdown__menu"
+        role="menu"
+      >
+        {
+          items.map((item) =>
+            item.divider ? (
+              <li
+                class="ds-dropdown__divider"
+                aria-hidden="true"
+              />
+            ) : (
+              <li
+                class:list={[
+                  "ds-dropdown__item",
+                  item.disabled &&
+                    "ds-dropdown__item--disabled",
+                ]}
+                role="none"
+              >
+                {item.href ? (
+                  <a
+                    class="ds-dropdown__link"
+                    href={item.href}
+                    role="menuitem"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <button
+                    class="ds-dropdown__link"
+                    type="button"
+                    role="menuitem"
+                  >
+                    {item.label}
+                  </button>
+                )}
+              </li>
+            )
+          )
+        }
+      </ul>
+    )
+  }
+</div>

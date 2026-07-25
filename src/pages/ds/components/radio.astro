@@ -1,0 +1,447 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Radio/RadioPatterns.css";
+
+import Radio from "../../../ds/components/ui/atoms/Radio/Radio.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    deliveryOptions,
+    donationAmounts,
+    donationFrequency,
+    donationImpact,
+    surveyScale,
+    surveyQuestions,
+    streamPlans,
+    cabinClasses,
+    cabinExtras
+} from "../../../ds/patterns/Radio/radio.data";
+---
+
+<DSLayout title="Radio">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Radio</h1>
+
+        <p class="pl-head__lede">
+            Five products asking for one answer — a delivery method, a donation,
+            a research survey, a streaming plan and a cabin class.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Delivery
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Delivery Method</span>
+            <span class="pl-example__tags">Checkout rows · Edge rule on selection · Prices</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="radio-ship">
+
+                <div class="radio-ship__inner">
+
+                    <div class="radio-ship__steps">
+                        <span class="radio-ship__step--done">✓ Cart</span>
+                        <span>→</span>
+                        <span class="radio-ship__step--done">✓ Address</span>
+                        <span>→</span>
+                        <span class="radio-ship__step--current">Delivery</span>
+                        <span>→</span>
+                        <span>Payment</span>
+                    </div>
+
+                    <h2 class="radio-ship__title">How should we get it to you?</h2>
+
+                    <p class="radio-ship__lede">
+                        Delivering to Wijnhaven 61, Rotterdam. Large items are
+                        carried in by two people at no extra cost.
+                    </p>
+
+                    <div class="radio-ship__list">
+                        {deliveryOptions.map(option => (
+                            <div
+                                class:list={[
+                                    "radio-ship__row",
+                                    option.on && "radio-ship__row--on"
+                                ]}
+                            >
+                                <div>
+                                    <div class="radio-ship__row-head">
+                                        <Radio name="delivery" checked={option.on}>
+                                            {option.label}
+                                        </Radio>
+                                        {option.label === "Express" && (
+                                            <Badge variant="success" size="sm">Fastest</Badge>
+                                        )}
+                                    </div>
+                                    <p class="radio-ship__eta">{option.eta}</p>
+                                    <p class="radio-ship__note">{option.note}</p>
+                                </div>
+                                <span class="radio-ship__price">{option.price}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="radio-ship__foot">
+                        <p class="radio-ship__foot-note">
+                            You will get a two-hour arrival window by SMS the day before.
+                        </p>
+                        <Button size="lg">Continue to payment</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Donation
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Donation</span>
+            <span class="pl-example__tags">Split · Amount tiles · Segmented frequency</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="radio-give">
+
+                <div>
+
+                    <span class="radio-give__kicker">Clean water appeal</span>
+
+                    <h2 class="radio-give__title">
+                        A well lasts a generation.
+                    </h2>
+
+                    <p class="radio-give__lede">
+                        Nine hundred families in the Afar region still walk more than
+                        two hours for water. A single borehole ends that for a village
+                        of four hundred people.
+                    </p>
+
+                    <dl class="radio-give__impact">
+                        {donationImpact.map(item => (
+                            <div>
+                                <dt class="radio-give__impact-value">{item.value}</dt>
+                                <dd class="radio-give__impact-label">{item.label}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                </div>
+
+                <div class="radio-give__panel">
+
+                    <h3 class="radio-give__panel-title">Choose your gift</h3>
+
+                    <div class="radio-give__frequency">
+                        {donationFrequency.map(freq => (
+                            <label
+                                class:list={[
+                                    "radio-give__freq",
+                                    freq.on && "radio-give__freq--on"
+                                ]}
+                            >
+                                <Radio name="frequency" checked={freq.on}>
+                                    {freq.label}
+                                </Radio>
+                            </label>
+                        ))}
+                    </div>
+
+                    <div class="radio-give__amounts">
+                        {donationAmounts.map(amount => (
+                            <div
+                                class:list={[
+                                    "radio-give__amount",
+                                    amount.on && "radio-give__amount--on"
+                                ]}
+                            >
+                                <Radio name="amount" checked={amount.on} />
+                                <div class="radio-give__amount-value">{amount.value}</div>
+                                <span class="radio-give__amount-note">{amount.note}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="radio-give__action">
+                        <Button size="lg" fullWidth>Give €25 a month</Button>
+                    </div>
+
+                    <span class="radio-give__small">
+                        Cancel any time. We will never pass your details to another charity.
+                    </span>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Survey
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Product Survey</span>
+            <span class="pl-example__tags">Numbered questions · 10-point scale · Progress</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="radio-survey">
+
+                <div class="radio-survey__inner">
+
+                    <div class="radio-survey__bar">
+                        <span class="radio-survey__progress"><span></span></span>
+                        <span class="radio-survey__count">3 of 5</span>
+                    </div>
+
+                    <h2 class="radio-survey__title">
+                        Four questions, about ninety seconds
+                    </h2>
+
+                    <p class="radio-survey__lede">
+                        We read every response. Answers are tied to your account
+                        only so we can follow up if you ask us to.
+                    </p>
+
+                    {surveyQuestions.map(question => (
+                        <div class="radio-survey__question">
+                            <span class="radio-survey__n">{question.n}</span>
+                            <h3 class="radio-survey__prompt">{question.prompt}</h3>
+                            <div class="radio-survey__options">
+                                {question.options.map((option, i) => (
+                                    <div
+                                        class:list={[
+                                            "radio-survey__option",
+                                            i === question.selected && "radio-survey__option--on"
+                                        ]}
+                                    >
+                                        <Radio
+                                            name={`q-${question.n}`}
+                                            checked={i === question.selected}
+                                        >
+                                            {option}
+                                        </Radio>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+
+                    <div class="radio-survey__scale">
+                        <span class="radio-survey__n">03</span>
+                        <h3 class="radio-survey__prompt">
+                            How likely are you to recommend Relay to a colleague?
+                        </h3>
+
+                        <div class="radio-survey__scale-row">
+                            {surveyScale.map((n, i) => (
+                                <label
+                                    class:list={[
+                                        "radio-survey__tick",
+                                        i === 8 && "radio-survey__tick--on"
+                                    ]}
+                                >
+                                    {n}
+                                    <Radio name="nps" checked={i === 8} />
+                                </label>
+                            ))}
+                        </div>
+
+                        <div class="radio-survey__scale-legend">
+                            <span>Not at all likely</span>
+                            <span>Extremely likely</span>
+                        </div>
+                    </div>
+
+                    <div class="radio-survey__foot">
+                        <span class="radio-survey__foot-note">
+                            Your answers are saved as you go.
+                        </span>
+                        <Button size="lg">Next question</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Streaming plan
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Streaming Plan</span>
+            <span class="pl-example__tags">Dark bands · Lit selection · Quality specs</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="radio-stream">
+
+                <div class="radio-stream__inner">
+
+                    <span class="radio-stream__brand">Meridian+</span>
+
+                    <h2 class="radio-stream__title">Pick a plan, change it whenever</h2>
+
+                    <p class="radio-stream__lede">
+                        Every plan includes the full catalogue. The difference is
+                        picture quality and how many people can watch at once.
+                    </p>
+
+                    <div class="radio-stream__plans">
+                        {streamPlans.map(plan => (
+                            <div
+                                class:list={[
+                                    "radio-stream__plan",
+                                    plan.on && "radio-stream__plan--on"
+                                ]}
+                            >
+                                <div>
+                                    <div class="radio-stream__plan-head">
+                                        <Radio name="stream" checked={plan.on}>
+                                            {plan.name}
+                                        </Radio>
+                                        {plan.badge && (
+                                            <Badge variant="danger" size="sm">{plan.badge}</Badge>
+                                        )}
+                                    </div>
+                                    <p class="radio-stream__quality">{plan.quality}</p>
+                                    <ul class="radio-stream__perks">
+                                        {plan.perks.map(perk => (
+                                            <li>{perk}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div class="radio-stream__price">
+                                    <strong>{plan.price}</strong>
+                                    <span>per month</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="radio-stream__foot">
+                        <p class="radio-stream__foot-note">
+                            No contract. Changes take effect at your next billing date.
+                        </p>
+                        <Button size="lg">Continue with Standard</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Cabin class
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Cabin Class</span>
+            <span class="pl-example__tags">Three columns · Lifted selection · Fare rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="radio-cabin">
+
+                <div class="radio-cabin__inner">
+
+                    <div class="radio-cabin__route">
+                        <strong>AMS</strong> → <strong>LIS</strong>
+                        <span>Sat 25 Jul · 08:15 · 3h 05m · Direct</span>
+                    </div>
+
+                    <h2 class="radio-cabin__title">Choose your cabin</h2>
+
+                    <p class="radio-cabin__lede">
+                        Prices are per passenger and include taxes. Seat selection
+                        is free from Premium upward.
+                    </p>
+
+                    <div class="radio-cabin__grid">
+                        {cabinClasses.map(cabin => (
+                            <label
+                                class:list={[
+                                    "radio-cabin__class",
+                                    cabin.on && "radio-cabin__class--on"
+                                ]}
+                            >
+                                <Radio name="cabin" checked={cabin.on} />
+                                <h3 class="radio-cabin__class-name">{cabin.name}</h3>
+                                <p class="radio-cabin__detail">{cabin.detail}</p>
+                                <span class="radio-cabin__pitch">{cabin.pitch}</span>
+                                <div class="radio-cabin__price">{cabin.price}</div>
+                            </label>
+                        ))}
+                    </div>
+
+                    <div class="radio-cabin__foot">
+                        <dl class="radio-cabin__extras">
+                            {cabinExtras.map(extra => (
+                                <div>
+                                    <dt>{extra.key}</dt>
+                                    <dd>{extra.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                        <Button size="lg">Continue · €189</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

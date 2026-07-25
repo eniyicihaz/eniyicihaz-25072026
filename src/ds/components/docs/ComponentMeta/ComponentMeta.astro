@@ -1,0 +1,52 @@
+---
+import "./ComponentMeta.css";
+
+interface Props {
+    category: string;
+    status?: "Stable" | "Beta" | "Draft";
+    since?: string;
+}
+
+const {
+    category,
+    status = "Stable",
+    since = "1.0.0"
+} = Astro.props;
+---
+
+<div
+    class="component-meta"
+    aria-label="Component metadata"
+>
+
+    <div class="component-meta__item">
+        <span class="component-meta__label">
+            Category
+        </span>
+
+        <strong>
+            {category}
+        </strong>
+    </div>
+
+    <div class="component-meta__item">
+        <span class="component-meta__label">
+            Status
+        </span>
+
+        <strong aria-label={`Component status: ${status}`}>
+            {status}
+        </strong>
+    </div>
+
+    <div class="component-meta__item">
+        <span class="component-meta__label">
+            Since
+        </span>
+
+        <strong>
+            {since}
+        </strong>
+    </div>
+
+</div>

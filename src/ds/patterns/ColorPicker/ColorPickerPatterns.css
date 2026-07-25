@@ -1,0 +1,967 @@
+/* ==========================================================
+   ColorPicker — five patterns
+
+   01  cp-finish   Hearing aid finish (eniyicihaz.com)
+   02  cp-token    Brand token editor with contrast checks
+   03  cp-paint    Paint sample card, retail
+   04  cp-label    Calendar label colours
+   05  cp-kit      Football kit designer, dark
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Device finish
+
+   Swatches are the product. The picker sits at the end of
+   the row as "custom", framed like the presets.
+   ========================================================== */
+
+.cp-finish{
+    padding:64px 56px 72px;
+
+    background:
+        radial-gradient(55% 45% at 15% 0%, rgb(13 148 136 / .12), transparent 62%),
+        #f6fbfa;
+}
+
+.cp-finish__inner{
+    display:grid;
+    grid-template-columns:minmax(0, .9fr) minmax(0, 1.1fr);
+    gap:44px;
+    align-items:center;
+
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.cp-finish__stage{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    aspect-ratio:4 / 3;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:
+        radial-gradient(60% 55% at 50% 45%, #ffffff, transparent 70%),
+        linear-gradient(150deg, #e6f0ee 0%, #d0e3df 100%);
+}
+
+.cp-finish__shape{
+    width:26%;
+    aspect-ratio:2 / 3;
+
+    border-radius:48% 48% 44% 44% / 34% 34% 66% 66%;
+
+    background:linear-gradient(155deg, #6f7681 0%, #3f4550 55%, #2a2f38 100%);
+
+    box-shadow:
+        inset 0 -10px 22px rgb(0 0 0 / .35),
+        inset 0 8px 16px rgb(255 255 255 / .18),
+        0 20px 36px rgb(18 59 54 / .22);
+}
+
+.cp-finish__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.cp-finish__title{
+    margin:14px 0 0;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.cp-finish__lede{
+    margin:14px 0 24px;
+    max-width:42ch;
+
+    font-size:.98rem;
+    line-height:1.75;
+    color:#4a6b66;
+}
+
+.cp-finish__swatches{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:12px;
+}
+
+.cp-finish__swatch{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:9px;
+
+    padding:14px 10px;
+
+    border:1px solid rgb(18 59 54 / .12);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+
+    transition:border-color .2s ease, box-shadow .2s ease;
+}
+
+.cp-finish__swatch:hover{
+    border-color:#0f766e;
+}
+
+.cp-finish__swatch--active{
+    border-color:#0f766e;
+    box-shadow:0 0 0 1px #0f766e;
+}
+
+.cp-finish__dot{
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+    box-shadow:inset 0 0 0 1px rgb(0 0 0 / .12);
+}
+
+.cp-finish__swatch-name{
+    font-size:.8rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.cp-finish__swatch-note{
+    font-size:.7rem;
+    line-height:1.35;
+    text-align:center;
+    color:#8aa8a3;
+}
+
+.cp-finish__custom{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:16px;
+    padding:14px 16px;
+
+    border:1px dashed rgb(18 59 54 / .22);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+}
+
+.cp-finish__custom-text strong{
+    display:block;
+
+    font-size:.86rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.cp-finish__custom-text span{
+    display:block;
+    margin-top:3px;
+
+    font-size:.78rem;
+    color:#8aa8a3;
+}
+
+.cp-finish__meta{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:1px;
+
+    margin-top:20px;
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .12);
+    border-radius:var(--pat-radius-sm);
+
+    background:rgb(18 59 54 / .12);
+}
+
+.cp-finish__meta > div{
+    padding:12px 14px;
+    background:#fff;
+}
+
+.cp-finish__meta dt{
+    font-size:.64rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#8aa8a3;
+}
+
+.cp-finish__meta dd{
+    margin:5px 0 0;
+
+    font-size:.84rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+
+/* ==========================================================
+   02 — Brand tokens
+
+   A settings table: token name, picker, hex, usage — plus
+   a contrast audit underneath.
+   ========================================================== */
+
+.cp-token{
+    padding:56px 56px 72px;
+    background:#f7f8fa;
+}
+
+.cp-token__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.cp-token__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.cp-token__title{
+    margin:14px 0 0;
+
+    font-size:1.7rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.cp-token__lede{
+    margin:12px 0 26px;
+    max-width:56ch;
+
+    font-size:.96rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+.cp-token__table{
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.cp-token__row{
+    display:grid;
+    grid-template-columns:44px 170px 96px minmax(0, 1fr);
+    gap:16px;
+    align-items:center;
+
+    padding:14px 20px;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.cp-token__row:last-child{
+    border-bottom:none;
+}
+
+.cp-token__row--head{
+    background:#fbfcfd;
+
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.cp-token__name{
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.cp-token__hex{
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    text-transform:uppercase;
+    color:var(--pat-body);
+}
+
+.cp-token__usage{
+    font-size:.86rem;
+    color:var(--pat-body);
+}
+
+.cp-token__audit{
+    margin-top:26px;
+    padding:22px 24px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.cp-token__audit-title{
+    margin:0 0 14px;
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.cp-token__check{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 70px 62px;
+    gap:14px;
+    align-items:center;
+
+    padding:10px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.cp-token__check:last-child{
+    border-bottom:none;
+}
+
+.cp-token__pair{
+    font-size:.88rem;
+    color:var(--pat-ink);
+}
+
+.cp-token__ratio{
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    color:var(--pat-body);
+}
+
+.cp-token__grade{
+    padding:3px 9px;
+
+    border-radius:5px;
+
+    font-size:.74rem;
+    font-weight:700;
+    text-align:center;
+}
+
+.cp-token__grade--pass{ background:rgb(22 163 74 / .12); color:#15803d; }
+.cp-token__grade--fail{ background:rgb(220 38 38 / .1); color:#b91c1c; }
+
+.cp-token__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+
+    font-size:.84rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   03 — Paint sample
+
+   Retail. A large colour field carries the card, with the
+   picker offered as "match your own".
+   ========================================================== */
+
+.cp-paint{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 72px;
+    background:#f4f2ec;
+}
+
+.cp-paint__card{
+    width:100%;
+    max-width:520px;
+    overflow:hidden;
+
+    border:1px solid rgb(28 26 21 / .12);
+    border-radius:var(--pat-radius-md);
+
+    background:#fdfcf8;
+    box-shadow:0 24px 56px rgb(28 26 21 / .12);
+}
+
+.cp-paint__field{
+    height:200px;
+    background:#8b8d84;
+}
+
+.cp-paint__body{
+    padding:26px 28px;
+}
+
+.cp-paint__code{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    letter-spacing:.08em;
+    color:#8a8578;
+}
+
+.cp-paint__name{
+    margin:10px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:1.8rem;
+    font-weight:400;
+    letter-spacing:-.025em;
+    color:#1c1a15;
+}
+
+.cp-paint__finish{
+    margin:8px 0 0;
+
+    font-size:.88rem;
+    font-style:italic;
+    color:#8a8578;
+}
+
+.cp-paint__specs{
+    display:flex;
+    flex-direction:column;
+
+    margin:22px 0 0;
+    padding-top:18px;
+
+    border-top:1px solid rgb(28 26 21 / .14);
+}
+
+.cp-paint__spec{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:8px 0;
+
+    font-size:.88rem;
+    color:#3b382f;
+}
+
+.cp-paint__spec dt{
+    color:#8a8578;
+}
+
+.cp-paint__coords{
+    margin-top:22px;
+    padding-top:18px;
+
+    border-top:1px solid rgb(28 26 21 / .14);
+}
+
+.cp-paint__coords-title{
+    margin:0 0 12px;
+
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#8a8578;
+}
+
+.cp-paint__coord-row{
+    display:flex;
+    gap:10px;
+}
+
+.cp-paint__coord{
+    flex:1;
+    text-align:center;
+}
+
+.cp-paint__coord-chip{
+    display:block;
+
+    height:44px;
+    margin-bottom:8px;
+
+    border-radius:4px;
+    box-shadow:inset 0 0 0 1px rgb(0 0 0 / .1);
+}
+
+.cp-paint__coord-name{
+    font-size:.74rem;
+    color:#8a8578;
+}
+
+.cp-paint__match{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:22px;
+    padding:14px 16px;
+
+    border:1px solid rgb(28 26 21 / .14);
+    border-radius:var(--pat-radius-xs);
+
+    background:#f7f5ee;
+}
+
+.cp-paint__match-text strong{
+    display:block;
+
+    font-size:.85rem;
+    color:#1c1a15;
+}
+
+.cp-paint__match-text span{
+    display:block;
+    margin-top:3px;
+
+    font-size:.76rem;
+    color:#8a8578;
+}
+
+.cp-paint__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    padding:18px 28px;
+
+    border-top:1px solid rgb(28 26 21 / .12);
+    background:#f7f5ee;
+}
+
+.cp-paint__price{
+    font-size:.95rem;
+    font-weight:700;
+    color:#1c1a15;
+}
+
+.cp-paint .btn--primary{
+    --btn-bg:#1c1a15;
+}
+
+.cp-paint .btn--primary:hover{
+    --btn-bg:#3b382f;
+}
+
+
+/* ==========================================================
+   04 — Calendar labels
+
+   Colour as taxonomy: each label owns a hue, and the
+   day view is tinted by it.
+   ========================================================== */
+
+.cp-label{
+    padding:56px 56px 72px;
+    background:#fbfcfe;
+}
+
+.cp-label__inner{
+    display:grid;
+    grid-template-columns:300px minmax(0, 1fr);
+    gap:32px;
+    align-items:start;
+
+    max-width:940px;
+    margin:0 auto;
+}
+
+.cp-label__panel{
+    padding:22px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.cp-label__panel-title{
+    margin:0 0 16px;
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.cp-label__row{
+    display:grid;
+    grid-template-columns:32px minmax(0, 1fr) auto;
+    gap:12px;
+    align-items:center;
+
+    padding:9px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.cp-label__row:last-of-type{
+    border-bottom:none;
+}
+
+.cp-label__name{
+    font-size:.9rem;
+    color:var(--pat-ink);
+}
+
+.cp-label__count{
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+.cp-label__add{
+    margin-top:16px;
+}
+
+.cp-label__day{
+    padding:22px 24px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.cp-label__day-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+
+    padding-bottom:16px;
+    margin-bottom:8px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.cp-label__day-title{
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:-.025em;
+    color:var(--pat-ink);
+}
+
+.cp-label__day-meta{
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.cp-label__event{
+    display:grid;
+    grid-template-columns:52px minmax(0, 1fr);
+    gap:14px;
+    align-items:center;
+
+    padding:12px 14px;
+    margin-top:8px;
+
+    border-left:3px solid;
+    border-radius:0 var(--pat-radius-xs) var(--pat-radius-xs) 0;
+}
+
+.cp-label__event-time{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-body);
+}
+
+.cp-label__event-label{
+    font-size:.9rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.cp-label__event-cat{
+    margin-top:3px;
+
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   05 — Kit designer
+
+   Dark configurator. Zone rows drive a rendered shirt;
+   presets sit underneath.
+   ========================================================== */
+
+.cp-kit{
+    padding:56px 56px 72px;
+
+    background:
+        radial-gradient(50% 45% at 20% 0%, rgb(15 76 129 / .35), transparent 60%),
+        linear-gradient(170deg, #0d1117 0%, #07090d 100%);
+}
+
+.cp-kit__inner{
+    display:grid;
+    grid-template-columns:minmax(0, .85fr) minmax(0, 1.15fr);
+    gap:44px;
+    align-items:center;
+
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.cp-kit__stage{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    aspect-ratio:4 / 5;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:
+        radial-gradient(55% 50% at 50% 40%, rgb(255 255 255 / .06), transparent 70%),
+        rgb(255 255 255 / .02);
+}
+
+/* Shirt built from layered blocks */
+
+.cp-kit__shirt{
+    position:relative;
+    width:62%;
+    aspect-ratio:4 / 5;
+}
+
+.cp-kit__body{
+    position:absolute;
+    inset:14% 12% 0;
+
+    border-radius:12px 12px 8px 8px;
+    background:#0f4c81;
+}
+
+.cp-kit__sleeve{
+    position:absolute;
+    top:14%;
+
+    width:20%;
+    height:34%;
+
+    background:#e8b427;
+}
+
+.cp-kit__sleeve--l{
+    left:0;
+    border-radius:10px 0 0 14px;
+}
+
+.cp-kit__sleeve--r{
+    right:0;
+    border-radius:0 10px 14px 0;
+}
+
+.cp-kit__collar{
+    position:absolute;
+    top:10%;
+    left:50%;
+
+    width:26%;
+    height:9%;
+
+    transform:translateX(-50%);
+
+    border-radius:0 0 40% 40%;
+    background:#ffffff;
+}
+
+.cp-kit__number{
+    position:absolute;
+    top:44%;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:3.2rem;
+    font-weight:800;
+    letter-spacing:-.05em;
+    color:rgb(255 255 255 / .9);
+}
+
+.cp-kit__club{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:rgb(232 180 39 / .85);
+}
+
+.cp-kit__title{
+    margin:14px 0 0;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    color:#f8fafc;
+}
+
+.cp-kit__lede{
+    margin:12px 0 24px;
+    max-width:42ch;
+
+    font-size:.95rem;
+    line-height:1.7;
+    color:rgb(248 250 252 / .48);
+}
+
+.cp-kit__zone{
+    display:grid;
+    grid-template-columns:44px minmax(0, 1fr) 84px;
+    gap:14px;
+    align-items:center;
+
+    padding:11px 0;
+
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.cp-kit__zone:last-of-type{
+    border-bottom:none;
+}
+
+.cp-kit__zone-name{
+    font-size:.9rem;
+    color:rgb(248 250 252 / .8);
+}
+
+.cp-kit__zone-hex{
+    text-align:right;
+
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .4);
+}
+
+.cp-kit__presets{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(255 255 255 / .1);
+}
+
+.cp-kit__preset{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    padding:8px 14px;
+
+    border:1px solid rgb(255 255 255 / .14);
+    border-radius:var(--pat-radius-pill);
+
+    font-size:.82rem;
+    color:rgb(248 250 252 / .75);
+}
+
+.cp-kit__preset-dots{
+    display:flex;
+}
+
+.cp-kit__preset-dot{
+    width:12px;
+    height:12px;
+
+    border:1px solid rgb(0 0 0 / .25);
+    border-radius:50%;
+}
+
+.cp-kit__preset-dot + .cp-kit__preset-dot{
+    margin-left:-4px;
+}
+
+.cp-kit__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:24px;
+}
+
+.cp-kit__lead{
+    font-size:.83rem;
+    color:rgb(248 250 252 / .38);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .cp-finish{ padding:52px 32px 64px; }
+    .cp-finish__inner{ grid-template-columns:minmax(0, 1fr); gap:32px; }
+
+    .cp-token{ padding:48px 32px 64px; }
+    .cp-token__row{ grid-template-columns:40px minmax(0, 1fr) 90px; }
+    .cp-token__usage{ grid-column:1 / -1; }
+
+    .cp-label{ padding:48px 32px 64px; }
+    .cp-label__inner{ grid-template-columns:minmax(0, 1fr); }
+
+    .cp-kit{ padding:48px 32px 64px; }
+    .cp-kit__inner{ grid-template-columns:minmax(0, 1fr); gap:32px; }
+    .cp-kit__stage{ aspect-ratio:16 / 10; }
+
+}
+
+@media (max-width:720px){
+
+    .cp-finish{ padding:40px 20px 52px; }
+    .cp-finish__swatches{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .cp-finish__meta{ grid-template-columns:minmax(0, 1fr); }
+
+    .cp-token{ padding:36px 20px 52px; }
+    .cp-token__row--head{ display:none; }
+    .cp-token__check{ grid-template-columns:minmax(0, 1fr) auto; gap:8px 12px; }
+    .cp-token__ratio{ grid-column:1; }
+
+    .cp-paint{ padding:44px 16px 56px; }
+    .cp-paint__body{ padding:22px 20px; }
+    .cp-paint__foot{ padding:16px 20px; }
+    .cp-paint__foot .btn{ width:100%; }
+
+    .cp-label{ padding:36px 20px 52px; }
+
+    .cp-kit{ padding:36px 20px 52px; }
+    .cp-kit__foot .btn{ width:100%; }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .cp-finish__swatch{ transition:none; }
+
+}

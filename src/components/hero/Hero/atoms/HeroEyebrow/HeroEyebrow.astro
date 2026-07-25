@@ -1,0 +1,26 @@
+---
+// Small tracked caption above the headline. Uppercased via CSS so the data
+// stays natural-case; tabular-nums keeps the year (2009) even.
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+
+<p class="hero-eyebrow">{text}</p>
+
+<style>
+  .hero-eyebrow {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    text-transform: uppercase;
+    /* Matches the footer CTA's eyebrow tracking — same problem, same
+       solution, system-wide (DESIGN_SYSTEM_GUIDE §3 Consistency). */
+    letter-spacing: 0.12em;
+    /* The darker primary keeps AA contrast at this small size. */
+    color: var(--color-primary-hover);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

@@ -1,0 +1,858 @@
+/* ==========================================================
+   DatePicker — five patterns
+
+   01  date-clinic  Appointment booking (eniyicihaz.com)
+   02  date-stay    Hotel check-in / check-out
+   03  date-issue   Project deadline field, dark
+   04  date-bill    Subscription renewal + history
+   05  date-flight  Flight departure fare picker
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Appointment booking
+   ========================================================== */
+
+.date-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:72px 32px 80px;
+
+    background:
+        radial-gradient(55% 45% at 50% 0%, rgb(13 148 136 / .12), transparent 64%),
+        #f6fbfa;
+}
+
+.date-clinic__card{
+    width:100%;
+    max-width:560px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.date-clinic__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.date-clinic__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.date-clinic__types{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+    margin-top:24px;
+}
+
+.date-clinic__type{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:13px 16px;
+
+    border:1px solid rgb(18 59 54 / .12);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+}
+
+.date-clinic__type--active{
+    border-color:#0f766e;
+    background:rgb(15 118 110 / .05);
+}
+
+.date-clinic__type-label{
+    font-size:.92rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.date-clinic__type-duration{
+    font-size:.78rem;
+    color:#6b8b86;
+}
+
+.date-clinic__field{
+    margin-top:22px;
+}
+
+.date-clinic__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.date-clinic__row{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:12px;
+}
+
+.date-clinic__field .ds-date-picker__input,
+.date-clinic__row .ds-date-picker__input{
+    border-color:rgb(18 59 54 / .18);
+    border-radius:var(--pat-radius-sm);
+
+    font-size:.92rem;
+}
+
+.date-clinic__field .ds-date-picker__input:focus,
+.date-clinic__row .ds-date-picker__input:focus{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .14);
+}
+
+.date-clinic__clinics{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+
+    margin-top:14px;
+}
+
+.date-clinic__clinic{
+    padding:6px 13px;
+
+    border:1px solid rgb(18 59 54 / .14);
+    border-radius:var(--pat-radius-pill);
+
+    font-size:.8rem;
+    color:#4a6b66;
+}
+
+.date-clinic__clinic--active{
+    border-color:#0f766e;
+    background:#0f766e;
+    color:#fff;
+}
+
+.date-clinic__facts{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(18 59 54 / .1);
+}
+
+.date-clinic__fact{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    font-size:.85rem;
+}
+
+.date-clinic__fact dt{
+    color:#4a6b66;
+}
+
+.date-clinic__fact dd{
+    margin:0;
+
+    font-weight:650;
+    color:#123b36;
+}
+
+.date-clinic__action{
+    margin-top:22px;
+}
+
+.date-clinic .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.date-clinic .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Hotel stay dates
+   ========================================================== */
+
+.date-stay{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 76px;
+    background:#fbfcfe;
+}
+
+.date-stay__card{
+    width:100%;
+    max-width:600px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.date-stay__head{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding:22px 26px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.date-stay__thumb{
+    width:64px;
+    height:52px;
+    flex-shrink:0;
+
+    border-radius:var(--pat-radius-xs);
+    background:linear-gradient(150deg, #b7c4d4, #8b9cb2);
+}
+
+.date-stay__title{
+    font-size:.98rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.date-stay__location{
+    margin-top:4px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.date-stay__score{
+    margin-left:auto;
+    white-space:nowrap;
+
+    font-size:.86rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.date-stay__body{
+    padding:24px 26px;
+}
+
+.date-stay__row{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:12px;
+}
+
+.date-stay__field-label{
+    display:block;
+    margin-bottom:7px;
+
+    font-size:.78rem;
+    font-weight:650;
+    color:#33415a;
+}
+
+.date-stay__row .ds-date-picker__input{
+    border-radius:var(--pat-radius-xs);
+    font-size:.92rem;
+}
+
+.date-stay__row .ds-date-picker__input:focus{
+    border-color:var(--pat-blue);
+    box-shadow:0 0 0 3px rgb(29 78 216 / .12);
+}
+
+.date-stay__nights{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:16px;
+    padding:12px 16px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fbfcfd;
+
+    font-size:.86rem;
+    color:var(--pat-body);
+}
+
+.date-stay__pricing{
+    padding:18px 26px;
+    border-top:1px solid var(--pat-line);
+}
+
+.date-stay__price-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:6px 0;
+
+    font-size:.88rem;
+    color:var(--pat-body);
+}
+
+.date-stay__total{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:10px;
+    padding-top:14px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.date-stay__total strong{
+    font-size:1.3rem;
+    font-weight:800;
+    letter-spacing:-.035em;
+    color:var(--pat-ink);
+}
+
+.date-stay__foot{
+    padding:0 26px 24px;
+}
+
+
+/* ==========================================================
+   03 — Project deadline
+
+   Dark, dense. Dates sit in a field list; editable ones
+   render the real picker, others a plain value.
+   ========================================================== */
+
+.date-issue{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#0a0f19;
+}
+
+.date-issue__card{
+    width:100%;
+    max-width:560px;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .02);
+}
+
+.date-issue__head{
+    padding:20px 24px;
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.date-issue__id{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.date-issue__title{
+    margin:8px 0 0;
+
+    font-size:1.02rem;
+    font-weight:650;
+    letter-spacing:-.02em;
+    color:#f8fafc;
+}
+
+.date-issue__assignee{
+    margin-top:8px;
+
+    font-size:.8rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.date-issue__field{
+    display:grid;
+    grid-template-columns:120px minmax(0, 1fr);
+    gap:16px;
+    align-items:center;
+
+    padding:14px 24px;
+
+    border-bottom:1px solid rgb(255 255 255 / .06);
+}
+
+.date-issue__field:last-of-type{
+    border-bottom:none;
+}
+
+.date-issue__field-label{
+    font-size:.82rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.date-issue__value{
+    font-family:var(--pat-mono);
+    font-size:.88rem;
+    color:rgb(248 250 252 / .78);
+}
+
+.date-issue__field .ds-date-picker__input{
+    background:rgb(255 255 255 / .04);
+    border:1px solid rgb(255 255 255 / .12);
+    color:#f8fafc;
+
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+}
+
+.date-issue__field .ds-date-picker__input:focus{
+    border-color:rgb(56 189 248 / .5);
+}
+
+.date-issue__field .ds-date-picker__icon{
+    filter:invert(1) brightness(.8);
+}
+
+.date-issue__milestones{
+    padding:16px 24px 20px;
+}
+
+.date-issue__milestones-title{
+    margin:0 0 12px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .35);
+}
+
+.date-issue__milestone{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:6px 0;
+
+    font-size:.86rem;
+    color:rgb(248 250 252 / .45);
+}
+
+.date-issue__milestone--done{
+    color:rgb(248 250 252 / .85);
+}
+
+.date-issue__dot{
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:rgb(255 255 255 / .16);
+}
+
+.date-issue__milestone--done .date-issue__dot{
+    background:#4ade80;
+}
+
+.date-issue__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:14px 24px;
+
+    background:rgb(255 255 255 / .03);
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(248 250 252 / .3);
+}
+
+
+/* ==========================================================
+   04 — Subscription billing
+   ========================================================== */
+
+.date-bill{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 76px;
+    background:#f7f8fa;
+}
+
+.date-bill__card{
+    width:100%;
+    max-width:600px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.date-bill__head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    padding:24px 28px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.date-bill__plan{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.date-bill__price{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+
+    margin-top:10px;
+}
+
+.date-bill__price strong{
+    font-size:1.7rem;
+    font-weight:800;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.date-bill__price span{
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.date-bill__renew{
+    text-align:right;
+}
+
+.date-bill__renew-label{
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.date-bill__renew .ds-date-picker{
+    margin-top:8px;
+}
+
+.date-bill__renew .ds-date-picker__input{
+    max-width:160px;
+    border-radius:var(--pat-radius-xs);
+    font-size:.86rem;
+}
+
+.date-bill__history{
+    padding:8px 0;
+}
+
+.date-bill__history-title{
+    margin:16px 28px 10px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.date-bill__row{
+    display:grid;
+    grid-template-columns:110px minmax(0, 1fr) auto;
+    gap:16px;
+    align-items:center;
+
+    padding:11px 28px;
+}
+
+.date-bill__date{
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    color:var(--pat-body);
+}
+
+.date-bill__amount{
+    font-size:.9rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.date-bill__status{
+    padding:3px 10px;
+
+    border-radius:5px;
+    background:rgb(22 163 74 / .12);
+
+    font-size:.74rem;
+    font-weight:700;
+    color:#15803d;
+}
+
+.date-bill__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    padding:18px 28px;
+
+    border-top:1px solid var(--pat-line);
+    background:#fbfcfd;
+}
+
+
+/* ==========================================================
+   05 — Flight departure
+
+   The date picker sits inside a booking bar; fare chips
+   for nearby days sit beneath it.
+   ========================================================== */
+
+.date-flight{
+    padding:88px 56px 80px;
+
+    background:
+        radial-gradient(70% 60% at 20% 0%, rgb(14 165 233 / .3), transparent 62%),
+        linear-gradient(160deg, #0c4a6e 0%, #082f49 55%, #0b2033 100%);
+}
+
+.date-flight__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.date-flight__route{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+
+    font-size:.95rem;
+    color:rgb(255 255 255 / .7);
+}
+
+.date-flight__route strong{
+    font-size:1.3rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.date-flight__title{
+    margin:20px 0 0;
+    max-width:16ch;
+
+    font-size:clamp(2rem, 4vw, 2.7rem);
+    font-weight:800;
+    letter-spacing:-.05em;
+    line-height:1.05;
+
+    color:#fff;
+}
+
+.date-flight__bar{
+    display:grid;
+    grid-template-columns:220px auto;
+    gap:1px;
+
+    margin-top:32px;
+    overflow:visible;
+
+    border-radius:var(--pat-radius-md);
+    background:rgb(15 23 42 / .12);
+
+    box-shadow:0 30px 70px rgb(3 20 40 / .5);
+}
+
+.date-flight__cell{
+    padding:16px 18px;
+    background:#fff;
+
+    transition:background .15s ease;
+}
+
+.date-flight__cell:focus-within{
+    background:rgb(29 78 216 / .06);
+    box-shadow:inset 0 -2px 0 var(--pat-blue);
+}
+
+.date-flight__cell:first-child{
+    border-radius:var(--pat-radius-md) 0 0 var(--pat-radius-md);
+}
+
+.date-flight__label{
+    display:block;
+    margin-bottom:6px;
+
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.date-flight__cell .ds-date-picker__input{
+    padding:0;
+
+    border:none;
+    background:transparent;
+
+    font-size:.98rem;
+    font-weight:650;
+    letter-spacing:-.015em;
+    color:var(--pat-ink);
+}
+
+.date-flight__cell .ds-date-picker__input:focus{
+    outline:none;
+    box-shadow:none;
+}
+
+.date-flight__go{
+    display:flex;
+    align-items:center;
+
+    padding:12px;
+    background:#fff;
+
+    border-radius:0 var(--pat-radius-md) var(--pat-radius-md) 0;
+}
+
+.date-flight__fares{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+
+    margin-top:28px;
+}
+
+.date-flight__fare{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+
+    padding:11px 16px;
+
+    border:1px solid rgb(255 255 255 / .16);
+    border-radius:var(--pat-radius-sm);
+
+    background:rgb(255 255 255 / .06);
+
+    font-size:.8rem;
+    color:rgb(255 255 255 / .7);
+}
+
+.date-flight__fare--cheapest{
+    border-color:#38bdf8;
+    background:rgb(56 189 248 / .16);
+    color:#fff;
+}
+
+.date-flight__fare-price{
+    font-size:1.02rem;
+    font-weight:700;
+}
+
+.date-flight__trust{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+
+    margin-top:24px;
+
+    font-size:.85rem;
+    color:rgb(255 255 255 / .5);
+}
+
+.date-flight__trust span::before{
+    content:"✓ ";
+    color:#38bdf8;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .date-issue{ padding:48px 24px 64px; }
+
+    .date-flight{ padding:64px 32px 64px; }
+    .date-flight__bar{ grid-template-columns:minmax(0, 1fr); }
+    .date-flight__go{ border-radius:0 0 var(--pat-radius-md) var(--pat-radius-md); }
+    .date-flight__go .btn{ width:100%; }
+
+}
+
+@media (max-width:720px){
+
+    .date-clinic{ padding:44px 16px 56px; }
+    .date-clinic__card{ padding:24px 20px; }
+    .date-clinic__row{ grid-template-columns:minmax(0, 1fr); }
+
+    .date-stay{ padding:44px 16px 56px; }
+    .date-stay__head,
+    .date-stay__body,
+    .date-stay__pricing,
+    .date-stay__foot{ padding-left:20px; padding-right:20px; }
+    .date-stay__row{ grid-template-columns:minmax(0, 1fr); }
+    .date-stay__foot .btn{ width:100%; }
+
+    .date-issue{ padding:36px 16px 52px; }
+    .date-issue__field{ grid-template-columns:minmax(0, 1fr); gap:6px; }
+
+    .date-bill{ padding:44px 16px 56px; }
+    .date-bill__renew{ text-align:left; width:100%; }
+    .date-bill__row{ grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px; }
+    .date-bill__date{ grid-column:1 / -1; }
+    .date-bill__foot{ flex-direction:column; align-items:stretch; }
+    .date-bill__foot .btn{ width:100%; }
+
+    .date-flight{ padding:48px 20px 52px; }
+
+}

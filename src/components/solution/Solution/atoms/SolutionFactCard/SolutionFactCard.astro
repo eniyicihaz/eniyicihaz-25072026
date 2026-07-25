@@ -1,0 +1,54 @@
+---
+// A single calm fact card (SOLUTION_SPECIFICATION.md §3/§8). No self-managed
+// entrance state — like Hero's atoms, the organism owns the data-anim
+// state machine and targets [data-rise] descendants directly.
+interface Props {
+  title: string;
+  body: string;
+}
+const { title, body } = Astro.props;
+---
+
+<div class="solution-card" data-rise>
+  <span class="solution-card__line" aria-hidden="true"></span>
+  <h3 class="solution-card__title">{title}</h3>
+  <p class="solution-card__body">{body}</p>
+</div>
+
+<style>
+  .solution-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* The "rested" signal line — Sound Room's line DNA at rest, not chaos.
+     Neutral, not the primary accent: DESIGN_SYSTEM §7 treats accent colour
+     as a scarce resource reserved for actionable moments, not decoration
+     repeated across three cards. */
+  .solution-card__line {
+    width: var(--space-8);
+    height: 2px;
+    border-radius: var(--radius-full);
+    background: var(--color-border-hover);
+  }
+
+  .solution-card__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .solution-card__body {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+</style>

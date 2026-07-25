@@ -1,0 +1,37 @@
+---
+import "./CodeBlock.css";
+
+interface Props {
+    language?: string;
+}
+
+const {
+    language = "html"
+} = Astro.props;
+
+const languageLabel = language.toUpperCase();
+---
+
+<section
+    class="code-block"
+    aria-label={`${languageLabel} code example`}
+>
+
+    <header class="code-block__header">
+
+        <span class="code-block__language">
+            {languageLabel}
+        </span>
+
+    </header>
+
+    <pre
+        class="code-block__content"
+        tabindex="0"
+    >
+        <code>
+            <slot />
+        </code>
+    </pre>
+
+</section>

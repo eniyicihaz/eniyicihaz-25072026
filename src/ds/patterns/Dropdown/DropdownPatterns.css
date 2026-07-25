@@ -1,0 +1,542 @@
+/* ==========================================================
+   Dropdown — five patterns
+
+   01  drop-patient  Patient row actions (eniyicihaz.com)
+   02  drop-account  Account menu, top bar
+   03  drop-row      Deployment row actions, dark
+   04  drop-sort     Sort dropdown, e-commerce
+   05  drop-lang     Language switcher, footer
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Patient row actions
+   ========================================================== */
+
+.drop-patient{
+    padding:64px 32px 88px;
+
+    background:
+        radial-gradient(55% 45% at 15% 0%, rgb(13 148 136 / .1), transparent 62%),
+        #f6fbfa;
+}
+
+.drop-patient__inner{
+    max-width:760px;
+    margin:0 auto;
+}
+
+.drop-patient__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    margin-bottom:22px;
+}
+
+.drop-patient__title{
+    margin:0;
+
+    font-size:1.5rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.drop-patient__count{
+    font-size:.85rem;
+    color:#4a6b66;
+}
+
+.drop-patient__row{
+    display:grid;
+    grid-template-columns:40px minmax(0, 1fr) auto auto;
+    gap:14px;
+    align-items:center;
+
+    padding:14px 16px;
+    margin-bottom:8px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+}
+
+.drop-patient__initials{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:36px;
+    height:36px;
+
+    border-radius:50%;
+    background:rgb(15 118 110 / .12);
+    color:#0f766e;
+
+    font-size:.74rem;
+    font-weight:700;
+}
+
+.drop-patient__name{
+    font-size:.92rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.drop-patient__detail{
+    margin-top:2px;
+
+    font-size:.78rem;
+    color:#8aa8a3;
+}
+
+.drop-patient__badge{
+    padding:3px 9px;
+
+    border-radius:var(--pat-radius-pill);
+    background:rgb(15 118 110 / .1);
+
+    font-size:.72rem;
+    font-weight:650;
+    color:#0f766e;
+}
+
+/* Dropdown theming — clinic palette */
+
+.drop-patient .ds-dropdown{
+    display:flex;
+}
+
+.drop-patient .ds-dropdown__trigger{
+    padding:8px;
+
+    border-color:rgb(18 59 54 / .14);
+    background:transparent;
+    color:#4a6b66;
+}
+
+.drop-patient .ds-dropdown__trigger span:first-child{
+    display:none;
+}
+
+.drop-patient .ds-dropdown__trigger:hover{
+    background:rgb(15 118 110 / .08);
+}
+
+.drop-patient .ds-dropdown__menu{
+    right:0;
+    left:auto;
+
+    border-color:rgb(18 59 54 / .14);
+    box-shadow:0 20px 44px rgb(18 59 54 / .14);
+}
+
+.drop-patient .ds-dropdown__link:hover{
+    background:rgb(15 118 110 / .07);
+}
+
+
+/* ==========================================================
+   02 — Account menu
+
+   The dropdown sits inside a realistic top bar, aligned
+   to the right edge (bottom-end).
+   ========================================================== */
+
+.drop-account{
+    padding:0;
+    background:#fbfcfe;
+}
+
+.drop-account__bar{
+    display:flex;
+    align-items:center;
+    gap:24px;
+
+    padding:16px 32px;
+
+    border-bottom:1px solid var(--pat-line);
+    background:#fff;
+}
+
+.drop-account__logo{
+    font-size:.95rem;
+    font-weight:750;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.drop-account__nav{
+    display:flex;
+    gap:22px;
+
+    margin-left:8px;
+
+    font-size:.88rem;
+    color:var(--pat-body);
+}
+
+.drop-account__trigger{
+    margin-left:auto;
+}
+
+.drop-account .ds-dropdown__trigger{
+    padding:8px 14px;
+
+    border-color:var(--pat-line);
+    border-radius:var(--pat-radius-pill);
+
+    font-size:.86rem;
+    font-weight:600;
+}
+
+.drop-account .ds-dropdown__menu{
+    min-width:220px;
+}
+
+.drop-account__body{
+    padding:64px 32px 88px;
+}
+
+.drop-account__hero{
+    max-width:520px;
+}
+
+.drop-account__hero-title{
+    margin:0;
+
+    font-size:1.8rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.drop-account__hero-lede{
+    margin:12px 0 0;
+
+    font-size:.98rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+
+/* ==========================================================
+   03 — Deployment row actions, dark
+   ========================================================== */
+
+.drop-row{
+    padding:56px 32px 100px;
+    background:#0a0f19;
+}
+
+.drop-row__inner{
+    max-width:800px;
+    margin:0 auto;
+}
+
+.drop-row__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    margin-bottom:22px;
+}
+
+.drop-row__title{
+    margin:0;
+
+    font-size:1.4rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:#f8fafc;
+}
+
+.drop-row__meta{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .38);
+}
+
+.drop-row__row{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto auto auto;
+    gap:20px;
+    align-items:center;
+
+    padding:16px 18px;
+    margin-bottom:8px;
+
+    border:1px solid rgb(255 255 255 / .09);
+    border-radius:var(--pat-radius-sm);
+
+    background:rgb(255 255 255 / .02);
+}
+
+.drop-row__name{
+    font-family:var(--pat-mono);
+    font-size:.9rem;
+    color:#f8fafc;
+}
+
+.drop-row__branch{
+    margin-top:4px;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(248 250 252 / .38);
+}
+
+.drop-row__status{
+    padding:3px 10px;
+
+    border-radius:5px;
+
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    font-weight:700;
+}
+
+.drop-row__status--ready{ background:rgb(74 222 128 / .12); color:#4ade80; }
+.drop-row__status--building{ background:rgb(56 189 248 / .14); color:#7dd3fc; }
+
+.drop-row__time{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .32);
+}
+
+.drop-row .ds-dropdown__trigger{
+    padding:6px 9px;
+
+    border-color:rgb(255 255 255 / .12);
+    background:rgb(255 255 255 / .03);
+    color:rgb(248 250 252 / .7);
+}
+
+.drop-row .ds-dropdown__trigger span:first-child{
+    display:none;
+}
+
+.drop-row .ds-dropdown__trigger:hover{
+    background:rgb(255 255 255 / .08);
+}
+
+.drop-row .ds-dropdown__menu{
+    right:0;
+    left:auto;
+
+    border-color:rgb(255 255 255 / .12);
+    background:#161425;
+    box-shadow:0 24px 50px rgb(0 0 0 / .5);
+}
+
+.drop-row .ds-dropdown__link{
+    color:rgb(248 250 252 / .78);
+
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+}
+
+.drop-row .ds-dropdown__link:hover{
+    background:rgb(255 255 255 / .07);
+}
+
+.drop-row .ds-dropdown__divider{
+    background:rgb(255 255 255 / .1);
+}
+
+
+/* ==========================================================
+   04 — Sort dropdown, e-commerce
+   ========================================================== */
+
+.drop-sort{
+    padding:56px 32px 96px;
+    background:#faf9f7;
+}
+
+.drop-sort__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.drop-sort__head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    padding-bottom:20px;
+    margin-bottom:26px;
+
+    border-bottom:1px solid rgb(35 31 28 / .1);
+}
+
+.drop-sort__title{
+    font-family:var(--pat-serif);
+    font-size:1.5rem;
+    color:#231f1c;
+}
+
+.drop-sort .ds-dropdown__trigger{
+    border-color:rgb(35 31 28 / .18);
+    color:#231f1c;
+}
+
+.drop-sort .ds-dropdown__menu{
+    right:0;
+    left:auto;
+}
+
+.drop-sort .ds-dropdown__link:hover{
+    background:#faf9f7;
+}
+
+.drop-sort__grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:22px;
+}
+
+.drop-sort__plate{
+    aspect-ratio:4 / 5;
+    margin-bottom:12px;
+
+    border-radius:var(--pat-radius-md);
+}
+
+.drop-sort__plate--sand{ background:linear-gradient(150deg, #e4d8c4, #cbb99c); }
+.drop-sort__plate--clay{ background:linear-gradient(150deg, #ddc4b8, #bf9c8c); }
+.drop-sort__plate--stone{ background:linear-gradient(150deg, #dcdad6, #b9b6b0); }
+
+.drop-sort__name{
+    font-size:.92rem;
+    font-weight:650;
+    color:#231f1c;
+}
+
+.drop-sort__price{
+    margin-top:6px;
+
+    font-size:.88rem;
+    color:#8b8177;
+}
+
+
+/* ==========================================================
+   05 — Language switcher, footer
+   ========================================================== */
+
+.drop-lang{
+    display:flex;
+    flex-direction:column;
+
+    min-height:420px;
+    padding:0;
+
+    background:#161213;
+}
+
+.drop-lang__spacer{
+    flex:1;
+}
+
+.drop-lang__footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    padding:28px 40px;
+
+    border-top:1px solid rgb(255 255 255 / .1);
+}
+
+.drop-lang__brand{
+    font-size:.85rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.drop-lang__links{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+
+    font-size:.84rem;
+    color:rgb(255 255 255 / .55);
+}
+
+.drop-lang .ds-dropdown__trigger{
+    padding:6px 12px;
+
+    border-color:rgb(255 255 255 / .14);
+    background:transparent;
+    color:rgb(255 255 255 / .7);
+
+    font-size:.84rem;
+}
+
+.drop-lang .ds-dropdown__trigger:hover{
+    background:rgb(255 255 255 / .06);
+}
+
+.drop-lang .ds-dropdown__menu{
+    top:auto;
+    bottom:calc(100% + .5rem);
+    right:0;
+    left:auto;
+
+    background:#211c1e;
+    border-color:rgb(255 255 255 / .12);
+}
+
+.drop-lang .ds-dropdown__link{
+    color:rgb(255 255 255 / .8);
+}
+
+.drop-lang .ds-dropdown__link:hover{
+    background:rgb(255 255 255 / .07);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .drop-account__bar{ padding:14px 20px; }
+    .drop-account__nav{ display:none; }
+
+    .drop-sort__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+}
+
+@media (max-width:720px){
+
+    .drop-patient{ padding:44px 16px 72px; }
+    .drop-patient__row{ grid-template-columns:36px minmax(0, 1fr) auto; }
+    .drop-patient__badge{ display:none; }
+
+    .drop-account__body{ padding:44px 20px 72px; }
+
+    .drop-row{ padding:40px 16px 80px; }
+    .drop-row__row{ grid-template-columns:minmax(0, 1fr) auto; gap:8px 12px; }
+    .drop-row__status,
+    .drop-row__time{ display:none; }
+
+    .drop-sort{ padding:40px 16px 76px; }
+    .drop-sort__grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .drop-lang__footer{ padding:22px 20px; flex-direction:column; align-items:flex-start; }
+    .drop-lang__links{ order:2; }
+
+}

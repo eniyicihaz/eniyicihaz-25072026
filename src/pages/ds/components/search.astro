@@ -1,0 +1,214 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Search/SearchPatterns.css";
+
+import Search from "../../../ds/components/ui/atoms/Search/Search.astro";
+
+import {
+    siteSearch,
+    marketSearch,
+    docsSearch,
+    tableSearch,
+    helpSearch
+} from "../../../ds/patterns/Search/search.data";
+---
+
+<DSLayout title="Search">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Search</h1>
+
+        <p class="pl-head__lede">
+            Five search moments — a clinic site header, a marketplace hero
+            search, a docs command palette hint, a loading admin filter
+            and a support knowledge base with recent queries.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic site header search -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Site Header Search</span>
+            <span class="pl-example__tags">Hearing care · With button</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="src-site">
+
+                <div class="src-site__bar">
+                    <span class="src-site__brand">eniyicihaz.com</span>
+                    <Search
+                        id={siteSearch.id}
+                        placeholder={siteSearch.placeholder}
+                        buttonLabel={siteSearch.buttonLabel}
+                    />
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Marketplace hero search -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Marketplace Hero</span>
+            <span class="pl-example__tags">Retail · No button · Large field</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="src-market">
+
+                <div class="src-market__inner">
+
+                    <span class="src-market__kicker">Marketplace</span>
+                    <h2 class="src-market__title">Find your next hearing device</h2>
+
+                    <Search
+                        id={marketSearch.id}
+                        placeholder={marketSearch.placeholder}
+                        showButton={marketSearch.showButton}
+                    />
+
+                    <div class="src-market__tags">
+                        <span class="src-market__tag">Kulak arkası</span>
+                        <span class="src-market__tag">Kulak içi</span>
+                        <span class="src-market__tag">Şarj edilebilir</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Documentation search, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Documentation Search</span>
+            <span class="pl-example__tags">Developer docs · Dark · Keyboard hint</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="src-docs">
+
+                <div class="src-docs__card">
+                    <Search
+                        id={docsSearch.id}
+                        placeholder={docsSearch.placeholder}
+                        showButton={docsSearch.showButton}
+                    />
+                    <span class="src-docs__shortcut">{docsSearch.shortcut}</span>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Admin table filter, loading -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Table Filter</span>
+            <span class="pl-example__tags">Admin panel · Disabled while loading</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="src-table">
+
+                <div class="src-table__card">
+
+                    <div class="src-table__title">Device inventory</div>
+
+                    <Search
+                        id={tableSearch.id}
+                        placeholder={tableSearch.placeholder}
+                        buttonLabel={tableSearch.buttonLabel}
+                        disabled={tableSearch.disabled}
+                    />
+
+                    <p class="src-table__note">
+                        <span class="src-table__dot"></span>
+                        {tableSearch.note}
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Support knowledge base -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Knowledge Base</span>
+            <span class="pl-example__tags">Support desk · Recent queries</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="src-help">
+
+                <div class="src-help__card">
+
+                    <h2 class="src-help__title">{helpSearch.placeholder}</h2>
+
+                    <Search
+                        id={helpSearch.id}
+                        placeholder={helpSearch.placeholder}
+                        buttonLabel={helpSearch.buttonLabel}
+                    />
+
+                    <div class="src-help__recent">
+                        <span class="src-help__recent-label">Recent searches</span>
+                        <div class="src-help__recent-list">
+                            {helpSearch.recent.map(term => (
+                                <span class="src-help__chip">{term}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

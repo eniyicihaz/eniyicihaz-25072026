@@ -1,0 +1,364 @@
+/* ==========================================================
+   URLInput — five patterns
+
+   01  uri-website   Clinic provider website (eniyicihaz.com)
+   02  uri-webhook   Webhook endpoint, dark, invalid state
+   03  uri-portfolio Portfolio link, job application, required
+   04  uri-verified  Verified social link, read-only
+   05  uri-redirect  OAuth redirect URL, disabled
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic provider website
+   ========================================================== */
+
+.uri-website{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.uri-website__card{
+    width:100%;
+    max-width:380px;
+    padding:32px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.uri-website__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.uri-website__title{
+    margin:14px 0 22px;
+
+    font-size:1.15rem;
+    font-weight:750;
+    letter-spacing:-.02em;
+    color:#123b36;
+}
+
+.uri-website__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:#123b36;
+}
+
+.uri-website .ds-url-input__field{
+    border-color:rgb(18 59 54 / .18);
+}
+
+.uri-website .ds-url-input__field:focus{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .14);
+}
+
+.uri-website .ds-url-input__icon{
+    color:#0f766e;
+}
+
+
+/* ==========================================================
+   02 — Webhook endpoint, dark, invalid
+   ========================================================== */
+
+.uri-webhook{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.uri-webhook__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.uri-webhook__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.uri-webhook__title{
+    margin:12px 0 22px;
+
+    font-size:1.05rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.uri-webhook__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:rgb(255 255 255 / .75);
+}
+
+.uri-webhook .ds-url-input__field{
+    background:rgb(255 255 255 / .04);
+    border-color:rgb(255 255 255 / .14);
+    color:#fff;
+
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+}
+
+.uri-webhook .ds-url-input__field--invalid{
+    border-color:#f87171;
+}
+
+.uri-webhook .ds-url-input__icon{
+    color:rgb(255 255 255 / .4);
+}
+
+.uri-webhook__error{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:9px;
+
+    font-size:.8rem;
+    color:#f87171;
+}
+
+
+/* ==========================================================
+   03 — Portfolio link, required
+   ========================================================== */
+
+.uri-portfolio{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.uri-portfolio__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.uri-portfolio__role{
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.uri-portfolio__team{
+    margin-top:4px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.uri-portfolio__label{
+    display:flex;
+    align-items:baseline;
+    gap:4px;
+
+    margin:22px 0 8px;
+
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.uri-portfolio__required{
+    color:#dc2626;
+}
+
+.uri-portfolio__hint{
+    margin-top:9px;
+
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Verified social link, read-only
+   ========================================================== */
+
+.uri-verified{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.uri-verified__card{
+    width:100%;
+    max-width:420px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.uri-verified__head{
+    padding:20px 24px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:1rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.uri-verified__row{
+    padding:22px 24px;
+}
+
+.uri-verified__label-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:8px;
+}
+
+.uri-verified__label{
+    font-size:.85rem;
+    color:var(--pat-ink);
+}
+
+.uri-verified__badge{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+
+    padding:2px 9px;
+    border-radius:999px;
+
+    background:rgb(16 185 129 / .12);
+
+    font-size:.72rem;
+    font-weight:650;
+    color:#047857;
+}
+
+.uri-verified .ds-url-input__field{
+    background:#fafafa;
+}
+
+
+/* ==========================================================
+   05 — OAuth redirect URL, disabled
+   ========================================================== */
+
+.uri-redirect{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.uri-redirect__card{
+    width:100%;
+    max-width:440px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.uri-redirect__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.uri-redirect__title{
+    margin:12px 0 22px;
+
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.uri-redirect__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:var(--pat-ink);
+}
+
+.uri-redirect .ds-url-input__field{
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    background:#fafafa;
+}
+
+.uri-redirect__note{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:9px;
+
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .uri-website{ padding:44px 16px 56px; }
+    .uri-website__card{ padding:24px 20px; }
+
+    .uri-webhook{ padding:44px 16px 56px; }
+    .uri-webhook__card{ padding:22px; }
+
+    .uri-portfolio{ padding:44px 16px 56px; }
+    .uri-portfolio__card{ padding:22px; }
+
+    .uri-verified{ padding:44px 16px 56px; }
+
+    .uri-redirect{ padding:44px 16px 56px; }
+    .uri-redirect__card{ padding:22px; }
+
+}

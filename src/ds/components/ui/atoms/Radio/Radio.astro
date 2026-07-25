@@ -1,0 +1,60 @@
+---
+import "./Radio.css";
+import type { RadioProps } from "./Radio.types";
+
+const {
+  name = "radio",
+  checked = false,
+  disabled = false,
+  required = false,
+  error = false,
+  success = false,
+  helperText,
+  id,
+  value,
+  class: className = ""
+}: RadioProps = Astro.props;
+
+const classes = [
+  "radio",
+  error && "is-error",
+  success && "is-success",
+  disabled && "is-disabled",
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class="radio-field">
+
+  <label class={classes}>
+
+    <input
+      class="radio-input"
+      type="radio"
+      name={name}
+      id={id}
+      value={value}
+      checked={checked}
+      disabled={disabled}
+      required={required}
+    />
+
+    <span class="radio-circle">
+      <span class="radio-dot"></span>
+    </span>
+
+    <span class="radio-label">
+      <slot />
+    </span>
+
+  </label>
+
+  {helperText && (
+    <p class="radio-helper">
+      {helperText}
+    </p>
+  )}
+
+</div>

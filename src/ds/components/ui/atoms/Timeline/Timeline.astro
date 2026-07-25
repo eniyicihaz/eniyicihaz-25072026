@@ -1,0 +1,55 @@
+---
+import "./Timeline.css";
+import type { TimelineProps } from "./Timeline.types";
+
+const {
+  items = [],
+  class: className = "",
+} = Astro.props as TimelineProps;
+
+const classes = [
+  "ds-timeline",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <ol class="ds-timeline__list">
+    {
+      items.map((item) => (
+        <li
+          class:list={[
+            "ds-timeline__item",
+            item.completed && "ds-timeline__item--completed",
+          ]}
+        >
+          <div class="ds-timeline__marker"></div>
+
+          <div class="ds-timeline__content">
+            <h3 class="ds-timeline__title">
+              {item.title}
+            </h3>
+
+            {
+              item.date && (
+                <div class="ds-timeline__date">
+                  {item.date}
+                </div>
+              )
+            }
+
+            {
+              item.description && (
+                <p class="ds-timeline__description">
+                  {item.description}
+                </p>
+              )
+            }
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</div>

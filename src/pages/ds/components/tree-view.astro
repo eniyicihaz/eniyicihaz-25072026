@@ -1,0 +1,182 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/TreeView/TreeViewPatterns.css";
+
+import TreeView from "../../../ds/components/ui/atoms/TreeView/TreeView.astro";
+
+import {
+    patientRecords,
+    codeFiles,
+    permissionsTree,
+    categoryTree,
+    environmentTree
+} from "../../../ds/patterns/TreeView/treeview.data";
+---
+
+<DSLayout title="Tree View">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Tree View</h1>
+
+        <p class="pl-head__lede">
+            Five hierarchical structures — patient record folders, a
+            codebase explorer, a permissions tree with a locked branch,
+            a category menu and nested deployment environments.
+        </p>
+
+    </header>
+
+    <!-- 01 — Patient records folders -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Patient Records</span>
+            <span class="pl-example__tags">Hearing care · Nested folders</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="trv-records">
+
+                <div class="trv-records__card">
+
+                    <h2 class="trv-records__title">Hasta dosyaları</h2>
+
+                    <TreeView items={patientRecords} />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Codebase file explorer, dark, no icons -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">File Explorer</span>
+            <span class="pl-example__tags">Developer tools · Dark · No icons</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="trv-code">
+
+                <div class="trv-code__card">
+
+                    <span class="trv-code__crumb">fieldnote-web /</span>
+
+                    <TreeView items={codeFiles} showIcons={false} />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Permissions tree, disabled branch -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Permissions Tree</span>
+            <span class="pl-example__tags">Admin panel · Locked branch</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="trv-permissions">
+
+                <div class="trv-permissions__card">
+
+                    <h2 class="trv-permissions__title">Role permissions</h2>
+
+                    <TreeView items={permissionsTree} />
+
+                    <p class="trv-permissions__note">
+                        Admin access requires an Enterprise plan
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Category navigation, no lines -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Category Navigation</span>
+            <span class="pl-example__tags">Marketplace · No connector lines</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="trv-category">
+
+                <div class="trv-category__card">
+
+                    <h2 class="trv-category__title">Kategoriler</h2>
+
+                    <TreeView items={categoryTree} showLines={false} />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Deployment environments, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Deployment Environments</span>
+            <span class="pl-example__tags">DevOps · Dark · Deep nesting</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="trv-env">
+
+                <div class="trv-env__card">
+
+                    <span class="trv-env__crumb">relay-cli / environments</span>
+
+                    <TreeView items={environmentTree} showIcons={false} />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

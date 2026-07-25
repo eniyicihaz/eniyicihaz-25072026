@@ -1,0 +1,151 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Label from "../../../ds/components/ui/atoms/Label/Label.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Label"
+      description="Form alanlarını tanımlamak için kullanılan etiket bileşeni."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Default">
+
+      <Label>
+        Ad Soyad
+      </Label>
+
+      <Label required>
+        E-posta Adresi
+      </Label>
+
+    </Preview>
+
+    <Preview title="Optional">
+
+      <Label optional>
+        Şirket Adı
+      </Label>
+
+      <Label optional>
+        İkinci Telefon
+      </Label>
+
+    </Preview>
+
+    <Preview title="Helper Text">
+
+      <Label helper="Kimliğinizde yazdığı şekilde giriniz.">
+        Ad Soyad
+      </Label>
+
+      <Label
+        required
+        helper="Size doğrulama bağlantısı gönderilecektir."
+      >
+        E-posta
+      </Label>
+
+    </Preview>
+
+    <Preview title="Disabled">
+
+      <Label disabled>
+        Kullanıcı Adı
+      </Label>
+
+      <Label
+        disabled
+        helper="Bu alan düzenlenemez."
+      >
+        Müşteri No
+      </Label>
+
+    </Preview>
+
+    <Preview title="With Form Controls">
+
+      <div class="example">
+
+        <Label
+          for="name"
+          required
+        >
+          Ad Soyad
+        </Label>
+
+        <input
+          id="name"
+          type="text"
+          placeholder="Adınızı giriniz"
+        />
+
+      </div>
+
+      <div class="example">
+
+        <Label
+          for="email"
+          helper="Aktif kullandığınız e-posta adresinizi yazınız."
+        >
+          E-posta
+        </Label>
+
+        <input
+          id="email"
+          type="email"
+          placeholder="ornek@mail.com"
+        />
+
+      </div>
+
+    </Preview>
+
+  </section>
+
+</DSLayout>
+
+<style>
+.page {
+  max-width: 1300px;
+}
+
+.example {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  max-width: 420px;
+}
+
+.example input {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #dbe4ef;
+  border-radius: 12px;
+
+  font: inherit;
+}
+
+.example input:focus {
+  outline: none;
+  border-color: #005baa;
+  box-shadow: 0 0 0 3px rgb(0 91 170 / 12%);
+}
+</style>

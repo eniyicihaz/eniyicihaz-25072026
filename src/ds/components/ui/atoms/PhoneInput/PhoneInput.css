@@ -1,0 +1,72 @@
+.ds-phone-input {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  border: 1px solid var(--ds-border-color, #dbe2ea);
+  border-radius: var(--ds-radius-md, 10px);
+
+  background: var(--ds-surface, #fff);
+
+  overflow: hidden;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.ds-phone-input:focus-within {
+  border-color: var(--ds-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+.ds-phone-input--invalid {
+  border-color: #dc2626;
+}
+
+.ds-phone-input__prefix {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+
+  padding: 0 1rem;
+
+  background: var(--ds-surface-secondary, #f8fafc);
+
+  border-right: 1px solid var(--ds-border-color, #dbe2ea);
+
+  white-space: nowrap;
+
+  color: var(--ds-text, #0f172a);
+  font-weight: 500;
+}
+
+.ds-phone-input__field {
+  flex: 1;
+
+  height: 44px;
+
+  padding: 0 1rem;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--ds-text, #0f172a);
+
+  font: inherit;
+}
+
+.ds-phone-input__field::placeholder {
+  color: var(--ds-text-secondary, #94a3b8);
+}
+
+.ds-phone-input__field:disabled {
+  cursor: not-allowed;
+}
+
+.ds-phone-input--disabled {
+  opacity: .6;
+}

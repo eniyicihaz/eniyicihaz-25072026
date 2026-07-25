@@ -1,0 +1,68 @@
+.ds-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  padding: 1.25rem;
+
+  border: 1px solid var(--ds-border-color, #e2e8f0);
+  border-radius: var(--ds-radius-lg, 16px);
+
+  background: var(--ds-surface, #ffffff);
+}
+
+.ds-stat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ds-stat__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  border-radius: 999px;
+
+  background: var(--ds-primary-light, #eff6ff);
+
+  font-size: 1.25rem;
+}
+
+.ds-stat__label {
+  font-size: .875rem;
+  color: var(--ds-text-secondary, #64748b);
+}
+
+.ds-stat__value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+
+  color: var(--ds-text, #0f172a);
+}
+
+.ds-stat__description {
+  font-size: .875rem;
+  color: var(--ds-text-secondary, #64748b);
+}
+
+.ds-stat__trend {
+  font-size: .875rem;
+  font-weight: 600;
+}
+
+.ds-stat__trend--up {
+  color: var(--ds-success, #16a34a);
+}
+
+.ds-stat__trend--down {
+  color: var(--ds-danger, #dc2626);
+}
+
+.ds-stat__trend--neutral {
+  color: var(--ds-text-secondary, #64748b);
+}

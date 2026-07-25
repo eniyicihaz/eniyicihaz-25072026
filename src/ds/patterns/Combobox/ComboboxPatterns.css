@@ -1,0 +1,749 @@
+/* ==========================================================
+   Combobox — five patterns
+
+   01  combo-clinic   Clinic search (eniyicihaz.com)
+   02  combo-palette  Command palette, dark
+   03  combo-phone    Country code field, checkout
+   04  combo-issue    Issue tracker assignee field
+   05  combo-route    Flight route picker, travel
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic search
+   ========================================================== */
+
+.combo-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:72px 32px 80px;
+
+    background:
+        radial-gradient(55% 45% at 50% 0%, rgb(13 148 136 / .12), transparent 64%),
+        #f6fbfa;
+}
+
+.combo-clinic__card{
+    width:100%;
+    max-width:560px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+    text-align:center;
+}
+
+.combo-clinic__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.combo-clinic__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.combo-clinic__lede{
+    margin:12px 0 26px;
+
+    font-size:.95rem;
+    line-height:1.7;
+    color:#4a6b66;
+}
+
+.combo-clinic__field{
+    text-align:left;
+}
+
+.combo-clinic__field .ds-combobox__input{
+    border-color:rgb(18 59 54 / .18);
+    border-radius:var(--pat-radius-sm);
+
+    font-size:.95rem;
+}
+
+.combo-clinic__field .ds-combobox__input:focus{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .14);
+}
+
+.combo-clinic__field .ds-combobox__icon{
+    color:#8aa8a3;
+}
+
+.combo-clinic__field .ds-combobox__list{
+    border-color:rgb(18 59 54 / .14);
+    border-radius:var(--pat-radius-sm);
+    box-shadow:0 16px 36px rgb(18 59 54 / .12);
+}
+
+.combo-clinic__field .ds-combobox__option[aria-selected="true"],
+.combo-clinic__field .ds-combobox__option:hover{
+    background:rgb(15 118 110 / .08);
+    color:#0f766e;
+}
+
+.combo-clinic__facts{
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    flex-wrap:wrap;
+
+    margin-top:24px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(18 59 54 / .1);
+}
+
+.combo-clinic__fact dt{
+    font-size:.66rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#8aa8a3;
+}
+
+.combo-clinic__fact dd{
+    margin:5px 0 0;
+
+    font-size:.86rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.combo-clinic__action{
+    margin-top:22px;
+}
+
+.combo-clinic .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.combo-clinic .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Command palette
+
+   Dark, centred overlay. Groups render as labelled
+   sections inside the same field's list slot.
+   ========================================================== */
+
+.combo-palette{
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+
+    min-height:480px;
+    padding:88px 32px 64px;
+
+    background:
+        radial-gradient(50% 40% at 50% 0%, rgb(99 102 241 / .16), transparent 62%),
+        linear-gradient(180deg, #0d0b18 0%, #08070f 100%);
+}
+
+.combo-palette__panel{
+    width:100%;
+    max-width:560px;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(20 18 34 / .96);
+    backdrop-filter:blur(24px);
+
+    box-shadow:0 40px 90px rgb(0 0 0 / .6);
+}
+
+.combo-palette__field .ds-combobox__control{
+    border:none;
+    border-bottom:1px solid rgb(255 255 255 / .1);
+    border-radius:0;
+}
+
+.combo-palette__field .ds-combobox__input{
+    padding:18px 20px;
+
+    border:none;
+    background:transparent;
+    color:#fff;
+
+    font-size:1rem;
+}
+
+.combo-palette__field .ds-combobox__input::placeholder{
+    color:rgb(255 255 255 / .35);
+}
+
+.combo-palette__field .ds-combobox__icon{
+    display:none;
+}
+
+.combo-palette__field .ds-combobox__list{
+    position:static;
+
+    border:none;
+    box-shadow:none;
+    background:transparent;
+
+    max-height:none;
+    padding:8px;
+}
+
+.combo-palette__field .ds-combobox__option{
+    padding:10px 12px;
+
+    border-radius:8px;
+
+    font-size:.9rem;
+    color:rgb(255 255 255 / .82);
+}
+
+.combo-palette__field .ds-combobox__option:hover,
+.combo-palette__field .ds-combobox__option--selected{
+    background:rgb(255 255 255 / .08);
+    color:#fff;
+}
+
+.combo-palette__recent{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+
+    padding:12px 16px;
+
+    border-bottom:1px solid rgb(255 255 255 / .08);
+
+    font-size:.76rem;
+    color:rgb(255 255 255 / .35);
+}
+
+.combo-palette__recent-item{
+    padding:4px 10px;
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:6px;
+
+    color:rgb(255 255 255 / .6);
+}
+
+.combo-palette__categories{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+
+    padding:10px 16px;
+
+    border-top:1px solid rgb(255 255 255 / .08);
+}
+
+.combo-palette__category{
+    padding:4px 10px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-pill);
+
+    font-size:.72rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.combo-palette__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:11px 16px;
+
+    border-top:1px solid rgb(255 255 255 / .1);
+
+    font-size:.74rem;
+    color:rgb(255 255 255 / .3);
+}
+
+
+/* ==========================================================
+   03 — Country / phone field
+
+   Two comboboxes fused in a form row, with a step rail
+   above.
+   ========================================================== */
+
+.combo-phone{
+    display:flex;
+    justify-content:center;
+
+    padding:72px 32px 80px;
+    background:#f7f8fa;
+}
+
+.combo-phone__card{
+    width:100%;
+    max-width:520px;
+    padding:36px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.combo-phone__steps{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+
+    padding-bottom:20px;
+    margin-bottom:24px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.combo-phone__step{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:.84rem;
+    color:var(--pat-soft);
+}
+
+.combo-phone__step-n{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:20px;
+    height:20px;
+
+    border:1px solid rgb(15 23 42 / .16);
+    border-radius:50%;
+
+    font-family:var(--pat-mono);
+    font-size:.68rem;
+    font-weight:700;
+}
+
+.combo-phone__step--done{
+    color:#15803d;
+}
+
+.combo-phone__step--done .combo-phone__step-n{
+    border-color:#16a34a;
+    background:#16a34a;
+    color:#fff;
+}
+
+.combo-phone__step--current{
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.combo-phone__step--current .combo-phone__step-n{
+    border-color:var(--pat-ink);
+    background:var(--pat-ink);
+    color:#fff;
+}
+
+.combo-phone__title{
+    margin:0 0 20px;
+
+    font-size:1.2rem;
+    font-weight:750;
+    letter-spacing:-.025em;
+    color:var(--pat-ink);
+}
+
+.combo-phone__field{
+    margin-bottom:18px;
+}
+
+.combo-phone__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    font-weight:650;
+    color:#33415a;
+}
+
+.combo-phone__row{
+    display:grid;
+    grid-template-columns:170px minmax(0, 1fr);
+    gap:10px;
+}
+
+.combo-phone__row .ds-combobox__input,
+.combo-phone__field .ds-combobox__input{
+    border-radius:var(--pat-radius-xs);
+    font-size:.92rem;
+}
+
+.combo-phone__row .ds-combobox__input:focus,
+.combo-phone__field .ds-combobox__input:focus{
+    border-color:var(--pat-blue);
+    box-shadow:0 0 0 3px rgb(29 78 216 / .12);
+}
+
+.combo-phone__row .input{
+    height:100%;
+    border-radius:var(--pat-radius-xs);
+}
+
+.combo-phone__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.combo-phone__foot-note{
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Issue tracker assignee
+
+   The combobox lives inline in a field list — an app
+   settings look, not a form.
+   ========================================================== */
+
+.combo-issue{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 76px;
+    background:#0a0f19;
+}
+
+.combo-issue__card{
+    width:100%;
+    max-width:560px;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .02);
+}
+
+.combo-issue__head{
+    padding:20px 24px;
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.combo-issue__id{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.combo-issue__title{
+    margin:8px 0 0;
+
+    font-size:1.05rem;
+    font-weight:650;
+    letter-spacing:-.02em;
+    color:#f8fafc;
+}
+
+.combo-issue__field{
+    display:grid;
+    grid-template-columns:110px minmax(0, 1fr);
+    gap:16px;
+    align-items:center;
+
+    padding:14px 24px;
+
+    border-bottom:1px solid rgb(255 255 255 / .06);
+}
+
+.combo-issue__field:last-of-type{
+    border-bottom:none;
+}
+
+.combo-issue__field-label{
+    font-size:.82rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.combo-issue__value{
+    font-size:.9rem;
+    color:rgb(248 250 252 / .82);
+}
+
+.combo-issue__field .ds-combobox__control{
+    border:1px solid transparent;
+    background:transparent;
+}
+
+.combo-issue__field .ds-combobox__control:hover{
+    border-color:rgb(255 255 255 / .14);
+    background:rgb(255 255 255 / .04);
+}
+
+.combo-issue__field .ds-combobox__input{
+    background:transparent;
+    color:#f8fafc;
+
+    font-size:.9rem;
+}
+
+.combo-issue__field .ds-combobox__icon{
+    color:rgb(248 250 252 / .3);
+}
+
+.combo-issue__field .ds-combobox__list{
+    border-color:rgb(255 255 255 / .12);
+    background:#161425;
+    box-shadow:0 20px 44px rgb(0 0 0 / .5);
+}
+
+.combo-issue__field .ds-combobox__option{
+    color:rgb(248 250 252 / .78);
+}
+
+.combo-issue__field .ds-combobox__option:hover,
+.combo-issue__field .ds-combobox__option[aria-selected="true"]{
+    background:rgb(255 255 255 / .08);
+    color:#fff;
+}
+
+.combo-issue__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:14px 24px;
+
+    background:rgb(255 255 255 / .03);
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(248 250 252 / .3);
+}
+
+
+/* ==========================================================
+   05 — Flight route picker
+
+   Two comboboxes side by side over a colour field, like
+   an airline booking bar.
+   ========================================================== */
+
+.combo-route{
+    position:relative;
+    isolation:isolate;
+
+    padding:88px 56px 80px;
+
+    background:
+        radial-gradient(70% 60% at 20% 0%, rgb(14 165 233 / .3), transparent 62%),
+        linear-gradient(160deg, #0c4a6e 0%, #082f49 55%, #0b2033 100%);
+}
+
+.combo-route__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.combo-route__kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    padding:6px 14px;
+
+    border:1px solid rgb(255 255 255 / .18);
+    border-radius:var(--pat-radius-pill);
+
+    background:rgb(255 255 255 / .1);
+    backdrop-filter:blur(12px);
+
+    font-size:.76rem;
+    font-weight:600;
+    color:rgb(255 255 255 / .82);
+}
+
+.combo-route__title{
+    margin:26px 0 0;
+    max-width:16ch;
+
+    font-size:clamp(2rem, 4.2vw, 2.8rem);
+    font-weight:800;
+    letter-spacing:-.05em;
+    line-height:1.04;
+
+    color:#fff;
+}
+
+.combo-route__lede{
+    margin:16px 0 0;
+    max-width:46ch;
+
+    font-size:1rem;
+    line-height:1.7;
+    color:rgb(255 255 255 / .6);
+}
+
+.combo-route__bar{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) auto;
+    gap:1px;
+
+    margin-top:36px;
+    overflow:visible;
+
+    border-radius:var(--pat-radius-md);
+    background:rgb(15 23 42 / .12);
+
+    box-shadow:0 30px 70px rgb(3 20 40 / .5);
+}
+
+.combo-route__cell{
+    position:relative;
+    padding:16px 18px;
+    background:#fff;
+
+    transition:background .15s ease;
+}
+
+.combo-route__cell:focus-within{
+    background:rgb(29 78 216 / .06);
+    box-shadow:inset 0 -2px 0 var(--pat-blue);
+}
+
+.combo-route__cell:first-child{
+    border-radius:var(--pat-radius-md) 0 0 var(--pat-radius-md);
+}
+
+.combo-route__label{
+    display:block;
+    margin-bottom:6px;
+
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.combo-route__cell .ds-combobox__control{
+    border:none;
+}
+
+.combo-route__cell .ds-combobox__input{
+    padding:0 24px 0 0;
+
+    background:transparent;
+
+    font-size:.98rem;
+    font-weight:650;
+    letter-spacing:-.015em;
+    color:var(--pat-ink);
+}
+
+.combo-route__cell .ds-combobox__input:focus{
+    outline:none;
+    box-shadow:none;
+}
+
+.combo-route__cell .ds-combobox__icon{
+    right:0;
+    color:var(--pat-soft);
+}
+
+.combo-route__cell .ds-combobox__list{
+    top:calc(100% + 6px);
+
+    border-radius:var(--pat-radius-sm);
+    box-shadow:0 20px 44px rgb(3 20 40 / .3);
+}
+
+.combo-route__go{
+    display:flex;
+    align-items:center;
+
+    padding:12px;
+    background:#fff;
+
+    border-radius:0 var(--pat-radius-md) var(--pat-radius-md) 0;
+}
+
+.combo-route__trust{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+
+    margin-top:24px;
+
+    font-size:.85rem;
+    color:rgb(255 255 255 / .5);
+}
+
+.combo-route__trust span::before{
+    content:"✓ ";
+    color:#38bdf8;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .combo-palette{ padding:64px 24px 56px; }
+
+    .combo-route{ padding:64px 32px 64px; }
+    .combo-route__bar{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .combo-route__go{ grid-column:1 / -1; border-radius:0 0 var(--pat-radius-md) var(--pat-radius-md); }
+    .combo-route__go .btn{ width:100%; }
+
+}
+
+@media (max-width:720px){
+
+    .combo-clinic{ padding:48px 20px 56px; }
+    .combo-clinic__card{ padding:24px 20px; }
+    .combo-clinic__facts{ gap:18px; }
+
+    .combo-palette{ padding:44px 16px 44px; }
+
+    .combo-phone{ padding:48px 16px 56px; }
+    .combo-phone__card{ padding:24px 20px; }
+    .combo-phone__row{ grid-template-columns:minmax(0, 1fr); }
+    .combo-phone__foot .btn{ width:100%; }
+
+    .combo-issue{ padding:44px 16px 56px; }
+    .combo-issue__field{ grid-template-columns:minmax(0, 1fr); gap:6px; }
+
+    .combo-route{ padding:48px 20px 52px; }
+    .combo-route__bar{ grid-template-columns:minmax(0, 1fr); }
+    .combo-route__cell:first-child{ border-radius:var(--pat-radius-md) var(--pat-radius-md) 0 0; }
+
+}

@@ -1,0 +1,78 @@
+---
+import "./Toast.css";
+import type { ToastProps } from "./Toast.types";
+
+const {
+  title,
+  description,
+  variant = "default",
+  closable = true,
+  icon = true,
+  class: className = "",
+} = Astro.props as ToastProps;
+
+const classes = [
+  "ds-toast",
+  `ds-toast--${variant}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const icons = {
+  default: "💬",
+  success: "✓",
+  warning: "⚠",
+  error: "✕",
+  info: "ℹ",
+};
+---
+
+<div
+  class={classes}
+  role="status"
+  aria-live="polite"
+>
+  {
+    icon && (
+      <div
+        class="ds-toast__icon"
+        aria-hidden="true"
+      >
+        {icons[variant]}
+      </div>
+    )
+  }
+
+  <div class="ds-toast__content">
+    {
+      title && (
+        <h4 class="ds-toast__title">
+          {title}
+        </h4>
+      )
+    }
+
+    {
+      description && (
+        <p class="ds-toast__description">
+          {description}
+        </p>
+      )
+    }
+
+    <slot />
+  </div>
+
+  {
+    closable && (
+      <button
+        type="button"
+        class="ds-toast__close"
+        aria-label="Close notification"
+      >
+        ✕
+      </button>
+    )
+  }
+</div>

@@ -1,0 +1,43 @@
+---
+import "./PageHeader.css";
+
+interface Props {
+    title: string;
+    description: string;
+    badge?: string;
+}
+
+const {
+    title,
+    description,
+    badge = "Foundation"
+} = Astro.props;
+
+const titleId = "page-header-title";
+---
+
+<header
+    class="page-header"
+    aria-labelledby={titleId}
+>
+
+    {
+        badge && (
+            <div class="page-header__badge">
+                {badge}
+            </div>
+        )
+    }
+
+    <h1
+        id={titleId}
+        class="page-header__title"
+    >
+        {title}
+    </h1>
+
+    <p class="page-header__description">
+        {description}
+    </p>
+
+</header>

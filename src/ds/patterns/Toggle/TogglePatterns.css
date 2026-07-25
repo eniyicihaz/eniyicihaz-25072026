@@ -1,0 +1,308 @@
+/* ==========================================================
+   Toggle — five patterns
+
+   01  tgl-clinic    Notification preferences (eniyicihaz.com)
+   02  tgl-settings  Dark settings panel, size variants
+   03  tgl-security  Account security, required + disabled
+   04  tgl-flags     Feature flags, engineering, dark
+   05  tgl-consent   Privacy consent, single large toggle
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Notification preferences
+   ========================================================== */
+
+.tgl-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.tgl-clinic__card{
+    width:100%;
+    max-width:440px;
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.tgl-clinic__head{
+    padding:20px 24px;
+    border-bottom:1px solid rgb(18 59 54 / .08);
+
+    font-size:.95rem;
+    font-weight:700;
+    color:#123b36;
+}
+
+.tgl-clinic__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:18px 24px;
+}
+
+.tgl-clinic__row + .tgl-clinic__row{
+    border-top:1px solid rgb(18 59 54 / .06);
+}
+
+.tgl-clinic .ds-toggle__label{
+    color:#123b36;
+}
+
+.tgl-clinic .ds-toggle__description{
+    color:#6b8b86;
+}
+
+.tgl-clinic .ds-toggle__input:checked + .ds-toggle__track{
+    background:#0f766e;
+}
+
+
+/* ==========================================================
+   02 — Dark settings panel, size variants
+   ========================================================== */
+
+.tgl-settings{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.tgl-settings__card{
+    width:100%;
+    max-width:380px;
+    padding:30px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.tgl-settings__title{
+    margin-bottom:20px;
+
+    font-size:.95rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.tgl-settings__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+}
+
+.tgl-settings__row + .tgl-settings__row{
+    margin-top:18px;
+}
+
+.tgl-settings .ds-toggle__label{
+    color:rgb(255 255 255 / .8);
+    font-size:.88rem;
+}
+
+.tgl-settings .ds-toggle__track{
+    background:rgb(255 255 255 / .14);
+}
+
+.tgl-settings .ds-toggle__input:checked + .ds-toggle__track{
+    background:#38bdf8;
+}
+
+
+/* ==========================================================
+   03 — Account security, required + disabled
+   ========================================================== */
+
+.tgl-security{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.tgl-security__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.tgl-security__title{
+    margin-bottom:20px;
+
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.tgl-security__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+}
+
+.tgl-security__row + .tgl-security__row{
+    margin-top:20px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.tgl-security .ds-toggle__input:checked + .ds-toggle__track{
+    background:#16a34a;
+}
+
+
+/* ==========================================================
+   04 — Feature flags, engineering, dark
+   ========================================================== */
+
+.tgl-flags{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#0b1220;
+}
+
+.tgl-flags__card{
+    width:100%;
+    max-width:400px;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.tgl-flags__head{
+    padding:16px 22px;
+    border-bottom:1px solid rgb(255 255 255 / .08);
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.tgl-flags__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:14px 22px;
+}
+
+.tgl-flags__row + .tgl-flags__row{
+    border-top:1px solid rgb(255 255 255 / .06);
+}
+
+.tgl-flags .ds-toggle__label{
+    font-family:var(--pat-mono);
+    font-size:.85rem;
+    color:#fff;
+}
+
+.tgl-flags .ds-toggle__track{
+    background:rgb(255 255 255 / .14);
+}
+
+.tgl-flags .ds-toggle__input:checked + .ds-toggle__track{
+    background:#a78bfa;
+}
+
+
+/* ==========================================================
+   05 — Privacy consent, single large toggle
+   ========================================================== */
+
+.tgl-consent{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#faf8f4;
+}
+
+.tgl-consent__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid rgb(28 24 18 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.tgl-consent__row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.tgl-consent .ds-toggle__label{
+    font-family:var(--pat-serif);
+    font-size:1.05rem;
+    font-weight:600;
+    color:#1c1812;
+}
+
+.tgl-consent .ds-toggle__description{
+    margin-top:4px;
+
+    font-size:.85rem;
+    line-height:1.5;
+    color:#a3937a;
+}
+
+.tgl-consent .ds-toggle__input:checked + .ds-toggle__track{
+    background:#c2703d;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .tgl-clinic{ padding:44px 16px 56px; }
+
+    .tgl-settings{ padding:44px 16px 56px; }
+    .tgl-settings__card{ padding:22px; }
+
+    .tgl-security{ padding:44px 16px 56px; }
+    .tgl-security__card{ padding:22px; }
+
+    .tgl-flags{ padding:44px 16px 56px; }
+
+    .tgl-consent{ padding:44px 16px 56px; }
+    .tgl-consent__card{ padding:22px; }
+    .tgl-consent__row{ flex-direction:column; }
+
+}

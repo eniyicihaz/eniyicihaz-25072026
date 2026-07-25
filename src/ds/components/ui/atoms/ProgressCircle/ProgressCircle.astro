@@ -1,0 +1,50 @@
+---
+import "./ProgressCircle.css";
+import type { ProgressCircleProps } from "./ProgressCircle.types";
+
+const {
+  value,
+  size = 120,
+  strokeWidth = 10,
+  showValue = true,
+  class: className = "",
+} = Astro.props as ProgressCircleProps;
+
+const radius = (size - strokeWidth) / 2;
+const circumference = 2 * Math.PI * radius;
+
+const progress = Math.min(100, Math.max(0, value));
+
+const offset =
+  circumference - (progress / 100) * circumference;
+---
+
+<div class={`ds-progress-circle ${className}`}>
+  <svg width={size} height={size}>
+    <circle
+      class="ds-progress-circle__track"
+      cx={size / 2}
+      cy={size / 2}
+      r={radius}
+      stroke-width={strokeWidth}
+    />
+
+    <circle
+      class="ds-progress-circle__indicator"
+      cx={size / 2}
+      cy={size / 2}
+      r={radius}
+      stroke-width={strokeWidth}
+      stroke-dasharray={circumference}
+      stroke-dashoffset={offset}
+    />
+  </svg>
+
+  {
+    showValue && (
+      <span class="ds-progress-circle__value">
+        {progress}%
+      </span>
+    )
+  }
+</div>

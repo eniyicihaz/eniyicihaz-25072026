@@ -1,0 +1,142 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import IconButton from "../../../ds/components/ui/atoms/IconButton/IconButton.astro";
+
+import {
+    Plus,
+    Search,
+    Check,
+    TriangleAlert,
+    X,
+    Heart,
+    Settings,
+    Moon,
+    Download,
+    Upload,
+    Share2,
+    Menu,
+    Bell,
+    Ellipsis,
+    Lock,
+    ExternalLink
+} from "lucide-astro";
+---
+
+<DSLayout>
+
+<section class="page">
+
+    <PageHeader
+        category="ATOM"
+        title="IconButton"
+        description="Sadece ikon gösteren premium ikon buton bileşeni."
+    />
+
+    <ComponentMeta
+        version="1.0.0"
+        status="stable"
+    />
+
+    <Preview title="Variants">
+
+        <div class="demo-row">
+            <IconButton icon={Plus} label="Primary" />
+            <IconButton icon={Search} label="Secondary" variant="secondary" />
+            <IconButton icon={Check} label="Success" variant="success" />
+            <IconButton icon={TriangleAlert} label="Warning" variant="warning" />
+            <IconButton icon={X} label="Danger" variant="danger" />
+            <IconButton icon={Heart} label="Ghost" variant="ghost" />
+            <IconButton icon={Settings} label="Outline" variant="outline" />
+            <IconButton icon={Moon} label="Light" variant="light" />
+        </div>
+
+    </Preview>
+
+    <Preview title="Sizes">
+
+        <div class="demo-row">
+            <IconButton icon={Plus} label="XS" size="xs" />
+            <IconButton icon={Plus} label="SM" size="sm" />
+            <IconButton icon={Plus} label="MD" size="md" />
+            <IconButton icon={Plus} label="LG" size="lg" />
+            <IconButton icon={Plus} label="XL" size="xl" />
+        </div>
+
+    </Preview>
+
+    <Preview title="Outline">
+
+        <div class="demo-row">
+            <IconButton icon={Download} label="Download" variant="outline" />
+            <IconButton icon={Upload} label="Upload" variant="outline" />
+            <IconButton icon={Share2} label="Share" variant="outline" />
+        </div>
+
+    </Preview>
+
+    <Preview title="Ghost">
+
+        <div class="demo-row">
+            <IconButton icon={Menu} label="Menu" variant="ghost" />
+            <IconButton icon={Bell} label="Notifications" variant="ghost" />
+            <IconButton icon={Ellipsis} label="More" variant="ghost" />
+        </div>
+
+    </Preview>
+
+    <Preview title="Loading">
+
+        <div class="demo-row">
+            <IconButton icon={Plus} label="Loading" loading />
+            <IconButton icon={Plus} label="Loading" loading variant="secondary" />
+            <IconButton icon={Plus} label="Loading" loading variant="outline" />
+        </div>
+
+    </Preview>
+
+    <Preview title="Disabled">
+
+        <div class="demo-row">
+            <IconButton icon={Lock} label="Disabled" disabled />
+            <IconButton icon={Lock} label="Disabled" disabled variant="outline" />
+            <IconButton icon={Lock} label="Disabled" disabled variant="ghost" />
+        </div>
+
+    </Preview>
+
+    <Preview title="Link">
+
+        <div class="demo-row">
+            <IconButton
+                icon={ExternalLink}
+                label="Open Website"
+                href="https://example.com"
+                target="_blank"
+            />
+        </div>
+
+    </Preview>
+
+</section>
+
+<style>
+
+.page{
+    max-width:1300px;
+}
+
+.demo-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    align-items:center;
+}
+
+</style>
+
+</DSLayout>

@@ -1,0 +1,56 @@
+/* ==========================================================
+   Footer — semantic token layer
+   Derived from DS primitives; scoped to the footer root (.ftr).
+   Components reference these tokens only (no raw colours).
+   ========================================================== */
+
+.ftr {
+  /* Deep premium navy — not pure black. Very subtle vertical gradient. */
+  --footer-bg-top: #0f2547;
+  --footer-bg-bottom: #0a1730;
+  --footer-bg: #0b1b34;
+
+  /* Panels / cards sitting on the navy (map, contact). */
+  --footer-surface: rgb(255 255 255 / 0.04);
+  --footer-surface-hover: rgb(255 255 255 / 0.07);
+
+  /* Hairline dividers. */
+  --footer-border: rgb(255 255 255 / 0.08);
+
+  /* Soft brand glow behind key areas. */
+  --footer-glow: rgb(37 99 235 / 0.14);
+
+  /* Text roles. */
+  --footer-heading: #ffffff;
+  --footer-text: rgb(226 232 240 / 0.72);
+  /* Alpha raised from 0.72 to clear WCAG AA (4.5:1) on the navy at 12–14px. */
+  --footer-muted: rgb(148 163 184 / 0.92);
+
+  /* Link states. */
+  --footer-link: rgb(203 213 225 / 0.85);
+  --footer-link-hover: #ffffff;
+
+  /* Brand accent — the light-surface primary is too dark on navy. */
+  --footer-accent: #93c5fd;
+  --footer-accent-border: rgb(147 197 253 / 0.28);
+}
+
+/* Shared container — full-width layer backgrounds, centred content. */
+.ftr-container {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+  padding-inline: var(--space-12);
+}
+
+@media (max-width: 1023px) {
+  .ftr-container {
+    padding-inline: var(--space-6);
+  }
+}
+
+@media (max-width: 640px) {
+  .ftr-container {
+    padding-inline: var(--space-4);
+  }
+}

@@ -1,0 +1,50 @@
+---
+import "./OTPInput.css";
+import type { OTPInputProps } from "./OTPInput.types";
+
+const {
+  id = "otp",
+  name = "otp",
+  length = 6,
+  value = "",
+  placeholder = "",
+  disabled = false,
+  readonly = false,
+  required = false,
+  autoFocus = false,
+  inputMode = "numeric",
+  class: className = "",
+} = Astro.props as OTPInputProps;
+
+const classes = [
+  "ds-otp-input",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const values = Array.from({ length }, (_, index) => value[index] ?? "");
+---
+
+<div class={classes}>
+  {
+    values.map((digit, index) => (
+      <input
+        class="ds-otp-input__field"
+        id={index === 0 ? id : undefined}
+        name={index === 0 ? name : undefined}
+        type="text"
+        inputmode={inputMode}
+        maxlength="1"
+        value={digit}
+        placeholder={placeholder}
+        disabled={disabled}
+        readonly={readonly}
+        required={required}
+        autofocus={autoFocus && index === 0}
+        autocomplete="one-time-code"
+        aria-label={`Digit ${index + 1}`}
+      />
+    ))
+  }
+</div>

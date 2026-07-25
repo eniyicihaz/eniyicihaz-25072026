@@ -1,0 +1,23 @@
+---
+import "./Kbd.css";
+import type { KbdProps } from "./Kbd.types";
+
+const {
+  size = "md",
+  variant = "default",
+  class: className = "",
+} = Astro.props as KbdProps;
+
+const classes = [
+  "ds-kbd",
+  `ds-kbd--${size}`,
+  variant === "outline" && "ds-kbd--outline",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<kbd class={classes}>
+  <slot />
+</kbd>

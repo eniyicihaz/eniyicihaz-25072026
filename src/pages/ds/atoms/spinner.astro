@@ -1,0 +1,150 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Spinner from "../../../ds/components/ui/atoms/Spinner/Spinner.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Spinner"
+      description="Yüklenme durumlarını göstermek için kullanılan spinner bileşeni."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Sizes">
+
+      <Spinner size="xs" />
+
+      <Spinner size="sm" />
+
+      <Spinner size="md" />
+
+      <Spinner size="lg" />
+
+      <Spinner size="xl" />
+
+    </Preview>
+
+    <Preview title="Variants">
+
+      <Spinner variant="primary" />
+
+      <Spinner variant="secondary" />
+
+      <Spinner variant="success" />
+
+      <Spinner variant="warning" />
+
+      <Spinner variant="danger" />
+
+      <div class="dark-preview">
+        <Spinner variant="light" />
+      </div>
+
+    </Preview>
+
+    <Preview title="Button Example">
+
+      <button class="demo-button">
+        <Spinner
+          size="sm"
+          variant="light"
+        />
+        <span>Kaydediliyor...</span>
+      </button>
+
+    </Preview>
+
+    <Preview title="Loading States">
+
+      <div class="loading-card">
+        <Spinner size="lg" />
+        <p>Veriler yükleniyor...</p>
+      </div>
+
+      <div class="loading-card">
+        <Spinner
+          size="lg"
+          variant="success"
+        />
+        <p>İşlem hazırlanıyor...</p>
+      </div>
+
+    </Preview>
+
+  </section>
+
+</DSLayout>
+
+<style>
+.page {
+  max-width: 1300px;
+}
+
+.dark-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 72px;
+  height: 72px;
+
+  border-radius: 16px;
+
+  background: #0f172a;
+}
+
+.demo-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #005baa;
+  color: #fff;
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.loading-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  min-width: 180px;
+
+  padding: 28px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  background: #fff;
+}
+
+.loading-card p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 0.95rem;
+}
+</style>

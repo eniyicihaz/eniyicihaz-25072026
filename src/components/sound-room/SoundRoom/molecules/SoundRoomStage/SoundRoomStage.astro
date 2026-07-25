@@ -1,0 +1,41 @@
+---
+// The thread field — six acoustic threads (SOUND_ROOM_SPECIFICATION.md §3/§7).
+// Purely decorative (aria-hidden): meaning is carried for assistive tech via
+// the slider's aria-valuetext in SoundRoom.astro, not repeated here (§12).
+import SoundRoomThread from "../../atoms/SoundRoomThread/SoundRoomThread.astro";
+import type { SoundRoomThreadData } from "../../sound-room.types";
+
+interface Props {
+  threads: SoundRoomThreadData[];
+}
+const { threads } = Astro.props;
+---
+
+<div class="sound-room-stage" aria-hidden="true">
+  <div class="sound-room-stage__band">
+    {
+      threads.map((t) => (
+        <SoundRoomThread
+          label={t.label}
+          alignThreshold={t.alignThreshold}
+          order={t.order}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .sound-room-stage {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sound-room-stage__band {
+    position: relative;
+    width: min(100%, 640px);
+    height: clamp(220px, 32vh, 320px);
+  }
+</style>

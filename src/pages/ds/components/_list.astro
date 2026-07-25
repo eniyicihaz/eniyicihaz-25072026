@@ -1,0 +1,117 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import PropsTable from "../../../ds/components/docs/PropsTable/PropsTable.astro";
+import DoDont from "../../../ds/components/docs/DoDont/DoDont.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+
+import List from "../../../ds/components/ui/atoms/List/List.astro";
+
+const props = [
+    {
+        name: "items",
+        type: "string[]",
+        default: "[]",
+        description: "Items to render."
+    },
+    {
+        name: "ordered",
+        type: "boolean",
+        default: "false",
+        description: "Renders an ordered list."
+    },
+    {
+        name: "spacing",
+        type: `"sm" | "md" | "lg"`,
+        default: `"md"`,
+        description: "Spacing between items."
+    },
+    {
+        name: "marker",
+        type: `"disc" | "circle" | "square" | "none"`,
+        default: `"disc"`,
+        description: "List marker style."
+    }
+];
+---
+
+<DSLayout title="List">
+
+    <PageHeader
+        badge="Atom"
+        title="List"
+        description="Lists organize related content into a clear, readable sequence."
+    />
+
+    <ComponentMeta
+        category="Atom"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Section
+        title="Preview"
+        description="Basic list example."
+    >
+
+        <Preview title="List">
+
+            <List
+                items={[
+                    "First item",
+                    "Second item",
+                    "Third item"
+                ]}
+            />
+
+        </Preview>
+
+    </Section>
+
+    <Divider label="API" />
+
+    <Section
+        title="Props"
+        description="Supported component properties."
+    >
+
+        <PropsTable items={props} />
+
+    </Section>
+
+    <Section
+        title="Usage"
+        description="Best practices."
+    >
+
+        <DoDont>
+
+            <Fragment slot="do">
+
+                <ul>
+                    <li>Group related information together.</li>
+                    <li>Keep item wording consistent.</li>
+                    <li>Use ordered lists only when sequence matters.</li>
+                </ul>
+
+            </Fragment>
+
+            <Fragment slot="dont">
+
+                <ul>
+                    <li>Don't mix unrelated content.</li>
+                    <li>Don't create excessively long lists.</li>
+                    <li>Don't use lists for unrelated layouts.</li>
+                </ul>
+
+            </Fragment>
+
+        </DoDont>
+
+    </Section>
+
+</DSLayout>

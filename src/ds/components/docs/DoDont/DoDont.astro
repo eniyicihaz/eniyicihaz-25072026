@@ -1,0 +1,72 @@
+---
+import "./DoDont.css";
+
+interface Props {
+    doTitle?: string;
+    dontTitle?: string;
+}
+
+const {
+    doTitle = "Do",
+    dontTitle = "Don't"
+} = Astro.props;
+---
+
+<section
+    class="do-dont"
+    aria-label="Best practices"
+>
+
+    <article
+        class="do-dont__card do-dont__card--do"
+        aria-labelledby="do-title"
+    >
+
+        <header class="do-dont__header">
+
+            <span
+                class="do-dont__icon"
+                aria-hidden="true"
+            >
+                ✓
+            </span>
+
+            <h3 id="do-title">
+                {doTitle}
+            </h3>
+
+        </header>
+
+        <div class="do-dont__content">
+            <slot name="do" />
+        </div>
+
+    </article>
+
+    <article
+        class="do-dont__card do-dont__card--dont"
+        aria-labelledby="dont-title"
+    >
+
+        <header class="do-dont__header">
+
+            <span
+                class="do-dont__icon"
+                aria-hidden="true"
+            >
+                ✕
+            </span>
+
+            <h3 id="dont-title">
+                {dontTitle}
+            </h3>
+
+        </header>
+
+        <div class="do-dont__content">
+            <slot name="dont" />
+        </div>
+
+    </article>
+
+</section>

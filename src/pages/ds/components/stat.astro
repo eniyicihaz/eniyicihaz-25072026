@@ -1,0 +1,345 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Stat/StatPatterns.css";
+
+import Stat from "../../../ds/components/ui/atoms/Stat/Stat.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    clinicStats,
+    clinicNote,
+    clinicBadges,
+    investorStats,
+    matchStats,
+    matchScore,
+    matchScorers,
+    energyStats,
+    energyDays,
+    newsroomStats,
+    newsroomLede
+} from "../../../ds/patterns/Stat/stat.data";
+
+const [energyHeadline, ...energyRest] = energyStats;
+const peakDay = Math.max(...energyDays.map(d => d.height));
+---
+
+<DSLayout title="Stat">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Stat</h1>
+
+        <p class="pl-head__lede">
+            Five ways a number earns its place — clinic outcomes, a shareholder
+            letter, a live scoreline, a household energy bill and a newsroom's
+            year in review.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Clinic outcomes
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Clinic Outcomes</span>
+            <span class="pl-example__tags">Hearing care · Fused panel · Accreditation</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stat-clinic">
+
+                <div class="stat-clinic__inner">
+
+                    <header class="stat-clinic__head">
+                        <span class="stat-clinic__kicker">Sonuçlarımız</span>
+                        <h2 class="stat-clinic__title">
+                            Rakamlar, hastalarımızın deneyimi
+                        </h2>
+                        <p class="stat-clinic__lede">
+                            İşitme cihazı satmıyoruz — işitmenizi geri kazanmanıza
+                            yardımcı oluyoruz. Aradaki farkı bu sayılar gösteriyor.
+                        </p>
+                    </header>
+
+                    <div class="stat-clinic__grid">
+                        {clinicStats.map(stat => (
+                            <Stat
+                                label={stat.label}
+                                value={stat.value}
+                                description={stat.description}
+                                trend={stat.trend}
+                            />
+                        ))}
+                    </div>
+
+                    <div class="stat-clinic__foot">
+                        <p class="stat-clinic__note">{clinicNote}</p>
+                        <div class="stat-clinic__badges">
+                            {clinicBadges.map(badge => (
+                                <span class="stat-clinic__badge">{badge}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Investor metrics
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Shareholder Metrics</span>
+            <span class="pl-example__tags">Dark · Six across · Trend colour only</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stat-investor">
+
+                <div class="stat-investor__inner">
+
+                    <header class="stat-investor__head">
+                        <div>
+                            <span class="stat-investor__kicker">Fieldnote BV · Confidential</span>
+                            <h2 class="stat-investor__title">Q2 2026 in six numbers</h2>
+                        </div>
+                        <span class="stat-investor__period">1 Apr – 30 Jun 2026</span>
+                    </header>
+
+                    <div class="stat-investor__grid">
+                        {investorStats.map(stat => (
+                            <Stat
+                                label={stat.label}
+                                value={stat.value}
+                                description={stat.description}
+                                trend={stat.trend}
+                            />
+                        ))}
+                    </div>
+
+                    <div class="stat-investor__foot">
+                        <span>Figures unaudited · Prepared 14 July 2026</span>
+                        <span>Full letter published 4 August</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Match centre
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Match Centre</span>
+            <span class="pl-example__tags">Live sport · Scoreline hero · Goal list</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stat-match">
+
+                <div class="stat-match__board">
+
+                    <div class="stat-match__competition">{matchScore.competition}</div>
+
+                    <div class="stat-match__score">
+                        <div class="stat-match__team">{matchScore.home}</div>
+                        <div class="stat-match__numbers">
+                            {matchScore.homeGoals}
+                            <span class="stat-match__dash">–</span>
+                            {matchScore.awayGoals}
+                        </div>
+                        <div class="stat-match__team stat-match__team--away">
+                            {matchScore.away}
+                        </div>
+                    </div>
+
+                    <span class="stat-match__minute">{matchScore.minute} LIVE</span>
+
+                </div>
+
+                <div class="stat-match__body">
+
+                    <div class="stat-match__stats">
+                        {matchStats.map(stat => (
+                            <Stat
+                                label={stat.label}
+                                value={stat.value}
+                                description={stat.description}
+                                trend={stat.trend}
+                            />
+                        ))}
+                    </div>
+
+                    <div class="stat-match__goals">
+                        <h3 class="stat-match__goals-title">Goals</h3>
+                        {matchScorers.map(goal => (
+                            <div class:list={["stat-match__goal", `stat-match__goal--${goal.team}`]}>
+                                <span class="stat-match__goal-time">{goal.time}</span>
+                                {goal.name}
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Energy usage
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Energy Usage</span>
+            <span class="pl-example__tags">Utility app · Headline + chart · Supporting row</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stat-energy">
+
+                <div class="stat-energy__card">
+
+                    <header class="stat-energy__head">
+                        <div>
+                            <div class="stat-energy__address">Wijnhaven 61 · Rotterdam</div>
+                            <div class="stat-energy__meter">Meter 8841-2210-04</div>
+                        </div>
+                        <span class="stat-energy__period">July 2026</span>
+                    </header>
+
+                    <div class="stat-energy__main">
+
+                        <Stat
+                            label={energyHeadline.label}
+                            value={energyHeadline.value}
+                            description={energyHeadline.description}
+                            trend={energyHeadline.trend}
+                        />
+
+                        <div class="stat-energy__chart" role="img" aria-label="Daily usage for the last seven days">
+                            {energyDays.map(day => (
+                                <div
+                                    class:list={[
+                                        "stat-energy__bar",
+                                        day.height === peakDay && "stat-energy__bar--peak"
+                                    ]}
+                                >
+                                    <span
+                                        class="stat-energy__bar-fill"
+                                        style={`height:${day.height}%`}
+                                    ></span>
+                                    <span class="stat-energy__bar-day">{day.day}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
+
+                    <div class="stat-energy__rest">
+                        {energyRest.map(stat => (
+                            <Stat
+                                label={stat.label}
+                                value={stat.value}
+                                description={stat.description}
+                                trend={stat.trend}
+                            />
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Newsroom impact
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Newsroom Impact</span>
+            <span class="pl-example__tags">Editorial · Serif figures · Ruled columns</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stat-press">
+
+                <div class="stat-press__inner">
+
+                    <span class="stat-press__kicker">The year in review</span>
+
+                    <h2 class="stat-press__title">
+                        What fourteen months of reporting looks like
+                    </h2>
+
+                    <div class="stat-press__grid">
+                        {newsroomStats.map(stat => (
+                            <Stat
+                                label={stat.label}
+                                value={stat.value}
+                                description={stat.description}
+                                trend={stat.trend}
+                            />
+                        ))}
+                    </div>
+
+                    <p class="stat-press__lede">{newsroomLede}</p>
+
+                    <div class="stat-press__foot">
+                        <Button size="lg">Become a member</Button>
+                        <Button variant="ghost" size="lg">Read the annual report</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

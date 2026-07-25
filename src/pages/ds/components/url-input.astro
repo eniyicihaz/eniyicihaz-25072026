@@ -1,0 +1,197 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/URLInput/URLInputPatterns.css";
+
+import URLInput from "../../../ds/components/ui/atoms/URLInput/URLInput.astro";
+
+import {
+    websiteField,
+    webhookField,
+    portfolioField,
+    verifiedField,
+    redirectField
+} from "../../../ds/patterns/URLInput/urlinput.data";
+---
+
+<DSLayout title="URL Input">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">URL Input</h1>
+
+        <p class="pl-head__lede">
+            Five URL fields — a clinic website, an invalid webhook
+            endpoint, a required portfolio link, a verified read-only
+            profile and a locked OAuth redirect.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic provider website -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Provider Website</span>
+            <span class="pl-example__tags">Hearing care · Profile setup</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="uri-website">
+
+                <div class="uri-website__card">
+
+                    <span class="uri-website__kicker">Klinik profili</span>
+                    <h2 class="uri-website__title">Web sitenizi ekleyin</h2>
+
+                    <label class="uri-website__label" for={websiteField.id}>{websiteField.label}</label>
+                    <URLInput id={websiteField.id} placeholder={websiteField.placeholder} />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Webhook endpoint, dark, invalid -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Webhook Endpoint</span>
+            <span class="pl-example__tags">Developer settings · Dark · Invalid state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="uri-webhook">
+
+                <div class="uri-webhook__card">
+
+                    <span class="uri-webhook__crumb">Settings / Webhooks / New endpoint</span>
+                    <h2 class="uri-webhook__title">Add an endpoint</h2>
+
+                    <label class="uri-webhook__label" for={webhookField.id}>{webhookField.label}</label>
+                    <URLInput id={webhookField.id} value={webhookField.value} invalid />
+                    <p class="uri-webhook__error">⚠ {webhookField.error}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Portfolio link, required -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Portfolio Link</span>
+            <span class="pl-example__tags">Recruitment · Required field</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="uri-portfolio">
+
+                <div class="uri-portfolio__card">
+
+                    <div class="uri-portfolio__role">Senior Product Designer</div>
+                    <div class="uri-portfolio__team">Design · Rotterdam or remote</div>
+
+                    <label class="uri-portfolio__label" for={portfolioField.id}>
+                        {portfolioField.label}<span class="uri-portfolio__required">*</span>
+                    </label>
+                    <URLInput id={portfolioField.id} placeholder={portfolioField.placeholder} required />
+                    <p class="uri-portfolio__hint">{portfolioField.hint}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Verified social link, read-only -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Verified Website</span>
+            <span class="pl-example__tags">Profile · Read-only</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="uri-verified">
+
+                <div class="uri-verified__card">
+
+                    <div class="uri-verified__head">Profil bilgileri</div>
+
+                    <div class="uri-verified__row">
+                        <div class="uri-verified__label-row">
+                            <label class="uri-verified__label" for={verifiedField.id}>{verifiedField.label}</label>
+                            <span class="uri-verified__badge">✓ {verifiedField.note}</span>
+                        </div>
+                        <URLInput id={verifiedField.id} value={verifiedField.value} readonly />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — OAuth redirect URL, disabled -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">OAuth Redirect</span>
+            <span class="pl-example__tags">Developer tools · Disabled</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="uri-redirect">
+
+                <div class="uri-redirect__card">
+
+                    <span class="uri-redirect__crumb">Settings / OAuth app / relay-web</span>
+                    <h2 class="uri-redirect__title">Redirect URL</h2>
+
+                    <label class="uri-redirect__label" for={redirectField.id}>{redirectField.label}</label>
+                    <URLInput id={redirectField.id} value={redirectField.value} disabled />
+                    <p class="uri-redirect__note">🔒 {redirectField.note}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

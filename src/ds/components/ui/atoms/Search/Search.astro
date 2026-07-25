@@ -1,0 +1,68 @@
+---
+import "./Search.css";
+import type { SearchProps } from "./Search.types";
+
+const {
+  id,
+  name = "q",
+  value = "",
+  placeholder = "Search...",
+  action,
+  method = "get",
+  autocomplete = "off",
+  disabled = false,
+  required = false,
+  showButton = true,
+  buttonLabel = "Search",
+  class: className = "",
+} = Astro.props as SearchProps;
+
+const classes = [
+  "ds-search",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <form
+    class="ds-search__form"
+    action={action}
+    method={method}
+    role="search"
+  >
+    <div class="ds-search__field">
+      <span
+        class="ds-search__icon"
+        aria-hidden="true"
+      >
+        🔍
+      </span>
+
+      <input
+        class="ds-search__input"
+        id={id}
+        name={name}
+        type="search"
+        value={value}
+        placeholder={placeholder}
+        autocomplete={autocomplete}
+        disabled={disabled}
+        required={required}
+      />
+    </div>
+
+    {
+      showButton && (
+        <button
+          class="ds-search__button"
+          type="submit"
+          disabled={disabled}
+        >
+          {buttonLabel}
+        </button>
+      )
+    }
+  </form>
+</div>

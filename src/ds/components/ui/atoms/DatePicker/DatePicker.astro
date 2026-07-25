@@ -1,0 +1,47 @@
+---
+import "./DatePicker.css";
+import type { DatePickerProps } from "./DatePicker.types";
+
+const {
+  id,
+  name,
+  value = "",
+  min,
+  max,
+  placeholder,
+  disabled = false,
+  required = false,
+  readonly = false,
+  class: className = "",
+} = Astro.props as DatePickerProps;
+
+const classes = [
+  "ds-date-picker",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <input
+    class="ds-date-picker__input"
+    type="date"
+    id={id}
+    name={name}
+    value={value}
+    min={min}
+    max={max}
+    placeholder={placeholder}
+    disabled={disabled}
+    required={required}
+    readonly={readonly}
+  />
+
+  <span
+    class="ds-date-picker__icon"
+    aria-hidden="true"
+  >
+    📅
+  </span>
+</div>

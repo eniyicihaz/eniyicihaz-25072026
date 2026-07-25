@@ -1,0 +1,79 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+
+const motions = [
+    { name: "Fast", duration: "100ms", easing: "ease-out" },
+    { name: "Normal", duration: "200ms", easing: "ease" },
+    { name: "Slow", duration: "300ms", easing: "ease-in-out" },
+    { name: "Extra Slow", duration: "500ms", easing: "ease-in-out" }
+];
+---
+
+<DSLayout title="Motion">
+
+    <PageHeader
+        badge="Foundation"
+        title="Motion"
+        description="Motion tokens create smooth, consistent interactions throughout the interface."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Motion should communicate state changes without distracting the user.
+    </Note>
+
+    <Divider label="Motion Scale" />
+
+    <Section
+        title="Animation Tokens"
+        description="Recommended animation durations and easing values."
+    >
+
+        <Preview title="Motion Tokens">
+
+            <table style="width:100%;border-collapse:collapse;">
+
+                <thead>
+                    <tr>
+                        <th style="padding:16px;text-align:left;border-bottom:1px solid var(--border);">Token</th>
+                        <th style="padding:16px;text-align:left;border-bottom:1px solid var(--border);">Duration</th>
+                        <th style="padding:16px;text-align:left;border-bottom:1px solid var(--border);">Easing</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {
+                        motions.map(item => (
+                            <tr>
+                                <td style="padding:16px;border-bottom:1px solid var(--border);font-weight:600;">{item.name}</td>
+                                <td style="padding:16px;border-bottom:1px solid var(--border);">{item.duration}</td>
+                                <td style="padding:16px;border-bottom:1px solid var(--border);">{item.easing}</td>
+                            </tr>
+                        ))
+                    }
+
+                </tbody>
+
+            </table>
+
+        </Preview>
+
+    </Section>
+
+</DSLayout>

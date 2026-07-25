@@ -1,0 +1,535 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Input/InputPatterns.css";
+
+import Input from "../../../ds/components/ui/atoms/Input/Input.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Kbd from "../../../ds/components/ui/atoms/Kbd/Kbd.astro";
+
+import {
+    contactChannels,
+    contactOffices,
+    projectBudgets,
+    ssoProviders,
+    searchFilters,
+    searchResults,
+    searchPopular,
+    checkoutSteps,
+    checkoutItems,
+    checkoutTotals
+} from "../../../ds/patterns/Input/input.data";
+---
+
+<DSLayout title="Input">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Input</h1>
+
+        <p class="pl-head__lede">
+            Five places a field earns its keep — a studio contact page,
+            a newsletter band, an auth screen, a documentation search
+            and a checkout.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Contact Form
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Contact Form</span>
+            <span class="pl-example__tags">Split · Serif rail · Budget chips</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="input-contact">
+
+                <div class="input-contact__grid">
+
+                    <aside>
+
+                        <span class="input-contact__kicker">Get in touch</span>
+
+                        <h2 class="input-contact__title">
+                            Tell us what you are trying to build.
+                        </h2>
+
+                        <p class="input-contact__lede">
+                            The more context you can give us up front, the more
+                            useful our first reply will be. There is no wrong
+                            amount of detail.
+                        </p>
+
+                        <div class="input-contact__channels">
+                            {contactChannels.map(channel => (
+                                <div class="input-contact__channel">
+                                    <span class="input-contact__channel-label">
+                                        {channel.label}
+                                    </span>
+                                    <span class="input-contact__channel-value">
+                                        {channel.value}
+                                    </span>
+                                    <span class="input-contact__channel-note">
+                                        {channel.note}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div class="input-contact__offices">
+                            {contactOffices.map(office => (
+                                <div class="input-contact__office">
+                                    <strong>{office.city}</strong>
+                                    <span>{office.line}<br />{office.tz}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                    </aside>
+
+                    <form class="input-contact__form">
+
+                        <div class="input-contact__row">
+                            <div class="input-contact__field">
+                                <label class="input-contact__label">First name</label>
+                                <Input placeholder="Sara" fullWidth />
+                            </div>
+                            <div class="input-contact__field">
+                                <label class="input-contact__label">Last name</label>
+                                <Input placeholder="Vollmer" fullWidth />
+                            </div>
+                        </div>
+
+                        <div class="input-contact__field">
+                            <label class="input-contact__label">Work email</label>
+                            <Input type="email" placeholder="sara@company.com" fullWidth />
+                        </div>
+
+                        <div class="input-contact__field">
+                            <label class="input-contact__label">Company website</label>
+                            <Input type="url" placeholder="https://" fullWidth />
+                            <span class="input-contact__hint">
+                                Optional, but it saves us both a round trip.
+                            </span>
+                        </div>
+
+                        <div class="input-contact__field">
+                            <label class="input-contact__label">Rough budget</label>
+                            <div class="input-contact__budgets">
+                                {projectBudgets.map((budget, i) => (
+                                    <button
+                                        type="button"
+                                        class:list={[
+                                            "input-contact__budget",
+                                            i === 1 && "input-contact__budget--active"
+                                        ]}
+                                    >
+                                        {budget}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div class="input-contact__field">
+                            <label class="input-contact__label">What are you working on?</label>
+                            <textarea
+                                class="input-contact__textarea"
+                                placeholder="A sentence or two is plenty to start."
+                            ></textarea>
+                        </div>
+
+                        <div class="input-contact__submit">
+                            <p class="input-contact__consent">
+                                We use what you send here to reply, and nothing else.
+                            </p>
+                            <Button size="lg">Send enquiry</Button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Newsletter
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Newsletter</span>
+            <span class="pl-example__tags">Dark band · Single field · Inverted input</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="input-news">
+
+                <div class="input-news__lines" aria-hidden="true"></div>
+
+                <div class="input-news__inner">
+
+                    <div>
+                        <span class="input-news__tag">Weekly</span>
+                        <h2 class="input-news__title">
+                            The deploy log, straight to your inbox
+                        </h2>
+                        <p class="input-news__lede">
+                            Every Thursday: what shipped, what broke, and the one
+                            thing we would do differently.
+                        </p>
+                    </div>
+
+                    <div>
+                        <form class="input-news__form">
+                            <Input
+                                type="email"
+                                size="lg"
+                                placeholder="you@company.com"
+                                fullWidth
+                            />
+                            <Button size="lg">Subscribe</Button>
+                        </form>
+
+                        <div class="input-news__meta">
+                            <span>12,400 subscribers</span>
+                            <span>No sponsorships</span>
+                            <span>Unsubscribe anytime</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Login
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Login</span>
+            <span class="pl-example__tags">Centered glass card · SSO · Dark</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="input-login">
+
+                <div class="input-login__card">
+
+                    <div class="input-login__brand" aria-hidden="true">◈</div>
+
+                    <h2 class="input-login__title">Welcome back</h2>
+                    <p class="input-login__lede">Sign in to your Relay workspace</p>
+
+                    <div class="input-login__sso">
+                        {ssoProviders.map(provider => (
+                            <button type="button" class="input-login__sso-btn">
+                                <span class="input-login__sso-glyph" aria-hidden="true">
+                                    {provider.glyph}
+                                </span>
+                                {provider.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div class="input-login__divider">or</div>
+
+                    <form>
+
+                        <div class="input-login__field">
+                            <label class="input-login__label">Email</label>
+                            <Input type="email" placeholder="you@company.com" fullWidth />
+                        </div>
+
+                        <div class="input-login__field">
+                            <label class="input-login__label">
+                                Password
+                                <a class="input-login__forgot" href="#0">Forgot?</a>
+                            </label>
+                            <Input type="password" placeholder="••••••••••" fullWidth />
+                        </div>
+
+                        <div class="input-login__action">
+                            <Button size="lg" fullWidth>Sign in</Button>
+                        </div>
+
+                    </form>
+
+                    <p class="input-login__foot">
+                        New here? <a href="#0">Create an account</a>
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Search
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Search</span>
+            <span class="pl-example__tags">Docs surface · Filters · Live results</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="input-search">
+
+                <div class="input-search__inner">
+
+                    <h2 class="input-search__title">How can we help?</h2>
+                    <p class="input-search__lede">
+                        Search guides, the API reference and 200+ working examples.
+                    </p>
+
+                    <div class="input-search__field">
+                        <span class="input-search__glyph" aria-hidden="true">⌕</span>
+                        <Input
+                            type="search"
+                            size="lg"
+                            value="deploy a monorepo"
+                            fullWidth
+                        />
+                        <span class="input-search__kbd">
+                            <Kbd size="sm">⌘</Kbd>
+                            <Kbd size="sm">K</Kbd>
+                        </span>
+                    </div>
+
+                    <div class="input-search__filters">
+                        {searchFilters.map(filter => (
+                            <span
+                                class:list={[
+                                    "input-search__filter",
+                                    filter.active && "input-search__filter--active"
+                                ]}
+                            >
+                                {filter.label}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div class="input-search__results">
+
+                        <div class="input-search__results-head">
+                            <span>3 results</span>
+                            <span>↑↓ to navigate</span>
+                        </div>
+
+                        {searchResults.map(result => (
+                            <a class="input-search__result" href="#0">
+                                <div>
+                                    <span class="input-search__result-section">
+                                        {result.section}
+                                    </span>
+                                    <h3 class="input-search__result-title">{result.title}</h3>
+                                    <p class="input-search__result-excerpt">{result.excerpt}</p>
+                                </div>
+                                <span class="input-search__result-meta">{result.meta}</span>
+                            </a>
+                        ))}
+
+                    </div>
+
+                    <div class="input-search__popular">
+                        <span>Popular:</span>
+                        {searchPopular.map(term => (
+                            <a href="#0">{term}</a>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Checkout
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Checkout</span>
+            <span class="pl-example__tags">Two column · Step rail · Sticky summary</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="input-checkout">
+
+                <div class="input-checkout__inner">
+
+                    <div class="input-checkout__steps">
+                        {checkoutSteps.map((step, i) => (
+                            <>
+                                {i > 0 && <span class="input-checkout__arrow">→</span>}
+                                <span class:list={["input-checkout__step", `input-checkout__step--${step.state}`]}>
+                                    <span class="input-checkout__step-dot">
+                                        {step.state === "done" ? "✓" : i + 1}
+                                    </span>
+                                    {step.label}
+                                </span>
+                            </>
+                        ))}
+                    </div>
+
+                    <div class="input-checkout__grid">
+
+                        <div>
+
+                            <div class="input-checkout__panel">
+
+                                <h2 class="input-checkout__panel-title">Contact</h2>
+
+                                <div class="input-checkout__field">
+                                    <label class="input-checkout__label">Email</label>
+                                    <Input type="email" placeholder="you@example.com" fullWidth />
+                                </div>
+
+                                <div class="input-checkout__row">
+                                    <div class="input-checkout__field">
+                                        <label class="input-checkout__label">First name</label>
+                                        <Input placeholder="Sara" fullWidth />
+                                    </div>
+                                    <div class="input-checkout__field">
+                                        <label class="input-checkout__label">Last name</label>
+                                        <Input placeholder="Vollmer" fullWidth />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="input-checkout__panel">
+
+                                <h2 class="input-checkout__panel-title">Delivery address</h2>
+
+                                <div class="input-checkout__field">
+                                    <label class="input-checkout__label">Street and number</label>
+                                    <Input placeholder="Wijnhaven 61" fullWidth />
+                                </div>
+
+                                <div class="input-checkout__row--thirds input-checkout__row">
+                                    <div class="input-checkout__field">
+                                        <label class="input-checkout__label">Postcode</label>
+                                        <Input placeholder="3011 WJ" fullWidth />
+                                    </div>
+                                    <div class="input-checkout__field">
+                                        <label class="input-checkout__label">City</label>
+                                        <Input placeholder="Rotterdam" fullWidth />
+                                    </div>
+                                    <div class="input-checkout__field">
+                                        <label class="input-checkout__label">Country</label>
+                                        <Input placeholder="Netherlands" fullWidth />
+                                    </div>
+                                </div>
+
+                                <div class="input-checkout__field">
+                                    <label class="input-checkout__label">Phone</label>
+                                    <Input type="tel" placeholder="+31 6 1234 5678" fullWidth />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <aside class="input-checkout__summary">
+
+                            {checkoutItems.map(item => (
+                                <div class="input-checkout__item">
+                                    <span
+                                        class:list={["input-checkout__thumb", `input-checkout__thumb--${item.tone}`]}
+                                        aria-hidden="true"
+                                    ></span>
+                                    <div>
+                                        <div class="input-checkout__item-name">{item.name}</div>
+                                        <div class="input-checkout__item-detail">
+                                            {item.detail} · Qty {item.qty}
+                                        </div>
+                                    </div>
+                                    <span class="input-checkout__item-price">{item.price}</span>
+                                </div>
+                            ))}
+
+                            <div class="input-checkout__promo">
+                                <Input placeholder="Discount code" fullWidth />
+                                <Button variant="outline">Apply</Button>
+                            </div>
+
+                            <div class="input-checkout__totals">
+
+                                {checkoutTotals.map(total => (
+                                    <div class="input-checkout__total">
+                                        <span>{total.label}</span>
+                                        <span>{total.value}</span>
+                                    </div>
+                                ))}
+
+                                <div class="input-checkout__total input-checkout__total--grand">
+                                    <span>Total</span>
+                                    <span>$2,662.00</span>
+                                </div>
+
+                            </div>
+
+                            <div class="input-checkout__action">
+                                <Button size="lg" fullWidth>Continue to payment</Button>
+                            </div>
+
+                            <span class="input-checkout__note">
+                                Free returns within 30 days. Delivery in 2–3 weeks.
+                            </span>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

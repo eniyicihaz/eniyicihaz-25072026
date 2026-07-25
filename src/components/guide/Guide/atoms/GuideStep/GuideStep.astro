@@ -1,0 +1,61 @@
+---
+// A single step in the process (GUIDE_SPECIFICATION.md §3/§8). No
+// self-managed entrance state — like Solution's atom, the organism owns
+// the data-anim state machine. All three steps share identical markup and
+// styling: no step may visually dominate the others (spec §3/§12).
+interface Props {
+  index: number;
+  title: string;
+  description: string;
+}
+const { index, title, description } = Astro.props;
+---
+
+<li class="guide-step" data-rise>
+  <span class="guide-step__badge" aria-hidden="true">{index}</span>
+  <h3 class="guide-step__title">{title}</h3>
+  <p class="guide-step__description">{description}</p>
+</li>
+
+<style>
+  .guide-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    text-align: center;
+  }
+
+  /* The light "lift" (spec §3) lives only on the badge — not a full
+     bordered card — so the connecting line can read as passing behind it. */
+  .guide-step__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-8);
+    height: var(--space-8);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-hover);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .guide-step__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .guide-step__description {
+    margin: 0;
+    max-width: 22rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+</style>

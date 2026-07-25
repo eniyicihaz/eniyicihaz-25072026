@@ -1,0 +1,199 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Spinner/SpinnerPatterns.css";
+
+import Spinner from "../../../ds/components/ui/atoms/Spinner/Spinner.astro";
+
+import {
+    bookingSubmit,
+    dashboardLoad,
+    checkoutButton,
+    searchLoad,
+    uploadRows
+} from "../../../ds/patterns/Spinner/spinner.data";
+---
+
+<DSLayout title="Spinner">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Spinner</h1>
+
+        <p class="pl-head__lede">
+            Five loading moments — a clinic booking submission, a full
+            page dashboard load, a checkout payment, a search query and
+            a multi-file upload list.
+        </p>
+
+    </header>
+
+    <!-- 01 — Appointment submission -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Booking Submission</span>
+            <span class="pl-example__tags">Hearing care · Button loading</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spn-clinic">
+
+                <div class="spn-clinic__card">
+
+                    <div class="spn-clinic__title">Randevunuz oluşturuluyor</div>
+                    <p class="spn-clinic__sub">Lütfen bu ekranda kalın</p>
+
+                    <div class="spn-clinic__button">
+                        <Spinner size="sm" variant="light" label={bookingSubmit.label} />
+                        <span>Gönderiliyor...</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Full page loading, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Dashboard Loading</span>
+            <span class="pl-example__tags">Dark · Extra large spinner</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spn-dashboard">
+
+                <div class="spn-dashboard__inner">
+                    <Spinner size="xl" variant="light" label={dashboardLoad.label} />
+                    <div>
+                        <div class="spn-dashboard__title">Loading your dashboard</div>
+                        <p class="spn-dashboard__sub">{dashboardLoad.sub}</p>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Checkout payment processing -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Payment Processing</span>
+            <span class="pl-example__tags">Checkout · Inline button spinner</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spn-checkout">
+
+                <div class="spn-checkout__card">
+
+                    <div class="spn-checkout__row">
+                        <span class="spn-checkout__label">Total</span>
+                        <span class="spn-checkout__amount">₺2,340.00</span>
+                    </div>
+
+                    <div class="spn-checkout__button">
+                        <Spinner size="sm" variant="light" label={checkoutButton.label} />
+                        <span>Processing payment...</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Search results loading -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Search Loading</span>
+            <span class="pl-example__tags">Retail · Small inline spinner</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spn-search">
+
+                <div class="spn-search__card">
+
+                    <div class="spn-search__field">
+                        <span class="spn-search__field-text">{searchLoad.query}</span>
+                        <Spinner size="xs" variant="secondary" label={searchLoad.label} />
+                    </div>
+
+                    <p class="spn-search__status">
+                        <Spinner size="xs" variant="secondary" label={searchLoad.label} />
+                        Sonuçlar aranıyor...
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — File upload rows -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">File Uploads</span>
+            <span class="pl-example__tags">Support desk · Mixed sizes &amp; variants</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spn-upload">
+
+                <div class="spn-upload__card">
+
+                    <div class="spn-upload__head">Yükleniyor</div>
+
+                    {uploadRows.map(row => (
+                        <div class="spn-upload__row">
+                            <span class="spn-upload__name">{row.name}</span>
+                            <Spinner size={row.size} variant={row.variant} label={`${row.name} yükleniyor`} />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

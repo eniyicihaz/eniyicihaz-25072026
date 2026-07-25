@@ -1,0 +1,374 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Button/ButtonPatterns.css";
+
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+import Input from "../../../ds/components/ui/atoms/Input/Input.astro";
+
+import {
+    saasProof,
+    saasWordmarks,
+    startupChips,
+    splitFeatures,
+    marketingStats
+} from "../../../ds/patterns/Button/button.data";
+---
+
+<DSLayout title="Button">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Button</h1>
+
+        <p class="pl-head__lede">
+            Five call-to-action sections built around the same button.
+            The composition changes completely — the action stays
+            unmistakably the loudest thing on screen.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — SaaS CTA
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">SaaS CTA</span>
+            <span class="pl-example__tags">Left aligned · Proof column · Logo strip</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cta-saas">
+
+                <div class="cta-saas__grid">
+
+                    <div>
+
+                        <span class="cta-saas__eyebrow">Ship faster</span>
+
+                        <h2 class="cta-saas__title">
+                            Your analytics stack,<br />
+                            live before lunch.
+                        </h2>
+
+                        <p class="cta-saas__lede">
+                            Point Meridian at your warehouse and it builds the
+                            pipelines, the schemas and the dashboards for you.
+                            Most teams are querying real data the same afternoon.
+                        </p>
+
+                        <div class="cta-saas__actions">
+                            <Button size="lg">Start building free</Button>
+                            <Button variant="ghost" size="lg">Book a walkthrough</Button>
+                        </div>
+
+                        <p class="cta-saas__note">
+                            Free while you are under 1M events a month.
+                        </p>
+
+                    </div>
+
+                    <ul class="cta-saas__proof">
+                        {saasProof.map(point => (
+                            <li class="cta-saas__proof-item">
+                                <span class="cta-saas__check" aria-hidden="true">✓</span>
+                                {point}
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+
+                <div class="cta-saas__logos">
+                    <span class="cta-saas__logos-label">Trusted by teams at</span>
+                    <div class="cta-saas__marks">
+                        {saasWordmarks.map(mark => (
+                            <span class="cta-saas__mark">{mark}</span>
+                        ))}
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Startup CTA
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Startup CTA</span>
+            <span class="pl-example__tags">Full bleed colour · Centred · Feature chips</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cta-startup">
+
+                <div class="cta-startup__noise" aria-hidden="true"></div>
+
+                <div class="cta-startup__inner">
+
+                    <span class="cta-startup__flag">
+                        <span class="cta-startup__flag-dot" aria-hidden="true"></span>
+                        Now in public beta
+                    </span>
+
+                    <h2 class="cta-startup__title">
+                        Build the thing.<br />
+                        <span>We'll handle the rest.</span>
+                    </h2>
+
+                    <p class="cta-startup__lede">
+                        Twelve thousand teams shipped their first release this month
+                        without writing a single line of deployment config.
+                    </p>
+
+                    <div class="cta-startup__actions">
+                        <Button size="lg">Create your workspace</Button>
+                        <Button variant="ghost" size="lg">Watch the 2-min demo</Button>
+                    </div>
+
+                    <div class="cta-startup__chips">
+                        {startupChips.map(chip => (
+                            <span class="cta-startup__chip">{chip}</span>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Split CTA
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Split CTA</span>
+            <span class="pl-example__tags">50 / 50 · Edge to edge panel · Plan detail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cta-split">
+
+                <div class="cta-split__visual">
+
+                    <div>
+                        <Badge variant="secondary" size="sm">Scale</Badge>
+                        <div class="cta-split__amount">
+                            <span class="cta-split__currency">$</span>199
+                            <span class="cta-split__period">/ month</span>
+                        </div>
+                        <p class="cta-split__price-note">
+                            Billed annually. Every seat included.
+                        </p>
+                    </div>
+
+                    <ul class="cta-split__features">
+                        {splitFeatures.map(feature => (
+                            <li>{feature}</li>
+                        ))}
+                    </ul>
+
+                </div>
+
+                <div class="cta-split__content">
+
+                    <span class="cta-split__kicker">Ready when you are</span>
+
+                    <h2 class="cta-split__title">
+                        Stop paying per seat for a tool half the team never opens.
+                    </h2>
+
+                    <p class="cta-split__body">
+                        One flat price, every person in your company, no
+                        procurement conversation about who gets a licence.
+                        Move over this quarter and we will run the migration
+                        with you at no cost.
+                    </p>
+
+                    <div class="cta-split__actions">
+                        <Button size="lg" fullWidth>Switch to Scale</Button>
+                        <Button variant="outline" size="lg" fullWidth>
+                            Compare with your plan
+                        </Button>
+                    </div>
+
+                    <div class="cta-split__assurance">
+                        <div class="cta-split__faces">
+                            <Avatar initials="AK" size="sm" bordered />
+                            <Avatar initials="TS" size="sm" bordered />
+                            <Avatar initials="LM" size="sm" bordered />
+                        </div>
+                        <p>
+                            <strong>340+ teams</strong> moved across last year.
+                            None of them went back.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Dark CTA
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Dark CTA</span>
+            <span class="pl-example__tags">Dark · Serif display · Single action</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cta-dark">
+
+                <div class="cta-dark__aura" aria-hidden="true"></div>
+
+                <div class="cta-dark__inner">
+
+                    <span class="cta-dark__rule" aria-hidden="true"></span>
+
+                    <span class="cta-dark__kicker">The 2026 Collection</span>
+
+                    <h2 class="cta-dark__title">
+                        Made in forty-one hours.<br />
+                        <em>Worn for a lifetime.</em>
+                    </h2>
+
+                    <p class="cta-dark__body">
+                        Two hundred pieces, each finished by a single maker
+                        in our Florence workshop. When they are gone,
+                        the collection closes for the year.
+                    </p>
+
+                    <div class="cta-dark__action">
+                        <Button variant="glass" size="xl" rounded>Reserve a piece</Button>
+                    </div>
+
+                    <span class="cta-dark__meta">
+                        Complimentary shipping worldwide · Lifetime repairs
+                    </span>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Marketing CTA
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Marketing CTA</span>
+            <span class="pl-example__tags">Contained card · Dotted field · Inline capture</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cta-marketing">
+
+                <div class="cta-marketing__card">
+
+                    <span class="cta-marketing__ribbon" aria-hidden="true"></span>
+
+                    <div class="cta-marketing__grid">
+
+                        <div>
+
+                            <span class="cta-marketing__kicker">The Dispatch</span>
+
+                            <h2 class="cta-marketing__title">
+                                One good idea about design, every Thursday.
+                            </h2>
+
+                            <p class="cta-marketing__body">
+                                A short letter on interface craft — what we shipped,
+                                what broke, and the details most teams skip.
+                                No sponsorships, no recycled threads.
+                            </p>
+
+                            <div class="cta-marketing__stats">
+                                {marketingStats.map(stat => (
+                                    <div class="cta-marketing__stat">
+                                        <strong>{stat.value}</strong>
+                                        <span>{stat.label}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                        </div>
+
+                        <div class="cta-marketing__form">
+
+                            <span class="cta-marketing__form-label">
+                                Join 12,400 designers and engineers
+                            </span>
+
+                            <div class="cta-marketing__fields">
+                                <Input
+                                    type="email"
+                                    size="lg"
+                                    placeholder="you@studio.com"
+                                    fullWidth
+                                />
+                                <Button size="lg" fullWidth>Subscribe free</Button>
+                            </div>
+
+                            <span class="cta-marketing__small">
+                                One email a week. Unsubscribe in a single click.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

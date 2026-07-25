@@ -1,0 +1,150 @@
+.preview {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 48px;
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    background: var(--surface);
+
+    box-shadow:
+        0 2px 8px rgb(15 23 42 / .04),
+        0 12px 32px rgb(15 23 42 / .04);
+
+    transition:
+        border-color .2s ease,
+        background-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.preview:hover {
+    box-shadow:
+        0 8px 24px rgb(15 23 42 / .08),
+        0 20px 48px rgb(15 23 42 / .08);
+}
+
+.preview__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 24px;
+
+    border-bottom: 1px solid var(--border);
+
+    background: var(--surface-alt);
+}
+
+.preview__heading {
+    flex: 1;
+    min-width: 0;
+}
+
+.preview__badge {
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 10px;
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    background: var(--primary-soft, rgb(37 99 235 / .08));
+    color: var(--primary);
+
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.preview__title {
+    margin: 0;
+
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+
+    color: var(--heading);
+
+    text-wrap: balance;
+}
+
+.preview__description {
+    margin: 10px 0 0;
+
+    max-width: 760px;
+
+    color: var(--text-muted);
+
+    font-size: .92rem;
+    line-height: 1.7;
+
+    text-wrap: pretty;
+}
+
+.preview__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+.preview__actions:empty {
+    display: none;
+}
+
+.preview__body {
+    flex: 1;
+    padding: 32px;
+}
+
+.preview__body > :first-child {
+    margin-top: 0;
+}
+
+.preview__body > :last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width:768px) {
+
+    .preview {
+        margin-bottom: 40px;
+        border-radius: 16px;
+    }
+
+    .preview__header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+
+        padding: 20px;
+    }
+
+    .preview__description {
+        font-size: .9rem;
+    }
+
+    .preview__actions {
+        justify-content: flex-end;
+    }
+
+    .preview__body {
+        padding: 24px 20px;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+    .preview {
+        transition: none;
+    }
+
+}

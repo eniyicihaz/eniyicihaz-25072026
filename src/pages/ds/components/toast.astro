@@ -1,0 +1,376 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Toast/ToastPatterns.css";
+
+import Toast from "../../../ds/components/ui/atoms/Toast/Toast.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+
+import {
+    deployToasts,
+    deployTerminal,
+    rideStops,
+    rideDriver,
+    bankTransactions,
+    editorPresence,
+    editorLines,
+    orderTimeline,
+    orderItem
+} from "../../../ds/patterns/Toast/toast.data";
+---
+
+<DSLayout title="Toast">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Toast</h1>
+
+        <p class="pl-head__lede">
+            Five moments a product interrupts you — a deploy finishing,
+            a driver arriving, money moving, a colleague joining
+            and a parcel on its way.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Deploy pipeline
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Deploy Pipeline</span>
+            <span class="pl-example__tags">Stacked · Top right · Recessed history</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="toast-stage toast-deploy">
+
+                <div class="toast-stage__page">
+
+                    <div class="toast-deploy__terminal">
+                        <div class="toast-deploy__terminal-bar">
+                            <span class="toast-deploy__dot"></span>
+                            <span class="toast-deploy__dot"></span>
+                            <span class="toast-deploy__dot"></span>
+                            <span class="toast-deploy__terminal-name">relay-cli — deploy</span>
+                        </div>
+                        <div class="toast-deploy__terminal-body">
+                            {deployTerminal.map(line => (
+                                <div class={`toast-deploy__line toast-deploy__line--${line.tone}`}>
+                                    {line.text}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div class="toast-deploy__meta">
+                        <span>branch main</span>
+                        <span>commit 8f21c4</span>
+                        <span>41s build</span>
+                        <span>12 routes</span>
+                    </div>
+
+                </div>
+
+                <div class="toast-stage__layer toast-deploy__layer">
+                    {deployToasts.map((toast, i) => (
+                        <div
+                            class:list={[
+                                "toast-deploy__item",
+                                i === 1 && "toast-deploy__item--aged",
+                                i === 2 && "toast-deploy__item--oldest"
+                            ]}
+                        >
+                            <Toast
+                                variant={toast.variant}
+                                title={toast.title}
+                                description={toast.description}
+                            >
+                                <div class="toast-deploy__action">
+                                    <span class="toast-deploy__age">{toast.age}</span>
+                                    <a class="toast-deploy__link" href="#0">{toast.action}</a>
+                                </div>
+                            </Toast>
+                        </div>
+                    ))}
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Ride hailing
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Ride Status</span>
+            <span class="pl-example__tags">Docked to map · Trip sheet · Driver row</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="toast-stage toast-ride">
+
+                <div class="toast-ride__map" aria-hidden="true">
+                    <span class="toast-ride__route"></span>
+                    <span class="toast-ride__pin toast-ride__pin--start"></span>
+                    <span class="toast-ride__pin toast-ride__pin--end"></span>
+                    <span class="toast-ride__car">▲</span>
+                </div>
+
+                <div class="toast-ride__layer">
+
+                    <Toast
+                        variant="success"
+                        title="Malik is arriving now"
+                        description="Look for a silver Prius on Wijnhaven, near number 61."
+                        closable={false}
+                    >
+
+                        <div class="toast-ride__driver">
+                            <Avatar initials={rideDriver.initials} bordered />
+                            <div>
+                                <div class="toast-ride__driver-name">{rideDriver.name}</div>
+                                <div class="toast-ride__driver-detail">{rideDriver.detail}</div>
+                            </div>
+                            <span class="toast-ride__plate">{rideDriver.plate}</span>
+                        </div>
+
+                        <div class="toast-ride__stops">
+                            {rideStops.map(stop => (
+                                <div class:list={["toast-ride__stop", `toast-ride__stop--${stop.state}`]}>
+                                    <span class="toast-ride__stop-dot"></span>
+                                    {stop.label}
+                                    <span class="toast-ride__stop-note">{stop.note}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div class="toast-ride__actions">
+                            <Button variant="outline" size="sm">Message</Button>
+                            <Button size="sm">Call driver</Button>
+                        </div>
+
+                    </Toast>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Bank alert
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Payment Alert</span>
+            <span class="pl-example__tags">Phone frame · Overlays account · Compact</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="toast-bank">
+
+                <div class="toast-stage toast-bank__phone">
+
+                    <span class="toast-bank__notch" aria-hidden="true"></span>
+
+                    <div class="toast-stage__page toast-bank__screen">
+
+                        <div class="toast-bank__account">
+                            <div class="toast-bank__account-label">Current account</div>
+                            <div class="toast-bank__balance">€4,182.60</div>
+                            <div class="toast-bank__iban">NL91 MRDN 0417 1643 00</div>
+                        </div>
+
+                        <div class="toast-bank__list">
+                            <h3 class="toast-bank__list-title">Recent</h3>
+                            {bankTransactions.map(tx => (
+                                <div class="toast-bank__tx">
+                                    <div>
+                                        <div class="toast-bank__tx-merchant">{tx.merchant}</div>
+                                        <div class="toast-bank__tx-time">{tx.time}</div>
+                                    </div>
+                                    <span class={`toast-bank__tx-amount toast-bank__tx-amount--${tx.tone}`}>
+                                        {tx.amount}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
+
+                    <div class="toast-stage__layer toast-bank__layer">
+                        <Toast
+                            variant="warning"
+                            title="Card payment declined"
+                            description="Your monthly limit was reached at 14:31."
+                        >
+                            <div class="toast-bank__amount-row">
+                                <strong>€92.40</strong>
+                                <span>Bol.com</span>
+                            </div>
+                        </Toast>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Collaborative editor
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Presence</span>
+            <span class="pl-example__tags">Bottom left · Live cursor · Editor chrome</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="toast-stage toast-editor">
+
+                <div class="toast-stage__page">
+
+                    <div class="toast-editor__chrome">
+                        <span class="toast-editor__doc">Q3 positioning memo</span>
+                        <span class="toast-editor__saved">All changes saved</span>
+                        <div class="toast-editor__presence">
+                            {editorPresence.map(person => (
+                                <Avatar initials={person.initials} size="sm" bordered />
+                            ))}
+                        </div>
+                    </div>
+
+                    <div class="toast-editor__paper">
+                        <h2 class="toast-editor__heading">Why we stopped saying "platform"</h2>
+                        {editorLines.map(line => (
+                            <span
+                                class:list={[
+                                    "toast-editor__line",
+                                    line.accent && "toast-editor__line--accent"
+                                ]}
+                                style={`width:${line.w}`}
+                            >
+                                {line.accent && (
+                                    <span class="toast-editor__cursor">Yuki</span>
+                                )}
+                            </span>
+                        ))}
+                    </div>
+
+                </div>
+
+                <div class="toast-stage__layer toast-editor__layer">
+                    <Toast
+                        variant="info"
+                        title="Yuki joined this document"
+                        description="They are editing the third paragraph right now."
+                    >
+                        <div class="toast-editor__who">
+                            <Avatar initials="YT" size="sm" bordered />
+                            <span class="toast-editor__who-text">
+                                <strong>Yuki Tanaka</strong> · Head of Design
+                            </span>
+                            <a class="toast-editor__jump" href="#0">Follow</a>
+                        </div>
+                    </Toast>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Order tracking
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Delivery Update</span>
+            <span class="pl-example__tags">Top of page · Vertical timeline · Retail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="toast-stage toast-order">
+
+                <div class="toast-order__layer">
+                    <Toast
+                        variant="success"
+                        title="Out for delivery"
+                        description="Your order left the Rotterdam depot this morning."
+                    >
+                        <div class="toast-order__eta">
+                            ◷ Arriving between 15:00 and 18:00 today
+                        </div>
+                    </Toast>
+                </div>
+
+                <div class="toast-stage__page toast-order__page">
+
+                    <div class="toast-order__item">
+                        <span class="toast-order__thumb" aria-hidden="true"></span>
+                        <div>
+                            <div class="toast-order__item-name">{orderItem.name}</div>
+                            <div class="toast-order__item-detail">{orderItem.detail}</div>
+                        </div>
+                        <span class="toast-order__order-no">{orderItem.order}</span>
+                    </div>
+
+                    <div class="toast-order__timeline">
+                        {orderTimeline.map(step => (
+                            <div class:list={["toast-order__step", `toast-order__step--${step.state}`]}>
+                                <span class="toast-order__step-dot"></span>
+                                <div>
+                                    <div class="toast-order__step-label">{step.label}</div>
+                                    <div class="toast-order__step-time">{step.time}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

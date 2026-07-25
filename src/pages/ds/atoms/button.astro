@@ -1,0 +1,202 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import { Search, Phone, ArrowRight } from "lucide-astro";
+---
+
+<DSLayout>
+
+<section class="page">
+
+    <PageHeader
+        category="ATOM"
+        title="Button"
+        description="Premium buton bileşeni."
+    />
+
+    <ComponentMeta
+        version="1.0.0"
+        status="stable"
+    />
+
+<Preview title="Variants">
+
+        <Button>Primary</Button>
+
+        <Button variant="secondary">Secondary</Button>
+
+        <Button variant="outline">Outline</Button>
+
+        <Button variant="ghost">Ghost</Button>
+
+        <Button variant="soft">Soft</Button>
+
+        <Button variant="gradient">Gradient</Button>
+
+        <Button variant="glass">Glass</Button>
+
+        <Button variant="success">Success</Button>
+
+        <Button variant="warning">Warning</Button>
+
+        <Button variant="danger">Danger</Button>
+
+        <Button variant="info">Info</Button>
+
+        <Button variant="link">Link</Button>
+
+</Preview>
+
+<Preview title="Sizes">
+
+        <Button size="xs">XS</Button>
+
+        <Button size="sm">SM</Button>
+
+        <Button size="md">MD</Button>
+
+        <Button size="lg">LG</Button>
+
+        <Button size="xl">XL</Button>
+
+</Preview>
+
+<Preview title="Rounded">
+
+        <Button rounded>
+            Rounded
+        </Button>
+
+        <Button rounded variant="outline">
+            Rounded Outline
+        </Button>
+
+        <Button rounded variant="gradient">
+            Rounded Gradient
+        </Button>
+
+</Preview>
+
+<Preview title="Disabled">
+
+        <Button disabled>
+            Disabled
+        </Button>
+
+        <Button variant="outline" disabled>
+            Disabled
+        </Button>
+
+</Preview>
+
+<Preview title="Full Width">
+
+        <Button fullWidth>
+            Full Width Button
+        </Button>
+
+</Preview>
+
+    <Preview title="Icons">
+
+    <Button leftIcon={Search}>
+        Search
+    </Button>
+
+    <Button leftIcon={Phone}>
+        Call Us
+    </Button>
+
+    <Button rightIcon={ArrowRight}>
+        Continue
+    </Button>
+
+    <Button
+        leftIcon={Search}
+        rightIcon={ArrowRight}
+    >
+        Search
+    </Button>
+
+</Preview>
+
+<Preview title="Loading">
+
+    <Button loading>
+        Loading
+    </Button>
+
+    <Button
+        loading
+        variant="outline"
+    >
+        Loading
+    </Button>
+
+</Preview>
+
+<Preview title="Elevation">
+
+    <Button elevated>
+        Elevated
+    </Button>
+
+    <Button
+        elevated
+        variant="outline"
+    >
+        Elevated
+    </Button>
+
+    <Button
+        elevated
+        variant="gradient"
+    >
+        Elevated
+    </Button>
+
+</Preview>
+
+<Preview title="Icon Only">
+
+    <Button
+        iconOnly
+        leftIcon={Search}
+        aria-label="Search"
+    />
+
+    <Button
+        iconOnly
+        variant="outline"
+        leftIcon={Phone}
+        aria-label="Phone"
+    />
+
+    <Button
+        iconOnly
+        variant="gradient"
+        leftIcon={ArrowRight}
+        aria-label="Continue"
+    />
+
+</Preview>
+
+</section>
+
+<style>
+
+.page{
+
+    max-width:1300px;
+
+}
+
+</style>
+
+</DSLayout>

@@ -1,0 +1,42 @@
+---
+import "./Section.css";
+
+interface Props {
+    title: string;
+    description?: string;
+    id?: string;
+}
+
+const {
+    title,
+    description,
+    id
+} = Astro.props;
+---
+
+<section
+    class="ds-section"
+    id={id}
+>
+
+    <header class="ds-section__header">
+
+        <h2 class="ds-section__title">
+            {title}
+        </h2>
+
+        {
+            description && (
+                <p class="ds-section__description">
+                    {description}
+                </p>
+            )
+        }
+
+    </header>
+
+    <div class="ds-section__content">
+        <slot />
+    </div>
+
+</section>

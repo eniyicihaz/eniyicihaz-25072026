@@ -1,0 +1,32 @@
+.ds-progress-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.ds-progress-circle svg {
+  transform: rotate(-90deg);
+}
+
+.ds-progress-circle__track {
+  fill: none;
+  stroke: var(--ds-border-color, #e2e8f0);
+}
+
+.ds-progress-circle__indicator {
+  fill: none;
+  stroke: var(--ds-primary, #2563eb);
+  stroke-linecap: round;
+  transition: stroke-dashoffset .35s ease;
+}
+
+.ds-progress-circle__value {
+  position: absolute;
+
+  font-size: .875rem;
+  font-weight: 600;
+
+  color: var(--ds-text, #0f172a);
+}

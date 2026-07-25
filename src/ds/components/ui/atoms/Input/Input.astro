@@ -1,0 +1,83 @@
+---
+import "./Input.css";
+import type { InputProps } from "./Input.types";
+
+const {
+  type = "text",
+  value = "",
+  placeholder = "",
+  variant = "default",
+  size = "md",
+  disabled = false,
+  readonly = false,
+  required = false,
+  fullWidth = false,
+  error = false,
+  success = false,
+  leftIcon: LeftIcon,
+  rightIcon: RightIcon,
+  helperText,
+  clearable = false,
+  class: className = "",
+  name,
+  id
+}: InputProps = Astro.props;
+
+const classes = [
+  "input",
+  `input--${variant}`,
+  `input--${size}`,
+  fullWidth && "input--full",
+  error && "is-error",
+  success && "is-success",
+  LeftIcon && "has-left-icon",
+  (RightIcon || clearable) && "has-right-icon",
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class="input-field">
+
+  {LeftIcon && (
+    <span class="input-icon input-icon-left">
+      <LeftIcon size={18} />
+    </span>
+  )}
+
+  <input
+    class={classes}
+    type={type}
+    value={value}
+    placeholder={placeholder}
+    disabled={disabled}
+    readonly={readonly}
+    required={required}
+    name={name}
+    id={id}
+  />
+
+  {clearable && value && (
+    <button
+      type="button"
+      class="input-clear"
+      aria-label="Temizle"
+    >
+      ×
+    </button>
+  )}
+
+  {RightIcon && (
+    <span class="input-icon input-icon-right">
+      <RightIcon size={18} />
+    </span>
+  )}
+
+</div>
+
+{helperText && (
+  <p class="input-helper">
+    {helperText}
+  </p>
+)}

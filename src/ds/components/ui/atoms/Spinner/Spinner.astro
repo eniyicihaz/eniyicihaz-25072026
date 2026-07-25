@@ -1,0 +1,32 @@
+---
+import "./Spinner.css";
+import type { SpinnerProps } from "./Spinner.types";
+
+const {
+  size = "md",
+  variant = "primary",
+  label = "Yükleniyor...",
+  class: className = ""
+}: SpinnerProps = Astro.props;
+
+const classes = [
+  "spinner",
+  `spinner--${size}`,
+  `spinner--${variant}`,
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span
+  class={classes}
+  role="status"
+  aria-label={label}
+>
+  <span class="spinner-circle"></span>
+
+  <span class="sr-only">
+    {label}
+  </span>
+</span>

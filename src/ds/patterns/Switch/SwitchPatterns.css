@@ -1,0 +1,947 @@
+/* ==========================================================
+   Switch — five patterns
+
+   01  switch-home     Smart home room controls
+   02  switch-price    Annual / monthly pricing toggle
+   03  switch-privacy  Privacy centre, grouped rows
+   04  switch-flag     Feature flag console, dark
+   05  switch-cabin    In-flight comfort panel
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Smart home
+
+   Room tiles that visibly light up when switched on.
+   ========================================================== */
+
+.switch-home{
+    padding:80px 56px 88px;
+
+    background:
+        radial-gradient(55% 45% at 15% 0%, rgb(251 191 36 / .14), transparent 62%),
+        linear-gradient(170deg, #16151a 0%, #0d0c10 100%);
+}
+
+.switch-home__inner{
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.switch-home__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+
+    margin-bottom:32px;
+}
+
+.switch-home__greeting{
+    font-size:.74rem;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:rgb(250 250 249 / .4);
+}
+
+.switch-home__title{
+    margin:14px 0 0;
+
+    font-size:clamp(1.9rem, 3.6vw, 2.6rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#fafaf9;
+}
+
+.switch-home__weather{
+    text-align:right;
+}
+
+.switch-home__temp{
+    font-size:1.6rem;
+    font-weight:700;
+    letter-spacing:-.04em;
+    color:#fafaf9;
+}
+
+.switch-home__weather span{
+    display:block;
+    margin-top:3px;
+
+    font-size:.8rem;
+    color:rgb(250 250 249 / .38);
+}
+
+.switch-home__rooms{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:14px;
+}
+
+.switch-home__room{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:28px;
+
+    min-height:160px;
+    padding:20px;
+
+    border:1px solid rgb(250 250 249 / .09);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(250 250 249 / .03);
+
+    transition:background .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.switch-home__room--on{
+    border-color:rgb(251 191 36 / .3);
+    background:
+        radial-gradient(80% 70% at 50% 120%, rgb(251 191 36 / .18), transparent 70%),
+        rgb(250 250 249 / .05);
+
+    box-shadow:0 16px 40px rgb(251 191 36 / .08);
+}
+
+.switch-home__room-name{
+    font-size:1rem;
+    font-weight:650;
+    letter-spacing:-.02em;
+    color:rgb(250 250 249 / .55);
+}
+
+.switch-home__room--on .switch-home__room-name{
+    color:#fafaf9;
+}
+
+.switch-home__room-detail{
+    margin-top:5px;
+
+    font-size:.8rem;
+    color:rgb(250 250 249 / .32);
+}
+
+.switch-home__room-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.switch-home__state{
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:rgb(250 250 249 / .3);
+}
+
+.switch-home__room--on .switch-home__state{
+    color:#fbbf24;
+}
+
+.switch-home__scenes{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:14px;
+
+    margin-top:14px;
+    padding-top:26px;
+
+    border-top:1px solid rgb(250 250 249 / .08);
+}
+
+.switch-home__scene{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+
+    padding:14px 18px;
+
+    border:1px solid rgb(250 250 249 / .08);
+    border-radius:var(--pat-radius-sm);
+
+    background:rgb(250 250 249 / .02);
+}
+
+.switch-home__scene-label{
+    font-size:.88rem;
+    color:rgb(250 250 249 / .7);
+}
+
+/* Switch inverted for the dark panel */
+
+.switch-home .switch-slider{
+    background:rgb(250 250 249 / .14);
+}
+
+.switch-home .switch-input:checked + .switch-slider{
+    background:#fbbf24;
+}
+
+.switch-home .switch-label{
+    display:none;
+}
+
+
+/* ==========================================================
+   02 — Pricing toggle
+
+   The switch is the billing period. Two cards react to it.
+   ========================================================== */
+
+.switch-price{
+    padding:88px 56px;
+
+    background:
+        radial-gradient(60% 40% at 50% -6%, rgb(37 99 235 / .07), transparent 68%),
+        #fbfcfe;
+}
+
+.switch-price__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.switch-price__head{
+    margin-bottom:32px;
+    text-align:center;
+}
+
+.switch-price__title{
+    margin:0;
+
+    font-size:clamp(2rem, 4vw, 2.9rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.06;
+
+    color:var(--pat-ink);
+}
+
+.switch-price__lede{
+    margin:16px auto 0;
+    max-width:46ch;
+
+    font-size:1.04rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+.switch-price__toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+
+    margin:30px 0 44px;
+}
+
+.switch-price__toggle-label{
+    font-size:.95rem;
+    font-weight:600;
+    color:var(--pat-soft);
+}
+
+.switch-price__toggle-label--active{
+    color:var(--pat-ink);
+}
+
+.switch-price__save{
+    margin-left:2px;
+}
+
+.switch-price__toggle .switch-label{
+    display:none;
+}
+
+.switch-price__grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:20px;
+    align-items:start;
+}
+
+.switch-price__card{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+
+    padding:34px 30px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.switch-price__card--featured{
+    border-color:rgb(29 78 216 / .32);
+
+    box-shadow:
+        0 0 0 1px rgb(29 78 216 / .1),
+        0 24px 56px rgb(15 23 42 / .1);
+}
+
+.switch-price__card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.switch-price__name{
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.switch-price__card--featured .switch-price__name{
+    color:var(--pat-blue);
+}
+
+.switch-price__amount{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.switch-price__amount strong{
+    font-size:2.6rem;
+    font-weight:800;
+    letter-spacing:-.05em;
+    line-height:1;
+    color:var(--pat-ink);
+
+    font-variant-numeric:tabular-nums;
+}
+
+.switch-price__was{
+    font-size:1rem;
+    color:var(--pat-soft);
+    text-decoration:line-through;
+}
+
+.switch-price__note{
+    margin-top:8px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.switch-price__summary{
+    margin-top:16px;
+
+    font-size:.94rem;
+    line-height:1.65;
+    color:var(--pat-body);
+}
+
+.switch-price__list{
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+
+    margin:24px 0 28px;
+    padding:22px 0 0;
+
+    list-style:none;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.switch-price__list li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+
+    font-size:.92rem;
+    line-height:1.5;
+    color:#33415a;
+}
+
+.switch-price__list li::before{
+    content:"✦";
+
+    flex-shrink:0;
+    font-size:.74rem;
+    color:#93b4f5;
+}
+
+.switch-price__action{
+    margin-top:auto;
+}
+
+
+/* ==========================================================
+   03 — Privacy centre
+
+   Long-form settings. Wide rows, generous copy, a rule
+   between every group.
+   ========================================================== */
+
+.switch-privacy{
+    padding:80px 56px 88px;
+    background:#fff;
+}
+
+.switch-privacy__inner{
+    max-width:760px;
+    margin:0 auto;
+}
+
+.switch-privacy__head{
+    padding-bottom:28px;
+    margin-bottom:8px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.switch-privacy__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.switch-privacy__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.9rem, 3.6vw, 2.5rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.08;
+
+    color:var(--pat-ink);
+}
+
+.switch-privacy__lede{
+    margin:16px 0 0;
+    max-width:56ch;
+
+    font-size:1rem;
+    line-height:1.75;
+    color:var(--pat-body);
+}
+
+.switch-privacy__group{
+    padding:28px 0;
+    border-bottom:1px solid var(--pat-line);
+}
+
+.switch-privacy__group-title{
+    margin:0 0 6px;
+
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.switch-privacy__row{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:32px;
+    align-items:center;
+
+    padding:16px 0;
+}
+
+.switch-privacy__row-label{
+    font-size:.98rem;
+    font-weight:600;
+    letter-spacing:-.012em;
+    color:var(--pat-ink);
+}
+
+.switch-privacy__row-note{
+    margin-top:6px;
+    max-width:52ch;
+
+    font-size:.88rem;
+    line-height:1.65;
+    color:var(--pat-body);
+}
+
+.switch-privacy__row .switch-label{
+    display:none;
+}
+
+.switch-privacy__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:28px;
+}
+
+.switch-privacy__foot-note{
+    max-width:44ch;
+
+    font-size:.85rem;
+    line-height:1.6;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Feature flags
+
+   An operations console. Monospace keys, environment
+   chips, risk colouring on the rail.
+   ========================================================== */
+
+.switch-flag{
+    padding:72px 56px 88px;
+
+    background:
+        linear-gradient(180deg, #0b1220 0%, #080d17 100%);
+}
+
+.switch-flag__inner{
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.switch-flag__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+
+    padding-bottom:24px;
+    margin-bottom:26px;
+
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.switch-flag__title{
+    margin:0;
+
+    font-size:1.7rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#f8fafc;
+}
+
+.switch-flag__lede{
+    margin:10px 0 0;
+    max-width:52ch;
+
+    font-size:.95rem;
+    line-height:1.65;
+    color:rgb(248 250 252 / .45);
+}
+
+.switch-flag__search{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:9px 14px;
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:var(--pat-radius-xs);
+
+    background:rgb(255 255 255 / .04);
+
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    color:rgb(248 250 252 / .35);
+}
+
+.switch-flag__table{
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .08);
+    border-radius:var(--pat-radius-sm);
+}
+
+.switch-flag__row{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 110px 90px 110px 60px;
+    gap:20px;
+    align-items:center;
+
+    padding:15px 20px;
+
+    border-bottom:1px solid rgb(255 255 255 / .06);
+    background:rgb(255 255 255 / .02);
+}
+
+.switch-flag__row:last-child{
+    border-bottom:none;
+}
+
+.switch-flag__row--head{
+    background:rgb(255 255 255 / .05);
+
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .35);
+}
+
+.switch-flag__key{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    font-family:var(--pat-mono);
+    font-size:.85rem;
+    color:#e2e8f0;
+}
+
+.switch-flag__risk{
+    width:6px;
+    height:6px;
+    flex-shrink:0;
+
+    border-radius:50%;
+}
+
+.switch-flag__risk--stable{
+    background:#4ade80;
+}
+
+.switch-flag__risk--ramping{
+    background:#38bdf8;
+}
+
+.switch-flag__risk--risky{
+    background:#fbbf24;
+}
+
+.switch-flag__risk--off{
+    background:rgb(148 163 184 / .5);
+}
+
+.switch-flag__env{
+    padding:3px 9px;
+
+    border-radius:5px;
+    background:rgb(148 163 184 / .12);
+
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    color:#cbd5e1;
+
+    justify-self:start;
+}
+
+.switch-flag__rollout,
+.switch-flag__owner{
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    color:rgb(248 250 252 / .5);
+}
+
+.switch-flag__cell{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.switch-flag__table .switch-slider{
+    background:rgb(255 255 255 / .14);
+}
+
+.switch-flag__table .switch-input:checked + .switch-slider{
+    background:#38bdf8;
+}
+
+.switch-flag__table .switch-label{
+    display:none;
+}
+
+.switch-flag__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .3);
+}
+
+
+/* ==========================================================
+   05 — Cabin comfort
+
+   Premium travel. A narrow card with a boarding-pass
+   header and switch rows underneath.
+   ========================================================== */
+
+.switch-cabin{
+    display:flex;
+    justify-content:center;
+
+    padding:80px 32px 88px;
+
+    background:
+        radial-gradient(60% 50% at 50% 0%, rgb(199 162 107 / .16), transparent 66%),
+        linear-gradient(180deg, #14120f 0%, #0a0908 100%);
+}
+
+.switch-cabin__card{
+    width:100%;
+    max-width:480px;
+    overflow:hidden;
+
+    border:1px solid rgb(199 162 107 / .2);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+    backdrop-filter:blur(24px);
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / .06),
+        var(--pat-shadow-dark);
+}
+
+.switch-cabin__head{
+    padding:28px;
+
+    border-bottom:1px dashed rgb(199 162 107 / .26);
+}
+
+.switch-cabin__airline{
+    font-size:.7rem;
+    font-weight:600;
+    letter-spacing:.34em;
+    text-transform:uppercase;
+    color:rgb(199 162 107 / .85);
+}
+
+.switch-cabin__title{
+    margin:16px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:1.8rem;
+    font-weight:400;
+    letter-spacing:-.025em;
+    color:#f7f4ee;
+}
+
+.switch-cabin__journey{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+
+    margin:20px 0 0;
+}
+
+.switch-cabin__journey dt{
+    font-size:.66rem;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgb(247 244 238 / .3);
+}
+
+.switch-cabin__journey dd{
+    margin:5px 0 0;
+
+    font-size:.9rem;
+    color:rgb(247 244 238 / .8);
+}
+
+.switch-cabin__body{
+    padding:8px 28px 28px;
+}
+
+.switch-cabin__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    padding:16px 0;
+
+    border-bottom:1px solid rgb(247 244 238 / .08);
+}
+
+.switch-cabin__row:last-of-type{
+    border-bottom:none;
+}
+
+.switch-cabin__row-label{
+    font-size:.95rem;
+    color:#f7f4ee;
+}
+
+.switch-cabin__row-detail{
+    margin-top:4px;
+
+    font-size:.8rem;
+    color:rgb(247 244 238 / .38);
+}
+
+.switch-cabin__body .switch-slider{
+    background:rgb(247 244 238 / .14);
+}
+
+.switch-cabin__body .switch-input:checked + .switch-slider{
+    background:var(--pat-gold);
+}
+
+.switch-cabin__body .switch-label{
+    display:none;
+}
+
+.switch-cabin__foot{
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px dashed rgb(199 162 107 / .26);
+
+    text-align:center;
+}
+
+.switch-cabin__foot p{
+    margin:0 0 16px;
+
+    font-size:.8rem;
+    line-height:1.6;
+    color:rgb(247 244 238 / .38);
+}
+
+.switch-cabin__foot .btn--glass{
+    border-color:rgb(199 162 107 / .4);
+    background:rgb(199 162 107 / .14);
+}
+
+.switch-cabin__foot .btn--glass:hover{
+    border-color:rgb(199 162 107 / .7);
+    background:rgb(199 162 107 / .22);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .switch-home{
+        padding:64px 32px;
+    }
+
+    .switch-home__rooms,
+    .switch-home__scenes{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    .switch-price{
+        padding:64px 32px;
+    }
+
+    .switch-privacy{
+        padding:64px 32px;
+    }
+
+    .switch-flag{
+        padding:56px 32px 64px;
+    }
+
+    .switch-flag__row{
+        grid-template-columns:minmax(0, 1fr) 90px 60px;
+    }
+
+    .switch-flag__owner,
+    .switch-flag__row--head .switch-flag__owner-col{
+        display:none;
+    }
+
+}
+
+@media (max-width:720px){
+
+    .switch-home{
+        padding:48px 20px;
+    }
+
+    .switch-home__rooms,
+    .switch-home__scenes{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .switch-price{
+        padding:48px 20px;
+    }
+
+    .switch-price__grid{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .switch-price__card{
+        padding:26px 22px;
+    }
+
+    .switch-price__toggle{
+        gap:12px;
+    }
+
+    .switch-price__toggle-label{
+        font-size:.86rem;
+    }
+
+    .switch-privacy{
+        padding:48px 20px;
+    }
+
+    .switch-privacy__row{
+        grid-template-columns:minmax(0, 1fr) auto;
+        gap:16px;
+    }
+
+    .switch-flag{
+        padding:44px 20px 56px;
+    }
+
+    .switch-flag__row{
+        grid-template-columns:minmax(0, 1fr) 56px;
+        gap:12px;
+        padding:14px 16px;
+    }
+
+    .switch-flag__env,
+    .switch-flag__rollout{
+        display:none;
+    }
+
+    .switch-cabin{
+        padding:48px 20px 56px;
+    }
+
+    .switch-cabin__head,
+    .switch-cabin__body{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .switch-home__room{
+        transition:none;
+    }
+
+}

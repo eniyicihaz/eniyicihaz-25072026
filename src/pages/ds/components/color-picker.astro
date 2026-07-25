@@ -1,0 +1,431 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/ColorPicker/ColorPickerPatterns.css";
+
+import ColorPicker from "../../../ds/components/ui/atoms/ColorPicker/ColorPicker.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    deviceFinishes,
+    deviceFinishMeta,
+    brandTokens,
+    contrastChecks,
+    paintColour,
+    paintCoordinates,
+    paintDetails,
+    calendarLabels,
+    calendarEvents,
+    kitZones,
+    kitMeta,
+    kitPresets
+} from "../../../ds/patterns/ColorPicker/colorpicker.data";
+---
+
+<DSLayout title="Color Picker">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Color Picker</h1>
+
+        <p class="pl-head__lede">
+            Five decisions that come down to a colour — a hearing aid finish,
+            brand tokens, a paint sample, calendar labels
+            and a football kit.
+        </p>
+
+    </header>
+
+    <!-- 01 — Device finish -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Device Finish</span>
+            <span class="pl-example__tags">Hearing care · Preset swatches · Custom match</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cp-finish">
+
+                <div class="cp-finish__inner">
+
+                    <div class="cp-finish__stage">
+                        <span class="cp-finish__shape" aria-hidden="true"></span>
+                    </div>
+
+                    <div>
+
+                        <span class="cp-finish__kicker">Renk seçimi</span>
+
+                        <h2 class="cp-finish__title">Saçınıza uyan rengi seçin</h2>
+
+                        <p class="cp-finish__lede">
+                            Cihaz kulağın arkasında durduğu için saç rengine yakın
+                            tonlar neredeyse görünmez kalır. Renk seçimi ücretsizdir.
+                        </p>
+
+                        <div class="cp-finish__swatches">
+                            {deviceFinishes.map((finish, i) => (
+                                <div
+                                    class:list={[
+                                        "cp-finish__swatch",
+                                        i === 0 && "cp-finish__swatch--active"
+                                    ]}
+                                >
+                                    <span
+                                        class="cp-finish__dot"
+                                        style={`background:${finish.hex}`}
+                                    ></span>
+                                    <span class="cp-finish__swatch-name">{finish.name}</span>
+                                    <span class="cp-finish__swatch-note">{finish.note}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div class="cp-finish__custom">
+                            <ColorPicker value="#3f4550" name="finish-custom" id="finish-custom" />
+                            <div class="cp-finish__custom-text">
+                                <strong>Kendi renginizi eşleştirin</strong>
+                                <span>Saç örneğinizi mağazada tarayabiliriz</span>
+                            </div>
+                        </div>
+
+                        <dl class="cp-finish__meta">
+                            {deviceFinishMeta.map(item => (
+                                <div>
+                                    <dt>{item.key}</dt>
+                                    <dd>{item.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Brand tokens -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Brand Tokens</span>
+            <span class="pl-example__tags">Settings table · Hex values · Contrast audit</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cp-token">
+
+                <div class="cp-token__inner">
+
+                    <span class="cp-token__crumb">Settings / Brand</span>
+
+                    <h2 class="cp-token__title">Colour tokens</h2>
+
+                    <p class="cp-token__lede">
+                        Changes publish to every surface within a minute. The audit
+                        below re-runs automatically whenever a token moves.
+                    </p>
+
+                    <div class="cp-token__table">
+
+                        <div class="cp-token__row cp-token__row--head">
+                            <span></span>
+                            <span>Token</span>
+                            <span>Value</span>
+                            <span>Usage</span>
+                        </div>
+
+                        {brandTokens.map(token => (
+                            <div class="cp-token__row">
+                                <ColorPicker
+                                    value={token.hex}
+                                    name={token.name}
+                                    id={token.name}
+                                />
+                                <span class="cp-token__name">{token.name}</span>
+                                <span class="cp-token__hex">{token.hex}</span>
+                                <span class="cp-token__usage">{token.usage}</span>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <div class="cp-token__audit">
+
+                        <h3 class="cp-token__audit-title">Contrast audit</h3>
+
+                        {contrastChecks.map(check => (
+                            <div class="cp-token__check">
+                                <span class="cp-token__pair">{check.pair}</span>
+                                <span class="cp-token__ratio">{check.ratio}</span>
+                                <span class:list={["cp-token__grade", check.pass ? "cp-token__grade--pass" : "cp-token__grade--fail"]}>
+                                    {check.grade}
+                                </span>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <div class="cp-token__foot">
+                        <span>One token fails AA at small sizes.</span>
+                        <Button size="sm">Publish tokens</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Paint sample -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Paint Sample</span>
+            <span class="pl-example__tags">Retail · Colour field · Coordinating shades</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cp-paint">
+
+                <div class="cp-paint__card">
+
+                    <div
+                        class="cp-paint__field"
+                        style={`background:${paintColour.hex}`}
+                        aria-hidden="true"
+                    ></div>
+
+                    <div class="cp-paint__body">
+
+                        <span class="cp-paint__code">{paintColour.code}</span>
+
+                        <h2 class="cp-paint__name">{paintColour.name}</h2>
+
+                        <p class="cp-paint__finish">
+                            {paintColour.finish} · LRV {paintColour.lrv}
+                        </p>
+
+                        <dl class="cp-paint__specs">
+                            {paintDetails.map(detail => (
+                                <div class="cp-paint__spec">
+                                    <dt>{detail.key}</dt>
+                                    <dd>{detail.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                        <div class="cp-paint__coords">
+                            <h3 class="cp-paint__coords-title">Works well with</h3>
+                            <div class="cp-paint__coord-row">
+                                {paintCoordinates.map(coord => (
+                                    <div class="cp-paint__coord">
+                                        <span
+                                            class="cp-paint__coord-chip"
+                                            style={`background:${coord.hex}`}
+                                        ></span>
+                                        <span class="cp-paint__coord-name">{coord.name}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div class="cp-paint__match">
+                            <ColorPicker value={paintColour.hex} name="paint-match" id="paint-match" />
+                            <div class="cp-paint__match-text">
+                                <strong>Match a colour you already have</strong>
+                                <span>We mix to any hex, no minimum order</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <footer class="cp-paint__foot">
+                        <span class="cp-paint__price">Sample pot £5.50</span>
+                        <Button>Order a sample</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Calendar labels -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Calendar Labels</span>
+            <span class="pl-example__tags">Colour as taxonomy · Tinted day view</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cp-label">
+
+                <div class="cp-label__inner">
+
+                    <aside class="cp-label__panel">
+
+                        <h3 class="cp-label__panel-title">Labels</h3>
+
+                        {calendarLabels.map(label => (
+                            <div class="cp-label__row">
+                                <ColorPicker
+                                    value={label.hex}
+                                    name={`label-${label.name}`}
+                                    id={`label-${label.name}`}
+                                />
+                                <span class="cp-label__name">{label.name}</span>
+                                <span class="cp-label__count">{label.count}</span>
+                            </div>
+                        ))}
+
+                        <div class="cp-label__add">
+                            <Button variant="outline" size="sm" fullWidth>
+                                New label
+                            </Button>
+                        </div>
+
+                    </aside>
+
+                    <div class="cp-label__day">
+
+                        <header class="cp-label__day-head">
+                            <span class="cp-label__day-title">Thursday 23 July</span>
+                            <span class="cp-label__day-meta">4 events · 2h 30m booked</span>
+                        </header>
+
+                        {calendarEvents.map(event => (
+                            <div
+                                class="cp-label__event"
+                                style={`border-left-color:${event.hex};background:${event.hex}12`}
+                            >
+                                <span class="cp-label__event-time">{event.time}</span>
+                                <div>
+                                    <div class="cp-label__event-label">{event.label}</div>
+                                    <div class="cp-label__event-cat">{event.cat}</div>
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Kit designer -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Kit Designer</span>
+            <span class="pl-example__tags">Dark configurator · Zone rows · Presets</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cp-kit">
+
+                <div class="cp-kit__inner">
+
+                    <div class="cp-kit__stage">
+                        <div class="cp-kit__shirt" aria-hidden="true">
+                            <span class="cp-kit__sleeve cp-kit__sleeve--l"></span>
+                            <span class="cp-kit__sleeve cp-kit__sleeve--r"></span>
+                            <span class="cp-kit__body"></span>
+                            <span class="cp-kit__collar"></span>
+                            <span class="cp-kit__number">9</span>
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <span class="cp-kit__club">{kitMeta.club}</span>
+
+                        <h2 class="cp-kit__title">{kitMeta.season}</h2>
+
+                        <p class="cp-kit__lede">
+                            {kitMeta.fabric}. Every zone can be recoloured
+                            independently — the mock updates as you go.
+                        </p>
+
+                        {kitZones.map(zone => (
+                            <div class="cp-kit__zone">
+                                <ColorPicker
+                                    value={zone.hex}
+                                    name={`zone-${zone.zone}`}
+                                    id={`zone-${zone.zone}`}
+                                />
+                                <span class="cp-kit__zone-name">{zone.zone}</span>
+                                <span class="cp-kit__zone-hex">{zone.hex}</span>
+                            </div>
+                        ))}
+
+                        <div class="cp-kit__presets">
+                            {kitPresets.map(preset => (
+                                <span class="cp-kit__preset">
+                                    <span class="cp-kit__preset-dots">
+                                        <span
+                                            class="cp-kit__preset-dot"
+                                            style={`background:${preset.primary}`}
+                                        ></span>
+                                        <span
+                                            class="cp-kit__preset-dot"
+                                            style={`background:${preset.secondary}`}
+                                        ></span>
+                                    </span>
+                                    {preset.name}
+                                </span>
+                            ))}
+                        </div>
+
+                        <div class="cp-kit__foot">
+                            <span class="cp-kit__lead">{kitMeta.lead}</span>
+                            <Button variant="glass">Save this design</Button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

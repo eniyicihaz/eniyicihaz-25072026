@@ -1,0 +1,511 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Textarea/TextareaPatterns.css";
+
+import Textarea from "../../../ds/components/ui/atoms/Textarea/Textarea.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+import Select from "../../../ds/components/ui/atoms/Select/Select.astro";
+
+import {
+    ticketMeta,
+    ticketAttachments,
+    ticketTips,
+    reviewProduct,
+    reviewAspects,
+    reviewGuidelines,
+    roleFacts,
+    applicationSteps,
+    composerReplies,
+    composerTools,
+    briefFields,
+    briefTeam
+} from "../../../ds/patterns/Textarea/textarea.data";
+---
+
+<DSLayout title="Textarea">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Textarea</h1>
+
+        <p class="pl-head__lede">
+            Five places people are asked to write something — a support ticket,
+            a product review, a job application, a social post
+            and a creative brief.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Support ticket
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Support Ticket</span>
+            <span class="pl-example__tags">Form + context rail · Attachments · SLA</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="text-ticket">
+
+                <div class="text-ticket__inner">
+
+                    <span class="text-ticket__crumb">Support / New request</span>
+
+                    <h2 class="text-ticket__title">Tell us what went wrong</h2>
+
+                    <p class="text-ticket__lede">
+                        A real engineer reads every ticket. The more specific you are,
+                        the fewer rounds of questions we will need.
+                    </p>
+
+                    <div class="text-ticket__grid">
+
+                        <div class="text-ticket__panel">
+
+                            <div class="text-ticket__field">
+                                <label class="text-ticket__label">Area</label>
+                                <Select fullWidth>
+                                    <option>Builds and deployment</option>
+                                    <option>Domains and DNS</option>
+                                    <option>Billing</option>
+                                    <option>Something else</option>
+                                </Select>
+                            </div>
+
+                            <div class="text-ticket__field">
+                                <label class="text-ticket__label">
+                                    What happened?
+                                </label>
+                                <Textarea
+                                    rows={7}
+                                    fullWidth
+                                    maxLength={2000}
+                                    placeholder="Start with what you were doing when it broke…"
+                                    helperText="Markdown and code blocks are supported."
+                                />
+                            </div>
+
+                            <div class="text-ticket__field">
+                                <label class="text-ticket__label">
+                                    Attachments
+                                    <span class="text-ticket__optional">Optional</span>
+                                </label>
+                                <div class="text-ticket__attachments">
+                                    {ticketAttachments.map(file => (
+                                        <div class="text-ticket__file">
+                                            ▣ {file.name}
+                                            <span>{file.size}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div class="text-ticket__foot">
+                                <p class="text-ticket__foot-note">
+                                    We will email you at amara@fieldnote.studio.
+                                </p>
+                                <Button size="lg">Submit request</Button>
+                            </div>
+
+                        </div>
+
+                        <aside class="text-ticket__rail">
+
+                            <div class="text-ticket__card">
+                                <h3 class="text-ticket__card-title">Your account</h3>
+                                <dl>
+                                    {ticketMeta.map(item => (
+                                        <div class="text-ticket__meta-row">
+                                            <dt>{item.key}</dt>
+                                            <dd>{item.value}</dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+
+                            <div class="text-ticket__card">
+                                <h3 class="text-ticket__card-title">Worth including</h3>
+                                <ul class="text-ticket__tips">
+                                    {ticketTips.map(tip => (
+                                        <li>{tip}</li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Product review
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Product Review</span>
+            <span class="pl-example__tags">Retail card · Star aspects · Guidelines</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="text-review">
+
+                <div class="text-review__card">
+
+                    <div class="text-review__product">
+                        <span class="text-review__thumb" aria-hidden="true"></span>
+                        <div>
+                            <div class="text-review__product-name">{reviewProduct.name}</div>
+                            <div class="text-review__product-detail">
+                                {reviewProduct.detail} · {reviewProduct.ordered}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-review__body">
+
+                        <h2 class="text-review__title">How is it, six weeks on?</h2>
+                        <p class="text-review__lede">
+                            Reviews from people who actually bought the piece help
+                            everyone else choose well.
+                        </p>
+
+                        <div class="text-review__aspects">
+                            {reviewAspects.map(aspect => (
+                                <div class="text-review__aspect">
+                                    <span>{aspect.label}</span>
+                                    <span class="text-review__stars" aria-hidden="true">
+                                        {"★".repeat(aspect.score)}
+                                        <span>{"★".repeat(5 - aspect.score)}</span>
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <label class="text-review__label">Your review</label>
+                        <Textarea
+                            rows={6}
+                            fullWidth
+                            maxLength={1200}
+                            placeholder="What has it been like to live with?"
+                            helperText="Minimum 50 characters"
+                        />
+
+                        <ul class="text-review__guidelines">
+                            {reviewGuidelines.map(item => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+
+                    </div>
+
+                    <div class="text-review__foot">
+                        <span class="text-review__foot-note">
+                            Posting as Sara V. · Verified buyer
+                        </span>
+                        <Button>Publish review</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Job application
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Job Application</span>
+            <span class="pl-example__tags">Editorial split · Serif prompts · Sticky role</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="text-apply">
+
+                <div class="text-apply__grid">
+
+                    <aside class="text-apply__aside">
+
+                        <span class="text-apply__kicker">Now hiring</span>
+
+                        <h2 class="text-apply__title">
+                            Senior Product Designer
+                        </h2>
+
+                        <dl class="text-apply__facts">
+                            {roleFacts.map(fact => (
+                                <div class="text-apply__fact">
+                                    <dt>{fact.key}</dt>
+                                    <dd>{fact.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                        <p class="text-apply__quote">
+                            "We read applications without names or schools attached.
+                            What you write here is genuinely the largest part of the
+                            decision."
+                        </p>
+
+                    </aside>
+
+                    <div>
+
+                        <div class="text-apply__steps">
+                            {applicationSteps.map(step => (
+                                <span class:list={["text-apply__step", `text-apply__step--${step.state}`]}>
+                                    <span class="text-apply__step-n">
+                                        {step.state === "done" ? "✓" : step.n}
+                                    </span>
+                                    {step.label}
+                                </span>
+                            ))}
+                        </div>
+
+                        <div class="text-apply__field">
+                            <h3 class="text-apply__prompt">
+                                Why this role, and why now?
+                            </h3>
+                            <p class="text-apply__hint">
+                                We are less interested in your CV than in what pulled
+                                you to this particular job. Three or four paragraphs
+                                is plenty.
+                            </p>
+                            <Textarea
+                                rows={8}
+                                fullWidth
+                                maxLength={3000}
+                                placeholder="Take your time — this is the part we read most closely."
+                                helperText="Roughly 300–500 words works well"
+                            />
+                        </div>
+
+                        <div class="text-apply__field">
+                            <h3 class="text-apply__prompt">
+                                Tell us about something you got wrong.
+                            </h3>
+                            <p class="text-apply__hint">
+                                A project, a decision, a hire. What you learned matters
+                                more than the mistake itself.
+                            </p>
+                            <Textarea
+                                rows={6}
+                                fullWidth
+                                maxLength={2000}
+                                placeholder="Honest answers do better here than polished ones."
+                            />
+                        </div>
+
+                        <div class="text-apply__foot">
+                            <p class="text-apply__foot-note">
+                                Your answers are saved automatically. You can come back
+                                to this page from the link we emailed you.
+                            </p>
+                            <Button size="lg">Continue to portfolio</Button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Social composer
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Social Composer</span>
+            <span class="pl-example__tags">Dark · Borderless field · Live thread</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="text-post">
+
+                <div class="text-post__inner">
+
+                    <div class="text-post__composer">
+
+                        <Avatar initials="YO" bordered />
+
+                        <div>
+
+                            <span class="text-post__audience">◎ Everyone can reply</span>
+
+                            <Textarea
+                                rows={3}
+                                fullWidth
+                                placeholder="What are you working on?"
+                            />
+
+                            <div class="text-post__bar">
+                                <div class="text-post__tools">
+                                    {composerTools.map(tool => (
+                                        <span class="text-post__tool">{tool}</span>
+                                    ))}
+                                </div>
+                                <div class="text-post__count">
+                                    <span class="text-post__remaining">280</span>
+                                    <Button size="sm">Post</Button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="text-post__divider">Replies</div>
+
+                    {composerReplies.map(reply => (
+                        <article class="text-post__reply">
+
+                            <Avatar initials={reply.initials} size="sm" bordered />
+
+                            <div>
+                                <div class="text-post__reply-head">
+                                    <span class="text-post__reply-name">{reply.name}</span>
+                                    <span class="text-post__reply-handle">{reply.handle}</span>
+                                    <span class="text-post__reply-time">· {reply.time}</span>
+                                </div>
+                                <p class="text-post__reply-body">{reply.body}</p>
+                                <div class="text-post__reply-actions">
+                                    <span>♡ {reply.likes}</span>
+                                    <span>↳ {reply.replies}</span>
+                                    <span>Share</span>
+                                </div>
+                            </div>
+
+                        </article>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Creative brief
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Creative Brief</span>
+            <span class="pl-example__tags">Working document · Stacked fields · Autosave</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="text-brief">
+
+                <div class="text-brief__inner">
+
+                    <div class="text-brief__paper">
+
+                        <header class="text-brief__head">
+
+                            <div>
+                                <span class="text-brief__doc-type">Brief · Draft</span>
+                                <h2 class="text-brief__title">Onboarding redesign</h2>
+                            </div>
+
+                            <div class="text-brief__team">
+                                {briefTeam.map(member => (
+                                    <div class="text-brief__member">
+                                        <Avatar initials={member.initials} size="sm" bordered />
+                                        <div>
+                                            <div class="text-brief__member-name">{member.name}</div>
+                                            <div class="text-brief__member-role">{member.role}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                        </header>
+
+                        <div class="text-brief__body">
+
+                            {briefFields.map(field => (
+                                <div class="text-brief__field">
+                                    <div class="text-brief__label">
+                                        <span class="text-brief__label-text">{field.label}</span>
+                                        <span class="text-brief__state">
+                                            {field.value ? "Answered" : "Empty"}
+                                        </span>
+                                    </div>
+                                    <p class="text-brief__hint">{field.hint}</p>
+                                    <Textarea
+                                        rows={field.rows}
+                                        value={field.value}
+                                        fullWidth
+                                        maxLength={field.counter}
+                                        placeholder="Write freely — we will tidy it together."
+                                    />
+                                </div>
+                            ))}
+
+                        </div>
+
+                        <footer class="text-brief__foot">
+                            <span class="text-brief__saved">Saved 2 minutes ago</span>
+                            <div class="text-brief__foot-actions">
+                                <Button variant="ghost">Share draft</Button>
+                                <Button>Send to design</Button>
+                            </div>
+                        </footer>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

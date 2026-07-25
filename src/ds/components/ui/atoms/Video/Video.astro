@@ -1,0 +1,53 @@
+---
+import "./Video.css";
+import type { VideoProps } from "./Video.types";
+
+const {
+  src,
+  poster,
+  autoplay = false,
+  controls = true,
+  muted = false,
+  loop = false,
+  playsinline = true,
+  preload = "metadata",
+  width,
+  height,
+  rounded = false,
+  class: className = "",
+} = Astro.props as VideoProps;
+
+const classes = [
+  "ds-video",
+  rounded && "ds-video--rounded",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<figure class={classes}>
+  <video
+    class="ds-video__player"
+    src={src}
+    poster={poster}
+    autoplay={autoplay}
+    controls={controls}
+    muted={muted}
+    loop={loop}
+    playsinline={playsinline}
+    preload={preload}
+    width={width}
+    height={height}
+  >
+    Tarayıcınız video etiketini desteklemiyor.
+  </video>
+
+  {
+    Astro.slots.has("caption") && (
+      <figcaption class="ds-video__caption">
+        <slot name="caption" />
+      </figcaption>
+    )
+  }
+</figure>

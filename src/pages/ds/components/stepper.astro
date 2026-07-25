@@ -1,0 +1,176 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Stepper/StepperPatterns.css";
+
+import Stepper from "../../../ds/components/ui/atoms/Stepper/Stepper.astro";
+
+import {
+    fittingSteps,
+    checkoutSteps,
+    loanSteps,
+    incidentSteps,
+    courseSteps
+} from "../../../ds/patterns/Stepper/stepper.data";
+---
+
+<DSLayout title="Stepper">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Stepper</h1>
+
+        <p class="pl-head__lede">
+            Five progress trackers — a device fitting process, a
+            checkout flow, a loan application, an incident timeline and
+            a compact course progress bar.
+        </p>
+
+    </header>
+
+    <!-- 01 — Device fitting process -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Fitting Process</span>
+            <span class="pl-example__tags">Hearing care · Horizontal</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spr-fitting">
+
+                <div class="spr-fitting__card">
+
+                    <h2 class="spr-fitting__title">Cihaz ayarlama süreci</h2>
+
+                    <Stepper steps={fittingSteps} orientation="horizontal" />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Checkout flow, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Checkout Flow</span>
+            <span class="pl-example__tags">Retail · Horizontal · Dark</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spr-checkout">
+
+                <div class="spr-checkout__card">
+
+                    <Stepper steps={checkoutSteps} orientation="horizontal" />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Loan application, vertical -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Loan Application</span>
+            <span class="pl-example__tags">Fintech · Vertical · Descriptions</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spr-loan">
+
+                <div class="spr-loan__card">
+
+                    <h2 class="spr-loan__title">Application status</h2>
+
+                    <Stepper steps={loanSteps} orientation="vertical" />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Incident resolution, dark, disabled step -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Incident Timeline</span>
+            <span class="pl-example__tags">DevOps · Dark · Locked step</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spr-incident">
+
+                <div class="spr-incident__card">
+
+                    <span class="spr-incident__crumb">INC-4821 · Elevated error rate</span>
+
+                    <Stepper steps={incidentSteps} orientation="vertical" />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Course progress, compact -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Course Progress</span>
+            <span class="pl-example__tags">Education · Horizontal · Compact</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="spr-course">
+
+                <div class="spr-course__card">
+
+                    <h2 class="spr-course__title">Design System 101</h2>
+
+                    <Stepper steps={courseSteps} orientation="horizontal" />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

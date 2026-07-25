@@ -1,0 +1,42 @@
+.ds-breadcrumb {
+  display: block;
+  width: 100%;
+}
+
+.ds-breadcrumb__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.ds-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.ds-breadcrumb__link {
+  color: var(--ds-text-secondary, #475569);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.ds-breadcrumb__link:hover {
+  color: var(--ds-primary, #2563eb);
+}
+
+.ds-breadcrumb__current {
+  color: var(--ds-text, #0f172a);
+  font-weight: 600;
+}
+
+.ds-breadcrumb__separator {
+  color: var(--ds-border-color, #cbd5e1);
+  user-select: none;
+}

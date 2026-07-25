@@ -1,0 +1,949 @@
+/* ==========================================================
+   Alert — five patterns
+
+   01  alert-announce  Top-of-site release banner
+   02  alert-success   Centred order confirmation
+   03  alert-warning   Split migration checklist
+   04  alert-maint     Dark status / maintenance notice
+   05  alert-promo     Offer band with countdown
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Announcement
+
+   Sits directly under a site header. The alert runs
+   edge to edge above the page content it interrupts.
+   ========================================================== */
+
+.alert-announce{
+    background:#fff;
+}
+
+.alert-announce__bar{
+    padding:14px 40px;
+
+    background:linear-gradient(90deg, #1e1b4b, #312e81 50%, #4c1d95);
+}
+
+.alert-announce__bar-inner{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+
+    font-size:.86rem;
+    color:rgb(255 255 255 / .82);
+}
+
+.alert-announce__bar-inner strong{
+    color:#fff;
+}
+
+.alert-announce__nav{
+    display:flex;
+    align-items:center;
+    gap:36px;
+
+    padding:22px 40px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.alert-announce__logo{
+    font-size:1rem;
+    font-weight:750;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.alert-announce__links{
+    display:flex;
+    gap:26px;
+
+    font-size:.88rem;
+    color:#64748b;
+}
+
+.alert-announce__nav .btn{
+    margin-left:auto;
+}
+
+.alert-announce__body{
+    max-width:840px;
+    margin:0 auto;
+    padding:56px 40px 88px;
+}
+
+.alert-announce__body .ds-alert{
+    border-radius:var(--pat-radius-md);
+}
+
+.alert-announce__meta{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+
+    margin-top:18px;
+}
+
+.alert-announce__link{
+    font-size:.88rem;
+    font-weight:600;
+    color:var(--pat-blue);
+
+    border-bottom:1px solid rgb(29 78 216 / .25);
+    padding-bottom:2px;
+}
+
+.alert-announce__link:hover{
+    border-color:var(--pat-blue);
+}
+
+.alert-announce__heading{
+    margin:56px 0 0;
+
+    font-size:clamp(1.9rem, 3.4vw, 2.6rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.08;
+
+    color:var(--pat-ink);
+}
+
+.alert-announce__text{
+    margin:18px 0 0;
+    max-width:58ch;
+
+    font-size:1.02rem;
+    line-height:1.75;
+    color:var(--pat-body);
+}
+
+
+/* ==========================================================
+   02 — Success
+
+   Narrow, centred, celebratory. The alert is the
+   answer the customer came for.
+   ========================================================== */
+
+.alert-success{
+    display:flex;
+    justify-content:center;
+
+    padding:80px 24px 88px;
+
+    background:
+        radial-gradient(70% 50% at 50% 0%, rgb(34 197 94 / .14), transparent 66%),
+        linear-gradient(180deg, #f7fdf9, #ffffff);
+}
+
+.alert-success__inner{
+    width:100%;
+    max-width:520px;
+    text-align:center;
+}
+
+.alert-success__mark{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:60px;
+    height:60px;
+    margin:0 auto 26px;
+
+    border-radius:50%;
+
+    background:#16a34a;
+    color:#fff;
+
+    font-size:1.6rem;
+    line-height:1;
+
+    box-shadow:
+        0 0 0 10px rgb(22 163 74 / .09),
+        0 16px 34px rgb(22 163 74 / .3);
+}
+
+.alert-success__eyebrow{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.alert-success__title{
+    margin:14px 0 0;
+
+    font-size:clamp(2rem, 4vw, 2.7rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.06;
+
+    color:var(--pat-ink);
+}
+
+.alert-success__lede{
+    margin:16px auto 34px;
+    max-width:40ch;
+
+    font-size:1rem;
+    line-height:1.7;
+    color:var(--pat-body);
+
+    text-wrap:pretty;
+}
+
+.alert-success__rows{
+    margin:32px 0 0;
+    padding:22px 24px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fbfcfd;
+
+    text-align:left;
+}
+
+.alert-success__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:11px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .06);
+}
+
+.alert-success__row:last-child{
+    border-bottom:none;
+}
+
+.alert-success__row dt{
+    font-size:.86rem;
+    color:var(--pat-body);
+}
+
+.alert-success__row dd{
+    margin:0;
+
+    font-size:.86rem;
+    font-weight:650;
+    color:var(--pat-ink);
+
+    font-variant-numeric:tabular-nums;
+}
+
+.alert-success__steps{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+
+    margin:32px 0 0;
+    padding:0;
+
+    list-style:none;
+    text-align:left;
+    counter-reset:step;
+}
+
+.alert-success__steps li{
+    display:flex;
+    gap:14px;
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .06);
+}
+
+.alert-success__steps li:last-child{
+    border-bottom:none;
+}
+
+.alert-success__steps li::before{
+    counter-increment:step;
+    content:counter(step);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:22px;
+    height:22px;
+    flex-shrink:0;
+
+    border-radius:50%;
+    background:rgb(22 163 74 / .1);
+    color:#15803d;
+
+    font-family:var(--pat-mono);
+    font-size:.7rem;
+    font-weight:700;
+}
+
+.alert-success__step-text strong{
+    display:block;
+
+    font-size:.9rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.alert-success__step-text span{
+    display:block;
+    margin-top:3px;
+
+    font-size:.85rem;
+    line-height:1.6;
+    color:var(--pat-body);
+}
+
+.alert-success__actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    margin-top:34px;
+}
+
+
+/* ==========================================================
+   03 — Warning
+
+   Split: the alert on the left holds the problem, the
+   checklist on the right holds the fix.
+   ========================================================== */
+
+.alert-warning{
+    padding:88px 56px;
+
+    background:
+        linear-gradient(180deg, #fffdf7 0%, #fdf9ef 100%);
+}
+
+.alert-warning__inner{
+    max-width:1080px;
+    margin:0 auto;
+}
+
+.alert-warning__head{
+    max-width:640px;
+    margin-bottom:44px;
+}
+
+.alert-warning__kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    padding:5px 13px;
+
+    border:1px solid rgb(217 119 6 / .22);
+    border-radius:var(--pat-radius-pill);
+
+    background:rgb(245 158 11 / .1);
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#b45309;
+}
+
+.alert-warning__title{
+    margin:20px 0 0;
+
+    font-size:clamp(1.9rem, 3.6vw, 2.6rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.08;
+
+    color:#4a3417;
+}
+
+.alert-warning__lede{
+    margin:16px 0 0;
+    max-width:54ch;
+
+    font-size:1.02rem;
+    line-height:1.75;
+    color:#8a6d43;
+}
+
+.alert-warning__grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1.1fr) minmax(0, .9fr);
+    gap:32px;
+    align-items:start;
+}
+
+.alert-warning__col .ds-alert{
+    border-radius:var(--pat-radius-md);
+}
+
+.alert-warning__note{
+    margin:16px 0 0;
+
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    line-height:1.7;
+    color:#a1854f;
+}
+
+.alert-warning__panel{
+    padding:26px 28px;
+
+    border:1px solid rgb(74 52 23 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.alert-warning__panel-title{
+    margin:0 0 4px;
+
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:-.015em;
+    color:#4a3417;
+}
+
+.alert-warning__panel-note{
+    margin:0 0 20px;
+
+    font-size:.85rem;
+    color:#9c8560;
+}
+
+.alert-warning__checklist{
+    display:flex;
+    flex-direction:column;
+
+    margin:0;
+    padding:0;
+
+    list-style:none;
+}
+
+.alert-warning__task{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:13px 0;
+
+    border-bottom:1px solid rgb(74 52 23 / .07);
+
+    font-size:.92rem;
+    color:#4a3417;
+}
+
+.alert-warning__checklist li:last-child .alert-warning__task{
+    border-bottom:none;
+}
+
+.alert-warning__box{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+
+    border:1.5px solid rgb(74 52 23 / .22);
+    border-radius:6px;
+
+    font-size:.7rem;
+    color:transparent;
+}
+
+.alert-warning__task--done .alert-warning__box{
+    border-color:#16a34a;
+    background:#16a34a;
+    color:#fff;
+}
+
+.alert-warning__task--done{
+    color:#9c8560;
+    text-decoration:line-through;
+    text-decoration-color:rgb(156 133 96 / .4);
+}
+
+.alert-warning__panel-action{
+    margin-top:22px;
+}
+
+
+/* ==========================================================
+   04 — Maintenance
+
+   Dark status page. The alert is the only lit surface.
+   ========================================================== */
+
+.alert-maint{
+    padding:88px 56px;
+
+    background:
+        radial-gradient(60% 45% at 50% 0%, rgb(59 130 246 / .14), transparent 66%),
+        #0a0f1a;
+}
+
+.alert-maint__inner{
+    max-width:860px;
+    margin:0 auto;
+}
+
+.alert-maint__head{
+    padding-bottom:32px;
+    margin-bottom:32px;
+
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.alert-maint__pulse{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    padding:5px 13px 5px 10px;
+
+    border:1px solid rgb(245 158 11 / .3);
+    border-radius:var(--pat-radius-pill);
+
+    background:rgb(245 158 11 / .1);
+    color:#fbbf24;
+
+    font-size:.76rem;
+    font-weight:600;
+}
+
+.alert-maint__dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+    background:#f59e0b;
+    box-shadow:0 0 0 4px rgb(245 158 11 / .18);
+}
+
+.alert-maint__title{
+    margin:22px 0 0;
+
+    font-size:clamp(2rem, 3.8vw, 2.8rem);
+    font-weight:750;
+    letter-spacing:-.045em;
+    line-height:1.06;
+
+    color:#f8fafc;
+}
+
+.alert-maint__lede{
+    margin:16px 0 0;
+    max-width:56ch;
+
+    font-size:1rem;
+    line-height:1.75;
+    color:rgb(248 250 252 / .5);
+}
+
+.alert-maint__inner .ds-alert{
+    border-radius:var(--pat-radius-md);
+}
+
+.alert-maint__window{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:1px;
+
+    margin:28px 0 0;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .08);
+    border-radius:var(--pat-radius-sm);
+
+    background:rgb(255 255 255 / .08);
+}
+
+.alert-maint__window > div{
+    padding:16px 18px;
+    background:#0d1320;
+}
+
+.alert-maint__window dt{
+    font-size:.68rem;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .35);
+}
+
+.alert-maint__window dd{
+    margin:7px 0 0;
+
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+    font-weight:600;
+    color:rgb(248 250 252 / .85);
+}
+
+.alert-maint__services{
+    margin-top:36px;
+}
+
+.alert-maint__services-title{
+    margin:0 0 8px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .35);
+}
+
+.alert-maint__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    padding:16px 0;
+
+    border-bottom:1px solid rgb(255 255 255 / .07);
+
+    font-size:.95rem;
+    color:rgb(248 250 252 / .8);
+}
+
+.alert-maint__state{
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    font-weight:600;
+    letter-spacing:.04em;
+
+    padding:4px 10px;
+    border-radius:6px;
+}
+
+.alert-maint__state--success{
+    background:rgb(34 197 94 / .12);
+    color:#4ade80;
+}
+
+.alert-maint__state--warning{
+    background:rgb(245 158 11 / .14);
+    color:#fbbf24;
+}
+
+.alert-maint__state--neutral{
+    background:rgb(148 163 184 / .14);
+    color:#cbd5e1;
+}
+
+.alert-maint__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:32px;
+
+    font-size:.86rem;
+    color:rgb(248 250 252 / .38);
+}
+
+
+/* ==========================================================
+   05 — Promotion
+
+   A wide offer band. The alert carries the deadline
+   rather than a system state.
+   ========================================================== */
+
+.alert-promo{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+
+    padding:88px 56px;
+
+    background:
+        radial-gradient(50% 60% at 88% 15%, rgb(236 72 153 / .3), transparent 60%),
+        linear-gradient(120deg, #4c1d95 0%, #6d28d9 55%, #7e22ce 100%);
+}
+
+.alert-promo__rings{
+    position:absolute;
+    z-index:-1;
+    top:50%;
+    right:-140px;
+
+    width:520px;
+    height:520px;
+
+    transform:translateY(-50%);
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:50%;
+
+    box-shadow:
+        inset 0 0 0 60px rgb(255 255 255 / .04),
+        inset 0 0 0 120px rgb(255 255 255 / .03);
+
+    pointer-events:none;
+}
+
+.alert-promo__inner{
+    display:grid;
+    grid-template-columns:minmax(0, 1.15fr) minmax(0, .85fr);
+    gap:56px;
+    align-items:center;
+
+    max-width:1080px;
+    margin:0 auto;
+}
+
+.alert-promo__tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:6px 14px;
+
+    border:1px solid rgb(255 255 255 / .22);
+    border-radius:var(--pat-radius-pill);
+
+    background:rgb(255 255 255 / .12);
+    backdrop-filter:blur(10px);
+
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#fff;
+}
+
+.alert-promo__title{
+    margin:24px 0 0;
+    max-width:16ch;
+
+    font-size:clamp(2.2rem, 4.4vw, 3.2rem);
+    font-weight:850;
+    letter-spacing:-.05em;
+    line-height:1.02;
+
+    color:#fff;
+}
+
+.alert-promo__title span{
+    background:linear-gradient(100deg, #fbcfe8, #fde68a);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.alert-promo__lede{
+    margin:20px 0 0;
+    max-width:44ch;
+
+    font-size:1.05rem;
+    line-height:1.7;
+    color:rgb(255 255 255 / .68);
+}
+
+.alert-promo__perks{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    margin:28px 0 0;
+    padding:0;
+
+    list-style:none;
+}
+
+.alert-promo__perks li{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    font-size:.95rem;
+    color:rgb(255 255 255 / .82);
+}
+
+.alert-promo__perks li::before{
+    content:"✦";
+    color:#fde68a;
+    font-size:.8rem;
+}
+
+.alert-promo__panel{
+    padding:28px;
+
+    border:1px solid rgb(255 255 255 / .16);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .08);
+    backdrop-filter:blur(24px);
+
+    box-shadow:var(--pat-shadow-dark);
+}
+
+.alert-promo__panel .ds-alert{
+    border-radius:var(--pat-radius-sm);
+}
+
+.alert-promo__code{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+
+    margin-top:20px;
+    padding:14px 16px;
+
+    border:1px dashed rgb(255 255 255 / .3);
+    border-radius:var(--pat-radius-xs);
+
+    background:rgb(255 255 255 / .06);
+}
+
+.alert-promo__code strong{
+    font-family:var(--pat-mono);
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    color:#fff;
+}
+
+.alert-promo__code span{
+    font-size:.76rem;
+    color:rgb(255 255 255 / .55);
+}
+
+.alert-promo__action{
+    margin-top:20px;
+}
+
+.alert-promo__action .btn--primary{
+    --btn-bg:#fff;
+    --btn-color:#5b21b6;
+}
+
+.alert-promo__action .btn--primary:hover{
+    --btn-bg:#f5f3ff;
+}
+
+.alert-promo__small{
+    display:block;
+    margin-top:14px;
+
+    font-size:.76rem;
+    line-height:1.6;
+    text-align:center;
+    color:rgb(255 255 255 / .5);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .alert-announce__links{
+        display:none;
+    }
+
+    .alert-announce__nav{
+        padding:18px 24px;
+    }
+
+    .alert-announce__body{
+        padding:44px 24px 64px;
+    }
+
+    .alert-warning{
+        padding:64px 32px;
+    }
+
+    .alert-warning__grid{
+        grid-template-columns:minmax(0, 1fr);
+        gap:24px;
+    }
+
+    .alert-maint{
+        padding:64px 32px;
+    }
+
+    .alert-maint__window{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    .alert-promo{
+        padding:64px 32px;
+    }
+
+    .alert-promo__inner{
+        grid-template-columns:minmax(0, 1fr);
+        gap:36px;
+    }
+
+}
+
+@media (max-width:720px){
+
+    .alert-announce__bar{
+        padding:12px 20px;
+    }
+
+    .alert-announce__nav{
+        padding:16px 20px;
+    }
+
+    .alert-announce__body{
+        padding:36px 20px 56px;
+    }
+
+    .alert-success{
+        padding:56px 20px 64px;
+    }
+
+    .alert-warning{
+        padding:52px 20px;
+    }
+
+    .alert-warning__panel{
+        padding:22px;
+    }
+
+    .alert-maint{
+        padding:52px 20px;
+    }
+
+    .alert-maint__window{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .alert-maint__row{
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    .alert-promo{
+        padding:52px 20px;
+    }
+
+    .alert-promo__panel{
+        padding:22px;
+    }
+
+}

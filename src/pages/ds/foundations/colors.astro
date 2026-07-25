@@ -1,0 +1,109 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+import DoDont from "../../../ds/components/docs/DoDont/DoDont.astro";
+import ColorPalette from "../../../ds/components/docs/ColorPalette/ColorPalette.astro";
+import ColorCard from "../../../ds/components/docs/ColorCard/ColorCard.astro";
+
+const brandColors = [
+    {
+        name: "Primary",
+        value: "var(--primary)",
+        token: "--primary"
+    },
+    {
+        name: "Primary Dark",
+        value: "var(--primary-dark)",
+        token: "--primary-dark"
+    },
+    {
+        name: "Primary Light",
+        value: "var(--primary-light)",
+        token: "--primary-light",
+        textColor: "#111827"
+    }
+];
+---
+
+<DSLayout title="Colors">
+
+    <PageHeader
+        badge="Foundation"
+        title="Colors"
+        description="Color tokens define the visual language of the design system and ensure consistency across every interface."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Always use design tokens instead of hard-coded color values.
+    </Note>
+
+    <Divider label="Palette" />
+
+    <Section
+        title="Brand Colors"
+        description="Core colors that represent the En İyi Cihaz Design System."
+    >
+
+        <Preview title="Brand Palette">
+
+            <ColorPalette>
+
+                {
+                    brandColors.map((color) => (
+                        <ColorCard {...color} />
+                    ))
+                }
+
+            </ColorPalette>
+
+        </Preview>
+
+    </Section>
+
+    <Section
+        title="Usage Guidelines"
+        description="Use the correct color token for the appropriate purpose."
+    >
+
+        <DoDont>
+
+            <Fragment slot="do">
+
+                <ul>
+                    <li>Use <code>--primary</code> for primary actions.</li>
+                    <li>Use semantic tokens instead of raw HEX values.</li>
+                    <li>Keep contrast accessible.</li>
+                </ul>
+
+            </Fragment>
+
+            <Fragment slot="dont">
+
+                <ul>
+                    <li>Do not hard-code colors.</li>
+                    <li>Do not invent new blues for buttons.</li>
+                    <li>Avoid inconsistent branding.</li>
+                </ul>
+
+            </Fragment>
+
+        </DoDont>
+
+    </Section>
+
+</DSLayout>

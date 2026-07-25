@@ -1,0 +1,288 @@
+---
+import { Menu } from "lucide-astro";
+import Logo from "./molecules/Logo/Logo.astro";
+import HeaderActions from "./molecules/HeaderActions/HeaderActions.astro";
+import Navbar from "./organisms/Navbar/Navbar.astro";
+import MegaMenu from "./organisms/MegaMenu/MegaMenu.astro";
+import MobileMenu from "./organisms/MobileMenu/MobileMenu.astro";
+import { headerData } from "./header.data";
+import type { HeaderData } from "./header.types";
+
+interface Props {
+  data?: HeaderData;
+}
+
+const { data = headerData } = Astro.props;
+const currentPath = Astro.url?.pathname ?? "/";
+const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
+---
+
+<div class="hd" data-header>
+  <header class="hd-bar">
+    <div class="hd-bar__inner">
+      <Logo name={data.brand.name} tagline={data.brand.tagline} href={data.brand.href} />
+
+      <Navbar items={data.nav} currentPath={currentPath} />
+
+      <div class="hd-bar__actions">
+        <HeaderActions phone={data.phone} cta={data.cta} />
+        <button
+          type="button"
+          class="hd-bar__burger"
+          data-action="open-mobile"
+          aria-controls="hd-mobile"
+          aria-expanded="false"
+          aria-label="Menüyü aç"
+        >
+          <Menu size={24} aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+
+    {megaMenus.map((mega) => <MegaMenu data={mega} />)}
+  </header>
+
+  <MobileMenu brand={data.brand} items={data.nav} phone={data.phone} cta={data.cta} />
+</div>
+
+<style>
+  .hd {
+    /* Safe padding — 48px on large screens, kept on ultra-wide; smaller on
+       narrow screens. Single source shared by the bar and every mega panel. */
+    --hd-pad: var(--space-12);
+    --hd-bar-h: 76px;
+    --hd-bar-h-stuck: 64px;
+
+    /* Let the sticky bar's containing block be the page. */
+    display: contents;
+  }
+
+  .hd-bar {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    transition:
+      box-shadow var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  .hd.is-stuck .hd-bar {
+    box-shadow: var(--shadow-md);
+  }
+
+  .hd-bar__inner {
+    height: var(--hd-bar-h);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-6);
+    padding-inline: var(--hd-pad);
+    transition: height var(--transition-base);
+  }
+
+  .hd.is-stuck .hd-bar__inner {
+    height: var(--hd-bar-h-stuck);
+  }
+
+  /* Navigation — centered in the middle track */
+  .hd-bar :global(.hd-nav) {
+    justify-self: center;
+  }
+
+  .hd-bar__actions {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .hd-bar__burger {
+    display: none;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .hd-bar__burger:hover {
+    background: var(--color-surface);
+    border-color: var(--color-border-hover);
+  }
+  .hd-bar__burger:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* ---- Responsive padding (kept at 48px through ultra-wide) ---- */
+  @media (max-width: 1023px) {
+    .hd {
+      --hd-pad: var(--space-6);
+      --hd-bar-h: 68px;
+      --hd-bar-h-stuck: 60px;
+    }
+    .hd-bar :global(.hd-nav) {
+      display: none;
+    }
+    .hd-bar__burger {
+      display: inline-grid;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hd {
+      --hd-pad: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hd-bar,
+    .hd-bar__inner {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  function initHeader(root: HTMLElement): void {
+    if (root.dataset.ready === "true") return;
+    root.dataset.ready = "true";
+
+    const hoverCapable = window.matchMedia("(hover: hover)").matches;
+
+    /* ---------- Sticky ---------- */
+    let ticking = false;
+    const applyStuck = (): void => {
+      root.classList.toggle("is-stuck", window.scrollY > 8);
+      ticking = false;
+    };
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(applyStuck);
+        }
+      },
+      { passive: true }
+    );
+    applyStuck();
+
+    /* ---------- Mega menu ---------- */
+    const triggers = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-mega-trigger]")
+    );
+    const panels = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-mega-panel]")
+    );
+    let closeTimer: number | undefined;
+
+    const setMega = (id: string | null): void => {
+      triggers.forEach((t) =>
+        t.setAttribute("aria-expanded", t.dataset.megaTrigger === id ? "true" : "false")
+      );
+      panels.forEach((p) => p.toggleAttribute("data-open", p.dataset.megaPanel === id));
+    };
+    const closeMega = (): void => setMega(null);
+    const cancelClose = (): void => window.clearTimeout(closeTimer);
+    const scheduleClose = (): void => {
+      cancelClose();
+      closeTimer = window.setTimeout(closeMega, 140);
+    };
+
+    triggers.forEach((trigger) => {
+      const id = trigger.dataset.megaTrigger ?? null;
+      trigger.addEventListener("click", () => {
+        const open = trigger.getAttribute("aria-expanded") === "true";
+        setMega(open ? null : id);
+      });
+      if (hoverCapable) {
+        trigger.addEventListener("pointerenter", () => {
+          cancelClose();
+          setMega(id);
+        });
+        trigger.addEventListener("pointerleave", scheduleClose);
+      }
+    });
+
+    if (hoverCapable) {
+      panels.forEach((panel) => {
+        panel.addEventListener("pointerenter", cancelClose);
+        panel.addEventListener("pointerleave", scheduleClose);
+      });
+    }
+
+    root.addEventListener("focusout", (e) => {
+      const next = e.relatedTarget as Node | null;
+      if (!next || !root.contains(next)) closeMega();
+    });
+    document.addEventListener("click", (e) => {
+      if (!root.contains(e.target as Node)) closeMega();
+    });
+
+    /* ---------- Mobile drawer + accordion ---------- */
+    const mobile = root.querySelector<HTMLElement>("[data-mobile]");
+    let restoreFocus: HTMLElement | null = null;
+
+    const setMobile = (open: boolean): void => {
+      if (!mobile) return;
+      mobile.toggleAttribute("data-open", open);
+      mobile.setAttribute("aria-hidden", open ? "false" : "true");
+      document.body.style.overflow = open ? "hidden" : "";
+      root
+        .querySelectorAll<HTMLElement>('[data-action="open-mobile"]')
+        .forEach((b) => b.setAttribute("aria-expanded", String(open)));
+      if (open) {
+        restoreFocus = document.activeElement as HTMLElement | null;
+        mobile.querySelector<HTMLElement>("[data-action='close-mobile']")?.focus();
+      } else {
+        restoreFocus?.focus();
+      }
+    };
+
+    root.addEventListener("click", (e) => {
+      const el = (e.target as HTMLElement).closest<HTMLElement>("[data-action]");
+      if (!el) return;
+      const action = el.dataset.action;
+      if (action === "open-mobile") setMobile(true);
+      else if (action === "close-mobile") setMobile(false);
+      else if (action === "toggle-accordion") {
+        const group = el.closest<HTMLElement>("[data-accordion]");
+        if (group) {
+          const open = group.toggleAttribute("data-open");
+          el.setAttribute("aria-expanded", String(open));
+        }
+      }
+    });
+
+    /* ---------- Escape ---------- */
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      if (mobile?.hasAttribute("data-open")) {
+        setMobile(false);
+        return;
+      }
+      const openTrigger = triggers.find(
+        (t) => t.getAttribute("aria-expanded") === "true"
+      );
+      if (openTrigger) {
+        closeMega();
+        openTrigger.focus();
+      }
+    });
+  }
+
+  const boot = (): void => {
+    document
+      .querySelectorAll<HTMLElement>("[data-header]")
+      .forEach((el) => initHeader(el));
+  };
+
+  if (document.readyState !== "loading") boot();
+  else document.addEventListener("DOMContentLoaded", boot);
+</script>

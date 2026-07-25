@@ -1,0 +1,241 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Kbd/KbdPatterns.css";
+
+import Kbd from "../../../ds/components/ui/atoms/Kbd/Kbd.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    kioskSteps,
+    paletteShortcuts,
+    shortcutGroups,
+    docsSteps,
+    gameControls
+} from "../../../ds/patterns/Kbd/kbd.data";
+---
+
+<DSLayout title="Kbd">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Kbd</h1>
+
+        <p class="pl-head__lede">
+            Five places a key deserves its own visual weight — a clinic
+            kiosk, a command palette, a shortcut reference, documentation
+            prose and game controls.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic kiosk -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Clinic Kiosk</span>
+            <span class="pl-example__tags">Hearing care · Self check-in · Numeric entry</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kbd-kiosk">
+
+                <div class="kbd-kiosk__card">
+
+                    <span class="kbd-kiosk__kicker">Self check-in</span>
+                    <h2 class="kbd-kiosk__title">T.C. kimlik numaranızı girin</h2>
+
+                    <div class="kbd-kiosk__screen">
+                        <span class="kbd-kiosk__display">1 2 3 _ _ _ _ _ _ _</span>
+                    </div>
+
+                    {kioskSteps.map(step => (
+                        <div class="kbd-kiosk__row">
+                            <span class="kbd-kiosk__label">{step.label}</span>
+                            <span class="kbd-kiosk__keys">
+                                {step.keys.map(key => <Kbd size="lg">{key}</Kbd>)}
+                            </span>
+                        </div>
+                    ))}
+
+                    <div class="kbd-kiosk__action">
+                        <Button size="lg" fullWidth>Yardım çağır</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Command palette shortcuts -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Command Palette</span>
+            <span class="pl-example__tags">Shortcut list · Two-key combinations</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kbd-palette">
+
+                <div class="kbd-palette__inner">
+
+                    <h2 class="kbd-palette__title">Keyboard shortcuts</h2>
+                    <p class="kbd-palette__lede">The ones people ask about most.</p>
+
+                    {paletteShortcuts.map(shortcut => (
+                        <div class="kbd-palette__row">
+                            <span class="kbd-palette__action">{shortcut.action}</span>
+                            <span class="kbd-palette__keys">
+                                {shortcut.keys.map((key, i) => (
+                                    <>
+                                        {i > 0 && <span class="kbd-palette__plus">+</span>}
+                                        <Kbd size="sm">{key}</Kbd>
+                                    </>
+                                ))}
+                            </span>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Shortcut reference, dark app -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Shortcut Reference</span>
+            <span class="pl-example__tags">Dark · Grouped by category · Three-key combos</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kbd-ref">
+
+                <div class="kbd-ref__inner">
+
+                    <h2 class="kbd-ref__title">Keyboard shortcuts</h2>
+
+                    {shortcutGroups.map(group => (
+                        <div class="kbd-ref__group">
+                            <h3 class="kbd-ref__group-title">{group.title}</h3>
+                            {group.rows.map(row => (
+                                <div class="kbd-ref__row">
+                                    <span class="kbd-ref__action">{row.action}</span>
+                                    <span class="kbd-ref__keys">
+                                        {row.keys.map((key, i) => (
+                                            <>
+                                                {i > 0 && <span class="kbd-ref__plus">+</span>}
+                                                <Kbd size="sm">{key}</Kbd>
+                                            </>
+                                        ))}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Documentation prose -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Documentation Prose</span>
+            <span class="pl-example__tags">Inline keys inside sentences</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kbd-docs">
+
+                <div class="kbd-docs__inner">
+
+                    <span class="kbd-docs__crumb">Docs / Getting started</span>
+                    <h2 class="kbd-docs__title">Working in the editor</h2>
+
+                    {docsSteps.map(step => (
+                        <p class="kbd-docs__step">
+                            {step.text}
+                            <span class="kbd-docs__keys">
+                                {step.keys.map(key => <Kbd size="sm">{key}</Kbd>)}
+                            </span>
+                        </p>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Game controls -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Game Controls</span>
+            <span class="pl-example__tags">Dark · Multi-key move set · Large keys</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kbd-game">
+
+                <div class="kbd-game__inner">
+
+                    <span class="kbd-game__kicker">Controls</span>
+                    <h2 class="kbd-game__title">Keyboard reference</h2>
+
+                    {gameControls.map(control => (
+                        <div class="kbd-game__row">
+                            <span class="kbd-game__action">{control.action}</span>
+                            <span class="kbd-game__keys">
+                                {control.keys.map(key => <Kbd size="lg">{key}</Kbd>)}
+                            </span>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

@@ -1,0 +1,282 @@
+/* ==========================================================
+   TreeView — five patterns
+
+   01  trv-records      Patient records folders (eniyicihaz.com)
+   02  trv-code         Codebase file explorer, dark, no icons
+   03  trv-permissions  Permissions tree, disabled branch
+   04  trv-category     Category navigation, no lines
+   05  trv-env          Deployment environments, dark, nested
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Patient records folders
+   ========================================================== */
+
+.trv-records{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.trv-records__card{
+    width:100%;
+    max-width:420px;
+    padding:28px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.trv-records__title{
+    margin-bottom:16px;
+
+    font-size:.95rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.trv-records .ds-treeview__node{
+    color:#123b36;
+}
+
+.trv-records .ds-treeview__node:hover{
+    background:rgb(15 118 110 / .06);
+}
+
+.trv-records .ds-treeview__list--nested{
+    border-left-color:rgb(18 59 54 / .14);
+}
+
+
+/* ==========================================================
+   02 — Codebase file explorer, dark, no icons
+   ========================================================== */
+
+.trv-code{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#0b1220;
+}
+
+.trv-code__card{
+    width:100%;
+    max-width:380px;
+    padding:24px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.trv-code__crumb{
+    display:block;
+    margin-bottom:14px;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.trv-code .ds-treeview__node{
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    color:rgb(255 255 255 / .75);
+}
+
+.trv-code .ds-treeview__node:hover{
+    background:rgb(255 255 255 / .06);
+}
+
+.trv-code .ds-treeview__item--selected > .ds-treeview__node{
+    background:#2563eb;
+    color:#fff;
+}
+
+.trv-code .ds-treeview__list--nested{
+    border-left-color:rgb(255 255 255 / .12);
+}
+
+.trv-code .ds-treeview__toggle{
+    color:rgb(255 255 255 / .4);
+}
+
+
+/* ==========================================================
+   03 — Permissions tree, disabled branch
+   ========================================================== */
+
+.trv-permissions{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.trv-permissions__card{
+    width:100%;
+    max-width:400px;
+    padding:28px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.trv-permissions__title{
+    margin-bottom:16px;
+
+    font-size:.95rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.trv-permissions .ds-treeview__item--selected > .ds-treeview__node{
+    background:#16a34a;
+}
+
+.trv-permissions__note{
+    margin-top:16px;
+    padding-top:14px;
+
+    border-top:1px solid var(--pat-line);
+
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Category navigation, no lines
+   ========================================================== */
+
+.trv-category{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#faf8f4;
+}
+
+.trv-category__card{
+    width:100%;
+    max-width:360px;
+    padding:28px;
+
+    border:1px solid rgb(28 24 18 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.trv-category__title{
+    margin-bottom:16px;
+
+    font-family:var(--pat-serif);
+    font-size:1.05rem;
+    font-weight:600;
+    color:#1c1812;
+}
+
+.trv-category .ds-treeview__node{
+    color:#1c1812;
+}
+
+.trv-category .ds-treeview__node:hover{
+    background:rgb(28 24 18 / .05);
+}
+
+.trv-category .ds-treeview__item--selected > .ds-treeview__node{
+    background:#c2703d;
+}
+
+
+/* ==========================================================
+   05 — Deployment environments, dark, nested
+   ========================================================== */
+
+.trv-env{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.trv-env__card{
+    width:100%;
+    max-width:400px;
+    padding:24px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.trv-env__crumb{
+    display:block;
+    margin-bottom:14px;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.trv-env .ds-treeview__node{
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    color:rgb(255 255 255 / .75);
+}
+
+.trv-env .ds-treeview__node:hover{
+    background:rgb(255 255 255 / .06);
+}
+
+.trv-env .ds-treeview__item--selected > .ds-treeview__node{
+    background:#fb923c;
+    color:#0b1220;
+}
+
+.trv-env .ds-treeview__list--nested{
+    border-left-color:rgb(255 255 255 / .12);
+}
+
+.trv-env .ds-treeview__toggle{
+    color:rgb(255 255 255 / .4);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .trv-records{ padding:44px 16px 56px; }
+    .trv-records__card{ padding:20px; }
+
+    .trv-code{ padding:44px 16px 56px; }
+    .trv-code__card{ padding:18px; }
+
+    .trv-permissions{ padding:44px 16px 56px; }
+    .trv-permissions__card{ padding:20px; }
+
+    .trv-category{ padding:44px 16px 56px; }
+    .trv-category__card{ padding:20px; }
+
+    .trv-env{ padding:44px 16px 56px; }
+    .trv-env__card{ padding:18px; }
+
+}

@@ -1,0 +1,398 @@
+/* ==========================================================
+   Menu — five patterns
+
+   01  mnu-portal    Patient portal sidebar (eniyicihaz.com)
+   02  mnu-settings  Account settings, dark, disabled item
+   03  mnu-docs      Documentation top nav, horizontal
+   04  mnu-context   File context menu, destructive last item
+   05  mnu-tabbar    Mobile bottom tab bar, horizontal
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Patient portal sidebar
+   ========================================================== */
+
+.mnu-portal{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#f6fbfa;
+}
+
+.mnu-portal__frame{
+    display:flex;
+    width:100%;
+    max-width:640px;
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .08);
+}
+
+.mnu-portal__side{
+    width:220px;
+    flex-shrink:0;
+
+    padding:20px 14px;
+    border-right:1px solid rgb(18 59 54 / .08);
+}
+
+.mnu-portal__brand{
+    padding:0 10px 16px;
+
+    font-size:.92rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.mnu-portal .ds-menu{
+    border:none;
+    padding:0;
+    background:transparent;
+}
+
+.mnu-portal .ds-menu__item--active .ds-menu__link{
+    background:rgb(15 118 110 / .1);
+    color:#0f766e;
+}
+
+.mnu-portal .ds-menu__link:hover{
+    background:rgb(15 118 110 / .06);
+}
+
+.mnu-portal__main{
+    flex:1;
+    padding:32px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:.88rem;
+    color:#6b8b86;
+    text-align:center;
+}
+
+
+/* ==========================================================
+   02 — Account settings, dark, disabled billing
+   ========================================================== */
+
+.mnu-settings{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.mnu-settings__frame{
+    width:100%;
+    max-width:340px;
+}
+
+.mnu-settings__title{
+    padding:0 4px 14px;
+
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgb(255 255 255 / .4);
+}
+
+.mnu-settings .ds-menu{
+    background:rgb(255 255 255 / .03);
+    border-color:rgb(255 255 255 / .1);
+}
+
+.mnu-settings .ds-menu__link{
+    color:rgb(255 255 255 / .75);
+}
+
+.mnu-settings .ds-menu__link:hover{
+    background:rgb(255 255 255 / .06);
+}
+
+.mnu-settings .ds-menu__item--active .ds-menu__link{
+    background:rgb(56 189 248 / .14);
+    color:#38bdf8;
+}
+
+.mnu-settings .ds-menu__item--disabled .ds-menu__link{
+    color:rgb(255 255 255 / .3);
+}
+
+.mnu-settings .ds-menu__separator{
+    background:rgb(255 255 255 / .1);
+}
+
+.mnu-settings__hint{
+    margin-top:12px;
+    padding:0 4px;
+
+    font-size:.76rem;
+    color:rgb(255 255 255 / .3);
+}
+
+
+/* ==========================================================
+   03 — Documentation top nav, horizontal
+   ========================================================== */
+
+.mnu-docs{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#fbfbfa;
+}
+
+.mnu-docs__frame{
+    width:100%;
+    max-width:640px;
+}
+
+.mnu-docs__crumb{
+    margin-bottom:14px;
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.mnu-docs .ds-menu{
+    padding:.35rem;
+}
+
+.mnu-docs .ds-menu__link{
+    padding:.6rem .95rem;
+    font-size:.88rem;
+    font-weight:600;
+}
+
+.mnu-docs .ds-menu__item--active .ds-menu__link{
+    background:var(--pat-ink);
+    color:#fff;
+}
+
+.mnu-docs__panel{
+    margin-top:1px;
+    padding:26px 24px;
+
+    border:1px solid var(--pat-line);
+    border-top:none;
+    border-radius:0 0 var(--pat-radius-lg) var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.mnu-docs__panel h3{
+    margin:0 0 8px;
+
+    font-size:1rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.mnu-docs__panel p{
+    margin:0;
+
+    font-size:.88rem;
+    line-height:1.6;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — File context menu
+   ========================================================== */
+
+.mnu-context{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 88px;
+    background:
+        radial-gradient(50% 50% at 50% 0%, rgb(15 23 42 / .05), transparent 65%),
+        #f1f5f9;
+}
+
+.mnu-context__stage{
+    position:relative;
+    width:100%;
+    max-width:520px;
+}
+
+.mnu-context__card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:16px 18px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.mnu-context__icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:40px;
+    height:40px;
+    flex-shrink:0;
+
+    border-radius:var(--pat-radius-sm);
+    background:rgb(37 99 235 / .1);
+
+    font-size:1.1rem;
+}
+
+.mnu-context__name{
+    font-size:.9rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.mnu-context__meta{
+    margin-top:2px;
+
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.mnu-context__popover{
+    position:absolute;
+    top:calc(100% + 8px);
+    right:12px;
+
+    width:200px;
+    z-index:2;
+}
+
+.mnu-context .ds-menu{
+    box-shadow:var(--pat-shadow-lg);
+}
+
+.mnu-context .ds-menu__link{
+    font-size:.86rem;
+}
+
+.mnu-context .ds-menu__item:last-child .ds-menu__link{
+    color:#dc2626;
+}
+
+.mnu-context .ds-menu__item:last-child .ds-menu__link:hover{
+    background:rgb(220 38 38 / .08);
+}
+
+
+/* ==========================================================
+   05 — Mobile bottom tab bar
+   ========================================================== */
+
+.mnu-tabbar{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#fafaf9;
+}
+
+.mnu-tabbar__phone{
+    width:100%;
+    max-width:320px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:24px;
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-lg);
+}
+
+.mnu-tabbar__screen{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    height:180px;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+    background:
+        radial-gradient(60% 60% at 50% 30%, rgb(37 99 235 / .06), transparent 70%);
+}
+
+.mnu-tabbar .ds-menu{
+    border:none;
+    border-top:1px solid var(--pat-line);
+    border-radius:0;
+
+    padding:6px 4px;
+}
+
+.mnu-tabbar .ds-menu__item{
+    flex:1;
+}
+
+.mnu-tabbar .ds-menu__link{
+    flex-direction:column;
+    gap:2px;
+
+    padding:.5rem .25rem;
+    border-radius:.6rem;
+
+    font-size:.68rem;
+    text-align:center;
+}
+
+.mnu-tabbar .ds-menu__icon{
+    width:auto;
+    height:auto;
+
+    font-size:1.15rem;
+}
+
+.mnu-tabbar .ds-menu__item--active .ds-menu__link{
+    background:transparent;
+    color:#2563eb;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .mnu-portal{ padding:36px 16px 48px; }
+    .mnu-portal__frame{ flex-direction:column; }
+    .mnu-portal__side{
+        width:auto;
+        border-right:none;
+        border-bottom:1px solid rgb(18 59 54 / .08);
+    }
+    .mnu-portal .ds-menu{ flex-direction:row; flex-wrap:wrap; }
+
+    .mnu-settings{ padding:44px 16px 56px; }
+
+    .mnu-docs{ padding:36px 16px 48px; }
+    .mnu-docs .ds-menu{ flex-wrap:wrap; }
+
+    .mnu-context{ padding:44px 16px 64px; }
+    .mnu-context__popover{ right:0; left:0; width:auto; }
+
+    .mnu-tabbar{ padding:36px 16px 48px; }
+
+}

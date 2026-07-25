@@ -1,0 +1,1052 @@
+/* ==========================================================
+   Rating — five patterns
+
+   01  rate-clinic   Audiologist profile (eniyicihaz.com)
+   02  rate-guide    Restaurant guide, editorial cards
+   03  rate-write    Write-a-review form, criteria rows
+   04  rate-course   Course feedback report
+   05  rate-support  Support team scorecard, dark
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Audiologist profile
+
+   Trust page. A profile header with the aggregate score,
+   a histogram, then verified reviews.
+   ========================================================== */
+
+.rate-clinic{
+    padding:72px 56px 88px;
+
+    background:
+        radial-gradient(55% 40% at 50% 0%, rgb(13 148 136 / .1), transparent 64%),
+        #f6fbfa;
+}
+
+.rate-clinic__inner{
+    max-width:860px;
+    margin:0 auto;
+}
+
+.rate-clinic__profile{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 280px;
+    gap:40px;
+    align-items:center;
+
+    padding:30px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.rate-clinic__who{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.rate-clinic__name{
+    font-size:1.25rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#123b36;
+}
+
+.rate-clinic__role{
+    margin-top:4px;
+
+    font-size:.88rem;
+    color:#4a6b66;
+}
+
+.rate-clinic__branch{
+    display:inline-block;
+    margin-top:10px;
+    padding:4px 11px;
+
+    border-radius:var(--pat-radius-pill);
+    background:rgb(13 148 136 / .1);
+
+    font-size:.78rem;
+    font-weight:600;
+    color:#0f766e;
+}
+
+.rate-clinic__score{
+    text-align:right;
+}
+
+.rate-clinic__score-value{
+    font-size:2.8rem;
+    font-weight:800;
+    letter-spacing:-.05em;
+    line-height:1;
+
+    color:#123b36;
+    font-variant-numeric:tabular-nums;
+}
+
+.rate-clinic__score .ds-rating{
+    justify-content:flex-end;
+    margin-top:10px;
+}
+
+.rate-clinic__score .ds-rating__star--filled{
+    color:#f59e0b;
+}
+
+.rate-clinic__score .ds-rating__star{
+    color:rgb(18 59 54 / .16);
+}
+
+.rate-clinic__count{
+    display:block;
+    margin-top:8px;
+
+    font-size:.82rem;
+    color:#6b8b86;
+}
+
+.rate-clinic__histogram{
+    margin-top:26px;
+    padding:22px 24px;
+
+    border:1px solid rgb(18 59 54 / .09);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.rate-clinic__bar{
+    display:grid;
+    grid-template-columns:32px minmax(0, 1fr) 44px;
+    gap:14px;
+    align-items:center;
+
+    padding:5px 0;
+}
+
+.rate-clinic__bar-stars{
+    font-size:.8rem;
+    font-weight:600;
+    color:#4a6b66;
+}
+
+.rate-clinic__bar-track{
+    height:7px;
+
+    overflow:hidden;
+    border-radius:var(--pat-radius-pill);
+    background:rgb(18 59 54 / .08);
+}
+
+.rate-clinic__bar-fill{
+    display:block;
+    height:100%;
+
+    border-radius:var(--pat-radius-pill);
+    background:#f59e0b;
+}
+
+.rate-clinic__bar-percent{
+    text-align:right;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:#6b8b86;
+}
+
+.rate-clinic__reviews{
+    margin-top:26px;
+}
+
+.rate-clinic__review{
+    padding:24px 26px;
+    margin-bottom:14px;
+
+    border:1px solid rgb(18 59 54 / .09);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.rate-clinic__review-head{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    flex-wrap:wrap;
+}
+
+.rate-clinic__reviewer{
+    font-size:.94rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.rate-clinic__review-date{
+    font-size:.8rem;
+    color:#8aa8a3;
+}
+
+.rate-clinic__review .ds-rating{
+    margin-left:auto;
+}
+
+.rate-clinic__review .ds-rating__star--filled{
+    color:#f59e0b;
+}
+
+.rate-clinic__review .ds-rating__star{
+    color:rgb(18 59 54 / .16);
+}
+
+.rate-clinic__verified{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    margin-top:12px;
+
+    font-size:.78rem;
+    font-weight:600;
+    color:#0f766e;
+}
+
+.rate-clinic__verified::before{
+    content:"✓";
+    font-size:.72rem;
+}
+
+.rate-clinic__review-body{
+    margin:12px 0 0;
+    max-width:62ch;
+
+    font-size:.95rem;
+    line-height:1.75;
+    color:#3f5f5a;
+}
+
+
+/* ==========================================================
+   02 — Restaurant guide
+
+   Editorial listing. Rating sits inline with price and
+   cuisine, under a coloured plate.
+   ========================================================== */
+
+.rate-guide{
+    padding:80px 56px 88px;
+    background:#faf8f4;
+}
+
+.rate-guide__inner{
+    max-width:1080px;
+    margin:0 auto;
+}
+
+.rate-guide__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+
+    padding-bottom:22px;
+    margin-bottom:36px;
+
+    border-bottom:2px solid #1c1812;
+}
+
+.rate-guide__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.rate-guide__title{
+    margin:12px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(2rem, 4vw, 2.9rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    line-height:1.08;
+
+    color:#1c1812;
+}
+
+.rate-guide__meta{
+    font-size:.85rem;
+    color:#8a7f6d;
+}
+
+.rate-guide__grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:26px;
+}
+
+.rate-guide__plate{
+    aspect-ratio:5 / 3;
+    margin-bottom:16px;
+
+    border-radius:var(--pat-radius-md);
+}
+
+.rate-guide__plate--clay{
+    background:linear-gradient(150deg, #ddc4b8, #bf9c8c);
+}
+
+.rate-guide__plate--sand{
+    background:linear-gradient(150deg, #e4d8c4, #cbb99c);
+}
+
+.rate-guide__plate--moss{
+    background:linear-gradient(150deg, #c6cdb9, #97a186);
+}
+
+.rate-guide__name{
+    font-family:var(--pat-serif);
+    font-size:1.3rem;
+    font-weight:400;
+    letter-spacing:-.02em;
+    color:#1c1812;
+}
+
+.rate-guide__cuisine{
+    margin-top:5px;
+
+    font-size:.86rem;
+    color:#8a7f6d;
+}
+
+.rate-guide__rating{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+
+    margin-top:14px;
+    padding-top:14px;
+
+    border-top:1px solid rgb(28 24 18 / .12);
+}
+
+.rate-guide__rating .ds-rating__star--filled{
+    color:#b4794a;
+}
+
+.rate-guide__rating .ds-rating__star{
+    color:rgb(28 24 18 / .16);
+}
+
+.rate-guide__count{
+    font-size:.8rem;
+    color:#a3937a;
+}
+
+.rate-guide__price{
+    margin-left:auto;
+
+    font-size:.86rem;
+    font-weight:700;
+    letter-spacing:.04em;
+    color:#1c1812;
+}
+
+.rate-guide__note{
+    margin:12px 0 0;
+
+    font-size:.84rem;
+    line-height:1.6;
+    color:#8a7f6d;
+}
+
+
+/* ==========================================================
+   03 — Write a review
+
+   Interactive form. Large clickable stars per criterion
+   with a hint underneath each row.
+   ========================================================== */
+
+.rate-write{
+    display:flex;
+    justify-content:center;
+
+    padding:72px 32px 88px;
+    background:#f7f8fa;
+}
+
+.rate-write__card{
+    width:100%;
+    max-width:560px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.rate-write__product{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:22px 26px;
+
+    border-bottom:1px solid var(--pat-line);
+    background:#fbfcfd;
+}
+
+.rate-write__thumb{
+    width:54px;
+    height:54px;
+    flex-shrink:0;
+
+    border-radius:var(--pat-radius-xs);
+    background:linear-gradient(150deg, #52596a, #22262f);
+}
+
+.rate-write__product-name{
+    font-size:.96rem;
+    font-weight:650;
+    letter-spacing:-.015em;
+    color:var(--pat-ink);
+}
+
+.rate-write__product-detail{
+    margin-top:3px;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.rate-write__body{
+    padding:26px;
+}
+
+.rate-write__title{
+    margin:0 0 6px;
+
+    font-size:1.2rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.rate-write__lede{
+    margin:0 0 24px;
+
+    font-size:.9rem;
+    line-height:1.65;
+    color:var(--pat-body);
+}
+
+.rate-write__row{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:20px;
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .06);
+}
+
+.rate-write__row:last-of-type{
+    border-bottom:none;
+}
+
+.rate-write__label{
+    font-size:.94rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.rate-write__hint{
+    margin-top:4px;
+
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+.rate-write__row .ds-rating__star{
+    color:rgb(15 23 42 / .16);
+
+    transition:transform .15s ease, color .15s ease;
+}
+
+.rate-write__row .ds-rating__star--filled{
+    color:#f59e0b;
+}
+
+.rate-write__row .ds-rating__star:hover:not(:disabled){
+    transform:scale(1.15);
+    color:#f59e0b;
+}
+
+.rate-write__row .ds-rating__star:focus-visible{
+    outline:2px solid var(--pat-blue);
+    outline-offset:2px;
+    border-radius:4px;
+}
+
+.rate-write__overall{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+    padding:18px 20px;
+
+    border-radius:var(--pat-radius-sm);
+    background:#fbfcfd;
+}
+
+.rate-write__overall-label{
+    font-size:.9rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.rate-write__overall-value{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+}
+
+.rate-write__overall-value strong{
+    font-size:1.6rem;
+    font-weight:800;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.rate-write__overall-value span{
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.rate-write__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    padding:20px 26px;
+
+    border-top:1px solid var(--pat-line);
+    background:#fbfcfd;
+}
+
+.rate-write__foot-note{
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Course feedback
+
+   A report, not a form. Big aggregate beside a serif
+   pull quote, criteria listed below.
+   ========================================================== */
+
+.rate-course{
+    padding:80px 56px 88px;
+
+    background:
+        radial-gradient(50% 40% at 85% 0%, rgb(124 58 237 / .12), transparent 62%),
+        #fbfaff;
+}
+
+.rate-course__inner{
+    max-width:960px;
+    margin:0 auto;
+}
+
+.rate-course__head{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:40px;
+    align-items:end;
+
+    padding-bottom:28px;
+    margin-bottom:32px;
+
+    border-bottom:1px solid rgb(30 27 58 / .12);
+}
+
+.rate-course__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#8b85ad;
+}
+
+.rate-course__title{
+    margin:14px 0 0;
+    max-width:20ch;
+
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight:800;
+    letter-spacing:-.04em;
+    line-height:1.1;
+
+    color:#1e1b3a;
+}
+
+.rate-course__cohort{
+    margin-top:10px;
+
+    font-size:.88rem;
+    color:#585280;
+}
+
+.rate-course__aggregate{
+    text-align:right;
+}
+
+.rate-course__aggregate-value{
+    font-size:3rem;
+    font-weight:800;
+    letter-spacing:-.05em;
+    line-height:1;
+
+    color:#1e1b3a;
+    font-variant-numeric:tabular-nums;
+}
+
+.rate-course__aggregate .ds-rating{
+    justify-content:flex-end;
+    margin-top:10px;
+}
+
+.rate-course__aggregate .ds-rating__star--filled{
+    color:#7c3aed;
+}
+
+.rate-course__aggregate .ds-rating__star{
+    color:rgb(30 27 58 / .14);
+}
+
+.rate-course__responses{
+    display:block;
+    margin-top:8px;
+
+    font-size:.82rem;
+    color:#8b85ad;
+}
+
+.rate-course__body{
+    display:grid;
+    grid-template-columns:minmax(0, 1.1fr) minmax(0, .9fr);
+    gap:40px;
+    align-items:start;
+}
+
+.rate-course__criterion{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto auto;
+    gap:16px;
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid rgb(30 27 58 / .08);
+}
+
+.rate-course__criterion:last-child{
+    border-bottom:none;
+}
+
+.rate-course__criterion-label{
+    font-size:.94rem;
+    font-weight:600;
+    color:#1e1b3a;
+}
+
+.rate-course__criterion .ds-rating__star--filled{
+    color:#7c3aed;
+}
+
+.rate-course__criterion .ds-rating__star{
+    color:rgb(30 27 58 / .14);
+}
+
+.rate-course__figure{
+    min-width:34px;
+    text-align:right;
+
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+    font-weight:700;
+    color:#1e1b3a;
+}
+
+.rate-course__quote{
+    padding:28px;
+
+    border:1px solid rgb(30 27 58 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.rate-course__quote p{
+    margin:0;
+
+    font-family:var(--pat-serif);
+    font-size:1.15rem;
+    font-style:italic;
+    line-height:1.6;
+    color:#1e1b3a;
+}
+
+.rate-course__quote-by{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:22px;
+    padding-top:18px;
+
+    border-top:1px solid rgb(30 27 58 / .09);
+}
+
+.rate-course__quote-name{
+    font-size:.88rem;
+    font-weight:650;
+    color:#1e1b3a;
+}
+
+.rate-course__quote-role{
+    margin-top:2px;
+
+    font-size:.78rem;
+    color:#8b85ad;
+}
+
+
+/* ==========================================================
+   05 — Support scorecard
+
+   Dark internal tool. Agents ranked, rating as one
+   column among figures.
+   ========================================================== */
+
+.rate-support{
+    padding:72px 56px 88px;
+
+    background:
+        radial-gradient(50% 40% at 15% 0%, rgb(56 189 248 / .12), transparent 62%),
+        #0a0f19;
+}
+
+.rate-support__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.rate-support__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+
+    padding-bottom:24px;
+    margin-bottom:24px;
+
+    border-bottom:1px solid rgb(255 255 255 / .1);
+}
+
+.rate-support__title{
+    margin:0;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#f8fafc;
+}
+
+.rate-support__lede{
+    margin:10px 0 0;
+    max-width:48ch;
+
+    font-size:.95rem;
+    line-height:1.65;
+    color:rgb(248 250 252 / .45);
+}
+
+.rate-support__summary{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+}
+
+.rate-support__summary dt{
+    font-size:.66rem;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .3);
+}
+
+.rate-support__summary dd{
+    margin:6px 0 0;
+
+    font-size:1.2rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#f8fafc;
+
+    font-variant-numeric:tabular-nums;
+}
+
+.rate-support__table{
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .09);
+    border-radius:var(--pat-radius-sm);
+}
+
+.rate-support__row{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 130px 70px 70px;
+    gap:20px;
+    align-items:center;
+
+    padding:15px 20px;
+
+    border-bottom:1px solid rgb(255 255 255 / .06);
+    background:rgb(255 255 255 / .02);
+}
+
+.rate-support__row:last-child{
+    border-bottom:none;
+}
+
+.rate-support__row--head{
+    background:rgb(255 255 255 / .05);
+
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgb(248 250 252 / .35);
+}
+
+.rate-support__agent{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.rate-support__agent-name{
+    font-size:.92rem;
+    font-weight:650;
+    color:#f8fafc;
+}
+
+.rate-support__agent-handled{
+    margin-top:2px;
+
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    color:rgb(248 250 252 / .35);
+}
+
+.rate-support__row .ds-rating__star--filled{
+    color:#fbbf24;
+}
+
+.rate-support__row .ds-rating__star{
+    color:rgb(255 255 255 / .14);
+}
+
+.rate-support__figure{
+    text-align:right;
+
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+    font-weight:600;
+    color:rgb(248 250 252 / .75);
+}
+
+.rate-support__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+
+    font-size:.83rem;
+    color:rgb(248 250 252 / .32);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .rate-clinic{
+        padding:56px 32px 64px;
+    }
+
+    .rate-clinic__profile{
+        grid-template-columns:minmax(0, 1fr);
+        gap:24px;
+    }
+
+    .rate-clinic__score{
+        text-align:left;
+    }
+
+    .rate-clinic__score .ds-rating{
+        justify-content:flex-start;
+    }
+
+    .rate-guide{
+        padding:64px 32px;
+    }
+
+    .rate-guide__grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    .rate-course{
+        padding:64px 32px;
+    }
+
+    .rate-course__head{
+        grid-template-columns:minmax(0, 1fr);
+        gap:24px;
+        align-items:start;
+    }
+
+    .rate-course__aggregate{
+        text-align:left;
+    }
+
+    .rate-course__aggregate .ds-rating{
+        justify-content:flex-start;
+    }
+
+    .rate-course__body{
+        grid-template-columns:minmax(0, 1fr);
+        gap:28px;
+    }
+
+    .rate-support{
+        padding:56px 32px 64px;
+    }
+
+}
+
+@media (max-width:720px){
+
+    .rate-clinic{
+        padding:44px 20px 56px;
+    }
+
+    .rate-clinic__profile,
+    .rate-clinic__review{
+        padding:22px;
+    }
+
+    .rate-clinic__review .ds-rating{
+        margin-left:0;
+        width:100%;
+    }
+
+    .rate-guide{
+        padding:48px 20px;
+    }
+
+    .rate-guide__grid{
+        grid-template-columns:minmax(0, 1fr);
+        gap:32px;
+    }
+
+    .rate-write{
+        padding:48px 16px 56px;
+    }
+
+    .rate-write__product,
+    .rate-write__body,
+    .rate-write__foot{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .rate-write__row{
+        grid-template-columns:minmax(0, 1fr);
+        gap:10px;
+    }
+
+    .rate-write__foot .btn{
+        width:100%;
+    }
+
+    .rate-course{
+        padding:48px 20px;
+    }
+
+    .rate-course__criterion{
+        grid-template-columns:minmax(0, 1fr) auto;
+        gap:10px;
+    }
+
+    .rate-course__figure{
+        grid-column:2;
+        grid-row:1;
+    }
+
+    .rate-support{
+        padding:44px 20px 56px;
+    }
+
+    .rate-support__row{
+        grid-template-columns:minmax(0, 1fr) 60px;
+        gap:12px;
+        padding:14px 16px;
+    }
+
+    .rate-support__row .ds-rating,
+    .rate-support__row--head span:nth-child(2){
+        display:none;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .rate-write__row .ds-rating__star{
+        transition:none;
+    }
+
+    .rate-write__row .ds-rating__star:hover:not(:disabled){
+        transform:none;
+    }
+
+}

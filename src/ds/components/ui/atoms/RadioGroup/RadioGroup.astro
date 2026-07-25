@@ -1,0 +1,40 @@
+---
+import "./RadioGroup.css";
+import Radio from "../Radio/Radio.astro";
+import type { RadioGroupProps } from "./RadioGroup.types";
+
+const {
+  name,
+  options = [],
+  value,
+  direction = "vertical",
+  disabled = false,
+  class: className = "",
+} = Astro.props as RadioGroupProps;
+
+const classes = [
+  "ds-radio-group",
+  `ds-radio-group--${direction}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div
+  class={classes}
+  role="radiogroup"
+>
+  {
+    options.map((option) => (
+      <Radio
+        name={name}
+        value={option.value}
+        checked={option.value === value}
+        disabled={disabled || option.disabled}
+      >
+        {option.label}
+      </Radio>
+    ))
+  }
+</div>

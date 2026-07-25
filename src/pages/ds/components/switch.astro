@@ -1,0 +1,390 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Switch/SwitchPatterns.css";
+
+import Switch from "../../../ds/components/ui/atoms/Switch/Switch.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    homeRooms,
+    homeScenes,
+    pricingTiers,
+    privacyGroups,
+    flags,
+    cabinControls,
+    cabinJourney
+} from "../../../ds/patterns/Switch/switch.data";
+---
+
+<DSLayout title="Switch">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Switch</h1>
+
+        <p class="pl-head__lede">
+            Five products that turn things on and off — a smart home,
+            a pricing page, a privacy centre, a feature-flag console
+            and a first-class cabin.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Smart home
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Smart Home</span>
+            <span class="pl-example__tags">Dark tiles · Rooms light up · Scene rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="switch-home">
+
+                <div class="switch-home__inner">
+
+                    <header class="switch-home__head">
+                        <div>
+                            <span class="switch-home__greeting">Good evening, Amara</span>
+                            <h2 class="switch-home__title">Wijnhaven apartment</h2>
+                        </div>
+                        <div class="switch-home__weather">
+                            <div class="switch-home__temp">19°</div>
+                            <span>Light rain · Rotterdam</span>
+                        </div>
+                    </header>
+
+                    <div class="switch-home__rooms">
+                        {homeRooms.map(room => (
+                            <article
+                                class:list={[
+                                    "switch-home__room",
+                                    room.on && "switch-home__room--on"
+                                ]}
+                            >
+                                <div>
+                                    <div class="switch-home__room-name">{room.name}</div>
+                                    <div class="switch-home__room-detail">{room.detail}</div>
+                                </div>
+                                <div class="switch-home__room-foot">
+                                    <span class="switch-home__state">
+                                        {room.on ? "On" : "Off"}
+                                    </span>
+                                    <Switch checked={room.on} />
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+
+                    <div class="switch-home__scenes">
+                        {homeScenes.map(scene => (
+                            <div class="switch-home__scene">
+                                <span class="switch-home__scene-label">{scene.label}</span>
+                                <Switch checked={scene.on} />
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Pricing toggle
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Pricing Toggle</span>
+            <span class="pl-example__tags">Billing switch · Two tiers · Struck prices</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="switch-price">
+
+                <div class="switch-price__inner">
+
+                    <header class="switch-price__head">
+                        <h2 class="switch-price__title">Pay yearly, keep two months</h2>
+                        <p class="switch-price__lede">
+                            Same product either way. Yearly billing is simply cheaper
+                            and means one invoice instead of twelve.
+                        </p>
+                    </header>
+
+                    <div class="switch-price__toggle">
+                        <span class="switch-price__toggle-label">Monthly</span>
+                        <Switch checked />
+                        <span class="switch-price__toggle-label switch-price__toggle-label--active">
+                            Yearly
+                        </span>
+                        <span class="switch-price__save">
+                            <Badge variant="success" size="sm">Save 20%</Badge>
+                        </span>
+                    </div>
+
+                    <div class="switch-price__grid">
+                        {pricingTiers.map(tier => (
+                            <div
+                                class:list={[
+                                    "switch-price__card",
+                                    tier.featured && "switch-price__card--featured"
+                                ]}
+                            >
+                                <div class="switch-price__card-head">
+                                    <span class="switch-price__name">{tier.name}</span>
+                                    {tier.featured && (
+                                        <Badge variant="primary" size="sm">Most popular</Badge>
+                                    )}
+                                </div>
+
+                                <div class="switch-price__amount">
+                                    <strong>{tier.price}</strong>
+                                    <span class="switch-price__was">{tier.was}</span>
+                                </div>
+                                <p class="switch-price__note">{tier.note}</p>
+
+                                <p class="switch-price__summary">{tier.summary}</p>
+
+                                <ul class="switch-price__list">
+                                    {tier.features.map(feature => (
+                                        <li>{feature}</li>
+                                    ))}
+                                </ul>
+
+                                <div class="switch-price__action">
+                                    <Button
+                                        variant={tier.featured ? "primary" : "outline"}
+                                        size="lg"
+                                        fullWidth
+                                    >
+                                        Choose {tier.name}
+                                    </Button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Privacy centre
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Privacy Centre</span>
+            <span class="pl-example__tags">Grouped rows · Long copy · Quiet</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="switch-privacy">
+
+                <div class="switch-privacy__inner">
+
+                    <header class="switch-privacy__head">
+                        <span class="switch-privacy__kicker">Account</span>
+                        <h2 class="switch-privacy__title">Privacy and data</h2>
+                        <p class="switch-privacy__lede">
+                            Everything here is off unless you turned it on, apart from
+                            the two settings that keep shared workspaces usable.
+                            Changes apply immediately.
+                        </p>
+                    </header>
+
+                    {privacyGroups.map(group => (
+                        <div class="switch-privacy__group">
+                            <h3 class="switch-privacy__group-title">{group.title}</h3>
+                            {group.rows.map(row => (
+                                <div class="switch-privacy__row">
+                                    <div>
+                                        <div class="switch-privacy__row-label">{row.label}</div>
+                                        <p class="switch-privacy__row-note">{row.note}</p>
+                                    </div>
+                                    <Switch checked={row.on} />
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+
+                    <div class="switch-privacy__foot">
+                        <p class="switch-privacy__foot-note">
+                            You can download or permanently delete everything we hold
+                            about you at any time.
+                        </p>
+                        <Button variant="outline">Download my data</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Feature flags
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Feature Flags</span>
+            <span class="pl-example__tags">Ops console · Monospace keys · Risk rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="switch-flag">
+
+                <div class="switch-flag__inner">
+
+                    <header class="switch-flag__head">
+                        <div>
+                            <h2 class="switch-flag__title">Feature flags</h2>
+                            <p class="switch-flag__lede">
+                                Toggling a production flag takes effect within 30 seconds
+                                across every region.
+                            </p>
+                        </div>
+                        <span class="switch-flag__search">⌕ &nbsp;filter by key…</span>
+                    </header>
+
+                    <div class="switch-flag__table">
+
+                        <div class="switch-flag__row switch-flag__row--head">
+                            <span>Key</span>
+                            <span>Environment</span>
+                            <span>Rollout</span>
+                            <span class="switch-flag__owner-col">Owner</span>
+                            <span></span>
+                        </div>
+
+                        {flags.map(flag => (
+                            <div class="switch-flag__row">
+                                <span class="switch-flag__key">
+                                    <span class:list={["switch-flag__risk", `switch-flag__risk--${flag.risk}`]}></span>
+                                    {flag.key}
+                                </span>
+                                <span class="switch-flag__env">{flag.env}</span>
+                                <span class="switch-flag__rollout">{flag.rollout}</span>
+                                <span class="switch-flag__owner">{flag.owner}</span>
+                                <span class="switch-flag__cell">
+                                    <Switch checked={flag.on} />
+                                </span>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <div class="switch-flag__foot">
+                        <span>5 flags · 3 owners</span>
+                        <span>Last change 14:02 UTC by @okafor</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Cabin comfort
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Cabin Comfort</span>
+            <span class="pl-example__tags">Boarding pass · Perforated rule · Gold</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="switch-cabin">
+
+                <div class="switch-cabin__card">
+
+                    <header class="switch-cabin__head">
+
+                        <span class="switch-cabin__airline">Meridian Air</span>
+
+                        <h2 class="switch-cabin__title">Your suite, your way</h2>
+
+                        <dl class="switch-cabin__journey">
+                            {cabinJourney.map(item => (
+                                <div>
+                                    <dt>{item.key}</dt>
+                                    <dd>{item.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                    </header>
+
+                    <div class="switch-cabin__body">
+
+                        {cabinControls.map(control => (
+                            <div class="switch-cabin__row">
+                                <div>
+                                    <div class="switch-cabin__row-label">{control.label}</div>
+                                    <div class="switch-cabin__row-detail">{control.detail}</div>
+                                </div>
+                                <Switch checked={control.on} />
+                            </div>
+                        ))}
+
+                        <div class="switch-cabin__foot">
+                            <p>
+                                Your cabin crew can adjust any of this at any point
+                                during the flight.
+                            </p>
+                            <Button variant="glass" fullWidth>Call cabin crew</Button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

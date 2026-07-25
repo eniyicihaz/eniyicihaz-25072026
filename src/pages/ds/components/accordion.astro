@@ -1,0 +1,433 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Accordion/AccordionPatterns.css";
+
+import Accordion from "../../../ds/components/ui/atoms/Accordion/Accordion.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+import Kbd from "../../../ds/components/ui/atoms/Kbd/Kbd.astro";
+
+import {
+    saasFaq,
+    editorialFaq,
+    luxuryFaq,
+    enterpriseSecurityFaq,
+    enterpriseCommercialFaq,
+    docsFaq,
+    docsLinks
+} from "../../../ds/patterns/Accordion/accordion.data";
+
+const certifications = ["SOC 2 TYPE II", "ISO 27001", "GDPR", "HIPAA"];
+---
+
+<DSLayout title="Accordion">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Accordion</h1>
+
+        <p class="pl-head__lede">
+            Five production-ready FAQ sections. Same component underneath —
+            five entirely different design languages, ready to lift into
+            a landing page.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — SaaS FAQ
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">SaaS FAQ</span>
+            <span class="pl-example__tags">Centered · Soft surface · Card list</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="acc-saas">
+
+                <div class="acc-saas__inner">
+
+                    <span class="acc-saas__pill">Support</span>
+
+                    <h2 class="acc-saas__title">Questions, answered.</h2>
+
+                    <p class="acc-saas__lede">
+                        Everything about trials, billing and data — written plainly,
+                        without the small print.
+                    </p>
+
+                    <div class="acc-saas__list">
+                        <Accordion items={saasFaq} size="lg" flush bordered={false} />
+                    </div>
+
+                    <div class="acc-saas__foot">
+                        <p>Still not sure? We answer every message ourselves.</p>
+                        <Button variant="outline" size="sm" rounded>Talk to the team</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Editorial FAQ
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Editorial FAQ</span>
+            <span class="pl-example__tags">Two column · Serif display · Sticky aside</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="acc-editorial">
+
+                <div class="acc-editorial__grid">
+
+                    <aside class="acc-editorial__aside">
+
+                        <span class="acc-editorial__kicker">Working together</span>
+
+                        <h2 class="acc-editorial__title">
+                            The things<br />
+                            everyone asks<br />
+                            <em>before we begin.</em>
+                        </h2>
+
+                        <p class="acc-editorial__body">
+                            We have run this studio for eleven years. These are the
+                            five questions that come up in almost every first
+                            conversation, so we have written the answers down.
+                        </p>
+
+                        <div class="acc-editorial__card">
+
+                            <div class="acc-editorial__faces">
+                                <Avatar initials="MK" size="sm" bordered />
+                                <Avatar initials="JR" size="sm" bordered />
+                            </div>
+
+                            <div class="acc-editorial__card-text">
+                                <strong>Speak to a partner</strong>
+                                <span>Thirty minutes, no pitch deck.</span>
+                            </div>
+
+                            <Button variant="secondary" size="sm">Book a call</Button>
+
+                        </div>
+
+                    </aside>
+
+                    <div class="acc-editorial__panel">
+                        <Accordion
+                            items={editorialFaq}
+                            variant="ghost"
+                            size="lg"
+                            flush
+                            bordered={false}
+                            animation="fade"
+                        />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Luxury FAQ
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Luxury FAQ</span>
+            <span class="pl-example__tags">Dark · Gradient light · Glassmorphism</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="acc-luxury">
+
+                <div class="acc-luxury__glow acc-luxury__glow--one" aria-hidden="true"></div>
+                <div class="acc-luxury__glow acc-luxury__glow--two" aria-hidden="true"></div>
+
+                <div class="acc-luxury__inner">
+
+                    <header class="acc-luxury__head">
+                        <span class="acc-luxury__kicker">Membership</span>
+                        <h2 class="acc-luxury__title">
+                            Quietly, <span class="acc-luxury__shine">everything</span>
+                            <br />you might want to know.
+                        </h2>
+                    </header>
+
+                    <div class="acc-luxury__glass">
+                        <Accordion
+                            items={luxuryFaq}
+                            size="lg"
+                            flush
+                            bordered={false}
+                            animation="fade"
+                        />
+                    </div>
+
+                    <footer class="acc-luxury__foot">
+                        <span>Invitations reopen in September.</span>
+                        <Button variant="glass" size="sm" rounded>Request an invitation</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Enterprise FAQ
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Enterprise FAQ</span>
+            <span class="pl-example__tags">Two column grid · Compliance rail · Structured</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="acc-enterprise">
+
+                <div class="acc-enterprise__inner">
+
+                    <header class="acc-enterprise__head">
+
+                        <div>
+                            <span class="acc-enterprise__kicker">Trust &amp; Procurement</span>
+                            <h2 class="acc-enterprise__title">
+                                What your security team will ask us first.
+                            </h2>
+                        </div>
+
+                        <div class="acc-enterprise__certs">
+                            {certifications.map(cert => (
+                                <span class="acc-enterprise__cert">{cert}</span>
+                            ))}
+                        </div>
+
+                    </header>
+
+                    <div class="acc-enterprise__grid">
+
+                        <div class="acc-enterprise__panel">
+                            <span class="acc-enterprise__col-label">Security &amp; Access</span>
+                            <Accordion
+                                items={enterpriseSecurityFaq}
+                                flush
+                                bordered={false}
+                                rounded="none"
+                                animation="fade"
+                            />
+                        </div>
+
+                        <div class="acc-enterprise__panel">
+                            <span class="acc-enterprise__col-label">Legal &amp; Billing</span>
+                            <Accordion
+                                items={enterpriseCommercialFaq}
+                                flush
+                                bordered={false}
+                                rounded="none"
+                                animation="fade"
+                            />
+                        </div>
+
+                    </div>
+
+                    <footer class="acc-enterprise__foot">
+
+                        <div class="acc-enterprise__foot-text">
+                            <strong>Need the full security package?</strong>
+                            <span>Reports, DPA and architecture diagrams, sent within a day.</span>
+                        </div>
+
+                        <div class="acc-enterprise__foot-actions">
+                            <Button variant="secondary" size="sm">Visit trust centre</Button>
+                            <Button variant="outline" size="sm">Contact sales</Button>
+                        </div>
+
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Documentation FAQ
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Documentation FAQ</span>
+            <span class="pl-example__tags">Developer docs · Code panels · Quick links</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="acc-docs">
+
+                <div class="acc-docs__inner">
+
+                    <div class="acc-docs__bar">
+
+                        <span class="acc-docs__crumb">
+                            Docs <span>/</span> <strong>Common questions</strong>
+                        </span>
+
+                        <span class="acc-docs__search">
+                            Search the docs
+                            <Kbd size="sm">⌘</Kbd>
+                            <Kbd size="sm">K</Kbd>
+                        </span>
+
+                    </div>
+
+                    <header class="acc-docs__head">
+                        <h2 class="acc-docs__title">Before you open a ticket</h2>
+                        <p class="acc-docs__lede">
+                            The four things developers ask us most, with the exact
+                            snippet you need for each one.
+                        </p>
+                    </header>
+
+                    <div class="acc-docs__grid">
+
+                        <div class="acc-docs__panel">
+
+                            <Accordion
+                                items={docsFaq}
+                                flush
+                                bordered={false}
+                                divider={false}
+                                animation="fade"
+                            >
+
+                                <Fragment slot="install">
+                                    <p>
+                                        Install the SDK and it will read your key from the
+                                        environment automatically.
+                                    </p>
+                                    <pre class="acc-docs__code"><code><span class="tok-comment"># npm, pnpm or bun</span>
+npm install @relay/sdk
+
+<span class="tok-comment"># then, in your app</span>
+<span class="tok-key">import</span> {'{'} Relay {'}'} <span class="tok-key">from</span> "@relay/sdk";</code></pre>
+                                    <p class="acc-docs__note">
+                                        Node 18 or newer is required for the built-in fetch client.
+                                    </p>
+                                </Fragment>
+
+                                <Fragment slot="auth">
+                                    <p>
+                                        Use a scoped token in anything that runs outside your
+                                        own infrastructure. Secret keys should never reach
+                                        the browser.
+                                    </p>
+                                    <pre class="acc-docs__code"><code><span class="tok-key">const</span> relay = <span class="tok-key">new</span> Relay({'{'}
+  token: process.env.RELAY_SCOPED_TOKEN,
+  scopes: ["events:read"]
+{'}'});</code></pre>
+                                </Fragment>
+
+                                <Fragment slot="errors">
+                                    <p>
+                                        Every write accepts an idempotency key. Retries with the
+                                        same key return the original response instead of creating
+                                        a duplicate.
+                                    </p>
+                                    <pre class="acc-docs__code"><code><span class="tok-key">await</span> relay.events.send(payload, {'{'}
+  idempotencyKey: order.id,
+  retries: 4          <span class="tok-comment">// exponential backoff</span>
+{'}'});</code></pre>
+                                </Fragment>
+
+                                <Fragment slot="webhooks">
+                                    <p>
+                                        Verify the signature before trusting a payload. The helper
+                                        below also rejects anything older than five minutes.
+                                    </p>
+                                    <pre class="acc-docs__code"><code><span class="tok-key">const</span> event = relay.webhooks.verify(
+  rawBody,
+  request.headers["relay-signature"],
+  process.env.RELAY_WEBHOOK_SECRET
+);</code></pre>
+                                    <p class="acc-docs__note">
+                                        Always verify against the raw request body — parsed JSON
+                                        will not match the signature.
+                                    </p>
+                                </Fragment>
+
+                            </Accordion>
+
+                        </div>
+
+                        <aside class="acc-docs__rail">
+
+                            <h3 class="acc-docs__rail-title">Jump to</h3>
+
+                            <ul class="acc-docs__rail-list">
+                                {docsLinks.map(link => (
+                                    <li>
+                                        <a class="acc-docs__rail-link" href="#0">
+                                            {link.label}
+                                            <span>{link.meta}</span>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

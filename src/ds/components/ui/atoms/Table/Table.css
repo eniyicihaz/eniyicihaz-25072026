@@ -1,0 +1,40 @@
+.ds-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ds-table__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ds-table__head {
+  background: var(--ds-surface-secondary, #f8fafc);
+}
+
+.ds-table__head-cell {
+  padding: .875rem 1rem;
+
+  border-bottom: 1px solid var(--ds-border-color, #e2e8f0);
+
+  text-align: left;
+  font-weight: 600;
+
+  color: var(--ds-text, #0f172a);
+}
+
+.ds-table__cell {
+  padding: .875rem 1rem;
+
+  border-bottom: 1px solid var(--ds-border-color, #e2e8f0);
+
+  color: var(--ds-text, #334155);
+}
+
+.ds-table--striped .ds-table__body tr:nth-child(even) {
+  background: var(--ds-surface-secondary, #f8fafc);
+}
+
+.ds-table--hoverable .ds-table__body tr:hover {
+  background: var(--ds-surface-hover, #eff6ff);
+}

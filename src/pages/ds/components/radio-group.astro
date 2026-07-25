@@ -1,0 +1,216 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/RadioGroup/RadioGroupPatterns.css";
+
+import RadioGroup from "../../../ds/components/ui/atoms/RadioGroup/RadioGroup.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    appointmentType,
+    shippingMethod,
+    billingCycle,
+    ticketPriority,
+    surveyScale
+} from "../../../ds/patterns/RadioGroup/radiogroup.data";
+---
+
+<DSLayout title="Radio Group">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Radio Group</h1>
+
+        <p class="pl-head__lede">
+            Five single-choice decisions — an appointment type, a
+            shipping method, a billing cycle, a ticket priority with a
+            locked option and a fully disabled survey result.
+        </p>
+
+    </header>
+
+    <!-- 01 — Appointment type -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment Type</span>
+            <span class="pl-example__tags">Hearing care · Vertical</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rdg-clinic">
+
+                <div class="rdg-clinic__card">
+
+                    <span class="rdg-clinic__kicker">Randevu</span>
+                    <h2 class="rdg-clinic__title">Randevu türünü seçin</h2>
+
+                    <RadioGroup
+                        name={appointmentType.name}
+                        options={appointmentType.options}
+                        value={appointmentType.value}
+                    />
+
+                    <div class="rdg-clinic__action">
+                        <Button size="lg" fullWidth>Devam et</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Checkout shipping method -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Shipping Method</span>
+            <span class="pl-example__tags">Retail · Horizontal</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rdg-shipping">
+
+                <div class="rdg-shipping__card">
+
+                    <div class="rdg-shipping__title">Choose a shipping method</div>
+
+                    <RadioGroup
+                        name={shippingMethod.name}
+                        options={shippingMethod.options}
+                        value={shippingMethod.value}
+                        direction={shippingMethod.direction}
+                    />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Billing cycle, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Billing Cycle</span>
+            <span class="pl-example__tags">SaaS · Dark · Card options</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rdg-billing">
+
+                <div class="rdg-billing__card">
+
+                    <div class="rdg-billing__title">Choose your billing cycle</div>
+
+                    <RadioGroup
+                        name={billingCycle.name}
+                        options={billingCycle.options}
+                        value={billingCycle.value}
+                    />
+
+                    <div class="rdg-billing__action">
+                        <Button variant="primary" size="lg" fullWidth>Continue</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Support ticket priority -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Ticket Priority</span>
+            <span class="pl-example__tags">Support desk · Locked option</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rdg-ticket">
+
+                <div class="rdg-ticket__card">
+
+                    <span class="rdg-ticket__crumb">New ticket / Priority</span>
+                    <h2 class="rdg-ticket__title">Set a priority level</h2>
+
+                    <RadioGroup
+                        name={ticketPriority.name}
+                        options={ticketPriority.options}
+                        value={ticketPriority.value}
+                        direction="horizontal"
+                    />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Survey rating scale, disabled -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Survey Result</span>
+            <span class="pl-example__tags">Read-only · Entire group disabled</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rdg-survey">
+
+                <div class="rdg-survey__card">
+
+                    <div class="rdg-survey__title">How satisfied were you with your visit?</div>
+                    <p class="rdg-survey__sub">Submitted response — no longer editable</p>
+
+                    <RadioGroup
+                        name={surveyScale.name}
+                        options={surveyScale.options}
+                        value={surveyScale.value}
+                        direction="horizontal"
+                        disabled={surveyScale.disabled}
+                    />
+
+                    <p class="rdg-survey__note">Submitted on 12 July 2026</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

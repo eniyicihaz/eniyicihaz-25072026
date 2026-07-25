@@ -1,0 +1,154 @@
+.topbar{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding:0 32px;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+    flex-shrink:0;
+}
+
+.topbar__left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    min-width:0;
+}
+
+.topbar__toggle{
+    width:44px;
+    height:44px;
+    padding:0;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--surface);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.topbar__toggle:hover{
+    background:var(--surface-2);
+    border-color:var(--primary);
+}
+
+.topbar__toggle:active{
+    transform:scale(.97);
+}
+
+.topbar__toggle:focus-visible{
+    outline:2px solid var(--primary);
+    outline-offset:2px;
+}
+
+.topbar__toggle span{
+    width:18px;
+    height:2px;
+    border-radius:999px;
+    background:var(--text);
+    transition:.2s ease;
+}
+
+.topbar__breadcrumb{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:6px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+.topbar__separator{
+    opacity:.5;
+}
+
+.topbar__heading h1{
+    margin:0;
+    font-size:26px;
+    line-height:1.2;
+}
+
+.topbar__heading p{
+    margin:6px 0 0;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.topbar__right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.topbar__search{
+    width:280px;
+    height:42px;
+    padding:0 14px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--surface-2);
+    color:var(--text);
+    font:inherit;
+    outline:none;
+    transition:
+        border-color .2s ease,
+        background .2s ease;
+}
+
+.topbar__search:focus{
+    border-color:var(--primary);
+    background:var(--surface);
+}
+
+.topbar__theme{
+    width:42px;
+    height:42px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--surface);
+    cursor:pointer;
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.topbar__theme:hover{
+    background:var(--surface-2);
+    border-color:var(--primary);
+}
+
+@media (max-width:900px){
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .topbar__search{
+        display:none;
+    }
+
+}
+
+@media (max-width:640px){
+
+    .topbar{
+        height:auto;
+        padding:20px;
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .topbar__right{
+        width:100%;
+    }
+
+}

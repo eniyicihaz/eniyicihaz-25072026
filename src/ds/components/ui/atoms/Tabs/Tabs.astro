@@ -1,0 +1,54 @@
+---
+import "./Tabs.css";
+import type { TabsProps } from "./Tabs.types";
+
+const {
+  tabs = [],
+  activeTab,
+  fullWidth = false,
+  centered = false,
+  class: className = "",
+} = Astro.props as TabsProps;
+
+const classes = [
+  "ds-tabs",
+  fullWidth && "ds-tabs--full",
+  centered && "ds-tabs--center",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const currentTab = activeTab ?? tabs[0]?.id;
+---
+
+<div class={classes}>
+  <div
+    class="ds-tabs__list"
+    role="tablist"
+  >
+    {
+      tabs.map((tab) => (
+        <button
+          type="button"
+          role="tab"
+          disabled={tab.disabled}
+          aria-selected={tab.id === currentTab}
+          class:list={[
+            "ds-tabs__tab",
+            tab.id === currentTab && "ds-tabs__tab--active",
+          ]}
+        >
+          {tab.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <div
+    class="ds-tabs__panel"
+    role="tabpanel"
+  >
+    <slot />
+  </div>
+</div>

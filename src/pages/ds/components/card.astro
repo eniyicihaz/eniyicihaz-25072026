@@ -1,0 +1,379 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Card/CardPatterns.css";
+
+import Card from "../../../ds/components/ui/atoms/Card/Card.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+
+import {
+    features,
+    plans,
+    featuredPost,
+    posts,
+    services,
+    team
+} from "../../../ds/patterns/Card/card.data";
+---
+
+<DSLayout title="Card">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Card</h1>
+
+        <p class="pl-head__lede">
+            Five ways to arrange the same container — a feature grid,
+            a pricing table, a magazine index, a services list
+            and a team page.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Feature Cards
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Feature Cards</span>
+            <span class="pl-example__tags">Three column · Glyph tiles · Centered intro</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="card-feature">
+
+                <div class="card-feature__inner">
+
+                    <header class="card-feature__head">
+                        <span class="card-feature__eyebrow">Platform</span>
+                        <h2 class="card-feature__title">
+                            Everything the deploy step should have done already
+                        </h2>
+                        <p class="card-feature__lede">
+                            Six things you would otherwise wire together yourself,
+                            working the moment you connect a repository.
+                        </p>
+                    </header>
+
+                    <div class="card-feature__grid">
+                        {features.map(feature => (
+                            <Card padding="lg" bordered>
+                                <span class="card-feature__glyph" aria-hidden="true">
+                                    {feature.glyph}
+                                </span>
+                                <h3 class="card-feature__name">{feature.title}</h3>
+                                <p class="card-feature__body">{feature.body}</p>
+                            </Card>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Pricing Cards
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Pricing Cards</span>
+            <span class="pl-example__tags">Dark field · Elevated middle tier · Billing switch</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="card-pricing">
+
+                <div class="card-pricing__inner">
+
+                    <header class="card-pricing__head">
+
+                        <h2 class="card-pricing__title">Pricing that stops surprising you</h2>
+
+                        <p class="card-pricing__lede">
+                            Every plan includes unlimited projects and unlimited
+                            collaborators. You pay for build capacity, nothing else.
+                        </p>
+
+                        <div class="card-pricing__switch">
+                            <span class="card-pricing__switch-option card-pricing__switch-option--active">
+                                Annual · save 20%
+                            </span>
+                            <span class="card-pricing__switch-option">Monthly</span>
+                        </div>
+
+                    </header>
+
+                    <div class="card-pricing__grid">
+                        {plans.map(plan => (
+                            <div
+                                class:list={[
+                                    "card-pricing__item",
+                                    plan.featured && "card-pricing__item--featured"
+                                ]}
+                            >
+                                <Card padding="lg">
+
+                                    {plan.featured && (
+                                        <div class="card-pricing__flag">
+                                            <Badge variant="primary" size="sm">Most popular</Badge>
+                                        </div>
+                                    )}
+
+                                    <span class="card-pricing__name">{plan.name}</span>
+
+                                    <div class="card-pricing__amount">
+                                        <strong>{plan.price}</strong>
+                                        <span>{plan.period}</span>
+                                    </div>
+
+                                    <p class="card-pricing__summary">{plan.summary}</p>
+
+                                    <ul class="card-pricing__list">
+                                        {plan.features.map(item => (
+                                            <li>
+                                                <span class="card-pricing__tick" aria-hidden="true">✦</span>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <div class="card-pricing__action">
+                                        <Button
+                                            variant={plan.featured ? "primary" : "outline"}
+                                            fullWidth
+                                        >
+                                            {plan.cta}
+                                        </Button>
+                                    </div>
+
+                                </Card>
+                            </div>
+                        ))}
+                    </div>
+
+                    <p class="card-pricing__foot">
+                        Prices in USD. VAT added where applicable.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Blog Cards
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Blog Cards</span>
+            <span class="pl-example__tags">Magazine grid · Serif · Warm paper</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="card-blog">
+
+                <div class="card-blog__inner">
+
+                    <header class="card-blog__head">
+                        <h2 class="card-blog__title">
+                            The Journal, <em>issue eleven</em>
+                        </h2>
+                        <Button variant="ghost" size="sm">All writing &nbsp;→</Button>
+                    </header>
+
+                    <div class="card-blog__grid">
+
+                        <Card>
+                            <div class={`card-blog__cover card-blog__cover--${featuredPost.tone}`}>
+                                <Badge variant="secondary" size="sm">{featuredPost.tag}</Badge>
+                            </div>
+                            <div class="card-blog__body card-blog__body--lg">
+                                <h3 class="card-blog__post-title">{featuredPost.title}</h3>
+                                <p class="card-blog__excerpt">{featuredPost.excerpt}</p>
+                                <div class="card-blog__meta">
+                                    <Avatar initials={featuredPost.initials} size="sm" bordered />
+                                    <div class="card-blog__byline">
+                                        <strong>{featuredPost.author}</strong>
+                                        <span>{featuredPost.date} · {featuredPost.read}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+
+                        <div class="card-blog__stack">
+                            {posts.map(post => (
+                                <Card>
+                                    <div class={`card-blog__cover card-blog__cover--${post.tone}`}>
+                                        <Badge variant="secondary" size="sm">{post.tag}</Badge>
+                                    </div>
+                                    <div class="card-blog__body">
+                                        <h3 class="card-blog__post-title">{post.title}</h3>
+                                        <p class="card-blog__excerpt">{post.excerpt}</p>
+                                        <div class="card-blog__meta">
+                                            <Avatar initials={post.initials} size="sm" bordered />
+                                            <div class="card-blog__byline">
+                                                <strong>{post.author}</strong>
+                                                <span>{post.date} · {post.read}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Services Cards
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Services Cards</span>
+            <span class="pl-example__tags">Dark · Horizontal rows · Numbered</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="card-service">
+
+                <div class="card-service__inner">
+
+                    <header class="card-service__head">
+
+                        <div>
+                            <span class="card-service__kicker">What we do</span>
+                            <h2 class="card-service__title">Four ways to work with us</h2>
+                        </div>
+
+                        <p class="card-service__intro">
+                            Every engagement is run by the same two partners from the
+                            first call to the final handover. We take on four clients
+                            at a time so nothing waits in a queue.
+                        </p>
+
+                    </header>
+
+                    <div class="card-service__list">
+                        {services.map(service => (
+                            <Card>
+                                <span class="card-service__index">{service.index}</span>
+
+                                <div>
+                                    <h3 class="card-service__name">{service.title}</h3>
+                                    <p class="card-service__body">{service.body}</p>
+                                    <div class="card-service__tags">
+                                        {service.meta.map(tag => (
+                                            <span class="card-service__tag">{tag}</span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div class="card-service__duration">
+                                    <strong>{service.duration}</strong>
+                                    <span>Typical</span>
+                                </div>
+                            </Card>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Team Cards
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Team Cards</span>
+            <span class="pl-example__tags">Four column · Portrait · Warm accents</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="card-team">
+
+                <div class="card-team__inner">
+
+                    <header class="card-team__head">
+                        <span class="card-team__eyebrow">The people</span>
+                        <h2 class="card-team__title">Eleven of us, and no layer in between</h2>
+                        <p class="card-team__lede">
+                            Everyone here talks to customers. The four below happen
+                            to answer the most email.
+                        </p>
+                    </header>
+
+                    <div class="card-team__grid">
+                        {team.map(person => (
+                            <Card padding="lg" bordered>
+                                <div class="card-team__avatar">
+                                    <Avatar initials={person.initials} size="lg" bordered />
+                                </div>
+                                <h3 class="card-team__name">{person.name}</h3>
+                                <p class="card-team__role">{person.role}</p>
+                                <p class="card-team__note">{person.note}</p>
+                                <div class="card-team__tags">
+                                    {person.tags.map(tag => (
+                                        <Badge variant="neutral" size="sm">{tag}</Badge>
+                                    ))}
+                                </div>
+                            </Card>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

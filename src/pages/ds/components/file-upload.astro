@@ -1,0 +1,361 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/FileUpload/FileUploadPatterns.css";
+
+import FileUpload from "../../../ds/components/ui/atoms/FileUpload/FileUpload.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    audiogramFiles,
+    audiogramNotes,
+    applicationRole,
+    applicationSteps,
+    applicationFiles,
+    assetFiles,
+    assetProject,
+    receiptFiles,
+    expenseReport,
+    profileUser,
+    photoGuidelines
+} from "../../../ds/patterns/FileUpload/fileupload.data";
+
+const assetIcon = (name: string) =>
+    name.endsWith(".fig") ? "fig" : name.endsWith(".pdf") ? "pdf" : "json";
+---
+
+<DSLayout title="File Upload">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">File Upload</h1>
+
+        <p class="pl-head__lede">
+            Five things worth dropping a file onto — a hearing report,
+            a job application, design assets, an expense receipt
+            and a profile photo.
+        </p>
+
+    </header>
+
+    <!-- 01 — Audiogram upload -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Hearing Report Upload</span>
+            <span class="pl-example__tags">Hearing care · Uploaded list · Guidance notes</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="up-audiogram">
+
+                <div class="up-audiogram__card">
+
+                    <span class="up-audiogram__kicker">Randevu öncesi</span>
+                    <h2 class="up-audiogram__title">Odyogram raporunuzu yükleyin</h2>
+                    <p class="up-audiogram__lede">
+                        Elinizde varsa son işitme testi raporunuzu yükleyerek
+                        odyoloğun süreci daha hızlı değerlendirmesini sağlayabilirsiniz.
+                    </p>
+
+                    <FileUpload
+                        id="audiogram-upload"
+                        name="audiogram"
+                        accept=".pdf,.jpg,.png"
+                        multiple
+                        label="Dosya yüklemek için tıklayın"
+                        helperText="veya dosyayı buraya sürükleyip bırakın"
+                    />
+
+                    <div class="up-audiogram__files">
+                        {audiogramFiles.map(file => (
+                            <div class="up-audiogram__file">
+                                <span class="up-audiogram__file-icon">PDF</span>
+                                <div>
+                                    <div class="up-audiogram__file-name">{file.name}</div>
+                                    <div class="up-audiogram__file-size">{file.size}</div>
+                                </div>
+                                <span class="up-audiogram__file-status">{file.status}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <ul class="up-audiogram__notes">
+                        {audiogramNotes.map(note => (
+                            <li>{note}</li>
+                        ))}
+                    </ul>
+
+                    <div class="up-audiogram__action">
+                        <Button size="lg" fullWidth>Devam et</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Job application resume -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Resume Upload</span>
+            <span class="pl-example__tags">Recruitment · Step rail · Uploaded state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="up-resume">
+
+                <div class="up-resume__card">
+
+                    <div class="up-resume__steps">
+                        {applicationSteps.map(step => (
+                            <span class:list={["up-resume__step", `up-resume__step--${step.state}`]}>
+                                <span class="up-resume__step-n">
+                                    {step.state === "done" ? "✓" : step.n}
+                                </span>
+                                {step.label}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div class="up-resume__role">{applicationRole.title}</div>
+                    <div class="up-resume__team">{applicationRole.team}</div>
+
+                    <div class="up-resume__field">
+                        <label class="up-resume__label">Resume (PDF)</label>
+                        <div class="up-resume__uploaded">
+                            <span class="up-resume__file-icon">PDF</span>
+                            <div>
+                                <div class="up-resume__file-name">{applicationFiles[0].name}</div>
+                                <div class="up-resume__file-size">{applicationFiles[0].size}</div>
+                            </div>
+                            <span class="up-resume__file-remove" aria-hidden="true">Remove</span>
+                        </div>
+                    </div>
+
+                    <div class="up-resume__field">
+                        <label class="up-resume__label">Portfolio (optional)</label>
+                        <FileUpload
+                            id="portfolio-upload"
+                            name="portfolio"
+                            accept=".pdf"
+                            label="Click to upload your portfolio"
+                            helperText="or drag and drop a PDF here"
+                        />
+                    </div>
+
+                    <div class="up-resume__foot">
+                        <span>Autosaved a moment ago</span>
+                        <Button>Continue to cover letter</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Design asset upload -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Design Asset Upload</span>
+            <span class="pl-example__tags">Dark · Monospace file list · Processing state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="up-asset">
+
+                <div class="up-asset__inner">
+
+                    <span class="up-asset__crumb">{assetProject.folder}</span>
+
+                    <h2 class="up-asset__title">Upload to {assetProject.name}</h2>
+
+                    <FileUpload
+                        id="asset-upload"
+                        name="assets"
+                        multiple
+                        label="Click to browse files"
+                        helperText="or drag and drop any file type"
+                    />
+
+                    <div class="up-asset__files">
+                        {assetFiles.map(file => (
+                            <div class="up-asset__file">
+                                <span class:list={["up-asset__file-icon", `up-asset__file-icon--${assetIcon(file.name)}`]}>
+                                    {assetIcon(file.name).toUpperCase()}
+                                </span>
+                                <div>
+                                    <div class="up-asset__file-name">{file.name}</div>
+                                    <div class="up-asset__file-size">{file.size}</div>
+                                </div>
+                                <span class:list={["up-asset__file-status", `up-asset__file-status--${file.status.toLowerCase()}`]}>
+                                    {file.status}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="up-asset__foot">
+                        <span>3 files · 56.4 MB total</span>
+                        <span>Synced to team drive</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Expense receipt upload -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Expense Receipt Upload</span>
+            <span class="pl-example__tags">Finance · Matched vs. needs category</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="up-receipt">
+
+                <div class="up-receipt__card">
+
+                    <header class="up-receipt__head">
+                        <div>
+                            <h2 class="up-receipt__title">{expenseReport.title}</h2>
+                            <p class="up-receipt__period">{expenseReport.period}</p>
+                        </div>
+                        <div class="up-receipt__total">
+                            <strong>{expenseReport.total}</strong>
+                            <span>2 receipts</span>
+                        </div>
+                    </header>
+
+                    <div class="up-receipt__body">
+
+                        <FileUpload
+                            id="receipt-upload"
+                            name="receipts"
+                            accept=".pdf,.jpg,.png"
+                            multiple
+                            label="Add a receipt"
+                            helperText="PDF, JPG or PNG"
+                        />
+
+                        <div class="up-receipt__list">
+                            {receiptFiles.map(file => (
+                                <div class="up-receipt__row">
+                                    <span class="up-receipt__row-icon">$</span>
+                                    <span class="up-receipt__row-name">{file.name}</span>
+                                    <span class="up-receipt__row-amount">{file.amount}</span>
+                                    <span
+                                        class:list={[
+                                            "up-receipt__row-status",
+                                            file.status === "Matched"
+                                                ? "up-receipt__row-status--matched"
+                                                : "up-receipt__row-status--needs"
+                                        ]}
+                                    >
+                                        {file.status}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
+
+                    <footer class="up-receipt__foot">
+                        <span>1 receipt needs a category before submitting</span>
+                        <Button size="sm">Submit report</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Profile photo upload -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Profile Photo Upload</span>
+            <span class="pl-example__tags">Settings · Circular preview · Guidelines</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="up-photo">
+
+                <div class="up-photo__card">
+
+                    <header class="up-photo__head">
+                        <span class="up-photo__preview">{profileUser.initials}</span>
+                        <div>
+                            <div class="up-photo__name">{profileUser.name}</div>
+                            <div class="up-photo__role">{profileUser.role}</div>
+                        </div>
+                    </header>
+
+                    <div class="up-photo__field">
+                        <FileUpload
+                            id="photo-upload"
+                            name="photo"
+                            accept="image/*"
+                            label="Click to upload a new photo"
+                            helperText="or drag and drop an image here"
+                        />
+                    </div>
+
+                    <ul class="up-photo__guidelines">
+                        {photoGuidelines.map(guideline => (
+                            <li>{guideline}</li>
+                        ))}
+                    </ul>
+
+                    <footer class="up-photo__foot">
+                        <Button variant="ghost">Remove photo</Button>
+                        <Button>Save changes</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

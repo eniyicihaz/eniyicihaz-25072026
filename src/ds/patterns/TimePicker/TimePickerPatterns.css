@@ -1,0 +1,325 @@
+/* ==========================================================
+   TimePicker — five patterns
+
+   01  tpk-booking      Clinic appointment slot (eniyicihaz.com)
+   02  tpk-meeting      Meeting scheduler, dark, required
+   03  tpk-alarm        Alarm settings, step interval note
+   04  tpk-reservation  Restaurant reservation, invalid state
+   05  tpk-shift        Shift schedule, read-only
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic appointment slot
+   ========================================================== */
+
+.tpk-booking{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.tpk-booking__card{
+    width:100%;
+    max-width:360px;
+    padding:32px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.tpk-booking__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.tpk-booking__title{
+    margin:14px 0 22px;
+
+    font-size:1.15rem;
+    font-weight:750;
+    letter-spacing:-.02em;
+    color:#123b36;
+}
+
+.tpk-booking__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:#123b36;
+}
+
+.tpk-booking .ds-time-picker__field{
+    border-color:rgb(18 59 54 / .18);
+}
+
+.tpk-booking .ds-time-picker__field:focus{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .14);
+}
+
+.tpk-booking__hint{
+    margin-top:9px;
+
+    font-size:.78rem;
+    color:#6b8b86;
+}
+
+
+/* ==========================================================
+   02 — Meeting scheduler, dark
+   ========================================================== */
+
+.tpk-meeting{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.tpk-meeting__card{
+    width:100%;
+    max-width:380px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.tpk-meeting__title{
+    margin-bottom:20px;
+
+    font-size:1.05rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.tpk-meeting__label{
+    display:flex;
+    align-items:baseline;
+    gap:4px;
+
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:rgb(255 255 255 / .75);
+}
+
+.tpk-meeting__required{
+    color:#f87171;
+}
+
+.tpk-meeting .ds-time-picker__field{
+    background:rgb(255 255 255 / .04);
+    border-color:rgb(255 255 255 / .14);
+    color:#fff;
+}
+
+.tpk-meeting .ds-time-picker__field:focus{
+    border-color:#38bdf8;
+    box-shadow:0 0 0 3px rgb(56 189 248 / .16);
+}
+
+.tpk-meeting .ds-time-picker__icon{
+    color:rgb(255 255 255 / .4);
+}
+
+
+/* ==========================================================
+   03 — Alarm settings
+   ========================================================== */
+
+.tpk-alarm{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.tpk-alarm__card{
+    width:100%;
+    max-width:360px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.tpk-alarm__icon{
+    font-size:1.4rem;
+    margin-bottom:12px;
+}
+
+.tpk-alarm__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.tpk-alarm__note{
+    margin-top:9px;
+
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Restaurant reservation, invalid
+   ========================================================== */
+
+.tpk-reservation{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fef2f2;
+}
+
+.tpk-reservation__card{
+    width:100%;
+    max-width:380px;
+    padding:32px;
+
+    border:1px solid rgb(220 38 38 / .25);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.tpk-reservation__title{
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.tpk-reservation__label{
+    display:block;
+    margin:18px 0 8px;
+
+    font-size:.85rem;
+    color:var(--pat-ink);
+}
+
+.tpk-reservation .ds-time-picker__field--invalid{
+    border-color:#dc2626;
+}
+
+.tpk-reservation__error{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:10px;
+
+    font-size:.8rem;
+    color:#dc2626;
+}
+
+
+/* ==========================================================
+   05 — Shift schedule, read-only
+   ========================================================== */
+
+.tpk-shift{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.tpk-shift__card{
+    width:100%;
+    max-width:400px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.tpk-shift__head{
+    padding:18px 24px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:.95rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.tpk-shift__row{
+    padding:20px 24px;
+}
+
+.tpk-shift__label-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:8px;
+}
+
+.tpk-shift__label{
+    font-size:.85rem;
+    color:var(--pat-ink);
+}
+
+.tpk-shift__badge{
+    padding:2px 9px;
+    border-radius:999px;
+
+    background:rgb(37 99 235 / .1);
+
+    font-size:.72rem;
+    font-weight:650;
+    color:#2563eb;
+}
+
+.tpk-shift .ds-time-picker__field{
+    background:#fafafa;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .tpk-booking{ padding:44px 16px 56px; }
+    .tpk-booking__card{ padding:24px 20px; }
+
+    .tpk-meeting{ padding:44px 16px 56px; }
+    .tpk-meeting__card{ padding:24px 20px; }
+
+    .tpk-alarm{ padding:44px 16px 56px; }
+    .tpk-alarm__card{ padding:22px; }
+
+    .tpk-reservation{ padding:44px 16px 56px; }
+    .tpk-reservation__card{ padding:22px; }
+
+    .tpk-shift{ padding:44px 16px 56px; }
+
+}

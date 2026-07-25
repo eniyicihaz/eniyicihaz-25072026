@@ -1,0 +1,104 @@
+---
+import "./Carousel.css";
+import type { CarouselProps } from "./Carousel.types";
+
+const {
+  items = [],
+  showControls = true,
+  showIndicators = true,
+  autoplay = false,
+  interval = 5000,
+  class: className = "",
+} = Astro.props as CarouselProps;
+
+const classes = [
+  "ds-carousel",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div
+  class={classes}
+  data-autoplay={autoplay}
+  data-interval={interval}
+>
+  <div class="ds-carousel__track">
+    {
+      items.map((item) => (
+        <article class="ds-carousel__slide">
+          {
+            item.image ? (
+              <img
+                class="ds-carousel__image"
+                src={item.image}
+                alt={item.alt ?? ""}
+                loading="lazy"
+              />
+            ) : (
+              <slot name={item.id} />
+            )
+          }
+
+          {(item.title || item.description) && (
+            <div class="ds-carousel__content">
+              {item.title && (
+                <h3 class="ds-carousel__title">
+                  {item.title}
+                </h3>
+              )}
+
+              {item.description && (
+                <p class="ds-carousel__description">
+                  {item.description}
+                </p>
+              )}
+            </div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+
+  {
+    showControls && (
+      <>
+        <button
+          class="ds-carousel__control ds-carousel__control--prev"
+          type="button"
+          aria-label="Previous slide"
+        >
+          ←
+        </button>
+
+        <button
+          class="ds-carousel__control ds-carousel__control--next"
+          type="button"
+          aria-label="Next slide"
+        >
+          →
+        </button>
+      </>
+    )
+  }
+
+  {
+    showIndicators && (
+      <div class="ds-carousel__indicators">
+        {
+          items.map((_, index) => (
+            <button
+              class:list={[
+                "ds-carousel__indicator",
+                index === 0 && "ds-carousel__indicator--active",
+              ]}
+              type="button"
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))
+        }
+      </div>
+    )
+  }
+</div>

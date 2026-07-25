@@ -1,0 +1,88 @@
+.ds-number-input {
+  position: relative;
+  width: 100%;
+}
+
+.ds-number-input__field {
+  width: 100%;
+  height: 44px;
+
+  padding: 0 3rem 0 1rem;
+
+  border: 1px solid var(--ds-border-color, #dbe2ea);
+  border-radius: var(--ds-radius-md, 10px);
+
+  background: var(--ds-surface, #fff);
+  color: var(--ds-text, #0f172a);
+
+  font: inherit;
+
+  appearance: textfield;
+  -moz-appearance: textfield;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.ds-number-input__field:focus {
+  outline: none;
+  border-color: var(--ds-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+}
+
+.ds-number-input__field:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.ds-number-input__field--invalid {
+  border-color: #dc2626;
+}
+
+.ds-number-input__controls {
+  position: absolute;
+  top: 50%;
+  right: .5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  transform: translateY(-50%);
+}
+
+.ds-number-input__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 16px;
+
+  border: 0;
+  border-radius: 4px;
+
+  background: transparent;
+
+  color: var(--ds-text-secondary, #64748b);
+
+  cursor: pointer;
+
+  transition: background .2s ease;
+}
+
+.ds-number-input__button:hover {
+  background: var(--ds-surface-hover, #f8fafc);
+}
+
+.ds-number-input__button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.ds-number-input__field::-webkit-inner-spin-button,
+.ds-number-input__field::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

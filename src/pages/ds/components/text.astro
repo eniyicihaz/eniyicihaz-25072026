@@ -1,0 +1,187 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Text/TextPatterns.css";
+
+import Text from "../../../ds/components/ui/atoms/Text/Text.astro";
+
+import {
+    articleContent,
+    statCard,
+    pricingCard,
+    truncatedRows,
+    editorialQuote
+} from "../../../ds/patterns/Text/text.data";
+---
+
+<DSLayout title="Text">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Text</h1>
+
+        <p class="pl-head__lede">
+            Five typographic voices — a clinic article, a dashboard
+            stat, an enterprise pricing card, truncated file names and
+            an editorial pull quote.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic article page -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Article Page</span>
+            <span class="pl-example__tags">Hearing care · Overline, lead, body, caption</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="txt-article">
+
+                <div class="txt-article__card">
+
+                    <Text as="span" variant="overline" weight="bold">{articleContent.kicker}</Text>
+                    <Text as="h2" variant="lead" weight="semibold">{articleContent.lead}</Text>
+                    <Text as="p" variant="body">{articleContent.body}</Text>
+                    <Text as="p" variant="caption">{articleContent.caption}</Text>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Dashboard stat card -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Stat Card</span>
+            <span class="pl-example__tags">Dashboard · Muted, caption</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="txt-stat">
+
+                <div class="txt-stat__card">
+
+                    <Text as="span" variant="overline" weight="bold">{statCard.overline}</Text>
+                    <Text as="span" variant="lead" weight="bold" class="txt-stat__value">{statCard.value}</Text>
+                    <Text as="span" variant="muted" weight="semibold">{statCard.delta}</Text>
+                    <Text as="p" variant="caption">{statCard.footnote}</Text>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Enterprise pricing card, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Pricing Card</span>
+            <span class="pl-example__tags">SaaS · Dark · Weight scale</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="txt-pricing">
+
+                <div class="txt-pricing__card">
+
+                    <Text as="span" variant="overline" weight="bold">{pricingCard.overline}</Text>
+                    <Text as="h2" variant="lead" weight="bold">{pricingCard.title}</Text>
+                    <Text as="p" variant="lead" weight="medium">{pricingCard.lead}</Text>
+                    <Text as="p" variant="body">{pricingCard.body}</Text>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Truncated file names -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Truncated File Names</span>
+            <span class="pl-example__tags">Admin panel · Truncate utility</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="txt-truncate">
+
+                <div class="txt-truncate__card">
+
+                    <div class="txt-truncate__head">Recent uploads</div>
+
+                    {truncatedRows.map(row => (
+                        <div class="txt-truncate__row">
+                            <span class="txt-truncate__icon">📄</span>
+                            <Text as="span" variant="body-sm" truncate>{row.name}</Text>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Editorial pull quote -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Pull Quote</span>
+            <span class="pl-example__tags">Editorial · Centered · Serif lead</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="txt-quote">
+
+                <div class="txt-quote__inner">
+
+                    <Text as="blockquote" variant="lead" weight="medium" align="center">
+                        “{editorialQuote.quote}”
+                    </Text>
+                    <Text as="p" variant="caption" align="center">— {editorialQuote.attribution}</Text>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

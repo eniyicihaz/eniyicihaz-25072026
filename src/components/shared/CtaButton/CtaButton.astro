@@ -1,0 +1,108 @@
+---
+// Shared premium CTA button — used by any section (Footer, Hero, ...).
+// Promoted out of Footer's atoms after Hero needed the identical recipe;
+// per DESIGN_SYSTEM_GUIDE §26 an existing component is reused, not re-created.
+// Self-sufficient: the transition timing has its own fallback and does not
+// depend on a host section defining --fcta-*/--hero-* custom properties.
+interface Props {
+  label: string;
+  href: string;
+  /** solid = the single primary action, outline = the quieter secondary. */
+  variant?: "solid" | "outline";
+}
+
+const { label, href, variant = "solid" } = Astro.props;
+---
+
+<a class:list={["cta-button", `cta-button--${variant}`]} href={href}>
+  <span>{label}</span>
+</a>
+
+<style>
+  /* Depth from layered inset light, not a gradient. Both variants share a
+     height so they align, but their visual weight is deliberately unequal —
+     the primary is the one place the eye should land. */
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      transform var(--cta-dur, 300ms)
+        var(--cta-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+      box-shadow var(--cta-dur, 300ms)
+        var(--cta-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+      background-color var(--transition-base),
+      border-color var(--transition-base),
+      color var(--transition-base);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+    transition-duration: var(--transition-fast);
+  }
+
+  .cta-button:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Primary: filled, lifted, carries a soft brand glow --------------- */
+
+  .cta-button--solid {
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary-hover);
+    color: var(--color-text-inverse);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.25),
+      0 10px 24px -10px rgb(37 99 235 / 0.55);
+  }
+
+  .cta-button--solid:hover {
+    transform: translateY(-2px);
+    background: var(--color-primary-hover);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.28),
+      0 18px 36px -12px rgb(37 99 235 / 0.6);
+  }
+
+  /* --- Secondary: quiet. No fill, no shadow, no lift. ------------------- */
+
+  .cta-button--outline {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .cta-button--outline:hover {
+    background: var(--color-surface);
+    border-color: var(--color-border-hover);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-button {
+      transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        color var(--transition-base);
+    }
+    .cta-button:hover,
+    .cta-button:active {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cta-button {
+      width: 100%;
+    }
+  }
+</style>

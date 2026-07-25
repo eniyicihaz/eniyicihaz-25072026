@@ -1,0 +1,137 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Radio from "../../../ds/components/ui/atoms/Radio/Radio.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Radio"
+      description="Premium radio component."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Default">
+
+      <Radio
+        name="gender-default"
+        checked
+      >
+        Erkek
+      </Radio>
+
+      <Radio
+        name="gender-default"
+      >
+        Kadın
+      </Radio>
+
+    </Preview>
+
+    <Preview title="States">
+
+      <Radio
+        name="state"
+        checked
+      >
+        Seçili
+      </Radio>
+
+      <Radio
+        name="state"
+      >
+        Normal
+      </Radio>
+
+      <Radio
+        name="success"
+        success
+        checked
+      >
+        Başarılı
+      </Radio>
+
+      <Radio
+        name="error"
+        error
+      >
+        Hatalı
+      </Radio>
+
+      <Radio
+        name="disabled"
+        disabled
+      >
+        Pasif
+      </Radio>
+
+    </Preview>
+
+    <Preview title="Helper Text">
+
+      <Radio
+        name="agreement"
+        helperText="Lütfen bir seçenek belirleyiniz."
+      >
+        Standart Paket
+      </Radio>
+
+      <Radio
+        name="agreement"
+        error
+        helperText="Bir seçim yapılması zorunludur."
+      >
+        Premium Paket
+      </Radio>
+
+      <Radio
+        name="agreement"
+        success
+        checked
+        helperText="Seçiminiz kaydedildi."
+      >
+        Kurumsal Paket
+      </Radio>
+
+    </Preview>
+
+    <Preview title="Disabled">
+
+      <Radio
+        name="disabled-group"
+        disabled
+      >
+        Pasif
+      </Radio>
+
+      <Radio
+        name="disabled-group"
+        checked
+        disabled
+      >
+        Seçili Pasif
+      </Radio>
+
+    </Preview>
+
+  </section>
+
+  <style>
+    .page {
+      max-width: 1300px;
+    }
+  </style>
+
+</DSLayout>

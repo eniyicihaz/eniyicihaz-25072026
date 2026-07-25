@@ -1,0 +1,51 @@
+---
+import type { TreeNode } from "./TreeView.types";
+
+const { nodes, showIcons } = Astro.props as {
+  nodes: TreeNode[];
+  showIcons: boolean;
+};
+---
+
+<ul class="ds-treeview__list ds-treeview__list--nested" role="group">
+  {
+    nodes.map((node) => (
+      <li
+        class:list={[
+          "ds-treeview__item",
+          node.selected && "ds-treeview__item--selected",
+          node.disabled && "ds-treeview__item--disabled",
+        ]}
+      >
+        <div
+          class="ds-treeview__node"
+          role="treeitem"
+          aria-expanded={node.children?.length ? node.expanded : undefined}
+        >
+          <span class="ds-treeview__toggle">
+            {node.children?.length ? (node.expanded ? "▾" : "▸") : ""}
+          </span>
+
+          {
+            showIcons && (
+              <span class="ds-treeview__icon">
+                {node.children?.length ? "📁" : "📄"}
+              </span>
+            )
+          }
+
+          <span class="ds-treeview__label">
+            {node.label}
+          </span>
+        </div>
+
+        {
+          node.children &&
+          node.expanded && (
+            <Astro.self nodes={node.children} showIcons={showIcons} />
+          )
+        }
+      </li>
+    ))
+  }
+</ul>

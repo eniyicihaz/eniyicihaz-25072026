@@ -1,0 +1,115 @@
+@keyframes fade-in{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+@keyframes fade-out{
+
+    from{
+        opacity:1;
+    }
+
+    to{
+        opacity:0;
+    }
+
+}
+
+@keyframes slide-up{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes slide-down{
+
+    from{
+        opacity:0;
+        transform:translateY(-12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes scale-in{
+
+    from{
+        opacity:0;
+        transform:scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+@keyframes scale-out{
+
+    from{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    to{
+        opacity:0;
+        transform:scale(.96);
+    }
+
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.fade-in{
+    animation:fade-in var(--transition-base) forwards;
+}
+
+.fade-out{
+    animation:fade-out var(--transition-base) forwards;
+}
+
+.slide-up{
+    animation:slide-up var(--transition-base) forwards;
+}
+
+.slide-down{
+    animation:slide-down var(--transition-base) forwards;
+}
+
+.scale-in{
+    animation:scale-in var(--transition-base) forwards;
+}
+
+.scale-out{
+    animation:scale-out var(--transition-base) forwards;
+}
+
+.spin{
+    animation:spin .8s linear infinite;
+}

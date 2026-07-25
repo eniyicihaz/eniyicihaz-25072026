@@ -1,0 +1,41 @@
+---
+import { footerIcons } from "../../footer.icons";
+import type { SocialItem } from "../../footer.types";
+
+type Props = SocialItem;
+
+const { iconKey, href, label } = Astro.props;
+const Icon = footerIcons[iconKey as keyof typeof footerIcons] as any;
+---
+
+<a class="social-icon" href={href} aria-label={label}>
+  {Icon && <Icon size={18} stroke-width={1.75} aria-hidden="true" />}
+</a>
+
+<style>
+  .social-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--footer-border);
+    background: var(--footer-surface);
+    color: var(--footer-link);
+    transition:
+      color var(--transition-base),
+      background-color var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  .social-icon:hover {
+    color: var(--footer-link-hover);
+    background: var(--footer-surface-hover);
+    border-color: var(--footer-accent-border);
+  }
+
+  .social-icon:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+</style>

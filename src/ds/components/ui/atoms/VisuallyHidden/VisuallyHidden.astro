@@ -1,0 +1,24 @@
+---
+import "./VisuallyHidden.css";
+import type { VisuallyHiddenProps } from "./VisuallyHidden.types";
+
+const {
+  as = "span",
+  focusable = false,
+  class: className = "",
+} = Astro.props as VisuallyHiddenProps;
+
+const Tag = as;
+
+const classes = [
+  "ds-visually-hidden",
+  focusable && "ds-visually-hidden--focusable",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<Tag class={classes}>
+  <slot />
+</Tag>

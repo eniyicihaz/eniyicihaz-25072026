@@ -1,0 +1,46 @@
+---
+import "./Divider.css";
+import type { DividerProps } from "./Divider.types";
+
+const {
+  direction = "horizontal",
+  variant = "default",
+  thickness = "sm",
+  label,
+  class: className = ""
+}: DividerProps = Astro.props;
+
+const classes = [
+  "divider",
+  `divider--${direction}`,
+  `divider--${variant}`,
+  `divider--${thickness}`,
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+{
+  label ? (
+    <div
+      class={classes}
+      role="separator"
+      aria-orientation={direction}
+    >
+      <span class="divider-line"></span>
+
+      <span class="divider-label">
+        {label}
+      </span>
+
+      <span class="divider-line"></span>
+    </div>
+  ) : (
+    <div
+      class={classes}
+      role="separator"
+      aria-orientation={direction}
+    />
+  )
+}

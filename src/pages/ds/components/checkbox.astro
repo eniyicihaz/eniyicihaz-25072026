@@ -1,0 +1,428 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Checkbox/CheckboxPatterns.css";
+
+import Checkbox from "../../../ds/components/ui/atoms/Checkbox/Checkbox.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    consentCategories,
+    filterGroups,
+    filterChips,
+    filterResults,
+    onboardingTasks,
+    coverOptions,
+    notificationRows
+} from "../../../ds/patterns/Checkbox/checkbox.data";
+---
+
+<DSLayout title="Checkbox">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Checkbox</h1>
+
+        <p class="pl-head__lede">
+            Five jobs for a single control — granting consent, filtering a shop,
+            working through setup, building an insurance quote and tuning
+            notifications.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Cookie consent
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Cookie Consent</span>
+            <span class="pl-example__tags">Anchored sheet · Locked rows · Legal tone</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="check-consent">
+
+                <div class="check-consent__page" aria-hidden="true">
+                    <p class="check-consent__page-title">
+                        Design tools for people who ship.
+                    </p>
+                </div>
+
+                <div class="check-consent__sheet">
+
+                    <h2 class="check-consent__title">Choose what we may store</h2>
+
+                    <p class="check-consent__lede">
+                        We use a small number of cookies to keep the site working and
+                        to understand which pages are useful. Nothing here is shared
+                        with advertisers unless you opt in below.
+                    </p>
+
+                    <div class="check-consent__list">
+                        {consentCategories.map(category => (
+                            <div
+                                class:list={[
+                                    "check-consent__item",
+                                    category.locked && "check-consent__item--locked"
+                                ]}
+                            >
+                                <div>
+                                    <div class="check-consent__item-name">
+                                        {category.name}
+                                        <span class="check-consent__count">{category.count}</span>
+                                        {category.locked && (
+                                            <Badge variant="neutral" size="sm">Always on</Badge>
+                                        )}
+                                    </div>
+                                    <p class="check-consent__item-body">{category.body}</p>
+                                </div>
+
+                                <Checkbox checked={category.on} disabled={category.locked} />
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="check-consent__foot">
+                        <span class="check-consent__policy">
+                            Read our <a href="#0">cookie policy</a>
+                        </span>
+                        <div class="check-consent__actions">
+                            <Button variant="ghost">Reject all</Button>
+                            <Button variant="outline">Save choices</Button>
+                            <Button>Accept all</Button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Shop filters
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Shop Filters</span>
+            <span class="pl-example__tags">Sticky rail · Active chips · Result grid</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="check-filter">
+
+                <div class="check-filter__inner">
+
+                    <header class="check-filter__head">
+                        <h2 class="check-filter__title">Seating</h2>
+                        <span class="check-filter__count">
+                            Showing 24 of 122 pieces
+                        </span>
+                    </header>
+
+                    <div class="check-filter__grid">
+
+                        <aside class="check-filter__rail">
+                            {filterGroups.map(group => (
+                                <div class="check-filter__group">
+                                    <h3 class="check-filter__group-title">{group.title}</h3>
+                                    {group.items.map(item => (
+                                        <div class="check-filter__option">
+                                            <Checkbox checked={item.on}>{item.label}</Checkbox>
+                                            <span class="check-filter__option-count">
+                                                {item.count}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                        </aside>
+
+                        <div>
+
+                            <div class="check-filter__chips">
+                                <span class="check-filter__chips-label">Filtering by</span>
+                                {filterChips.map(chip => (
+                                    <span class="check-filter__chip">
+                                        {chip} <span aria-hidden="true">✕</span>
+                                    </span>
+                                ))}
+                            </div>
+
+                            <div class="check-filter__results">
+                                {filterResults.map(item => (
+                                    <article>
+                                        <div class={`check-filter__plate check-filter__plate--${item.tone}`}></div>
+                                        <h3 class="check-filter__name">{item.name}</h3>
+                                        <p class="check-filter__detail">{item.detail}</p>
+                                        <p class="check-filter__price">{item.price}</p>
+                                    </article>
+                                ))}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Onboarding checklist
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Setup Checklist</span>
+            <span class="pl-example__tags">Progress bar · Struck-through rows · Inline actions</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="check-onboard">
+
+                <div class="check-onboard__inner">
+
+                    <header class="check-onboard__head">
+
+                        <span class="check-onboard__kicker">Getting started</span>
+
+                        <h2 class="check-onboard__title">
+                            You are two steps from your first deploy
+                        </h2>
+
+                        <p class="check-onboard__lede">
+                            Finish these and we will stop nagging you in the sidebar.
+                        </p>
+
+                        <div class="check-onboard__progress">
+                            <span class="check-onboard__track">
+                                <span class="check-onboard__fill"></span>
+                            </span>
+                            <span class="check-onboard__progress-label">2 / 5</span>
+                        </div>
+
+                    </header>
+
+                    <div class="check-onboard__list">
+                        {onboardingTasks.map(task => (
+                            <div
+                                class:list={[
+                                    "check-onboard__task",
+                                    task.done && "check-onboard__task--done"
+                                ]}
+                            >
+                                <Checkbox checked={task.done} />
+                                <div class="check-onboard__task-body">
+                                    <div class="check-onboard__task-label">{task.label}</div>
+                                    <p class="check-onboard__task-note">{task.note}</p>
+                                </div>
+                                {!task.done && (
+                                    <div class="check-onboard__task-action">
+                                        <Button variant="outline" size="sm">Set up</Button>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="check-onboard__foot">
+                        <span>Takes about six minutes in total.</span>
+                        <Button variant="ghost" size="sm">Skip for now</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Insurance cover
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Cover Selector</span>
+            <span class="pl-example__tags">Selectable cards · Live total · Sticky summary</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="check-cover">
+
+                <div class="check-cover__inner">
+
+                    <div>
+
+                        <header class="check-cover__head">
+                            <span class="check-cover__kicker">Step 3 of 4</span>
+                            <h2 class="check-cover__title">Build the cover you actually need</h2>
+                            <p class="check-cover__lede">
+                                Start with liability and add only what applies to you.
+                                Everything can be changed later without a fee.
+                            </p>
+                        </header>
+
+                        <div class="check-cover__options">
+                            {coverOptions.map(option => (
+                                <div
+                                    class:list={[
+                                        "check-cover__option",
+                                        option.on && "check-cover__option--on"
+                                    ]}
+                                >
+                                    <div>
+                                        <div class="check-cover__option-head">
+                                            <Checkbox checked={option.on}>{option.label}</Checkbox>
+                                            {option.recommended && (
+                                                <Badge variant="success" size="sm">
+                                                    Most chosen
+                                                </Badge>
+                                            )}
+                                        </div>
+                                        <p class="check-cover__option-body">{option.body}</p>
+                                    </div>
+                                    <span class="check-cover__price">{option.price}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
+
+                    <aside class="check-cover__summary">
+
+                        <h3 class="check-cover__summary-title">Your monthly premium</h3>
+
+                        <div class="check-cover__line">
+                            <span>Personal liability</span>
+                            <strong>€12.00</strong>
+                        </div>
+                        <div class="check-cover__line">
+                            <span>Home contents</span>
+                            <strong>€7.00</strong>
+                        </div>
+                        <div class="check-cover__line">
+                            <span>Multi-cover discount</span>
+                            <strong>−€1.50</strong>
+                        </div>
+
+                        <div class="check-cover__total">
+                            <span>Total</span>
+                            <strong>€17.50</strong>
+                        </div>
+
+                        <div class="check-cover__summary-action">
+                            <Button size="lg" fullWidth>Continue</Button>
+                        </div>
+
+                        <span class="check-cover__summary-note">
+                            Cancel monthly. No cancellation fee at any point.
+                        </span>
+
+                    </aside>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Notification matrix
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Notification Matrix</span>
+            <span class="pl-example__tags">Dark table · Checkbox cells · Dense</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="check-notify">
+
+                <div class="check-notify__inner">
+
+                    <header class="check-notify__head">
+                        <h2 class="check-notify__title">Notifications</h2>
+                        <p class="check-notify__lede">
+                            Choose how you hear about each thing. We never send
+                            marketing to the addresses used for alerts.
+                        </p>
+                    </header>
+
+                    <div class="check-notify__table">
+
+                        <div class="check-notify__row check-notify__row--head">
+                            <span class="check-notify__col check-notify__col--label">Event</span>
+                            <span class="check-notify__col">Email</span>
+                            <span class="check-notify__col">Push</span>
+                            <span class="check-notify__col">Digest</span>
+                        </div>
+
+                        {notificationRows.map(row => (
+                            <div class="check-notify__row">
+                                <span class="check-notify__label">{row.label}</span>
+                                <span class="check-notify__cell">
+                                    <Checkbox checked={row.email} />
+                                </span>
+                                <span class="check-notify__cell">
+                                    <Checkbox checked={row.push} />
+                                </span>
+                                <span class="check-notify__cell">
+                                    <Checkbox checked={row.digest} />
+                                </span>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <div class="check-notify__foot">
+                        <span>Digest emails are sent Mondays at 09:00 in your timezone.</span>
+                        <Button variant="glass" size="sm">Save preferences</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

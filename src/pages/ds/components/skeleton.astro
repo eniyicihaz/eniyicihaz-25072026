@@ -1,0 +1,223 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Skeleton/SkeletonPatterns.css";
+
+import Skeleton from "../../../ds/components/ui/atoms/Skeleton/Skeleton.astro";
+
+import {
+    appointmentRows,
+    articleLines,
+    productCards,
+    chatRows
+} from "../../../ds/patterns/Skeleton/skeleton.data";
+---
+
+<DSLayout title="Skeleton">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Skeleton</h1>
+
+        <p class="pl-head__lede">
+            Five loading moments — an appointment list, a dark dashboard
+            card, a blog post, a product grid and a chat message list.
+        </p>
+
+    </header>
+
+    <!-- 01 — Appointment list loading -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment List</span>
+            <span class="pl-example__tags">Hearing care · Wave animation</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="skl-clinic">
+
+                <div class="skl-clinic__card">
+
+                    <div class="skl-clinic__head">Randevularınız yükleniyor</div>
+
+                    {appointmentRows.map(() => (
+                        <div class="skl-clinic__row">
+                            <Skeleton variant="circle" width="44px" height="44px" />
+                            <div class="skl-clinic__lines">
+                                <Skeleton variant="text" width="55%" height="14px" />
+                                <Skeleton variant="text" lines={2} lastLineWidth="40%" height="12px" />
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Dark dashboard card loading -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Dashboard Card</span>
+            <span class="pl-example__tags">Dark · Pulse animation</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="skl-dash">
+
+                <div class="skl-dash__card">
+
+                    <div class="skl-dash__top">
+                        <Skeleton variant="circle" width="40px" height="40px" animation="pulse" />
+                        <div style="flex:1;">
+                            <Skeleton variant="text" width="70%" height="14px" animation="pulse" />
+                            <Skeleton variant="text" width="40%" height="12px" animation="pulse" />
+                        </div>
+                    </div>
+
+                    <div class="skl-dash__chart">
+                        <Skeleton variant="rounded" width="100%" height="90px" animation="pulse" />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Blog post loading -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Article Page</span>
+            <span class="pl-example__tags">Editorial · Text variant, multiple lines</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="skl-article">
+
+                <div class="skl-article__card">
+
+                    <div class="skl-article__hero">
+                        <Skeleton variant="rounded" width="100%" height="200px" />
+                    </div>
+
+                    <Skeleton variant="text" width={articleLines.titleWidth} height="24px" />
+
+                    <div style="margin-top:16px;">
+                        <Skeleton
+                            variant="text"
+                            lines={articleLines.paragraphLines}
+                            lastLineWidth={articleLines.lastLineWidth}
+                            height="14px"
+                        />
+                    </div>
+
+                    <div class="skl-article__meta">
+                        <Skeleton variant="circle" width="32px" height="32px" />
+                        <Skeleton variant="text" width="140px" height="12px" />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Product grid loading -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Product Grid</span>
+            <span class="pl-example__tags">Retail · No animation</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="skl-shop">
+
+                <div class="skl-shop__grid">
+                    {productCards.map(() => (
+                        <div class="skl-shop__card">
+                            <div class="skl-shop__thumb">
+                                <Skeleton variant="rounded" width="100%" height="110px" animation="none" />
+                            </div>
+                            <Skeleton variant="text" width="80%" height="13px" animation="none" />
+                            <Skeleton variant="text" width="45%" height="13px" animation="none" />
+                        </div>
+                    ))}
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Chat message list loading -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Chat Messages</span>
+            <span class="pl-example__tags">Support desk · Pulse animation</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="skl-chat">
+
+                <div class="skl-chat__card">
+
+                    {chatRows.map(() => (
+                        <div class="skl-chat__row">
+                            <Skeleton variant="circle" width="36px" height="36px" animation="pulse" />
+                            <div class="skl-chat__lines">
+                                <Skeleton
+                                    variant="text"
+                                    lines={2}
+                                    lastLineWidth="50%"
+                                    height="12px"
+                                    animation="pulse"
+                                />
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

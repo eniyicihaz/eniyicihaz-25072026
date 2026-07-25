@@ -1,0 +1,70 @@
+---
+import "./FormField.css";
+import type { FormFieldProps } from "./FormField.types";
+
+const {
+  id,
+  label,
+  description,
+  error,
+  required = false,
+  disabled = false,
+  class: className = "",
+} = Astro.props as FormFieldProps;
+
+const classes = [
+  "ds-form-field",
+  disabled && "ds-form-field--disabled",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  {
+    label && (
+      <label
+        class="ds-form-field__label"
+        for={id}
+      >
+        {label}
+
+        {
+          required && (
+            <span
+              class="ds-form-field__required"
+              aria-hidden="true"
+            >
+              *
+            </span>
+          )
+        }
+      </label>
+    )
+  }
+
+  <div class="ds-form-field__control">
+    <slot />
+  </div>
+
+  {
+    error ? (
+      <p
+        class="ds-form-field__error"
+        id={id ? `${id}-error` : undefined}
+      >
+        {error}
+      </p>
+    ) : (
+      description && (
+        <p
+          class="ds-form-field__description"
+          id={id ? `${id}-description` : undefined}
+        >
+          {description}
+        </p>
+      )
+    )
+  }
+</div>

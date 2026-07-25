@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<h3 class="footer-heading">{title}</h3>
+
+<style>
+  /* Small, confident section title — the single heading style used by every
+     footer column, so the columns never drift apart visually. */
+  .footer-heading {
+    margin: 0 0 var(--space-5);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    color: var(--footer-heading);
+  }
+</style>

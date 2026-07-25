@@ -1,0 +1,27 @@
+.ds-key-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+
+  padding: .75rem 0;
+
+  border-bottom: 1px solid var(--ds-border-color, #e2e8f0);
+}
+
+.ds-key-value--inline {
+  display: inline-flex;
+  border-bottom: none;
+  padding: 0;
+}
+
+.ds-key-value__label {
+  color: var(--ds-text-secondary, #64748b);
+  font-weight: 500;
+}
+
+.ds-key-value__value {
+  color: var(--ds-text, #0f172a);
+  font-weight: 600;
+  text-align: right;
+}

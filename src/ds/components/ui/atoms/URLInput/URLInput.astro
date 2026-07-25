@@ -1,0 +1,50 @@
+---
+import "./URLInput.css";
+import type { URLInputProps } from "./URLInput.types";
+
+const {
+  id,
+  name,
+  value = "",
+  placeholder = "https://example.com",
+  autocomplete = "url",
+  disabled = false,
+  readonly = false,
+  required = false,
+  invalid = false,
+  class: className = "",
+} = Astro.props as URLInputProps;
+
+const classes = [
+  "ds-url-input",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <span
+    class="ds-url-input__icon"
+    aria-hidden="true"
+  >
+    🔗
+  </span>
+
+  <input
+    class:list={[
+      "ds-url-input__field",
+      invalid && "ds-url-input__field--invalid",
+    ]}
+    id={id}
+    name={name}
+    type="url"
+    value={value}
+    placeholder={placeholder}
+    autocomplete={autocomplete}
+    disabled={disabled}
+    readonly={readonly}
+    required={required}
+    aria-invalid={invalid}
+  />
+</div>

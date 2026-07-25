@@ -1,0 +1,139 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Badge"
+      description="Premium badge component."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Variants">
+
+      <Badge>Primary</Badge>
+
+      <Badge variant="secondary">
+        Secondary
+      </Badge>
+
+      <Badge variant="success">
+        Success
+      </Badge>
+
+      <Badge variant="warning">
+        Warning
+      </Badge>
+
+      <Badge variant="danger">
+        Danger
+      </Badge>
+
+      <Badge variant="neutral">
+        Neutral
+      </Badge>
+
+    </Preview>
+
+    <Preview title="Sizes">
+
+      <Badge size="sm">
+        Small
+      </Badge>
+
+      <Badge size="md">
+        Medium
+      </Badge>
+
+      <Badge size="lg">
+        Large
+      </Badge>
+
+    </Preview>
+
+    <Preview title="Rounded">
+
+      <Badge rounded>
+        Rounded
+      </Badge>
+
+      <Badge rounded={false}>
+        Square
+      </Badge>
+
+    </Preview>
+
+    <Preview title="Outlined">
+
+      <Badge outlined>
+        Primary
+      </Badge>
+
+      <Badge
+        variant="success"
+        outlined
+      >
+        Success
+      </Badge>
+
+      <Badge
+        variant="danger"
+        outlined
+      >
+        Danger
+      </Badge>
+
+      <Badge
+        variant="warning"
+        outlined
+      >
+        Warning
+      </Badge>
+
+    </Preview>
+
+    <Preview title="Removable">
+
+      <Badge removable>
+        Premium
+      </Badge>
+
+      <Badge
+        variant="success"
+        removable
+      >
+        Active
+      </Badge>
+
+      <Badge
+        variant="danger"
+        removable
+      >
+        Error
+      </Badge>
+
+    </Preview>
+
+  </section>
+
+  <style>
+    .page {
+      max-width: 1300px;
+    }
+  </style>
+
+</DSLayout>

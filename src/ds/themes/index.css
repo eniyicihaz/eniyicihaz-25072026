@@ -1,0 +1,13 @@
+/* ==========================================================
+   THEME OVERRIDES — ENTRY
+
+   Her Design Language kendi klasorundeki index.css dosyasini
+   yukler. Component override'lari component bazinda ayri
+   dosyalarda tutulur.
+   ========================================================== */
+
+@import "./corporate/index.css";
+@import "./soft/index.css";
+@import "./premium/index.css";
+@import "./glass/index.css";
+@import "./dark/index.css";

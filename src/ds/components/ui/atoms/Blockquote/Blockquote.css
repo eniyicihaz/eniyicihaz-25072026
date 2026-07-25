@@ -1,0 +1,25 @@
+.ds-blockquote {
+  margin: 0;
+  padding: 1rem 1.25rem;
+
+  border-inline-start: 4px solid var(--ds-primary, #2563eb);
+  border-radius: 0.75rem;
+
+  background: var(--ds-surface-secondary, #f8fafc);
+
+  color: var(--ds-text, #1f2937);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.ds-blockquote p {
+  margin: 0;
+}
+
+.ds-blockquote footer {
+  margin-top: .75rem;
+
+  font-style: normal;
+  font-size: .875rem;
+  color: var(--ds-text-muted, #64748b);
+}

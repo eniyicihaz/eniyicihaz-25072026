@@ -1,0 +1,583 @@
+/* ==========================================================
+   InputGroup — five patterns
+
+   01  ig-clinic   Clinic search bar (eniyicihaz.com)
+   02  ig-transfer Currency amount, money transfer
+   03  ig-domain   Domain availability check, dev tool
+   04  ig-phone    Phone number field, checkout
+   05  ig-stock    Quantity + unit, inventory
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic search bar
+   ========================================================== */
+
+.ig-clinic{
+    padding:64px 32px 80px;
+
+    background:
+        radial-gradient(55% 45% at 50% 0%, rgb(13 148 136 / .12), transparent 64%),
+        #f6fbfa;
+}
+
+.ig-clinic__inner{
+    max-width:640px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.ig-clinic__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.ig-clinic__title{
+    margin:16px 0 28px;
+
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.ig-clinic__group{
+    box-shadow:0 20px 48px rgb(18 59 54 / .12);
+    border-radius:var(--pat-radius-sm);
+}
+
+/* Input/Select render a wrapper div around the bordered
+   control, so InputGroup's own child-selector radius fuse
+   can't reach it — fused here directly on the real element. */
+
+.ig-clinic__group .select,
+.ig-clinic__group .input{
+    border-radius:0;
+    border-color:rgb(18 59 54 / .2);
+}
+
+.ig-clinic__group > :first-child .select{
+    border-radius:var(--pat-radius-sm) 0 0 var(--pat-radius-sm);
+}
+
+.ig-clinic__group .select{
+    max-width:200px;
+    flex-shrink:0;
+}
+
+.ig-clinic__group .input:focus,
+.ig-clinic__group .select:focus{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .16);
+}
+
+.ig-clinic__group .btn--primary{
+    --btn-bg:#0f766e;
+
+    border-radius:0 var(--pat-radius-sm) var(--pat-radius-sm) 0;
+}
+
+.ig-clinic__group .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+.ig-clinic__results{
+    margin-top:24px;
+    text-align:left;
+}
+
+.ig-clinic__result{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:14px 16px;
+    margin-bottom:8px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+
+    font-size:.9rem;
+}
+
+.ig-clinic__result-name{
+    font-weight:650;
+    color:#123b36;
+}
+
+.ig-clinic__result-detail{
+    color:#6b8b86;
+}
+
+
+/* ==========================================================
+   02 — Currency amount, money transfer
+   ========================================================== */
+
+.ig-transfer{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfcfe;
+}
+
+.ig-transfer__card{
+    width:100%;
+    max-width:480px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.ig-transfer__label{
+    display:block;
+    margin-bottom:9px;
+
+    font-size:.82rem;
+    font-weight:650;
+    color:#33415a;
+}
+
+.ig-transfer__group .select,
+.ig-transfer__group .input{
+    border-radius:0;
+}
+
+.ig-transfer__group > :first-child .select{
+    border-radius:var(--pat-radius-sm) 0 0 var(--pat-radius-sm);
+}
+
+.ig-transfer__group > :last-child .input{
+    border-radius:0 var(--pat-radius-sm) var(--pat-radius-sm) 0;
+}
+
+.ig-transfer__group .select{
+    max-width:120px;
+    flex-shrink:0;
+
+    font-weight:650;
+}
+
+.ig-transfer__group .input{
+    font-size:1.3rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+}
+
+.ig-transfer__group .input:focus,
+.ig-transfer__group .select:focus{
+    border-color:var(--pat-blue);
+    box-shadow:0 0 0 3px rgb(29 78 216 / .12);
+}
+
+.ig-transfer__convert{
+    display:flex;
+    justify-content:center;
+    margin:14px 0;
+
+    color:var(--pat-soft);
+}
+
+.ig-transfer__result{
+    text-align:center;
+}
+
+.ig-transfer__result strong{
+    display:block;
+
+    font-size:1.5rem;
+    font-weight:800;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.ig-transfer__result span{
+    display:block;
+    margin-top:6px;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.ig-transfer__action{
+    margin-top:24px;
+}
+
+
+/* ==========================================================
+   03 — Domain availability, dev tool
+
+   Dark. The group sits in a big centred search bar with
+   a monospace results list.
+   ========================================================== */
+
+.ig-domain{
+    padding:64px 32px 88px;
+    background:#0a0f19;
+}
+
+.ig-domain__inner{
+    max-width:640px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.ig-domain__title{
+    margin:0 0 28px;
+
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:#f8fafc;
+}
+
+.ig-domain__group .input,
+.ig-domain__group .select{
+    border-radius:0;
+}
+
+.ig-domain__group > :first-child .select{
+    border-radius:var(--pat-radius-xs) 0 0 var(--pat-radius-xs);
+}
+
+.ig-domain__group .input{
+    background:rgb(255 255 255 / .04);
+    border-color:rgb(255 255 255 / .14);
+    color:#f8fafc;
+
+    font-family:var(--pat-mono);
+    font-size:.94rem;
+}
+
+.ig-domain__group .input::placeholder{
+    color:rgb(248 250 252 / .32);
+}
+
+.ig-domain__group .select{
+    max-width:110px;
+    flex-shrink:0;
+
+    background:rgb(255 255 255 / .04);
+    border-color:rgb(255 255 255 / .14);
+    color:#f8fafc;
+
+    font-family:var(--pat-mono);
+}
+
+.ig-domain__group .input:focus,
+.ig-domain__group .select:focus{
+    border-color:rgb(56 189 248 / .5);
+    box-shadow:0 0 0 3px rgb(56 189 248 / .14);
+}
+
+.ig-domain__group .btn--primary{
+    --btn-bg:#38bdf8;
+    --btn-color:#0a0f19;
+
+    border-radius:0 var(--pat-radius-xs) var(--pat-radius-xs) 0;
+}
+
+.ig-domain__group .btn--primary:hover{
+    --btn-bg:#7dd3fc;
+}
+
+.ig-domain__results{
+    margin-top:26px;
+    text-align:left;
+}
+
+.ig-domain__row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:13px 16px;
+    margin-bottom:6px;
+
+    border:1px solid rgb(255 255 255 / .09);
+    border-radius:var(--pat-radius-xs);
+
+    background:rgb(255 255 255 / .02);
+
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+    color:#e2e8f0;
+}
+
+.ig-domain__row-status{
+    margin-left:auto;
+
+    font-size:.78rem;
+    font-weight:700;
+}
+
+.ig-domain__row-status--success{ color:#4ade80; }
+.ig-domain__row-status--danger{ color:#f87171; }
+
+.ig-domain__row-price{
+    min-width:64px;
+    text-align:right;
+
+    color:rgb(248 250 252 / .4);
+}
+
+
+/* ==========================================================
+   04 — Phone number, checkout
+   ========================================================== */
+
+.ig-phone{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f7f8fa;
+}
+
+.ig-phone__card{
+    width:100%;
+    max-width:480px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.ig-phone__steps{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+
+    padding-bottom:20px;
+    margin-bottom:24px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.ig-phone__step{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:.84rem;
+    color:var(--pat-soft);
+}
+
+.ig-phone__step-n{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:20px;
+    height:20px;
+
+    border:1px solid rgb(15 23 42 / .16);
+    border-radius:50%;
+
+    font-family:var(--pat-mono);
+    font-size:.68rem;
+    font-weight:700;
+}
+
+.ig-phone__step--done{ color:#15803d; }
+.ig-phone__step--done .ig-phone__step-n{ border-color:#16a34a; background:#16a34a; color:#fff; }
+.ig-phone__step--current{ font-weight:650; color:var(--pat-ink); }
+.ig-phone__step--current .ig-phone__step-n{ border-color:var(--pat-ink); background:var(--pat-ink); color:#fff; }
+
+.ig-phone__label{
+    display:block;
+    margin-bottom:9px;
+
+    font-size:.85rem;
+    font-weight:650;
+    color:#33415a;
+}
+
+.ig-phone__group .select,
+.ig-phone__group .input{
+    border-radius:0;
+}
+
+.ig-phone__group > :first-child .select{
+    border-radius:var(--pat-radius-xs) 0 0 var(--pat-radius-xs);
+}
+
+.ig-phone__group > :last-child .input{
+    border-radius:0 var(--pat-radius-xs) var(--pat-radius-xs) 0;
+}
+
+.ig-phone__group .select{
+    max-width:110px;
+    flex-shrink:0;
+}
+
+.ig-phone__group .input:focus,
+.ig-phone__group .select:focus{
+    border-color:var(--pat-blue);
+    box-shadow:0 0 0 3px rgb(29 78 216 / .12);
+}
+
+.ig-phone__field{
+    margin-top:20px;
+}
+
+.ig-phone__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:24px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.ig-phone__foot-note{
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   05 — Quantity + unit, inventory
+   ========================================================== */
+
+.ig-stock{
+    padding:56px 32px 88px;
+    background:#faf9f7;
+}
+
+.ig-stock__inner{
+    max-width:700px;
+    margin:0 auto;
+}
+
+.ig-stock__title{
+    margin:0 0 24px;
+
+    font-size:1.3rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#231f1c;
+}
+
+.ig-stock__row{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 190px;
+    gap:20px;
+    align-items:center;
+
+    padding:16px 18px;
+    margin-bottom:10px;
+
+    border:1px solid rgb(35 31 28 / .1);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+}
+
+.ig-stock__name{
+    font-size:.92rem;
+    font-weight:650;
+    color:#231f1c;
+}
+
+.ig-stock__sku{
+    margin-top:3px;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:#8b8177;
+}
+
+.ig-stock__group .input,
+.ig-stock__group .select{
+    border-radius:0;
+}
+
+.ig-stock__group > :first-child .input{
+    border-radius:var(--pat-radius-xs) 0 0 var(--pat-radius-xs);
+}
+
+.ig-stock__group > :last-child .select{
+    border-radius:0 var(--pat-radius-xs) var(--pat-radius-xs) 0;
+}
+
+.ig-stock__group .input{
+    max-width:70px;
+    flex-shrink:0;
+
+    text-align:center;
+}
+
+.ig-stock__group .select{
+    font-size:.85rem;
+}
+
+.ig-stock__group .input:focus,
+.ig-stock__group .select:focus{
+    border-color:#231f1c;
+    box-shadow:0 0 0 3px rgb(35 31 28 / .1);
+}
+
+.ig-stock__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:20px;
+}
+
+.ig-stock__foot-note{
+    font-size:.82rem;
+    color:#8b8177;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .ig-clinic{ padding:44px 16px 56px; }
+    .ig-clinic__group{ flex-wrap:wrap; }
+    .ig-clinic__group .select,
+    .ig-clinic__group .input,
+    .ig-clinic__group .btn{ width:100%; max-width:none; border-radius:var(--pat-radius-sm) !important; margin-left:0 !important; }
+
+    .ig-transfer{ padding:44px 16px 56px; }
+    .ig-transfer__card{ padding:24px 20px; }
+
+    .ig-domain{ padding:44px 16px 56px; }
+    .ig-domain__group{ flex-wrap:wrap; }
+    .ig-domain__group .input,
+    .ig-domain__group .select,
+    .ig-domain__group .btn{ width:100%; border-radius:var(--pat-radius-xs) !important; margin-left:0 !important; }
+
+    .ig-phone{ padding:44px 16px 56px; }
+    .ig-phone__card{ padding:24px 20px; }
+    .ig-phone__foot{ flex-direction:column; align-items:stretch; }
+    .ig-phone__foot .btn{ width:100%; }
+
+    .ig-stock{ padding:40px 16px 56px; }
+    .ig-stock__row{ grid-template-columns:minmax(0, 1fr); gap:12px; }
+
+}

@@ -1,0 +1,205 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/ProgressCircle/ProgressCirclePatterns.css";
+
+import ProgressCircle from "../../../ds/components/ui/atoms/ProgressCircle/ProgressCircle.astro";
+
+import {
+    hearingAnalysis,
+    storageUsage,
+    onboarding,
+    batteries,
+    modules
+} from "../../../ds/patterns/ProgressCircle/progresscircle.data";
+---
+
+<DSLayout title="Progress Circle">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Progress Circle</h1>
+
+        <p class="pl-head__lede">
+            Five circular readings — a hearing test analysis, cloud
+            storage usage, onboarding completion, device battery levels
+            and course module progress.
+        </p>
+
+    </header>
+
+    <!-- 01 — Hearing test analysis -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Test Analysis</span>
+            <span class="pl-example__tags">Hearing care · Large circle</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pcx-hearing">
+
+                <div class="pcx-hearing__card">
+
+                    <ProgressCircle value={hearingAnalysis.value} size={140} strokeWidth={10} />
+
+                    <div class="pcx-hearing__label">{hearingAnalysis.label}</div>
+                    <p class="pcx-hearing__note">{hearingAnalysis.note}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Cloud storage usage, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Storage Usage</span>
+            <span class="pl-example__tags">Dashboard · Dark · Warning color</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pcx-storage">
+
+                <div class="pcx-storage__card">
+
+                    <ProgressCircle value={storageUsage.value} size={100} strokeWidth={9} />
+
+                    <div>
+                        <div class="pcx-storage__title">Storage used</div>
+                        <p class="pcx-storage__amount">{storageUsage.used} of {storageUsage.total}</p>
+                        {storageUsage.warn && (
+                            <p class="pcx-storage__warn">⚠ Approaching your plan limit</p>
+                        )}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — SaaS onboarding completion -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Onboarding Progress</span>
+            <span class="pl-example__tags">SaaS · Medium circle</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pcx-onboarding">
+
+                <div class="pcx-onboarding__card">
+
+                    <ProgressCircle value={onboarding.value} size={96} strokeWidth={8} />
+
+                    <div>
+                        <div class="pcx-onboarding__title">Getting started</div>
+                        <p class="pcx-onboarding__steps">
+                            {onboarding.stepsDone} of {onboarding.stepsTotal} steps complete
+                        </p>
+                        <span class="pcx-onboarding__next">Next: {onboarding.nextStep}</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Device battery levels -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Battery Levels</span>
+            <span class="pl-example__tags">Device app · Icon overlay · No value text</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pcx-battery">
+
+                <div class="pcx-battery__row">
+                    {batteries.map(b => (
+                        <div class="pcx-battery__item">
+                            <div class:list={["pcx-battery__ring", b.value < 40 && "pcx-battery__item--low"]}>
+                                <ProgressCircle value={b.value} size={80} strokeWidth={7} showValue={false} />
+                                <div class="pcx-battery__overlay">
+                                    <span class="pcx-battery__icon">{b.icon}</span>
+                                    <span class="pcx-battery__percent">{b.value}%</span>
+                                </div>
+                            </div>
+                            <span class="pcx-battery__label">{b.label}</span>
+                        </div>
+                    ))}
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Course module completion -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Module Completion</span>
+            <span class="pl-example__tags">Education · Small multiples grid</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pcx-course">
+
+                <div class="pcx-course__panel">
+
+                    <h2 class="pcx-course__title">Design System 101</h2>
+
+                    <div class="pcx-course__grid">
+                        {modules.map(m => (
+                            <div class="pcx-course__cell">
+                                <ProgressCircle value={m.value} size={64} strokeWidth={6} />
+                                <span class="pcx-course__label">{m.label}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

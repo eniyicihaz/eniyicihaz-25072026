@@ -1,0 +1,227 @@
+/* ==========================================================
+   Skeleton — five patterns
+
+   01  skl-clinic   Appointment list loading (eniyicihaz.com)
+   02  skl-dash     Dark dashboard card loading, pulse
+   03  skl-article  Blog post loading, text variant
+   04  skl-shop     Product grid loading, no animation
+   05  skl-chat     Chat message list loading, circle avatars
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Appointment list loading
+   ========================================================== */
+
+.skl-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.skl-clinic__card{
+    width:100%;
+    max-width:480px;
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .08);
+}
+
+.skl-clinic__head{
+    padding:18px 24px;
+    border-bottom:1px solid rgb(18 59 54 / .08);
+
+    font-size:.92rem;
+    font-weight:700;
+    color:#123b36;
+}
+
+.skl-clinic__row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:18px 24px;
+}
+
+.skl-clinic__row + .skl-clinic__row{
+    border-top:1px solid rgb(18 59 54 / .06);
+}
+
+.skl-clinic__row .ds-skeleton{
+    --skeleton-base:rgb(18 59 54 / .09);
+    --skeleton-highlight:rgb(18 59 54 / .03);
+}
+
+.skl-clinic__lines{
+    flex:1;
+}
+
+
+/* ==========================================================
+   02 — Dark dashboard card loading, pulse
+   ========================================================== */
+
+.skl-dash{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.skl-dash__card{
+    width:100%;
+    max-width:340px;
+    padding:28px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.skl-dash__top{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.skl-dash .ds-skeleton{
+    --skeleton-base:rgb(255 255 255 / .09);
+    --skeleton-highlight:rgb(255 255 255 / .18);
+}
+
+.skl-dash__chart{
+    margin-top:22px;
+}
+
+
+/* ==========================================================
+   03 — Blog post loading, text variant
+   ========================================================== */
+
+.skl-article{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.skl-article__card{
+    width:100%;
+    max-width:480px;
+}
+
+.skl-article__hero{
+    margin-bottom:22px;
+}
+
+.skl-article__meta{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:20px;
+}
+
+
+/* ==========================================================
+   04 — Product grid loading, no animation
+   ========================================================== */
+
+.skl-shop{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fafaf9;
+}
+
+.skl-shop__grid{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0,1fr));
+    gap:20px;
+
+    width:100%;
+    max-width:640px;
+}
+
+.skl-shop__card{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.skl-shop__thumb{
+    margin-bottom:2px;
+}
+
+
+/* ==========================================================
+   05 — Chat message list loading, pulse
+   ========================================================== */
+
+.skl-chat{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.skl-chat__card{
+    width:100%;
+    max-width:440px;
+    padding:24px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.skl-chat__row{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.skl-chat__row + .skl-chat__row{
+    margin-top:20px;
+}
+
+.skl-chat__lines{
+    flex:1;
+    padding-top:2px;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .skl-clinic{ padding:44px 16px 56px; }
+
+    .skl-dash{ padding:44px 16px 56px; }
+    .skl-dash__card{ padding:22px; }
+
+    .skl-article{ padding:44px 16px 56px; }
+
+    .skl-shop{ padding:44px 16px 56px; }
+    .skl-shop__grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+
+    .skl-chat{ padding:44px 16px 56px; }
+    .skl-chat__card{ padding:20px; }
+
+}

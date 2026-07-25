@@ -1,0 +1,174 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Progress from "../../../ds/components/ui/atoms/Progress/Progress.astro";
+---
+
+<DSLayout>
+
+<section class="page">
+
+    <PageHeader
+        category="ATOM"
+        title="Progress"
+        description="Yükleme ve ilerleme durumlarını göstermek için kullanılan premium Progress bileşeni."
+    />
+
+    <ComponentMeta
+        version="1.0.0"
+        status="stable"
+    />
+
+    <Preview title="Variants">
+
+        <div class="demo-column">
+
+            <Progress
+                label="Primary"
+                value={72}
+                showValue
+            />
+
+            <Progress
+                label="Secondary"
+                variant="secondary"
+                value={65}
+                showValue
+            />
+
+            <Progress
+                label="Success"
+                variant="success"
+                value={90}
+                showValue
+            />
+
+            <Progress
+                label="Warning"
+                variant="warning"
+                value={48}
+                showValue
+            />
+
+            <Progress
+                label="Danger"
+                variant="danger"
+                value={25}
+                showValue
+            />
+
+            <Progress
+                label="Info"
+                variant="info"
+                value={56}
+                showValue
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Sizes">
+
+        <div class="demo-column">
+
+            <Progress
+                size="sm"
+                value={40}
+            />
+
+            <Progress
+                size="md"
+                value={60}
+            />
+
+            <Progress
+                size="lg"
+                value={80}
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Striped">
+
+        <div class="demo-column">
+
+            <Progress
+                value={70}
+                striped
+            />
+
+            <Progress
+                value={70}
+                striped
+                animated
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Indeterminate">
+
+        <div class="demo-column">
+
+            <Progress
+                mode="indeterminate"
+            />
+
+            <Progress
+                mode="indeterminate"
+                variant="success"
+            />
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Custom Radius">
+
+        <div class="demo-column">
+
+            <Progress
+                value={55}
+                radius="4px"
+            />
+
+            <Progress
+                value={55}
+                radius="1rem"
+            />
+
+            <Progress
+                value={55}
+                radius="999px"
+            />
+
+        </div>
+
+    </Preview>
+
+</section>
+
+<style>
+
+.page{
+    max-width:1300px;
+}
+
+.demo-column{
+    display:flex;
+    flex-direction:column;
+    gap:1.25rem;
+    max-width:720px;
+}
+
+</style>
+
+</DSLayout>

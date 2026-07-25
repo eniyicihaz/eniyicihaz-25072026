@@ -1,0 +1,205 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Tooltip/TooltipPatterns.css";
+
+import Tooltip from "../../../ds/components/ui/atoms/Tooltip/Tooltip.astro";
+import IconButton from "../../../ds/components/ui/atoms/IconButton/IconButton.astro";
+
+import { Bell, Search, Settings } from "lucide-astro";
+
+import {
+    audiogramTerms,
+    toolbarActions,
+    disabledAction,
+    formHelp,
+    truncatedCell
+} from "../../../ds/patterns/Tooltip/tooltip.data";
+
+const toolbarIcons = [Bell, Search, Settings];
+---
+
+<DSLayout title="Tooltip">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Tooltip</h1>
+
+        <p class="pl-head__lede">
+            Five hover moments — an audiogram glossary, a dashboard icon
+            toolbar, a disabled action explainer, form field help and a
+            truncated table cell. Hover or focus each trigger to reveal.
+        </p>
+
+    </header>
+
+    <!-- 01 — Audiogram glossary terms -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Audiogram Glossary</span>
+            <span class="pl-example__tags">Hearing care · Dark variant</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ttp-audiogram">
+
+                <div class="ttp-audiogram__card">
+
+                    <h2 class="ttp-audiogram__title">Odyogram terimleri</h2>
+
+                    {audiogramTerms.map(item => (
+                        <div class="ttp-audiogram__row">
+                            <span class="ttp-audiogram__term">{item.term}</span>
+                            <Tooltip text={item.tooltip} placement="top">
+                                ⓘ
+                            </Tooltip>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Dashboard icon toolbar, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Icon Toolbar</span>
+            <span class="pl-example__tags">Dashboard · Dark · Bottom placement</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ttp-toolbar">
+
+                <div class="ttp-toolbar__bar">
+                    {toolbarActions.map((action, i) => (
+                        <Tooltip text={action.tooltip} placement={action.placement}>
+                            <IconButton icon={toolbarIcons[i]} label={action.label} variant="ghost" size="sm" />
+                        </Tooltip>
+                    ))}
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Disabled action explainer -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Disabled Action</span>
+            <span class="pl-example__tags">SaaS · Light variant</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ttp-disabled">
+
+                <div class="ttp-disabled__card">
+
+                    <div class="ttp-disabled__title">Monthly Report</div>
+                    <p class="ttp-disabled__sub">Generated automatically on the 1st of each month</p>
+
+                    <Tooltip text={disabledAction.tooltip} placement={disabledAction.placement} variant="light">
+                        <span class="ttp-disabled__button">{disabledAction.label}</span>
+                    </Tooltip>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Form field help icons -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Form Field Help</span>
+            <span class="pl-example__tags">Developer settings · Right placement</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ttp-formhelp">
+
+                <div class="ttp-formhelp__card">
+
+                    {formHelp.map(item => (
+                        <div class="ttp-formhelp__field">
+                            <div class="ttp-formhelp__label-row">
+                                <span class="ttp-formhelp__label">{item.field}</span>
+                                <Tooltip text={item.tooltip} placement="right">
+                                    ?
+                                </Tooltip>
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Truncated table cell -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Truncated Cell</span>
+            <span class="pl-example__tags">Admin panel · Left placement</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ttp-truncate">
+
+                <div class="ttp-truncate__card">
+
+                    <div class="ttp-truncate__head">Recent uploads</div>
+
+                    <div class="ttp-truncate__row">
+                        <span class="ttp-truncate__icon">📄</span>
+                        <Tooltip text={truncatedCell.full} placement="left" maxWidth="280px">
+                            {truncatedCell.visible}
+                        </Tooltip>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

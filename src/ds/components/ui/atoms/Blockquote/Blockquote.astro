@@ -1,0 +1,23 @@
+---
+import "./Blockquote.css";
+import type { BlockquoteProps } from "./Blockquote.types";
+
+const {
+  cite,
+  class: className = "",
+} = Astro.props as BlockquoteProps;
+---
+
+<blockquote class={`ds-blockquote ${className}`}>
+  <p>
+    <slot />
+  </p>
+
+  {
+    cite && (
+      <footer>
+        — {cite}
+      </footer>
+    )
+  }
+</blockquote>

@@ -1,0 +1,92 @@
+---
+import "./IconButton.css";
+
+import Icon from "../Icon/Icon.astro";
+
+import type { IconButtonProps } from "./IconButton.types";
+
+const {
+    icon,
+    label,
+    variant = "primary",
+    size = "md",
+    rounded = true,
+    circle = true,
+    bordered = false,
+    disabled = false,
+    loading = false,
+    href,
+    target,
+    rel,
+    type = "button",
+    class: className = "",
+    ariaLabel,
+    title
+} = Astro.props as IconButtonProps;
+
+const classes = [
+    "ds-icon-button",
+    `is-${variant}`,
+    `is-${size}`,
+    rounded && "is-rounded",
+    circle && "is-circle",
+    bordered && "is-bordered",
+    disabled && "is-disabled",
+    loading && "is-loading",
+    className
+]
+    .filter(Boolean)
+    .join(" ");
+
+const computedAriaLabel = ariaLabel ?? label;
+---
+
+{
+    href ? (
+        <a
+            href={href}
+            class={classes}
+            target={target}
+            rel={rel}
+            aria-label={computedAriaLabel}
+            title={title ?? label}
+            aria-disabled={disabled}
+        >
+            {
+                loading ? (
+                    <span class="ds-icon-button__spinner" aria-hidden="true"></span>
+                ) : (
+                    <Icon
+                        icon={icon}
+                        size={size}
+                        ariaHidden={true}
+                    />
+                )
+            }
+
+            <span class="sr-only">{label}</span>
+        </a>
+    ) : (
+        <button
+            type={type}
+            class={classes}
+            disabled={disabled || loading}
+            aria-label={computedAriaLabel}
+            title={title ?? label}
+        >
+            {
+                loading ? (
+                    <span class="ds-icon-button__spinner" aria-hidden="true"></span>
+                ) : (
+                    <Icon
+                        icon={icon}
+                        size={size}
+                        ariaHidden={true}
+                    />
+                )
+            }
+
+            <span class="sr-only">{label}</span>
+        </button>
+    )
+}

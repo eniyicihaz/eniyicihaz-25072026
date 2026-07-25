@@ -1,0 +1,110 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Switch from "../../../ds/components/ui/atoms/Switch/Switch.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Switch"
+      description="Premium switch component."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Default">
+
+      <Switch>
+        Bildirimler
+      </Switch>
+
+      <Switch checked>
+        Bildirimler
+      </Switch>
+
+    </Preview>
+
+    <Preview title="States">
+
+      <Switch>
+        Normal
+      </Switch>
+
+      <Switch checked>
+        Açık
+      </Switch>
+
+      <Switch success checked>
+        Başarılı
+      </Switch>
+
+      <Switch error>
+        Hatalı
+      </Switch>
+
+      <Switch disabled>
+        Pasif
+      </Switch>
+
+    </Preview>
+
+    <Preview title="Helper Text">
+
+      <Switch
+        helperText="Bildirimleri istediğiniz zaman kapatabilirsiniz."
+      >
+        E-posta Bildirimleri
+      </Switch>
+
+      <Switch
+        error
+        helperText="Bu ayar zorunludur."
+      >
+        Konum Servisleri
+      </Switch>
+
+      <Switch
+        success
+        checked
+        helperText="Ayar başarıyla kaydedildi."
+      >
+        Otomatik Güncellemeler
+      </Switch>
+
+    </Preview>
+
+    <Preview title="Disabled">
+
+      <Switch disabled>
+        Pasif
+      </Switch>
+
+      <Switch
+        checked
+        disabled
+      >
+        Açık (Pasif)
+      </Switch>
+
+    </Preview>
+
+  </section>
+
+  <style>
+    .page {
+      max-width: 1300px;
+    }
+  </style>
+
+</DSLayout>

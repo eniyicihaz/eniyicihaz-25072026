@@ -1,0 +1,195 @@
+.ds-icon-button {
+    --_size: 2.75rem;
+    --_icon: 1.2rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: var(--_size);
+    height: var(--_size);
+
+    border: 1px solid transparent;
+    border-radius: 9999px;
+
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+
+    outline: none;
+}
+
+.ds-icon-button:hover:not(.is-disabled) {
+    transform: translateY(-2px);
+}
+
+.ds-icon-button:active:not(.is-disabled) {
+    transform: translateY(0);
+}
+
+.ds-icon-button:focus-visible {
+    outline: 3px solid rgba(59,130,246,.25);
+    outline-offset: 3px;
+}
+
+/* Sizes */
+
+.ds-icon-button.is-xs {
+    --_size: 2rem;
+    --_icon: .875rem;
+}
+
+.ds-icon-button.is-sm {
+    --_size: 2.4rem;
+    --_icon: 1rem;
+}
+
+.ds-icon-button.is-md {
+    --_size: 2.75rem;
+    --_icon: 1.15rem;
+}
+
+.ds-icon-button.is-lg {
+    --_size: 3.25rem;
+    --_icon: 1.3rem;
+}
+
+.ds-icon-button.is-xl {
+    --_size: 3.75rem;
+    --_icon: 1.5rem;
+}
+
+/* Shape */
+
+.ds-icon-button.is-circle {
+    border-radius: 999px;
+}
+
+.ds-icon-button:not(.is-circle) {
+    aspect-ratio: auto;
+    width: auto;
+    min-width: var(--_size);
+    padding-inline: .9rem;
+}
+
+.ds-icon-button.is-rounded:not(.is-circle) {
+    border-radius: .85rem;
+}
+
+.ds-icon-button:not(.is-rounded):not(.is-circle) {
+    border-radius: .4rem;
+}
+
+/* Variants */
+
+.ds-icon-button.is-primary {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.ds-icon-button.is-primary:hover {
+    background: var(--color-primary-hover);
+}
+
+.ds-icon-button.is-secondary {
+    background: var(--color-secondary);
+    color: #fff;
+}
+
+.ds-icon-button.is-success {
+    background: var(--color-success);
+    color: #fff;
+}
+
+.ds-icon-button.is-warning {
+    background: var(--color-warning);
+    color: #111827;
+}
+
+.ds-icon-button.is-danger {
+    background: var(--color-danger);
+    color: #fff;
+}
+
+.ds-icon-button.is-light {
+    background: var(--color-surface);
+    color: var(--color-text);
+}
+
+.ds-icon-button.is-ghost {
+    background: transparent;
+    color: inherit;
+}
+
+.ds-icon-button.is-ghost:hover {
+    background: rgba(0,0,0,.06);
+}
+
+.ds-icon-button.is-outline {
+    background: transparent;
+    border-color: currentColor;
+    color: var(--color-primary);
+}
+
+.ds-icon-button.is-outline:hover {
+    background: rgba(59,130,246,.08);
+}
+
+.ds-icon-button.is-bordered {
+    border-color: var(--color-border);
+}
+
+/* Disabled */
+
+.ds-icon-button.is-disabled,
+.ds-icon-button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Spinner */
+
+.ds-icon-button__spinner {
+    width: 1rem;
+    height: 1rem;
+
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+
+    animation: ds-icon-button-spin .75s linear infinite;
+}
+
+@keyframes ds-icon-button-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Screen reader */
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0,0,0,0);
+
+    white-space: nowrap;
+
+    border: 0;
+}

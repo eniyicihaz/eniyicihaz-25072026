@@ -1,0 +1,347 @@
+/* ==========================================================
+   RadioGroup — five patterns
+
+   01  rdg-clinic    Appointment type (eniyicihaz.com), vertical
+   02  rdg-shipping  Checkout shipping method, horizontal
+   03  rdg-billing   Subscription billing cycle, dark, cards
+   04  rdg-ticket    Support ticket priority, disabled option
+   05  rdg-survey    Survey rating scale, whole group disabled
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Appointment type
+   ========================================================== */
+
+.rdg-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.rdg-clinic__card{
+    width:100%;
+    max-width:400px;
+    padding:32px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.rdg-clinic__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.rdg-clinic__title{
+    margin:14px 0 22px;
+
+    font-size:1.2rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#123b36;
+}
+
+.rdg-clinic .radio-label{
+    color:#123b36;
+}
+
+.rdg-clinic .radio.is-disabled .radio-label{
+    color:rgb(18 59 54 / .4);
+}
+
+.rdg-clinic .radio-circle{
+    border-color:rgb(18 59 54 / .3);
+}
+
+.rdg-clinic input:checked + .radio-circle{
+    border-color:#0f766e;
+}
+
+.rdg-clinic .radio-dot{
+    background:#0f766e;
+}
+
+.rdg-clinic__action{
+    margin-top:24px;
+}
+
+.rdg-clinic .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.rdg-clinic .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Checkout shipping method, horizontal
+   ========================================================== */
+
+.rdg-shipping{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.rdg-shipping__card{
+    width:100%;
+    max-width:560px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.rdg-shipping__title{
+    margin-bottom:20px;
+
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.rdg-shipping .ds-radio-group--horizontal{
+    gap:1.5rem;
+    flex-wrap:wrap;
+}
+
+.rdg-shipping .radio-label{
+    font-size:.88rem;
+    color:var(--pat-ink);
+}
+
+
+/* ==========================================================
+   03 — Subscription billing cycle, dark, cards
+   ========================================================== */
+
+.rdg-billing{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.rdg-billing__card{
+    width:100%;
+    max-width:400px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.rdg-billing__title{
+    margin-bottom:20px;
+
+    font-size:1.05rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.rdg-billing .ds-radio-group{
+    gap:.75rem;
+}
+
+.rdg-billing .radio{
+    padding:14px 16px;
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .02);
+}
+
+.rdg-billing .radio-label{
+    color:rgb(255 255 255 / .8);
+    font-size:.88rem;
+}
+
+.rdg-billing .radio-circle{
+    border-color:rgb(255 255 255 / .3);
+}
+
+.rdg-billing input:checked + .radio-circle{
+    border-color:#38bdf8;
+}
+
+.rdg-billing .radio-dot{
+    background:#38bdf8;
+}
+
+.rdg-billing__action{
+    margin-top:22px;
+}
+
+.rdg-billing .btn--primary{
+    --btn-bg:#38bdf8;
+    --btn-color:#0b1220;
+}
+
+.rdg-billing .btn--primary:hover{
+    --btn-bg:#7dd3fc;
+}
+
+
+/* ==========================================================
+   04 — Support ticket priority
+   ========================================================== */
+
+.rdg-ticket{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.rdg-ticket__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.rdg-ticket__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.rdg-ticket__title{
+    margin:12px 0 20px;
+
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.rdg-ticket .ds-radio-group--horizontal{
+    gap:1.25rem;
+    flex-wrap:wrap;
+}
+
+.rdg-ticket .radio-label{
+    font-size:.88rem;
+    color:var(--pat-ink);
+}
+
+.rdg-ticket .radio.is-disabled .radio-label{
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   05 — Survey rating scale, disabled
+   ========================================================== */
+
+.rdg-survey{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#faf8f4;
+}
+
+.rdg-survey__card{
+    width:100%;
+    max-width:440px;
+    padding:32px;
+
+    border:1px solid rgb(28 24 18 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.rdg-survey__title{
+    font-size:1.05rem;
+    font-weight:650;
+    color:#1c1812;
+}
+
+.rdg-survey__sub{
+    margin:6px 0 20px;
+
+    font-size:.85rem;
+    color:#a3937a;
+}
+
+.rdg-survey .ds-radio-group--horizontal{
+    justify-content:space-between;
+    gap:.5rem;
+}
+
+.rdg-survey .radio{
+    flex-direction:column-reverse;
+    align-items:center;
+    gap:6px;
+}
+
+.rdg-survey .radio-label{
+    font-size:.72rem;
+    text-align:center;
+    color:#6b6255;
+}
+
+.rdg-survey .radio.is-disabled{
+    opacity:.7;
+}
+
+.rdg-survey__note{
+    margin-top:18px;
+
+    font-size:.78rem;
+    color:#a3937a;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .rdg-clinic{ padding:44px 16px 56px; }
+    .rdg-clinic__card{ padding:24px 20px; }
+
+    .rdg-shipping{ padding:44px 16px 56px; }
+    .rdg-shipping__card{ padding:24px 20px; }
+    .rdg-shipping .ds-radio-group--horizontal{ flex-direction:column; }
+
+    .rdg-billing{ padding:44px 16px 56px; }
+    .rdg-billing__card{ padding:24px 20px; }
+
+    .rdg-ticket{ padding:44px 16px 56px; }
+    .rdg-ticket__card{ padding:22px; }
+    .rdg-ticket .ds-radio-group--horizontal{ flex-direction:column; }
+
+    .rdg-survey{ padding:44px 16px 56px; }
+    .rdg-survey__card{ padding:22px; }
+    .rdg-survey .ds-radio-group--horizontal{ flex-wrap:wrap; justify-content:center; }
+    .rdg-survey .radio{ width:30%; }
+
+}

@@ -1,0 +1,95 @@
+---
+import "./Modal.css";
+import type { ModalProps } from "./Modal.types";
+
+const {
+  open = false,
+  title,
+  description,
+  size = "md",
+  showCloseButton = true,
+  class: className = "",
+} = Astro.props as ModalProps;
+
+if (!open) {
+  return null;
+}
+
+const classes = [
+  "ds-modal",
+  `ds-modal--${size}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const uid = crypto.randomUUID();
+const titleId = `modal-title-${uid}`;
+const descriptionId = `modal-description-${uid}`;
+---
+
+<div
+  class={classes}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={title ? titleId : undefined}
+  aria-describedby={description ? descriptionId : undefined}
+>
+  <div class="ds-modal__dialog">
+
+    {
+      (title || description || showCloseButton) && (
+        <header class="ds-modal__header">
+
+          <div class="ds-modal__heading">
+
+            {
+              title && (
+                <h2
+                  id={titleId}
+                  class="ds-modal__title"
+                >
+                  {title}
+                </h2>
+              )
+            }
+
+            {
+              description && (
+                <p
+                  id={descriptionId}
+                  class="ds-modal__description"
+                >
+                  {description}
+                </p>
+              )
+            }
+
+          </div>
+
+          {
+            showCloseButton && (
+              <button
+                class="ds-modal__close"
+                type="button"
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            )
+          }
+
+        </header>
+      )
+    }
+
+    <div class="ds-modal__body">
+      <slot />
+    </div>
+
+    <footer class="ds-modal__footer">
+      <slot name="footer" />
+    </footer>
+
+  </div>
+</div>

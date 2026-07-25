@@ -1,0 +1,30 @@
+---
+import "./Text.css";
+import type { TextProps } from "./Text.types";
+
+const {
+  as = "p",
+  variant = "body",
+  weight = "regular",
+  align = "left",
+  truncate = false,
+  class: className = "",
+} = Astro.props as TextProps;
+
+const Tag = as;
+
+const classes = [
+  "ds-text",
+  `ds-text--${variant}`,
+  `ds-text--${weight}`,
+  `ds-text--${align}`,
+  truncate && "ds-text--truncate",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<Tag class={classes}>
+  <slot />
+</Tag>

@@ -1,0 +1,53 @@
+---
+import "./Table.css";
+import type { TableProps } from "./Table.types";
+
+const {
+  columns = [],
+  rows = [],
+  striped = false,
+  hoverable = true,
+  class: className = "",
+} = Astro.props as TableProps;
+
+const classes = [
+  "ds-table",
+  striped && "ds-table--striped",
+  hoverable && "ds-table--hoverable",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <table class="ds-table__table">
+    <thead class="ds-table__head">
+      <tr>
+        {
+          columns.map((column) => (
+            <th class="ds-table__head-cell">
+              {column.label}
+            </th>
+          ))
+        }
+      </tr>
+    </thead>
+
+    <tbody class="ds-table__body">
+      {
+        rows.map((row) => (
+          <tr>
+            {
+              columns.map((column) => (
+                <td class="ds-table__cell">
+                  {row[column.key]}
+                </td>
+              ))
+            }
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

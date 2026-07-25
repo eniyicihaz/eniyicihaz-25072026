@@ -1,0 +1,335 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Empty/EmptyPatterns.css";
+
+import Empty from "../../../ds/components/ui/atoms/Empty/Empty.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    appointmentNext,
+    appointmentClinics,
+    inboxFolders,
+    inboxStreak,
+    searchAttempted,
+    searchSuggestions,
+    searchAlternatives,
+    cartSaved,
+    cartPerks,
+    projectTemplates,
+    projectSteps
+} from "../../../ds/patterns/Empty/empty.data";
+---
+
+<DSLayout title="Empty">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Empty</h1>
+
+        <p class="pl-head__lede">
+            Five nothings worth designing — no appointments booked, an inbox
+            at zero, a search that found nothing, an empty basket
+            and a workspace before its first project.
+        </p>
+
+    </header>
+
+    <!-- 01 — No appointments -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">No Appointments</span>
+            <span class="pl-example__tags">Hearing care · Booking prompt · Shortest paths</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="empty-appt">
+
+                <div class="empty-appt__card">
+
+                    <div class="empty-appt__tabs">
+                        <span class="empty-appt__tab empty-appt__tab--active">Yaklaşan</span>
+                        <span class="empty-appt__tab">Geçmiş</span>
+                        <span class="empty-appt__tab">İptal edilen</span>
+                    </div>
+
+                    <Empty
+                        title="Yaklaşan randevunuz yok"
+                        description="Ücretsiz işitme testi için randevu almak yalnızca bir dakika sürüyor. Aynı hafta içinde yer bulmanız çok olası."
+                    />
+
+                    <div class="empty-appt__options">
+                        {appointmentNext.map(option => (
+                            <div class="empty-appt__option">
+                                <span class="empty-appt__option-label">{option.label}</span>
+                                <span class="empty-appt__option-meta">{option.meta}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="empty-appt__foot">
+                        <div class="empty-appt__clinics">
+                            {appointmentClinics.map(clinic => (
+                                <span class="empty-appt__clinic">{clinic}</span>
+                            ))}
+                        </div>
+                        <Button>Randevu al</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Inbox zero -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Inbox Zero</span>
+            <span class="pl-example__tags">Mail client · Celebratory · Streak card</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="empty-inbox">
+
+                <aside class="empty-inbox__rail">
+                    <div class="empty-inbox__compose">
+                        <Button size="sm" fullWidth>Compose</Button>
+                    </div>
+                    {inboxFolders.map(folder => (
+                        <div
+                            class:list={[
+                                "empty-inbox__folder",
+                                folder.active && "empty-inbox__folder--active"
+                            ]}
+                        >
+                            {folder.label}
+                            {folder.count > 0 && (
+                                <span class="empty-inbox__folder-count">{folder.count}</span>
+                            )}
+                        </div>
+                    ))}
+                </aside>
+
+                <div class="empty-inbox__main">
+
+                    <div class="empty-inbox__bar">
+                        <span class="empty-inbox__bar-title">Inbox</span>
+                        <span class="empty-inbox__bar-meta">Updated just now</span>
+                    </div>
+
+                    <div class="empty-inbox__body">
+                        <div class="empty-inbox__inner">
+
+                            <div class="empty-inbox__mark" aria-hidden="true">✓</div>
+
+                            <Empty
+                                title="You're all caught up"
+                                description="Nothing left in the inbox. Snoozed messages will come back when you asked them to."
+                            />
+
+                            <div class="empty-inbox__streak">
+                                <span class="empty-inbox__streak-days">{inboxStreak.days}</span>
+                                <div class="empty-inbox__streak-label">
+                                    {inboxStreak.label}
+                                    <div class="empty-inbox__streak-note">{inboxStreak.note}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — No search results -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">No Results</span>
+            <span class="pl-example__tags">Diagnostic · Left aligned · Alternatives</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="empty-search">
+
+                <div class="empty-search__inner">
+
+                    <div class="empty-search__field">
+                        <span aria-hidden="true">⌕</span>
+                        <span class="empty-search__query">{searchAttempted}</span>
+                        <span class="empty-search__clear">Clear</span>
+                    </div>
+
+                    <Empty
+                        title="No results for that search"
+                        description="We looked through 1,284 documentation pages and 200 examples and found nothing matching all five terms."
+                    />
+
+                    <ul class="empty-search__tips">
+                        {searchSuggestions.map(tip => (
+                            <li>{tip}</li>
+                        ))}
+                    </ul>
+
+                    <div class="empty-search__alts">
+                        <h3 class="empty-search__alts-title">Try instead</h3>
+                        {searchAlternatives.map(alt => (
+                            <div class="empty-search__alt">
+                                <span class="empty-search__alt-label">{alt.label}</span>
+                                <span class="empty-search__alt-count">{alt.count}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Empty cart -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Empty Basket</span>
+            <span class="pl-example__tags">Retail · Dashed box · Saved items</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="empty-cart">
+
+                <div class="empty-cart__inner">
+
+                    <header class="empty-cart__head">
+                        <h2 class="empty-cart__title">Your basket</h2>
+                        <span class="empty-cart__count">0 items</span>
+                    </header>
+
+                    <div class="empty-cart__box">
+
+                        <Empty
+                            title="Nothing in here yet"
+                            description="Everything you save is kept for thirty days, so you can take your time deciding."
+                        >
+                            <Button variant="outline">Browse seating</Button>
+                        </Empty>
+
+                        <div class="empty-cart__perks">
+                            {cartPerks.map(perk => (
+                                <span class="empty-cart__perk">{perk}</span>
+                            ))}
+                        </div>
+
+                    </div>
+
+                    <div class="empty-cart__saved">
+
+                        <h3 class="empty-cart__saved-title">Saved for later</h3>
+
+                        <div class="empty-cart__grid">
+                            {cartSaved.map(item => (
+                                <article>
+                                    <div class={`empty-cart__plate empty-cart__plate--${item.tone}`}></div>
+                                    <div class="empty-cart__item-name">{item.name}</div>
+                                    <div class="empty-cart__item-price">{item.price}</div>
+                                </article>
+                            ))}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — First project -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">First Project</span>
+            <span class="pl-example__tags">Dark onboarding · Template picker · Step rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="empty-project">
+
+                <div class="empty-project__inner">
+
+                    <Empty
+                        title="Let's get something deployed"
+                        description="Connect a repository and we will build it, give it a URL and rebuild it on every push. Most first deploys finish in under four minutes."
+                    />
+
+                    <div class="empty-project__steps">
+                        {projectSteps.map((step, i) => (
+                            <span class="empty-project__step">
+                                <span class="empty-project__step-n">{i + 1}</span>
+                                {step}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div class="empty-project__templates">
+                        {projectTemplates.map(template => (
+                            <article class="empty-project__template">
+                                <h3 class="empty-project__template-name">{template.name}</h3>
+                                <p class="empty-project__template-detail">{template.detail}</p>
+                                <div class="empty-project__template-meta">{template.meta}</div>
+                            </article>
+                        ))}
+                    </div>
+
+                    <div class="empty-project__actions">
+                        <Button size="lg">Import a repository</Button>
+                        <span class="empty-project__hint">
+                            Or drag a folder anywhere on this page
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

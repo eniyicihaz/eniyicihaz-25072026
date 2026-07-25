@@ -1,0 +1,248 @@
+.ds-accordion{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    background:var(--ds-surface);
+    overflow:hidden;
+}
+
+.ds-accordion--bordered{
+    border:1px solid var(--ds-border);
+}
+
+.ds-accordion--flush{
+    border:none;
+    border-radius:0;
+}
+
+.ds-accordion--rounded-none{
+    border-radius:0;
+}
+
+.ds-accordion--rounded-sm{
+    border-radius:var(--ds-radius-sm);
+}
+
+.ds-accordion--rounded-md{
+    border-radius:var(--ds-radius-md);
+}
+
+.ds-accordion--rounded-lg{
+    border-radius:var(--ds-radius-lg);
+}
+
+.ds-accordion--rounded-full{
+    border-radius:999px;
+}
+
+.ds-accordion--shadow{
+    box-shadow:var(--ds-shadow-md);
+}
+
+.ds-accordion__item{
+    border-bottom:1px solid var(--ds-border);
+}
+
+.ds-accordion__item:last-child{
+    border-bottom:none;
+}
+
+.ds-accordion:not(.ds-accordion--divider) .ds-accordion__item{
+    border-bottom:none;
+}
+
+.ds-accordion__trigger{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    width:100%;
+    padding:1rem 1.25rem;
+    cursor:pointer;
+    list-style:none;
+    user-select:none;
+    background:transparent;
+    transition:
+        background .25s ease,
+        color .25s ease,
+        padding .25s ease;
+}
+
+.ds-accordion__trigger:hover{
+    background:var(--ds-surface-hover);
+}
+
+.ds-accordion__trigger:focus-visible{
+    outline:2px solid var(--ds-primary);
+    outline-offset:-2px;
+}
+
+.ds-accordion__trigger::-webkit-details-marker{
+    display:none;
+}
+
+.ds-accordion__header{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    min-width:0;
+    gap:.25rem;
+}
+
+.ds-accordion__title{
+    font:inherit;
+    font-weight:600;
+    color:var(--ds-text);
+    line-height:1.4;
+}
+
+.ds-accordion__subtitle{
+    font-size:.875rem;
+    color:var(--ds-text-muted);
+    line-height:1.5;
+}
+
+.ds-accordion__badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:.25rem .625rem;
+    border-radius:999px;
+    background:var(--ds-primary-100);
+    color:var(--ds-primary);
+    font-size:.75rem;
+    font-weight:600;
+    white-space:nowrap;
+    flex-shrink:0;
+}
+
+.ds-accordion__icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:1rem;
+    height:1rem;
+    flex-shrink:0;
+    transition:transform .3s ease;
+}
+
+.ds-accordion__icon:empty::before{
+    content:"";
+    display:block;
+    width:.55rem;
+    height:.55rem;
+    border-right:2px solid currentColor;
+    border-bottom:2px solid currentColor;
+    transform:rotate(45deg);
+}
+
+.ds-accordion__item[open] .ds-accordion__icon{
+    transform:rotate(180deg);
+}
+
+.ds-accordion__content{
+    padding:0 1.25rem 1.25rem;
+    color:var(--ds-text-muted);
+    line-height:1.7;
+}
+
+.ds-accordion__item.is-disabled{
+    opacity:.5;
+    pointer-events:none;
+}
+
+.ds-accordion--sm .ds-accordion__trigger{
+    padding:.75rem 1rem;
+    font-size:.875rem;
+}
+
+.ds-accordion--sm .ds-accordion__content{
+    padding:0 1rem 1rem;
+}
+
+.ds-accordion--sm .ds-accordion__subtitle{
+    font-size:.8125rem;
+}
+
+.ds-accordion--md .ds-accordion__trigger{
+    padding:1rem 1.25rem;
+}
+
+.ds-accordion--lg .ds-accordion__trigger{
+    padding:1.25rem 1.5rem;
+}
+
+.ds-accordion--lg .ds-accordion__title{
+    font-size:1.125rem;
+}
+
+.ds-accordion--lg .ds-accordion__subtitle{
+    font-size:.95rem;
+}
+
+.ds-accordion--lg .ds-accordion__content{
+    padding:0 1.5rem 1.5rem;
+}
+
+.ds-accordion--filled{
+    background:var(--ds-surface-secondary);
+}
+
+.ds-accordion--outlined{
+    background:transparent;
+}
+
+.ds-accordion--ghost{
+    background:transparent;
+    border:none;
+}
+
+.ds-accordion--ghost .ds-accordion__item{
+    border-bottom:1px solid var(--ds-border-subtle);
+}
+
+.ds-accordion--animation-none .ds-accordion__icon{
+    transition:none;
+}
+
+.ds-accordion--animation-fade .ds-accordion__content{
+    animation:dsAccordionFade .25s ease;
+}
+
+.ds-accordion--animation-slide .ds-accordion__content{
+    animation:dsAccordionSlide .3s ease;
+}
+
+.ds-accordion--animation-scale .ds-accordion__content{
+    animation:dsAccordionScale .25s ease;
+}
+
+@keyframes dsAccordionFade{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes dsAccordionSlide{
+    from{
+        opacity:0;
+        transform:translateY(-8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes dsAccordionScale{
+    from{
+        opacity:0;
+        transform:scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}

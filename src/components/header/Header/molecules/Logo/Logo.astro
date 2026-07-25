@@ -1,0 +1,59 @@
+---
+interface Props {
+  name: string;
+  tagline: string;
+  href: string;
+}
+
+const { tagline, href } = Astro.props;
+---
+
+<a class="hd-logo" href={href} aria-label="EniyiCihaz ana sayfa">
+  <span class="hd-logo__name">
+    <span class="hd-logo__name-a">ENİYİ</span><span class="hd-logo__name-b">CİHAZ</span>
+  </span>
+  <span class="hd-logo__tagline">{tagline}</span>
+</a>
+
+<style>
+  .hd-logo {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .hd-logo:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-logo__name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .hd-logo__name-a {
+    color: var(--color-text);
+  }
+
+  .hd-logo__name-b {
+    color: var(--color-primary);
+  }
+
+  .hd-logo__tagline {
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-soft);
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 640px) {
+    .hd-logo__tagline {
+      display: none;
+    }
+  }
+</style>

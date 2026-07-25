@@ -1,0 +1,57 @@
+---
+import "./Preview.css";
+
+interface Props {
+    title?: string;
+    description?: string;
+    badge?: string;
+    class?: string;
+}
+
+const {
+    title = "Preview",
+    description,
+    badge,
+    class: className = ""
+} = Astro.props as Props;
+---
+
+<section class:list={["preview", className]}>
+
+    <header class="preview__header">
+
+        <div class="preview__heading">
+
+            {
+                badge && (
+                    <span class="preview__badge">
+                        {badge}
+                    </span>
+                )
+            }
+
+            <h2 class="preview__title">
+                {title}
+            </h2>
+
+            {
+                description && (
+                    <p class="preview__description">
+                        {description}
+                    </p>
+                )
+            }
+
+        </div>
+
+        <div class="preview__actions">
+            <slot name="actions" />
+        </div>
+
+    </header>
+
+    <div class="preview__body">
+        <slot />
+    </div>
+
+</section>

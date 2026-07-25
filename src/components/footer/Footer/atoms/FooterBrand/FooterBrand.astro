@@ -1,0 +1,58 @@
+---
+interface Props {
+  brand: string;
+  tagline: string;
+  href?: string;
+}
+
+// The header logo lives on the light surface and is scoped to the header;
+// the footer keeps the same typographic mark but in footer token colours.
+const { tagline, href = "/" } = Astro.props;
+---
+
+<a class="footer-brand" href={href} aria-label="EniyiCihaz ana sayfa">
+  <span class="footer-brand__name">
+    <span class="footer-brand__name-a">ENİYİ</span><span
+      class="footer-brand__name-b">CİHAZ</span
+    >
+  </span>
+  <span class="footer-brand__tagline">{tagline}</span>
+</a>
+
+<style>
+  .footer-brand {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .footer-brand:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .footer-brand__name {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .footer-brand__name-a {
+    color: var(--footer-heading);
+  }
+
+  /* Brand blue reads brighter on navy than the light-surface primary. */
+  .footer-brand__name-b {
+    color: var(--footer-accent);
+  }
+
+  .footer-brand__tagline {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    color: var(--footer-muted);
+  }
+</style>

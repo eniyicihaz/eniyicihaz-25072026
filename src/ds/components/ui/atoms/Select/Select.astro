@@ -1,0 +1,67 @@
+---
+import "./Select.css";
+import type { SelectProps } from "./Select.types";
+
+const {
+  variant = "default",
+  size = "md",
+  disabled = false,
+  required = false,
+  fullWidth = false,
+  error = false,
+  success = false,
+  helperText,
+  class: className = "",
+  name,
+  id
+}: SelectProps = Astro.props;
+
+const classes = [
+  "select",
+  `select--${variant}`,
+  `select--${size}`,
+  fullWidth && "select--full",
+  error && "is-error",
+  success && "is-success",
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class="select-field">
+
+  <div class="select-wrapper">
+
+    <select
+      class={classes}
+      disabled={disabled}
+      required={required}
+      name={name}
+      id={id}
+    >
+      <slot />
+    </select>
+
+    <span class="select-arrow" aria-hidden="true">
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </span>
+
+  </div>
+
+  {helperText && (
+    <p class="select-helper">
+      {helperText}
+    </p>
+  )}
+
+</div>

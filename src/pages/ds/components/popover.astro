@@ -1,0 +1,233 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Popover/PopoverPatterns.css";
+
+import Popover from "../../../ds/components/ui/atoms/Popover/Popover.astro";
+import IconButton from "../../../ds/components/ui/atoms/IconButton/IconButton.astro";
+
+import { Bell, Info } from "lucide-astro";
+
+import {
+    notifications,
+    metricInfo,
+    quickView,
+    profileCard,
+    shortcuts
+} from "../../../ds/patterns/Popover/popover.data";
+---
+
+<DSLayout title="Popover">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Popover</h1>
+
+        <p class="pl-head__lede">
+            Five anchored surfaces — a notification bell, a metric
+            explainer, a product quick view, a user profile card and a
+            keyboard shortcuts reference.
+        </p>
+
+    </header>
+
+    <!-- 01 — Notification bell -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Notification Bell</span>
+            <span class="pl-example__tags">Hearing care · Bottom-end placement</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pop-clinic">
+
+                <div class="pop-clinic__bar">
+                    <span class="pop-clinic__brand">eniyicihaz.com</span>
+
+                    <Popover open placement="bottom-end" showArrow={false}>
+                        <IconButton
+                            slot="trigger"
+                            icon={Bell}
+                            label="Bildirimler"
+                            variant="ghost"
+                            size="sm"
+                        />
+
+                        <div class="pop-clinic__head">Bildirimler</div>
+                        {notifications.map(n => (
+                            <div class="pop-clinic__item">
+                                <div class="pop-clinic__item-title">{n.title}</div>
+                                <div class="pop-clinic__item-body">{n.body}</div>
+                                <div class="pop-clinic__item-time">{n.time}</div>
+                            </div>
+                        ))}
+                    </Popover>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Dashboard metric explainer -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Metric Explainer</span>
+            <span class="pl-example__tags">Dashboard · Top placement</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pop-metric">
+
+                <div class="pop-metric__card">
+
+                    <div class="pop-metric__label-row">
+                        <span>{metricInfo.metric}</span>
+                        <Popover open placement="top">
+                            <IconButton
+                                slot="trigger"
+                                icon={Info}
+                                label="What does this mean?"
+                                variant="ghost"
+                                size="xs"
+                            />
+                            <p>{metricInfo.body}</p>
+                        </Popover>
+                    </div>
+
+                    <div class="pop-metric__value">4,218</div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Product quick view -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Product Quick View</span>
+            <span class="pl-example__tags">Retail · Right placement</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pop-shop">
+
+                <div class="pop-shop__card">
+
+                    <div class="pop-shop__thumb">🎧</div>
+                    <div class="pop-shop__name">{quickView.name}</div>
+                    <div class="pop-shop__price">{quickView.price}</div>
+
+                    <Popover open placement="right" triggerText="Quick view">
+                        <div class="pop-shop__detail-name">{quickView.name}</div>
+                        <p class="pop-shop__detail-blurb">{quickView.blurb}</p>
+                        <div class="pop-shop__detail-stock">{quickView.stock}</div>
+                    </Popover>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — User profile card -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">User Profile Card</span>
+            <span class="pl-example__tags">Admin panel · Bottom-start placement</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pop-admin">
+
+                <div class="pop-admin__bar">
+                    <span class="pop-admin__title">Workspace</span>
+
+                    <Popover open placement="bottom-start" triggerText="SV">
+                        <div class="pop-admin__name">{profileCard.name}</div>
+                        <div class="pop-admin__role">{profileCard.role}</div>
+                        <div class="pop-admin__meta">
+                            {profileCard.email}<br />
+                            {profileCard.joined}
+                        </div>
+                    </Popover>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Keyboard shortcuts, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Keyboard Shortcuts</span>
+            <span class="pl-example__tags">Developer docs · Dark · Left placement</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="pop-docs">
+
+                <div class="pop-docs__bar">
+                    <span class="pop-docs__crumb">relay-cli / dashboard</span>
+
+                    <Popover open placement="left">
+                        <IconButton
+                            slot="trigger"
+                            icon={Info}
+                            label="Keyboard shortcuts"
+                            variant="ghost"
+                            size="sm"
+                        />
+
+                        <div class="pop-docs__head">Keyboard shortcuts</div>
+                        {shortcuts.map(s => (
+                            <div class="pop-docs__row">
+                                <span>{s.action}</span>
+                                <span class="pop-docs__keys">{s.keys}</span>
+                            </div>
+                        ))}
+                    </Popover>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

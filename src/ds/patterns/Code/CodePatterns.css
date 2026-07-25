@@ -1,0 +1,765 @@
+/* ==========================================================
+   Code — five patterns
+
+   01  code-start   SDK quickstart, install + usage blocks
+   02  code-notes   Release notes with inline code
+   03  code-run     Incident runbook, terminal steps
+   04  code-config  Config reference table + file
+   05  code-lesson  Before / after teaching comparison
+
+   The DS <Code> is an inline element. Block samples wrap
+   it in a <pre> owned by each pattern.
+   ========================================================== */
+
+/* Shared block shell */
+
+.code-block{
+    margin:0;
+    padding:18px 20px;
+    overflow-x:auto;
+
+    border-radius:var(--pat-radius-sm);
+    background:#0b1220;
+}
+
+.code-block .ds-code{
+    display:block;
+
+    padding:0;
+    border:none;
+    background:none;
+
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    line-height:1.8;
+    color:#cbd5e1;
+    white-space:pre;
+}
+
+
+/* ==========================================================
+   01 — SDK quickstart
+   ========================================================== */
+
+.code-start{
+    padding:64px 56px 72px;
+
+    background:
+        linear-gradient(rgb(15 23 42 / .02) 1px, transparent 1px) 0 0 / 100% 32px,
+        #fbfcfe;
+}
+
+.code-start__inner{
+    max-width:860px;
+    margin:0 auto;
+}
+
+.code-start__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.code-start__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    color:var(--pat-ink);
+}
+
+.code-start__lede{
+    margin:14px 0 26px;
+    max-width:56ch;
+
+    font-size:1rem;
+    line-height:1.72;
+    color:var(--pat-body);
+}
+
+.code-start__steps{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+
+    padding:16px 0;
+    margin-bottom:26px;
+
+    border-top:1px solid var(--pat-line);
+    border-bottom:1px solid var(--pat-line);
+}
+
+.code-start__step{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:.86rem;
+    color:var(--pat-body);
+}
+
+.code-start__step-n{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:22px;
+    height:22px;
+
+    border-radius:50%;
+    background:rgb(37 99 235 / .1);
+    color:var(--pat-blue);
+
+    font-family:var(--pat-mono);
+    font-size:.7rem;
+    font-weight:700;
+}
+
+.code-start__step--done .code-start__step-n{
+    background:#16a34a;
+    color:#fff;
+}
+
+.code-start__label{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+
+    margin:0 0 10px;
+
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.code-start__copy{
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    font-weight:600;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--pat-blue);
+}
+
+.code-start__group + .code-start__group{
+    margin-top:24px;
+}
+
+.code-start__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:28px;
+    padding-top:22px;
+
+    border-top:1px solid var(--pat-line);
+
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   02 — Release notes
+
+   Prose with inline <Code> tokens. The code reads as part
+   of the sentence, not as a block.
+   ========================================================== */
+
+.code-notes{
+    padding:64px 56px 72px;
+    background:#fff;
+}
+
+.code-notes__inner{
+    max-width:700px;
+    margin:0 auto;
+}
+
+.code-notes__head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    flex-wrap:wrap;
+
+    padding-bottom:22px;
+    margin-bottom:26px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.code-notes__version{
+    font-family:var(--pat-mono);
+    font-size:1.5rem;
+    font-weight:700;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.code-notes__date{
+    font-size:.88rem;
+    color:var(--pat-soft);
+}
+
+.code-notes__tag{
+    margin-left:auto;
+    padding:4px 11px;
+
+    border-radius:var(--pat-radius-pill);
+    background:rgb(37 99 235 / .1);
+
+    font-size:.76rem;
+    font-weight:700;
+    color:var(--pat-blue);
+}
+
+.code-notes__item{
+    display:grid;
+    grid-template-columns:82px minmax(0, 1fr);
+    gap:18px;
+    align-items:start;
+
+    padding:16px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.code-notes__item:last-of-type{
+    border-bottom:none;
+}
+
+.code-notes__type{
+    padding:3px 9px;
+
+    border-radius:5px;
+
+    font-family:var(--pat-mono);
+    font-size:.7rem;
+    font-weight:700;
+    text-align:center;
+    text-transform:uppercase;
+}
+
+.code-notes__type--added{ background:rgb(22 163 74 / .12); color:#15803d; }
+.code-notes__type--changed{ background:rgb(245 158 11 / .16); color:#b45309; }
+.code-notes__type--fixed{ background:rgb(29 78 216 / .1); color:var(--pat-blue); }
+.code-notes__type--removed{ background:rgb(220 38 38 / .1); color:#b91c1c; }
+
+.code-notes__body{
+    font-size:.96rem;
+    line-height:1.75;
+    color:#33415a;
+}
+
+.code-notes__body .ds-code{
+    padding:2px 6px;
+
+    border:1px solid rgb(15 23 42 / .1);
+    border-radius:5px;
+    background:#f6f8fb;
+
+    font-family:var(--pat-mono);
+    font-size:.85em;
+    color:#7c3aed;
+}
+
+.code-notes__foot{
+    margin-top:24px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   03 — Incident runbook
+
+   Dark. Numbered steps, each closing with the exact
+   command to run.
+   ========================================================== */
+
+.code-run{
+    padding:56px 56px 72px;
+    background:#080d15;
+}
+
+.code-run__inner{
+    max-width:800px;
+    margin:0 auto;
+}
+
+.code-run__head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    padding-bottom:22px;
+    margin-bottom:26px;
+
+    border-bottom:1px solid rgb(255 255 255 / .1);
+}
+
+.code-run__sev{
+    display:inline-block;
+    padding:3px 10px;
+
+    border-radius:5px;
+    background:rgb(245 158 11 / .16);
+
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    font-weight:700;
+    color:#fbbf24;
+}
+
+.code-run__title{
+    margin:14px 0 0;
+
+    font-size:1.5rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:#f8fafc;
+}
+
+.code-run__meta{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    line-height:1.7;
+    text-align:right;
+    color:rgb(248 250 252 / .35);
+}
+
+.code-run__step{
+    display:grid;
+    grid-template-columns:44px minmax(0, 1fr);
+    gap:18px;
+
+    padding-bottom:26px;
+    margin-bottom:26px;
+
+    border-bottom:1px solid rgb(255 255 255 / .07);
+}
+
+.code-run__step:last-of-type{
+    padding-bottom:0;
+    margin-bottom:0;
+    border-bottom:none;
+}
+
+.code-run__n{
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    font-weight:700;
+    color:rgb(248 250 252 / .3);
+}
+
+.code-run__step-title{
+    margin:0;
+
+    font-size:1.02rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:#f8fafc;
+}
+
+.code-run__step-body{
+    margin:8px 0 14px;
+    max-width:58ch;
+
+    font-size:.92rem;
+    line-height:1.7;
+    color:rgb(248 250 252 / .5);
+}
+
+.code-run__term{
+    padding:14px 16px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-xs);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.code-run__term .ds-code{
+    display:block;
+
+    padding:0;
+    border:none;
+    background:none;
+
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    line-height:1.6;
+    color:#7dd3fc;
+    white-space:pre-wrap;
+}
+
+.code-run__prompt{
+    margin-right:9px;
+    color:rgb(248 250 252 / .3);
+    user-select:none;
+}
+
+.code-run__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:28px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(255 255 255 / .1);
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .3);
+}
+
+
+/* ==========================================================
+   04 — Config reference
+
+   A table of keys where every cell is code, beside the
+   file those keys live in.
+   ========================================================== */
+
+.code-config{
+    padding:64px 56px 72px;
+    background:#f7f8fa;
+}
+
+.code-config__inner{
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.code-config__title{
+    margin:0;
+
+    font-size:1.7rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.code-config__lede{
+    margin:12px 0 26px;
+    max-width:58ch;
+
+    font-size:.98rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+.code-config__grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1.25fr) minmax(0, .75fr);
+    gap:24px;
+    align-items:start;
+}
+
+.code-config__table{
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+}
+
+.code-config__row{
+    display:grid;
+    grid-template-columns:130px 92px 110px;
+    gap:14px;
+    align-items:center;
+
+    padding:13px 18px;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.code-config__row:last-child{
+    border-bottom:none;
+}
+
+.code-config__row--head{
+    background:#fbfcfd;
+
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.code-config__key .ds-code{
+    padding:2px 7px;
+
+    border-radius:5px;
+    background:rgb(29 78 216 / .08);
+
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    font-weight:600;
+    color:var(--pat-blue);
+}
+
+.code-config__type .ds-code,
+.code-config__default .ds-code{
+    padding:0;
+    background:none;
+
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+}
+
+.code-config__type .ds-code{
+    color:#7c3aed;
+}
+
+.code-config__default .ds-code{
+    color:#15803d;
+}
+
+.code-config__note{
+    grid-column:1 / -1;
+    margin-top:6px;
+
+    font-size:.85rem;
+    line-height:1.6;
+    color:var(--pat-body);
+}
+
+.code-config__file{
+    overflow:hidden;
+
+    border:1px solid rgb(15 23 42 / .12);
+    border-radius:var(--pat-radius-sm);
+}
+
+.code-config__file-bar{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    padding:11px 16px;
+
+    background:#111827;
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(203 213 225 / .7);
+}
+
+.code-config__file-dot{
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:rgb(255 255 255 / .18);
+}
+
+.code-config__file .code-block{
+    border-radius:0;
+}
+
+
+/* ==========================================================
+   05 — Before / after lesson
+
+   Two blocks side by side, the wrong one muted and the
+   right one accented.
+   ========================================================== */
+
+.code-lesson{
+    padding:64px 56px 72px;
+
+    background:
+        radial-gradient(50% 40% at 85% 0%, rgb(124 58 237 / .1), transparent 62%),
+        #fbfaff;
+}
+
+.code-lesson__inner{
+    max-width:960px;
+    margin:0 auto;
+}
+
+.code-lesson__course{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#8b85ad;
+}
+
+.code-lesson__title{
+    margin:14px 0 0;
+    max-width:26ch;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:800;
+    letter-spacing:-.04em;
+    line-height:1.14;
+
+    color:#1e1b3a;
+}
+
+.code-lesson__module{
+    margin:10px 0 28px;
+
+    font-size:.88rem;
+    color:#585280;
+}
+
+.code-lesson__compare{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:16px;
+}
+
+.code-lesson__panel{
+    overflow:hidden;
+
+    border:1px solid rgb(30 27 58 / .12);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.code-lesson__panel--bad{
+    border-color:rgb(220 38 38 / .28);
+}
+
+.code-lesson__panel--good{
+    border-color:rgb(22 163 74 / .35);
+    box-shadow:0 12px 30px rgb(22 163 74 / .08);
+}
+
+.code-lesson__panel-head{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    padding:12px 16px;
+
+    border-bottom:1px solid rgb(30 27 58 / .09);
+
+    font-size:.8rem;
+    font-weight:700;
+}
+
+.code-lesson__panel--bad .code-lesson__panel-head{
+    background:rgb(220 38 38 / .06);
+    color:#b91c1c;
+}
+
+.code-lesson__panel--good .code-lesson__panel-head{
+    background:rgb(22 163 74 / .07);
+    color:#15803d;
+}
+
+.code-lesson__panel .code-block{
+    border-radius:0;
+}
+
+.code-lesson__panel--bad .code-block{
+    background:#1b1420;
+}
+
+.code-lesson__points{
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+
+    margin:28px 0 0;
+    padding:22px 24px;
+
+    border-radius:var(--pat-radius-md);
+    background:#fff;
+    border:1px solid rgb(30 27 58 / .1);
+
+    list-style:none;
+}
+
+.code-lesson__points li{
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+
+    font-size:.94rem;
+    line-height:1.65;
+    color:#3d3860;
+}
+
+.code-lesson__points li::before{
+    content:"—";
+    color:#b9b3d4;
+}
+
+.code-lesson__points .ds-code{
+    padding:2px 6px;
+
+    border-radius:5px;
+    background:rgb(124 58 237 / .09);
+
+    font-family:var(--pat-mono);
+    font-size:.85em;
+    color:#6d28d9;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .code-start{ padding:52px 32px 64px; }
+
+    .code-notes{ padding:52px 32px 64px; }
+
+    .code-run{ padding:48px 32px 64px; }
+    .code-run__meta{ text-align:left; }
+
+    .code-config{ padding:52px 32px 64px; }
+    .code-config__grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .code-lesson{ padding:52px 32px 64px; }
+    .code-lesson__compare{ grid-template-columns:minmax(0, 1fr); }
+
+}
+
+@media (max-width:720px){
+
+    .code-start{ padding:40px 20px 52px; }
+
+    .code-notes{ padding:40px 20px 52px; }
+    .code-notes__item{ grid-template-columns:minmax(0, 1fr); gap:10px; }
+    .code-notes__type{ justify-self:start; }
+
+    .code-run{ padding:36px 20px 52px; }
+    .code-run__step{ grid-template-columns:minmax(0, 1fr); gap:8px; }
+
+    .code-config{ padding:40px 20px 52px; }
+    .code-config__row{ grid-template-columns:minmax(0, 1fr) auto; gap:8px 12px; }
+    .code-config__row--head{ display:none; }
+
+    .code-lesson{ padding:40px 20px 52px; }
+
+    .code-block{ padding:14px 16px; }
+
+}

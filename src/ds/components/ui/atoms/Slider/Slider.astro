@@ -1,0 +1,38 @@
+---
+import "./Slider.css";
+import type { SliderProps } from "./Slider.types";
+
+const {
+  id,
+  name,
+  min = 0,
+  max = 100,
+  step = 1,
+  value = 0,
+  disabled = false,
+  class: className = "",
+} = Astro.props as SliderProps;
+
+const classes = [
+  "ds-slider",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <input
+    class="ds-slider__input"
+    type="range"
+    id={id}
+    name={name}
+    min={min}
+    max={max}
+    step={step}
+    value={value}
+    disabled={disabled}
+  />
+
+  <slot />
+</div>

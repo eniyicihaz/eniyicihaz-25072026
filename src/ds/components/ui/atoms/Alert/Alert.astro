@@ -1,0 +1,75 @@
+---
+import "./Alert.css";
+import type { AlertProps } from "./Alert.types";
+
+const {
+  variant = "info",
+  title,
+  icon,
+  showIcon = true,
+  dismissible = false,
+  size = "md",
+  rounded = "md",
+  shadow = false,
+  bordered = true,
+  fullWidth = false,
+  class: className = "",
+} = Astro.props as AlertProps;
+
+const classes = [
+  "ds-alert",
+  `ds-alert--${variant}`,
+  `ds-alert--${size}`,
+  `ds-alert--rounded-${rounded}`,
+  shadow && "ds-alert--shadow",
+  bordered && "ds-alert--bordered",
+  fullWidth && "ds-alert--full",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div
+  class={classes}
+  role="alert"
+>
+  {
+    showIcon && (
+      <div
+        class="ds-alert__icon"
+        aria-hidden="true"
+      >
+        <slot name="icon">
+          {icon ?? "ℹ️"}
+        </slot>
+      </div>
+    )
+  }
+
+  <div class="ds-alert__content">
+    {
+      title && (
+        <h4 class="ds-alert__title">
+          {title}
+        </h4>
+      )
+    }
+
+    <div class="ds-alert__text">
+      <slot />
+    </div>
+  </div>
+
+  {
+    dismissible && (
+      <button
+        class="ds-alert__close"
+        type="button"
+        aria-label="Dismiss alert"
+      >
+        ×
+      </button>
+    )
+  }
+</div>

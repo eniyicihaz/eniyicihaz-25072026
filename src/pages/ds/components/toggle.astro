@@ -1,0 +1,212 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Toggle/TogglePatterns.css";
+
+import Toggle from "../../../ds/components/ui/atoms/Toggle/Toggle.astro";
+
+import {
+    notificationToggles,
+    settingsToggles,
+    securityToggles,
+    featureFlags,
+    consentToggle
+} from "../../../ds/patterns/Toggle/toggle.data";
+---
+
+<DSLayout title="Toggle">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Toggle</h1>
+
+        <p class="pl-head__lede">
+            Five switch decisions — clinic notification preferences,
+            dark settings sizes, locked security toggles, engineering
+            feature flags and a single privacy consent switch.
+        </p>
+
+    </header>
+
+    <!-- 01 — Notification preferences -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Notification Preferences</span>
+            <span class="pl-example__tags">Hearing care · Label + description</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tgl-clinic">
+
+                <div class="tgl-clinic__card">
+
+                    <div class="tgl-clinic__head">Bildirim tercihleri</div>
+
+                    {notificationToggles.map(t => (
+                        <div class="tgl-clinic__row">
+                            <Toggle
+                                id={t.id}
+                                label={t.label}
+                                description={t.description}
+                                checked={t.checked}
+                            />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Dark settings panel, size variants -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Settings Panel</span>
+            <span class="pl-example__tags">Dark · Small, medium, large</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tgl-settings">
+
+                <div class="tgl-settings__card">
+
+                    <div class="tgl-settings__title">Preferences</div>
+
+                    {settingsToggles.map(t => (
+                        <div class="tgl-settings__row">
+                            <Toggle id={t.id} label={t.label} size={t.size} checked={t.checked} />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Account security, required + disabled -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Security Settings</span>
+            <span class="pl-example__tags">Admin panel · Locked toggles</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tgl-security">
+
+                <div class="tgl-security__card">
+
+                    <h2 class="tgl-security__title">Security</h2>
+
+                    {securityToggles.map(t => (
+                        <div class="tgl-security__row">
+                            <Toggle
+                                id={t.id}
+                                label={t.label}
+                                description={t.description}
+                                checked={t.checked}
+                                required={t.required}
+                                disabled={t.disabled}
+                            />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Feature flags, engineering -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Feature Flags</span>
+            <span class="pl-example__tags">Engineering · Dark · Monospace</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tgl-flags">
+
+                <div class="tgl-flags__card">
+
+                    <div class="tgl-flags__head">Feature flags / production</div>
+
+                    {featureFlags.map(t => (
+                        <div class="tgl-flags__row">
+                            <Toggle id={t.id} label={t.label} checked={t.checked} size="sm" />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Privacy consent -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Privacy Consent</span>
+            <span class="pl-example__tags">Editorial · Single large toggle</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tgl-consent">
+
+                <div class="tgl-consent__card">
+
+                    <div class="tgl-consent__row">
+                        <Toggle
+                            id={consentToggle.id}
+                            label={consentToggle.label}
+                            description={consentToggle.description}
+                            checked={consentToggle.checked}
+                            size="lg"
+                        />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

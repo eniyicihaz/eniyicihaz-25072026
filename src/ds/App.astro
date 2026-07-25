@@ -1,0 +1,179 @@
+---
+import DSLayout from "./layouts/DSLayout.astro";
+---
+
+<DSLayout>
+
+    <section class="dashboard">
+
+        <div class="hero">
+
+            <span class="hero__badge">
+                Design System
+            </span>
+
+            <h1>
+                En İyi Cihaz UI Kit
+            </h1>
+
+            <p>
+                Tüm atom, molecule, organism ve sayfa bileşenleri buradan geliştirilecek.
+            </p>
+
+        </div>
+
+        <div class="cards">
+
+            <a href="/ds/atoms/button" class="card">
+
+                <span>Atoms</span>
+
+                <strong>11 Component</strong>
+
+            </a>
+
+            <a href="/ds/molecules/cards" class="card">
+
+                <span>Molecules</span>
+
+                <strong>3 Component</strong>
+
+            </a>
+
+            <a href="/ds/organisms/header001" class="card">
+
+                <span>Organisms</span>
+
+                <strong>3 Component</strong>
+
+            </a>
+
+            <a href="/ds/foundations/colors" class="card">
+
+                <span>Foundations</span>
+
+                <strong>Colors • Typography</strong>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</DSLayout>
+
+<style>
+
+.dashboard{
+
+    max-width:1200px;
+
+}
+
+.hero{
+
+    margin-bottom:48px;
+
+}
+
+.hero__badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    height:34px;
+
+    padding:0 16px;
+
+    border-radius:999px;
+
+    background:var(--surface);
+
+    color:var(--primary);
+
+    border:1px solid var(--border);
+
+    margin-bottom:20px;
+
+}
+
+.hero h1{
+
+    font-size:52px;
+
+    line-height:1.1;
+
+    margin-bottom:20px;
+
+}
+
+.hero p{
+
+    max-width:720px;
+
+    color:var(--muted);
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+
+    gap:24px;
+
+}
+
+.card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    min-height:180px;
+
+    padding:28px;
+
+    border-radius:18px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:var(--primary);
+
+}
+
+.card span{
+
+    color:var(--muted);
+
+    margin-bottom:12px;
+
+}
+
+.card strong{
+
+    font-size:24px;
+
+    color:var(--text);
+
+}
+
+</style>

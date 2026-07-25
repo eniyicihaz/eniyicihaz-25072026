@@ -1,0 +1,349 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Badge/BadgePatterns.css";
+
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    products,
+    categoryFilters,
+    categoryPosts,
+    statusServices,
+    stats,
+    featureGroups
+} from "../../../ds/patterns/Badge/badge.data";
+---
+
+<DSLayout title="Badge">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Badge</h1>
+
+        <p class="pl-head__lede">
+            Five sections where a badge does real work — shop labels,
+            editorial taxonomy, service states, metric deltas
+            and capability chips.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Product Labels
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Product Labels</span>
+            <span class="pl-example__tags">Retail grid · Corner labels · Warm neutrals</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="badge-shop">
+
+                <div class="badge-shop__inner">
+
+                    <header class="badge-shop__head">
+                        <div>
+                            <span class="badge-shop__kicker">Furniture</span>
+                            <h2 class="badge-shop__title">Living room, summer edit</h2>
+                        </div>
+                        <span class="badge-shop__count">24 pieces · Free delivery over $500</span>
+                    </header>
+
+                    <div class="badge-shop__grid">
+                        {products.map(product => (
+                            <article class="badge-shop__item">
+
+                                <div class={`badge-shop__plate badge-shop__plate--${product.tone}`}>
+                                    <div class="badge-shop__label">
+                                        <Badge variant={product.labelTone} size="sm">
+                                            {product.label}
+                                        </Badge>
+                                    </div>
+                                    <span class="badge-shop__form" aria-hidden="true"></span>
+                                </div>
+
+                                <h3 class="badge-shop__name">{product.name}</h3>
+                                <p class="badge-shop__detail">{product.detail}</p>
+
+                                <div class="badge-shop__price">
+                                    <strong>{product.price}</strong>
+                                    {product.was && <del>{product.was}</del>}
+                                </div>
+
+                                <p class="badge-shop__stock">{product.stock}</p>
+
+                            </article>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Categories
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Categories</span>
+            <span class="pl-example__tags">Editorial index · Filter row · Serif</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="badge-category">
+
+                <div class="badge-category__inner">
+
+                    <h2 class="badge-category__title">Writing</h2>
+
+                    <p class="badge-category__lede">
+                        Notes on building software, mostly written the week after
+                        something broke. Filter by what you came for.
+                    </p>
+
+                    <div class="badge-category__filters">
+                        {categoryFilters.map(filter => (
+                            <button
+                                type="button"
+                                class:list={[
+                                    "badge-category__filter",
+                                    filter.active && "badge-category__filter--active"
+                                ]}
+                            >
+                                {filter.label}
+                                <span class="badge-category__filter-count">{filter.count}</span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div class="badge-category__list">
+                        {categoryPosts.map(post => (
+                            <article class="badge-category__row">
+
+                                <div>
+                                    <h3 class="badge-category__post-title">{post.title}</h3>
+                                    <p class="badge-category__excerpt">{post.excerpt}</p>
+                                    <div class="badge-category__tags">
+                                        {post.tags.map(tag => (
+                                            <Badge variant="neutral" size="sm">{tag}</Badge>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div class="badge-category__date">
+                                    {post.date}<br />{post.read}
+                                </div>
+
+                            </article>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Status
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Status</span>
+            <span class="pl-example__tags">Dark · Service table · Uptime bars</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="badge-status">
+
+                <div class="badge-status__inner">
+
+                    <header class="badge-status__head">
+
+                        <div>
+                            <span class="badge-status__pulse">
+                                <span class="badge-status__dot" aria-hidden="true"></span>
+                                All systems operational
+                            </span>
+                            <h2 class="badge-status__title">Platform status</h2>
+                        </div>
+
+                        <span class="badge-status__stamp">Checked 14:31 UTC</span>
+
+                    </header>
+
+                    {statusServices.map(service => (
+                        <div class="badge-status__row">
+
+                            <div class="badge-status__service">
+                                <strong>{service.name}</strong>
+                                <span>{service.region}</span>
+                            </div>
+
+                            <div class="badge-status__bars" aria-hidden="true">
+                                {Array.from({ length: 24 }).map((_, i) => (
+                                    <span
+                                        class:list={[
+                                            "badge-status__bar",
+                                            service.tone !== "success" && i > 20 && `badge-status__bar--${service.tone}`
+                                        ]}
+                                    ></span>
+                                ))}
+                            </div>
+
+                            <span class="badge-status__uptime">{service.uptime}</span>
+
+                            <Badge variant={service.tone} size="sm">{service.state}</Badge>
+
+                        </div>
+                    ))}
+
+                    <p class="badge-status__foot">
+                        Uptime measured across the last 90 days from edge probes in 14 regions.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Statistics
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Statistics</span>
+            <span class="pl-example__tags">Metric grid · Delta badges · Investor update</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="badge-stat">
+
+                <div class="badge-stat__inner">
+
+                    <header class="badge-stat__head">
+                        <span class="badge-stat__kicker">Q2 2026 · Shareholder letter</span>
+                        <h2 class="badge-stat__title">A quarter of quiet compounding</h2>
+                        <p class="badge-stat__lede">
+                            Revenue grew without a corresponding jump in spend.
+                            Churn is the one number we are not happy with.
+                        </p>
+                    </header>
+
+                    <div class="badge-stat__grid">
+                        {stats.map(stat => (
+                            <div class="badge-stat__cell">
+                                <div class="badge-stat__top">
+                                    <span class="badge-stat__value">{stat.value}</span>
+                                    <Badge variant={stat.tone} size="sm">{stat.delta}</Badge>
+                                </div>
+                                <span class="badge-stat__label">{stat.label}</span>
+                                <span class="badge-stat__note">{stat.note}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="badge-stat__foot">
+                        <span>Figures unaudited. Full letter published 4 August.</span>
+                        <Button variant="ghost" size="sm">Read the letter &nbsp;→</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Feature Chips
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Feature Chips</span>
+            <span class="pl-example__tags">Dark glass · Grouped capabilities · Three column</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="badge-feature">
+
+                <div class="badge-feature__inner">
+
+                    <header class="badge-feature__head">
+                        <span class="badge-feature__kicker">Everything included</span>
+                        <h2 class="badge-feature__title">
+                            No feature matrix, no asterisks
+                        </h2>
+                        <p class="badge-feature__lede">
+                            Every capability below ships on every paid plan.
+                            The only thing that changes between tiers is capacity.
+                        </p>
+                    </header>
+
+                    <div class="badge-feature__groups">
+                        {featureGroups.map(group => (
+                            <div class="badge-feature__group">
+                                <h3 class="badge-feature__group-title">{group.title}</h3>
+                                <div class="badge-feature__chips">
+                                    {group.items.map(item => (
+                                        <Badge variant="neutral" size="sm">{item}</Badge>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <footer class="badge-feature__foot">
+                        <span>Missing something your team needs? Tell us.</span>
+                        <Button variant="glass" size="sm" rounded>Request a feature</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

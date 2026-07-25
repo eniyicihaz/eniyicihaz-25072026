@@ -1,0 +1,356 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Tag/TagPatterns.css";
+
+import Tag from "../../../ds/components/ui/atoms/Tag/Tag.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    devices,
+    deviceFilters,
+    issues,
+    recipe,
+    recipeTags,
+    recipeIngredients,
+    job,
+    jobTags,
+    jobStack,
+    tracks,
+    libraryTags
+} from "../../../ds/patterns/Tag/tag.data";
+---
+
+<DSLayout title="Tag">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Tag</h1>
+
+        <p class="pl-head__lede">
+            Five vocabularies — hearing aid specifications, engineering labels,
+            recipe taxonomy, employment terms and a filtered music library.
+        </p>
+
+    </header>
+
+    <!-- 01 — Device comparison -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Device Comparison</span>
+            <span class="pl-example__tags">Hearing care · Spec tags · Filter mirror</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tag-device">
+
+                <div class="tag-device__inner">
+
+                    <header class="tag-device__head">
+                        <h2 class="tag-device__title">Şarjlı ve Bluetooth'lu cihazlar</h2>
+                        <span class="tag-device__count">3 sonuç · 24 model içinden</span>
+                    </header>
+
+                    <div class="tag-device__filters">
+                        <span class="tag-device__filters-label">Filtreler:</span>
+                        {deviceFilters.map(filter => (
+                            <Tag
+                                variant={filter.active ? "primary" : "default"}
+                                size="sm"
+                                rounded
+                                removable={filter.active}
+                            >
+                                {filter.label}
+                            </Tag>
+                        ))}
+                    </div>
+
+                    {devices.map(device => (
+                        <article
+                            class:list={[
+                                "tag-device__card",
+                                device.featured && "tag-device__card--featured"
+                            ]}
+                        >
+                            <span class="tag-device__shape" aria-hidden="true"></span>
+
+                            <div>
+                                <span class="tag-device__brand">{device.brand}</span>
+                                <h3 class="tag-device__name">{device.name}</h3>
+                                <div class="tag-device__tags">
+                                    {device.tags.map(tag => (
+                                        <Tag variant={tag.variant} size="sm" rounded>
+                                            {tag.label}
+                                        </Tag>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div class="tag-device__side">
+                                <div class="tag-device__price">{device.price}</div>
+                                <Button size="sm">Deneme randevusu</Button>
+                            </div>
+                        </article>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Issue tracker -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Issue Tracker</span>
+            <span class="pl-example__tags">Dark · Sharp labels · Estimates</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tag-issue">
+
+                <div class="tag-issue__inner">
+
+                    <header class="tag-issue__head">
+                        <h2 class="tag-issue__title">Current cycle</h2>
+                        <span class="tag-issue__meta">Cycle 24 · ends in 6 days</span>
+                    </header>
+
+                    {issues.map(issue => (
+                        <div class="tag-issue__row">
+                            <span class="tag-issue__id">{issue.id}</span>
+                            <div>
+                                <div class="tag-issue__name">{issue.title}</div>
+                                <div class="tag-issue__tags">
+                                    {issue.tags.map(tag => (
+                                        <Tag variant={tag.variant} size="sm">{tag.label}</Tag>
+                                    ))}
+                                </div>
+                            </div>
+                            <span class="tag-issue__estimate">{issue.estimate}</span>
+                            <span class="tag-issue__assignee">{issue.assignee}</span>
+                        </div>
+                    ))}
+
+                    <div class="tag-issue__foot">
+                        <span>4 issues · 11 points</span>
+                        <span>Updated 3 minutes ago</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Recipe -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Recipe Header</span>
+            <span class="pl-example__tags">Editorial · Pill taxonomy · Fact grid</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tag-recipe">
+
+                <div class="tag-recipe__inner">
+
+                    <div>
+
+                        <span class="tag-recipe__kicker">Sunday cooking</span>
+
+                        <h2 class="tag-recipe__title">{recipe.title}</h2>
+
+                        <p class="tag-recipe__byline">
+                            By {recipe.author} · Tested three times
+                        </p>
+
+                        <div class="tag-recipe__tags">
+                            {recipeTags.map(tag => (
+                                <Tag variant={tag.variant} rounded>{tag.label}</Tag>
+                            ))}
+                        </div>
+
+                        <dl class="tag-recipe__facts">
+                            <div class="tag-recipe__fact">
+                                <dt>Total time</dt>
+                                <dd>{recipe.time}</dd>
+                            </div>
+                            <div class="tag-recipe__fact">
+                                <dt>Serves</dt>
+                                <dd>{recipe.serves}</dd>
+                            </div>
+                            <div class="tag-recipe__fact">
+                                <dt>Difficulty</dt>
+                                <dd>{recipe.difficulty}</dd>
+                            </div>
+                        </dl>
+
+                    </div>
+
+                    <div>
+
+                        <div class="tag-recipe__plate" aria-hidden="true"></div>
+
+                        <div class="tag-recipe__ingredients">
+                            <h3 class="tag-recipe__ingredients-title">You will need</h3>
+                            <ul>
+                                {recipeIngredients.map(item => (
+                                    <li>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Job listing -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Job Listing</span>
+            <span class="pl-example__tags">Card · Terms as tags · Stack rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tag-job">
+
+                <div class="tag-job__card">
+
+                    <header class="tag-job__head">
+
+                        <div class="tag-job__company">
+                            <span class="tag-job__logo" aria-hidden="true">F</span>
+                            {job.company}
+                        </div>
+
+                        <h2 class="tag-job__title">{job.title}</h2>
+
+                        <div class="tag-job__meta">
+                            <span>{job.location}</span>
+                            <span>·</span>
+                            <span>{job.salary}</span>
+                        </div>
+
+                    </header>
+
+                    <div class="tag-job__tags">
+                        {jobTags.map(tag => (
+                            <Tag variant={tag.variant} rounded>{tag.label}</Tag>
+                        ))}
+                    </div>
+
+                    <div class="tag-job__stack">
+                        <h3 class="tag-job__stack-title">Tools you would use</h3>
+                        <div class="tag-job__stack-row">
+                            {jobStack.map(tool => (
+                                <span class="tag-job__chip">{tool}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <footer class="tag-job__foot">
+                        <span class="tag-job__posted">{job.posted}</span>
+                        <Button>Apply for this role</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Music library -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Music Library</span>
+            <span class="pl-example__tags">Dark · Removable filters · Track list</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tag-music">
+
+                <div class="tag-music__inner">
+
+                    <h2 class="tag-music__title">Filtered library</h2>
+
+                    <p class="tag-music__lede">
+                        Four tracks match every tag below. Remove one to widen
+                        the selection.
+                    </p>
+
+                    <div class="tag-music__filters">
+                        <span class="tag-music__filters-label">Active:</span>
+                        {libraryTags.map(tag => (
+                            <Tag variant={tag.variant} size="sm" rounded removable>
+                                {tag.label}
+                            </Tag>
+                        ))}
+                        <a class="tag-music__clear" href="#0">Clear all</a>
+                    </div>
+
+                    {tracks.map((track, i) => (
+                        <div class="tag-music__track">
+                            <span class="tag-music__n">{i + 1}</span>
+                            <div>
+                                <div class="tag-music__track-title">{track.title}</div>
+                                <div class="tag-music__artist">{track.artist}</div>
+                            </div>
+                            <span class="tag-music__genre">{track.genre}</span>
+                            <span class="tag-music__length">{track.length}</span>
+                        </div>
+                    ))}
+
+                    <div class="tag-music__foot">
+                        <span>4 tracks · 20 min 5 sec</span>
+                        <span>Sorted by relevance</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

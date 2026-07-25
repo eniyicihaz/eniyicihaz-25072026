@@ -1,0 +1,55 @@
+---
+import "./Breadcrumb.css";
+import type { BreadcrumbProps } from "./Breadcrumb.types";
+
+const {
+  items = [],
+  separator = "/",
+  class: className = "",
+} = Astro.props as BreadcrumbProps;
+
+const classes = [
+  "ds-breadcrumb",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<nav
+  class={classes}
+  aria-label="Breadcrumb"
+>
+  <ol class="ds-breadcrumb__list">
+    {
+      items.map((item, index) => (
+        <li class="ds-breadcrumb__item">
+          {item.current ? (
+            <span
+              class="ds-breadcrumb__current"
+              aria-current="page"
+            >
+              {item.label}
+            </span>
+          ) : (
+            <a
+              href={item.href}
+              class="ds-breadcrumb__link"
+            >
+              {item.label}
+            </a>
+          )}
+
+          {index < items.length - 1 && (
+            <span
+              class="ds-breadcrumb__separator"
+              aria-hidden="true"
+            >
+              {separator}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

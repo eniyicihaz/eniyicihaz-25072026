@@ -1,0 +1,323 @@
+/* ==========================================================
+   Tooltip — five patterns
+
+   01  ttp-audiogram  Audiogram glossary terms (eniyicihaz.com)
+   02  ttp-toolbar    Dashboard icon toolbar, dark
+   03  ttp-disabled   Disabled action explainer, light variant
+   04  ttp-formhelp   Form field help icons, right placement
+   05  ttp-truncate   Truncated table cell, left placement
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Audiogram glossary terms
+   ========================================================== */
+
+.ttp-audiogram{
+    display:flex;
+    justify-content:center;
+
+    padding:72px 32px 96px;
+    background:#f6fbfa;
+}
+
+.ttp-audiogram__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.ttp-audiogram__title{
+    margin-bottom:20px;
+
+    font-size:1.05rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.ttp-audiogram__row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.ttp-audiogram__row + .ttp-audiogram__row{
+    margin-top:14px;
+}
+
+.ttp-audiogram__term{
+    font-family:var(--pat-mono);
+    font-size:.9rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.ttp-audiogram .ds-tooltip__trigger{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    width:18px;
+    height:18px;
+    border-radius:999px;
+
+    background:rgb(15 118 110 / .12);
+    color:#0f766e;
+
+    font-size:.72rem;
+    font-weight:700;
+    cursor:help;
+}
+
+.ttp-audiogram .ds-tooltip.is-dark{
+    --tooltip-bg:#0f766e;
+}
+
+
+/* ==========================================================
+   02 — Dashboard icon toolbar, dark
+   ========================================================== */
+
+.ttp-toolbar{
+    display:flex;
+    justify-content:center;
+
+    padding:96px 32px 112px;
+    background:#111827;
+}
+
+.ttp-toolbar__bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 14px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.ttp-toolbar .ds-tooltip__trigger .ds-icon-button.is-ghost{
+    color:rgb(255 255 255 / .7);
+}
+
+.ttp-toolbar .ds-tooltip__trigger .ds-icon-button.is-ghost:hover{
+    background:rgb(255 255 255 / .08);
+}
+
+
+/* ==========================================================
+   03 — Disabled action explainer
+   ========================================================== */
+
+.ttp-disabled{
+    display:flex;
+    justify-content:center;
+
+    padding:96px 32px 88px;
+    background:#fbfbfa;
+}
+
+.ttp-disabled__card{
+    width:100%;
+    max-width:340px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+    text-align:center;
+}
+
+.ttp-disabled__title{
+    margin-bottom:6px;
+
+    font-size:.98rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.ttp-disabled__sub{
+    margin-bottom:20px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.ttp-disabled__button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:.7rem 1.4rem;
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#f1f5f9;
+    color:var(--pat-soft);
+
+    font:inherit;
+    font-size:.9rem;
+    font-weight:600;
+
+    cursor:not-allowed;
+}
+
+
+/* ==========================================================
+   04 — Form field help icons
+   ========================================================== */
+
+.ttp-formhelp{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.ttp-formhelp__card{
+    width:100%;
+    max-width:400px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.ttp-formhelp__field{
+    margin-bottom:20px;
+}
+
+.ttp-formhelp__field:last-child{
+    margin-bottom:0;
+}
+
+.ttp-formhelp__label-row{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    margin-bottom:8px;
+}
+
+.ttp-formhelp__label{
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.ttp-formhelp .ds-tooltip__trigger{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    width:16px;
+    height:16px;
+    border-radius:999px;
+
+    background:var(--pat-line);
+    color:var(--pat-soft);
+
+    font-size:.68rem;
+    font-weight:700;
+    cursor:help;
+}
+
+
+/* ==========================================================
+   05 — Truncated table cell
+   ========================================================== */
+
+.ttp-truncate{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fafaf9;
+}
+
+.ttp-truncate__card{
+    width:100%;
+    max-width:360px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.ttp-truncate__head{
+    padding:14px 20px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.ttp-truncate__row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:14px 20px;
+}
+
+.ttp-truncate__icon{
+    flex-shrink:0;
+}
+
+.ttp-truncate .ds-tooltip{
+    max-width:100%;
+    overflow:hidden;
+}
+
+.ttp-truncate .ds-tooltip__trigger{
+    display:block;
+    max-width:100%;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+
+    font-size:.85rem;
+    color:var(--pat-ink);
+    cursor:default;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .ttp-audiogram{ padding:56px 16px 72px; }
+    .ttp-audiogram__card{ padding:22px; }
+
+    .ttp-toolbar{ padding:64px 16px 80px; }
+
+    .ttp-disabled{ padding:64px 16px 56px; }
+    .ttp-disabled__card{ padding:22px; }
+
+    .ttp-formhelp{ padding:44px 16px 56px; }
+    .ttp-formhelp__card{ padding:22px; }
+
+    .ttp-truncate{ padding:44px 16px 56px; }
+
+}

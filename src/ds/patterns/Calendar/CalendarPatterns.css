@@ -1,0 +1,1097 @@
+/* ==========================================================
+   Calendar — five patterns
+
+   01  cal-clinic   Appointment booking (eniyicihaz.com)
+   02  cal-stay     Hotel date range, travel
+   03  cal-team     Team availability, dark workspace
+   04  cal-editor   Editorial content schedule
+   05  cal-season   Motorsport season calendar
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Appointment booking
+
+   Calendar on the left picks a day; slots list on the
+   right fills in. Disabled days read as closed.
+   ========================================================== */
+
+.cal-clinic{
+    padding:64px 56px 72px;
+
+    background:
+        radial-gradient(55% 45% at 15% 0%, rgb(13 148 136 / .12), transparent 62%),
+        #f6fbfa;
+}
+
+.cal-clinic__inner{
+    max-width:960px;
+    margin:0 auto;
+}
+
+.cal-clinic__head{
+    margin-bottom:26px;
+}
+
+.cal-clinic__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.cal-clinic__title{
+    margin:14px 0 0;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.cal-clinic__grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 300px;
+    gap:24px;
+    align-items:start;
+}
+
+.cal-clinic__panel{
+    padding:22px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.cal-clinic__panel .ds-calendar__title{
+    font-size:1.02rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:#123b36;
+}
+
+.cal-clinic__panel .ds-calendar__button{
+    color:#4a6b66;
+}
+
+.cal-clinic__panel .ds-calendar__button:hover{
+    color:#0f766e;
+}
+
+.cal-clinic__panel .ds-calendar__weekday{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#8aa8a3;
+}
+
+.cal-clinic__panel .ds-calendar__day{
+    border-radius:var(--pat-radius-xs);
+
+    font-size:.9rem;
+    color:#123b36;
+}
+
+.cal-clinic__panel .ds-calendar__day:hover{
+    background:rgb(13 148 136 / .09);
+}
+
+.cal-clinic__panel .ds-calendar__day--outside{
+    color:rgb(18 59 54 / .22);
+    pointer-events:none;
+}
+
+.cal-clinic__panel .ds-calendar__day--disabled{
+    color:rgb(18 59 54 / .25);
+    text-decoration:line-through;
+    pointer-events:none;
+}
+
+.cal-clinic__panel .ds-calendar__day--today{
+    font-weight:750;
+    box-shadow:inset 0 0 0 1px rgb(15 118 110 / .45);
+}
+
+.cal-clinic__panel .ds-calendar__day--selected{
+    background:#0f766e;
+    color:#fff;
+    font-weight:700;
+}
+
+.cal-clinic__legend{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+
+    margin-top:18px;
+    padding-top:16px;
+
+    border-top:1px solid rgb(18 59 54 / .1);
+}
+
+.cal-clinic__legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:.78rem;
+    color:#4a6b66;
+}
+
+.cal-clinic__swatch{
+    width:10px;
+    height:10px;
+
+    border-radius:3px;
+}
+
+.cal-clinic__swatch--free{ background:rgb(13 148 136 / .25); }
+.cal-clinic__swatch--busy{ background:rgb(18 59 54 / .18); }
+.cal-clinic__swatch--picked{ background:#0f766e; }
+
+.cal-clinic__slots{
+    padding:22px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.cal-clinic__slots-title{
+    margin:0 0 4px;
+
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:#123b36;
+}
+
+.cal-clinic__slots-date{
+    margin:0 0 18px;
+
+    font-size:.82rem;
+    color:#6b8b86;
+}
+
+.cal-clinic__slot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    padding:11px 13px;
+    margin-bottom:7px;
+
+    border:1px solid rgb(18 59 54 / .12);
+    border-radius:var(--pat-radius-xs);
+
+    background:#fff;
+
+    transition:border-color .2s ease;
+}
+
+.cal-clinic__slot:hover{
+    border-color:#0f766e;
+}
+
+.cal-clinic__slot--taken{
+    background:#f5f8f7;
+    opacity:.55;
+    pointer-events:none;
+}
+
+.cal-clinic__slot-time{
+    font-family:var(--pat-mono);
+    font-size:.88rem;
+    font-weight:700;
+    color:#123b36;
+}
+
+.cal-clinic__slot-who{
+    font-size:.76rem;
+    color:#6b8b86;
+}
+
+.cal-clinic__slots-action{
+    margin-top:16px;
+}
+
+.cal-clinic .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.cal-clinic .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Hotel stay
+
+   A range selection: the selected block reads as one
+   continuous bar rather than five separate days.
+   ========================================================== */
+
+.cal-stay{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 72px;
+    background:#fbfcfe;
+}
+
+.cal-stay__card{
+    width:100%;
+    max-width:660px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.cal-stay__head{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding:22px 26px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.cal-stay__thumb{
+    width:64px;
+    height:52px;
+    flex-shrink:0;
+
+    border-radius:var(--pat-radius-xs);
+    background:linear-gradient(150deg, #b7c4d4, #8b9cb2);
+}
+
+.cal-stay__title{
+    font-size:.98rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.cal-stay__location{
+    margin-top:4px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.cal-stay__score{
+    margin-left:auto;
+    white-space:nowrap;
+
+    font-size:.86rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.cal-stay__body{
+    padding:24px 26px;
+}
+
+.cal-stay__body .ds-calendar__title{
+    font-size:1rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.cal-stay__body .ds-calendar__weekday{
+    font-size:.72rem;
+    font-weight:600;
+    color:var(--pat-soft);
+}
+
+.cal-stay__body .ds-calendar__day{
+    border-radius:0;
+    font-size:.9rem;
+}
+
+.cal-stay__body .ds-calendar__day--outside{
+    color:rgb(15 23 42 / .2);
+}
+
+.cal-stay__body .ds-calendar__day--disabled{
+    color:rgb(15 23 42 / .22);
+    text-decoration:line-through;
+}
+
+/* Range: rounded ends, flat middle */
+
+.cal-stay__body .ds-calendar__day--selected{
+    background:rgb(37 99 235 / .12);
+    color:var(--pat-ink);
+    font-weight:650;
+}
+
+.cal-stay__body .ds-calendar__day--selected:first-of-type{
+    border-radius:var(--pat-radius-pill) 0 0 var(--pat-radius-pill);
+}
+
+.cal-stay__range{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+
+    margin-top:20px;
+    padding:14px 16px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fbfcfd;
+}
+
+.cal-stay__range-leg dt{
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.cal-stay__range-leg dd{
+    margin:5px 0 0;
+
+    font-size:.92rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.cal-stay__range-arrow{
+    color:#cbd5e1;
+}
+
+.cal-stay__nights{
+    margin-left:auto;
+
+    font-size:.85rem;
+    color:var(--pat-body);
+}
+
+.cal-stay__pricing{
+    padding:18px 26px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.cal-stay__price-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:6px 0;
+
+    font-size:.88rem;
+    color:var(--pat-body);
+}
+
+.cal-stay__total{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:10px;
+    padding-top:14px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.cal-stay__total strong{
+    font-size:1.3rem;
+    font-weight:800;
+    letter-spacing:-.035em;
+    color:var(--pat-ink);
+}
+
+.cal-stay__foot{
+    padding:0 26px 24px;
+}
+
+
+/* ==========================================================
+   03 — Team availability
+
+   Dark workspace. The calendar sits beside a presence
+   list and the day's agenda.
+   ========================================================== */
+
+.cal-team{
+    padding:56px 56px 72px;
+
+    background:
+        radial-gradient(50% 40% at 85% 0%, rgb(99 102 241 / .18), transparent 60%),
+        linear-gradient(170deg, #14121f 0%, #0b0a12 100%);
+}
+
+.cal-team__inner{
+    max-width:1020px;
+    margin:0 auto;
+}
+
+.cal-team__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    padding-bottom:22px;
+    margin-bottom:24px;
+
+    border-bottom:1px solid rgb(255 255 255 / .1);
+}
+
+.cal-team__title{
+    margin:0;
+
+    font-size:1.6rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#f5f3ff;
+}
+
+.cal-team__sub{
+    margin-top:8px;
+
+    font-size:.9rem;
+    color:rgb(245 243 255 / .45);
+}
+
+.cal-team__grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1.15fr) minmax(0, .85fr);
+    gap:22px;
+    align-items:start;
+}
+
+.cal-team__panel{
+    padding:20px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .04);
+}
+
+.cal-team__panel .ds-calendar__title{
+    font-size:.98rem;
+    font-weight:700;
+    color:#f5f3ff;
+}
+
+.cal-team__panel .ds-calendar__button{
+    color:rgb(245 243 255 / .5);
+}
+
+.cal-team__panel .ds-calendar__button:hover{
+    color:#f5f3ff;
+}
+
+.cal-team__panel .ds-calendar__weekday{
+    font-size:.7rem;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:rgb(245 243 255 / .3);
+}
+
+.cal-team__panel .ds-calendar__day{
+    border-radius:var(--pat-radius-xs);
+
+    font-size:.86rem;
+    color:rgb(245 243 255 / .78);
+}
+
+.cal-team__panel .ds-calendar__day:hover{
+    background:rgb(255 255 255 / .07);
+}
+
+.cal-team__panel .ds-calendar__day--outside{
+    color:rgb(245 243 255 / .16);
+}
+
+.cal-team__panel .ds-calendar__day--today{
+    box-shadow:inset 0 0 0 1px rgb(165 180 252 / .6);
+    font-weight:700;
+    color:#f5f3ff;
+}
+
+.cal-team__panel .ds-calendar__day--selected{
+    background:rgb(129 140 248 / .28);
+    color:#f5f3ff;
+    font-weight:650;
+}
+
+.cal-team__aside{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.cal-team__card{
+    padding:18px 20px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.cal-team__card-title{
+    margin:0 0 14px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgb(245 243 255 / .38);
+}
+
+.cal-team__member{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    padding:7px 0;
+}
+
+.cal-team__member-name{
+    font-size:.88rem;
+    color:#f5f3ff;
+}
+
+.cal-team__status{
+    margin-left:auto;
+
+    font-size:.76rem;
+}
+
+.cal-team__status--in{ color:#4ade80; }
+.cal-team__status--remote{ color:#a5b4fc; }
+.cal-team__status--off{ color:rgb(245 243 255 / .32); }
+
+.cal-team__event{
+    display:grid;
+    grid-template-columns:52px minmax(0, 1fr);
+    gap:12px;
+
+    padding:9px 0;
+
+    border-bottom:1px solid rgb(255 255 255 / .06);
+}
+
+.cal-team__event:last-child{
+    border-bottom:none;
+}
+
+.cal-team__event-time{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:#a5b4fc;
+}
+
+.cal-team__event-label{
+    font-size:.86rem;
+    color:#f5f3ff;
+}
+
+.cal-team__event-room{
+    margin-top:3px;
+
+    font-size:.74rem;
+    color:rgb(245 243 255 / .35);
+}
+
+
+/* ==========================================================
+   04 — Editorial schedule
+
+   Publishing cadence: selected days mark publish dates,
+   the queue lists what lands on each.
+   ========================================================== */
+
+.cal-editor{
+    padding:64px 56px 72px;
+    background:#faf8f4;
+}
+
+.cal-editor__inner{
+    display:grid;
+    grid-template-columns:minmax(0, .9fr) minmax(0, 1.1fr);
+    gap:44px;
+    align-items:start;
+
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.cal-editor__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.cal-editor__title{
+    margin:16px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    line-height:1.12;
+
+    color:#1c1812;
+}
+
+.cal-editor__lede{
+    margin:14px 0 24px;
+    max-width:38ch;
+
+    font-size:.95rem;
+    line-height:1.75;
+    color:#7e7466;
+}
+
+.cal-editor__cal{
+    padding:20px;
+
+    border:1px solid rgb(28 24 18 / .12);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.cal-editor__cal .ds-calendar__title{
+    font-family:var(--pat-serif);
+    font-size:1.1rem;
+    font-weight:400;
+    color:#1c1812;
+}
+
+.cal-editor__cal .ds-calendar__weekday{
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.cal-editor__cal .ds-calendar__day{
+    border-radius:50%;
+    font-size:.86rem;
+    color:#3b352b;
+}
+
+.cal-editor__cal .ds-calendar__day--outside{
+    color:rgb(28 24 18 / .2);
+}
+
+.cal-editor__cal .ds-calendar__day--today{
+    box-shadow:inset 0 0 0 1px rgb(28 24 18 / .35);
+    font-weight:700;
+}
+
+.cal-editor__cal .ds-calendar__day--selected{
+    background:#1c1812;
+    color:#faf8f4;
+    font-weight:700;
+}
+
+.cal-editor__channels{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:20px;
+    padding-top:18px;
+
+    border-top:1px solid rgb(28 24 18 / .12);
+}
+
+.cal-editor__channel{
+    font-size:.82rem;
+    color:#7e7466;
+}
+
+.cal-editor__channel strong{
+    color:#1c1812;
+}
+
+.cal-editor__queue-title{
+    margin:0 0 16px;
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.cal-editor__item{
+    display:grid;
+    grid-template-columns:70px minmax(0, 1fr) auto;
+    gap:16px;
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid rgb(28 24 18 / .12);
+}
+
+.cal-editor__item-date{
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    color:#a3937a;
+}
+
+.cal-editor__item-title{
+    font-family:var(--pat-serif);
+    font-size:1.05rem;
+    letter-spacing:-.02em;
+    color:#1c1812;
+}
+
+.cal-editor__state{
+    padding:4px 11px;
+
+    border-radius:var(--pat-radius-pill);
+
+    font-size:.74rem;
+    font-weight:650;
+    white-space:nowrap;
+}
+
+.cal-editor__state--ready{ background:rgb(22 163 74 / .12); color:#15803d; }
+.cal-editor__state--review{ background:rgb(245 158 11 / .16); color:#b45309; }
+.cal-editor__state--draft{ background:rgb(28 24 18 / .08); color:#7e7466; }
+
+.cal-editor__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+}
+
+.cal-editor__foot-note{
+    font-size:.82rem;
+    color:#a3937a;
+}
+
+
+/* ==========================================================
+   05 — Race season
+
+   Sport. The calendar marks race weekends; a fixture
+   card and standings sit alongside.
+   ========================================================== */
+
+.cal-season{
+    padding:56px 56px 72px;
+
+    background:
+        radial-gradient(50% 45% at 20% 0%, rgb(220 38 38 / .2), transparent 60%),
+        linear-gradient(170deg, #16090b 0%, #0a0607 100%);
+}
+
+.cal-season__inner{
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.cal-season__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    padding-bottom:22px;
+    margin-bottom:24px;
+
+    border-bottom:1px solid rgb(255 255 255 / .1);
+}
+
+.cal-season__series{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:#ef4444;
+}
+
+.cal-season__title{
+    margin:14px 0 0;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.3rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    color:#fafafa;
+}
+
+.cal-season__round{
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    color:rgb(250 250 250 / .38);
+}
+
+.cal-season__grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+    gap:22px;
+    align-items:start;
+}
+
+.cal-season__cal{
+    padding:20px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.cal-season__cal .ds-calendar__title{
+    font-size:.98rem;
+    font-weight:700;
+    color:#fafafa;
+}
+
+.cal-season__cal .ds-calendar__button{
+    color:rgb(250 250 250 / .5);
+}
+
+.cal-season__cal .ds-calendar__weekday{
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:rgb(250 250 250 / .3);
+}
+
+.cal-season__cal .ds-calendar__day{
+    border-radius:var(--pat-radius-xs);
+
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    color:rgb(250 250 250 / .72);
+}
+
+.cal-season__cal .ds-calendar__day--outside{
+    color:rgb(250 250 250 / .16);
+}
+
+.cal-season__cal .ds-calendar__day--disabled{
+    color:rgb(250 250 250 / .18);
+}
+
+.cal-season__cal .ds-calendar__day--selected{
+    background:#dc2626;
+    color:#fff;
+    font-weight:700;
+}
+
+.cal-season__aside{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.cal-season__race{
+    padding:20px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.cal-season__race--next{
+    border-color:rgb(239 68 68 / .45);
+    background:
+        linear-gradient(120deg, rgb(239 68 68 / .12), transparent 60%),
+        rgb(255 255 255 / .04);
+}
+
+.cal-season__race-round{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    color:rgb(250 250 250 / .4);
+}
+
+.cal-season__next-tag{
+    padding:2px 9px;
+
+    border-radius:var(--pat-radius-pill);
+    background:#dc2626;
+
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#fff;
+}
+
+.cal-season__circuit{
+    margin:12px 0 0;
+
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:-.025em;
+    color:#fafafa;
+}
+
+.cal-season__country{
+    margin-top:4px;
+
+    font-size:.84rem;
+    color:rgb(250 250 250 / .45);
+}
+
+.cal-season__session{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+
+    margin-top:14px;
+    padding-top:12px;
+
+    border-top:1px solid rgb(255 255 255 / .09);
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(250 250 250 / .6);
+}
+
+.cal-season__standings{
+    padding:18px 20px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.cal-season__standings-title{
+    margin:0 0 12px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgb(250 250 250 / .38);
+}
+
+.cal-season__driver{
+    display:grid;
+    grid-template-columns:22px minmax(0, 1fr) auto;
+    gap:12px;
+    align-items:center;
+
+    padding:8px 0;
+
+    border-bottom:1px solid rgb(255 255 255 / .06);
+}
+
+.cal-season__driver:last-child{
+    border-bottom:none;
+}
+
+.cal-season__pos{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(250 250 250 / .35);
+}
+
+.cal-season__driver-name{
+    font-size:.88rem;
+    color:#fafafa;
+}
+
+.cal-season__points{
+    font-family:var(--pat-mono);
+    font-size:.85rem;
+    font-weight:700;
+    color:#fafafa;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .cal-clinic{ padding:52px 32px 64px; }
+    .cal-clinic__grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .cal-team{ padding:48px 32px 64px; }
+    .cal-team__grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .cal-editor{ padding:52px 32px 64px; }
+    .cal-editor__inner{ grid-template-columns:minmax(0, 1fr); gap:32px; }
+
+    .cal-season{ padding:48px 32px 64px; }
+    .cal-season__grid{ grid-template-columns:minmax(0, 1fr); }
+
+}
+
+@media (max-width:720px){
+
+    .cal-clinic{ padding:40px 20px 52px; }
+    .cal-clinic__panel,
+    .cal-clinic__slots{ padding:18px; }
+
+    .cal-stay{ padding:44px 16px 56px; }
+    .cal-stay__head,
+    .cal-stay__body,
+    .cal-stay__pricing{ padding-left:20px; padding-right:20px; }
+    .cal-stay__foot{ padding:0 20px 20px; }
+    .cal-stay__foot .btn{ width:100%; }
+    .cal-stay__nights{ margin-left:0; width:100%; }
+
+    .cal-team{ padding:36px 20px 52px; }
+
+    .cal-editor{ padding:40px 20px 52px; }
+    .cal-editor__item{ grid-template-columns:minmax(0, 1fr) auto; gap:8px 12px; }
+    .cal-editor__item-date{ grid-column:1; }
+    .cal-editor__state{ grid-column:2; grid-row:1; }
+    .cal-editor__item-title{ grid-column:1 / -1; }
+
+    .cal-season{ padding:36px 20px 52px; }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .cal-clinic__slot{ transition:none; }
+
+}

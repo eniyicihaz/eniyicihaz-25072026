@@ -1,0 +1,59 @@
+---
+import "./Rating.css";
+import type { RatingProps } from "./Rating.types";
+
+const {
+  value = 0,
+  max = 5,
+  readonly = false,
+  disabled = false,
+  size = "md",
+  showValue = false,
+  class: className = "",
+} = Astro.props as RatingProps;
+
+const classes = [
+  "ds-rating",
+  `ds-rating--${size}`,
+  readonly && "ds-rating--readonly",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div
+  class={classes}
+  role="img"
+  aria-label={`Rating: ${value} of ${max}`}
+>
+  <div class="ds-rating__stars">
+    {
+      Array.from({ length: max }, (_, index) => {
+        const filled = index < value;
+
+        return (
+          <button
+            type="button"
+            class:list={[
+              "ds-rating__star",
+              filled && "ds-rating__star--filled",
+            ]}
+            disabled={disabled || readonly}
+            aria-label={`Rate ${index + 1}`}
+          >
+            ★
+          </button>
+        );
+      })
+    }
+  </div>
+
+  {
+    showValue && (
+      <span class="ds-rating__value">
+        {value}/{max}
+      </span>
+    )
+  }
+</div>

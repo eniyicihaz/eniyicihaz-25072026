@@ -1,0 +1,186 @@
+.ds-chip{
+    --chip-height:2.25rem;
+    --chip-padding:0 .875rem;
+    --chip-gap:.5rem;
+    --chip-radius:999px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:var(--chip-gap);
+
+    min-height:var(--chip-height);
+    padding:var(--chip-padding);
+
+    border:1px solid transparent;
+    border-radius:var(--chip-radius);
+
+    font-size:.875rem;
+    font-weight:500;
+    line-height:1;
+
+    text-decoration:none;
+    white-space:nowrap;
+
+    transition:
+        background-color .2s ease,
+        color .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+
+    cursor:default;
+}
+
+/* Sizes */
+
+.ds-chip.is-xs{
+    --chip-height:1.5rem;
+    font-size:.6875rem;
+}
+
+.ds-chip.is-sm{
+    --chip-height:1.875rem;
+    font-size:.75rem;
+}
+
+.ds-chip.is-md{
+    --chip-height:2.25rem;
+}
+
+.ds-chip.is-lg{
+    --chip-height:2.75rem;
+    font-size:1rem;
+}
+
+/* Shape */
+
+.ds-chip.is-rounded{
+    border-radius:999px;
+}
+
+.ds-chip:not(.is-rounded){
+    border-radius:.75rem;
+}
+
+/* States */
+
+.ds-chip.is-clickable{
+    cursor:pointer;
+}
+
+.ds-chip.is-clickable:hover:not(.is-disabled){
+    transform:translateY(-1px);
+}
+
+.ds-chip.is-clickable:active:not(.is-disabled){
+    transform:translateY(0);
+}
+
+.ds-chip.is-selected{
+    box-shadow:0 0 0 3px rgba(59,130,246,.18);
+}
+
+.ds-chip.is-disabled{
+    opacity:.55;
+    cursor:not-allowed;
+    pointer-events:none;
+}
+
+/* Variants */
+
+.ds-chip.is-primary{
+    background:var(--color-primary);
+    color:#fff;
+}
+
+.ds-chip.is-secondary{
+    background:var(--color-secondary);
+    color:#fff;
+}
+
+.ds-chip.is-success{
+    background:var(--color-success);
+    color:#fff;
+}
+
+.ds-chip.is-warning{
+    background:var(--color-warning);
+    color:#111827;
+}
+
+.ds-chip.is-danger{
+    background:var(--color-danger);
+    color:#fff;
+}
+
+.ds-chip.is-info{
+    background:var(--color-info);
+    color:#fff;
+}
+
+.ds-chip.is-neutral{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.ds-chip.is-outline{
+    background:transparent;
+    border-color:currentColor;
+    color:var(--color-primary);
+}
+
+.ds-chip.is-soft{
+    background:var(--color-surface);
+    color:var(--color-text);
+    border-color:var(--color-border);
+}
+
+/* Avatar */
+
+.ds-chip__avatar{
+    width:1.5rem;
+    height:1.5rem;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+}
+
+/* Icons */
+
+.ds-chip__icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+}
+
+/* Label */
+
+.ds-chip__label{
+    display:inline-flex;
+    align-items:center;
+}
+
+/* Remove */
+
+.ds-chip__remove{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-left:.125rem;
+
+    font-size:1rem;
+    line-height:1;
+
+    opacity:.7;
+}
+
+.ds-chip.is-clickable:hover .ds-chip__remove{
+    opacity:1;
+}

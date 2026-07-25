@@ -1,0 +1,244 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/KeyValue/KeyValuePatterns.css";
+
+import KeyValue from "../../../ds/components/ui/atoms/KeyValue/KeyValue.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    audiogramSummary,
+    audiogramInline,
+    orderDetails,
+    deployMetadata,
+    propertySpecs,
+    policyDetails
+} from "../../../ds/patterns/KeyValue/keyvalue.data";
+
+const orderRows = orderDetails.slice(0, -1);
+const orderTotal = orderDetails[orderDetails.length - 1];
+---
+
+<DSLayout title="Key Value">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Key Value</h1>
+
+        <p class="pl-head__lede">
+            Five documents built from label/value pairs — an audiogram
+            summary, an order receipt, deployment metadata, a property
+            spec sheet and an insurance policy.
+        </p>
+
+    </header>
+
+    <!-- 01 — Audiogram summary -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Audiogram Summary</span>
+            <span class="pl-example__tags">Hearing care · Stacked rows + inline footer</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kv-audiogram">
+
+                <div class="kv-audiogram__card">
+
+                    <span class="kv-audiogram__kicker">Test sonucu</span>
+                    <h2 class="kv-audiogram__title">Odyogram özeti</h2>
+
+                    {audiogramSummary.map(row => (
+                        <KeyValue label={row.label} value={row.value} />
+                    ))}
+
+                    <div class="kv-audiogram__inline">
+                        {audiogramInline.map(row => (
+                            <KeyValue label={row.label} value={row.value} inline />
+                        ))}
+                    </div>
+
+                    <div class="kv-audiogram__action">
+                        <Button size="lg" fullWidth>Tam raporu indir</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Order receipt -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Order Receipt</span>
+            <span class="pl-example__tags">Retail · Total row broken out</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kv-receipt">
+
+                <div class="kv-receipt__card">
+
+                    <header class="kv-receipt__head">
+                        <div class="kv-receipt__title">Receipt</div>
+                        <div class="kv-receipt__meta">Sent to sara@vollmer.co</div>
+                    </header>
+
+                    <div class="kv-receipt__body">
+                        {orderRows.map(row => (
+                            <KeyValue label={row.label} value={row.value} />
+                        ))}
+                        <div class="kv-receipt__total">
+                            <KeyValue label={orderTotal.label} value={orderTotal.value} />
+                        </div>
+                    </div>
+
+                    <footer class="kv-receipt__foot">
+                        <Button variant="outline" fullWidth>Download PDF</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Deployment metadata -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Deployment Metadata</span>
+            <span class="pl-example__tags">Dark · Monospace · Two column grid</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kv-deploy">
+
+                <div class="kv-deploy__inner">
+
+                    <header class="kv-deploy__head">
+                        <span class="kv-deploy__status">
+                            <span class="kv-deploy__dot"></span>
+                            Ready
+                        </span>
+                        <span class="kv-deploy__title">fieldnote.studio</span>
+                    </header>
+
+                    <div class="kv-deploy__grid">
+                        {deployMetadata.map(row => (
+                            <KeyValue label={row.label} value={row.value} />
+                        ))}
+                    </div>
+
+                    <footer class="kv-deploy__foot">
+                        <span>relay-cli v4.2.0</span>
+                        <span>Deployed 2 minutes ago</span>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Property specification sheet -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Property Specification</span>
+            <span class="pl-example__tags">Real estate · Editorial rows</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kv-property">
+
+                <div class="kv-property__inner">
+
+                    <h2 class="kv-property__title">
+                        Canal-side loft with a working fireplace
+                    </h2>
+                    <p class="kv-property__location">Kralingen, Rotterdam</p>
+
+                    <div class="kv-property__panel">
+                        {propertySpecs.map(row => (
+                            <KeyValue label={row.label} value={row.value} />
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Insurance policy summary -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Policy Summary</span>
+            <span class="pl-example__tags">Insurance · Status badge · Renewal action</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="kv-policy">
+
+                <div class="kv-policy__card">
+
+                    <header class="kv-policy__head">
+                        <span class="kv-policy__title">Your policy</span>
+                        <span class="kv-policy__badge">Active</span>
+                    </header>
+
+                    {policyDetails.map(row => (
+                        <KeyValue label={row.label} value={row.value} />
+                    ))}
+
+                    <footer class="kv-policy__foot">
+                        <span class="kv-policy__foot-note">
+                            Auto-renews unless cancelled 14 days prior
+                        </span>
+                        <Button size="sm">Manage policy</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

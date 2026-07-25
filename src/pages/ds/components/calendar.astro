@@ -1,0 +1,421 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Calendar/CalendarPatterns.css";
+
+import Calendar from "../../../ds/components/ui/atoms/Calendar/Calendar.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+
+import {
+    clinicDays,
+    clinicWeekdays,
+    clinicSlots,
+    clinicLegend,
+    stayDays,
+    stayPricing,
+    stayProperty,
+    teamDays,
+    teamMembers,
+    teamEvents,
+    editorialDays,
+    editorialQueue,
+    editorialChannels,
+    seasonDays,
+    seasonRaces,
+    seasonStandings
+} from "../../../ds/patterns/Calendar/calendar.data";
+---
+
+<DSLayout title="Calendar">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Calendar</h1>
+
+        <p class="pl-head__lede">
+            Five months worth planning — a clinic's appointment book, a hotel
+            stay, a team's availability, an editorial schedule
+            and a racing season.
+        </p>
+
+    </header>
+
+    <!-- 01 — Appointment booking -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment Booking</span>
+            <span class="pl-example__tags">Hearing care · Closed days struck · Slot list</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cal-clinic">
+
+                <div class="cal-clinic__inner">
+
+                    <header class="cal-clinic__head">
+                        <span class="cal-clinic__kicker">Randevu</span>
+                        <h2 class="cal-clinic__title">Uygun bir gün seçin</h2>
+                    </header>
+
+                    <div class="cal-clinic__grid">
+
+                        <div class="cal-clinic__panel">
+
+                            <Calendar
+                                month="Temmuz"
+                                year={2026}
+                                weekdays={clinicWeekdays}
+                                days={clinicDays}
+                            />
+
+                            <div class="cal-clinic__legend">
+                                {clinicLegend.map(item => (
+                                    <span class="cal-clinic__legend-item">
+                                        <span class:list={["cal-clinic__swatch", `cal-clinic__swatch--${item.tone}`]}></span>
+                                        {item.label}
+                                    </span>
+                                ))}
+                            </div>
+
+                        </div>
+
+                        <aside class="cal-clinic__slots">
+
+                            <h3 class="cal-clinic__slots-title">Müsait saatler</h3>
+                            <p class="cal-clinic__slots-date">25 Temmuz Cumartesi · Kadıköy</p>
+
+                            {clinicSlots.map(slot => (
+                                <div
+                                    class:list={[
+                                        "cal-clinic__slot",
+                                        !slot.free && "cal-clinic__slot--taken"
+                                    ]}
+                                >
+                                    <span class="cal-clinic__slot-time">{slot.time}</span>
+                                    <span class="cal-clinic__slot-who">{slot.audiologist}</span>
+                                </div>
+                            ))}
+
+                            <div class="cal-clinic__slots-action">
+                                <Button fullWidth>11:00 için onayla</Button>
+                            </div>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Hotel stay -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Stay Dates</span>
+            <span class="pl-example__tags">Travel · Range selection · Price breakdown</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cal-stay">
+
+                <div class="cal-stay__card">
+
+                    <header class="cal-stay__head">
+                        <span class="cal-stay__thumb" aria-hidden="true"></span>
+                        <div>
+                            <div class="cal-stay__title">{stayProperty.title}</div>
+                            <div class="cal-stay__location">{stayProperty.location}</div>
+                        </div>
+                        <span class="cal-stay__score">
+                            ★ {stayProperty.score}
+                        </span>
+                    </header>
+
+                    <div class="cal-stay__body">
+
+                        <Calendar month="August" year={2026} days={stayDays} />
+
+                        <dl class="cal-stay__range">
+                            <div class="cal-stay__range-leg">
+                                <dt>Check in</dt>
+                                <dd>Fri 14 Aug</dd>
+                            </div>
+                            <span class="cal-stay__range-arrow" aria-hidden="true">→</span>
+                            <div class="cal-stay__range-leg">
+                                <dt>Check out</dt>
+                                <dd>Wed 19 Aug</dd>
+                            </div>
+                            <span class="cal-stay__nights">5 nights</span>
+                        </dl>
+
+                    </div>
+
+                    <div class="cal-stay__pricing">
+                        {stayPricing.map(row => (
+                            <div class="cal-stay__price-row">
+                                <span>{row.key}</span>
+                                <span>{row.value}</span>
+                            </div>
+                        ))}
+                        <div class="cal-stay__total">
+                            <span>Total</span>
+                            <strong>€1,097</strong>
+                        </div>
+                    </div>
+
+                    <div class="cal-stay__foot">
+                        <Button size="lg" fullWidth>Reserve</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Team availability -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Team Availability</span>
+            <span class="pl-example__tags">Dark workspace · Presence list · Day agenda</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cal-team">
+
+                <div class="cal-team__inner">
+
+                    <header class="cal-team__head">
+                        <div>
+                            <h2 class="cal-team__title">September</h2>
+                            <p class="cal-team__sub">
+                                Shaded days are company-wide offsites and holidays.
+                            </p>
+                        </div>
+                        <Button variant="glass" size="sm">Book a desk</Button>
+                    </header>
+
+                    <div class="cal-team__grid">
+
+                        <div class="cal-team__panel">
+                            <Calendar month="September" year={2026} days={teamDays} />
+                        </div>
+
+                        <aside class="cal-team__aside">
+
+                            <div class="cal-team__card">
+                                <h3 class="cal-team__card-title">Today · 5 people</h3>
+                                {teamMembers.map(member => (
+                                    <div class="cal-team__member">
+                                        <Avatar initials={member.initials} size="sm" bordered />
+                                        <span class="cal-team__member-name">{member.name}</span>
+                                        <span class:list={["cal-team__status", `cal-team__status--${member.tone}`]}>
+                                            {member.status}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div class="cal-team__card">
+                                <h3 class="cal-team__card-title">Agenda</h3>
+                                {teamEvents.map(event => (
+                                    <div class="cal-team__event">
+                                        <span class="cal-team__event-time">{event.time}</span>
+                                        <div>
+                                            <div class="cal-team__event-label">{event.label}</div>
+                                            <div class="cal-team__event-room">{event.room}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Editorial schedule -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Editorial Schedule</span>
+            <span class="pl-example__tags">Publishing · Circular days · Queue states</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cal-editor">
+
+                <div class="cal-editor__inner">
+
+                    <div>
+
+                        <span class="cal-editor__kicker">The Journal</span>
+
+                        <h2 class="cal-editor__title">Publishing calendar</h2>
+
+                        <p class="cal-editor__lede">
+                            Every Thursday, without exception. The marked days below
+                            are already committed.
+                        </p>
+
+                        <div class="cal-editor__cal">
+
+                            <Calendar month="July" year={2026} days={editorialDays} />
+
+                            <div class="cal-editor__channels">
+                                {editorialChannels.map(channel => (
+                                    <span class="cal-editor__channel">
+                                        <strong>{channel.count}</strong> {channel.label}
+                                    </span>
+                                ))}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="cal-editor__queue-title">In the queue</h3>
+
+                        {editorialQueue.map(item => (
+                            <article class="cal-editor__item">
+                                <span class="cal-editor__item-date">{item.date}</span>
+                                <span class="cal-editor__item-title">{item.title}</span>
+                                <span class:list={["cal-editor__state", `cal-editor__state--${item.tone}`]}>
+                                    {item.state}
+                                </span>
+                            </article>
+                        ))}
+
+                        <div class="cal-editor__foot">
+                            <span class="cal-editor__foot-note">
+                                Two slots still open in August.
+                            </span>
+                            <Button variant="outline" size="sm">Schedule a piece</Button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Race season -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Race Season</span>
+            <span class="pl-example__tags">Motorsport · Race weekends · Standings</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="cal-season">
+
+                <div class="cal-season__inner">
+
+                    <header class="cal-season__head">
+                        <div>
+                            <span class="cal-season__series">Meridian Racing Series</span>
+                            <h2 class="cal-season__title">July calendar</h2>
+                        </div>
+                        <span class="cal-season__round">Rounds 12–13 of 22</span>
+                    </header>
+
+                    <div class="cal-season__grid">
+
+                        <div class="cal-season__cal">
+                            <Calendar month="July" year={2026} days={seasonDays} />
+                        </div>
+
+                        <aside class="cal-season__aside">
+
+                            {seasonRaces.map(race => (
+                                <article
+                                    class:list={[
+                                        "cal-season__race",
+                                        race.next && "cal-season__race--next"
+                                    ]}
+                                >
+                                    <div class="cal-season__race-round">
+                                        Round {race.round}
+                                        {race.next && (
+                                            <span class="cal-season__next-tag">Next</span>
+                                        )}
+                                    </div>
+                                    <h3 class="cal-season__circuit">{race.circuit}</h3>
+                                    <div class="cal-season__country">{race.country}</div>
+                                    <div class="cal-season__session">
+                                        <span>{race.date}</span>
+                                        <span>{race.session}</span>
+                                    </div>
+                                </article>
+                            ))}
+
+                            <div class="cal-season__standings">
+                                <h3 class="cal-season__standings-title">Championship</h3>
+                                {seasonStandings.map(driver => (
+                                    <div class="cal-season__driver">
+                                        <span class="cal-season__pos">{driver.pos}</span>
+                                        <span class="cal-season__driver-name">{driver.driver}</span>
+                                        <span class="cal-season__points">{driver.points}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

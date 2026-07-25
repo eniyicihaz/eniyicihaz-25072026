@@ -1,0 +1,119 @@
+.ds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+
+  border: 1px solid transparent;
+  border-radius: var(--ds-radius-md, 8px);
+
+  font-weight: 500;
+  line-height: 1;
+
+  white-space: nowrap;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    opacity .2s ease;
+}
+
+/* Sizes */
+
+.ds-tag--sm {
+  height: 24px;
+  padding: 0 .5rem;
+  font-size: .75rem;
+}
+
+.ds-tag--md {
+  height: 32px;
+  padding: 0 .75rem;
+  font-size: .875rem;
+}
+
+.ds-tag--lg {
+  height: 40px;
+  padding: 0 1rem;
+  font-size: .95rem;
+}
+
+/* Rounded */
+
+.ds-tag--rounded {
+  border-radius: 999px;
+}
+
+/* Variants */
+
+.ds-tag--default {
+  background: #f8fafc;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+
+.ds-tag--primary {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
+
+.ds-tag--secondary {
+  background: #f3f4f6;
+  color: #4b5563;
+  border-color: #d1d5db;
+}
+
+.ds-tag--success {
+  background: #ecfdf5;
+  color: #16a34a;
+  border-color: #bbf7d0;
+}
+
+.ds-tag--warning {
+  background: #fffbeb;
+  color: #d97706;
+  border-color: #fde68a;
+}
+
+.ds-tag--danger {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.ds-tag--info {
+  background: #eff6ff;
+  color: #0284c7;
+  border-color: #bae6fd;
+}
+
+/* Remove button */
+
+.ds-tag__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+
+  transition: background .2s ease;
+}
+
+.ds-tag__remove:hover:not(:disabled) {
+  background: rgba(0,0,0,.08);
+}
+
+.ds-tag--disabled {
+  opacity: .5;
+  pointer-events: none;
+}

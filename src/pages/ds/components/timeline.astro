@@ -1,0 +1,299 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Timeline/TimelinePatterns.css";
+
+import Timeline from "../../../ds/components/ui/atoms/Timeline/Timeline.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    hearingPathway,
+    hearingFacts,
+    companyHistory,
+    shipmentEvents,
+    shipmentMeta,
+    courseModules,
+    courseMeta,
+    applicationStages,
+    applicationRole
+} from "../../../ds/patterns/Timeline/timeline.data";
+---
+
+<DSLayout title="Timeline">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Timeline</h1>
+
+        <p class="pl-head__lede">
+            Five sequences from five industries — a hearing care pathway,
+            a company history, a parcel in transit, a course syllabus
+            and a hiring process.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Hearing care pathway
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Hearing Care Pathway</span>
+            <span class="pl-example__tags">Patient facing · Sticky rail · Numbered steps</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tl-care">
+
+                <div class="tl-care__inner">
+
+                    <aside class="tl-care__aside">
+
+                        <span class="tl-care__kicker">Nasıl ilerliyoruz</span>
+
+                        <h2 class="tl-care__title">
+                            İlk testten uzun vadeli bakıma
+                        </h2>
+
+                        <p class="tl-care__lede">
+                            İşitme cihazı bir ürün değil, bir süreçtir. Her adımda
+                            yanınızda olan aynı odyologla çalışırsınız.
+                        </p>
+
+                        <dl class="tl-care__facts">
+                            {hearingFacts.map(fact => (
+                                <div class="tl-care__fact">
+                                    <dt>{fact.key}</dt>
+                                    <dd>{fact.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                        <div class="tl-care__action">
+                            <Button size="lg" fullWidth>Ücretsiz randevu alın</Button>
+                        </div>
+
+                    </aside>
+
+                    <div class="tl-care__steps">
+                        <Timeline items={hearingPathway} />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Company history
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Company History</span>
+            <span class="pl-example__tags">Editorial · Years in the margin · Serif</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tl-story">
+
+                <div class="tl-story__inner">
+
+                    <span class="tl-story__kicker">Since 1998</span>
+
+                    <h2 class="tl-story__title">
+                        Twenty-eight years, one workshop
+                    </h2>
+
+                    <p class="tl-story__lede">
+                        We have grown slowly and deliberately. Every decision below
+                        was made to keep the making close to the people doing it.
+                    </p>
+
+                    <div class="tl-story__list">
+                        <Timeline items={companyHistory} />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Shipment tracking
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Shipment Tracking</span>
+            <span class="pl-example__tags">Logistics · Dark header · Dense rows</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tl-ship">
+
+                <div class="tl-ship__card">
+
+                    <header class="tl-ship__head">
+                        <span class="tl-ship__live">
+                            <span class="tl-ship__live-dot" aria-hidden="true"></span>
+                            In transit
+                        </span>
+                        <div class="tl-ship__eta">Arriving today, by 18:00</div>
+                        <p class="tl-ship__eta-note">
+                            Berlin · Signature required on delivery
+                        </p>
+                    </header>
+
+                    <dl class="tl-ship__meta">
+                        {shipmentMeta.map(item => (
+                            <div>
+                                <dt>{item.key}</dt>
+                                <dd>{item.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <div class="tl-ship__body">
+                        <Timeline items={shipmentEvents} />
+                    </div>
+
+                    <footer class="tl-ship__foot">
+                        <span>Updated 2 minutes ago</span>
+                        <Button variant="ghost" size="sm">Change delivery</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Course syllabus
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Course Syllabus</span>
+            <span class="pl-example__tags">Education · Progress header · Module panel</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tl-course">
+
+                <div class="tl-course__inner">
+
+                    <span class="tl-course__kicker">{courseMeta.kicker}</span>
+
+                    <h2 class="tl-course__title">{courseMeta.title}</h2>
+
+                    <p class="tl-course__lede">{courseMeta.lede}</p>
+
+                    <div class="tl-course__progress">
+                        <span class="tl-course__track">
+                            <span class="tl-course__fill"></span>
+                        </span>
+                        <span class="tl-course__progress-label">
+                            {courseMeta.progressLabel}
+                            <span class="tl-course__progress-note">
+                                {courseMeta.progressNote}
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="tl-course__panel">
+                        <h3 class="tl-course__panel-title">Curriculum</h3>
+                        <Timeline items={courseModules} />
+                    </div>
+
+                    <div class="tl-course__foot">
+                        <span class="tl-course__foot-note">
+                            Lifetime access · Certificate on completion
+                        </span>
+                        <Button>Resume module 4</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Application progress
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Application Progress</span>
+            <span class="pl-example__tags">Dark · Horizontal rail · Candidate facing</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tl-hire">
+
+                <div class="tl-hire__inner">
+
+                    <header class="tl-hire__head">
+                        <div>
+                            <div class="tl-hire__role">{applicationRole.title}</div>
+                            <div class="tl-hire__team">{applicationRole.team}</div>
+                        </div>
+                        <span class="tl-hire__stage">{applicationRole.stage}</span>
+                    </header>
+
+                    <div class="tl-hire__track">
+                        <Timeline items={applicationStages} />
+                    </div>
+
+                    <footer class="tl-hire__foot">
+                        <p class="tl-hire__foot-note">
+                            Need to move a date, or want feedback before the exercise?
+                            Reply to any of our emails — they reach a person.
+                        </p>
+                        <Button variant="glass">Message the team</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

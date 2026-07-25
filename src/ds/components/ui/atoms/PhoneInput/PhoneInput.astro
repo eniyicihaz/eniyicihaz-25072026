@@ -1,0 +1,51 @@
+---
+import "./PhoneInput.css";
+import type { PhoneInputProps } from "./PhoneInput.types";
+
+const {
+  id,
+  name,
+  value = "",
+  placeholder = "(5__) ___ __ __",
+  countryCode = "+90",
+  disabled = false,
+  readonly = false,
+  required = false,
+  invalid = false,
+  autocomplete = "tel",
+  class: className = "",
+} = Astro.props as PhoneInputProps;
+
+const classes = [
+  "ds-phone-input",
+  invalid && "ds-phone-input--invalid",
+  disabled && "ds-phone-input--disabled",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <div
+    class="ds-phone-input__prefix"
+    aria-hidden="true"
+  >
+    🇹🇷
+    <span>{countryCode}</span>
+  </div>
+
+  <input
+    class="ds-phone-input__field"
+    id={id}
+    name={name}
+    type="tel"
+    value={value}
+    placeholder={placeholder}
+    autocomplete={autocomplete}
+    disabled={disabled}
+    readonly={readonly}
+    required={required}
+    aria-invalid={invalid}
+  />
+</div>

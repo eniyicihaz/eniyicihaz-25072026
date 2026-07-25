@@ -1,0 +1,50 @@
+---
+import "./Popover.css";
+import type { PopoverProps } from "./Popover.types";
+
+const {
+  open = false,
+  placement = "bottom",
+  triggerText = "Open",
+  showArrow = true,
+  class: className = "",
+} = Astro.props as PopoverProps;
+
+const classes = [
+  "ds-popover",
+  `ds-popover--${placement}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <div class="ds-popover__trigger">
+    <slot name="trigger">
+      <button type="button">
+        {triggerText}
+      </button>
+    </slot>
+  </div>
+
+  {
+    open && (
+      <div
+        class="ds-popover__content"
+        role="dialog"
+      >
+        {
+          showArrow && (
+            <span
+              class="ds-popover__arrow"
+              aria-hidden="true"
+            />
+          )
+        }
+
+        <slot />
+      </div>
+    )
+  }
+</div>

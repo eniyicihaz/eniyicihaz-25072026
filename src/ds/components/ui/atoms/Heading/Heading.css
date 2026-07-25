@@ -1,0 +1,85 @@
+.ds-heading {
+  margin: 0;
+  line-height: 1.2;
+  color: var(--ds-text, #0f172a);
+}
+
+.ds-heading--xs {
+  font-size: .75rem;
+}
+
+.ds-heading--sm {
+  font-size: .875rem;
+}
+
+.ds-heading--md {
+  font-size: 1rem;
+}
+
+.ds-heading--lg {
+  font-size: 1.25rem;
+}
+
+.ds-heading--xl {
+  font-size: 1.5rem;
+}
+
+.ds-heading--2xl {
+  font-size: 2rem;
+}
+
+.ds-heading--3xl {
+  font-size: 2.75rem;
+}
+
+.ds-heading--regular {
+  font-weight: 400;
+}
+
+.ds-heading--medium {
+  font-weight: 500;
+}
+
+.ds-heading--semibold {
+  font-weight: 600;
+}
+
+.ds-heading--bold {
+  font-weight: 700;
+}
+
+.ds-heading--left {
+  text-align: left;
+}
+
+.ds-heading--center {
+  text-align: center;
+}
+
+.ds-heading--right {
+  text-align: right;
+}
+
+.ds-heading--default {
+  color: var(--ds-text, #0f172a);
+}
+
+.ds-heading--primary {
+  color: var(--ds-primary, #2563eb);
+}
+
+.ds-heading--muted {
+  color: var(--ds-text-secondary, #64748b);
+}
+
+.ds-heading--success {
+  color: #16a34a;
+}
+
+.ds-heading--warning {
+  color: #d97706;
+}
+
+.ds-heading--danger {
+  color: #dc2626;
+}

@@ -1,0 +1,54 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: var(--text);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.label__text {
+  display: inline-flex;
+  align-items: center;
+}
+
+.label--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.label__required {
+  color: #ef4444;
+
+  font-weight: 700;
+  line-height: 1;
+}
+
+.label__optional {
+  color: #64748b;
+
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.label__helper {
+  margin: 6px 0 0;
+
+  color: #64748b;
+
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.label:has(+ .label__helper) {
+  margin-bottom: 2px;
+}

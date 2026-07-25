@@ -1,0 +1,77 @@
+---
+import "./Combobox.css";
+import type { ComboboxProps } from "./Combobox.types";
+
+const {
+  id,
+  name,
+  value = "",
+  placeholder = "Select...",
+  options = [],
+  disabled = false,
+  required = false,
+  searchable = true,
+  class: className = "",
+} = Astro.props as ComboboxProps;
+
+const classes = [
+  "ds-combobox",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const selected = options.find(
+  (option) => option.value === value
+);
+---
+
+<div class={classes}>
+  <div class="ds-combobox__control">
+    <input
+      class="ds-combobox__input"
+      id={id}
+      name={name}
+      type={searchable ? "search" : "text"}
+      value={selected?.label ?? ""}
+      placeholder={placeholder}
+      autocomplete="off"
+      role="combobox"
+      aria-autocomplete="list"
+      aria-expanded="false"
+      disabled={disabled}
+      required={required}
+      readonly={!searchable}
+    />
+
+    <span
+      class="ds-combobox__icon"
+      aria-hidden="true"
+    >
+      ▼
+    </span>
+  </div>
+
+  <ul
+    class="ds-combobox__list"
+    role="listbox"
+  >
+    {
+      options.map((option) => (
+        <li
+          class:list={[
+            "ds-combobox__option",
+            option.value === value &&
+              "ds-combobox__option--selected",
+            option.disabled &&
+              "ds-combobox__option--disabled",
+          ]}
+          role="option"
+          aria-selected={option.value === value}
+        >
+          {option.label}
+        </li>
+      ))
+    }
+  </ul>
+</div>

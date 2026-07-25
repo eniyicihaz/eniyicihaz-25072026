@@ -1,0 +1,757 @@
+/* ==========================================================
+   Chip — five patterns
+
+   01  chip-finder   Device finder facets (eniyicihaz.com)
+   02  chip-mail     Recipient picker, compose field
+   03  chip-ticket   Support queue categories
+   04  chip-mood     Playlist mood cloud, dark
+   05  chip-menu     Restaurant dietary tags
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Device finder
+
+   Grouped facets. Selected chips are echoed in an active
+   row above the results.
+   ========================================================== */
+
+.chip-finder{
+    padding:64px 56px 72px;
+
+    background:
+        radial-gradient(55% 45% at 15% 0%, rgb(13 148 136 / .12), transparent 62%),
+        #f6fbfa;
+}
+
+.chip-finder__inner{
+    display:grid;
+    grid-template-columns:280px minmax(0, 1fr);
+    gap:40px;
+    align-items:start;
+
+    max-width:1020px;
+    margin:0 auto;
+}
+
+.chip-finder__rail{
+    position:sticky;
+    top:32px;
+
+    padding:22px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.chip-finder__group{
+    padding-bottom:18px;
+    margin-bottom:18px;
+
+    border-bottom:1px solid rgb(18 59 54 / .09);
+}
+
+.chip-finder__group:last-child{
+    padding-bottom:0;
+    margin-bottom:0;
+    border-bottom:none;
+}
+
+.chip-finder__group-title{
+    margin:0 0 12px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:#8aa8a3;
+}
+
+.chip-finder__chips{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+/* Chip theming for the clinic palette */
+
+.chip-finder .ds-chip.is-outline{
+    border-color:rgb(18 59 54 / .16);
+    color:#4a6b66;
+}
+
+.chip-finder .ds-chip.is-outline:hover{
+    border-color:#0f766e;
+    color:#0f766e;
+}
+
+.chip-finder .ds-chip.is-selected{
+    border-color:#0f766e;
+    background:#0f766e;
+    color:#fff;
+}
+
+.chip-finder__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.chip-finder__title{
+    margin:14px 0 0;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.chip-finder__active{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+
+    margin-top:20px;
+    padding-bottom:20px;
+
+    border-bottom:1px solid rgb(18 59 54 / .1);
+}
+
+.chip-finder__active-label{
+    font-size:.82rem;
+    color:#6b8b86;
+}
+
+.chip-finder__clear{
+    margin-left:auto;
+
+    font-size:.82rem;
+    color:#0f766e;
+}
+
+.chip-finder__result{
+    display:grid;
+    grid-template-columns:56px minmax(0, 1fr) auto;
+    gap:18px;
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid rgb(18 59 54 / .09);
+}
+
+.chip-finder__shape{
+    width:40px;
+    height:52px;
+
+    border-radius:46% 46% 42% 42% / 32% 32% 68% 68%;
+
+    background:linear-gradient(155deg, #6b7d7a 0%, #3d4a48 55%, #23302e 100%);
+}
+
+.chip-finder__name{
+    font-size:.98rem;
+    font-weight:650;
+    letter-spacing:-.02em;
+    color:#123b36;
+}
+
+.chip-finder__match{
+    margin-top:4px;
+
+    font-size:.8rem;
+    color:#0f766e;
+}
+
+.chip-finder__price{
+    font-size:1.02rem;
+    font-weight:800;
+    letter-spacing:-.03em;
+    color:#123b36;
+
+    font-variant-numeric:tabular-nums;
+}
+
+
+/* ==========================================================
+   02 — Recipient picker
+
+   Chips live inside a form field, with a suggestion row
+   underneath — the compose pattern.
+   ========================================================== */
+
+.chip-mail{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 72px;
+    background:#f7f8fa;
+}
+
+.chip-mail__card{
+    width:100%;
+    max-width:620px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.chip-mail__head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:16px 22px;
+
+    border-bottom:1px solid var(--pat-line);
+    background:#fbfcfd;
+}
+
+.chip-mail__title{
+    font-size:.92rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.chip-mail__close{
+    color:var(--pat-soft);
+}
+
+.chip-mail__field{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+
+    padding:14px 22px;
+
+    border-bottom:1px solid rgb(15 23 42 / .06);
+}
+
+.chip-mail__field-label{
+    padding-top:6px;
+    min-width:34px;
+
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.chip-mail__chips{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+    flex:1;
+}
+
+.chip-mail__input{
+    flex:1;
+    min-width:120px;
+    padding:6px 0;
+
+    font-size:.88rem;
+    color:var(--pat-soft);
+}
+
+.chip-mail__subject{
+    padding:14px 22px;
+
+    border-bottom:1px solid rgb(15 23 42 / .06);
+
+    font-size:.92rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.chip-mail__body{
+    padding:22px;
+    min-height:120px;
+
+    font-size:.92rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+.chip-mail__suggestions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+
+    padding:14px 22px;
+
+    border-top:1px solid var(--pat-line);
+    background:#fbfcfd;
+}
+
+.chip-mail__suggestions-label{
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+.chip-mail__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:14px 22px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.chip-mail__meta{
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   03 — Support queue
+
+   Chips as counted category filters above a ticket list;
+   each ticket carries its category as a chip too.
+   ========================================================== */
+
+.chip-ticket{
+    padding:56px 56px 72px;
+    background:#fbfcfe;
+}
+
+.chip-ticket__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.chip-ticket__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+}
+
+.chip-ticket__title{
+    margin:0;
+
+    font-size:1.6rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.chip-ticket__sla{
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.chip-ticket__filters{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+
+    padding-bottom:20px;
+    margin-bottom:8px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.chip-ticket__count{
+    margin-left:6px;
+    opacity:.6;
+
+    font-family:var(--pat-mono);
+    font-size:.9em;
+}
+
+.chip-ticket__row{
+    display:grid;
+    grid-template-columns:62px minmax(0, 1fr) auto 30px;
+    gap:16px;
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.chip-ticket__id{
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+.chip-ticket__subject{
+    font-size:.94rem;
+    color:var(--pat-ink);
+}
+
+.chip-ticket__tags{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:8px;
+}
+
+.chip-ticket__age{
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+.chip-ticket__agent{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+    background:#eef2f7;
+
+    font-size:.7rem;
+    font-weight:700;
+    color:#475569;
+}
+
+.chip-ticket__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Playlist mood
+
+   A dense cloud of chips at mixed sizes, dark, where
+   selection drives the track list below.
+   ========================================================== */
+
+.chip-mood{
+    padding:56px 56px 72px;
+
+    background:
+        radial-gradient(50% 45% at 85% 0%, rgb(168 85 247 / .22), transparent 60%),
+        linear-gradient(170deg, #14101f 0%, #0b0912 100%);
+}
+
+.chip-mood__inner{
+    max-width:760px;
+    margin:0 auto;
+}
+
+.chip-mood__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:#d8b4fe;
+}
+
+.chip-mood__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    color:#faf5ff;
+}
+
+.chip-mood__lede{
+    margin:12px 0 24px;
+    max-width:46ch;
+
+    font-size:.95rem;
+    line-height:1.65;
+    color:rgb(250 245 255 / .48);
+}
+
+.chip-mood__cloud{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+
+    padding-bottom:26px;
+    margin-bottom:22px;
+
+    border-bottom:1px solid rgb(255 255 255 / .1);
+}
+
+/* Chips inverted for the dark shell */
+
+.chip-mood .ds-chip{
+    border:1px solid rgb(255 255 255 / .14);
+    background:rgb(255 255 255 / .05);
+    color:rgb(250 245 255 / .78);
+}
+
+.chip-mood .ds-chip:hover{
+    border-color:rgb(216 180 254 / .5);
+    color:#faf5ff;
+}
+
+.chip-mood .ds-chip.is-selected{
+    border-color:transparent;
+    background:linear-gradient(120deg, #a855f7, #7c3aed);
+    color:#fff;
+}
+
+.chip-mood__track{
+    display:grid;
+    grid-template-columns:30px minmax(0, 1fr) 52px;
+    gap:14px;
+    align-items:center;
+
+    padding:12px 10px;
+
+    border-radius:var(--pat-radius-xs);
+
+    transition:background .2s ease;
+}
+
+.chip-mood__track:hover{
+    background:rgb(255 255 255 / .05);
+}
+
+.chip-mood__n{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(250 245 255 / .3);
+}
+
+.chip-mood__track-title{
+    font-size:.94rem;
+    font-weight:600;
+    color:#faf5ff;
+}
+
+.chip-mood__artist{
+    margin-top:3px;
+
+    font-size:.82rem;
+    color:rgb(250 245 255 / .42);
+}
+
+.chip-mood__length{
+    text-align:right;
+
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    color:rgb(250 245 255 / .38);
+}
+
+.chip-mood__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(255 255 255 / .1);
+
+    font-size:.84rem;
+    color:rgb(250 245 255 / .35);
+}
+
+
+/* ==========================================================
+   05 — Menu dietary tags
+
+   Editorial menu where chips warn as much as they label —
+   allergens sit beside the price.
+   ========================================================== */
+
+.chip-menu{
+    padding:64px 56px 76px;
+    background:#faf8f4;
+}
+
+.chip-menu__inner{
+    max-width:720px;
+    margin:0 auto;
+}
+
+.chip-menu__head{
+    padding-bottom:22px;
+    margin-bottom:8px;
+
+    border-bottom:2px solid #1c1812;
+    text-align:center;
+}
+
+.chip-menu__restaurant{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.chip-menu__title{
+    margin:16px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.9rem, 3.6vw, 2.5rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    color:#1c1812;
+}
+
+.chip-menu__note{
+    margin:12px 0 0;
+
+    font-size:.88rem;
+    font-style:italic;
+    color:#8a7f6d;
+}
+
+.chip-menu__filters{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+
+    padding:22px 0;
+    margin-bottom:8px;
+
+    border-bottom:1px solid rgb(28 24 18 / .14);
+}
+
+.chip-menu__dish{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:20px;
+    align-items:baseline;
+
+    padding:22px 0;
+
+    border-bottom:1px solid rgb(28 24 18 / .12);
+}
+
+.chip-menu__dish:last-of-type{
+    border-bottom:none;
+}
+
+.chip-menu__name{
+    font-family:var(--pat-serif);
+    font-size:1.2rem;
+    letter-spacing:-.02em;
+    color:#1c1812;
+}
+
+.chip-menu__detail{
+    margin-top:6px;
+    max-width:46ch;
+
+    font-size:.9rem;
+    line-height:1.6;
+    color:#7e7466;
+}
+
+.chip-menu__tags{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+
+    margin-top:12px;
+}
+
+.chip-menu__price{
+    font-family:var(--pat-serif);
+    font-size:1.15rem;
+    color:#1c1812;
+
+    font-variant-numeric:tabular-nums;
+}
+
+.chip-menu__foot{
+    margin-top:26px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(28 24 18 / .14);
+    text-align:center;
+
+    font-size:.82rem;
+    line-height:1.7;
+    color:#8a7f6d;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .chip-finder{ padding:52px 32px 64px; }
+    .chip-finder__inner{ grid-template-columns:minmax(0, 1fr); gap:28px; }
+    .chip-finder__rail{ position:static; }
+
+    .chip-ticket{ padding:48px 32px 64px; }
+
+    .chip-mood{ padding:48px 32px 64px; }
+
+    .chip-menu{ padding:52px 32px 64px; }
+
+}
+
+@media (max-width:720px){
+
+    .chip-finder{ padding:40px 20px 52px; }
+    .chip-finder__result{ grid-template-columns:44px minmax(0, 1fr); gap:14px; }
+    .chip-finder__price{ grid-column:2; }
+
+    .chip-mail{ padding:44px 16px 56px; }
+    .chip-mail__head,
+    .chip-mail__field,
+    .chip-mail__subject,
+    .chip-mail__body,
+    .chip-mail__suggestions,
+    .chip-mail__foot{ padding-left:18px; padding-right:18px; }
+    .chip-mail__field{ flex-direction:column; gap:8px; }
+
+    .chip-ticket{ padding:36px 20px 52px; }
+    .chip-ticket__row{ grid-template-columns:minmax(0, 1fr) 28px; gap:8px 12px; }
+    .chip-ticket__id{ grid-column:1; }
+    .chip-ticket__agent{ grid-column:2; grid-row:1; }
+    .chip-ticket__age{ display:none; }
+    .chip-ticket__row > div:nth-child(2){ grid-column:1 / -1; }
+
+    .chip-mood{ padding:36px 20px 52px; }
+
+    .chip-menu{ padding:40px 20px 52px; }
+    .chip-menu__dish{ grid-template-columns:minmax(0, 1fr); gap:8px; }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .chip-mood__track{ transition:none; }
+
+}

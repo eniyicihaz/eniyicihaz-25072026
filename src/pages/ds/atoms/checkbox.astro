@@ -1,0 +1,110 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Checkbox from "../../../ds/components/ui/atoms/Checkbox/Checkbox.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Checkbox"
+      description="Premium checkbox component."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Default">
+
+      <Checkbox>
+        Beni Hatırla
+      </Checkbox>
+
+      <Checkbox checked>
+        Kabul Ediyorum
+      </Checkbox>
+
+    </Preview>
+
+    <Preview title="States">
+
+      <Checkbox>
+        Normal
+      </Checkbox>
+
+      <Checkbox checked>
+        Seçili
+      </Checkbox>
+
+      <Checkbox success checked>
+        Başarılı
+      </Checkbox>
+
+      <Checkbox error>
+        Hatalı
+      </Checkbox>
+
+      <Checkbox disabled>
+        Pasif
+      </Checkbox>
+
+    </Preview>
+
+    <Preview title="Helper Text">
+
+      <Checkbox
+        helperText="Devam etmek için onay vermeniz gerekir."
+      >
+        Kullanım şartlarını kabul ediyorum.
+      </Checkbox>
+
+      <Checkbox
+        error
+        helperText="Bu alan zorunludur."
+      >
+        KVKK metnini okudum.
+      </Checkbox>
+
+      <Checkbox
+        success
+        checked
+        helperText="Onay başarıyla alındı."
+      >
+        E-posta bilgilendirmelerini kabul ediyorum.
+      </Checkbox>
+
+    </Preview>
+
+    <Preview title="Disabled">
+
+      <Checkbox disabled>
+        Pasif
+      </Checkbox>
+
+      <Checkbox
+        checked
+        disabled
+      >
+        Seçili Pasif
+      </Checkbox>
+
+    </Preview>
+
+  </section>
+
+  <style>
+    .page {
+      max-width: 1300px;
+    }
+  </style>
+
+</DSLayout>

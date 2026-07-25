@@ -1,0 +1,56 @@
+---
+import "./Tooltip.css";
+
+import type { TooltipProps } from "./Tooltip.types";
+
+const {
+    text,
+    placement = "top",
+    variant = "dark",
+    arrow = true,
+    disabled = false,
+    maxWidth = "240px",
+    delay = 150,
+    class: className = ""
+} = Astro.props as TooltipProps;
+
+const id = `tooltip-${crypto.randomUUID()}`;
+
+const classes = [
+    "ds-tooltip",
+    `is-${placement}`,
+    `is-${variant}`,
+    arrow && "has-arrow",
+    disabled && "is-disabled",
+    className
+]
+    .filter(Boolean)
+    .join(" ");
+---
+
+<span
+    class={classes}
+    style={`--tooltip-max-width:${maxWidth};--tooltip-delay:${delay}ms;`}
+>
+
+    <span
+        class="ds-tooltip__trigger"
+        tabindex={disabled ? undefined : 0}
+        aria-describedby={disabled ? undefined : id}
+    >
+        <slot />
+    </span>
+
+    {
+        !disabled && (
+            <span
+                id={id}
+                class="ds-tooltip__content"
+                role="tooltip"
+            >
+                {text}
+            </span>
+        )
+    }
+
+</span>

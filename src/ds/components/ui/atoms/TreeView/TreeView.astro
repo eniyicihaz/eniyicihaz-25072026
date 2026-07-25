@@ -1,0 +1,27 @@
+---
+import "./TreeView.css";
+import TreeViewNode from "./TreeViewNode.astro";
+import type { TreeViewProps } from "./TreeView.types";
+
+const {
+  items = [],
+  showLines = true,
+  showIcons = true,
+  class: className = "",
+} = Astro.props as TreeViewProps;
+
+const classes = [
+  "ds-treeview",
+  showLines && "ds-treeview--lines",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div
+  class={classes}
+  role="tree"
+>
+  <TreeViewNode nodes={items} showIcons={showIcons} />
+</div>

@@ -1,0 +1,888 @@
+/* ==========================================================
+   Avatar — five patterns
+
+   01  avatar-team       Directory grouped by department
+   02  avatar-quote      Testimonial wall, one lead quote
+   03  avatar-customer   Social proof band, stacked faces
+   04  avatar-community  Dark community hub, rooms + leaders
+   05  avatar-comment    Threaded discussion
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Team
+
+   A directory, not a card grid: rows of faces grouped
+   under department rules.
+   ========================================================== */
+
+.avatar-team{
+    padding:96px 56px;
+    background:#fff;
+}
+
+.avatar-team__inner{
+    max-width:1080px;
+    margin:0 auto;
+}
+
+.avatar-team__head{
+    max-width:600px;
+    margin-bottom:64px;
+}
+
+.avatar-team__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.avatar-team__title{
+    margin:18px 0 0;
+
+    font-size:clamp(2.1rem, 4vw, 3rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.06;
+
+    color:var(--pat-ink);
+}
+
+.avatar-team__lede{
+    margin:18px 0 0;
+
+    font-size:1.02rem;
+    line-height:1.75;
+    color:var(--pat-body);
+}
+
+.avatar-team__group{
+    display:grid;
+    grid-template-columns:180px minmax(0, 1fr);
+    gap:48px;
+    align-items:start;
+
+    padding:40px 0;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.avatar-team__department{
+    position:sticky;
+    top:32px;
+
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#33415a;
+}
+
+.avatar-team__count{
+    display:block;
+    margin-top:6px;
+
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    font-weight:500;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--pat-soft);
+}
+
+.avatar-team__people{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+    gap:28px 24px;
+}
+
+.avatar-team__person{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.avatar-team__person-text{
+    min-width:0;
+}
+
+.avatar-team__name{
+    font-size:.92rem;
+    font-weight:650;
+    letter-spacing:-.012em;
+    color:var(--pat-ink);
+}
+
+.avatar-team__role{
+    margin-top:2px;
+
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   02 — Testimonials
+
+   One large quote spanning two columns, three smaller
+   quotes beneath it.
+   ========================================================== */
+
+.avatar-quote{
+    padding:96px 56px;
+
+    background:
+        radial-gradient(50% 45% at 15% 0%, rgb(37 99 235 / .07), transparent 62%),
+        #f8fafd;
+}
+
+.avatar-quote__inner{
+    max-width:1120px;
+    margin:0 auto;
+}
+
+.avatar-quote__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+
+    margin-bottom:44px;
+}
+
+.avatar-quote__title{
+    margin:0;
+    max-width:18ch;
+
+    font-size:clamp(2rem, 3.8vw, 2.8rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.06;
+
+    color:var(--pat-ink);
+}
+
+.avatar-quote__rating{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:.88rem;
+    color:var(--pat-body);
+}
+
+.avatar-quote__stars{
+    letter-spacing:.1em;
+    color:#f59e0b;
+}
+
+.avatar-quote__grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:20px;
+}
+
+.avatar-quote__card{
+    display:flex;
+    flex-direction:column;
+
+    padding:28px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.avatar-quote__card--lead{
+    grid-column:span 3;
+
+    padding:40px;
+
+    background:linear-gradient(150deg, #0b1220 0%, #16233c 100%);
+    border-color:transparent;
+
+    box-shadow:var(--pat-shadow-lg);
+}
+
+.avatar-quote__text{
+    margin:0;
+
+    font-size:1rem;
+    line-height:1.75;
+    color:#33415a;
+}
+
+.avatar-quote__card--lead .avatar-quote__text{
+    max-width:44ch;
+
+    font-family:var(--pat-serif);
+    font-size:1.6rem;
+    line-height:1.4;
+    letter-spacing:-.02em;
+    color:#f8fafc;
+}
+
+.avatar-quote__by{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:auto;
+    padding-top:24px;
+}
+
+.avatar-quote__card--lead .avatar-quote__by{
+    padding-top:32px;
+}
+
+.avatar-quote__by-text{
+    min-width:0;
+}
+
+.avatar-quote__by-text strong{
+    display:block;
+
+    font-size:.9rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.avatar-quote__by-text span{
+    display:block;
+    margin-top:2px;
+
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+.avatar-quote__card--lead .avatar-quote__by-text strong{
+    color:#f8fafc;
+}
+
+.avatar-quote__card--lead .avatar-quote__by-text span{
+    color:rgb(248 250 252 / .5);
+}
+
+
+/* ==========================================================
+   03 — Customers
+
+   A proof band. Stacked faces do the talking, the
+   wordmarks sit underneath.
+   ========================================================== */
+
+.avatar-customer{
+    padding:88px 56px;
+
+    background:
+        linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);
+
+    text-align:center;
+}
+
+.avatar-customer__inner{
+    max-width:800px;
+    margin:0 auto;
+}
+
+.avatar-customer__stack{
+    display:flex;
+    justify-content:center;
+
+    margin-bottom:30px;
+}
+
+.avatar-customer__stack > *{
+    margin-left:-14px;
+
+    transition:transform .25s ease;
+}
+
+.avatar-customer__stack > *:first-child{
+    margin-left:0;
+}
+
+.avatar-customer__stack > *:hover{
+    transform:translateY(-4px);
+}
+
+.avatar-customer__more{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:40px;
+    height:40px;
+    margin-left:-14px;
+
+    border:2px solid #fff;
+    border-radius:50%;
+
+    background:var(--pat-ink);
+    color:#fff;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+}
+
+.avatar-customer__title{
+    margin:0;
+
+    font-size:clamp(2rem, 4vw, 2.9rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.05;
+
+    color:var(--pat-ink);
+}
+
+.avatar-customer__lede{
+    margin:18px auto 0;
+    max-width:46ch;
+
+    font-size:1.05rem;
+    line-height:1.7;
+    color:var(--pat-body);
+
+    text-wrap:pretty;
+}
+
+.avatar-customer__actions{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+
+    margin-top:32px;
+}
+
+.avatar-customer__logos{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:44px;
+    flex-wrap:wrap;
+
+    margin-top:56px;
+    padding-top:36px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.avatar-customer__logo{
+    font-size:.92rem;
+    font-weight:750;
+    letter-spacing:.16em;
+    color:var(--pat-ink);
+    opacity:.26;
+}
+
+
+/* ==========================================================
+   04 — Community
+
+   Dark hub. Rooms on the left, a leaderboard on the
+   right — avatars used as presence, then as rank.
+   ========================================================== */
+
+.avatar-community{
+    padding:96px 56px;
+
+    background:
+        radial-gradient(48% 45% at 82% 8%, rgb(168 85 247 / .24), transparent 60%),
+        linear-gradient(165deg, #14101f 0%, #0c0a14 100%);
+}
+
+.avatar-community__inner{
+    max-width:1080px;
+    margin:0 auto;
+}
+
+.avatar-community__head{
+    max-width:560px;
+    margin-bottom:48px;
+}
+
+.avatar-community__flag{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    padding:6px 14px;
+
+    border:1px solid rgb(255 255 255 / .14);
+    border-radius:var(--pat-radius-pill);
+
+    background:rgb(255 255 255 / .06);
+
+    font-size:.78rem;
+    font-weight:600;
+    color:rgb(255 255 255 / .75);
+}
+
+.avatar-community__dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+    background:#4ade80;
+    box-shadow:0 0 0 4px rgb(74 222 128 / .2);
+}
+
+.avatar-community__title{
+    margin:22px 0 0;
+
+    font-size:clamp(2.1rem, 4vw, 3rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.05;
+
+    color:#fff;
+}
+
+.avatar-community__lede{
+    margin:18px 0 0;
+
+    font-size:1.02rem;
+    line-height:1.7;
+    color:rgb(255 255 255 / .52);
+}
+
+.avatar-community__grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1.25fr) minmax(0, .75fr);
+    gap:24px;
+    align-items:start;
+}
+
+.avatar-community__rooms{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.avatar-community__room{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:24px;
+    align-items:center;
+
+    padding:22px 24px;
+
+    border:1px solid rgb(255 255 255 / .09);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .035);
+
+    transition:background .25s ease, border-color .25s ease;
+}
+
+.avatar-community__room:hover{
+    background:rgb(255 255 255 / .06);
+    border-color:rgb(255 255 255 / .18);
+}
+
+.avatar-community__room-name{
+    font-family:var(--pat-mono);
+    font-size:.95rem;
+    font-weight:600;
+    color:#fff;
+}
+
+.avatar-community__room-topic{
+    margin-top:6px;
+
+    font-size:.88rem;
+    line-height:1.55;
+    color:rgb(255 255 255 / .45);
+}
+
+.avatar-community__room-side{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:10px;
+}
+
+.avatar-community__faces{
+    display:flex;
+}
+
+.avatar-community__faces > *:not(:first-child){
+    margin-left:-10px;
+}
+
+.avatar-community__online{
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    color:rgb(74 222 128 / .8);
+}
+
+.avatar-community__board{
+    padding:26px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .04);
+    backdrop-filter:blur(20px);
+}
+
+.avatar-community__board-title{
+    margin:0 0 18px;
+    padding-bottom:16px;
+
+    border-bottom:1px solid rgb(255 255 255 / .1);
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:rgb(255 255 255 / .5);
+}
+
+.avatar-community__leader{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgb(255 255 255 / .06);
+}
+
+.avatar-community__leader:last-child{
+    border-bottom:none;
+}
+
+.avatar-community__rank{
+    width:20px;
+    flex-shrink:0;
+
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    font-weight:700;
+    color:rgb(255 255 255 / .3);
+}
+
+.avatar-community__leader-text{
+    min-width:0;
+}
+
+.avatar-community__leader-text strong{
+    display:block;
+
+    font-size:.88rem;
+    font-weight:600;
+    color:#fff;
+}
+
+.avatar-community__leader-text span{
+    display:block;
+    margin-top:2px;
+
+    font-size:.76rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.avatar-community__board-action{
+    margin-top:20px;
+}
+
+
+/* ==========================================================
+   05 — Comments
+
+   A threaded discussion. Avatars anchor an indent rail.
+   ========================================================== */
+
+.avatar-comment{
+    padding:80px 56px 88px;
+    background:#fcfcfd;
+}
+
+.avatar-comment__inner{
+    max-width:760px;
+    margin:0 auto;
+}
+
+.avatar-comment__head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    padding-bottom:24px;
+    margin-bottom:32px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.avatar-comment__title{
+    margin:0;
+
+    font-size:1.35rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.avatar-comment__sort{
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.avatar-comment__composer{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+
+    margin-bottom:36px;
+}
+
+.avatar-comment__composer-field{
+    flex:1;
+    min-width:0;
+}
+
+.avatar-comment__composer-input{
+    padding:14px 16px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+
+    font-size:.92rem;
+    color:var(--pat-soft);
+}
+
+.avatar-comment__composer-actions{
+    display:flex;
+    justify-content:flex-end;
+
+    margin-top:10px;
+}
+
+.avatar-comment__thread{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+.avatar-comment__item{
+    display:grid;
+    grid-template-columns:40px minmax(0, 1fr);
+    gap:14px;
+}
+
+.avatar-comment__rail{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar-comment__line{
+    flex:1;
+
+    width:1px;
+    min-height:12px;
+
+    background:var(--pat-line);
+}
+
+.avatar-comment__meta{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.avatar-comment__author{
+    font-size:.92rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.avatar-comment__time{
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+.avatar-comment__body{
+    margin:10px 0 0;
+
+    font-size:.96rem;
+    line-height:1.72;
+    color:#33415a;
+}
+
+.avatar-comment__actions{
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    margin-top:12px;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.avatar-comment__action{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    transition:color .2s ease;
+}
+
+.avatar-comment__action:hover{
+    color:var(--pat-blue);
+}
+
+.avatar-comment__replies{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+
+    margin-top:24px;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .avatar-team{
+        padding:64px 32px;
+    }
+
+    .avatar-team__group{
+        grid-template-columns:minmax(0, 1fr);
+        gap:24px;
+    }
+
+    .avatar-team__department{
+        position:static;
+    }
+
+    .avatar-quote{
+        padding:64px 32px;
+    }
+
+    .avatar-quote__grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    .avatar-quote__card--lead{
+        grid-column:span 2;
+    }
+
+    .avatar-customer{
+        padding:64px 32px;
+    }
+
+    .avatar-community{
+        padding:64px 32px;
+    }
+
+    .avatar-community__grid{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .avatar-comment{
+        padding:56px 32px 64px;
+    }
+
+}
+
+@media (max-width:720px){
+
+    .avatar-team{
+        padding:52px 20px;
+    }
+
+    .avatar-team__people{
+        grid-template-columns:minmax(0, 1fr);
+        gap:20px;
+    }
+
+    .avatar-quote{
+        padding:52px 20px;
+    }
+
+    .avatar-quote__grid{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .avatar-quote__card--lead{
+        grid-column:span 1;
+        padding:28px;
+    }
+
+    .avatar-quote__card--lead .avatar-quote__text{
+        font-size:1.25rem;
+    }
+
+    .avatar-customer{
+        padding:52px 20px;
+    }
+
+    .avatar-customer__actions .btn{
+        width:100%;
+    }
+
+    .avatar-customer__logos{
+        gap:26px;
+        margin-top:40px;
+    }
+
+    .avatar-community{
+        padding:52px 20px;
+    }
+
+    .avatar-community__room{
+        grid-template-columns:minmax(0, 1fr);
+        gap:16px;
+        padding:20px;
+    }
+
+    .avatar-community__room-side{
+        align-items:flex-start;
+    }
+
+    .avatar-comment{
+        padding:44px 20px 56px;
+    }
+
+    .avatar-comment__item{
+        grid-template-columns:32px minmax(0, 1fr);
+        gap:12px;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .avatar-customer__stack > *,
+    .avatar-community__room,
+    .avatar-comment__action{
+        transition:none;
+    }
+
+    .avatar-customer__stack > *:hover{
+        transform:none;
+    }
+
+}

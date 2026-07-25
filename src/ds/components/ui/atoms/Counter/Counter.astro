@@ -1,0 +1,56 @@
+---
+import "./Counter.css";
+import type { CounterProps } from "./Counter.types";
+
+const {
+  value = 0,
+  min,
+  max,
+  step = 1,
+  disabled = false,
+  readonly = false,
+  id,
+  name,
+  class: className = "",
+} = Astro.props as CounterProps;
+
+const classes = [
+  "ds-counter",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <button
+    class="ds-counter__button"
+    type="button"
+    aria-label="Decrease value"
+    disabled={disabled}
+  >
+    −
+  </button>
+
+  <input
+    class="ds-counter__input"
+    type="number"
+    id={id}
+    name={name}
+    value={value}
+    min={min}
+    max={max}
+    step={step}
+    disabled={disabled}
+    readonly={readonly}
+  />
+
+  <button
+    class="ds-counter__button"
+    type="button"
+    aria-label="Increase value"
+    disabled={disabled}
+  >
+    +
+  </button>
+</div>

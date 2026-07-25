@@ -1,0 +1,215 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Video/VideoPatterns.css";
+
+import Video from "../../../ds/components/ui/atoms/Video/Video.astro";
+
+import {
+    tutorialVideo,
+    lessonVideo,
+    heroVideo,
+    testimonialVideo,
+    deviceDemoVideo
+} from "../../../ds/patterns/Video/video.data";
+---
+
+<DSLayout title="Video">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Video</h1>
+
+        <p class="pl-head__lede">
+            Five video moments — a patient tutorial, a dark course
+            lesson player, a muted autoplay marketing hero, a
+            testimonial embed and a compact rounded device demo.
+        </p>
+
+    </header>
+
+    <!-- 01 — Patient education video -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Patient Tutorial</span>
+            <span class="pl-example__tags">Hearing care · Controls · Caption</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vid-tutorial">
+
+                <div class="vid-tutorial__card">
+
+                    <span class="vid-tutorial__kicker">Nasıl kullanılır</span>
+
+                    <Video
+                        src={tutorialVideo.src}
+                        poster={tutorialVideo.poster}
+                        controls
+                    >
+                        <Fragment slot="caption">{tutorialVideo.caption}</Fragment>
+                    </Video>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Course platform lesson player -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Lesson Player</span>
+            <span class="pl-example__tags">Education · Dark · Rounded</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vid-lesson">
+
+                <div class="vid-lesson__card">
+
+                    <Video
+                        src={lessonVideo.src}
+                        poster={lessonVideo.poster}
+                        controls
+                        rounded
+                    />
+
+                    <div class="vid-lesson__meta">
+                        <div>
+                            <div class="vid-lesson__show">{lessonVideo.show}</div>
+                            <div class="vid-lesson__title">{lessonVideo.title}</div>
+                        </div>
+                        <span class="vid-lesson__duration">{lessonVideo.duration}</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Marketing hero, muted autoplay loop -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Marketing Hero</span>
+            <span class="pl-example__tags">Landing page · Muted autoplay loop · No controls</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vid-hero">
+
+                <Video
+                    src={heroVideo.src}
+                    poster={heroVideo.poster}
+                    autoplay
+                    muted
+                    loop
+                    controls={false}
+                />
+                <div class="vid-hero__scrim"></div>
+
+                <div class="vid-hero__content">
+                    <span class="vid-hero__kicker">{heroVideo.kicker}</span>
+                    <h2 class="vid-hero__title">{heroVideo.title}</h2>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Support testimonial embed -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Customer Testimonial</span>
+            <span class="pl-example__tags">Support · Attribution card</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vid-testimonial">
+
+                <div class="vid-testimonial__card">
+
+                    <Video
+                        src={testimonialVideo.src}
+                        poster={testimonialVideo.poster}
+                        controls
+                    />
+
+                    <div class="vid-testimonial__body">
+                        <p class="vid-testimonial__quote">“{testimonialVideo.quote}”</p>
+                        <div class="vid-testimonial__name">{testimonialVideo.name}</div>
+                        <div class="vid-testimonial__role">{testimonialVideo.role}</div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Compact device demo, rounded -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Device Demo</span>
+            <span class="pl-example__tags">Product app · Compact · Rounded (circular)</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vid-device">
+
+                <div class="vid-device__card">
+
+                    <Video
+                        src={deviceDemoVideo.src}
+                        poster={deviceDemoVideo.poster}
+                        controls
+                        rounded
+                    >
+                        <Fragment slot="caption">{deviceDemoVideo.caption}</Fragment>
+                    </Video>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

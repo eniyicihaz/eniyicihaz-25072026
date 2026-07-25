@@ -1,0 +1,47 @@
+---
+import "./ColorCard.css";
+
+interface Props {
+    name: string;
+    value: string;
+    token: string;
+    textColor?: string;
+}
+
+const {
+    name,
+    value,
+    token,
+    textColor = "#ffffff"
+} = Astro.props;
+
+const previewLabel = `${name} color preview`;
+---
+
+<article class="color-card">
+
+    <div
+        class="color-card__preview"
+        style={`background:${value};color:${textColor};`}
+        role="img"
+        aria-label={previewLabel}
+    >
+        {value}
+    </div>
+
+    <div class="color-card__body">
+
+        <h3 class="color-card__title">
+            {name}
+        </h3>
+
+        <code
+            class="color-card__token"
+            aria-label={`Design token ${token}`}
+        >
+            {token}
+        </code>
+
+    </div>
+
+</article>

@@ -1,0 +1,263 @@
+/* ==========================================================
+   Text — five patterns
+
+   01  txt-article   Clinic article page (eniyicihaz.com)
+   02  txt-stat      Dashboard stat card, overline + muted
+   03  txt-pricing   Enterprise pricing card, dark
+   04  txt-truncate  Truncated file names, admin panel
+   05  txt-quote     Editorial pull quote, centered
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic article page
+   ========================================================== */
+
+.txt-article{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.txt-article__card{
+    width:100%;
+    max-width:480px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.txt-article .ds-text--overline{
+    color:#0f766e;
+}
+
+.txt-article .ds-text--lead{
+    margin-top:12px;
+    color:#123b36;
+}
+
+.txt-article .ds-text--body{
+    margin-top:14px;
+    color:#3a5551;
+}
+
+.txt-article .ds-text--caption{
+    display:block;
+    margin-top:18px;
+    padding-top:16px;
+
+    border-top:1px solid rgb(18 59 54 / .08);
+
+    color:#6b8b86;
+}
+
+
+/* ==========================================================
+   02 — Dashboard stat card
+   ========================================================== */
+
+.txt-stat{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.txt-stat__card{
+    width:100%;
+    max-width:300px;
+    padding:28px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.txt-stat .ds-text--overline{
+    color:var(--pat-soft);
+}
+
+.txt-stat__value{
+    display:block;
+    margin-top:10px;
+
+    font-size:2.1rem;
+    letter-spacing:-.03em;
+}
+
+.txt-stat .ds-text--muted{
+    display:block;
+    margin-top:8px;
+    font-size:.85rem;
+    color:#16a34a;
+}
+
+.txt-stat .ds-text--caption{
+    display:block;
+    margin-top:16px;
+    padding-top:14px;
+
+    border-top:1px solid var(--pat-line);
+
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   03 — Enterprise pricing card, dark
+   ========================================================== */
+
+.txt-pricing{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.txt-pricing__card{
+    width:100%;
+    max-width:400px;
+    padding:36px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.txt-pricing .ds-text--overline{
+    color:#38bdf8;
+}
+
+.txt-pricing .ds-text--lead{
+    display:block;
+    margin-top:12px;
+    color:#fff;
+}
+
+.txt-pricing .ds-text--body{
+    display:block;
+    margin-top:14px;
+    color:rgb(255 255 255 / .55);
+}
+
+
+/* ==========================================================
+   04 — Truncated file names, admin panel
+   ========================================================== */
+
+.txt-truncate{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.txt-truncate__card{
+    width:100%;
+    max-width:360px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.txt-truncate__head{
+    padding:16px 20px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.txt-truncate__row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:13px 20px;
+    overflow:hidden;
+}
+
+.txt-truncate__row + .txt-truncate__row{
+    border-top:1px solid var(--pat-line);
+}
+
+.txt-truncate__icon{
+    flex-shrink:0;
+}
+
+.txt-truncate .ds-text--truncate{
+    display:block;
+    min-width:0;
+}
+
+
+/* ==========================================================
+   05 — Editorial pull quote
+   ========================================================== */
+
+.txt-quote{
+    display:flex;
+    justify-content:center;
+
+    padding:80px 32px 88px;
+    background:#faf8f4;
+}
+
+.txt-quote__inner{
+    max-width:480px;
+    text-align:center;
+}
+
+.txt-quote .ds-text--lead{
+    display:block;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.3rem, 2.6vw, 1.6rem);
+    line-height:1.5;
+    color:#1c1812;
+}
+
+.txt-quote .ds-text--caption{
+    display:block;
+    margin-top:18px;
+
+    color:#a3937a;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .txt-article{ padding:44px 16px 56px; }
+    .txt-article__card{ padding:24px 20px; }
+
+    .txt-stat{ padding:44px 16px 56px; }
+
+    .txt-pricing{ padding:44px 16px 56px; }
+    .txt-pricing__card{ padding:24px 20px; }
+
+    .txt-truncate{ padding:44px 16px 56px; }
+
+    .txt-quote{ padding:52px 20px 64px; }
+
+}

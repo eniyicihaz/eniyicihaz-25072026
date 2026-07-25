@@ -1,0 +1,67 @@
+---
+interface Props {
+  label: string;
+  href: string;
+  /** onDark = column link (colour + slide), legal = small bottom link. */
+  variant?: "onDark" | "legal";
+}
+
+const { label, href, variant = "onDark" } = Astro.props;
+---
+
+<a class:list={["footer-link", `footer-link--${variant}`]} href={href}>
+  <span class="footer-link__label">{label}</span>
+</a>
+
+<style>
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-base);
+  }
+
+  .footer-link__label {
+    display: inline-block;
+    transition: transform var(--transition-base);
+  }
+
+  .footer-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* Column link on the navy surface — refined slide on hover. */
+  .footer-link--onDark {
+    color: var(--footer-link);
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+  }
+  .footer-link--onDark:hover {
+    color: var(--footer-link-hover);
+  }
+  .footer-link--onDark:hover .footer-link__label {
+    transform: translateX(3px);
+  }
+
+  /* Small legal link in the bottom bar. */
+  .footer-link--legal {
+    color: var(--footer-muted);
+    font-size: var(--font-size-sm);
+    letter-spacing: -0.005em;
+  }
+  .footer-link--legal:hover {
+    color: var(--footer-link-hover);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-link__label {
+      transition: none;
+    }
+    .footer-link--onDark:hover .footer-link__label {
+      transform: none;
+    }
+  }
+</style>

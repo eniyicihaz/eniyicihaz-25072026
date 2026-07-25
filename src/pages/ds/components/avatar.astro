@@ -1,0 +1,430 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Avatar/AvatarPatterns.css";
+
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    teamGroups,
+    testimonials,
+    customerLogos,
+    customerFaces,
+    communityRooms,
+    communityLeaders,
+    comments
+} from "../../../ds/patterns/Avatar/avatar.data";
+
+const [leadQuote, ...restQuotes] = testimonials;
+---
+
+<DSLayout title="Avatar">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Avatar</h1>
+
+        <p class="pl-head__lede">
+            Five sections built around faces — a company directory,
+            a testimonial wall, a proof band, a community hub
+            and a threaded discussion.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Team
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Team</span>
+            <span class="pl-example__tags">Directory · Grouped by department · Sticky labels</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="avatar-team">
+
+                <div class="avatar-team__inner">
+
+                    <header class="avatar-team__head">
+                        <span class="avatar-team__kicker">Company</span>
+                        <h2 class="avatar-team__title">Twelve people, three time zones</h2>
+                        <p class="avatar-team__lede">
+                            We hire slowly and keep teams small enough that everyone
+                            still knows what everyone else is working on.
+                        </p>
+                    </header>
+
+                    {teamGroups.map(group => (
+                        <div class="avatar-team__group">
+
+                            <div class="avatar-team__department">
+                                {group.department}
+                                <span class="avatar-team__count">
+                                    {group.people.length} people
+                                </span>
+                            </div>
+
+                            <div class="avatar-team__people">
+                                {group.people.map(person => (
+                                    <div class="avatar-team__person">
+                                        <Avatar initials={person.initials} bordered />
+                                        <div class="avatar-team__person-text">
+                                            <div class="avatar-team__name">{person.name}</div>
+                                            <div class="avatar-team__role">{person.role}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Testimonials
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Testimonials</span>
+            <span class="pl-example__tags">Quote wall · Dark lead card · Serif pull quote</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="avatar-quote">
+
+                <div class="avatar-quote__inner">
+
+                    <header class="avatar-quote__head">
+                        <h2 class="avatar-quote__title">
+                            The reviews we did not write ourselves
+                        </h2>
+                        <div class="avatar-quote__rating">
+                            <span class="avatar-quote__stars" aria-hidden="true">★★★★★</span>
+                            <span>4.9 average from 812 reviews</span>
+                        </div>
+                    </header>
+
+                    <div class="avatar-quote__grid">
+
+                        <figure class="avatar-quote__card avatar-quote__card--lead">
+                            <blockquote class="avatar-quote__text">
+                                {leadQuote.quote}
+                            </blockquote>
+                            <figcaption class="avatar-quote__by">
+                                <Avatar initials={leadQuote.initials} size="lg" bordered />
+                                <div class="avatar-quote__by-text">
+                                    <strong>{leadQuote.name}</strong>
+                                    <span>{leadQuote.role}</span>
+                                </div>
+                            </figcaption>
+                        </figure>
+
+                        {restQuotes.map(item => (
+                            <figure class="avatar-quote__card">
+                                <blockquote class="avatar-quote__text">
+                                    {item.quote}
+                                </blockquote>
+                                <figcaption class="avatar-quote__by">
+                                    <Avatar initials={item.initials} bordered />
+                                    <div class="avatar-quote__by-text">
+                                        <strong>{item.name}</strong>
+                                        <span>{item.role}</span>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Customers
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Customers</span>
+            <span class="pl-example__tags">Centered proof band · Stacked faces · Wordmarks</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="avatar-customer">
+
+                <div class="avatar-customer__inner">
+
+                    <div class="avatar-customer__stack">
+                        {customerFaces.map(initials => (
+                            <Avatar initials={initials} bordered />
+                        ))}
+                        <span class="avatar-customer__more">+2k</span>
+                    </div>
+
+                    <h2 class="avatar-customer__title">
+                        Two thousand teams got here before you
+                    </h2>
+
+                    <p class="avatar-customer__lede">
+                        From two-person studios to companies with a procurement
+                        department. The onboarding is the same either way.
+                    </p>
+
+                    <div class="avatar-customer__actions">
+                        <Button size="lg">Start free</Button>
+                        <Button variant="outline" size="lg">Read case studies</Button>
+                    </div>
+
+                    <div class="avatar-customer__logos">
+                        {customerLogos.map(logo => (
+                            <span class="avatar-customer__logo">{logo}</span>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Community
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Community</span>
+            <span class="pl-example__tags">Dark · Room list · Leaderboard</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="avatar-community">
+
+                <div class="avatar-community__inner">
+
+                    <header class="avatar-community__head">
+                        <span class="avatar-community__flag">
+                            <span class="avatar-community__dot" aria-hidden="true"></span>
+                            454 online right now
+                        </span>
+                        <h2 class="avatar-community__title">Come build in public</h2>
+                        <p class="avatar-community__lede">
+                            Eleven thousand people who use this daily, arguing about
+                            architecture and sharing what they shipped.
+                        </p>
+                    </header>
+
+                    <div class="avatar-community__grid">
+
+                        <div class="avatar-community__rooms">
+                            {communityRooms.map(room => (
+                                <article class="avatar-community__room">
+
+                                    <div>
+                                        <div class="avatar-community__room-name">{room.name}</div>
+                                        <p class="avatar-community__room-topic">{room.topic}</p>
+                                    </div>
+
+                                    <div class="avatar-community__room-side">
+                                        <div class="avatar-community__faces">
+                                            {room.faces.map(initials => (
+                                                <Avatar initials={initials} size="sm" bordered />
+                                            ))}
+                                        </div>
+                                        <span class="avatar-community__online">
+                                            {room.online} online
+                                        </span>
+                                    </div>
+
+                                </article>
+                            ))}
+                        </div>
+
+                        <aside class="avatar-community__board">
+
+                            <h3 class="avatar-community__board-title">Top answers this month</h3>
+
+                            {communityLeaders.map(leader => (
+                                <div class="avatar-community__leader">
+                                    <span class="avatar-community__rank">{leader.rank}</span>
+                                    <Avatar initials={leader.initials} size="sm" bordered />
+                                    <div class="avatar-community__leader-text">
+                                        <strong>{leader.name}</strong>
+                                        <span>{leader.note}</span>
+                                    </div>
+                                </div>
+                            ))}
+
+                            <div class="avatar-community__board-action">
+                                <Button variant="glass" size="sm" fullWidth>
+                                    Join the community
+                                </Button>
+                            </div>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Comments
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Comments</span>
+            <span class="pl-example__tags">Threaded · Indent rail · Composer</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="avatar-comment">
+
+                <div class="avatar-comment__inner">
+
+                    <header class="avatar-comment__head">
+                        <h2 class="avatar-comment__title">14 comments</h2>
+                        <span class="avatar-comment__sort">Sorted by most helpful</span>
+                    </header>
+
+                    <div class="avatar-comment__composer">
+                        <Avatar initials="YO" bordered />
+                        <div class="avatar-comment__composer-field">
+                            <div class="avatar-comment__composer-input">
+                                Add to the discussion…
+                            </div>
+                            <div class="avatar-comment__composer-actions">
+                                <Button size="sm">Post comment</Button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="avatar-comment__thread">
+
+                        {comments.map(comment => (
+                            <article class="avatar-comment__item">
+
+                                <div class="avatar-comment__rail">
+                                    <Avatar initials={comment.initials} bordered />
+                                    {comment.replies.length > 0 && (
+                                        <span class="avatar-comment__line"></span>
+                                    )}
+                                </div>
+
+                                <div>
+
+                                    <div class="avatar-comment__meta">
+                                        <span class="avatar-comment__author">{comment.name}</span>
+                                        {comment.badge && (
+                                            <Badge variant="primary" size="sm">{comment.badge}</Badge>
+                                        )}
+                                        <span class="avatar-comment__time">{comment.time}</span>
+                                    </div>
+
+                                    <p class="avatar-comment__body">{comment.body}</p>
+
+                                    <div class="avatar-comment__actions">
+                                        <span class="avatar-comment__action">♡ {comment.likes}</span>
+                                        <span class="avatar-comment__action">Reply</span>
+                                        <span class="avatar-comment__action">Share</span>
+                                    </div>
+
+                                    {comment.replies.length > 0 && (
+                                        <div class="avatar-comment__replies">
+                                            {comment.replies.map(reply => (
+                                                <div class="avatar-comment__item">
+
+                                                    <div class="avatar-comment__rail">
+                                                        <Avatar
+                                                            initials={reply.initials}
+                                                            size="sm"
+                                                            bordered
+                                                        />
+                                                    </div>
+
+                                                    <div>
+                                                        <div class="avatar-comment__meta">
+                                                            <span class="avatar-comment__author">
+                                                                {reply.name}
+                                                            </span>
+                                                            <span class="avatar-comment__time">
+                                                                {reply.time}
+                                                            </span>
+                                                        </div>
+                                                        <p class="avatar-comment__body">{reply.body}</p>
+                                                        <div class="avatar-comment__actions">
+                                                            <span class="avatar-comment__action">
+                                                                ♡ {reply.likes}
+                                                            </span>
+                                                            <span class="avatar-comment__action">Reply</span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                </div>
+
+                            </article>
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

@@ -1,0 +1,118 @@
+---
+import "./Accordion.css";
+
+import type {
+  AccordionItem,
+  AccordionProps,
+} from "./Accordion.types";
+
+const {
+  items = [],
+  multiple = false,
+  collapsible = true,
+  bordered = true,
+  flush = false,
+  size = "md",
+  variant = "default",
+  rounded = "md",
+  shadow = false,
+  divider = true,
+  animation = "slide",
+  iconPosition = "right",
+  class: className = "",
+} = Astro.props as AccordionProps;
+
+const accordionId = `accordion-${crypto.randomUUID()}`;
+---
+
+<div
+  class:list={[
+    "ds-accordion",
+    `ds-accordion--${size}`,
+    `ds-accordion--${variant}`,
+    `ds-accordion--rounded-${rounded}`,
+    `ds-accordion--animation-${animation}`,
+    {
+      "ds-accordion--bordered": bordered,
+      "ds-accordion--flush": flush,
+      "ds-accordion--shadow": shadow,
+      "ds-accordion--divider": divider,
+    },
+    className,
+  ]}
+  data-multiple={multiple}
+  data-collapsible={collapsible}
+  id={accordionId}
+>
+  {items.map((item: AccordionItem) => {
+    const triggerId = `${accordionId}-${item.id}-trigger`;
+    const panelId = `${accordionId}-${item.id}-panel`;
+
+    return (
+      <details
+        class:list={[
+          "ds-accordion__item",
+          item.class,
+          {
+            "is-disabled": item.disabled,
+          },
+        ]}
+        open={item.open}
+      >
+        <summary
+          id={triggerId}
+          class="ds-accordion__trigger"
+          aria-controls={panelId}
+          aria-expanded={item.open ? "true" : "false"}
+        >
+          {iconPosition === "left" && item.icon && (
+            <span
+              class="ds-accordion__icon"
+              aria-hidden="true"
+            >
+              {item.icon}
+            </span>
+          )}
+
+          <span class="ds-accordion__header">
+            <span class="ds-accordion__title">
+              {item.title}
+            </span>
+
+            {item.subtitle && (
+              <span class="ds-accordion__subtitle">
+                {item.subtitle}
+              </span>
+            )}
+          </span>
+
+          {item.badge && (
+            <span class="ds-accordion__badge">
+              {item.badge}
+            </span>
+          )}
+
+          {iconPosition === "right" && item.icon && (
+            <span
+              class="ds-accordion__icon"
+              aria-hidden="true"
+            >
+              {item.icon}
+            </span>
+          )}
+        </summary>
+
+        <div
+          id={panelId}
+          class="ds-accordion__content"
+          role="region"
+          aria-labelledby={triggerId}
+        >
+          <slot name={item.id}>
+            {item.content}
+          </slot>
+        </div>
+      </details>
+    );
+  })}
+</div>

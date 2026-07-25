@@ -1,0 +1,390 @@
+/* ==========================================================
+   Step — five patterns
+
+   01  stp-clinic   Hearing test appointment flow (eniyicihaz.com)
+   02  stp-checkout Checkout flow, horizontal, dark
+   03  stp-verify   Account verification, disabled step
+   04  stp-pipeline Deployment pipeline, dark, monospace
+   05  stp-onboard  Onboarding checklist, active detail
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Hearing test appointment flow
+   ========================================================== */
+
+.stp-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.stp-clinic__card{
+    width:100%;
+    max-width:400px;
+    padding:32px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.stp-clinic__title{
+    margin-bottom:24px;
+
+    font-size:1.1rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.stp-clinic__item{
+    position:relative;
+    padding-bottom:26px;
+}
+
+.stp-clinic__item:last-child{
+    padding-bottom:0;
+}
+
+.stp-clinic__item:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:2rem;
+    left:1rem;
+    bottom:0;
+    width:2px;
+    transform:translateX(-50%);
+
+    background:rgb(18 59 54 / .12);
+}
+
+.stp-clinic .ds-step--completed .ds-step__indicator{
+    background:#0f766e;
+    border-color:#0f766e;
+}
+
+.stp-clinic .ds-step--active .ds-step__indicator{
+    background:#fff;
+    border-color:#0f766e;
+    color:#0f766e;
+}
+
+.stp-clinic .ds-step__label{
+    color:#123b36;
+}
+
+.stp-clinic .ds-step__description{
+    color:#6b8b86;
+}
+
+
+/* ==========================================================
+   02 — Checkout flow, horizontal, dark
+   ========================================================== */
+
+.stp-checkout{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.stp-checkout__row{
+    display:flex;
+    align-items:flex-start;
+
+    width:100%;
+    max-width:480px;
+}
+
+.stp-checkout__item{
+    position:relative;
+    display:flex;
+    flex:1;
+    justify-content:center;
+}
+
+.stp-checkout__item .ds-step{
+    flex-direction:column;
+    align-items:center;
+    gap:.5rem;
+    text-align:center;
+}
+
+.stp-checkout__item:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:1rem;
+    left:calc(50% + 1.4rem);
+    right:calc(-50% + 1.4rem);
+    height:2px;
+
+    background:rgb(255 255 255 / .12);
+}
+
+.stp-checkout .ds-step__indicator{
+    background:rgb(255 255 255 / .06);
+    border-color:rgb(255 255 255 / .2);
+    color:rgb(255 255 255 / .5);
+}
+
+.stp-checkout .ds-step--completed .ds-step__indicator{
+    background:#22c55e;
+    border-color:#22c55e;
+    color:#0b1220;
+}
+
+.stp-checkout .ds-step--active .ds-step__indicator{
+    background:#2563eb;
+    border-color:#2563eb;
+    color:#fff;
+}
+
+.stp-checkout .ds-step__label{
+    font-size:.82rem;
+    color:rgb(255 255 255 / .7);
+}
+
+.stp-checkout .ds-step--active .ds-step__label{
+    color:#fff;
+}
+
+
+/* ==========================================================
+   03 — Account verification, disabled step
+   ========================================================== */
+
+.stp-verify{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.stp-verify__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.stp-verify__title{
+    margin-bottom:22px;
+
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.stp-verify__item{
+    position:relative;
+    padding-bottom:24px;
+}
+
+.stp-verify__item:last-child{
+    padding-bottom:0;
+}
+
+.stp-verify__item:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:2rem;
+    left:1rem;
+    bottom:0;
+    width:2px;
+    transform:translateX(-50%);
+
+    background:var(--pat-line);
+}
+
+.stp-verify .ds-step--disabled{
+    opacity:.5;
+}
+
+
+/* ==========================================================
+   04 — Deployment pipeline, dark, monospace
+   ========================================================== */
+
+.stp-pipeline{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#0b1220;
+}
+
+.stp-pipeline__card{
+    width:100%;
+    max-width:420px;
+    padding:30px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.stp-pipeline__crumb{
+    display:block;
+    margin-bottom:20px;
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.stp-pipeline__item{
+    position:relative;
+    padding-bottom:24px;
+}
+
+.stp-pipeline__item:last-child{
+    padding-bottom:0;
+}
+
+.stp-pipeline__item:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:2rem;
+    left:1rem;
+    bottom:0;
+    width:2px;
+    transform:translateX(-50%);
+
+    background:rgb(255 255 255 / .1);
+}
+
+.stp-pipeline .ds-step__indicator{
+    background:rgb(255 255 255 / .06);
+    border-color:rgb(255 255 255 / .2);
+    color:rgb(255 255 255 / .6);
+    font-family:var(--pat-mono);
+}
+
+.stp-pipeline .ds-step--completed .ds-step__indicator{
+    background:#22c55e;
+    border-color:#22c55e;
+    color:#0b1220;
+}
+
+.stp-pipeline .ds-step--active .ds-step__indicator{
+    background:#fb923c;
+    border-color:#fb923c;
+    color:#0b1220;
+}
+
+.stp-pipeline .ds-step__label{
+    font-family:var(--pat-mono);
+    font-size:.9rem;
+    color:#fff;
+}
+
+.stp-pipeline .ds-step__description{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(255 255 255 / .4);
+}
+
+
+/* ==========================================================
+   05 — Onboarding checklist, active detail
+   ========================================================== */
+
+.stp-onboard{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.stp-onboard__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.stp-onboard__title{
+    margin-bottom:22px;
+
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.stp-onboard__item{
+    position:relative;
+    padding-bottom:22px;
+}
+
+.stp-onboard__item:last-child{
+    padding-bottom:0;
+}
+
+.stp-onboard__item:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:2rem;
+    left:1rem;
+    bottom:0;
+    width:2px;
+    transform:translateX(-50%);
+
+    background:var(--pat-line);
+}
+
+.stp-onboard__detail{
+    display:inline-flex;
+
+    margin-top:6px;
+    padding:3px 10px;
+    border-radius:999px;
+
+    background:rgb(37 99 235 / .1);
+
+    font-size:.76rem;
+    font-weight:650;
+    color:#2563eb;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .stp-clinic{ padding:44px 16px 56px; }
+    .stp-clinic__card{ padding:22px; }
+
+    .stp-checkout{ padding:44px 16px 56px; }
+    .stp-checkout__item .ds-step__label{ font-size:.72rem; }
+
+    .stp-verify{ padding:44px 16px 56px; }
+    .stp-verify__card{ padding:22px; }
+
+    .stp-pipeline{ padding:44px 16px 56px; }
+    .stp-pipeline__card{ padding:22px; }
+
+    .stp-onboard{ padding:44px 16px 56px; }
+    .stp-onboard__card{ padding:22px; }
+
+}

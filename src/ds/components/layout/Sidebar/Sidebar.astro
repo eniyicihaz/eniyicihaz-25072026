@@ -1,0 +1,172 @@
+---
+import "./Sidebar.css";
+
+import { navigation } from "../../../data/navigation";
+
+import {
+    Palette,
+    Type,
+    BetweenHorizontalStart,
+    Grid3x3,
+    Monitor,
+    Circle,
+    Layers3,
+    Play,
+    Sparkles,
+    Database,
+    Square,
+    MousePointerClick,
+    TextCursorInput,
+    FileText,
+    ChevronsUpDown,
+    SquareCheck,
+    CircleDot,
+    ToggleLeft,
+    BadgeCheck,
+    CircleUser,
+    Shapes,
+    Tag,
+    LoaderCircle,
+    Minus,
+    MessageCircle,
+    Ticket,
+    Layout,
+    Gauge,
+    Atom,
+    Component,
+    Blocks
+} from "lucide-astro";
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (href: string) =>
+    href === "/ds"
+        ? currentPath === "/ds"
+        : currentPath === href || currentPath.startsWith(`${href}/`);
+
+const icons = {
+    palette: Palette,
+    type: Type,
+    "between-horizontal-start": BetweenHorizontalStart,
+    "grid-3x3": Grid3x3,
+    monitor: Monitor,
+    circle: Circle,
+    "layers-3": Layers3,
+    play: Play,
+    sparkles: Sparkles,
+    database: Database,
+    square: Square,
+    "mouse-pointer-click": MousePointerClick,
+    textbox: TextCursorInput,
+    "file-text": FileText,
+    "chevrons-up-down": ChevronsUpDown,
+    "check-square": SquareCheck,
+    "circle-dot": CircleDot,
+    "toggle-left": ToggleLeft,
+    "badge-check": BadgeCheck,
+    "user-circle": CircleUser,
+    shapes: Shapes,
+    tag: Tag,
+    "loader-circle": LoaderCircle,
+    minus: Minus,
+    "message-circle": MessageCircle,
+    ticket: Ticket,
+    layout: Layout,
+    gauge: Gauge,
+    atom: Atom,
+    component: Component,
+    blocks: Blocks
+};
+---
+
+<aside class="sidebar" aria-label="Design System Navigation">
+
+    <div class="sidebar__brand">
+
+        <a
+            href="/ds"
+            class:list={[
+                "sidebar__brand-link",
+                { "is-active": isActive("/ds") }
+            ]}
+        >
+
+            <div class="sidebar__logo">
+                DS
+            </div>
+
+            <div class="sidebar__info">
+                <h2>Design System</h2>
+                <span>v1.0.0</span>
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="sidebar__search">
+        <input
+            type="search"
+            placeholder="Search components..."
+            aria-label="Search components"
+            disabled
+        />
+    </div>
+
+    <nav class="sidebar__nav" aria-label="Components">
+
+        {
+            navigation.map((group) => (
+
+                <section class="sidebar__group">
+
+                    <h3 class="sidebar__group-title">
+                        {group.title}
+                    </h3>
+
+                    <ul class="sidebar__list">
+
+                        {
+                            group.items.map((item) => {
+
+                                const Icon = icons[item.icon as keyof typeof icons];
+                                const active = isActive(item.href);
+
+                                return (
+                                    <li>
+
+                                        <a
+                                            href={item.href}
+                                            class:list={[
+                                                "sidebar__link",
+                                                { "is-active": active }
+                                            ]}
+                                            aria-current={active ? "page" : undefined}
+                                        >
+
+                                            <span class="sidebar__icon">
+                                                {Icon && <Icon size={18} strokeWidth={2} />}
+                                            </span>
+
+                                            <span class="sidebar__text">
+                                                {item.title}
+                                            </span>
+
+                                        </a>
+
+                                    </li>
+                                );
+
+                            })
+                        }
+
+                    </ul>
+
+                </section>
+
+            ))
+        }
+
+    </nav>
+
+</aside>

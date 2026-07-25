@@ -1,0 +1,91 @@
+.ds-calendar {
+  width: 100%;
+  max-width: 360px;
+  background: var(--ds-surface, #fff);
+  border: 1px solid var(--ds-border-color, #e5e7eb);
+  border-radius: var(--ds-radius-lg, 12px);
+  overflow: hidden;
+}
+
+.ds-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--ds-border-color, #e5e7eb);
+}
+
+.ds-calendar__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ds-calendar__nav {
+  display: flex;
+  gap: .5rem;
+}
+
+.ds-calendar__button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.ds-calendar__button:hover {
+  background: var(--ds-surface-hover, #f8fafc);
+}
+
+.ds-calendar__weekdays,
+.ds-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.ds-calendar__weekday {
+  padding: .75rem 0;
+  text-align: center;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--ds-text-secondary, #64748b);
+}
+
+.ds-calendar__day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 2px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  transition: .2s;
+}
+
+.ds-calendar__day:hover {
+  background: var(--ds-surface-hover, #f1f5f9);
+}
+
+.ds-calendar__day--outside {
+  color: #cbd5e1;
+}
+
+.ds-calendar__day--today {
+  font-weight: 700;
+  color: var(--ds-primary, #2563eb);
+}
+
+.ds-calendar__day--selected {
+  background: var(--ds-primary, #2563eb);
+  color: #fff;
+}
+
+.ds-calendar__day--disabled {
+  opacity: .4;
+  pointer-events: none;
+}

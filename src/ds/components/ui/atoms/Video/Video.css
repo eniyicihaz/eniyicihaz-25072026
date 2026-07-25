@@ -1,0 +1,37 @@
+.ds-video {
+  display: block;
+  width: 100%;
+}
+
+.ds-video__player {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  background: #000;
+
+  object-fit: cover;
+
+  border-radius: var(--ds-radius-lg, 12px);
+
+  overflow: hidden;
+}
+
+.ds-video--rounded .ds-video__player {
+  border-radius: 999px;
+}
+
+.ds-video__player:focus-visible {
+  outline: 2px solid var(--ds-primary, #2563eb);
+  outline-offset: 3px;
+}
+
+.ds-video__caption {
+  margin-top: .75rem;
+
+  font-size: .875rem;
+  line-height: 1.6;
+
+  color: var(--ds-text-secondary, #64748b);
+}

@@ -1,0 +1,320 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Pagination/PaginationPatterns.css";
+
+import Pagination from "../../../ds/components/ui/atoms/Pagination/Pagination.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    clinics,
+    clinicFilters,
+    searchResults,
+    archiveShots,
+    archiveMeta,
+    ledgerRows,
+    ledgerSummary,
+    chapterMeta,
+    chapterBody,
+    chapterNav
+} from "../../../ds/patterns/Pagination/pagination.data";
+---
+
+<DSLayout title="Pagination">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Pagination</h1>
+
+        <p class="pl-head__lede">
+            Five sets too long for one page — clinic results, a search engine,
+            a photo archive, a bank ledger and a serialised long read.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic finder -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Clinic Finder</span>
+            <span class="pl-example__tags">Hearing care · Filter chips · Distance sort</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="page-clinic">
+
+                <div class="page-clinic__inner">
+
+                    <header class="page-clinic__head">
+                        <h2 class="page-clinic__title">Size en yakın şubeler</h2>
+                        <span class="page-clinic__count">14 şube · İstanbul</span>
+                    </header>
+
+                    <div class="page-clinic__filters">
+                        {clinicFilters.map((filter, i) => (
+                            <span
+                                class:list={[
+                                    "page-clinic__filter",
+                                    i === 1 && "page-clinic__filter--active"
+                                ]}
+                            >
+                                {filter}
+                            </span>
+                        ))}
+                    </div>
+
+                    {clinics.map(clinic => (
+                        <article class="page-clinic__card">
+                            <div>
+                                <h3 class="page-clinic__name">
+                                    {clinic.name}
+                                    {clinic.sgk && <Badge variant="success" size="sm">SGK</Badge>}
+                                </h3>
+                                <p class="page-clinic__address">{clinic.address}</p>
+                                <div class="page-clinic__meta">
+                                    <span>Bugün {clinic.today}</span>
+                                    <span>{clinic.audiologists} odyolog</span>
+                                </div>
+                            </div>
+                            <div class="page-clinic__side">
+                                <div class="page-clinic__distance">{clinic.distance}</div>
+                                <Button size="sm">Randevu al</Button>
+                            </div>
+                        </article>
+                    ))}
+
+                    <div class="page-clinic__pager">
+                        <Pagination currentPage={2} totalPages={5} />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Search results -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Search Results</span>
+            <span class="pl-example__tags">Text first · Borderless pager · Classic blue</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="page-search">
+
+                <div class="page-search__inner">
+
+                    <div class="page-search__bar">
+                        <span aria-hidden="true">⌕</span>
+                        <span class="page-search__query">deploy a monorepo with relay</span>
+                    </div>
+
+                    <p class="page-search__stats">
+                        About 4,120 results (0.28 seconds)
+                    </p>
+
+                    {searchResults.map(result => (
+                        <article class="page-search__result">
+                            <div class="page-search__url">{result.url}</div>
+                            <a class="page-search__title" href="#0">{result.title}</a>
+                            <p class="page-search__excerpt">{result.excerpt}</p>
+                        </article>
+                    ))}
+
+                    <div class="page-search__pager">
+                        <Pagination currentPage={1} totalPages={8} showFirstLast={false} />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Photo archive -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Photo Archive</span>
+            <span class="pl-example__tags">Dark gallery · Page count · Compact pager</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="page-archive">
+
+                <div class="page-archive__inner">
+
+                    <header class="page-archive__head">
+                        <div>
+                            <span class="page-archive__collection">{archiveMeta.collection}</span>
+                            <h2 class="page-archive__title">The harbour years</h2>
+                        </div>
+                        <span class="page-archive__count">{archiveMeta.count}</span>
+                    </header>
+
+                    <div class="page-archive__grid">
+                        {archiveShots.map(shot => (
+                            <figure>
+                                <div class={`page-archive__shot page-archive__shot--${shot.tone}`}></div>
+                                <figcaption class="page-archive__caption">{shot.caption}</figcaption>
+                                <div class="page-archive__exif">{shot.meta}</div>
+                            </figure>
+                        ))}
+                    </div>
+
+                    <footer class="page-archive__foot">
+                        <span class="page-archive__page">{archiveMeta.page}</span>
+                        <Pagination currentPage={3} totalPages={6} />
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Transaction ledger -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Transaction Ledger</span>
+            <span class="pl-example__tags">Banking · Docked in table footer · Row count</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="page-ledger">
+
+                <div class="page-ledger__card">
+
+                    <header class="page-ledger__head">
+                        <div>
+                            <h2 class="page-ledger__title">Transactions</h2>
+                            <p class="page-ledger__period">1 – 20 July 2026</p>
+                        </div>
+                        <dl class="page-ledger__summary">
+                            {ledgerSummary.map(item => (
+                                <div>
+                                    <dt>{item.key}</dt>
+                                    <dd>{item.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                    </header>
+
+                    {ledgerRows.map(row => (
+                        <div class="page-ledger__row">
+                            <span class="page-ledger__date">{row.date}</span>
+                            <span class="page-ledger__merchant">{row.merchant}</span>
+                            <span class="page-ledger__category">{row.category}</span>
+                            <span class={`page-ledger__amount page-ledger__amount--${row.tone}`}>
+                                {row.amount}
+                            </span>
+                        </div>
+                    ))}
+
+                    <footer class="page-ledger__foot">
+                        <span class="page-ledger__showing">Showing 6 of 84 transactions</span>
+                        <Pagination currentPage={1} totalPages={4} showFirstLast={false} />
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Long read -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Serialised Long Read</span>
+            <span class="pl-example__tags">Editorial · Drop cap · Chapter rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="page-read">
+
+                <div class="page-read__inner">
+
+                    <span class="page-read__series">{chapterMeta.series}</span>
+
+                    <div class="page-read__chapter">
+                        <span class="page-read__chapter-no">{chapterMeta.chapter}</span>
+                        <h2 class="page-read__title">{chapterMeta.title}</h2>
+                    </div>
+
+                    <div class="page-read__meta">
+                        <span>{chapterMeta.published}</span>
+                        <span>·</span>
+                        <span>{chapterMeta.read}</span>
+                    </div>
+
+                    <div class="page-read__body">
+                        {chapterBody.map(paragraph => (
+                            <p>{paragraph}</p>
+                        ))}
+                    </div>
+
+                    <div class="page-read__nav">
+                        <a class="page-read__nav-item" href="#0">
+                            <div class="page-read__nav-dir">← Previous</div>
+                            <div class="page-read__nav-label">{chapterNav.prev}</div>
+                        </a>
+                        <a class="page-read__nav-item page-read__nav-item--next" href="#0">
+                            <div class="page-read__nav-dir">Next →</div>
+                            <div class="page-read__nav-label">{chapterNav.next}</div>
+                        </a>
+                    </div>
+
+                    <div class="page-read__pager">
+                        <Pagination
+                            currentPage={3}
+                            totalPages={7}
+                            showFirstLast={false}
+                            showPrevNext={false}
+                        />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

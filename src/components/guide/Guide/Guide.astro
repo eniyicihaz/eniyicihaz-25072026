@@ -1,0 +1,216 @@
+---
+// Guide — "Şimdi ne olacak?". Removes uncertainty about the process, never
+// persuades. The CTA is the story's natural last sentence, not a separate
+// promotional block (SOLUTION→GUIDE handoff, GUIDE_SPECIFICATION.md §1/§3).
+// Spec: docs/GUIDE_SPECIFICATION.md · DNA: PRINCIPLES §1 · Visual: DESIGN_SYSTEM §6.
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import GuideStep from "./atoms/GuideStep/GuideStep.astro";
+import { guide } from "./guide.data";
+---
+
+<section class="guide" aria-labelledby="guide-title">
+  <h2 class="guide__heading" id="guide-title">{guide.heading}</h2>
+
+  <div class="guide__inner">
+    <p class="guide__context" data-rise>{guide.contextSentence}</p>
+
+    <ol class="guide__steps">
+      {
+        guide.steps.map((step, i) => (
+          <GuideStep
+            index={i + 1}
+            title={step.title}
+            description={step.description}
+          />
+        ))
+      }
+    </ol>
+
+    <div class="guide__cta" data-rise>
+      <CtaButton label={guide.cta.label} href={guide.cta.href} />
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".guide");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Single-shot entrance (Solution's pattern) — the whole path is seen at
+    // once, never revealed screen-by-screen like a wizard (§7).
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .guide {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --guide-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --guide-rise-dur: 700ms;
+  }
+
+  /* sr-only: names the section for the document outline/screen readers
+     (same recipe as Empathy/Sound Room/Solution). */
+  .guide__heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .guide__inner {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  .guide__context {
+    margin: 0;
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .guide__steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* The connecting "path" — static, decorative, passes behind the badges
+     (spec §3/§4); visible only in the gaps between steps since each badge
+     has its own opaque surface on top. */
+  .guide__steps::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(var(--space-8) / 2);
+    height: 1px;
+    background: var(--color-border-hover);
+  }
+
+  /* CTA sits directly beneath the steps, in the same surface/flow — never
+     a separate panel or background block (§3 refinement). */
+  .guide__cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* --- Entrance: organism owns the state machine (Solution's pattern) —
+     steps get a light stagger; context/CTA settle together, no separate
+     emphasis for the CTA (§7: it must not read as its own moment). --- */
+
+  .guide[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .guide[data-anim="in"] [data-rise] {
+    animation: guide-rise var(--guide-rise-dur) var(--guide-ease) both;
+  }
+
+  .guide[data-anim="in"] :global(.guide-step):nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .guide[data-anim="in"] :global(.guide-step):nth-child(2) {
+    animation-delay: 120ms;
+  }
+  .guide[data-anim="in"] :global(.guide-step):nth-child(3) {
+    animation-delay: 240ms;
+  }
+
+  @keyframes guide-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 1023px) {
+    .guide__steps {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .guide__steps::before {
+      display: none;
+    }
+
+    /* Vertical connector between stacked steps, replacing the horizontal
+       path (spec §5: "bağlayıcı çizgi dikeye geçer"). */
+    :global(.guide-step):not(:last-child)::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: var(--space-6);
+      margin-top: var(--space-3);
+      background: var(--color-border-hover);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .guide {
+      padding-block: var(--space-16);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .guide[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

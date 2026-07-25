@@ -1,0 +1,142 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Select from "../../../ds/components/ui/atoms/Select/Select.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Select"
+      description="Premium select component."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Variants">
+
+      <Select>
+        <option>Default</option>
+        <option>Phonak</option>
+        <option>Oticon</option>
+        <option>Signia</option>
+      </Select>
+
+      <Select variant="filled">
+        <option>Filled</option>
+        <option>Phonak</option>
+        <option>Oticon</option>
+        <option>Signia</option>
+      </Select>
+
+      <Select variant="outline">
+        <option>Outline</option>
+        <option>Phonak</option>
+        <option>Oticon</option>
+        <option>Signia</option>
+      </Select>
+
+      <Select variant="ghost">
+        <option>Ghost</option>
+        <option>Phonak</option>
+        <option>Oticon</option>
+        <option>Signia</option>
+      </Select>
+
+    </Preview>
+
+    <Preview title="Sizes">
+
+      <Select size="sm">
+        <option>Small</option>
+      </Select>
+
+      <Select size="md">
+        <option>Medium</option>
+      </Select>
+
+      <Select size="lg">
+        <option>Large</option>
+      </Select>
+
+    </Preview>
+
+    <Preview title="States">
+
+      <Select>
+        <option>Normal</option>
+      </Select>
+
+      <Select success>
+        <option>Success</option>
+      </Select>
+
+      <Select error>
+        <option>Error</option>
+      </Select>
+
+      <Select disabled>
+        <option>Disabled</option>
+      </Select>
+
+    </Preview>
+
+    <Preview title="Helper Text">
+
+      <Select helperText="Bir marka seçiniz.">
+        <option>Marka Seçiniz</option>
+        <option>Phonak</option>
+        <option>Oticon</option>
+        <option>Signia</option>
+      </Select>
+
+      <Select
+        error
+        helperText="Lütfen seçim yapınız."
+      >
+        <option>Seçiniz</option>
+        <option>Phonak</option>
+        <option>Oticon</option>
+      </Select>
+
+      <Select
+        success
+        helperText="Seçim başarılı."
+      >
+        <option>Signia</option>
+        <option>Oticon</option>
+        <option>Phonak</option>
+      </Select>
+
+    </Preview>
+
+    <Preview title="Full Width">
+
+      <Select fullWidth>
+        <option>Full Width Select</option>
+        <option>Phonak</option>
+        <option>Oticon</option>
+        <option>Signia</option>
+      </Select>
+
+    </Preview>
+
+  </section>
+
+  <style>
+    .page {
+      max-width: 1300px;
+    }
+  </style>
+
+</DSLayout>

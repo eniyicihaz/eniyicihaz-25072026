@@ -1,0 +1,79 @@
+---
+import "./Topbar.css";
+
+interface Props {
+    title?: string;
+    description?: string;
+    breadcrumb?: string[];
+}
+
+const {
+    title = "Design System",
+    description = "Enterprise Design System Documentation",
+    breadcrumb = ["Design System"]
+} = Astro.props;
+---
+
+<header class="topbar">
+
+    <div class="topbar__left">
+
+        <button
+            class="topbar__toggle"
+            type="button"
+            aria-label="Sidebar"
+            data-sidebar-toggle
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="topbar__content">
+
+            <nav
+                class="topbar__breadcrumb"
+                aria-label="Breadcrumb"
+            >
+
+                {
+                    breadcrumb.map((item, index) => (
+                        <>
+                            <span>{item}</span>
+
+                            {
+                                index < breadcrumb.length - 1 &&
+                                <span class="topbar__separator">/</span>
+                            }
+                        </>
+                    ))
+                }
+
+            </nav>
+
+            <div class="topbar__heading">
+
+                <h1>{title}</h1>
+
+                <p>{description}</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="topbar__right">
+
+        <button
+            class="topbar__theme"
+            type="button"
+            aria-label="Theme"
+            data-theme-toggle
+        >
+            🌙
+        </button>
+
+    </div>
+
+</header>

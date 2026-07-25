@@ -1,0 +1,37 @@
+---
+import SocialIcon from "../../atoms/SocialIcon/SocialIcon.astro";
+import type { SocialItem } from "../../footer.types";
+
+interface Props {
+  items: SocialItem[];
+  label: string;
+}
+
+const { items, label } = Astro.props;
+---
+
+<ul class="social-row" aria-label={label}>
+  {
+    items.map((item) => (
+      <li>
+        <SocialIcon
+          platform={item.platform}
+          iconKey={item.iconKey}
+          href={item.href}
+          label={item.label}
+        />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .social-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

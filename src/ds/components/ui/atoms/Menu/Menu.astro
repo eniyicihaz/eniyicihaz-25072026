@@ -1,0 +1,65 @@
+---
+import "./Menu.css";
+import type { MenuProps } from "./Menu.types";
+
+const {
+  items = [],
+  orientation = "vertical",
+  class: className = "",
+} = Astro.props as MenuProps;
+
+const classes = [
+  "ds-menu",
+  `ds-menu--${orientation}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<ul
+  class={classes}
+  role="menu"
+>
+  {
+    items.map((item) =>
+      item.separator ? (
+        <li
+          class="ds-menu__separator"
+          aria-hidden="true"
+        />
+      ) : (
+        <li
+          class:list={[
+            "ds-menu__item",
+            item.active && "ds-menu__item--active",
+            item.disabled && "ds-menu__item--disabled",
+          ]}
+          role="none"
+        >
+          <a
+            class="ds-menu__link"
+            href={item.href ?? "#"}
+            role="menuitem"
+            aria-disabled={item.disabled}
+          >
+            {
+              item.icon && (
+                <span
+                  class="ds-menu__icon"
+                  aria-hidden="true"
+                >
+                  {item.icon}
+                </span>
+              )
+            }
+
+            <span class="ds-menu__label">
+              {item.label}
+            </span>
+          </a>
+        </li>
+      )
+    )
+  }
+</ul>

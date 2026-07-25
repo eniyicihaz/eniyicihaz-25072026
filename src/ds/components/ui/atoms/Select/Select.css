@@ -1,0 +1,119 @@
+.select-field {
+  width: 100%;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  height: 48px;
+  padding: 0 2.75rem 0 1rem;
+
+  border: 1px solid #dbe4ef;
+  border-radius: 14px;
+
+  background: #fff;
+  color: #1f2937;
+
+  font-size: 0.95rem;
+  font-family: inherit;
+
+  outline: none;
+
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    background-color 0.25s;
+
+  cursor: pointer;
+}
+
+.select:hover {
+  border-color: #c8d7e8;
+}
+
+.select:focus {
+  border-color: #005baa;
+  box-shadow: 0 0 0 4px rgb(0 91 170 / 15%);
+}
+
+.select--filled {
+  background: #f7f9fc;
+}
+
+.select--outline {
+  background: #fff;
+}
+
+.select--ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+.select--sm {
+  height: 40px;
+  font-size: 0.875rem;
+}
+
+.select--md {
+  height: 48px;
+}
+
+.select--lg {
+  height: 56px;
+  font-size: 1rem;
+}
+
+.select--full {
+  width: 100%;
+}
+
+.select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #64748b;
+
+  pointer-events: none;
+}
+
+.select-helper {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.is-error {
+  border-color: #dc2626;
+}
+
+.is-error:focus {
+  box-shadow: 0 0 0 4px rgb(220 38 38 / 15%);
+}
+
+.is-success {
+  border-color: #16a34a;
+}
+
+.is-success:focus {
+  box-shadow: 0 0 0 4px rgb(22 163 74 / 15%);
+}
+
+.select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

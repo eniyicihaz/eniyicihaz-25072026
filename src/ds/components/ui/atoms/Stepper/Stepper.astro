@@ -1,0 +1,51 @@
+---
+import "./Stepper.css";
+import type { StepperProps } from "./Stepper.types";
+
+const {
+  steps = [],
+  orientation = "horizontal",
+  class: className = "",
+} = Astro.props as StepperProps;
+
+const classes = [
+  "ds-stepper",
+  `ds-stepper--${orientation}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  {
+    steps.map((step, index) => (
+      <div
+        class:list={[
+          "ds-stepper__item",
+          step.completed && "ds-stepper__item--completed",
+          step.active && "ds-stepper__item--active",
+          step.disabled && "ds-stepper__item--disabled",
+        ]}
+      >
+        <div class="ds-stepper__indicator">
+          {step.completed ? "✓" : index + 1}
+        </div>
+
+        <div class="ds-stepper__content">
+          <div class="ds-stepper__label">
+            {step.label}
+          </div>
+
+          {
+            step.description && (
+              <div class="ds-stepper__description">
+                {step.description}
+              </div>
+            )
+          }
+        </div>
+      </div>
+    ))
+  }
+</div>

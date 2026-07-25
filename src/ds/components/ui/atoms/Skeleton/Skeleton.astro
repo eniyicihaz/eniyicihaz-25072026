@@ -1,0 +1,58 @@
+---
+import "./Skeleton.css";
+
+import type { SkeletonProps } from "./Skeleton.types";
+
+const {
+    variant = "text",
+    width,
+    height,
+    radius,
+    animation = "wave",
+    lines = 1,
+    lastLineWidth = "70%",
+    class: className = ""
+} = Astro.props as SkeletonProps;
+
+const classes = [
+    "ds-skeleton",
+    `is-${variant}`,
+    `is-${animation}`,
+    className
+]
+    .filter(Boolean)
+    .join(" ");
+
+const style = [
+    width && `--skeleton-width:${width}`,
+    height && `--skeleton-height:${height}`,
+    radius && `--skeleton-radius:${radius}`
+]
+    .filter(Boolean)
+    .join(";");
+---
+
+{
+    variant === "text" ? (
+        <div class={classes}>
+            {
+                Array.from({ length: lines }).map((_, index) => (
+                    <span
+                        class="ds-skeleton__line"
+                        style={
+                            index === lines - 1 && lines > 1
+                                ? `width:${lastLineWidth};${style}`
+                                : style
+                        }
+                    />
+                ))
+            }
+        </div>
+    ) : (
+        <span
+            class={classes}
+            style={style}
+            aria-hidden="true"
+        />
+    )
+}

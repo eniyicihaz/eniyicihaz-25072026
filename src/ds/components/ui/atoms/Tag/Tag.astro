@@ -1,0 +1,41 @@
+---
+import "./Tag.css";
+import type { TagProps } from "./Tag.types";
+
+const {
+  variant = "default",
+  size = "md",
+  rounded = false,
+  removable = false,
+  disabled = false,
+  class: className = "",
+} = Astro.props as TagProps;
+
+const classes = [
+  "ds-tag",
+  `ds-tag--${variant}`,
+  `ds-tag--${size}`,
+  rounded && "ds-tag--rounded",
+  disabled && "ds-tag--disabled",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span class={classes}>
+  <slot />
+
+  {
+    removable && (
+      <button
+        type="button"
+        class="ds-tag__remove"
+        aria-label="Remove tag"
+        disabled={disabled}
+      >
+        ×
+      </button>
+    )
+  }
+</span>

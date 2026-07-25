@@ -1,0 +1,515 @@
+/* ==========================================================
+   IconButton — five patterns
+
+   01  icb-clinic   Appointment row actions (eniyicihaz.com)
+   02  icb-player   Podcast transport controls, dark
+   03  icb-table    Device table row actions
+   04  icb-chat     FAB launcher + chat panel header
+   05  icb-share    Article share bar
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic appointment row actions
+   ========================================================== */
+
+.icb-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#f6fbfa;
+}
+
+.icb-clinic__card{
+    width:100%;
+    max-width:560px;
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .08);
+}
+
+.icb-clinic__head{
+    padding:20px 26px;
+    border-bottom:1px solid rgb(18 59 54 / .08);
+}
+
+.icb-clinic__title{
+    font-size:1rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.icb-clinic__sub{
+    margin-top:4px;
+
+    font-size:.82rem;
+    color:#6b8b86;
+}
+
+.icb-clinic__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:16px 26px;
+}
+
+.icb-clinic__row + .icb-clinic__row{
+    border-top:1px solid rgb(18 59 54 / .06);
+}
+
+.icb-clinic__name{
+    font-size:.92rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.icb-clinic__meta{
+    margin-top:2px;
+
+    font-size:.8rem;
+    color:#6b8b86;
+}
+
+.icb-clinic__actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.icb-clinic .ds-icon-button.is-ghost{
+    color:#0f766e;
+}
+
+.icb-clinic .ds-icon-button.is-ghost:hover{
+    background:rgb(15 118 110 / .1);
+}
+
+.icb-clinic .ds-icon-button.is-primary{
+    background:#0f766e;
+}
+
+.icb-clinic .ds-icon-button.is-primary:hover{
+    background:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Podcast transport controls, dark
+   ========================================================== */
+
+.icb-player{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.icb-player__card{
+    width:100%;
+    max-width:440px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .08);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.icb-player__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgb(255 255 255 / .4);
+}
+
+.icb-player__title{
+    margin:10px 0 2px;
+
+    font-size:1.1rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.icb-player__show{
+    font-size:.82rem;
+    color:rgb(255 255 255 / .45);
+}
+
+.icb-player__scrub{
+    margin:22px 0 6px;
+
+    height:4px;
+    border-radius:999px;
+
+    background:rgb(255 255 255 / .12);
+    overflow:hidden;
+}
+
+.icb-player__fill{
+    height:100%;
+    border-radius:999px;
+    background:#38bdf8;
+}
+
+.icb-player__time{
+    display:flex;
+    justify-content:space-between;
+
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.icb-player__controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+
+    margin-top:26px;
+}
+
+.icb-player .ds-icon-button.is-ghost{
+    color:rgb(255 255 255 / .7);
+}
+
+.icb-player .ds-icon-button.is-ghost:hover{
+    background:rgb(255 255 255 / .08);
+}
+
+.icb-player .ds-icon-button.is-primary{
+    background:#38bdf8;
+    color:#0b1220;
+}
+
+.icb-player .ds-icon-button.is-primary:hover{
+    background:#7dd3fc;
+}
+
+
+/* ==========================================================
+   03 — Device table row actions
+   ========================================================== */
+
+.icb-table{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#fbfbfa;
+}
+
+.icb-table__card{
+    width:100%;
+    max-width:680px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.icb-table__head{
+    padding:20px 24px;
+    border-bottom:1px solid var(--pat-line);
+}
+
+.icb-table__title{
+    font-size:1rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.icb-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.icb-table th{
+    padding:10px 24px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    text-align:left;
+    color:var(--pat-soft);
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.icb-table td{
+    padding:14px 24px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:.88rem;
+    color:var(--pat-ink);
+    vertical-align:middle;
+}
+
+.icb-table tr:last-child td{
+    border-bottom:none;
+}
+
+.icb-table__model{
+    font-weight:650;
+}
+
+.icb-table__serial{
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.icb-table__status{
+    display:inline-flex;
+    align-items:center;
+
+    padding:3px 10px;
+    border-radius:999px;
+
+    font-size:.74rem;
+    font-weight:650;
+}
+
+.icb-table__status--active{
+    background:rgb(16 185 129 / .12);
+    color:#047857;
+}
+
+.icb-table__status--repair{
+    background:rgb(217 119 6 / .12);
+    color:#b45309;
+}
+
+.icb-table__status--retired{
+    background:rgb(100 116 139 / .12);
+    color:#475569;
+}
+
+.icb-table__actions{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:6px;
+}
+
+.icb-table .ds-icon-button.is-ghost{
+    color:#475569;
+}
+
+.icb-table .ds-icon-button.is-ghost:hover{
+    background:rgb(15 23 42 / .06);
+}
+
+.icb-table .ds-icon-button.is-danger{
+    background:transparent;
+    color:#dc2626;
+}
+
+.icb-table .ds-icon-button.is-danger:hover{
+    background:rgb(220 38 38 / .1);
+}
+
+
+/* ==========================================================
+   04 — FAB launcher + chat panel header
+   ========================================================== */
+
+.icb-chat{
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:48px;
+    flex-wrap:wrap;
+
+    padding:64px 32px 88px;
+    background:
+        radial-gradient(60% 50% at 50% 0%, rgb(124 58 237 / .1), transparent 65%),
+        #f8fafc;
+}
+
+.icb-chat__fab-zone{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.icb-chat__fab-label{
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.icb-chat .ds-icon-button.is-primary{
+    background:#7c3aed;
+    box-shadow:0 16px 32px rgb(124 58 237 / .35);
+}
+
+.icb-chat .ds-icon-button.is-primary:hover{
+    background:#6d28d9;
+}
+
+.icb-chat__panel{
+    width:100%;
+    max-width:320px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-lg);
+}
+
+.icb-chat__panel-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    padding:16px 18px;
+
+    background:#7c3aed;
+    color:#fff;
+}
+
+.icb-chat__agent{
+    font-size:.92rem;
+    font-weight:650;
+}
+
+.icb-chat__status{
+    margin-top:2px;
+
+    font-size:.74rem;
+    color:rgb(255 255 255 / .75);
+}
+
+.icb-chat .ds-icon-button.is-light{
+    background:rgb(255 255 255 / .16);
+    color:#fff;
+}
+
+.icb-chat .ds-icon-button.is-light:hover{
+    background:rgb(255 255 255 / .26);
+}
+
+.icb-chat__panel-body{
+    padding:18px;
+
+    font-size:.85rem;
+    line-height:1.5;
+    color:var(--pat-ink);
+}
+
+
+/* ==========================================================
+   05 — Article share bar
+   ========================================================== */
+
+.icb-share{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#faf8f4;
+}
+
+.icb-share__card{
+    width:100%;
+    max-width:560px;
+    padding:32px;
+
+    border:1px solid rgb(28 24 18 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.icb-share__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.icb-share__title{
+    margin:14px 0 6px;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.3rem, 2.6vw, 1.6rem);
+    font-weight:600;
+    letter-spacing:-.02em;
+    color:#1c1812;
+}
+
+.icb-share__read{
+    font-size:.82rem;
+    color:#a3937a;
+}
+
+.icb-share__bar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:24px;
+    padding-top:22px;
+
+    border-top:1px solid rgb(28 24 18 / .1);
+}
+
+.icb-share__label{
+    margin-right:4px;
+
+    font-size:.78rem;
+    color:#a3937a;
+}
+
+.icb-share .ds-icon-button.is-outline{
+    border-color:rgb(28 24 18 / .2);
+    color:#1c1812;
+}
+
+.icb-share .ds-icon-button.is-outline:hover{
+    background:rgb(28 24 18 / .06);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .icb-clinic{ padding:36px 16px 48px; }
+    .icb-clinic__row{ padding:14px 18px; }
+
+    .icb-player{ padding:44px 16px 56px; }
+    .icb-player__card{ padding:22px; }
+
+    .icb-table{ padding:36px 16px 48px; }
+    .icb-table th, .icb-table td{ padding:12px 14px; }
+    .icb-table__serial{ display:none; }
+
+    .icb-chat{ padding:44px 16px 64px; gap:32px; }
+
+    .icb-share{ padding:36px 16px 48px; }
+    .icb-share__card{ padding:22px; }
+    .icb-share__bar{ flex-wrap:wrap; }
+
+}

@@ -1,0 +1,143 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Avatar"
+      description="Premium avatar component."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Initials">
+
+      <Avatar initials="A" />
+
+      <Avatar initials="EK" />
+
+      <Avatar initials="AI" />
+
+    </Preview>
+
+    <Preview title="Sizes">
+
+      <Avatar
+        initials="A"
+        size="xs"
+      />
+
+      <Avatar
+        initials="A"
+        size="sm"
+      />
+
+      <Avatar
+        initials="A"
+        size="md"
+      />
+
+      <Avatar
+        initials="A"
+        size="lg"
+      />
+
+      <Avatar
+        initials="A"
+        size="xl"
+      />
+
+    </Preview>
+
+    <Preview title="Rounded / Square">
+
+      <Avatar
+        initials="EK"
+        rounded
+      />
+
+      <Avatar
+        initials="EK"
+        rounded={false}
+      />
+
+    </Preview>
+
+    <Preview title="Bordered">
+
+      <Avatar
+        initials="A"
+        bordered
+      />
+
+      <Avatar
+        initials="EK"
+        size="lg"
+        bordered
+      />
+
+    </Preview>
+
+    <Preview title="Status">
+
+      <Avatar
+        initials="A"
+        status="online"
+      />
+
+      <Avatar
+        initials="B"
+        status="away"
+      />
+
+      <Avatar
+        initials="C"
+        status="busy"
+      />
+
+      <Avatar
+        initials="D"
+        status="offline"
+      />
+
+    </Preview>
+
+    <Preview title="Image Avatar">
+
+      <Avatar
+        src="https://i.pravatar.cc/150?img=12"
+        alt="Avatar"
+      />
+
+      <Avatar
+        src="https://i.pravatar.cc/150?img=25"
+        alt="Avatar"
+        size="lg"
+        bordered
+        status="online"
+      />
+
+    </Preview>
+
+  </section>
+
+  <style>
+    .page {
+      max-width: 1300px;
+    }
+  </style>
+
+</DSLayout>

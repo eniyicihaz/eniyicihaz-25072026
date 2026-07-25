@@ -1,0 +1,373 @@
+/* ==========================================================
+   PhoneInput — five patterns
+
+   01  phi-booking   Clinic appointment booking (eniyicihaz.com)
+   02  phi-checkout  Checkout shipping contact, invalid
+   03  phi-security  Account security, 2FA, dark
+   04  phi-profile   Verified phone, read-only
+   05  phi-support   Support ticket, disabled/pending
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic appointment booking
+   ========================================================== */
+
+.phi-booking{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.phi-booking__card{
+    width:100%;
+    max-width:380px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.phi-booking__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.phi-booking__title{
+    margin:14px 0 24px;
+
+    font-size:1.25rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#123b36;
+}
+
+.phi-booking__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:#123b36;
+}
+
+.phi-booking .ds-phone-input{
+    border-color:rgb(18 59 54 / .18);
+}
+
+.phi-booking .ds-phone-input:focus-within{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .14);
+}
+
+.phi-booking .ds-phone-input__prefix{
+    background:rgb(15 118 110 / .06);
+    border-right-color:rgb(18 59 54 / .12);
+    color:#123b36;
+}
+
+.phi-booking__action{
+    margin-top:22px;
+}
+
+.phi-booking .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.phi-booking .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Checkout shipping contact, invalid
+   ========================================================== */
+
+.phi-checkout{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.phi-checkout__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.phi-checkout__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.phi-checkout__title{
+    margin:12px 0 22px;
+
+    font-size:1.1rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.phi-checkout__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.phi-checkout .ds-phone-input--invalid{
+    border-color:#dc2626;
+}
+
+.phi-checkout__error{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:9px;
+
+    font-size:.8rem;
+    color:#dc2626;
+}
+
+
+/* ==========================================================
+   03 — Account security, 2FA, dark
+   ========================================================== */
+
+.phi-security{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.phi-security__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.phi-security__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.phi-security__title{
+    margin:12px 0 22px;
+
+    font-size:1.1rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.phi-security__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:rgb(255 255 255 / .75);
+}
+
+.phi-security .ds-phone-input{
+    background:rgb(255 255 255 / .04);
+    border-color:rgb(255 255 255 / .14);
+}
+
+.phi-security .ds-phone-input:focus-within{
+    border-color:#38bdf8;
+    box-shadow:0 0 0 3px rgb(56 189 248 / .16);
+}
+
+.phi-security .ds-phone-input__prefix{
+    background:rgb(255 255 255 / .04);
+    border-right-color:rgb(255 255 255 / .1);
+    color:rgb(255 255 255 / .8);
+}
+
+.phi-security .ds-phone-input__field{
+    color:#fff;
+}
+
+.phi-security__hint{
+    margin-top:9px;
+
+    font-size:.78rem;
+    color:rgb(255 255 255 / .4);
+}
+
+
+/* ==========================================================
+   04 — Verified phone, read-only
+   ========================================================== */
+
+.phi-profile{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.phi-profile__card{
+    width:100%;
+    max-width:440px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.phi-profile__head{
+    padding:20px 24px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:1rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.phi-profile__row{
+    padding:22px 24px;
+}
+
+.phi-profile__label-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:8px;
+}
+
+.phi-profile__label{
+    font-size:.85rem;
+    color:var(--pat-ink);
+}
+
+.phi-profile__badge{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+
+    padding:2px 9px;
+    border-radius:999px;
+
+    background:rgb(16 185 129 / .12);
+
+    font-size:.72rem;
+    font-weight:650;
+    color:#047857;
+}
+
+.phi-profile .ds-phone-input{
+    background:#fafafa;
+}
+
+
+/* ==========================================================
+   05 — Support ticket, disabled/pending
+   ========================================================== */
+
+.phi-support{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fffbeb;
+}
+
+.phi-support__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid rgb(217 119 6 / .25);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.phi-support__icon{
+    font-size:1.4rem;
+    margin-bottom:12px;
+}
+
+.phi-support__title{
+    font-size:1rem;
+    font-weight:750;
+    color:#78350f;
+}
+
+.phi-support__label{
+    display:block;
+    margin:16px 0 8px;
+
+    font-size:.85rem;
+    color:#78350f;
+}
+
+.phi-support .ds-phone-input--disabled{
+    opacity:.7;
+}
+
+.phi-support__note{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:12px;
+
+    font-size:.8rem;
+    color:rgb(120 53 15 / .8);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .phi-booking{ padding:44px 16px 56px; }
+    .phi-booking__card{ padding:24px 20px; }
+
+    .phi-checkout{ padding:44px 16px 56px; }
+    .phi-checkout__card{ padding:22px; }
+
+    .phi-security{ padding:44px 16px 56px; }
+    .phi-security__card{ padding:22px; }
+
+    .phi-profile{ padding:44px 16px 56px; }
+
+    .phi-support{ padding:44px 16px 56px; }
+    .phi-support__card{ padding:22px; }
+
+}

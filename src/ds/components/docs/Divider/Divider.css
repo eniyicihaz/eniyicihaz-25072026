@@ -1,0 +1,48 @@
+.divider{
+    position:relative;
+
+    margin:64px 0;
+
+    border-top:1px solid var(--border);
+}
+
+.divider__label{
+    position:absolute;
+
+    top:0;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 12px;
+    min-height:24px;
+
+    background:var(--bg);
+
+    color:var(--text-muted);
+
+    font-size:.75rem;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    white-space:nowrap;
+
+    user-select:none;
+}
+
+@media (max-width:768px){
+
+    .divider{
+        margin:48px 0;
+    }
+
+    .divider__label{
+        padding:0 10px;
+        font-size:.7rem;
+    }
+
+}

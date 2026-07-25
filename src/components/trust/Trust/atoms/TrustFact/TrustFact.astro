@@ -1,0 +1,43 @@
+---
+// A single verifiable fact (TRUST_SPECIFICATION.md §3/§8). Deliberately no
+// card chrome (no border/shadow/surface) — quieter than Solution/Guide's
+// cards, so three consecutive sections don't repeat the same component.
+// The divider between facts is handled by the organism (border, not an
+// extra element), and no self-managed entrance state, matching the
+// Solution/Guide atom convention.
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<div class="trust-fact" data-rise>
+  <h3 class="trust-fact__title">{title}</h3>
+  <p class="trust-fact__description">{description}</p>
+</div>
+
+<style>
+  .trust-fact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .trust-fact__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .trust-fact__description {
+    margin: 0;
+    max-width: 22rem;
+    margin-inline: auto;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+</style>

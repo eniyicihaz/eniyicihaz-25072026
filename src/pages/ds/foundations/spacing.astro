@@ -1,0 +1,81 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+
+const spacing = [
+    "4px",
+    "8px",
+    "12px",
+    "16px",
+    "20px",
+    "24px",
+    "32px",
+    "40px",
+    "48px",
+    "64px",
+    "80px",
+    "96px"
+];
+---
+
+<DSLayout title="Spacing">
+
+    <PageHeader
+        badge="Foundation"
+        title="Spacing"
+        description="Spacing tokens create rhythm, balance and predictable layouts."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Prefer spacing tokens instead of arbitrary margins and padding values.
+    </Note>
+
+    <Divider label="Scale" />
+
+    <Section
+        title="Spacing Scale"
+        description="Recommended spacing values."
+    >
+
+        <Preview title="Spacing Tokens">
+
+            <div style="display:flex;flex-direction:column;gap:24px;">
+
+                {
+                    spacing.map(value => (
+                        <div style="display:flex;align-items:center;gap:20px;">
+
+                            <div style="width:80px;font-weight:600;">
+                                {value}
+                            </div>
+
+                            <div
+                                style={`height:20px;width:${value};background:var(--primary);border-radius:999px;`}
+                            />
+
+                        </div>
+                    ))
+                }
+
+            </div>
+
+        </Preview>
+
+    </Section>
+
+</DSLayout>

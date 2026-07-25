@@ -1,0 +1,217 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/TimePicker/TimePickerPatterns.css";
+
+import TimePicker from "../../../ds/components/ui/atoms/TimePicker/TimePicker.astro";
+
+import {
+    bookingField,
+    meetingField,
+    alarmField,
+    reservationField,
+    shiftField
+} from "../../../ds/patterns/TimePicker/timepicker.data";
+---
+
+<DSLayout title="Time Picker">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Time Picker</h1>
+
+        <p class="pl-head__lede">
+            Five time selections — a clinic booking slot, a dark meeting
+            scheduler, an alarm with stepped intervals, an invalid
+            reservation time and a read-only assigned shift.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic appointment slot -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment Slot</span>
+            <span class="pl-example__tags">Hearing care · Min / max range</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tpk-booking">
+
+                <div class="tpk-booking__card">
+
+                    <span class="tpk-booking__kicker">Randevu</span>
+                    <h2 class="tpk-booking__title">Saat seçin</h2>
+
+                    <label class="tpk-booking__label" for={bookingField.id}>{bookingField.label}</label>
+                    <TimePicker
+                        id={bookingField.id}
+                        value={bookingField.value}
+                        min={bookingField.min}
+                        max={bookingField.max}
+                    />
+                    <p class="tpk-booking__hint">Klinik saatleri: {bookingField.min} – {bookingField.max}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Meeting scheduler, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Meeting Scheduler</span>
+            <span class="pl-example__tags">Calendar app · Dark · Required</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tpk-meeting">
+
+                <div class="tpk-meeting__card">
+
+                    <h2 class="tpk-meeting__title">Schedule a meeting</h2>
+
+                    <label class="tpk-meeting__label" for={meetingField.id}>
+                        {meetingField.label}<span class="tpk-meeting__required">*</span>
+                    </label>
+                    <TimePicker
+                        id={meetingField.id}
+                        value={meetingField.value}
+                        required
+                    />
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Alarm settings -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Alarm Settings</span>
+            <span class="pl-example__tags">Mobile app · Stepped interval</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tpk-alarm">
+
+                <div class="tpk-alarm__card">
+
+                    <div class="tpk-alarm__icon">⏰</div>
+
+                    <label class="tpk-alarm__label" for={alarmField.id}>{alarmField.label}</label>
+                    <TimePicker
+                        id={alarmField.id}
+                        value={alarmField.value}
+                        step={alarmField.step}
+                    />
+                    <p class="tpk-alarm__note">{alarmField.note}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Restaurant reservation, invalid -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Reservation Time</span>
+            <span class="pl-example__tags">Hospitality · Invalid state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tpk-reservation">
+
+                <div class="tpk-reservation__card">
+
+                    <div class="tpk-reservation__title">Book a table</div>
+
+                    <label class="tpk-reservation__label" for={reservationField.id}>{reservationField.label}</label>
+                    <TimePicker
+                        id={reservationField.id}
+                        value={reservationField.value}
+                        min={reservationField.min}
+                        max={reservationField.max}
+                        invalid
+                    />
+                    <p class="tpk-reservation__error">⚠ {reservationField.error}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Shift schedule, read-only -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Shift Schedule</span>
+            <span class="pl-example__tags">Workforce · Read-only</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tpk-shift">
+
+                <div class="tpk-shift__card">
+
+                    <div class="tpk-shift__head">This week's schedule</div>
+
+                    <div class="tpk-shift__row">
+                        <div class="tpk-shift__label-row">
+                            <label class="tpk-shift__label" for={shiftField.id}>{shiftField.label}</label>
+                            <span class="tpk-shift__badge">{shiftField.note}</span>
+                        </div>
+                        <TimePicker
+                            id={shiftField.id}
+                            value={shiftField.value}
+                            readonly
+                        />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

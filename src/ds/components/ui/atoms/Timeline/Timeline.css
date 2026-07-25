@@ -1,0 +1,87 @@
+.ds-timeline {
+  position: relative;
+}
+
+.ds-timeline__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-timeline__item {
+  position: relative;
+
+  display: flex;
+  gap: 1rem;
+
+  padding-bottom: 2rem;
+}
+
+.ds-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.ds-timeline__marker {
+  position: relative;
+
+  width: 14px;
+  height: 14px;
+
+  margin-top: .25rem;
+
+  flex-shrink: 0;
+
+  border-radius: 999px;
+
+  background: var(--ds-primary, #2563eb);
+}
+
+.ds-timeline__item:not(:last-child) .ds-timeline__marker::after {
+  content: "";
+
+  position: absolute;
+
+  top: 14px;
+  left: 50%;
+
+  width: 2px;
+  height: calc(100% + 1rem);
+
+  transform: translateX(-50%);
+
+  background: var(--ds-border-color, #e2e8f0);
+}
+
+.ds-timeline__content {
+  flex: 1;
+}
+
+.ds-timeline__title {
+  margin: 0;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: var(--ds-text, #0f172a);
+}
+
+.ds-timeline__date {
+  margin-top: .25rem;
+
+  font-size: .75rem;
+
+  color: var(--ds-text-secondary, #64748b);
+}
+
+.ds-timeline__description {
+  margin-top: .5rem;
+
+  font-size: .875rem;
+  line-height: 1.6;
+
+  color: var(--ds-text-secondary, #64748b);
+}
+
+.ds-timeline__item--completed .ds-timeline__marker {
+  background: var(--ds-success, #22c55e);
+}

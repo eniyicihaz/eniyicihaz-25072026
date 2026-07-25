@@ -1,0 +1,304 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Blockquote/BlockquotePatterns.css";
+
+import Blockquote from "../../../ds/components/ui/atoms/Blockquote/Blockquote.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+
+import {
+    patientStory,
+    patientFacts,
+    pressQuotes,
+    judgment,
+    judgmentQuote,
+    judgmentMeta,
+    epigraph,
+    chapterOpening,
+    chapterMeta,
+    testimonial,
+    testimonialStats,
+    testimonialLogos
+} from "../../../ds/patterns/Blockquote/blockquote.data";
+---
+
+<DSLayout title="Blockquote">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Blockquote</h1>
+
+        <p class="pl-head__lede">
+            Five ways to give someone else's words weight — a patient's story,
+            a press wall, a court judgment, a literary epigraph
+            and a customer testimonial.
+        </p>
+
+    </header>
+
+    <!-- 01 — Patient story -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Patient Story</span>
+            <span class="pl-example__tags">Hearing care · Portrait · Clinical facts</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="quote-patient">
+
+                <div class="quote-patient__inner">
+
+                    <div class="quote-patient__portrait" aria-hidden="true">
+                        <div class="quote-patient__badge">
+                            <span class="quote-patient__badge-value">14 ay</span>
+                            <span class="quote-patient__badge-label">
+                                kesintisiz<br />kullanım
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <span class="quote-patient__kicker">Hasta hikâyesi</span>
+
+                        <Blockquote>
+                            {patientStory.quote}
+                        </Blockquote>
+
+                        <div class="quote-patient__who">
+                            <Avatar initials={patientStory.initials} size="lg" bordered />
+                            <div>
+                                <div class="quote-patient__name">{patientStory.name}</div>
+                                <div class="quote-patient__meta">
+                                    {patientStory.age} · {patientStory.device}
+                                </div>
+                            </div>
+                        </div>
+
+                        <dl class="quote-patient__facts">
+                            {patientFacts.map(fact => (
+                                <div class="quote-patient__fact">
+                                    <dt>{fact.key}</dt>
+                                    <dd>{fact.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Press wall -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Press Wall</span>
+            <span class="pl-example__tags">Three columns · Ruled · Small-caps sources</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="quote-press">
+
+                <div class="quote-press__inner">
+
+                    <header class="quote-press__head">
+                        <span class="quote-press__kicker">Press</span>
+                        <h2 class="quote-press__title">What people wrote about it</h2>
+                    </header>
+
+                    <div class="quote-press__grid">
+                        {pressQuotes.map(item => (
+                            <div class="quote-press__item">
+                                <Blockquote cite={item.source}>
+                                    {item.quote}
+                                </Blockquote>
+                                <span class="quote-press__meta">{item.meta}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Legal citation -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Judgment Citation</span>
+            <span class="pl-example__tags">Legal document · Justified · Paragraph number</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="quote-legal">
+
+                <div class="quote-legal__inner">
+
+                    <span class="quote-legal__court">{judgment.court}</span>
+
+                    <div class="quote-legal__case">
+                        <span class="quote-legal__ref">{judgment.caseRef}</span>
+                        <span class="quote-legal__name">{judgment.name}</span>
+                    </div>
+
+                    <p class="quote-legal__intro">
+                        On the adequacy of standard contractual clauses where the
+                        recipient is established outside the Union, the Court held
+                        as follows.
+                    </p>
+
+                    <div class="quote-legal__quote">
+                        <span class="quote-legal__para">[105]</span>
+                        <Blockquote>
+                            {judgmentQuote}
+                        </Blockquote>
+                    </div>
+
+                    <dl class="quote-legal__meta">
+                        {judgmentMeta.map(item => (
+                            <div>
+                                <dt>{item.key}</dt>
+                                <dd>{item.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <div class="quote-legal__foot">
+                        <span>Delivered {judgment.date}</span>
+                        <span>ECLI:EU:C:2020:559</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Literary epigraph -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Chapter Epigraph</span>
+            <span class="pl-example__tags">Book page · Centred · Drop cap below</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="quote-book">
+
+                <div class="quote-book__page">
+
+                    <span class="quote-book__part">{chapterMeta.part}</span>
+
+                    <p class="quote-book__chapter">{chapterMeta.chapter}</p>
+
+                    <h2 class="quote-book__title">{chapterMeta.title}</h2>
+
+                    <span class="quote-book__rule" aria-hidden="true"></span>
+
+                    <Blockquote cite={epigraph.author}>
+                        {epigraph.quote}
+                    </Blockquote>
+
+                    <span class="quote-book__work">
+                        {epigraph.work}, {epigraph.year}
+                    </span>
+
+                    <div class="quote-book__body">
+                        <p>{chapterOpening}</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Customer testimonial -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Customer Testimonial</span>
+            <span class="pl-example__tags">Dark · Serif quote · Hard numbers</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="quote-client">
+
+                <div class="quote-client__inner">
+
+                    <Blockquote>
+                        {testimonial.quote}
+                    </Blockquote>
+
+                    <div class="quote-client__who">
+                        <Avatar initials={testimonial.initials} size="lg" bordered />
+                        <div>
+                            <div class="quote-client__name">{testimonial.name}</div>
+                            <div class="quote-client__role">
+                                {testimonial.role}, {testimonial.company}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quote-client__stats">
+                        {testimonialStats.map(stat => (
+                            <div class="quote-client__stat">
+                                <div class="quote-client__stat-value">{stat.value}</div>
+                                <span class="quote-client__stat-label">{stat.label}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="quote-client__logos">
+                        <span class="quote-client__logos-label">Also migrated</span>
+                        {testimonialLogos.map(logo => (
+                            <span class="quote-client__logo">{logo}</span>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

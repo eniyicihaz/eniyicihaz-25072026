@@ -1,0 +1,79 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+
+const scale = [
+    { label: "Display", size: "4rem", weight: 700 },
+    { label: "H1", size: "3rem", weight: 700 },
+    { label: "H2", size: "2.25rem", weight: 700 },
+    { label: "H3", size: "1.875rem", weight: 600 },
+    { label: "H4", size: "1.5rem", weight: 600 },
+    { label: "Body", size: "1rem", weight: 400 },
+    { label: "Small", size: ".875rem", weight: 400 },
+    { label: "Caption", size: ".75rem", weight: 400 }
+];
+---
+
+<DSLayout title="Typography">
+
+    <PageHeader
+        badge="Foundation"
+        title="Typography"
+        description="Typography creates hierarchy, readability and consistency throughout the design system."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Maintain a consistent typographic scale across every interface.
+    </Note>
+
+    <Divider label="Scale" />
+
+    <Section
+        title="Type Scale"
+        description="Recommended font sizes used by the design system."
+    >
+
+        <Preview title="Typography Scale">
+
+            <div style="display:flex;flex-direction:column;gap:32px;">
+
+                {
+                    scale.map(item => (
+                        <div>
+                            <div
+                                style={`font-size:${item.size};font-weight:${item.weight};line-height:1.2;`}
+                            >
+                                The quick brown fox
+                            </div>
+
+                            <div
+                                style="margin-top:8px;color:var(--text-muted);font-size:.875rem;"
+                            >
+                                {item.label} • {item.size} • {item.weight}
+                            </div>
+                        </div>
+                    ))
+                }
+
+            </div>
+
+        </Preview>
+
+    </Section>
+
+</DSLayout>

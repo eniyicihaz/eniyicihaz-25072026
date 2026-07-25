@@ -1,0 +1,334 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Icon/IconPatterns.css";
+
+import Icon from "../../../ds/components/ui/atoms/Icon/Icon.astro";
+
+import {
+    Ear,
+    Bluetooth,
+    BatteryFull,
+    ShieldCheck,
+    Sun,
+    CloudRain,
+    Cloud,
+    Wind,
+    CheckCircle2,
+    AlertTriangle,
+    XCircle,
+    Info,
+    Search,
+    Bell,
+    Settings,
+    Copy,
+    Share2,
+    Download,
+    Trash2,
+    Figma,
+    Github,
+    Slack,
+    PackageCheck,
+    Truck,
+    MapPin,
+    Home,
+    Phone,
+    Mail,
+    SkipForward,
+    Play,
+    Heart,
+    Volume2,
+    Wifi,
+    Music
+} from "lucide-astro";
+
+import {
+    deviceFeatures,
+    weatherDays,
+    systemStatus,
+    toolbarGroups,
+    editorFiles,
+    deliverySteps,
+    deliveryContact,
+    nowPlaying,
+    playerControls,
+    playerMeta
+} from "../../../ds/patterns/Icon/icon.data";
+
+const icons: Record<string, any> = {
+    Ear, Bluetooth, BatteryFull, ShieldCheck,
+    Sun, CloudRain, Cloud, Wind,
+    CheckCircle2, AlertTriangle, XCircle, Info,
+    Search, Bell, Settings, Copy, Share2, Download, Trash2,
+    Figma, Github, Slack,
+    PackageCheck, Truck, MapPin, Home, Phone, Mail,
+    SkipForward, Play, Heart, Volume2, Wifi, Music
+};
+---
+
+<DSLayout title="Icon">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Icon</h1>
+
+        <p class="pl-head__lede">
+            Five places a glyph carries meaning — a feature grid, a weather
+            and status strip, an editor toolbar, a delivery tracker
+            and music player controls.
+        </p>
+
+    </header>
+
+    <!-- 01 — Feature grid -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Feature Grid</span>
+            <span class="pl-example__tags">Hearing care · Tiled glyphs · Four features</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icon-device">
+
+                <div class="icon-device__inner">
+
+                    <span class="icon-device__kicker">Neden bu cihaz</span>
+                    <h2 class="icon-device__title">Dört öne çıkan özellik</h2>
+
+                    <div class="icon-device__grid">
+                        {deviceFeatures.map(feature => (
+                            <article class="icon-device__card">
+                                <span class="icon-device__glyph">
+                                    <Icon icon={icons[feature.icon]} size={22} decorative />
+                                </span>
+                                <h3 class="icon-device__card-title">{feature.title}</h3>
+                                <p class="icon-device__card-body">{feature.body}</p>
+                            </article>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Weather + status -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Weather &amp; Status</span>
+            <span class="pl-example__tags">Dashboard · Forecast strip · Coloured status glyphs</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icon-weather">
+
+                <div class="icon-weather__inner">
+
+                    <h2 class="icon-weather__title">Five day forecast</h2>
+
+                    <div class="icon-weather__strip">
+                        {weatherDays.map(day => (
+                            <div class="icon-weather__day">
+                                <span class="icon-weather__day-label">{day.day}</span>
+                                <span class="icon-weather__icon">
+                                    <Icon icon={icons[day.icon]} size={22} decorative />
+                                </span>
+                                <span class="icon-weather__temp">{day.temp}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <h3 class="icon-weather__status-title">System status</h3>
+
+                    {systemStatus.map(status => (
+                        <div class="icon-weather__status-row">
+                            <span class={`icon-weather__status-glyph--${status.tone}`}>
+                                <Icon icon={icons[status.icon]} size={18} decorative />
+                            </span>
+                            {status.label}
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Editor toolbar -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Editor Toolbar</span>
+            <span class="pl-example__tags">Dark · Grouped icon buttons · File list</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icon-toolbar">
+
+                <div class="icon-toolbar__inner">
+
+                    <h2 class="icon-toolbar__title">Brand refresh</h2>
+
+                    <div class="icon-toolbar__bar">
+                        {toolbarGroups.map(group => (
+                            <div class="icon-toolbar__group">
+                                {group.icons.map(name => (
+                                    <span class="icon-toolbar__btn">
+                                        <Icon icon={icons[name]} size={18} title={name} />
+                                    </span>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="icon-toolbar__files">
+                        {editorFiles.map(file => (
+                            <div class="icon-toolbar__file">
+                                <span class="icon-toolbar__file-icon">
+                                    <Icon icon={icons[file.icon]} size={18} decorative />
+                                </span>
+                                <span class="icon-toolbar__file-name">{file.name}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Delivery tracking -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Delivery Tracking</span>
+            <span class="pl-example__tags">Connected step icons · Contact row</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icon-deliver">
+
+                <div class="icon-deliver__card">
+
+                    <h2 class="icon-deliver__title">Arriving today</h2>
+                    <p class="icon-deliver__order">Order #AV-88214</p>
+
+                    <div class="icon-deliver__steps">
+                        {deliverySteps.map(step => (
+                            <div class:list={["icon-deliver__step", step.done && "icon-deliver__step--done"]}>
+                                <span class="icon-deliver__step-icon">
+                                    <Icon icon={icons[step.icon]} size={18} decorative />
+                                </span>
+                                <span class="icon-deliver__step-label">{step.label}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="icon-deliver__contact">
+                        {deliveryContact.map(contact => (
+                            <div class="icon-deliver__contact-row">
+                                <span class="icon-deliver__contact-icon">
+                                    <Icon icon={icons[contact.icon]} size={16} decorative />
+                                </span>
+                                {contact.label}
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Music player -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Music Player</span>
+            <span class="pl-example__tags">Dark glass · Accessible controls · Meta row</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icon-player">
+
+                <div class="icon-player__card">
+
+                    <div class="icon-player__art" aria-hidden="true"></div>
+
+                    <div class="icon-player__title">{nowPlaying.title}</div>
+                    <div class="icon-player__artist">{nowPlaying.artist}</div>
+
+                    <div class="icon-player__controls">
+                        {playerControls.map(name => (
+                            <button
+                                type="button"
+                                class:list={[
+                                    "icon-player__control",
+                                    name === "Play" && "icon-player__control--play"
+                                ]}
+                            >
+                                <Icon
+                                    icon={icons[name]}
+                                    size={name === "Play" ? 22 : 18}
+                                    title={name}
+                                />
+                            </button>
+                        ))}
+                    </div>
+
+                    <div class="icon-player__meta">
+                        {playerMeta.map(item => (
+                            <span class="icon-player__meta-item">
+                                <span class="icon-player__meta-icon">
+                                    <Icon icon={icons[item.icon]} size={14} decorative />
+                                </span>
+                                {item.label}
+                            </span>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

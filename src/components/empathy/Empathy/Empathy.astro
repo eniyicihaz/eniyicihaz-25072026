@@ -1,0 +1,172 @@
+---
+// Empathy — "Tanıdık geliyor mu?". The homepage's quietest section.
+// Spec: docs/EMPATHY_SPECIFICATION.md · DNA: PRINCIPLES §1 · Visual: DESIGN_SYSTEM §6.
+// Lead layer is story, not acoustic (§ moodboard) — the interface stays out
+// of the way; four lines reveal one at a time as the reader scrolls to them.
+import EmpathyLine from "./atoms/EmpathyLine/EmpathyLine.astro";
+import EmpathySignalThread from "./atoms/EmpathySignalThread/EmpathySignalThread.astro";
+import { empathy } from "./empathy.data";
+
+const [opening, development, peak, transition] = empathy.lines;
+---
+
+<section class="empathy" aria-labelledby="empathy-title">
+  <h2 class="empathy__heading" id="empathy-title">{empathy.heading}</h2>
+
+  <div class="empathy__inner">
+    <EmpathyLine text={opening.text} />
+    <EmpathyLine text={development.text} />
+    <EmpathySignalThread />
+    <EmpathyLine text={peak.text} emphasis={peak.emphasis} />
+    <EmpathyLine text={transition.text} />
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".empathy");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var lines = Array.from(section.querySelectorAll("[data-rise]"));
+    var thread = section.querySelector(".empathy-signal");
+    if (!lines.length) return;
+
+    // Arm hidden start only now that we can undo it — if this script never
+    // runs, every line renders visible.
+    lines.forEach(function (el) {
+      el.dataset.anim = "pending";
+    });
+
+    // Queue + busy flag: guarantees only one line animates at a time, even
+    // when a fast scroll (Page Down, keyboard End, a hard trackpad flick)
+    // makes IntersectionObserver report several lines intersecting within
+    // the same batched callback.
+    var queue = [];
+    var busy = false;
+
+    function startReveal(el) {
+      if (el.dataset.anim !== "pending") return;
+      el.dataset.anim = "in";
+      if (el.dataset.emphasis === "true" && thread) {
+        thread.dataset.phase = "peak";
+        setTimeout(function () {
+          thread.dataset.phase = "settled";
+        }, 1400);
+      }
+      busy = true;
+      var settled = false;
+      function next() {
+        if (settled) return;
+        settled = true;
+        el.removeEventListener("animationend", next);
+        busy = false;
+        processQueue();
+      }
+      el.addEventListener("animationend", next);
+      // Safety net: never let the queue stall if animationend doesn't fire.
+      setTimeout(next, 900);
+    }
+
+    function processQueue() {
+      if (busy || !queue.length) return;
+      startReveal(queue.shift());
+    }
+
+    function enqueue(el) {
+      if (el.dataset.anim !== "pending" || queue.indexOf(el) !== -1) return;
+      queue.push(el);
+    }
+
+    var ioAlive = false;
+    var io;
+
+    // A hidden/throttled tab never delivers callbacks; content stuck at
+    // opacity 0 is worse than a skipped animation. Reveal everything at once
+    // if the observer never fires (matches Hero/Footer's failsafe).
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) {
+        lines.forEach(function (el) {
+          el.dataset.anim = "in";
+        });
+      }
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        // Sort by document order so a batched callback still enqueues
+        // top-to-bottom, regardless of the order IO reports entries in.
+        entries
+          .filter(function (entry) {
+            return entry.isIntersecting;
+          })
+          .map(function (entry) {
+            return entry.target;
+          })
+          .sort(function (a, b) {
+            return lines.indexOf(a) - lines.indexOf(b);
+          })
+          .forEach(function (el) {
+            enqueue(el);
+            io.unobserve(el);
+          });
+        processQueue();
+      },
+      { threshold: 0.6 }
+    );
+
+    lines.forEach(function (el) {
+      io.observe(el);
+    });
+  })();
+</script>
+
+<style>
+  .empathy {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    /* Scoped tokens — same self-sufficient pattern as FooterCta's --fcta-*:
+       declared directly on the component root, no separate tokens file. */
+    --empathy-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --empathy-rise-dur: 700ms;
+    --empathy-line-gap: clamp(var(--space-16), 10vw, var(--space-24));
+  }
+
+  /* sr-only: names the section for the document outline/screen readers
+     without a visible heading (this section speaks only through its lines). */
+  .empathy__heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .empathy__inner {
+    max-width: 38rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--empathy-line-gap);
+  }
+
+  @media (max-width: 640px) {
+    .empathy {
+      padding-block: var(--space-16);
+    }
+    .empathy__inner {
+      padding-inline: var(--space-4);
+    }
+  }
+</style>

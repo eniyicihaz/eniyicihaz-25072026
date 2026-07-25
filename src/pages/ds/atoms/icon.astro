@@ -1,0 +1,113 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import {
+  Search,
+  Phone,
+  HeartHandshake,
+  Ear,
+  Settings,
+  User,
+  Bell,
+  Check,
+} from "lucide-astro";
+
+import Icon from "../../../ds/components/ui/atoms/Icon/Icon.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Icon"
+      description="Lucide tabanlı ikon bileşeni."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Default">
+
+      <Icon icon={Search} />
+
+      <Icon icon={Phone} />
+
+      <Icon icon={HeartHandshake} />
+
+      <Icon icon={Ear} />
+
+    </Preview>
+
+    <Preview title="Sizes">
+
+      <Icon icon={Search} size={16} />
+
+      <Icon icon={Search} size={20} />
+
+      <Icon icon={Search} size={24} />
+
+      <Icon icon={Search} size={32} />
+
+      <Icon icon={Search} size={40} />
+
+      <Icon icon={Search} size={48} />
+
+    </Preview>
+
+    <Preview title="Colors">
+
+      <Icon icon={HeartHandshake} color="#005baa" />
+
+      <Icon icon={Check} color="#16a34a" />
+
+      <Icon icon={Bell} color="#f59e0b" />
+
+      <Icon icon={Settings} color="#dc2626" />
+
+      <Icon icon={User} color="#64748b" />
+
+    </Preview>
+
+    <Preview title="Stroke Width">
+
+      <Icon icon={Ear} strokeWidth={1} />
+
+      <Icon icon={Ear} strokeWidth={1.5} />
+
+      <Icon icon={Ear} strokeWidth={2} />
+
+      <Icon icon={Ear} strokeWidth={2.5} />
+
+    </Preview>
+
+    <Preview title="Accessibility">
+
+      <Icon
+        icon={Phone}
+        title="Telefon"
+      />
+
+      <Icon
+        icon={Search}
+        decorative
+      />
+
+    </Preview>
+
+  </section>
+
+</DSLayout>
+
+<style>
+.page {
+  max-width: 1300px;
+}
+</style>

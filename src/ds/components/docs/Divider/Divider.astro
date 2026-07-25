@@ -1,0 +1,27 @@
+---
+import "./Divider.css";
+
+interface Props {
+    label?: string;
+}
+
+const {
+    label
+} = Astro.props;
+---
+
+<div
+    class="divider"
+    role="separator"
+    aria-label={label}
+>
+
+    {
+        label && (
+            <span class="divider__label">
+                {label}
+            </span>
+        )
+    }
+
+</div>

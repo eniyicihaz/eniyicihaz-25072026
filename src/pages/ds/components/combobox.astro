@@ -1,0 +1,330 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Combobox/ComboboxPatterns.css";
+
+import Combobox from "../../../ds/components/ui/atoms/Combobox/Combobox.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Input from "../../../ds/components/ui/atoms/Input/Input.astro";
+
+import {
+    clinicOptions,
+    clinicFacts,
+    commandOptions,
+    commandCategories,
+    commandRecent,
+    countryOptions,
+    formSteps,
+    assigneeOptions,
+    issueFields,
+    issueMeta,
+    airportOptions,
+    destinationOptions,
+    routeTrust
+} from "../../../ds/patterns/Combobox/combobox.data";
+---
+
+<DSLayout title="Combobox">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Combobox</h1>
+
+        <p class="pl-head__lede">
+            Five searchable choices — a clinic finder, a command palette,
+            a country code field, an issue assignee and a flight route.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic search -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Clinic Search</span>
+            <span class="pl-example__tags">Hearing care · Searchable · Centred card</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="combo-clinic">
+
+                <div class="combo-clinic__card">
+
+                    <span class="combo-clinic__kicker">Randevu</span>
+                    <h2 class="combo-clinic__title">En yakın şubeyi bulun</h2>
+                    <p class="combo-clinic__lede">
+                        Şehir veya semt yazmaya başlayın, size en yakın şubeleri
+                        listeleyelim.
+                    </p>
+
+                    <div class="combo-clinic__field">
+                        <Combobox
+                            id="clinic-search"
+                            name="clinic"
+                            placeholder="Semt veya şube adı yazın…"
+                            options={clinicOptions}
+                            value="kadikoy"
+                        />
+                    </div>
+
+                    <dl class="combo-clinic__facts">
+                        {clinicFacts.map(fact => (
+                            <div class="combo-clinic__fact">
+                                <dt>{fact.key}</dt>
+                                <dd>{fact.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <div class="combo-clinic__action">
+                        <Button size="lg" fullWidth>Randevu al</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Command palette -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Command Palette</span>
+            <span class="pl-example__tags">Dark overlay · Recent · Categories</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="combo-palette">
+
+                <div class="combo-palette__panel">
+
+                    <div class="combo-palette__recent">
+                        <span>Recent:</span>
+                        {commandRecent.map(item => (
+                            <span class="combo-palette__recent-item">{item}</span>
+                        ))}
+                    </div>
+
+                    <div class="combo-palette__field">
+                        <Combobox
+                            id="command-palette"
+                            name="command"
+                            placeholder="Type a command or search…"
+                            options={commandOptions}
+                        />
+                    </div>
+
+                    <div class="combo-palette__categories">
+                        {commandCategories.map(category => (
+                            <span class="combo-palette__category">{category}</span>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Country / phone field -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Country Code Field</span>
+            <span class="pl-example__tags">Checkout form · Step rail · Fused fields</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="combo-phone">
+
+                <div class="combo-phone__card">
+
+                    <div class="combo-phone__steps">
+                        {formSteps.map(step => (
+                            <span class:list={["combo-phone__step", `combo-phone__step--${step.state}`]}>
+                                <span class="combo-phone__step-n">
+                                    {step.state === "done" ? "✓" : step.n}
+                                </span>
+                                {step.label}
+                            </span>
+                        ))}
+                    </div>
+
+                    <h2 class="combo-phone__title">Contact details</h2>
+
+                    <div class="combo-phone__field">
+                        <label class="combo-phone__label" for="phone-row">Phone number</label>
+                        <div class="combo-phone__row" id="phone-row">
+                            <Combobox
+                                id="phone-country"
+                                name="country"
+                                options={countryOptions}
+                                value="NL"
+                            />
+                            <Input type="tel" placeholder="6 1234 5678" fullWidth />
+                        </div>
+                    </div>
+
+                    <div class="combo-phone__field">
+                        <label class="combo-phone__label" for="phone-email">Work email</label>
+                        <Input
+                            id="phone-email"
+                            type="email"
+                            placeholder="you@company.com"
+                            fullWidth
+                        />
+                    </div>
+
+                    <div class="combo-phone__foot">
+                        <span class="combo-phone__foot-note">Step 2 of 3</span>
+                        <Button>Continue to billing</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Issue tracker assignee -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Issue Assignee</span>
+            <span class="pl-example__tags">Dark · Inline field list · App chrome</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="combo-issue">
+
+                <div class="combo-issue__card">
+
+                    <header class="combo-issue__head">
+                        <span class="combo-issue__id">{issueMeta.id}</span>
+                        <h2 class="combo-issue__title">{issueMeta.title}</h2>
+                    </header>
+
+                    <div class="combo-issue__field">
+                        <span class="combo-issue__field-label">Assignee</span>
+                        <Combobox
+                            id="issue-assignee"
+                            name="assignee"
+                            options={assigneeOptions}
+                            value="PA"
+                        />
+                    </div>
+
+                    {issueFields.map(field => (
+                        <div class="combo-issue__field">
+                            <span class="combo-issue__field-label">{field.label}</span>
+                            <span class="combo-issue__value">{field.value}</span>
+                        </div>
+                    ))}
+
+                    <footer class="combo-issue__foot">
+                        <span>Updated 12 minutes ago</span>
+                        <span>REL-412</span>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Flight route picker -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Flight Route Picker</span>
+            <span class="pl-example__tags">Travel · Fused booking bar · Deep blue</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="combo-route">
+
+                <div class="combo-route__inner">
+
+                    <span class="combo-route__kicker">Summer routes now open</span>
+
+                    <h2 class="combo-route__title">Portugal, direct, from €89</h2>
+
+                    <p class="combo-route__lede">
+                        Nineteen weekly departures from the Netherlands and Belgium.
+                        Search by city or airport code.
+                    </p>
+
+                    <div class="combo-route__bar">
+
+                        <div class="combo-route__cell">
+                            <span class="combo-route__label">From</span>
+                            <Combobox
+                                id="route-from"
+                                name="from"
+                                options={airportOptions}
+                                value="AMS"
+                            />
+                        </div>
+
+                        <div class="combo-route__cell">
+                            <span class="combo-route__label">To</span>
+                            <Combobox
+                                id="route-to"
+                                name="to"
+                                options={destinationOptions}
+                                placeholder="Where to?"
+                            />
+                        </div>
+
+                        <div class="combo-route__go">
+                            <Button size="lg">Search flights</Button>
+                        </div>
+
+                    </div>
+
+                    <div class="combo-route__trust">
+                        {routeTrust.map(item => (
+                            <span>{item}</span>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

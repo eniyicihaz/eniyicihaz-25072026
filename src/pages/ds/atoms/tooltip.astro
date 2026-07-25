@@ -1,0 +1,168 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Tooltip from "../../../ds/components/ui/atoms/Tooltip/Tooltip.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+---
+
+<DSLayout>
+
+<section class="page">
+
+    <PageHeader
+        category="ATOM"
+        title="Tooltip"
+        description="Hover ve focus durumlarında bilgi gösteren premium tooltip bileşeni."
+    />
+
+    <ComponentMeta
+        version="1.0.0"
+        status="stable"
+    />
+
+    <Preview title="Placements">
+
+        <div class="demo-row">
+
+            <Tooltip text="Top Tooltip">
+                <Button>Top</Button>
+            </Tooltip>
+
+            <Tooltip
+                text="Bottom Tooltip"
+                placement="bottom"
+            >
+                <Button>Bottom</Button>
+            </Tooltip>
+
+            <Tooltip
+                text="Left Tooltip"
+                placement="left"
+            >
+                <Button>Left</Button>
+            </Tooltip>
+
+            <Tooltip
+                text="Right Tooltip"
+                placement="right"
+            >
+                <Button>Right</Button>
+            </Tooltip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Variants">
+
+        <div class="demo-row">
+
+            <Tooltip
+                text="Dark tooltip"
+                variant="dark"
+            >
+                <Button>Dark</Button>
+            </Tooltip>
+
+            <Tooltip
+                text="Light tooltip"
+                variant="light"
+            >
+                <Button variant="outline">Light</Button>
+            </Tooltip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Without Arrow">
+
+        <div class="demo-row">
+
+            <Tooltip
+                text="Arrow disabled"
+                arrow={false}
+            >
+                <Button>No Arrow</Button>
+            </Tooltip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Long Content">
+
+        <div class="demo-row">
+
+            <Tooltip
+                text="Bu tooltip uzun metinleri destekler. Maksimum genişliğe ulaştığında otomatik olarak alt satıra geçer."
+                maxWidth="280px"
+            >
+                <Button>Long Tooltip</Button>
+            </Tooltip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Delay">
+
+        <div class="demo-row">
+
+            <Tooltip
+                text="300ms delay"
+                delay={300}
+            >
+                <Button>300 ms</Button>
+            </Tooltip>
+
+            <Tooltip
+                text="800ms delay"
+                delay={800}
+            >
+                <Button>800 ms</Button>
+            </Tooltip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Disabled">
+
+        <div class="demo-row">
+
+            <Tooltip
+                text="Disabled tooltip"
+                disabled
+            >
+                <Button disabled>
+                    Disabled
+                </Button>
+            </Tooltip>
+
+        </div>
+
+    </Preview>
+
+</section>
+
+<style>
+
+.page{
+    max-width:1300px;
+}
+
+.demo-row{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:1rem;
+}
+
+</style>
+
+</DSLayout>

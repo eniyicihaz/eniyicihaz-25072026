@@ -1,0 +1,54 @@
+.ds-image {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  width: 100%;
+  margin: 0;
+}
+
+.ds-image__img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: cover;
+
+  border-radius: var(--ds-radius-lg, 12px);
+
+  background: var(--ds-surface-secondary, #f8fafc);
+}
+
+.ds-image__img--cover {
+  object-fit: cover;
+}
+
+.ds-image__img--contain {
+  object-fit: contain;
+}
+
+.ds-image__img--fill {
+  object-fit: fill;
+}
+
+.ds-image__img--none {
+  object-fit: none;
+}
+
+.ds-image__img--scale-down {
+  object-fit: scale-down;
+}
+
+.ds-image__img--square {
+  border-radius: 0;
+}
+
+.ds-image__caption {
+  color: var(--ds-text-secondary, #64748b);
+
+  font-size: .875rem;
+  line-height: 1.5;
+
+  text-align: center;
+}

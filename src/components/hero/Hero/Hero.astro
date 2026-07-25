@@ -1,0 +1,263 @@
+---
+// Hero — "İlk Netlik Anı". The homepage's reference section.
+// Spec: docs/HERO_SPECIFICATION.md · DNA: PRINCIPLES §1 · Visual: DESIGN_SYSTEM §6.
+// The interface performs the promise: scattered acoustic lines resolve into one
+// aligned signal while the copy settles.
+import "./hero.tokens.css";
+import HeroEyebrow from "./atoms/HeroEyebrow/HeroEyebrow.astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import HeroScrollCue from "./atoms/HeroScrollCue/HeroScrollCue.astro";
+import HeroTrustRow from "./molecules/HeroTrustRow/HeroTrustRow.astro";
+import HeroSignalField from "./molecules/HeroSignalField/HeroSignalField.astro";
+import { hero } from "./hero.data";
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__inner hero-container">
+    <HeroSignalField />
+
+    <div class="hero__content">
+      <div class="hero__eyebrow" data-rise>
+        <HeroEyebrow text={hero.eyebrow} />
+      </div>
+
+      <h1 class="hero__headline" id="hero-title" data-rise>{hero.headline}</h1>
+
+      <p class="hero__subhead" data-rise>{hero.subhead}</p>
+
+      <div class="hero__cta" data-rise>
+        <CtaButton label={hero.cta.label} href={hero.cta.href} />
+      </div>
+
+      <div class="hero__trust" data-rise>
+        <HeroTrustRow items={hero.trust} brandLockup={hero.brandLockup} />
+      </div>
+
+      <p class="hero__tagline" data-rise>{hero.tagline}</p>
+    </div>
+
+    <div class="hero__cue">
+      <HeroScrollCue label={hero.scrollCue} />
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Arm the scattered/hidden start only now that we can undo it — if this
+    // script never runs, the hero renders fully resolved and visible.
+    hero.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      hero.dataset.anim = "in";
+      if (io) io.disconnect();
+      // Retire the animation once it has played so its final state stops
+      // competing with idle/hover transitions.
+      setTimeout(function () {
+        hero.dataset.anim = "done";
+      }, 1700);
+    }
+
+    // A hidden/throttled tab never delivers callbacks; content stuck at
+    // opacity 0 is worse than a skipped animation. Show it if nothing arrives.
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(hero);
+  })();
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--color-background);
+    color: var(--color-text);
+  }
+
+  /* Layer 1 — soft brand glow behind the signal. Its own compositor layer so
+     scrolling the hero composites this instead of repainting the gradient. */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform;
+    background: radial-gradient(
+      60% 50% at 50% 42%,
+      var(--hero-glow),
+      transparent 70%
+    );
+  }
+
+  /* Layer 2 — film grain for warmth (continuity with the footer). Inlined
+     SVG turbulence, tiled small and repeated rather than stretched across
+     the whole section — rasterizing feTurbulence at full-hero size is what
+     was causing the scroll-time flicker/jank; a small repeating tile is
+     cheap to paint once and composite. will-change promotes its own layer
+     so it never repaints alongside the animating signal lines. */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.03;
+    pointer-events: none;
+    will-change: transform;
+    background-image: var(--texture-grain);
+    background-size: 220px 220px;
+    background-repeat: repeat;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    min-height: var(--hero-min-h);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--space-20) var(--space-16);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 46rem;
+  }
+
+  .hero__eyebrow {
+    margin: 0;
+  }
+
+  .hero__headline {
+    margin: var(--space-5) 0 0;
+    /* Display type — deliberately outside the DS scale, which tops out at 36px. */
+    font-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+    text-wrap: balance;
+  }
+
+  .hero__subhead {
+    margin: var(--space-5) 0 0;
+    max-width: 34rem;
+    font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  .hero__cta {
+    margin-top: var(--space-8);
+  }
+
+  .hero__trust {
+    margin-top: var(--space-6);
+  }
+
+  .hero__tagline {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-sm);
+    /* text-muted, not text-soft: this is read copy (the brand signature),
+       and text-soft fails WCAG AA here (~2.6:1 on white vs muted's ~7.6:1). */
+    color: var(--color-text-muted);
+  }
+
+  .hero__cue {
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-8);
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  /* --- Entrance ---------------------------------------------------------- */
+
+  /* Hidden start only while armed; if JS never runs, content is visible. */
+  .hero[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .hero[data-anim="in"] [data-rise] {
+    animation: hero-rise var(--hero-rise-dur) var(--hero-ease) both;
+  }
+
+  /* Staggered settle — eyebrow first, tagline last (HERO_SPECIFICATION §6). */
+  .hero[data-anim="in"] .hero__eyebrow {
+    animation-delay: 0ms;
+  }
+  .hero[data-anim="in"] .hero__headline {
+    animation-delay: 160ms;
+  }
+  .hero[data-anim="in"] .hero__subhead {
+    animation-delay: 300ms;
+  }
+  .hero[data-anim="in"] .hero__cta {
+    animation-delay: 520ms;
+  }
+  .hero[data-anim="in"] .hero__trust {
+    animation-delay: 640ms;
+  }
+  .hero[data-anim="in"] .hero__tagline {
+    animation-delay: 760ms;
+  }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive -------------------------------------------------------- */
+
+  @media (max-width: 640px) {
+    .hero__inner {
+      padding-block: var(--space-16) var(--space-12);
+    }
+    .hero__cue {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

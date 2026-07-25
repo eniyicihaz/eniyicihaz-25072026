@@ -1,0 +1,407 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Progress/ProgressPatterns.css";
+
+import Progress from "../../../ds/components/ui/atoms/Progress/Progress.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    hearingTestSteps,
+    hearingFrequencies,
+    hearingNotes,
+    campaign,
+    campaignTiers,
+    storageTotal,
+    storageBreakdown,
+    raceMeta,
+    raceSplits,
+    pipelineStages,
+    pipelineMeta
+} from "../../../ds/patterns/Progress/progress.data";
+---
+
+<DSLayout title="Progress">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Progress</h1>
+
+        <p class="pl-head__lede">
+            Five things worth measuring — an online hearing test, a public
+            fundraising campaign, an account nearing its storage limit,
+            a runner at 34 km and a build in flight.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Hearing test
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Online Hearing Test</span>
+            <span class="pl-example__tags">Hearing care · Step rail · Per-frequency bars</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="prog-test">
+
+                <div class="prog-test__card">
+
+                    <header class="prog-test__head">
+
+                        <span class="prog-test__kicker">Adım 3 / 5</span>
+
+                        <h2 class="prog-test__title">Sağ kulak testi</h2>
+
+                        <p class="prog-test__lede">
+                            Her tonu duyduğunuzda düğmeye basın. Ses giderek
+                            kısılacak — duymadığınızda beklemeniz yeterli.
+                        </p>
+
+                        <Progress
+                            value={54}
+                            label="Test ilerlemesi"
+                            showValue
+                            size="md"
+                        />
+
+                    </header>
+
+                    <div class="prog-test__steps">
+                        {hearingTestSteps.map(step => (
+                            <span class:list={["prog-test__step", `prog-test__step--${step.state}`]}>
+                                {step.label}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div class="prog-test__body">
+
+                        <h3 class="prog-test__body-title">Frekans yanıtı · Sağ kulak</h3>
+
+                        {hearingFrequencies.map((freq, i) => (
+                            <div
+                                class:list={[
+                                    "prog-test__freq",
+                                    !freq.done && freq.right === 0 && "prog-test__freq--pending",
+                                    i === 2 && "prog-test__freq--active"
+                                ]}
+                            >
+                                <span class="prog-test__freq-hz">{freq.hz}</span>
+                                <Progress value={freq.right} size="sm" />
+                                <span class="prog-test__freq-db">
+                                    {freq.right > 0 ? `${freq.right} dB` : "—"}
+                                </span>
+                            </div>
+                        ))}
+
+                        <ul class="prog-test__notes">
+                            {hearingNotes.map(note => (
+                                <li>{note}</li>
+                            ))}
+                        </ul>
+
+                    </div>
+
+                    <footer class="prog-test__foot">
+                        <span class="prog-test__foot-note">
+                            Bu test tanı yerine geçmez.
+                        </span>
+                        <Button>Devam et</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Crowdfunding
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Crowdfunding Campaign</span>
+            <span class="pl-example__tags">Civic · Hero bar · Tier capacity</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="prog-fund">
+
+                <div class="prog-fund__inner">
+
+                    <span class="prog-fund__kicker">Community project</span>
+
+                    <h2 class="prog-fund__title">{campaign.title}</h2>
+
+                    <div class="prog-fund__amounts">
+                        <span class="prog-fund__raised">{campaign.raised}</span>
+                        <span class="prog-fund__goal">raised of {campaign.goal} goal</span>
+                    </div>
+
+                    <div class="prog-fund__bar">
+                        <Progress value={campaign.percent} size="lg" />
+                    </div>
+
+                    <div class="prog-fund__meta">
+                        <span><strong>{campaign.backers}</strong> backers</span>
+                        <span><strong>{campaign.daysLeft}</strong> days left</span>
+                        <span><strong>{campaign.percent}%</strong> funded</span>
+                    </div>
+
+                    <div class="prog-fund__tiers">
+                        {campaignTiers.map(tier => (
+                            <div class="prog-fund__tier">
+                                <div class="prog-fund__tier-amount">{tier.amount}</div>
+                                <p class="prog-fund__tier-label">{tier.label}</p>
+                                <div class="prog-fund__tier-bar">
+                                    <Progress
+                                        value={tier.claimed}
+                                        max={tier.limit}
+                                        size="sm"
+                                    />
+                                    <span class="prog-fund__tier-claimed">
+                                        {tier.claimed} of {tier.limit} claimed
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="prog-fund__action">
+                        <Button size="lg">Back this project</Button>
+                        <span class="prog-fund__action-note">
+                            Nothing is charged unless we reach the goal.
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Storage breakdown
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Storage Breakdown</span>
+            <span class="pl-example__tags">Account settings · Total + categories · Swatches</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="prog-storage">
+
+                <div class="prog-storage__card">
+
+                    <header class="prog-storage__head">
+                        <div>
+                            <h2 class="prog-storage__title">Storage</h2>
+                            <p class="prog-storage__plan">Family plan · 5 members</p>
+                        </div>
+                        <div class="prog-storage__used">
+                            <strong>{storageTotal.used}</strong>
+                            <span>of {storageTotal.total} used</span>
+                        </div>
+                    </header>
+
+                    <div class="prog-storage__total">
+                        <Progress value={storageTotal.percent} variant="warning" size="lg" />
+                    </div>
+
+                    <div class="prog-storage__rows">
+                        {storageBreakdown.map(item => (
+                            <div class="prog-storage__row">
+                                <div>
+                                    <div class="prog-storage__row-label">
+                                        <span class:list={["prog-storage__swatch", `prog-storage__swatch--${item.variant}`]}></span>
+                                        {item.label}
+                                    </div>
+                                    <Progress
+                                        value={item.value}
+                                        variant={item.variant}
+                                        size="sm"
+                                    />
+                                </div>
+                                <span class="prog-storage__row-size">{item.size}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <footer class="prog-storage__foot">
+                        <p class="prog-storage__foot-note">
+                            You will stop receiving backups at 100%.
+                        </p>
+                        <Button size="sm">Upgrade to 1 TB</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Marathon splits
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Live Race Tracking</span>
+            <span class="pl-example__tags">Sport · Monospace clock · Split rows</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="prog-race">
+
+                <div class="prog-race__inner">
+
+                    <span class="prog-race__event">{raceMeta.event}</span>
+
+                    <h2 class="prog-race__runner">{raceMeta.runner}</h2>
+
+                    <div class="prog-race__clock">
+                        <span class="prog-race__elapsed">{raceMeta.elapsed}</span>
+                        <span class="prog-race__pace">{raceMeta.pace}</span>
+                    </div>
+
+                    <div class="prog-race__bar">
+                        <Progress
+                            value={raceMeta.percent}
+                            label={`${raceMeta.distance} of 42.2 km`}
+                            showValue
+                            size="lg"
+                        />
+                    </div>
+
+                    <div class="prog-race__splits">
+                        {raceSplits.map(split => (
+                            <div class="prog-race__split">
+                                <span class="prog-race__split-label">{split.label}</span>
+                                <Progress value={split.value} size="sm" />
+                                <span class="prog-race__split-time">{split.time}</span>
+                                <span class="prog-race__split-pace">{split.pace}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="prog-race__foot">
+                        <span>Position 412 of 14,208</span>
+                        <span>Updated 40 seconds ago</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Build pipeline
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Build Pipeline</span>
+            <span class="pl-example__tags">CI console · Monospace stages · State chips</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="prog-build">
+
+                <div class="prog-build__inner">
+
+                    <header class="prog-build__head">
+
+                        <div>
+                            <div class="prog-build__title">
+                                <span class="prog-build__spinner" aria-hidden="true"></span>
+                                relay/fieldnote-studio
+                            </div>
+                            <div class="prog-build__elapsed">Running for 1m 02s</div>
+                        </div>
+
+                        <dl class="prog-build__meta">
+                            {pipelineMeta.map(item => (
+                                <div>
+                                    <dt>{item.key}</dt>
+                                    <dd>{item.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                    </header>
+
+                    {pipelineStages.map(stage => (
+                        <div class:list={["prog-build__stage", `prog-build__stage--${stage.state}`]}>
+
+                            <span class="prog-build__stage-name">{stage.name}</span>
+
+                            <div>
+                                <div class="prog-build__stage-detail">{stage.detail}</div>
+                                <Progress
+                                    value={stage.value}
+                                    variant={stage.variant}
+                                    size="sm"
+                                />
+                            </div>
+
+                            <span class:list={["prog-build__state", `prog-build__state--${stage.state}`]}>
+                                {stage.state}
+                            </span>
+
+                            <span class="prog-build__time">{stage.time}</span>
+
+                        </div>
+                    ))}
+
+                    <div class="prog-build__foot">
+                        <span>2 passed · 1 running · 2 queued</span>
+                        <span>relay-ci v4.2.0</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

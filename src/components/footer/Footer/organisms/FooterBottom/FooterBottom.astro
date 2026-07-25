@@ -1,0 +1,35 @@
+---
+import LegalBar from "../../molecules/LegalBar/LegalBar.astro";
+import SgkBadge from "../../atoms/SgkBadge/SgkBadge.astro";
+import { legal, company } from "../../data";
+---
+
+<div class="footer-bottom">
+  <div class="footer-bottom__inner ftr-container">
+    <LegalBar copyright={legal.copyright} links={legal.links} />
+    <SgkBadge label={company.sgkLabel} variant="dark" />
+  </div>
+</div>
+
+<style>
+  .footer-bottom {
+    background: var(--footer-bg-bottom);
+    border-top: 1px solid var(--footer-border);
+  }
+
+  .footer-bottom__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+  }
+
+  @media (max-width: 767px) {
+    .footer-bottom__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+  }
+</style>

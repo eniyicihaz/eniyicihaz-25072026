@@ -1,0 +1,12 @@
+---
+import "./Code.css";
+import type { CodeProps } from "./Code.types";
+
+const {
+  class: className = "",
+} = Astro.props as CodeProps;
+---
+
+<code class={`ds-code ${className}`}>
+  <slot />
+</code>

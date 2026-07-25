@@ -1,0 +1,66 @@
+---
+import "../styles/base/global.css";
+
+import Sidebar from "../components/layout/Sidebar/Sidebar.astro";
+import Topbar from "../components/layout/Topbar/Topbar.astro";
+import Content from "../components/layout/Content/Content.astro";
+import Footer from "../components/layout/Footer/Footer.astro";
+
+interface Props {
+    title?: string;
+}
+
+const {
+    title = "Design System"
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    />
+
+    <title>{title} | En İyi Cihaz Design System</title>
+
+    <meta
+        name="description"
+        content="Premium Design System Documentation"
+    />
+
+</head>
+
+<body>
+
+    <div class="ds-layout">
+
+        <Sidebar />
+
+        <main class="ds-main">
+
+            <Topbar />
+
+            <Content>
+                <slot />
+            </Content>
+
+            <Footer />
+
+        </main>
+
+    </div>
+
+    <script>
+        import "../assets/js/layout.js";
+    </script>
+
+</body>
+
+</html>

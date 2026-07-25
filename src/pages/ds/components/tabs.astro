@@ -1,0 +1,420 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Tabs/TabsPatterns.css";
+
+import Tabs from "../../../ds/components/ui/atoms/Tabs/Tabs.astro";
+import Accordion from "../../../ds/components/ui/atoms/Accordion/Accordion.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    pricingTabs,
+    pricingPlans,
+    featureTabs,
+    featurePanel,
+    faqTabs,
+    faqItems,
+    productTabs,
+    productItems,
+    docsTabs,
+    docsSteps,
+    docsResponse
+} from "../../../ds/patterns/Tabs/tabs.data";
+---
+
+<DSLayout title="Tabs">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Tabs</h1>
+
+        <p class="pl-head__lede">
+            Five sections where tabs organise the choice — a billing switch,
+            a product tour, a help centre, a shop and an SDK reference.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Pricing
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Pricing</span>
+            <span class="pl-example__tags">Segmented switch · Three tiers · Centered</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tabs-pricing">
+
+                <div class="tabs-pricing__inner">
+
+                    <header class="tabs-pricing__head">
+                        <h2 class="tabs-pricing__title">Simple pricing that scales with you</h2>
+                        <p class="tabs-pricing__lede">
+                            Every plan includes unlimited collaborators.
+                            You only pay for what you publish.
+                        </p>
+                    </header>
+
+                    <div class="tabs-pricing__switch">
+                        <Tabs tabs={pricingTabs} activeTab="annual" />
+                    </div>
+
+                    <div class="tabs-pricing__grid">
+                        {pricingPlans.map(plan => (
+                            <div
+                                class:list={[
+                                    "tabs-pricing__plan",
+                                    plan.featured && "tabs-pricing__plan--featured"
+                                ]}
+                            >
+                                <div class="tabs-pricing__plan-head">
+                                    <span class="tabs-pricing__plan-name">{plan.name}</span>
+                                    {plan.featured && (
+                                        <Badge variant="primary" size="sm">Most popular</Badge>
+                                    )}
+                                </div>
+
+                                <div class="tabs-pricing__price">
+                                    <strong>{plan.price}</strong>
+                                </div>
+                                <span class="tabs-pricing__period">{plan.period}</span>
+
+                                <p class="tabs-pricing__summary">{plan.summary}</p>
+
+                                <ul class="tabs-pricing__list">
+                                    {plan.features.map(feature => (
+                                        <li>{feature}</li>
+                                    ))}
+                                </ul>
+
+                                <div class="tabs-pricing__action">
+                                    <Button
+                                        variant={plan.featured ? "primary" : "outline"}
+                                        fullWidth
+                                    >
+                                        {plan.cta}
+                                    </Button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Features
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Features</span>
+            <span class="pl-example__tags">Dark tour · Underlined rail · Split panel</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tabs-feature">
+
+                <div class="tabs-feature__inner">
+
+                    <header class="tabs-feature__head">
+                        <span class="tabs-feature__kicker">Product tour</span>
+                        <h2 class="tabs-feature__title">
+                            One surface, four jobs
+                        </h2>
+                    </header>
+
+                    <div class="tabs-feature__tabs">
+                        <Tabs tabs={featureTabs} activeTab="editor">
+
+                            <div class="tabs-feature__panel">
+
+                                <div>
+                                    <h3 class="tabs-feature__panel-title">
+                                        {featurePanel.title}
+                                    </h3>
+
+                                    <p class="tabs-feature__panel-body">
+                                        {featurePanel.body}
+                                    </p>
+
+                                    <ul class="tabs-feature__points">
+                                        {featurePanel.points.map(point => (
+                                            <li>{point}</li>
+                                        ))}
+                                    </ul>
+
+                                    <div class="tabs-feature__metric">
+                                        <strong>{featurePanel.metric.value}</strong>
+                                        <span>{featurePanel.metric.label}</span>
+                                    </div>
+                                </div>
+
+                                <div class="tabs-feature__visual" aria-hidden="true">
+
+                                    <div class="tabs-feature__visual-bar">
+                                        <span class="tabs-feature__visual-dot"></span>
+                                        <span class="tabs-feature__visual-dot"></span>
+                                        <span class="tabs-feature__visual-dot"></span>
+                                        <span class="tabs-feature__visual-name">
+                                            pricing-page.mdx
+                                        </span>
+                                    </div>
+
+                                    <div class="tabs-feature__visual-body">
+                                        <span class="tabs-feature__line tabs-feature__line--accent"></span>
+                                        <span class="tabs-feature__line"></span>
+                                        <span class="tabs-feature__line tabs-feature__line--mid"></span>
+                                        <span class="tabs-feature__line tabs-feature__line--short"></span>
+                                        <span class="tabs-feature__line"></span>
+                                        <span class="tabs-feature__line tabs-feature__line--short"></span>
+                                        <span class="tabs-feature__cursor">◆ Yuki is editing</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </Tabs>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — FAQ
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">FAQ</span>
+            <span class="pl-example__tags">Help centre · Pill rail · Accordion panel</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tabs-faq">
+
+                <div class="tabs-faq__inner">
+
+                    <header class="tabs-faq__head">
+                        <span class="tabs-faq__eyebrow">Help centre</span>
+                        <h2 class="tabs-faq__title">Find it faster</h2>
+                        <p class="tabs-faq__lede">
+                            Pick a topic — the four most common questions for each
+                            are answered below.
+                        </p>
+                    </header>
+
+                    <div class="tabs-faq__tabs">
+                        <Tabs tabs={faqTabs} activeTab="billing" centered>
+
+                            <div class="tabs-faq__panel">
+                                <Accordion
+                                    items={faqItems}
+                                    flush
+                                    bordered={false}
+                                    animation="fade"
+                                />
+                            </div>
+
+                        </Tabs>
+                    </div>
+
+                    <div class="tabs-faq__foot">
+                        <span>Still stuck?</span>
+                        <Button variant="outline" size="sm">Contact support</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Products
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Products</span>
+            <span class="pl-example__tags">Shop · Category rail · Four column grid</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tabs-product">
+
+                <div class="tabs-product__inner">
+
+                    <header class="tabs-product__head">
+                        <div>
+                            <span class="tabs-product__kicker">Collection</span>
+                            <h2 class="tabs-product__title">Everything for the living room</h2>
+                        </div>
+                        <span class="tabs-product__note">Free delivery over $500</span>
+                    </header>
+
+                    <div class="tabs-product__tabs">
+                        <Tabs tabs={productTabs} activeTab="chairs">
+
+                            <div class="tabs-product__grid">
+                                {productItems.map(item => (
+                                    <article>
+                                        <div class={`tabs-product__plate tabs-product__plate--${item.tone}`}>
+                                            {item.label && (
+                                                <div class="tabs-product__label">
+                                                    <Badge variant="secondary" size="sm">
+                                                        {item.label}
+                                                    </Badge>
+                                                </div>
+                                            )}
+                                            <span class="tabs-product__form" aria-hidden="true"></span>
+                                        </div>
+                                        <h3 class="tabs-product__name">{item.name}</h3>
+                                        <p class="tabs-product__detail">{item.detail}</p>
+                                        <p class="tabs-product__price">{item.price}</p>
+                                    </article>
+                                ))}
+                            </div>
+
+                        </Tabs>
+                    </div>
+
+                    <div class="tabs-product__foot">
+                        <Button variant="outline">View all seating</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Documentation
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Documentation</span>
+            <span class="pl-example__tags">SDK reference · Editor tabs · Response panel</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="tabs-docs">
+
+                <div class="tabs-docs__inner">
+
+                    <header class="tabs-docs__head">
+                        <span class="tabs-docs__crumb">Docs / Quickstart</span>
+                        <h2 class="tabs-docs__title">Send your first event</h2>
+                        <p class="tabs-docs__lede">
+                            Three steps and about four minutes. Pick your language
+                            and copy the snippet.
+                        </p>
+                    </header>
+
+                    <div class="tabs-docs__steps">
+                        {docsSteps.map(step => (
+                            <span class="tabs-docs__step">
+                                <span class="tabs-docs__step-n">{step.n}</span>
+                                {step.label}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div class="tabs-docs__grid">
+
+                        <div class="tabs-docs__tabs">
+                            <Tabs tabs={docsTabs} activeTab="node">
+                                <pre class="tabs-docs__code"><code><span class="tok-comment">// npm install @relay/sdk</span>
+<span class="tok-key">import</span> {'{'} Relay {'}'} <span class="tok-key">from</span> <span class="tok-str">"@relay/sdk"</span>;
+
+<span class="tok-key">const</span> relay = <span class="tok-key">new</span> Relay({'{'}
+  token: process.env.RELAY_TOKEN
+{'}'});
+
+<span class="tok-key">const</span> event = <span class="tok-key">await</span> relay.events.send({'{'}
+  type: <span class="tok-str">"order.created"</span>,
+  data: {'{'} orderId: <span class="tok-str">"NW-40218"</span> {'}'},
+  idempotencyKey: order.id
+{'}'});
+
+console.log(event.status); <span class="tok-comment">// "delivered"</span></code></pre>
+                            </Tabs>
+                        </div>
+
+                        <aside class="tabs-docs__side">
+
+                            <h3 class="tabs-docs__side-title">
+                                Response
+                                <Badge variant="success" size="sm">200</Badge>
+                            </h3>
+
+                            <dl class="tabs-docs__response">
+                                {docsResponse.map(row => (
+                                    <div class="tabs-docs__response-row">
+                                        <dt>{row.key}</dt>
+                                        <dd>{row.value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+
+                            <p class="tabs-docs__side-note">
+                                Retries reuse the idempotency key, so sending twice
+                                never creates a duplicate event.
+                            </p>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

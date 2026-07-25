@@ -1,0 +1,449 @@
+/* ==========================================================
+   OTPInput — five patterns
+
+   01  otp-login    2FA login verification (eniyicihaz.com)
+   02  otp-bank     Transfer confirmation, dark
+   03  otp-sim      Phone number verification, 4 digits
+   04  otp-support  Support access code, error state
+   05  otp-kiosk    Payment terminal PIN, disabled
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — 2FA login verification
+   ========================================================== */
+
+.otp-login{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.otp-login__card{
+    width:100%;
+    max-width:400px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+    text-align:center;
+}
+
+.otp-login__icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    width:52px;
+    height:52px;
+    margin:0 auto 18px;
+
+    border-radius:999px;
+    background:rgb(15 118 110 / .1);
+
+    font-size:1.4rem;
+}
+
+.otp-login__title{
+    font-size:1.15rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.otp-login__sub{
+    margin:8px 0 24px;
+
+    font-size:.85rem;
+    line-height:1.5;
+    color:#6b8b86;
+}
+
+.otp-login .ds-otp-input{
+    justify-content:center;
+    margin:0 auto;
+}
+
+.otp-login .ds-otp-input__field{
+    border-color:rgb(18 59 54 / .18);
+}
+
+.otp-login .ds-otp-input__field:focus{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .14);
+}
+
+.otp-login__foot{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    margin-top:22px;
+
+    font-size:.82rem;
+    color:#6b8b86;
+}
+
+.otp-login__timer{
+    font-family:var(--pat-mono);
+    font-weight:650;
+    color:#0f766e;
+}
+
+
+/* ==========================================================
+   02 — Banking transfer confirmation, dark
+   ========================================================== */
+
+.otp-bank{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#0b1220;
+}
+
+.otp-bank__card{
+    width:100%;
+    max-width:420px;
+    padding:36px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.otp-bank__amount-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+
+    padding-bottom:20px;
+    margin-bottom:22px;
+
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.otp-bank__amount-label{
+    font-size:.8rem;
+    color:rgb(255 255 255 / .45);
+}
+
+.otp-bank__amount{
+    font-size:1.4rem;
+    font-weight:800;
+    letter-spacing:-.03em;
+    color:#fff;
+}
+
+.otp-bank__to{
+    margin-top:-14px;
+    margin-bottom:22px;
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(255 255 255 / .35);
+}
+
+.otp-bank__title{
+    font-size:1rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.otp-bank__sub{
+    margin:8px 0 22px;
+
+    font-size:.83rem;
+    line-height:1.5;
+    color:rgb(255 255 255 / .45);
+}
+
+.otp-bank .ds-otp-input{
+    justify-content:center;
+    margin:0 auto;
+}
+
+.otp-bank .ds-otp-input__field{
+    background:rgb(255 255 255 / .04);
+    border-color:rgb(255 255 255 / .14);
+    color:#fff;
+}
+
+.otp-bank .ds-otp-input__field:focus{
+    border-color:#38bdf8;
+    box-shadow:0 0 0 3px rgb(56 189 248 / .16);
+}
+
+.otp-bank__action{
+    margin-top:24px;
+}
+
+.otp-bank .btn--primary{
+    --btn-bg:#38bdf8;
+    --btn-color:#0b1220;
+}
+
+.otp-bank .btn--primary:hover{
+    --btn-bg:#7dd3fc;
+}
+
+
+/* ==========================================================
+   03 — Phone number verification, 4 digits
+   ========================================================== */
+
+.otp-sim{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.otp-sim__card{
+    width:100%;
+    max-width:380px;
+    padding:34px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+    text-align:center;
+}
+
+.otp-sim__title{
+    font-size:1.1rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.otp-sim__sub{
+    margin:8px 0 24px;
+
+    font-size:.85rem;
+    line-height:1.5;
+    color:var(--pat-soft);
+}
+
+.otp-sim .ds-otp-input{
+    justify-content:center;
+    margin:0 auto;
+    gap:1rem;
+}
+
+.otp-sim .ds-otp-input__field{
+    width:56px;
+    height:64px;
+    font-size:1.3rem;
+}
+
+.otp-sim__resend{
+    margin-top:22px;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Support access code, error state
+   ========================================================== */
+
+.otp-support{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.otp-support__card{
+    width:100%;
+    max-width:400px;
+    padding:34px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+    text-align:center;
+}
+
+.otp-support__title{
+    font-size:1.1rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.otp-support__sub{
+    margin:8px 0 24px;
+
+    font-size:.85rem;
+    line-height:1.5;
+    color:var(--pat-soft);
+}
+
+.otp-support .ds-otp-input{
+    justify-content:center;
+    margin:0 auto;
+}
+
+.otp-support .ds-otp-input__field{
+    border-color:#dc2626;
+    color:#dc2626;
+}
+
+.otp-support .ds-otp-input__field:focus{
+    border-color:#dc2626;
+    box-shadow:0 0 0 3px rgb(220 38 38 / .14);
+}
+
+.otp-support__error{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    margin-top:18px;
+
+    font-size:.82rem;
+    color:#dc2626;
+}
+
+
+/* ==========================================================
+   05 — Payment terminal PIN, disabled
+   ========================================================== */
+
+.otp-kiosk{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.otp-kiosk__card{
+    width:100%;
+    max-width:340px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .04);
+    text-align:center;
+}
+
+.otp-kiosk__icon{
+    font-size:1.8rem;
+    margin-bottom:12px;
+}
+
+.otp-kiosk__title{
+    font-size:1.05rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.otp-kiosk__sub{
+    margin:8px 0 24px;
+
+    font-size:.84rem;
+    color:rgb(255 255 255 / .45);
+}
+
+.otp-kiosk .ds-otp-input{
+    justify-content:center;
+    margin:0 auto;
+}
+
+.otp-kiosk .ds-otp-input__field{
+    background:rgb(255 255 255 / .03);
+    border-color:rgb(255 255 255 / .12);
+    color:#fff;
+}
+
+.otp-kiosk__spinner{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:22px;
+
+    font-size:.78rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.otp-kiosk__dot{
+    width:6px;
+    height:6px;
+    border-radius:999px;
+    background:rgb(255 255 255 / .4);
+
+    animation:otp-kiosk-pulse 1.2s ease-in-out infinite;
+}
+
+.otp-kiosk__dot:nth-child(2){ animation-delay:.15s; }
+.otp-kiosk__dot:nth-child(3){ animation-delay:.3s; }
+
+@keyframes otp-kiosk-pulse{
+    0%, 100%{ opacity:.3; }
+    50%{ opacity:1; }
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .otp-login{ padding:44px 16px 56px; }
+    .otp-login__card{ padding:24px 20px; }
+
+    .otp-bank{ padding:44px 16px 56px; }
+    .otp-bank__card{ padding:24px 20px; }
+
+    .otp-sim{ padding:44px 16px 56px; }
+    .otp-sim__card{ padding:22px; }
+    .otp-sim .ds-otp-input__field{ width:48px; height:56px; }
+
+    .otp-support{ padding:44px 16px 56px; }
+    .otp-support__card{ padding:22px; }
+
+    .otp-kiosk{ padding:44px 16px 56px; }
+    .otp-kiosk__card{ padding:22px; }
+
+}
+
+@media (max-width:400px){
+
+    .otp-login .ds-otp-input,
+    .otp-bank .ds-otp-input,
+    .otp-support .ds-otp-input,
+    .otp-kiosk .ds-otp-input{
+        gap:.4rem;
+    }
+
+    .otp-login .ds-otp-input__field,
+    .otp-bank .ds-otp-input__field,
+    .otp-support .ds-otp-input__field,
+    .otp-kiosk .ds-otp-input__field{
+        width:40px;
+        height:48px;
+        font-size:1rem;
+    }
+
+}

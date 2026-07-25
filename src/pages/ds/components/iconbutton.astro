@@ -1,0 +1,322 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/IconButton/IconButtonPatterns.css";
+
+import IconButton from "../../../ds/components/ui/atoms/IconButton/IconButton.astro";
+
+import {
+    Phone,
+    MessageCircle,
+    CalendarDays,
+    SkipBack,
+    Play,
+    SkipForward,
+    Volume2,
+    Pencil,
+    Copy,
+    Trash2,
+    X,
+    Share2,
+    Link2,
+    Facebook,
+    Linkedin,
+    Mail
+} from "lucide-astro";
+
+import {
+    appointmentRows,
+    playerTrack,
+    deviceRows,
+    chatPreview,
+    shareArticle
+} from "../../../ds/patterns/IconButton/iconbutton.data";
+
+const statusClass = (status: string) =>
+    status === "Active"
+        ? "icb-table__status--active"
+        : status === "In repair"
+        ? "icb-table__status--repair"
+        : "icb-table__status--retired";
+---
+
+<DSLayout title="Icon Button">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Icon Button</h1>
+
+        <p class="pl-head__lede">
+            Five contexts where a single icon carries the whole action —
+            clinic row actions, player transport controls, a data table,
+            a chat launcher and an article share bar.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic appointment row actions -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment Actions</span>
+            <span class="pl-example__tags">Hearing care · Ghost + primary variants</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icb-clinic">
+
+                <div class="icb-clinic__card">
+
+                    <header class="icb-clinic__head">
+                        <div class="icb-clinic__title">Bugünkü randevular</div>
+                        <p class="icb-clinic__sub">3 hasta bekliyor</p>
+                    </header>
+
+                    {appointmentRows.map(row => (
+                        <div class="icb-clinic__row">
+                            <div>
+                                <div class="icb-clinic__name">{row.name}</div>
+                                <div class="icb-clinic__meta">{row.time} · {row.note}</div>
+                            </div>
+                            <div class="icb-clinic__actions">
+                                <IconButton icon={Phone} label={`${row.name} için ara`} variant="ghost" size="sm" />
+                                <IconButton icon={MessageCircle} label={`${row.name} için mesaj gönder`} variant="ghost" size="sm" />
+                                <IconButton icon={CalendarDays} label="Randevuyu yeniden planla" variant="primary" size="sm" />
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Podcast transport controls -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Transport Controls</span>
+            <span class="pl-example__tags">Media · Dark · Circle · Loading state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icb-player">
+
+                <div class="icb-player__card">
+
+                    <span class="icb-player__kicker">Now playing</span>
+                    <h2 class="icb-player__title">{playerTrack.title}</h2>
+                    <p class="icb-player__show">{playerTrack.show}</p>
+
+                    <div class="icb-player__scrub">
+                        <div class="icb-player__fill" style={`width:${playerTrack.progress}%`}></div>
+                    </div>
+                    <div class="icb-player__time">
+                        <span>{playerTrack.elapsed}</span>
+                        <span>{playerTrack.duration}</span>
+                    </div>
+
+                    <div class="icb-player__controls">
+                        <IconButton icon={SkipBack} label="Previous track" variant="ghost" size="md" />
+                        <IconButton icon={Play} label="Buffering" variant="primary" size="xl" loading />
+                        <IconButton icon={SkipForward} label="Next track" variant="ghost" size="md" />
+                        <IconButton icon={Volume2} label="Volume" variant="ghost" size="md" />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Device table row actions -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Device Table</span>
+            <span class="pl-example__tags">Inventory · Danger variant · Disabled state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icb-table">
+
+                <div class="icb-table__card">
+
+                    <header class="icb-table__head">
+                        <div class="icb-table__title">Hearing aid inventory</div>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Serial</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {deviceRows.map(row => (
+                                <tr>
+                                    <td class="icb-table__model">{row.model}</td>
+                                    <td class="icb-table__serial">{row.serial}</td>
+                                    <td>
+                                        <span class={`icb-table__status ${statusClass(row.status)}`}>
+                                            {row.status}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="icb-table__actions">
+                                            <IconButton
+                                                icon={Pencil}
+                                                label={`Edit ${row.model} ${row.serial}`}
+                                                variant="ghost"
+                                                size="sm"
+                                                disabled={row.locked}
+                                            />
+                                            <IconButton
+                                                icon={Copy}
+                                                label={`Duplicate ${row.model} ${row.serial}`}
+                                                variant="ghost"
+                                                size="sm"
+                                                disabled={row.locked}
+                                            />
+                                            <IconButton
+                                                icon={Trash2}
+                                                label={`Delete ${row.model} ${row.serial}`}
+                                                variant="danger"
+                                                size="sm"
+                                                disabled={row.locked}
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — FAB launcher + chat panel header -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Chat Launcher</span>
+            <span class="pl-example__tags">Support widget · Floating action button</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icb-chat">
+
+                <div class="icb-chat__fab-zone">
+                    <span class="icb-chat__fab-label">Collapsed</span>
+                    <IconButton icon={MessageCircle} label="Open support chat" variant="primary" size="xl" />
+                </div>
+
+                <div class="icb-chat__panel">
+                    <header class="icb-chat__panel-head">
+                        <div>
+                            <div class="icb-chat__agent">{chatPreview.agent}</div>
+                            <p class="icb-chat__status">{chatPreview.status}</p>
+                        </div>
+                        <IconButton icon={X} label="Close chat" variant="light" size="sm" bordered={false} />
+                    </header>
+                    <div class="icb-chat__panel-body">
+                        {chatPreview.lastMessage}
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Article share bar -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Share Bar</span>
+            <span class="pl-example__tags">Editorial · Outline variant · External links</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="icb-share">
+
+                <div class="icb-share__card">
+
+                    <span class="icb-share__kicker">{shareArticle.kicker}</span>
+                    <h2 class="icb-share__title">{shareArticle.title}</h2>
+                    <p class="icb-share__read">{shareArticle.read}</p>
+
+                    <div class="icb-share__bar">
+                        <span class="icb-share__label">Share</span>
+                        <IconButton
+                            icon={Facebook}
+                            label="Share on Facebook"
+                            variant="outline"
+                            size="sm"
+                            href="#0"
+                            target="_blank"
+                        />
+                        <IconButton
+                            icon={Linkedin}
+                            label="Share on LinkedIn"
+                            variant="outline"
+                            size="sm"
+                            href="#0"
+                            target="_blank"
+                        />
+                        <IconButton
+                            icon={Mail}
+                            label="Share by email"
+                            variant="outline"
+                            size="sm"
+                            href="#0"
+                        />
+                        <IconButton icon={Link2} label="Copy link" variant="outline" size="sm" />
+                        <IconButton icon={Share2} label="More share options" variant="outline" size="sm" />
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

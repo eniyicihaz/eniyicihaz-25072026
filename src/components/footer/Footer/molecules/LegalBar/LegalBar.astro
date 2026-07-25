@@ -1,0 +1,67 @@
+---
+import FooterLink from "../../atoms/FooterLink/FooterLink.astro";
+import type { LinkItem } from "../../footer.types";
+
+interface Props {
+  copyright: string;
+  links: LinkItem[];
+}
+
+const { copyright, links } = Astro.props;
+---
+
+<div class="legal-bar">
+  <p class="legal-bar__copy">{copyright}</p>
+  <ul class="legal-bar__links">
+    {
+      links.map((link) => (
+        <li class="legal-bar__item">
+          <FooterLink label={link.label} href={link.href} variant="legal" />
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .legal-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+  }
+
+  .legal-bar__copy {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--footer-muted);
+    letter-spacing: -0.005em;
+  }
+
+  .legal-bar__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .legal-bar__item {
+    position: relative;
+  }
+
+  /* Dot separators between legal links. */
+  .legal-bar__item + .legal-bar__item::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--space-5) / -2);
+    top: 50%;
+    width: 3px;
+    height: 3px;
+    margin-top: -1px;
+    border-radius: var(--radius-full);
+    background: var(--footer-border);
+  }
+</style>

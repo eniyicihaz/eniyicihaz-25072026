@@ -1,0 +1,327 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Banner/BannerPatterns.css";
+
+import Banner from "../../../ds/components/ui/atoms/Banner/Banner.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    sgkPoints,
+    sgkSteps,
+    consentLinks,
+    incidentUpdates,
+    incidentServices,
+    promoRows,
+    browserFeatures,
+    browserOptions
+} from "../../../ds/patterns/Banner/banner.data";
+---
+
+<DSLayout title="Banner">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Banner</h1>
+
+        <p class="pl-head__lede">
+            Five announcements that stop a page — a reimbursement notice,
+            a consent bar, a live incident, a store promotion and an
+            unsupported browser.
+        </p>
+
+    </header>
+
+    <!-- 01 — SGK notice -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">SGK Reimbursement</span>
+            <span class="pl-example__tags">Hearing care · Eligibility · Three steps</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ban-sgk">
+
+                <div class="ban-sgk__inner">
+
+                    <Banner variant="success" title="İşitme cihazınız SGK kapsamında">
+
+                        <Fragment slot="icon">
+                            <span class="ban-sgk__glyph" aria-hidden="true">₺</span>
+                        </Fragment>
+
+                        Sosyal Güvenlik Kurumu, işitme cihazı bedelinin büyük bölümünü
+                        karşılıyor. Katkı payı cihaz sınıfına göre değişir; hangi
+                        modelin tamamen karşılandığını randevuda birlikte netleştiririz.
+
+                        <ul class="ban-sgk__points">
+                            {sgkPoints.map(point => (
+                                <li>{point}</li>
+                            ))}
+                        </ul>
+
+                        <Fragment slot="actions">
+                            <Button>Uygunluğumu sorgula</Button>
+                        </Fragment>
+
+                    </Banner>
+
+                    <div class="ban-sgk__steps">
+                        {sgkSteps.map(step => (
+                            <div class="ban-sgk__step">
+                                <span class="ban-sgk__step-n">{step.n}</span>
+                                {step.label}
+                            </div>
+                        ))}
+                    </div>
+
+                    <p class="ban-sgk__foot">
+                        Evrak takibini biz yapıyoruz — size yalnızca randevuya gelmek kalıyor.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Consent bar -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Consent Bar</span>
+            <span class="pl-example__tags">Pinned to page foot · Legal · Three actions</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ban-consent">
+
+                <div class="ban-consent__page" aria-hidden="true">
+                    <p class="ban-consent__page-title">
+                        Duymak, bağlantıda kalmaktır.
+                    </p>
+                </div>
+
+                <div class="ban-consent__bar">
+
+                    <Banner variant="neutral" title="Çerezleri yönetin">
+
+                        Sitenin çalışması için gereken çerezleri kullanıyoruz. Analiz ve
+                        pazarlama çerezleri yalnızca siz onay verirseniz çalışır ve
+                        tercihinizi istediğiniz zaman değiştirebilirsiniz.
+
+                        <div class="ban-consent__links">
+                            {consentLinks.map(link => (
+                                <a href="#0">{link}</a>
+                            ))}
+                        </div>
+
+                        <Fragment slot="actions">
+                            <div class="ban-consent__actions">
+                                <Button variant="ghost" size="sm">Reddet</Button>
+                                <Button variant="outline" size="sm">Ayarlar</Button>
+                                <Button size="sm">Tümünü kabul et</Button>
+                            </div>
+                        </Fragment>
+
+                    </Banner>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Incident -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Live Incident</span>
+            <span class="pl-example__tags">Status page · Update log · Service states</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ban-incident">
+
+                <div class="ban-incident__inner">
+
+                    <Banner variant="warning" title="Degraded webhook delivery in eu-central">
+
+                        <Fragment slot="icon">
+                            <span class="ban-incident__pulse" aria-hidden="true">
+                                <span class="ban-incident__dot"></span>
+                            </span>
+                        </Fragment>
+
+                        We are monitoring a fix. Deliveries are queued rather than dropped,
+                        so no events will be lost — expect the backlog to clear within
+                        ten minutes.
+
+                        <Fragment slot="actions">
+                            <Button variant="glass" size="sm">Subscribe</Button>
+                        </Fragment>
+
+                    </Banner>
+
+                    <div class="ban-incident__log">
+
+                        <h3 class="ban-incident__log-title">Updates</h3>
+
+                        {incidentUpdates.map(update => (
+                            <div class="ban-incident__update">
+                                <span class="ban-incident__time">{update.time}</span>
+                                <span class="ban-incident__state">{update.state}</span>
+                                <span class="ban-incident__body">{update.body}</span>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <div class="ban-incident__services">
+                        {incidentServices.map(service => (
+                            <div class="ban-incident__service">
+                                <div class="ban-incident__service-name">{service.name}</div>
+                                <span class:list={["ban-incident__service-state", `ban-incident__service-state--${service.tone}`]}>
+                                    {service.state}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Promotion -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Store Promotion</span>
+            <span class="pl-example__tags">Full-bleed strip · Above the grid · Coupon</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ban-promo">
+
+                <div class="ban-promo__strip">
+                    <Banner variant="neutral" title="Mid-season sale — up to 30% off" bordered={false}>
+                        Ends Sunday. Discount applied automatically at checkout.
+                        <Fragment slot="actions">
+                            <span class="ban-promo__code">SUMMER26</span>
+                        </Fragment>
+                    </Banner>
+                </div>
+
+                <div class="ban-promo__shop">
+
+                    <header class="ban-promo__head">
+                        <h2 class="ban-promo__title">Seating</h2>
+                        <dl class="ban-promo__rows">
+                            {promoRows.map(row => (
+                                <div>
+                                    <dt>{row.label}</dt>
+                                    <dd>{row.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                    </header>
+
+                    <div class="ban-promo__grid" aria-hidden="true">
+                        <span class="ban-promo__plate"></span>
+                        <span class="ban-promo__plate"></span>
+                        <span class="ban-promo__plate"></span>
+                        <span class="ban-promo__plate"></span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Browser upgrade -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Unsupported Browser</span>
+            <span class="pl-example__tags">Interstitial · Centered · Feature list</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ban-browser">
+
+                <div class="ban-browser__inner">
+
+                    <Banner variant="danger" title="This app needs a newer browser">
+
+                        <Fragment slot="icon">
+                            <span class="ban-browser__glyph" aria-hidden="true">◍</span>
+                        </Fragment>
+
+                        You are running a version that cannot render the editor correctly.
+                        Updating takes about a minute and nothing in your workspace
+                        will be lost.
+
+                        <Fragment slot="actions">
+                            <Button size="lg">Update my browser</Button>
+                        </Fragment>
+
+                    </Banner>
+
+                    <div class="ban-browser__features">
+                        {browserFeatures.map(feature => (
+                            <span class="ban-browser__feature">{feature}</span>
+                        ))}
+                    </div>
+
+                    <div class="ban-browser__options">
+                        {browserOptions.map(option => (
+                            <div class="ban-browser__option">
+                                <strong>{option.name}</strong>
+                                <span>{option.version}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

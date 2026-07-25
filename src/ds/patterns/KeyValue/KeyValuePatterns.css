@@ -1,0 +1,483 @@
+/* ==========================================================
+   KeyValue — five patterns
+
+   01  kv-audiogram  Test result summary (eniyicihaz.com)
+   02  kv-receipt    Order receipt
+   03  kv-deploy     Deployment metadata, dark
+   04  kv-property   Property specification sheet
+   05  kv-policy     Insurance policy summary
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Audiogram summary
+   ========================================================== */
+
+.kv-audiogram{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+
+    background:
+        radial-gradient(55% 45% at 50% 0%, rgb(13 148 136 / .12), transparent 64%),
+        #f6fbfa;
+}
+
+.kv-audiogram__card{
+    width:100%;
+    max-width:520px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.kv-audiogram__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.kv-audiogram__title{
+    margin:16px 0 26px;
+
+    font-size:clamp(1.4rem, 2.8vw, 1.8rem);
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:#123b36;
+}
+
+.kv-audiogram .ds-key-value{
+    border-bottom-color:rgb(18 59 54 / .1);
+}
+
+.kv-audiogram .ds-key-value__label{
+    font-size:.88rem;
+    color:#6b8b86;
+}
+
+.kv-audiogram .ds-key-value__value{
+    font-size:.9rem;
+    color:#123b36;
+}
+
+.kv-audiogram__inline{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+
+    margin-top:20px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(18 59 54 / .1);
+}
+
+.kv-audiogram__inline .ds-key-value{
+    flex-direction:column;
+    gap:3px;
+}
+
+.kv-audiogram__inline .ds-key-value__label{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#8aa8a3;
+}
+
+.kv-audiogram__inline .ds-key-value__value{
+    text-align:left;
+    font-size:.9rem;
+}
+
+.kv-audiogram__action{
+    margin-top:24px;
+}
+
+.kv-audiogram .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.kv-audiogram .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Order receipt
+
+   Standard rows above, the total row broken out with
+   heavier weight and a rule of its own.
+   ========================================================== */
+
+.kv-receipt{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#faf9f7;
+}
+
+.kv-receipt__card{
+    width:100%;
+    max-width:520px;
+    overflow:hidden;
+
+    border:1px solid rgb(35 31 28 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 22px 52px rgb(35 31 28 / .08);
+}
+
+.kv-receipt__head{
+    padding:26px 30px;
+    border-bottom:1px solid rgb(35 31 28 / .1);
+}
+
+.kv-receipt__title{
+    font-family:var(--pat-serif);
+    font-size:1.4rem;
+    color:#231f1c;
+}
+
+.kv-receipt__meta{
+    margin-top:6px;
+
+    font-size:.82rem;
+    color:#8b8177;
+}
+
+.kv-receipt__body{
+    padding:8px 30px 26px;
+}
+
+.kv-receipt .ds-key-value{
+    border-bottom-color:rgb(35 31 28 / .08);
+}
+
+.kv-receipt .ds-key-value__label{
+    font-size:.88rem;
+    color:#8b8177;
+}
+
+.kv-receipt .ds-key-value__value{
+    font-size:.9rem;
+    color:#231f1c;
+}
+
+.kv-receipt__total{
+    margin-top:6px;
+    padding-top:16px;
+
+    border-top:2px solid #231f1c;
+}
+
+.kv-receipt__total .ds-key-value{
+    border-bottom:none;
+}
+
+.kv-receipt__total .ds-key-value__label{
+    font-size:1rem;
+    font-weight:700;
+    color:#231f1c;
+}
+
+.kv-receipt__total .ds-key-value__value{
+    font-size:1.3rem;
+    font-weight:800;
+    letter-spacing:-.03em;
+    color:#231f1c;
+}
+
+.kv-receipt__foot{
+    padding:20px 30px;
+    border-top:1px solid rgb(35 31 28 / .1);
+}
+
+
+/* ==========================================================
+   03 — Deployment metadata, dark
+
+   Monospace values, dense two-column grid — an operations
+   panel rather than a receipt.
+   ========================================================== */
+
+.kv-deploy{
+    padding:56px 32px 88px;
+    background:#0a0f19;
+}
+
+.kv-deploy__inner{
+    max-width:720px;
+    margin:0 auto;
+}
+
+.kv-deploy__head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding-bottom:20px;
+    margin-bottom:20px;
+
+    border-bottom:1px solid rgb(255 255 255 / .1);
+}
+
+.kv-deploy__status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:5px 12px;
+
+    border:1px solid rgb(74 222 128 / .3);
+    border-radius:var(--pat-radius-pill);
+
+    background:rgb(74 222 128 / .1);
+    color:#4ade80;
+
+    font-size:.76rem;
+    font-weight:700;
+}
+
+.kv-deploy__dot{
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+    background:#4ade80;
+}
+
+.kv-deploy__title{
+    font-family:var(--pat-mono);
+    font-size:1.02rem;
+    color:#f8fafc;
+}
+
+.kv-deploy__grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:0 32px;
+}
+
+.kv-deploy .ds-key-value{
+    border-bottom-color:rgb(255 255 255 / .08);
+}
+
+.kv-deploy .ds-key-value__label{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .38);
+}
+
+.kv-deploy .ds-key-value__value{
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    color:#f8fafc;
+}
+
+.kv-deploy__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(255 255 255 / .1);
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .3);
+}
+
+
+/* ==========================================================
+   04 — Property specification sheet
+
+   Editorial. Serif heading, rows set wide with generous
+   line height — reads like a listing document.
+   ========================================================== */
+
+.kv-property{
+    padding:64px 32px 88px;
+    background:#fbfcfe;
+}
+
+.kv-property__inner{
+    max-width:640px;
+    margin:0 auto;
+}
+
+.kv-property__title{
+    margin:0;
+
+    font-size:1.4rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:var(--pat-ink);
+}
+
+.kv-property__location{
+    margin:8px 0 28px;
+
+    font-size:.9rem;
+    color:var(--pat-soft);
+}
+
+.kv-property__panel{
+    padding:8px 28px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.kv-property .ds-key-value{
+    padding:14px 0;
+    border-bottom-color:var(--pat-line);
+}
+
+.kv-property .ds-key-value__label{
+    font-size:.9rem;
+    color:var(--pat-body);
+}
+
+.kv-property .ds-key-value__value{
+    font-size:.92rem;
+    color:var(--pat-ink);
+}
+
+
+/* ==========================================================
+   05 — Insurance policy summary
+
+   A confirmation card. Rows close with a total-style rule
+   and a renewal call to action.
+   ========================================================== */
+
+.kv-policy{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 88px;
+    background:#f7f8fa;
+}
+
+.kv-policy__card{
+    width:100%;
+    max-width:520px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.kv-policy__head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding-bottom:20px;
+    margin-bottom:6px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.kv-policy__title{
+    font-size:1.15rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.kv-policy__badge{
+    padding:4px 11px;
+
+    border-radius:var(--pat-radius-pill);
+    background:rgb(22 163 74 / .12);
+    color:#15803d;
+
+    font-size:.76rem;
+    font-weight:700;
+}
+
+.kv-policy .ds-key-value{
+    border-bottom-color:var(--pat-line);
+}
+
+.kv-policy .ds-key-value__label{
+    font-size:.87rem;
+    color:var(--pat-soft);
+}
+
+.kv-policy .ds-key-value__value{
+    font-size:.9rem;
+    color:var(--pat-ink);
+}
+
+.kv-policy__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.kv-policy__foot-note{
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .kv-deploy__grid{ grid-template-columns:minmax(0, 1fr); }
+
+}
+
+@media (max-width:720px){
+
+    .kv-audiogram{ padding:44px 16px 56px; }
+    .kv-audiogram__card{ padding:24px 20px; }
+    .kv-audiogram__inline{ gap:18px; }
+
+    .kv-receipt{ padding:44px 16px 56px; }
+    .kv-receipt__head,
+    .kv-receipt__body,
+    .kv-receipt__foot{ padding-left:20px; padding-right:20px; }
+
+    .kv-deploy{ padding:40px 16px 56px; }
+
+    .kv-property{ padding:40px 16px 56px; }
+    .kv-property__panel{ padding:6px 20px; }
+
+    .kv-policy{ padding:40px 16px 56px; }
+    .kv-policy__card{ padding:24px 20px; }
+    .kv-policy__foot{ flex-direction:column; align-items:stretch; }
+    .kv-policy__foot .btn{ width:100%; }
+
+}

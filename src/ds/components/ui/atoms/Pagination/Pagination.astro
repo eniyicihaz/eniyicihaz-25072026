@@ -1,0 +1,127 @@
+---
+import "./Pagination.css";
+import type { PaginationProps } from "./Pagination.types";
+
+const {
+  currentPage = 1,
+  totalPages = 10,
+  showFirstLast = true,
+  showPrevNext = true,
+  class: className = "",
+} = Astro.props as PaginationProps;
+
+const classes = [
+  "ds-pagination",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const pages = Array.from(
+  { length: totalPages },
+  (_, i) => i + 1
+);
+---
+
+<nav
+  class={classes}
+  aria-label="Pagination"
+>
+  <ul class="ds-pagination__list">
+
+    {
+      showFirstLast && (
+        <li class="ds-pagination__item">
+          <a
+            class:list={[
+              "ds-pagination__button",
+              currentPage === 1 &&
+                "ds-pagination__button--disabled",
+            ]}
+            href="#"
+            aria-label="First page"
+          >
+            «
+          </a>
+        </li>
+      )
+    }
+
+    {
+      showPrevNext && (
+        <li class="ds-pagination__item">
+          <a
+            class:list={[
+              "ds-pagination__button",
+              currentPage === 1 &&
+                "ds-pagination__button--disabled",
+            ]}
+            href="#"
+            aria-label="Previous page"
+          >
+            ‹
+          </a>
+        </li>
+      )
+    }
+
+    {
+      pages.map((page) => (
+        <li class="ds-pagination__item">
+          <a
+            href="#"
+            class:list={[
+              "ds-pagination__button",
+              page === currentPage &&
+                "ds-pagination__button--active",
+            ]}
+            aria-current={
+              page === currentPage
+                ? "page"
+                : undefined
+            }
+          >
+            {page}
+          </a>
+        </li>
+      ))
+    }
+
+    {
+      showPrevNext && (
+        <li class="ds-pagination__item">
+          <a
+            class:list={[
+              "ds-pagination__button",
+              currentPage === totalPages &&
+                "ds-pagination__button--disabled",
+            ]}
+            href="#"
+            aria-label="Next page"
+          >
+            ›
+          </a>
+        </li>
+      )
+    }
+
+    {
+      showFirstLast && (
+        <li class="ds-pagination__item">
+          <a
+            class:list={[
+              "ds-pagination__button",
+              currentPage === totalPages &&
+                "ds-pagination__button--disabled",
+            ]}
+            href="#"
+            aria-label="Last page"
+          >
+            »
+          </a>
+        </li>
+      )
+    }
+
+  </ul>
+</nav>

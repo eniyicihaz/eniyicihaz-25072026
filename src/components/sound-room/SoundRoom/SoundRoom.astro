@@ -1,0 +1,230 @@
+---
+// Sound Room — "Netlik Deneyimi". The homepage's interactive centrepiece,
+// the intensity arc's peak contrast ("● ZİRVE, kullanıcı çözer").
+// Spec: docs/SOUND_ROOM_SPECIFICATION.md · DNA: PRINCIPLES §1 · Visual: DESIGN_SYSTEM §6.
+// The glass panel is the only place on the page glass appears (§4) — a
+// deliberate, documented exception, not a pattern to repeat elsewhere.
+import SoundRoomStage from "./molecules/SoundRoomStage/SoundRoomStage.astro";
+import SoundRoomControls from "./molecules/SoundRoomControls/SoundRoomControls.astro";
+import { soundRoom } from "./sound-room.data";
+---
+
+<section class="sound-room" aria-labelledby="sound-room-title">
+  <h2 class="sound-room__heading" id="sound-room-title">{soundRoom.heading}</h2>
+
+  <div class="sound-room__panel" data-rise>
+    <p class="sound-room__context">{soundRoom.contextSentence}</p>
+
+    <SoundRoomStage threads={soundRoom.threads} />
+
+    <SoundRoomControls
+      clarityLabel={soundRoom.clarityLabel}
+      noiseLabel={soundRoom.noiseLabel}
+      signalLabel={soundRoom.signalLabel}
+      disclaimer={soundRoom.disclaimer}
+    />
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sound-room");
+    if (!section) return;
+
+    var panel = section.querySelector(".sound-room__panel");
+    var input = section.querySelector('input[type="range"]');
+    var threads = Array.from(section.querySelectorAll(".sound-room-thread"));
+    if (!panel || !input || !threads.length) return;
+
+    var reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // --- Entrance: panel + controls fade in together (Hero's single-shot
+    // data-rise pattern). The thread field itself is not part of this — it
+    // is always live, driven by --clarity from the very first paint (§9). ---
+    if ("IntersectionObserver" in window && !reduceMotion) {
+      panel.dataset.anim = "pending";
+
+      var ioAlive = false;
+      var io;
+
+      function reveal() {
+        if (panel.dataset.anim !== "pending") return;
+        panel.dataset.anim = "in";
+        if (io) io.disconnect();
+      }
+
+      var failsafe = setTimeout(function () {
+        if (!ioAlive) reveal();
+      }, 1500);
+
+      io = new IntersectionObserver(
+        function (entries) {
+          ioAlive = true;
+          clearTimeout(failsafe);
+          if (entries[0].isIntersecting) reveal();
+        },
+        { threshold: 0.15 }
+      );
+
+      io.observe(section);
+    }
+
+    // --- Idle invitation state (stopped on first interaction, §9). ---
+    section.dataset.touched = "false";
+
+    // --- Slider → visuals (continuous, every tick) + aria-valuetext
+    // (throttled to meaningful discrete stages, never per tick — §12). ---
+    var stages = threads
+      .map(function (el) {
+        return {
+          label: el.dataset.label,
+          threshold: Number(el.dataset.threshold),
+        };
+      })
+      .sort(function (a, b) {
+        return a.threshold - b.threshold;
+      });
+
+    function describeStage(index, value) {
+      if (index === 0) {
+        return "Netlik yüzde " + value + ": sesler hâlâ dağınık ve karışık.";
+      }
+      if (index === stages.length) {
+        return "Netlik yüzde " + value + ": tüm sesler net ve hizalı.";
+      }
+      var resolved = stages
+        .slice(0, index)
+        .map(function (s) {
+          return s.label;
+        })
+        .join(", ");
+      return "Netlik yüzde " + value + ": " + resolved + " artık net.";
+    }
+
+    // Visual feedback: every tick, cheap (single custom property write).
+    function updateVisual() {
+      var value = Number(input.value);
+      section.style.setProperty("--clarity", value);
+      if (section.dataset.touched === "false") section.dataset.touched = "true";
+    }
+
+    // Announcement: only on `change`, never on `input` — this still means
+    // "once per discrete interaction," not per tick (native range inputs
+    // fire `change` once per key press, and once per drag on release), so
+    // a fast mouse drag never floods the announcement queue. Because it is
+    // always computed from the live current value at the moment it fires,
+    // the percentage can never go stale the way a throttled `input` handler
+    // would (§12: the announced percentage must always match the current
+    // slider value; the resolved-sounds list still only changes when a
+    // threshold is actually crossed).
+    function updateAnnouncement() {
+      var value = Number(input.value);
+      var index = 0;
+      for (var i = 0; i < stages.length; i++) {
+        if (value >= stages[i].threshold) index++;
+      }
+      input.setAttribute("aria-valuetext", describeStage(index, value));
+    }
+
+    input.addEventListener("input", updateVisual);
+    input.addEventListener("change", updateAnnouncement);
+    updateVisual();
+    updateAnnouncement();
+  })();
+</script>
+
+<style>
+  .sound-room {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    /* Scoped tokens, declared directly on the component root — same
+       self-sufficient pattern as Hero/FooterCta/Empathy. */
+    --clarity: 0;
+    --sound-room-gap: 20px;
+    --sound-room-spread: 14;
+    --sound-room-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --sound-room-rise-dur: 700ms;
+  }
+
+  /* sr-only: names the section for the document outline/screen readers
+     (same recipe as Empathy's heading). */
+  .sound-room__heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* The glass panel — deliberately the only one on the page (§4). Real
+     tokens only: no new "glass" token, no backdrop-filter (§11/§13). */
+  .sound-room__panel {
+    position: relative;
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-12) var(--space-8);
+    border-radius: var(--radius-2xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .sound-room__context {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  /* --- Entrance --- */
+
+  .sound-room__panel[data-anim="pending"] {
+    opacity: 0;
+  }
+
+  .sound-room__panel[data-anim="in"] {
+    animation: sound-room-rise var(--sound-room-rise-dur) var(--sound-room-ease)
+      both;
+  }
+
+  @keyframes sound-room-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 640px) {
+    .sound-room {
+      padding-block: var(--space-16);
+    }
+    .sound-room__panel {
+      padding: var(--space-8) var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sound-room__panel[data-anim="in"] {
+      animation: none;
+    }
+  }
+</style>

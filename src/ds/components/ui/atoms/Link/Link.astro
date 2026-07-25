@@ -1,0 +1,52 @@
+---
+import "./Link.css";
+import type { LinkProps } from "./Link.types";
+
+const {
+  href,
+  target = "_self",
+  rel,
+  variant = "primary",
+  underline = false,
+  external = false,
+  disabled = false,
+  class: className = "",
+} = Astro.props as LinkProps;
+
+const classes = [
+  "ds-link",
+  `ds-link--${variant}`,
+  underline && "ds-link--underline",
+  disabled && "ds-link--disabled",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const computedRel =
+  rel ??
+  (target === "_blank" || external
+    ? "noopener noreferrer"
+    : undefined);
+---
+
+<a
+  class={classes}
+  href={disabled ? undefined : href}
+  target={target}
+  rel={computedRel}
+  aria-disabled={disabled}
+>
+  <slot />
+
+  {
+    external && (
+      <span
+        class="ds-link__icon"
+        aria-hidden="true"
+      >
+        ↗
+      </span>
+    )
+  }
+</a>

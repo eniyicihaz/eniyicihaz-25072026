@@ -1,0 +1,50 @@
+---
+import "./Image.css";
+import type { ImageProps } from "./Image.types";
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = "lazy",
+  fit = "cover",
+  rounded = true,
+  caption,
+  class: className = "",
+} = Astro.props as ImageProps;
+
+const classes = [
+  "ds-image",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const imageClasses = [
+  "ds-image__img",
+  `ds-image__img--${fit}`,
+  !rounded && "ds-image__img--square",
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<figure class={classes}>
+  <img
+    class={imageClasses}
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+  />
+
+  {
+    caption && (
+      <figcaption class="ds-image__caption">
+        {caption}
+      </figcaption>
+    )
+  }
+</figure>

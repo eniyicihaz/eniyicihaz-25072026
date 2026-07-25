@@ -1,0 +1,254 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Image/ImagePatterns.css";
+
+import Image from "../../../ds/components/ui/atoms/Image/Image.astro";
+
+import {
+    deviceGallery,
+    propertyHero,
+    propertyThumbs,
+    articleHero,
+    articleMeta,
+    recipeSteps,
+    recipeTitle,
+    teamPortraits
+} from "../../../ds/patterns/Image/image.data";
+---
+
+<DSLayout title="Image">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Image</h1>
+
+        <p class="pl-head__lede">
+            Five places a photograph carries the page — a product gallery,
+            a property listing, an article hero, a recipe method
+            and a team page.
+        </p>
+
+    </header>
+
+    <!-- 01 — Product gallery -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Product Gallery</span>
+            <span class="pl-example__tags">Hearing care · Captioned tiles · Cover fit</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="img-device">
+
+                <div class="img-device__inner">
+
+                    <span class="img-device__kicker">Nasıl çalışır</span>
+                    <h2 class="img-device__title">Signia Pure Charge&amp;Go 7AX</h2>
+
+                    <div class="img-device__grid">
+                        {deviceGallery.map(photo => (
+                            <Image
+                                src={photo.src}
+                                alt={photo.alt}
+                                caption={photo.caption}
+                                fit="cover"
+                            />
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Property listing -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Property Listing</span>
+            <span class="pl-example__tags">Travel · Hero + thumbnails · Captioned hero</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="img-property">
+
+                <div class="img-property__inner">
+
+                    <h2 class="img-property__title">
+                        Canal-side loft with a working fireplace
+                    </h2>
+                    <p class="img-property__location">Kralingen, Rotterdam</p>
+
+                    <div class="img-property__hero">
+                        <Image
+                            src={propertyHero.src}
+                            alt={propertyHero.alt}
+                            caption={propertyHero.caption}
+                            fit="cover"
+                        />
+                    </div>
+
+                    <div class="img-property__thumbs">
+                        {propertyThumbs.map(photo => (
+                            <Image src={photo.src} alt={photo.alt} fit="cover" />
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Article hero -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Article Hero</span>
+            <span class="pl-example__tags">Editorial · Full bleed · Italic caption</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="img-article">
+
+                <div class="img-article__bar">The Fieldnote / Investigations</div>
+
+                <div class="img-article__inner">
+
+                    <span class="img-article__kicker">{articleMeta.kicker}</span>
+
+                    <h2 class="img-article__title">{articleMeta.title}</h2>
+
+                    <p class="img-article__byline">
+                        {articleMeta.author} · {articleMeta.date}
+                    </p>
+
+                    <div class="img-article__hero">
+                        <Image
+                            src={articleHero.src}
+                            alt={articleHero.alt}
+                            caption={articleHero.caption}
+                            fit="cover"
+                        />
+                    </div>
+
+                    <p class="img-article__body">
+                        The port moves eleven million containers a year and almost
+                        none of the people who live beside it have ever seen it
+                        at full capacity. We spent three nights on the quay to
+                        find out what that actually looks like.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Recipe method photos -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Recipe Method</span>
+            <span class="pl-example__tags">Editorial · Sequential steps · Numbered labels</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="img-recipe">
+
+                <div class="img-recipe__inner">
+
+                    <span class="img-recipe__kicker">Method</span>
+                    <h2 class="img-recipe__title">{recipeTitle}</h2>
+
+                    <div class="img-recipe__grid">
+                        {recipeSteps.map((step, i) => (
+                            <div class="img-recipe__step">
+                                <Image src={step.src} alt={step.alt} fit="cover" />
+                                <span class="img-recipe__label">
+                                    <span class="img-recipe__n">{`0${i + 1}`}</span>
+                                    {step.label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Team portraits -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Team Portraits</span>
+            <span class="pl-example__tags">Dark · Square crop · rounded=false</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="img-team">
+
+                <div class="img-team__inner">
+
+                    <span class="img-team__kicker">The people</span>
+                    <h2 class="img-team__title">Eleven of us, no layer in between</h2>
+
+                    <div class="img-team__grid">
+                        {teamPortraits.map(person => (
+                            <div>
+                                <Image
+                                    src={person.src}
+                                    alt={person.alt}
+                                    fit="cover"
+                                    rounded={false}
+                                />
+                                <div class="img-team__name">{person.name}</div>
+                                <div class="img-team__role">{person.role}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

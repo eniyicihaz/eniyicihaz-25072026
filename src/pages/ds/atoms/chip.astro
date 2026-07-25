@@ -1,0 +1,216 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Chip from "../../../ds/components/ui/atoms/Chip/Chip.astro";
+
+import {
+    Search,
+    Check,
+    X,
+    User,
+    Star,
+    Tag
+} from "lucide-astro";
+---
+
+<DSLayout>
+
+<section class="page">
+
+    <PageHeader
+        category="ATOM"
+        title="Chip"
+        description="Etiketleme, filtreleme ve seçim işlemleri için kullanılan premium Chip bileşeni."
+    />
+
+    <ComponentMeta
+        version="1.0.0"
+        status="stable"
+    />
+
+    <Preview title="Variants">
+
+        <div class="demo-row">
+
+            <Chip>Primary</Chip>
+            <Chip variant="secondary">Secondary</Chip>
+            <Chip variant="success">Success</Chip>
+            <Chip variant="warning">Warning</Chip>
+            <Chip variant="danger">Danger</Chip>
+            <Chip variant="info">Info</Chip>
+            <Chip variant="neutral">Neutral</Chip>
+            <Chip variant="outline">Outline</Chip>
+            <Chip variant="soft">Soft</Chip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Sizes">
+
+        <div class="demo-row">
+
+            <Chip size="xs">XS</Chip>
+            <Chip size="sm">SM</Chip>
+            <Chip size="md">MD</Chip>
+            <Chip size="lg">LG</Chip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Icons">
+
+        <div class="demo-row">
+
+            <Chip leftIcon={Search}>
+                Search
+            </Chip>
+
+            <Chip
+                leftIcon={Tag}
+                rightIcon={Check}
+                variant="outline"
+            >
+                Filter
+            </Chip>
+
+            <Chip
+                leftIcon={Star}
+                variant="warning"
+            >
+                Featured
+            </Chip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Selected">
+
+        <div class="demo-row">
+
+            <Chip selected>
+                Selected
+            </Chip>
+
+            <Chip
+                selected
+                variant="success"
+            >
+                Active
+            </Chip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Clickable">
+
+        <div class="demo-row">
+
+            <Chip clickable>
+                Click Me
+            </Chip>
+
+            <Chip
+                clickable
+                variant="outline"
+            >
+                Outline
+            </Chip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Removable">
+
+        <div class="demo-row">
+
+            <Chip removable>
+                JavaScript
+            </Chip>
+
+            <Chip
+                removable
+                variant="success"
+            >
+                Astro
+            </Chip>
+
+            <Chip
+                removable
+                variant="danger"
+            >
+                React
+            </Chip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Avatar">
+
+        <div class="demo-row">
+
+            <Chip
+                avatar="https://i.pravatar.cc/80?img=12"
+                leftIcon={User}
+            >
+                John Doe
+            </Chip>
+
+            <Chip
+                avatar="https://i.pravatar.cc/80?img=22"
+                variant="outline"
+            >
+                Jane Smith
+            </Chip>
+
+        </div>
+
+    </Preview>
+
+    <Preview title="Disabled">
+
+        <div class="demo-row">
+
+            <Chip disabled>
+                Disabled
+            </Chip>
+
+            <Chip
+                disabled
+                removable
+                leftIcon={X}
+            >
+                Disabled
+            </Chip>
+
+        </div>
+
+    </Preview>
+
+</section>
+
+<style>
+
+.page{
+    max-width:1300px;
+}
+
+.demo-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    align-items:center;
+}
+
+</style>
+
+</DSLayout>

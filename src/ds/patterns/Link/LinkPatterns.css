@@ -1,0 +1,416 @@
+/* ==========================================================
+   Link — five patterns
+
+   01  lnk-footer   Clinic site footer (eniyicihaz.com)
+   02  lnk-docs      API documentation "see also" panel
+   03  lnk-article   Dark editorial article, inline citations
+   04  lnk-pricing   Pricing plan, feature links
+   05  lnk-danger    Danger zone, destructive actions
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic site footer
+   ========================================================== */
+
+.lnk-footer{
+    padding:56px 32px 64px;
+    background:#0f1b19;
+}
+
+.lnk-footer__inner{
+    max-width:880px;
+    margin:0 auto;
+}
+
+.lnk-footer__brand{
+    font-size:1.1rem;
+    font-weight:750;
+    letter-spacing:-.02em;
+    color:#fff;
+}
+
+.lnk-footer__tag{
+    margin-top:8px;
+
+    font-size:.85rem;
+    color:rgb(255 255 255 / .45);
+}
+
+.lnk-footer__grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    gap:28px;
+
+    margin-top:36px;
+}
+
+.lnk-footer__heading{
+    margin:0 0 14px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgb(255 255 255 / .4);
+}
+
+.lnk-footer__list{
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+}
+
+.lnk-footer .link{
+    color:rgb(255 255 255 / .72);
+    font-size:.9rem;
+}
+
+.lnk-footer .link:hover{
+    color:#fff;
+}
+
+.lnk-footer__bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+
+    margin-top:40px;
+    padding-top:24px;
+
+    border-top:1px solid rgb(255 255 255 / .08);
+}
+
+.lnk-footer__copy{
+    font-size:.8rem;
+    color:rgb(255 255 255 / .35);
+}
+
+.lnk-footer .link--sgk{
+    font-size:.85rem;
+}
+
+
+/* ==========================================================
+   02 — API documentation "see also"
+   ========================================================== */
+
+.lnk-docs{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 64px;
+    background:#f8fafc;
+}
+
+.lnk-docs__card{
+    width:100%;
+    max-width:560px;
+    padding:30px 32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.lnk-docs__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.lnk-docs__title{
+    margin:14px 0 4px;
+
+    font-size:1.3rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.lnk-docs__body{
+    margin:6px 0 0;
+
+    font-size:.92rem;
+    line-height:1.6;
+    color:var(--pat-soft);
+}
+
+.lnk-docs__section{
+    margin-top:26px;
+    padding-top:22px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.lnk-docs__heading{
+    margin:0 0 12px;
+
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.lnk-docs__list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.lnk-docs .link{
+    font-size:.92rem;
+}
+
+.lnk-docs__external{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    margin-top:12px;
+}
+
+
+/* ==========================================================
+   03 — Dark editorial article, inline citations
+   ========================================================== */
+
+.lnk-article{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#0b0d10;
+}
+
+.lnk-article__inner{
+    max-width:600px;
+}
+
+.lnk-article__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:#f87171;
+}
+
+.lnk-article__title{
+    margin:16px 0 10px;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.5rem, 3vw, 1.9rem);
+    font-weight:600;
+    letter-spacing:-.02em;
+    color:#f4f4f5;
+}
+
+.lnk-article__byline{
+    font-size:.82rem;
+    color:rgb(244 244 245 / .45);
+}
+
+.lnk-article__para{
+    margin-top:20px;
+
+    font-size:1rem;
+    line-height:1.75;
+    color:rgb(244 244 245 / .78);
+}
+
+.lnk-article .link{
+    color:#f4f4f5;
+}
+
+.lnk-article .link:hover{
+    color:#fca5a5;
+}
+
+
+/* ==========================================================
+   04 — Pricing plan, feature links
+   ========================================================== */
+
+.lnk-pricing{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#fbfbfa;
+}
+
+.lnk-pricing__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.lnk-pricing__plan{
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#7c3aed;
+}
+
+.lnk-pricing__price{
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+
+    margin-top:10px;
+}
+
+.lnk-pricing__amount{
+    font-size:2.1rem;
+    font-weight:800;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.lnk-pricing__cycle{
+    font-size:.88rem;
+    color:var(--pat-soft);
+}
+
+.lnk-pricing__features{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    margin:22px 0 0;
+    padding:0;
+    list-style:none;
+}
+
+.lnk-pricing__features li{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+
+    font-size:.9rem;
+    color:var(--pat-ink);
+}
+
+.lnk-pricing__check{
+    color:#7c3aed;
+}
+
+.lnk-pricing__links{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.lnk-pricing .link{
+    font-size:.87rem;
+}
+
+.lnk-pricing .link--primary{
+    color:#7c3aed;
+}
+
+
+/* ==========================================================
+   05 — Danger zone, destructive actions
+   ========================================================== */
+
+.lnk-danger{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#fef2f2;
+}
+
+.lnk-danger__card{
+    width:100%;
+    max-width:520px;
+    overflow:hidden;
+
+    border:1px solid rgb(220 38 38 / .25);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.lnk-danger__head{
+    padding:20px 26px;
+    border-bottom:1px solid rgb(220 38 38 / .18);
+}
+
+.lnk-danger__title{
+    font-size:1rem;
+    font-weight:750;
+    color:#7f1d1d;
+}
+
+.lnk-danger__sub{
+    margin-top:4px;
+
+    font-size:.85rem;
+    color:rgb(127 29 29 / .65);
+}
+
+.lnk-danger__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:16px 26px;
+}
+
+.lnk-danger__row + .lnk-danger__row{
+    border-top:1px solid rgb(15 23 42 / .06);
+}
+
+.lnk-danger__label{
+    font-size:.9rem;
+    color:var(--pat-ink);
+}
+
+.lnk-danger__desc{
+    margin-top:2px;
+
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .lnk-footer__grid{ grid-template-columns:1fr; gap:24px; }
+    .lnk-footer__bottom{ flex-direction:column; align-items:flex-start; }
+
+    .lnk-docs{ padding:36px 16px 48px; }
+    .lnk-docs__card{ padding:22px 20px; }
+
+    .lnk-article{ padding:44px 16px 56px; }
+
+    .lnk-pricing{ padding:36px 16px 48px; }
+    .lnk-pricing__card{ padding:24px 20px; }
+
+    .lnk-danger__row{ flex-direction:column; align-items:flex-start; gap:8px; }
+
+}

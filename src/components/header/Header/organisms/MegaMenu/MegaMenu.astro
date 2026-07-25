@@ -1,0 +1,426 @@
+---
+import { ChevronRight, ArrowRight } from "lucide-astro";
+import { icons } from "../../icons";
+import type { MegaMenuData } from "../../header.types";
+
+interface Props {
+  data: MegaMenuData;
+}
+
+const { data } = Astro.props;
+const PromoBg = icons.ear as any; // decorative placeholder illustration
+---
+
+<div
+  class="hd-mega"
+  id={`hd-mega-${data.id}`}
+  data-mega-panel={data.id}
+  role="region"
+  aria-label={`${data.id} menüsü`}
+>
+  <div class="hd-mega__inner">
+    <!-- Column 1: Promo (~28%) -->
+    <div class="hd-mega__promo">
+      <div class="hd-mega__promo-body">
+        <h2 class="hd-mega__promo-title">{data.promo.title}</h2>
+        <p class="hd-mega__promo-text">{data.promo.text}</p>
+        <a class="hd-mega__promo-cta" href={data.promo.cta.href}>
+          <span>{data.promo.cta.label}</span>
+          <ArrowRight size={16} aria-hidden="true" />
+        </a>
+      </div>
+      <div class="hd-mega__promo-art" aria-hidden="true">
+        <PromoBg size={140} strokeWidth={1} />
+      </div>
+    </div>
+
+    <!-- Columns 2-4: link groups -->
+    {
+      data.columns.map((col) => {
+        const ColIcon = icons[col.icon] as any;
+        return (
+          <section class="hd-mega__col">
+            <h3 class="hd-mega__col-title">
+              <span class="hd-mega__col-icon" aria-hidden="true">
+                <ColIcon size={18} />
+              </span>
+              {col.title}
+            </h3>
+            <ul class="hd-mega__list">
+              {col.links.map((link) => (
+                <li>
+                  <a class="hd-mega__link" href={link.href}>
+                    <span>{link.label}</span>
+                    <ChevronRight class="hd-mega__link-chev" size={16} aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a class="hd-mega__more" href={col.footer.href}>
+              <span>{col.footer.label}</span>
+              <ArrowRight size={15} aria-hidden="true" />
+            </a>
+          </section>
+        );
+      })
+    }
+
+    <!-- Column 5: support -->
+    {
+      (() => {
+        const SupIcon = icons[data.support.icon] as any;
+        return (
+          <section class="hd-mega__col">
+            <h3 class="hd-mega__col-title">
+              <span class="hd-mega__col-icon" aria-hidden="true">
+                <SupIcon size={18} />
+              </span>
+              {data.support.title}
+            </h3>
+            <div class="hd-mega__support-card">
+            <ul class="hd-mega__support">
+              {data.support.items.map((item) => {
+                const ItemIcon = icons[item.icon] as any;
+                return (
+                  <li>
+                    <a class="hd-mega__support-item" href="#">
+                      <span class="hd-mega__support-icon" aria-hidden="true">
+                        <ItemIcon size={20} />
+                      </span>
+                      <span class="hd-mega__support-text">
+                        <span class="hd-mega__support-title">{item.title}</span>
+                        <span class="hd-mega__support-desc">{item.desc}</span>
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+            </div>
+            <a class="hd-mega__more" href={data.support.footer.href}>
+              <span>{data.support.footer.label}</span>
+              <ArrowRight size={15} aria-hidden="true" />
+            </a>
+          </section>
+        );
+      })()
+    }
+  </div>
+</div>
+
+<style>
+  /* Full-width panel — no card, no radius, spans the viewport */
+  .hd-mega {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base),
+      visibility var(--transition-base);
+    pointer-events: none;
+  }
+
+  .hd-mega[data-open] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .hd-mega__inner {
+    display: grid;
+    grid-template-columns: 34fr 16.5fr 16.5fr 16.5fr 16.5fr;
+    gap: var(--space-8);
+    padding-block: var(--space-10);
+    padding-inline: var(--hd-pad);
+    align-items: stretch;
+  }
+
+  /* ---- Promo ---- */
+  .hd-mega__promo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-6);
+    min-height: 320px;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hd-mega__promo-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-3);
+  }
+
+  .hd-mega__promo-text {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-normal);
+    color: rgb(226 235 250 / 0.85);
+    margin: 0;
+  }
+
+  .hd-mega__promo-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+    height: 46px;
+    padding-inline: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    align-self: flex-start;
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  .hd-mega__promo-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hd-mega__promo-cta:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-mega__promo-art {
+    align-self: flex-end;
+    color: rgb(255 255 255 / 0.14);
+    pointer-events: none;
+  }
+
+  /* ---- Link columns ---- */
+  .hd-mega__col {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hd-mega__col-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+    min-height: 32px;
+  }
+
+  .hd-mega__col-icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--primary-light);
+    color: var(--color-primary);
+    flex: none;
+  }
+
+  .hd-mega__list {
+    list-style: none;
+    margin: 0 0 var(--space-4);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1;
+  }
+
+  .hd-mega__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-md);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition:
+      color var(--transition-fast),
+      background-color var(--transition-fast);
+  }
+
+  .hd-mega__link-chev {
+    color: var(--color-text-soft);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity var(--transition-fast),
+      transform var(--transition-fast),
+      color var(--transition-fast);
+    flex: none;
+  }
+
+  .hd-mega__link:hover {
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+
+  .hd-mega__link:hover .hd-mega__link-chev {
+    color: var(--color-primary);
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .hd-mega__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-mega__more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: auto;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-primary);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    align-self: flex-start;
+    transition: gap var(--transition-fast);
+  }
+
+  .hd-mega__more:hover {
+    gap: var(--space-3);
+  }
+
+  .hd-mega__more:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* ---- Support column (title outside, items in a card) ---- */
+  .hd-mega__support-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+  }
+
+  .hd-mega__support {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1;
+  }
+
+  .hd-mega__support-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+  }
+
+  .hd-mega__support-item:hover {
+    background: var(--color-white);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .hd-mega__support-item:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-mega__support-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    color: var(--color-primary);
+    flex: none;
+  }
+
+  .hd-mega__support-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+
+  .hd-mega__support-title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .hd-mega__support-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-soft);
+  }
+
+  /* Promo is the most important area — it is preserved, not hidden.
+     Ratios scale down gently as the viewport narrows. */
+  @media (max-width: 1439px) {
+    .hd-mega__inner {
+      grid-template-columns: 30fr 17.5fr 17.5fr 17.5fr 17.5fr;
+    }
+  }
+
+  @media (max-width: 1279px) {
+    .hd-mega__inner {
+      grid-template-columns: 28fr 18fr 18fr 18fr 18fr;
+      gap: var(--space-6);
+    }
+  }
+
+  /* Below the nav breakpoint the mobile menu takes over. */
+  @media (max-width: 1023px) {
+    .hd-mega {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hd-mega {
+      transition:
+        opacity var(--transition-fast),
+        visibility var(--transition-fast);
+      transform: none;
+    }
+    .hd-mega[data-open] {
+      transform: none;
+    }
+  }
+</style>

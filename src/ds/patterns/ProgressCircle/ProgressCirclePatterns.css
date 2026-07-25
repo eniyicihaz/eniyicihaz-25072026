@@ -1,0 +1,354 @@
+/* ==========================================================
+   ProgressCircle — five patterns
+
+   01  pcx-hearing     Hearing test analysis (eniyicihaz.com)
+   02  pcx-storage     Cloud storage usage, dark, warning color
+   03  pcx-onboarding  SaaS onboarding completion
+   04  pcx-battery     Device battery levels, icon overlay
+   05  pcx-course      Course module completion, grid
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Hearing test analysis
+   ========================================================== */
+
+.pcx-hearing{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.pcx-hearing__card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    width:100%;
+    max-width:360px;
+    padding:40px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+    text-align:center;
+}
+
+.pcx-hearing .ds-progress-circle__track{
+    stroke:rgb(18 59 54 / .1);
+}
+
+.pcx-hearing .ds-progress-circle__indicator{
+    stroke:#0f766e;
+}
+
+.pcx-hearing .ds-progress-circle__value{
+    color:#123b36;
+    font-size:1.15rem;
+}
+
+.pcx-hearing__label{
+    margin-top:20px;
+
+    font-size:.95rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.pcx-hearing__note{
+    margin-top:6px;
+
+    font-size:.82rem;
+    color:#6b8b86;
+}
+
+
+/* ==========================================================
+   02 — Cloud storage usage, dark
+   ========================================================== */
+
+.pcx-storage{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.pcx-storage__card{
+    display:flex;
+    align-items:center;
+    gap:28px;
+
+    width:100%;
+    max-width:400px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.pcx-storage .ds-progress-circle__track{
+    stroke:rgb(255 255 255 / .1);
+}
+
+.pcx-storage .ds-progress-circle__indicator{
+    stroke:#fb923c;
+}
+
+.pcx-storage .ds-progress-circle__value{
+    color:#fff;
+    font-size:1rem;
+}
+
+.pcx-storage__title{
+    font-size:.92rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.pcx-storage__amount{
+    margin-top:8px;
+
+    font-size:.85rem;
+    color:rgb(255 255 255 / .5);
+}
+
+.pcx-storage__warn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:12px;
+
+    font-size:.78rem;
+    color:#fb923c;
+}
+
+
+/* ==========================================================
+   03 — SaaS onboarding completion
+   ========================================================== */
+
+.pcx-onboarding{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.pcx-onboarding__card{
+    display:flex;
+    align-items:center;
+    gap:26px;
+
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.pcx-onboarding .ds-progress-circle__indicator{
+    stroke:#2563eb;
+}
+
+.pcx-onboarding__title{
+    font-size:.98rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.pcx-onboarding__steps{
+    margin-top:6px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.pcx-onboarding__next{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:12px;
+    padding:6px 12px;
+
+    border-radius:999px;
+    background:rgb(37 99 235 / .1);
+
+    font-size:.78rem;
+    font-weight:600;
+    color:#2563eb;
+}
+
+
+/* ==========================================================
+   04 — Device battery levels, icon overlay
+   ========================================================== */
+
+.pcx-battery{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fafaf9;
+}
+
+.pcx-battery__row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.pcx-battery__item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.pcx-battery__ring{
+    position:relative;
+    display:inline-flex;
+}
+
+.pcx-battery__overlay{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:2px;
+}
+
+.pcx-battery__icon{
+    font-size:1.1rem;
+}
+
+.pcx-battery__percent{
+    font-size:.7rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.pcx-battery .ds-progress-circle__track{
+    stroke:var(--pat-line);
+}
+
+.pcx-battery .ds-progress-circle__indicator{
+    stroke:#16a34a;
+}
+
+.pcx-battery__item--low .ds-progress-circle__indicator{
+    stroke:#dc2626;
+}
+
+.pcx-battery__label{
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   05 — Course module completion, grid
+   ========================================================== */
+
+.pcx-course{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#faf8f4;
+}
+
+.pcx-course__panel{
+    width:100%;
+    max-width:520px;
+    padding:32px;
+
+    border:1px solid rgb(28 24 18 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.pcx-course__title{
+    font-family:var(--pat-serif);
+    font-size:1.2rem;
+    font-weight:600;
+    color:#1c1812;
+}
+
+.pcx-course__grid{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0,1fr));
+    gap:20px;
+
+    margin-top:26px;
+}
+
+.pcx-course__cell{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.pcx-course .ds-progress-circle__track{
+    stroke:rgb(28 24 18 / .1);
+}
+
+.pcx-course .ds-progress-circle__indicator{
+    stroke:#c2703d;
+}
+
+.pcx-course .ds-progress-circle__value{
+    font-size:.72rem;
+    color:#1c1812;
+}
+
+.pcx-course__label{
+    font-size:.78rem;
+    text-align:center;
+    color:#6b6255;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .pcx-hearing{ padding:44px 16px 56px; }
+    .pcx-hearing__card{ padding:28px 20px; }
+
+    .pcx-storage{ padding:44px 16px 56px; }
+    .pcx-storage__card{ flex-direction:column; text-align:center; padding:24px 20px; }
+
+    .pcx-onboarding{ padding:44px 16px 56px; }
+    .pcx-onboarding__card{ flex-direction:column; text-align:center; padding:24px 20px; }
+
+    .pcx-battery{ padding:44px 16px 56px; }
+    .pcx-battery__row{ gap:20px; }
+
+    .pcx-course{ padding:44px 16px 56px; }
+    .pcx-course__panel{ padding:22px; }
+    .pcx-course__grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+
+}

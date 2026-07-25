@@ -1,0 +1,335 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Breadcrumb/BreadcrumbPatterns.css";
+
+import Breadcrumb from "../../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    deviceCrumbs,
+    deviceSpecs,
+    docsCrumbs,
+    docsSnippet,
+    docsToc,
+    fileCrumbs,
+    files,
+    stayCrumbs,
+    stayMeta,
+    lessonCrumbs,
+    lessonNav,
+    lessonResources
+} from "../../../ds/patterns/Breadcrumb/breadcrumb.data";
+---
+
+<DSLayout title="Breadcrumb">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Breadcrumb</h1>
+
+        <p class="pl-head__lede">
+            Five hierarchies worth showing — a device catalogue, an API
+            reference, a shared drive, a location trail and a course
+            four levels deep.
+        </p>
+
+    </header>
+
+    <!-- 01 — Product page -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Product Page</span>
+            <span class="pl-example__tags">Hearing care · Category trail · Spec grid</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="crumb-device">
+
+                <div class="crumb-device__inner">
+
+                    <Breadcrumb items={deviceCrumbs} separator="›" />
+
+                    <div class="crumb-device__product">
+
+                        <div class="crumb-device__stage">
+                            <span class="crumb-device__shape" aria-hidden="true"></span>
+                        </div>
+
+                        <div>
+                            <Badge variant="success" size="sm">SGK kapsamında</Badge>
+
+                            <h2 class="crumb-device__title">
+                                Signia Pure Charge&amp;Go 7AX
+                            </h2>
+
+                            <p class="crumb-device__lede">
+                                Kalabalık ortamlarda konuşmayı öne çıkaran çift işlemcili
+                                kulak arkası cihaz. Şarj kutusuyla birlikte gelir,
+                                telefonunuza doğrudan bağlanır.
+                            </p>
+
+                            <dl class="crumb-device__specs">
+                                {deviceSpecs.map(spec => (
+                                    <div class="crumb-device__spec">
+                                        <dt>{spec.key}</dt>
+                                        <dd>{spec.value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+
+                            <div class="crumb-device__actions">
+                                <Button size="lg">7 gün ücretsiz dene</Button>
+                                <Button variant="outline" size="lg">Karşılaştır</Button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Docs -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">API Reference</span>
+            <span class="pl-example__tags">Monospace trail · Sticky bar · On-this-page</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="crumb-docs">
+
+                <div class="crumb-docs__bar">
+                    <div class="crumb-docs__bar-inner">
+                        <Breadcrumb items={docsCrumbs} />
+                        <a class="crumb-docs__edit" href="#0">Edit this page</a>
+                    </div>
+                </div>
+
+                <div class="crumb-docs__body">
+
+                    <div>
+
+                        <div class="crumb-docs__method">
+                            <span class="crumb-docs__verb">POST</span>
+                            <span class="crumb-docs__path">/v1/events</span>
+                        </div>
+
+                        <p class="crumb-docs__lede">
+                            Creates an event and queues it for delivery to every subscribed
+                            endpoint. Delivery is at-least-once — pass an idempotency key
+                            if your consumer is not idempotent.
+                        </p>
+
+                        <pre class="crumb-docs__code"><code>{docsSnippet}</code></pre>
+
+                    </div>
+
+                    <aside class="crumb-docs__toc">
+                        <h3 class="crumb-docs__toc-title">On this page</h3>
+                        {docsToc.map(item => (
+                            <a
+                                class:list={[
+                                    "crumb-docs__toc-link",
+                                    item.active && "crumb-docs__toc-link--active"
+                                ]}
+                                href="#0"
+                            >
+                                {item.label}
+                            </a>
+                        ))}
+                    </aside>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — File manager -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">File Manager</span>
+            <span class="pl-example__tags">Path bar · Chip crumbs · File rows</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="crumb-files">
+
+                <div class="crumb-files__bar">
+
+                    <Breadcrumb items={fileCrumbs} separator="›" />
+
+                    <div class="crumb-files__tools">
+                        <span class="crumb-files__count">4 items · 56.4 MB</span>
+                        <Button variant="outline" size="sm">Share</Button>
+                        <Button size="sm">Upload</Button>
+                    </div>
+
+                </div>
+
+                <div class="crumb-files__list">
+                    {files.map(file => (
+                        <div class="crumb-files__row">
+                            <span class:list={["crumb-files__icon", `crumb-files__icon--${file.kind}`]}>
+                                {file.kind === "folder" ? "▤" : file.kind.toUpperCase()}
+                            </span>
+                            <div>
+                                <div class="crumb-files__name">{file.name}</div>
+                                <div class="crumb-files__meta">{file.meta}</div>
+                            </div>
+                            <span class="crumb-files__size">{file.size}</span>
+                            <span class="crumb-files__more" aria-hidden="true">⋯</span>
+                        </div>
+                    ))}
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Travel listing -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Travel Listing</span>
+            <span class="pl-example__tags">Geographic trail · Underlined · Gallery</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="crumb-stay">
+
+                <div class="crumb-stay__inner">
+
+                    <Breadcrumb items={stayCrumbs} separator="›" />
+
+                    <h2 class="crumb-stay__title">{stayMeta.title}</h2>
+
+                    <div class="crumb-stay__meta">
+                        <span class="crumb-stay__score">
+                            ★ {stayMeta.score}
+                        </span>
+                        <span>{stayMeta.reviews}</span>
+                        <span>·</span>
+                        <span>Kralingen, Rotterdam</span>
+                    </div>
+
+                    <div class="crumb-stay__gallery" aria-hidden="true">
+                        <span class="crumb-stay__shot"></span>
+                        <span class="crumb-stay__shot"></span>
+                        <span class="crumb-stay__shot"></span>
+                        <span class="crumb-stay__shot"></span>
+                        <span class="crumb-stay__shot"></span>
+                    </div>
+
+                    <div class="crumb-stay__foot">
+                        <div>
+                            <div class="crumb-stay__host">{stayMeta.host}</div>
+                            <div class="crumb-stay__detail">{stayMeta.detail}</div>
+                        </div>
+                        <div class="crumb-stay__price">
+                            <strong>{stayMeta.price}</strong>
+                            <span>/ {stayMeta.unit}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Course lesson -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Course Lesson</span>
+            <span class="pl-example__tags">Dark · Four levels · Prev / next</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="crumb-lesson">
+
+                <div class="crumb-lesson__inner">
+
+                    <Breadcrumb items={lessonCrumbs} separator="›" />
+
+                    <div class="crumb-lesson__player">
+                        <span class="crumb-lesson__play" aria-hidden="true">▶</span>
+                        <span class="crumb-lesson__duration">18:24</span>
+                    </div>
+
+                    <h2 class="crumb-lesson__title">Optical sizes</h2>
+
+                    <p class="crumb-lesson__lede">
+                        Why the same typeface needs different drawings at 13px and 96px,
+                        and how to wire optical size axes into a fluid type scale without
+                        shipping four separate families.
+                    </p>
+
+                    <div class="crumb-lesson__resources">
+                        {lessonResources.map(resource => (
+                            <div class="crumb-lesson__resource">
+                                <div class="crumb-lesson__resource-label">{resource.label}</div>
+                                <div class="crumb-lesson__resource-meta">{resource.meta}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="crumb-lesson__nav">
+                        <a class="crumb-lesson__nav-item" href="#0">
+                            <div class="crumb-lesson__nav-dir">← Previous</div>
+                            <div class="crumb-lesson__nav-label">{lessonNav.prev}</div>
+                        </a>
+                        <a class="crumb-lesson__nav-item crumb-lesson__nav-item--next" href="#0">
+                            <div class="crumb-lesson__nav-dir">Next →</div>
+                            <div class="crumb-lesson__nav-label">{lessonNav.next}</div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

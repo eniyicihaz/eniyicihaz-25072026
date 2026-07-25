@@ -1,0 +1,318 @@
+/* ==========================================================
+   Spinner — five patterns
+
+   01  spn-clinic     Appointment submission (eniyicihaz.com)
+   02  spn-dashboard  Full page loading, dark, xl spinner
+   03  spn-checkout   Inline button loading
+   04  spn-search     Search results loading, inline
+   05  spn-upload     File upload rows, mixed sizes/variants
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Appointment submission
+   ========================================================== */
+
+.spn-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.spn-clinic__card{
+    width:100%;
+    max-width:360px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+    text-align:center;
+}
+
+.spn-clinic__title{
+    font-size:1.05rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.spn-clinic__sub{
+    margin:8px 0 26px;
+
+    font-size:.85rem;
+    color:#6b8b86;
+}
+
+.spn-clinic__button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    width:100%;
+    height:48px;
+
+    border:none;
+    border-radius:var(--pat-radius-md);
+
+    background:#0f766e;
+    color:#fff;
+
+    font:inherit;
+    font-size:.92rem;
+    font-weight:650;
+
+    opacity:.85;
+    cursor:not-allowed;
+}
+
+.spn-clinic .spinner--light .spinner-circle{
+    border-color:rgb(255 255 255 / .3);
+    border-top-color:#fff;
+}
+
+
+/* ==========================================================
+   02 — Full page loading, dark
+   ========================================================== */
+
+.spn-dashboard{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:96px 32px;
+    background:#0b1220;
+}
+
+.spn-dashboard__inner{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+.spn-dashboard .spinner--light .spinner-circle{
+    border-color:rgb(255 255 255 / .15);
+    border-top-color:#38bdf8;
+}
+
+.spn-dashboard__title{
+    font-size:.98rem;
+    font-weight:650;
+    color:#fff;
+}
+
+.spn-dashboard__sub{
+    margin-top:4px;
+
+    font-size:.82rem;
+    color:rgb(255 255 255 / .4);
+}
+
+
+/* ==========================================================
+   03 — Inline button loading, checkout
+   ========================================================== */
+
+.spn-checkout{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.spn-checkout__card{
+    width:100%;
+    max-width:380px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.spn-checkout__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding-bottom:18px;
+    margin-bottom:18px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.spn-checkout__label{
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.spn-checkout__amount{
+    font-size:1.2rem;
+    font-weight:800;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.spn-checkout__button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+
+    width:100%;
+    height:48px;
+
+    border:none;
+    border-radius:var(--pat-radius-md);
+
+    background:var(--pat-blue);
+    color:#fff;
+
+    font:inherit;
+    font-size:.9rem;
+    font-weight:650;
+
+    opacity:.85;
+    cursor:not-allowed;
+}
+
+
+/* ==========================================================
+   04 — Search results loading
+   ========================================================== */
+
+.spn-search{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.spn-search__card{
+    width:100%;
+    max-width:420px;
+    padding:24px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.spn-search__field{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    padding:12px 16px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm);
+}
+
+.spn-search__field-text{
+    font-size:.88rem;
+    color:var(--pat-ink);
+}
+
+.spn-search__status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    margin-top:14px;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   05 — File upload rows
+   ========================================================== */
+
+.spn-upload{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fafaf9;
+}
+
+.spn-upload__card{
+    width:100%;
+    max-width:420px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.spn-upload__head{
+    padding:18px 22px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:.92rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.spn-upload__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+
+    padding:14px 22px;
+}
+
+.spn-upload__row + .spn-upload__row{
+    border-top:1px solid var(--pat-line);
+}
+
+.spn-upload__name{
+    font-size:.85rem;
+    color:var(--pat-ink);
+}
+
+.spn-upload__status{
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .spn-clinic{ padding:44px 16px 56px; }
+    .spn-clinic__card{ padding:24px 20px; }
+
+    .spn-dashboard{ padding:64px 16px; }
+
+    .spn-checkout{ padding:44px 16px 56px; }
+    .spn-checkout__card{ padding:22px; }
+
+    .spn-search{ padding:44px 16px 56px; }
+    .spn-search__card{ padding:18px; }
+
+    .spn-upload{ padding:44px 16px 56px; }
+
+}

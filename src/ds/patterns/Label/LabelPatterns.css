@@ -1,0 +1,456 @@
+/* ==========================================================
+   Label — five patterns
+
+   01  lbl-booking  Hearing test booking (eniyicihaz.com)
+   02  lbl-apply    Job application form
+   03  lbl-apikey   API settings, dark, disabled field
+   04  lbl-billing  Checkout billing form
+   05  lbl-prefs    Newsletter preferences, editorial
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Hearing test booking
+   ========================================================== */
+
+.lbl-booking{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+
+    background:
+        radial-gradient(55% 45% at 50% 0%, rgb(13 148 136 / .12), transparent 64%),
+        #f6fbfa;
+}
+
+.lbl-booking__card{
+    width:100%;
+    max-width:480px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.lbl-booking__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.lbl-booking__title{
+    margin:16px 0 26px;
+
+    font-size:clamp(1.4rem, 2.8vw, 1.8rem);
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:#123b36;
+}
+
+.lbl-booking__field{
+    margin-bottom:20px;
+}
+
+.lbl-booking .label{
+    color:#123b36;
+}
+
+.lbl-booking .label__helper{
+    color:#6b8b86;
+}
+
+.lbl-booking .input{
+    margin-top:8px;
+
+    border-color:rgb(18 59 54 / .18);
+    border-radius:var(--pat-radius-sm);
+}
+
+.lbl-booking .input:focus{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .14);
+}
+
+.lbl-booking__action{
+    margin-top:24px;
+}
+
+.lbl-booking .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.lbl-booking .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Job application form
+   ========================================================== */
+
+.lbl-apply{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfcfe;
+}
+
+.lbl-apply__card{
+    width:100%;
+    max-width:520px;
+    padding:36px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.lbl-apply__role{
+    font-size:1.15rem;
+    font-weight:750;
+    letter-spacing:-.025em;
+    color:var(--pat-ink);
+}
+
+.lbl-apply__team{
+    margin-top:6px;
+
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.lbl-apply__field{
+    margin-top:22px;
+}
+
+.lbl-apply .input{
+    margin-top:8px;
+}
+
+.lbl-apply .input:focus{
+    border-color:var(--pat-blue);
+    box-shadow:0 0 0 3px rgb(29 78 216 / .12);
+}
+
+.lbl-apply__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:24px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+
+/* ==========================================================
+   03 — API settings, dark
+
+   One field is disabled — the label dims and the input
+   becomes read-only, matching a real "created at" row.
+   ========================================================== */
+
+.lbl-apikey{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 80px;
+    background:#0a0f19;
+}
+
+.lbl-apikey__card{
+    width:100%;
+    max-width:520px;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .02);
+}
+
+.lbl-apikey__head{
+    padding:22px 26px;
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.lbl-apikey__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.lbl-apikey__title{
+    margin:12px 0 0;
+
+    font-size:1.1rem;
+    font-weight:700;
+    letter-spacing:-.03em;
+    color:#f8fafc;
+}
+
+.lbl-apikey__body{
+    padding:24px 26px;
+}
+
+.lbl-apikey__field{
+    margin-bottom:20px;
+}
+
+.lbl-apikey .label{
+    color:rgb(248 250 252 / .85);
+}
+
+.lbl-apikey .label--disabled{
+    color:rgb(248 250 252 / .4);
+}
+
+.lbl-apikey .label__helper{
+    color:rgb(248 250 252 / .4);
+}
+
+.lbl-apikey .input{
+    margin-top:8px;
+
+    background:rgb(255 255 255 / .04);
+    border-color:rgb(255 255 255 / .12);
+    color:#f8fafc;
+
+    font-family:var(--pat-mono);
+    font-size:.86rem;
+}
+
+.lbl-apikey .input::placeholder{
+    color:rgb(248 250 252 / .3);
+}
+
+.lbl-apikey .input:focus{
+    border-color:rgb(56 189 248 / .5);
+    box-shadow:0 0 0 3px rgb(56 189 248 / .14);
+}
+
+.lbl-apikey .input:disabled{
+    background:rgb(255 255 255 / .02);
+    color:rgb(248 250 252 / .35);
+}
+
+.lbl-apikey__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:16px 26px;
+
+    border-top:1px solid rgb(255 255 255 / .08);
+    background:rgb(255 255 255 / .02);
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .32);
+}
+
+.lbl-apikey .btn--primary{
+    --btn-bg:#38bdf8;
+    --btn-color:#0a0f19;
+}
+
+.lbl-apikey .btn--primary:hover{
+    --btn-bg:#7dd3fc;
+}
+
+
+/* ==========================================================
+   04 — Checkout billing form
+   ========================================================== */
+
+.lbl-billing{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f7f8fa;
+}
+
+.lbl-billing__card{
+    width:100%;
+    max-width:480px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.lbl-billing__summary{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding-bottom:20px;
+    margin-bottom:22px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.lbl-billing__plan{
+    font-size:.94rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.lbl-billing__total{
+    font-size:1.2rem;
+    font-weight:800;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.lbl-billing__field{
+    margin-bottom:18px;
+}
+
+.lbl-billing .input{
+    margin-top:8px;
+}
+
+.lbl-billing .input:focus{
+    border-color:var(--pat-blue);
+    box-shadow:0 0 0 3px rgb(29 78 216 / .12);
+}
+
+.lbl-billing__action{
+    margin-top:22px;
+}
+
+.lbl-billing__lock{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+
+    margin-top:14px;
+
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   05 — Newsletter preferences, editorial
+
+   Underline-only fields; the label sits above in a serif
+   voice matching the rest of the letter.
+   ========================================================== */
+
+.lbl-prefs{
+    padding:72px 32px 88px;
+    background:#faf8f4;
+}
+
+.lbl-prefs__inner{
+    max-width:520px;
+    margin:0 auto;
+}
+
+.lbl-prefs__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.lbl-prefs__title{
+    margin:16px 0 32px;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.8rem, 3.4vw, 2.3rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    color:#1c1812;
+}
+
+.lbl-prefs__field{
+    margin-bottom:24px;
+    padding-bottom:20px;
+
+    border-bottom:1px solid rgb(28 24 18 / .14);
+}
+
+.lbl-prefs .label{
+    font-family:var(--pat-serif);
+    font-size:1rem;
+    font-weight:400;
+    color:#1c1812;
+}
+
+.lbl-prefs .label__helper{
+    color:#a3937a;
+}
+
+.lbl-prefs .input{
+    margin-top:10px;
+
+    border:none;
+    border-radius:0;
+    background:transparent;
+
+    padding-left:0;
+}
+
+.lbl-prefs .input:focus{
+    border-color:transparent;
+    box-shadow:none;
+}
+
+.lbl-prefs__foot{
+    margin-top:8px;
+}
+
+.lbl-prefs .btn--primary{
+    --btn-bg:#1c1812;
+}
+
+.lbl-prefs .btn--primary:hover{
+    --btn-bg:#3b332a;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .lbl-booking{ padding:44px 16px 56px; }
+    .lbl-booking__card{ padding:24px 20px; }
+
+    .lbl-apply{ padding:44px 16px 56px; }
+    .lbl-apply__card{ padding:24px 20px; }
+    .lbl-apply__foot{ flex-direction:column; align-items:stretch; }
+    .lbl-apply__foot .btn{ width:100%; }
+
+    .lbl-apikey{ padding:36px 16px 56px; }
+    .lbl-apikey__foot{ flex-direction:column; align-items:flex-start; gap:8px; }
+
+    .lbl-billing{ padding:44px 16px 56px; }
+    .lbl-billing__card{ padding:24px 20px; }
+
+    .lbl-prefs{ padding:52px 20px 64px; }
+
+}

@@ -1,0 +1,348 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Table/TablePatterns.css";
+
+import Table from "../../../ds/components/ui/atoms/Table/Table.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    invoiceColumns,
+    invoiceRows,
+    invoiceSummary,
+    nutritionColumns,
+    nutritionRows,
+    nutritionIngredients,
+    fixtureColumns,
+    fixtureRows,
+    nextFixture,
+    paramColumns,
+    paramRows,
+    responseCodes,
+    capColumns,
+    capRows,
+    capSummary
+} from "../../../ds/patterns/Table/table.data";
+---
+
+<DSLayout title="Table">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Table</h1>
+
+        <p class="pl-head__lede">
+            Five documents built on rows and columns — a billing history,
+            a nutrition panel, a league table, an API reference
+            and a cap table.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Billing history
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Billing History</span>
+            <span class="pl-example__tags">Settings · Right-aligned money · Summary rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="table-billing">
+
+                <div class="table-billing__inner">
+
+                    <span class="table-billing__crumb">Settings / Billing</span>
+
+                    <h2 class="table-billing__title">Invoices</h2>
+
+                    <p class="table-billing__lede">
+                        Every invoice is available as a PDF for seven years. Changing
+                        your billing details will not alter invoices already issued.
+                    </p>
+
+                    <div class="table-billing__grid">
+
+                        <div class="table-billing__panel">
+
+                            <div class="table-billing__panel-head">
+                                <span>Last 5 invoices</span>
+                                <Badge variant="success" size="sm">All settled</Badge>
+                            </div>
+
+                            <Table columns={invoiceColumns} rows={invoiceRows} />
+
+                            <div class="table-billing__foot">
+                                <span>Showing 5 of 18 invoices</span>
+                                <Button variant="ghost" size="sm">Download all as ZIP</Button>
+                            </div>
+
+                        </div>
+
+                        <aside class="table-billing__card">
+
+                            <h3 class="table-billing__card-title">Account</h3>
+
+                            <dl>
+                                {invoiceSummary.map(item => (
+                                    <div class="table-billing__row">
+                                        <dt>{item.key}</dt>
+                                        <dd>{item.value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+
+                            <div class="table-billing__card-action">
+                                <Button variant="outline" size="sm" fullWidth>
+                                    Update payment method
+                                </Button>
+                            </div>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Nutrition panel
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Nutrition Panel</span>
+            <span class="pl-example__tags">Packaging · Heavy rules · Regulatory</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="table-food">
+
+                <div class="table-food__label">
+
+                    <div class="table-food__brand">
+                        <span class="table-food__brand-name">Hallmark Mills</span>
+                        <span class="table-food__weight">450 g ℮</span>
+                    </div>
+
+                    <h2 class="table-food__product">Toasted Oat &amp; Date Granola</h2>
+                    <p class="table-food__variant">No added sugar · High fibre</p>
+
+                    <div class="table-food__table-title">Nutrition</div>
+
+                    <Table
+                        columns={nutritionColumns}
+                        rows={nutritionRows}
+                        hoverable={false}
+                    />
+
+                    <p class="table-food__note">
+                        *Reference intake of an average adult (8,400 kJ / 2,000 kcal).
+                        Pack contains 10 servings.
+                    </p>
+
+                    <div class="table-food__ingredients">
+                        <h3 class="table-food__ingredients-title">Ingredients</h3>
+                        <p>{nutritionIngredients}</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — League standings
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">League Table</span>
+            <span class="pl-example__tags">Sports editorial · Promotion rules · Form</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="table-league">
+
+                <div class="table-league__inner">
+
+                    <header class="table-league__head">
+                        <div>
+                            <span class="table-league__kicker">Eredivisie Zuid</span>
+                            <h2 class="table-league__title">Standings</h2>
+                        </div>
+                        <span class="table-league__matchday">After matchday 24</span>
+                    </header>
+
+                    <Table columns={fixtureColumns} rows={fixtureRows} />
+
+                    <div class="table-league__key">
+                        <span>
+                            <span class="table-league__swatch"></span>
+                            Automatic promotion
+                        </span>
+                        <span>
+                            <span class="table-league__swatch table-league__swatch--play"></span>
+                            Play-off places
+                        </span>
+                    </div>
+
+                    <div class="table-league__next">
+                        <div>
+                            <span class="table-league__next-label">Next fixture</span>
+                            <div class="table-league__next-teams">
+                                {nextFixture.home} v {nextFixture.away}
+                            </div>
+                            <div class="table-league__next-meta">
+                                {nextFixture.date} · {nextFixture.venue}
+                            </div>
+                        </div>
+                        <Button variant="outline">Buy tickets</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — API reference
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">API Reference</span>
+            <span class="pl-example__tags">Docs · Monospace params · Response codes</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="table-api">
+
+                <div class="table-api__inner">
+
+                    <span class="table-api__crumb">Docs / API / Events</span>
+
+                    <div class="table-api__endpoint">
+                        <span class="table-api__method">POST</span>
+                        <span class="table-api__path">/v1/events</span>
+                    </div>
+
+                    <p class="table-api__lede">
+                        Creates an event and queues it for delivery to every
+                        subscribed endpoint. Delivery is at-least-once; use an
+                        idempotency key if your consumer is not idempotent.
+                    </p>
+
+                    <h3 class="table-api__section-title">Body parameters</h3>
+
+                    <div class="table-api__panel">
+                        <Table columns={paramColumns} rows={paramRows} />
+                    </div>
+
+                    <h3 class="table-api__section-title" style="margin-top:32px">
+                        Responses
+                    </h3>
+
+                    <div class="table-api__codes">
+                        {responseCodes.map(code => (
+                            <div class:list={["table-api__code", `table-api__code--${code.tone}`]}>
+                                <span class="table-api__code-num">{code.code}</span>
+                                {code.label}
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Cap table
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Cap Table</span>
+            <span class="pl-example__tags">Dark financial · Tabular figures · Summary band</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="table-cap">
+
+                <div class="table-cap__inner">
+
+                    <header class="table-cap__head">
+                        <div>
+                            <span class="table-cap__kicker">Fieldnote BV · Confidential</span>
+                            <h2 class="table-cap__title">Capitalisation table</h2>
+                        </div>
+                        <Badge variant="secondary" size="sm">As of 20 Jul 2026</Badge>
+                    </header>
+
+                    <dl class="table-cap__summary">
+                        {capSummary.map(item => (
+                            <div>
+                                <dt>{item.key}</dt>
+                                <dd>{item.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <div class="table-cap__panel">
+                        <Table columns={capColumns} rows={capRows} />
+                    </div>
+
+                    <div class="table-cap__foot">
+                        <span>Fully diluted includes the unallocated option pool.</span>
+                        <span>Prepared by Northgate Legal</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

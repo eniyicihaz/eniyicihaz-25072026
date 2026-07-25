@@ -1,0 +1,33 @@
+.ds-input-group {
+  display: flex;
+  align-items: stretch;
+
+  width: 100%;
+}
+
+.ds-input-group > * {
+  margin: 0;
+}
+
+.ds-input-group > :first-child:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ds-input-group > :last-child:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ds-input-group > :not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.ds-input-group > * + * {
+  margin-left: -1px;
+}
+
+.ds-input-group > *:focus-within {
+  position: relative;
+  z-index: 2;
+}

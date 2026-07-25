@@ -1,0 +1,74 @@
+.ds-icon {
+  --ds-icon-size: 20px;
+  --ds-icon-color: currentColor;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--ds-icon-size);
+  height: var(--ds-icon-size);
+
+  color: var(--ds-icon-color);
+
+  line-height: 0;
+  flex-shrink: 0;
+  vertical-align: middle;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.ds-icon:focus-visible {
+  outline: 2px solid var(--primary, #005baa);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.ds-icon svg {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  stroke: currentColor;
+
+  flex-shrink: 0;
+
+  transition:
+    transform 0.2s ease,
+    stroke 0.2s ease;
+}
+
+.ds-icon:hover svg {
+  transform: scale(1.08);
+}
+
+.ds-icon--spin svg {
+  animation: ds-icon-spin 1s linear infinite;
+}
+
+.ds-icon--pulse svg {
+  animation: ds-icon-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes ds-icon-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ds-icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(0.9);
+    opacity: 0.65;
+  }
+}

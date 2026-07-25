@@ -1,0 +1,930 @@
+/* ==========================================================
+   Carousel — five patterns
+
+   01  car-device   Device gallery (eniyicihaz.com)
+   02  car-product  Retail product photography
+   03  car-tour     Onboarding tour, dark
+   04  car-voice    Testimonial rotation
+   05  car-exhibit  Gallery exhibition, editorial
+
+   Slides use `slot` content, so each pattern supplies its
+   own visual plate. The component keeps controls,
+   indicators and slide semantics.
+   ========================================================== */
+
+/* Shared slide plate: patterns fill these with gradients */
+
+.car-plate{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:100%;
+    height:100%;
+}
+
+
+/* ==========================================================
+   01 — Device gallery
+   ========================================================== */
+
+.car-device{
+    padding:64px 56px 72px;
+
+    background:
+        radial-gradient(55% 45% at 15% 0%, rgb(13 148 136 / .12), transparent 62%),
+        #f6fbfa;
+}
+
+.car-device__inner{
+    display:grid;
+    grid-template-columns:minmax(0, 1.1fr) minmax(0, .9fr);
+    gap:44px;
+    align-items:center;
+
+    max-width:1040px;
+    margin:0 auto;
+}
+
+.car-device__frame{
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 22px 52px rgb(18 59 54 / .12);
+}
+
+.car-device__frame .ds-carousel__slide{
+    display:flex;
+    flex-direction:column;
+}
+
+.car-device__stage{
+    aspect-ratio:4 / 3;
+
+    background:
+        radial-gradient(60% 55% at 50% 45%, #ffffff, transparent 70%),
+        linear-gradient(150deg, #e6f0ee 0%, #d0e3df 100%);
+}
+
+.car-device__shape{
+    width:26%;
+    aspect-ratio:2 / 3;
+
+    border-radius:48% 48% 44% 44% / 34% 34% 66% 66%;
+
+    background:linear-gradient(155deg, #6b7d7a 0%, #3d4a48 55%, #23302e 100%);
+
+    box-shadow:
+        inset 0 -10px 22px rgb(0 0 0 / .35),
+        inset 0 8px 16px rgb(255 255 255 / .16),
+        0 20px 36px rgb(18 59 54 / .22);
+}
+
+.car-device__shape--case{
+    width:42%;
+    aspect-ratio:3 / 2;
+    border-radius:22px;
+}
+
+.car-device__shape--link{
+    width:34%;
+    aspect-ratio:1;
+    border-radius:50%;
+    background:linear-gradient(155deg, #5eb3ab 0%, #0f766e 100%);
+}
+
+.car-device__frame .ds-carousel__content{
+    padding:20px 24px 24px;
+}
+
+.car-device__frame .ds-carousel__title{
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:-.025em;
+    color:#123b36;
+}
+
+.car-device__frame .ds-carousel__description{
+    margin-top:7px;
+
+    font-size:.9rem;
+    line-height:1.65;
+    color:#4a6b66;
+}
+
+.car-device__frame .ds-carousel__control{
+    width:38px;
+    height:38px;
+
+    border:1px solid rgb(18 59 54 / .12);
+    border-radius:50%;
+
+    background:rgb(255 255 255 / .92);
+    color:#123b36;
+}
+
+.car-device__frame .ds-carousel__indicator{
+    background:rgb(18 59 54 / .2);
+}
+
+.car-device__frame .ds-carousel__indicator--active{
+    background:#0f766e;
+}
+
+.car-device__thumbs{
+    display:flex;
+    gap:8px;
+
+    margin-top:16px;
+}
+
+.car-device__thumb{
+    padding:7px 14px;
+
+    border:1px solid rgb(18 59 54 / .14);
+    border-radius:var(--pat-radius-pill);
+
+    background:#fff;
+
+    font-size:.82rem;
+    color:#4a6b66;
+}
+
+.car-device__thumb--active{
+    border-color:#0f766e;
+    background:#0f766e;
+    color:#fff;
+}
+
+.car-device__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.car-device__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    line-height:1.1;
+
+    color:#123b36;
+}
+
+.car-device__lede{
+    margin:14px 0 0;
+    max-width:40ch;
+
+    font-size:.98rem;
+    line-height:1.75;
+    color:#4a6b66;
+}
+
+.car-device__specs{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:1px;
+
+    margin-top:22px;
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .12);
+    border-radius:var(--pat-radius-sm);
+
+    background:rgb(18 59 54 / .12);
+}
+
+.car-device__spec{
+    padding:13px 15px;
+    background:#fff;
+}
+
+.car-device__spec dt{
+    font-size:.66rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#8aa8a3;
+}
+
+.car-device__spec dd{
+    margin:6px 0 0;
+
+    font-size:.88rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.car-device__actions{
+    margin-top:22px;
+}
+
+.car-device .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.car-device .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Product photography
+
+   Full-bleed image plates; captions overlay the bottom
+   rather than sitting under the frame.
+   ========================================================== */
+
+.car-product{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#faf9f7;
+}
+
+.car-product__card{
+    width:100%;
+    max-width:720px;
+}
+
+.car-product__frame{
+    overflow:hidden;
+    border-radius:var(--pat-radius-lg);
+    box-shadow:0 24px 60px rgb(35 31 28 / .16);
+}
+
+.car-product__frame .ds-carousel__slide{
+    position:relative;
+}
+
+.car-product__plate{
+    aspect-ratio:5 / 4;
+}
+
+.car-product__plate--a{ background:linear-gradient(150deg, #e4d8c4, #b9a184); }
+.car-product__plate--b{ background:linear-gradient(150deg, #d8c3b4, #a8836c); }
+.car-product__plate--c{ background:linear-gradient(150deg, #cfd2c8, #9aa08f); }
+.car-product__plate--d{ background:linear-gradient(150deg, #ded9d2, #b0a89c); }
+
+.car-product__frame .ds-carousel__content{
+    position:absolute;
+    right:0;
+    bottom:0;
+    left:0;
+
+    padding:44px 26px 22px;
+
+    background:linear-gradient(180deg, transparent, rgb(28 24 18 / .78));
+}
+
+.car-product__frame .ds-carousel__title{
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:#faf8f4;
+}
+
+.car-product__frame .ds-carousel__description{
+    margin-top:5px;
+
+    font-size:.86rem;
+    color:rgb(250 248 244 / .72);
+}
+
+.car-product__frame .ds-carousel__control{
+    width:40px;
+    height:40px;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgb(255 255 255 / .9);
+    color:#231f1c;
+}
+
+.car-product__frame .ds-carousel__indicators{
+    bottom:auto;
+    top:18px;
+}
+
+.car-product__frame .ds-carousel__indicator{
+    background:rgb(255 255 255 / .45);
+}
+
+.car-product__frame .ds-carousel__indicator--active{
+    background:#fff;
+}
+
+.car-product__meta{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    margin-top:24px;
+}
+
+.car-product__name{
+    font-family:var(--pat-serif);
+    font-size:1.6rem;
+    font-weight:400;
+    letter-spacing:-.025em;
+    color:#231f1c;
+}
+
+.car-product__finish{
+    margin-top:6px;
+
+    font-size:.88rem;
+    color:#8b8177;
+}
+
+.car-product__price{
+    text-align:right;
+}
+
+.car-product__price strong{
+    font-size:1.4rem;
+    font-weight:800;
+    letter-spacing:-.035em;
+    color:#231f1c;
+}
+
+.car-product__lead{
+    display:block;
+    margin-top:4px;
+
+    font-size:.82rem;
+    color:#8b8177;
+}
+
+.car-product__actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+
+    margin-top:20px;
+}
+
+.car-product .btn--primary{
+    --btn-bg:#231f1c;
+}
+
+.car-product .btn--primary:hover{
+    --btn-bg:#413a34;
+}
+
+
+/* ==========================================================
+   03 — Onboarding tour
+
+   Dark. Step rail above the carousel; slides are
+   illustrated with mock UI rather than photography.
+   ========================================================== */
+
+.car-tour{
+    padding:56px 56px 72px;
+
+    background:
+        radial-gradient(50% 40% at 80% 0%, rgb(56 189 248 / .16), transparent 60%),
+        linear-gradient(170deg, #0b1220 0%, #070c15 100%);
+}
+
+.car-tour__inner{
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.car-tour__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:#7dd3fc;
+}
+
+.car-tour__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    color:#f8fafc;
+}
+
+.car-tour__steps{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+
+    margin:24px 0 26px;
+}
+
+.car-tour__step{
+    padding:6px 16px;
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:var(--pat-radius-pill);
+
+    font-size:.82rem;
+    color:rgb(248 250 252 / .5);
+}
+
+.car-tour__step--active{
+    border-color:rgb(56 189 248 / .5);
+    background:rgb(56 189 248 / .14);
+    color:#7dd3fc;
+}
+
+.car-tour__frame{
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+    text-align:left;
+}
+
+.car-tour__mock{
+    aspect-ratio:16 / 9;
+
+    padding:22px;
+    background:rgb(255 255 255 / .02);
+}
+
+.car-tour__mock-bar{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding-bottom:14px;
+    margin-bottom:16px;
+
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.car-tour__dot{
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:rgb(255 255 255 / .16);
+}
+
+.car-tour__line{
+    display:block;
+    height:11px;
+    margin-bottom:11px;
+
+    border-radius:6px;
+    background:rgb(255 255 255 / .07);
+}
+
+.car-tour__line--accent{
+    width:46%;
+    background:rgb(56 189 248 / .35);
+}
+
+.car-tour__line--short{ width:62%; }
+.car-tour__line--mid{ width:84%; }
+
+.car-tour__frame .ds-carousel__content{
+    padding:20px 24px 24px;
+    border-top:1px solid rgb(255 255 255 / .08);
+}
+
+.car-tour__frame .ds-carousel__title{
+    font-size:1.1rem;
+    font-weight:700;
+    letter-spacing:-.025em;
+    color:#f8fafc;
+}
+
+.car-tour__frame .ds-carousel__description{
+    margin-top:8px;
+
+    font-size:.92rem;
+    line-height:1.65;
+    color:rgb(248 250 252 / .5);
+}
+
+.car-tour__frame .ds-carousel__control{
+    width:36px;
+    height:36px;
+
+    border:1px solid rgb(255 255 255 / .14);
+    border-radius:50%;
+
+    background:rgb(11 18 32 / .8);
+    color:#f8fafc;
+}
+
+.car-tour__frame .ds-carousel__indicator{
+    background:rgb(255 255 255 / .2);
+}
+
+.car-tour__frame .ds-carousel__indicator--active{
+    background:#38bdf8;
+}
+
+.car-tour__foot{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:24px;
+}
+
+.car-tour__skip{
+    font-size:.85rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.car-tour .btn--primary{
+    --btn-bg:#38bdf8;
+    --btn-color:#0b1220;
+}
+
+.car-tour .btn--primary:hover{
+    --btn-bg:#7dd3fc;
+}
+
+
+/* ==========================================================
+   04 — Testimonial rotation
+
+   No image at all: the slide is a quote. Controls sit
+   outside the card on the baseline.
+   ========================================================== */
+
+.car-voice{
+    padding:72px 56px 80px;
+
+    background:
+        radial-gradient(50% 45% at 50% 0%, rgb(37 99 235 / .08), transparent 64%),
+        #f8fafd;
+}
+
+.car-voice__inner{
+    max-width:760px;
+    margin:0 auto;
+}
+
+.car-voice__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+
+    margin-bottom:26px;
+}
+
+.car-voice__title{
+    margin:0;
+
+    font-size:clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight:800;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.car-voice__rating{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    font-size:.86rem;
+    color:var(--pat-body);
+}
+
+.car-voice__stars{
+    letter-spacing:.1em;
+    color:#f59e0b;
+}
+
+.car-voice__frame{
+    padding:8px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.car-voice__frame .ds-carousel__slide{
+    padding:34px 36px 30px;
+}
+
+.car-voice__mark{
+    font-family:var(--pat-serif);
+    font-size:2.6rem;
+    line-height:.8;
+    color:rgb(37 99 235 / .28);
+}
+
+.car-voice__frame .ds-carousel__content{
+    padding:0;
+}
+
+.car-voice__frame .ds-carousel__description{
+    margin:0;
+    max-width:52ch;
+
+    font-family:var(--pat-serif);
+    font-size:1.25rem;
+    line-height:1.6;
+    letter-spacing:-.015em;
+    color:#33415a;
+}
+
+/* The DS renders title above description; here the name
+   belongs underneath, so it is reordered visually. */
+
+.car-voice__frame .ds-carousel__content{
+    display:flex;
+    flex-direction:column-reverse;
+    align-items:flex-start;
+    gap:22px;
+}
+
+.car-voice__frame .ds-carousel__title{
+    font-family:inherit;
+    font-size:.98rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.car-voice__frame .ds-carousel__control{
+    width:36px;
+    height:36px;
+
+    border:1px solid var(--pat-line);
+    border-radius:50%;
+
+    background:#fff;
+    color:var(--pat-ink);
+}
+
+.car-voice__frame .ds-carousel__indicator{
+    background:rgb(15 23 42 / .18);
+}
+
+.car-voice__frame .ds-carousel__indicator--active{
+    background:var(--pat-blue);
+}
+
+.car-voice__who{
+    display:flex;
+    align-items:center;
+    gap:26px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.car-voice__person{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:.84rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   05 — Exhibition
+
+   Editorial gallery listing: a wide plate carousel above
+   a caption block set in serif.
+   ========================================================== */
+
+.car-exhibit{
+    padding:64px 56px 80px;
+    background:#faf8f4;
+}
+
+.car-exhibit__inner{
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.car-exhibit__head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+
+    padding-bottom:22px;
+    margin-bottom:26px;
+
+    border-bottom:2px solid #1c1812;
+}
+
+.car-exhibit__gallery{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.car-exhibit__title{
+    margin:14px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(1.9rem, 3.8vw, 2.7rem);
+    font-weight:400;
+    letter-spacing:-.03em;
+    line-height:1.1;
+
+    color:#1c1812;
+}
+
+.car-exhibit__dates{
+    font-size:.88rem;
+    color:#8a7f6d;
+}
+
+.car-exhibit__frame{
+    overflow:hidden;
+
+    border:1px solid rgb(28 24 18 / .14);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+}
+
+.car-exhibit__plate{
+    aspect-ratio:2 / 1;
+}
+
+.car-exhibit__plate--a{ background:linear-gradient(150deg, #6f6a63, #2b2823); }
+.car-exhibit__plate--b{ background:linear-gradient(150deg, #7d766c, #33302a); }
+.car-exhibit__plate--c{ background:linear-gradient(150deg, #635f59, #24221e); }
+
+.car-exhibit__frame .ds-carousel__content{
+    padding:20px 24px 22px;
+    border-top:1px solid rgb(28 24 18 / .12);
+}
+
+.car-exhibit__frame .ds-carousel__title{
+    font-family:var(--pat-serif);
+    font-size:1.15rem;
+    font-weight:400;
+    font-style:italic;
+    letter-spacing:-.02em;
+    color:#1c1812;
+}
+
+.car-exhibit__frame .ds-carousel__description{
+    margin-top:5px;
+
+    font-size:.84rem;
+    color:#8a7f6d;
+}
+
+.car-exhibit__frame .ds-carousel__control{
+    width:36px;
+    height:36px;
+
+    border:1px solid rgb(28 24 18 / .16);
+    border-radius:0;
+
+    background:rgb(250 248 244 / .94);
+    color:#1c1812;
+}
+
+.car-exhibit__frame .ds-carousel__indicator{
+    border-radius:0;
+    background:rgb(28 24 18 / .2);
+}
+
+.car-exhibit__frame .ds-carousel__indicator--active{
+    background:#1c1812;
+}
+
+.car-exhibit__details{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:0;
+
+    margin-top:28px;
+}
+
+.car-exhibit__detail{
+    padding:0 26px;
+    border-left:1px solid rgb(28 24 18 / .14);
+}
+
+.car-exhibit__detail:first-child{
+    padding-left:0;
+    border-left:none;
+}
+
+.car-exhibit__detail dt{
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.car-exhibit__detail dd{
+    margin:8px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:1rem;
+    color:#1c1812;
+}
+
+.car-exhibit__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:28px;
+    padding-top:22px;
+
+    border-top:1px solid rgb(28 24 18 / .14);
+}
+
+.car-exhibit__room{
+    font-size:.85rem;
+    color:#8a7f6d;
+}
+
+.car-exhibit .btn--primary{
+    --btn-bg:#1c1812;
+}
+
+.car-exhibit .btn--primary:hover{
+    --btn-bg:#3b332a;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .car-device{ padding:52px 32px 64px; }
+    .car-device__inner{ grid-template-columns:minmax(0, 1fr); gap:32px; }
+
+    .car-tour{ padding:48px 32px 64px; }
+
+    .car-voice{ padding:56px 32px 64px; }
+
+    .car-exhibit{ padding:52px 32px 64px; }
+    .car-exhibit__details{ grid-template-columns:minmax(0, 1fr); gap:20px; }
+    .car-exhibit__detail{ padding:0 0 20px; border-left:none; border-bottom:1px solid rgb(28 24 18 / .14); }
+    .car-exhibit__detail:last-child{ padding-bottom:0; border-bottom:none; }
+
+}
+
+@media (max-width:720px){
+
+    .car-device{ padding:40px 20px 52px; }
+    .car-device__specs{ grid-template-columns:minmax(0, 1fr); }
+    .car-device__actions .btn{ width:100%; }
+
+    .car-product{ padding:40px 16px 56px; }
+    .car-product__actions .btn{ width:100%; }
+
+    .car-tour{ padding:36px 20px 52px; }
+    .car-tour__steps{ flex-wrap:wrap; }
+    .car-tour__foot .btn{ width:100%; }
+
+    .car-voice{ padding:40px 20px 52px; }
+    .car-voice__frame .ds-carousel__slide{ padding:24px 20px 22px; }
+    .car-voice__frame .ds-carousel__description{ font-size:1.08rem; }
+
+    .car-exhibit{ padding:40px 20px 52px; }
+    .car-exhibit__foot .btn{ width:100%; }
+
+}

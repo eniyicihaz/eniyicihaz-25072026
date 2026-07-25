@@ -1,0 +1,105 @@
+.props-table{
+    margin-bottom:48px;
+    overflow:auto;
+
+    border:1px solid var(--border);
+    border-radius:20px;
+
+    background:var(--surface);
+
+    box-shadow:
+        0 2px 8px rgb(15 23 42 / .04),
+        0 12px 32px rgb(15 23 42 / .04);
+}
+
+.props-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.props-table th,
+.props-table td{
+    padding:16px 20px;
+    border-bottom:1px solid var(--border);
+
+    text-align:left;
+    vertical-align:top;
+}
+
+.props-table thead th{
+    position:sticky;
+    top:0;
+    z-index:1;
+
+    background:var(--surface-alt);
+
+    color:var(--heading);
+
+    font-size:.85rem;
+    font-weight:600;
+
+    white-space:nowrap;
+}
+
+.props-table tbody th{
+    color:var(--heading);
+    font-weight:600;
+    background:transparent;
+}
+
+.props-table td{
+    color:var(--text);
+    line-height:1.6;
+}
+
+.props-table tbody tr:last-child th,
+.props-table tbody tr:last-child td{
+    border-bottom:none;
+}
+
+.props-table tbody tr:hover{
+    background:color-mix(in srgb, var(--surface-alt) 60%, transparent);
+}
+
+.props-table code{
+    display:inline-block;
+
+    padding:2px 8px;
+
+    border-radius:6px;
+
+    background:var(--surface-alt);
+
+    font-family:
+        "JetBrains Mono",
+        "Fira Code",
+        Consolas,
+        monospace;
+
+    font-size:.875rem;
+    line-height:1.5;
+
+    word-break:break-word;
+}
+
+@media (max-width:768px){
+
+    .props-table{
+        margin-bottom:40px;
+        border-radius:16px;
+    }
+
+    .props-table th,
+    .props-table td{
+        padding:14px 16px;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .props-table tbody tr{
+        transition:none;
+    }
+
+}

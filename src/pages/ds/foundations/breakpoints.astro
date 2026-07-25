@@ -1,0 +1,81 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+
+const breakpoints = [
+    { name: "XS", width: "<576px", usage: "Small phones" },
+    { name: "SM", width: "576px", usage: "Large phones" },
+    { name: "MD", width: "768px", usage: "Tablets" },
+    { name: "LG", width: "992px", usage: "Small laptops" },
+    { name: "XL", width: "1200px", usage: "Desktop" },
+    { name: "2XL", width: "1400px", usage: "Large desktop" }
+];
+---
+
+<DSLayout title="Breakpoints">
+
+    <PageHeader
+        badge="Foundation"
+        title="Breakpoints"
+        description="Responsive breakpoints ensure layouts adapt smoothly across all screen sizes."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Build mobile first and progressively enhance layouts for larger screens.
+    </Note>
+
+    <Divider label="Responsive Scale" />
+
+    <Section
+        title="Breakpoint Tokens"
+        description="Standard responsive breakpoints used throughout the design system."
+    >
+
+        <Preview title="Responsive Breakpoints">
+
+            <table style="width:100%;border-collapse:collapse;">
+
+                <thead>
+                    <tr>
+                        <th style="text-align:left;padding:16px;border-bottom:1px solid var(--border);">Name</th>
+                        <th style="text-align:left;padding:16px;border-bottom:1px solid var(--border);">Width</th>
+                        <th style="text-align:left;padding:16px;border-bottom:1px solid var(--border);">Usage</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {
+                        breakpoints.map(bp => (
+                            <tr>
+                                <td style="padding:16px;border-bottom:1px solid var(--border);font-weight:600;">{bp.name}</td>
+                                <td style="padding:16px;border-bottom:1px solid var(--border);">{bp.width}</td>
+                                <td style="padding:16px;border-bottom:1px solid var(--border);">{bp.usage}</td>
+                            </tr>
+                        ))
+                    }
+
+                </tbody>
+
+            </table>
+
+        </Preview>
+
+    </Section>
+
+</DSLayout>

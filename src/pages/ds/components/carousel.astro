@@ -1,0 +1,403 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Carousel/CarouselPatterns.css";
+
+import Carousel from "../../../ds/components/ui/atoms/Carousel/Carousel.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+
+import {
+    deviceSlides,
+    deviceThumbs,
+    deviceSpecs,
+    productSlides,
+    productMeta,
+    tourSlides,
+    tourSteps,
+    voiceSlides,
+    voiceRoles,
+    exhibitSlides,
+    exhibitMeta,
+    exhibitDetails
+} from "../../../ds/patterns/Carousel/carousel.data";
+---
+
+<DSLayout title="Carousel">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Carousel</h1>
+
+        <p class="pl-head__lede">
+            Five things worth stepping through — a hearing aid explained,
+            product photography, a product tour, rotating testimonials
+            and an exhibition of prints.
+        </p>
+
+    </header>
+
+    <!-- 01 — Device gallery -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Device Gallery</span>
+            <span class="pl-example__tags">Hearing care · Named thumbs · Spec grid</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="car-device">
+
+                <div class="car-device__inner">
+
+                    <div>
+
+                        <div class="car-device__frame">
+                            <Carousel items={deviceSlides}>
+
+                                <Fragment slot="dev-1">
+                                    <div class="car-plate car-device__stage">
+                                        <span class="car-device__shape" aria-hidden="true"></span>
+                                    </div>
+                                </Fragment>
+
+                                <Fragment slot="dev-2">
+                                    <div class="car-plate car-device__stage">
+                                        <span class="car-device__shape car-device__shape--case" aria-hidden="true"></span>
+                                    </div>
+                                </Fragment>
+
+                                <Fragment slot="dev-3">
+                                    <div class="car-plate car-device__stage">
+                                        <span class="car-device__shape car-device__shape--link" aria-hidden="true"></span>
+                                    </div>
+                                </Fragment>
+
+                            </Carousel>
+                        </div>
+
+                        <div class="car-device__thumbs">
+                            {deviceThumbs.map((thumb, i) => (
+                                <span
+                                    class:list={[
+                                        "car-device__thumb",
+                                        i === 0 && "car-device__thumb--active"
+                                    ]}
+                                >
+                                    {thumb}
+                                </span>
+                            ))}
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <span class="car-device__kicker">Nasıl çalışır</span>
+
+                        <h2 class="car-device__title">
+                            Signia Pure Charge&amp;Go 7AX
+                        </h2>
+
+                        <p class="car-device__lede">
+                            Cihazın nasıl durduğunu, nasıl şarj olduğunu ve telefonunuza
+                            nasıl bağlandığını üç adımda görün.
+                        </p>
+
+                        <dl class="car-device__specs">
+                            {deviceSpecs.map(spec => (
+                                <div class="car-device__spec">
+                                    <dt>{spec.key}</dt>
+                                    <dd>{spec.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                        <div class="car-device__actions">
+                            <Button size="lg">7 gün ücretsiz dene</Button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Product photography -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Product Photography</span>
+            <span class="pl-example__tags">Retail · Overlay captions · Top indicators</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="car-product">
+
+                <div class="car-product__card">
+
+                    <div class="car-product__frame">
+                        <Carousel items={productSlides}>
+                            <Fragment slot="prod-1">
+                                <div class="car-product__plate car-product__plate--a"></div>
+                            </Fragment>
+                            <Fragment slot="prod-2">
+                                <div class="car-product__plate car-product__plate--b"></div>
+                            </Fragment>
+                            <Fragment slot="prod-3">
+                                <div class="car-product__plate car-product__plate--c"></div>
+                            </Fragment>
+                            <Fragment slot="prod-4">
+                                <div class="car-product__plate car-product__plate--d"></div>
+                            </Fragment>
+                        </Carousel>
+                    </div>
+
+                    <div class="car-product__meta">
+                        <div>
+                            <div class="car-product__name">{productMeta.name}</div>
+                            <div class="car-product__finish">{productMeta.finish}</div>
+                        </div>
+                        <div class="car-product__price">
+                            <strong>{productMeta.price}</strong>
+                            <span class="car-product__lead">{productMeta.lead}</span>
+                        </div>
+                    </div>
+
+                    <div class="car-product__actions">
+                        <Button size="lg">Add to bag</Button>
+                        <Button variant="outline" size="lg">Order a swatch</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Onboarding tour -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Onboarding Tour</span>
+            <span class="pl-example__tags">Dark · Step rail · Mock UI slides</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="car-tour">
+
+                <div class="car-tour__inner">
+
+                    <span class="car-tour__kicker">Getting started</span>
+
+                    <h2 class="car-tour__title">Three steps to your first deploy</h2>
+
+                    <div class="car-tour__steps">
+                        {tourSteps.map((step, i) => (
+                            <span
+                                class:list={[
+                                    "car-tour__step",
+                                    i === 0 && "car-tour__step--active"
+                                ]}
+                            >
+                                {step}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div class="car-tour__frame">
+                        <Carousel items={tourSlides}>
+
+                            <Fragment slot="tour-1">
+                                <div class="car-tour__mock" aria-hidden="true">
+                                    <div class="car-tour__mock-bar">
+                                        <span class="car-tour__dot"></span>
+                                        <span class="car-tour__dot"></span>
+                                        <span class="car-tour__dot"></span>
+                                    </div>
+                                    <span class="car-tour__line car-tour__line--accent"></span>
+                                    <span class="car-tour__line car-tour__line--mid"></span>
+                                    <span class="car-tour__line car-tour__line--short"></span>
+                                </div>
+                            </Fragment>
+
+                            <Fragment slot="tour-2">
+                                <div class="car-tour__mock" aria-hidden="true">
+                                    <div class="car-tour__mock-bar">
+                                        <span class="car-tour__dot"></span>
+                                        <span class="car-tour__dot"></span>
+                                        <span class="car-tour__dot"></span>
+                                    </div>
+                                    <span class="car-tour__line car-tour__line--mid"></span>
+                                    <span class="car-tour__line car-tour__line--accent"></span>
+                                    <span class="car-tour__line"></span>
+                                </div>
+                            </Fragment>
+
+                            <Fragment slot="tour-3">
+                                <div class="car-tour__mock" aria-hidden="true">
+                                    <div class="car-tour__mock-bar">
+                                        <span class="car-tour__dot"></span>
+                                        <span class="car-tour__dot"></span>
+                                        <span class="car-tour__dot"></span>
+                                    </div>
+                                    <span class="car-tour__line car-tour__line--short"></span>
+                                    <span class="car-tour__line"></span>
+                                    <span class="car-tour__line car-tour__line--accent"></span>
+                                </div>
+                            </Fragment>
+
+                        </Carousel>
+                    </div>
+
+                    <div class="car-tour__foot">
+                        <span class="car-tour__skip">You can revisit this any time</span>
+                        <Button>Connect a repository</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Testimonial rotation -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Testimonial Rotation</span>
+            <span class="pl-example__tags">No imagery · Serif quote · Reordered content</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="car-voice">
+
+                <div class="car-voice__inner">
+
+                    <header class="car-voice__head">
+                        <h2 class="car-voice__title">What customers say</h2>
+                        <div class="car-voice__rating">
+                            <span class="car-voice__stars" aria-hidden="true">★★★★★</span>
+                            <span>4.9 from 812 reviews</span>
+                        </div>
+                    </header>
+
+                    <div class="car-voice__frame">
+                        <Carousel items={voiceSlides} showIndicators>
+                            <Fragment slot="voice-1">
+                                <div class="car-voice__mark" aria-hidden="true">&ldquo;</div>
+                            </Fragment>
+                            <Fragment slot="voice-2">
+                                <div class="car-voice__mark" aria-hidden="true">&ldquo;</div>
+                            </Fragment>
+                            <Fragment slot="voice-3">
+                                <div class="car-voice__mark" aria-hidden="true">&ldquo;</div>
+                            </Fragment>
+                        </Carousel>
+                    </div>
+
+                    <div class="car-voice__who">
+                        {voiceRoles.map(person => (
+                            <span class="car-voice__person">
+                                <Avatar initials={person.initials} size="sm" bordered />
+                                {person.role}
+                            </span>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Exhibition -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Exhibition</span>
+            <span class="pl-example__tags">Gallery · Square controls · Ruled details</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="car-exhibit">
+
+                <div class="car-exhibit__inner">
+
+                    <header class="car-exhibit__head">
+                        <div>
+                            <span class="car-exhibit__gallery">{exhibitMeta.gallery}</span>
+                            <h2 class="car-exhibit__title">{exhibitMeta.title}</h2>
+                        </div>
+                        <span class="car-exhibit__dates">{exhibitMeta.dates}</span>
+                    </header>
+
+                    <div class="car-exhibit__frame">
+                        <Carousel items={exhibitSlides}>
+                            <Fragment slot="exh-1">
+                                <div class="car-exhibit__plate car-exhibit__plate--a"></div>
+                            </Fragment>
+                            <Fragment slot="exh-2">
+                                <div class="car-exhibit__plate car-exhibit__plate--b"></div>
+                            </Fragment>
+                            <Fragment slot="exh-3">
+                                <div class="car-exhibit__plate car-exhibit__plate--c"></div>
+                            </Fragment>
+                        </Carousel>
+                    </div>
+
+                    <dl class="car-exhibit__details">
+                        {exhibitDetails.map(detail => (
+                            <div class="car-exhibit__detail">
+                                <dt>{detail.key}</dt>
+                                <dd>{detail.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <div class="car-exhibit__foot">
+                        <span class="car-exhibit__room">{exhibitMeta.room}</span>
+                        <Button>Book a timed entry</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

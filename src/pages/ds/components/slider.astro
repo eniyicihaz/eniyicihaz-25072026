@@ -1,0 +1,232 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Slider/SliderPatterns.css";
+
+import Slider from "../../../ds/components/ui/atoms/Slider/Slider.astro";
+
+import {
+    volumeField,
+    scrubberField,
+    priceField,
+    eqBands,
+    brightnessField
+} from "../../../ds/patterns/Slider/slider.data";
+---
+
+<DSLayout title="Slider">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Slider</h1>
+
+        <p class="pl-head__lede">
+            Five range moments — a hearing aid volume control, a
+            playback scrubber, a price filter, an equalizer and a
+            disabled brightness setting.
+        </p>
+
+    </header>
+
+    <!-- 01 — Hearing aid volume control -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Volume Control</span>
+            <span class="pl-example__tags">Hearing care · Value badge</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="sld-volume">
+
+                <div class="sld-volume__card">
+
+                    <div class="sld-volume__row">
+                        <label class="sld-volume__label" for={volumeField.id}>{volumeField.label}</label>
+                        <span class="sld-volume__value">{volumeField.value}%</span>
+                    </div>
+
+                    <Slider
+                        id={volumeField.id}
+                        min={volumeField.min}
+                        max={volumeField.max}
+                        value={volumeField.value}
+                    />
+
+                    <div class="sld-volume__scale">
+                        <span>Sessiz</span>
+                        <span>Yüksek</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Playback scrubber, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Playback Scrubber</span>
+            <span class="pl-example__tags">Media · Dark</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="sld-scrub">
+
+                <div class="sld-scrub__card">
+
+                    <div class="sld-scrub__title">Understanding Presbycusis</div>
+                    <p class="sld-scrub__show">The Hearing Health Podcast · Ep. 42</p>
+
+                    <Slider
+                        id={scrubberField.id}
+                        min={scrubberField.min}
+                        max={scrubberField.max}
+                        value={scrubberField.value}
+                    />
+
+                    <div class="sld-scrub__time">
+                        <span>{scrubberField.elapsed}</span>
+                        <span>{scrubberField.duration}</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Price range filter -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Price Filter</span>
+            <span class="pl-example__tags">Marketplace · Stepped increments</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="sld-price">
+
+                <div class="sld-price__card">
+
+                    <div class="sld-price__title">Maximum price</div>
+
+                    <Slider
+                        id={priceField.id}
+                        min={priceField.min}
+                        max={priceField.max}
+                        step={priceField.step}
+                        value={priceField.value}
+                    />
+
+                    <div class="sld-price__value">₺{priceField.value}</div>
+
+                    <div class="sld-price__range">
+                        <span>₺{priceField.min}</span>
+                        <span>₺{priceField.max}</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Equalizer bands, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Equalizer</span>
+            <span class="pl-example__tags">Audio app · Multiple sliders</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="sld-eq">
+
+                <div class="sld-eq__card">
+
+                    <div class="sld-eq__title">Equalizer</div>
+
+                    {eqBands.map(band => (
+                        <div class="sld-eq__band">
+                            <label class="sld-eq__band-label" for={band.id}>{band.label}</label>
+                            <Slider id={band.id} value={band.value} />
+                            <span class="sld-eq__band-value">{band.value}%</span>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Screen brightness, disabled -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Screen Brightness</span>
+            <span class="pl-example__tags">Settings · Disabled</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="sld-bright">
+
+                <div class="sld-bright__card">
+
+                    <div class="sld-bright__row">
+                        <label class="sld-bright__label" for={brightnessField.id}>{brightnessField.label}</label>
+                        <span class="sld-bright__value">{brightnessField.value}%</span>
+                    </div>
+
+                    <Slider
+                        id={brightnessField.id}
+                        min={brightnessField.min}
+                        max={brightnessField.max}
+                        value={brightnessField.value}
+                        disabled={brightnessField.disabled}
+                    />
+
+                    <p class="sld-bright__note">🔒 {brightnessField.note}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

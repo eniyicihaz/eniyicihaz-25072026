@@ -1,0 +1,68 @@
+---
+import "./Checkbox.css";
+import type { CheckboxProps } from "./Checkbox.types";
+
+const {
+  checked = false,
+  disabled = false,
+  required = false,
+  error = false,
+  success = false,
+  helperText,
+  name,
+  id,
+  value,
+  class: className = ""
+}: CheckboxProps = Astro.props;
+
+const classes = [
+  "checkbox",
+  error && "is-error",
+  success && "is-success",
+  disabled && "is-disabled",
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class="checkbox-field">
+
+  <label class={classes}>
+
+    <input
+      class="checkbox-input"
+      type="checkbox"
+      checked={checked}
+      disabled={disabled}
+      required={required}
+      name={name}
+      id={id}
+      value={value}
+    />
+
+    <span class="checkbox-box">
+      <svg
+        class="checkbox-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="3"
+      >
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </span>
+
+    <span class="checkbox-label">
+      <slot />
+    </span>
+
+  </label>
+
+  {helperText && (
+    <p class="checkbox-helper">
+      {helperText}
+    </p>
+  )}
+
+</div>

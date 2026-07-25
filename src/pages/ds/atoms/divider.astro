@@ -1,0 +1,107 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Divider from "../../../ds/components/ui/atoms/Divider/Divider.astro";
+---
+
+<DSLayout>
+
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Divider"
+      description="İçerikleri görsel olarak ayırmak için kullanılan divider bileşeni."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Horizontal">
+
+      <Divider />
+
+    </Preview>
+
+    <Preview title="Thickness">
+
+      <Divider thickness="xs" />
+
+      <Divider thickness="sm" />
+
+      <Divider thickness="md" />
+
+      <Divider thickness="lg" />
+
+    </Preview>
+
+    <Preview title="Variants">
+
+      <Divider variant="primary" />
+
+      <Divider variant="secondary" />
+
+      <Divider variant="success" />
+
+      <Divider variant="warning" />
+
+      <Divider variant="danger" />
+
+    </Preview>
+
+    <Preview title="Dashed & Dotted">
+
+      <Divider variant="dashed" />
+
+      <Divider variant="dotted" />
+
+    </Preview>
+
+    <Preview title="With Label">
+
+      <Divider label="VEYA" />
+
+      <Divider
+        label="BÖLÜM"
+        variant="primary"
+      />
+
+    </Preview>
+
+    <Preview title="Vertical">
+
+      <div class="vertical-demo">
+
+        <span>Sol</span>
+
+        <Divider direction="vertical" />
+
+        <span>Sağ</span>
+
+      </div>
+
+    </Preview>
+
+  </section>
+
+  <style>
+    .page {
+      max-width: 1300px;
+    }
+
+    .vertical-demo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      height: 100px;
+    }
+  </style>
+
+</DSLayout>

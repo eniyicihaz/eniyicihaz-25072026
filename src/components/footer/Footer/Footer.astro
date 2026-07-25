@@ -1,0 +1,22 @@
+---
+import "./footer.tokens.css";
+import { footerLayout } from "./FooterLayout";
+import { footerRegistry } from "./FooterRegistry";
+
+// Orchestrator only: renders the ordered sections from the registry.
+// It knows no section content — composition is data (FooterLayout) + registry.
+const sections = footerLayout
+  .map((key) => footerRegistry[key])
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+---
+
+<footer class="ftr">
+  {sections.map((Section: any) => <Section />)}
+</footer>
+
+<style>
+  .ftr {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+  }
+</style>

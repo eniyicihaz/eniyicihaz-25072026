@@ -1,0 +1,53 @@
+---
+import "./Empty.css";
+import type { EmptyProps } from "./Empty.types";
+
+const {
+  title = "No data found",
+  description = "There is nothing to display.",
+  image,
+  imageAlt = "",
+  size = "md",
+  class: className = "",
+} = Astro.props as EmptyProps;
+
+const classes = [
+  "ds-empty",
+  `ds-empty--${size}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<section class={classes}>
+  {
+    image ? (
+      <img
+        class="ds-empty__image"
+        src={image}
+        alt={imageAlt}
+        loading="lazy"
+      />
+    ) : (
+      <div
+        class="ds-empty__icon"
+        aria-hidden="true"
+      >
+        📭
+      </div>
+    )
+  }
+
+  <h2 class="ds-empty__title">
+    {title}
+  </h2>
+
+  <p class="ds-empty__description">
+    {description}
+  </p>
+
+  <div class="ds-empty__actions">
+    <slot />
+  </div>
+</section>

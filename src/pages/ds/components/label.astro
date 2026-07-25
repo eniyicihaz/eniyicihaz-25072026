@@ -1,0 +1,280 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Label/LabelPatterns.css";
+
+import Label from "../../../ds/components/ui/atoms/Label/Label.astro";
+import Input from "../../../ds/components/ui/atoms/Input/Input.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    bookingFields,
+    applicationFields,
+    apiFields,
+    billingFields,
+    preferenceFields
+} from "../../../ds/patterns/Label/label.data";
+---
+
+<DSLayout title="Label">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Label</h1>
+
+        <p class="pl-head__lede">
+            Five forms where required, optional and disabled states carry
+            real weight — a booking form, a job application, API settings,
+            checkout billing and newsletter preferences.
+        </p>
+
+    </header>
+
+    <!-- 01 — Hearing test booking -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Booking Form</span>
+            <span class="pl-example__tags">Hearing care · Required + optional + helper</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lbl-booking">
+
+                <div class="lbl-booking__card">
+
+                    <span class="lbl-booking__kicker">Randevu</span>
+                    <h2 class="lbl-booking__title">Bilgilerinizi girin</h2>
+
+                    {bookingFields.map(field => (
+                        <div class="lbl-booking__field">
+                            <Label
+                                for={field.id}
+                                required={field.required}
+                                optional={field.optional}
+                                helper={field.helper}
+                            >
+                                {field.text}
+                            </Label>
+                            <Input id={field.id} placeholder={field.placeholder} fullWidth />
+                        </div>
+                    ))}
+
+                    <div class="lbl-booking__action">
+                        <Button size="lg" fullWidth>Randevuyu tamamla</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Job application form -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Job Application</span>
+            <span class="pl-example__tags">Recruitment · Optional field with helper</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lbl-apply">
+
+                <div class="lbl-apply__card">
+
+                    <div class="lbl-apply__role">Senior Product Designer</div>
+                    <div class="lbl-apply__team">Design · Rotterdam or remote</div>
+
+                    {applicationFields.map(field => (
+                        <div class="lbl-apply__field">
+                            <Label
+                                for={field.id}
+                                required={field.required}
+                                optional={field.optional}
+                                helper={field.helper}
+                            >
+                                {field.text}
+                            </Label>
+                            <Input id={field.id} placeholder={field.placeholder} fullWidth />
+                        </div>
+                    ))}
+
+                    <div class="lbl-apply__foot">
+                        <span>Autosaved a moment ago</span>
+                        <Button>Continue to resume</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — API settings -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">API Settings</span>
+            <span class="pl-example__tags">Dark · Disabled field state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lbl-apikey">
+
+                <div class="lbl-apikey__card">
+
+                    <header class="lbl-apikey__head">
+                        <span class="lbl-apikey__crumb">Settings / API keys / prod-webhook-relay</span>
+                        <h2 class="lbl-apikey__title">Key details</h2>
+                    </header>
+
+                    <div class="lbl-apikey__body">
+                        {apiFields.map(field => (
+                            <div class="lbl-apikey__field">
+                                <Label
+                                    for={field.id}
+                                    required={field.required}
+                                    helper={field.helper}
+                                    disabled={field.disabled}
+                                >
+                                    {field.text}
+                                </Label>
+                                <Input
+                                    id={field.id}
+                                    placeholder={field.placeholder}
+                                    disabled={field.disabled}
+                                    fullWidth
+                                />
+                            </div>
+                        ))}
+                    </div>
+
+                    <footer class="lbl-apikey__foot">
+                        <span>Keys cannot be recovered once dismissed</span>
+                        <Button size="sm">Save changes</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Checkout billing form -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Billing Form</span>
+            <span class="pl-example__tags">Checkout · Optional VAT field</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lbl-billing">
+
+                <div class="lbl-billing__card">
+
+                    <div class="lbl-billing__summary">
+                        <span class="lbl-billing__plan">Studio · Annual</span>
+                        <span class="lbl-billing__total">$288.00</span>
+                    </div>
+
+                    {billingFields.map(field => (
+                        <div class="lbl-billing__field">
+                            <Label
+                                for={field.id}
+                                required={field.required}
+                                optional={field.optional}
+                                helper={field.helper}
+                            >
+                                {field.text}
+                            </Label>
+                            <Input id={field.id} placeholder={field.placeholder} fullWidth />
+                        </div>
+                    ))}
+
+                    <div class="lbl-billing__action">
+                        <Button size="lg" fullWidth>Pay $288.00</Button>
+                    </div>
+
+                    <p class="lbl-billing__lock">🔒 Payments are encrypted end to end</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Newsletter preferences -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Newsletter Preferences</span>
+            <span class="pl-example__tags">Editorial · Underline fields · Serif label</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="lbl-prefs">
+
+                <div class="lbl-prefs__inner">
+
+                    <span class="lbl-prefs__kicker">Subscriber settings</span>
+                    <h2 class="lbl-prefs__title">Tune what you receive</h2>
+
+                    {preferenceFields.map(field => (
+                        <div class="lbl-prefs__field">
+                            <Label
+                                for={field.id}
+                                required={field.required}
+                                optional={field.optional}
+                                helper={field.helper}
+                            >
+                                {field.text}
+                            </Label>
+                            <Input id={field.id} placeholder={field.placeholder} fullWidth />
+                        </div>
+                    ))}
+
+                    <div class="lbl-prefs__foot">
+                        <Button size="lg">Save preferences</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

@@ -1,0 +1,141 @@
+---
+import { ChevronDown } from "lucide-astro";
+import type { NavItem } from "../../header.types";
+
+interface Props {
+  items: NavItem[];
+  currentPath: string;
+}
+
+const { items, currentPath } = Astro.props;
+
+const isActive = (href: string) =>
+  href === "/" ? currentPath === "/" : href !== "#" && currentPath.startsWith(href);
+---
+
+<nav class="hd-nav" aria-label="Ana menü">
+  <ul class="hd-nav__list">
+    {
+      items.map((item) =>
+        item.mega ? (
+          <li class="hd-nav__item">
+            <button
+              type="button"
+              class="hd-nav__trigger"
+              data-mega-trigger={item.mega.id}
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls={`hd-mega-${item.mega.id}`}
+            >
+              <span>{item.label}</span>
+              <ChevronDown class="hd-nav__chev" size={16} aria-hidden="true" />
+            </button>
+          </li>
+        ) : (
+          <li class="hd-nav__item">
+            <a
+              class="hd-nav__link"
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        )
+      )
+    }
+  </ul>
+</nav>
+
+<style>
+  .hd-nav__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+  }
+
+  .hd-nav__item {
+    display: flex;
+  }
+
+  .hd-nav__link,
+  .hd-nav__trigger {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    height: 44px;
+    padding-inline: var(--space-3);
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.01em;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+
+  /* Underline indicator — hover, open, and active */
+  .hd-nav__link::after,
+  .hd-nav__trigger::after {
+    content: "";
+    position: absolute;
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: 6px;
+    height: 2px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition-base);
+  }
+
+  .hd-nav__link:hover,
+  .hd-nav__trigger:hover,
+  .hd-nav__trigger[aria-expanded="true"],
+  .hd-nav__link[aria-current="page"] {
+    color: var(--color-text);
+  }
+
+  .hd-nav__link:hover::after,
+  .hd-nav__trigger:hover::after,
+  .hd-nav__trigger[aria-expanded="true"]::after,
+  .hd-nav__link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+
+  .hd-nav__link:focus-visible,
+  .hd-nav__trigger:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-nav__chev {
+    transition: transform var(--transition-base);
+  }
+
+  .hd-nav__trigger[aria-expanded="true"] .hd-nav__chev {
+    transform: rotate(180deg);
+  }
+
+  /* Narrow desktop — step back to md so 6 items never overflow the bar. */
+  @media (max-width: 1279px) {
+    .hd-nav__link,
+    .hd-nav__trigger {
+      font-size: var(--font-size-md);
+      padding-inline: var(--space-2);
+    }
+    .hd-nav__list {
+      gap: var(--space-1);
+    }
+  }
+</style>

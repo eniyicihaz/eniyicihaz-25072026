@@ -1,0 +1,368 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Chip/ChipPatterns.css";
+
+import Chip from "../../../ds/components/ui/atoms/Chip/Chip.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import { Check, Filter } from "lucide-astro";
+
+import {
+    finderGroups,
+    finderActive,
+    finderResults,
+    recipients,
+    suggestions,
+    ticketCategories,
+    tickets,
+    moodChips,
+    moodTracks,
+    dishes,
+    menuFilters
+} from "../../../ds/patterns/Chip/chip.data";
+---
+
+<DSLayout title="Chip">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Chip</h1>
+
+        <p class="pl-head__lede">
+            Five uses for a small selectable token — device facets, email
+            recipients, a support queue, a playlist mood cloud
+            and a menu's allergen warnings.
+        </p>
+
+    </header>
+
+    <!-- 01 — Device finder -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Device Finder</span>
+            <span class="pl-example__tags">Hearing care · Grouped facets · Active echo</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="chip-finder">
+
+                <div class="chip-finder__inner">
+
+                    <aside class="chip-finder__rail">
+                        {finderGroups.map(group => (
+                            <div class="chip-finder__group">
+                                <h3 class="chip-finder__group-title">{group.title}</h3>
+                                <div class="chip-finder__chips">
+                                    {group.chips.map(chip => (
+                                        <Chip
+                                            variant={chip.selected ? "primary" : "outline"}
+                                            size="sm"
+                                            clickable
+                                            selected={chip.selected}
+                                            leftIcon={chip.selected ? Check : undefined}
+                                        >
+                                            {chip.label}
+                                        </Chip>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </aside>
+
+                    <div>
+
+                        <span class="chip-finder__kicker">Cihaz bulucu</span>
+                        <h2 class="chip-finder__title">Size uygun 3 cihaz</h2>
+
+                        <div class="chip-finder__active">
+                            <span class="chip-finder__active-label">Seçili:</span>
+                            {finderActive.map(label => (
+                                <Chip variant="soft" size="sm" removable>{label}</Chip>
+                            ))}
+                            <a class="chip-finder__clear" href="#0">Temizle</a>
+                        </div>
+
+                        {finderResults.map(result => (
+                            <article class="chip-finder__result">
+                                <span class="chip-finder__shape" aria-hidden="true"></span>
+                                <div>
+                                    <div class="chip-finder__name">{result.name}</div>
+                                    <div class="chip-finder__match">{result.match}</div>
+                                </div>
+                                <span class="chip-finder__price">{result.price}</span>
+                            </article>
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Recipient picker -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Recipient Picker</span>
+            <span class="pl-example__tags">Compose field · Removable · Suggestions</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="chip-mail">
+
+                <div class="chip-mail__card">
+
+                    <header class="chip-mail__head">
+                        <span class="chip-mail__title">New message</span>
+                        <span class="chip-mail__close" aria-hidden="true">✕</span>
+                    </header>
+
+                    <div class="chip-mail__field">
+                        <span class="chip-mail__field-label">To</span>
+                        <div class="chip-mail__chips">
+                            {recipients.map(person => (
+                                <Chip variant="neutral" size="sm" removable>
+                                    {person.name}
+                                </Chip>
+                            ))}
+                            <span class="chip-mail__input">Add another…</span>
+                        </div>
+                    </div>
+
+                    <div class="chip-mail__subject">
+                        Cycle 24 review — agenda and pre-reads
+                    </div>
+
+                    <div class="chip-mail__body">
+                        Attaching the three documents we will walk through on Thursday.
+                        Please read the scheduler write-up before the call — the rest
+                        can wait until we are in the room.
+                    </div>
+
+                    <div class="chip-mail__suggestions">
+                        <span class="chip-mail__suggestions-label">Suggested:</span>
+                        {suggestions.map(person => (
+                            <Chip variant="outline" size="sm" clickable>
+                                {person.name}
+                            </Chip>
+                        ))}
+                    </div>
+
+                    <footer class="chip-mail__foot">
+                        <span class="chip-mail__meta">Draft saved</span>
+                        <Button size="sm">Send</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Support queue -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Support Queue</span>
+            <span class="pl-example__tags">Counted categories · Inline chip per row</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="chip-ticket">
+
+                <div class="chip-ticket__inner">
+
+                    <header class="chip-ticket__head">
+                        <h2 class="chip-ticket__title">Open tickets</h2>
+                        <span class="chip-ticket__sla">Median first reply 12m · SLA 4h</span>
+                    </header>
+
+                    <div class="chip-ticket__filters">
+                        {ticketCategories.map((cat, i) => (
+                            <Chip
+                                variant={i === 0 ? "primary" : cat.variant}
+                                size="sm"
+                                clickable
+                                selected={i === 0}
+                                leftIcon={i === 0 ? Filter : undefined}
+                            >
+                                {cat.label}
+                                <span class="chip-ticket__count">{cat.count}</span>
+                            </Chip>
+                        ))}
+                    </div>
+
+                    {tickets.map(ticket => (
+                        <div class="chip-ticket__row">
+                            <span class="chip-ticket__id">{ticket.id}</span>
+                            <div>
+                                <div class="chip-ticket__subject">{ticket.subject}</div>
+                                <div class="chip-ticket__tags">
+                                    <Chip variant={ticket.variant} size="xs">
+                                        {ticket.category}
+                                    </Chip>
+                                </div>
+                            </div>
+                            <span class="chip-ticket__age">{ticket.age}</span>
+                            <span class="chip-ticket__agent">{ticket.agent}</span>
+                        </div>
+                    ))}
+
+                    <div class="chip-ticket__foot">
+                        <span>Showing 3 of 128 open</span>
+                        <span>Updated 40 seconds ago</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Playlist mood -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Playlist Mood</span>
+            <span class="pl-example__tags">Dark cloud · Gradient selection · Track list</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="chip-mood">
+
+                <div class="chip-mood__inner">
+
+                    <span class="chip-mood__kicker">Made for you</span>
+
+                    <h2 class="chip-mood__title">Build a mood</h2>
+
+                    <p class="chip-mood__lede">
+                        Pick as many as you like. The list rebuilds as you change
+                        your mind.
+                    </p>
+
+                    <div class="chip-mood__cloud">
+                        {moodChips.map(chip => (
+                            <Chip
+                                variant={chip.selected ? "primary" : "outline"}
+                                size={chip.selected ? "md" : "sm"}
+                                clickable
+                                selected={chip.selected}
+                            >
+                                {chip.label}
+                            </Chip>
+                        ))}
+                    </div>
+
+                    {moodTracks.map((track, i) => (
+                        <div class="chip-mood__track">
+                            <span class="chip-mood__n">{i + 1}</span>
+                            <div>
+                                <div class="chip-mood__track-title">{track.title}</div>
+                                <div class="chip-mood__artist">{track.artist}</div>
+                            </div>
+                            <span class="chip-mood__length">{track.length}</span>
+                        </div>
+                    ))}
+
+                    <div class="chip-mood__foot">
+                        <span>3 tracks from 41 matches</span>
+                        <Button variant="glass" size="sm">Save playlist</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Menu dietary tags -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Menu Allergens</span>
+            <span class="pl-example__tags">Editorial menu · Warning chips · Centred</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="chip-menu">
+
+                <div class="chip-menu__inner">
+
+                    <header class="chip-menu__head">
+                        <span class="chip-menu__restaurant">Osteria Vela</span>
+                        <h2 class="chip-menu__title">Primi &amp; Secondi</h2>
+                        <p class="chip-menu__note">
+                            Tell us about any allergy and the kitchen will adapt where it can.
+                        </p>
+                    </header>
+
+                    <div class="chip-menu__filters">
+                        {menuFilters.map(filter => (
+                            <Chip variant="outline" size="sm" clickable>{filter}</Chip>
+                        ))}
+                    </div>
+
+                    {dishes.map(dish => (
+                        <article class="chip-menu__dish">
+                            <div>
+                                <h3 class="chip-menu__name">{dish.name}</h3>
+                                <p class="chip-menu__detail">{dish.detail}</p>
+                                <div class="chip-menu__tags">
+                                    {dish.tags.map(tag => (
+                                        <Chip variant={tag.variant} size="xs">{tag.label}</Chip>
+                                    ))}
+                                </div>
+                            </div>
+                            <span class="chip-menu__price">{dish.price}</span>
+                        </article>
+                    ))}
+
+                    <p class="chip-menu__foot">
+                        Allergen information is prepared from supplier declarations and
+                        reviewed weekly. Our kitchen is not a nut-free environment.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

@@ -1,0 +1,220 @@
+/* ==========================================================
+   Pattern Library — shared foundation
+
+   Loaded by every pattern page.
+
+   Contains ONLY:
+     1. Pattern design tokens (shared rhythm across all pages)
+     2. The page intro
+     3. The numbered example frame
+
+   Individual section designs live in
+   src/ds/patterns/<Component>/<Component>Patterns.css
+   ========================================================== */
+
+:root{
+
+    /* Radius scale */
+
+    --pat-radius-xs:8px;
+    --pat-radius-sm:12px;
+    --pat-radius-md:18px;
+    --pat-radius-lg:24px;
+    --pat-radius-pill:999px;
+
+    /* Elevation */
+
+    --pat-shadow-sm:
+        0 1px 2px rgb(15 23 42 / .04);
+
+    --pat-shadow-md:
+        0 2px 6px rgb(15 23 42 / .04),
+        0 12px 32px rgb(15 23 42 / .06);
+
+    --pat-shadow-lg:
+        0 2px 8px rgb(15 23 42 / .04),
+        0 28px 70px rgb(15 23 42 / .10);
+
+    --pat-shadow-dark:
+        0 30px 80px rgb(0 0 0 / .5);
+
+    /* Type */
+
+    --pat-serif:ui-serif, Georgia, "Times New Roman", serif;
+    --pat-mono:ui-monospace, "SFMono-Regular", "Menlo", monospace;
+
+    /* Ink */
+
+    --pat-ink:#0b1220;
+    --pat-body:#5b6b81;
+    --pat-soft:#8494a8;
+    --pat-line:rgb(15 23 42 / .08);
+
+    /* Accents */
+
+    --pat-blue:#1d4ed8;
+    --pat-gold:#c7a26b;
+
+    /* Section rhythm */
+
+    --pat-space-section:104px;
+    --pat-space-gutter:56px;
+}
+
+/* ----------------------------------------------------------
+   Page wrapper
+   ---------------------------------------------------------- */
+
+.pl{
+    display:flex;
+    flex-direction:column;
+    gap:72px;
+
+    padding-bottom:40px;
+}
+
+/* ----------------------------------------------------------
+   Page intro
+   ---------------------------------------------------------- */
+
+.pl-head{
+    max-width:780px;
+    padding-top:16px;
+}
+
+.pl-head__eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    margin-bottom:26px;
+    padding:6px 14px 6px 11px;
+
+    border:1px solid var(--border);
+    border-radius:var(--pat-radius-pill);
+
+    background:var(--surface);
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+}
+
+.pl-head__eyebrow::before{
+    content:"";
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+    background:var(--primary);
+    box-shadow:0 0 0 3px rgb(37 99 235 / .16);
+}
+
+.pl-head__title{
+    margin:0;
+
+    font-size:clamp(2.75rem, 6vw, 4.25rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:.98;
+
+    color:var(--heading);
+}
+
+.pl-head__lede{
+    margin:22px 0 0;
+    max-width:620px;
+
+    font-size:1.1rem;
+    line-height:1.65;
+    color:var(--text-muted);
+
+    text-wrap:pretty;
+}
+
+/* ----------------------------------------------------------
+   Example frame
+
+   The canvas belongs entirely to the section inside it.
+   ---------------------------------------------------------- */
+
+.pl-example{
+    margin:0;
+    overflow:hidden;
+
+    border:1px solid var(--border);
+    border-radius:26px;
+
+    background:var(--surface);
+
+    box-shadow:var(--pat-shadow-lg);
+}
+
+.pl-example__bar{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:16px 24px;
+
+    border-bottom:1px solid var(--border);
+    background:var(--surface-alt);
+}
+
+.pl-example__index{
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.1em;
+
+    color:var(--primary);
+}
+
+.pl-example__name{
+    font-size:.95rem;
+    font-weight:650;
+    letter-spacing:-.012em;
+
+    color:var(--heading);
+}
+
+.pl-example__tags{
+    margin-left:auto;
+
+    font-size:.78rem;
+    letter-spacing:.01em;
+    color:var(--text-muted);
+}
+
+.pl-example__canvas{
+    position:relative;
+    overflow:hidden;
+}
+
+@media (max-width:720px){
+
+    :root{
+        --pat-space-section:64px;
+        --pat-space-gutter:20px;
+    }
+
+    .pl{
+        gap:48px;
+    }
+
+    .pl-example{
+        border-radius:20px;
+    }
+
+    .pl-example__bar{
+        padding:14px 18px;
+    }
+
+    .pl-example__tags{
+        display:none;
+    }
+
+}

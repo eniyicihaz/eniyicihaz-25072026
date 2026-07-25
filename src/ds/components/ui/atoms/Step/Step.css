@@ -1,0 +1,59 @@
+.ds-step {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+}
+
+.ds-step__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  flex-shrink: 0;
+
+  border: 2px solid var(--ds-border-color, #d1d5db);
+  border-radius: 999px;
+
+  background: var(--ds-surface, #fff);
+  color: var(--ds-text, #0f172a);
+
+  font-size: .875rem;
+  font-weight: 600;
+
+  transition: all .2s ease;
+}
+
+.ds-step--active .ds-step__indicator {
+  background: var(--ds-primary, #2563eb);
+  border-color: var(--ds-primary, #2563eb);
+  color: #fff;
+}
+
+.ds-step--completed .ds-step__indicator {
+  background: var(--ds-success, #22c55e);
+  border-color: var(--ds-success, #22c55e);
+  color: #fff;
+}
+
+.ds-step--disabled {
+  opacity: .5;
+}
+
+.ds-step__content {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.ds-step__label {
+  font-weight: 600;
+  color: var(--ds-text, #0f172a);
+}
+
+.ds-step__description {
+  font-size: .8125rem;
+  color: var(--ds-text-secondary, #64748b);
+}

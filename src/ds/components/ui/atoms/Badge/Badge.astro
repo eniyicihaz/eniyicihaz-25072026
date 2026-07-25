@@ -1,0 +1,42 @@
+---
+import "./Badge.css";
+import type { BadgeProps } from "./Badge.types";
+
+const {
+  variant = "primary",
+  size = "md",
+  rounded = true,
+  outlined = false,
+  removable = false,
+  class: className = ""
+}: BadgeProps = Astro.props;
+
+const classes = [
+  "badge",
+  `badge--${variant}`,
+  `badge--${size}`,
+  rounded && "badge--rounded",
+  outlined && "badge--outlined",
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span class={classes}>
+
+  <span class="badge-content">
+    <slot />
+  </span>
+
+  {removable && (
+    <button
+      type="button"
+      class="badge-remove"
+      aria-label="Remove badge"
+    >
+      ×
+    </button>
+  )}
+
+</span>

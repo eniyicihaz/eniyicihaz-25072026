@@ -1,0 +1,77 @@
+---
+import "./Button.css";
+import type { ButtonProps } from "./Button.types";
+
+const {
+    variant = "primary",
+    size = "md",
+    fullWidth = false,
+    rounded = false,
+    loading = false,
+    disabled = false,
+    elevated = false,
+    iconOnly = false,
+    leftIcon: LeftIcon,
+    rightIcon: RightIcon,
+    type = "button",
+    href,
+    target,
+    rel,
+    class: className = ""
+} = Astro.props as ButtonProps;
+
+const classes = [
+    "btn",
+    `btn--${variant}`,
+    `btn--${size}`,
+    fullWidth && "btn--full",
+    rounded && "btn--rounded",
+    elevated && "btn--elevated",
+    iconOnly && "btn--icon",
+    loading && "is-loading",
+    className
+]
+.filter(Boolean)
+.join(" ");
+---
+
+{
+href ? (
+
+<a
+href={href}
+target={target}
+rel={rel}
+class={classes}
+>
+
+{LeftIcon && <LeftIcon size={18} />}
+
+{loading && <span class="btn-spinner"></span>}
+
+<span><slot /></span>
+
+{RightIcon && <RightIcon size={18} />}
+
+</a>
+
+) : (
+
+<button
+type={type}
+disabled={disabled || loading}
+class={classes}
+>
+
+{LeftIcon && <LeftIcon size={18} />}
+
+{loading && <span class="btn-spinner"></span>}
+
+<span><slot /></span>
+
+{RightIcon && <RightIcon size={18} />}
+
+</button>
+
+)
+}

@@ -1,0 +1,29 @@
+---
+import "./KeyValue.css";
+import type { KeyValueProps } from "./KeyValue.types";
+
+const {
+  label,
+  value,
+  inline = false,
+  class: className = "",
+} = Astro.props as KeyValueProps;
+
+const classes = [
+  "ds-key-value",
+  inline && "ds-key-value--inline",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <span class="ds-key-value__label">
+    {label}
+  </span>
+
+  <span class="ds-key-value__value">
+    {value}
+  </span>
+</div>

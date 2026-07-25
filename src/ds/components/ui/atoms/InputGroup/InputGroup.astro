@@ -1,0 +1,19 @@
+---
+import "./InputGroup.css";
+import type { InputGroupProps } from "./InputGroup.types";
+
+const {
+  class: className = "",
+} = Astro.props as InputGroupProps;
+
+const classes = [
+  "ds-input-group",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <slot />
+</div>

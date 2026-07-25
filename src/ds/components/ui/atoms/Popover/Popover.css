@@ -1,0 +1,134 @@
+.ds-popover {
+  position: relative;
+  display: inline-flex;
+}
+
+.ds-popover__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-popover__content {
+  position: absolute;
+  z-index: 1000;
+
+  min-width: 240px;
+  max-width: 360px;
+
+  padding: 1rem;
+
+  border: 1px solid var(--ds-border-color, #e5e7eb);
+  border-radius: var(--ds-radius-lg, 12px);
+
+  background: var(--ds-surface, #fff);
+
+  box-shadow:
+    0 12px 30px rgba(15,23,42,.12);
+}
+
+/* Top */
+
+.ds-popover--top .ds-popover__content,
+.ds-popover--top-start .ds-popover__content,
+.ds-popover--top-end .ds-popover__content {
+  bottom: calc(100% + .75rem);
+}
+
+.ds-popover--top .ds-popover__content {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ds-popover--top-start .ds-popover__content {
+  left: 0;
+}
+
+.ds-popover--top-end .ds-popover__content {
+  right: 0;
+}
+
+/* Bottom */
+
+.ds-popover--bottom .ds-popover__content,
+.ds-popover--bottom-start .ds-popover__content,
+.ds-popover--bottom-end .ds-popover__content {
+  top: calc(100% + .75rem);
+}
+
+.ds-popover--bottom .ds-popover__content {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ds-popover--bottom-start .ds-popover__content {
+  left: 0;
+}
+
+.ds-popover--bottom-end .ds-popover__content {
+  right: 0;
+}
+
+/* Left */
+
+.ds-popover--left .ds-popover__content,
+.ds-popover--left-start .ds-popover__content,
+.ds-popover--left-end .ds-popover__content {
+  right: calc(100% + .75rem);
+}
+
+.ds-popover--left .ds-popover__content {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ds-popover--left-start .ds-popover__content {
+  top: 0;
+}
+
+.ds-popover--left-end .ds-popover__content {
+  bottom: 0;
+}
+
+/* Right */
+
+.ds-popover--right .ds-popover__content,
+.ds-popover--right-start .ds-popover__content,
+.ds-popover--right-end .ds-popover__content {
+  left: calc(100% + .75rem);
+}
+
+.ds-popover--right .ds-popover__content {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ds-popover--right-start .ds-popover__content {
+  top: 0;
+}
+
+.ds-popover--right-end .ds-popover__content {
+  bottom: 0;
+}
+
+.ds-popover__arrow {
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  background: inherit;
+
+  border-left: inherit;
+  border-top: inherit;
+
+  transform: rotate(45deg);
+}
+
+.ds-popover--bottom .ds-popover__arrow,
+.ds-popover--bottom-start .ds-popover__arrow,
+.ds-popover--bottom-end .ds-popover__arrow {
+  top: -7px;
+  left: 50%;
+  margin-left: -6px;
+}

@@ -1,0 +1,101 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+
+const icons = [
+    "Search",
+    "Menu",
+    "Close",
+    "Chevron Right",
+    "Chevron Down",
+    "Arrow Right",
+    "Phone",
+    "Mail",
+    "Map Pin",
+    "Calendar",
+    "Clock",
+    "Check",
+    "Info",
+    "Warning",
+    "Settings",
+    "User"
+];
+---
+
+<DSLayout title="Icons">
+
+    <PageHeader
+        badge="Foundation"
+        title="Icons"
+        description="Icons improve recognition, navigation and usability across the design system."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Keep icon size, stroke and spacing consistent throughout the interface.
+    </Note>
+
+    <Divider label="Icon Library" />
+
+    <Section
+        title="Available Icons"
+        description="Common icons used across the design system."
+    >
+
+        <Preview title="Icon Reference">
+
+            <div
+                style="
+                    display:grid;
+                    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+                    gap:20px;
+                "
+            >
+
+                {
+                    icons.map(icon => (
+                        <div
+                            style="
+                                display:flex;
+                                flex-direction:column;
+                                align-items:center;
+                                justify-content:center;
+                                gap:12px;
+                                min-height:120px;
+                                border:1px solid var(--border);
+                                border-radius:16px;
+                                background:var(--surface);
+                            "
+                        >
+                            <div style="font-size:2rem;">
+                                ⬚
+                            </div>
+
+                            <div style="font-size:.875rem;font-weight:500;">
+                                {icon}
+                            </div>
+                        </div>
+                    ))
+                }
+
+            </div>
+
+        </Preview>
+
+    </Section>
+
+</DSLayout>

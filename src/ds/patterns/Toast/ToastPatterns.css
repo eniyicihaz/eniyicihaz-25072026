@@ -1,0 +1,999 @@
+/* ==========================================================
+   Toast — five patterns
+
+   01  toast-deploy  Stacked deploy notifications over a terminal
+   02  toast-ride    Ride-hailing status over a map
+   03  toast-bank    Banking transaction alert, phone frame
+   04  toast-editor  Presence toast in a collaborative editor
+   05  toast-order   Delivery update over an order timeline
+
+   Toasts are positioned inside each stage rather than
+   floated on the viewport — presentation only, the
+   component API is untouched.
+   ========================================================== */
+
+.toast-stage{
+    position:relative;
+    overflow:hidden;
+}
+
+.toast-stage__page{
+    position:relative;
+    z-index:1;
+
+    user-select:none;
+}
+
+.toast-stage__layer{
+    position:absolute;
+    z-index:2;
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+
+/* ==========================================================
+   01 — Deploy pipeline
+
+   A stack in the top-right over a terminal. Older
+   toasts sit slightly recessed.
+   ========================================================== */
+
+.toast-deploy{
+    min-height:520px;
+    padding:28px;
+
+    background:
+        radial-gradient(50% 40% at 80% 0%, rgb(56 189 248 / .12), transparent 62%),
+        #090e16;
+}
+
+.toast-deploy__terminal{
+    max-width:560px;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-sm);
+
+    background:#0b1220;
+}
+
+.toast-deploy__terminal-bar{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding:12px 16px;
+
+    border-bottom:1px solid rgb(255 255 255 / .07);
+}
+
+.toast-deploy__dot{
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:rgb(255 255 255 / .16);
+}
+
+.toast-deploy__terminal-name{
+    margin-left:10px;
+
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    color:rgb(248 250 252 / .35);
+}
+
+.toast-deploy__terminal-body{
+    padding:18px;
+}
+
+.toast-deploy__line{
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    line-height:1.9;
+}
+
+.toast-deploy__line--cmd{
+    color:#e2e8f0;
+}
+
+.toast-deploy__line--dim{
+    color:rgb(248 250 252 / .35);
+}
+
+.toast-deploy__line--ok{
+    color:#4ade80;
+}
+
+.toast-deploy__meta{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+
+    max-width:560px;
+    margin-top:22px;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(248 250 252 / .3);
+}
+
+.toast-deploy__layer{
+    top:28px;
+    right:28px;
+
+    width:min(380px, calc(100% - 56px));
+}
+
+.toast-deploy__item{
+    position:relative;
+}
+
+.toast-deploy__item--aged{
+    opacity:.86;
+    transform:scale(.98);
+}
+
+.toast-deploy__item--oldest{
+    opacity:.7;
+    transform:scale(.96);
+}
+
+.toast-deploy .ds-toast{
+    max-width:none;
+
+    border-color:rgb(255 255 255 / .1);
+    background:rgb(22 28 41 / .94);
+    backdrop-filter:blur(20px);
+
+    box-shadow:0 20px 50px rgb(0 0 0 / .5);
+}
+
+.toast-deploy .ds-toast__title{
+    color:#f1f5f9;
+}
+
+.toast-deploy .ds-toast__description{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(241 245 249 / .48);
+}
+
+.toast-deploy .ds-toast__close{
+    color:rgb(241 245 249 / .4);
+}
+
+.toast-deploy__action{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:12px;
+}
+
+.toast-deploy__age{
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    color:rgb(241 245 249 / .3);
+}
+
+.toast-deploy__link{
+    font-size:.82rem;
+    font-weight:650;
+    color:#7dd3fc;
+}
+
+
+/* ==========================================================
+   02 — Ride hailing
+
+   A single toast docked to the bottom of a map, acting
+   as the trip sheet.
+   ========================================================== */
+
+.toast-ride{
+    display:flex;
+    align-items:flex-end;
+
+    min-height:540px;
+    padding:24px;
+
+    background:
+        linear-gradient(180deg, #e8edf2 0%, #dde4ec 100%);
+}
+
+.toast-ride__map{
+    position:absolute;
+    inset:0;
+    z-index:0;
+
+    background-image:
+        linear-gradient(rgb(15 23 42 / .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(15 23 42 / .05) 1px, transparent 1px);
+    background-size:44px 44px;
+}
+
+.toast-ride__route{
+    position:absolute;
+    top:22%;
+    left:14%;
+
+    width:58%;
+    height:44%;
+
+    border-left:3px solid #0f766e;
+    border-bottom:3px solid #0f766e;
+    border-bottom-left-radius:80px;
+
+    opacity:.85;
+}
+
+.toast-ride__pin{
+    position:absolute;
+
+    width:14px;
+    height:14px;
+
+    border:3px solid #fff;
+    border-radius:50%;
+
+    box-shadow:0 2px 8px rgb(15 23 42 / .3);
+}
+
+.toast-ride__pin--start{
+    top:22%;
+    left:calc(14% - 7px);
+
+    background:#0f766e;
+}
+
+.toast-ride__pin--end{
+    top:calc(66% - 7px);
+    left:72%;
+
+    background:#0b1220;
+}
+
+.toast-ride__car{
+    position:absolute;
+    top:52%;
+    left:calc(14% - 12px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:26px;
+    height:26px;
+
+    border-radius:50%;
+    background:#0b1220;
+    color:#fff;
+
+    font-size:.7rem;
+
+    box-shadow:0 0 0 6px rgb(11 18 32 / .12);
+}
+
+.toast-ride__layer{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:420px;
+    margin:0 auto;
+}
+
+.toast-ride .ds-toast{
+    max-width:none;
+
+    border-color:rgb(15 23 42 / .08);
+    border-radius:var(--pat-radius-lg);
+
+    box-shadow:0 24px 60px rgb(15 23 42 / .18);
+}
+
+.toast-ride .ds-toast__title{
+    font-size:1.02rem;
+    letter-spacing:-.02em;
+}
+
+.toast-ride__driver{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:14px;
+    padding-top:14px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.toast-ride__driver-name{
+    font-size:.9rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.toast-ride__driver-detail{
+    margin-top:2px;
+
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.toast-ride__plate{
+    margin-left:auto;
+    padding:5px 10px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-xs);
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.toast-ride__stops{
+    margin-top:14px;
+}
+
+.toast-ride__stop{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    padding:6px 0;
+
+    font-size:.85rem;
+    color:var(--pat-body);
+}
+
+.toast-ride__stop-dot{
+    width:8px;
+    height:8px;
+    flex-shrink:0;
+
+    border-radius:50%;
+    background:#cbd5e1;
+}
+
+.toast-ride__stop--done .toast-ride__stop-dot{
+    background:#0f766e;
+}
+
+.toast-ride__stop--next{
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.toast-ride__stop--next .toast-ride__stop-dot{
+    background:#0b1220;
+    box-shadow:0 0 0 4px rgb(11 18 32 / .12);
+}
+
+.toast-ride__stop-note{
+    margin-left:auto;
+
+    font-size:.78rem;
+    font-weight:500;
+    color:var(--pat-soft);
+}
+
+.toast-ride__actions{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:10px;
+
+    margin-top:16px;
+}
+
+
+/* ==========================================================
+   03 — Bank alert
+
+   A phone frame with the toast arriving over the
+   account screen.
+   ========================================================== */
+
+.toast-bank{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 24px 64px;
+
+    background:
+        radial-gradient(60% 45% at 50% 0%, rgb(16 185 129 / .14), transparent 66%),
+        #f2f6f5;
+}
+
+.toast-bank__phone{
+    position:relative;
+
+    width:100%;
+    max-width:360px;
+    overflow:hidden;
+
+    border:10px solid #10161c;
+    border-radius:38px;
+
+    background:#fff;
+
+    box-shadow:0 30px 70px rgb(16 22 28 / .25);
+}
+
+.toast-bank__notch{
+    position:absolute;
+    top:0;
+    left:50%;
+    z-index:3;
+
+    width:110px;
+    height:22px;
+
+    transform:translateX(-50%);
+
+    border-radius:0 0 14px 14px;
+    background:#10161c;
+}
+
+.toast-bank__screen{
+    min-height:520px;
+    padding:38px 20px 24px;
+
+    background:linear-gradient(180deg, #0f766e 0%, #0f766e 180px, #f7fafa 180px);
+}
+
+.toast-bank__account{
+    color:#fff;
+}
+
+.toast-bank__account-label{
+    font-size:.74rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    opacity:.65;
+}
+
+.toast-bank__balance{
+    margin-top:8px;
+
+    font-size:2.2rem;
+    font-weight:750;
+    letter-spacing:-.045em;
+
+    font-variant-numeric:tabular-nums;
+}
+
+.toast-bank__iban{
+    margin-top:4px;
+
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    opacity:.6;
+}
+
+.toast-bank__list{
+    margin-top:28px;
+    padding:16px;
+
+    border-radius:var(--pat-radius-md);
+    background:#fff;
+
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.toast-bank__list-title{
+    margin:0 0 10px;
+
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.toast-bank__tx{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+
+    padding:10px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.toast-bank__tx:last-child{
+    border-bottom:none;
+}
+
+.toast-bank__tx-merchant{
+    font-size:.86rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.toast-bank__tx-time{
+    margin-top:2px;
+
+    font-size:.74rem;
+    color:var(--pat-soft);
+}
+
+.toast-bank__tx-amount{
+    font-size:.86rem;
+    font-weight:700;
+    font-variant-numeric:tabular-nums;
+}
+
+.toast-bank__tx-amount--out{
+    color:var(--pat-ink);
+}
+
+.toast-bank__tx-amount--in{
+    color:#15803d;
+}
+
+.toast-bank__layer{
+    top:34px;
+    right:14px;
+    left:14px;
+}
+
+.toast-bank .ds-toast{
+    max-width:none;
+    padding:.85rem;
+
+    border-color:rgb(15 23 42 / .08);
+    border-radius:var(--pat-radius-md);
+
+    box-shadow:0 16px 40px rgb(15 23 42 / .22);
+}
+
+.toast-bank .ds-toast__title{
+    font-size:.9rem;
+}
+
+.toast-bank .ds-toast__description{
+    font-size:.8rem;
+}
+
+.toast-bank__amount-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+
+    margin-top:10px;
+    padding-top:10px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.toast-bank__amount-row strong{
+    font-size:1.05rem;
+    font-weight:750;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.toast-bank__amount-row span{
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Collaborative editor
+
+   A presence toast slides in bottom-left while someone
+   else edits the document.
+   ========================================================== */
+
+.toast-editor{
+    min-height:500px;
+    padding:0;
+
+    background:#fcfcfd;
+}
+
+.toast-editor__chrome{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding:14px 24px;
+
+    border-bottom:1px solid var(--pat-line);
+    background:#fff;
+}
+
+.toast-editor__doc{
+    font-size:.9rem;
+    font-weight:650;
+    letter-spacing:-.015em;
+    color:var(--pat-ink);
+}
+
+.toast-editor__saved{
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.toast-editor__presence{
+    display:flex;
+    margin-left:auto;
+}
+
+.toast-editor__presence > *:not(:first-child){
+    margin-left:-9px;
+}
+
+.toast-editor__paper{
+    max-width:620px;
+    margin:0 auto;
+    padding:48px 32px;
+}
+
+.toast-editor__heading{
+    margin:0 0 24px;
+
+    font-size:1.9rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.toast-editor__line{
+    display:block;
+    height:12px;
+    margin-bottom:14px;
+
+    border-radius:6px;
+    background:rgb(15 23 42 / .07);
+}
+
+.toast-editor__line--accent{
+    position:relative;
+    background:rgb(99 102 241 / .18);
+}
+
+.toast-editor__cursor{
+    position:absolute;
+    top:-6px;
+    right:-2px;
+
+    display:flex;
+    align-items:center;
+
+    height:24px;
+    padding:0 8px;
+
+    border-radius:4px;
+    background:#6366f1;
+
+    font-size:.68rem;
+    font-weight:600;
+    color:#fff;
+    white-space:nowrap;
+}
+
+.toast-editor__layer{
+    bottom:24px;
+    left:24px;
+
+    width:min(340px, calc(100% - 48px));
+}
+
+.toast-editor .ds-toast{
+    max-width:none;
+
+    border-color:rgb(99 102 241 / .22);
+    background:#fff;
+
+    box-shadow:0 18px 44px rgb(23 19 52 / .14);
+}
+
+.toast-editor__who{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:12px;
+    padding-top:12px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.toast-editor__who-text{
+    font-size:.82rem;
+    color:var(--pat-body);
+}
+
+.toast-editor__who-text strong{
+    color:var(--pat-ink);
+}
+
+.toast-editor__jump{
+    margin-left:auto;
+
+    font-size:.8rem;
+    font-weight:650;
+    color:#4f46e5;
+}
+
+
+/* ==========================================================
+   05 — Order tracking
+
+   The toast sits at the top of a tracking page, above
+   a vertical delivery timeline.
+   ========================================================== */
+
+.toast-order{
+    min-height:520px;
+    padding:32px 32px 48px;
+
+    background:
+        radial-gradient(55% 40% at 50% 0%, rgb(180 121 74 / .12), transparent 64%),
+        #faf9f7;
+}
+
+.toast-order__layer{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:520px;
+    margin:0 auto 32px;
+}
+
+.toast-order .ds-toast{
+    max-width:none;
+
+    border-color:rgb(35 31 28 / .1);
+    border-radius:var(--pat-radius-md);
+
+    box-shadow:0 18px 44px rgb(35 31 28 / .12);
+}
+
+.toast-order__eta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    margin-top:10px;
+
+    font-size:.82rem;
+    font-weight:650;
+    color:#b4794a;
+}
+
+.toast-order__page{
+    max-width:520px;
+    margin:0 auto;
+}
+
+.toast-order__item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:18px;
+    margin-bottom:24px;
+
+    border:1px solid rgb(35 31 28 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.toast-order__thumb{
+    width:52px;
+    height:52px;
+    flex-shrink:0;
+
+    border-radius:var(--pat-radius-xs);
+    background:linear-gradient(150deg, #e4d8c4, #cbb99c);
+}
+
+.toast-order__item-name{
+    font-size:.95rem;
+    font-weight:650;
+    letter-spacing:-.015em;
+    color:#231f1c;
+}
+
+.toast-order__item-detail{
+    margin-top:3px;
+
+    font-size:.8rem;
+    color:#8b8177;
+}
+
+.toast-order__order-no{
+    margin-left:auto;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:#8b8177;
+}
+
+.toast-order__timeline{
+    padding-left:6px;
+}
+
+.toast-order__step{
+    position:relative;
+
+    display:flex;
+    gap:18px;
+
+    padding-bottom:26px;
+}
+
+.toast-order__step:last-child{
+    padding-bottom:0;
+}
+
+.toast-order__step::before{
+    content:"";
+
+    position:absolute;
+    top:16px;
+    bottom:-4px;
+    left:6px;
+
+    width:1px;
+    background:rgb(35 31 28 / .14);
+}
+
+.toast-order__step:last-child::before{
+    display:none;
+}
+
+.toast-order__step-dot{
+    position:relative;
+    z-index:1;
+
+    width:13px;
+    height:13px;
+    margin-top:4px;
+    flex-shrink:0;
+
+    border:2px solid #faf9f7;
+    border-radius:50%;
+    background:rgb(35 31 28 / .2);
+}
+
+.toast-order__step--done .toast-order__step-dot{
+    background:#b4794a;
+}
+
+.toast-order__step--current .toast-order__step-dot{
+    background:#231f1c;
+    box-shadow:0 0 0 4px rgb(35 31 28 / .12);
+}
+
+.toast-order__step-label{
+    font-size:.94rem;
+    font-weight:600;
+    color:#8b8177;
+}
+
+.toast-order__step--done .toast-order__step-label,
+.toast-order__step--current .toast-order__step-label{
+    color:#231f1c;
+}
+
+.toast-order__step-time{
+    margin-top:3px;
+
+    font-size:.8rem;
+    color:#a09585;
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .toast-deploy{
+        min-height:0;
+        padding:20px;
+    }
+
+    .toast-deploy__layer{
+        position:static;
+
+        width:100%;
+        margin-bottom:22px;
+    }
+
+    .toast-ride{
+        min-height:460px;
+    }
+
+    .toast-editor__paper{
+        padding:32px 24px 120px;
+    }
+
+}
+
+@media (max-width:720px){
+
+    .toast-deploy__terminal-body{
+        padding:14px;
+    }
+
+    .toast-deploy__line{
+        font-size:.74rem;
+    }
+
+    .toast-ride{
+        min-height:420px;
+        padding:16px;
+    }
+
+    .toast-ride__actions{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .toast-bank{
+        padding:40px 16px 48px;
+    }
+
+    .toast-editor__chrome{
+        padding:12px 16px;
+    }
+
+    .toast-editor__doc + .toast-editor__saved{
+        display:none;
+    }
+
+    .toast-editor__heading{
+        font-size:1.5rem;
+    }
+
+    .toast-editor__layer{
+        right:16px;
+        bottom:16px;
+        left:16px;
+
+        width:auto;
+    }
+
+    .toast-order{
+        padding:20px 16px 40px;
+    }
+
+    .toast-order__item{
+        flex-wrap:wrap;
+    }
+
+    .toast-order__order-no{
+        margin-left:0;
+        width:100%;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .toast-stage .ds-toast{
+        transition:none;
+    }
+
+    .toast-stage .ds-toast:hover{
+        transform:none;
+    }
+
+}

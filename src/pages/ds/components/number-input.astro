@@ -1,0 +1,269 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/NumberInput/NumberInputPatterns.css";
+
+import NumberInput from "../../../ds/components/ui/atoms/NumberInput/NumberInput.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    cartLines,
+    configFields,
+    recipeServings,
+    bookingFields,
+    budgetLines
+} from "../../../ds/patterns/NumberInput/numberinput.data";
+---
+
+<DSLayout title="Number Input">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Number Input</h1>
+
+        <p class="pl-head__lede">
+            Five numeric forms — a shopping cart, an admin config panel
+            with a validation error, a recipe serving adjuster, a clinic
+            booking form and a budget planner.
+        </p>
+
+    </header>
+
+    <!-- 01 — Accessories cart -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Cart Quantities</span>
+            <span class="pl-example__tags">Retail · Per-line quantity</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="num-cart">
+
+                <div class="num-cart__card">
+
+                    <div class="num-cart__head">Sepetiniz</div>
+
+                    {cartLines.map(line => (
+                        <div class="num-cart__row">
+                            <div>
+                                <div class="num-cart__name">{line.name}</div>
+                                <div class="num-cart__price">{line.price}</div>
+                            </div>
+                            <div class="num-cart__qty">
+                                <NumberInput
+                                    id={line.id}
+                                    value={line.value}
+                                    min={line.min}
+                                    max={line.max}
+                                />
+                            </div>
+                        </div>
+                    ))}
+
+                    <div class="num-cart__foot">
+                        <span class="num-cart__total-label">Ara toplam</span>
+                        <span class="num-cart__total-amount">₺810</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Admin dashboard config, invalid state -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Config Panel</span>
+            <span class="pl-example__tags">Dashboard · Validation error</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="num-config">
+
+                <div class="num-config__card">
+
+                    <span class="num-config__crumb">Settings / Security</span>
+                    <h2 class="num-config__title">Session limits</h2>
+
+                    {configFields.map(field => (
+                        <div class="num-config__field">
+                            <div class="num-config__label">
+                                <span>{field.label}</span>
+                                <span class="num-config__unit">{field.unit}</span>
+                            </div>
+                            <NumberInput
+                                id={field.id}
+                                value={field.value}
+                                min={field.min}
+                                max={field.max}
+                                invalid={field.invalid}
+                            />
+                            {field.invalid && (
+                                <p class="num-config__note">{field.note}</p>
+                            )}
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Recipe serving size, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Serving Size</span>
+            <span class="pl-example__tags">Recipe app · Dark · Disabled field</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="num-recipe">
+
+                <div class="num-recipe__card">
+
+                    <span class="num-recipe__kicker">Tarif</span>
+                    <h2 class="num-recipe__title">Zeytinyağlı enginar</h2>
+
+                    {recipeServings.map(field => (
+                        <div class="num-recipe__field">
+                            <label class="num-recipe__label" for={field.id}>{field.label}</label>
+                            <NumberInput
+                                id={field.id}
+                                value={field.value}
+                                min={field.min}
+                                max={field.max}
+                                disabled={field.disabled}
+                            />
+                            {field.disabled && (
+                                <p class="num-recipe__hint">Bu tarif için sabit bir porsiyon</p>
+                            )}
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Clinic session booking -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Session Booking</span>
+            <span class="pl-example__tags">Hearing care · Form fields</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="num-booking">
+
+                <div class="num-booking__card">
+
+                    <span class="num-booking__kicker">Randevu</span>
+                    <h2 class="num-booking__title">Seans bilgileri</h2>
+
+                    {bookingFields.map(field => (
+                        <div class="num-booking__field">
+                            <label class="num-booking__label" for={field.id}>{field.label}</label>
+                            <NumberInput
+                                id={field.id}
+                                value={field.value}
+                                min={field.min}
+                                max={field.max}
+                            />
+                        </div>
+                    ))}
+
+                    <div class="num-booking__action">
+                        <Button size="lg" fullWidth>Randevuyu onayla</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Budget planner -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Budget Planner</span>
+            <span class="pl-example__tags">Finance · Required fields</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="num-budget">
+
+                <div class="num-budget__card">
+
+                    <div class="num-budget__title">Q3 department budget</div>
+                    <p class="num-budget__sub">Allocate remaining funds across teams</p>
+
+                    {budgetLines.map(line => (
+                        <div class="num-budget__row">
+                            <label class="num-budget__label" for={line.id}>
+                                {line.label}<span class="num-budget__required">*</span>
+                            </label>
+                            <div class="num-budget__input">
+                                <NumberInput
+                                    id={line.id}
+                                    value={line.value}
+                                    min={line.min}
+                                    max={line.max}
+                                    step={line.step}
+                                    required
+                                />
+                            </div>
+                        </div>
+                    ))}
+
+                    <div class="num-budget__total">
+                        <span class="num-budget__total-label">Total allocated</span>
+                        <span class="num-budget__total-amount">₺24,500</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

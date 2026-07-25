@@ -1,0 +1,63 @@
+---
+import "./Toggle.css";
+import type { ToggleProps } from "./Toggle.types";
+
+const {
+  id,
+  name,
+  checked = false,
+  disabled = false,
+  required = false,
+  label,
+  description,
+  size = "md",
+  class: className = "",
+} = Astro.props as ToggleProps;
+
+const classes = [
+  "ds-toggle",
+  `ds-toggle--${size}`,
+  disabled && "ds-toggle--disabled",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<label class={classes}>
+  <input
+    class="ds-toggle__input"
+    id={id}
+    name={name}
+    type="checkbox"
+    checked={checked}
+    disabled={disabled}
+    required={required}
+  />
+
+  <span class="ds-toggle__track">
+    <span class="ds-toggle__thumb"></span>
+  </span>
+
+  {
+    (label || description) && (
+      <span class="ds-toggle__content">
+        {
+          label && (
+            <span class="ds-toggle__label">
+              {label}
+            </span>
+          )
+        }
+
+        {
+          description && (
+            <span class="ds-toggle__description">
+              {description}
+            </span>
+          )
+        }
+      </span>
+    )
+  }
+</label>

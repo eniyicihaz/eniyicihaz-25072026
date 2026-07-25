@@ -1,0 +1,340 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/FormField/FormFieldPatterns.css";
+
+import FormField from "../../../ds/components/ui/atoms/FormField/FormField.astro";
+import Input from "../../../ds/components/ui/atoms/Input/Input.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    bookingFields,
+    applicationFields,
+    applicationRole,
+    apiKeyFields,
+    cardFields,
+    orderSummary,
+    preferenceFields
+} from "../../../ds/patterns/FormField/formfield.data";
+---
+
+<DSLayout title="Form Field">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Form Field</h1>
+
+        <p class="pl-head__lede">
+            Five forms where labels, hints and errors carry real weight —
+            a booking form, a job application, an API key, a payment
+            form and newsletter preferences.
+        </p>
+
+    </header>
+
+    <!-- 01 — Hearing test booking -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Booking Form</span>
+            <span class="pl-example__tags">Hearing care · Required fields · Error state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ff-booking">
+
+                <div class="ff-booking__card">
+
+                    <span class="ff-booking__kicker">Randevu</span>
+                    <h2 class="ff-booking__title">Bilgilerinizi girin</h2>
+                    <p class="ff-booking__lede">
+                        Randevunuzu onaylamak için birkaç bilgiye ihtiyacımız var.
+                    </p>
+
+                    <div class="ff-booking__fields">
+                        {bookingFields.map(field => (
+                            <FormField
+                                id={field.id}
+                                label={field.label}
+                                description={field.description}
+                                error={field.error}
+                                required={field.required}
+                            >
+                                <Input
+                                    id={field.id}
+                                    placeholder={field.placeholder}
+                                    error={!!field.error}
+                                    fullWidth
+                                />
+                            </FormField>
+                        ))}
+                    </div>
+
+                    <div class="ff-booking__action">
+                        <Button size="lg" fullWidth>Randevuyu tamamla</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Job application form -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Job Application</span>
+            <span class="pl-example__tags">Recruitment · Optional field · Description hints</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ff-apply">
+
+                <div class="ff-apply__card">
+
+                    <div class="ff-apply__role">{applicationRole.title}</div>
+                    <div class="ff-apply__team">{applicationRole.team}</div>
+
+                    <div class="ff-apply__fields">
+                        {applicationFields.map(field => (
+                            <FormField
+                                id={field.id}
+                                label={field.label}
+                                description={field.description}
+                                required={field.required}
+                            >
+                                <Input
+                                    id={field.id}
+                                    placeholder={field.placeholder}
+                                    fullWidth
+                                />
+                            </FormField>
+                        ))}
+                    </div>
+
+                    <div class="ff-apply__foot">
+                        <span class="ff-apply__foot-note">Autosaved a moment ago</span>
+                        <Button>Continue to resume</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — API key generation -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">API Key Generation</span>
+            <span class="pl-example__tags">Dark · Monospace fields · Audit description</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ff-apikey">
+
+                <div class="ff-apikey__card">
+
+                    <header class="ff-apikey__head">
+                        <span class="ff-apikey__crumb">Settings / API keys / New</span>
+                        <h2 class="ff-apikey__title">Create a new key</h2>
+                    </header>
+
+                    <div class="ff-apikey__body">
+                        <div class="ff-apikey__fields">
+                            {apiKeyFields.map(field => (
+                                <FormField
+                                    id={field.id}
+                                    label={field.label}
+                                    description={field.description}
+                                    required={field.required}
+                                >
+                                    <Input
+                                        id={field.id}
+                                        placeholder={field.placeholder}
+                                        fullWidth
+                                    />
+                                </FormField>
+                            ))}
+                        </div>
+                    </div>
+
+                    <footer class="ff-apikey__foot">
+                        <span>Keys cannot be recovered once dismissed</span>
+                        <Button size="sm">Generate key</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Payment card form -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Payment Form</span>
+            <span class="pl-example__tags">Checkout · Row layout · Error states</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ff-card">
+
+                <div class="ff-card__card">
+
+                    <div class="ff-card__summary">
+                        <span class="ff-card__summary-plan">{orderSummary.plan}</span>
+                        <span class="ff-card__summary-total">{orderSummary.total}</span>
+                    </div>
+
+                    <div class="ff-card__fields">
+
+                        <FormField
+                            id={cardFields[0].id}
+                            label={cardFields[0].label}
+                            error={cardFields[0].error}
+                            required={cardFields[0].required}
+                        >
+                            <Input
+                                id={cardFields[0].id}
+                                placeholder={cardFields[0].placeholder}
+                                error={!!cardFields[0].error}
+                                fullWidth
+                            />
+                        </FormField>
+
+                        <FormField
+                            id={cardFields[1].id}
+                            label={cardFields[1].label}
+                            required={cardFields[1].required}
+                        >
+                            <Input
+                                id={cardFields[1].id}
+                                placeholder={cardFields[1].placeholder}
+                                fullWidth
+                            />
+                        </FormField>
+
+                        <div class="ff-card__row">
+                            <FormField
+                                id={cardFields[2].id}
+                                label={cardFields[2].label}
+                                required={cardFields[2].required}
+                            >
+                                <Input
+                                    id={cardFields[2].id}
+                                    placeholder={cardFields[2].placeholder}
+                                    fullWidth
+                                />
+                            </FormField>
+
+                            <FormField
+                                id={cardFields[3].id}
+                                label={cardFields[3].label}
+                                description={cardFields[3].description}
+                                required={cardFields[3].required}
+                            >
+                                <Input
+                                    id={cardFields[3].id}
+                                    placeholder={cardFields[3].placeholder}
+                                    fullWidth
+                                />
+                            </FormField>
+                        </div>
+
+                    </div>
+
+                    <div class="ff-card__action">
+                        <Button size="lg" fullWidth>Pay {orderSummary.total}</Button>
+                    </div>
+
+                    <p class="ff-card__lock">🔒 Payments are encrypted end to end</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Newsletter preferences -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Newsletter Preferences</span>
+            <span class="pl-example__tags">Editorial · Underline fields · Serif labels</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="ff-prefs">
+
+                <div class="ff-prefs__inner">
+
+                    <span class="ff-prefs__kicker">Subscriber settings</span>
+                    <h2 class="ff-prefs__title">Tune what you receive</h2>
+                    <p class="ff-prefs__lede">
+                        Everything here is optional except how often we write to you.
+                    </p>
+
+                    <div class="ff-prefs__fields">
+                        {preferenceFields.map(field => (
+                            <FormField
+                                id={field.id}
+                                label={field.label}
+                                description={field.description}
+                                required={field.required}
+                            >
+                                <Input
+                                    id={field.id}
+                                    placeholder={field.placeholder}
+                                    fullWidth
+                                />
+                            </FormField>
+                        ))}
+                    </div>
+
+                    <div class="ff-prefs__foot">
+                        <Button size="lg">Save preferences</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

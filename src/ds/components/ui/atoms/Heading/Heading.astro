@@ -1,0 +1,30 @@
+---
+import "./Heading.css";
+import type { HeadingProps } from "./Heading.types";
+
+const {
+  as = "h2",
+  size = "xl",
+  weight = "bold",
+  align = "left",
+  color = "default",
+  class: className = "",
+} = Astro.props as HeadingProps;
+
+const Tag = as;
+
+const classes = [
+  "ds-heading",
+  `ds-heading--${size}`,
+  `ds-heading--${weight}`,
+  `ds-heading--${align}`,
+  `ds-heading--${color}`,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<Tag class={classes}>
+  <slot />
+</Tag>

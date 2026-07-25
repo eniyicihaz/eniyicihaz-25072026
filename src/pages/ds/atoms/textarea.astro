@@ -1,0 +1,143 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+
+import Textarea from "../../../ds/components/ui/atoms/Textarea/Textarea.astro";
+---
+
+<DSLayout>
+  <section class="page">
+
+    <PageHeader
+      category="ATOM"
+      title="Textarea"
+      description="Premium textarea component."
+    />
+
+    <ComponentMeta
+      version="1.1.0"
+      status="stable"
+    />
+
+    <Preview title="Variants">
+
+      <Textarea
+        placeholder="Default"
+      />
+
+      <Textarea
+        variant="filled"
+        placeholder="Filled"
+      />
+
+      <Textarea
+        variant="outline"
+        placeholder="Outline"
+      />
+
+      <Textarea
+        variant="ghost"
+        placeholder="Ghost"
+      />
+
+    </Preview>
+
+    <Preview title="Sizes">
+
+      <Textarea
+        size="sm"
+        placeholder="Small"
+      />
+
+      <Textarea
+        size="md"
+        placeholder="Medium"
+      />
+
+      <Textarea
+        size="lg"
+        placeholder="Large"
+      />
+
+    </Preview>
+
+    <Preview title="States">
+
+      <Textarea
+        placeholder="Normal"
+      />
+
+      <Textarea
+        success
+        placeholder="Success"
+      />
+
+      <Textarea
+        error
+        placeholder="Error"
+      />
+
+      <Textarea
+        disabled
+        placeholder="Disabled"
+      />
+
+      <Textarea
+        readonly
+        value="Readonly textarea örneği"
+      />
+
+    </Preview>
+
+    <Preview title="Helper Text">
+
+      <Textarea
+        helperText="Bu alan zorunludur."
+        placeholder="Mesajınız..."
+      />
+
+      <Textarea
+        error
+        helperText="Lütfen en az 20 karakter giriniz."
+        placeholder="Mesajınız..."
+      />
+
+      <Textarea
+        success
+        helperText="Mesaj hazır."
+        placeholder="Mesajınız..."
+      />
+
+    </Preview>
+
+    <Preview title="Character Counter">
+
+      <Textarea
+        value="Merhaba"
+        maxLength={200}
+        placeholder="Mesajınızı yazınız..."
+      />
+
+    </Preview>
+
+    <Preview title="Full Width">
+
+      <Textarea
+        fullWidth
+        placeholder="Tam genişlik textarea"
+      />
+
+    </Preview>
+
+  </section>
+
+  <style>
+    .page {
+      max-width: 1300px;
+    }
+  </style>
+
+</DSLayout>

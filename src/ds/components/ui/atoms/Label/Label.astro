@@ -1,0 +1,55 @@
+---
+import "./Label.css";
+import type { LabelProps } from "./Label.types";
+
+const {
+  required = false,
+  optional = false,
+  disabled = false,
+  helper,
+  for: htmlFor,
+  class: className = "",
+} = Astro.props as LabelProps;
+---
+
+<label
+  class:list={[
+    "label",
+    disabled && "label--disabled",
+    className,
+  ]}
+  for={htmlFor}
+>
+
+  <span class="label__text">
+    <slot />
+  </span>
+
+  {
+    required && (
+      <span
+        class="label__required"
+        aria-hidden="true"
+      >
+        *
+      </span>
+    )
+  }
+
+  {
+    optional && !required && (
+      <span class="label__optional">
+        (Opsiyonel)
+      </span>
+    )
+  }
+
+</label>
+
+{
+  helper && (
+    <p class="label__helper">
+      {helper}
+    </p>
+  )
+}

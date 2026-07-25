@@ -1,0 +1,245 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/VisuallyHidden/VisuallyHiddenPatterns.css";
+
+import VisuallyHidden from "../../../ds/components/ui/atoms/VisuallyHidden/VisuallyHidden.astro";
+
+import {
+    skipLink,
+    closeButton,
+    tableColumns,
+    tableRows,
+    liveStatus,
+    requiredField
+} from "../../../ds/patterns/VisuallyHidden/visuallyhidden.data";
+---
+
+<DSLayout title="Visually Hidden">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Visually Hidden</h1>
+
+        <p class="pl-head__lede">
+            Five accessibility moments — a focusable skip link, an
+            icon-only close button, abbreviated table headers, a live
+            loading announcement and a required field qualifier. The
+            hidden text is invisible by design; each pattern includes a
+            small annotation showing what a screen reader announces.
+        </p>
+
+    </header>
+
+    <!-- 01 — Skip to content link -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Skip Link</span>
+            <span class="pl-example__tags">Hearing care · Focusable · Visible on Tab</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vhd-skip">
+
+                <div class="vhd-skip__frame">
+
+                    <div class="vhd-skip__topbar">
+                        <span class="vhd-skip__brand">eniyicihaz.com</span>
+                        <VisuallyHidden as="a" focusable>
+                            {skipLink.text}
+                        </VisuallyHidden>
+                    </div>
+
+                    <div class="vhd-skip__body">
+                        Sayfa içeriği burada başlar.
+                    </div>
+
+                    <p class="vhd-skip__hint">
+                        ⌨ Klavye ile Tab tuşuna basın — bağlantı görünür hale gelir
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Icon-only close button -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Close Button</span>
+            <span class="pl-example__tags">Notification · Icon-only control</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vhd-close">
+
+                <div class="vhd-close__card">
+
+                    <div class="vhd-close__row">
+                        <div>
+                            <div class="vhd-close__title">Cihazınız hazır</div>
+                            <p class="vhd-close__body">Aria Pro 2 cihazınız teslime hazır</p>
+                        </div>
+                        <button class="vhd-close__button" type="button">
+                            ×
+                            <VisuallyHidden>{closeButton.srText}</VisuallyHidden>
+                        </button>
+                    </div>
+
+                    <div class="vhd-note">
+                        <span class="vhd-note__icon">🔊</span>
+                        Screen reader announces: “{closeButton.srText}”
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Abbreviated table headers -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Table Headers</span>
+            <span class="pl-example__tags">Inventory · Abbreviated visible text</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vhd-table">
+
+                <div class="vhd-table__card">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                {tableColumns.map(col => (
+                                    <th>
+                                        <span aria-hidden="true">{col.visible}</span>
+                                        <VisuallyHidden>{col.full}</VisuallyHidden>
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tableRows.map(row => (
+                                <tr>
+                                    <td>{row.model}</td>
+                                    <td>{row.serial}</td>
+                                    <td>{row.status}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <div class="vhd-table__foot">
+                        <div class="vhd-note">
+                            <span class="vhd-note__icon">🔊</span>
+                            Screen reader hears full column names, not the abbreviations
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Live status region -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Loading Announcement</span>
+            <span class="pl-example__tags">Checkout · aria-live region</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vhd-live">
+
+                <div class="vhd-live__card">
+
+                    <div class="vhd-live__spinner"></div>
+                    <p class="vhd-live__text">{liveStatus.visible}</p>
+
+                    <div role="status" aria-live="polite">
+                        <VisuallyHidden>{liveStatus.srText}</VisuallyHidden>
+                    </div>
+
+                    <div class="vhd-note">
+                        <span class="vhd-note__icon">🔊</span>
+                        Announced automatically: “{liveStatus.srText}”
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Required field indicator -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Required Field</span>
+            <span class="pl-example__tags">Form · Sr-only qualifier</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="vhd-required">
+
+                <div class="vhd-required__card">
+
+                    <label class="vhd-required__label" for="vhd-email">
+                        {requiredField.label}
+                        <span class="vhd-required__mark" aria-hidden="true">*</span>
+                        <VisuallyHidden>{requiredField.srSuffix}</VisuallyHidden>
+                    </label>
+                    <input class="vhd-required__field" id="vhd-email" type="email" />
+
+                    <div class="vhd-note">
+                        <span class="vhd-note__icon">🔊</span>
+                        Screen reader announces: “{requiredField.label} {requiredField.srSuffix}”
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

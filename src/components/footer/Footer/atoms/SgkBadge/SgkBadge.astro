@@ -1,0 +1,54 @@
+---
+import { ShieldCheck } from "lucide-astro";
+
+interface Props {
+  label: string;
+  /** Visual context. */
+  variant?: "dark" | "light" | "compact";
+}
+
+const { label, variant = "dark" } = Astro.props;
+---
+
+<span class:list={["sgk-badge", `sgk-badge--${variant}`]}>
+  <ShieldCheck size={16} aria-hidden="true" />
+  <span class="sgk-badge__label">{label}</span>
+</span>
+
+<style>
+  .sgk-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  /* On the dark footer surface. */
+  .sgk-badge--dark {
+    color: #ffffff;
+    background: rgb(37 99 235 / 0.18);
+    border: 1px solid rgb(147 197 253 / 0.28);
+  }
+
+  /* On light surfaces. */
+  .sgk-badge--light {
+    color: var(--color-primary-active);
+    background: var(--primary-light);
+    border: 1px solid rgb(37 99 235 / 0.16);
+  }
+
+  /* Tighter chip. */
+  .sgk-badge--compact {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--color-primary-active);
+    background: var(--primary-light);
+    border: 1px solid rgb(37 99 235 / 0.16);
+  }
+</style>

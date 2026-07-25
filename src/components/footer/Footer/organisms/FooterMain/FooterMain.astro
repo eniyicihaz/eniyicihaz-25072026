@@ -1,0 +1,103 @@
+---
+import FooterBrand from "../../atoms/FooterBrand/FooterBrand.astro";
+import SgkBadge from "../../atoms/SgkBadge/SgkBadge.astro";
+import LinkColumn from "../../molecules/LinkColumn/LinkColumn.astro";
+import ContactBlock from "../../molecules/ContactBlock/ContactBlock.astro";
+import SocialRow from "../../molecules/SocialRow/SocialRow.astro";
+import BrandStrip from "../../molecules/BrandStrip/BrandStrip.astro";
+import { company, linkColumns, brands, social, labels } from "../../data";
+---
+
+<div class="footer-main">
+  <div class="footer-main__inner ftr-container">
+    <div class="footer-main__grid">
+      <div class="footer-main__brand">
+        <FooterBrand
+          brand={company.brand}
+          tagline={company.tagline}
+          href="/"
+        />
+        <p class="footer-main__about">{company.about}</p>
+        <SgkBadge label={company.sgkLabel} variant="dark" />
+        <SocialRow items={social} label={labels.socialLabel} />
+      </div>
+
+      {
+        linkColumns.map((column) => (
+          <LinkColumn title={column.title} links={column.links} />
+        ))
+      }
+
+      <ContactBlock title={labels.contactTitle} company={company} />
+    </div>
+
+    <BrandStrip title={labels.brandsTitle} items={brands} />
+  </div>
+</div>
+
+<style>
+  .footer-main {
+    background: linear-gradient(
+      180deg,
+      var(--footer-bg-top),
+      var(--footer-bg)
+    );
+  }
+
+  .footer-main__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding-block: var(--space-16);
+  }
+
+  /* Brand and contact carry more content, so they get wider tracks. */
+  .footer-main__grid {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.6fr)
+      repeat(3, minmax(0, 1fr))
+      minmax(0, 1.4fr);
+    gap: var(--space-10) var(--space-8);
+  }
+
+  .footer-main__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    min-width: 0;
+  }
+
+  .footer-main__about {
+    margin: 0;
+    max-width: 42ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    letter-spacing: -0.005em;
+    color: var(--footer-text);
+  }
+
+  @media (max-width: 1279px) {
+    .footer-main__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-main__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .footer-main__inner {
+      padding-block: var(--space-12);
+      gap: var(--space-10);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-main__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,371 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/DatePicker/DatePickerPatterns.css";
+
+import DatePicker from "../../../ds/components/ui/atoms/DatePicker/DatePicker.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    appointmentTypes,
+    appointmentClinics,
+    appointmentFacts,
+    stayProperty,
+    stayPricing,
+    projectMeta,
+    projectDates,
+    projectMilestones,
+    billingPlan,
+    billingHistory,
+    flightRoute,
+    flightFares,
+    flightTrust
+} from "../../../ds/patterns/DatePicker/datepicker.data";
+---
+
+<DSLayout title="Date Picker">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Date Picker</h1>
+
+        <p class="pl-head__lede">
+            Five dates worth getting right — an appointment, a hotel stay,
+            a project deadline, a subscription renewal
+            and a flight departure.
+        </p>
+
+    </header>
+
+    <!-- 01 — Appointment booking -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment Booking</span>
+            <span class="pl-example__tags">Hearing care · Type + clinic · Facts</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="date-clinic">
+
+                <div class="date-clinic__card">
+
+                    <span class="date-clinic__kicker">Randevu</span>
+                    <h2 class="date-clinic__title">Tarih ve tür seçin</h2>
+
+                    <div class="date-clinic__types">
+                        {appointmentTypes.map(type => (
+                            <div class:list={["date-clinic__type", type.selected && "date-clinic__type--active"]}>
+                                <span class="date-clinic__type-label">{type.label}</span>
+                                <span class="date-clinic__type-duration">{type.duration}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="date-clinic__field">
+                        <label class="date-clinic__label" for="clinic-date">Tarih</label>
+                        <DatePicker
+                            id="clinic-date"
+                            name="date"
+                            value="2026-07-25"
+                            min="2026-07-20"
+                        />
+                    </div>
+
+                    <div class="date-clinic__clinics">
+                        {appointmentClinics.map((clinic, i) => (
+                            <span class:list={["date-clinic__clinic", i === 0 && "date-clinic__clinic--active"]}>
+                                {clinic}
+                            </span>
+                        ))}
+                    </div>
+
+                    <dl class="date-clinic__facts">
+                        {appointmentFacts.map(fact => (
+                            <div class="date-clinic__fact">
+                                <dt>{fact.key}</dt>
+                                <dd>{fact.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <div class="date-clinic__action">
+                        <Button size="lg" fullWidth>Uygun saatleri gör</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Hotel stay dates -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Stay Dates</span>
+            <span class="pl-example__tags">Travel · Check-in / check-out · Pricing</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="date-stay">
+
+                <div class="date-stay__card">
+
+                    <header class="date-stay__head">
+                        <span class="date-stay__thumb" aria-hidden="true"></span>
+                        <div>
+                            <div class="date-stay__title">{stayProperty.title}</div>
+                            <div class="date-stay__location">{stayProperty.location}</div>
+                        </div>
+                        <span class="date-stay__score">★ {stayProperty.score}</span>
+                    </header>
+
+                    <div class="date-stay__body">
+
+                        <div class="date-stay__row">
+                            <div>
+                                <label class="date-stay__field-label" for="stay-in">Check in</label>
+                                <DatePicker id="stay-in" name="checkin" value="2026-08-14" />
+                            </div>
+                            <div>
+                                <label class="date-stay__field-label" for="stay-out">Check out</label>
+                                <DatePicker id="stay-out" name="checkout" value="2026-08-19" min="2026-08-14" />
+                            </div>
+                        </div>
+
+                        <div class="date-stay__nights">
+                            <span>5 nights</span>
+                            <span>{stayProperty.reviews} reviews</span>
+                        </div>
+
+                    </div>
+
+                    <div class="date-stay__pricing">
+                        {stayPricing.map(row => (
+                            <div class="date-stay__price-row">
+                                <span>{row.key}</span>
+                                <span>{row.value}</span>
+                            </div>
+                        ))}
+                        <div class="date-stay__total">
+                            <span>Total</span>
+                            <strong>€1,097</strong>
+                        </div>
+                    </div>
+
+                    <div class="date-stay__foot">
+                        <Button size="lg" fullWidth>Reserve</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Project deadline -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Project Deadline</span>
+            <span class="pl-example__tags">Dark · Field list · Milestones</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="date-issue">
+
+                <div class="date-issue__card">
+
+                    <header class="date-issue__head">
+                        <span class="date-issue__id">{projectMeta.id}</span>
+                        <h2 class="date-issue__title">{projectMeta.title}</h2>
+                        <p class="date-issue__assignee">Assigned to {projectMeta.assignee}</p>
+                    </header>
+
+                    {projectDates.map(date => (
+                        <div class="date-issue__field">
+                            <span class="date-issue__field-label">{date.label}</span>
+                            {date.editable ? (
+                                <DatePicker
+                                    id={`date-${date.label}`}
+                                    name={date.label}
+                                    value={date.value}
+                                />
+                            ) : (
+                                <span class="date-issue__value">{date.value}</span>
+                            )}
+                        </div>
+                    ))}
+
+                    <div class="date-issue__milestones">
+                        <h3 class="date-issue__milestones-title">Milestones</h3>
+                        {projectMilestones.map(milestone => (
+                            <div class:list={["date-issue__milestone", milestone.done && "date-issue__milestone--done"]}>
+                                <span class="date-issue__dot"></span>
+                                {milestone.label}
+                            </div>
+                        ))}
+                    </div>
+
+                    <footer class="date-issue__foot">
+                        <span>Updated 12 minutes ago</span>
+                        <span>{projectMeta.id}</span>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Subscription billing -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Subscription Billing</span>
+            <span class="pl-example__tags">Editable renewal date · Invoice history</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="date-bill">
+
+                <div class="date-bill__card">
+
+                    <header class="date-bill__head">
+
+                        <div>
+                            <span class="date-bill__plan">{billingPlan.name} plan</span>
+                            <div class="date-bill__price">
+                                <strong>{billingPlan.price}</strong>
+                                <span>{billingPlan.period}</span>
+                            </div>
+                        </div>
+
+                        <div class="date-bill__renew">
+                            <span class="date-bill__renew-label">Renews on</span>
+                            <DatePicker
+                                id="renew-date"
+                                name="renew"
+                                value={billingPlan.renews}
+                            />
+                        </div>
+
+                    </header>
+
+                    <div class="date-bill__history">
+                        <h3 class="date-bill__history-title">Invoice history</h3>
+                        {billingHistory.map(row => (
+                            <div class="date-bill__row">
+                                <span class="date-bill__date">{row.date}</span>
+                                <span class="date-bill__amount">{row.amount}</span>
+                                <span class="date-bill__status">{row.status}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <footer class="date-bill__foot">
+                        <span>Invoices are sent to billing@fieldnote.studio</span>
+                        <Button variant="outline" size="sm">Download all</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Flight departure -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Flight Departure</span>
+            <span class="pl-example__tags">Travel · Booking bar · Nearby fares</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="date-flight">
+
+                <div class="date-flight__inner">
+
+                    <div class="date-flight__route">
+                        <strong>{flightRoute.from}</strong>
+                        →
+                        <strong>{flightRoute.to}</strong>
+                        <span>· {flightRoute.cabin} · {flightRoute.passengers}</span>
+                    </div>
+
+                    <h2 class="date-flight__title">Pick your departure day</h2>
+
+                    <div class="date-flight__bar">
+
+                        <div class="date-flight__cell">
+                            <span class="date-flight__label">Departure</span>
+                            <DatePicker
+                                id="flight-date"
+                                name="date"
+                                value="2026-07-25"
+                                min="2026-07-20"
+                            />
+                        </div>
+
+                        <div class="date-flight__go">
+                            <Button size="lg">Search flights</Button>
+                        </div>
+
+                    </div>
+
+                    <div class="date-flight__fares">
+                        {flightFares.map(fare => (
+                            <div class:list={["date-flight__fare", fare.cheapest && "date-flight__fare--cheapest"]}>
+                                <span>{fare.date}</span>
+                                <span class="date-flight__fare-price">{fare.price}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="date-flight__trust">
+                        {flightTrust.map(item => (
+                            <span>{item}</span>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

@@ -1,0 +1,354 @@
+/* ==========================================================
+   Stepper — five patterns
+
+   01  spr-fitting   Device fitting process (eniyicihaz.com)
+   02  spr-checkout  Checkout flow, horizontal, dark
+   03  spr-loan      Loan application, vertical, descriptions
+   04  spr-incident  Incident resolution, vertical, dark, disabled
+   05  spr-course    Course progress, horizontal, compact
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Device fitting process
+   ========================================================== */
+
+.spr-fitting{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.spr-fitting__card{
+    width:100%;
+    max-width:520px;
+    padding:32px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.spr-fitting__title{
+    margin-bottom:26px;
+
+    font-size:1.1rem;
+    font-weight:750;
+    color:#123b36;
+}
+
+.spr-fitting .ds-stepper__indicator{
+    border-color:rgb(18 59 54 / .2);
+    color:#123b36;
+}
+
+.spr-fitting .ds-stepper__item--completed .ds-stepper__indicator{
+    background:#0f766e;
+    border-color:#0f766e;
+}
+
+.spr-fitting .ds-stepper__item--active .ds-stepper__indicator{
+    background:#fff;
+    border-color:#0f766e;
+    color:#0f766e;
+}
+
+.spr-fitting .ds-stepper__label{
+    color:#123b36;
+    font-size:.85rem;
+}
+
+.spr-fitting .ds-stepper--horizontal .ds-stepper__item::after{
+    background:rgb(18 59 54 / .12);
+}
+
+
+/* ==========================================================
+   02 — Checkout flow, horizontal, dark
+   ========================================================== */
+
+.spr-checkout{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.spr-checkout__card{
+    width:100%;
+    max-width:480px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.spr-checkout .ds-stepper__indicator{
+    background:rgb(255 255 255 / .06);
+    border-color:rgb(255 255 255 / .2);
+    color:rgb(255 255 255 / .5);
+}
+
+.spr-checkout .ds-stepper__item--completed .ds-stepper__indicator{
+    background:#22c55e;
+    border-color:#22c55e;
+    color:#0b1220;
+}
+
+.spr-checkout .ds-stepper__item--active .ds-stepper__indicator{
+    background:#2563eb;
+    border-color:#2563eb;
+}
+
+.spr-checkout .ds-stepper__label{
+    font-size:.85rem;
+    color:rgb(255 255 255 / .6);
+}
+
+.spr-checkout .ds-stepper__item--active .ds-stepper__label{
+    color:#fff;
+}
+
+.spr-checkout .ds-stepper--horizontal .ds-stepper__item::after{
+    background:rgb(255 255 255 / .12);
+}
+
+
+/* ==========================================================
+   03 — Loan application, vertical, descriptions
+   ========================================================== */
+
+.spr-loan{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.spr-loan__card{
+    width:100%;
+    max-width:440px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.spr-loan__title{
+    margin-bottom:24px;
+
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.spr-loan .ds-stepper__item--completed .ds-stepper__indicator{
+    background:#16a34a;
+    border-color:#16a34a;
+}
+
+.spr-loan .ds-stepper__item--active .ds-stepper__indicator{
+    background:#2563eb;
+    border-color:#2563eb;
+}
+
+.spr-loan .ds-stepper--vertical .ds-stepper__item{
+    padding-bottom:22px;
+}
+
+.spr-loan .ds-stepper--vertical .ds-stepper__item:last-child{
+    padding-bottom:0;
+}
+
+
+/* ==========================================================
+   04 — Incident resolution, vertical, dark, disabled
+   ========================================================== */
+
+.spr-incident{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#0b1220;
+}
+
+.spr-incident__card{
+    width:100%;
+    max-width:440px;
+    padding:30px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.spr-incident__crumb{
+    display:block;
+    margin-bottom:20px;
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:#fb923c;
+}
+
+.spr-incident .ds-stepper__indicator{
+    background:rgb(255 255 255 / .06);
+    border-color:rgb(255 255 255 / .2);
+    color:rgb(255 255 255 / .6);
+}
+
+.spr-incident .ds-stepper__item--completed .ds-stepper__indicator{
+    background:#22c55e;
+    border-color:#22c55e;
+    color:#0b1220;
+}
+
+.spr-incident .ds-stepper__item--active .ds-stepper__indicator{
+    background:#fb923c;
+    border-color:#fb923c;
+    color:#0b1220;
+}
+
+.spr-incident .ds-stepper__label{
+    font-family:var(--pat-mono);
+    font-size:.88rem;
+    color:#fff;
+}
+
+.spr-incident .ds-stepper__description{
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(255 255 255 / .4);
+}
+
+.spr-incident .ds-stepper--vertical .ds-stepper__item{
+    padding-bottom:20px;
+}
+
+.spr-incident .ds-stepper--vertical .ds-stepper__item:last-child{
+    padding-bottom:0;
+}
+
+.spr-incident .ds-stepper--vertical .ds-stepper__item::after{
+    background:rgb(255 255 255 / .1);
+}
+
+
+/* ==========================================================
+   05 — Course progress, horizontal, compact
+   ========================================================== */
+
+.spr-course{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#faf8f4;
+}
+
+.spr-course__card{
+    width:100%;
+    max-width:560px;
+    padding:32px;
+
+    border:1px solid rgb(28 24 18 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+}
+
+.spr-course__title{
+    margin-bottom:24px;
+
+    font-family:var(--pat-serif);
+    font-size:1.2rem;
+    font-weight:600;
+    color:#1c1812;
+}
+
+.spr-course .ds-stepper{
+    gap:.5rem;
+}
+
+.spr-course .ds-stepper__item{
+    flex-direction:column;
+    align-items:center;
+    gap:.4rem;
+}
+
+.spr-course .ds-stepper__indicator{
+    width:1.6rem;
+    height:1.6rem;
+
+    font-size:.76rem;
+    border-color:rgb(28 24 18 / .2);
+    color:#1c1812;
+}
+
+.spr-course .ds-stepper__item--completed .ds-stepper__indicator{
+    background:#c2703d;
+    border-color:#c2703d;
+}
+
+.spr-course .ds-stepper__item--active .ds-stepper__indicator{
+    background:#fff;
+    border-color:#c2703d;
+    color:#c2703d;
+}
+
+.spr-course .ds-stepper__label{
+    font-size:.72rem;
+    text-align:center;
+    color:#6b6255;
+}
+
+.spr-course .ds-stepper--horizontal .ds-stepper__item::after{
+    top:.8rem;
+    left:calc(50% + .8rem);
+    right:calc(-50% + .8rem);
+
+    background:rgb(28 24 18 / .12);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .spr-fitting{ padding:44px 16px 56px; }
+    .spr-fitting__card{ padding:22px; }
+    .spr-fitting .ds-stepper--horizontal{ flex-direction:column; gap:1.25rem; }
+    .spr-fitting .ds-stepper--horizontal .ds-stepper__item::after{ display:none; }
+
+    .spr-checkout{ padding:44px 16px 56px; }
+    .spr-checkout__card{ padding:22px; }
+    .spr-checkout .ds-stepper--horizontal{ flex-direction:column; gap:1.25rem; }
+    .spr-checkout .ds-stepper--horizontal .ds-stepper__item::after{ display:none; }
+
+    .spr-loan{ padding:44px 16px 56px; }
+    .spr-loan__card{ padding:22px; }
+
+    .spr-incident{ padding:44px 16px 56px; }
+    .spr-incident__card{ padding:22px; }
+
+    .spr-course{ padding:44px 16px 56px; }
+    .spr-course__card{ padding:20px; }
+    .spr-course .ds-stepper{ flex-wrap:wrap; row-gap:1.25rem; }
+    .spr-course .ds-stepper__item::after{ display:none; }
+
+}

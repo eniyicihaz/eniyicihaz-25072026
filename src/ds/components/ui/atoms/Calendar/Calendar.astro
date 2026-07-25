@@ -1,0 +1,71 @@
+---
+import "./Calendar.css";
+import type { CalendarProps } from "./Calendar.types";
+
+const {
+  month,
+  year,
+  weekdays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+  days = [],
+  class: className = "",
+} = Astro.props as CalendarProps;
+
+const classes = [
+  "ds-calendar",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <div class="ds-calendar__header">
+    <button
+      class="ds-calendar__button"
+      type="button"
+      aria-label="Previous month"
+    >
+      ←
+    </button>
+
+    <h3 class="ds-calendar__title">
+      {month} {year}
+    </h3>
+
+    <button
+      class="ds-calendar__button"
+      type="button"
+      aria-label="Next month"
+    >
+      →
+    </button>
+  </div>
+
+  <div class="ds-calendar__weekdays">
+    {
+      weekdays.map((day) => (
+        <div class="ds-calendar__weekday">
+          {day}
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="ds-calendar__grid">
+    {
+      days.map((day) => (
+        <div
+          class:list={[
+            "ds-calendar__day",
+            day.today && "ds-calendar__day--today",
+            day.selected && "ds-calendar__day--selected",
+            !day.currentMonth && "ds-calendar__day--outside",
+            day.disabled && "ds-calendar__day--disabled",
+          ]}
+        >
+          {day.date}
+        </div>
+      ))
+    }
+  </div>
+</div>

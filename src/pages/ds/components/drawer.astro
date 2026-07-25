@@ -1,0 +1,378 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Drawer/DrawerPatterns.css";
+
+import Drawer from "../../../ds/components/ui/atoms/Drawer/Drawer.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    patientHistory,
+    patientInfo,
+    cartItems,
+    cartTotals,
+    navSections,
+    notifications,
+    filterGroups,
+    filterActive
+} from "../../../ds/patterns/Drawer/drawer.data";
+---
+
+<DSLayout title="Drawer">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Drawer</h1>
+
+        <p class="pl-head__lede">
+            Five panels that slide in over a real page — a patient chart,
+            a shopping cart, mobile navigation, a notification feed
+            and a filter sheet.
+        </p>
+
+    </header>
+
+    <!-- 01 — Patient chart -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Patient Chart</span>
+            <span class="pl-example__tags">Hearing care · Right drawer · Visit history</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drawer-stage draw-patient">
+
+                <div class="drawer-stage__page draw-patient__page">
+
+                    <nav class="draw-patient__nav">
+                        <span>Hastalar</span>
+                        <span>›</span>
+                        <span>Kadıköy Şubesi</span>
+                    </nav>
+
+                    <div class="draw-patient__row draw-patient__row--active">
+                        <span class="draw-patient__initials">{patientInfo.initials}</span>
+                        <span class="draw-patient__name">{patientInfo.name}</span>
+                        <span aria-hidden="true">›</span>
+                    </div>
+
+                    <div class="draw-patient__row">
+                        <span class="draw-patient__initials">MK</span>
+                        <span class="draw-patient__name">Mehmet Kaya</span>
+                        <span aria-hidden="true">›</span>
+                    </div>
+
+                </div>
+
+                <div class="drawer-stage__scrim" aria-hidden="true"></div>
+
+                <Drawer open position="right">
+
+                    <div class="draw-patient__panel-head">
+                        <span class="draw-patient__panel-avatar">{patientInfo.initials}</span>
+                        <div>
+                            <div class="draw-patient__panel-name">{patientInfo.name}</div>
+                            <div class="draw-patient__panel-meta">
+                                {patientInfo.age} · {patientInfo.clinic}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="draw-patient__panel-body">
+                        <h3 class="draw-patient__section-title">Geçmiş ziyaretler</h3>
+                        {patientHistory.map(event => (
+                            <div class="draw-patient__event">
+                                <span class="draw-patient__event-date">{event.date}</span>
+                                <div>
+                                    <div class="draw-patient__event-title">{event.event}</div>
+                                    <div class="draw-patient__event-detail">{event.detail}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="draw-patient__panel-foot">
+                        <Button fullWidth>Yeni randevu oluştur</Button>
+                    </div>
+
+                </Drawer>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Shopping cart -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Shopping Cart</span>
+            <span class="pl-example__tags">Retail · Right drawer · Line items</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drawer-stage draw-cart">
+
+                <div class="drawer-stage__page draw-cart__page">
+
+                    <header class="draw-cart__head">
+                        <span class="draw-cart__logo">Fieldnote</span>
+                        <span class="draw-cart__bag">Bag · 2</span>
+                    </header>
+
+                    <div class="draw-cart__grid">
+                        <span class="draw-cart__plate"></span>
+                        <span class="draw-cart__plate"></span>
+                        <span class="draw-cart__plate"></span>
+                    </div>
+
+                </div>
+
+                <div class="drawer-stage__scrim" aria-hidden="true"></div>
+
+                <Drawer open position="right">
+
+                    <div class="draw-cart__panel-head">
+                        <span class="draw-cart__panel-title">Your bag</span>
+                        <span class="draw-cart__panel-close" aria-hidden="true">✕</span>
+                    </div>
+
+                    <div class="draw-cart__panel-body">
+                        {cartItems.map(item => (
+                            <div class="draw-cart__item">
+                                <span class={`draw-cart__thumb draw-cart__thumb--${item.tone}`}></span>
+                                <div>
+                                    <div class="draw-cart__item-name">{item.name}</div>
+                                    <div class="draw-cart__item-detail">
+                                        {item.detail} · Qty {item.qty}
+                                    </div>
+                                </div>
+                                <span class="draw-cart__item-price">{item.price}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="draw-cart__panel-foot">
+                        {cartTotals.map(row => (
+                            <div class="draw-cart__row">
+                                <span>{row.key}</span>
+                                <span>{row.value}</span>
+                            </div>
+                        ))}
+                        <div class="draw-cart__grand">
+                            <span>Total</span>
+                            <strong>$1,720.00</strong>
+                        </div>
+                        <Button size="lg" fullWidth>Checkout</Button>
+                    </div>
+
+                </Drawer>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Mobile navigation -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Mobile Navigation</span>
+            <span class="pl-example__tags">Left drawer · Grouped links</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drawer-stage draw-nav">
+
+                <div class="drawer-stage__page draw-nav__page">
+                    <div class="draw-nav__topbar">
+                        <span class="draw-nav__burger" aria-hidden="true">
+                            <span></span><span></span><span></span>
+                        </span>
+                        <span class="draw-nav__title">Fieldnote</span>
+                    </div>
+                </div>
+
+                <div class="drawer-stage__scrim" aria-hidden="true"></div>
+
+                <Drawer open position="left">
+
+                    <div class="draw-nav__panel-head">
+                        <span class="draw-nav__panel-logo">Fieldnote</span>
+                        <span class="draw-nav__panel-close" aria-hidden="true">✕</span>
+                    </div>
+
+                    <div class="draw-nav__panel-body">
+                        {navSections.map(section => (
+                            <div class="draw-nav__section">
+                                <h3 class="draw-nav__section-title">{section.title}</h3>
+                                {section.links.map(link => (
+                                    <a class="draw-nav__link" href="#0">{link}</a>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+
+                </Drawer>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Notification feed -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Notification Feed</span>
+            <span class="pl-example__tags">Dark · Right drawer · Toned glyphs</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drawer-stage draw-notify">
+
+                <div class="drawer-stage__page draw-notify__page">
+                    <header class="draw-notify__head">
+                        <span class="draw-notify__logo">relay-cli</span>
+                        <span class="draw-notify__bell" aria-hidden="true">
+                            🔔
+                            <span class="draw-notify__dot"></span>
+                        </span>
+                    </header>
+                </div>
+
+                <div class="drawer-stage__scrim" aria-hidden="true"></div>
+
+                <Drawer open position="right">
+
+                    <div class="draw-notify__panel-head">
+                        <span class="draw-notify__panel-title">Notifications</span>
+                        <span class="draw-notify__panel-close" aria-hidden="true">✕</span>
+                    </div>
+
+                    <div class="draw-notify__panel-body">
+                        {notifications.map(item => (
+                            <div class="draw-notify__item">
+                                <span class={`draw-notify__glyph draw-notify__glyph--${item.tone}`} aria-hidden="true">
+                                    {item.tone === "success" ? "✓" : item.tone === "danger" ? "✕" : "i"}
+                                </span>
+                                <div>
+                                    <div class="draw-notify__item-title">{item.title}</div>
+                                    <div class="draw-notify__item-body">{item.body}</div>
+                                    <div class="draw-notify__item-time">{item.time}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="draw-notify__panel-foot">
+                        Mark all as read
+                    </div>
+
+                </Drawer>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Filter sheet -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Filter Sheet</span>
+            <span class="pl-example__tags">Bottom drawer · Drag handle · Chip filters</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drawer-stage draw-filter">
+
+                <div class="drawer-stage__page draw-filter__page">
+
+                    <header class="draw-filter__head">
+                        <span class="draw-filter__title">Seating</span>
+                        <span class="draw-filter__trigger">Filter · 2</span>
+                    </header>
+
+                    <div class="draw-filter__grid">
+                        <span class="draw-filter__plate"></span>
+                        <span class="draw-filter__plate"></span>
+                        <span class="draw-filter__plate"></span>
+                    </div>
+
+                </div>
+
+                <div class="drawer-stage__scrim" aria-hidden="true"></div>
+
+                <Drawer open position="bottom">
+
+                    <div class="draw-filter__handle">
+                        <span class="draw-filter__handle-bar" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="draw-filter__panel-head">
+                        <span class="draw-filter__panel-title">Filters</span>
+                        <span aria-hidden="true">✕</span>
+                    </div>
+
+                    <div class="draw-filter__panel-body">
+                        {filterGroups.map(group => (
+                            <div class="draw-filter__group">
+                                <h3 class="draw-filter__group-title">{group.title}</h3>
+                                <div class="draw-filter__options">
+                                    {group.options.map(option => (
+                                        <span
+                                            class:list={[
+                                                "draw-filter__option",
+                                                filterActive.includes(option) && "draw-filter__option--active"
+                                            ]}
+                                        >
+                                            {option}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="draw-filter__panel-foot">
+                        <Button variant="ghost">Clear all</Button>
+                        <Button>Show 24 results</Button>
+                    </div>
+
+                </Drawer>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

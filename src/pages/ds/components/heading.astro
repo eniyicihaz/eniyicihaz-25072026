@@ -1,0 +1,254 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Heading/HeadingPatterns.css";
+
+import Heading from "../../../ds/components/ui/atoms/Heading/Heading.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    clinicHero,
+    letterSections,
+    scaleSamples,
+    recipeHeading,
+    dashboardSections
+} from "../../../ds/patterns/Heading/heading.data";
+
+const letterIntro =
+    "Revenue grew 18% quarter over quarter without a corresponding jump in spend. The scheduler rewrite is the one thing we are not entirely happy with yet.";
+
+const letterSectionBody: Record<string, string> = {
+    "Revenue and growth":
+        "ARR reached $4.8M, up 18% on the same quarter last year. Net revenue retention held at 118%, driven mostly by expansion inside existing accounts rather than new logos.",
+    "Product":
+        "Three releases shipped this quarter. The most consequential was quiet: replacing the scheduler that has caused four of our last six incidents.",
+    "The scheduler rewrite":
+        "Two rewrites failed because we optimised for throughput before understanding the shape of the work. The third started with a week of measuring nothing but queue depth.",
+    "What is next":
+        "Q3 is about finishing the migration and giving the platform team room to pay down the debt this rewrite exposed elsewhere."
+};
+---
+
+<DSLayout title="Heading">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Heading</h1>
+
+        <p class="pl-head__lede">
+            Five uses of the same component — a hero, a document's real
+            outline, a full type specimen, an editorial title
+            and status-coloured section headers.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic hero -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Clinic Hero</span>
+            <span class="pl-example__tags">Hearing care · 3xl · Centred</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="head-clinic">
+
+                <div class="head-clinic__inner">
+
+                    <span class="head-clinic__eyebrow">{clinicHero.eyebrow}</span>
+
+                    <Heading as="h1" size="3xl" align="center">
+                        {clinicHero.title}
+                    </Heading>
+
+                    <p class="head-clinic__lede">{clinicHero.lede}</p>
+
+                    <div class="head-clinic__action">
+                        <Button size="lg">Ücretsiz test randevusu al</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Investor letter -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Investor Letter</span>
+            <span class="pl-example__tags">Real h1 → h2 → h3 outline · Ruled</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="head-letter">
+
+                <div class="head-letter__inner">
+
+                    <span class="head-letter__meta">Fieldnote BV · Confidential</span>
+
+                    <Heading as="h1" size="3xl">{letterSections[0].text}</Heading>
+
+                    <p class="head-letter__body">{letterIntro}</p>
+
+                    {letterSections.slice(1).map(section => (
+                        section.level === "h2" ? (
+                            <div class="head-letter__section">
+                                <Heading as="h2" size="2xl">{section.text}</Heading>
+                                <p class="head-letter__body">
+                                    {letterSectionBody[section.text]}
+                                </p>
+                            </div>
+                        ) : (
+                            <div class="head-letter__sub">
+                                <Heading as="h3" size="lg">{section.text}</Heading>
+                                <p class="head-letter__body">
+                                    {letterSectionBody[section.text]}
+                                </p>
+                            </div>
+                        )
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Size ramp -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Size Specimen</span>
+            <span class="pl-example__tags">Dark · Full scale, xs → 3xl · Real copy</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="head-scale">
+
+                <div class="head-scale__inner">
+
+                    <span class="head-scale__crumb">Foundations / Typography / Heading</span>
+                    <h2 class="head-scale__title">Every size, set in real copy</h2>
+
+                    {scaleSamples.map(item => (
+                        <div class="head-scale__row">
+                            <span class="head-scale__token">{item.size}</span>
+                            <Heading as="h3" size={item.size}>{item.sample}</Heading>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Recipe card -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Recipe Card</span>
+            <span class="pl-example__tags">Editorial · Serif override · Kicker + subtitle</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="head-recipe">
+
+                <div class="head-recipe__card">
+
+                    <div class="head-recipe__plate" aria-hidden="true"></div>
+
+                    <div class="head-recipe__body">
+
+                        <span class="head-recipe__kicker">{recipeHeading.kicker}</span>
+
+                        <Heading as="h2" size="2xl">{recipeHeading.title}</Heading>
+
+                        <p class="head-recipe__subtitle">{recipeHeading.subtitle}</p>
+
+                        <div class="head-recipe__facts">
+                            <span>Serves 6</span>
+                            <span>4 hr 30 min</span>
+                            <span>Easy</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Dashboard section headers -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Status Section Headers</span>
+            <span class="pl-example__tags">Colour variants used as status meaning</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="head-status">
+
+                <div class="head-status__inner">
+
+                    <span class="head-status__crumb">Ops / Overview</span>
+                    <h2 class="head-status__title">This week</h2>
+
+                    {dashboardSections.map(section => (
+                        <div class:list={["head-status__section", `head-status__section--${section.color}`]}>
+                            <Heading as="h3" size="md" color={section.color}>
+                                {section.title}
+                            </Heading>
+                            <span class="head-status__count">
+                                {section.color === "danger" && "3 open"}
+                                {section.color === "warning" && "Sun 27 Jul"}
+                                {section.color === "success" && "14 services"}
+                                {section.color === "default" && "412 events"}
+                            </span>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

@@ -1,0 +1,69 @@
+---
+import "./NumberInput.css";
+import type { NumberInputProps } from "./NumberInput.types";
+
+const {
+  id,
+  name,
+  value,
+  min,
+  max,
+  step = 1,
+  placeholder,
+  disabled = false,
+  readonly = false,
+  required = false,
+  invalid = false,
+  class: className = "",
+} = Astro.props as NumberInputProps;
+
+const classes = [
+  "ds-number-input",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <input
+    class:list={[
+      "ds-number-input__field",
+      invalid && "ds-number-input__field--invalid",
+    ]}
+    type="number"
+    id={id}
+    name={name}
+    value={value}
+    min={min}
+    max={max}
+    step={step}
+    placeholder={placeholder}
+    disabled={disabled}
+    readonly={readonly}
+    required={required}
+    aria-invalid={invalid}
+  />
+
+  <div class="ds-number-input__controls">
+    <button
+      class="ds-number-input__button"
+      type="button"
+      tabindex="-1"
+      aria-label="Increase value"
+      disabled={disabled}
+    >
+      ▲
+    </button>
+
+    <button
+      class="ds-number-input__button"
+      type="button"
+      tabindex="-1"
+      aria-label="Decrease value"
+      disabled={disabled}
+    >
+      ▼
+    </button>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+
+const columns = Array.from({ length: 12 }, (_, i) => i + 1);
+---
+
+<DSLayout title="Grid">
+
+    <PageHeader
+        badge="Foundation"
+        title="Grid"
+        description="The grid system provides consistent alignment, spacing and responsive layouts."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Design every page using the same responsive grid to maintain consistency.
+    </Note>
+
+    <Divider label="Layout Grid" />
+
+    <Section
+        title="12 Column Grid"
+        description="The default layout uses a 12-column responsive grid."
+    >
+
+        <Preview title="Grid Preview">
+
+            <div
+                style="
+                    display:grid;
+                    grid-template-columns:repeat(12,1fr);
+                    gap:16px;
+                "
+            >
+
+                {
+                    columns.map(column => (
+                        <div
+                            style="
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                min-height:72px;
+                                border-radius:12px;
+                                background:var(--primary-light);
+                                border:1px solid var(--border);
+                                font-weight:600;
+                            "
+                        >
+                            {column}
+                        </div>
+                    ))
+                }
+
+            </div>
+
+        </Preview>
+
+    </Section>
+
+</DSLayout>

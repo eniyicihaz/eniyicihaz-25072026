@@ -1,0 +1,856 @@
+/* ==========================================================
+   Empty — five patterns
+
+   01  empty-appt    No upcoming appointments (eniyicihaz.com)
+   02  empty-inbox   Inbox zero, celebratory
+   03  empty-search  No search results, recovery paths
+   04  empty-cart    Empty basket with saved items
+   05  empty-project First project, template picker
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — No appointments
+
+   Reassuring rather than apologetic. The empty state is
+   a booking prompt with the shortest paths listed.
+   ========================================================== */
+
+.empty-appt{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 72px;
+
+    background:
+        radial-gradient(55% 45% at 50% 0%, rgb(13 148 136 / .12), transparent 64%),
+        #f6fbfa;
+}
+
+.empty-appt__card{
+    width:100%;
+    max-width:600px;
+    overflow:hidden;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 22px 56px rgb(18 59 54 / .1);
+}
+
+.empty-appt__tabs{
+    display:flex;
+    gap:22px;
+
+    padding:0 28px;
+
+    border-bottom:1px solid rgb(18 59 54 / .1);
+    background:#fafdfc;
+}
+
+.empty-appt__tab{
+    padding:15px 0;
+
+    border-bottom:2px solid transparent;
+
+    font-size:.88rem;
+    color:#6b8b86;
+}
+
+.empty-appt__tab--active{
+    border-bottom-color:#0f766e;
+
+    font-weight:650;
+    color:#123b36;
+}
+
+.empty-appt__card .ds-empty{
+    padding:44px 32px 32px;
+}
+
+.empty-appt__glyph{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:64px;
+    height:64px;
+    margin:0 auto;
+
+    border-radius:50%;
+    background:rgb(13 148 136 / .1);
+
+    font-size:1.5rem;
+}
+
+.empty-appt__card .ds-empty__title{
+    margin-top:22px;
+
+    font-size:1.3rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#123b36;
+}
+
+.empty-appt__card .ds-empty__description{
+    margin:10px auto 0;
+    max-width:42ch;
+
+    font-size:.95rem;
+    line-height:1.7;
+    color:#4a6b66;
+}
+
+.empty-appt__options{
+    padding:0 28px 12px;
+}
+
+.empty-appt__option{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:14px 16px;
+    margin-bottom:8px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+
+    transition:border-color .2s ease;
+}
+
+.empty-appt__option:hover{
+    border-color:#0f766e;
+}
+
+.empty-appt__option-label{
+    font-size:.92rem;
+    font-weight:600;
+    color:#123b36;
+}
+
+.empty-appt__option-meta{
+    font-size:.8rem;
+    color:#6b8b86;
+}
+
+.empty-appt__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+
+    padding:18px 28px;
+
+    border-top:1px solid rgb(18 59 54 / .1);
+    background:#fafdfc;
+}
+
+.empty-appt__clinics{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.empty-appt__clinic{
+    padding:4px 11px;
+
+    border:1px solid rgb(18 59 54 / .14);
+    border-radius:var(--pat-radius-pill);
+
+    font-size:.78rem;
+    color:#4a6b66;
+}
+
+.empty-appt .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.empty-appt .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Inbox zero
+
+   The empty state is the reward. App chrome around it so
+   it reads as a real mail client.
+   ========================================================== */
+
+.empty-inbox{
+    display:grid;
+    grid-template-columns:200px minmax(0, 1fr);
+
+    min-height:460px;
+    background:#fbfcfe;
+}
+
+.empty-inbox__rail{
+    padding:22px 16px;
+
+    border-right:1px solid var(--pat-line);
+    background:#fff;
+}
+
+.empty-inbox__compose{
+    margin-bottom:20px;
+}
+
+.empty-inbox__folder{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    padding:8px 11px;
+    margin-bottom:2px;
+
+    border-radius:var(--pat-radius-xs);
+
+    font-size:.88rem;
+    color:#475569;
+}
+
+.empty-inbox__folder--active{
+    background:#eef2f7;
+
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.empty-inbox__folder-count{
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    color:var(--pat-soft);
+}
+
+.empty-inbox__main{
+    display:flex;
+    flex-direction:column;
+}
+
+.empty-inbox__bar{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding:14px 26px;
+
+    border-bottom:1px solid var(--pat-line);
+    background:#fff;
+}
+
+.empty-inbox__bar-title{
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.empty-inbox__bar-meta{
+    margin-left:auto;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.empty-inbox__body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:1;
+
+    padding:48px 32px;
+}
+
+.empty-inbox__inner{
+    max-width:400px;
+    text-align:center;
+}
+
+.empty-inbox__mark{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:72px;
+    height:72px;
+    margin:0 auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(150deg, #22c55e, #15803d);
+    color:#fff;
+
+    font-size:1.8rem;
+
+    box-shadow:
+        0 0 0 10px rgb(34 197 94 / .1),
+        0 18px 40px rgb(22 163 74 / .28);
+}
+
+.empty-inbox__body .ds-empty__title{
+    margin-top:24px;
+
+    font-size:1.5rem;
+    font-weight:800;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.empty-inbox__body .ds-empty__description{
+    margin:12px auto 0;
+
+    font-size:.95rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+.empty-inbox__streak{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    margin-top:26px;
+    padding:14px 20px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.empty-inbox__streak-days{
+    font-size:1.6rem;
+    font-weight:800;
+    letter-spacing:-.04em;
+    color:#15803d;
+}
+
+.empty-inbox__streak-label{
+    text-align:left;
+
+    font-size:.86rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.empty-inbox__streak-note{
+    margin-top:2px;
+
+    font-size:.78rem;
+    font-weight:400;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   03 — No search results
+
+   Diagnostic. States what was searched, then offers
+   concrete alternatives.
+   ========================================================== */
+
+.empty-search{
+    padding:56px 56px 72px;
+    background:#fff;
+}
+
+.empty-search__inner{
+    max-width:640px;
+    margin:0 auto;
+}
+
+.empty-search__field{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:13px 18px;
+
+    border:1px solid rgb(220 38 38 / .3);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+}
+
+.empty-search__query{
+    flex:1;
+
+    font-family:var(--pat-mono);
+    font-size:.9rem;
+    color:var(--pat-ink);
+}
+
+.empty-search__clear{
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.empty-search__inner .ds-empty{
+    padding:40px 0 0;
+    text-align:left;
+    align-items:flex-start;
+}
+
+.empty-search__glyph{
+    font-size:1.8rem;
+    opacity:.35;
+}
+
+.empty-search__inner .ds-empty__title{
+    margin-top:16px;
+
+    font-size:1.35rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:var(--pat-ink);
+}
+
+.empty-search__inner .ds-empty__description{
+    margin-top:10px;
+    max-width:52ch;
+
+    font-size:.95rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+.empty-search__tips{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+
+    margin:24px 0 0;
+    padding:18px 20px;
+
+    border-left:2px solid var(--pat-line);
+
+    list-style:none;
+}
+
+.empty-search__tips li{
+    font-size:.88rem;
+    line-height:1.6;
+    color:var(--pat-body);
+}
+
+.empty-search__alts{
+    margin-top:26px;
+    padding-top:22px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.empty-search__alts-title{
+    margin:0 0 14px;
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.empty-search__alt{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.empty-search__alt:last-child{
+    border-bottom:none;
+}
+
+.empty-search__alt-label{
+    font-family:var(--pat-mono);
+    font-size:.88rem;
+    color:var(--pat-blue);
+}
+
+.empty-search__alt-count{
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Empty cart
+
+   Retail. The empty basket is small; saved items do the
+   work of getting you back.
+   ========================================================== */
+
+.empty-cart{
+    padding:56px 56px 72px;
+    background:#faf9f7;
+}
+
+.empty-cart__inner{
+    max-width:920px;
+    margin:0 auto;
+}
+
+.empty-cart__head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+
+    padding-bottom:20px;
+    margin-bottom:28px;
+
+    border-bottom:1px solid rgb(35 31 28 / .12);
+}
+
+.empty-cart__title{
+    margin:0;
+
+    font-family:var(--pat-serif);
+    font-size:1.9rem;
+    font-weight:400;
+    letter-spacing:-.03em;
+    color:#231f1c;
+}
+
+.empty-cart__count{
+    font-size:.88rem;
+    color:#8b8177;
+}
+
+.empty-cart__box{
+    padding:44px 32px;
+
+    border:1px dashed rgb(35 31 28 / .2);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+}
+
+.empty-cart__box .ds-empty__title{
+    margin-top:16px;
+
+    font-family:var(--pat-serif);
+    font-size:1.4rem;
+    font-weight:400;
+    letter-spacing:-.025em;
+    color:#231f1c;
+}
+
+.empty-cart__box .ds-empty__description{
+    margin:10px auto 0;
+    max-width:44ch;
+
+    font-size:.94rem;
+    line-height:1.7;
+    color:#8b8177;
+}
+
+.empty-cart__glyph{
+    font-size:1.9rem;
+    opacity:.3;
+}
+
+.empty-cart__perks{
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    flex-wrap:wrap;
+
+    margin-top:26px;
+    padding-top:22px;
+
+    border-top:1px solid rgb(35 31 28 / .1);
+}
+
+.empty-cart__perk{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:.82rem;
+    color:#8b8177;
+}
+
+.empty-cart__perk::before{
+    content:"—";
+    color:#c9c0b4;
+}
+
+.empty-cart__saved{
+    margin-top:36px;
+}
+
+.empty-cart__saved-title{
+    margin:0 0 18px;
+
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.empty-cart__grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:20px;
+}
+
+.empty-cart__plate{
+    aspect-ratio:4 / 3;
+    margin-bottom:12px;
+
+    border-radius:var(--pat-radius-md);
+}
+
+.empty-cart__plate--sand{ background:linear-gradient(150deg, #e4d8c4, #cbb99c); }
+.empty-cart__plate--clay{ background:linear-gradient(150deg, #ddc4b8, #bf9c8c); }
+.empty-cart__plate--stone{ background:linear-gradient(150deg, #dcdad6, #b9b6b0); }
+
+.empty-cart__item-name{
+    font-size:.92rem;
+    font-weight:650;
+    color:#231f1c;
+}
+
+.empty-cart__item-price{
+    margin-top:5px;
+
+    font-size:.88rem;
+    color:#8b8177;
+}
+
+
+/* ==========================================================
+   05 — First project
+
+   Onboarding. Dark, with template cards doing the work
+   and a numbered "what happens next" rail.
+   ========================================================== */
+
+.empty-project{
+    padding:64px 56px 72px;
+
+    background:
+        radial-gradient(50% 45% at 80% 0%, rgb(56 189 248 / .14), transparent 60%),
+        linear-gradient(170deg, #0b1220 0%, #070c15 100%);
+}
+
+.empty-project__inner{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.empty-project__inner .ds-empty{
+    padding:0;
+    text-align:left;
+    align-items:flex-start;
+}
+
+.empty-project__glyph{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:52px;
+    height:52px;
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .05);
+
+    font-size:1.2rem;
+}
+
+.empty-project__inner .ds-empty__title{
+    margin-top:22px;
+
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    color:#f8fafc;
+}
+
+.empty-project__inner .ds-empty__description{
+    margin-top:14px;
+    max-width:52ch;
+
+    font-size:1rem;
+    line-height:1.72;
+    color:rgb(248 250 252 / .5);
+}
+
+.empty-project__steps{
+    display:flex;
+    gap:26px;
+    flex-wrap:wrap;
+
+    margin-top:26px;
+    padding:18px 0;
+
+    border-top:1px solid rgb(255 255 255 / .09);
+    border-bottom:1px solid rgb(255 255 255 / .09);
+}
+
+.empty-project__step{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:.86rem;
+    color:rgb(248 250 252 / .6);
+}
+
+.empty-project__step-n{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:22px;
+    height:22px;
+
+    border-radius:50%;
+    background:rgb(56 189 248 / .16);
+    color:#7dd3fc;
+
+    font-family:var(--pat-mono);
+    font-size:.7rem;
+    font-weight:700;
+}
+
+.empty-project__templates{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:14px;
+
+    margin-top:26px;
+}
+
+.empty-project__template{
+    padding:20px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .03);
+
+    transition:border-color .25s ease, background .25s ease;
+}
+
+.empty-project__template:hover{
+    border-color:rgb(56 189 248 / .4);
+    background:rgb(255 255 255 / .06);
+}
+
+.empty-project__template-name{
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:#f8fafc;
+}
+
+.empty-project__template-detail{
+    margin-top:7px;
+
+    font-size:.85rem;
+    line-height:1.55;
+    color:rgb(248 250 252 / .48);
+}
+
+.empty-project__template-meta{
+    margin-top:14px;
+    padding-top:12px;
+
+    border-top:1px solid rgb(255 255 255 / .08);
+
+    font-family:var(--pat-mono);
+    font-size:.74rem;
+    color:rgb(248 250 252 / .32);
+}
+
+.empty-project__actions{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:28px;
+}
+
+.empty-project__actions .btn--primary{
+    --btn-bg:#38bdf8;
+    --btn-color:#0b1220;
+}
+
+.empty-project__actions .btn--primary:hover{
+    --btn-bg:#7dd3fc;
+}
+
+.empty-project__hint{
+    font-size:.84rem;
+    color:rgb(248 250 252 / .35);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .empty-inbox{ grid-template-columns:minmax(0, 1fr); min-height:0; }
+    .empty-inbox__rail{ display:none; }
+
+    .empty-search{ padding:48px 32px 64px; }
+
+    .empty-cart{ padding:48px 32px 64px; }
+    .empty-cart__grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); gap:14px; }
+
+    .empty-project{ padding:52px 32px 64px; }
+    .empty-project__templates{ grid-template-columns:minmax(0, 1fr); }
+
+}
+
+@media (max-width:720px){
+
+    .empty-appt{ padding:44px 16px 56px; }
+    .empty-appt__tabs{ padding:0 18px; gap:16px; }
+    .empty-appt__card .ds-empty{ padding:32px 20px 24px; }
+    .empty-appt__options{ padding:0 18px 10px; }
+    .empty-appt__foot{ padding:16px 18px; }
+    .empty-appt__foot .btn{ width:100%; }
+
+    .empty-inbox__bar{ padding:12px 18px; }
+    .empty-inbox__body{ padding:36px 20px; }
+
+    .empty-search{ padding:36px 20px 52px; }
+
+    .empty-cart{ padding:36px 20px 52px; }
+    .empty-cart__box{ padding:32px 20px; }
+    .empty-cart__grid{ grid-template-columns:minmax(0, 1fr); gap:24px; }
+
+    .empty-project{ padding:40px 20px 56px; }
+    .empty-project__actions .btn{ width:100%; }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .empty-appt__option,
+    .empty-project__template{ transition:none; }
+
+}

@@ -1,0 +1,92 @@
+.ds-banner {
+  --banner-bg: #eff6ff;
+  --banner-color: #1e3a8a;
+  --banner-border: #bfdbfe;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100%;
+
+  padding: 1rem 1.5rem;
+
+  background: var(--banner-bg);
+  color: var(--banner-color);
+
+  border: 1px solid var(--banner-border);
+  border-radius: var(--ds-radius-lg, 12px);
+}
+
+.ds-banner--borderless {
+  border: 0;
+}
+
+.ds-banner__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-banner__content {
+  flex: 1;
+}
+
+.ds-banner__title {
+  margin: 0 0 .25rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ds-banner__text {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ds-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.ds-banner--primary {
+  --banner-bg: #eff6ff;
+  --banner-color: #1d4ed8;
+  --banner-border: #bfdbfe;
+}
+
+.ds-banner--success {
+  --banner-bg: #ecfdf5;
+  --banner-color: #166534;
+  --banner-border: #bbf7d0;
+}
+
+.ds-banner--warning {
+  --banner-bg: #fffbeb;
+  --banner-color: #92400e;
+  --banner-border: #fde68a;
+}
+
+.ds-banner--danger {
+  --banner-bg: #fef2f2;
+  --banner-color: #b91c1c;
+  --banner-border: #fecaca;
+}
+
+.ds-banner--neutral {
+  --banner-bg: #f8fafc;
+  --banner-color: #334155;
+  --banner-border: #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .ds-banner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ds-banner__actions {
+    width: 100%;
+  }
+}

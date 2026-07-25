@@ -1,0 +1,379 @@
+/* ==========================================================
+   Heading — five patterns
+
+   01  head-clinic  Clinic landing hero (eniyicihaz.com)
+   02  head-letter  Investor letter, ruled section levels
+   03  head-scale   Dark product page, full size ramp
+   04  head-recipe  Recipe card, warm editorial serif
+   05  head-status  Dashboard section headers, colour variants
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Clinic hero
+
+   The 3xl heading carries the whole hero. Line breaks in
+   the copy render as real <br> for control.
+   ========================================================== */
+
+.head-clinic{
+    display:flex;
+    justify-content:center;
+
+    padding:88px 32px 96px;
+
+    background:
+        radial-gradient(60% 50% at 50% 0%, rgb(13 148 136 / .14), transparent 64%),
+        linear-gradient(180deg, #f5fbfa 0%, #edf6f4 100%);
+
+    text-align:center;
+}
+
+.head-clinic__inner{
+    max-width:640px;
+}
+
+.head-clinic__eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    padding:6px 14px;
+
+    border:1px solid rgb(13 148 136 / .22);
+    border-radius:var(--pat-radius-pill);
+
+    background:rgb(255 255 255 / .8);
+
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.head-clinic .ds-heading{
+    margin-top:26px;
+
+    font-size:clamp(2.4rem, 6vw, 3.8rem);
+    letter-spacing:-.045em;
+    line-height:1.06;
+    white-space:pre-line;
+    color:#123b36;
+}
+
+.head-clinic__lede{
+    margin:22px auto 0;
+    max-width:42ch;
+
+    font-size:1.05rem;
+    line-height:1.75;
+    color:#4a6b66;
+}
+
+.head-clinic__action{
+    margin-top:30px;
+}
+
+.head-clinic .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.head-clinic .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Investor letter
+
+   Heading levels used as intended — h1 once, h2 for
+   sections, h3 nested beneath. Each gets a rule.
+   ========================================================== */
+
+.head-letter{
+    padding:72px 32px 88px;
+    background:#fff;
+}
+
+.head-letter__inner{
+    max-width:680px;
+    margin:0 auto;
+}
+
+.head-letter__meta{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.head-letter .ds-heading--3xl{
+    margin-top:16px;
+    padding-bottom:22px;
+
+    border-bottom:2px solid var(--pat-ink);
+
+    font-size:clamp(1.9rem, 3.6vw, 2.5rem);
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+}
+
+.head-letter__section{
+    margin-top:36px;
+}
+
+.head-letter .ds-heading--2xl{
+    padding-bottom:12px;
+
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:1.5rem;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.head-letter__sub{
+    margin-top:24px;
+}
+
+.head-letter .ds-heading--lg{
+    font-size:1.1rem;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.head-letter__body{
+    margin:14px 0 0;
+
+    font-size:.98rem;
+    line-height:1.8;
+    color:#33415a;
+}
+
+
+/* ==========================================================
+   03 — Size ramp, dark
+
+   Every heading size rendered against real copy, with
+   its token name labelled — a specimen page.
+   ========================================================== */
+
+.head-scale{
+    padding:64px 32px 88px;
+    background:#0a0f19;
+}
+
+.head-scale__inner{
+    max-width:760px;
+    margin:0 auto;
+}
+
+.head-scale__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.head-scale__title{
+    margin:14px 0 32px;
+
+    font-size:1.4rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:#f8fafc;
+}
+
+.head-scale__row{
+    display:grid;
+    grid-template-columns:64px minmax(0, 1fr);
+    gap:24px;
+    align-items:baseline;
+
+    padding:22px 0;
+
+    border-bottom:1px solid rgb(255 255 255 / .08);
+}
+
+.head-scale__row:last-child{
+    border-bottom:none;
+}
+
+.head-scale__token{
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(248 250 252 / .32);
+}
+
+.head-scale .ds-heading{
+    letter-spacing:-.03em;
+    color:#f8fafc;
+}
+
+
+/* ==========================================================
+   04 — Recipe card, editorial
+
+   Serif heading over a warm plate, kicker above, subtitle
+   in a lighter serif italic below.
+   ========================================================== */
+
+.head-recipe{
+    display:flex;
+    justify-content:center;
+
+    padding:80px 32px 88px;
+    background:#faf8f4;
+}
+
+.head-recipe__card{
+    width:100%;
+    max-width:560px;
+    overflow:hidden;
+
+    border:1px solid rgb(28 24 18 / .12);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(28 24 18 / .1);
+}
+
+.head-recipe__plate{
+    height:200px;
+    background:linear-gradient(150deg, #d3b592 0%, #a8794c 100%);
+}
+
+.head-recipe__body{
+    padding:32px;
+}
+
+.head-recipe__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#a3937a;
+}
+
+.head-recipe .ds-heading{
+    margin-top:16px;
+
+    font-family:var(--pat-serif);
+    font-size:2rem;
+    font-weight:400;
+    letter-spacing:-.03em;
+    line-height:1.15;
+    color:#1c1812;
+}
+
+.head-recipe__subtitle{
+    margin:14px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:1.02rem;
+    font-style:italic;
+    line-height:1.6;
+    color:#8a7f6d;
+}
+
+.head-recipe__facts{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+    padding-top:20px;
+
+    border-top:1px solid rgb(28 24 18 / .12);
+
+    font-size:.85rem;
+    color:#7e7466;
+}
+
+
+/* ==========================================================
+   05 — Dashboard section headers
+
+   Heading colour variants used for real status meaning,
+   each with its own strip.
+   ========================================================== */
+
+.head-status{
+    padding:56px 32px 88px;
+    background:#f7f8fa;
+}
+
+.head-status__inner{
+    max-width:800px;
+    margin:0 auto;
+}
+
+.head-status__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.head-status__title{
+    margin:14px 0 28px;
+
+    font-size:1.4rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:var(--pat-ink);
+}
+
+.head-status__section{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:18px 20px;
+    margin-bottom:10px;
+
+    border:1px solid var(--pat-line);
+    border-left-width:3px;
+    border-radius:var(--pat-radius-sm);
+
+    background:#fff;
+}
+
+.head-status__section--danger{ border-left-color:#dc2626; }
+.head-status__section--warning{ border-left-color:#d97706; }
+.head-status__section--success{ border-left-color:#16a34a; }
+.head-status__section--default{ border-left-color:var(--pat-line); }
+
+.head-status .ds-heading{
+    font-size:1.02rem;
+    letter-spacing:-.02em;
+}
+
+.head-status__count{
+    margin-left:auto;
+
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .head-clinic{ padding:56px 20px 64px; }
+
+    .head-letter{ padding:52px 20px 64px; }
+
+    .head-scale{ padding:44px 20px 64px; }
+    .head-scale__row{ grid-template-columns:minmax(0, 1fr); gap:6px; }
+
+    .head-recipe{ padding:56px 20px 64px; }
+    .head-recipe__body{ padding:24px 20px; }
+
+    .head-status{ padding:44px 20px 64px; }
+    .head-status__section{ flex-wrap:wrap; }
+    .head-status__count{ margin-left:0; }
+
+}

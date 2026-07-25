@@ -1,0 +1,450 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Hero/HeroPatterns.css";
+
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+import Input from "../../../ds/components/ui/atoms/Input/Input.astro";
+
+import {
+    saasNav,
+    saasEvents,
+    startupStats,
+    marketingNav,
+    marketingMetrics,
+    productSwatches,
+    productHighlights,
+    luxurySpecs
+} from "../../../ds/patterns/Hero/hero.data";
+---
+
+<DSLayout title="Hero">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Hero</h1>
+
+        <p class="pl-head__lede">
+            Five opening sections with nothing in common but the components
+            underneath — a product launch, a startup pitch, an agency claim,
+            a retail listing and a piece of luxury goods.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — SaaS Hero
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">SaaS Hero</span>
+            <span class="pl-example__tags">Centered · Announcement pill · App frame</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="hero-saas">
+
+                <nav class="hero-saas__nav">
+                    <span class="hero-saas__logo">◈ Relay</span>
+                    <div class="hero-saas__links">
+                        {saasNav.map(link => (
+                            <span>{link}</span>
+                        ))}
+                    </div>
+                    <Button variant="outline" size="sm">Sign in</Button>
+                </nav>
+
+                <div class="hero-saas__inner">
+
+                    <a class="hero-saas__announce" href="#0">
+                        <Badge variant="primary" size="sm">New</Badge>
+                        <span>Webhook replay is now generally available</span>
+                        <span class="hero-saas__announce-arrow" aria-hidden="true">→</span>
+                    </a>
+
+                    <h2 class="hero-saas__title">
+                        Every webhook,<br />
+                        delivered exactly once.
+                    </h2>
+
+                    <p class="hero-saas__lede">
+                        Relay sits between your providers and your services,
+                        retrying what fails and replaying what you missed —
+                        without a queue to babysit.
+                    </p>
+
+                    <div class="hero-saas__actions">
+                        <Button size="lg">Start for free</Button>
+                        <Button variant="ghost" size="lg">Read the docs</Button>
+                    </div>
+
+                </div>
+
+                <div class="hero-saas__frame">
+
+                    <div class="hero-saas__frame-bar">
+                        <span class="hero-saas__dot"></span>
+                        <span class="hero-saas__dot"></span>
+                        <span class="hero-saas__dot"></span>
+                        <span class="hero-saas__frame-url">relay.dev/events</span>
+                    </div>
+
+                    <div class="hero-saas__frame-body">
+                        {saasEvents.map(row => (
+                            <div class="hero-saas__row">
+                                <span class="hero-saas__row-label">{row.label}</span>
+                                <span class:list={["hero-saas__row-value", `hero-saas__row-value--${row.tone}`]}>
+                                    {row.value}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Startup Hero
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Startup Hero</span>
+            <span class="pl-example__tags">Asymmetric split · Inline capture · Card collage</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="hero-startup">
+
+                <div class="hero-startup__grid">
+
+                    <div>
+
+                        <span class="hero-startup__flag">
+                            <span class="hero-startup__flag-dot" aria-hidden="true"></span>
+                            Backed by Sequoia · Series A
+                        </span>
+
+                        <h2 class="hero-startup__title">
+                            Support that sounds
+                            <span class="hero-startup__mark">like a person</span>
+                            wrote it.
+                        </h2>
+
+                        <p class="hero-startup__lede">
+                            Halo drafts every reply in your team's voice, cites the
+                            docs it used, and waits for a human to press send.
+                        </p>
+
+                        <form class="hero-startup__form">
+                            <Input
+                                type="email"
+                                size="lg"
+                                placeholder="you@company.com"
+                                fullWidth
+                            />
+                            <Button size="lg">Get early access</Button>
+                        </form>
+
+                        <div class="hero-startup__social">
+                            <div class="hero-startup__faces">
+                                <Avatar initials="RN" size="sm" bordered />
+                                <Avatar initials="DP" size="sm" bordered />
+                                <Avatar initials="CE" size="sm" bordered />
+                                <Avatar initials="+9" size="sm" bordered />
+                            </div>
+                            <span>Joined this week from Linear, Ramp and Vanta</span>
+                        </div>
+
+                    </div>
+
+                    <div class="hero-startup__collage">
+
+                        <article class="hero-startup__card hero-startup__card--reply">
+                            <header class="hero-startup__card-head">
+                                <Avatar initials="H" size="sm" />
+                                <div>
+                                    <strong>Halo draft</strong>
+                                    <span>Replying to Priya · 2s</span>
+                                </div>
+                                <Badge variant="success" size="sm">Ready</Badge>
+                            </header>
+                            <p>
+                                "You're on the Team plan, so seat changes are prorated
+                                automatically — I've refunded the difference already."
+                            </p>
+                            <footer class="hero-startup__card-foot">
+                                <span class="hero-startup__cite">Cited: billing/proration.md</span>
+                            </footer>
+                        </article>
+
+                        <article class="hero-startup__card hero-startup__card--stats">
+                            {startupStats.map(stat => (
+                                <div class="hero-startup__stat">
+                                    <strong>{stat.value}</strong>
+                                    <span>{stat.label}</span>
+                                </div>
+                            ))}
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Marketing Hero
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Marketing Hero</span>
+            <span class="pl-example__tags">Colour field · Low claim · Metric bar</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="hero-marketing">
+
+                <nav class="hero-marketing__nav">
+                    <span class="hero-marketing__logo">FIELDNOTE</span>
+                    <div class="hero-marketing__links">
+                        {marketingNav.map(link => (
+                            <span>{link}</span>
+                        ))}
+                    </div>
+                </nav>
+
+                <div class="hero-marketing__stage">
+
+                    <div>
+
+                        <span class="hero-marketing__eyebrow">Independent design studio</span>
+
+                        <h2 class="hero-marketing__title">
+                            We build brands
+                            <em>worth believing.</em>
+                        </h2>
+
+                        <div class="hero-marketing__actions">
+                            <Button size="lg">See selected work</Button>
+                            <a class="hero-marketing__link" href="#0">
+                                Start a project &nbsp;→
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <figure class="hero-marketing__quote">
+                        <p>
+                            "They rebuilt our identity in nine weeks and our
+                            conversion rate has not looked the same since."
+                        </p>
+                        <figcaption class="hero-marketing__quote-by">
+                            <Avatar initials="SV" size="sm" bordered />
+                            <div>
+                                <strong>Sara Vollmer</strong>
+                                <span>Founder, Cadence</span>
+                            </div>
+                        </figcaption>
+                    </figure>
+
+                </div>
+
+                <div class="hero-marketing__metrics">
+                    {marketingMetrics.map(metric => (
+                        <div class="hero-marketing__metric">
+                            <strong>{metric.value}</strong>
+                            <span>{metric.label}</span>
+                        </div>
+                    ))}
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Product Hero
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Product Hero</span>
+            <span class="pl-example__tags">Retail · Object stage · Swatches and price</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="hero-product">
+
+                <div class="hero-product__stage">
+
+                    <div class="hero-product__badge">
+                        <Badge variant="danger" size="sm">Limited run</Badge>
+                    </div>
+
+                    <div class="hero-product__object" aria-hidden="true">
+                        <span class="hero-product__shape"></span>
+                        <span class="hero-product__band"></span>
+                        <span class="hero-product__shine"></span>
+                        <span class="hero-product__shadow"></span>
+                    </div>
+
+                </div>
+
+                <div class="hero-product__detail">
+
+                    <span class="hero-product__brand">Aurelis Audio</span>
+
+                    <h2 class="hero-product__title">Vela Over-Ear</h2>
+
+                    <div class="hero-product__rating">
+                        <span class="hero-product__stars" aria-hidden="true">★★★★★</span>
+                        <span>4.8 · 1,204 reviews</span>
+                    </div>
+
+                    <div class="hero-product__price">
+                        <strong>$349</strong>
+                        <del>$429</del>
+                        <Badge variant="success" size="sm">Save $80</Badge>
+                    </div>
+
+                    <p class="hero-product__lede">
+                        A closed-back headphone tuned for long sessions — warm low
+                        end, no fatigue at hour four, and a headband you can
+                        actually forget about.
+                    </p>
+
+                    <div class="hero-product__swatches">
+                        <span class="hero-product__swatch-label">Finish — Graphite</span>
+                        <div class="hero-product__swatch-row">
+                            {productSwatches.map((swatch, i) => (
+                                <button
+                                    type="button"
+                                    class:list={[
+                                        "hero-product__swatch",
+                                        i === 0 && "hero-product__swatch--active"
+                                    ]}
+                                    style={`background:${swatch.hex}`}
+                                    aria-label={swatch.name}
+                                ></button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div class="hero-product__actions">
+                        <Button size="lg">Add to bag</Button>
+                        <Button variant="outline" size="lg">Try for 30 days</Button>
+                    </div>
+
+                    <ul class="hero-product__highlights">
+                        {productHighlights.map(item => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Luxury Hero
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Luxury Hero</span>
+            <span class="pl-example__tags">Dark · Bottom anchored · Spec rail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="hero-luxury">
+
+                <div class="hero-luxury__object" aria-hidden="true">
+                    <span class="hero-luxury__ring hero-luxury__ring--outer"></span>
+                    <span class="hero-luxury__ring hero-luxury__ring--inner"></span>
+                    <span class="hero-luxury__glint"></span>
+                </div>
+
+                <nav class="hero-luxury__nav">
+                    <span class="hero-luxury__logo">MERIDIAN</span>
+                    <span class="hero-luxury__nav-meta">Est. 1948 · Geneva</span>
+                </nav>
+
+                <div class="hero-luxury__stage">
+
+                    <span class="hero-luxury__edition">Edition No. 09</span>
+
+                    <h2 class="hero-luxury__title">The Nocturne</h2>
+
+                    <p class="hero-luxury__lede">
+                        Seventy-two hours of reserve behind a dial cut from a single
+                        piece of obsidian. Assembled by hand, one at a time,
+                        in a workshop of eleven.
+                    </p>
+
+                    <div class="hero-luxury__actions">
+                        <Button variant="glass" size="lg">Enquire</Button>
+                        <a class="hero-luxury__link" href="#0">
+                            The making of &nbsp;→
+                        </a>
+                    </div>
+
+                </div>
+
+                <dl class="hero-luxury__specs">
+                    {luxurySpecs.map(spec => (
+                        <div>
+                            <dt>{spec.key}</dt>
+                            <dd>{spec.value}</dd>
+                        </div>
+                    ))}
+                </dl>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

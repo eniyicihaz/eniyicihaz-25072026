@@ -1,0 +1,95 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import PageHeader from "../../../ds/components/docs/PageHeader/PageHeader.astro";
+import ComponentMeta from "../../../ds/components/docs/ComponentMeta/ComponentMeta.astro";
+import Section from "../../../ds/components/docs/Section/Section.astro";
+import Preview from "../../../ds/components/docs/Preview/Preview.astro";
+import Divider from "../../../ds/components/docs/Divider/Divider.astro";
+import Note from "../../../ds/components/docs/Note/Note.astro";
+
+const elevations = [
+    {
+        name: "XS",
+        shadow: "0 1px 2px rgba(15,23,42,.06)"
+    },
+    {
+        name: "SM",
+        shadow: "0 2px 6px rgba(15,23,42,.08)"
+    },
+    {
+        name: "MD",
+        shadow: "0 8px 24px rgba(15,23,42,.10)"
+    },
+    {
+        name: "LG",
+        shadow: "0 16px 40px rgba(15,23,42,.12)"
+    },
+    {
+        name: "XL",
+        shadow: "0 24px 64px rgba(15,23,42,.16)"
+    }
+];
+---
+
+<DSLayout title="Elevation">
+
+    <PageHeader
+        badge="Foundation"
+        title="Elevation"
+        description="Elevation creates depth, hierarchy and visual separation using shadow tokens."
+    />
+
+    <ComponentMeta
+        category="Foundation"
+        status="Stable"
+        since="1.0.0"
+    />
+
+    <Note
+        variant="info"
+        title="Design Principle"
+    >
+        Use elevation tokens consistently instead of creating custom shadows.
+    </Note>
+
+    <Divider label="Shadow Scale" />
+
+    <Section
+        title="Elevation Levels"
+        description="Standard shadow levels used throughout the interface."
+    >
+
+        <Preview title="Elevation Preview">
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;">
+
+                {
+                    elevations.map(item => (
+                        <div
+                            style={`
+                                padding:48px 24px;
+                                border-radius:20px;
+                                background:#fff;
+                                box-shadow:${item.shadow};
+                                text-align:center;
+                            `}
+                        >
+                            <strong>{item.name}</strong>
+
+                            <div
+                                style="margin-top:8px;font-size:.875rem;color:var(--text-muted);"
+                            >
+                                {item.shadow}
+                            </div>
+                        </div>
+                    ))
+                }
+
+            </div>
+
+        </Preview>
+
+    </Section>
+
+</DSLayout>

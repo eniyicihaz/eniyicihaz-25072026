@@ -1,0 +1,423 @@
+/* ==========================================================
+   NumberInput — five patterns
+
+   01  num-cart      Accessories cart, quantity per line
+   02  num-config    Admin dashboard config, invalid state
+   03  num-recipe    Recipe serving size, dark, disabled
+   04  num-booking   Clinic session booking (eniyicihaz.com)
+   05  num-budget    Budget planner, currency amounts
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Accessories cart
+   ========================================================== */
+
+.num-cart{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#fbfbfa;
+}
+
+.num-cart__card{
+    width:100%;
+    max-width:520px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.num-cart__head{
+    padding:20px 24px;
+    border-bottom:1px solid var(--pat-line);
+
+    font-size:1rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.num-cart__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:18px 24px;
+}
+
+.num-cart__row + .num-cart__row{
+    border-top:1px solid var(--pat-line);
+}
+
+.num-cart__name{
+    font-size:.9rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.num-cart__price{
+    margin-top:2px;
+
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+.num-cart__qty{
+    width:104px;
+    flex-shrink:0;
+}
+
+.num-cart__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:18px 24px;
+
+    border-top:1px solid var(--pat-line);
+    background:#fafafa;
+}
+
+.num-cart__total-label{
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.num-cart__total-amount{
+    font-size:1.15rem;
+    font-weight:800;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+
+/* ==========================================================
+   02 — Admin dashboard config, invalid state
+   ========================================================== */
+
+.num-config{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#f8fafc;
+}
+
+.num-config__card{
+    width:100%;
+    max-width:440px;
+    padding:30px 32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.num-config__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:var(--pat-soft);
+}
+
+.num-config__title{
+    margin:12px 0 24px;
+
+    font-size:1.15rem;
+    font-weight:750;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.num-config__field{
+    margin-bottom:22px;
+}
+
+.num-config__label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.num-config__unit{
+    font-size:.76rem;
+    font-weight:400;
+    color:var(--pat-soft);
+}
+
+.num-config__note{
+    margin-top:7px;
+
+    font-size:.78rem;
+    color:#dc2626;
+}
+
+
+/* ==========================================================
+   03 — Recipe serving size, dark
+   ========================================================== */
+
+.num-recipe{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#1c1410;
+}
+
+.num-recipe__card{
+    width:100%;
+    max-width:420px;
+    padding:32px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.num-recipe__kicker{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#fb923c;
+}
+
+.num-recipe__title{
+    margin:12px 0 24px;
+
+    font-family:var(--pat-serif);
+    font-size:1.3rem;
+    font-weight:600;
+    color:#fdf6f0;
+}
+
+.num-recipe__field{
+    margin-bottom:20px;
+}
+
+.num-recipe__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:rgb(253 246 240 / .7);
+}
+
+.num-recipe__hint{
+    margin-top:7px;
+
+    font-size:.78rem;
+    color:rgb(253 246 240 / .4);
+}
+
+.num-recipe .ds-number-input__field{
+    background:rgb(255 255 255 / .04);
+    border-color:rgb(255 255 255 / .14);
+    color:#fdf6f0;
+}
+
+.num-recipe .ds-number-input__field:disabled{
+    background:rgb(255 255 255 / .02);
+}
+
+.num-recipe .ds-number-input__button{
+    color:rgb(253 246 240 / .5);
+}
+
+.num-recipe .ds-number-input__button:hover{
+    background:rgb(255 255 255 / .08);
+}
+
+
+/* ==========================================================
+   04 — Clinic session booking
+   ========================================================== */
+
+.num-booking{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#f6fbfa;
+}
+
+.num-booking__card{
+    width:100%;
+    max-width:440px;
+    padding:32px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .08);
+}
+
+.num-booking__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.num-booking__title{
+    margin:14px 0 24px;
+
+    font-size:1.3rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#123b36;
+}
+
+.num-booking__field{
+    margin-bottom:20px;
+}
+
+.num-booking__label{
+    display:block;
+    margin-bottom:8px;
+
+    font-size:.85rem;
+    color:#123b36;
+}
+
+.num-booking .ds-number-input__field:focus{
+    border-color:#0f766e;
+    box-shadow:0 0 0 3px rgb(15 118 110 / .14);
+}
+
+.num-booking__action{
+    margin-top:26px;
+}
+
+
+/* ==========================================================
+   05 — Budget planner
+   ========================================================== */
+
+.num-budget{
+    display:flex;
+    justify-content:center;
+
+    padding:56px 32px 72px;
+    background:#fbfbfa;
+}
+
+.num-budget__card{
+    width:100%;
+    max-width:480px;
+    padding:30px 32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.num-budget__title{
+    font-size:1.05rem;
+    font-weight:750;
+    color:var(--pat-ink);
+}
+
+.num-budget__sub{
+    margin-top:4px;
+
+    font-size:.82rem;
+    color:var(--pat-soft);
+}
+
+.num-budget__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:22px;
+}
+
+.num-budget__label{
+    font-size:.88rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.num-budget__required{
+    color:#dc2626;
+    margin-left:2px;
+}
+
+.num-budget__input{
+    width:160px;
+    flex-shrink:0;
+}
+
+.num-budget__total{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:24px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.num-budget__total-label{
+    font-size:.88rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.num-budget__total-amount{
+    font-size:1.2rem;
+    font-weight:800;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .num-cart{ padding:36px 16px 48px; }
+    .num-cart__row{ flex-direction:column; align-items:flex-start; gap:10px; }
+    .num-cart__qty{ width:100%; }
+
+    .num-config{ padding:36px 16px 48px; }
+    .num-config__card{ padding:22px 20px; }
+
+    .num-recipe{ padding:44px 16px 56px; }
+    .num-recipe__card{ padding:22px; }
+
+    .num-booking{ padding:36px 16px 48px; }
+    .num-booking__card{ padding:22px; }
+
+    .num-budget{ padding:36px 16px 48px; }
+    .num-budget__card{ padding:22px 20px; }
+    .num-budget__row{ flex-direction:column; align-items:flex-start; gap:8px; }
+    .num-budget__input{ width:100%; }
+
+}

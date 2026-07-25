@@ -1,0 +1,227 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Step/StepPatterns.css";
+
+import Step from "../../../ds/components/ui/atoms/Step/Step.astro";
+
+import {
+    appointmentSteps,
+    checkoutSteps,
+    verificationSteps,
+    pipelineSteps,
+    onboardingSteps
+} from "../../../ds/patterns/Step/step.data";
+---
+
+<DSLayout title="Step">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Step</h1>
+
+        <p class="pl-head__lede">
+            Five multi-stage flows — a clinic appointment booking, a
+            horizontal checkout, an account verification with a locked
+            step, a deployment pipeline and an onboarding checklist.
+        </p>
+
+    </header>
+
+    <!-- 01 — Hearing test appointment flow -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment Flow</span>
+            <span class="pl-example__tags">Hearing care · Vertical</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stp-clinic">
+
+                <div class="stp-clinic__card">
+
+                    <h2 class="stp-clinic__title">Randevu oluştur</h2>
+
+                    {appointmentSteps.map(s => (
+                        <div class="stp-clinic__item">
+                            <Step
+                                number={s.number}
+                                label={s.label}
+                                description={s.description}
+                                active={s.active}
+                                completed={s.completed}
+                            />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Checkout flow, horizontal, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Checkout Flow</span>
+            <span class="pl-example__tags">Retail · Horizontal · Dark</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stp-checkout">
+
+                <div class="stp-checkout__row">
+                    {checkoutSteps.map(s => (
+                        <div class="stp-checkout__item">
+                            <Step
+                                number={s.number}
+                                label={s.label}
+                                active={s.active}
+                                completed={s.completed}
+                            />
+                        </div>
+                    ))}
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Account verification, disabled step -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Account Verification</span>
+            <span class="pl-example__tags">Security · Locked step</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stp-verify">
+
+                <div class="stp-verify__card">
+
+                    <h2 class="stp-verify__title">Secure your account</h2>
+
+                    {verificationSteps.map(s => (
+                        <div class="stp-verify__item">
+                            <Step
+                                number={s.number}
+                                label={s.label}
+                                description={s.description}
+                                active={s.active}
+                                completed={s.completed}
+                                disabled={s.disabled}
+                            />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Deployment pipeline, dark -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Deployment Pipeline</span>
+            <span class="pl-example__tags">Developer tools · Dark · Monospace</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stp-pipeline">
+
+                <div class="stp-pipeline__card">
+
+                    <span class="stp-pipeline__crumb">relay-cli / deploy #482</span>
+
+                    {pipelineSteps.map(s => (
+                        <div class="stp-pipeline__item">
+                            <Step
+                                number={s.number}
+                                label={s.label}
+                                description={s.description}
+                                active={s.active}
+                                completed={s.completed}
+                            />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Onboarding checklist -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Onboarding Checklist</span>
+            <span class="pl-example__tags">SaaS · Active step detail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="stp-onboard">
+
+                <div class="stp-onboard__card">
+
+                    <h2 class="stp-onboard__title">Finish setting up</h2>
+
+                    {onboardingSteps.map(s => (
+                        <div class="stp-onboard__item">
+                            <Step
+                                number={s.number}
+                                label={s.label}
+                                active={s.active}
+                                completed={s.completed}
+                            >
+                                {s.detail && (
+                                    <span class="stp-onboard__detail">{s.detail}</span>
+                                )}
+                            </Step>
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

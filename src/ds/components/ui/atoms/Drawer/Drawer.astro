@@ -1,0 +1,26 @@
+---
+import "./Drawer.css";
+import type { DrawerProps } from "./Drawer.types";
+
+const {
+  open = false,
+  position = "right",
+  class: className = "",
+} = Astro.props as DrawerProps;
+
+const classes = [
+  "ds-drawer",
+  `ds-drawer--${position}`,
+  open && "ds-drawer--open",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<aside
+  class={classes}
+  aria-hidden={!open}
+>
+  <slot />
+</aside>

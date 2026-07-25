@@ -1,0 +1,761 @@
+/* ==========================================================
+   FileUpload — five patterns
+
+   01  up-audiogram  Hearing report upload (eniyicihaz.com)
+   02  up-resume     Job application, resume & portfolio
+   03  up-asset      Design asset upload, dark
+   04  up-receipt    Expense receipt upload
+   05  up-photo      Profile photo upload, circular preview
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Audiogram upload
+   ========================================================== */
+
+.up-audiogram{
+    display:flex;
+    justify-content:center;
+
+    padding:72px 32px 80px;
+
+    background:
+        radial-gradient(55% 45% at 50% 0%, rgb(13 148 136 / .12), transparent 64%),
+        #f6fbfa;
+}
+
+.up-audiogram__card{
+    width:100%;
+    max-width:560px;
+    padding:36px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.up-audiogram__kicker{
+    font-size:.73rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0f766e;
+}
+
+.up-audiogram__title{
+    margin:16px 0 0;
+
+    font-size:clamp(1.5rem, 3vw, 1.9rem);
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:#123b36;
+}
+
+.up-audiogram__lede{
+    margin:12px 0 24px;
+
+    font-size:.94rem;
+    line-height:1.7;
+    color:#4a6b66;
+}
+
+.up-audiogram .ds-file-upload__label{
+    border-color:rgb(15 118 110 / .3);
+    background:rgb(15 118 110 / .03);
+}
+
+.up-audiogram .ds-file-upload__label:hover{
+    border-color:#0f766e;
+    background:rgb(15 118 110 / .07);
+}
+
+.up-audiogram .ds-file-upload__title{
+    color:#123b36;
+}
+
+.up-audiogram .ds-file-upload__helper{
+    color:#6b8b86;
+}
+
+.up-audiogram__files{
+    margin-top:16px;
+}
+
+.up-audiogram__file{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:11px 14px;
+    margin-bottom:8px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fbfdfc;
+}
+
+.up-audiogram__file-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:30px;
+    height:30px;
+
+    border-radius:7px;
+    background:rgb(15 118 110 / .1);
+    color:#0f766e;
+
+    font-size:.72rem;
+    font-weight:700;
+}
+
+.up-audiogram__file-name{
+    font-size:.86rem;
+    font-weight:600;
+    color:#123b36;
+}
+
+.up-audiogram__file-size{
+    margin-top:2px;
+
+    font-size:.76rem;
+    color:#8aa8a3;
+}
+
+.up-audiogram__file-status{
+    margin-left:auto;
+
+    font-size:.76rem;
+    font-weight:650;
+    color:#15803d;
+}
+
+.up-audiogram__notes{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+    margin-top:20px;
+    padding:16px 18px;
+
+    border-radius:var(--pat-radius-sm);
+    background:#f2f9f8;
+
+    list-style:none;
+}
+
+.up-audiogram__notes li{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+
+    font-size:.85rem;
+    line-height:1.55;
+    color:#4a6b66;
+}
+
+.up-audiogram__notes li::before{
+    content:"·";
+    font-weight:700;
+    color:#0f766e;
+}
+
+.up-audiogram__action{
+    margin-top:22px;
+}
+
+.up-audiogram .btn--primary{
+    --btn-bg:#0f766e;
+}
+
+.up-audiogram .btn--primary:hover{
+    --btn-bg:#115e59;
+}
+
+
+/* ==========================================================
+   02 — Job application resume
+   ========================================================== */
+
+.up-resume{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 76px;
+    background:#fbfcfe;
+}
+
+.up-resume__card{
+    width:100%;
+    max-width:560px;
+    padding:36px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.up-resume__steps{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+
+    padding-bottom:20px;
+    margin-bottom:24px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.up-resume__step{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:.84rem;
+    color:var(--pat-soft);
+}
+
+.up-resume__step-n{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:20px;
+    height:20px;
+
+    border:1px solid rgb(15 23 42 / .16);
+    border-radius:50%;
+
+    font-family:var(--pat-mono);
+    font-size:.68rem;
+    font-weight:700;
+}
+
+.up-resume__step--done{ color:#15803d; }
+.up-resume__step--done .up-resume__step-n{ border-color:#16a34a; background:#16a34a; color:#fff; }
+.up-resume__step--current{ font-weight:650; color:var(--pat-ink); }
+.up-resume__step--current .up-resume__step-n{ border-color:var(--pat-ink); background:var(--pat-ink); color:#fff; }
+
+.up-resume__role{
+    font-size:1.2rem;
+    font-weight:750;
+    letter-spacing:-.025em;
+    color:var(--pat-ink);
+}
+
+.up-resume__team{
+    margin-top:6px;
+
+    font-size:.85rem;
+    color:var(--pat-soft);
+}
+
+.up-resume__field{
+    margin-top:22px;
+}
+
+.up-resume__label{
+    display:block;
+    margin-bottom:9px;
+
+    font-size:.85rem;
+    font-weight:650;
+    color:#33415a;
+}
+
+.up-resume__uploaded{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px 14px;
+    margin-top:10px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm);
+
+    background:#fbfcfd;
+}
+
+.up-resume__file-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:30px;
+    height:30px;
+
+    border-radius:7px;
+    background:rgb(29 78 216 / .1);
+    color:var(--pat-blue);
+
+    font-size:.7rem;
+    font-weight:700;
+}
+
+.up-resume__file-name{
+    font-size:.86rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.up-resume__file-size{
+    margin-top:2px;
+
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+.up-resume__file-remove{
+    margin-left:auto;
+
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+.up-resume__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:24px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+
+/* ==========================================================
+   03 — Design asset upload, dark
+   ========================================================== */
+
+.up-asset{
+    padding:56px 32px 76px;
+    background:#0a0f19;
+}
+
+.up-asset__inner{
+    max-width:640px;
+    margin:0 auto;
+}
+
+.up-asset__crumb{
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .4);
+}
+
+.up-asset__title{
+    margin:14px 0 24px;
+
+    font-size:1.4rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:#f8fafc;
+}
+
+.up-asset .ds-file-upload__label{
+    border-color:rgb(255 255 255 / .16);
+    background:rgb(255 255 255 / .02);
+}
+
+.up-asset .ds-file-upload__label:hover{
+    border-color:rgb(56 189 248 / .5);
+    background:rgb(56 189 248 / .05);
+}
+
+.up-asset .ds-file-upload__title{
+    color:#f8fafc;
+}
+
+.up-asset .ds-file-upload__helper{
+    color:rgb(248 250 252 / .4);
+}
+
+.up-asset__files{
+    margin-top:16px;
+    overflow:hidden;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-sm);
+}
+
+.up-asset__file{
+    display:grid;
+    grid-template-columns:32px minmax(0, 1fr) auto;
+    gap:12px;
+    align-items:center;
+
+    padding:12px 16px;
+
+    border-bottom:1px solid rgb(255 255 255 / .07);
+}
+
+.up-asset__file:last-child{
+    border-bottom:none;
+}
+
+.up-asset__file-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:32px;
+    height:32px;
+
+    border-radius:7px;
+
+    font-family:var(--pat-mono);
+    font-size:.62rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.up-asset__file-icon--fig{ background:#a855f7; }
+.up-asset__file-icon--pdf{ background:#dc2626; }
+.up-asset__file-icon--json{ background:#0891b2; }
+
+.up-asset__file-name{
+    font-family:var(--pat-mono);
+    font-size:.84rem;
+    color:#e2e8f0;
+}
+
+.up-asset__file-size{
+    margin-top:2px;
+
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    color:rgb(248 250 252 / .32);
+}
+
+.up-asset__file-status{
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.04em;
+}
+
+.up-asset__file-status--ready{ color:#4ade80; }
+.up-asset__file-status--processing{ color:#7dd3fc; }
+
+.up-asset__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:22px;
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(248 250 252 / .3);
+}
+
+
+/* ==========================================================
+   04 — Expense receipt upload
+   ========================================================== */
+
+.up-receipt{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 76px;
+    background:#f7f8fa;
+}
+
+.up-receipt__card{
+    width:100%;
+    max-width:600px;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-md);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.up-receipt__head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    padding:24px 28px;
+
+    border-bottom:1px solid var(--pat-line);
+}
+
+.up-receipt__title{
+    margin:0;
+
+    font-size:1.15rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.up-receipt__period{
+    margin-top:5px;
+
+    font-size:.83rem;
+    color:var(--pat-soft);
+}
+
+.up-receipt__total{
+    text-align:right;
+}
+
+.up-receipt__total strong{
+    display:block;
+
+    font-size:1.15rem;
+    font-weight:800;
+    letter-spacing:-.03em;
+    color:var(--pat-ink);
+}
+
+.up-receipt__total span{
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+.up-receipt__body{
+    padding:22px 28px;
+}
+
+.up-receipt .ds-file-upload__label{
+    min-height:130px;
+    padding:1.5rem;
+}
+
+.up-receipt__list{
+    margin-top:16px;
+}
+
+.up-receipt__row{
+    display:grid;
+    grid-template-columns:32px minmax(0, 1fr) auto auto;
+    gap:14px;
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgb(15 23 42 / .06);
+}
+
+.up-receipt__row:last-child{
+    border-bottom:none;
+}
+
+.up-receipt__row-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:32px;
+    height:32px;
+
+    border-radius:7px;
+    background:rgb(245 158 11 / .12);
+    color:#b45309;
+
+    font-size:.7rem;
+    font-weight:700;
+}
+
+.up-receipt__row-name{
+    font-size:.87rem;
+    font-weight:600;
+    color:var(--pat-ink);
+}
+
+.up-receipt__row-amount{
+    font-size:.87rem;
+    font-weight:650;
+    color:var(--pat-ink);
+
+    font-variant-numeric:tabular-nums;
+}
+
+.up-receipt__row-status{
+    padding:3px 9px;
+
+    border-radius:5px;
+
+    font-size:.72rem;
+    font-weight:650;
+    white-space:nowrap;
+}
+
+.up-receipt__row-status--matched{ background:rgb(22 163 74 / .12); color:#15803d; }
+.up-receipt__row-status--needs{ background:rgb(245 158 11 / .14); color:#b45309; }
+
+.up-receipt__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:18px 28px;
+
+    border-top:1px solid var(--pat-line);
+    background:#fbfcfd;
+}
+
+
+/* ==========================================================
+   05 — Profile photo upload
+   ========================================================== */
+
+.up-photo{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 76px;
+    background:#fbfcfe;
+}
+
+.up-photo__card{
+    width:100%;
+    max-width:520px;
+    padding:36px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.up-photo__head{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.up-photo__preview{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+
+    width:76px;
+    height:76px;
+
+    border-radius:50%;
+    background:linear-gradient(150deg, #dbeafe, #bfdbfe);
+    color:var(--pat-blue);
+
+    font-size:1.4rem;
+    font-weight:700;
+}
+
+.up-photo__name{
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:-.025em;
+    color:var(--pat-ink);
+}
+
+.up-photo__role{
+    margin-top:4px;
+
+    font-size:.86rem;
+    color:var(--pat-soft);
+}
+
+.up-photo__field{
+    margin-top:26px;
+}
+
+.up-photo .ds-file-upload__label{
+    min-height:150px;
+}
+
+.up-photo__guidelines{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+    margin-top:20px;
+    padding:16px 18px;
+
+    border-radius:var(--pat-radius-sm);
+    background:#f5f8fc;
+
+    list-style:none;
+}
+
+.up-photo__guidelines li{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+
+    font-size:.85rem;
+    line-height:1.55;
+    color:var(--pat-body);
+}
+
+.up-photo__guidelines li::before{
+    content:"·";
+    font-weight:700;
+    color:var(--pat-blue);
+}
+
+.up-photo__foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-top:24px;
+    padding-top:20px;
+
+    border-top:1px solid var(--pat-line);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .up-audiogram{ padding:44px 16px 56px; }
+    .up-audiogram__card{ padding:24px 20px; }
+
+    .up-resume{ padding:44px 16px 56px; }
+    .up-resume__card{ padding:24px 20px; }
+    .up-resume__foot{ flex-direction:column; align-items:stretch; }
+    .up-resume__foot .btn{ width:100%; }
+
+    .up-asset{ padding:40px 16px 56px; }
+
+    .up-receipt{ padding:44px 16px 56px; }
+    .up-receipt__head,
+    .up-receipt__body,
+    .up-receipt__foot{ padding-left:20px; padding-right:20px; }
+    .up-receipt__row{ grid-template-columns:32px minmax(0, 1fr); gap:6px 12px; }
+    .up-receipt__row-amount,
+    .up-receipt__row-status{ grid-column:2; justify-self:start; }
+    .up-receipt__foot{ flex-direction:column; align-items:stretch; }
+    .up-receipt__foot .btn{ width:100%; }
+
+    .up-photo{ padding:44px 16px 56px; }
+    .up-photo__card{ padding:24px 20px; }
+    .up-photo__head{ flex-direction:column; align-items:flex-start; }
+    .up-photo__foot{ flex-direction:column; align-items:stretch; }
+    .up-photo__foot .btn{ width:100%; }
+
+}

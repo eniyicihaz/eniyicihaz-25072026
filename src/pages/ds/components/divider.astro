@@ -1,0 +1,269 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Divider/DividerPatterns.css";
+
+import Divider from "../../../ds/components/ui/atoms/Divider/Divider.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    appointmentSections,
+    pricingPlans,
+    articleMeta,
+    articleSections,
+    settingsGroups,
+    recipeTitle,
+    recipeSteps
+} from "../../../ds/patterns/Divider/divider.data";
+---
+
+<DSLayout title="Divider">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Divider</h1>
+
+        <p class="pl-head__lede">
+            Five ways to separate what shouldn't run together — an
+            appointment summary, two pricing tiers, a long-form article,
+            settings groups and a recipe method.
+        </p>
+
+    </header>
+
+    <!-- 01 — Appointment summary -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Appointment Summary</span>
+            <span class="pl-example__tags">Hearing care · Labelled sections · Receipt style</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="div-appt">
+
+                <div class="div-appt__card">
+
+                    <span class="div-appt__kicker">Onay</span>
+                    <h2 class="div-appt__title">Randevu özeti</h2>
+
+                    {appointmentSections.map((section) => (
+                        <>
+                            <Divider label={section.label} />
+                            <div class="div-appt__section">
+                                <dl>
+                                    {section.rows.map(row => (
+                                        <div class="div-appt__row">
+                                            <dt>{row.key}</dt>
+                                            <dd>{row.value}</dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+                        </>
+                    ))}
+
+                    <div class="div-appt__action">
+                        <Button size="lg" fullWidth>Randevuyu onayla</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Pricing "or" split -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Pricing Split</span>
+            <span class="pl-example__tags">Vertical divider · Overlaid "or" badge</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="div-price">
+
+                <div class="div-price__inner">
+
+                    {pricingPlans.map((plan, i) => (
+                        <>
+                            {i === 1 && (
+                                <div class="div-price__split">
+                                    <Divider direction="vertical" thickness="sm" />
+                                    <span class="div-price__or">or</span>
+                                </div>
+                            )}
+                            <div class:list={["div-price__plan", plan.name === "Annual" && "div-price__plan--annual"]}>
+                                <span class="div-price__name">{plan.name}</span>
+                                <div class="div-price__amount">
+                                    <strong>{plan.price}</strong>
+                                    <span>{plan.period}</span>
+                                </div>
+                                <p class="div-price__note">{plan.note}</p>
+                                <div class="div-price__action">
+                                    <Button
+                                        variant={plan.name === "Annual" ? "primary" : "outline"}
+                                        fullWidth
+                                    >
+                                        Choose {plan.name}
+                                    </Button>
+                                </div>
+                            </div>
+                        </>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Article section breaks -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Article Section Breaks</span>
+            <span class="pl-example__tags">Editorial · Unlabelled · Short accent rule</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="div-article">
+
+                <div class="div-article__inner">
+
+                    <div class="div-article__meta">
+                        <span>{articleMeta.author}</span>
+                        <span>·</span>
+                        <span>{articleMeta.read}</span>
+                    </div>
+
+                    <h2 class="div-article__title">{articleMeta.title}</h2>
+
+                    {articleSections.map((section, i) => (
+                        <>
+                            {i > 0 && <Divider thickness="md" />}
+                            <div class="div-article__section">
+                                <h3 class="div-article__heading">{section.heading}</h3>
+                                <p class="div-article__body">{section.body}</p>
+                            </div>
+                        </>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Settings groups -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Settings Groups</span>
+            <span class="pl-example__tags">Dark · Labelled dividers between groups</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="div-settings">
+
+                <div class="div-settings__card">
+
+                    <header class="div-settings__head">
+                        <h2 class="div-settings__title">Workspace settings</h2>
+                    </header>
+
+                    <div class="div-settings__body">
+
+                        {settingsGroups.map((group) => (
+                            <div class:list={["div-settings__group", group.title === "Danger zone" && "div-settings__group--danger"]}>
+                                <Divider label={group.title} thickness="xs" />
+                                {group.rows.map(row => (
+                                    <div class="div-settings__row">
+                                        {row}
+                                        <span class="div-settings__row-arrow">→</span>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Recipe method -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Recipe Method</span>
+            <span class="pl-example__tags">Editorial · Vertical rail between steps</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="div-recipe">
+
+                <div class="div-recipe__inner">
+
+                    <span class="div-recipe__kicker">Method</span>
+                    <h2 class="div-recipe__title">{recipeTitle}</h2>
+
+                    <div class="div-recipe__method">
+                        {recipeSteps.map((step, i) => (
+                            <div class="div-recipe__step">
+                                <div class="div-recipe__rail">
+                                    <span class="div-recipe__n">{step.n}</span>
+                                    {i < recipeSteps.length - 1 && (
+                                        <Divider direction="vertical" thickness="xs" />
+                                    )}
+                                </div>
+                                <div class="div-recipe__step-body">
+                                    <h3 class="div-recipe__step-title">{step.title}</h3>
+                                    <p class="div-recipe__step-text">{step.body}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

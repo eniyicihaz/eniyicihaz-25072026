@@ -1,0 +1,316 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Counter/CounterPatterns.css";
+
+import Counter from "../../../ds/components/ui/atoms/Counter/Counter.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    calibrationSteps,
+    calibrationMeta,
+    cartItems,
+    cartTotals,
+    ticketTypes,
+    eventMeta,
+    limitRows,
+    limitMeta,
+    seatPlans,
+    seatSummary
+} from "../../../ds/patterns/Counter/counter.data";
+---
+
+<DSLayout title="Counter">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Counter</h1>
+
+        <p class="pl-head__lede">
+            Five numbers worth stepping through — a hearing test calibration,
+            a shopping cart, exhibition tickets, API rate limits
+            and team seats.
+        </p>
+
+    </header>
+
+    <!-- 01 — Hearing test calibration -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Test Calibration</span>
+            <span class="pl-example__tags">Hearing care · Per-frequency dB · Clinician tool</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="count-cal">
+
+                <div class="count-cal__card">
+
+                    <span class="count-cal__kicker">Odyometri kalibrasyonu</span>
+                    <h2 class="count-cal__title">Başlangıç ses seviyeleri</h2>
+                    <p class="count-cal__lede">
+                        Her frekans için başlangıç desibel seviyesini ayarlayın.
+                        Test sırasında hasta yanıtına göre otomatik düşer.
+                    </p>
+
+                    <dl class="count-cal__meta">
+                        {calibrationMeta.map(item => (
+                            <div>
+                                <dt>{item.key}</dt>
+                                <dd>{item.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    {calibrationSteps.map(step => (
+                        <div class="count-cal__row">
+                            <div>
+                                <span class="count-cal__freq">{step.freq}</span>
+                                <span class="count-cal__hint">Başlangıç seviyesi ({step.unit})</span>
+                            </div>
+                            <Counter value={step.value} min={0} max={100} step={5} />
+                        </div>
+                    ))}
+
+                    <div class="count-cal__action">
+                        <Button size="lg" fullWidth>Testi başlat</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Shopping cart -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Shopping Cart</span>
+            <span class="pl-example__tags">Retail · Quantity per item · Totals</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="count-cart">
+
+                <div class="count-cart__card">
+
+                    <header class="count-cart__head">
+                        <h2 class="count-cart__title">Your cart</h2>
+                        <span class="count-cart__count">3 items</span>
+                    </header>
+
+                    {cartItems.map(item => (
+                        <div class="count-cart__item">
+                            <span class={`count-cart__thumb count-cart__thumb--${item.tone}`}></span>
+                            <div>
+                                <div class="count-cart__name">{item.name}</div>
+                                <div class="count-cart__detail">{item.detail}</div>
+                            </div>
+                            <Counter value={item.qty} min={0} max={10} />
+                            <span class="count-cart__price">{item.price}</span>
+                        </div>
+                    ))}
+
+                    <div class="count-cart__totals">
+                        {cartTotals.map(row => (
+                            <div class="count-cart__row">
+                                <span>{row.key}</span>
+                                <span>{row.value}</span>
+                            </div>
+                        ))}
+                        <div class="count-cart__grand">
+                            <span>Total</span>
+                            <strong>$4,114.00</strong>
+                        </div>
+                    </div>
+
+                    <div class="count-cart__foot">
+                        <Button size="lg" fullWidth>Checkout</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Exhibition tickets -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Exhibition Tickets</span>
+            <span class="pl-example__tags">Gallery · Ticket tiers · Dark header</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="count-ticket">
+
+                <div class="count-ticket__card">
+
+                    <header class="count-ticket__head">
+                        <span class="count-ticket__venue">{eventMeta.venue}</span>
+                        <h2 class="count-ticket__title">{eventMeta.title}</h2>
+                        <p class="count-ticket__date">
+                            {eventMeta.date} · {eventMeta.room}
+                        </p>
+                    </header>
+
+                    {ticketTypes.map(ticket => (
+                        <div class="count-ticket__row">
+                            <div>
+                                <div class="count-ticket__type">{ticket.name}</div>
+                                <div class="count-ticket__note">{ticket.note}</div>
+                            </div>
+                            <span class="count-ticket__price">{ticket.price}</span>
+                            <Counter value={ticket.qty} min={0} max={8} />
+                        </div>
+                    ))}
+
+                    <footer class="count-ticket__foot">
+                        <div class="count-ticket__total">
+                            <strong>€100</strong>
+                            <span>3 tickets</span>
+                        </div>
+                        <Button>Add to order</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — API rate limits -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">API Rate Limits</span>
+            <span class="pl-example__tags">Dark ops console · Stepped ranges</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="count-limit">
+
+                <div class="count-limit__inner">
+
+                    <header class="count-limit__head">
+                        <div>
+                            <h2 class="count-limit__title">Rate limits</h2>
+                            <p class="count-limit__plan">Plan: {limitMeta.plan}</p>
+                        </div>
+                        <div class="count-limit__usage">
+                            <strong>{limitMeta.usage}</strong>
+                            <span>{limitMeta.reset}</span>
+                        </div>
+                    </header>
+
+                    {limitRows.map(row => (
+                        <div class="count-limit__row">
+                            <div>
+                                <span class="count-limit__label">{row.label}</span>
+                                <span class="count-limit__range">
+                                    {row.min} – {row.max}{row.unit}
+                                </span>
+                            </div>
+                            <Counter
+                                value={row.value}
+                                min={row.min}
+                                max={row.max}
+                                step={row.step}
+                            />
+                        </div>
+                    ))}
+
+                    <footer class="count-limit__foot">
+                        <span>Changes apply within 30 seconds</span>
+                        <Button size="sm">Save limits</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Team seats -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Team Seats</span>
+            <span class="pl-example__tags">Billing · Per-role quantity · Summary</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="count-seat">
+
+                <div class="count-seat__card">
+
+                    <header class="count-seat__head">
+                        <h2 class="count-seat__title">Seats &amp; billing</h2>
+                        <dl class="count-seat__summary">
+                            {seatSummary.map(item => (
+                                <div>
+                                    <dt>{item.key}</dt>
+                                    <dd>{item.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                    </header>
+
+                    {seatPlans.map(plan => (
+                        <div class="count-seat__row">
+                            <div>
+                                <div class="count-seat__role">{plan.role}</div>
+                                <div class="count-seat__note">{plan.note}</div>
+                            </div>
+                            <span class="count-seat__price">{plan.price} / mo</span>
+                            <Counter value={plan.qty} min={0} max={50} />
+                        </div>
+                    ))}
+
+                    <footer class="count-seat__foot">
+                        <span>25 of 30 seats used</span>
+                        <Button variant="outline" size="sm">Manage billing</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

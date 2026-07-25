@@ -1,0 +1,466 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Modal/ModalPatterns.css";
+
+import Modal from "../../../ds/components/ui/atoms/Modal/Modal.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Input from "../../../ds/components/ui/atoms/Input/Input.astro";
+import Badge from "../../../ds/components/ui/atoms/Badge/Badge.astro";
+
+import {
+    loginProviders,
+    newsletterPerks,
+    upgradePlans,
+    upgradeUnlocks,
+    deletionImpact,
+    successDetails
+} from "../../../ds/patterns/Modal/modal.data";
+
+const settingsNav = ["General", "Members", "Billing", "Integrations", "Danger zone"];
+---
+
+<DSLayout title="Modal">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Modal</h1>
+
+        <p class="pl-head__lede">
+            Five dialogs shown where they actually appear — over the page
+            that opened them. Sign in, subscribe, upgrade, confirm
+            and complete.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Login
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Login</span>
+            <span class="pl-example__tags">Dark landing · SSO · Compact dialog</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="modal-stage modal-login">
+
+                <div class="modal-stage__page" aria-hidden="true">
+
+                    <nav class="modal-login__nav">
+                        <span class="modal-login__logo">◈ Relay</span>
+                        <div class="modal-login__links">
+                            <span>Product</span>
+                            <span>Docs</span>
+                            <span>Pricing</span>
+                        </div>
+                    </nav>
+
+                    <div class="modal-login__hero">
+                        <h2 class="modal-login__title">
+                            Every webhook, delivered exactly once.
+                        </h2>
+                        <p class="modal-login__lede">
+                            Relay sits between your providers and your services,
+                            retrying what fails and replaying what you missed.
+                        </p>
+                    </div>
+
+                </div>
+
+                <Modal
+                    open
+                    size="sm"
+                    title="Welcome back"
+                    description="Sign in to your Relay workspace"
+                >
+
+                    <div class="modal-login__sso">
+                        {loginProviders.map(provider => (
+                            <button type="button" class="modal-login__sso-btn">
+                                <span aria-hidden="true">{provider.glyph}</span>
+                                {provider.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div class="modal-login__divider">or</div>
+
+                    <div class="modal-login__field">
+                        <label class="modal-login__label">Email</label>
+                        <Input type="email" placeholder="you@company.com" fullWidth />
+                    </div>
+
+                    <div class="modal-login__field">
+                        <label class="modal-login__label">
+                            Password
+                            <a href="#0">Forgot?</a>
+                        </label>
+                        <Input type="password" placeholder="••••••••••" fullWidth />
+                    </div>
+
+                    <Fragment slot="footer">
+                        <div class="modal-login__footer">
+                            <Button size="lg" fullWidth>Sign in</Button>
+                            <p class="modal-login__foot-note">
+                                New here? <a href="#0">Create an account</a>
+                            </p>
+                        </div>
+                    </Fragment>
+
+                </Modal>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Newsletter
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Newsletter</span>
+            <span class="pl-example__tags">Editorial site · Cover plate · Inline capture</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="modal-stage modal-news">
+
+                <div class="modal-stage__page" aria-hidden="true">
+
+                    <header class="modal-news__masthead">
+                        <span class="modal-news__title-mark">The Fieldnote</span>
+                        <span class="modal-news__meta">Issue Eleven · July</span>
+                    </header>
+
+                    <article class="modal-news__article">
+                        <span class="modal-news__kicker">Craft</span>
+                        <h2 class="modal-news__headline">
+                            The quiet cost of a component nobody owns
+                        </h2>
+                        <p class="modal-news__body">
+                            Every design system accumulates orphans. The button that
+                            three teams forked, the modal with four props nobody can
+                            explain, the spacing scale that stopped being a scale.
+                        </p>
+                    </article>
+
+                </div>
+
+                <Modal
+                    open
+                    size="sm"
+                    title="Read the rest on Sunday"
+                    description="Join 12,400 designers and engineers who get one essay a week — this one included, in full."
+                >
+
+                    <div class="modal-news__plate">
+                        <span class="modal-news__plate-tag">Free weekly</span>
+                    </div>
+
+                    <ul class="modal-news__perks">
+                        {newsletterPerks.map(perk => (
+                            <li>{perk}</li>
+                        ))}
+                    </ul>
+
+                    <Fragment slot="footer">
+                        <form class="modal-news__form">
+                            <Input type="email" placeholder="you@studio.com" fullWidth />
+                            <Button>Subscribe</Button>
+                            <p class="modal-news__small">
+                                One email a week. Unsubscribe in a single click.
+                            </p>
+                        </form>
+                    </Fragment>
+
+                </Modal>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Upgrade
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Upgrade</span>
+            <span class="pl-example__tags">Light app · Plan comparison · Wide dialog</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="modal-stage modal-upgrade">
+
+                <div class="modal-stage__page" aria-hidden="true">
+
+                    <div class="modal-upgrade__chrome">
+                        <span class="modal-upgrade__crumb">
+                            Fieldnote <span>/</span> <strong>Design system</strong>
+                        </span>
+                        <span class="modal-upgrade__pill">Team plan</span>
+                    </div>
+
+                    <div class="modal-upgrade__canvas">
+                        <span class="modal-upgrade__block modal-upgrade__block--tall"></span>
+                        <span class="modal-upgrade__block"></span>
+                        <span class="modal-upgrade__block"></span>
+                        <span class="modal-upgrade__block"></span>
+                        <span class="modal-upgrade__block modal-upgrade__block--tall"></span>
+                    </div>
+
+                </div>
+
+                <Modal
+                    open
+                    size="lg"
+                    title="Branching needs the Business plan"
+                    description="Your workspace is on Team. Upgrading unlocks branching for everyone immediately — no migration, no downtime."
+                >
+
+                    <div class="modal-upgrade__plans">
+                        {upgradePlans.map(plan => (
+                            <div
+                                class:list={[
+                                    "modal-upgrade__plan",
+                                    !plan.current && "modal-upgrade__plan--target"
+                                ]}
+                            >
+                                <div class="modal-upgrade__plan-head">
+                                    <span class="modal-upgrade__plan-name">{plan.name}</span>
+                                    {plan.current
+                                        ? <Badge variant="neutral" size="sm">Current</Badge>
+                                        : <Badge variant="primary" size="sm">Recommended</Badge>}
+                                </div>
+
+                                <div class="modal-upgrade__plan-price">
+                                    <strong>{plan.price}</strong>
+                                    <span>{plan.period}</span>
+                                </div>
+
+                                <ul class="modal-upgrade__plan-list">
+                                    {plan.features.map(feature => (
+                                        <li>{feature}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="modal-upgrade__unlocks">
+                        <span class="modal-upgrade__unlocks-label">You also unlock</span>
+                        <div class="modal-upgrade__chips">
+                            {upgradeUnlocks.map(unlock => (
+                                <Badge variant="neutral" size="sm">{unlock}</Badge>
+                            ))}
+                        </div>
+                    </div>
+
+                    <Fragment slot="footer">
+                        <div class="modal-upgrade__footer">
+                            <span class="modal-upgrade__footer-note">
+                                Prorated to your billing date · 14 Aug
+                            </span>
+                            <div class="modal-upgrade__footer-actions">
+                                <Button variant="ghost">Compare all plans</Button>
+                                <Button>Upgrade to Business</Button>
+                            </div>
+                        </div>
+                    </Fragment>
+
+                </Modal>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Confirmation
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Confirmation</span>
+            <span class="pl-example__tags">Settings · Destructive · Typed confirmation</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="modal-stage modal-confirm">
+
+                <div class="modal-stage__page" aria-hidden="true">
+
+                    <div class="modal-confirm__shell">
+
+                        <aside class="modal-confirm__side">
+                            <h3 class="modal-confirm__side-title">Workspace</h3>
+                            {settingsNav.map((item, i) => (
+                                <div
+                                    class:list={[
+                                        "modal-confirm__side-item",
+                                        i === settingsNav.length - 1 && "modal-confirm__side-item--active"
+                                    ]}
+                                >
+                                    {item}
+                                </div>
+                            ))}
+                        </aside>
+
+                        <div class="modal-confirm__main">
+                            <h2 class="modal-confirm__main-title">Danger zone</h2>
+                            <p class="modal-confirm__main-lede">
+                                Irreversible actions that affect the entire workspace.
+                            </p>
+                            <div class="modal-confirm__danger">
+                                <strong>Delete this workspace</strong>
+                                <p>
+                                    Permanently removes every document, member and
+                                    integration. This cannot be undone.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <Modal
+                    open
+                    size="sm"
+                    title="Delete “Fieldnote Studio”?"
+                    description="This permanently deletes the workspace and everything inside it. We cannot recover it afterwards."
+                >
+
+                    <dl class="modal-confirm__impact">
+                        {deletionImpact.map(item => (
+                            <div class="modal-confirm__impact-row">
+                                <dt>{item.label}</dt>
+                                <dd>{item.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <p class="modal-confirm__prompt">
+                        Type <code>fieldnote-studio</code> to confirm.
+                    </p>
+
+                    <Input placeholder="fieldnote-studio" fullWidth />
+
+                    <Fragment slot="footer">
+                        <div class="modal-confirm__footer">
+                            <Button variant="ghost">Cancel</Button>
+                            <Button variant="danger">Delete workspace</Button>
+                        </div>
+                    </Fragment>
+
+                </Modal>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Success
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Success</span>
+            <span class="pl-example__tags">Checkout · Centered dialog · Order detail</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="modal-stage modal-success">
+
+                <div class="modal-stage__page" aria-hidden="true">
+
+                    <div class="modal-success__bar">
+                        <span class="modal-success__brand">AURELIS</span>
+                        <div class="modal-success__steps">
+                            <span class="modal-success__step--done">✓ Cart</span>
+                            <span>→</span>
+                            <span class="modal-success__step--done">✓ Details</span>
+                            <span>→</span>
+                            <span class="modal-success__step--done">✓ Payment</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-success__body">
+                        <div class="modal-success__lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="modal-success__panel"></div>
+                    </div>
+
+                </div>
+
+                <Modal
+                    open
+                    size="sm"
+                    title="Order confirmed"
+                    description="Thanks — your order is in. A receipt is on its way to sara@vollmer.co."
+                    showCloseButton={false}
+                >
+
+                    <div class="modal-success__mark" aria-hidden="true">✓</div>
+
+                    <dl class="modal-success__rows">
+                        {successDetails.map(detail => (
+                            <div class="modal-success__row">
+                                <dt>{detail.label}</dt>
+                                <dd>{detail.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <Fragment slot="footer">
+                        <div class="modal-success__footer">
+                            <Button size="lg" fullWidth>Track your order</Button>
+                            <Button variant="ghost" fullWidth>Continue shopping</Button>
+                        </div>
+                    </Fragment>
+
+                </Modal>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

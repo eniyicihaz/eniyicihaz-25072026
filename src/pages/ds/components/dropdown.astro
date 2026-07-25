@@ -1,0 +1,264 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Dropdown/DropdownPatterns.css";
+
+import Dropdown from "../../../ds/components/ui/atoms/Dropdown/Dropdown.astro";
+
+import {
+    patientActions,
+    patients,
+    accountItems,
+    accountUser,
+    rowActions,
+    deployments,
+    sortItems,
+    products,
+    languageItems,
+    footerLinks
+} from "../../../ds/patterns/Dropdown/dropdown.data";
+---
+
+<DSLayout title="Dropdown">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Dropdown</h1>
+
+        <p class="pl-head__lede">
+            Five menus that belong to a real interface — patient row actions,
+            an account menu, deployment actions, a sort control
+            and a language switcher.
+        </p>
+
+    </header>
+
+    <!-- 01 — Patient row actions -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Patient Row Actions</span>
+            <span class="pl-example__tags">Hearing care · Icon trigger · Destructive item</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drop-patient">
+
+                <div class="drop-patient__inner">
+
+                    <header class="drop-patient__head">
+                        <h2 class="drop-patient__title">Hastalar</h2>
+                        <span class="drop-patient__count">3 hasta · Kadıköy Şubesi</span>
+                    </header>
+
+                    {patients.map((patient, i) => (
+                        <div class="drop-patient__row">
+                            <span class="drop-patient__initials">{patient.initials}</span>
+                            <div>
+                                <div class="drop-patient__name">{patient.name}</div>
+                                <div class="drop-patient__detail">{patient.detail}</div>
+                            </div>
+                            {i === 0 && <span class="drop-patient__badge">SGK</span>}
+                            <Dropdown
+                                triggerText="⋯"
+                                items={patientActions}
+                                open={i === 0}
+                                placement="bottom-end"
+                            />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Account menu -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Account Menu</span>
+            <span class="pl-example__tags">Top bar · Right aligned · User summary head</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drop-account">
+
+                <nav class="drop-account__bar">
+                    <span class="drop-account__logo">Fieldnote</span>
+                    <div class="drop-account__nav">
+                        <span>Shop</span>
+                        <span>Studio</span>
+                        <span>Journal</span>
+                    </div>
+                    <div class="drop-account__trigger">
+                        <Dropdown
+                            triggerText={accountUser.name}
+                            open
+                            items={accountItems}
+                            placement="bottom-end"
+                        />
+                    </div>
+                </nav>
+
+                <div class="drop-account__body">
+                    <div class="drop-account__hero">
+                        <h2 class="drop-account__hero-title">Welcome back, Sara</h2>
+                        <p class="drop-account__hero-lede">
+                            Three orders in progress and one saved item back in stock.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Deployment row actions -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Deployment Actions</span>
+            <span class="pl-example__tags">Dark · Monospace menu · Status chips</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drop-row">
+
+                <div class="drop-row__inner">
+
+                    <header class="drop-row__head">
+                        <h2 class="drop-row__title">Deployments</h2>
+                        <span class="drop-row__meta">relay/fieldnote-studio</span>
+                    </header>
+
+                    {deployments.map((deploy, i) => (
+                        <div class="drop-row__row">
+                            <div>
+                                <div class="drop-row__name">{deploy.name}</div>
+                                <div class="drop-row__branch">{deploy.branch}</div>
+                            </div>
+                            <span class:list={["drop-row__status", `drop-row__status--${deploy.status.toLowerCase()}`]}>
+                                {deploy.status}
+                            </span>
+                            <span class="drop-row__time">{deploy.time}</span>
+                            <Dropdown
+                                triggerText="⋯"
+                                items={rowActions}
+                                open={i === 0}
+                                placement="bottom-end"
+                            />
+                        </div>
+                    ))}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Sort dropdown -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Sort Control</span>
+            <span class="pl-example__tags">E-commerce · Product grid beneath</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drop-sort">
+
+                <div class="drop-sort__inner">
+
+                    <header class="drop-sort__head">
+                        <h2 class="drop-sort__title">Seating</h2>
+                        <Dropdown
+                            triggerText="Sort: Featured"
+                            items={sortItems}
+                            open
+                            placement="bottom-end"
+                        />
+                    </header>
+
+                    <div class="drop-sort__grid">
+                        {products.map(product => (
+                            <article>
+                                <div class={`drop-sort__plate drop-sort__plate--${product.tone}`}></div>
+                                <div class="drop-sort__name">{product.name}</div>
+                                <div class="drop-sort__price">{product.price}</div>
+                            </article>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Language switcher -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Language Switcher</span>
+            <span class="pl-example__tags">Footer · Opens upward · Dark</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="drop-lang">
+
+                <div class="drop-lang__spacer"></div>
+
+                <footer class="drop-lang__footer">
+                    <span class="drop-lang__brand">© 2026 Fieldnote Studio</span>
+                    <div class="drop-lang__links">
+                        {footerLinks.map(link => (
+                            <span>{link}</span>
+                        ))}
+                    </div>
+                    <Dropdown
+                        triggerText="English"
+                        items={languageItems}
+                        open
+                        placement="top-end"
+                    />
+                </footer>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

@@ -1,0 +1,12 @@
+/* ==========================================================
+   DESIGN LANGUAGE TOKENS — ENTRY
+
+   Tum tasarim dillerinin token dosyalarini tek noktadan yukler.
+   Override katmanindan (src/ds/themes/) once yuklenir.
+   ========================================================== */
+
+@import "./corporate.css";
+@import "./soft.css";
+@import "./premium.css";
+@import "./glass.css";
+@import "./dark.css";

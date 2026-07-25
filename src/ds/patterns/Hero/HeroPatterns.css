@@ -1,0 +1,1316 @@
+/* ==========================================================
+   Hero — five opening patterns
+
+   01  hero-saas       Centred product launch + app frame
+   02  hero-startup    Asymmetric split + card collage
+   03  hero-marketing  Colour field, agency claim, metric bar
+   04  hero-product    Retail two column, swatches, buy action
+   05  hero-luxury     Dark, bottom anchored, spec rail
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — SaaS Hero
+   ========================================================== */
+
+.hero-saas{
+    background:
+        radial-gradient(50% 34% at 50% 0%, rgb(37 99 235 / .10), transparent 70%),
+        linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
+}
+
+.hero-saas__nav{
+    display:flex;
+    align-items:center;
+    gap:36px;
+
+    max-width:1080px;
+    margin:0 auto;
+    padding:26px 32px;
+
+    border-bottom:1px solid rgb(15 23 42 / .06);
+}
+
+.hero-saas__logo{
+    font-size:1.02rem;
+    font-weight:750;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.hero-saas__links{
+    display:flex;
+    gap:28px;
+
+    font-size:.9rem;
+    color:#64748b;
+}
+
+.hero-saas__nav .btn{
+    margin-left:auto;
+}
+
+.hero-saas__inner{
+    max-width:760px;
+    margin:0 auto;
+    padding:88px 24px 0;
+
+    text-align:center;
+}
+
+.hero-saas__announce{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    padding:6px 14px 6px 7px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-pill);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-sm);
+
+    font-size:.85rem;
+    color:#475569;
+
+    transition:border-color .25s ease, box-shadow .25s ease;
+}
+
+.hero-saas__announce:hover{
+    border-color:rgb(37 99 235 / .3);
+    box-shadow:0 6px 20px rgb(37 99 235 / .1);
+}
+
+.hero-saas__announce-arrow{
+    color:#94a3b8;
+}
+
+.hero-saas__title{
+    margin:32px 0 0;
+
+    font-size:clamp(2.5rem, 5.4vw, 4rem);
+    font-weight:800;
+    letter-spacing:-.05em;
+    line-height:1.02;
+
+    color:var(--pat-ink);
+}
+
+.hero-saas__lede{
+    margin:24px auto 0;
+    max-width:52ch;
+
+    font-size:1.1rem;
+    line-height:1.7;
+    color:var(--pat-body);
+
+    text-wrap:pretty;
+}
+
+.hero-saas__actions{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+
+    margin-top:38px;
+}
+
+.hero-saas__frame{
+    max-width:880px;
+    margin:72px auto 0;
+    overflow:hidden;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-sm) var(--pat-radius-sm) 0 0;
+
+    background:#fff;
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / .8),
+        0 40px 80px rgb(15 23 42 / .12);
+}
+
+.hero-saas__frame-bar{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding:14px 18px;
+
+    border-bottom:1px solid rgb(15 23 42 / .07);
+    background:#fbfcfe;
+}
+
+.hero-saas__dot{
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+    background:rgb(15 23 42 / .12);
+}
+
+.hero-saas__frame-url{
+    margin-left:14px;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:#94a3b8;
+}
+
+.hero-saas__frame-body{
+    padding:8px 0 24px;
+}
+
+.hero-saas__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+
+    padding:15px 22px;
+
+    border-bottom:1px solid rgb(15 23 42 / .05);
+}
+
+.hero-saas__row-label{
+    font-family:var(--pat-mono);
+    font-size:.82rem;
+    color:#33415a;
+}
+
+.hero-saas__row-value{
+    padding:3px 9px;
+
+    border-radius:6px;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    font-weight:600;
+}
+
+.hero-saas__row-value--ok{
+    background:rgb(34 197 94 / .1);
+    color:#15803d;
+}
+
+.hero-saas__row-value--warn{
+    background:rgb(245 158 11 / .12);
+    color:#b45309;
+}
+
+
+/* ==========================================================
+   02 — Startup Hero
+   ========================================================== */
+
+.hero-startup{
+    /* Contains the negative z-index highlight behind the mark */
+    isolation:isolate;
+
+    padding:96px 56px;
+
+    background:
+        radial-gradient(48% 60% at 82% 12%, rgb(129 140 248 / .22), transparent 62%),
+        radial-gradient(40% 50% at 4% 92%, rgb(244 114 182 / .14), transparent 60%),
+        #f7f6fd;
+}
+
+.hero-startup__grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1.05fr) minmax(0, .95fr);
+    gap:64px;
+    align-items:center;
+
+    max-width:1140px;
+    margin:0 auto;
+}
+
+.hero-startup__flag{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    padding:6px 14px;
+
+    border:1px solid rgb(79 70 229 / .16);
+    border-radius:var(--pat-radius-pill);
+
+    background:rgb(255 255 255 / .75);
+    backdrop-filter:blur(10px);
+
+    font-size:.8rem;
+    font-weight:600;
+    color:#4338ca;
+}
+
+.hero-startup__flag-dot{
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+    background:#6366f1;
+    box-shadow:0 0 0 3px rgb(99 102 241 / .18);
+}
+
+.hero-startup__title{
+    margin:26px 0 0;
+
+    font-size:clamp(2.4rem, 4.8vw, 3.7rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.05;
+
+    color:#171334;
+}
+
+.hero-startup__mark{
+    position:relative;
+    white-space:nowrap;
+    color:#4f46e5;
+}
+
+.hero-startup__mark::after{
+    content:"";
+
+    position:absolute;
+    left:-2px;
+    right:-2px;
+    bottom:.08em;
+    z-index:-1;
+
+    height:.34em;
+
+    border-radius:4px;
+    background:rgb(99 102 241 / .18);
+}
+
+.hero-startup__lede{
+    margin:24px 0 0;
+    max-width:46ch;
+
+    font-size:1.08rem;
+    line-height:1.7;
+    color:#544f74;
+}
+
+.hero-startup__form{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+
+    max-width:480px;
+    margin-top:34px;
+}
+
+.hero-startup__form .input-field{
+    flex:1;
+    min-width:220px;
+}
+
+.hero-startup__social{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    margin-top:28px;
+
+    font-size:.88rem;
+    color:#6b6690;
+}
+
+.hero-startup__faces{
+    display:flex;
+    flex-shrink:0;
+}
+
+.hero-startup__faces > *:not(:first-child){
+    margin-left:-11px;
+}
+
+.hero-startup__collage{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.hero-startup__card{
+    border:1px solid rgb(23 19 52 / .07);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+
+    box-shadow:
+        0 2px 6px rgb(23 19 52 / .04),
+        0 24px 60px rgb(23 19 52 / .08);
+}
+
+.hero-startup__card--reply{
+    padding:22px;
+    transform:rotate(-1.1deg);
+}
+
+.hero-startup__card-head{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    padding-bottom:16px;
+    border-bottom:1px solid rgb(23 19 52 / .06);
+}
+
+.hero-startup__card-head div{
+    display:flex;
+    flex-direction:column;
+    line-height:1.35;
+    flex:1;
+    min-width:0;
+}
+
+.hero-startup__card-head strong{
+    font-size:.88rem;
+    color:#171334;
+}
+
+.hero-startup__card-head div span{
+    font-size:.76rem;
+    color:#8d88ab;
+}
+
+.hero-startup__card--reply p{
+    margin:16px 0 0;
+
+    font-size:.95rem;
+    line-height:1.65;
+    color:#3d3860;
+}
+
+.hero-startup__card-foot{
+    margin-top:16px;
+}
+
+.hero-startup__cite{
+    display:inline-block;
+
+    padding:4px 10px;
+
+    border-radius:6px;
+    background:rgb(99 102 241 / .08);
+
+    font-family:var(--pat-mono);
+    font-size:.72rem;
+    color:#4f46e5;
+}
+
+.hero-startup__card--stats{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+
+    margin-left:36px;
+    padding:24px 8px;
+
+    transform:rotate(.8deg);
+}
+
+.hero-startup__stat{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+
+    padding:0 8px;
+
+    text-align:center;
+}
+
+.hero-startup__stat + .hero-startup__stat{
+    border-left:1px solid rgb(23 19 52 / .07);
+}
+
+.hero-startup__stat strong{
+    font-size:1.5rem;
+    font-weight:750;
+    letter-spacing:-.03em;
+    color:#171334;
+}
+
+.hero-startup__stat span{
+    font-size:.75rem;
+    line-height:1.35;
+    color:#8d88ab;
+}
+
+
+/* ==========================================================
+   03 — Marketing Hero
+
+   A saturated colour field with an agency claim set
+   large and low, closed by a full-width metric bar.
+   ========================================================== */
+
+.hero-marketing{
+    display:flex;
+    flex-direction:column;
+
+    min-height:620px;
+
+    background:
+        radial-gradient(70% 60% at 78% 8%, rgb(16 185 129 / .32), transparent 62%),
+        linear-gradient(165deg, #063f34 0%, #04302a 55%, #032420 100%);
+}
+
+.hero-marketing__nav{
+    display:flex;
+    align-items:center;
+    gap:32px;
+
+    padding:28px 56px;
+
+    border-bottom:1px solid rgb(255 255 255 / .09);
+}
+
+.hero-marketing__logo{
+    font-size:.9rem;
+    font-weight:700;
+    letter-spacing:.28em;
+    color:#f0fdf9;
+}
+
+.hero-marketing__links{
+    display:flex;
+    gap:26px;
+
+    margin-left:auto;
+
+    font-size:.88rem;
+    color:rgb(240 253 249 / .6);
+}
+
+.hero-marketing__links span{
+    transition:color .2s ease;
+}
+
+.hero-marketing__links span:hover{
+    color:#f0fdf9;
+}
+
+.hero-marketing__stage{
+    display:grid;
+    grid-template-columns:minmax(0, 1.25fr) minmax(0, .75fr);
+    gap:64px;
+    align-items:end;
+
+    flex:1;
+
+    padding:88px 56px 72px;
+}
+
+.hero-marketing__eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:.74rem;
+    font-weight:600;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:rgb(110 231 183 / .9);
+}
+
+.hero-marketing__eyebrow::before{
+    content:"";
+
+    width:28px;
+    height:1px;
+
+    background:rgb(110 231 183 / .6);
+}
+
+.hero-marketing__title{
+    margin:26px 0 0;
+    max-width:14ch;
+
+    font-size:clamp(2.8rem, 6vw, 4.6rem);
+    font-weight:800;
+    letter-spacing:-.05em;
+    line-height:.98;
+
+    color:#f0fdf9;
+}
+
+.hero-marketing__title em{
+    display:block;
+
+    font-family:var(--pat-serif);
+    font-style:italic;
+    font-weight:400;
+    letter-spacing:-.03em;
+
+    color:rgb(110 231 183 / .85);
+}
+
+.hero-marketing__actions{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:40px;
+}
+
+.hero-marketing__actions .btn--primary{
+    --btn-bg:#f0fdf9;
+    --btn-color:#04302a;
+}
+
+.hero-marketing__actions .btn--primary:hover{
+    --btn-bg:#d7f5ec;
+}
+
+.hero-marketing__link{
+    padding-bottom:3px;
+
+    border-bottom:1px solid rgb(240 253 249 / .25);
+
+    font-size:.9rem;
+    color:rgb(240 253 249 / .68);
+}
+
+.hero-marketing__link:hover{
+    color:#f0fdf9;
+    border-color:rgb(110 231 183 / .8);
+}
+
+.hero-marketing__quote{
+    padding:28px;
+
+    border:1px solid rgb(255 255 255 / .12);
+    border-radius:var(--pat-radius-md);
+
+    background:rgb(255 255 255 / .05);
+    backdrop-filter:blur(20px);
+}
+
+.hero-marketing__quote p{
+    margin:0;
+
+    font-family:var(--pat-serif);
+    font-size:1.15rem;
+    font-style:italic;
+    line-height:1.55;
+    color:rgb(240 253 249 / .92);
+}
+
+.hero-marketing__quote-by{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    margin-top:20px;
+    padding-top:18px;
+
+    border-top:1px solid rgb(255 255 255 / .1);
+}
+
+.hero-marketing__quote-by div{
+    display:flex;
+    flex-direction:column;
+    line-height:1.4;
+}
+
+.hero-marketing__quote-by strong{
+    font-size:.85rem;
+    color:#f0fdf9;
+}
+
+.hero-marketing__quote-by span{
+    font-size:.76rem;
+    color:rgb(240 253 249 / .5);
+}
+
+.hero-marketing__metrics{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+
+    border-top:1px solid rgb(255 255 255 / .09);
+}
+
+.hero-marketing__metric{
+    padding:26px 56px;
+}
+
+.hero-marketing__metric + .hero-marketing__metric{
+    border-left:1px solid rgb(255 255 255 / .09);
+}
+
+.hero-marketing__metric strong{
+    display:block;
+
+    font-size:1.7rem;
+    font-weight:750;
+    letter-spacing:-.035em;
+    color:#f0fdf9;
+}
+
+.hero-marketing__metric span{
+    display:block;
+    margin-top:4px;
+
+    font-size:.78rem;
+    letter-spacing:.04em;
+    color:rgb(240 253 249 / .45);
+}
+
+
+/* ==========================================================
+   04 — Product Hero
+
+   Retail composition: the object on the left, the
+   decision on the right.
+   ========================================================== */
+
+.hero-product{
+    display:grid;
+    grid-template-columns:minmax(0, 1.1fr) minmax(0, .9fr);
+    align-items:stretch;
+
+    background:#fff;
+}
+
+.hero-product__stage{
+    position:relative;
+    isolation:isolate;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:560px;
+    padding:56px;
+
+    background:
+        radial-gradient(60% 55% at 50% 45%, #ffffff, transparent 70%),
+        linear-gradient(150deg, #eceef2 0%, #dfe3ea 100%);
+}
+
+.hero-product__badge{
+    position:absolute;
+    top:32px;
+    left:32px;
+}
+
+.hero-product__object{
+    position:relative;
+
+    width:min(340px, 72%);
+    aspect-ratio:1;
+}
+
+.hero-product__shape{
+    position:absolute;
+    inset:0;
+
+    border-radius:50% 50% 46% 46% / 54% 54% 46% 46%;
+
+    background:
+        linear-gradient(155deg, #52596a 0%, #363c49 45%, #22262f 100%);
+
+    box-shadow:
+        inset 0 -18px 40px rgb(0 0 0 / .45),
+        inset 0 14px 30px rgb(255 255 255 / .14),
+        0 40px 70px rgb(15 23 42 / .3);
+}
+
+.hero-product__band{
+    position:absolute;
+    top:16%;
+    left:50%;
+
+    width:34%;
+    height:68%;
+
+    transform:translateX(-50%);
+
+    border-radius:var(--pat-radius-pill);
+
+    background:linear-gradient(180deg, rgb(255 255 255 / .16), rgb(255 255 255 / .02));
+}
+
+.hero-product__shine{
+    position:absolute;
+    top:12%;
+    left:18%;
+
+    width:40%;
+    height:26%;
+
+    border-radius:50%;
+    background:radial-gradient(closest-side, rgb(255 255 255 / .5), transparent);
+    filter:blur(14px);
+}
+
+.hero-product__shadow{
+    position:absolute;
+    bottom:-9%;
+    left:50%;
+
+    width:78%;
+    height:34px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+    background:radial-gradient(closest-side, rgb(15 23 42 / .3), transparent);
+    filter:blur(12px);
+}
+
+.hero-product__detail{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:72px 64px;
+}
+
+.hero-product__brand{
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--pat-soft);
+}
+
+.hero-product__title{
+    margin:16px 0 0;
+
+    font-size:clamp(2.2rem, 3.8vw, 3rem);
+    font-weight:800;
+    letter-spacing:-.045em;
+    line-height:1.05;
+
+    color:var(--pat-ink);
+}
+
+.hero-product__rating{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:16px;
+
+    font-size:.86rem;
+    color:var(--pat-soft);
+}
+
+.hero-product__stars{
+    letter-spacing:.12em;
+    color:#f59e0b;
+}
+
+.hero-product__price{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+
+    margin-top:26px;
+}
+
+.hero-product__price strong{
+    font-size:2rem;
+    font-weight:750;
+    letter-spacing:-.04em;
+    color:var(--pat-ink);
+
+    font-variant-numeric:tabular-nums;
+}
+
+.hero-product__price del{
+    font-size:1rem;
+    color:var(--pat-soft);
+}
+
+.hero-product__lede{
+    margin:22px 0 0;
+    max-width:44ch;
+
+    font-size:1rem;
+    line-height:1.7;
+    color:var(--pat-body);
+}
+
+.hero-product__swatches{
+    margin-top:30px;
+}
+
+.hero-product__swatch-label{
+    display:block;
+    margin-bottom:12px;
+
+    font-size:.8rem;
+    font-weight:650;
+    color:#334155;
+}
+
+.hero-product__swatch-row{
+    display:flex;
+    gap:10px;
+}
+
+.hero-product__swatch{
+    width:34px;
+    height:34px;
+
+    border:2px solid #fff;
+    border-radius:50%;
+
+    box-shadow:0 0 0 1px rgb(15 23 42 / .14);
+
+    transition:box-shadow .2s ease, transform .2s ease;
+}
+
+.hero-product__swatch:hover{
+    transform:translateY(-2px);
+}
+
+.hero-product__swatch--active{
+    box-shadow:0 0 0 2px var(--pat-ink);
+}
+
+.hero-product__actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+
+    margin-top:34px;
+}
+
+.hero-product__actions .btn--primary{
+    flex:1;
+    min-width:200px;
+}
+
+.hero-product__highlights{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    margin:32px 0 0;
+    padding:24px 0 0;
+
+    list-style:none;
+
+    border-top:1px solid var(--pat-line);
+}
+
+.hero-product__highlights li{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:.9rem;
+    color:#475569;
+}
+
+.hero-product__highlights li::before{
+    content:"—";
+    color:#cbd5e1;
+}
+
+
+/* ==========================================================
+   05 — Luxury Hero
+   ========================================================== */
+
+.hero-luxury{
+    position:relative;
+    isolation:isolate;
+
+    display:flex;
+    flex-direction:column;
+
+    min-height:660px;
+    padding:32px 56px 40px;
+
+    background:
+        radial-gradient(60% 50% at 50% 34%, rgb(58 54 48 / .55), transparent 68%),
+        linear-gradient(180deg, #0b0b0c 0%, #121110 60%, #0b0b0c 100%);
+}
+
+.hero-luxury__object{
+    position:absolute;
+    z-index:-1;
+    top:44%;
+    left:50%;
+
+    width:420px;
+    height:420px;
+
+    transform:translate(-50%, -50%);
+    pointer-events:none;
+}
+
+.hero-luxury__ring{
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    border-radius:50%;
+    transform:translate(-50%, -50%);
+}
+
+.hero-luxury__ring--outer{
+    width:100%;
+    height:100%;
+
+    border:1px solid rgb(199 162 107 / .28);
+    background:radial-gradient(closest-side, rgb(199 162 107 / .1), transparent 72%);
+}
+
+.hero-luxury__ring--inner{
+    width:66%;
+    height:66%;
+
+    border:1px solid rgb(199 162 107 / .16);
+}
+
+.hero-luxury__glint{
+    position:absolute;
+    top:14%;
+    left:22%;
+
+    width:160px;
+    height:160px;
+
+    border-radius:50%;
+    background:radial-gradient(closest-side, rgb(255 240 214 / .3), transparent);
+    filter:blur(28px);
+}
+
+.hero-luxury__nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding-bottom:26px;
+    border-bottom:1px solid rgb(255 255 255 / .07);
+}
+
+.hero-luxury__logo{
+    font-size:.9rem;
+    font-weight:600;
+    letter-spacing:.42em;
+    color:rgb(247 244 238 / .9);
+}
+
+.hero-luxury__nav-meta{
+    font-size:.74rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:rgb(247 244 238 / .32);
+}
+
+.hero-luxury__stage{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+
+    max-width:520px;
+    margin-top:auto;
+    padding:80px 0 56px;
+}
+
+.hero-luxury__edition{
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:rgb(199 162 107 / .8);
+}
+
+.hero-luxury__title{
+    margin:22px 0 0;
+
+    font-family:var(--pat-serif);
+    font-size:clamp(3rem, 7vw, 5.5rem);
+    font-weight:400;
+    letter-spacing:-.035em;
+    line-height:.94;
+
+    color:#f7f4ee;
+}
+
+.hero-luxury__lede{
+    margin:26px 0 0;
+    max-width:42ch;
+
+    font-size:1rem;
+    line-height:1.85;
+    color:rgb(247 244 238 / .48);
+
+    text-wrap:pretty;
+}
+
+.hero-luxury__actions{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    flex-wrap:wrap;
+
+    margin-top:40px;
+}
+
+.hero-luxury__actions .btn--glass{
+    padding:0 2.4rem;
+
+    border-color:rgb(199 162 107 / .4);
+    background:rgb(199 162 107 / .12);
+}
+
+.hero-luxury__actions .btn--glass:hover{
+    background:rgb(199 162 107 / .2);
+    border-color:rgb(199 162 107 / .66);
+}
+
+.hero-luxury__link{
+    padding-bottom:3px;
+
+    border-bottom:1px solid rgb(247 244 238 / .18);
+
+    font-size:.88rem;
+    letter-spacing:.02em;
+    color:rgb(247 244 238 / .55);
+}
+
+.hero-luxury__link:hover{
+    color:#f7f4ee;
+    border-color:rgb(199 162 107 / .7);
+}
+
+.hero-luxury__specs{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:1px;
+
+    margin:0;
+    padding-top:28px;
+
+    border-top:1px solid rgb(255 255 255 / .07);
+}
+
+.hero-luxury__specs dt{
+    font-size:.68rem;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:rgb(247 244 238 / .3);
+}
+
+.hero-luxury__specs dd{
+    margin:8px 0 0;
+
+    font-size:.92rem;
+    letter-spacing:.01em;
+    color:rgb(247 244 238 / .78);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:1000px){
+
+    .hero-saas__links{
+        display:none;
+    }
+
+    .hero-saas__inner{
+        padding-top:64px;
+    }
+
+    .hero-startup{
+        padding:64px 32px;
+    }
+
+    .hero-startup__grid{
+        grid-template-columns:minmax(0, 1fr);
+        gap:48px;
+    }
+
+    .hero-startup__card--reply,
+    .hero-startup__card--stats{
+        transform:none;
+    }
+
+    .hero-startup__card--stats{
+        margin-left:0;
+    }
+
+    .hero-marketing__nav{
+        padding:22px 32px;
+    }
+
+    .hero-marketing__stage{
+        grid-template-columns:minmax(0, 1fr);
+        gap:44px;
+
+        padding:56px 32px;
+    }
+
+    .hero-marketing__metrics{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-marketing__metric{
+        padding:22px 32px;
+        border-top:1px solid rgb(255 255 255 / .09);
+    }
+
+    .hero-marketing__metric:nth-child(odd){
+        border-left:none;
+    }
+
+    .hero-product{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .hero-product__stage{
+        min-height:420px;
+        padding:48px;
+    }
+
+    .hero-product__detail{
+        padding:56px 40px;
+    }
+
+    .hero-luxury{
+        padding:28px 32px 36px;
+    }
+
+    .hero-luxury__specs{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:24px 16px;
+    }
+
+}
+
+@media (max-width:720px){
+
+    .hero-saas__nav{
+        padding:20px;
+    }
+
+    .hero-saas__inner{
+        padding:48px 20px 0;
+    }
+
+    .hero-saas__actions .btn{
+        width:100%;
+    }
+
+    .hero-saas__frame{
+        margin-top:48px;
+    }
+
+    .hero-saas__row{
+        padding:13px 16px;
+        gap:12px;
+    }
+
+    .hero-saas__row-label{
+        overflow:hidden;
+        font-size:.72rem;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+    .hero-startup{
+        padding:52px 20px;
+    }
+
+    .hero-startup__form .btn{
+        width:100%;
+    }
+
+    .hero-marketing{
+        min-height:0;
+    }
+
+    .hero-marketing__nav{
+        padding:18px 20px;
+        gap:18px;
+    }
+
+    .hero-marketing__links{
+        display:none;
+    }
+
+    .hero-marketing__stage{
+        padding:48px 20px;
+    }
+
+    .hero-marketing__actions .btn{
+        width:100%;
+    }
+
+    .hero-marketing__metrics{
+        grid-template-columns:minmax(0, 1fr);
+    }
+
+    .hero-marketing__metric{
+        padding:18px 20px;
+        border-left:none;
+    }
+
+    .hero-product__stage{
+        min-height:340px;
+        padding:40px 24px;
+    }
+
+    .hero-product__badge{
+        top:20px;
+        left:20px;
+    }
+
+    .hero-product__detail{
+        padding:40px 20px;
+    }
+
+    .hero-product__actions .btn{
+        width:100%;
+        flex:none;
+    }
+
+    .hero-luxury{
+        min-height:0;
+        padding:24px 20px 32px;
+    }
+
+    .hero-luxury__object{
+        width:300px;
+        height:300px;
+    }
+
+    .hero-luxury__stage{
+        padding:56px 0 40px;
+    }
+
+    .hero-luxury__actions .btn--glass{
+        width:100%;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .hero-saas__announce,
+    .hero-product__swatch{
+        transition:none;
+    }
+
+    .hero-product__swatch:hover{
+        transform:none;
+    }
+
+}

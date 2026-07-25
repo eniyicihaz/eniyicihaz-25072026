@@ -1,0 +1,40 @@
+---
+import "./EmptyState.css";
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const {
+    title = "Henüz Hazır Değil",
+    description = "Bu bölüm üzerinde çalışmalar devam ediyor."
+} = Astro.props;
+
+const titleId = "empty-state-title";
+---
+
+<section
+    class="empty-state"
+    aria-labelledby={titleId}
+>
+
+    <div
+        class="empty-state__icon"
+        aria-hidden="true"
+    >
+        🚧
+    </div>
+
+    <h2
+        id={titleId}
+        class="empty-state__title"
+    >
+        {title}
+    </h2>
+
+    <p class="empty-state__description">
+        {description}
+    </p>
+
+</section>

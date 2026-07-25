@@ -1,0 +1,354 @@
+/* ==========================================================
+   Slider — five patterns
+
+   01  sld-volume  Hearing aid volume control (eniyicihaz.com)
+   02  sld-scrub   Playback scrubber, dark
+   03  sld-price   Price range filter, marketplace
+   04  sld-eq      Equalizer bands, dark, multiple sliders
+   05  sld-bright  Screen brightness, disabled
+   ========================================================== */
+
+
+/* ==========================================================
+   01 — Hearing aid volume control
+   ========================================================== */
+
+.sld-volume{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f6fbfa;
+}
+
+.sld-volume__card{
+    width:100%;
+    max-width:380px;
+    padding:32px;
+
+    border:1px solid rgb(18 59 54 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:0 24px 56px rgb(18 59 54 / .1);
+}
+
+.sld-volume__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:14px;
+}
+
+.sld-volume__label{
+    font-size:.9rem;
+    font-weight:650;
+    color:#123b36;
+}
+
+.sld-volume__value{
+    padding:2px 10px;
+    border-radius:999px;
+
+    background:rgb(15 118 110 / .1);
+
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    font-weight:700;
+    color:#0f766e;
+}
+
+.sld-volume .ds-slider__input{
+    background:rgb(18 59 54 / .12);
+}
+
+.sld-volume .ds-slider__input::-webkit-slider-thumb{
+    background:#0f766e;
+}
+
+.sld-volume .ds-slider__input::-moz-range-thumb{
+    background:#0f766e;
+}
+
+.sld-volume__scale{
+    display:flex;
+    justify-content:space-between;
+
+    margin-top:8px;
+
+    font-size:.72rem;
+    color:#6b8b86;
+}
+
+
+/* ==========================================================
+   02 — Playback scrubber, dark
+   ========================================================== */
+
+.sld-scrub{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#111827;
+}
+
+.sld-scrub__card{
+    width:100%;
+    max-width:400px;
+    padding:30px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.sld-scrub__title{
+    font-size:.95rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.sld-scrub__show{
+    margin-top:2px;
+
+    font-size:.8rem;
+    color:rgb(255 255 255 / .45);
+}
+
+.sld-scrub .ds-slider{
+    margin-top:18px;
+}
+
+.sld-scrub .ds-slider__input{
+    background:rgb(255 255 255 / .12);
+}
+
+.sld-scrub .ds-slider__input::-webkit-slider-thumb{
+    background:#38bdf8;
+    border-color:#111827;
+}
+
+.sld-scrub .ds-slider__input::-moz-range-thumb{
+    background:#38bdf8;
+    border-color:#111827;
+}
+
+.sld-scrub__time{
+    display:flex;
+    justify-content:space-between;
+
+    margin-top:8px;
+
+    font-family:var(--pat-mono);
+    font-size:.76rem;
+    color:rgb(255 255 255 / .4);
+}
+
+
+/* ==========================================================
+   03 — Price range filter
+   ========================================================== */
+
+.sld-price{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#fbfbfa;
+}
+
+.sld-price__card{
+    width:100%;
+    max-width:340px;
+    padding:28px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.sld-price__title{
+    margin-bottom:16px;
+
+    font-size:.92rem;
+    font-weight:700;
+    color:var(--pat-ink);
+}
+
+.sld-price__value{
+    margin-top:12px;
+
+    font-size:1.1rem;
+    font-weight:800;
+    letter-spacing:-.02em;
+    color:var(--pat-ink);
+}
+
+.sld-price__range{
+    display:flex;
+    justify-content:space-between;
+
+    margin-top:8px;
+
+    font-size:.76rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   04 — Equalizer bands, dark
+   ========================================================== */
+
+.sld-eq{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#0b1220;
+}
+
+.sld-eq__card{
+    width:100%;
+    max-width:420px;
+    padding:30px;
+
+    border:1px solid rgb(255 255 255 / .1);
+    border-radius:var(--pat-radius-lg);
+
+    background:rgb(255 255 255 / .03);
+}
+
+.sld-eq__title{
+    margin-bottom:20px;
+
+    font-size:.92rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.sld-eq__band{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.sld-eq__band + .sld-eq__band{
+    margin-top:16px;
+}
+
+.sld-eq__band-label{
+    width:56px;
+    flex-shrink:0;
+
+    font-size:.8rem;
+    color:rgb(255 255 255 / .6);
+}
+
+.sld-eq .ds-slider__input{
+    background:rgb(255 255 255 / .12);
+}
+
+.sld-eq .ds-slider__input::-webkit-slider-thumb{
+    background:#a78bfa;
+    border-color:#0b1220;
+}
+
+.sld-eq .ds-slider__input::-moz-range-thumb{
+    background:#a78bfa;
+    border-color:#0b1220;
+}
+
+.sld-eq__band-value{
+    width:36px;
+    flex-shrink:0;
+    text-align:right;
+
+    font-family:var(--pat-mono);
+    font-size:.78rem;
+    color:rgb(255 255 255 / .5);
+}
+
+
+/* ==========================================================
+   05 — Screen brightness, disabled
+   ========================================================== */
+
+.sld-bright{
+    display:flex;
+    justify-content:center;
+
+    padding:64px 32px 80px;
+    background:#f8fafc;
+}
+
+.sld-bright__card{
+    width:100%;
+    max-width:380px;
+    padding:32px;
+
+    border:1px solid var(--pat-line);
+    border-radius:var(--pat-radius-lg);
+
+    background:#fff;
+    box-shadow:var(--pat-shadow-md);
+}
+
+.sld-bright__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:14px;
+}
+
+.sld-bright__label{
+    font-size:.9rem;
+    font-weight:650;
+    color:var(--pat-ink);
+}
+
+.sld-bright__value{
+    font-family:var(--pat-mono);
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+.sld-bright__note{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    margin-top:12px;
+
+    font-size:.8rem;
+    color:var(--pat-soft);
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:720px){
+
+    .sld-volume{ padding:44px 16px 56px; }
+    .sld-volume__card{ padding:24px 20px; }
+
+    .sld-scrub{ padding:44px 16px 56px; }
+    .sld-scrub__card{ padding:22px; }
+
+    .sld-price{ padding:44px 16px 56px; }
+    .sld-price__card{ padding:22px; }
+
+    .sld-eq{ padding:44px 16px 56px; }
+    .sld-eq__card{ padding:22px; }
+
+    .sld-bright{ padding:44px 16px 56px; }
+    .sld-bright__card{ padding:22px; }
+
+}

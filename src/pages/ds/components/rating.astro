@@ -1,0 +1,405 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/Rating/RatingPatterns.css";
+
+import Rating from "../../../ds/components/ui/atoms/Rating/Rating.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+import Avatar from "../../../ds/components/ui/atoms/Avatar/Avatar.astro";
+import Textarea from "../../../ds/components/ui/atoms/Textarea/Textarea.astro";
+
+import {
+    audiologist,
+    audiologistBreakdown,
+    audiologistReviews,
+    restaurants,
+    reviewProduct,
+    reviewCriteria,
+    courseMeta,
+    courseScores,
+    courseQuote,
+    supportAgents,
+    supportSummary
+} from "../../../ds/patterns/Rating/rating.data";
+---
+
+<DSLayout title="Rating">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">Rating</h1>
+
+        <p class="pl-head__lede">
+            Five places a score carries weight — an audiologist's profile,
+            a restaurant guide, a review form, a course report
+            and a support team scorecard.
+        </p>
+
+    </header>
+
+    <!-- ==========================================================
+         01 — Audiologist profile
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Audiologist Profile</span>
+            <span class="pl-example__tags">Hearing care · Histogram · Verified reviews</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rate-clinic">
+
+                <div class="rate-clinic__inner">
+
+                    <div class="rate-clinic__profile">
+
+                        <div class="rate-clinic__who">
+                            <Avatar initials={audiologist.initials} size="lg" bordered />
+                            <div>
+                                <div class="rate-clinic__name">{audiologist.name}</div>
+                                <div class="rate-clinic__role">{audiologist.role}</div>
+                                <span class="rate-clinic__branch">{audiologist.clinic}</span>
+                            </div>
+                        </div>
+
+                        <div class="rate-clinic__score">
+                            <div class="rate-clinic__score-value">{audiologist.score}</div>
+                            <Rating value={5} readonly />
+                            <span class="rate-clinic__count">{audiologist.count}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="rate-clinic__histogram">
+                        {audiologistBreakdown.map(row => (
+                            <div class="rate-clinic__bar">
+                                <span class="rate-clinic__bar-stars">{row.stars} ★</span>
+                                <span class="rate-clinic__bar-track">
+                                    <span
+                                        class="rate-clinic__bar-fill"
+                                        style={`width:${row.percent}%`}
+                                    ></span>
+                                </span>
+                                <span class="rate-clinic__bar-percent">%{row.percent}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="rate-clinic__reviews">
+                        {audiologistReviews.map(review => (
+                            <article class="rate-clinic__review">
+
+                                <div class="rate-clinic__review-head">
+                                    <Avatar initials={review.initials} size="sm" bordered />
+                                    <div>
+                                        <div class="rate-clinic__reviewer">{review.name}</div>
+                                        <div class="rate-clinic__review-date">{review.date}</div>
+                                    </div>
+                                    <Rating value={review.score} readonly size="sm" />
+                                </div>
+
+                                <span class="rate-clinic__verified">{review.verified}</span>
+
+                                <p class="rate-clinic__review-body">{review.body}</p>
+
+                            </article>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         02 — Restaurant guide
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Restaurant Guide</span>
+            <span class="pl-example__tags">Editorial · Serif names · Inline price</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rate-guide">
+
+                <div class="rate-guide__inner">
+
+                    <header class="rate-guide__head">
+                        <div>
+                            <span class="rate-guide__kicker">Rotterdam</span>
+                            <h2 class="rate-guide__title">Where we ate this month</h2>
+                        </div>
+                        <span class="rate-guide__meta">
+                            Every place visited anonymously and paid for
+                        </span>
+                    </header>
+
+                    <div class="rate-guide__grid">
+                        {restaurants.map(place => (
+                            <article>
+                                <div class={`rate-guide__plate rate-guide__plate--${place.tone}`}></div>
+                                <h3 class="rate-guide__name">{place.name}</h3>
+                                <p class="rate-guide__cuisine">{place.cuisine}</p>
+                                <div class="rate-guide__rating">
+                                    <Rating value={place.score} readonly size="sm" />
+                                    <span class="rate-guide__count">{place.count}</span>
+                                    <span class="rate-guide__price">{place.price}</span>
+                                </div>
+                                <p class="rate-guide__note">{place.note}</p>
+                            </article>
+                        ))}
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         03 — Write a review
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Write a Review</span>
+            <span class="pl-example__tags">Interactive · Criteria rows · Live average</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rate-write">
+
+                <div class="rate-write__card">
+
+                    <div class="rate-write__product">
+                        <span class="rate-write__thumb" aria-hidden="true"></span>
+                        <div>
+                            <div class="rate-write__product-name">{reviewProduct.name}</div>
+                            <div class="rate-write__product-detail">
+                                {reviewProduct.detail} · {reviewProduct.ordered}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rate-write__body">
+
+                        <h2 class="rate-write__title">Rate what mattered</h2>
+                        <p class="rate-write__lede">
+                            Score each part separately — it helps the next person far
+                            more than a single number would.
+                        </p>
+
+                        {reviewCriteria.map(criterion => (
+                            <div class="rate-write__row">
+                                <div>
+                                    <div class="rate-write__label">{criterion.label}</div>
+                                    <div class="rate-write__hint">{criterion.hint}</div>
+                                </div>
+                                <Rating value={criterion.score} />
+                            </div>
+                        ))}
+
+                        <div class="rate-write__overall">
+                            <span class="rate-write__overall-label">Your overall score</span>
+                            <span class="rate-write__overall-value">
+                                <strong>4.3</strong>
+                                <span>from 4 criteria</span>
+                            </span>
+                        </div>
+
+                        <div style="margin-top:22px">
+                            <Textarea
+                                rows={4}
+                                fullWidth
+                                maxLength={1200}
+                                placeholder="Anything you would tell a friend considering these?"
+                            />
+                        </div>
+
+                    </div>
+
+                    <footer class="rate-write__foot">
+                        <span class="rate-write__foot-note">
+                            Posting as Sara V. · Verified buyer
+                        </span>
+                        <Button>Publish review</Button>
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         04 — Course feedback
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Course Feedback</span>
+            <span class="pl-example__tags">Education report · Aggregate · Pull quote</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rate-course">
+
+                <div class="rate-course__inner">
+
+                    <header class="rate-course__head">
+
+                        <div>
+                            <span class="rate-course__kicker">End of cohort report</span>
+                            <h2 class="rate-course__title">{courseMeta.title}</h2>
+                            <p class="rate-course__cohort">{courseMeta.cohort}</p>
+                        </div>
+
+                        <div class="rate-course__aggregate">
+                            <div class="rate-course__aggregate-value">{courseMeta.score}</div>
+                            <Rating value={5} readonly />
+                            <span class="rate-course__responses">{courseMeta.responses}</span>
+                        </div>
+
+                    </header>
+
+                    <div class="rate-course__body">
+
+                        <div>
+                            {courseScores.map(score => (
+                                <div class="rate-course__criterion">
+                                    <span class="rate-course__criterion-label">{score.label}</span>
+                                    <Rating value={score.value} readonly size="sm" />
+                                    <span class="rate-course__figure">{score.figure}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <figure class="rate-course__quote">
+                            <p>{courseQuote.body}</p>
+                            <figcaption class="rate-course__quote-by">
+                                <Avatar initials={courseQuote.initials} size="sm" bordered />
+                                <div>
+                                    <div class="rate-course__quote-name">{courseQuote.name}</div>
+                                    <div class="rate-course__quote-role">{courseQuote.role}</div>
+                                </div>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- ==========================================================
+         05 — Support scorecard
+         ========================================================== -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Support Scorecard</span>
+            <span class="pl-example__tags">Dark internal tool · Ranked agents · Figures</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="rate-support">
+
+                <div class="rate-support__inner">
+
+                    <header class="rate-support__head">
+
+                        <div>
+                            <h2 class="rate-support__title">Support quality</h2>
+                            <p class="rate-support__lede">
+                                Ratings come from the one-click survey sent after every
+                                resolved ticket. Response rate is 62%.
+                            </p>
+                        </div>
+
+                        <dl class="rate-support__summary">
+                            {supportSummary.map(item => (
+                                <div>
+                                    <dt>{item.key}</dt>
+                                    <dd>{item.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+
+                    </header>
+
+                    <div class="rate-support__table">
+
+                        <div class="rate-support__row rate-support__row--head">
+                            <span>Agent</span>
+                            <span>Rating</span>
+                            <span class="rate-support__figure">CSAT</span>
+                            <span class="rate-support__figure">Reply</span>
+                        </div>
+
+                        {supportAgents.map(agent => (
+                            <div class="rate-support__row">
+                                <div class="rate-support__agent">
+                                    <Avatar initials={agent.initials} size="sm" bordered />
+                                    <div>
+                                        <div class="rate-support__agent-name">{agent.name}</div>
+                                        <div class="rate-support__agent-handled">{agent.handled}</div>
+                                    </div>
+                                </div>
+                                <Rating value={agent.score} readonly size="sm" />
+                                <span class="rate-support__figure">{agent.csat}</span>
+                                <span class="rate-support__figure">{agent.median}</span>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <div class="rate-support__foot">
+                        <span>Rolling 30 days · 1,192 tickets resolved</span>
+                        <span>Updated hourly</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

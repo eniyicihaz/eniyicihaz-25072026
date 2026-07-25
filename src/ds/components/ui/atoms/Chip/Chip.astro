@@ -1,0 +1,124 @@
+---
+import "./Chip.css";
+
+import Icon from "../Icon/Icon.astro";
+
+import type { ChipProps } from "./Chip.types";
+
+const {
+    variant = "primary",
+    size = "md",
+    leftIcon,
+    rightIcon,
+    avatar,
+    selected = false,
+    clickable = false,
+    removable = false,
+    disabled = false,
+    rounded = true,
+    href,
+    target,
+    rel,
+    class: className = ""
+} = Astro.props as ChipProps;
+
+const classes = [
+    "ds-chip",
+    `is-${variant}`,
+    `is-${size}`,
+    rounded && "is-rounded",
+    selected && "is-selected",
+    clickable && "is-clickable",
+    removable && "is-removable",
+    disabled && "is-disabled",
+    className
+]
+    .filter(Boolean)
+    .join(" ");
+---
+
+{
+    href ? (
+        <a
+            href={href}
+            target={target}
+            rel={rel}
+            class={classes}
+            aria-disabled={disabled}
+        >
+            {leftIcon && (
+                <span class="ds-chip__icon">
+                    <Icon icon={leftIcon} decorative />
+                </span>
+            )}
+
+            {avatar && (
+                <img
+                    class="ds-chip__avatar"
+                    src={avatar}
+                    alt=""
+                    loading="lazy"
+                />
+            )}
+
+            <span class="ds-chip__label">
+                <slot />
+            </span>
+
+            {rightIcon && (
+                <span class="ds-chip__icon">
+                    <Icon icon={rightIcon} decorative />
+                </span>
+            )}
+
+            {removable && (
+                <span
+                    class="ds-chip__remove"
+                    aria-hidden="true"
+                >
+                    ×
+                </span>
+            )}
+        </a>
+    ) : (
+        <button
+            type="button"
+            class={classes}
+            disabled={disabled}
+        >
+            {leftIcon && (
+                <span class="ds-chip__icon">
+                    <Icon icon={leftIcon} decorative />
+                </span>
+            )}
+
+            {avatar && (
+                <img
+                    class="ds-chip__avatar"
+                    src={avatar}
+                    alt=""
+                    loading="lazy"
+                />
+            )}
+
+            <span class="ds-chip__label">
+                <slot />
+            </span>
+
+            {rightIcon && (
+                <span class="ds-chip__icon">
+                    <Icon icon={rightIcon} decorative />
+                </span>
+            )}
+
+            {removable && (
+                <span
+                    class="ds-chip__remove"
+                    aria-hidden="true"
+                >
+                    ×
+                </span>
+            )}
+        </button>
+    )
+}

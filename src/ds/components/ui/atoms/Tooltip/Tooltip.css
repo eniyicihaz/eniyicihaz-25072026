@@ -1,0 +1,197 @@
+.ds-tooltip {
+    --tooltip-bg: #111827;
+    --tooltip-color: #ffffff;
+    --tooltip-radius: 10px;
+    --tooltip-padding: 0.65rem 0.8rem;
+    --tooltip-shadow: 0 10px 30px rgba(0, 0, 0, .18);
+    --tooltip-offset: 12px;
+    --tooltip-arrow: 8px;
+    --tooltip-max-width: 240px;
+    --tooltip-delay: 150ms;
+
+    position: relative;
+    display: inline-flex;
+}
+
+.ds-tooltip__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ds-tooltip__content {
+    position: absolute;
+    z-index: 999;
+
+    max-width: var(--tooltip-max-width);
+    width: max-content;
+
+    padding: var(--tooltip-padding);
+
+    background: var(--tooltip-bg);
+    color: var(--tooltip-color);
+
+    border-radius: var(--tooltip-radius);
+    box-shadow: var(--tooltip-shadow);
+
+    font-size: .875rem;
+    line-height: 1.45;
+
+    white-space: normal;
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .18s ease,
+        transform .18s ease,
+        visibility .18s ease;
+
+    transition-delay: var(--tooltip-delay);
+}
+
+/* Hover */
+
+.ds-tooltip:hover .ds-tooltip__content,
+.ds-tooltip:focus-within .ds-tooltip__content {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Top */
+
+.ds-tooltip.is-top .ds-tooltip__content {
+    left: 50%;
+    bottom: calc(100% + var(--tooltip-offset));
+    transform: translate(-50%, 6px);
+}
+
+.ds-tooltip.is-top:hover .ds-tooltip__content,
+.ds-tooltip.is-top:focus-within .ds-tooltip__content {
+    transform: translate(-50%, 0);
+}
+
+/* Bottom */
+
+.ds-tooltip.is-bottom .ds-tooltip__content {
+    left: 50%;
+    top: calc(100% + var(--tooltip-offset));
+    transform: translate(-50%, -6px);
+}
+
+.ds-tooltip.is-bottom:hover .ds-tooltip__content,
+.ds-tooltip.is-bottom:focus-within .ds-tooltip__content {
+    transform: translate(-50%, 0);
+}
+
+/* Left */
+
+.ds-tooltip.is-left .ds-tooltip__content {
+    right: calc(100% + var(--tooltip-offset));
+    top: 50%;
+    transform: translate(6px, -50%);
+}
+
+.ds-tooltip.is-left:hover .ds-tooltip__content,
+.ds-tooltip.is-left:focus-within .ds-tooltip__content {
+    transform: translate(0, -50%);
+}
+
+/* Right */
+
+.ds-tooltip.is-right .ds-tooltip__content {
+    left: calc(100% + var(--tooltip-offset));
+    top: 50%;
+    transform: translate(-6px, -50%);
+}
+
+.ds-tooltip.is-right:hover .ds-tooltip__content,
+.ds-tooltip.is-right:focus-within .ds-tooltip__content {
+    transform: translate(0, -50%);
+}
+
+/* Top Start */
+
+.ds-tooltip.is-top-start .ds-tooltip__content {
+    left: 0;
+    bottom: calc(100% + var(--tooltip-offset));
+}
+
+/* Top End */
+
+.ds-tooltip.is-top-end .ds-tooltip__content {
+    right: 0;
+    bottom: calc(100% + var(--tooltip-offset));
+}
+
+/* Bottom Start */
+
+.ds-tooltip.is-bottom-start .ds-tooltip__content {
+    left: 0;
+    top: calc(100% + var(--tooltip-offset));
+}
+
+/* Bottom End */
+
+.ds-tooltip.is-bottom-end .ds-tooltip__content {
+    right: 0;
+    top: calc(100% + var(--tooltip-offset));
+}
+
+/* Variants */
+
+.ds-tooltip.is-light {
+    --tooltip-bg: #ffffff;
+    --tooltip-color: #111827;
+
+    border: 1px solid #e5e7eb;
+}
+
+.ds-tooltip.is-dark {
+    --tooltip-bg: #111827;
+    --tooltip-color: #ffffff;
+}
+
+/* Arrow */
+
+.ds-tooltip.has-arrow .ds-tooltip__content::after {
+    content: "";
+    position: absolute;
+    width: var(--tooltip-arrow);
+    height: var(--tooltip-arrow);
+    background: inherit;
+    transform: rotate(45deg);
+}
+
+.ds-tooltip.is-top.has-arrow .ds-tooltip__content::after {
+    left: 50%;
+    bottom: calc(var(--tooltip-arrow) * -0.5);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.ds-tooltip.is-bottom.has-arrow .ds-tooltip__content::after {
+    left: 50%;
+    top: calc(var(--tooltip-arrow) * -0.5);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.ds-tooltip.is-left.has-arrow .ds-tooltip__content::after {
+    right: calc(var(--tooltip-arrow) * -0.5);
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.ds-tooltip.is-right.has-arrow .ds-tooltip__content::after {
+    left: calc(var(--tooltip-arrow) * -0.5);
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+/* Disabled */
+
+.ds-tooltip.is-disabled {
+    pointer-events: none;
+}

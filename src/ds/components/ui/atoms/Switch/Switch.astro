@@ -1,0 +1,60 @@
+---
+import "./Switch.css";
+import type { SwitchProps } from "./Switch.types";
+
+const {
+  checked = false,
+  disabled = false,
+  required = false,
+  error = false,
+  success = false,
+  helperText,
+  name,
+  id,
+  value,
+  class: className = ""
+}: SwitchProps = Astro.props;
+
+const classes = [
+  "switch",
+  error && "is-error",
+  success && "is-success",
+  disabled && "is-disabled",
+  className
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class="switch-field">
+
+  <label class={classes}>
+
+    <input
+      class="switch-input"
+      type="checkbox"
+      checked={checked}
+      disabled={disabled}
+      required={required}
+      name={name}
+      id={id}
+      value={value}
+    />
+
+    <span class="switch-slider">
+      <span class="switch-thumb"></span>
+    </span>
+
+    <span class="switch-label">
+      <slot />
+    </span>
+
+  </label>
+
+  {helperText && (
+    <p class="switch-helper">
+      {helperText}
+    </p>
+  )}
+
+</div>

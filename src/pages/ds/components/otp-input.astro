@@ -1,0 +1,235 @@
+---
+import DSLayout from "../../../ds/layouts/DSLayout.astro";
+
+import "../../../ds/patterns/patterns.css";
+import "../../../ds/patterns/OTPInput/OTPInputPatterns.css";
+
+import OTPInput from "../../../ds/components/ui/atoms/OTPInput/OTPInput.astro";
+import Button from "../../../ds/components/ui/atoms/Button/Button.astro";
+
+import {
+    loginOtp,
+    bankOtp,
+    simOtp,
+    supportOtp,
+    kioskOtp
+} from "../../../ds/patterns/OTPInput/otpinput.data";
+---
+
+<DSLayout title="OTP Input">
+
+<div class="pl">
+
+    <header class="pl-head">
+
+        <span class="pl-head__eyebrow">Pattern Library</span>
+
+        <h1 class="pl-head__title">OTP Input</h1>
+
+        <p class="pl-head__lede">
+            Five one-time-code moments — a clinic login, a bank transfer
+            confirmation, a phone verification, an expired support code
+            and a disabled kiosk PIN pad.
+        </p>
+
+    </header>
+
+    <!-- 01 — Clinic login 2FA -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">01</span>
+            <span class="pl-example__name">Login Verification</span>
+            <span class="pl-example__tags">Hearing care · 6 digits · Countdown</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="otp-login">
+
+                <div class="otp-login__card">
+
+                    <div class="otp-login__icon">🔐</div>
+                    <h2 class="otp-login__title">{loginOtp.title}</h2>
+                    <p class="otp-login__sub">{loginOtp.sub}</p>
+
+                    <OTPInput
+                        id="otp-login"
+                        length={loginOtp.length}
+                        value={loginOtp.value}
+                        autoFocus
+                    />
+
+                    <div class="otp-login__foot">
+                        <span>Kod yeniden gönderilebilir:</span>
+                        <span class="otp-login__timer">{loginOtp.countdown}</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 02 — Bank transfer confirmation -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">02</span>
+            <span class="pl-example__name">Transfer Confirmation</span>
+            <span class="pl-example__tags">Banking · Dark · Empty state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="otp-bank">
+
+                <div class="otp-bank__card">
+
+                    <div class="otp-bank__amount-row">
+                        <span class="otp-bank__amount-label">Transferring</span>
+                        <span class="otp-bank__amount">{bankOtp.amount}</span>
+                    </div>
+                    <p class="otp-bank__to">To {bankOtp.to}</p>
+
+                    <h2 class="otp-bank__title">{bankOtp.title}</h2>
+                    <p class="otp-bank__sub">{bankOtp.sub}</p>
+
+                    <OTPInput
+                        id="otp-bank"
+                        length={bankOtp.length}
+                        value={bankOtp.value}
+                    />
+
+                    <div class="otp-bank__action">
+                        <Button variant="primary" size="lg" fullWidth>Confirm transfer</Button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 03 — Phone number verification -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">03</span>
+            <span class="pl-example__name">Phone Verification</span>
+            <span class="pl-example__tags">Onboarding · 4 digits · Larger fields</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="otp-sim">
+
+                <div class="otp-sim__card">
+
+                    <h2 class="otp-sim__title">{simOtp.title}</h2>
+                    <p class="otp-sim__sub">{simOtp.sub}</p>
+
+                    <OTPInput
+                        id="otp-sim"
+                        length={simOtp.length}
+                        value={simOtp.value}
+                        inputMode="numeric"
+                    />
+
+                    <p class="otp-sim__resend">Resend code in {simOtp.resendIn}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 04 — Support access code, error state -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">04</span>
+            <span class="pl-example__name">Access Code</span>
+            <span class="pl-example__tags">Support desk · Error / expired state</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="otp-support">
+
+                <div class="otp-support__card">
+
+                    <h2 class="otp-support__title">{supportOtp.title}</h2>
+                    <p class="otp-support__sub">{supportOtp.sub}</p>
+
+                    <OTPInput
+                        id="otp-support"
+                        length={supportOtp.length}
+                        value={supportOtp.value}
+                        required
+                    />
+
+                    <p class="otp-support__error">⚠ {supportOtp.error}</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+    <!-- 05 — Payment terminal PIN, disabled -->
+
+    <figure class="pl-example">
+
+        <figcaption class="pl-example__bar">
+            <span class="pl-example__index">05</span>
+            <span class="pl-example__name">Terminal PIN</span>
+            <span class="pl-example__tags">Kiosk · Dark · Disabled while processing</span>
+        </figcaption>
+
+        <div class="pl-example__canvas">
+
+            <section class="otp-kiosk">
+
+                <div class="otp-kiosk__card">
+
+                    <div class="otp-kiosk__icon">💳</div>
+                    <h2 class="otp-kiosk__title">{kioskOtp.title}</h2>
+                    <p class="otp-kiosk__sub">{kioskOtp.sub}</p>
+
+                    <OTPInput
+                        id="otp-kiosk"
+                        length={kioskOtp.length}
+                        value={kioskOtp.value}
+                        disabled={kioskOtp.disabled}
+                    />
+
+                    <div class="otp-kiosk__spinner">
+                        <span class="otp-kiosk__dot"></span>
+                        <span class="otp-kiosk__dot"></span>
+                        <span class="otp-kiosk__dot"></span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </figure>
+
+</div>
+
+</DSLayout>

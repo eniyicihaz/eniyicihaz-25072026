@@ -1,0 +1,79 @@
+---
+import "./Progress.css";
+
+import type { ProgressProps } from "./Progress.types";
+
+const {
+    value = 0,
+    max = 100,
+    variant = "primary",
+    size = "md",
+    mode = "determinate",
+    showValue = false,
+    label,
+    striped = false,
+    animated = false,
+    radius,
+    class: className = ""
+} = Astro.props as ProgressProps;
+
+const percentage = Math.min(
+    100,
+    Math.max(0, (value / max) * 100)
+);
+
+const classes = [
+    "ds-progress",
+    `is-${variant}`,
+    `is-${size}`,
+    `is-${mode}`,
+    striped && "is-striped",
+    animated && "is-animated",
+    className
+]
+    .filter(Boolean)
+    .join(" ");
+
+const style = radius
+    ? `--progress-radius:${radius};--progress-value:${percentage}%`
+    : `--progress-value:${percentage}%`;
+---
+
+<div class={classes}>
+
+    {
+        (label || showValue) && (
+            <div class="ds-progress__header">
+
+                {label && (
+                    <span class="ds-progress__label">
+                        {label}
+                    </span>
+                )}
+
+                {showValue && mode === "determinate" && (
+                    <span class="ds-progress__value">
+                        {Math.round(percentage)}%
+                    </span>
+                )}
+
+            </div>
+        )
+    }
+
+    <div
+        class="ds-progress__track"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={max}
+        aria-valuenow={mode === "determinate" ? value : undefined}
+    >
+
+        <div
+            class="ds-progress__bar"
+            style={style}
+        />
+
+    </div>
+
+</div>
