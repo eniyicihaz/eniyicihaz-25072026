@@ -4,18 +4,32 @@
 // per DESIGN_SYSTEM_GUIDE §26 an existing component is reused, not re-created.
 // Self-sufficient: the transition timing has its own fallback and does not
 // depend on a host section defining --fcta-*/--hero-* custom properties.
+//
+// iconLeft/iconRight accept a lucide-astro icon component reference (e.g.
+// `import { Ear } from "lucide-astro"; <CtaButton iconLeft={Ear} .../>`).
+// Both optional — existing label-only usages are unaffected.
 interface Props {
   label: string;
   href: string;
   /** solid = the single primary action, outline = the quieter secondary. */
   variant?: "solid" | "outline";
+  iconLeft?: any;
+  iconRight?: any;
 }
 
-const { label, href, variant = "solid" } = Astro.props;
+const {
+  label,
+  href,
+  variant = "solid",
+  iconLeft: IconLeft,
+  iconRight: IconRight,
+} = Astro.props;
 ---
 
 <a class:list={["cta-button", `cta-button--${variant}`]} href={href}>
+  {IconLeft && <IconLeft size={20} stroke-width={2} aria-hidden="true" class="cta-button__icon" />}
   <span>{label}</span>
+  {IconRight && <IconRight size={18} stroke-width={2} aria-hidden="true" class="cta-button__icon" />}
 </a>
 
 <style>
@@ -26,6 +40,7 @@ const { label, href, variant = "solid" } = Astro.props;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: var(--space-2);
     height: 56px;
     padding-inline: var(--space-8);
     border-radius: var(--radius-lg);

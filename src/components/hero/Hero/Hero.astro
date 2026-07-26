@@ -1,43 +1,153 @@
 ---
-// Hero — "İlk Netlik Anı". The homepage's reference section.
-// Spec: docs/HERO_SPECIFICATION.md · DNA: PRINCIPLES §1 · Visual: DESIGN_SYSTEM §6.
-// The interface performs the promise: scattered acoustic lines resolve into one
-// aligned signal while the copy settles.
-import "./hero.tokens.css";
-import HeroEyebrow from "./atoms/HeroEyebrow/HeroEyebrow.astro";
+// Hero — rebuilt to match the reference design (hero son.png), pixel-fidelity
+// goal. Deliberately a single component for now (no atom/molecule split);
+// split out later only if a genuine reuse need appears.
+//
+// Known gap: the reference has a very faint decorative wave curve behind the
+// gallery in addition to the dot-grid. Reproducing it accurately requires the
+// source vector, which isn't available — omitted rather than guessed, so as
+// not to invent a shape not actually in the reference.
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
-import HeroScrollCue from "./atoms/HeroScrollCue/HeroScrollCue.astro";
-import HeroTrustRow from "./molecules/HeroTrustRow/HeroTrustRow.astro";
-import HeroSignalField from "./molecules/HeroSignalField/HeroSignalField.astro";
+import {
+  Ear,
+  Phone,
+  ArrowRight,
+  Volume2,
+  MessageCircle,
+  Heart,
+  Award,
+  ShieldCheck,
+  Users,
+  Gem,
+} from "lucide-astro";
 import { hero } from "./hero.data";
+
+const cardIcons = { waves: Volume2, message: MessageCircle, heart: Heart } as const;
+const trustIcons = { award: Award, shield: ShieldCheck, users: Users, gem: Gem } as const;
+
+// Asymmetric editorial gallery, not a 3-up feature grid: the first card
+// (the primary persona) leads at full height; the other two are smaller
+// supporting shots stacked beside it. Same three data entries as before —
+// only how they're composed changed, so hero.data.ts/hero.types.ts are
+// untouched.
+const [cardFeature, cardSupportA, cardSupportB] = hero.cards;
+const IconFeature = cardIcons[cardFeature.icon];
+const IconSupportA = cardIcons[cardSupportA.icon];
+const IconSupportB = cardIcons[cardSupportB.icon];
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero__inner hero-container">
-    <HeroSignalField />
+  <div class="hero__inner">
+    <div class="hero__grid">
+      <div class="hero__copy" data-rise>
+        <p class="hero__badge">{hero.badge}</p>
 
-    <div class="hero__content">
-      <div class="hero__eyebrow" data-rise>
-        <HeroEyebrow text={hero.eyebrow} />
+        <h1 class="hero__headline" id="hero-title">
+          {hero.headlineLine1}
+          <br />
+          <span class="hero__headline-accent">{hero.headlineLine2}</span>
+        </h1>
+
+        <p class="hero__subhead">{hero.subhead}</p>
+
+        <div class="hero__actions">
+          <CtaButton
+            label={hero.ctaPrimary.label}
+            href={hero.ctaPrimary.href}
+            iconLeft={Ear}
+            iconRight={ArrowRight}
+          />
+          <CtaButton
+            label={hero.ctaSecondary.label}
+            href={hero.ctaSecondary.href}
+            variant="outline"
+            iconLeft={Phone}
+          />
+        </div>
       </div>
 
-      <h1 class="hero__headline" id="hero-title" data-rise>{hero.headline}</h1>
+      <div class="hero__gallery" data-rise>
+        <article class="hero-card hero-card--feature">
+          <div class="hero-card__image-wrap">
+            <div class="hero-card__image-frame">
+              <img
+                class="hero-card__image"
+                src={cardFeature.image}
+                alt={cardFeature.alt}
+                width="400"
+                height="480"
+                loading="eager"
+              />
+            </div>
+            <span class="hero-card__badge" aria-hidden="true">
+              <IconFeature size={20} stroke-width={2} />
+            </span>
+          </div>
+          <h3 class="hero-card__title">{cardFeature.title}</h3>
+          <p class="hero-card__text">{cardFeature.text}</p>
+        </article>
 
-      <p class="hero__subhead" data-rise>{hero.subhead}</p>
+        <div class="hero-card__stack">
+          <article class="hero-card hero-card--support">
+            <div class="hero-card__image-wrap">
+              <div class="hero-card__image-frame">
+                <img
+                  class="hero-card__image"
+                  src={cardSupportA.image}
+                  alt={cardSupportA.alt}
+                  width="300"
+                  height="220"
+                  loading="eager"
+                />
+              </div>
+              <span class="hero-card__badge hero-card__badge--sm" aria-hidden="true">
+                <IconSupportA size={16} stroke-width={2} />
+              </span>
+            </div>
+            <h3 class="hero-card__title">{cardSupportA.title}</h3>
+            <p class="hero-card__text">{cardSupportA.text}</p>
+          </article>
 
-      <div class="hero__cta" data-rise>
-        <CtaButton label={hero.cta.label} href={hero.cta.href} />
+          <article class="hero-card hero-card--support">
+            <div class="hero-card__image-wrap">
+              <div class="hero-card__image-frame">
+                <img
+                  class="hero-card__image"
+                  src={cardSupportB.image}
+                  alt={cardSupportB.alt}
+                  width="300"
+                  height="220"
+                  loading="eager"
+                />
+              </div>
+              <span class="hero-card__badge hero-card__badge--sm" aria-hidden="true">
+                <IconSupportB size={16} stroke-width={2} />
+              </span>
+            </div>
+            <h3 class="hero-card__title">{cardSupportB.title}</h3>
+            <p class="hero-card__text">{cardSupportB.text}</p>
+          </article>
+        </div>
       </div>
-
-      <div class="hero__trust" data-rise>
-        <HeroTrustRow items={hero.trust} brandLockup={hero.brandLockup} />
-      </div>
-
-      <p class="hero__tagline" data-rise>{hero.tagline}</p>
     </div>
 
-    <div class="hero__cue">
-      <HeroScrollCue label={hero.scrollCue} />
+    <div class="hero__trust" data-rise>
+      {
+        hero.trustItems.map((item) => {
+          const Icon = trustIcons[item.icon];
+          return (
+            <div class="hero-trust-item">
+              <span class="hero-trust-item__icon" aria-hidden="true">
+                <Icon size={22} stroke-width={1.75} />
+              </span>
+              <div class="hero-trust-item__text">
+                <p class="hero-trust-item__value">{item.value}</p>
+                <p class="hero-trust-item__label">{item.label}</p>
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   </div>
 </section>
@@ -49,8 +159,6 @@ import { hero } from "./hero.data";
     if (!("IntersectionObserver" in window)) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    // Arm the scattered/hidden start only now that we can undo it — if this
-    // script never runs, the hero renders fully resolved and visible.
     hero.dataset.anim = "pending";
 
     var revealed = false;
@@ -62,15 +170,8 @@ import { hero } from "./hero.data";
       revealed = true;
       hero.dataset.anim = "in";
       if (io) io.disconnect();
-      // Retire the animation once it has played so its final state stops
-      // competing with idle/hover transitions.
-      setTimeout(function () {
-        hero.dataset.anim = "done";
-      }, 1700);
     }
 
-    // A hidden/throttled tab never delivers callbacks; content stuck at
-    // opacity 0 is worse than a skipped animation. Show it if nothing arrives.
     var failsafe = setTimeout(function () {
       if (!ioAlive) reveal();
     }, 1500);
@@ -92,145 +193,354 @@ import { hero } from "./hero.data";
   .hero {
     position: relative;
     isolation: isolate;
-    overflow: hidden;
-    background: var(--color-background);
+    background: var(--color-surface);
     color: var(--color-text);
+    /* Deliberately not 100vh, and no forced min-height either — the ~760–820px
+       band (approval note #6) emerges naturally from content + the trust
+       bar's reserved flow-space; forcing a height independent of content is
+       exactly what caused the trust bar to overlap real copy below. */
+    padding-block: var(--space-12) 0;
   }
 
-  /* Layer 1 — soft brand glow behind the signal. Its own compositor layer so
-     scrolling the hero composites this instead of repainting the gradient. */
+  /* Very faint dot-grid, same technique as Hero/Footer's established
+     texture (radial-gradient tiled circles) — no new visual technique. */
   .hero::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    will-change: transform;
-    background: radial-gradient(
-      60% 50% at 50% 42%,
-      var(--hero-glow),
-      transparent 70%
+    background-image: radial-gradient(
+      circle,
+      rgb(37 99 235 / 0.06) 1px,
+      transparent 1px
     );
-  }
-
-  /* Layer 2 — film grain for warmth (continuity with the footer). Inlined
-     SVG turbulence, tiled small and repeated rather than stretched across
-     the whole section — rasterizing feTurbulence at full-hero size is what
-     was causing the scroll-time flicker/jank; a small repeating tile is
-     cheap to paint once and composite. will-change promotes its own layer
-     so it never repaints alongside the animating signal lines. */
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    opacity: 0.03;
-    pointer-events: none;
-    will-change: transform;
-    background-image: var(--texture-grain);
-    background-size: 220px 220px;
-    background-repeat: repeat;
+    background-size: 22px 22px;
+    mask-image: linear-gradient(
+      to bottom left,
+      #000 15%,
+      transparent 45%
+    );
   }
 
   .hero__inner {
     position: relative;
     z-index: 1;
-    min-height: var(--hero-min-h);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-block: var(--space-20) var(--space-16);
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-12);
   }
 
-  .hero__content {
-    position: relative;
-    z-index: 1;
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 45fr 55fr;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  /* --- Left column ------------------------------------------------- */
+
+  .hero__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .hero__headline {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(2.6rem, 1.9rem + 3vw, 4.875rem);
+    font-weight: var(--font-weight-bold);
+    /* Denser leading + slightly tighter tracking than the design-system
+       default — a confident, "designed" headline block reads tighter than
+       body copy; this is what separates a hero statement from a paragraph. */
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+  }
+
+  .hero__headline-accent {
+    /* Slightly deeper than --color-primary to sit closer to the reference's
+       richer blue — reuses the existing hover token rather than a new hex. */
+    color: var(--color-primary-hover);
+  }
+
+  .hero__subhead {
+    /* Rhythm is now a deliberate 16 / 24 / 32 step (not the previous
+       cramped 16/20/24) — each gap reads as a clear decision rather than
+       incidental spacing, and the CTA group gets the most air of all since
+       it's the one place the eye should act. */
+    margin: var(--space-6) 0 0;
+    max-width: 32rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  /* --- Right column: asymmetric editorial gallery ---------------------
+     One dominant lead photo + two smaller supporting shots stacked beside
+     it — not a 3-up feature grid. The eye lands on the wide column first
+     (closest to the headline), then reads the two quieter supporting
+     shots. Deliberately just two tracks, not a masonry/Pinterest layout —
+     the restraint (one clean split, not scattered offsets) is what keeps
+     it feeling editorial rather than decorative. */
+  /* With every card sharing the same 5:6 ratio, two stacked support photos
+     only line up with one feature photo's height when the feature column
+     is roughly twice the support column's width — so 68/32, not a milder
+     60/40, is what actually keeps the two sides levelled. */
+  .hero__gallery {
+    display: grid;
+    grid-template-columns: 68fr 32fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .hero-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 46rem;
   }
 
-  .hero__eyebrow {
-    margin: 0;
+  .hero-card__stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
   }
 
-  .hero__headline {
-    margin: var(--space-5) 0 0;
-    /* Display type — deliberately outside the DS scale, which tops out at 36px. */
-    font-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
-    font-weight: var(--font-weight-bold);
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    color: var(--color-text);
-    text-wrap: balance;
+  /* No overflow/clip here — this box only establishes the positioning
+     context for the badge below. Clipping lives on the inner frame instead,
+     so the badge (which deliberately sits half outside the photo) is never
+     cut off along with it. The hover LIFT is applied here too, so the photo
+     and its badge move together as one rigid "floating card" unit rather
+     than the badge staying pinned while the photo slides out from under it. */
+  /* Same 5:6 portrait ratio on every card — matches how the photos were
+     actually shot/cropped, so nothing gets stretched into a shape it
+     wasn't composed for. The feature card reads as dominant through width
+     (62% vs. the stack's 38%) and through being one photo instead of two,
+     not through a distorted or fragile height calculation. */
+  .hero-card__image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .hero__subhead {
-    margin: var(--space-5) 0 0;
-    max-width: 34rem;
-    font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
-    line-height: 1.55;
-    letter-spacing: -0.01em;
-    color: var(--color-text-muted);
-    text-wrap: pretty;
+  .hero-card:hover .hero-card__image-wrap {
+    transform: translateY(-8px);
   }
 
-  .hero__cta {
-    margin-top: var(--space-8);
+  /* Resting shadow is deliberately faint — the card should read as "lifted
+     off the page" even before interaction, per a premium-card baseline. It
+     strengthens further on hover instead of appearing from nothing. */
+  .hero-card__image-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    background: var(--color-border);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .hero__trust {
-    margin-top: var(--space-6);
+  .hero-card:hover .hero-card__image-frame {
+    box-shadow: var(--shadow-xl);
   }
 
-  .hero__tagline {
-    margin: var(--space-4) 0 0;
-    font-size: var(--font-size-sm);
-    /* text-muted, not text-soft: this is read copy (the brand signature),
-       and text-soft fails WCAG AA here (~2.6:1 on white vs muted's ~7.6:1). */
-    color: var(--color-text-muted);
+  .hero-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .hero__cue {
+  /* Photo zooms slightly within its own clipped frame — contained, not
+     attention-grabbing, the restrained version of the effect. */
+  .hero-card:hover .hero-card__image {
+    transform: scale(1.04);
+  }
+
+  /* Floating icon badge — a full circle, half-overlapping the photo's
+     bottom edge, its own shadow always fully visible since it no longer
+     shares a clipping box with the photo. */
+  /* Neutral, not brand-blue — blue is reserved for the CTA and the headline
+     accent, the two places that actually matter. A badge on every one of
+     five+ elements in the same hue was flattening hierarchy rather than
+     building it. */
+  .hero-card__badge {
     position: absolute;
     left: 50%;
-    bottom: var(--space-8);
-    transform: translateX(-50%);
+    bottom: 0;
+    transform: translate(-50%, 50%);
     z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    color: var(--color-text-muted);
+    box-shadow: var(--shadow-md);
   }
 
-  /* --- Entrance ---------------------------------------------------------- */
+  /* Smaller badge for the two supporting shots — scale itself signals
+     "secondary," so the badge doesn't need to compete with the lead card's. */
+  .hero-card__badge--sm {
+    width: 40px;
+    height: 40px;
+  }
 
-  /* Hidden start only while armed; if JS never runs, content is visible. */
+  /* Editorial caption, not a feature-block heading: small, quiet, tight to
+     the photo. Kept (not removed) for SEO/content value, but redesigned to
+     read as a photo credit line rather than a marketing headline. */
+  /* margin-top stays generous (not tightened like the rest of the caption)
+     because it has a second job: clearing the badge, which overlaps 26px
+     (half its 52px height) below the photo. The "quieter caption" feel
+     comes from size/weight/color below, not from crowding the badge. */
+  .hero-card__title {
+    margin: var(--space-8) 0 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .hero-card__text {
+    margin: var(--space-1) auto 0;
+    max-width: 26ch;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-soft);
+  }
+
+  /* The two supporting cards drop one more step in scale — reinforces
+     "secondary" without needing a second, different typographic style. */
+  .hero-card--support .hero-card__title {
+    font-size: var(--font-size-xs);
+  }
+
+  .hero-card--support .hero-card__text {
+    max-width: 20ch;
+  }
+
+  /* --- Floating trust bar --------------------------------------------
+     position + z-index + transform (per approval note #7 — not a bare
+     negative margin). Stays in NORMAL FLOW (position: relative) right
+     after the grid, with a real margin-top gap so it never overlaps the
+     copy/gallery above it. `transform: translateY(50%)` then shifts the
+     painted card down by half its own height *without* affecting layout —
+     the top half still reads against the hero's own background, and the
+     bottom half spills past the section's edge into whatever follows,
+     which is exactly the "floating card" effect without ever overlapping
+     real content (the bug the earlier `position: absolute` version had). */
+
+  /* The bar itself is now just a grid container — no background/shadow of
+     its own. Each fact gets its own premium mini-card instead of living in
+     one long panel, which is what makes this read as "four small premium
+     cards" rather than "one wide bar with dividers." */
+  .hero__trust {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-inline: auto;
+    margin-top: var(--space-10);
+    transform: translateY(calc(50% - 24px));
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  /* Same light-glass recipe as before (soft gradient + blur + hairline
+     border + two-layer shadow), just applied per-card instead of once —
+     restrained, not showy: no color, no heavy shadow, just the quiet
+     "lifted off the page" quality every other premium card in this Hero
+     already has. */
+  .hero-trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-4);
+    background: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.94) 0%,
+      rgb(255 255 255 / 0.86) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xs), var(--shadow-lg);
+    transition:
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-trust-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xs), var(--shadow-xl);
+  }
+
+  /* Neutral icon chip — same reasoning as the gallery badges: blue is for
+     the CTA and the headline accent only. */
+  .hero-trust-item__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+  }
+
+  .hero-trust-item__text {
+    min-width: 0;
+  }
+
+  .hero-trust-item__value {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .hero-trust-item__label {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance -------------------------------------------------------- */
+
   .hero[data-anim="pending"] [data-rise] {
     opacity: 0;
   }
 
   .hero[data-anim="in"] [data-rise] {
-    animation: hero-rise var(--hero-rise-dur) var(--hero-ease) both;
+    animation: hero-rise 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  /* Staggered settle — eyebrow first, tagline last (HERO_SPECIFICATION §6). */
-  .hero[data-anim="in"] .hero__eyebrow {
-    animation-delay: 0ms;
+  .hero[data-anim="in"] .hero__gallery {
+    animation-delay: 120ms;
   }
-  .hero[data-anim="in"] .hero__headline {
-    animation-delay: 160ms;
-  }
-  .hero[data-anim="in"] .hero__subhead {
-    animation-delay: 300ms;
-  }
-  .hero[data-anim="in"] .hero__cta {
-    animation-delay: 520ms;
-  }
+
   .hero[data-anim="in"] .hero__trust {
-    animation-delay: 640ms;
-  }
-  .hero[data-anim="in"] .hero__tagline {
-    animation-delay: 760ms;
+    animation-delay: 240ms;
   }
 
   @keyframes hero-rise {
@@ -244,20 +554,129 @@ import { hero } from "./hero.data";
     }
   }
 
+  /* The floating trust bar's resting transform already centres/offsets it —
+     the entrance animation must not clobber that with `transform: none`. */
+  .hero[data-anim="in"] .hero__trust {
+    animation-name: hero-trust-rise;
+  }
+
+  @keyframes hero-trust-rise {
+    from {
+      opacity: 0;
+      transform: translateY(calc(50% - 24px + 12px));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(calc(50% - 24px));
+    }
+  }
+
   /* --- Responsive -------------------------------------------------------- */
 
-  @media (max-width: 640px) {
-    .hero__inner {
-      padding-block: var(--space-16) var(--space-12);
+  @media (max-width: 1023px) {
+    .hero {
+      min-height: 0;
+      padding-block: var(--space-12) var(--space-20);
     }
-    .hero__cue {
-      display: none;
+
+    .hero__inner {
+      padding-inline: var(--space-6);
+    }
+
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .hero__copy {
+      text-align: center;
+    }
+
+    .hero__subhead {
+      margin-inline: auto;
+    }
+
+    .hero__actions {
+      justify-content: center;
+    }
+
+    /* The asymmetric split only makes sense at the width it was designed
+       for — below it, fall back to a single column (feature stacked above
+       the two supports, which sit side by side beneath it). */
+    .hero__gallery {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+
+    .hero-card__stack {
+      flex-direction: row;
+      gap: var(--space-4);
+    }
+
+    .hero__trust {
+      transform: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-12);
+    }
+
+    @keyframes hero-trust-rise {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero__gallery {
+      max-width: 22rem;
+      margin-inline: auto;
+    }
+
+    .hero-card__stack {
+      flex-direction: column;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero__trust {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .hero[data-anim="in"] [data-rise] {
       animation: none;
+    }
+
+    .hero-card__image-wrap,
+    .hero-card__image-frame,
+    .hero-card__image {
+      transition: none;
+    }
+
+    .hero-card:hover .hero-card__image-wrap {
+      transform: none;
+    }
+
+    .hero-card:hover .hero-card__image {
+      transform: none;
+    }
+
+    .hero-trust-item {
+      transition: none;
+    }
+
+    .hero-trust-item:hover {
+      transform: none;
     }
   }
 </style>

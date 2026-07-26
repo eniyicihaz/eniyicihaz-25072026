@@ -1,0 +1,94 @@
+---
+// Announcement Bar — thin strip above the Header. Independent of Header
+// (never merged into it); locked copy per reference design.
+import { Star, ArrowRight } from "lucide-astro";
+
+const message = "SGK anlaşmalı merkezimizde ücretsiz işitme testi yaptırabilirsiniz.";
+const linkLabel = "Detaylar için tıklayın";
+const linkHref = "/iletisim";
+---
+
+<div class="announcement-bar">
+  <div class="announcement-bar__inner">
+    <p class="announcement-bar__message">
+      <Star size={14} stroke-width={2} aria-hidden="true" />
+      <span>{message}</span>
+    </p>
+
+    <a class="announcement-bar__link" href={linkHref}>
+      <span>{linkLabel}</span>
+      <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+    </a>
+  </div>
+</div>
+
+<style>
+  .announcement-bar {
+    /* Same dark tone as the Footer's surface — kept as a local token rather
+       than importing footer.tokens.css, to avoid coupling two independent
+       components to one another's stylesheet. */
+    --announcement-bg: #0f2547;
+    background: var(--announcement-bg);
+    color: var(--color-text-inverse);
+  }
+
+  .announcement-bar__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    height: 44px;
+    padding-inline: var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .announcement-bar__message {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-bar__message :global(svg) {
+    flex: none;
+    color: #ffffff;
+  }
+
+  .announcement-bar__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex: none;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-inverse);
+    text-decoration: none;
+    opacity: 0.92;
+    transition: opacity var(--transition-fast);
+  }
+
+  .announcement-bar__link:hover {
+    opacity: 1;
+  }
+
+  .announcement-bar__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 640px) {
+    .announcement-bar__inner {
+      padding-inline: var(--space-4);
+    }
+    .announcement-bar__link span {
+      display: none;
+    }
+  }
+</style>

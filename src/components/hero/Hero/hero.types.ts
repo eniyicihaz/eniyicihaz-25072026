@@ -1,34 +1,41 @@
 // ==========================================================
 // Hero — Domain types (data contracts)
-// Hero is presentational; content lives in hero.data.ts.
-// Source of truth: COMPANY.md (facts) + PRINCIPLES.md (tone).
+// Rebuilt to match the reference design (hero son.png). Content lives in
+// hero.data.ts; icons referenced by string key, resolved in Hero.astro.
 // ==========================================================
 
-/** A single call-to-action link. */
 export interface HeroCtaLink {
   label: string;
   href: string;
 }
 
-/** Hero section content. */
+export interface HeroImageCardData {
+  /** Path under /public — placeholder filenames until real photos exist. */
+  image: string;
+  alt: string;
+  icon: "waves" | "message" | "heart";
+  title: string;
+  text: string;
+}
+
+export interface HeroTrustItemData {
+  icon: "award" | "shield" | "users" | "gem";
+  value: string;
+  label: string;
+}
+
 export interface HeroContent {
-  /** Small tracked caption above the headline (rendered uppercase via CSS). */
-  eyebrow: string;
-  /** The single big idea. Rendered as the page's only <h1>. */
-  headline: string;
-  /** One supporting line under the headline. */
+  badge: string;
+  headlineLine1: string;
+  headlineLine2: string;
   subhead: string;
-  /** The single primary action. */
-  cta: HeroCtaLink;
-  /**
-   * Verifiable trust signals (PRINCIPLES §7 — no invented signals).
-   * Kept short; the eyebrow already carries "2009 · SGK".
-   */
-  trust: string[];
-  /** Dual-brand lockup (PRINCIPLES §2). Never a footnote. */
-  brandLockup: string;
-  /** Brand signature line — a whisper, not the headline. */
-  tagline: string;
-  /** Quiet scroll invitation toward the next section. */
-  scrollCue: string;
+  ctaPrimary: HeroCtaLink;
+  ctaSecondary: HeroCtaLink;
+  cards: [HeroImageCardData, HeroImageCardData, HeroImageCardData];
+  trustItems: [
+    HeroTrustItemData,
+    HeroTrustItemData,
+    HeroTrustItemData,
+    HeroTrustItemData,
+  ];
 }

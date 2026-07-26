@@ -7,6 +7,7 @@ import "../ds/styles/base/reset.css";
 import "../ds/styles/base/typography.css";
 import Header from "../components/header/Header/Header.astro";
 import Footer from "../components/footer/Footer/Footer.astro";
+import AnnouncementBar from "../components/announcement-bar/AnnouncementBar/AnnouncementBar.astro";
 
 interface Props {
   title?: string;
@@ -38,6 +39,7 @@ const {
   <body>
     <a href="#main" class="skip-link">İçeriğe geç</a>
 
+    <AnnouncementBar />
     <Header />
 
     <main id="main">
