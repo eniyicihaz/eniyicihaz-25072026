@@ -1,0 +1,342 @@
+---
+// OticonSgkCta — Oticon brand page (/markalar/oticon), directly under
+// OticonVideoGuide and before OticonFinalCta. Independent of the
+// /markalar hub page's M1...M8 modules; this page has its own component
+// tree.
+//
+// Replaces the old "SGK Oticon İşitme Cihazlarını Karşılıyor Mu?"
+// component, which was four paragraphs followed by a plain white box —
+// pure information delivery with no conversion intent. This component's
+// actual job is different: it is an internal-link/conversion block that
+// sends the user to the dedicated SGK guide page, not an SGK explainer
+// in itself. Built from scratch: a two-column desktop layout (short
+// left-side context + trust points, a premium info card on the right
+// whose entire purpose is the "SGK Rehberini İncele" button).
+import { Shield, CheckCircle2, ArrowRight } from "lucide-astro";
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonSgkCta } from "../../../data/oticon/sgk-cta";
+---
+
+<section
+  class="oticon-sgk"
+  aria-labelledby="oticon-sgk-title"
+  style={`--sgk-accent:${oticonHero.accentColor}; --sgk-accent-hover:${oticonHero.accentColorHover};`}
+>
+  <div class="oticon-sgk__inner">
+    <div class="oticon-sgk__left" data-rise>
+      <p class="oticon-sgk__badge">{oticonSgkCta.badge}</p>
+      <h2 class="oticon-sgk__heading" id="oticon-sgk-title">{oticonSgkCta.heading}</h2>
+      <p class="oticon-sgk__desc">{oticonSgkCta.description}</p>
+
+      <ul class="oticon-sgk__trust">
+        {
+          oticonSgkCta.trustPoints.map((point) => (
+            <li>
+              <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+              <span>{point}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="oticon-sgk__card" data-rise>
+      <span class="oticon-sgk__card-badge">{oticonSgkCta.cardBadge}</span>
+
+      <div class="oticon-sgk__card-icon">
+        <Shield size={26} stroke-width={1.75} aria-hidden="true" />
+      </div>
+
+      <p class="oticon-sgk__card-title">{oticonSgkCta.cardTitle}</p>
+
+      <ul class="oticon-sgk__card-list">
+        {
+          oticonSgkCta.cardItems.map((item) => (
+            <li>
+              <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <a class="oticon-sgk__cta" href={oticonSgkCta.guideHref}>
+        <span>{oticonSgkCta.ctaLabel}</span>
+        <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-sgk");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-sgk {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --sgk-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-sgk__inner {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-14);
+    align-items: center;
+  }
+
+  /* --- Left: context + trust points ----------------------------------------- */
+
+  .oticon-sgk__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-sgk__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-sgk__desc {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .oticon-sgk__trust {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .oticon-sgk__trust li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .oticon-sgk__trust svg {
+    flex: none;
+    margin-top: 0.15rem;
+    color: var(--sgk-accent);
+  }
+
+  /* --- Right: premium info card ------------------------------------------------ */
+
+  .oticon-sgk__card {
+    position: relative;
+    padding: var(--space-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+    transition: transform 300ms var(--sgk-ease), box-shadow 300ms var(--sgk-ease),
+      border-color 300ms var(--sgk-ease);
+  }
+
+  .oticon-sgk__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-border-hover);
+  }
+
+  .oticon-sgk__card-badge {
+    position: absolute;
+    top: var(--space-5);
+    right: var(--space-5);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.12);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    color: #3f8a3a;
+  }
+
+  .oticon-sgk__card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: var(--radius-xl);
+    background: rgb(95 184 90 / 0.1);
+    color: var(--sgk-accent);
+  }
+
+  .oticon-sgk__card-title {
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .oticon-sgk__card-list {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: var(--space-5) 0 0;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .oticon-sgk__card-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .oticon-sgk__card-list svg {
+    flex: none;
+    margin-top: 0.15rem;
+    color: var(--sgk-accent);
+  }
+
+  .oticon-sgk__cta {
+    margin-top: var(--space-7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 56px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    background: var(--sgk-accent);
+    border: 1px solid var(--sgk-accent-hover);
+    color: #ffffff;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 10px 24px -10px rgb(95 184 90 / 0.55);
+    transition: transform 300ms var(--sgk-ease), box-shadow 300ms var(--sgk-ease), background-color 300ms var(--sgk-ease);
+  }
+
+  .oticon-sgk__cta:hover {
+    transform: translateY(-2px);
+    background: var(--sgk-accent-hover);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), 0 18px 36px -12px rgb(95 184 90 / 0.6);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-sgk[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-sgk[data-anim="in"] [data-rise] {
+    animation: oticon-sgk-rise 650ms var(--sgk-ease) both;
+  }
+
+  .oticon-sgk[data-anim="in"] .oticon-sgk__card {
+    animation-delay: 120ms;
+  }
+
+  @keyframes oticon-sgk-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-sgk__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .oticon-sgk__card {
+      max-width: 30rem;
+      margin-inline: auto;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-sgk {
+      padding-block: var(--space-16);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-sgk[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-sgk__card,
+    .oticon-sgk__cta {
+      transition: none;
+    }
+  }
+</style>

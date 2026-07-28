@@ -1,0 +1,350 @@
+---
+// OticonFinalCta — the Oticon brand page's (/markalar/oticon) final
+// section. Independent of the /markalar hub page's M1...M8 modules; this
+// page has its own component tree.
+//
+// Built from scratch — not an iteration on any prior CTA component. Single
+// centered column, no two-column split, no divider, no bare icon+text
+// side panel: badge → heading → description → CTA pair → a row of quiet
+// trust chips underneath. The "don't leave the side empty" problem the
+// old two-column version had is solved by removing the concept of a side
+// entirely, not by adding a decorative illustration to fill one.
+import { Phone, MessageCircle, CheckCircle2 } from "lucide-astro";
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonFinalCta } from "../../../data/oticon/final-cta";
+---
+
+<section
+  class="oticon-final-cta"
+  aria-labelledby="oticon-final-cta-title"
+  style={`--fc-accent:${oticonHero.accentColor}; --fc-accent-hover:${oticonHero.accentColorHover};`}
+>
+  <div class="oticon-final-cta__frame">
+    <div class="oticon-final-cta__card" data-rise>
+      <div class="oticon-final-cta__glow" aria-hidden="true"></div>
+
+      <p class="oticon-final-cta__badge">{oticonFinalCta.badge}</p>
+
+      <h2 class="oticon-final-cta__heading" id="oticon-final-cta-title">
+        {oticonFinalCta.heading}
+      </h2>
+
+      <p class="oticon-final-cta__desc">{oticonFinalCta.description}</p>
+
+      <div class="oticon-final-cta__actions">
+        <a class="oticon-final-cta__button oticon-final-cta__button--solid" href={oticonFinalCta.ctaPrimary.href}>
+          <Phone size={22} stroke-width={2} aria-hidden="true" />
+          <span>{oticonFinalCta.ctaPrimary.label}</span>
+        </a>
+        <a class="oticon-final-cta__button oticon-final-cta__button--outline" href={oticonFinalCta.ctaSecondary.href}>
+          <MessageCircle size={22} stroke-width={2} aria-hidden="true" />
+          <span>{oticonFinalCta.ctaSecondary.label}</span>
+        </a>
+      </div>
+
+      <div class="oticon-final-cta__trust">
+        {
+          oticonFinalCta.trustItems.map((item) => (
+            <span class="oticon-final-cta__trust-item">
+              <span class="oticon-final-cta__trust-icon">
+                <CheckCircle2 size={18} stroke-width={2} aria-hidden="true" />
+              </span>
+              <span class="oticon-final-cta__trust-label">{item}</span>
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-final-cta");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-final-cta {
+    background: var(--color-background);
+    padding-block: var(--space-20);
+  }
+
+  .oticon-final-cta__frame {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* The whole point: one centered column, generous but deliberate vertical
+     rhythm, no leftover dead space because there is no second region to
+     leave empty. Real navy — same tone as the Footer, distinct from the
+     Hero's green-black — so this doesn't compete with Hero and hands off
+     cleanly into the dark Footer right after it. */
+  .oticon-final-cta__card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-20) var(--space-10);
+    background: #0f2547;
+    border-radius: var(--radius-2xl);
+  }
+
+  .oticon-final-cta[data-anim="pending"] .oticon-final-cta__card {
+    opacity: 0;
+  }
+
+  .oticon-final-cta[data-anim="in"] .oticon-final-cta__card {
+    animation: oticon-final-cta-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes oticon-final-cta-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Single, symmetric glow — not tied to one side, so it reads as
+     atmosphere rather than "filling a gap." No gradient band, no pattern,
+     no noise — just enough presence that the navy doesn't read as flat. */
+  .oticon-final-cta__glow {
+    position: absolute;
+    top: -25%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    width: 1100px;
+    max-width: 160%;
+    height: 600px;
+    background: radial-gradient(closest-side, rgb(95 184 90 / 0.22), transparent);
+  }
+
+  .oticon-final-cta__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.06);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  /* The first and strongest thing seen — sized up from the previous pass
+     so it actually commands the container instead of floating in it. */
+  .oticon-final-cta__heading {
+    margin: var(--space-6) 0 0;
+    max-width: 18ch;
+    font-size: clamp(2.75rem, 2.1rem + 3vw, 4.25rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  /* Deliberately quieter than everything else — smaller, more muted, a
+     supporting line rather than a second focal point. Heading → CTA →
+     trust is the intended read; the description recedes. */
+  .oticon-final-cta__desc {
+    margin: var(--space-3) 0 0;
+    max-width: 40ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.5);
+  }
+
+  .oticon-final-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-10);
+  }
+
+  /* Shared shape only — visual weight between the two is deliberately
+     unequal, so the eye always lands on the phone button first. */
+  .oticon-final-cta__button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 72px;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), background-color 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* The single strongest focal point in this component — a touch bigger
+     and heavier than the secondary button, not just a different color. */
+  .oticon-final-cta__button--solid {
+    padding-inline: var(--space-10);
+    font-size: var(--font-size-xl);
+    background: var(--fc-accent);
+    border: 1px solid var(--fc-accent);
+    color: #0a1408;
+    box-shadow: 0 14px 32px -10px rgb(95 184 90 / 0.55);
+  }
+
+  .oticon-final-cta__button--solid:hover {
+    background: var(--fc-accent-hover);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgb(95 184 90 / 0.65);
+  }
+
+  .oticon-final-cta__button--outline {
+    padding-inline: var(--space-8);
+    font-size: var(--font-size-md);
+    background: transparent;
+    border: 1px solid rgb(255 255 255 / 0.28);
+    color: rgb(255 255 255 / 0.9);
+  }
+
+  .oticon-final-cta__button--outline:hover {
+    background: rgb(255 255 255 / 0.08);
+    border-color: rgb(255 255 255 / 0.45);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .oticon-final-cta__button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(95 184 90 / 0.5);
+  }
+
+  /* Trust area — quiet bordered cards, not pill chips: the third beat in
+     the heading → CTA → trust read, corporate rather than a tag list. */
+  .oticon-final-cta__trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    width: 100%;
+    max-width: 46rem;
+  }
+
+  .oticon-final-cta__trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    flex: 1 1 140px;
+    max-width: 180px;
+    padding: var(--space-5) var(--space-3);
+    border-radius: var(--radius-xl);
+    background: rgb(255 255 255 / 0.04);
+    border: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .oticon-final-cta__trust-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: rgb(95 184 90 / 0.16);
+    color: var(--fc-accent);
+  }
+
+  .oticon-final-cta__trust-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-final-cta__card {
+      padding: var(--space-16) var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-final-cta {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-final-cta__card {
+      padding: var(--space-12) var(--space-6);
+    }
+
+    .oticon-final-cta__actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .oticon-final-cta__button {
+      width: 100%;
+    }
+
+    .oticon-final-cta__trust {
+      gap: var(--space-3);
+    }
+
+    .oticon-final-cta__trust-item {
+      flex: 1 1 42%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-final-cta[data-anim="in"] .oticon-final-cta__card {
+      animation: none;
+    }
+
+    .oticon-final-cta__button {
+      transition: none;
+    }
+  }
+</style>

@@ -50,7 +50,11 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     /* Safe padding — 48px on large screens, kept on ultra-wide; smaller on
        narrow screens. Single source shared by the bar and every mega panel. */
     --hd-pad: var(--space-12);
-    --hd-bar-h: 76px;
+    /* ~13% shorter than before (90px→78px) — only the bar's own height
+       shrinks; every element inside stays the same size and stays
+       vertically centered, so this just trims the top/bottom whitespace
+       around them, giving Hero a bit more room below. */
+    --hd-bar-h: 78px;
     --hd-bar-h-stuck: 64px;
 
     /* Let the sticky bar's containing block be the page. */
@@ -72,12 +76,25 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     box-shadow: var(--shadow-md);
   }
 
+  /* Flex, not a 3-column grid. A 1fr/auto/1fr grid looked centered in
+     theory, but CSS Grid's `1fr` tracks each carry an automatic minimum
+     equal to their own content's size — since actions (search + phone +
+     CTA) needs far more width than the logo, that track claimed most of
+     the "equal" share and the leftover space ended up almost entirely on
+     the logo's side (measured: ~337px gap before nav vs. ~47px after it).
+     Nav visually hugged the actions cluster despite being mathematically
+     centered in the bar as a whole.
+     The fix: only ONE element is flexible (the nav wrapper, flex:1) while
+     logo and actions are fixed to their own content width (flex:0 0 auto).
+     The nav wrapper's width is then exactly "everything left over between
+     logo and actions", and centering the nav *inside* that wrapper gives
+     truly equal gaps on both sides — optical centering in the leftover
+     space, not mathematical centering of the whole bar. */
   .hd-bar__inner {
     height: var(--hd-bar-h);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
     align-items: center;
-    gap: var(--space-6);
+    gap: var(--space-8);
     padding-inline: var(--hd-pad);
     transition: height var(--transition-base);
   }
@@ -86,13 +103,19 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     height: var(--hd-bar-h-stuck);
   }
 
-  /* Navigation — centered in the middle track */
+  .hd-bar :global(.hd-logo) {
+    flex: 0 0 auto;
+  }
+
   .hd-bar :global(.hd-nav) {
-    justify-self: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
   }
 
   .hd-bar__actions {
-    justify-self: end;
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     gap: var(--space-3);
@@ -108,7 +131,7 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     background: var(--color-white);
     color: var(--color-text);
     cursor: pointer;
-    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+    transition: background-color var(--transition-slow), border-color var(--transition-slow);
   }
   .hd-bar__burger:hover {
     background: var(--color-surface);

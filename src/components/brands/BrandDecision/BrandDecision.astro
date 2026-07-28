@@ -1,0 +1,317 @@
+---
+// BrandDecision — M4 of the /markalar ("Tüm Markalar") page, directly under
+// BrandCriteria (M3). This page is built up modularly (M1, M2, M3, M4…);
+// this component is only ever M4. Do not add later modules here — each
+// gets its own component.
+import { Phone, MessageCircle } from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { brandDecision } from "../../../data/brands/decision";
+---
+
+<section class="brand-decision" aria-labelledby="brand-decision-title">
+  <div class="brand-decision__inner">
+    <div class="brand-decision__intro">
+      <p class="brand-decision__eyebrow" data-rise>{brandDecision.eyebrow}</p>
+      <h2 class="brand-decision__heading" id="brand-decision-title" data-rise>
+        {brandDecision.heading}
+      </h2>
+      <p class="brand-decision__lead" data-rise>{brandDecision.intro}</p>
+
+      <ul class="brand-decision__scenarios">
+        {
+          brandDecision.scenarios.map((item) => {
+            const Icon = item.icon;
+            return (
+              <li class="brand-decision__scenario" data-rise>
+                <span class="brand-decision__scenario-icon">
+                  <Icon size={18} stroke-width={2} aria-hidden="true" />
+                </span>
+                <span class="brand-decision__scenario-text">
+                  <span class="brand-decision__scenario-title">{item.title}</span>
+                  <span class="brand-decision__scenario-desc">{item.description}</span>
+                </span>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+
+    <div class="brand-decision__panel" data-rise>
+      <p class="brand-decision__panel-title">{brandDecision.panel.title}</p>
+      <p class="brand-decision__panel-desc">{brandDecision.panel.description}</p>
+
+      <div class="brand-decision__panel-actions">
+        <CtaButton
+          label={brandDecision.panel.ctaPrimary.label}
+          href={brandDecision.panel.ctaPrimary.href}
+          iconLeft={Phone}
+        />
+        <CtaButton
+          label={brandDecision.panel.ctaSecondary.label}
+          href={brandDecision.panel.ctaSecondary.href}
+          iconLeft={MessageCircle}
+          variant="outline"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site
+    // (Hero/Showcase/Criteria…): IntersectionObserver, a failsafe timeout,
+    // and a prefers-reduced-motion bail.
+    var section = document.querySelector(".brand-decision");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-decision {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bd-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* A list + panel layout, not another card grid — M2 and M3 both already
+     read as "6 boxes in a row"; a third repetition would flatten the
+     page's rhythm. This mirrors Hero's split-column instinct instead. */
+  .brand-decision__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  /* --- Left: intro + scenario list ---------------------------------------- */
+
+  .brand-decision__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brand-decision__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-decision__lead {
+    margin: var(--space-4) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-decision__scenarios {
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-decision__scenario {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding-block: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    transition: background-color 300ms var(--bd-ease);
+  }
+
+  .brand-decision__scenario:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .brand-decision__scenario:hover {
+    background: var(--color-surface);
+  }
+
+  .brand-decision__scenario-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .brand-decision__scenario-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-top: var(--space-1);
+  }
+
+  .brand-decision__scenario-title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-decision__scenario-desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Right: sticky consultation panel ------------------------------------ */
+
+  .brand-decision__panel {
+    position: sticky;
+    top: var(--space-8);
+    padding: var(--space-10);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .brand-decision__panel-title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--color-text);
+  }
+
+  .brand-decision__panel-desc {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-decision__panel-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .brand-decision[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-decision[data-anim="in"] [data-rise] {
+    animation: brand-decision-rise 600ms var(--bd-ease) both;
+  }
+
+  .brand-decision[data-anim="in"] .brand-decision__scenario:nth-child(1) { animation-delay: 60ms; }
+  .brand-decision[data-anim="in"] .brand-decision__scenario:nth-child(2) { animation-delay: 100ms; }
+  .brand-decision[data-anim="in"] .brand-decision__scenario:nth-child(3) { animation-delay: 140ms; }
+  .brand-decision[data-anim="in"] .brand-decision__scenario:nth-child(4) { animation-delay: 180ms; }
+  .brand-decision[data-anim="in"] .brand-decision__scenario:nth-child(5) { animation-delay: 220ms; }
+  .brand-decision[data-anim="in"] .brand-decision__scenario:nth-child(6) { animation-delay: 260ms; }
+
+  .brand-decision[data-anim="in"] .brand-decision__panel {
+    animation-delay: 160ms;
+  }
+
+  @keyframes brand-decision-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .brand-decision__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .brand-decision__panel {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-decision {
+      padding-block: var(--space-16);
+    }
+
+    .brand-decision__scenario {
+      gap: var(--space-3);
+    }
+
+    .brand-decision__panel {
+      padding: var(--space-8) var(--space-6);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-decision[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-decision__scenario {
+      transition: none;
+    }
+  }
+</style>

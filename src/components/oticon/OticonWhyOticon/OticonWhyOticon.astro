@@ -1,0 +1,423 @@
+---
+// OticonWhyOticon — M6 of the Oticon brand page (/markalar/oticon), directly
+// under OticonModels (M5). Independent of the /markalar hub page's M1...M8
+// modules; this page has its own component tree, one section built at a
+// time.
+//
+// The page's first strong conversion-oriented section: not another 3x2
+// feature grid (that's M3's job, done differently on purpose so the two
+// sections don't read as duplicates) — an asymmetric bento layout with its
+// own distinct rhythm. BrainHearing is a large 2x2 hero card on the left;
+// AI and Model Range sit as two small square cards top-right; Charging
+// fills a wide horizontal card underneath them; Pediatric and Severe-loss
+// close the section as two wide cards in their own row. White cards only —
+// no gradient fill on the cards themselves (unlike M3's bento), per this
+// section's explicit "stay quieter than Hero, don't compete" brief.
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonWhyOticon } from "../../../data/oticon/why-oticon";
+
+const HeroIcon = oticonWhyOticon.hero.icon;
+const [ai, range, charging, pediatric, severe] = oticonWhyOticon.items;
+const AiIcon = ai.icon;
+const RangeIcon = range.icon;
+const ChargingIcon = charging.icon;
+const PediatricIcon = pediatric.icon;
+const SevereIcon = severe.icon;
+---
+
+<section
+  class="oticon-why"
+  aria-labelledby="oticon-why-title"
+  style={`--ow-accent:${oticonHero.accentColor};`}
+>
+  <div class="oticon-why__inner">
+    <div class="oticon-why__header">
+      <p class="oticon-why__badge" data-rise>{oticonWhyOticon.badge}</p>
+      <h2 class="oticon-why__heading" id="oticon-why-title" data-rise>
+        {oticonWhyOticon.heading}
+      </h2>
+      <p class="oticon-why__intro" data-rise>{oticonWhyOticon.intro}</p>
+    </div>
+
+    <div class="oticon-why__bento">
+      <div class="oticon-why__cell oticon-why__cell--hero" data-rise>
+        <span class="oticon-why__icon oticon-why__icon--lg">
+          <HeroIcon size={30} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <p class="oticon-why__category">{oticonWhyOticon.hero.category}</p>
+        <p class="oticon-why__title oticon-why__title--lg">{oticonWhyOticon.hero.title}</p>
+        <p class="oticon-why__desc oticon-why__desc--lg">{oticonWhyOticon.hero.description}</p>
+      </div>
+
+      <div class="oticon-why__cell oticon-why__cell--ai" data-rise>
+        <span class="oticon-why__icon">
+          <AiIcon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <p class="oticon-why__category">{ai.category}</p>
+        <p class="oticon-why__title">{ai.title}</p>
+        <p class="oticon-why__desc">{ai.description}</p>
+      </div>
+
+      <div class="oticon-why__cell oticon-why__cell--range" data-rise>
+        <span class="oticon-why__icon">
+          <RangeIcon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <p class="oticon-why__category">{range.category}</p>
+        <p class="oticon-why__title">{range.title}</p>
+        <p class="oticon-why__desc">{range.description}</p>
+      </div>
+
+      <div class="oticon-why__cell oticon-why__cell--charging" data-rise>
+        <span class="oticon-why__icon">
+          <ChargingIcon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="oticon-why__horizontal-text">
+          <p class="oticon-why__category">{charging.category}</p>
+          <p class="oticon-why__title">{charging.title}</p>
+          <p class="oticon-why__desc">{charging.description}</p>
+        </span>
+      </div>
+
+      <div class="oticon-why__cell oticon-why__cell--pediatric" data-rise>
+        <span class="oticon-why__icon">
+          <PediatricIcon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="oticon-why__horizontal-text">
+          <p class="oticon-why__category">{pediatric.category}</p>
+          <p class="oticon-why__title">{pediatric.title}</p>
+          <p class="oticon-why__desc">{pediatric.description}</p>
+        </span>
+      </div>
+
+      <div class="oticon-why__cell oticon-why__cell--severe" data-rise>
+        <span class="oticon-why__icon">
+          <SevereIcon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="oticon-why__horizontal-text">
+          <p class="oticon-why__category">{severe.category}</p>
+          <p class="oticon-why__title">{severe.title}</p>
+          <p class="oticon-why__desc">{severe.description}</p>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-why");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-why {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --ow-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-why__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .oticon-why__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .oticon-why__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-why__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2rem, 1.6rem + 2vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-why__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Bento grid ------------------------------------------------------------
+     4-column base, deliberately a different rhythm from M3's bento: hero
+     is a tall 2x2 block on the left; AI/Range are two small square cards
+     top-right; Charging is one wide card filling the space beneath them;
+     Pediatric/Severe close the section as two wide cards in their own row.
+  */
+  .oticon-why__bento {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 180px 180px auto;
+    grid-template-areas:
+      "hero hero ai range"
+      "hero hero charging charging"
+      "pediatric pediatric severe severe";
+    gap: var(--space-5);
+  }
+
+  .oticon-why__cell--hero { grid-area: hero; }
+  .oticon-why__cell--ai { grid-area: ai; }
+  .oticon-why__cell--range { grid-area: range; }
+  .oticon-why__cell--charging { grid-area: charging; }
+  .oticon-why__cell--pediatric { grid-area: pediatric; }
+  .oticon-why__cell--severe { grid-area: severe; }
+
+  /* Premium white card: only border/radius/shadow/padding/type define it —
+     no gradient fill, no pattern (this section stays quieter than Hero). */
+  .oticon-why__cell {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-7);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+    transition: transform 300ms var(--ow-ease), border-color 300ms var(--ow-ease), box-shadow 300ms var(--ow-ease);
+  }
+
+  .oticon-why__cell:hover {
+    transform: translateY(-5px);
+    border-color: rgb(95 184 90 / 0.45);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .oticon-why__cell--hero {
+    justify-content: center;
+    padding: var(--space-10);
+  }
+
+  /* The two wide cards read left-to-right (icon beside text) instead of
+     top-to-bottom, since their shape is horizontal rather than vertical. */
+  .oticon-why__cell--charging,
+  .oticon-why__cell--pediatric,
+  .oticon-why__cell--severe {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .oticon-why__horizontal-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .oticon-why__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: rgb(95 184 90 / 0.1);
+    color: var(--ow-accent);
+    transition: transform 300ms var(--ow-ease);
+  }
+
+  .oticon-why__icon--lg {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-xl);
+  }
+
+  .oticon-why__cell:hover .oticon-why__icon {
+    transform: scale(1.08);
+  }
+
+  .oticon-why__category {
+    margin: var(--space-4) 0 0;
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ow-accent);
+  }
+
+  .oticon-why__cell--charging .oticon-why__category,
+  .oticon-why__cell--pediatric .oticon-why__category,
+  .oticon-why__cell--severe .oticon-why__category {
+    margin-top: 0;
+  }
+
+  .oticon-why__title {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .oticon-why__title--lg {
+    margin-top: var(--space-3);
+    max-width: 18ch;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .oticon-why__desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .oticon-why__desc--lg {
+    max-width: 32ch;
+    font-size: var(--font-size-md);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-why[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-why[data-anim="in"] [data-rise] {
+    animation: oticon-why-rise 650ms var(--ow-ease) both;
+  }
+
+  .oticon-why[data-anim="in"] .oticon-why__cell--hero { animation-delay: 40ms; }
+  .oticon-why[data-anim="in"] .oticon-why__cell--ai { animation-delay: 90ms; }
+  .oticon-why[data-anim="in"] .oticon-why__cell--range { animation-delay: 130ms; }
+  .oticon-why[data-anim="in"] .oticon-why__cell--charging { animation-delay: 170ms; }
+  .oticon-why[data-anim="in"] .oticon-why__cell--pediatric { animation-delay: 210ms; }
+  .oticon-why[data-anim="in"] .oticon-why__cell--severe { animation-delay: 250ms; }
+
+  @keyframes oticon-why-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-why__bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto;
+      grid-template-areas:
+        "hero hero"
+        "ai range"
+        "charging charging"
+        "pediatric pediatric"
+        "severe severe";
+    }
+
+    .oticon-why__cell--hero {
+      padding: var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-why {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-why__bento {
+      margin-top: var(--space-10);
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "hero"
+        "ai"
+        "range"
+        "charging"
+        "pediatric"
+        "severe";
+    }
+
+    .oticon-why__cell {
+      padding: var(--space-6);
+    }
+
+    .oticon-why__cell--hero {
+      padding: var(--space-7);
+    }
+
+    .oticon-why__cell--charging,
+    .oticon-why__cell--pediatric,
+    .oticon-why__cell--severe {
+      flex-direction: column;
+    }
+
+    .oticon-why__cell--charging .oticon-why__category,
+    .oticon-why__cell--pediatric .oticon-why__category,
+    .oticon-why__cell--severe .oticon-why__category {
+      margin-top: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-why[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-why__cell,
+    .oticon-why__icon {
+      transition: none;
+    }
+  }
+</style>

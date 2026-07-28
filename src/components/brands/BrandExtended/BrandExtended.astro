@@ -1,0 +1,288 @@
+---
+// BrandExtended — M6 of the /markalar ("Tüm Markalar") page, directly under
+// BrandBuyingGuide (M5). This page is built up modularly (M1...M6…); this
+// component is only ever M6. Do not add later modules here — each gets its
+// own component.
+//
+// A secondary showcase, not a plain logo wall: same card family as
+// BrandShowcase (M2) — border, surface, grayscale-to-color hover — but
+// scaled down (smaller padding/logo/heading, no lift, no "Markayı Gör"
+// reveal) so it reads as M2's quieter second-tier sibling, not a
+// low-effort afterthought.
+import { brandExtended } from "../../../data/brands/extended";
+---
+
+<section class="brand-extended" aria-labelledby="brand-extended-title">
+  <div class="brand-extended__header">
+    <p class="brand-extended__eyebrow" data-rise>{brandExtended.eyebrow}</p>
+    <h2 class="brand-extended__heading" id="brand-extended-title" data-rise>
+      {brandExtended.heading}
+    </h2>
+    <p class="brand-extended__intro" data-rise>{brandExtended.intro}</p>
+  </div>
+
+  <div class="brand-extended__grid">
+    {
+      brandExtended.brands.map((brand) => (
+        <a class="brand-extended__card" href={`/markalar/${brand.slug}`} data-rise>
+          <span class="brand-extended__logo-wrap">
+            <img src={brand.logo} alt={brand.name} loading="lazy" />
+          </span>
+          <span class="brand-extended__name">{brand.name}</span>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site
+    // (Hero/Showcase/Criteria/Decision/BuyingGuide…): IntersectionObserver,
+    // a failsafe timeout, and a prefers-reduced-motion bail.
+    var section = document.querySelector(".brand-extended");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-extended {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    /* Between M2's --space-24 and a throwaway section — present, but
+       visibly quieter than the flagship showcase above it. */
+    padding-block: var(--space-20);
+    --be-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .brand-extended__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .brand-extended__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  /* Smaller than M2's clamp(1.75rem…2.5rem), but still a real heading — the
+     "secondary" signal comes from the card grid below, not from making the
+     title illegible. */
+  .brand-extended__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-extended__intro {
+    margin: var(--space-3) auto 0;
+    max-width: 32rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Grid -----------------------------------------------------------------
+     Same card family as .brand-showcase__card (M2): border, surface,
+     grayscale-to-color logo. Scaled down — less padding, smaller logo, no
+     lift/shadow/"Markayı Gör" reveal — so the two read as one family at two
+     different volumes, not two unrelated components. */
+  .brand-extended__grid {
+    max-width: var(--container-2xl);
+    margin: var(--space-12) auto 0;
+    padding-inline: var(--space-4);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .brand-extended__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-5);
+    padding: var(--space-8) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    text-decoration: none;
+    text-align: center;
+    transition: transform 400ms var(--be-ease), border-color 400ms var(--be-ease),
+      box-shadow 400ms var(--be-ease);
+  }
+
+  /* "Çok hafif" — a small lift plus a modest shadow step-up (shadow-xs →
+     shadow-md), well short of M2's -6px/shadow-lg, still a whisper next to
+     the flagship showcase's hover. A slower (400ms) transition than the
+     rest of this file's 300ms default makes the lift itself feel softer,
+     without changing how far it moves. */
+  .brand-extended__card:hover,
+  .brand-extended__card:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-md);
+  }
+
+  .brand-extended__card:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-md), var(--focus-ring);
+  }
+
+  /* Fixed box (height + full available width) with object-fit: contain —
+     each logo scales up to the largest size that fits its own box on
+     whichever axis binds (width for wide wordmarks, height for square
+     marks), keeping its native aspect ratio with no cropping and no
+     deformation. object-position bottom-anchors every logo on a shared
+     baseline regardless of its own proportions — one rule, no per-brand
+     overrides — so the gap to the name below stays visually even. */
+  .brand-extended__logo-wrap {
+    display: flex;
+    justify-content: center;
+    height: 180px;
+    width: 100%;
+  }
+
+  .brand-extended__logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    /* Light-hued source logos (gold/yellow marks like Rexton) turn nearly
+       white under plain grayscale — high luminance survives desaturation.
+       A brightness pull-down plus extra contrast pulls every logo into a
+       legible mid-gray band at rest, not just the already-dark ones. */
+    filter: grayscale(1) brightness(0.7) contrast(1.15);
+    opacity: 0.9;
+    transition: filter 300ms var(--be-ease), opacity 300ms var(--be-ease);
+  }
+
+  .brand-extended__card:hover .brand-extended__logo-wrap img,
+  .brand-extended__card:focus-visible .brand-extended__logo-wrap img {
+    filter: none;
+    opacity: 1;
+  }
+
+  .brand-extended__name {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance: a single quiet fade, no per-item stagger — this section
+     doesn't need its own choreography, just a soft appearance. --- */
+
+  .brand-extended[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-extended[data-anim="in"] [data-rise] {
+    animation: brand-extended-rise 600ms var(--be-ease) both;
+  }
+
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(1) { animation-delay: 40ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(2) { animation-delay: 70ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(3) { animation-delay: 100ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(4) { animation-delay: 130ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(5) { animation-delay: 160ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(6) { animation-delay: 190ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(7) { animation-delay: 220ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(8) { animation-delay: 250ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(9) { animation-delay: 280ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(10) { animation-delay: 310ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(11) { animation-delay: 340ms; }
+  .brand-extended[data-anim="in"] .brand-extended__card:nth-child(12) { animation-delay: 370ms; }
+
+  @keyframes brand-extended-rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .brand-extended__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-extended {
+      padding-block: var(--space-16);
+    }
+
+    .brand-extended__grid {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      margin-top: var(--space-8);
+      gap: var(--space-3);
+    }
+
+    .brand-extended__card {
+      padding: var(--space-6) var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-extended[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-extended__card,
+    .brand-extended__logo-wrap img {
+      transition: none;
+    }
+  }
+</style>

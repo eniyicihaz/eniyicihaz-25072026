@@ -195,11 +195,12 @@ const IconSupportB = cardIcons[cardSupportB.icon];
     isolation: isolate;
     background: var(--color-surface);
     color: var(--color-text);
-    /* Deliberately not 100vh, and no forced min-height either — the ~760–820px
-       band (approval note #6) emerges naturally from content + the trust
-       bar's reserved flow-space; forcing a height independent of content is
-       exactly what caused the trust bar to overlap real copy below. */
-    padding-block: var(--space-12) 0;
+    /* Deliberately not 100vh, and no forced min-height either — Hero's total
+       height emerges from content + the trust bar's reserved flow-space.
+       Trimmed from space-12 to space-10 as part of the "keep the fold
+       visible" pass: every few px here compounds with the shorter gallery
+       cards below to bring the next section into view sooner. */
+    padding-block: var(--space-8) 0;
   }
 
   /* Very faint dot-grid, same technique as Hero/Footer's established
@@ -304,7 +305,7 @@ const IconSupportB = cardIcons[cardSupportB.icon];
      60/40, is what actually keeps the two sides levelled. */
   .hero__gallery {
     display: grid;
-    grid-template-columns: 68fr 32fr;
+    grid-template-columns: 70fr 30fr;
     gap: var(--space-4);
     align-items: start;
   }
@@ -328,15 +329,26 @@ const IconSupportB = cardIcons[cardSupportB.icon];
      cut off along with it. The hover LIFT is applied here too, so the photo
      and its badge move together as one rigid "floating card" unit rather
      than the badge staying pinned while the photo slides out from under it. */
-  /* Same 5:6 portrait ratio on every card — matches how the photos were
-     actually shot/cropped, so nothing gets stretched into a shape it
-     wasn't composed for. The feature card reads as dominant through width
-     (62% vs. the stack's 38%) and through being one photo instead of two,
-     not through a distorted or fragile height calculation. */
+  /* Same ratio on every card — matches how the photos were actually
+     shot/cropped, so nothing gets stretched into a shape it wasn't
+     composed for. The feature card reads as dominant through width (70%
+     vs. the stack's 30%) and through being one photo instead of two, not
+     through a distorted or fragile height calculation. Progressively
+     shortened from the original 5:6 to 10:9 (same shared ratio for both
+     variants) so Hero's overall height shrinks enough for the next
+     section to peek into the first viewport — width proportions untouched. */
   .hero-card__image-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 5 / 6;
+    /* min-height: 0 overrides the flex item's default min-height:auto,
+       which otherwise derives an "automatic minimum size" from the real
+       photo's native intrinsic ratio (1024×1536) and silently overrides
+       aspect-ratio below with a taller box — a classic flex+aspect-ratio+
+       replaced-content bug. Without this, every height value here is
+       fiction: confirmed via computed style that the box was rendering
+       ~720px instead of the ~523px the ratio actually specifies. */
+    min-height: 0;
+    aspect-ratio: 10 / 9;
     transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -457,7 +469,10 @@ const IconSupportB = cardIcons[cardSupportB.icon];
     z-index: 2;
     width: 100%;
     margin-inline: auto;
-    margin-top: var(--space-10);
+    /* Trimmed from space-10 — this gap is real flow height (unlike the
+       transform below, which is purely visual), so shrinking it directly
+       shortens Hero's total height. */
+    margin-top: var(--space-6);
     transform: translateY(calc(50% - 24px));
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));

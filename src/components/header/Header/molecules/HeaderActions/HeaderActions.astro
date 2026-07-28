@@ -52,9 +52,9 @@ const CtaIcon = icons[cta.icon] as any;
     color: var(--color-text-muted);
     cursor: pointer;
     transition:
-      color var(--transition-fast),
-      border-color var(--transition-fast),
-      background-color var(--transition-fast);
+      color 280ms ease,
+      border-color 280ms ease,
+      background-color 280ms ease;
   }
 
   .hd-actions__icon-btn:hover {
@@ -76,7 +76,7 @@ const CtaIcon = icons[cta.icon] as any;
     text-decoration: none;
     padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-md);
-    transition: background-color var(--transition-fast);
+    transition: background-color 280ms ease;
   }
 
   .hd-actions__phone:hover {
@@ -134,8 +134,11 @@ const CtaIcon = icons[cta.icon] as any;
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    height: 56px;
-    padding-inline: var(--space-8);
+    /* A touch larger than the 56px height used elsewhere (Hero CTAs) —
+       Header's CTA is the one place a slightly bigger, more confident
+       button earns its keep, without becoming a different button style. */
+    height: 60px;
+    padding-inline: 36px;
     border-radius: var(--radius-lg);
     background: var(--color-primary);
     border: 1px solid var(--color-primary-hover);
@@ -154,7 +157,7 @@ const CtaIcon = icons[cta.icon] as any;
     transition:
       transform var(--transition-slow),
       box-shadow var(--transition-slow),
-      background-color var(--transition-base);
+      background-color var(--transition-slow);
   }
 
   .hd-actions__cta-icon {
@@ -207,7 +210,7 @@ const CtaIcon = icons[cta.icon] as any;
     }
     .hd-actions__cta {
       padding-inline: 0;
-      width: 56px;
+      width: 60px;
       justify-content: center;
     }
   }

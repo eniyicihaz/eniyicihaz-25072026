@@ -1,0 +1,245 @@
+---
+// BrandBuyingGuide — M5 of the /markalar ("Tüm Markalar") page, directly
+// under BrandDecision (M4). This page is built up modularly (M1...M5…);
+// this component is only ever M5. Do not add later modules here — each
+// gets its own component.
+import { brandBuyingGuide } from "../../../data/brands/buying-guide";
+---
+
+<section class="brand-buying-guide" aria-labelledby="brand-buying-guide-title">
+  <div class="brand-buying-guide__header">
+    <p class="brand-buying-guide__eyebrow" data-rise>{brandBuyingGuide.eyebrow}</p>
+    <h2 class="brand-buying-guide__heading" id="brand-buying-guide-title" data-rise>
+      {brandBuyingGuide.heading}
+    </h2>
+    <p class="brand-buying-guide__intro" data-rise>{brandBuyingGuide.intro}</p>
+  </div>
+
+  <ol class="brand-buying-guide__list">
+    {
+      brandBuyingGuide.criteria.map((item, i) => (
+        <li class="brand-buying-guide__item" data-rise>
+          <span class="brand-buying-guide__number">{String(i + 1).padStart(2, "0")}</span>
+          <span class="brand-buying-guide__item-text">
+            <span class="brand-buying-guide__item-title">{item.title}</span>
+            <span class="brand-buying-guide__item-desc">{item.description}</span>
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <p class="brand-buying-guide__closing" data-rise>{brandBuyingGuide.closing}</p>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site
+    // (Hero/Showcase/Criteria/Decision…): IntersectionObserver, a failsafe
+    // timeout, and a prefers-reduced-motion bail.
+    var section = document.querySelector(".brand-buying-guide");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-buying-guide {
+    position: relative;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bg-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .brand-buying-guide__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .brand-buying-guide__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brand-buying-guide__heading {
+    margin: var(--space-4) auto 0;
+    max-width: 42rem;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-buying-guide__intro {
+    margin: var(--space-4) auto 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- List -----------------------------------------------------------------
+     No cards, no borders, no icons — pure typography and whitespace. M2 is a
+     bordered logo grid, M3 a bordered icon grid, M4 a divided list with a
+     panel; this is deliberately the quietest, most editorial section on the
+     page, closer to an Apple "before you buy" checklist than a UI card. */
+  .brand-buying-guide__list {
+    list-style: none;
+    max-width: var(--container-2xl);
+    margin: var(--space-16) auto 0;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-16);
+    row-gap: var(--space-10);
+  }
+
+  .brand-buying-guide__item {
+    display: flex;
+    gap: var(--space-5);
+  }
+
+  .brand-buying-guide__number {
+    flex: none;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    color: var(--color-border-hover);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .brand-buying-guide__item-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-1);
+  }
+
+  .brand-buying-guide__item-title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-buying-guide__item-desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-buying-guide__closing {
+    max-width: 34rem;
+    margin: var(--space-16) auto 0;
+    padding-inline: var(--space-6);
+    text-align: center;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .brand-buying-guide[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-buying-guide[data-anim="in"] [data-rise] {
+    animation: brand-buying-guide-rise 600ms var(--bg-ease) both;
+  }
+
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__item:nth-child(1) { animation-delay: 60ms; }
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__item:nth-child(2) { animation-delay: 100ms; }
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__item:nth-child(3) { animation-delay: 140ms; }
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__item:nth-child(4) { animation-delay: 180ms; }
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__item:nth-child(5) { animation-delay: 220ms; }
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__item:nth-child(6) { animation-delay: 260ms; }
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__item:nth-child(7) { animation-delay: 300ms; }
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__item:nth-child(8) { animation-delay: 340ms; }
+
+  .brand-buying-guide[data-anim="in"] .brand-buying-guide__closing {
+    animation-delay: 380ms;
+  }
+
+  @keyframes brand-buying-guide-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 767px) {
+    .brand-buying-guide__list {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-buying-guide {
+      padding-block: var(--space-16);
+    }
+
+    .brand-buying-guide__list {
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-buying-guide[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

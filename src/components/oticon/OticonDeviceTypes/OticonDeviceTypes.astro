@@ -1,0 +1,326 @@
+---
+// OticonDeviceTypes — Oticon brand page (/markalar/oticon), directly
+// under OticonSegments and before OticonWhyOticon. Independent of the
+// /markalar hub page's M1...M8 modules; this page has its own component
+// tree.
+//
+// Deliberately the opposite structural metaphor from OticonSegments:
+// segments is a vertical hierarchy (one thing is "more" than another),
+// device types is a classification (six independent categories, none
+// ranked above another). So this renders as an asymmetric bento grid of
+// category cards with big icons — wide cards lay the icon beside the
+// text, narrow cards stack the icon above the text — rather than a
+// decreasing-weight list or a uniform 3x2 grid.
+import { BatteryCharging, Battery, Ear, Radio, Headphones, Baby } from "lucide-astro";
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonDeviceTypes } from "../../../data/oticon/device-types";
+
+const iconMap = {
+  "battery-charging": BatteryCharging,
+  battery: Battery,
+  ear: Ear,
+  radio: Radio,
+  headphones: Headphones,
+  baby: Baby,
+};
+---
+
+<section
+  class="oticon-devices"
+  aria-labelledby="oticon-devices-title"
+  style={`--dv-accent:${oticonHero.accentColor};`}
+>
+  <div class="oticon-devices__inner">
+    <div class="oticon-devices__header">
+      <p class="oticon-devices__badge" data-rise>{oticonDeviceTypes.badge}</p>
+      <h2 class="oticon-devices__heading" id="oticon-devices-title" data-rise>
+        {oticonDeviceTypes.heading}
+      </h2>
+      <p class="oticon-devices__intro" data-rise>{oticonDeviceTypes.intro}</p>
+    </div>
+
+    <div class="oticon-devices__grid">
+      {
+        oticonDeviceTypes.types.map((type) => {
+          const Icon = iconMap[type.icon];
+          return (
+            <div class="oticon-devices__card" data-span={type.span} data-rise>
+              <div class="oticon-devices__icon">
+                <Icon size={30} stroke-width={1.75} aria-hidden="true" />
+              </div>
+              <div class="oticon-devices__text">
+                <p class="oticon-devices__name">{type.name}</p>
+                <p class="oticon-devices__desc">{type.description}</p>
+                <div class="oticon-devices__models">
+                  {type.models.map((model) => (
+                    <span class="oticon-devices__model">{model}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-devices");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-devices {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --dv-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-devices__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .oticon-devices__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .oticon-devices__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.1);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-devices__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-devices__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Bento: 4 columns, wide cards span 2 --------------------------------- */
+
+  .oticon-devices__grid {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .oticon-devices__card {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8);
+    transition: transform 300ms var(--dv-ease), box-shadow 300ms var(--dv-ease),
+      border-color 300ms var(--dv-ease);
+  }
+
+  .oticon-devices__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-hover);
+  }
+
+  .oticon-devices__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: var(--radius-xl);
+    background: rgb(95 184 90 / 0.1);
+    color: var(--dv-accent);
+    flex: none;
+  }
+
+  .oticon-devices__name {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .oticon-devices__desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .oticon-devices__models {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .oticon-devices__model {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  /* Wide cards: span 2 columns, icon sits beside the text (horizontal). */
+  .oticon-devices__card[data-span="wide"] {
+    grid-column: span 2;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-6);
+  }
+
+  .oticon-devices__card[data-span="wide"] .oticon-devices__icon {
+    margin-top: var(--space-1);
+  }
+
+  /* Narrow cards: single column (half the width of a wide card), icon
+     stacked above the text (vertical). */
+  .oticon-devices__card[data-span="narrow"] {
+    grid-column: span 1;
+  }
+
+  .oticon-devices__card[data-span="narrow"] .oticon-devices__text {
+    margin-top: var(--space-5);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-devices[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-devices[data-anim="in"] [data-rise] {
+    animation: oticon-devices-rise 600ms var(--dv-ease) both;
+  }
+
+  .oticon-devices[data-anim="in"] .oticon-devices__card:nth-of-type(1) { animation-delay: 60ms; }
+  .oticon-devices[data-anim="in"] .oticon-devices__card:nth-of-type(2) { animation-delay: 100ms; }
+  .oticon-devices[data-anim="in"] .oticon-devices__card:nth-of-type(3) { animation-delay: 140ms; }
+  .oticon-devices[data-anim="in"] .oticon-devices__card:nth-of-type(4) { animation-delay: 180ms; }
+  .oticon-devices[data-anim="in"] .oticon-devices__card:nth-of-type(5) { animation-delay: 220ms; }
+  .oticon-devices[data-anim="in"] .oticon-devices__card:nth-of-type(6) { animation-delay: 260ms; }
+
+  @keyframes oticon-devices-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  /* Tablet: 2 columns. Wide cards keep their 2-col span (full row);
+     narrow cards become single-column cards but stay in the vertical
+     icon-above-text layout since they no longer need to fit 4-across. */
+  @media (max-width: 1023px) {
+    .oticon-devices__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .oticon-devices__card[data-span="wide"],
+    .oticon-devices__card[data-span="narrow"] {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .oticon-devices__card[data-span="narrow"] {
+      grid-column: span 1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-devices {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-devices__grid {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+
+    .oticon-devices__card[data-span="wide"] {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-devices[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-devices__card {
+      transition: none;
+    }
+  }
+</style>

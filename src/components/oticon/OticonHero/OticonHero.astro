@@ -1,0 +1,481 @@
+---
+// OticonHero — Hero section of the Oticon brand page (/markalar/oticon).
+// Independent of the /markalar hub page's M1...M8 modules; this page has
+// its own component tree. Layout/ratios are a direct reproduction of an
+// approved reference design, not a new concept: 52/48 split, badge →
+// heading → two paragraphs → two CTAs → three glass feature cards on the
+// left; the full, uncropped product image plus a floating glass info card
+// on the right. Dark background is local to this component only — the
+// accent green is scoped via CSS custom properties on the section itself,
+// so the shared CtaButton/global tokens are untouched.
+import { Phone, MessageCircle, BrainCircuit } from "lucide-astro";
+import { oticonHero } from "../../../data/oticon/hero";
+---
+
+<section
+  class="oticon-hero"
+  aria-labelledby="oticon-hero-title"
+  style={`--oh-accent:${oticonHero.accentColor}; --oh-accent-hover:${oticonHero.accentColorHover};`}
+>
+  <div class="oticon-hero__bg" aria-hidden="true"></div>
+
+  <img
+    class="oticon-hero__watermark"
+    src="/images/brands/oticon-logo-seffaf.webp"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+  />
+
+  <div class="oticon-hero__inner">
+    <div class="oticon-hero__content">
+      <p class="oticon-hero__badge" data-rise>{oticonHero.badge}</p>
+
+      <h1 class="oticon-hero__heading" id="oticon-hero-title" data-rise>
+        {oticonHero.headingLines.map((line) => <span class="oticon-hero__heading-line">{line}</span>)}
+      </h1>
+
+      {
+        oticonHero.paragraphs.map((p) => (
+          <p class="oticon-hero__paragraph" data-rise>
+            {p}
+          </p>
+        ))
+      }
+
+      <div class="oticon-hero__actions" data-rise>
+        <a class="oticon-hero__cta oticon-hero__cta--solid" href={oticonHero.ctaPrimary.href}>
+          <Phone size={18} stroke-width={2} aria-hidden="true" />
+          <span>{oticonHero.ctaPrimary.label}</span>
+        </a>
+        <a class="oticon-hero__cta oticon-hero__cta--outline" href={oticonHero.ctaSecondary.href}>
+          <MessageCircle size={18} stroke-width={2} aria-hidden="true" />
+          <span>{oticonHero.ctaSecondary.label}</span>
+        </a>
+      </div>
+
+      <div class="oticon-hero__features" data-rise>
+        {
+          oticonHero.features.map((feature) => (
+            <div class="oticon-hero__feature" style={`--feature-accent:${feature.accent};`}>
+              <p class="oticon-hero__feature-label">{feature.label}</p>
+              <p class="oticon-hero__feature-title">{feature.title}</p>
+              <p class="oticon-hero__feature-desc">{feature.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="oticon-hero__visual" data-rise>
+      <img
+        class="oticon-hero__image"
+        src={oticonHero.image.src}
+        alt={oticonHero.image.alt}
+        width="900"
+        height="900"
+      />
+
+      <div class="oticon-hero__floating-card">
+        <span class="oticon-hero__floating-icon">
+          <BrainCircuit size={20} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="oticon-hero__floating-text">
+          <span class="oticon-hero__floating-title">{oticonHero.floatingCard.title}</span>
+          <span class="oticon-hero__floating-desc">{oticonHero.floatingCard.description}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-hero");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 920px;
+    display: flex;
+    align-items: center;
+    background: #0a120d;
+    color: var(--color-text-inverse);
+    padding-block: var(--space-20);
+    --oh-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* The provided reference background asset — dark left, green glow right,
+     wave visible low-center — covers the section at full height without
+     cropping its left-right composition (cover only trims top/bottom on
+     this wide a section, never the sides). No overlay on top: the asset's
+     own left side is already near-black, so text contrast doesn't need one
+     and the brief explicitly asks not to lose the image's detail. */
+  .oticon-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url("/images/pages/oticon-hero-bg.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Decorative brand watermark — large, background-fused, never sharp or
+     attention-grabbing. Sits behind all text (z-index -1, below __inner's
+     z-index 1) and is purely atmospheric. */
+  .oticon-hero__watermark {
+    position: absolute;
+    top: -8%;
+    right: -6%;
+    z-index: -1;
+    width: 640px;
+    max-width: 55%;
+    height: auto;
+    opacity: 0.06;
+    filter: blur(1.5px);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .oticon-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 52% 48%;
+    align-items: center;
+    gap: var(--space-10);
+    width: 100%;
+  }
+
+  /* --- Left: content --------------------------------------------------------- */
+
+  .oticon-hero__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.4);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.12);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #a4e39f;
+  }
+
+  .oticon-hero__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-text-inverse);
+  }
+
+  .oticon-hero__heading-line {
+    display: block;
+  }
+
+  .oticon-hero__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.72);
+  }
+
+  .oticon-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .oticon-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 56px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 300ms var(--oh-ease), background-color 300ms var(--oh-ease), border-color 300ms var(--oh-ease);
+  }
+
+  .oticon-hero__cta--solid {
+    background: var(--oh-accent);
+    border: 1px solid var(--oh-accent);
+    color: #0a1408;
+  }
+
+  .oticon-hero__cta--solid:hover {
+    background: var(--oh-accent-hover);
+    transform: translateY(-2px);
+  }
+
+  .oticon-hero__cta--outline {
+    background: transparent;
+    border: 1px solid rgb(255 255 255 / 0.28);
+    color: var(--color-text-inverse);
+  }
+
+  .oticon-hero__cta--outline:hover {
+    background: rgb(255 255 255 / 0.06);
+    border-color: rgb(255 255 255 / 0.45);
+    transform: translateY(-2px);
+  }
+
+  .oticon-hero__cta:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(95 184 90 / 0.5);
+  }
+
+  /* --- Feature cards: glass, no heavy shadow -------------------------------- */
+
+  .oticon-hero__features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-10);
+  }
+
+  .oticon-hero__feature {
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+
+  .oticon-hero__feature::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--feature-accent);
+  }
+
+  .oticon-hero__feature-label {
+    margin: 0;
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.5);
+  }
+
+  .oticon-hero__feature-title {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text-inverse);
+  }
+
+  .oticon-hero__feature-desc {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.6);
+  }
+
+  /* --- Right: image + floating card ------------------------------------------ */
+
+  .oticon-hero__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .oticon-hero__image {
+    width: 100%;
+    height: auto;
+    max-width: 560px;
+    object-fit: contain;
+  }
+
+  .oticon-hero__floating-card {
+    position: absolute;
+    right: 0;
+    bottom: 4%;
+    width: 320px;
+    max-width: calc(100% - var(--space-4));
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    /* Top padding stays put; bottom carries extra room so the icon+text
+       group reads as top-weighted inside the card instead of vertically
+       centered — the compact card height itself is unchanged. */
+    padding: var(--space-4) var(--space-5) var(--space-6);
+    background: rgb(10 20 14 / 0.7);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: var(--radius-2xl);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+  }
+
+  .oticon-hero__floating-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    background: rgb(95 184 90 / 0.16);
+    color: #8fe088;
+  }
+
+  .oticon-hero__floating-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .oticon-hero__floating-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-inverse);
+  }
+
+  .oticon-hero__floating-desc {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.68);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-hero[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-hero[data-anim="in"] [data-rise] {
+    animation: oticon-hero-rise 700ms var(--oh-ease) both;
+  }
+
+  .oticon-hero[data-anim="in"] .oticon-hero__badge { animation-delay: 40ms; }
+  .oticon-hero[data-anim="in"] .oticon-hero__heading { animation-delay: 90ms; }
+  .oticon-hero[data-anim="in"] .oticon-hero__paragraph:nth-of-type(1) { animation-delay: 140ms; }
+  .oticon-hero[data-anim="in"] .oticon-hero__paragraph:nth-of-type(2) { animation-delay: 180ms; }
+  .oticon-hero[data-anim="in"] .oticon-hero__actions { animation-delay: 220ms; }
+  .oticon-hero[data-anim="in"] .oticon-hero__features { animation-delay: 260ms; }
+  .oticon-hero[data-anim="in"] .oticon-hero__visual { animation-delay: 140ms; }
+
+  @keyframes oticon-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-hero {
+      min-height: 0;
+      padding-block: var(--space-16);
+    }
+
+    .oticon-hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-12);
+    }
+
+    .oticon-hero__visual {
+      order: -1;
+      /* Without this the image and the (now static, in-flow) floating
+         card would sit side by side as row flex items instead of
+         stacking — this is what actually makes "image, then card below
+         it" possible on narrow viewports. */
+      flex-direction: column;
+    }
+
+    .oticon-hero__floating-card {
+      position: static;
+      width: 100%;
+      max-width: 100%;
+      margin-top: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-hero__features {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .oticon-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .oticon-hero__image {
+      max-width: 340px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-hero[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-hero__cta {
+      transition: none;
+    }
+  }
+</style>

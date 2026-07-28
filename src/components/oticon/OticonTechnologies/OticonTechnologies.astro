@@ -1,0 +1,249 @@
+---
+// OticonTechnologies — M3 of the Oticon brand page (/markalar/oticon),
+// directly under OticonAbout (M2). Independent of the /markalar hub page's
+// M1...M8 modules; this page has its own component tree, one section built
+// at a time.
+//
+// Same "elevate a plain grid to premium" move as M3 on the hub page:
+// definition comes from border/radius/shadow/padding/typography, not
+// color. Icon isn't required per the brief — solved with typography alone
+// (label/title/description hierarchy).
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonTechnologies } from "../../../data/oticon/technologies";
+---
+
+<section
+  class="oticon-tech"
+  aria-labelledby="oticon-tech-title"
+  style={`--ot-accent:${oticonHero.accentColor};`}
+>
+  <div class="oticon-tech__inner">
+    <div class="oticon-tech__header">
+      <p class="oticon-tech__badge" data-rise>{oticonTechnologies.badge}</p>
+      <h2 class="oticon-tech__heading" id="oticon-tech-title" data-rise>
+        {oticonTechnologies.heading}
+      </h2>
+      <p class="oticon-tech__intro" data-rise>{oticonTechnologies.intro}</p>
+    </div>
+
+    <div class="oticon-tech__grid">
+      {
+        oticonTechnologies.items.map((item) => (
+          <div class="oticon-tech__card" data-rise>
+            <p class="oticon-tech__label">{item.label}</p>
+            <p class="oticon-tech__title">{item.title}</p>
+            <p class="oticon-tech__desc">{item.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-tech");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-tech {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --ot-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-tech__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .oticon-tech__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .oticon-tech__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-tech__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-tech__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Grid: 3 columns, cards defined by border/shadow only --------------- */
+
+  .oticon-tech__grid {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .oticon-tech__card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-8);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+    transition: transform 300ms var(--ot-ease), border-color 300ms var(--ot-ease), box-shadow 300ms var(--ot-ease);
+  }
+
+  .oticon-tech__card:hover {
+    transform: translateY(-5px);
+    border-color: rgb(95 184 90 / 0.5);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .oticon-tech__label {
+    margin: 0;
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ot-accent);
+  }
+
+  /* Second focal point after the section heading — bigger/bolder than a
+     typical card title elsewhere on the site. */
+  .oticon-tech__title {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .oticon-tech__desc {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-tech[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-tech[data-anim="in"] [data-rise] {
+    animation: oticon-tech-rise 600ms var(--ot-ease) both;
+  }
+
+  .oticon-tech[data-anim="in"] .oticon-tech__card:nth-child(1) { animation-delay: 60ms; }
+  .oticon-tech[data-anim="in"] .oticon-tech__card:nth-child(2) { animation-delay: 100ms; }
+  .oticon-tech[data-anim="in"] .oticon-tech__card:nth-child(3) { animation-delay: 140ms; }
+  .oticon-tech[data-anim="in"] .oticon-tech__card:nth-child(4) { animation-delay: 180ms; }
+  .oticon-tech[data-anim="in"] .oticon-tech__card:nth-child(5) { animation-delay: 220ms; }
+  .oticon-tech[data-anim="in"] .oticon-tech__card:nth-child(6) { animation-delay: 260ms; }
+
+  @keyframes oticon-tech-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-tech__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-tech {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-tech__grid {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+
+    .oticon-tech__card {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-tech[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-tech__card {
+      transition: none;
+    }
+  }
+</style>

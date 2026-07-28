@@ -1,0 +1,221 @@
+---
+// OticonHeritage — M4 of the Oticon brand page (/markalar/oticon), directly
+// under OticonTechnologies (M3). Independent of the /markalar hub page's
+// M1...M8 modules; this page has its own component tree, one section built
+// at a time.
+//
+// The reference screenshot for this section (o8.png) was a single
+// full-width text block with no visual counterweight — exactly the
+// "blog post" feeling this brief asks to avoid. Left keeps that
+// screenshot's editorial tone (badge/heading/short paragraphs); right is a
+// new 40%-wide editorial trust list (no cards, no KPI boxes) balancing the
+// page visually. No decorative color/background split between the two
+// columns — the balance comes only from the right side's own typography
+// scale (big value / small caption), same "premium via type+space+
+// alignment only" rule as M2/M3.
+import { oticonHeritage } from "../../../data/oticon/heritage";
+---
+
+<section class="oticon-heritage" aria-labelledby="oticon-heritage-title">
+  <div class="oticon-heritage__inner">
+    <div class="oticon-heritage__content">
+      <p class="oticon-heritage__badge" data-rise>{oticonHeritage.badge}</p>
+      <h2 class="oticon-heritage__heading" id="oticon-heritage-title" data-rise>
+        {oticonHeritage.heading}
+      </h2>
+      {
+        oticonHeritage.paragraphs.map((p) => (
+          <p class="oticon-heritage__paragraph" data-rise>
+            {p}
+          </p>
+        ))
+      }
+    </div>
+
+    <div class="oticon-heritage__stats" data-rise>
+      {
+        oticonHeritage.stats.map((stat) => (
+          <div class="oticon-heritage__stat">
+            <p class="oticon-heritage__stat-value">{stat.value}</p>
+            <p class="oticon-heritage__stat-label">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-heritage");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-heritage {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --oh2-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-heritage__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  /* --- Left: editorial copy -------------------------------------------------- */
+
+  .oticon-heritage__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-heritage__heading {
+    margin: var(--space-5) 0 0;
+    max-width: 20ch;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-heritage__paragraph {
+    margin: var(--space-5) 0 0;
+    max-width: 46ch;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Right: editorial trust list — no cards, no KPI boxes ------------------
+     Each entry is only a big value + a small caption, separated by a
+     hairline divider. The scale contrast between the two type sizes is
+     what carries the "premium" feeling, not any box/background/shadow. */
+  .oticon-heritage__stats {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .oticon-heritage__stat {
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .oticon-heritage__stat:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .oticon-heritage__stat-value {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .oticon-heritage__stat-label {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-heritage[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-heritage[data-anim="in"] [data-rise] {
+    animation: oticon-heritage-rise 600ms var(--oh2-ease) both;
+  }
+
+  .oticon-heritage[data-anim="in"] .oticon-heritage__stats {
+    animation-delay: 120ms;
+  }
+
+  @keyframes oticon-heritage-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-heritage__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-heritage {
+      padding-block: var(--space-16);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-heritage[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

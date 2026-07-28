@@ -1,0 +1,484 @@
+---
+// OticonFaq — Oticon brand page (/markalar/oticon), the page's final
+// section before the Footer. Independent of the /markalar hub page's
+// own BrandFaq component (a different, brand-agnostic FAQ) — this one
+// is Oticon-specific and does not touch BrandFaq.
+//
+// Replaces the old FAQ, which was a heading followed by ~15 visually
+// identical accordion rows with zero hierarchy. Built from scratch:
+// left column is sticky (heading + short intro + a "Hâlâ karar
+// veremediniz mi?" decision card with its own CTA), right column is a
+// single accordion whose questions are grouped under four category
+// labels (Genel/Modeller/Teknoloji/SGK) instead of one flat list — the
+// grouping itself is what creates the missing visual hierarchy. Only
+// one panel is open at a time across the whole list; the first question
+// is open by default so the section never looks empty on load.
+//
+// Accordion mechanics reuse the same proven, JS-measurement-free
+// technique as the /markalar hub page's BrandFaq component
+// (grid-template-rows: 0fr -> 1fr for the height animation), plus a
+// FAQPage JSON-LD schema built from the flattened question list.
+import { CheckCircle2, ChevronDown, ArrowRight } from "lucide-astro";
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonFaq } from "../../../data/oticon/faq";
+
+const flatItems = oticonFaq.categories.flatMap((category) => category.items);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: flatItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
+let runningIndex = 0;
+---
+
+<section
+  class="oticon-faq"
+  aria-labelledby="oticon-faq-title"
+  style={`--faq-accent:${oticonHero.accentColor};`}
+>
+  <div class="oticon-faq__inner">
+    <div class="oticon-faq__intro" data-rise>
+      <p class="oticon-faq__badge">{oticonFaq.badge}</p>
+      <h2 class="oticon-faq__heading" id="oticon-faq-title">{oticonFaq.heading}</h2>
+      <p class="oticon-faq__lead">{oticonFaq.intro}</p>
+
+      <div class="oticon-faq__decision">
+        <p class="oticon-faq__decision-title">{oticonFaq.decisionCard.title}</p>
+        <ul class="oticon-faq__decision-list">
+          {
+            oticonFaq.decisionCard.points.map((point) => (
+              <li>
+                <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+                <span>{point}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <a class="oticon-faq__decision-cta" href={oticonFaq.decisionCard.ctaHref}>
+          <span>{oticonFaq.decisionCard.ctaLabel}</span>
+          <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+
+    <div class="oticon-faq__list" data-rise>
+      {
+        oticonFaq.categories.map((category) => (
+          <div class="oticon-faq__category">
+            <p class="oticon-faq__category-label">{category.label}</p>
+            <div class="oticon-faq__group">
+              {category.items.map((item) => {
+                const i = runningIndex++;
+                const isOpen = i === 0;
+                const panelId = `oticon-faq-panel-${i}`;
+                const headerId = `oticon-faq-header-${i}`;
+                return (
+                  <div class="oticon-faq__item" data-open={isOpen ? "true" : "false"}>
+                    <h3 class="oticon-faq__item-heading">
+                      <button
+                        class="oticon-faq__question"
+                        id={headerId}
+                        aria-expanded={isOpen ? "true" : "false"}
+                        aria-controls={panelId}
+                      >
+                        <span>{item.question}</span>
+                        <ChevronDown size={18} stroke-width={2} aria-hidden="true" class="oticon-faq__chevron" />
+                      </button>
+                    </h3>
+                    <div class="oticon-faq__panel-wrap">
+                      <div
+                        class="oticon-faq__panel"
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={headerId}
+                        aria-hidden={isOpen ? "false" : "true"}
+                      >
+                        <p>{item.answer}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".oticon-faq");
+    if (!section) return;
+
+    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      section.dataset.anim = "pending";
+
+      var revealed = false;
+      var ioAlive = false;
+      var io;
+
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        section.dataset.anim = "in";
+        if (io) io.disconnect();
+      }
+
+      var failsafe = setTimeout(function () {
+        if (!ioAlive) reveal();
+      }, 1500);
+
+      io = new IntersectionObserver(
+        function (entries) {
+          ioAlive = true;
+          clearTimeout(failsafe);
+          if (entries[0].isIntersecting) reveal();
+        },
+        { threshold: 0.15 }
+      );
+
+      io.observe(section);
+    }
+
+    // Single-open accordion across the entire list (all categories share
+    // one open/close state, not one-open-per-category).
+    var items = section.querySelectorAll(".oticon-faq__item");
+    items.forEach(function (item) {
+      var button = item.querySelector(".oticon-faq__question");
+      var panel = item.querySelector(".oticon-faq__panel");
+
+      button.addEventListener("click", function () {
+        var willOpen = item.dataset.open !== "true";
+
+        items.forEach(function (other) {
+          other.dataset.open = "false";
+          other.querySelector(".oticon-faq__question").setAttribute("aria-expanded", "false");
+          other.querySelector(".oticon-faq__panel").setAttribute("aria-hidden", "true");
+        });
+
+        if (willOpen) {
+          item.dataset.open = "true";
+          button.setAttribute("aria-expanded", "true");
+          panel.setAttribute("aria-hidden", "false");
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .oticon-faq {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --faq-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-faq__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 7fr 13fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  /* --- Left: sticky intro + decision card ------------------------------------- */
+
+  .oticon-faq__intro {
+    position: sticky;
+    top: var(--space-8);
+  }
+
+  .oticon-faq__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-faq__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-faq__lead {
+    margin: var(--space-4) 0 0;
+    max-width: 30rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .oticon-faq__decision {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+  }
+
+  .oticon-faq__decision-title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .oticon-faq__decision-list {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .oticon-faq__decision-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .oticon-faq__decision-list svg {
+    flex: none;
+    margin-top: 0.15rem;
+    color: var(--faq-accent);
+  }
+
+  .oticon-faq__decision-cta {
+    margin-top: var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 48px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    background: var(--faq-accent);
+    color: #ffffff;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    transition: transform 250ms var(--faq-ease), box-shadow 250ms var(--faq-ease);
+  }
+
+  .oticon-faq__decision-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* --- Right: grouped accordion ------------------------------------------------ */
+
+  .oticon-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .oticon-faq__category-label {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .oticon-faq__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .oticon-faq__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .oticon-faq__item:hover {
+    background: var(--color-surface);
+  }
+
+  .oticon-faq__item[data-open="true"] {
+    border-color: var(--color-border-hover);
+  }
+
+  .oticon-faq__item-heading {
+    margin: 0;
+  }
+
+  .oticon-faq__question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding: var(--space-5) var(--space-6);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+
+  .oticon-faq__question:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-lg);
+  }
+
+  .oticon-faq__chevron {
+    flex: none;
+    color: var(--color-text-soft);
+    transition: transform 300ms var(--faq-ease), color 300ms var(--faq-ease);
+  }
+
+  .oticon-faq__item[data-open="true"] .oticon-faq__chevron {
+    transform: rotate(180deg);
+    color: var(--faq-accent);
+  }
+
+  /* --- Panel: grid-rows 0fr -> 1fr gives a height animation without any JS
+     measuring; the inner element's own padding never adds unwanted height
+     while collapsed because the wrapper clips it via overflow:hidden. --- */
+  .oticon-faq__panel-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 350ms var(--faq-ease);
+  }
+
+  .oticon-faq__item[data-open="true"] .oticon-faq__panel-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .oticon-faq__panel {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 250ms var(--faq-ease);
+  }
+
+  .oticon-faq__item[data-open="true"] .oticon-faq__panel {
+    opacity: 1;
+    transition-delay: 100ms;
+  }
+
+  .oticon-faq__panel p {
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-5);
+    max-width: 68ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-faq[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-faq[data-anim="in"] [data-rise] {
+    animation: oticon-faq-rise 600ms var(--faq-ease) both;
+  }
+
+  .oticon-faq[data-anim="in"] .oticon-faq__list {
+    animation-delay: 100ms;
+  }
+
+  @keyframes oticon-faq-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-faq__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .oticon-faq__intro {
+      position: static;
+    }
+
+    .oticon-faq__decision {
+      max-width: 26rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-faq {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-faq__question {
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--font-size-sm);
+      gap: var(--space-4);
+    }
+
+    .oticon-faq__panel p {
+      padding: 0 var(--space-5) var(--space-4);
+    }
+
+    .oticon-faq__decision {
+      max-width: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-faq[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-faq__item,
+    .oticon-faq__chevron,
+    .oticon-faq__panel-wrap,
+    .oticon-faq__panel,
+    .oticon-faq__decision-cta {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+// Oticon brand page (/markalar/oticon). Independent of the /markalar hub
+// page's M1...M8 modules — its own component tree, one section built at a
+// time. Hero (M1), About (M2), Technologies (M3), Heritage (M4), Models
+// (M5), Comparison, Why Oticon (M6), Video Guide and the Final CTA (the
+// page's final section) exist so far.
+import MainLayout from "../../layouts/MainLayout.astro";
+import OticonHero from "../../components/oticon/OticonHero/OticonHero.astro";
+import OticonAbout from "../../components/oticon/OticonAbout/OticonAbout.astro";
+import OticonTechnologies from "../../components/oticon/OticonTechnologies/OticonTechnologies.astro";
+import OticonTechnologyExplorer from "../../components/oticon/OticonTechnologyExplorer/OticonTechnologyExplorer.astro";
+import OticonHeritage from "../../components/oticon/OticonHeritage/OticonHeritage.astro";
+import OticonModels from "../../components/oticon/OticonModels/OticonModels.astro";
+import OticonComparison from "../../components/oticon/OticonComparison/OticonComparison.astro";
+import OticonSegments from "../../components/oticon/OticonSegments/OticonSegments.astro";
+import OticonDeviceTypes from "../../components/oticon/OticonDeviceTypes/OticonDeviceTypes.astro";
+import OticonPriceFactors from "../../components/oticon/OticonPriceFactors/OticonPriceFactors.astro";
+import OticonWhyOticon from "../../components/oticon/OticonWhyOticon/OticonWhyOticon.astro";
+import OticonVsPhonak from "../../components/oticon/OticonVsPhonak/OticonVsPhonak.astro";
+import OticonVideoGuide from "../../components/oticon/OticonVideoGuide/OticonVideoGuide.astro";
+import OticonSgkCta from "../../components/oticon/OticonSgkCta/OticonSgkCta.astro";
+import OticonFaq from "../../components/oticon/OticonFaq/OticonFaq.astro";
+import OticonFinalCta from "../../components/oticon/OticonFinalCta/OticonFinalCta.astro";
+---
+
+<MainLayout
+  title="Oticon İşitme Cihazları | EniyiCihaz"
+  description="Oticon BrainHearing® teknolojisiyle geliştirilen Intent, Real, Own SI ve Zeal işitme cihazı modellerini keşfedin."
+>
+  <OticonHero />
+  <OticonAbout />
+  <OticonTechnologies />
+  <OticonTechnologyExplorer />
+  <OticonHeritage />
+  <OticonModels />
+  <OticonComparison />
+  <OticonSegments />
+  <OticonDeviceTypes />
+  <OticonPriceFactors />
+  <OticonWhyOticon />
+  <OticonVsPhonak />
+  <OticonVideoGuide />
+  <OticonSgkCta />
+  <OticonFaq />
+  <OticonFinalCta />
+</MainLayout>

@@ -1,0 +1,389 @@
+---
+// BrandFaq — M8 of the /markalar ("Tüm Markalar") page, directly under
+// BrandExpertSupport (M7). This page is built up modularly (M1...M8…);
+// this component is only ever M8 and is the page's final section before
+// the Footer. Do not add later modules here — each gets its own component.
+//
+// Not a Bootstrap-style accordion: each row is its own thin-bordered,
+// large-radius block with generous padding (no shadow, no card fill), the
+// answer opens as a natural continuation of the question rather than a
+// separate nested box. Left column (badge/heading/intro) is sticky on
+// desktop so context never scrolls out of view while the FAQ list scrolls
+// — same sticky technique already used by M4's decision panel.
+import { brandFaq } from "../../../data/brands/faq";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: brandFaq.items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<section class="brand-faq" aria-labelledby="brand-faq-title">
+  <div class="brand-faq__inner">
+    <div class="brand-faq__intro">
+      <p class="brand-faq__eyebrow" data-rise>{brandFaq.eyebrow}</p>
+      <h2 class="brand-faq__heading" id="brand-faq-title" data-rise>
+        {brandFaq.heading}
+      </h2>
+      <p class="brand-faq__lead" data-rise>{brandFaq.intro}</p>
+    </div>
+
+    <div class="brand-faq__list" data-rise>
+      {
+        brandFaq.items.map((item, i) => {
+          const isOpen = i === 0;
+          const panelId = `brand-faq-panel-${i}`;
+          const headerId = `brand-faq-header-${i}`;
+          return (
+            <div class="brand-faq__item" data-open={isOpen ? "true" : "false"}>
+              <h3 class="brand-faq__item-heading">
+                <button
+                  class="brand-faq__question"
+                  id={headerId}
+                  aria-expanded={isOpen ? "true" : "false"}
+                  aria-controls={panelId}
+                >
+                  <span>{item.question}</span>
+                  <span class="brand-faq__toggle" aria-hidden="true">
+                    <span class="brand-faq__toggle-bar brand-faq__toggle-bar--h" />
+                    <span class="brand-faq__toggle-bar brand-faq__toggle-bar--v" />
+                  </span>
+                </button>
+              </h3>
+              <div class="brand-faq__panel-wrap">
+                <div
+                  class="brand-faq__panel"
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={headerId}
+                  aria-hidden={isOpen ? "false" : "true"}
+                >
+                  <p>{item.answer}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site
+    // (Hero/Showcase/Criteria/Decision/BuyingGuide/Extended/ExpertSupport):
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".brand-faq");
+    if (!section) return;
+
+    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      section.dataset.anim = "pending";
+
+      var revealed = false;
+      var ioAlive = false;
+      var io;
+
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        section.dataset.anim = "in";
+        if (io) io.disconnect();
+      }
+
+      var failsafe = setTimeout(function () {
+        if (!ioAlive) reveal();
+      }, 1500);
+
+      io = new IntersectionObserver(
+        function (entries) {
+          ioAlive = true;
+          clearTimeout(failsafe);
+          if (entries[0].isIntersecting) reveal();
+        },
+        { threshold: 0.15 }
+      );
+
+      io.observe(section);
+    }
+
+    // Single-open accordion: opening one closes any other open item.
+    var items = section.querySelectorAll(".brand-faq__item");
+    items.forEach(function (item) {
+      var button = item.querySelector(".brand-faq__question");
+      var panel = item.querySelector(".brand-faq__panel");
+
+      button.addEventListener("click", function () {
+        var willOpen = item.dataset.open !== "true";
+
+        items.forEach(function (other) {
+          other.dataset.open = "false";
+          other.querySelector(".brand-faq__question").setAttribute("aria-expanded", "false");
+          other.querySelector(".brand-faq__panel").setAttribute("aria-hidden", "true");
+        });
+
+        if (willOpen) {
+          item.dataset.open = "true";
+          button.setAttribute("aria-expanded", "true");
+          panel.setAttribute("aria-hidden", "false");
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .brand-faq {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-faq__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 7fr 13fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  /* --- Left: sticky context -------------------------------------------------
+     The FAQ list can run long; pinning the intro keeps "why am I reading
+     this" in view instead of scrolling away after the first question. */
+  .brand-faq__intro {
+    position: sticky;
+    top: var(--space-8);
+  }
+
+  .brand-faq__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brand-faq__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-faq__lead {
+    margin: var(--space-4) 0 0;
+    max-width: 30rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Right: the accordion --------------------------------------------------
+     Rows are independent objects (own border + radius, gap between them),
+     not a shared bordered list and not cards — no shadow, no fill beyond
+     the page background. */
+  .brand-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .brand-faq__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .brand-faq__item:hover {
+    background: var(--color-surface);
+  }
+
+  .brand-faq__item[data-open="true"] {
+    border-color: var(--color-border-hover);
+  }
+
+  .brand-faq__item-heading {
+    margin: 0;
+  }
+
+  .brand-faq__question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-8);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+
+  .brand-faq__question:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Pure-CSS plus → minus: two bars, the vertical one collapses on open. */
+  .brand-faq__toggle {
+    position: relative;
+    flex: none;
+    width: 20px;
+    height: 20px;
+  }
+
+  .brand-faq__toggle-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: var(--color-primary);
+    transform: translate(-50%, -50%);
+    transition: transform 300ms var(--bf-ease);
+  }
+
+  .brand-faq__toggle-bar--h {
+    width: 14px;
+    height: 2px;
+  }
+
+  .brand-faq__toggle-bar--v {
+    width: 2px;
+    height: 14px;
+  }
+
+  .brand-faq__item[data-open="true"] .brand-faq__toggle-bar--v {
+    transform: translate(-50%, -50%) scaleY(0);
+  }
+
+  /* --- Panel: grid-rows 0fr → 1fr gives a height animation without any JS
+     measuring; the inner element's own padding never adds unwanted height
+     while collapsed because the wrapper clips it via overflow:hidden. --- */
+  .brand-faq__panel-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 350ms var(--bf-ease);
+  }
+
+  .brand-faq__item[data-open="true"] .brand-faq__panel-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .brand-faq__panel {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 250ms var(--bf-ease);
+  }
+
+  .brand-faq__item[data-open="true"] .brand-faq__panel {
+    opacity: 1;
+    transition-delay: 100ms;
+  }
+
+  .brand-faq__panel p {
+    margin: 0;
+    padding: 0 var(--space-8) var(--space-6);
+    max-width: 68ch;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .brand-faq[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-faq[data-anim="in"] [data-rise] {
+    animation: brand-faq-rise 600ms var(--bf-ease) both;
+  }
+
+  .brand-faq[data-anim="in"] .brand-faq__list {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-faq-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .brand-faq__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .brand-faq__intro {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-faq {
+      padding-block: var(--space-16);
+    }
+
+    .brand-faq__question {
+      padding: var(--space-5) var(--space-5);
+      font-size: var(--font-size-md);
+      gap: var(--space-4);
+    }
+
+    .brand-faq__panel p {
+      padding: 0 var(--space-5) var(--space-5);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-faq[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-faq__item,
+    .brand-faq__toggle-bar,
+    .brand-faq__panel-wrap,
+    .brand-faq__panel {
+      transition: none;
+    }
+  }
+</style>

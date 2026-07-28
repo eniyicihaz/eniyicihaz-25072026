@@ -1,0 +1,252 @@
+---
+// BrandCriteria — M3 of the /markalar ("Tüm Markalar") page, directly under
+// BrandShowcase (M2). This page is built up modularly (M1, M2, M3…); this
+// component is only ever M3. Do not add later modules here — each gets its
+// own component.
+import { brandCriteria } from "../../../data/brands/criteria";
+---
+
+<section class="brand-criteria" aria-labelledby="brand-criteria-title">
+  <div class="brand-criteria__header">
+    <p class="brand-criteria__eyebrow" data-rise>{brandCriteria.eyebrow}</p>
+    <h2 class="brand-criteria__heading" id="brand-criteria-title" data-rise>
+      {brandCriteria.heading}
+    </h2>
+    <p class="brand-criteria__intro" data-rise>{brandCriteria.intro}</p>
+  </div>
+
+  <div class="brand-criteria__grid">
+    {
+      brandCriteria.criteria.map((item) => {
+        const Icon = item.icon;
+        return (
+          <div class="brand-criteria__card" data-rise>
+            <span class="brand-criteria__icon">
+              <Icon size={20} stroke-width={2} aria-hidden="true" />
+            </span>
+            <h3 class="brand-criteria__card-title">{item.title}</h3>
+            <p class="brand-criteria__card-desc">{item.description}</p>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <p class="brand-criteria__closing" data-rise>{brandCriteria.closing}</p>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site
+    // (Hero/Showcase/Brands…): IntersectionObserver, a failsafe timeout, and
+    // a prefers-reduced-motion bail.
+    var section = document.querySelector(".brand-criteria");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-criteria {
+    position: relative;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .brand-criteria__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .brand-criteria__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brand-criteria__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-criteria__intro {
+    margin: var(--space-4) auto 0;
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Grid -----------------------------------------------------------------
+     Left-aligned, editorial info cards — deliberately not another centered
+     logo-showcase layout (that's M2's language), so the two sections read as
+     distinct: M2 shows brands, M3 explains how to think about them. */
+  .brand-criteria__grid {
+    max-width: var(--container-2xl);
+    margin: var(--space-16) auto 0;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .brand-criteria__card {
+    padding: var(--space-8);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    transition: border-color 300ms var(--bc-ease), box-shadow 300ms var(--bc-ease);
+  }
+
+  /* "Çok hafif" on purpose — these are static info cards, not navigational,
+     so the hover is a whisper of definition, not a lift or color change. */
+  .brand-criteria__card:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .brand-criteria__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .brand-criteria__card-title {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-criteria__card-desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-criteria__closing {
+    max-width: 34rem;
+    margin: var(--space-12) auto 0;
+    padding-inline: var(--space-6);
+    text-align: center;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .brand-criteria[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-criteria[data-anim="in"] [data-rise] {
+    animation: brand-criteria-rise 600ms var(--bc-ease) both;
+  }
+
+  .brand-criteria[data-anim="in"] .brand-criteria__card:nth-child(1) { animation-delay: 60ms; }
+  .brand-criteria[data-anim="in"] .brand-criteria__card:nth-child(2) { animation-delay: 110ms; }
+  .brand-criteria[data-anim="in"] .brand-criteria__card:nth-child(3) { animation-delay: 160ms; }
+  .brand-criteria[data-anim="in"] .brand-criteria__card:nth-child(4) { animation-delay: 210ms; }
+  .brand-criteria[data-anim="in"] .brand-criteria__card:nth-child(5) { animation-delay: 260ms; }
+  .brand-criteria[data-anim="in"] .brand-criteria__card:nth-child(6) { animation-delay: 310ms; }
+
+  .brand-criteria[data-anim="in"] .brand-criteria__closing {
+    animation-delay: 360ms;
+  }
+
+  @keyframes brand-criteria-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .brand-criteria__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-criteria {
+      padding-block: var(--space-16);
+    }
+
+    .brand-criteria__grid {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-criteria[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-criteria__card {
+      transition: none;
+    }
+  }
+</style>

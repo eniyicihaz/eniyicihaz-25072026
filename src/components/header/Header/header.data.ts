@@ -78,7 +78,7 @@ const brandsMega: MegaMenuData = {
   promo: {
     title: "Dünya Markaları, Tek Çatı Altında.",
     text: "Güvenilir global üreticilerin en yeni teknolojilerini orijinal ve garantili olarak sunuyoruz.",
-    cta: { label: "Tüm Markalar", href: "#" },
+    cta: { label: "Tüm Markalar", href: "/markalar" },
   },
   columns: [
     {
@@ -92,7 +92,7 @@ const brandsMega: MegaMenuData = {
         { label: "ReSound", href: "#" },
         { label: "Starkey", href: "#" },
       ],
-      footer: { label: "Tüm Markalar", href: "#" },
+      footer: { label: "Tüm Markalar", href: "/markalar" },
     },
     {
       icon: "shield",

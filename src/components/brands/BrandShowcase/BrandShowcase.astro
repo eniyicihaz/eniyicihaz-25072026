@@ -1,0 +1,285 @@
+---
+// BrandShowcase — M2 of the /markalar ("Tüm Markalar") page, directly under
+// BrandHero (M1). This page is built up modularly (M1, M2, M3…); this
+// component is only ever M2. Do not add later modules here — each gets its
+// own component.
+import { ArrowRight } from "lucide-astro";
+import { brandShowcase } from "../../../data/brands/showcase";
+---
+
+<section class="brand-showcase" aria-labelledby="brand-showcase-title">
+  <div class="brand-showcase__header">
+    <p class="brand-showcase__eyebrow" data-rise>{brandShowcase.eyebrow}</p>
+    <h2 class="brand-showcase__heading" id="brand-showcase-title" data-rise>
+      {brandShowcase.heading}
+    </h2>
+    <p class="brand-showcase__subhead" data-rise>{brandShowcase.subhead}</p>
+  </div>
+
+  <div class="brand-showcase__grid">
+    {
+      brandShowcase.brands.map((brand) => (
+        <a class="brand-showcase__card" href={`/markalar/${brand.slug}`} data-rise>
+          <span class="brand-showcase__logo-wrap">
+            <img src={brand.logo} alt={brand.name} loading="lazy" />
+          </span>
+          <span class="brand-showcase__name">{brand.name}</span>
+          <span class="brand-showcase__cta">
+            Markayı Gör
+            <ArrowRight size={14} stroke-width={2.5} aria-hidden="true" />
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site
+    // (Hero/Brands/Trust…): IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".brand-showcase");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-showcase {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bs-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .brand-showcase__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .brand-showcase__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brand-showcase__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-showcase__subhead {
+    margin: var(--space-4) auto 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Grid ----------------------------------------------------------------
+     A calm, even 3×2 grid — six equally prestigious brands, so a deliberate
+     asymmetry (useful when one photo should dominate) would read as
+     arbitrary here. Regularity itself is the premium choice. */
+  .brand-showcase__grid {
+    max-width: var(--container-2xl);
+    margin: var(--space-16) auto 0;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  /* Whole card is the link — a much larger hit area than a small text link,
+     and the card's own lift/border/shadow response IS the "hover deneyimi",
+     with no caption copy required to sell the brand. */
+  .brand-showcase__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    padding: var(--space-12) var(--space-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    text-decoration: none;
+    text-align: center;
+    transition: transform 300ms var(--bs-ease), box-shadow 300ms var(--bs-ease),
+      border-color 300ms var(--bs-ease);
+  }
+
+  .brand-showcase__card:hover,
+  .brand-showcase__card:focus-visible {
+    transform: translateY(-6px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .brand-showcase__card:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-lg), var(--focus-ring);
+  }
+
+  .brand-showcase__logo-wrap {
+    display: grid;
+    place-items: center;
+    height: 56px;
+  }
+
+  /* Quiet by default (grayscale, muted) — full color only on hover/focus,
+     so the logo itself becomes the reward for engaging with the card
+     instead of competing for attention at rest. */
+  .brand-showcase__logo-wrap img {
+    height: 100%;
+    width: auto;
+    max-width: 168px;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.7;
+    transition: filter 300ms var(--bs-ease), opacity 300ms var(--bs-ease);
+  }
+
+  .brand-showcase__card:hover .brand-showcase__logo-wrap img,
+  .brand-showcase__card:focus-visible .brand-showcase__logo-wrap img {
+    filter: none;
+    opacity: 1;
+  }
+
+  .brand-showcase__name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  /* Hidden at rest, slides/fades in on hover/focus — the only "copy" on the
+     card, and it's an affordance, not a marketing claim. */
+  .brand-showcase__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 300ms var(--bs-ease), transform 300ms var(--bs-ease);
+  }
+
+  .brand-showcase__card:hover .brand-showcase__cta,
+  .brand-showcase__card:focus-visible .brand-showcase__cta {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .brand-showcase[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-showcase[data-anim="in"] [data-rise] {
+    animation: brand-showcase-rise 600ms var(--bs-ease) both;
+  }
+
+  .brand-showcase[data-anim="in"] .brand-showcase__card:nth-child(1) { animation-delay: 60ms; }
+  .brand-showcase[data-anim="in"] .brand-showcase__card:nth-child(2) { animation-delay: 110ms; }
+  .brand-showcase[data-anim="in"] .brand-showcase__card:nth-child(3) { animation-delay: 160ms; }
+  .brand-showcase[data-anim="in"] .brand-showcase__card:nth-child(4) { animation-delay: 210ms; }
+  .brand-showcase[data-anim="in"] .brand-showcase__card:nth-child(5) { animation-delay: 260ms; }
+  .brand-showcase[data-anim="in"] .brand-showcase__card:nth-child(6) { animation-delay: 310ms; }
+
+  @keyframes brand-showcase-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .brand-showcase__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-showcase {
+      padding-block: var(--space-16);
+    }
+
+    .brand-showcase__grid {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+
+    .brand-showcase__card {
+      padding: var(--space-10) var(--space-6);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-showcase[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-showcase__card,
+    .brand-showcase__logo-wrap img,
+    .brand-showcase__cta {
+      transition: none;
+    }
+  }
+</style>

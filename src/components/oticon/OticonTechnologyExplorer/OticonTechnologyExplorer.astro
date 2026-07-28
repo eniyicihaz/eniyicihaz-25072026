@@ -1,0 +1,540 @@
+---
+// OticonTechnologyExplorer — Oticon brand page (/markalar/oticon),
+// directly under OticonTechnologies (M3's short teaser grid) and before
+// OticonHeritage. Independent of the /markalar hub page's M1...M8
+// modules; this page has its own component tree. Does not touch M3.
+//
+// Replaces six separate long-paragraph "technology detail" sections
+// (BrainHearing®, Deep Neural Network, OpenSound Navigator, 4D Sensor
+// Technology, Bluetooth, Oticon Companion) — each previously ~3000px of
+// stacked "heading -> paragraph" blocks — with a single Technology
+// Explorer hub.
+//
+// Architecture: every technology is a native <details>/<summary>
+// element, all six always present in the DOM (open or closed), so the
+// content is fully crawlable and accessible with JavaScript disabled —
+// no hidden-for-SEO tricks. The left column is a plain list of real
+// <a href="#tech-id"> anchors; without JS, clicking one already jumps to
+// and (per modern browser behavior) auto-expands that <details>, so the
+// component works as a functional table-of-contents/accordion with zero
+// script. The inline script below only progressively enhances that base
+// behavior into the "single active nav item, right panel swaps" desktop
+// feel (closes sibling panels, marks aria-current) — it does not gate
+// any content behind JS.
+import { Brain, Dna, Globe, Radar, Bluetooth, Smartphone, CheckCircle2 } from "lucide-astro";
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonTechExplorer } from "../../../data/oticon/technology-explorer";
+
+const iconMap = {
+  brain: Brain,
+  dna: Dna,
+  globe: Globe,
+  radar: Radar,
+  bluetooth: Bluetooth,
+  smartphone: Smartphone,
+};
+---
+
+<section
+  class="oticon-techx"
+  aria-labelledby="oticon-techx-title"
+  style={`--tx-accent:${oticonHero.accentColor};`}
+>
+  <div class="oticon-techx__inner">
+    <div class="oticon-techx__header">
+      <p class="oticon-techx__badge" data-rise>{oticonTechExplorer.badge}</p>
+      <h2 class="oticon-techx__heading" id="oticon-techx-title" data-rise>
+        {oticonTechExplorer.heading}
+      </h2>
+      <p class="oticon-techx__intro" data-rise>{oticonTechExplorer.intro}</p>
+    </div>
+
+    <div class="oticon-techx__layout" data-rise>
+      <nav class="oticon-techx__nav" aria-label="Teknoloji navigasyonu">
+        {
+          oticonTechExplorer.items.map((item, index) => {
+            const Icon = iconMap[item.icon];
+            return (
+              <a
+                class="oticon-techx__nav-link"
+                href={`#tech-${item.id}`}
+                data-tech={item.id}
+                aria-current={index === 0 ? "true" : undefined}
+              >
+                <span class="oticon-techx__nav-icon">
+                  <Icon size={18} stroke-width={1.75} aria-hidden="true" />
+                </span>
+                <span class="oticon-techx__nav-label">{item.navLabel}</span>
+              </a>
+            );
+          })
+        }
+      </nav>
+
+      <div class="oticon-techx__content">
+        {
+          oticonTechExplorer.items.map((item, index) => (
+            <details class="oticon-techx__panel" id={`tech-${item.id}`} data-tech={item.id} open={index === 0}>
+              <summary class="oticon-techx__summary">
+                <h3 class="oticon-techx__title">{item.title}</h3>
+                <span class="oticon-techx__chevron" aria-hidden="true" />
+              </summary>
+
+              <div class="oticon-techx__body">
+                <p class="oticon-techx__lead">{item.lead}</p>
+
+                <div class="oticon-techx__block">
+                  <p class="oticon-techx__block-label">Nasıl Çalışır</p>
+                  <p class="oticon-techx__block-text">{item.howItWorks}</p>
+                </div>
+
+                <div class="oticon-techx__block">
+                  <p class="oticon-techx__block-label">Avantajları</p>
+                  <ul class="oticon-techx__checklist">
+                    {item.advantages.map((adv) => (
+                      <li>
+                        <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+                        <span>{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="oticon-techx__block">
+                  <p class="oticon-techx__block-label">Kullanıldığı Modeller</p>
+                  <div class="oticon-techx__tags">
+                    {item.models.map((model) => (
+                      <span class="oticon-techx__tag">{model}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="oticon-techx__callout">
+                  <p class="oticon-techx__callout-label">Uzman Yorumu</p>
+                  <p class="oticon-techx__callout-text">{item.expertNote}</p>
+                </div>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Progressive enhancement only: the section already works with pure
+    // HTML (anchors + native <details>). This just keeps a single panel
+    // open at a time on desktop and highlights the matching nav link.
+    var section = document.querySelector(".oticon-techx");
+    if (!section) return;
+
+    var nav = section.querySelector(".oticon-techx__nav");
+    var panels = Array.prototype.slice.call(section.querySelectorAll(".oticon-techx__panel"));
+    if (!nav || !panels.length) return;
+
+    function activate(id, focusPanel) {
+      panels.forEach(function (panel) {
+        panel.open = panel.dataset.tech === id;
+      });
+      nav.querySelectorAll(".oticon-techx__nav-link").forEach(function (link) {
+        if (link.dataset.tech === id) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+      if (focusPanel) {
+        var target = section.querySelector('[data-tech="' + id + '"].oticon-techx__panel');
+        if (target) target.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+
+    nav.addEventListener("click", function (event) {
+      var link = event.target.closest(".oticon-techx__nav-link");
+      if (!link) return;
+      event.preventDefault();
+      activate(link.dataset.tech, true);
+    });
+
+    panels.forEach(function (panel) {
+      panel.querySelector(".oticon-techx__summary").addEventListener("click", function (event) {
+        // Let the native <details> toggle happen, then just sync the nav
+        // highlight and close siblings on the next tick.
+        window.setTimeout(function () {
+          if (panel.open) activate(panel.dataset.tech, false);
+        }, 0);
+      });
+    });
+
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-techx {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --tx-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-techx__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .oticon-techx__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .oticon-techx__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-techx__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-techx__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Layout: left nav + right content -------------------------------------- */
+
+  .oticon-techx__layout {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr);
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .oticon-techx__nav {
+    position: sticky;
+    top: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .oticon-techx__nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: background-color 200ms var(--tx-ease), color 200ms var(--tx-ease);
+  }
+
+  .oticon-techx__nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    color: var(--color-text-soft);
+    transition: color 200ms var(--tx-ease);
+  }
+
+  .oticon-techx__nav-link:hover {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .oticon-techx__nav-link[aria-current="true"] {
+    background: rgb(95 184 90 / 0.1);
+    color: var(--tx-accent);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .oticon-techx__nav-link[aria-current="true"] .oticon-techx__nav-icon {
+    color: var(--tx-accent);
+  }
+
+  /* --- Content: native details/summary panels -------------------------------- */
+
+  .oticon-techx__panel {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+
+  .oticon-techx__panel + .oticon-techx__panel {
+    margin-top: var(--space-4);
+  }
+
+  .oticon-techx__summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .oticon-techx__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .oticon-techx__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .oticon-techx__chevron {
+    flex: none;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-right: 2px solid var(--color-text-soft);
+    border-bottom: 2px solid var(--color-text-soft);
+    transform: rotate(45deg);
+    transition: transform 250ms var(--tx-ease);
+  }
+
+  .oticon-techx__panel[open] .oticon-techx__chevron {
+    transform: rotate(-135deg);
+  }
+
+  .oticon-techx__body {
+    padding: 0 var(--space-6) var(--space-6);
+    background: var(--color-background);
+  }
+
+  .oticon-techx__lead {
+    margin: 0;
+    padding-top: var(--space-5);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .oticon-techx__block {
+    margin-top: var(--space-5);
+  }
+
+  .oticon-techx__block-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .oticon-techx__block-text {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .oticon-techx__checklist {
+    list-style: none;
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .oticon-techx__checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .oticon-techx__checklist svg {
+    flex: none;
+    margin-top: 0.15rem;
+    color: var(--tx-accent);
+  }
+
+  .oticon-techx__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  .oticon-techx__tag {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .oticon-techx__callout {
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    background: rgb(95 184 90 / 0.06);
+    border-left: 3px solid var(--tx-accent);
+    border-radius: var(--radius-lg);
+  }
+
+  .oticon-techx__callout-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #3f8a3a;
+  }
+
+  .oticon-techx__callout-text {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-techx[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-techx[data-anim="in"] [data-rise] {
+    animation: oticon-techx-rise 650ms var(--tx-ease) both;
+  }
+
+  .oticon-techx[data-anim="in"] .oticon-techx__layout {
+    animation-delay: 100ms;
+  }
+
+  @keyframes oticon-techx-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-techx__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+
+    .oticon-techx__nav {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .oticon-techx__nav-link {
+      padding: var(--space-2) var(--space-3);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-techx {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-techx__layout {
+      margin-top: var(--space-10);
+    }
+
+    .oticon-techx__nav {
+      display: none;
+    }
+
+    .oticon-techx__summary {
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .oticon-techx__body {
+      padding: 0 var(--space-5) var(--space-5);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-techx[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-techx__nav-link,
+    .oticon-techx__chevron {
+      transition: none;
+    }
+  }
+</style>

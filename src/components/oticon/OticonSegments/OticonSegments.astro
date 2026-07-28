@@ -1,0 +1,337 @@
+---
+// OticonSegments — Oticon brand page (/markalar/oticon), directly under
+// OticonComparison. Independent of the /markalar hub page's M1...M8
+// modules; this page has its own component tree.
+//
+// Not a 3x2 card grid: a vertical "roadmap" whose own visual weight
+// decreases tier by tier, because the content itself is a hierarchy
+// (Premium → Economy/specialized), not six equal facts. Premium is the
+// widest, boldest, most spacious row; by the last three tiers the rows
+// have shrunk to compact, single-line-height entries. This is what makes
+// it read as "progressively simpler," not just "six boxes with different
+// text."
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonSegments } from "../../../data/oticon/segments";
+---
+
+<section
+  class="oticon-segments"
+  aria-labelledby="oticon-segments-title"
+  style={`--seg-accent:${oticonHero.accentColor};`}
+>
+  <div class="oticon-segments__inner">
+    <div class="oticon-segments__header">
+      <p class="oticon-segments__badge" data-rise>{oticonSegments.badge}</p>
+      <h2 class="oticon-segments__heading" id="oticon-segments-title" data-rise>
+        {oticonSegments.heading}
+      </h2>
+      <p class="oticon-segments__intro" data-rise>{oticonSegments.intro}</p>
+    </div>
+
+    <div class="oticon-segments__list">
+      {
+        oticonSegments.segments.map((segment) => (
+          <div class="oticon-segments__row" data-tier={segment.tier} data-rise>
+            <div class="oticon-segments__row-text">
+              <p class="oticon-segments__name">{segment.name}</p>
+              <p class="oticon-segments__desc">{segment.description}</p>
+            </div>
+            <div class="oticon-segments__models">
+              {segment.models.map((model) => (
+                <span class="oticon-segments__model">{model}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-segments");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-segments {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --seg-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-segments__inner {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .oticon-segments__header {
+    max-width: 44rem;
+    text-align: left;
+  }
+
+  .oticon-segments__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-segments__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-segments__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Roadmap: one column, decreasing weight ------------------------------- */
+
+  .oticon-segments__list {
+    margin: var(--space-12) 0 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .oticon-segments__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    transition: background-color 250ms var(--seg-ease);
+  }
+
+  .oticon-segments__row:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .oticon-segments__row-text {
+    min-width: 0;
+  }
+
+  .oticon-segments__models {
+    flex: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    max-width: 50%;
+  }
+
+  .oticon-segments__model {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  /* Tier 1 — Premium: the largest, boldest, most spacious row, with a
+     visible accent border-left it's the only tier that gets. */
+  .oticon-segments__row[data-tier="1"] {
+    padding: var(--space-8) var(--space-6);
+    border-left: 3px solid var(--seg-accent);
+    background: rgb(95 184 90 / 0.04);
+    border-radius: var(--radius-lg);
+    border-top: none;
+    margin-bottom: var(--space-3);
+  }
+
+  .oticon-segments__row[data-tier="1"] .oticon-segments__name {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .oticon-segments__row[data-tier="1"] .oticon-segments__desc {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .oticon-segments__row[data-tier="1"] .oticon-segments__model {
+    background: rgb(95 184 90 / 0.12);
+    color: #3f8a3a;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* Tier 2-3 — still substantial, progressively quieter. */
+  .oticon-segments__row[data-tier="2"],
+  .oticon-segments__row[data-tier="3"] {
+    padding-block: var(--space-6);
+  }
+
+  .oticon-segments__row[data-tier="2"] .oticon-segments__name,
+  .oticon-segments__row[data-tier="3"] .oticon-segments__name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .oticon-segments__row[data-tier="2"] .oticon-segments__desc,
+  .oticon-segments__row[data-tier="3"] .oticon-segments__desc {
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* Tier 4-6 — simplified: compact single-line-height rows, smallest type,
+     no description shown (name + models only) — this is the literal
+     "gets simpler as you go down" reduction, not just smaller padding. */
+  .oticon-segments__row[data-tier="4"],
+  .oticon-segments__row[data-tier="5"],
+  .oticon-segments__row[data-tier="6"] {
+    padding-block: var(--space-4);
+  }
+
+  .oticon-segments__row[data-tier="4"] .oticon-segments__name,
+  .oticon-segments__row[data-tier="5"] .oticon-segments__name,
+  .oticon-segments__row[data-tier="6"] .oticon-segments__name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .oticon-segments__row[data-tier="4"] .oticon-segments__desc,
+  .oticon-segments__row[data-tier="5"] .oticon-segments__desc,
+  .oticon-segments__row[data-tier="6"] .oticon-segments__desc {
+    display: none;
+  }
+
+  .oticon-segments__row:hover {
+    background-color: var(--color-surface);
+  }
+
+  .oticon-segments__row[data-tier="1"]:hover {
+    background: rgb(95 184 90 / 0.07);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-segments[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-segments[data-anim="in"] [data-rise] {
+    animation: oticon-segments-rise 600ms var(--seg-ease) both;
+  }
+
+  .oticon-segments[data-anim="in"] .oticon-segments__row:nth-child(1) { animation-delay: 60ms; }
+  .oticon-segments[data-anim="in"] .oticon-segments__row:nth-child(2) { animation-delay: 100ms; }
+  .oticon-segments[data-anim="in"] .oticon-segments__row:nth-child(3) { animation-delay: 140ms; }
+  .oticon-segments[data-anim="in"] .oticon-segments__row:nth-child(4) { animation-delay: 180ms; }
+  .oticon-segments[data-anim="in"] .oticon-segments__row:nth-child(5) { animation-delay: 220ms; }
+  .oticon-segments[data-anim="in"] .oticon-segments__row:nth-child(6) { animation-delay: 260ms; }
+
+  @keyframes oticon-segments-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 767px) {
+    .oticon-segments__row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .oticon-segments__models {
+      justify-content: flex-start;
+      max-width: 100%;
+    }
+
+    .oticon-segments__row[data-tier="4"] .oticon-segments__desc,
+    .oticon-segments__row[data-tier="5"] .oticon-segments__desc,
+    .oticon-segments__row[data-tier="6"] .oticon-segments__desc {
+      display: block;
+      margin-top: var(--space-1);
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-segments {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-segments__list {
+      margin-top: var(--space-8);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-segments[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-segments__row {
+      transition: none;
+    }
+  }
+</style>

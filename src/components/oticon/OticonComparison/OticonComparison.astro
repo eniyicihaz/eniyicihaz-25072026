@@ -1,0 +1,430 @@
+---
+// OticonComparison — Oticon brand page (/markalar/oticon), directly under
+// OticonModels (M5) and before OticonWhyOticon (M6). Independent of the
+// /markalar hub page's M1...M8 modules; this page has its own component
+// tree.
+//
+// Not an HTML <table> and not a Bootstrap-style striped grid: a single
+// bordered/rounded card containing CSS Grid "rows" that share one column
+// template with the header, so everything lines up without table markup.
+// "1-2-3-4" is never rendered as text — level counts become a filled/empty
+// dot scale, and Zeal's one real exception (a brand-new series with no
+// tiers yet) gets a label instead of dots. On mobile, rows become their
+// own small labeled card, not a horizontally-scrolling table.
+import { oticonComparison } from "../../../data/oticon/comparison";
+---
+
+<section class="oticon-comparison" aria-labelledby="oticon-comparison-title">
+  <div class="oticon-comparison__inner">
+    <div class="oticon-comparison__header">
+      <p class="oticon-comparison__badge" data-rise>{oticonComparison.badge}</p>
+      <h2 class="oticon-comparison__heading" id="oticon-comparison-title" data-rise>
+        {oticonComparison.heading}
+      </h2>
+      <p class="oticon-comparison__intro" data-rise>{oticonComparison.intro}</p>
+    </div>
+
+    <div class="oticon-comparison__card" data-rise>
+      <div class="oticon-comparison__row oticon-comparison__row--head" aria-hidden="true">
+        <span>Seri</span>
+        <span>Teknoloji</span>
+        <span>Kullanıcı Profili</span>
+        <span>Seviyeler</span>
+      </div>
+
+      <div class="oticon-comparison__body" role="table" aria-label={oticonComparison.heading}>
+        {
+          oticonComparison.rows.map((row) => {
+            const ProfileIcon = row.profileIcon;
+            return (
+              <div class="oticon-comparison__row" role="row">
+                <span class="oticon-comparison__cell oticon-comparison__cell--series" role="cell">
+                  <span class="oticon-comparison__series-label">
+                    <span>{row.series}</span>
+                    {row.isNew && <span class="oticon-comparison__new-tag">Yeni</span>}
+                  </span>
+                </span>
+
+                <span class="oticon-comparison__cell oticon-comparison__cell--tech" role="cell">
+                  <span class="oticon-comparison__chip">{row.technology}</span>
+                </span>
+
+                <span class="oticon-comparison__cell oticon-comparison__cell--profile" role="cell">
+                  <span class="oticon-comparison__profile-icon">
+                    <ProfileIcon size={16} stroke-width={1.75} aria-hidden="true" />
+                  </span>
+                  <span>{row.profile}</span>
+                </span>
+
+                <span class="oticon-comparison__cell oticon-comparison__cell--levels" role="cell">
+                  {row.levelLabel ? (
+                    <span class="oticon-comparison__level-tag">{row.levelLabel}</span>
+                  ) : (
+                    <span class="oticon-comparison__dots" aria-label={`${row.levelCount} seviye`}>
+                      {Array.from({ length: oticonComparison.maxLevels }).map((_, i) => (
+                        <span
+                          class="oticon-comparison__dot"
+                          data-filled={i < (row.levelCount ?? 0) ? "true" : "false"}
+                        />
+                      ))}
+                    </span>
+                  )}
+                </span>
+
+                {/* Mobile-only labels, hidden on desktop via CSS */}
+                <span class="oticon-comparison__mobile-label oticon-comparison__mobile-label--tech">Teknoloji</span>
+                <span class="oticon-comparison__mobile-label oticon-comparison__mobile-label--profile">Kullanıcı Profili</span>
+                <span class="oticon-comparison__mobile-label oticon-comparison__mobile-label--levels">Seviyeler</span>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-comparison");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-comparison {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --cmp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --cmp-cols: 1fr 1.1fr 1.4fr 1.1fr;
+  }
+
+  .oticon-comparison__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .oticon-comparison__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .oticon-comparison__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-comparison__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-comparison__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Card: one bordered/rounded object, not a <table> --------------------- */
+
+  .oticon-comparison__card {
+    margin: var(--space-12) 0 0;
+    overflow: hidden;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+  }
+
+  /* Every "row" — header and body — shares this template so columns line
+     up without table markup. */
+  .oticon-comparison__row {
+    display: grid;
+    grid-template-columns: var(--cmp-cols);
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .oticon-comparison__row--head {
+    padding: var(--space-5) var(--space-8);
+    background: #0f2547;
+  }
+
+  .oticon-comparison__row--head span {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .oticon-comparison__body .oticon-comparison__row {
+    padding: var(--space-6) var(--space-8);
+    border-top: 1px solid var(--color-border);
+    transition: transform 250ms var(--cmp-ease), background-color 250ms var(--cmp-ease), box-shadow 250ms var(--cmp-ease);
+  }
+
+  .oticon-comparison__body .oticon-comparison__row:hover {
+    transform: translateY(-2px);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-xs);
+    position: relative;
+    z-index: 1;
+  }
+
+  .oticon-comparison__mobile-label {
+    display: none;
+  }
+
+  /* --- Series: strongest typography in the row ------------------------------ */
+
+  .oticon-comparison__series-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .oticon-comparison__new-tag {
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.14);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    color: #3f8a3a;
+  }
+
+  /* --- Technology: soft chip ------------------------------------------------- */
+
+  .oticon-comparison__chip {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Profile: icon + readable text ----------------------------------------- */
+
+  .oticon-comparison__cell--profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-md);
+    color: var(--color-text);
+  }
+
+  .oticon-comparison__profile-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: rgb(95 184 90 / 0.1);
+    color: #4a9a45;
+  }
+
+  /* --- Levels: dot scale, never "1-2-3-4" text ------------------------------- */
+
+  .oticon-comparison__dots {
+    display: inline-flex;
+    gap: var(--space-2);
+  }
+
+  .oticon-comparison__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: var(--radius-full);
+    background: transparent;
+    border: 1.5px solid var(--color-border-hover);
+  }
+
+  .oticon-comparison__dot[data-filled="true"] {
+    background: #4a9a45;
+    border-color: #4a9a45;
+  }
+
+  .oticon-comparison__level-tag {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.12);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: #3f8a3a;
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-comparison[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-comparison[data-anim="in"] [data-rise] {
+    animation: oticon-comparison-rise 600ms var(--cmp-ease) both;
+  }
+
+  .oticon-comparison[data-anim="in"] .oticon-comparison__card {
+    animation-delay: 100ms;
+  }
+
+  @keyframes oticon-comparison-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 767px) {
+    /* Cards, not a table: header hides, each row becomes its own labeled
+       block, no horizontal scroll. */
+    .oticon-comparison__row--head {
+      display: none;
+    }
+
+    .oticon-comparison__card {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .oticon-comparison__body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .oticon-comparison__body .oticon-comparison__row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+      padding: var(--space-6);
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+    }
+
+    .oticon-comparison__body .oticon-comparison__row:hover {
+      transform: none;
+    }
+
+    .oticon-comparison__mobile-label {
+      display: block;
+      margin-top: var(--space-2);
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-soft);
+    }
+
+    .oticon-comparison__cell--series {
+      order: 0;
+      margin-bottom: var(--space-1);
+    }
+    .oticon-comparison__mobile-label--tech {
+      order: 1;
+    }
+    .oticon-comparison__cell--tech {
+      order: 2;
+    }
+    .oticon-comparison__mobile-label--profile {
+      order: 3;
+    }
+    .oticon-comparison__cell--profile {
+      order: 4;
+    }
+    .oticon-comparison__mobile-label--levels {
+      order: 5;
+    }
+    .oticon-comparison__cell--levels {
+      order: 6;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-comparison {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-comparison__card {
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-comparison[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-comparison__body .oticon-comparison__row {
+      transition: none;
+    }
+  }
+</style>

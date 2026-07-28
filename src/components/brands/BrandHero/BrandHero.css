@@ -1,0 +1,391 @@
+/* BrandHero (M1) — /markalar page.
+   Plain imported stylesheet (not a scoped Astro <style> block), per this
+   page's explicit file layout — so every selector is namespaced under
+   .brand-hero to stay collision-safe as a global stylesheet. Recipes
+   (container, headline clamp, glass card, entrance animation) are carried
+   over from the homepage Hero 1:1 for the same premium register. */
+
+/* Hero is min-height: 92vh (not a fixed px value) so it consistently fills
+   ~90-95% of the first screen across devices, with the grid centered
+   inside via flex. --bh-ease is the one easing curve every hover/entrance
+   transition in this file shares — named once here instead of repeated as
+   a literal on each rule. */
+.brand-hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding-block: var(--space-8);
+  --bh-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Inner grid: 45/55 columns, a deliberately tight 28px gap so the two
+   sides read as one connected composition rather than separate blocks. */
+.brand-hero__inner {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+  padding-inline: var(--space-12);
+  display: grid;
+  grid-template-columns: 45fr 55fr;
+  align-items: center;
+  gap: 28px;
+}
+
+/* --- Left column ------------------------------------------------------- */
+
+/* shadow-xs — the same faint "lifted off the page" quality every other
+   card/button in this Hero already carries; the badge was the one
+   perfectly flat element. */
+.brand-hero__badge {
+  display: inline-block;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+  box-shadow: var(--shadow-xs);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+}
+
+/* H1 dominates the first screen at ~69-73.6px — its extra height (vs. the
+   design system's default headline scale) is offset by tighter margins
+   through the rest of this column, so the column's total height doesn't
+   shift: a hierarchy decision, not a size one. */
+.brand-hero__heading {
+  margin: var(--space-2) 0 0;
+  font-size: clamp(4.3rem, 4rem + 1.15vw, 4.6rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.brand-hero__heading-line {
+  display: block;
+}
+
+/* Font-size stepped down (lg → md) and line-height tightened
+   (relaxed → normal) — this is the "more compact description" itself, not
+   just its margins. */
+.brand-hero__desc {
+  margin: var(--space-2) 0 0;
+  max-width: 34rem;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-muted);
+}
+
+.brand-hero__desc:first-of-type {
+  margin-top: var(--space-3);
+}
+
+.brand-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+/* WhatsApp button — mirrors CtaButton.astro's exact recipe (height,
+   padding, radius, type, transition curve) so it matches the primary
+   CTA's premium quality, but hand-written rather than routed through
+   <CtaButton> since it needs a one-off inline SVG icon (see BrandHero.astro).
+   Colors are WhatsApp's own: #25D366 is their brand green exactly, #128C7E
+   (hover) is their own darker teal-green accent — neither is an invented
+   tone. Shadow uses the same tinted-glow recipe as the primary CTA's blue
+   shadow, just in green, and gets the same hover lift. */
+.brand-hero__whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 56px;
+  padding-inline: var(--space-8);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  background: #25d366;
+  border: 1px solid #25d366;
+  color: #ffffff;
+  box-shadow: 0 10px 24px -10px rgb(37 211 102 / 0.45);
+  transition: transform 300ms var(--bh-ease), box-shadow 300ms var(--bh-ease),
+    background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.brand-hero__whatsapp-btn:hover {
+  transform: translateY(-2px);
+  background: #128c7e;
+  border-color: #128c7e;
+  box-shadow: 0 16px 34px -10px rgb(18 140 126 / 0.5);
+}
+
+.brand-hero__whatsapp-btn:active {
+  transform: translateY(0);
+  transition-duration: var(--transition-fast);
+}
+
+.brand-hero__whatsapp-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-hero__whatsapp-btn {
+    transition: background-color var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  .brand-hero__whatsapp-btn:hover,
+  .brand-hero__whatsapp-btn:active {
+    transform: none;
+  }
+}
+
+/* Trust pills — the same visual recipe as the homepage Hero's badge
+   (border, full radius, quiet surface), repeated with a check icon
+   instead of a single uppercase label. */
+.brand-hero__pills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+}
+
+.brand-hero__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+.brand-hero__pill svg {
+  flex: none;
+  color: var(--color-primary);
+}
+
+/* --- Right column: image + floating card -------------------------------- */
+
+/* isolation: isolate contains the glow pseudo-element's negative z-index
+   below (so it stays "behind the frame" without escaping into the page's
+   own stacking context). */
+.brand-hero__visual {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Soft ambient glow behind the frame — two very low-opacity, heavily
+   blurred layers (a brand-blue radial + a navy diffuse wash), reusing
+   existing colors rather than introducing new ones. This is the "mavi
+   glow / laciverte yakın hafif dış gölge / radial light / soft blur" from
+   the brief — still no visible edge or ring, just enough ambient light
+   that the frame stops reading as a flat box. */
+.brand-hero__visual::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  background: radial-gradient(
+      circle at 26% 20%,
+      rgb(37 99 235 / 0.18),
+      transparent 58%
+    ),
+    radial-gradient(circle at 75% 85%, rgb(15 23 42 / 0.12), transparent 60%);
+  filter: blur(36px);
+  pointer-events: none;
+}
+
+/* Frame — the source photo is already a fully composed illustration
+   (devices on a podium, all 10 brand logos in a ring, connector lines,
+   glow); this is a plain presentation frame, not a rebuilt composition.
+   aspect-ratio 1/1 + object-position "right center" below crop out the
+   photo's left third (a shield/wave graphic that duplicates this Hero's
+   own badge/trust-pill content) so the device+logo cluster fills the
+   frame instead of sharing it. Width 91% (not 100%), centered, matches
+   the wrapper's existing breathing room; the wrapper's own footprint is
+   unchanged, so the floating card (anchored to .brand-hero__visual, not
+   this box) keeps its exact spot, and Hero's height (governed by
+   min-height above) is unaffected. */
+.brand-hero__frame {
+  width: 91%;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  /* shadow-lg for definition, plus a soft, wide navy diffuse shadow
+     underneath for the "laciverte yakın hafif dış gölge" — low opacity,
+     large spread, no hard edge. */
+  box-shadow: var(--shadow-lg), 0 30px 70px -25px rgb(15 23 42 / 0.28);
+}
+
+.brand-hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+}
+
+/* Floating card — same light-glass recipe as the homepage Hero's trust
+   mini-cards (soft gradient + blur + hairline border + two-layer shadow),
+   lifted a touch on hover like every other premium card on the site. */
+.brand-hero__floating-card {
+  position: absolute;
+  z-index: 2;
+  /* Tighter overlap than before, matching the smaller card. */
+  top: calc(-1 * var(--space-4));
+  left: calc(-1 * var(--space-4));
+  width: 152px;
+  padding: var(--space-3);
+  background: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.94) 0%,
+    rgb(255 255 255 / 0.86) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xs), var(--shadow-xl);
+  transition: transform 300ms var(--bh-ease);
+}
+
+.brand-hero__floating-card:hover {
+  transform: translateY(-4px);
+}
+
+.brand-hero__floating-value {
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+.brand-hero__floating-label {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.brand-hero__floating-desc {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* --- Entrance: same fade-up state machine as every other section on the
+   site (IntersectionObserver + data-anim, driven by BrandHero.astro's
+   inline script). --- */
+
+.brand-hero[data-anim="pending"] [data-rise] {
+  opacity: 0;
+}
+
+.brand-hero[data-anim="in"] [data-rise] {
+  animation: brand-hero-rise 600ms var(--bh-ease) both;
+}
+
+.brand-hero[data-anim="in"] .brand-hero__visual {
+  animation-delay: 120ms;
+}
+
+@keyframes brand-hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .brand-hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-10);
+    padding-inline: var(--space-6);
+  }
+
+  .brand-hero__copy {
+    text-align: center;
+  }
+
+  /* Tablet: 48-52px, its own explicit range rather than the desktop clamp
+     extrapolated down. */
+  .brand-hero__heading {
+    font-size: clamp(3rem, 2.7rem + 1.2vw, 3.25rem);
+  }
+
+  .brand-hero__desc {
+    margin-inline: auto;
+  }
+
+  .brand-hero__actions,
+  .brand-hero__pills {
+    justify-content: center;
+  }
+
+  /* Back into normal flow — the card is first in markup order, so once it's
+     position:static it simply sits above the image with a normal gap,
+     no overlap/offset. */
+  .brand-hero__floating-card {
+    position: static;
+    width: 100%;
+    max-width: 22rem;
+    margin: 0 auto var(--space-6);
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-hero {
+    padding-block: var(--space-5);
+  }
+
+  /* Mobile: 38-42px. */
+  .brand-hero__heading {
+    font-size: clamp(2.375rem, 2.1rem + 1.2vw, 2.625rem);
+  }
+
+  .brand-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-hero[data-anim="in"] [data-rise] {
+    animation: none;
+  }
+
+  .brand-hero__floating-card {
+    transition: none;
+  }
+}

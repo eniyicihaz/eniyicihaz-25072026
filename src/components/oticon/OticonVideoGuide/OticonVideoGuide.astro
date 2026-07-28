@@ -1,0 +1,397 @@
+---
+// OticonVideoGuide — Oticon brand page (/markalar/oticon), directly under
+// OticonWhyOticon and before OticonFinalCta. Independent of the /markalar
+// hub page's M1...M8 modules; this page has its own component tree.
+//
+// Built from scratch — not an iteration on the old two-column "video +
+// bullet list" component. Asymmetric editorial split instead of a classic
+// 50/50: a large video (still the same real YouTube embed) as the
+// section's focal point on the left, a layered information panel on the
+// right (title → description → checklist → a small "what you'll learn"
+// card → CTA). The CTA reuses the site's shared CtaButton component
+// (no new button markup) — its color is scoped to Oticon green only
+// within this section via a local --color-primary override, since
+// CtaButton itself reads that token and this section's background is
+// white (unlike the Hero, no dark-theme override is needed for the
+// outline variant).
+import { CheckCircle2, ArrowRight, Phone, MessageCircle } from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonVideoGuide } from "../../../data/oticon/video-guide";
+---
+
+<section
+  class="oticon-video"
+  aria-labelledby="oticon-video-title"
+  style={`--color-primary:${oticonHero.accentColor}; --color-primary-hover:${oticonHero.accentColorHover};`}
+>
+  <div class="oticon-video__inner">
+    <div class="oticon-video__header">
+      <p class="oticon-video__badge" data-rise>{oticonVideoGuide.badge}</p>
+      <h2 class="oticon-video__heading" id="oticon-video-title" data-rise>
+        {oticonVideoGuide.heading}
+      </h2>
+      <p class="oticon-video__intro" data-rise>{oticonVideoGuide.intro}</p>
+    </div>
+
+    <div class="oticon-video__grid">
+      <div class="oticon-video__media" data-rise>
+        <div class="oticon-video__frame">
+          <iframe
+            src={`https://www.youtube.com/embed/${oticonVideoGuide.youtubeId}`}
+            title={oticonVideoGuide.videoTitle}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        </div>
+      </div>
+
+      <div class="oticon-video__panel" data-rise>
+        <h3 class="oticon-video__panel-title">{oticonVideoGuide.panelTitle}</h3>
+        <p class="oticon-video__panel-desc">{oticonVideoGuide.panelDescription}</p>
+
+        <ul class="oticon-video__checklist">
+          {
+            oticonVideoGuide.checklist.map((item) => (
+              <li>
+                <CheckCircle2 size={18} stroke-width={2} aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="oticon-video__info-card">
+          <p class="oticon-video__info-title">{oticonVideoGuide.infoCardTitle}</p>
+          <ul class="oticon-video__info-list">
+            {
+              oticonVideoGuide.infoCardItems.map((item) => (
+                <li>
+                  <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="oticon-video__cta">
+          <p class="oticon-video__cta-text">{oticonVideoGuide.ctaText}</p>
+          <div class="oticon-video__cta-actions">
+            <CtaButton
+              label={oticonVideoGuide.ctaPrimary.label}
+              href={oticonVideoGuide.ctaPrimary.href}
+              iconLeft={Phone}
+            />
+            <CtaButton
+              label={oticonVideoGuide.ctaSecondary.label}
+              href={oticonVideoGuide.ctaSecondary.href}
+              iconLeft={MessageCircle}
+              variant="outline"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-video");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-video {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --ov-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-video__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Header ------------------------------------------------------------- */
+
+  .oticon-video__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .oticon-video__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-video__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-video__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Grid: video is the focal point, panel is secondary -------------------- */
+
+  .oticon-video__grid {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .oticon-video__media {
+    position: sticky;
+    top: var(--space-8);
+  }
+
+  .oticon-video__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    transition: transform 350ms var(--ov-ease), box-shadow 350ms var(--ov-ease);
+  }
+
+  .oticon-video__frame:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .oticon-video__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* --- Right panel ------------------------------------------------------------ */
+
+  .oticon-video__panel-title {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--color-text);
+  }
+
+  .oticon-video__panel-desc {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .oticon-video__checklist {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3) var(--space-4);
+  }
+
+  .oticon-video__checklist li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .oticon-video__checklist svg {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  /* Quiet, bordered — a supporting card, not competing with the checklist
+     above it. */
+  .oticon-video__info-card {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .oticon-video__info-title {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .oticon-video__info-list {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .oticon-video__info-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .oticon-video__info-list svg {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  .oticon-video__cta {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .oticon-video__cta-text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .oticon-video__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-video[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-video[data-anim="in"] [data-rise] {
+    animation: oticon-video-rise 650ms var(--ov-ease) both;
+  }
+
+  .oticon-video[data-anim="in"] .oticon-video__panel {
+    animation-delay: 120ms;
+  }
+
+  @keyframes oticon-video-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-video__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .oticon-video__media {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-video {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-video__grid {
+      margin-top: var(--space-10);
+    }
+
+    .oticon-video__checklist {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .oticon-video__cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-video[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-video__frame {
+      transition: none;
+    }
+  }
+</style>

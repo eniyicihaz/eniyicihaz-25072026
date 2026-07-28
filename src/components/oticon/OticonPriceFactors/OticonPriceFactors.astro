@@ -1,0 +1,358 @@
+---
+// OticonPriceFactors — Oticon brand page (/markalar/oticon). Replaces
+// the old "Oticon İşitme Cihazı Fiyatlarını Neler Belirler?" component,
+// which was five long paragraphs with no visual hierarchy (a blog-post
+// wall of text). Built from scratch: a left editorial column (badge +
+// heading + one-line intro, no paragraphs) alongside a right-hand grid
+// of six small factor cards (icon + short title + one-line description),
+// a full-width premium callout below, and a compact CTA row reusing the
+// shared CtaButton component. No price figures anywhere — only the
+// factors that make price vary model to model.
+import { Brain, Bluetooth, BatteryCharging, Ear, Target, Baby, Phone, MessageCircle } from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { oticonHero } from "../../../data/oticon/hero";
+import { oticonPriceFactors } from "../../../data/oticon/price-factors";
+
+const iconMap = {
+  brain: Brain,
+  bluetooth: Bluetooth,
+  "battery-charging": BatteryCharging,
+  ear: Ear,
+  target: Target,
+  baby: Baby,
+};
+---
+
+<section
+  class="oticon-pricefactors"
+  aria-labelledby="oticon-pricefactors-title"
+  style={`--color-primary:${oticonHero.accentColor}; --color-primary-hover:${oticonHero.accentColorHover};`}
+>
+  <div class="oticon-pricefactors__inner">
+    <div class="oticon-pricefactors__top">
+      <div class="oticon-pricefactors__intro-col" data-rise>
+        <p class="oticon-pricefactors__badge">{oticonPriceFactors.badge}</p>
+        <h2 class="oticon-pricefactors__heading" id="oticon-pricefactors-title">
+          {oticonPriceFactors.heading}
+        </h2>
+        <p class="oticon-pricefactors__intro">{oticonPriceFactors.intro}</p>
+      </div>
+
+      <div class="oticon-pricefactors__grid">
+        {
+          oticonPriceFactors.factors.map((factor) => {
+            const Icon = iconMap[factor.icon];
+            return (
+              <div class="oticon-pricefactors__card" data-rise>
+                <div class="oticon-pricefactors__icon">
+                  <Icon size={22} stroke-width={1.75} aria-hidden="true" />
+                </div>
+                <p class="oticon-pricefactors__card-title">{factor.title}</p>
+                <p class="oticon-pricefactors__card-desc">{factor.description}</p>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div class="oticon-pricefactors__callout" data-rise>
+      <p class="oticon-pricefactors__callout-title">{oticonPriceFactors.calloutTitle}</p>
+      <p class="oticon-pricefactors__callout-text">{oticonPriceFactors.calloutText}</p>
+    </div>
+
+    <div class="oticon-pricefactors__cta" data-rise>
+      <p class="oticon-pricefactors__cta-text">{oticonPriceFactors.ctaText}</p>
+      <div class="oticon-pricefactors__cta-actions">
+        <CtaButton
+          label={oticonPriceFactors.ctaPrimary.label}
+          href={oticonPriceFactors.ctaPrimary.href}
+          iconLeft={Phone}
+        />
+        <CtaButton
+          label={oticonPriceFactors.ctaSecondary.label}
+          href={oticonPriceFactors.ctaSecondary.href}
+          iconLeft={MessageCircle}
+          variant="outline"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".oticon-pricefactors");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .oticon-pricefactors {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --pf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .oticon-pricefactors__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Top: left editorial column + right factor grid ---------------------- */
+
+  .oticon-pricefactors__top {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .oticon-pricefactors__intro-col {
+    position: sticky;
+    top: var(--space-8);
+  }
+
+  .oticon-pricefactors__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(95 184 90 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(95 184 90 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: #4a9a45;
+  }
+
+  .oticon-pricefactors__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .oticon-pricefactors__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Right: 2-column factor card grid ------------------------------------- */
+
+  .oticon-pricefactors__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .oticon-pricefactors__card {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: transform 250ms var(--pf-ease), box-shadow 250ms var(--pf-ease),
+      border-color 250ms var(--pf-ease);
+  }
+
+  .oticon-pricefactors__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-hover);
+  }
+
+  .oticon-pricefactors__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-lg);
+    background: rgb(95 184 90 / 0.1);
+    color: var(--color-primary);
+  }
+
+  .oticon-pricefactors__card-title {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .oticon-pricefactors__card-desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Callout: premium editorial box, full width --------------------------- */
+
+  .oticon-pricefactors__callout {
+    margin-top: var(--space-12);
+    padding: var(--space-8) var(--space-10);
+    background: #0f2547;
+    border-radius: var(--radius-2xl);
+    text-align: center;
+  }
+
+  .oticon-pricefactors__callout-title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text-inverse);
+  }
+
+  .oticon-pricefactors__callout-text {
+    margin: var(--space-3) 0 0;
+    max-width: 40rem;
+    margin-inline: auto;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.65);
+  }
+
+  /* --- CTA row --------------------------------------------------------------- */
+
+  .oticon-pricefactors__cta {
+    margin-top: var(--space-10);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .oticon-pricefactors__cta-text {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .oticon-pricefactors__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    flex: none;
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .oticon-pricefactors[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .oticon-pricefactors[data-anim="in"] [data-rise] {
+    animation: oticon-pricefactors-rise 600ms var(--pf-ease) both;
+  }
+
+  .oticon-pricefactors[data-anim="in"] .oticon-pricefactors__card:nth-of-type(1) { animation-delay: 60ms; }
+  .oticon-pricefactors[data-anim="in"] .oticon-pricefactors__card:nth-of-type(2) { animation-delay: 100ms; }
+  .oticon-pricefactors[data-anim="in"] .oticon-pricefactors__card:nth-of-type(3) { animation-delay: 140ms; }
+  .oticon-pricefactors[data-anim="in"] .oticon-pricefactors__card:nth-of-type(4) { animation-delay: 180ms; }
+  .oticon-pricefactors[data-anim="in"] .oticon-pricefactors__card:nth-of-type(5) { animation-delay: 220ms; }
+  .oticon-pricefactors[data-anim="in"] .oticon-pricefactors__card:nth-of-type(6) { animation-delay: 260ms; }
+  .oticon-pricefactors[data-anim="in"] .oticon-pricefactors__callout { animation-delay: 300ms; }
+  .oticon-pricefactors[data-anim="in"] .oticon-pricefactors__cta { animation-delay: 340ms; }
+
+  @keyframes oticon-pricefactors-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .oticon-pricefactors__top {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+
+    .oticon-pricefactors__intro-col {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .oticon-pricefactors {
+      padding-block: var(--space-16);
+    }
+
+    .oticon-pricefactors__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .oticon-pricefactors__callout {
+      padding: var(--space-6);
+    }
+
+    .oticon-pricefactors__cta {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .oticon-pricefactors__cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oticon-pricefactors[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .oticon-pricefactors__card {
+      transition: none;
+    }
+  }
+</style>

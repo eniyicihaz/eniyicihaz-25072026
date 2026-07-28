@@ -1,0 +1,31 @@
+---
+// "Tüm Markalar" — the page Header ▸ Markalar ▸ Tüm Markalar links to.
+// Built up modularly, one section per module (M1...M8…). M1 (Hero), M2
+// (Brand Showcase), M3 (Brand Criteria), M4 (Brand Decision), M5 (Brand
+// Buying Guide), M6 (Brand Extended), M7 (Expert Support) and M8 (FAQ) —
+// M8 is the page's final section. Do not add later modules until they're
+// specifically requested.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandHero from "../../components/brands/BrandHero/BrandHero.astro";
+import BrandShowcase from "../../components/brands/BrandShowcase/BrandShowcase.astro";
+import BrandCriteria from "../../components/brands/BrandCriteria/BrandCriteria.astro";
+import BrandDecision from "../../components/brands/BrandDecision/BrandDecision.astro";
+import BrandBuyingGuide from "../../components/brands/BrandBuyingGuide/BrandBuyingGuide.astro";
+import BrandExtended from "../../components/brands/BrandExtended/BrandExtended.astro";
+import BrandExpertSupport from "../../components/brands/BrandExpertSupport/BrandExpertSupport.astro";
+import BrandFaq from "../../components/brands/BrandFaq/BrandFaq.astro";
+---
+
+<MainLayout
+  title="Tüm Markalar | EniyiCihaz"
+  description="Oticon, Phonak, Signia, Widex, ReSound ve daha birçok dünya markasını karşılaştırın, size en uygun işitme cihazı teknolojisini keşfedin."
+>
+  <BrandHero />
+  <BrandShowcase />
+  <BrandCriteria />
+  <BrandDecision />
+  <BrandBuyingGuide />
+  <BrandExtended />
+  <BrandExpertSupport />
+  <BrandFaq />
+</MainLayout>

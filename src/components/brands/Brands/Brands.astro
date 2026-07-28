@@ -1,0 +1,334 @@
+---
+// Brands — sits directly under Hero. A single-row, infinite-marquee logo
+// strip (never a card grid — "kart kalabalığı oluşturma") so the section
+// reads as one calm, continuous signal of scale/credibility, matching
+// Hero's premium register rather than a dense feature/logo grid.
+import { ShieldCheck } from "lucide-astro";
+import { brands as content } from "./brands.data";
+
+const { badge, heading, subhead, brands, trust } = content;
+---
+
+<section class="brands" aria-labelledby="brands-title">
+  <div class="brands__header">
+    <p class="brands__badge" data-rise>{badge}</p>
+    <h2 class="brands__heading" id="brands-title" data-rise>{heading}</h2>
+    <p class="brands__subhead" data-rise>{subhead}</p>
+  </div>
+
+  <div class="brands__marquee" data-rise>
+    <div class="brands__track">
+      {
+        /* No loading="lazy" here on purpose: lazy-load defers based on the
+           image's current viewport position, but a marquee logo's position
+           is constantly changing via `transform` — the browser's heuristic
+           never reliably fires, so lazy images can end up stuck unloaded
+           indefinitely. The full set is only ~18 small webp files, cheap
+           enough to load eagerly and sidestep the bug entirely. */
+        brands.map((brand) => (
+          <a class="brands__logo" href={`/markalar/${brand.slug}`} aria-label={brand.name}>
+            <img src={brand.logo} alt={brand.name} />
+          </a>
+        ))
+      }
+      {
+        /* Exact duplicate set so the track can loop by translating -50%
+           with no visible seam. Hidden from assistive tech + keyboard so
+           each brand is only ever announced/tabbed to once. */
+        brands.map((brand) => (
+          <a
+            class="brands__logo"
+            href={`/markalar/${brand.slug}`}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <img src={brand.logo} alt="" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="brands__trust" data-rise>
+    <span class="brands__trust-icon" aria-hidden="true">
+      <ShieldCheck size={18} stroke-width={2} />
+    </span>
+    <span class="brands__trust-label">{trust.label}</span>
+    <span class="brands__trust-divider" aria-hidden="true"></span>
+    <span class="brands__trust-desc">{trust.description}</span>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the page
+    // (Hero/Empathy/Solution/Guide/Trust) — IntersectionObserver with a
+    // failsafe timeout and a prefers-reduced-motion bail.
+    var section = document.querySelector(".brands");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brands {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+  }
+
+  .brands__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .brands__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brands__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brands__subhead {
+    margin: var(--space-4) auto 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Marquee ---------------------------------------------------------
+     Full-bleed (not capped by the text container above it) so the strip
+     feels expansive; a soft edge mask instead of a hard clip is the
+     "yumuşak geçiş" that keeps it premium rather than a scrolling ticker. */
+  .brands__marquee {
+    margin-top: var(--space-16);
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+
+  .brands__track {
+    display: flex;
+    align-items: center;
+    gap: var(--space-16);
+    width: max-content;
+    animation: brands-scroll 42s linear infinite;
+  }
+
+  /* Right-to-left flow: translate the (doubled) track toward -50%, which
+     is exactly one full set's width, so the loop has no visible seam. */
+  @keyframes brands-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .brands__marquee:hover .brands__track {
+    animation-play-state: paused;
+  }
+
+  .brands__logo {
+    flex: none;
+    display: grid;
+    place-items: center;
+    height: 108px;
+    border-radius: var(--radius-sm);
+    opacity: 0.85;
+    transition: opacity var(--transition-base);
+  }
+
+  .brands__logo:hover {
+    opacity: 1;
+  }
+
+  .brands__logo:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .brands__logo img {
+    /* A direct px height (not 100%) — `place-items: center` above sizes
+       this grid item to its own content instead of stretching it to fill
+       the cell, so a percentage height here had nothing definite to
+       resolve against and fell back to the image's raw natural size
+       (confirmed: rendering at 887px instead of 36px). A fixed height
+       sidesteps that resolution question entirely. Width stays auto, so
+       proportions are never distorted. */
+    height: 108px;
+    width: auto;
+    display: block;
+  }
+
+  /* --- Trust line -------------------------------------------------------
+     Deliberately quiet: small type, no card, no shadow — a footnote-weight
+     fact, not a second CTA competing with Hero's. */
+  .brands__trust {
+    margin-top: var(--space-12);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding-inline: var(--space-6);
+  }
+
+  .brands__trust-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  .brands__trust-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .brands__trust-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--color-border);
+    flex: none;
+  }
+
+  .brands__trust-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance ---------------------------------------------------------- */
+
+  .brands[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brands[data-anim="in"] [data-rise] {
+    animation: brands-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .brands[data-anim="in"] .brands__marquee {
+    animation-delay: 120ms;
+  }
+
+  .brands[data-anim="in"] .brands__trust {
+    animation-delay: 220ms;
+  }
+
+  @keyframes brands-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive -------------------------------------------------------- */
+
+  @media (max-width: 767px) {
+    .brands {
+      padding-block: var(--space-16);
+    }
+
+    .brands__marquee {
+      margin-top: var(--space-10);
+    }
+
+    .brands__trust {
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .brands__trust-divider {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brands[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    /* No motion: show the 18 real logos wrapped in a static row instead of
+       a frozen, clipped strip — the second (loop-only, aria-hidden) set of
+       18 is hidden rather than left as dead, invisible overflow. */
+    .brands__track {
+      animation: none;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .brands__track > :nth-child(n + 19) {
+      display: none;
+    }
+  }
+</style>

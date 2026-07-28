@@ -1,94 +1,104 @@
 ---
 // Announcement Bar — thin strip above the Header. Independent of Header
-// (never merged into it); locked copy per reference design.
-import { Star, ArrowRight } from "lucide-astro";
+// (never merged into it). The whole bar is a single clickable CTA (not a
+// message + separate link) so the entire warm-gradient strip reads as one
+// inviting action, not a passive notice with a link tacked on.
+import { MapPin, ArrowRight } from "lucide-astro";
 
-const message = "SGK anlaşmalı merkezimizde ücretsiz işitme testi yaptırabilirsiniz.";
-const linkLabel = "Detaylar için tıklayın";
-const linkHref = "/iletisim";
+const message =
+  "Size yakın bir işitme merkezimiz varsa, sunulan avantajları keşfedin";
+// Dedicated lead-gen landing page (not /iletisim) — content to be built
+// separately (Hero, bölgesel/SGK avantajları, demo cihaz, teknik servis,
+// iletişim formu, CTA, SSS). Only this link target is wired up for now.
+const linkHref = "/size-ozel-avantajlar";
 ---
 
 <div class="announcement-bar">
-  <div class="announcement-bar__inner">
-    <p class="announcement-bar__message">
-      <Star size={14} stroke-width={2} aria-hidden="true" />
-      <span>{message}</span>
-    </p>
-
-    <a class="announcement-bar__link" href={linkHref}>
-      <span>{linkLabel}</span>
-      <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
-    </a>
-  </div>
+  <a class="announcement-bar__inner" href={linkHref}>
+    <MapPin size={16} stroke-width={2} aria-hidden="true" class="announcement-bar__icon" />
+    <span class="announcement-bar__message">{message}</span>
+    <ArrowRight size={16} stroke-width={2} aria-hidden="true" class="announcement-bar__arrow" />
+  </a>
 </div>
 
 <style>
+  /* Warm amber/gold, not the previous dark navy — deliberately the one
+     saturated, attention-seeking surface on the page, so it reads as "the
+     first thing to notice" without borrowing red (alarm) or the site's own
+     brand blue (which would just blend into the Header below it). */
   .announcement-bar {
-    /* Same dark tone as the Footer's surface — kept as a local token rather
-       than importing footer.tokens.css, to avoid coupling two independent
-       components to one another's stylesheet. */
-    --announcement-bg: #0f2547;
-    background: var(--announcement-bg);
-    color: var(--color-text-inverse);
+    background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
   }
 
   .announcement-bar__inner {
     max-width: var(--container-2xl);
     margin-inline: auto;
-    height: 44px;
+    /* Padding-driven (not a fixed height) — ~20% taller than the old 44px
+       bar, and the extra room is real vertical padding, not just a bigger
+       box, so the line sits with genuine breathing space top and bottom. */
+    padding-block: 16px;
     padding-inline: var(--space-6);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-  }
-
-  .announcement-bar__message {
-    margin: 0;
-    display: flex;
-    align-items: center;
+    justify-content: center;
     gap: var(--space-2);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-normal);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .announcement-bar__message :global(svg) {
-    flex: none;
-    color: #ffffff;
-  }
-
-  .announcement-bar__link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    flex: none;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text-inverse);
+    /* Dark navy instead of white — reads with far more contrast against
+       the amber/gold gradient than white text did. */
+    color: #12213d;
     text-decoration: none;
-    opacity: 0.92;
-    transition: opacity var(--transition-fast);
+    transition: filter 200ms ease;
   }
 
-  .announcement-bar__link:hover {
-    opacity: 1;
+  .announcement-bar__inner:hover {
+    /* A quiet glow, not a color change — the gradient itself is already
+       the loud part of this bar; hover should feel premium, not flashy. */
+    filter: brightness(1.06);
   }
 
-  .announcement-bar__link:focus-visible {
+  .announcement-bar__inner:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
     border-radius: var(--radius-sm);
+  }
+
+  .announcement-bar__icon {
+    flex: none;
+    color: #12213d;
+  }
+
+  .announcement-bar__message {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #12213d;
+    text-underline-offset: 3px;
+  }
+
+  .announcement-bar__arrow {
+    flex: none;
+    color: #12213d;
+    transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .announcement-bar__inner:hover .announcement-bar__arrow {
+    transform: translateX(4px);
   }
 
   @media (max-width: 640px) {
     .announcement-bar__inner {
       padding-inline: var(--space-4);
     }
-    .announcement-bar__link span {
-      display: none;
+
+    .announcement-bar__message {
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .announcement-bar__inner,
+    .announcement-bar__arrow {
+      transition: none;
     }
   }
 </style>
