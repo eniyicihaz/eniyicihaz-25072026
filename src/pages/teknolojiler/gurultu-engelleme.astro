@@ -1,0 +1,72 @@
+---
+// Gürültü Engelleme Teknolojisi — /teknolojiler/gurultu-engelleme. Second
+// page of the "Teknolojilere Göre" product-page series (see
+// header.data.ts's devicesMega second column), built directly on the
+// Yapay Zeka Destekli master template (/teknolojiler/yapay-zeka-destekli)
+// — same shared, data-driven Brand Component Architecture, same
+// KulakArkasiComparison component (already generic, reused as-is), same
+// accent-scoping pattern with its own eflatun/fuchsia (#c026d3) category
+// accent.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Çalışır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Teknolojinin
+// Gelişimi -> Kullanım Alanları -> Teknolojiler -> Önerilen Marka ve
+// Modeller -> Gürültü Engellemeli vs Standart -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for noise-specific
+// everyday scenarios, and BTE's hearing-loss-level slot becomes a genuine
+// noise-reduction technology timeline — single-channel through today's
+// AI-assisted classification — since bu sayfa bir işitme kaybı derecesini
+// değil bir sinyal işleme teknolojisini konu aldığından teknolojik evrim
+// daha anlamlı; see evolution.ts and use-cases.ts. The Ecosystem section's
+// "yapay-zeka-siniflandirma" item cross-references the sibling Yapay Zeka
+// Destekli page rather than duplicating its content.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { gurultuEngellemeHero } from "../../data/gurultu-engelleme/hero";
+import { gurultuEngellemeIntro } from "../../data/gurultu-engelleme/intro";
+import { gurultuEngellemeIdealUser } from "../../data/gurultu-engelleme/ideal-user";
+import { gurultuEngellemeAdvantages } from "../../data/gurultu-engelleme/advantages";
+import { gurultuEngellemeConsiderations } from "../../data/gurultu-engelleme/considerations";
+import { gurultuEngellemeEvolution } from "../../data/gurultu-engelleme/evolution";
+import { gurultuEngellemeUseCases } from "../../data/gurultu-engelleme/use-cases";
+import { gurultuEngellemeTechnology } from "../../data/gurultu-engelleme/technology";
+import { gurultuEngellemeRecommendedBrands } from "../../data/gurultu-engelleme/recommended-brands";
+import { gurultuEngellemeComparison } from "../../data/gurultu-engelleme/comparison";
+import { gurultuEngellemeExpertOpinion } from "../../data/gurultu-engelleme/expert-opinion";
+import { gurultuEngellemeFaq } from "../../data/gurultu-engelleme/faq";
+import { gurultuEngellemeRelatedContent } from "../../data/gurultu-engelleme/related-content";
+import { gurultuEngellemeFinalCta } from "../../data/gurultu-engelleme/final-cta";
+---
+
+<MainLayout
+  title="Gürültü Engelleme Teknolojisi Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Gürültü engelleme teknolojisi nedir, nasıl çalışır? Avantajları, dikkat edilmesi gerekenler ve standart (gürültü engellemesiz) cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={gurultuEngellemeHero} />
+  <BrandPageIntro data={gurultuEngellemeIntro} />
+  <BrandPageIdealUser data={gurultuEngellemeIdealUser} />
+  <BrandPageAdvantages data={gurultuEngellemeAdvantages} />
+  <BrandPageIdealUser data={gurultuEngellemeConsiderations} />
+  <BrandPageTechEvolution data={gurultuEngellemeEvolution} />
+  <BrandPageTechnology data={gurultuEngellemeUseCases} />
+  <BrandPageEcosystem data={gurultuEngellemeTechnology} />
+  <BrandPageRelatedContent data={gurultuEngellemeRecommendedBrands} />
+  <KulakArkasiComparison data={gurultuEngellemeComparison} />
+  <BrandPageExpertOpinion data={gurultuEngellemeExpertOpinion} />
+  <BrandPageFaq data={gurultuEngellemeFaq} />
+  <BrandPageFinalCta data={gurultuEngellemeFinalCta} />
+  <BrandPageRelatedContent data={gurultuEngellemeRelatedContent} />
+</MainLayout>

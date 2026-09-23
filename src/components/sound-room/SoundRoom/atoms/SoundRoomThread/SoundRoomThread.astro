@@ -54,7 +54,10 @@ const jitter = JITTER[order - 1];
     height: 2px;
     border-radius: var(--radius-full);
     background: var(--color-border-hover);
-    opacity: calc(0.35 + var(--progress) * 0.45);
+    /* Resting floor raised 0.35 → 0.45 (visual QA round) so the six
+       threads read as present/intentional before the visitor ever touches
+       the slider, not as a faint, half-loaded placeholder. */
+    opacity: calc(0.45 + var(--progress) * 0.4);
     transform: translate(
       calc(-50% + (1 - var(--progress)) * var(--jitter)),
       calc(

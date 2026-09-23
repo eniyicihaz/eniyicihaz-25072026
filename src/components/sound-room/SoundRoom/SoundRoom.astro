@@ -140,7 +140,10 @@ import { soundRoom } from "./sound-room.data";
     position: relative;
     background: var(--color-background);
     color: var(--color-text);
-    padding-block: var(--space-24);
+    /* Top trimmed one step (was space-20) — homepage rhythm pass: shortens
+       the gap after Empathy's tightened bottom padding without touching
+       the panel itself. */
+    padding-block: var(--space-16);
     /* Scoped tokens, declared directly on the component root — same
        self-sufficient pattern as Hero/FooterCta/Empathy. */
     --clarity: 0;
@@ -215,7 +218,7 @@ import { soundRoom } from "./sound-room.data";
 
   @media (max-width: 640px) {
     .sound-room {
-      padding-block: var(--space-16);
+      padding-block: var(--space-12);
     }
     .sound-room__panel {
       padding: var(--space-8) var(--space-4);

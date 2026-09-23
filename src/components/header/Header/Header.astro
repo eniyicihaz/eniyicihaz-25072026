@@ -39,10 +39,16 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
       </div>
     </div>
 
-    {megaMenus.map((mega) => <MegaMenu data={mega} />)}
+    {megaMenus.map((mega) => <MegaMenu data={mega} currentPath={currentPath} />)}
   </header>
 
-  <MobileMenu brand={data.brand} items={data.nav} phone={data.phone} cta={data.cta} />
+  <MobileMenu
+    brand={data.brand}
+    items={data.nav}
+    phone={data.phone}
+    cta={data.cta}
+    currentPath={currentPath}
+  />
 </div>
 
 <style>

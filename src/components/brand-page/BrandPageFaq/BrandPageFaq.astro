@@ -1,0 +1,487 @@
+---
+// BrandPageFaq — shared, cross-brand grouped FAQ accordion with a sticky
+// decision card. Generic counterpart of Oticon's original OticonFaq;
+// data-driven so every brand page can reuse it. Independent of the
+// /markalar hub page's own brand-agnostic BrandFaq component.
+import { CheckCircle2, ChevronDown, ArrowRight } from "lucide-astro";
+
+export interface BrandPageFaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface BrandPageFaqCategory {
+  label: string;
+  items: BrandPageFaqItem[];
+}
+
+export interface BrandPageFaqDecisionCard {
+  title: string;
+  points: string[];
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+export interface BrandPageFaqContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  decisionCard: BrandPageFaqDecisionCard;
+  categories: BrandPageFaqCategory[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+}
+
+interface Props {
+  data: BrandPageFaqContent;
+}
+
+const { data } = Astro.props;
+
+const flatItems = data.categories.flatMap((category) => category.items);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: flatItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
+let runningIndex = 0;
+---
+
+<section
+  class="brand-page-faq"
+  aria-labelledby="brand-page-faq-title"
+  style={`--bpfq-accent:${data.accentColor}; --bpfq-badge-bg:${data.accentColorBadgeBg}; --bpfq-badge-border:${data.accentColorBadgeBorder}; --bpfq-badge-text:${data.accentColorBadgeText};`}
+>
+  <div class="brand-page-faq__inner">
+    <div class="brand-page-faq__intro" data-rise>
+      <p class="brand-page-faq__badge">{data.badge}</p>
+      <h2 class="brand-page-faq__heading" id="brand-page-faq-title">{data.heading}</h2>
+      <p class="brand-page-faq__lead">{data.intro}</p>
+
+      <div class="brand-page-faq__decision">
+        <p class="brand-page-faq__decision-title">{data.decisionCard.title}</p>
+        <ul class="brand-page-faq__decision-list">
+          {
+            data.decisionCard.points.map((point) => (
+              <li>
+                <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+                <span>{point}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <a class="brand-page-faq__decision-cta" href={data.decisionCard.ctaHref}>
+          <span>{data.decisionCard.ctaLabel}</span>
+          <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+
+    <div class="brand-page-faq__list" data-rise>
+      {
+        data.categories.map((category) => (
+          <div class="brand-page-faq__category">
+            <p class="brand-page-faq__category-label">{category.label}</p>
+            <div class="brand-page-faq__group">
+              {category.items.map((item) => {
+                const i = runningIndex++;
+                const isOpen = i === 0;
+                const panelId = `brand-page-faq-panel-${i}`;
+                const headerId = `brand-page-faq-header-${i}`;
+                return (
+                  <div class="brand-page-faq__item" data-open={isOpen ? "true" : "false"}>
+                    <h3 class="brand-page-faq__item-heading">
+                      <button
+                        class="brand-page-faq__question"
+                        id={headerId}
+                        aria-expanded={isOpen ? "true" : "false"}
+                        aria-controls={panelId}
+                      >
+                        <span>{item.question}</span>
+                        <ChevronDown size={18} stroke-width={2} aria-hidden="true" class="brand-page-faq__chevron" />
+                      </button>
+                    </h3>
+                    <div class="brand-page-faq__panel-wrap">
+                      <div
+                        class="brand-page-faq__panel"
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={headerId}
+                        aria-hidden={isOpen ? "false" : "true"}
+                      >
+                        <p>{item.answer}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-faq");
+    if (!section) return;
+
+    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      section.dataset.anim = "pending";
+
+      var revealed = false;
+      var ioAlive = false;
+      var io;
+
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        section.dataset.anim = "in";
+        if (io) io.disconnect();
+      }
+
+      var failsafe = setTimeout(function () {
+        if (!ioAlive) reveal();
+      }, 1500);
+
+      io = new IntersectionObserver(
+        function (entries) {
+          ioAlive = true;
+          clearTimeout(failsafe);
+          if (entries[0].isIntersecting) reveal();
+        },
+        { threshold: 0.15 }
+      );
+
+      io.observe(section);
+    }
+
+    var items = section.querySelectorAll(".brand-page-faq__item");
+    items.forEach(function (item) {
+      var button = item.querySelector(".brand-page-faq__question");
+      var panel = item.querySelector(".brand-page-faq__panel");
+
+      button.addEventListener("click", function () {
+        var willOpen = item.dataset.open !== "true";
+
+        items.forEach(function (other) {
+          other.dataset.open = "false";
+          other.querySelector(".brand-page-faq__question").setAttribute("aria-expanded", "false");
+          other.querySelector(".brand-page-faq__panel").setAttribute("aria-hidden", "true");
+        });
+
+        if (willOpen) {
+          item.dataset.open = "true";
+          button.setAttribute("aria-expanded", "true");
+          panel.setAttribute("aria-hidden", "false");
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .brand-page-faq {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bpfq-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-faq__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 7fr 13fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .brand-page-faq__intro {
+    position: sticky;
+    top: var(--space-8);
+  }
+
+  .brand-page-faq__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpfq-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpfq-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpfq-badge-text);
+  }
+
+  .brand-page-faq__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-faq__lead {
+    margin: var(--space-4) 0 0;
+    max-width: 30rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-faq__decision {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+  }
+
+  .brand-page-faq__decision-title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .brand-page-faq__decision-list {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .brand-page-faq__decision-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .brand-page-faq__decision-list svg {
+    flex: none;
+    margin-top: 0.15rem;
+    color: var(--bpfq-accent);
+  }
+
+  .brand-page-faq__decision-cta {
+    margin-top: var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 48px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    background: var(--bpfq-accent);
+    color: #ffffff;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    transition: transform 250ms var(--bpfq-ease), box-shadow 250ms var(--bpfq-ease);
+  }
+
+  .brand-page-faq__decision-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .brand-page-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .brand-page-faq__category-label {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .brand-page-faq__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .brand-page-faq__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .brand-page-faq__item:hover {
+    background: var(--color-surface);
+  }
+
+  .brand-page-faq__item[data-open="true"] {
+    border-color: var(--color-border-hover);
+  }
+
+  .brand-page-faq__item-heading {
+    margin: 0;
+  }
+
+  .brand-page-faq__question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding: var(--space-5) var(--space-6);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+
+  .brand-page-faq__question:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-lg);
+  }
+
+  .brand-page-faq__chevron {
+    flex: none;
+    color: var(--color-text-soft);
+    transition: transform 300ms var(--bpfq-ease), color 300ms var(--bpfq-ease);
+  }
+
+  .brand-page-faq__item[data-open="true"] .brand-page-faq__chevron {
+    transform: rotate(180deg);
+    color: var(--bpfq-accent);
+  }
+
+  .brand-page-faq__panel-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 350ms var(--bpfq-ease);
+  }
+
+  .brand-page-faq__item[data-open="true"] .brand-page-faq__panel-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .brand-page-faq__panel {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 250ms var(--bpfq-ease);
+  }
+
+  .brand-page-faq__item[data-open="true"] .brand-page-faq__panel {
+    opacity: 1;
+    transition-delay: 100ms;
+  }
+
+  .brand-page-faq__panel p {
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-5);
+    max-width: 68ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-faq[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-faq[data-anim="in"] [data-rise] {
+    animation: brand-page-faq-rise 600ms var(--bpfq-ease) both;
+  }
+
+  .brand-page-faq[data-anim="in"] .brand-page-faq__list {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-page-faq-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .brand-page-faq__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .brand-page-faq__intro {
+      position: static;
+    }
+
+    .brand-page-faq__decision {
+      max-width: 26rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-faq {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-faq__question {
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--font-size-sm);
+      gap: var(--space-4);
+    }
+
+    .brand-page-faq__panel p {
+      padding: 0 var(--space-5) var(--space-4);
+    }
+
+    .brand-page-faq__decision {
+      max-width: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-faq[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-faq__item,
+    .brand-page-faq__chevron,
+    .brand-page-faq__panel-wrap,
+    .brand-page-faq__panel,
+    .brand-page-faq__decision-cta {
+      transition: none;
+    }
+  }
+</style>

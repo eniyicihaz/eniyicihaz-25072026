@@ -1,0 +1,602 @@
+---
+// SgkEligibility — the SGK pillar page's eligibility section: "Ben SGK
+// işitme cihazı desteğinden yararlanabilir miyim?". Distinct from every
+// earlier section (process, knowledge, payments, insight) — this one is
+// purely about who qualifies. Own data namespace
+// (../../../data/sgk/eligibility), independent of the rest of sgk/*.
+import {
+  CheckCircle2,
+  Briefcase,
+  HandCoins,
+  Baby,
+  Ear,
+  Lightbulb,
+  ArrowRight,
+  SquareCheck,
+  Phone,
+  MessageCircle,
+} from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { sgkEligibility } from "../../../data/sgk/eligibility";
+import { contactConfig } from "../../../config";
+
+const groupIcons = [Briefcase, HandCoins, Baby, Ear];
+---
+
+<section class="sgk-eligibility" aria-labelledby="sgk-eligibility-title">
+  <div class="sgk-eligibility__inner">
+    <div class="sgk-eligibility__head" data-rise>
+      <p class="sgk-eligibility__badge">{sgkEligibility.badge}</p>
+      <h2 class="sgk-eligibility__heading" id="sgk-eligibility-title">{sgkEligibility.heading}</h2>
+      <p class="sgk-eligibility__intro">{sgkEligibility.intro}</p>
+    </div>
+
+    <div class="sgk-eligibility__body">
+      <div class="sgk-eligibility__checklist-col" data-rise>
+        <p class="sgk-eligibility__checklist-label">{sgkEligibility.checklistLabel}</p>
+        <ul class="sgk-eligibility__checklist">
+          {
+            sgkEligibility.checklist.map((item) => (
+              <li class="sgk-eligibility__checklist-item">
+                <span class="sgk-eligibility__checklist-icon" aria-hidden="true">
+                  <CheckCircle2 size={20} stroke-width={1.75} />
+                </span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="sgk-eligibility__groups" data-rise>
+        {
+          sgkEligibility.groups.map((group, i) => {
+            const Icon = groupIcons[i % groupIcons.length];
+            return (
+              <div class="sgk-eligibility__group">
+                <span class="sgk-eligibility__group-icon" aria-hidden="true">
+                  <Icon size={20} stroke-width={1.75} />
+                </span>
+                <p class="sgk-eligibility__group-title">{group.title}</p>
+                <p class="sgk-eligibility__group-text">{group.text}</p>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div class="sgk-eligibility__notice" data-rise>
+      <span class="sgk-eligibility__notice-icon" aria-hidden="true">
+        <Lightbulb size={20} stroke-width={1.75} />
+      </span>
+      <div class="sgk-eligibility__notice-body">
+        <p class="sgk-eligibility__notice-label">{sgkEligibility.notice.label}</p>
+        <p class="sgk-eligibility__notice-text">{sgkEligibility.notice.text}</p>
+      </div>
+    </div>
+
+    <div class="sgk-eligibility__related" data-rise>
+      <span class="sgk-eligibility__related-label">{sgkEligibility.relatedLabel}</span>
+      <div class="sgk-eligibility__related-links">
+        {
+          sgkEligibility.relatedLinks.map((link) => (
+            <a class="sgk-eligibility__related-link" href={link.href}>
+              <span>{link.label}</span>
+              <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="sgk-eligibility__action" data-rise>
+      <p class="sgk-eligibility__action-title">{sgkEligibility.action.title}</p>
+
+      <ul class="sgk-eligibility__questions">
+        {
+          sgkEligibility.action.questions.map((q) => (
+            <li class="sgk-eligibility__question">
+              <SquareCheck size={18} stroke-width={1.75} aria-hidden="true" />
+              <span>{q}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="sgk-eligibility__action-closing">{sgkEligibility.action.closing}</p>
+
+      <div class="sgk-eligibility__action-divider" aria-hidden="true"></div>
+
+      <div class="sgk-eligibility__cta">
+        <p class="sgk-eligibility__cta-text">{sgkEligibility.action.ctaHeading}</p>
+        <div class="sgk-eligibility__cta-actions">
+          <CtaButton
+            label={sgkEligibility.action.ctaPrimaryLabel}
+            href={contactConfig.phone.href}
+            variant="solid"
+            iconLeft={Phone}
+          />
+          <CtaButton
+            label={sgkEligibility.action.ctaSecondaryLabel}
+            href={contactConfig.whatsapp.href}
+            variant="outline"
+            iconLeft={MessageCircle}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-eligibility");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as the rest
+    // of the SGK page: default-visible CSS, JS-only "armed" opt-in, three
+    // independent safety nets so content can never get stuck hidden.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-eligibility {
+    position: relative;
+    background: var(--color-surface);
+    padding-block: var(--space-24);
+    --se-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-eligibility__inner {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .sgk-eligibility__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sgk-eligibility__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-eligibility__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-eligibility__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Two-column body ------------------------------------------------------ */
+
+  .sgk-eligibility__body {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: var(--space-12);
+    margin-top: var(--space-16);
+    align-items: start;
+  }
+
+  .sgk-eligibility__checklist-col {
+    padding: var(--space-8);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sgk-eligibility__checklist-label {
+    margin: 0 0 var(--space-6);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .sgk-eligibility__checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .sgk-eligibility__checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+  }
+
+  .sgk-eligibility__checklist-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    margin-top: 2px;
+    border-radius: 50%;
+    background: rgb(37 99 235 / 0.1);
+    color: var(--color-primary);
+  }
+
+  .sgk-eligibility__groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+    align-content: start;
+  }
+
+  .sgk-eligibility__group {
+    padding: var(--space-6);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: transform 300ms var(--se-ease), border-color 300ms var(--se-ease),
+      box-shadow 300ms var(--se-ease);
+  }
+
+  .sgk-eligibility__group:hover {
+    transform: translateY(-3px);
+    border-color: rgb(37 99 235 / 0.28);
+    box-shadow: var(--shadow-md);
+  }
+
+  .sgk-eligibility__group-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+  }
+
+  .sgk-eligibility__group-title {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-eligibility__group-text {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Notice -------------------------------------------------------------- */
+
+  .sgk-eligibility__notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    max-width: 860px;
+    margin: var(--space-10) auto 0;
+    padding: var(--space-6);
+    background: rgb(37 99 235 / 0.05);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sgk-eligibility__notice-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid rgb(37 99 235 / 0.2);
+    color: var(--color-primary);
+  }
+
+  .sgk-eligibility__notice-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sgk-eligibility__notice-label {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .sgk-eligibility__notice-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Related / internal linking ------------------------------------------ */
+
+  .sgk-eligibility__related {
+    max-width: 860px;
+    margin: var(--space-10) auto 0;
+    text-align: center;
+  }
+
+  .sgk-eligibility__related-label {
+    display: block;
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .sgk-eligibility__related-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .sgk-eligibility__related-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 220ms var(--se-ease), color 220ms var(--se-ease),
+      transform 220ms var(--se-ease);
+  }
+
+  .sgk-eligibility__related-link svg {
+    color: var(--color-primary);
+    transition: transform 220ms var(--se-ease);
+  }
+
+  .sgk-eligibility__related-link:hover {
+    border-color: rgb(37 99 235 / 0.35);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .sgk-eligibility__related-link:hover svg {
+    transform: translateX(2px);
+  }
+
+  .sgk-eligibility__related-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Action card: quick-check + CTA, one cohesive premium block --------- */
+
+  .sgk-eligibility__action {
+    max-width: 720px;
+    margin: var(--space-12) auto 0;
+    padding: var(--space-10);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 30px 60px -32px rgb(37 99 235 / 0.28), var(--shadow-md);
+    text-align: center;
+  }
+
+  .sgk-eligibility__action-title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-eligibility__questions {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    text-align: left;
+  }
+
+  .sgk-eligibility__question {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .sgk-eligibility__question svg {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  .sgk-eligibility__action-closing {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-eligibility__action-divider {
+    height: 1px;
+    margin: var(--space-8) 0;
+    background: var(--color-border);
+  }
+
+  .sgk-eligibility__cta-text {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-eligibility__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .sgk-eligibility[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--se-ease), transform 600ms var(--se-ease);
+  }
+
+  .sgk-eligibility[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-eligibility[data-anim="armed"] .sgk-eligibility__head { transition-delay: 0ms; }
+  .sgk-eligibility[data-anim="armed"] .sgk-eligibility__checklist-col { transition-delay: 80ms; }
+  .sgk-eligibility[data-anim="armed"] .sgk-eligibility__groups { transition-delay: 140ms; }
+  .sgk-eligibility[data-anim="armed"] .sgk-eligibility__notice { transition-delay: 200ms; }
+  .sgk-eligibility[data-anim="armed"] .sgk-eligibility__related { transition-delay: 240ms; }
+  .sgk-eligibility[data-anim="armed"] .sgk-eligibility__action { transition-delay: 280ms; }
+
+  /* --- Responsive ------------------------------------------------------------ */
+
+  @media (max-width: 1023px) {
+    .sgk-eligibility {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-eligibility__body {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+      margin-top: var(--space-12);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-eligibility__checklist-col {
+      padding: var(--space-6);
+    }
+
+    .sgk-eligibility__checklist-item {
+      font-size: var(--font-size-md);
+    }
+
+    .sgk-eligibility__groups {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sgk-eligibility__related-links {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sgk-eligibility__related-link {
+      justify-content: center;
+    }
+
+    .sgk-eligibility__action {
+      padding: var(--space-6);
+    }
+
+    .sgk-eligibility__cta-actions {
+      flex-direction: column;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-eligibility[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sgk-eligibility__group,
+    .sgk-eligibility__related-link,
+    .sgk-eligibility__related-link svg {
+      transition: none;
+    }
+  }
+</style>

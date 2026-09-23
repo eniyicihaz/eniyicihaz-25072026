@@ -34,9 +34,19 @@ export interface OticonFaqContent {
   intro: string;
   decisionCard: OticonFaqDecisionCard;
   categories: OticonFaqCategory[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
 }
 
 export const oticonFaq: OticonFaqContent = {
+  // Precomputed rgb() decomposition of #5fb85a — reproduces the values
+  // previously hardcoded directly in OticonFaq.astro's CSS.
+  accentColor: "#5fb85a",
+  accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
+  accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
+  accentColorBadgeText: "#4a9a45",
   badge: "SIK SORULAN SORULAR",
   heading: "Oticon Hakkında Merak Edilenler",
   intro: "Oticon modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",

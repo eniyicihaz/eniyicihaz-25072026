@@ -21,6 +21,10 @@ import { closing } from "./closing.data";
         <a class="closing__phone" href={closing.secondaryContact.href}>
           {closing.secondaryContact.label}
         </a>
+        {" · "}
+        <a class="closing__phone" href={closing.secondaryContact.whatsapp.href}>
+          {closing.secondaryContact.whatsapp.label}
+        </a>
       </p>
     </div>
 

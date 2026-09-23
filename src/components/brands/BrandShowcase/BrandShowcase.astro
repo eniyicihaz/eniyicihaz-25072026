@@ -1,10 +1,36 @@
 ---
-// BrandShowcase — M2 of the /markalar ("Tüm Markalar") page, directly under
-// BrandHero (M1). This page is built up modularly (M1, M2, M3…); this
-// component is only ever M2. Do not add later modules here — each gets its
-// own component.
+// BrandShowcase — M2 of the modular hub-page system (originally built for
+// /markalar; now also reused by /isitme-cihazlari, /hizmetlerimiz and
+// /bilgi-merkezi), directly under M1 (Hero). Always M2 of its page — do
+// not add later modules here, each gets its own component. Generic: the
+// card's href is now a full `href` field per item (not a `/markalar/`
+// prefix + slug) and its CTA label is configurable, so the same card
+// markup fits "Markayı Gör", "İncele", etc. across hub pages.
 import { ArrowRight } from "lucide-astro";
-import { brandShowcase } from "../../../data/brands/showcase";
+
+export interface BrandShowcaseItem {
+  name: string;
+  href: string;
+  logo?: string;
+  // Fallback for hub pages with no per-item logo art (device/service/
+  // knowledge categories): a lucide-astro icon component reference,
+  // rendered in the same visual slot as the logo.
+  icon?: any;
+}
+
+export interface BrandShowcaseContent {
+  eyebrow: string;
+  heading: string;
+  subhead: string;
+  ctaLabel: string;
+  brands: BrandShowcaseItem[];
+}
+
+interface Props {
+  data: BrandShowcaseContent;
+}
+
+const { data: brandShowcase } = Astro.props;
 ---
 
 <section class="brand-showcase" aria-labelledby="brand-showcase-title">
@@ -18,14 +44,21 @@ import { brandShowcase } from "../../../data/brands/showcase";
 
   <div class="brand-showcase__grid">
     {
-      brandShowcase.brands.map((brand) => (
-        <a class="brand-showcase__card" href={`/markalar/${brand.slug}`} data-rise>
-          <span class="brand-showcase__logo-wrap">
-            <img src={brand.logo} alt={brand.name} loading="lazy" />
-          </span>
-          <span class="brand-showcase__name">{brand.name}</span>
+      brandShowcase.brands.map((item) => (
+        <a class="brand-showcase__card" href={item.href} data-rise>
+          {item.logo && (
+            <span class="brand-showcase__logo-wrap">
+              <img src={item.logo} alt={item.name} loading="lazy" />
+            </span>
+          )}
+          {!item.logo && item.icon && (
+            <span class="brand-showcase__logo-wrap brand-showcase__icon-wrap">
+              <item.icon size={28} stroke-width={1.75} aria-hidden="true" />
+            </span>
+          )}
+          <span class="brand-showcase__name">{item.name}</span>
           <span class="brand-showcase__cta">
-            Markayı Gör
+            {brandShowcase.ctaLabel}
             <ArrowRight size={14} stroke-width={2.5} aria-hidden="true" />
           </span>
         </a>
@@ -189,6 +222,20 @@ import { brandShowcase } from "../../../data/brands/showcase";
   .brand-showcase__card:hover .brand-showcase__logo-wrap img,
   .brand-showcase__card:focus-visible .brand-showcase__logo-wrap img {
     filter: none;
+    opacity: 1;
+  }
+
+  /* Icon fallback (no per-item logo art): same quiet-by-default,
+     colored-on-hover treatment as the logo variant above. */
+  .brand-showcase__icon-wrap {
+    color: var(--color-text-muted);
+    opacity: 0.8;
+    transition: color 300ms var(--bs-ease), opacity 300ms var(--bs-ease);
+  }
+
+  .brand-showcase__card:hover .brand-showcase__icon-wrap,
+  .brand-showcase__card:focus-visible .brand-showcase__icon-wrap {
+    color: var(--color-primary);
     opacity: 1;
   }
 

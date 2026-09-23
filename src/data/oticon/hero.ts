@@ -26,6 +26,13 @@ export interface OticonHeroContent {
   floatingCard: { title: string; description: string };
   accentColor: string;
   accentColorHover: string;
+  // Pre-computed translucent variants of accentColor — same values that
+  // were previously hardcoded directly in OticonHero.astro's CSS
+  // (rgb(95 184 90 / ...), the rgb decomposition of #5fb85a). Moved here
+  // so the now-shared BrandPageHero component stays free of per-brand
+  // color logic; visual output is unchanged.
+  accentColorSoft: string;
+  accentColorBorder: string;
 }
 
 export const oticonHero: OticonHeroContent = {
@@ -67,4 +74,6 @@ export const oticonHero: OticonHeroContent = {
   },
   accentColor: "#5fb85a",
   accentColorHover: "#4da349",
+  accentColorSoft: "rgb(95 184 90 / 0.12)",
+  accentColorBorder: "rgb(95 184 90 / 0.4)",
 };

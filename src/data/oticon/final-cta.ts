@@ -20,6 +20,13 @@ export interface OticonFinalCtaContent {
   ctaPrimary: FinalCtaAction;
   ctaSecondary: FinalCtaAction;
   trustItems: string[];
+  accentColor: string;
+  accentColorHover: string;
+  accentColorGlow: string;
+  accentColorShadow: string;
+  accentColorShadowHover: string;
+  accentColorFocus: string;
+  accentColorTrustBg: string;
 }
 
 export const oticonFinalCta: OticonFinalCtaContent = {
@@ -35,4 +42,13 @@ export const oticonFinalCta: OticonFinalCtaContent = {
     "SGK Anlaşmalı Merkez",
     "Uzman Odyometrist Desteği",
   ],
+  // Precomputed rgb() decomposition of #5fb85a — reproduces the values
+  // previously hardcoded directly in OticonFinalCta.astro's CSS.
+  accentColor: "#5fb85a",
+  accentColorHover: "#4da349",
+  accentColorGlow: "rgb(95 184 90 / 0.22)",
+  accentColorShadow: "rgb(95 184 90 / 0.55)",
+  accentColorShadowHover: "rgb(95 184 90 / 0.65)",
+  accentColorFocus: "rgb(95 184 90 / 0.5)",
+  accentColorTrustBg: "rgb(95 184 90 / 0.16)",
 };

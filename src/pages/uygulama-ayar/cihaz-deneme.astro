@@ -1,0 +1,68 @@
+---
+// Cihaz Deneme — /uygulama-ayar/cihaz-deneme. Third page of the
+// "Uygulama & Ayar" series (see header.data.ts's servicesMega second
+// column), following Cihaz Uygulama and Kişiye Özel Programlama. Same
+// service genre — this page's own scope is the extended, take-home
+// trial period BEFORE a purchase decision is made, distinct from Cihaz
+// Uygulama's brief in-appointment "Ortam Senaryoları Üzerinde Deneme"
+// step and from the unrelated post-purchase "Kolay Değişim" page
+// (Neden Orijinal series).
+//
+// accentColor: deniz mavisi-yeşili / teal-600 (#0d9488) — third color
+// in the fresh accent rotation opened for this series; see hero.ts for
+// the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Kimler İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Süreç Adımları -> Neler Test Edilir -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Klinik İçi vs Uzun Süreli Deneme -> Uzman Yorumu -> SSS
+// -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { cihazDenemeHero } from "../../data/cihaz-deneme/hero";
+import { cihazDenemeIntro } from "../../data/cihaz-deneme/intro";
+import { cihazDenemeIdealUser } from "../../data/cihaz-deneme/ideal-user";
+import { cihazDenemeAdvantages } from "../../data/cihaz-deneme/advantages";
+import { cihazDenemeConsiderations } from "../../data/cihaz-deneme/considerations";
+import { cihazDenemeEvolution } from "../../data/cihaz-deneme/evolution";
+import { cihazDenemeUseCases } from "../../data/cihaz-deneme/use-cases";
+import { cihazDenemeTechnology } from "../../data/cihaz-deneme/technology";
+import { cihazDenemeRecommendedBrands } from "../../data/cihaz-deneme/recommended-brands";
+import { cihazDenemeComparison } from "../../data/cihaz-deneme/comparison";
+import { cihazDenemeExpertOpinion } from "../../data/cihaz-deneme/expert-opinion";
+import { cihazDenemeFaq } from "../../data/cihaz-deneme/faq";
+import { cihazDenemeRelatedContent } from "../../data/cihaz-deneme/related-content";
+import { cihazDenemeFinalCta } from "../../data/cihaz-deneme/final-cta";
+---
+
+<MainLayout
+  title="Cihaz Deneme | Satın Almadan Önce İşitme Cihazı Deneyin | EniyiCihaz"
+  description="İşitme cihazı deneme süreci nasıl işler? Satın alma yükümlülüğü olmadan, gerçek yaşam koşullarında cihaz deneme fırsatı hakkında bilgi edinin."
+>
+  <BrandPageHero data={cihazDenemeHero} />
+  <BrandPageIntro data={cihazDenemeIntro} />
+  <BrandPageIdealUser data={cihazDenemeIdealUser} />
+  <BrandPageAdvantages data={cihazDenemeAdvantages} />
+  <BrandPageIdealUser data={cihazDenemeConsiderations} />
+  <BrandPageTechEvolution data={cihazDenemeEvolution} />
+  <BrandPageTechnology data={cihazDenemeUseCases} />
+  <BrandPageEcosystem data={cihazDenemeTechnology} />
+  <BrandPageRelatedContent data={cihazDenemeRecommendedBrands} />
+  <KulakArkasiComparison data={cihazDenemeComparison} />
+  <BrandPageExpertOpinion data={cihazDenemeExpertOpinion} />
+  <BrandPageFaq data={cihazDenemeFaq} />
+  <BrandPageFinalCta data={cihazDenemeFinalCta} />
+  <BrandPageRelatedContent data={cihazDenemeRelatedContent} />
+</MainLayout>

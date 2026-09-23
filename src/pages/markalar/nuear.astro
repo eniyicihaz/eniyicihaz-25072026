@@ -1,0 +1,57 @@
+---
+// NuEar brand page (/markalar/nuear). Sixth brand page built on the
+// shared Brand Component Architecture (see src/components/brand-page/*)
+// — no new components, no new design language; all 14 sections reuse the
+// exact same components Oticon, Phonak, Signia, Widex and ReSound use,
+// fed by this page's own src/data/nuear/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { nuearHero } from "../../data/nuear/hero";
+import { nuearOverview } from "../../data/nuear/overview";
+import { nuearIntro } from "../../data/nuear/intro";
+import { nuearTechnology } from "../../data/nuear/technology";
+import { nuearEcosystem } from "../../data/nuear/ecosystem";
+import { nuearPlatform } from "../../data/nuear/platform";
+import { nuearModels } from "../../data/nuear/models";
+import { nuearComparison } from "../../data/nuear/comparison";
+import { nuearIdealUser } from "../../data/nuear/ideal-user";
+import { nuearAdvantages } from "../../data/nuear/advantages";
+import { nuearExpertOpinion } from "../../data/nuear/expert-opinion";
+import { nuearFaq } from "../../data/nuear/faq";
+import { nuearRelatedContent } from "../../data/nuear/related-content";
+import { nuearFinalCta } from "../../data/nuear/final-cta";
+---
+
+<MainLayout
+  title="NuEar İşitme Cihazları | EniyiCihaz"
+  description="NuEar'ın NXG AI ses işleme teknolojisi, Hear Circle sağlık ve aktivite takibi uygulaması ile NE Series, Circa gibi model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={nuearHero} />
+  <BrandPageOverview data={nuearOverview} />
+  <BrandPageIntro data={nuearIntro} />
+  <BrandPageTechnology data={nuearTechnology} />
+  <BrandPageEcosystem data={nuearEcosystem} />
+  <BrandPageTechEvolution data={nuearPlatform} />
+  <BrandPageModels data={nuearModels} />
+  <BrandPageComparison data={nuearComparison} />
+  <BrandPageIdealUser data={nuearIdealUser} />
+  <BrandPageAdvantages data={nuearAdvantages} />
+  <BrandPageExpertOpinion data={nuearExpertOpinion} />
+  <BrandPageFaq data={nuearFaq} />
+  <BrandPageRelatedContent data={nuearRelatedContent} />
+  <BrandPageFinalCta data={nuearFinalCta} />
+</MainLayout>

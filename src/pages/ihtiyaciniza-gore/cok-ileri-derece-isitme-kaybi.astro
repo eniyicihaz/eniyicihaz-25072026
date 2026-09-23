@@ -1,0 +1,88 @@
+---
+// Çok İleri Derece İşitme Kaybı —
+// /ihtiyaciniza-gore/cok-ileri-derece-isitme-kaybi. Fourth and final
+// degree page in the "İhtiyacınıza Göre" series' dB ladder (see
+// header.data.ts's devicesMega third column), built directly on the
+// Hafif / Orta / İleri Derece İşitme Kaybı master templates — same
+// shared, data-driven Brand Component Architecture, same
+// KulakArkasiComparison component (already generic, reused as-is), same
+// accent-scoping pattern with its own koyu kehribar/deep amber (#92400e)
+// category accent — deliberately dark and weighty, distinct from the
+// small-scale warning-badge amber (#d97706) used contextually across
+// every Considerations section.
+//
+// A health-classification topic, handled with the same care as the
+// sibling degree pages and the Tinnitus page: self-diagnosis is never
+// implied, and every section (Nedir?, Belirtiler, Dikkat Edilmesi
+// Gerekenler, Uzman Yorumu, FAQ) routes back to a proper audiometric test
+// (odyometri) as the only way to confirm degree and type. This page's one
+// real departure from its three siblings: at this degree, evaluation is
+// explicitly framed as a joint process with an ENT (KBB) specialist, and
+// Considerations/FAQ factually (and cautiously) note that cochlear
+// implantation becomes a relevant option for some profound-loss users —
+// always hedged, always pointing to an ENT/CI-center evaluation, never
+// claiming this clinic provides that pathway.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Anlaşılır? ->
+// Günlük Yaşamdaki Belirtiler -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Derecelere Göre (Çok İleri Derecenin Yeri, completing the
+// ladder) -> Öne Çıkan Özellikler -> Teknolojiler -> Önerilen Marka ve
+// Modeller -> En Yüksek Kapasiteli Power BTE vs Standart Güçlü BTE ->
+// Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// (Same repurposing as the sibling degree pages for the "Kimler İçin
+// Uygun" and hearing-loss-level slots; see evolution.ts and
+// ideal-user.ts. The comparison table is this page's other departure:
+// since there's no fifth degree to compare forward to, and repeating the
+// İleri page's "İleri vs Çok İleri" table with sides swapped would be
+// redundant, this table instead compares WITHIN the power-BTE category
+// itself — same technique the Şarjlı Teknolojiler page used for its own
+// within-category comparison.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { cokIleriDereceIsitmeKaybiHero } from "../../data/cok-ileri-derece-isitme-kaybi/hero";
+import { cokIleriDereceIsitmeKaybiIntro } from "../../data/cok-ileri-derece-isitme-kaybi/intro";
+import { cokIleriDereceIsitmeKaybiIdealUser } from "../../data/cok-ileri-derece-isitme-kaybi/ideal-user";
+import { cokIleriDereceIsitmeKaybiAdvantages } from "../../data/cok-ileri-derece-isitme-kaybi/advantages";
+import { cokIleriDereceIsitmeKaybiConsiderations } from "../../data/cok-ileri-derece-isitme-kaybi/considerations";
+import { cokIleriDereceIsitmeKaybiEvolution } from "../../data/cok-ileri-derece-isitme-kaybi/evolution";
+import { cokIleriDereceIsitmeKaybiUseCases } from "../../data/cok-ileri-derece-isitme-kaybi/use-cases";
+import { cokIleriDereceIsitmeKaybiTechnology } from "../../data/cok-ileri-derece-isitme-kaybi/technology";
+import { cokIleriDereceIsitmeKaybiRecommendedBrands } from "../../data/cok-ileri-derece-isitme-kaybi/recommended-brands";
+import { cokIleriDereceIsitmeKaybiComparison } from "../../data/cok-ileri-derece-isitme-kaybi/comparison";
+import { cokIleriDereceIsitmeKaybiExpertOpinion } from "../../data/cok-ileri-derece-isitme-kaybi/expert-opinion";
+import { cokIleriDereceIsitmeKaybiFaq } from "../../data/cok-ileri-derece-isitme-kaybi/faq";
+import { cokIleriDereceIsitmeKaybiRelatedContent } from "../../data/cok-ileri-derece-isitme-kaybi/related-content";
+import { cokIleriDereceIsitmeKaybiFinalCta } from "../../data/cok-ileri-derece-isitme-kaybi/final-cta";
+---
+
+<MainLayout
+  title="Çok İleri Derece İşitme Kaybı İçin Cihaz Rehberi | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Çok ileri derece işitme kaybı (71 dB ve üzeri) nedir, nasıl anlaşılır? Günlük yaşamdaki belirtileri, öne çıkan power BTE cihaz özellikleri ve kapsamlı değerlendirme süreci."
+>
+  <BrandPageHero data={cokIleriDereceIsitmeKaybiHero} />
+  <BrandPageIntro data={cokIleriDereceIsitmeKaybiIntro} />
+  <BrandPageIdealUser data={cokIleriDereceIsitmeKaybiIdealUser} />
+  <BrandPageAdvantages data={cokIleriDereceIsitmeKaybiAdvantages} />
+  <BrandPageIdealUser data={cokIleriDereceIsitmeKaybiConsiderations} />
+  <BrandPageTechEvolution data={cokIleriDereceIsitmeKaybiEvolution} />
+  <BrandPageTechnology data={cokIleriDereceIsitmeKaybiUseCases} />
+  <BrandPageEcosystem data={cokIleriDereceIsitmeKaybiTechnology} />
+  <BrandPageRelatedContent data={cokIleriDereceIsitmeKaybiRecommendedBrands} />
+  <KulakArkasiComparison data={cokIleriDereceIsitmeKaybiComparison} />
+  <BrandPageExpertOpinion data={cokIleriDereceIsitmeKaybiExpertOpinion} />
+  <BrandPageFaq data={cokIleriDereceIsitmeKaybiFaq} />
+  <BrandPageFinalCta data={cokIleriDereceIsitmeKaybiFinalCta} />
+  <BrandPageRelatedContent data={cokIleriDereceIsitmeKaybiRelatedContent} />
+</MainLayout>

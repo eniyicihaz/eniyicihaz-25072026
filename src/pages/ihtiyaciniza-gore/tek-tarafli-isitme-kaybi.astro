@@ -1,0 +1,87 @@
+---
+// Tek Taraflı İşitme Kaybı — /ihtiyaciniza-gore/tek-tarafli-isitme-kaybi.
+// Fifth page of the "İhtiyacınıza Göre" product-page series (see
+// header.data.ts's devicesMega third column), following the completed
+// four-page dB-degree ladder (Hafif/Orta/İleri/Çok İleri İşitme Kaybı).
+// Built on the same master templates and shared, data-driven Brand
+// Component Architecture, same KulakArkasiComparison component (already
+// generic, reused as-is), same accent-scoping pattern with its own çinko
+// grisi/zinc (#52525b) category accent — but this page covers a
+// different classification axis entirely (laterality, not severity), so
+// it does not extend the degree ladder.
+//
+// Deliberately scoped apart from the already-built Kablosuz Bağlantı
+// Özellikleri page (/teknolojiler/kablosuz-baglanti), which already
+// covers CROS/BiCROS as one of its four Ecosystem items: this page's own
+// Ecosystem section cross-references that page's deep dive rather than
+// re-explaining the same technology's internals, focusing instead on the
+// symptoms, candidacy and CROS-vs-standard-fitting decision specific to
+// single-sided loss.
+//
+// A health-classification topic, handled with the same care as the
+// sibling degree pages and Tinnitus: self-diagnosis is never implied,
+// and every section routes back to a proper audiometric evaluation
+// (odyometri) — with this page's one real departure being that
+// sudden-onset unilateral loss is flagged as needing urgent ENT (KBB)
+// attention, not routine scheduling.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Anlaşılır? ->
+// Günlük Yaşamdaki Belirtiler -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Sistem Seçenekleri (CROS/BiCROS/standart/diğer) -> Öne
+// Çıkan Özellikler -> Teknolojiler -> Önerilen Marka ve Modeller ->
+// CROS/BiCROS vs Standart Tek Taraflı Amplifikasyon -> Uzman Yorumu ->
+// SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kimler İçin Uygun" slot becomes everyday recognizable symptoms
+// rather than candidacy, and BTE's hearing-loss-level slot becomes the
+// real progression of solution approaches by how the better ear is
+// affected — not a severity ladder, since this page's axis is laterality;
+// see evolution.ts and ideal-user.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { tekTarafliIsitmeKaybiHero } from "../../data/tek-tarafli-isitme-kaybi/hero";
+import { tekTarafliIsitmeKaybiIntro } from "../../data/tek-tarafli-isitme-kaybi/intro";
+import { tekTarafliIsitmeKaybiIdealUser } from "../../data/tek-tarafli-isitme-kaybi/ideal-user";
+import { tekTarafliIsitmeKaybiAdvantages } from "../../data/tek-tarafli-isitme-kaybi/advantages";
+import { tekTarafliIsitmeKaybiConsiderations } from "../../data/tek-tarafli-isitme-kaybi/considerations";
+import { tekTarafliIsitmeKaybiEvolution } from "../../data/tek-tarafli-isitme-kaybi/evolution";
+import { tekTarafliIsitmeKaybiUseCases } from "../../data/tek-tarafli-isitme-kaybi/use-cases";
+import { tekTarafliIsitmeKaybiTechnology } from "../../data/tek-tarafli-isitme-kaybi/technology";
+import { tekTarafliIsitmeKaybiRecommendedBrands } from "../../data/tek-tarafli-isitme-kaybi/recommended-brands";
+import { tekTarafliIsitmeKaybiComparison } from "../../data/tek-tarafli-isitme-kaybi/comparison";
+import { tekTarafliIsitmeKaybiExpertOpinion } from "../../data/tek-tarafli-isitme-kaybi/expert-opinion";
+import { tekTarafliIsitmeKaybiFaq } from "../../data/tek-tarafli-isitme-kaybi/faq";
+import { tekTarafliIsitmeKaybiRelatedContent } from "../../data/tek-tarafli-isitme-kaybi/related-content";
+import { tekTarafliIsitmeKaybiFinalCta } from "../../data/tek-tarafli-isitme-kaybi/final-cta";
+---
+
+<MainLayout
+  title="Tek Taraflı İşitme Kaybı İçin Cihaz Rehberi | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Tek taraflı işitme kaybı nedir, CROS ve BiCROS sistemleri nasıl çalışır? Günlük yaşamdaki belirtileri, öne çıkan cihaz özellikleri ve standart amplifikasyonla karşılaştırma."
+>
+  <BrandPageHero data={tekTarafliIsitmeKaybiHero} />
+  <BrandPageIntro data={tekTarafliIsitmeKaybiIntro} />
+  <BrandPageIdealUser data={tekTarafliIsitmeKaybiIdealUser} />
+  <BrandPageAdvantages data={tekTarafliIsitmeKaybiAdvantages} />
+  <BrandPageIdealUser data={tekTarafliIsitmeKaybiConsiderations} />
+  <BrandPageTechEvolution data={tekTarafliIsitmeKaybiEvolution} />
+  <BrandPageTechnology data={tekTarafliIsitmeKaybiUseCases} />
+  <BrandPageEcosystem data={tekTarafliIsitmeKaybiTechnology} />
+  <BrandPageRelatedContent data={tekTarafliIsitmeKaybiRecommendedBrands} />
+  <KulakArkasiComparison data={tekTarafliIsitmeKaybiComparison} />
+  <BrandPageExpertOpinion data={tekTarafliIsitmeKaybiExpertOpinion} />
+  <BrandPageFaq data={tekTarafliIsitmeKaybiFaq} />
+  <BrandPageFinalCta data={tekTarafliIsitmeKaybiFinalCta} />
+  <BrandPageRelatedContent data={tekTarafliIsitmeKaybiRelatedContent} />
+</MainLayout>

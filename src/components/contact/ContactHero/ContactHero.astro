@@ -1,0 +1,376 @@
+---
+// ContactHero — hero for /iletisim. Not a BrandHero reuse: BrandHero
+// requires a product image/floatingCard slot, and this page is
+// location-forward rather than product-forward (showing a product photo
+// here would misrepresent it as "the storefront"). See the plan's §11
+// for the full reasoning.
+//
+// The right-side panel is a simple, static location card (badge + pin +
+// SGK line) rather than a photo — no real business/location photography
+// exists in the repo yet (finalized decision #3; a stock photo would
+// never stand in for one). This is a real extension point for a future
+// photo once one exists — swapping this panel for an <img> is a small,
+// contained change when that day comes.
+import { MapPin, ShieldCheck, Phone, Navigation, CalendarCheck, Check } from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+
+export interface ContactHeroCta {
+  label: string;
+  href: string;
+}
+
+export interface ContactHeroContent {
+  badge: string;
+  headingLines: string[];
+  definitionSentence: string;
+  paragraph: string;
+  ctaCall: ContactHeroCta;
+  ctaWhatsapp: ContactHeroCta;
+  ctaDirections: ContactHeroCta;
+  ctaAppointment: ContactHeroCta;
+  trustPills: string[];
+}
+
+interface Props {
+  data: ContactHeroContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="contact-hero" aria-labelledby="contact-hero-title">
+  <div class="contact-hero__inner">
+    <div class="contact-hero__copy" data-rise>
+      <p class="contact-hero__badge">
+        <MapPin size={14} stroke-width={2.5} aria-hidden="true" />
+        {data.badge}
+      </p>
+
+      <h1 class="contact-hero__heading" id="contact-hero-title">
+        {data.headingLines.map((line) => <span class="contact-hero__heading-line">{line}</span>)}
+      </h1>
+
+      <p class="contact-hero__definition">{data.definitionSentence}</p>
+      <p class="contact-hero__paragraph">{data.paragraph}</p>
+
+      <div class="contact-hero__actions">
+        <CtaButton label={data.ctaCall.label} href={data.ctaCall.href} iconLeft={Phone} />
+        <a class="contact-hero__whatsapp-btn" href={data.ctaWhatsapp.href}>
+          <WhatsAppIcon />
+          <span>{data.ctaWhatsapp.label}</span>
+        </a>
+        <CtaButton
+          label={data.ctaDirections.label}
+          href={data.ctaDirections.href}
+          iconLeft={Navigation}
+          variant="outline"
+        />
+        <CtaButton
+          label={data.ctaAppointment.label}
+          href={data.ctaAppointment.href}
+          iconLeft={CalendarCheck}
+          variant="outline"
+        />
+      </div>
+
+      <ul class="contact-hero__pills">
+        {data.trustPills.map((pill) => (
+          <li class="contact-hero__pill">
+            <Check size={14} stroke-width={2.5} aria-hidden="true" />
+            <span>{pill}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="contact-hero__panel" data-rise>
+      <span class="contact-hero__panel-icon" aria-hidden="true">
+        <MapPin size={28} stroke-width={1.75} />
+      </span>
+      <p class="contact-hero__panel-title">{data.badge}</p>
+      <p class="contact-hero__panel-sub">
+        <ShieldCheck size={16} stroke-width={2} aria-hidden="true" />
+        SGK Anlaşmalı İşitme Merkezi
+      </p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site
+    // (Hero/Showcase/Criteria…): IntersectionObserver, a failsafe timeout,
+    // and a prefers-reduced-motion bail.
+    var section = document.querySelector(".contact-hero");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .contact-hero {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16) var(--space-20);
+    --ch-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .contact-hero__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .contact-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .contact-hero__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .contact-hero__heading-line {
+    display: block;
+  }
+
+  /* The AI-quotable, self-contained definition sentence — visually a touch
+     heavier than the supporting paragraph so it reads as the page's single
+     canonical answer, not just more body copy. */
+  .contact-hero__definition {
+    margin: var(--space-5) 0 0;
+    max-width: 42rem;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .contact-hero__paragraph {
+    margin: var(--space-3) 0 0;
+    max-width: 42rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .contact-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  /* Mirrors CtaButton's outline recipe so the hand-written WhatsApp button
+     sits visually level with the three real CtaButton instances beside it. */
+  .contact-hero__whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 56px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+  }
+
+  .contact-hero__whatsapp-btn:hover {
+    background: var(--color-surface);
+    border-color: var(--color-border-hover);
+  }
+
+  .contact-hero__whatsapp-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .contact-hero__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact-hero__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .contact-hero__pill svg {
+    color: var(--color-primary);
+    flex: none;
+  }
+
+  /* --- Right panel: static location card, not a product photo --------- */
+
+  .contact-hero__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-10) var(--space-6);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    text-align: center;
+  }
+
+  .contact-hero__panel-icon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .contact-hero__panel-title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .contact-hero__panel-sub {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .contact-hero__panel-sub svg {
+    color: var(--color-primary);
+    flex: none;
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section ---- */
+
+  .contact-hero[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .contact-hero[data-anim="in"] [data-rise] {
+    animation: contact-hero-rise 600ms var(--ch-ease) both;
+  }
+
+  .contact-hero[data-anim="in"] .contact-hero__panel {
+    animation-delay: 120ms;
+  }
+
+  @keyframes contact-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive: mobile-first, panel stacks below copy --------------- */
+
+  @media (max-width: 900px) {
+    .contact-hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contact-hero__panel {
+      max-width: 24rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .contact-hero {
+      padding-block: var(--space-12) var(--space-14);
+    }
+
+    .contact-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .contact-hero__whatsapp-btn {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-hero[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

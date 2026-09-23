@@ -1,0 +1,67 @@
+---
+// Yeni Teknolojiler — /blog/yeni-teknolojiler. First page of the new
+// "Blog & Haberler" series (see header.data.ts's knowledgeMega second
+// column). Unlike a dated blog feed, this and its siblings are
+// timeless CATEGORY SHOWCASE pages using the same 14-section Brand
+// Component Architecture as every other page this session — no
+// CMS/content-collection infrastructure required.
+//
+// accentColor: mavi / blue-600 (#2563eb) — first color in the "Blog &
+// Haberler" column's own accent rotation; see hero.ts for the full
+// rationale.
+//
+// 14-section flow, in order: Hero -> Teknoloji Nasıl Gelişiyor? ->
+// Kimler İçin Önemlidir? -> Faydaları -> Dikkat Edilmesi Gerekenler ->
+// Teknolojinin Gelişimi (gerçek zaman çizelgesi) -> Öne Çıkan
+// Kategoriler -> Sistemlerin Bileşenleri -> Markalara Göre İnceleyin ->
+// Geleneksel vs Yapay Zeka Karşılaştırması -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { yeniTeknolojilerHero } from "../../data/yeni-teknolojiler/hero";
+import { yeniTeknolojilerIntro } from "../../data/yeni-teknolojiler/intro";
+import { yeniTeknolojilerIdealUser } from "../../data/yeni-teknolojiler/ideal-user";
+import { yeniTeknolojilerAdvantages } from "../../data/yeni-teknolojiler/advantages";
+import { yeniTeknolojilerConsiderations } from "../../data/yeni-teknolojiler/considerations";
+import { yeniTeknolojilerEvolution } from "../../data/yeni-teknolojiler/evolution";
+import { yeniTeknolojilerUseCases } from "../../data/yeni-teknolojiler/use-cases";
+import { yeniTeknolojilerTechnology } from "../../data/yeni-teknolojiler/technology";
+import { yeniTeknolojilerRecommendedBrands } from "../../data/yeni-teknolojiler/recommended-brands";
+import { yeniTeknolojilerComparison } from "../../data/yeni-teknolojiler/comparison";
+import { yeniTeknolojilerExpertOpinion } from "../../data/yeni-teknolojiler/expert-opinion";
+import { yeniTeknolojilerFaq } from "../../data/yeni-teknolojiler/faq";
+import { yeniTeknolojilerRelatedContent } from "../../data/yeni-teknolojiler/related-content";
+import { yeniTeknolojilerFinalCta } from "../../data/yeni-teknolojiler/final-cta";
+---
+
+<MainLayout
+  title="Yeni Teknolojiler | İşitme Cihazında Güncel Teknolojiler | EniyiCihaz"
+  description="İşitme cihazlarında yapay zeka, kablosuz bağlantı ve şarj edilebilir pil gibi güncel teknolojileri genel hatlarıyla öğrenin."
+>
+  <BrandPageHero data={yeniTeknolojilerHero} />
+  <BrandPageIntro data={yeniTeknolojilerIntro} />
+  <BrandPageIdealUser data={yeniTeknolojilerIdealUser} />
+  <BrandPageAdvantages data={yeniTeknolojilerAdvantages} />
+  <BrandPageIdealUser data={yeniTeknolojilerConsiderations} />
+  <BrandPageTechEvolution data={yeniTeknolojilerEvolution} />
+  <BrandPageTechnology data={yeniTeknolojilerUseCases} />
+  <BrandPageEcosystem data={yeniTeknolojilerTechnology} />
+  <BrandPageRelatedContent data={yeniTeknolojilerRecommendedBrands} />
+  <KulakArkasiComparison data={yeniTeknolojilerComparison} />
+  <BrandPageExpertOpinion data={yeniTeknolojilerExpertOpinion} />
+  <BrandPageFaq data={yeniTeknolojilerFaq} />
+  <BrandPageFinalCta data={yeniTeknolojilerFinalCta} />
+  <BrandPageRelatedContent data={yeniTeknolojilerRelatedContent} />
+</MainLayout>

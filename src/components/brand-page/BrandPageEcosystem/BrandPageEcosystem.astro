@@ -1,0 +1,536 @@
+---
+// BrandPageEcosystem — shared, cross-brand "Technology Explorer" deep-dive
+// hub (nav + <details>/<summary> panels). Generic counterpart of Oticon's
+// original OticonTechnologyExplorer; data-driven so every brand page can
+// reuse it. Architecture note preserved from the original: every item is a
+// native <details>/<summary> element, all present in the DOM (open or
+// closed), so content stays fully crawlable/accessible without JavaScript.
+import { Brain, Dna, Globe, Radar, Bluetooth, Smartphone, Radio, Layers, CheckCircle2 } from "lucide-astro";
+
+export interface BrandPageEcosystemItem {
+  id: string;
+  icon: "brain" | "dna" | "globe" | "radar" | "bluetooth" | "smartphone" | "radio" | "layers";
+  navLabel: string;
+  title: string;
+  lead: string;
+  howItWorks: string;
+  advantages: string[];
+  models: string[];
+  expertNote: string;
+}
+
+export interface BrandPageEcosystemContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  items: BrandPageEcosystemItem[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorNavActiveBg: string;
+  accentColorCalloutBg: string;
+  accentColorCalloutLabel: string;
+}
+
+interface Props {
+  data: BrandPageEcosystemContent;
+}
+
+const { data } = Astro.props;
+
+const iconMap = {
+  brain: Brain,
+  dna: Dna,
+  globe: Globe,
+  radar: Radar,
+  bluetooth: Bluetooth,
+  smartphone: Smartphone,
+  radio: Radio,
+  layers: Layers,
+};
+---
+
+<section
+  class="brand-page-eco"
+  aria-labelledby="brand-page-eco-title"
+  style={`--bpe-accent:${data.accentColor}; --bpe-badge-bg:${data.accentColorBadgeBg}; --bpe-badge-border:${data.accentColorBadgeBorder}; --bpe-badge-text:${data.accentColorBadgeText}; --bpe-nav-active-bg:${data.accentColorNavActiveBg}; --bpe-callout-bg:${data.accentColorCalloutBg}; --bpe-callout-label:${data.accentColorCalloutLabel};`}
+>
+  <div class="brand-page-eco__inner">
+    <div class="brand-page-eco__header">
+      <p class="brand-page-eco__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-page-eco__heading" id="brand-page-eco-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="brand-page-eco__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="brand-page-eco__layout" data-rise>
+      <nav class="brand-page-eco__nav" aria-label="Ekosistem navigasyonu">
+        {
+          data.items.map((item, index) => {
+            const Icon = iconMap[item.icon];
+            return (
+              <a
+                class="brand-page-eco__nav-link"
+                href={`#eco-${item.id}`}
+                data-eco={item.id}
+                aria-current={index === 0 ? "true" : undefined}
+              >
+                <span class="brand-page-eco__nav-icon">
+                  <Icon size={18} stroke-width={1.75} aria-hidden="true" />
+                </span>
+                <span class="brand-page-eco__nav-label">{item.navLabel}</span>
+              </a>
+            );
+          })
+        }
+      </nav>
+
+      <div class="brand-page-eco__content">
+        {
+          data.items.map((item, index) => (
+            <details class="brand-page-eco__panel" id={`eco-${item.id}`} data-eco={item.id} open={index === 0}>
+              <summary class="brand-page-eco__summary">
+                <h3 class="brand-page-eco__title">{item.title}</h3>
+                <span class="brand-page-eco__chevron" aria-hidden="true" />
+              </summary>
+
+              <div class="brand-page-eco__body">
+                <p class="brand-page-eco__lead">{item.lead}</p>
+
+                <div class="brand-page-eco__block">
+                  <p class="brand-page-eco__block-label">Nasıl Çalışır</p>
+                  <p class="brand-page-eco__block-text">{item.howItWorks}</p>
+                </div>
+
+                <div class="brand-page-eco__block">
+                  <p class="brand-page-eco__block-label">Avantajları</p>
+                  <ul class="brand-page-eco__checklist">
+                    {item.advantages.map((adv) => (
+                      <li>
+                        <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+                        <span>{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="brand-page-eco__block">
+                  <p class="brand-page-eco__block-label">Kullanıldığı Modeller</p>
+                  <div class="brand-page-eco__tags">
+                    {item.models.map((model) => (
+                      <span class="brand-page-eco__tag">{model}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="brand-page-eco__callout">
+                  <p class="brand-page-eco__callout-label">Uzman Yorumu</p>
+                  <p class="brand-page-eco__callout-text">{item.expertNote}</p>
+                </div>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-eco");
+    if (!section) return;
+
+    var nav = section.querySelector(".brand-page-eco__nav");
+    var panels = Array.prototype.slice.call(section.querySelectorAll(".brand-page-eco__panel"));
+    if (!nav || !panels.length) return;
+
+    function activate(id, focusPanel) {
+      panels.forEach(function (panel) {
+        panel.open = panel.dataset.eco === id;
+      });
+      nav.querySelectorAll(".brand-page-eco__nav-link").forEach(function (link) {
+        if (link.dataset.eco === id) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+      if (focusPanel) {
+        var target = section.querySelector('[data-eco="' + id + '"].brand-page-eco__panel');
+        if (target) target.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+
+    nav.addEventListener("click", function (event) {
+      var link = event.target.closest(".brand-page-eco__nav-link");
+      if (!link) return;
+      event.preventDefault();
+      activate(link.dataset.eco, true);
+    });
+
+    panels.forEach(function (panel) {
+      panel.querySelector(".brand-page-eco__summary").addEventListener("click", function (event) {
+        window.setTimeout(function () {
+          if (panel.open) activate(panel.dataset.eco, false);
+        }, 0);
+      });
+    });
+
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-eco {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bpe-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-eco__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-eco__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-eco__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpe-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpe-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpe-badge-text);
+  }
+
+  .brand-page-eco__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-eco__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-eco__layout {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr);
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .brand-page-eco__nav {
+    position: sticky;
+    top: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .brand-page-eco__nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: background-color 200ms var(--bpe-ease), color 200ms var(--bpe-ease);
+  }
+
+  .brand-page-eco__nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    color: var(--color-text-soft);
+    transition: color 200ms var(--bpe-ease);
+  }
+
+  .brand-page-eco__nav-link:hover {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .brand-page-eco__nav-link[aria-current="true"] {
+    background: var(--bpe-nav-active-bg);
+    color: var(--bpe-accent);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .brand-page-eco__nav-link[aria-current="true"] .brand-page-eco__nav-icon {
+    color: var(--bpe-accent);
+  }
+
+  .brand-page-eco__panel {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+
+  .brand-page-eco__panel + .brand-page-eco__panel {
+    margin-top: var(--space-4);
+  }
+
+  .brand-page-eco__summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .brand-page-eco__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .brand-page-eco__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-page-eco__chevron {
+    flex: none;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-right: 2px solid var(--color-text-soft);
+    border-bottom: 2px solid var(--color-text-soft);
+    transform: rotate(45deg);
+    transition: transform 250ms var(--bpe-ease);
+  }
+
+  .brand-page-eco__panel[open] .brand-page-eco__chevron {
+    transform: rotate(-135deg);
+  }
+
+  .brand-page-eco__body {
+    padding: 0 var(--space-6) var(--space-6);
+    background: var(--color-background);
+  }
+
+  .brand-page-eco__lead {
+    margin: 0;
+    padding-top: var(--space-5);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .brand-page-eco__block {
+    margin-top: var(--space-5);
+  }
+
+  .brand-page-eco__block-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .brand-page-eco__block-text {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .brand-page-eco__checklist {
+    list-style: none;
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .brand-page-eco__checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .brand-page-eco__checklist svg {
+    flex: none;
+    margin-top: 0.15rem;
+    color: var(--bpe-accent);
+  }
+
+  .brand-page-eco__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  .brand-page-eco__tag {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .brand-page-eco__callout {
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    background: var(--bpe-callout-bg);
+    border-left: 3px solid var(--bpe-accent);
+    border-radius: var(--radius-lg);
+  }
+
+  .brand-page-eco__callout-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--bpe-callout-label);
+  }
+
+  .brand-page-eco__callout-text {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .brand-page-eco[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-eco[data-anim="in"] [data-rise] {
+    animation: brand-page-eco-rise 650ms var(--bpe-ease) both;
+  }
+
+  .brand-page-eco[data-anim="in"] .brand-page-eco__layout {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-page-eco-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .brand-page-eco__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+
+    .brand-page-eco__nav {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .brand-page-eco__nav-link {
+      padding: var(--space-2) var(--space-3);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-eco {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-eco__layout {
+      margin-top: var(--space-10);
+    }
+
+    .brand-page-eco__nav {
+      display: none;
+    }
+
+    .brand-page-eco__summary {
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .brand-page-eco__body {
+      padding: 0 var(--space-5) var(--space-5);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-eco[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-eco__nav-link,
+    .brand-page-eco__chevron {
+      transition: none;
+    }
+  }
+</style>

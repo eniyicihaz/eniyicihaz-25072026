@@ -1,8 +1,10 @@
 ---
-// BrandFaq — M8 of the /markalar ("Tüm Markalar") page, directly under
-// BrandExpertSupport (M7). This page is built up modularly (M1...M8…);
-// this component is only ever M8 and is the page's final section before
-// the Footer. Do not add later modules here — each gets its own component.
+// BrandFaq — M8 of the modular hub-page system (originally built for
+// /markalar; now also reused by /isitme-cihazlari, /hizmetlerimiz and
+// /bilgi-merkezi), directly under M7 (ExpertSupport). Always M8 of its
+// page and its final section before the Footer — do not add later
+// modules here, each gets its own component. Generic: takes its content
+// via the `data` prop.
 //
 // Not a Bootstrap-style accordion: each row is its own thin-bordered,
 // large-radius block with generous padding (no shadow, no card fill), the
@@ -10,7 +12,24 @@
 // separate nested box. Left column (badge/heading/intro) is sticky on
 // desktop so context never scrolls out of view while the FAQ list scrolls
 // — same sticky technique already used by M4's decision panel.
-import { brandFaq } from "../../../data/brands/faq";
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface BrandFaqContent {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  items: FaqItem[];
+}
+
+interface Props {
+  data: BrandFaqContent;
+}
+
+const { data: brandFaq } = Astro.props;
 
 const faqSchema = {
   "@context": "https://schema.org",

@@ -129,12 +129,15 @@ const [opening, development, peak, transition] = empathy.lines;
     position: relative;
     background: var(--color-background);
     color: var(--color-text);
-    padding-block: var(--space-24);
+    padding-block: var(--space-16) var(--space-12);
     /* Scoped tokens — same self-sufficient pattern as FooterCta's --fcta-*:
        declared directly on the component root, no separate tokens file. */
     --empathy-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --empathy-rise-dur: 700ms;
-    --empathy-line-gap: clamp(var(--space-16), 10vw, var(--space-24));
+    /* Tightened a further ~20% (was space-12..space-16) — homepage rhythm
+       pass: the four-line scroll-reveal still had more air between lines
+       than the rest of the page's tightened sections (visual QA round). */
+    --empathy-line-gap: clamp(var(--space-10), 6vw, var(--space-12));
   }
 
   /* sr-only: names the section for the document outline/screen readers
@@ -163,7 +166,7 @@ const [opening, development, peak, transition] = empathy.lines;
 
   @media (max-width: 640px) {
     .empathy {
-      padding-block: var(--space-16);
+      padding-block: var(--space-10);
     }
     .empathy__inner {
       padding-inline: var(--space-4);

@@ -28,9 +28,13 @@ export interface HeroContent {
   badge: string;
   headlineLine1: string;
   headlineLine2: string;
+  /** AI-quotable entity/location sentence, directly under the H1 — same
+   *  canonical definition reused verbatim on /iletisim (never drifts). */
+  contextSentence: string;
   subhead: string;
   ctaPrimary: HeroCtaLink;
   ctaSecondary: HeroCtaLink;
+  ctaWhatsapp: HeroCtaLink;
   cards: [HeroImageCardData, HeroImageCardData, HeroImageCardData];
   trustItems: [
     HeroTrustItemData,

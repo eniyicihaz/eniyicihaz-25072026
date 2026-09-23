@@ -1,0 +1,57 @@
+---
+// Coselgi brand page (/markalar/coselgi). Built on the shared Brand
+// Component Architecture (see src/components/brand-page/*) — no new
+// components, no new design language; all 14 sections reuse the exact
+// same components every other brand page on this site uses, fed by this
+// page's own src/data/coselgi/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { coselgiHero } from "../../data/coselgi/hero";
+import { coselgiOverview } from "../../data/coselgi/overview";
+import { coselgiIntro } from "../../data/coselgi/intro";
+import { coselgiTechnology } from "../../data/coselgi/technology";
+import { coselgiEcosystem } from "../../data/coselgi/ecosystem";
+import { coselgiPlatform } from "../../data/coselgi/platform";
+import { coselgiModels } from "../../data/coselgi/models";
+import { coselgiComparison } from "../../data/coselgi/comparison";
+import { coselgiIdealUser } from "../../data/coselgi/ideal-user";
+import { coselgiAdvantages } from "../../data/coselgi/advantages";
+import { coselgiExpertOpinion } from "../../data/coselgi/expert-opinion";
+import { coselgiFaq } from "../../data/coselgi/faq";
+import { coselgiRelatedContent } from "../../data/coselgi/related-content";
+import { coselgiFinalCta } from "../../data/coselgi/final-cta";
+---
+
+<MainLayout
+  title="Coselgi İşitme Cihazları | EniyiCihaz"
+  description="Coselgi'nin Widex altyapısıyla geliştirilen Acoustic Environment Technology'sini, Effect ve Mojo model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={coselgiHero} />
+  <BrandPageOverview data={coselgiOverview} />
+  <BrandPageIntro data={coselgiIntro} />
+  <BrandPageTechnology data={coselgiTechnology} />
+  <BrandPageEcosystem data={coselgiEcosystem} />
+  <BrandPageTechEvolution data={coselgiPlatform} />
+  <BrandPageModels data={coselgiModels} />
+  <BrandPageComparison data={coselgiComparison} />
+  <BrandPageIdealUser data={coselgiIdealUser} />
+  <BrandPageAdvantages data={coselgiAdvantages} />
+  <BrandPageExpertOpinion data={coselgiExpertOpinion} />
+  <BrandPageFaq data={coselgiFaq} />
+  <BrandPageRelatedContent data={coselgiRelatedContent} />
+  <BrandPageFinalCta data={coselgiFinalCta} />
+</MainLayout>

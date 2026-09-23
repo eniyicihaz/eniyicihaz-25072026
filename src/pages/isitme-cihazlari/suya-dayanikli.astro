@@ -1,0 +1,72 @@
+---
+// Suya Dayanıklı İşitme Cihazı — /isitme-cihazlari/suya-dayanikli. Seventh
+// and final page of the "İşitme Cihazı Çeşitleri" product-page series
+// (see header.data.ts's devicesMega first column), built directly on the
+// Kulak Arkası (BTE) / Kulak İçi (ITE) / Şarj Edilebilir / Bluetooth
+// Özellikli / Çocuklara Özel / Görünmez (CIC) master templates — same
+// shared, data-driven Brand Component Architecture, same
+// KulakArkasiComparison component (already generic, reused as-is), same
+// accent-scoping pattern with its own deniz mavisi-yeşili/teal (#0d9488)
+// category accent, chosen for its direct thematic tie to water.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Korunur? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> IP Koruma
+// Sınıfları -> Kullanım Alanları -> Teknolojiler -> Önerilen Marka ve
+// Modeller -> Suya Dayanıklı vs Standart -> Uzman Yorumu -> SSS -> Premium
+// CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for water/moisture-
+// specific everyday scenarios, and BTE's hearing-loss-level slot becomes
+// a genuine protection-level progression — IP54 through IP68 plus nano
+// coating — since bu sayfa bir işitme kaybı derecesini değil bir koruma
+// seviyesini konu aldığından IP sınıfına göre ilerleme daha anlamlı; see
+// ip-ratings.ts and use-cases.ts. This closes out the series: every
+// sibling "İşitme Cihazı Çeşitleri" menu item now points to a real page.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { suyaDayankliHero } from "../../data/suya-dayanikli/hero";
+import { suyaDayankliIntro } from "../../data/suya-dayanikli/intro";
+import { suyaDayankliIdealUser } from "../../data/suya-dayanikli/ideal-user";
+import { suyaDayankliAdvantages } from "../../data/suya-dayanikli/advantages";
+import { suyaDayankliConsiderations } from "../../data/suya-dayanikli/considerations";
+import { suyaDayankliIpRatings } from "../../data/suya-dayanikli/ip-ratings";
+import { suyaDayankliUseCases } from "../../data/suya-dayanikli/use-cases";
+import { suyaDayankliTechnology } from "../../data/suya-dayanikli/technology";
+import { suyaDayankliRecommendedBrands } from "../../data/suya-dayanikli/recommended-brands";
+import { suyaDayankliComparison } from "../../data/suya-dayanikli/comparison";
+import { suyaDayankliExpertOpinion } from "../../data/suya-dayanikli/expert-opinion";
+import { suyaDayankliFaq } from "../../data/suya-dayanikli/faq";
+import { suyaDayankliRelatedContent } from "../../data/suya-dayanikli/related-content";
+import { suyaDayankliFinalCta } from "../../data/suya-dayanikli/final-cta";
+---
+
+<MainLayout
+  title="Suya Dayanıklı İşitme Cihazı Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Suya dayanıklı işitme cihazı nedir, IP koruma sınıfları ne anlama gelir? Avantajları, dikkat edilmesi gerekenler ve standart (IP korumasız) cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={suyaDayankliHero} />
+  <BrandPageIntro data={suyaDayankliIntro} />
+  <BrandPageIdealUser data={suyaDayankliIdealUser} />
+  <BrandPageAdvantages data={suyaDayankliAdvantages} />
+  <BrandPageIdealUser data={suyaDayankliConsiderations} />
+  <BrandPageTechEvolution data={suyaDayankliIpRatings} />
+  <BrandPageTechnology data={suyaDayankliUseCases} />
+  <BrandPageEcosystem data={suyaDayankliTechnology} />
+  <BrandPageRelatedContent data={suyaDayankliRecommendedBrands} />
+  <KulakArkasiComparison data={suyaDayankliComparison} />
+  <BrandPageExpertOpinion data={suyaDayankliExpertOpinion} />
+  <BrandPageFaq data={suyaDayankliFaq} />
+  <BrandPageFinalCta data={suyaDayankliFinalCta} />
+  <BrandPageRelatedContent data={suyaDayankliRelatedContent} />
+</MainLayout>

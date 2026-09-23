@@ -1,0 +1,73 @@
+---
+// Konuşma Odaklı Teknolojiler — /teknolojiler/konusma-odakli. Third page
+// of the "Teknolojilere Göre" product-page series (see header.data.ts's
+// devicesMega second column), built directly on the Yapay Zeka Destekli /
+// Gürültü Engelleme master templates — same shared, data-driven Brand
+// Component Architecture, same KulakArkasiComparison component (already
+// generic, reused as-is), same accent-scoping pattern with its own
+// turuncu/orange (#ea580c) category accent.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Çalışır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Teknolojinin
+// Gelişimi -> Kullanım Alanları -> Teknolojiler -> Önerilen Marka ve
+// Modeller -> Yönlü Mikrofonlu vs Standart -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for speech-focus-
+// specific everyday scenarios, and BTE's hearing-loss-level slot becomes
+// a genuine directional-microphone technology timeline — fixed through
+// adaptive, binaural-synced and AI-assisted speaker separation — since bu
+// sayfa bir işitme kaybı derecesini değil bir mikrofon teknolojisini
+// konu aldığından teknolojik evrim daha anlamlı; see evolution.ts and
+// use-cases.ts. Deliberately scoped apart from the sibling Gürültü
+// Engelleme page: that page owns general noise suppression, this page
+// owns directional speech isolation — the Ecosystem section's AI item
+// cross-references Yapay Zeka Destekli rather than duplicating it.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { konusmaOdakliHero } from "../../data/konusma-odakli/hero";
+import { konusmaOdakliIntro } from "../../data/konusma-odakli/intro";
+import { konusmaOdakliIdealUser } from "../../data/konusma-odakli/ideal-user";
+import { konusmaOdakliAdvantages } from "../../data/konusma-odakli/advantages";
+import { konusmaOdakliConsiderations } from "../../data/konusma-odakli/considerations";
+import { konusmaOdakliEvolution } from "../../data/konusma-odakli/evolution";
+import { konusmaOdakliUseCases } from "../../data/konusma-odakli/use-cases";
+import { konusmaOdakliTechnology } from "../../data/konusma-odakli/technology";
+import { konusmaOdakliRecommendedBrands } from "../../data/konusma-odakli/recommended-brands";
+import { konusmaOdakliComparison } from "../../data/konusma-odakli/comparison";
+import { konusmaOdakliExpertOpinion } from "../../data/konusma-odakli/expert-opinion";
+import { konusmaOdakliFaq } from "../../data/konusma-odakli/faq";
+import { konusmaOdakliRelatedContent } from "../../data/konusma-odakli/related-content";
+import { konusmaOdakliFinalCta } from "../../data/konusma-odakli/final-cta";
+---
+
+<MainLayout
+  title="Konuşma Odaklı Teknolojiler Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Konuşma odaklı teknolojiler nedir, yönlü mikrofon nasıl çalışır? Avantajları, dikkat edilmesi gerekenler ve standart (omnidirectional) cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={konusmaOdakliHero} />
+  <BrandPageIntro data={konusmaOdakliIntro} />
+  <BrandPageIdealUser data={konusmaOdakliIdealUser} />
+  <BrandPageAdvantages data={konusmaOdakliAdvantages} />
+  <BrandPageIdealUser data={konusmaOdakliConsiderations} />
+  <BrandPageTechEvolution data={konusmaOdakliEvolution} />
+  <BrandPageTechnology data={konusmaOdakliUseCases} />
+  <BrandPageEcosystem data={konusmaOdakliTechnology} />
+  <BrandPageRelatedContent data={konusmaOdakliRecommendedBrands} />
+  <KulakArkasiComparison data={konusmaOdakliComparison} />
+  <BrandPageExpertOpinion data={konusmaOdakliExpertOpinion} />
+  <BrandPageFaq data={konusmaOdakliFaq} />
+  <BrandPageFinalCta data={konusmaOdakliFinalCta} />
+  <BrandPageRelatedContent data={konusmaOdakliRelatedContent} />
+</MainLayout>

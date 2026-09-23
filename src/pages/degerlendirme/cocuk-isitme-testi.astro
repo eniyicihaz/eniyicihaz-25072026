@@ -1,0 +1,82 @@
+---
+// Çocuk İşitme Testi — /degerlendirme/cocuk-isitme-testi. Fourth page of
+// the "Değerlendirme" series (see header.data.ts's servicesMega first
+// column), following Ücretsiz İşitme Testi, Odyometri and Timpanometri.
+// Same clinical service-page genre and full health-content safety
+// discipline, with extra care given the pediatric subject:
+// developmental-milestone language is hedged throughout (every child
+// develops differently, illustrative examples rather than a checklist),
+// and parents are directed to a professional rather than a
+// self-assessment at every turn.
+//
+// This is the one Değerlendirme page where a themed hero image is
+// genuinely accurate rather than merely illustrative — it uses a real
+// pediatric model (Oticon Play PX, tagged "Çocuk" in its own models.ts)
+// instead of a generic device.
+//
+// The TechEvolution "stage" slot is repurposed as a genuine age-based
+// method ladder (yenidoğan -> bebeklik -> erken çocukluk -> okul çağı),
+// distinct from the process-step usage on the three prior pages, since
+// pediatric testing genuinely changes method by developmental stage.
+// The KulakArkasiComparison table contrasts objective testing (OAE/ABR)
+// against behavioral testing (oyun odyometrisi) — pediatric audiology's
+// own fundamental methodological split.
+//
+// accentColor: turuncu / orange-500 (#f97316) — fourth color in the
+// fresh accent rotation opened for this series on Ücretsiz İşitme
+// Testi's hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Değerlendirme Önerilen Durumlar -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Yaşa Göre Test Yöntemleri -> Kullanılan Yöntemler ->
+// Teknolojiler -> Markalara Göre İnceleyin -> Objektif vs Davranışsal
+// Testler -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { cocukIsitmeTestiHero } from "../../data/cocuk-isitme-testi/hero";
+import { cocukIsitmeTestiIntro } from "../../data/cocuk-isitme-testi/intro";
+import { cocukIsitmeTestiIdealUser } from "../../data/cocuk-isitme-testi/ideal-user";
+import { cocukIsitmeTestiAdvantages } from "../../data/cocuk-isitme-testi/advantages";
+import { cocukIsitmeTestiConsiderations } from "../../data/cocuk-isitme-testi/considerations";
+import { cocukIsitmeTestiEvolution } from "../../data/cocuk-isitme-testi/evolution";
+import { cocukIsitmeTestiUseCases } from "../../data/cocuk-isitme-testi/use-cases";
+import { cocukIsitmeTestiTechnology } from "../../data/cocuk-isitme-testi/technology";
+import { cocukIsitmeTestiRecommendedBrands } from "../../data/cocuk-isitme-testi/recommended-brands";
+import { cocukIsitmeTestiComparison } from "../../data/cocuk-isitme-testi/comparison";
+import { cocukIsitmeTestiExpertOpinion } from "../../data/cocuk-isitme-testi/expert-opinion";
+import { cocukIsitmeTestiFaq } from "../../data/cocuk-isitme-testi/faq";
+import { cocukIsitmeTestiRelatedContent } from "../../data/cocuk-isitme-testi/related-content";
+import { cocukIsitmeTestiFinalCta } from "../../data/cocuk-isitme-testi/final-cta";
+---
+
+<MainLayout
+  title="Çocuk İşitme Testi | Yaşa Uygun Yöntemler ve Erken Tespit | EniyiCihaz"
+  description="Çocuklarda işitme testi nasıl yapılır? Yenidoğan taraması, ABR, oyun odyometrisi ve yaşa göre kullanılan test yöntemleri hakkında bilgi edinin."
+>
+  <BrandPageHero data={cocukIsitmeTestiHero} />
+  <BrandPageIntro data={cocukIsitmeTestiIntro} />
+  <BrandPageIdealUser data={cocukIsitmeTestiIdealUser} />
+  <BrandPageAdvantages data={cocukIsitmeTestiAdvantages} />
+  <BrandPageIdealUser data={cocukIsitmeTestiConsiderations} />
+  <BrandPageTechEvolution data={cocukIsitmeTestiEvolution} />
+  <BrandPageTechnology data={cocukIsitmeTestiUseCases} />
+  <BrandPageEcosystem data={cocukIsitmeTestiTechnology} />
+  <BrandPageRelatedContent data={cocukIsitmeTestiRecommendedBrands} />
+  <KulakArkasiComparison data={cocukIsitmeTestiComparison} />
+  <BrandPageExpertOpinion data={cocukIsitmeTestiExpertOpinion} />
+  <BrandPageFaq data={cocukIsitmeTestiFaq} />
+  <BrandPageFinalCta data={cocukIsitmeTestiFinalCta} />
+  <BrandPageRelatedContent data={cocukIsitmeTestiRelatedContent} />
+</MainLayout>

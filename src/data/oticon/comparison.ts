@@ -26,15 +26,35 @@ export interface OticonComparisonContent {
   badge: string;
   heading: string;
   intro: string;
+  columnLabels: { series: string; technology: string; profile: string; fourth: string };
   maxLevels: number;
   rows: ComparisonRow[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorNewTagBg: string;
+  accentColorIconBg: string;
+  accentColorLevelTagBg: string;
+  accentColorDark: string;
 }
 
 export const oticonComparison: OticonComparisonContent = {
   badge: "MODEL KARŞILAŞTIRMASI",
   heading: "Oticon Serileri Karşılaştırması",
   intro: "Hangi Oticon serisinin sizin için daha uygun olduğunu aşağıdaki özet tabloda inceleyebilirsiniz.",
+  columnLabels: { series: "Seri", technology: "Teknoloji", profile: "Kullanıcı Profili", fourth: "Seviyeler" },
   maxLevels: 4,
+  // Precomputed rgb() decomposition of #5fb85a — reproduces the values
+  // previously hardcoded directly in OticonComparison.astro's CSS.
+  accentColor: "#5fb85a",
+  accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
+  accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
+  accentColorBadgeText: "#4a9a45",
+  accentColorNewTagBg: "rgb(95 184 90 / 0.14)",
+  accentColorIconBg: "rgb(95 184 90 / 0.1)",
+  accentColorLevelTagBg: "rgb(95 184 90 / 0.12)",
+  accentColorDark: "#3f8a3a",
   rows: [
     { series: "Zeal", isNew: true, technology: "Yeni Nesil", profile: "Premium Kullanıcılar", profileIcon: Sparkles, levelLabel: "Yeni Seri" },
     { series: "Intent", technology: "4D Sensör", profile: "Premium", profileIcon: Sparkles, levelCount: 4 },

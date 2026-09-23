@@ -1,6 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
-// Minimal tutuldu — site adresi, trailingSlash, entegrasyonlar gibi kararlar
-// proje sahibine ait. Şimdilik yalnızca çalışması için gereken kadarı var.
-export default defineConfig({});
+// site: gerçek prod adresi (COMPANY.md "Resmi Web Sitesi") — canonical/OG
+// etiketleri ve @astrojs/sitemap için gereklidir, aksi halde bunlar göreli
+// veya eksik URL üretir.
+export default defineConfig({
+  site: 'https://www.eniyicihaz.com',
+  integrations: [sitemap()],
+});

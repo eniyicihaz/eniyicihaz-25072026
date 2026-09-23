@@ -1,0 +1,64 @@
+---
+// Çocuklarda SGK — /sgk/cocuklarda-sgk. Fourth page of the "SGK &
+// Haklar" series (see header.data.ts's knowledgeMega third column),
+// following /sgk/katki-payi, /sgk/rapor-sureci and
+// /sgk/gerekli-belgeler.
+//
+// accentColor: pembe / pink-600 (#db2777) — fourth color in this
+// column's own accent rotation; see hero.ts for the full rationale.
+//
+// 14-section flow, in order: Hero -> Süreç Neden Farklı? -> Kimler
+// İçin Önemlidir? -> Desteğin Faydaları -> Dikkat Edilmesi Gerekenler
+// -> Sürecin Adımları -> Pediatrik Değerlendirme Yöntemleri -> SGK
+// Sisteminin Bileşenleri -> Markalara Göre İnceleyin -> Erken vs Geç
+// Müdahale Karşılaştırması -> Uzman Yorumu -> SSS -> Premium CTA ->
+// İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { cocuklardaSgkHero } from "../../data/cocuklarda-sgk/hero";
+import { cocuklardaSgkIntro } from "../../data/cocuklarda-sgk/intro";
+import { cocuklardaSgkIdealUser } from "../../data/cocuklarda-sgk/ideal-user";
+import { cocuklardaSgkAdvantages } from "../../data/cocuklarda-sgk/advantages";
+import { cocuklardaSgkConsiderations } from "../../data/cocuklarda-sgk/considerations";
+import { cocuklardaSgkEvolution } from "../../data/cocuklarda-sgk/evolution";
+import { cocuklardaSgkUseCases } from "../../data/cocuklarda-sgk/use-cases";
+import { cocuklardaSgkTechnology } from "../../data/cocuklarda-sgk/technology";
+import { cocuklardaSgkRecommendedBrands } from "../../data/cocuklarda-sgk/recommended-brands";
+import { cocuklardaSgkComparison } from "../../data/cocuklarda-sgk/comparison";
+import { cocuklardaSgkExpertOpinion } from "../../data/cocuklarda-sgk/expert-opinion";
+import { cocuklardaSgkFaq } from "../../data/cocuklarda-sgk/faq";
+import { cocuklardaSgkRelatedContent } from "../../data/cocuklarda-sgk/related-content";
+import { cocuklardaSgkFinalCta } from "../../data/cocuklarda-sgk/final-cta";
+---
+
+<MainLayout
+  title="Çocuklarda SGK | Çocuklarda İşitme Cihazı SGK Desteği | EniyiCihaz"
+  description="Çocuklarda SGK işitme cihazı süreci nasıl işler? Yenidoğan taramasından pediatrik değerlendirmeye, çocuklara özel SGK sürecini öğrenin."
+>
+  <BrandPageHero data={cocuklardaSgkHero} />
+  <BrandPageIntro data={cocuklardaSgkIntro} />
+  <BrandPageIdealUser data={cocuklardaSgkIdealUser} />
+  <BrandPageAdvantages data={cocuklardaSgkAdvantages} />
+  <BrandPageIdealUser data={cocuklardaSgkConsiderations} />
+  <BrandPageTechEvolution data={cocuklardaSgkEvolution} />
+  <BrandPageTechnology data={cocuklardaSgkUseCases} />
+  <BrandPageEcosystem data={cocuklardaSgkTechnology} />
+  <BrandPageRelatedContent data={cocuklardaSgkRecommendedBrands} />
+  <KulakArkasiComparison data={cocuklardaSgkComparison} />
+  <BrandPageExpertOpinion data={cocuklardaSgkExpertOpinion} />
+  <BrandPageFaq data={cocuklardaSgkFaq} />
+  <BrandPageFinalCta data={cocuklardaSgkFinalCta} />
+  <BrandPageRelatedContent data={cocuklardaSgkRelatedContent} />
+</MainLayout>

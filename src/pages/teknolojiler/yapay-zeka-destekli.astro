@@ -1,0 +1,72 @@
+---
+// Yapay Zeka Destekli İşitme Cihazı — /teknolojiler/yapay-zeka-destekli.
+// First page of the "Teknolojilere Göre" product-page series (see
+// header.data.ts's devicesMega second column) — a new series, separate
+// from the now-complete "İşitme Cihazı Çeşitleri" series, hence its own
+// /teknolojiler/ route prefix. Built directly on the /isitme-cihazlari/*
+// master templates (Kulak Arkası, Kulak İçi, Şarj Edilebilir, Bluetooth
+// Özellikli, Çocuklara Özel, Görünmez, Suya Dayanıklı) — same shared,
+// data-driven Brand Component Architecture, same KulakArkasiComparison
+// component (already generic, reused as-is), same accent-scoping pattern
+// with its own çivit/indigo (#4f46e5) category accent.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Çalışır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Ses İşleme
+// Teknolojisinin Gelişimi -> Kullanım Alanları -> Teknolojiler -> Önerilen
+// Marka ve Modeller -> Yapay Zeka Destekli vs Standart -> Uzman Yorumu ->
+// SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for AI-specific
+// everyday capabilities, and BTE's hearing-loss-level slot becomes a
+// genuine sound-processing technology timeline — analog through today's
+// deep-learning systems — since bu sayfa bir işitme kaybı derecesini
+// değil bir işlemci teknolojisini konu aldığından teknolojik evrim daha
+// anlamlı; see evolution.ts and use-cases.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { yapayZekaDestekliHero } from "../../data/yapay-zeka-destekli/hero";
+import { yapayZekaDestekliIntro } from "../../data/yapay-zeka-destekli/intro";
+import { yapayZekaDestekliIdealUser } from "../../data/yapay-zeka-destekli/ideal-user";
+import { yapayZekaDestekliAdvantages } from "../../data/yapay-zeka-destekli/advantages";
+import { yapayZekaDestekliConsiderations } from "../../data/yapay-zeka-destekli/considerations";
+import { yapayZekaDestekliEvolution } from "../../data/yapay-zeka-destekli/evolution";
+import { yapayZekaDestekliUseCases } from "../../data/yapay-zeka-destekli/use-cases";
+import { yapayZekaDestekliTechnology } from "../../data/yapay-zeka-destekli/technology";
+import { yapayZekaDestekliRecommendedBrands } from "../../data/yapay-zeka-destekli/recommended-brands";
+import { yapayZekaDestekliComparison } from "../../data/yapay-zeka-destekli/comparison";
+import { yapayZekaDestekliExpertOpinion } from "../../data/yapay-zeka-destekli/expert-opinion";
+import { yapayZekaDestekliFaq } from "../../data/yapay-zeka-destekli/faq";
+import { yapayZekaDestekliRelatedContent } from "../../data/yapay-zeka-destekli/related-content";
+import { yapayZekaDestekliFinalCta } from "../../data/yapay-zeka-destekli/final-cta";
+---
+
+<MainLayout
+  title="Yapay Zeka Destekli İşitme Cihazı Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Yapay zeka destekli işitme cihazı nedir, nasıl çalışır? Avantajları, dikkat edilmesi gerekenler ve standart (kural tabanlı) cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={yapayZekaDestekliHero} />
+  <BrandPageIntro data={yapayZekaDestekliIntro} />
+  <BrandPageIdealUser data={yapayZekaDestekliIdealUser} />
+  <BrandPageAdvantages data={yapayZekaDestekliAdvantages} />
+  <BrandPageIdealUser data={yapayZekaDestekliConsiderations} />
+  <BrandPageTechEvolution data={yapayZekaDestekliEvolution} />
+  <BrandPageTechnology data={yapayZekaDestekliUseCases} />
+  <BrandPageEcosystem data={yapayZekaDestekliTechnology} />
+  <BrandPageRelatedContent data={yapayZekaDestekliRecommendedBrands} />
+  <KulakArkasiComparison data={yapayZekaDestekliComparison} />
+  <BrandPageExpertOpinion data={yapayZekaDestekliExpertOpinion} />
+  <BrandPageFaq data={yapayZekaDestekliFaq} />
+  <BrandPageFinalCta data={yapayZekaDestekliFinalCta} />
+  <BrandPageRelatedContent data={yapayZekaDestekliRelatedContent} />
+</MainLayout>

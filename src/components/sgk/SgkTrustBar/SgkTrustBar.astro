@@ -1,0 +1,251 @@
+---
+// SgkTrustBar — the SGK pillar page's closing trust bar. Sits between the
+// final CTA and the Footer. Deliberately not sales-oriented (that's the
+// CTA's job) — small, quiet, minimal trust signals plus one contact line.
+// Own data namespace (../../../data/sgk/trustBar), independent of the
+// rest of sgk/*.
+import { MapPin, ShieldCheck, Stethoscope, HeartHandshake } from "lucide-astro";
+import { sgkTrustBar } from "../../../data/sgk/trustBar";
+import { contactConfig } from "../../../config";
+
+const icons = [MapPin, ShieldCheck, Stethoscope, HeartHandshake];
+---
+
+<section class="sgk-trust-bar" aria-label="Güven bilgileri">
+  <div class="sgk-trust-bar__inner">
+    <div class="sgk-trust-bar__grid" data-rise>
+      {
+        sgkTrustBar.items.map((item, i) => {
+          const Icon = icons[i % icons.length];
+          return (
+            <div class="sgk-trust-bar__item">
+              <span class="sgk-trust-bar__icon" aria-hidden="true">
+                <Icon size={20} stroke-width={1.75} />
+              </span>
+              <div class="sgk-trust-bar__text">
+                <p class="sgk-trust-bar__title">{item.title}</p>
+                <p class="sgk-trust-bar__desc">{item.text}</p>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <p class="sgk-trust-bar__closing" data-rise>
+      {sgkTrustBar.closingText}{" "}
+      <a class="sgk-trust-bar__closing-link" href={contactConfig.phone.href}>
+        {sgkTrustBar.closingLinkLabel}
+      </a>
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-trust-bar");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as the rest
+    // of the SGK page: default-visible CSS, JS-only "armed" opt-in, three
+    // independent safety nets so content can never get stuck hidden.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-trust-bar {
+    position: relative;
+    background: rgb(37 99 235 / 0.035);
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-10);
+    --stb-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-trust-bar__inner {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .sgk-trust-bar__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sgk-trust-bar__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-5);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .sgk-trust-bar__item:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .sgk-trust-bar__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    color: var(--color-primary);
+  }
+
+  .sgk-trust-bar__text {
+    min-width: 0;
+  }
+
+  .sgk-trust-bar__title {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.35;
+    color: var(--color-text);
+  }
+
+  .sgk-trust-bar__desc {
+    margin: 2px 0 0;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-trust-bar__closing {
+    margin: var(--space-8) 0 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-trust-bar__closing-link {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sgk-trust-bar__closing-link:hover {
+    text-decoration: underline;
+  }
+
+  .sgk-trust-bar__closing-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .sgk-trust-bar[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 550ms var(--stb-ease), transform 550ms var(--stb-ease);
+  }
+
+  .sgk-trust-bar[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-trust-bar[data-anim="armed"] .sgk-trust-bar__closing { transition-delay: 90ms; }
+
+  /* --- Responsive ------------------------------------------------------------ */
+
+  @media (max-width: 1023px) {
+    .sgk-trust-bar__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-6) 0;
+    }
+
+    .sgk-trust-bar__item {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .sgk-trust-bar__item:nth-child(odd) {
+      padding-left: 0;
+      padding-right: var(--space-5);
+    }
+
+    .sgk-trust-bar__item:nth-child(even) {
+      padding-left: var(--space-5);
+      border-left: 1px solid var(--color-border);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-trust-bar {
+      padding-block: var(--space-8);
+    }
+
+    .sgk-trust-bar__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+
+    .sgk-trust-bar__item,
+    .sgk-trust-bar__item:nth-child(even) {
+      border-left: none;
+      padding-inline: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-trust-bar[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

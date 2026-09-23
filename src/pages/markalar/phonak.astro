@@ -1,0 +1,59 @@
+---
+// Phonak brand page (/markalar/phonak). Built entirely on the shared,
+// data-driven Brand Component Architecture (see PHONAK MASTER BLUEPRINT,
+// src/components/brand-page/*) — all 14 sections from the approved
+// blueprint's page flow (§3): Hero -> Brand Overview -> Intro ->
+// Technology -> Ecosystem -> Technology Evolution -> Models -> Comparison
+// -> Ideal User -> Advantages -> Expert Opinion -> FAQ -> Related Content
+// -> Final CTA.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { phonakHero } from "../../data/phonak/hero";
+import { phonakOverview } from "../../data/phonak/overview";
+import { phonakIntro } from "../../data/phonak/intro";
+import { phonakTechnology } from "../../data/phonak/technology";
+import { phonakEcosystem } from "../../data/phonak/ecosystem";
+import { phonakPlatform } from "../../data/phonak/platform";
+import { phonakModels } from "../../data/phonak/models";
+import { phonakComparison } from "../../data/phonak/comparison";
+import { phonakIdealUser } from "../../data/phonak/ideal-user";
+import { phonakAdvantages } from "../../data/phonak/advantages";
+import { phonakExpertOpinion } from "../../data/phonak/expert-opinion";
+import { phonakFaq } from "../../data/phonak/faq";
+import { phonakRelatedContent } from "../../data/phonak/related-content";
+import { phonakFinalCta } from "../../data/phonak/final-cta";
+---
+
+<MainLayout
+  title="Phonak İşitme Cihazları | EniyiCihaz"
+  description="Phonak'ın evrensel Bluetooth bağlantısı, Roger ekosistemi ve Audéo, Naída, Sky gibi model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={phonakHero} />
+  <BrandPageOverview data={phonakOverview} />
+  <BrandPageIntro data={phonakIntro} />
+  <BrandPageTechnology data={phonakTechnology} />
+  <BrandPageEcosystem data={phonakEcosystem} />
+  <BrandPageTechEvolution data={phonakPlatform} />
+  <BrandPageModels data={phonakModels} />
+  <BrandPageComparison data={phonakComparison} />
+  <BrandPageIdealUser data={phonakIdealUser} />
+  <BrandPageAdvantages data={phonakAdvantages} />
+  <BrandPageExpertOpinion data={phonakExpertOpinion} />
+  <BrandPageFaq data={phonakFaq} />
+  <BrandPageRelatedContent data={phonakRelatedContent} />
+  <BrandPageFinalCta data={phonakFinalCta} />
+</MainLayout>

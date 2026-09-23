@@ -1,11 +1,36 @@
 ---
-// BrandDecision — M4 of the /markalar ("Tüm Markalar") page, directly under
-// BrandCriteria (M3). This page is built up modularly (M1, M2, M3, M4…);
-// this component is only ever M4. Do not add later modules here — each
-// gets its own component.
+// BrandDecision — M4 of the modular hub-page system (originally built for
+// /markalar; now also reused by /isitme-cihazlari, /hizmetlerimiz and
+// /bilgi-merkezi), directly under M3 (Criteria). Always M4 of its page —
+// do not add later modules here, each gets its own component. Generic:
+// takes its content via the `data` prop.
 import { Phone, MessageCircle } from "lucide-astro";
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
-import { brandDecision } from "../../../data/brands/decision";
+
+export interface DecisionScenario {
+  icon: any;
+  title: string;
+  description: string;
+}
+
+export interface BrandDecisionContent {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  scenarios: DecisionScenario[];
+  panel: {
+    title: string;
+    description: string;
+    ctaPrimary: { label: string; href: string };
+    ctaSecondary: { label: string; href: string };
+  };
+}
+
+interface Props {
+  data: BrandDecisionContent;
+}
+
+const { data: brandDecision } = Astro.props;
 ---
 
 <section class="brand-decision" aria-labelledby="brand-decision-title">

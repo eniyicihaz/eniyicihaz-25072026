@@ -1,9 +1,10 @@
 ---
-// BrandExpertSupport — M7 of the /markalar ("Tüm Markalar") page, directly
-// under BrandExtended (M6). This page is built up modularly (M1...M7…);
-// this component is only ever M7 and is the page's final major section
-// before the Footer. Do not add later modules here — each gets its own
-// component.
+// BrandExpertSupport — M7 of the modular hub-page system (originally
+// built for /markalar; now also reused by /isitme-cihazlari,
+// /hizmetlerimiz and /bilgi-merkezi), directly under M6 (Extended).
+// Always M7 of its page and its final major section before the Footer —
+// do not add later modules here, each gets its own component. Generic:
+// takes its content via the `data` prop.
 //
 // M2–M6 already did the informing. This section sells no brand and adds no
 // new information — it's the page's strongest conversion moment. Two
@@ -18,7 +19,35 @@
 // single hairline border and nothing else.
 import { ShieldCheck } from "lucide-astro";
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
-import { brandExpertSupport } from "../../../data/brands/expert-support";
+
+export interface ExpertSupportCta {
+  label: string;
+  href: string;
+}
+
+export interface ExpertSupportBandItem {
+  icon: any;
+  label: string;
+}
+
+export interface BrandExpertSupportContent {
+  eyebrow: string;
+  heading: string;
+  paragraph: string;
+  trustPoints: string[];
+  ctaPrimary: ExpertSupportCta;
+  ctaSecondary: ExpertSupportCta;
+  reassurance: string;
+  panelHeading: string;
+  panelBody: string;
+  band: ExpertSupportBandItem[];
+}
+
+interface Props {
+  data: BrandExpertSupportContent;
+}
+
+const { data: brandExpertSupport } = Astro.props;
 
 const checklistColOne = brandExpertSupport.trustPoints.slice(0, 3);
 const checklistColTwo = brandExpertSupport.trustPoints.slice(3);

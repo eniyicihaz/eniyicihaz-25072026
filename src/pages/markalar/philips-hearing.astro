@@ -1,0 +1,57 @@
+---
+// Philips Hearing brand page (/markalar/philips-hearing). Built on the
+// shared Brand Component Architecture (see src/components/brand-page/*)
+// — no new components, no new design language; all 14 sections reuse the
+// exact same components every other brand page on this site uses, fed
+// by this page's own src/data/philips-hearing/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { philipsHearingHero } from "../../data/philips-hearing/hero";
+import { philipsHearingOverview } from "../../data/philips-hearing/overview";
+import { philipsHearingIntro } from "../../data/philips-hearing/intro";
+import { philipsHearingTechnology } from "../../data/philips-hearing/technology";
+import { philipsHearingEcosystem } from "../../data/philips-hearing/ecosystem";
+import { philipsHearingPlatform } from "../../data/philips-hearing/platform";
+import { philipsHearingModels } from "../../data/philips-hearing/models";
+import { philipsHearingComparison } from "../../data/philips-hearing/comparison";
+import { philipsHearingIdealUser } from "../../data/philips-hearing/ideal-user";
+import { philipsHearingAdvantages } from "../../data/philips-hearing/advantages";
+import { philipsHearingExpertOpinion } from "../../data/philips-hearing/expert-opinion";
+import { philipsHearingFaq } from "../../data/philips-hearing/faq";
+import { philipsHearingRelatedContent } from "../../data/philips-hearing/related-content";
+import { philipsHearingFinalCta } from "../../data/philips-hearing/final-cta";
+---
+
+<MainLayout
+  title="Philips HearLink İşitme Cihazları | EniyiCihaz"
+  description="Philips HearLink'in Demant lisansıyla geliştirilen Velox-S platformunu ve HearLink 50, 40, 30 kademelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={philipsHearingHero} />
+  <BrandPageOverview data={philipsHearingOverview} />
+  <BrandPageIntro data={philipsHearingIntro} />
+  <BrandPageTechnology data={philipsHearingTechnology} />
+  <BrandPageEcosystem data={philipsHearingEcosystem} />
+  <BrandPageTechEvolution data={philipsHearingPlatform} />
+  <BrandPageModels data={philipsHearingModels} />
+  <BrandPageComparison data={philipsHearingComparison} />
+  <BrandPageIdealUser data={philipsHearingIdealUser} />
+  <BrandPageAdvantages data={philipsHearingAdvantages} />
+  <BrandPageExpertOpinion data={philipsHearingExpertOpinion} />
+  <BrandPageFaq data={philipsHearingFaq} />
+  <BrandPageRelatedContent data={philipsHearingRelatedContent} />
+  <BrandPageFinalCta data={philipsHearingFinalCta} />
+</MainLayout>

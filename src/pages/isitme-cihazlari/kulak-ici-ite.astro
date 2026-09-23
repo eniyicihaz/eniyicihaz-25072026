@@ -1,0 +1,68 @@
+---
+// Kulak İçi (ITE) İşitme Cihazı — /isitme-cihazlari/kulak-ici-ite.
+// Second page of the "İşitme Cihazı Çeşitleri" product-page series (see
+// header.data.ts's devicesMega first column), built directly on the
+// Kulak Arkası (BTE) master template (/isitme-cihazlari/kulak-arkasi-bte)
+// — same shared, data-driven Brand Component Architecture, same
+// KulakArkasiComparison component (already generic, reused as-is rather
+// than duplicated), same violet (#7c3aed) category accent scoped entirely
+// to this page's own data files (src/data/kulak-ici/*).
+//
+// 13-section flow, in order: Hero -> Nedir? + Nasıl Çalışır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> İşitme
+// Kaybı Seviyelerine Göre Kullanımı -> Kulak İçi Cihaz Türleri (ITE/ITC/
+// CIC/IIC) -> Teknolojiler -> Önerilen Marka ve Modeller -> Kulak İçi vs
+// Kulak Arkası -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for "Kulak İçi Cihaz
+// Türleri" — a topic genuinely central to ITE with no BTE counterpart —
+// and "Nasıl Çalışır?" is folded into the Intro section rather than
+// spawning a new component; see device-types.ts and intro.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { kulakIciHero } from "../../data/kulak-ici/hero";
+import { kulakIciIntro } from "../../data/kulak-ici/intro";
+import { kulakIciIdealUser } from "../../data/kulak-ici/ideal-user";
+import { kulakIciAdvantages } from "../../data/kulak-ici/advantages";
+import { kulakIciConsiderations } from "../../data/kulak-ici/considerations";
+import { kulakIciHearingLossLevels } from "../../data/kulak-ici/hearing-loss-levels";
+import { kulakIciDeviceTypes } from "../../data/kulak-ici/device-types";
+import { kulakIciTechnology } from "../../data/kulak-ici/technology";
+import { kulakIciRecommendedBrands } from "../../data/kulak-ici/recommended-brands";
+import { kulakIciComparison } from "../../data/kulak-ici/comparison";
+import { kulakIciExpertOpinion } from "../../data/kulak-ici/expert-opinion";
+import { kulakIciFaq } from "../../data/kulak-ici/faq";
+import { kulakIciRelatedContent } from "../../data/kulak-ici/related-content";
+import { kulakIciFinalCta } from "../../data/kulak-ici/final-cta";
+---
+
+<MainLayout
+  title="Kulak İçi (ITE) İşitme Cihazı Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Kulak içi (ITE) işitme cihazı nedir, ITE/ITC/CIC/IIC alt tipleri nelerdir, kimler için uygundur? Avantajları, dikkat edilmesi gerekenler ve kulak arkası (BTE) ile karşılaştırma."
+>
+  <BrandPageHero data={kulakIciHero} />
+  <BrandPageIntro data={kulakIciIntro} />
+  <BrandPageIdealUser data={kulakIciIdealUser} />
+  <BrandPageAdvantages data={kulakIciAdvantages} />
+  <BrandPageIdealUser data={kulakIciConsiderations} />
+  <BrandPageTechEvolution data={kulakIciHearingLossLevels} />
+  <BrandPageTechnology data={kulakIciDeviceTypes} />
+  <BrandPageEcosystem data={kulakIciTechnology} />
+  <BrandPageRelatedContent data={kulakIciRecommendedBrands} />
+  <KulakArkasiComparison data={kulakIciComparison} />
+  <BrandPageExpertOpinion data={kulakIciExpertOpinion} />
+  <BrandPageFaq data={kulakIciFaq} />
+  <BrandPageFinalCta data={kulakIciFinalCta} />
+  <BrandPageRelatedContent data={kulakIciRelatedContent} />
+</MainLayout>

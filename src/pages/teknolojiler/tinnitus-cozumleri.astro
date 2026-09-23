@@ -1,0 +1,81 @@
+---
+// Tinnitus (Kulak Çınlaması) Çözümleri — /teknolojiler/tinnitus-cozumleri.
+// Seventh and final page of the "Teknolojilere Göre" product-page series
+// (see header.data.ts's devicesMega second column), built directly on the
+// Yapay Zeka Destekli / Gürültü Engelleme / Konuşma Odaklı / Kablosuz
+// Bağlantı / Şarjlı Teknolojiler / Uzaktan Kontrol master templates — same
+// shared, data-driven Brand Component Architecture, same
+// KulakArkasiComparison component (already generic, reused as-is), same
+// accent-scoping pattern with its own eflatun/purple (#9333ea) category
+// accent, chosen for its calm, soothing association.
+//
+// A health-adjacent topic — every section is deliberately careful: the
+// built-in sound generator is framed throughout as a support/comfort
+// feature that may help reduce the perceived prominence of tinnitus, NEVER
+// as a treatment, cure, or diagnostic tool. Every section that could imply
+// a medical claim (Nedir?, Dikkat Edilmesi Gerekenler, Uzman Yorumu, FAQ)
+// explicitly routes the reader back to a physician/ENT evaluation first.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Çalışır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Teknolojinin
+// Gelişimi -> Kullanım Alanları -> Teknolojiler -> Önerilen Marka ve
+// Modeller -> Tinnitus Destekli vs Standart -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for the different
+// sound types (white noise, nature sounds, fractal tones) and usage
+// moments, and BTE's hearing-loss-level slot becomes a genuine
+// tinnitus-support technology timeline — standalone maskers through
+// today's app-managed sound libraries — since bu sayfa bir işitme kaybı
+// derecesini değil bir destek teknolojisini konu aldığından teknolojik
+// evrim daha anlamlı; see evolution.ts and use-cases.ts. This closes out
+// the "Teknolojilere Göre" series: every sibling menu item in that column
+// now points to a real page.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { tinnitusCozumleriHero } from "../../data/tinnitus-cozumleri/hero";
+import { tinnitusCozumleriIntro } from "../../data/tinnitus-cozumleri/intro";
+import { tinnitusCozumleriIdealUser } from "../../data/tinnitus-cozumleri/ideal-user";
+import { tinnitusCozumleriAdvantages } from "../../data/tinnitus-cozumleri/advantages";
+import { tinnitusCozumleriConsiderations } from "../../data/tinnitus-cozumleri/considerations";
+import { tinnitusCozumleriEvolution } from "../../data/tinnitus-cozumleri/evolution";
+import { tinnitusCozumleriUseCases } from "../../data/tinnitus-cozumleri/use-cases";
+import { tinnitusCozumleriTechnology } from "../../data/tinnitus-cozumleri/technology";
+import { tinnitusCozumleriRecommendedBrands } from "../../data/tinnitus-cozumleri/recommended-brands";
+import { tinnitusCozumleriComparison } from "../../data/tinnitus-cozumleri/comparison";
+import { tinnitusCozumleriExpertOpinion } from "../../data/tinnitus-cozumleri/expert-opinion";
+import { tinnitusCozumleriFaq } from "../../data/tinnitus-cozumleri/faq";
+import { tinnitusCozumleriRelatedContent } from "../../data/tinnitus-cozumleri/related-content";
+import { tinnitusCozumleriFinalCta } from "../../data/tinnitus-cozumleri/final-cta";
+---
+
+<MainLayout
+  title="Tinnitus (Kulak Çınlaması) Desteği Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Tinnitus (kulak çınlaması) destek özelliği nedir, nasıl çalışır? Bir tedavi yöntemi değildir. Avantajları, dikkat edilmesi gerekenler ve standart cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={tinnitusCozumleriHero} />
+  <BrandPageIntro data={tinnitusCozumleriIntro} />
+  <BrandPageIdealUser data={tinnitusCozumleriIdealUser} />
+  <BrandPageAdvantages data={tinnitusCozumleriAdvantages} />
+  <BrandPageIdealUser data={tinnitusCozumleriConsiderations} />
+  <BrandPageTechEvolution data={tinnitusCozumleriEvolution} />
+  <BrandPageTechnology data={tinnitusCozumleriUseCases} />
+  <BrandPageEcosystem data={tinnitusCozumleriTechnology} />
+  <BrandPageRelatedContent data={tinnitusCozumleriRecommendedBrands} />
+  <KulakArkasiComparison data={tinnitusCozumleriComparison} />
+  <BrandPageExpertOpinion data={tinnitusCozumleriExpertOpinion} />
+  <BrandPageFaq data={tinnitusCozumleriFaq} />
+  <BrandPageFinalCta data={tinnitusCozumleriFinalCta} />
+  <BrandPageRelatedContent data={tinnitusCozumleriRelatedContent} />
+</MainLayout>

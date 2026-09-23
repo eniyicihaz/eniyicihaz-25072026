@@ -1,0 +1,72 @@
+---
+// Kontrol Randevusu — /uygulama-ayar/kontrol-randevusu. Sixth and
+// final page of the "Uygulama & Ayar" series (see header.data.ts's
+// servicesMega second column), following Cihaz Uygulama, Kişiye Özel
+// Programlama, Cihaz Deneme, Kalıp Alımı and Uzaktan Ayar. Every item
+// in this column is now a real route.
+//
+// This is a routine, preventive check-up visit (hearing re-screen +
+// device performance review + physical/mold check together), distinct
+// from every prior sibling's complaint-driven or one-time framing, and
+// deliberately distinct from the still-unbuilt "Periyodik Bakım" page
+// (Servis & Bakım column) which will cover the device's own physical
+// hardware maintenance rather than this holistic hearing+device review.
+//
+// accentColor: grafit / slate-600 (#475569) — sixth and final color in
+// the fresh accent rotation opened for this series; see hero.ts for the
+// full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Kimler İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Süreç Adımları -> Neler Değerlendirilir -> Teknolojiler -> Markalara
+// Göre İnceleyin -> Düzenli Kontrol vs Şikayet Odaklı Randevu -> Uzman
+// Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { kontrolRandevusuHero } from "../../data/kontrol-randevusu/hero";
+import { kontrolRandevusuIntro } from "../../data/kontrol-randevusu/intro";
+import { kontrolRandevusuIdealUser } from "../../data/kontrol-randevusu/ideal-user";
+import { kontrolRandevusuAdvantages } from "../../data/kontrol-randevusu/advantages";
+import { kontrolRandevusuConsiderations } from "../../data/kontrol-randevusu/considerations";
+import { kontrolRandevusuEvolution } from "../../data/kontrol-randevusu/evolution";
+import { kontrolRandevusuUseCases } from "../../data/kontrol-randevusu/use-cases";
+import { kontrolRandevusuTechnology } from "../../data/kontrol-randevusu/technology";
+import { kontrolRandevusuRecommendedBrands } from "../../data/kontrol-randevusu/recommended-brands";
+import { kontrolRandevusuComparison } from "../../data/kontrol-randevusu/comparison";
+import { kontrolRandevusuExpertOpinion } from "../../data/kontrol-randevusu/expert-opinion";
+import { kontrolRandevusuFaq } from "../../data/kontrol-randevusu/faq";
+import { kontrolRandevusuRelatedContent } from "../../data/kontrol-randevusu/related-content";
+import { kontrolRandevusuFinalCta } from "../../data/kontrol-randevusu/final-cta";
+---
+
+<MainLayout
+  title="Kontrol Randevusu | Düzenli İşitme ve Cihaz Kontrolü | EniyiCihaz"
+  description="Kontrol randevusu ne zaman ve neden gereklidir? İşitme yeniden değerlendirmesi, cihaz performans kontrolü ve fiziksel muayeneyi kapsayan düzenli kontrol süreci hakkında bilgi edinin."
+>
+  <BrandPageHero data={kontrolRandevusuHero} />
+  <BrandPageIntro data={kontrolRandevusuIntro} />
+  <BrandPageIdealUser data={kontrolRandevusuIdealUser} />
+  <BrandPageAdvantages data={kontrolRandevusuAdvantages} />
+  <BrandPageIdealUser data={kontrolRandevusuConsiderations} />
+  <BrandPageTechEvolution data={kontrolRandevusuEvolution} />
+  <BrandPageTechnology data={kontrolRandevusuUseCases} />
+  <BrandPageEcosystem data={kontrolRandevusuTechnology} />
+  <BrandPageRelatedContent data={kontrolRandevusuRecommendedBrands} />
+  <KulakArkasiComparison data={kontrolRandevusuComparison} />
+  <BrandPageExpertOpinion data={kontrolRandevusuExpertOpinion} />
+  <BrandPageFaq data={kontrolRandevusuFaq} />
+  <BrandPageFinalCta data={kontrolRandevusuFinalCta} />
+  <BrandPageRelatedContent data={kontrolRandevusuRelatedContent} />
+</MainLayout>

@@ -1,0 +1,57 @@
+---
+// Unitron brand page (/markalar/unitron). Built on the shared Brand
+// Component Architecture (see src/components/brand-page/*) — no new
+// components, no new design language; all 14 sections reuse the exact
+// same components every other brand page on this site uses, fed by this
+// page's own src/data/unitron/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { unitronHero } from "../../data/unitron/hero";
+import { unitronOverview } from "../../data/unitron/overview";
+import { unitronIntro } from "../../data/unitron/intro";
+import { unitronTechnology } from "../../data/unitron/technology";
+import { unitronEcosystem } from "../../data/unitron/ecosystem";
+import { unitronPlatform } from "../../data/unitron/platform";
+import { unitronModels } from "../../data/unitron/models";
+import { unitronComparison } from "../../data/unitron/comparison";
+import { unitronIdealUser } from "../../data/unitron/ideal-user";
+import { unitronAdvantages } from "../../data/unitron/advantages";
+import { unitronExpertOpinion } from "../../data/unitron/expert-opinion";
+import { unitronFaq } from "../../data/unitron/faq";
+import { unitronRelatedContent } from "../../data/unitron/related-content";
+import { unitronFinalCta } from "../../data/unitron/final-cta";
+---
+
+<MainLayout
+  title="Unitron İşitme Cihazları | EniyiCihaz"
+  description="Unitron'un AutoFocus 360 teknolojisini, Blu, Moxi Vivante ve Stride model ailelerini, Kanada-Alman mühendislik mirasını Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={unitronHero} />
+  <BrandPageOverview data={unitronOverview} />
+  <BrandPageIntro data={unitronIntro} />
+  <BrandPageTechnology data={unitronTechnology} />
+  <BrandPageEcosystem data={unitronEcosystem} />
+  <BrandPageTechEvolution data={unitronPlatform} />
+  <BrandPageModels data={unitronModels} />
+  <BrandPageComparison data={unitronComparison} />
+  <BrandPageIdealUser data={unitronIdealUser} />
+  <BrandPageAdvantages data={unitronAdvantages} />
+  <BrandPageExpertOpinion data={unitronExpertOpinion} />
+  <BrandPageFaq data={unitronFaq} />
+  <BrandPageRelatedContent data={unitronRelatedContent} />
+  <BrandPageFinalCta data={unitronFinalCta} />
+</MainLayout>

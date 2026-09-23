@@ -1,0 +1,300 @@
+---
+// KulakArkasiComparison — page-specific comparison table for the
+// "Kulak Arkası (BTE)" product page (/isitme-cihazlari/kulak-arkasi-bte).
+// No existing brand-page component fits a real two-column, criterion-by-
+// criterion "vs" table (BrandPageComparison's rows are product tiers with
+// dot-scale levels, not head-to-head device-type criteria) — closest
+// precedent is OticonVsPhonak's split-topic pattern, but that component is
+// Oticon-specific and not data-driven. Built as a real <table> (not a div
+// grid) since the brief explicitly calls for a table; same badge/heading/
+// intro header and card/shadow language as every other section on this
+// page for visual consistency. Data-driven so future "vs" product pages
+// (e.g. Şarjlı vs Pilli) can reuse it without copy-pasting markup.
+
+export interface KulakArkasiComparisonRow {
+  feature: string;
+  primary: string;
+  secondary: string;
+}
+
+export interface KulakArkasiComparisonContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  primaryLabel: string;
+  secondaryLabel: string;
+  rows: KulakArkasiComparisonRow[];
+  note?: string;
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+}
+
+interface Props {
+  data: KulakArkasiComparisonContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="ka-comparison"
+  aria-labelledby="ka-comparison-title"
+  style={`--kac-accent:${data.accentColor}; --kac-badge-bg:${data.accentColorBadgeBg}; --kac-badge-border:${data.accentColorBadgeBorder}; --kac-badge-text:${data.accentColorBadgeText};`}
+>
+  <div class="ka-comparison__inner">
+    <div class="ka-comparison__header">
+      <p class="ka-comparison__badge" data-rise>{data.badge}</p>
+      <h2 class="ka-comparison__heading" id="ka-comparison-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="ka-comparison__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="ka-comparison__table-wrap" data-rise>
+      <table class="ka-comparison__table">
+        <thead>
+          <tr>
+            <th scope="col" class="ka-comparison__th-feature">Özellik</th>
+            <th scope="col" class="ka-comparison__th-primary">{data.primaryLabel}</th>
+            <th scope="col">{data.secondaryLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data.rows.map((row) => (
+              <tr>
+                <th scope="row">{row.feature}</th>
+                <td class="ka-comparison__cell-primary">{row.primary}</td>
+                <td>{row.secondary}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    {data.note && <p class="ka-comparison__note" data-rise>{data.note}</p>}
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".ka-comparison");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .ka-comparison {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --kac-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ka-comparison__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .ka-comparison__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .ka-comparison__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--kac-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--kac-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--kac-badge-text);
+  }
+
+  .ka-comparison__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .ka-comparison__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .ka-comparison__table-wrap {
+    margin: var(--space-12) 0 0;
+    overflow-x: auto;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .ka-comparison__table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+  }
+
+  .ka-comparison__table thead tr {
+    background: #0f2547;
+  }
+
+  .ka-comparison__table thead th {
+    padding: var(--space-5) var(--space-6);
+    text-align: left;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .ka-comparison__table thead th.ka-comparison__th-primary {
+    color: #ffffff;
+  }
+
+  .ka-comparison__table tbody tr {
+    border-top: 1px solid var(--color-border);
+    transition: background-color 250ms var(--kac-ease);
+  }
+
+  .ka-comparison__table tbody tr:hover {
+    background: var(--color-surface);
+  }
+
+  .ka-comparison__table tbody th,
+  .ka-comparison__table tbody td {
+    padding: var(--space-5) var(--space-6);
+    text-align: left;
+    vertical-align: top;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .ka-comparison__table tbody th {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .ka-comparison__table tbody td {
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-muted);
+  }
+
+  .ka-comparison__table tbody td.ka-comparison__cell-primary {
+    position: relative;
+    color: var(--color-text);
+    background: var(--kac-badge-bg);
+  }
+
+  .ka-comparison__table tbody td.ka-comparison__cell-primary::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: 3px;
+    background: var(--kac-accent);
+  }
+
+  .ka-comparison__note {
+    margin: var(--space-6) 0 0;
+    max-width: 60ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-soft);
+  }
+
+  .ka-comparison[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .ka-comparison[data-anim="in"] [data-rise] {
+    animation: ka-comparison-rise 600ms var(--kac-ease) both;
+  }
+
+  .ka-comparison[data-anim="in"] .ka-comparison__table-wrap {
+    animation-delay: 100ms;
+  }
+
+  .ka-comparison[data-anim="in"] .ka-comparison__note {
+    animation-delay: 160ms;
+  }
+
+  @keyframes ka-comparison-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ka-comparison {
+      padding-block: var(--space-16);
+    }
+
+    .ka-comparison__table-wrap {
+      margin-top: var(--space-8);
+      border-radius: var(--radius-xl);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ka-comparison[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .ka-comparison__table tbody tr {
+      transition: none;
+    }
+  }
+</style>

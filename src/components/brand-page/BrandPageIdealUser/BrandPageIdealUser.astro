@@ -1,0 +1,444 @@
+---
+// BrandPageIdealUser — shared, cross-brand "who is this for" profile grid.
+// New component, not a migration: Oticon has no direct equivalent (its
+// closest sections, Segments/DeviceTypes, are technical form-factor
+// tables rather than user-profile cards — see PHONAK MASTER BLUEPRINT
+// §3.1/§6.9). Answers "is this page about me?" more directly than a
+// technical spec table would.
+
+export interface BrandPageIdealUserProfile {
+  icon: any;
+  title: string;
+  description: string;
+  suggestedFamilies: string[];
+}
+
+export interface BrandPageIdealUserContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  profiles: BrandPageIdealUserProfile[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorIconBg: string;
+  // Opt-in premium presentation (Ücretsiz İşitme Testi's "Kimler İşitme
+  // Testi Yaptırmalı?"): a wider breathing-room grid, refined card
+  // hierarchy/hover and a barely-there decorative backdrop, all scoped
+  // under .brand-page-idealuser--premium so every other page using this
+  // shared component (100+ instances) renders exactly as before when
+  // this is omitted/false.
+  premium?: boolean;
+  accentColorBorder?: string; // hover border-color + icon-box border — default: var(--color-border)
+  accentColorIconBgHover?: string; // icon-box background on card hover — default: accentColorIconBg (no change)
+}
+
+interface Props {
+  data: BrandPageIdealUserContent;
+}
+
+const { data } = Astro.props;
+const extraVars = [
+  data.accentColorBorder ? `--bpiu-accent-border:${data.accentColorBorder};` : "",
+  data.accentColorIconBgHover ? `--bpiu-icon-bg-hover:${data.accentColorIconBgHover};` : "",
+].join(" ");
+---
+
+<section
+  class:list={["brand-page-idealuser", { "brand-page-idealuser--premium": data.premium }]}
+  aria-labelledby="brand-page-idealuser-title"
+  style={`--bpiu-accent:${data.accentColor}; --bpiu-badge-bg:${data.accentColorBadgeBg}; --bpiu-badge-border:${data.accentColorBadgeBorder}; --bpiu-badge-text:${data.accentColorBadgeText}; --bpiu-icon-bg:${data.accentColorIconBg}; ${extraVars}`}
+>
+  <div class="brand-page-idealuser__inner">
+    <div class="brand-page-idealuser__header">
+      <p class="brand-page-idealuser__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-page-idealuser__heading" id="brand-page-idealuser-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="brand-page-idealuser__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="brand-page-idealuser__grid" data-rise>
+      {
+        data.profiles.map((profile) => {
+          const Icon = profile.icon;
+          return (
+            <div class="brand-page-idealuser__card">
+              <span class="brand-page-idealuser__icon">
+                <Icon size={22} stroke-width={1.75} aria-hidden="true" />
+              </span>
+              <p class="brand-page-idealuser__title">{profile.title}</p>
+              <p class="brand-page-idealuser__desc">{profile.description}</p>
+              <div class="brand-page-idealuser__families">
+                {profile.suggestedFamilies.map((family) => (
+                  <span class="brand-page-idealuser__family">{family}</span>
+                ))}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-idealuser");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-idealuser {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bpiu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-idealuser__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-idealuser__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-idealuser__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpiu-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpiu-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpiu-badge-text);
+  }
+
+  .brand-page-idealuser__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-idealuser__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-idealuser__grid {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .brand-page-idealuser__card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-7);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+    transition: transform 300ms var(--bpiu-ease), border-color 300ms var(--bpiu-ease), box-shadow 300ms var(--bpiu-ease);
+  }
+
+  .brand-page-idealuser__card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .brand-page-idealuser__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: var(--bpiu-icon-bg);
+    color: var(--bpiu-accent);
+  }
+
+  .brand-page-idealuser__title {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .brand-page-idealuser__desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-idealuser__families {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .brand-page-idealuser__family {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-idealuser[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-idealuser[data-anim="in"] [data-rise] {
+    animation: brand-page-idealuser-rise 600ms var(--bpiu-ease) both;
+  }
+
+  .brand-page-idealuser[data-anim="in"] .brand-page-idealuser__grid {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-page-idealuser-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .brand-page-idealuser__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-idealuser {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-idealuser__grid {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-idealuser[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-idealuser__card {
+      transition: none;
+    }
+  }
+
+  /* ==== Premium variant (data.premium) ====================================
+     Entirely scoped under this modifier class — none of the rules above are
+     touched, so every other page rendering this shared component keeps its
+     exact current look. */
+
+  .brand-page-idealuser--premium {
+    /* ~17% tighter than the base space-24 (96px), matching the token scale
+       exactly rather than an arbitrary px value. */
+    padding-block: var(--space-20);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 7. Background detail — one barely-there decorative layer reusing the
+     exact wave-lines.svg + CSS-mask technique already established for
+     Hero sections (BrandPageHero's "Hero Background System"), not a new
+     image asset. Sits behind everything at ~3% opacity in the section's
+     own accent — atmosphere only, never competes with text or cards. */
+  .brand-page-idealuser--premium::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--bpiu-accent);
+    opacity: 0.035;
+    -webkit-mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    pointer-events: none;
+  }
+
+  .brand-page-idealuser--premium .brand-page-idealuser__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 6. Tighter section rhythm — the base grid's own margin-top is a no-op
+     (references an undefined --space-14 token, a pre-existing issue in
+     the shared component left as-is here since fixing it would change
+     every other page's spacing too); this variant sets a real, valid
+     token instead. */
+  .brand-page-idealuser--premium .brand-page-idealuser__grid {
+    margin-top: var(--space-10);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-6);
+  }
+
+  /* 1. Layout — a true 3-up grid (flex, not CSS grid) so 5 cards read as
+     3+2 with the shorter last row centered rather than left-stranded;
+     each card gets ~450px at desktop instead of ~260px, which is what
+     actually stops long titles from wrapping to 3 lines. flex's default
+     cross-axis stretch also equalizes card heights within each row for
+     free — no fixed height needed. */
+  .brand-page-idealuser--premium .brand-page-idealuser__card {
+    flex: 0 1 calc(33.333% - var(--space-6) * 2 / 3);
+    min-width: 260px;
+    padding: var(--space-8) var(--space-6);
+    transition:
+      transform 200ms var(--bpiu-ease),
+      border-color 200ms var(--bpiu-ease),
+      box-shadow 200ms var(--bpiu-ease);
+  }
+
+  /* 4. Premium hover — calm, not flashy: a small lift, border/shadow ease
+     toward the accent, capped at 200ms on existing transition tokens.
+     No width/height/margin/padding changes, so nothing else reflows. */
+  .brand-page-idealuser--premium .brand-page-idealuser__card:hover {
+    transform: translateY(-4px);
+    border-color: var(--bpiu-accent-border, var(--bpiu-accent));
+    box-shadow: var(--shadow-md);
+  }
+
+  /* 5. Icon — a touch larger and rounder, with a subtle accent-tinted
+     border so it reads as a deliberate tile rather than a flat swatch;
+     background deepens on card hover (falls back to the same background
+     when a page doesn't supply accentColorIconBgHover, i.e. no visible
+     change). */
+  .brand-page-idealuser--premium .brand-page-idealuser__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--bpiu-accent-border, transparent);
+    transition: background-color 200ms var(--bpiu-ease);
+  }
+
+  .brand-page-idealuser--premium .brand-page-idealuser__card:hover .brand-page-idealuser__icon {
+    background: var(--bpiu-icon-bg-hover, var(--bpiu-icon-bg));
+  }
+
+  /* 2. Hierarchy — title steps up a size for more separation from the
+     (already smaller/muted) description, and can pick up the accent on
+     hover as a secondary "this card is active" cue alongside the lift. */
+  .brand-page-idealuser--premium .brand-page-idealuser__title {
+    font-size: var(--font-size-xl);
+    transition: color 200ms var(--bpiu-ease);
+  }
+
+  .brand-page-idealuser--premium .brand-page-idealuser__card:hover .brand-page-idealuser__title {
+    color: var(--bpiu-accent);
+  }
+
+  /* Bottom-pinned via margin-top:auto (the card is already a flex column)
+     so every card's tag row lands on the same baseline regardless of how
+     many lines its own description wrapped to — this is the closest
+     thing this component has to a "card CTA row"; it's a topic tag, not
+     a link, so it's restyled to match the section's accent system without
+     adding arrow/hover-navigate affordances a non-interactive element
+     shouldn't imply. */
+  .brand-page-idealuser--premium .brand-page-idealuser__families {
+    margin-top: auto;
+    padding-top: var(--space-4);
+  }
+
+  .brand-page-idealuser--premium .brand-page-idealuser__family {
+    background: var(--bpiu-badge-bg);
+    border-color: var(--bpiu-badge-border);
+    color: var(--bpiu-badge-text);
+  }
+
+  /* 8. Responsive — tablet drops to 2-up, mobile to a single column;
+     same breakpoints the base component already uses elsewhere. */
+  @media (max-width: 1023px) {
+    .brand-page-idealuser--premium .brand-page-idealuser__card {
+      flex-basis: calc(50% - var(--space-6) / 2);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-idealuser--premium {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-idealuser--premium .brand-page-idealuser__grid {
+      margin-top: var(--space-8);
+    }
+
+    .brand-page-idealuser--premium .brand-page-idealuser__card {
+      flex-basis: 100%;
+    }
+  }
+
+  /* The base reduced-motion rule above already targets
+     .brand-page-idealuser__card, but this variant's own hover rule is
+     more specific (two classes) and would otherwise win over it — so the
+     transform needs its own explicit reduced-motion override too. */
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-idealuser--premium .brand-page-idealuser__card {
+      transition: none;
+    }
+
+    .brand-page-idealuser--premium .brand-page-idealuser__card:hover {
+      transform: none;
+    }
+  }
+</style>

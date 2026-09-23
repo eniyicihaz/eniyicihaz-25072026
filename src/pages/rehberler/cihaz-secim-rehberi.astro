@@ -1,0 +1,67 @@
+---
+// Cihaz Seçim Rehberi — /rehberler/cihaz-secim-rehberi. Second page of
+// the "Rehberler" series (see header.data.ts's knowledgeMega first
+// column), following İşitme Kaybı Nedir?. This is the META
+// decision-guide page — it ties together choices already covered
+// elsewhere on the site (degree pages, form-factor pages, the
+// Segmentler tier series) into a single "how to decide" framework,
+// cross-linking to each rather than re-explaining their content.
+//
+// accentColor: turuncu / orange-600 (#ea580c) — second color in the
+// fresh accent rotation opened for this series; see hero.ts for the
+// full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Kimler İçin Faydalıdır? -> Doğru Seçimin Faydaları -> Dikkat
+// Edilmesi Gerekenler -> 5 Faktör -> Kendinize Sorabileceğiniz Sorular
+// -> Teknolojiler -> Markalara Göre İnceleyin -> Giriş vs Üst Segment
+// -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { cihazSecimRehberiHero } from "../../data/cihaz-secim-rehberi/hero";
+import { cihazSecimRehberiIntro } from "../../data/cihaz-secim-rehberi/intro";
+import { cihazSecimRehberiIdealUser } from "../../data/cihaz-secim-rehberi/ideal-user";
+import { cihazSecimRehberiAdvantages } from "../../data/cihaz-secim-rehberi/advantages";
+import { cihazSecimRehberiConsiderations } from "../../data/cihaz-secim-rehberi/considerations";
+import { cihazSecimRehberiEvolution } from "../../data/cihaz-secim-rehberi/evolution";
+import { cihazSecimRehberiUseCases } from "../../data/cihaz-secim-rehberi/use-cases";
+import { cihazSecimRehberiTechnology } from "../../data/cihaz-secim-rehberi/technology";
+import { cihazSecimRehberiRecommendedBrands } from "../../data/cihaz-secim-rehberi/recommended-brands";
+import { cihazSecimRehberiComparison } from "../../data/cihaz-secim-rehberi/comparison";
+import { cihazSecimRehberiExpertOpinion } from "../../data/cihaz-secim-rehberi/expert-opinion";
+import { cihazSecimRehberiFaq } from "../../data/cihaz-secim-rehberi/faq";
+import { cihazSecimRehberiRelatedContent } from "../../data/cihaz-secim-rehberi/related-content";
+import { cihazSecimRehberiFinalCta } from "../../data/cihaz-secim-rehberi/final-cta";
+---
+
+<MainLayout
+  title="Cihaz Seçim Rehberi | Size Uygun İşitme Cihazını Bulun | EniyiCihaz"
+  description="İşitme cihazı seçerken nelere dikkat etmelisiniz? Derece ve tür, yaşam tarzı, bütçe, form faktörü ve bağlantı ihtiyaçlarına göre doğru cihazı seçme rehberi."
+>
+  <BrandPageHero data={cihazSecimRehberiHero} />
+  <BrandPageIntro data={cihazSecimRehberiIntro} />
+  <BrandPageIdealUser data={cihazSecimRehberiIdealUser} />
+  <BrandPageAdvantages data={cihazSecimRehberiAdvantages} />
+  <BrandPageIdealUser data={cihazSecimRehberiConsiderations} />
+  <BrandPageTechEvolution data={cihazSecimRehberiEvolution} />
+  <BrandPageTechnology data={cihazSecimRehberiUseCases} />
+  <BrandPageEcosystem data={cihazSecimRehberiTechnology} />
+  <BrandPageRelatedContent data={cihazSecimRehberiRecommendedBrands} />
+  <KulakArkasiComparison data={cihazSecimRehberiComparison} />
+  <BrandPageExpertOpinion data={cihazSecimRehberiExpertOpinion} />
+  <BrandPageFaq data={cihazSecimRehberiFaq} />
+  <BrandPageFinalCta data={cihazSecimRehberiFinalCta} />
+  <BrandPageRelatedContent data={cihazSecimRehberiRelatedContent} />
+</MainLayout>

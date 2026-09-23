@@ -4,43 +4,57 @@
 // time. Hero (M1), About (M2), Technologies (M3), Heritage (M4), Models
 // (M5), Comparison, Why Oticon (M6), Video Guide and the Final CTA (the
 // page's final section) exist so far.
+//
+// Hero now renders through BrandPageHero — the first component migrated
+// to the shared, data-driven Brand Component Architecture (every future
+// brand page, starting with Phonak, reuses the same component tree fed
+// by its own src/data/{brand}/*.ts content). Visual/behavioral output is
+// unchanged; only the import source and prop wiring moved.
 import MainLayout from "../../layouts/MainLayout.astro";
-import OticonHero from "../../components/oticon/OticonHero/OticonHero.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import { oticonHero } from "../../data/oticon/hero";
+import { oticonTechnologies } from "../../data/oticon/technologies";
+import { oticonTechExplorer } from "../../data/oticon/technology-explorer";
+import { oticonModels } from "../../data/oticon/models";
+import { oticonComparison } from "../../data/oticon/comparison";
+import { oticonWhyOticon } from "../../data/oticon/why-oticon";
+import { oticonFaq } from "../../data/oticon/faq";
+import { oticonFinalCta } from "../../data/oticon/final-cta";
 import OticonAbout from "../../components/oticon/OticonAbout/OticonAbout.astro";
-import OticonTechnologies from "../../components/oticon/OticonTechnologies/OticonTechnologies.astro";
-import OticonTechnologyExplorer from "../../components/oticon/OticonTechnologyExplorer/OticonTechnologyExplorer.astro";
 import OticonHeritage from "../../components/oticon/OticonHeritage/OticonHeritage.astro";
-import OticonModels from "../../components/oticon/OticonModels/OticonModels.astro";
-import OticonComparison from "../../components/oticon/OticonComparison/OticonComparison.astro";
 import OticonSegments from "../../components/oticon/OticonSegments/OticonSegments.astro";
 import OticonDeviceTypes from "../../components/oticon/OticonDeviceTypes/OticonDeviceTypes.astro";
 import OticonPriceFactors from "../../components/oticon/OticonPriceFactors/OticonPriceFactors.astro";
-import OticonWhyOticon from "../../components/oticon/OticonWhyOticon/OticonWhyOticon.astro";
 import OticonVsPhonak from "../../components/oticon/OticonVsPhonak/OticonVsPhonak.astro";
 import OticonVideoGuide from "../../components/oticon/OticonVideoGuide/OticonVideoGuide.astro";
 import OticonSgkCta from "../../components/oticon/OticonSgkCta/OticonSgkCta.astro";
-import OticonFaq from "../../components/oticon/OticonFaq/OticonFaq.astro";
-import OticonFinalCta from "../../components/oticon/OticonFinalCta/OticonFinalCta.astro";
 ---
 
 <MainLayout
   title="Oticon İşitme Cihazları | EniyiCihaz"
   description="Oticon BrainHearing® teknolojisiyle geliştirilen Intent, Real, Own SI ve Zeal işitme cihazı modellerini keşfedin."
 >
-  <OticonHero />
+  <BrandPageHero data={oticonHero} />
   <OticonAbout />
-  <OticonTechnologies />
-  <OticonTechnologyExplorer />
+  <BrandPageTechnology data={oticonTechnologies} />
+  <BrandPageEcosystem data={oticonTechExplorer} />
   <OticonHeritage />
-  <OticonModels />
-  <OticonComparison />
+  <BrandPageModels data={oticonModels} />
+  <BrandPageComparison data={oticonComparison} />
   <OticonSegments />
   <OticonDeviceTypes />
   <OticonPriceFactors />
-  <OticonWhyOticon />
+  <BrandPageAdvantages data={oticonWhyOticon} />
   <OticonVsPhonak />
   <OticonVideoGuide />
   <OticonSgkCta />
-  <OticonFaq />
-  <OticonFinalCta />
+  <BrandPageFaq data={oticonFaq} />
+  <BrandPageFinalCta data={oticonFinalCta} />
 </MainLayout>

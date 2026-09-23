@@ -37,5 +37,17 @@ const { threads } = Astro.props;
     position: relative;
     width: min(100%, 640px);
     height: clamp(220px, 32vh, 320px);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    /* Same faint dot-grid technique as Hero (radial-gradient tiled
+       circles) — not a new visual motif, just reused here so the band
+       reads as a defined "stage" at rest instead of empty space (visual
+       QA round: this was flagged as looking like a placeholder). */
+    background-image: radial-gradient(
+      circle,
+      rgb(37 99 235 / 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
   }
 </style>

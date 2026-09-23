@@ -1,0 +1,67 @@
+---
+// Sık Sorulan Sorular — /blog/sik-sorulan-sorular. Fourth page of the
+// "Blog & Haberler" series (see header.data.ts's knowledgeMega second
+// column), following /blog/yeni-teknolojiler, /blog/uzman-gorusleri
+// and /blog/basari-hikayeleri. A cross-cutting general FAQ directory,
+// not a duplicate of the many topic-specific FAQ sections already
+// built this session — see hero.ts and considerations.ts for the
+// scope rationale.
+//
+// accentColor: gök mavisi / sky-600 (#0284c7) — fourth color in this
+// column's own accent rotation; see hero.ts for the full rationale.
+//
+// 14-section flow, in order: Hero -> Bu Sayfa Nasıl Kullanılır? ->
+// Kimler İçin Önemlidir? -> Bu Sayfanın Faydaları -> Dikkat Edilmesi
+// Gerekenler -> Nasıl Yardım Alırsınız? -> Konu Başlıklarına Göre
+// Sorular -> Sürece Daha Yakından Bakış -> Markalara Göre İnceleyin ->
+// Telefon vs WhatsApp Karşılaştırması -> Uzman Yorumu -> SSS (bu
+// sayfanın asıl içeriği) -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { sikSorulanSorularHero } from "../../data/sik-sorulan-sorular/hero";
+import { sikSorulanSorularIntro } from "../../data/sik-sorulan-sorular/intro";
+import { sikSorulanSorularIdealUser } from "../../data/sik-sorulan-sorular/ideal-user";
+import { sikSorulanSorularAdvantages } from "../../data/sik-sorulan-sorular/advantages";
+import { sikSorulanSorularConsiderations } from "../../data/sik-sorulan-sorular/considerations";
+import { sikSorulanSorularEvolution } from "../../data/sik-sorulan-sorular/evolution";
+import { sikSorulanSorularUseCases } from "../../data/sik-sorulan-sorular/use-cases";
+import { sikSorulanSorularTechnology } from "../../data/sik-sorulan-sorular/technology";
+import { sikSorulanSorularRecommendedBrands } from "../../data/sik-sorulan-sorular/recommended-brands";
+import { sikSorulanSorularComparison } from "../../data/sik-sorulan-sorular/comparison";
+import { sikSorulanSorularExpertOpinion } from "../../data/sik-sorulan-sorular/expert-opinion";
+import { sikSorulanSorularFaq } from "../../data/sik-sorulan-sorular/faq";
+import { sikSorulanSorularRelatedContent } from "../../data/sik-sorulan-sorular/related-content";
+import { sikSorulanSorularFinalCta } from "../../data/sik-sorulan-sorular/final-cta";
+---
+
+<MainLayout
+  title="Sık Sorulan Sorular | Randevu, Süreç ve Hizmetler | EniyiCihaz"
+  description="Randevu almaktan hizmet bölgemize kadar, kliniğimizle ilgili en sık sorulan genel soruların yanıtlarını bulun."
+>
+  <BrandPageHero data={sikSorulanSorularHero} />
+  <BrandPageIntro data={sikSorulanSorularIntro} />
+  <BrandPageIdealUser data={sikSorulanSorularIdealUser} />
+  <BrandPageAdvantages data={sikSorulanSorularAdvantages} />
+  <BrandPageIdealUser data={sikSorulanSorularConsiderations} />
+  <BrandPageTechEvolution data={sikSorulanSorularEvolution} />
+  <BrandPageTechnology data={sikSorulanSorularUseCases} />
+  <BrandPageEcosystem data={sikSorulanSorularTechnology} />
+  <BrandPageRelatedContent data={sikSorulanSorularRecommendedBrands} />
+  <KulakArkasiComparison data={sikSorulanSorularComparison} />
+  <BrandPageExpertOpinion data={sikSorulanSorularExpertOpinion} />
+  <BrandPageFaq data={sikSorulanSorularFaq} />
+  <BrandPageFinalCta data={sikSorulanSorularFinalCta} />
+  <BrandPageRelatedContent data={sikSorulanSorularRelatedContent} />
+</MainLayout>

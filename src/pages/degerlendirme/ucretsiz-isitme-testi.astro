@@ -1,0 +1,78 @@
+---
+// Ücretsiz İşitme Testi — /degerlendirme/ucretsiz-isitme-testi. First
+// page of the "Değerlendirme" series (see header.data.ts's servicesMega
+// first column) — a new content genre within the site: a clinical
+// SERVICE page rather than a product, trust, or tier page. Built on the
+// same master templates and shared, data-driven Brand Component
+// Architecture used throughout the session (same KulakArkasiComparison
+// component, already generic, reused as-is), but this series returns to
+// the full health-content safety discipline used in the İhtiyacınıza
+// Göre series (self-diagnosis disclaimers, urgent-care flags, hedged
+// language), since this page's subject is a diagnostic procedure, not a
+// product category.
+//
+// Scope note: this page covers the overall free-test service and
+// appointment experience; the more specific technical procedures
+// (Odyometri, Timpanometri, Çocuk İşitme Testi, Tinnitus Değerlendirme)
+// get their own future pages in this series — this page's own Ecosystem
+// section previews and cross-references each rather than re-explaining
+// them in full.
+//
+// accentColor: camgöbeği / cyan-600 (#0891b2) — opens a fresh accent
+// rotation for the servicesMega "Değerlendirme" column; see hero.ts for
+// the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl İşler? -> Kimler
+// İşitme Testi Yaptırmalı? -> Avantajları -> Dikkat Edilmesi Gerekenler
+// -> Test Süreci -> Testte Neler Değerlendirilir -> Teknolojiler ->
+// Markalara Göre İnceleyin -> Klinik vs Online Test -> Uzman Yorumu ->
+// SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { ucretsizIsitmeTestiHero } from "../../data/ucretsiz-isitme-testi/hero";
+import { ucretsizIsitmeTestiIntro } from "../../data/ucretsiz-isitme-testi/intro";
+import { ucretsizIsitmeTestiIdealUser } from "../../data/ucretsiz-isitme-testi/ideal-user";
+import { ucretsizIsitmeTestiAdvantages } from "../../data/ucretsiz-isitme-testi/advantages";
+import { ucretsizIsitmeTestiConsiderations } from "../../data/ucretsiz-isitme-testi/considerations";
+import { ucretsizIsitmeTestiEvolution } from "../../data/ucretsiz-isitme-testi/evolution";
+import { ucretsizIsitmeTestiUseCases } from "../../data/ucretsiz-isitme-testi/use-cases";
+import { ucretsizIsitmeTestiTechnology } from "../../data/ucretsiz-isitme-testi/technology";
+import { ucretsizIsitmeTestiRecommendedBrands } from "../../data/ucretsiz-isitme-testi/recommended-brands";
+import { ucretsizIsitmeTestiComparison } from "../../data/ucretsiz-isitme-testi/comparison";
+import { ucretsizIsitmeTestiExpertOpinion } from "../../data/ucretsiz-isitme-testi/expert-opinion";
+import { ucretsizIsitmeTestiFaq } from "../../data/ucretsiz-isitme-testi/faq";
+import { ucretsizIsitmeTestiRelatedContent } from "../../data/ucretsiz-isitme-testi/related-content";
+import { ucretsizIsitmeTestiFinalCta } from "../../data/ucretsiz-isitme-testi/final-cta";
+---
+
+<MainLayout
+  title="Ücretsiz İşitme Testi | Odyometrist Eşliğinde Değerlendirme | EniyiCihaz"
+  description="Ücretsiz işitme testi nasıl yapılır, kimler yaptırmalı? Odyometrist eşliğinde yapılan test süreci, testte neler değerlendirildiği ve sonrasında olacaklar hakkında bilgi edinin."
+>
+  <BrandPageHero data={ucretsizIsitmeTestiHero} />
+  <BrandPageIntro data={ucretsizIsitmeTestiIntro} />
+  <BrandPageIdealUser data={ucretsizIsitmeTestiIdealUser} />
+  <BrandPageAdvantages data={ucretsizIsitmeTestiAdvantages} />
+  <BrandPageIdealUser data={ucretsizIsitmeTestiConsiderations} />
+  <BrandPageTechEvolution data={ucretsizIsitmeTestiEvolution} />
+  <BrandPageTechnology data={ucretsizIsitmeTestiUseCases} />
+  <BrandPageEcosystem data={ucretsizIsitmeTestiTechnology} />
+  <BrandPageRelatedContent data={ucretsizIsitmeTestiRecommendedBrands} />
+  <KulakArkasiComparison data={ucretsizIsitmeTestiComparison} />
+  <BrandPageExpertOpinion data={ucretsizIsitmeTestiExpertOpinion} />
+  <BrandPageFaq data={ucretsizIsitmeTestiFaq} />
+  <BrandPageFinalCta data={ucretsizIsitmeTestiFinalCta} />
+  <BrandPageRelatedContent data={ucretsizIsitmeTestiRelatedContent} />
+</MainLayout>

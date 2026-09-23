@@ -1,0 +1,76 @@
+---
+// Orta Derece İşitme Kaybı — /ihtiyaciniza-gore/orta-derece-isitme-kaybi.
+// Second page of the "İhtiyacınıza Göre" product-page series (see
+// header.data.ts's devicesMega third column), built directly on the
+// Hafif İşitme Kaybı master template
+// (/ihtiyaciniza-gore/hafif-isitme-kaybi) — same shared, data-driven
+// Brand Component Architecture, same KulakArkasiComparison component
+// (already generic, reused as-is), same accent-scoping pattern with its
+// own yeşil/green (#16a34a) category accent.
+//
+// A health-classification topic, handled with the same care as the Hafif
+// İşitme Kaybı and Tinnitus pages: self-diagnosis is never implied, and
+// every section (Nedir?, Belirtiler, Dikkat Edilmesi Gerekenler, Uzman
+// Yorumu, FAQ) routes back to a proper audiometric test (odyometri) as
+// the only way to confirm degree and type.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Anlaşılır? ->
+// Günlük Yaşamdaki Belirtiler -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Derecelere Göre (Orta Derecenin Yeri) -> Öne Çıkan
+// Özellikler -> Teknolojiler -> Önerilen Marka ve Modeller -> Orta vs
+// İleri Derece -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili
+// İçerikler.
+// (Same repurposing as the Hafif İşitme Kaybı page: BTE's "Kimler İçin
+// Uygun" slot becomes everyday recognizable symptoms rather than
+// candidacy, and BTE's hearing-loss-level slot becomes the genuine
+// dB-based degree ladder, this time positioning "orta" as the current
+// stage; see evolution.ts and ideal-user.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { ortaDereceIsitmeKaybiHero } from "../../data/orta-derece-isitme-kaybi/hero";
+import { ortaDereceIsitmeKaybiIntro } from "../../data/orta-derece-isitme-kaybi/intro";
+import { ortaDereceIsitmeKaybiIdealUser } from "../../data/orta-derece-isitme-kaybi/ideal-user";
+import { ortaDereceIsitmeKaybiAdvantages } from "../../data/orta-derece-isitme-kaybi/advantages";
+import { ortaDereceIsitmeKaybiConsiderations } from "../../data/orta-derece-isitme-kaybi/considerations";
+import { ortaDereceIsitmeKaybiEvolution } from "../../data/orta-derece-isitme-kaybi/evolution";
+import { ortaDereceIsitmeKaybiUseCases } from "../../data/orta-derece-isitme-kaybi/use-cases";
+import { ortaDereceIsitmeKaybiTechnology } from "../../data/orta-derece-isitme-kaybi/technology";
+import { ortaDereceIsitmeKaybiRecommendedBrands } from "../../data/orta-derece-isitme-kaybi/recommended-brands";
+import { ortaDereceIsitmeKaybiComparison } from "../../data/orta-derece-isitme-kaybi/comparison";
+import { ortaDereceIsitmeKaybiExpertOpinion } from "../../data/orta-derece-isitme-kaybi/expert-opinion";
+import { ortaDereceIsitmeKaybiFaq } from "../../data/orta-derece-isitme-kaybi/faq";
+import { ortaDereceIsitmeKaybiRelatedContent } from "../../data/orta-derece-isitme-kaybi/related-content";
+import { ortaDereceIsitmeKaybiFinalCta } from "../../data/orta-derece-isitme-kaybi/final-cta";
+---
+
+<MainLayout
+  title="Orta Derece İşitme Kaybı İçin Cihaz Rehberi | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Orta derece işitme kaybı (41-55 dB) nedir, nasıl anlaşılır? Günlük yaşamdaki belirtileri, öne çıkan cihaz özellikleri ve ileri derece kayıpla karşılaştırma."
+>
+  <BrandPageHero data={ortaDereceIsitmeKaybiHero} />
+  <BrandPageIntro data={ortaDereceIsitmeKaybiIntro} />
+  <BrandPageIdealUser data={ortaDereceIsitmeKaybiIdealUser} />
+  <BrandPageAdvantages data={ortaDereceIsitmeKaybiAdvantages} />
+  <BrandPageIdealUser data={ortaDereceIsitmeKaybiConsiderations} />
+  <BrandPageTechEvolution data={ortaDereceIsitmeKaybiEvolution} />
+  <BrandPageTechnology data={ortaDereceIsitmeKaybiUseCases} />
+  <BrandPageEcosystem data={ortaDereceIsitmeKaybiTechnology} />
+  <BrandPageRelatedContent data={ortaDereceIsitmeKaybiRecommendedBrands} />
+  <KulakArkasiComparison data={ortaDereceIsitmeKaybiComparison} />
+  <BrandPageExpertOpinion data={ortaDereceIsitmeKaybiExpertOpinion} />
+  <BrandPageFaq data={ortaDereceIsitmeKaybiFaq} />
+  <BrandPageFinalCta data={ortaDereceIsitmeKaybiFinalCta} />
+  <BrandPageRelatedContent data={ortaDereceIsitmeKaybiRelatedContent} />
+</MainLayout>

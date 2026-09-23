@@ -1,0 +1,84 @@
+---
+// Yaygın Servis Ağı — /neden-orijinal/yaygin-servis-agi. Third page of
+// the "Neden Orijinal" series (see header.data.ts's brandsMega second
+// column), following Güvenilir Teknoloji and Uzun Ömürlü Cihazlar. Same
+// trust/authenticity content genre: the authorized service network's
+// reach and quality as a direct consequence of buying original,
+// authorized-channel products. Built on the same master templates and
+// shared, data-driven components used throughout the session (same
+// KulakArkasiComparison component, already generic, reused as-is), with
+// every section reframed around service infrastructure rather than
+// hearing health:
+//
+// - The "candidacy"/"symptom" slot becomes risks of unauthorized/
+//   informal repair (unqualified technicians, counterfeit parts,
+//   voided warranty, undocumented work, permanent damage).
+// - "Dikkat Edilmesi Gerekenler" covers practical service-logistics
+//   caveats (not every dealer offers service, regional coverage varies,
+//   documentation matters) rather than a health-safety warning — no
+//   self-diagnosis disclaimer here, same as the two prior pages.
+// - The TechEvolution "stage" slot becomes a 4-step repair process
+//   (ön değerlendirme -> garanti kontrolü -> orijinal parça onarımı ->
+//   test ve teslim) instead of a severity ladder or maintenance routine.
+// - The KulakArkasiComparison table compares authorized-network service
+//   against unauthorized/independent repair — this page's own natural
+//   comparison axis.
+//
+// accentColor: turuncu / orange-600 (#ea580c) — third color in the fresh
+// accent rotation opened for this series on Güvenilir Teknoloji's
+// hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Yetkisiz Serviste Sıkça Karşılaşılan Riskler -> Avantajları -> Dikkat
+// Edilmesi Gerekenler -> Servis Süreci -> Öne Çıkan Güvenceler ->
+// Teknolojiler -> Markalara Göre İnceleyin -> Yetkili vs Yetkisiz Servis
+// -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { yayginServisAgiHero } from "../../data/yaygin-servis-agi/hero";
+import { yayginServisAgiIntro } from "../../data/yaygin-servis-agi/intro";
+import { yayginServisAgiIdealUser } from "../../data/yaygin-servis-agi/ideal-user";
+import { yayginServisAgiAdvantages } from "../../data/yaygin-servis-agi/advantages";
+import { yayginServisAgiConsiderations } from "../../data/yaygin-servis-agi/considerations";
+import { yayginServisAgiEvolution } from "../../data/yaygin-servis-agi/evolution";
+import { yayginServisAgiUseCases } from "../../data/yaygin-servis-agi/use-cases";
+import { yayginServisAgiTechnology } from "../../data/yaygin-servis-agi/technology";
+import { yayginServisAgiRecommendedBrands } from "../../data/yaygin-servis-agi/recommended-brands";
+import { yayginServisAgiComparison } from "../../data/yaygin-servis-agi/comparison";
+import { yayginServisAgiExpertOpinion } from "../../data/yaygin-servis-agi/expert-opinion";
+import { yayginServisAgiFaq } from "../../data/yaygin-servis-agi/faq";
+import { yayginServisAgiRelatedContent } from "../../data/yaygin-servis-agi/related-content";
+import { yayginServisAgiFinalCta } from "../../data/yaygin-servis-agi/final-cta";
+---
+
+<MainLayout
+  title="Yaygın Servis Ağı: Yetkili İşitme Cihazı Servisi | EniyiCihaz"
+  description="Orijinal işitme cihazlarını destekleyen yaygın yetkili servis ağı nasıl işler? Sertifikalı teknisyenler, orijinal yedek parça ve garanti korumasıyla onarım sürecini öğrenin."
+>
+  <BrandPageHero data={yayginServisAgiHero} />
+  <BrandPageIntro data={yayginServisAgiIntro} />
+  <BrandPageIdealUser data={yayginServisAgiIdealUser} />
+  <BrandPageAdvantages data={yayginServisAgiAdvantages} />
+  <BrandPageIdealUser data={yayginServisAgiConsiderations} />
+  <BrandPageTechEvolution data={yayginServisAgiEvolution} />
+  <BrandPageTechnology data={yayginServisAgiUseCases} />
+  <BrandPageEcosystem data={yayginServisAgiTechnology} />
+  <BrandPageRelatedContent data={yayginServisAgiRecommendedBrands} />
+  <KulakArkasiComparison data={yayginServisAgiComparison} />
+  <BrandPageExpertOpinion data={yayginServisAgiExpertOpinion} />
+  <BrandPageFaq data={yayginServisAgiFaq} />
+  <BrandPageFinalCta data={yayginServisAgiFinalCta} />
+  <BrandPageRelatedContent data={yayginServisAgiRelatedContent} />
+</MainLayout>

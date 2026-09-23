@@ -1,0 +1,72 @@
+---
+// İlk Kullanım Rehberi — /rehberler/ilk-kullanim-rehberi. Third page of
+// the "Rehberler" series (see header.data.ts's knowledgeMega first
+// column), following İşitme Kaybı Nedir? and Cihaz Seçim Rehberi.
+//
+// Distinct from Cihaz Uygulama (Uygulama & Ayar) — that page covers the
+// professional FITTING APPOINTMENT itself; this page covers the
+// practical, day-to-day operating basics a new user needs (physical
+// handling, controls, first-day wearing schedule). Also distinct from
+// the still-unbuilt "Uyum Süreci" sibling, which will cover the
+// longer, weeks-to-months adaptation journey — this page's own
+// comparison.ts is scoped specifically to the first-WEEK wearing
+// schedule, not the multi-month process.
+//
+// accentColor: zümrüt yeşili / emerald-600 (#059669) — third color in
+// the fresh accent rotation opened for this series; see hero.ts for
+// the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Kimler İçin Faydalıdır? -> Doğru Başlangıcın Faydaları -> Dikkat
+// Edilmesi Gerekenler -> İlk Gün Adımları -> Temel Kontroller ->
+// Teknolojiler -> Markalara Göre İnceleyin -> Kademeli vs Tam Gün
+// Kullanım -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { ilkKullanimRehberiHero } from "../../data/ilk-kullanim-rehberi/hero";
+import { ilkKullanimRehberiIntro } from "../../data/ilk-kullanim-rehberi/intro";
+import { ilkKullanimRehberiIdealUser } from "../../data/ilk-kullanim-rehberi/ideal-user";
+import { ilkKullanimRehberiAdvantages } from "../../data/ilk-kullanim-rehberi/advantages";
+import { ilkKullanimRehberiConsiderations } from "../../data/ilk-kullanim-rehberi/considerations";
+import { ilkKullanimRehberiEvolution } from "../../data/ilk-kullanim-rehberi/evolution";
+import { ilkKullanimRehberiUseCases } from "../../data/ilk-kullanim-rehberi/use-cases";
+import { ilkKullanimRehberiTechnology } from "../../data/ilk-kullanim-rehberi/technology";
+import { ilkKullanimRehberiRecommendedBrands } from "../../data/ilk-kullanim-rehberi/recommended-brands";
+import { ilkKullanimRehberiComparison } from "../../data/ilk-kullanim-rehberi/comparison";
+import { ilkKullanimRehberiExpertOpinion } from "../../data/ilk-kullanim-rehberi/expert-opinion";
+import { ilkKullanimRehberiFaq } from "../../data/ilk-kullanim-rehberi/faq";
+import { ilkKullanimRehberiRelatedContent } from "../../data/ilk-kullanim-rehberi/related-content";
+import { ilkKullanimRehberiFinalCta } from "../../data/ilk-kullanim-rehberi/final-cta";
+---
+
+<MainLayout
+  title="İlk Kullanım Rehberi | İşitme Cihazınızla İlk Günler | EniyiCihaz"
+  description="Yeni işitme cihazınızı ilk günlerde nasıl kullanmalısınız? Temel kontroller, kullanım süresi önerileri ve basit sorun giderme adımları hakkında bilgi edinin."
+>
+  <BrandPageHero data={ilkKullanimRehberiHero} />
+  <BrandPageIntro data={ilkKullanimRehberiIntro} />
+  <BrandPageIdealUser data={ilkKullanimRehberiIdealUser} />
+  <BrandPageAdvantages data={ilkKullanimRehberiAdvantages} />
+  <BrandPageIdealUser data={ilkKullanimRehberiConsiderations} />
+  <BrandPageTechEvolution data={ilkKullanimRehberiEvolution} />
+  <BrandPageTechnology data={ilkKullanimRehberiUseCases} />
+  <BrandPageEcosystem data={ilkKullanimRehberiTechnology} />
+  <BrandPageRelatedContent data={ilkKullanimRehberiRecommendedBrands} />
+  <KulakArkasiComparison data={ilkKullanimRehberiComparison} />
+  <BrandPageExpertOpinion data={ilkKullanimRehberiExpertOpinion} />
+  <BrandPageFaq data={ilkKullanimRehberiFaq} />
+  <BrandPageFinalCta data={ilkKullanimRehberiFinalCta} />
+  <BrandPageRelatedContent data={ilkKullanimRehberiRelatedContent} />
+</MainLayout>

@@ -1,0 +1,57 @@
+---
+// Maico brand page (/markalar/maico). Built on the shared Brand
+// Component Architecture (see src/components/brand-page/*) — no new
+// components, no new design language; all 14 sections reuse the exact
+// same components every other brand page on this site uses, fed by this
+// page's own src/data/maico/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { maicoHero } from "../../data/maico/hero";
+import { maicoOverview } from "../../data/maico/overview";
+import { maicoIntro } from "../../data/maico/intro";
+import { maicoTechnology } from "../../data/maico/technology";
+import { maicoEcosystem } from "../../data/maico/ecosystem";
+import { maicoPlatform } from "../../data/maico/platform";
+import { maicoModels } from "../../data/maico/models";
+import { maicoComparison } from "../../data/maico/comparison";
+import { maicoIdealUser } from "../../data/maico/ideal-user";
+import { maicoAdvantages } from "../../data/maico/advantages";
+import { maicoExpertOpinion } from "../../data/maico/expert-opinion";
+import { maicoFaq } from "../../data/maico/faq";
+import { maicoRelatedContent } from "../../data/maico/related-content";
+import { maicoFinalCta } from "../../data/maico/final-cta";
+---
+
+<MainLayout
+  title="MAICO İşitme Cihazları | EniyiCihaz"
+  description="MAICO'nun odyolojik ölçüm bilimi mirasını, Demant Grubu mühendisliğini ve Bluetooth'lu, kulak arkası, kulak içi serilerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={maicoHero} />
+  <BrandPageOverview data={maicoOverview} />
+  <BrandPageIntro data={maicoIntro} />
+  <BrandPageTechnology data={maicoTechnology} />
+  <BrandPageEcosystem data={maicoEcosystem} />
+  <BrandPageTechEvolution data={maicoPlatform} />
+  <BrandPageModels data={maicoModels} />
+  <BrandPageComparison data={maicoComparison} />
+  <BrandPageIdealUser data={maicoIdealUser} />
+  <BrandPageAdvantages data={maicoAdvantages} />
+  <BrandPageExpertOpinion data={maicoExpertOpinion} />
+  <BrandPageFaq data={maicoFaq} />
+  <BrandPageRelatedContent data={maicoRelatedContent} />
+  <BrandPageFinalCta data={maicoFinalCta} />
+</MainLayout>

@@ -1,0 +1,458 @@
+---
+// SgkProcess — second section of the SGK pillar page. A connected
+// process-flow (not a 4-card grid): desktop reads left-to-right along a
+// single connecting line, tablet settles into a balanced 2x2, mobile
+// becomes a left-aligned vertical timeline. Independent of SgkHero; its
+// own data namespace (../../../data/sgk/process).
+import { Stethoscope, FileText, Landmark, PackageCheck, ArrowRight, Check } from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { sgkProcess } from "../../../data/sgk/process";
+
+const stepIcons = [Stethoscope, FileText, Landmark, PackageCheck];
+---
+
+<section class="sgk-process" aria-labelledby="sgk-process-title">
+  <div class="sgk-process__inner">
+    <div class="sgk-process__head" data-rise>
+      <p class="sgk-process__eyebrow">{sgkProcess.eyebrow}</p>
+      <h2 class="sgk-process__heading" id="sgk-process-title">{sgkProcess.heading}</h2>
+      <p class="sgk-process__subheading">{sgkProcess.subheading}</p>
+    </div>
+
+    <div class="sgk-process__flow">
+      <div class="sgk-process__track" aria-hidden="true"></div>
+      {
+        sgkProcess.steps.map((step, i) => {
+          const Icon = stepIcons[i % stepIcons.length];
+          return (
+            <div class="sgk-process__step" data-rise>
+              <div class="sgk-process__node">
+                <Icon size={24} stroke-width={1.75} aria-hidden="true" />
+                <span class="sgk-process__number">{step.number}</span>
+              </div>
+              <div class="sgk-process__body">
+                <h3 class="sgk-process__title">{step.title}</h3>
+                <p class="sgk-process__desc">{step.description}</p>
+                <a class="sgk-process__link" href={step.href}>
+                  <span>{sgkProcess.stepLinkLabel}</span>
+                  <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <div class="sgk-process__info" data-rise>
+      {
+        sgkProcess.infoItems.map((item) => (
+          <span class="sgk-process__info-item">
+            <span class="sgk-process__info-icon" aria-hidden="true">
+              <Check size={12} stroke-width={2.5} />
+            </span>
+            {item}
+          </span>
+        ))
+      }
+    </div>
+
+    <div class="sgk-process__cta" data-rise>
+      <p class="sgk-process__cta-text">{sgkProcess.cta.heading}</p>
+      <CtaButton
+        label={sgkProcess.cta.buttonLabel}
+        href={sgkProcess.cta.href}
+        variant="solid"
+        iconRight={ArrowRight}
+      />
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-process");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as
+    // SgkHero/OticonModels: default-visible CSS, JS-only "armed" opt-in,
+    // three independent safety nets so content can never get stuck hidden.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-process {
+    position: relative;
+    background: var(--color-surface);
+    padding-block: var(--space-24);
+    --sp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-process__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .sgk-process__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sgk-process__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-process__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-process__subheading {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Flow: desktop default = horizontal, connected by a single track --- */
+
+  .sgk-process__flow {
+    position: relative;
+    display: flex;
+    gap: var(--space-8);
+    margin-top: var(--space-16);
+  }
+
+  .sgk-process__track {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-border) 6%,
+      var(--color-border) 94%,
+      transparent
+    );
+    z-index: 0;
+  }
+
+  .sgk-process__step {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+    transition: transform 320ms var(--sp-ease);
+  }
+
+  .sgk-process__step:hover {
+    transform: translateY(-4px);
+  }
+
+  .sgk-process__node {
+    position: relative;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-primary);
+    transition: border-color 320ms var(--sp-ease), box-shadow 320ms var(--sp-ease),
+      color 320ms var(--sp-ease);
+  }
+
+  .sgk-process__step:hover .sgk-process__node {
+    border-color: rgb(37 99 235 / 0.4);
+    box-shadow: 0 16px 32px -16px rgb(37 99 235 / 0.4);
+  }
+
+  .sgk-process__number {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-size: 0.625rem;
+    font-weight: var(--font-weight-bold);
+    box-shadow: 0 4px 10px -2px rgb(37 99 235 / 0.5);
+  }
+
+  .sgk-process__body {
+    max-width: 240px;
+    margin-inline: auto;
+  }
+
+  .sgk-process__title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-process__desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-process__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sgk-process__link svg {
+    transition: transform 220ms var(--sp-ease);
+  }
+
+  .sgk-process__link:hover svg {
+    transform: translateX(3px);
+  }
+
+  .sgk-process__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* --- Info strip: quiet, secondary --------------------------------------- */
+
+  .sgk-process__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3) var(--space-6);
+    margin-top: var(--space-16);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .sgk-process__info-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-process__info-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgb(37 99 235 / 0.1);
+    color: var(--color-primary);
+  }
+
+  /* --- CTA banner ---------------------------------------------------------- */
+
+  .sgk-process__cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    margin-top: var(--space-10);
+    padding: var(--space-8);
+    background: rgb(37 99 235 / 0.05);
+    border: 1px solid rgb(37 99 235 / 0.14);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sgk-process__cta-text {
+    margin: 0;
+    max-width: 32rem;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes ------------- */
+
+  .sgk-process[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--sp-ease), transform 600ms var(--sp-ease);
+  }
+
+  .sgk-process[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-process[data-anim="armed"] .sgk-process__head { transition-delay: 0ms; }
+  .sgk-process[data-anim="armed"] .sgk-process__step:nth-child(2) { transition-delay: 70ms; }
+  .sgk-process[data-anim="armed"] .sgk-process__step:nth-child(3) { transition-delay: 140ms; }
+  .sgk-process[data-anim="armed"] .sgk-process__step:nth-child(4) { transition-delay: 210ms; }
+  .sgk-process[data-anim="armed"] .sgk-process__step:nth-child(5) { transition-delay: 280ms; }
+  .sgk-process[data-anim="armed"] .sgk-process__info { transition-delay: 320ms; }
+  .sgk-process[data-anim="armed"] .sgk-process__cta { transition-delay: 360ms; }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  /* Tablet: balanced 2x2, no connecting track. */
+  @media (max-width: 1023px) {
+    .sgk-process {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-process__track {
+      display: none;
+    }
+
+    .sgk-process__flow {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-12) var(--space-8);
+      margin-top: var(--space-12);
+    }
+
+    .sgk-process__cta {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+
+    .sgk-process__cta-text {
+      max-width: none;
+    }
+  }
+
+  /* Mobile: vertical timeline, left-aligned. */
+  @media (max-width: 640px) {
+    .sgk-process__flow {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .sgk-process__step {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      gap: var(--space-4);
+    }
+
+    .sgk-process__step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 29px;
+      top: 60px;
+      bottom: calc(-1 * var(--space-8));
+      width: 2px;
+      background: var(--color-border);
+    }
+
+    .sgk-process__body {
+      max-width: none;
+      margin-inline: 0;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sgk-process__info {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-process[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sgk-process__step,
+    .sgk-process__node,
+    .sgk-process__link svg {
+      transition: none;
+    }
+  }
+</style>

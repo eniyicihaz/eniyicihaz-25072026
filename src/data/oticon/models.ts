@@ -27,6 +27,13 @@ export interface OticonModelsContent {
   intro: string;
   ctaLabel: string;
   items: OticonProduct[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorHoverBorder: string;
+  accentColorGlow: string;
+  accentColorFocus: string;
 }
 
 export const oticonModels: OticonModelsContent = {
@@ -34,6 +41,15 @@ export const oticonModels: OticonModelsContent = {
   heading: "Oticon Ürün Ailesini Keşfedin",
   intro: "İhtiyacınıza uygun Oticon modelini birlikte belirleyelim.",
   ctaLabel: "Detaylı İncele",
+  // Precomputed rgb() decomposition of #5fb85a — reproduces the values
+  // previously hardcoded directly in OticonModels.astro's CSS.
+  accentColor: "#5fb85a",
+  accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
+  accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
+  accentColorBadgeText: "#4a9a45",
+  accentColorHoverBorder: "rgb(95 184 90 / 0.5)",
+  accentColorGlow: "rgb(95 184 90 / 0.14)",
+  accentColorFocus: "rgb(95 184 90 / 0.35)",
   items: [
     {
       slug: "intent",

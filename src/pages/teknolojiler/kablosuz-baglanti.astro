@@ -1,0 +1,79 @@
+---
+// Kablosuz Bağlantı Özellikleri — /teknolojiler/kablosuz-baglanti.
+// Fourth page of the "Teknolojilere Göre" product-page series (see
+// header.data.ts's devicesMega second column), built directly on the
+// Yapay Zeka Destekli / Gürültü Engelleme / Konuşma Odaklı master
+// templates — same shared, data-driven Brand Component Architecture, same
+// KulakArkasiComparison component (already generic, reused as-is), same
+// accent-scoping pattern with its own misket limonu/lime (#65a30d)
+// category accent.
+//
+// Deliberately scoped apart from the already-built Bluetooth Özellikli
+// Cihazlar page (/isitme-cihazlari/bluetooth-ozellikli): that page owns
+// consumer phone/TV Bluetooth streaming (Made for iPhone/Android, TV
+// streamer, Auracast). This page instead covers the wider wireless
+// protocol landscape that page doesn't touch — telecoil induction-loop
+// systems, Roger/FM remote microphones, ear-to-ear (NFMI) synchronization
+// and CROS/BiCROS single-sided-deafness transmission — and cross-links to
+// Bluetooth Özellikli rather than re-explaining phone/TV streaming.
+//
+// 14-section flow, in order: Hero -> Nedir? + Hangi Protokolleri Kapsar?
+// -> Kimler İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Teknolojinin Gelişimi -> Kullanım Alanları -> Teknolojiler -> Önerilen
+// Marka ve Modeller -> Kablosuz Bağlantı Destekli vs Standart -> Uzman
+// Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for telecoil/Roger/
+// NFMI-specific everyday scenarios, and BTE's hearing-loss-level slot
+// becomes a genuine wireless-protocol technology timeline — telecoil
+// through today's NFMI ear-to-ear sync — since bu sayfa bir işitme kaybı
+// derecesini değil bir protokol ailesini konu aldığından teknolojik evrim
+// daha anlamlı; see evolution.ts and use-cases.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { kablosuzBaglantiHero } from "../../data/kablosuz-baglanti/hero";
+import { kablosuzBaglantiIntro } from "../../data/kablosuz-baglanti/intro";
+import { kablosuzBaglantiIdealUser } from "../../data/kablosuz-baglanti/ideal-user";
+import { kablosuzBaglantiAdvantages } from "../../data/kablosuz-baglanti/advantages";
+import { kablosuzBaglantiConsiderations } from "../../data/kablosuz-baglanti/considerations";
+import { kablosuzBaglantiEvolution } from "../../data/kablosuz-baglanti/evolution";
+import { kablosuzBaglantiUseCases } from "../../data/kablosuz-baglanti/use-cases";
+import { kablosuzBaglantiTechnology } from "../../data/kablosuz-baglanti/technology";
+import { kablosuzBaglantiRecommendedBrands } from "../../data/kablosuz-baglanti/recommended-brands";
+import { kablosuzBaglantiComparison } from "../../data/kablosuz-baglanti/comparison";
+import { kablosuzBaglantiExpertOpinion } from "../../data/kablosuz-baglanti/expert-opinion";
+import { kablosuzBaglantiFaq } from "../../data/kablosuz-baglanti/faq";
+import { kablosuzBaglantiRelatedContent } from "../../data/kablosuz-baglanti/related-content";
+import { kablosuzBaglantiFinalCta } from "../../data/kablosuz-baglanti/final-cta";
+---
+
+<MainLayout
+  title="Kablosuz Bağlantı Özellikleri Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Kablosuz bağlantı özellikleri nedir, telesarmal ve Roger/FM sistemleri nasıl çalışır? Avantajları, dikkat edilmesi gerekenler ve standart (sınırlı bağlantılı) cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={kablosuzBaglantiHero} />
+  <BrandPageIntro data={kablosuzBaglantiIntro} />
+  <BrandPageIdealUser data={kablosuzBaglantiIdealUser} />
+  <BrandPageAdvantages data={kablosuzBaglantiAdvantages} />
+  <BrandPageIdealUser data={kablosuzBaglantiConsiderations} />
+  <BrandPageTechEvolution data={kablosuzBaglantiEvolution} />
+  <BrandPageTechnology data={kablosuzBaglantiUseCases} />
+  <BrandPageEcosystem data={kablosuzBaglantiTechnology} />
+  <BrandPageRelatedContent data={kablosuzBaglantiRecommendedBrands} />
+  <KulakArkasiComparison data={kablosuzBaglantiComparison} />
+  <BrandPageExpertOpinion data={kablosuzBaglantiExpertOpinion} />
+  <BrandPageFaq data={kablosuzBaglantiFaq} />
+  <BrandPageFinalCta data={kablosuzBaglantiFinalCta} />
+  <BrandPageRelatedContent data={kablosuzBaglantiRelatedContent} />
+</MainLayout>

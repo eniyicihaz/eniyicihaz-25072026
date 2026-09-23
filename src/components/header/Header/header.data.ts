@@ -1,8 +1,18 @@
 // ==========================================================
 // Header — Content
-// İşitme Cihazları mega = reference content. The other three
-// megas use structured placeholder content (edit freely; links
-// are "#" until real routes are provided).
+// Every individual mega-menu link and every top-level nav item now
+// points to a real page. Column "footer" CTAs (e.g. "Tüm Rehberler",
+// "Servise Başvur", "İletişime Geç") are wired to the closest real hub
+// page where one exists. Three remain "#" because no real destination
+// exists yet: the servicesMega "Uygulama & Ayar" column's own "Randevu
+// Al" footer (needs an online booking form/page — every other "Randevu
+// Al"/"Ücretsiz Randevu Al" CTA site-wide routes to the real phone
+// number instead; the top-level header CTA now does too, via
+// headerData.cta.href), "Detaylı Bilgi" (Neden Orijinal column — no
+// single hub page covers those six trust pages together) and "Tüm
+// Seriler" (Segmentler column — same reason). `isActive` (see
+// isActive.ts) already treats "#" as never-current, so this is safe to
+// leave as-is rather than inventing a page that doesn't exist.
 // ==========================================================
 
 import type { HeaderData, MegaMenuData } from "./header.types";
@@ -12,50 +22,51 @@ const devicesMega: MegaMenuData = {
   promo: {
     title: "Daha Net Duyun, Hayata Daha Yakın Olun.",
     text: "En yeni teknoloji işitme cihazları ve uzman kadromuzla duyma deneyiminizi yeniden keşfedin.",
-    cta: { label: "Ücretsiz İşitme Testi", href: "#" },
+    cta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi" },
+    image: "/images/ui/mega-menu-isitme-cihazlari.webp",
   },
   columns: [
     {
       icon: "ear",
       title: "İşitme Cihazı Çeşitleri",
       links: [
-        { label: "Kulak Arkası (BTE)", href: "#" },
-        { label: "Kulak İçi (ITE)", href: "#" },
-        { label: "Şarj Edilebilir Cihazlar", href: "#" },
-        { label: "Bluetooth Özellikli Cihazlar", href: "#" },
-        { label: "Çocuklara Özel Cihazlar", href: "#" },
-        { label: "Görünmez (CIC) Cihazlar", href: "#" },
-        { label: "Suya Dayanıklı Cihazlar", href: "#" },
+        { label: "Kulak Arkası (BTE)", href: "/isitme-cihazlari/kulak-arkasi-bte" },
+        { label: "Kulak İçi (ITE)", href: "/isitme-cihazlari/kulak-ici-ite" },
+        { label: "Şarj Edilebilir Cihazlar", href: "/isitme-cihazlari/sarj-edilebilir" },
+        { label: "Bluetooth Özellikli Cihazlar", href: "/isitme-cihazlari/bluetooth-ozellikli" },
+        { label: "Çocuklara Özel Cihazlar", href: "/isitme-cihazlari/cocuklara-ozel" },
+        { label: "Görünmez (CIC) Cihazlar", href: "/isitme-cihazlari/gorunmez-cic" },
+        { label: "Suya Dayanıklı Cihazlar", href: "/isitme-cihazlari/suya-dayanikli" },
       ],
-      footer: { label: "Tüm İşitme Cihazları", href: "#" },
+      footer: { label: "Tüm İşitme Cihazları", href: "/isitme-cihazlari" },
     },
     {
       icon: "star",
       title: "Teknolojilere Göre",
       links: [
-        { label: "Yapay Zeka Destekli Cihazlar", href: "#" },
-        { label: "Gürültü Engelleme Teknolojisi", href: "#" },
-        { label: "Konuşma Odaklı Teknolojiler", href: "#" },
-        { label: "Kablosuz Bağlantı Özellikleri", href: "#" },
-        { label: "Şarjlı Teknolojiler", href: "#" },
-        { label: "Uzaktan Kontrol Özellikleri", href: "#" },
-        { label: "Tinnitus (Kulak Çınlaması) Çözümleri", href: "#" },
+        { label: "Yapay Zeka Destekli Cihazlar", href: "/teknolojiler/yapay-zeka-destekli" },
+        { label: "Gürültü Engelleme Teknolojisi", href: "/teknolojiler/gurultu-engelleme" },
+        { label: "Konuşma Odaklı Teknolojiler", href: "/teknolojiler/konusma-odakli" },
+        { label: "Kablosuz Bağlantı Özellikleri", href: "/teknolojiler/kablosuz-baglanti" },
+        { label: "Şarjlı Teknolojiler", href: "/teknolojiler/sarjli-teknolojiler" },
+        { label: "Uzaktan Kontrol Özellikleri", href: "/teknolojiler/uzaktan-kontrol" },
+        { label: "Tinnitus (Kulak Çınlaması) Çözümleri", href: "/teknolojiler/tinnitus-cozumleri" },
       ],
-      footer: { label: "Tüm Teknolojiler", href: "#" },
+      footer: { label: "Tüm Teknolojiler", href: "/isitme-cihazlari" },
     },
     {
       icon: "target",
       title: "İhtiyacınıza Göre",
       links: [
-        { label: "Hafif İşitme Kaybı", href: "#" },
-        { label: "Orta Derece İşitme Kaybı", href: "#" },
-        { label: "İleri Derece İşitme Kaybı", href: "#" },
-        { label: "Çok İleri Derece İşitme Kaybı", href: "#" },
-        { label: "Tek Taraflı İşitme Kaybı", href: "#" },
-        { label: "Yaşlılar İçin Cihazlar", href: "#" },
-        { label: "Aktif Yaşam İçin Cihazlar", href: "#" },
+        { label: "Hafif İşitme Kaybı", href: "/ihtiyaciniza-gore/hafif-isitme-kaybi" },
+        { label: "Orta Derece İşitme Kaybı", href: "/ihtiyaciniza-gore/orta-derece-isitme-kaybi" },
+        { label: "İleri Derece İşitme Kaybı", href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi" },
+        { label: "Çok İleri Derece İşitme Kaybı", href: "/ihtiyaciniza-gore/cok-ileri-derece-isitme-kaybi" },
+        { label: "Tek Taraflı İşitme Kaybı", href: "/ihtiyaciniza-gore/tek-tarafli-isitme-kaybi" },
+        { label: "Yaşlılar İçin Cihazlar", href: "/ihtiyaciniza-gore/yaslilar-icin-cihazlar" },
+        { label: "Aktif Yaşam İçin Cihazlar", href: "/ihtiyaciniza-gore/aktif-yasam-icin-cihazlar" },
       ],
-      footer: { label: "Size Özel Çözümler", href: "#" },
+      footer: { label: "Size Özel Çözümler", href: "/isitme-cihazlari" },
     },
   ],
   support: {
@@ -67,7 +78,7 @@ const devicesMega: MegaMenuData = {
       { icon: "sliders", title: "Kişiye Özel Ayar", desc: "Size özel programlama" },
       { icon: "wrench", title: "Teknik Servis", desc: "Hızlı ve güvenilir destek" },
     ],
-    footer: { label: "Tüm Hizmetler", href: "#" },
+    footer: { label: "Tüm Hizmetler", href: "/hizmetlerimiz" },
   },
 };
 
@@ -79,18 +90,19 @@ const brandsMega: MegaMenuData = {
     title: "Dünya Markaları, Tek Çatı Altında.",
     text: "Güvenilir global üreticilerin en yeni teknolojilerini orijinal ve garantili olarak sunuyoruz.",
     cta: { label: "Tüm Markalar", href: "/markalar" },
+    image: "/images/ui/mega-menu-markalar.webp",
   },
   columns: [
     {
       icon: "award",
       title: "Öne Çıkan Markalar",
       links: [
-        { label: "Oticon", href: "#" },
-        { label: "Phonak", href: "#" },
-        { label: "Signia", href: "#" },
-        { label: "Widex", href: "#" },
-        { label: "ReSound", href: "#" },
-        { label: "Starkey", href: "#" },
+        { label: "Oticon", href: "/markalar/oticon" },
+        { label: "Phonak", href: "/markalar/phonak" },
+        { label: "Signia", href: "/markalar/signia" },
+        { label: "Widex", href: "/markalar/widex" },
+        { label: "ReSound", href: "/markalar/resound" },
+        { label: "NuEar", href: "/markalar/nuear" },
       ],
       footer: { label: "Tüm Markalar", href: "/markalar" },
     },
@@ -98,12 +110,12 @@ const brandsMega: MegaMenuData = {
       icon: "shield",
       title: "Neden Orijinal",
       links: [
-        { label: "Güvenilir Teknoloji", href: "#" },
-        { label: "Uzun Ömürlü Cihazlar", href: "#" },
-        { label: "Yaygın Servis Ağı", href: "#" },
-        { label: "Orijinal Aksesuar", href: "#" },
-        { label: "Ücretsiz Danışmanlık", href: "#" },
-        { label: "Kolay Değişim", href: "#" },
+        { label: "Güvenilir Teknoloji", href: "/neden-orijinal/guvenilir-teknoloji" },
+        { label: "Uzun Ömürlü Cihazlar", href: "/neden-orijinal/uzun-omurlu-cihazlar" },
+        { label: "Yaygın Servis Ağı", href: "/neden-orijinal/yaygin-servis-agi" },
+        { label: "Orijinal Aksesuar", href: "/neden-orijinal/orijinal-aksesuar" },
+        { label: "Ücretsiz Danışmanlık", href: "/neden-orijinal/ucretsiz-danismanlik" },
+        { label: "Kolay Değişim", href: "/neden-orijinal/kolay-degisim" },
       ],
       footer: { label: "Detaylı Bilgi", href: "#" },
     },
@@ -111,12 +123,12 @@ const brandsMega: MegaMenuData = {
       icon: "sparkles",
       title: "Segmentler",
       links: [
-        { label: "Premium Seri", href: "#" },
-        { label: "Standart Seri", href: "#" },
-        { label: "Ekonomik Seri", href: "#" },
-        { label: "Şarj Edilebilir Seri", href: "#" },
-        { label: "Görünmez Seri", href: "#" },
-        { label: "Çocuk Serisi", href: "#" },
+        { label: "Premium Seri", href: "/segmentler/premium-seri" },
+        { label: "Standart Seri", href: "/segmentler/standart-seri" },
+        { label: "Ekonomik Seri", href: "/segmentler/ekonomik-seri" },
+        { label: "Şarj Edilebilir Seri", href: "/isitme-cihazlari/sarj-edilebilir" },
+        { label: "Görünmez Seri", href: "/isitme-cihazlari/gorunmez-cic" },
+        { label: "Çocuk Serisi", href: "/isitme-cihazlari/cocuklara-ozel" },
       ],
       footer: { label: "Tüm Seriler", href: "#" },
     },
@@ -130,7 +142,7 @@ const brandsMega: MegaMenuData = {
       { icon: "battery", title: "Aksesuar & Yedek", desc: "Orijinal parçalar" },
       { icon: "headphones", title: "Marka Danışmanlığı", desc: "Size uygun markayı seçin" },
     ],
-    footer: { label: "Tüm Hizmetler", href: "#" },
+    footer: { label: "Tüm Hizmetler", href: "/hizmetlerimiz" },
   },
 };
 
@@ -139,32 +151,33 @@ const servicesMega: MegaMenuData = {
   promo: {
     title: "Uçtan Uca İşitme Sağlığı Hizmeti.",
     text: "Testten uygulamaya, ayardan servise kadar tüm süreçte uzman kadromuz yanınızda.",
-    cta: { label: "Tüm Hizmetler", href: "#" },
+    cta: { label: "Tüm Hizmetler", href: "/hizmetlerimiz" },
+    image: "/images/ui/mega-menu-hizmetlerimiz.webp",
   },
   columns: [
     {
       icon: "stethoscope",
       title: "Değerlendirme",
       links: [
-        { label: "Ücretsiz İşitme Testi", href: "#" },
-        { label: "Odyometri", href: "#" },
-        { label: "Timpanometri", href: "#" },
-        { label: "Çocuk İşitme Testi", href: "#" },
-        { label: "Tinnitus Değerlendirme", href: "#" },
-        { label: "İşitme Danışmanlığı", href: "#" },
+        { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi" },
+        { label: "Odyometri", href: "/degerlendirme/odyometri" },
+        { label: "Timpanometri", href: "/degerlendirme/timpanometri" },
+        { label: "Çocuk İşitme Testi", href: "/degerlendirme/cocuk-isitme-testi" },
+        { label: "Tinnitus Değerlendirme", href: "/degerlendirme/tinnitus-degerlendirme" },
+        { label: "İşitme Danışmanlığı", href: "/neden-orijinal/ucretsiz-danismanlik" },
       ],
-      footer: { label: "Tüm Testler", href: "#" },
+      footer: { label: "Tüm Testler", href: "/hizmetlerimiz" },
     },
     {
       icon: "sliders",
       title: "Uygulama & Ayar",
       links: [
-        { label: "Cihaz Uygulama", href: "#" },
-        { label: "Kişiye Özel Programlama", href: "#" },
-        { label: "Cihaz Deneme", href: "#" },
-        { label: "Kalıp Alımı", href: "#" },
-        { label: "Uzaktan Ayar", href: "#" },
-        { label: "Kontrol Randevusu", href: "#" },
+        { label: "Cihaz Uygulama", href: "/uygulama-ayar/cihaz-uygulama" },
+        { label: "Kişiye Özel Programlama", href: "/uygulama-ayar/kisiye-ozel-programlama" },
+        { label: "Cihaz Deneme", href: "/uygulama-ayar/cihaz-deneme" },
+        { label: "Kalıp Alımı", href: "/uygulama-ayar/kalip-alimi" },
+        { label: "Uzaktan Ayar", href: "/uygulama-ayar/uzaktan-ayar" },
+        { label: "Kontrol Randevusu", href: "/uygulama-ayar/kontrol-randevusu" },
       ],
       footer: { label: "Randevu Al", href: "#" },
     },
@@ -172,14 +185,14 @@ const servicesMega: MegaMenuData = {
       icon: "wrench",
       title: "Servis & Bakım",
       links: [
-        { label: "Teknik Servis", href: "#" },
-        { label: "Periyodik Bakım", href: "#" },
-        { label: "Cihaz Temizliği", href: "#" },
-        { label: "Pil & Aksesuar", href: "#" },
-        { label: "Garanti İşlemleri", href: "#" },
-        { label: "Onarım Takibi", href: "#" },
+        { label: "Teknik Servis", href: "/servis-bakim/teknik-servis" },
+        { label: "Periyodik Bakım", href: "/servis-bakim/periyodik-bakim" },
+        { label: "Cihaz Temizliği", href: "/servis-bakim/cihaz-temizligi" },
+        { label: "Pil & Aksesuar", href: "/servis-bakim/pil-aksesuar" },
+        { label: "Garanti İşlemleri", href: "/servis-bakim/garanti-islemleri" },
+        { label: "Onarım Takibi", href: "/servis-bakim/onarim-takibi" },
       ],
-      footer: { label: "Servise Başvur", href: "#" },
+      footer: { label: "Servise Başvur", href: "/hizmetlerimiz" },
     },
   ],
   support: {
@@ -191,7 +204,7 @@ const servicesMega: MegaMenuData = {
       { icon: "building", title: "Merkezimiz", desc: "Darıca'da yanınızdayız" },
       { icon: "shield", title: "SGK İşlemleri", desc: "Anlaşmalı merkez" },
     ],
-    footer: { label: "İletişime Geç", href: "#" },
+    footer: { label: "İletişime Geç", href: "/iletisim" },
   },
 };
 
@@ -200,47 +213,48 @@ const knowledgeMega: MegaMenuData = {
   promo: {
     title: "İşitme Sağlığı Hakkında Her Şey.",
     text: "İşitme kaybından cihaz bakımına, merak ettiğiniz tüm konularda güvenilir bilgi kaynağınız.",
-    cta: { label: "Bilgi Merkezi", href: "#" },
+    cta: { label: "Bilgi Merkezi", href: "/bilgi-merkezi" },
+    image: "/images/ui/mega-menu-bilgi-merkezi.webp",
   },
   columns: [
     {
       icon: "book",
       title: "Rehberler",
       links: [
-        { label: "İşitme Kaybı Nedir?", href: "#" },
-        { label: "Cihaz Seçim Rehberi", href: "#" },
-        { label: "İlk Kullanım Rehberi", href: "#" },
-        { label: "Cihaz Bakımı", href: "#" },
-        { label: "Pil Kullanımı", href: "#" },
-        { label: "Uyum Süreci", href: "#" },
+        { label: "İşitme Kaybı Nedir?", href: "/rehberler/isitme-kaybi-nedir" },
+        { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi" },
+        { label: "İlk Kullanım Rehberi", href: "/rehberler/ilk-kullanim-rehberi" },
+        { label: "Cihaz Bakımı", href: "/servis-bakim/periyodik-bakim" },
+        { label: "Pil Kullanımı", href: "/servis-bakim/pil-aksesuar" },
+        { label: "Uyum Süreci", href: "/rehberler/uyum-sureci" },
       ],
-      footer: { label: "Tüm Rehberler", href: "#" },
+      footer: { label: "Tüm Rehberler", href: "/bilgi-merkezi" },
     },
     {
       icon: "news",
       title: "Blog & Haberler",
       links: [
-        { label: "Yeni Teknolojiler", href: "#" },
-        { label: "Uzman Görüşleri", href: "#" },
-        { label: "Başarı Hikayeleri", href: "#" },
-        { label: "Sık Sorulan Sorular", href: "#" },
-        { label: "Kampanyalar", href: "#" },
-        { label: "Etkinlikler", href: "#" },
+        { label: "Yeni Teknolojiler", href: "/blog/yeni-teknolojiler" },
+        { label: "Uzman Görüşleri", href: "/blog/uzman-gorusleri" },
+        { label: "Başarı Hikayeleri", href: "/blog/basari-hikayeleri" },
+        { label: "Sık Sorulan Sorular", href: "/blog/sik-sorulan-sorular" },
+        { label: "Kampanyalar", href: "/blog/kampanyalar" },
+        { label: "Etkinlikler", href: "/blog/etkinlikler" },
       ],
-      footer: { label: "Tüm Yazılar", href: "#" },
+      footer: { label: "Tüm Yazılar", href: "/bilgi-merkezi" },
     },
     {
       icon: "shield",
       title: "SGK & Haklar",
       links: [
-        { label: "SGK Katkı Payı", href: "#" },
-        { label: "Rapor Süreci", href: "#" },
-        { label: "Gerekli Belgeler", href: "#" },
-        { label: "Çocuklarda SGK", href: "#" },
-        { label: "Yenileme Hakkı", href: "#" },
-        { label: "Sık Sorulanlar", href: "#" },
+        { label: "SGK Katkı Payı", href: "/sgk/katki-payi" },
+        { label: "Rapor Süreci", href: "/sgk/rapor-sureci" },
+        { label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler" },
+        { label: "Çocuklarda SGK", href: "/sgk/cocuklarda-sgk" },
+        { label: "Yenileme Hakkı", href: "/sgk/yenileme-hakki" },
+        { label: "Sık Sorulanlar", href: "/sgk-isitme-cihazi-odemesi#sgk-faq-title" },
       ],
-      footer: { label: "SGK Rehberi", href: "#" },
+      footer: { label: "SGK Rehberi", href: "/sgk-isitme-cihazi-odemesi" },
     },
   ],
   support: {
@@ -252,7 +266,7 @@ const knowledgeMega: MegaMenuData = {
       { icon: "phone", title: "Uzmana Sor", desc: "Bize ulaşın" },
       { icon: "users", title: "Danışmanlık", desc: "Ücretsiz görüşme" },
     ],
-    footer: { label: "İletişime Geç", href: "#" },
+    footer: { label: "İletişime Geç", href: "/iletisim" },
   },
 };
 
@@ -264,10 +278,10 @@ export const headerData: HeaderData = {
   },
   nav: [
     { label: "Ana Sayfa", href: "/" },
-    { label: "İşitme Cihazları", href: "#", mega: devicesMega },
-    { label: "Markalar", href: "#", mega: brandsMega },
-    { label: "Hizmetlerimiz", href: "#", mega: servicesMega },
-    { label: "Bilgi Merkezi", href: "#", mega: knowledgeMega },
+    { label: "İşitme Cihazları", href: "/isitme-cihazlari", mega: devicesMega },
+    { label: "Markalar", href: "/markalar", mega: brandsMega },
+    { label: "Hizmetlerimiz", href: "/hizmetlerimiz", mega: servicesMega },
+    { label: "Bilgi Merkezi", href: "/bilgi-merkezi", mega: knowledgeMega },
     { label: "İletişim", href: "/iletisim" },
   ],
   phone: {
@@ -275,5 +289,5 @@ export const headerData: HeaderData = {
     label: "Bizi Arayın",
     href: "tel:+905337733199",
   },
-  cta: { label: "Randevu Al", href: "#", icon: "calendar" },
+  cta: { label: "Randevu Al", href: "tel:+905337733199", icon: "calendar" },
 };

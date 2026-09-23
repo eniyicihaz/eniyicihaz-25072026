@@ -1,0 +1,62 @@
+---
+// Gerekli Belgeler — /sgk/gerekli-belgeler. Third page of the "SGK &
+// Haklar" series (see header.data.ts's knowledgeMega third column),
+// following /sgk/katki-payi and /sgk/rapor-sureci.
+//
+// accentColor: çivit / indigo-600 (#4f46e5) — third color in this
+// column's own accent rotation; see hero.ts for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Önemlidir?
+// -> Hazırlığın Faydaları -> Dikkat Edilmesi Gerekenler -> Hazırlık
+// Adımları -> Belge Kategorileri -> Belge Sisteminin Bileşenleri ->
+// Markalara Göre İnceleyin -> Yetişkin vs Çocuk Belge Karşılaştırması
+// -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { gerekliBelgelerHero } from "../../data/gerekli-belgeler/hero";
+import { gerekliBelgelerIntro } from "../../data/gerekli-belgeler/intro";
+import { gerekliBelgelerIdealUser } from "../../data/gerekli-belgeler/ideal-user";
+import { gerekliBelgelerAdvantages } from "../../data/gerekli-belgeler/advantages";
+import { gerekliBelgelerConsiderations } from "../../data/gerekli-belgeler/considerations";
+import { gerekliBelgelerEvolution } from "../../data/gerekli-belgeler/evolution";
+import { gerekliBelgelerUseCases } from "../../data/gerekli-belgeler/use-cases";
+import { gerekliBelgelerTechnology } from "../../data/gerekli-belgeler/technology";
+import { gerekliBelgelerRecommendedBrands } from "../../data/gerekli-belgeler/recommended-brands";
+import { gerekliBelgelerComparison } from "../../data/gerekli-belgeler/comparison";
+import { gerekliBelgelerExpertOpinion } from "../../data/gerekli-belgeler/expert-opinion";
+import { gerekliBelgelerFaq } from "../../data/gerekli-belgeler/faq";
+import { gerekliBelgelerRelatedContent } from "../../data/gerekli-belgeler/related-content";
+import { gerekliBelgelerFinalCta } from "../../data/gerekli-belgeler/final-cta";
+---
+
+<MainLayout
+  title="Gerekli Belgeler | SGK İşitme Cihazı Başvurusu İçin Belgeler | EniyiCihaz"
+  description="SGK işitme cihazı başvurusu için hangi belgeler gerekir? Sağlık kurulu raporu, reçete, kimlik ve duruma özel ek belgeler hakkında bilgi edinin."
+>
+  <BrandPageHero data={gerekliBelgelerHero} />
+  <BrandPageIntro data={gerekliBelgelerIntro} />
+  <BrandPageIdealUser data={gerekliBelgelerIdealUser} />
+  <BrandPageAdvantages data={gerekliBelgelerAdvantages} />
+  <BrandPageIdealUser data={gerekliBelgelerConsiderations} />
+  <BrandPageTechEvolution data={gerekliBelgelerEvolution} />
+  <BrandPageTechnology data={gerekliBelgelerUseCases} />
+  <BrandPageEcosystem data={gerekliBelgelerTechnology} />
+  <BrandPageRelatedContent data={gerekliBelgelerRecommendedBrands} />
+  <KulakArkasiComparison data={gerekliBelgelerComparison} />
+  <BrandPageExpertOpinion data={gerekliBelgelerExpertOpinion} />
+  <BrandPageFaq data={gerekliBelgelerFaq} />
+  <BrandPageFinalCta data={gerekliBelgelerFinalCta} />
+  <BrandPageRelatedContent data={gerekliBelgelerRelatedContent} />
+</MainLayout>

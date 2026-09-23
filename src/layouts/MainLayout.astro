@@ -18,6 +18,27 @@ const {
   title = "EniyiCihaz — İşitme Cihazları",
   description = "İşitme sağlığınız için en iyi çözümler.",
 } = Astro.props;
+
+// Canonical/OG URL — requires `site` in astro.config.mjs (set to the real
+// production URL from COMPANY.md). No og:image yet: no real logo or share
+// image asset exists in the repo, and a stock/product photo would misrepresent
+// the brand in a social-share card — omitted rather than faked (PRINCIPLES.md
+// §7). Add one real asset and this can be wired in with a single prop.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Site-wide Organization identity — the brand-level half of the two-part
+// entity described in SEARCH_STRATEGY.md §11. The `/iletisim` page adds a
+// second JSON-LD block (MedicalBusiness) sharing this exact same `@id`, so
+// search engines and AI systems resolve both as one real business, not two.
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.eniyicihaz.com/#organization",
+  name: "Eniyicihaz.com",
+  alternateName: "Avrasya İşitme Cihazları",
+  url: "https://www.eniyicihaz.com",
+  telephone: "+905337733199",
+};
 ---
 
 <!DOCTYPE html>
@@ -27,12 +48,28 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Eniyicihaz.com" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(organizationSchema)}
     />
   </head>
 

@@ -1,0 +1,73 @@
+---
+// Uyum Süreci — /rehberler/uyum-sureci. Fourth and final page of the
+// "Rehberler" series (see header.data.ts's knowledgeMega first
+// column), following İşitme Kaybı Nedir?, Cihaz Seçim Rehberi and İlk
+// Kullanım Rehberi. Every one of those three prior siblings explicitly
+// cross-referenced this page for the longer adaptation journey — this
+// page delivers on that promise. Every item in this column is now a
+// real route.
+//
+// Distinct from İlk Kullanım Rehberi: that page covers the practical,
+// operational first-days basics. This page covers the longer,
+// weeks-to-months NEUROLOGICAL/PSYCHOLOGICAL adaptation process — how
+// the brain relearns to process sound.
+//
+// accentColor: mor / violet-600 (#7c3aed) — fourth and final color in
+// the fresh accent rotation opened for this series; see hero.ts for
+// the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Kimler İçin Faydalıdır? -> Sabırlı Bir Sürecin Faydaları -> Dikkat
+// Edilmesi Gerekenler -> Uyum Sürecinin Aşamaları -> Sık Yaşanan
+// Deneyimler -> Teknolojiler -> Markalara Göre İnceleyin -> Erken vs
+// Geç Müdahale -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili
+// İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { uyumSureciHero } from "../../data/uyum-sureci/hero";
+import { uyumSureciIntro } from "../../data/uyum-sureci/intro";
+import { uyumSureciIdealUser } from "../../data/uyum-sureci/ideal-user";
+import { uyumSureciAdvantages } from "../../data/uyum-sureci/advantages";
+import { uyumSureciConsiderations } from "../../data/uyum-sureci/considerations";
+import { uyumSureciEvolution } from "../../data/uyum-sureci/evolution";
+import { uyumSureciUseCases } from "../../data/uyum-sureci/use-cases";
+import { uyumSureciTechnology } from "../../data/uyum-sureci/technology";
+import { uyumSureciRecommendedBrands } from "../../data/uyum-sureci/recommended-brands";
+import { uyumSureciComparison } from "../../data/uyum-sureci/comparison";
+import { uyumSureciExpertOpinion } from "../../data/uyum-sureci/expert-opinion";
+import { uyumSureciFaq } from "../../data/uyum-sureci/faq";
+import { uyumSureciRelatedContent } from "../../data/uyum-sureci/related-content";
+import { uyumSureciFinalCta } from "../../data/uyum-sureci/final-cta";
+---
+
+<MainLayout
+  title="Uyum Süreci | Cihazınıza Zamanla Nasıl Alışırsınız? | EniyiCihaz"
+  description="İşitme cihazınıza uyum süreci nasıl işler? Beynin yeniden kalibrasyonu, uyum sürecinin aşamaları ve sık yaşanan deneyimler hakkında bilgi edinin."
+>
+  <BrandPageHero data={uyumSureciHero} />
+  <BrandPageIntro data={uyumSureciIntro} />
+  <BrandPageIdealUser data={uyumSureciIdealUser} />
+  <BrandPageAdvantages data={uyumSureciAdvantages} />
+  <BrandPageIdealUser data={uyumSureciConsiderations} />
+  <BrandPageTechEvolution data={uyumSureciEvolution} />
+  <BrandPageTechnology data={uyumSureciUseCases} />
+  <BrandPageEcosystem data={uyumSureciTechnology} />
+  <BrandPageRelatedContent data={uyumSureciRecommendedBrands} />
+  <KulakArkasiComparison data={uyumSureciComparison} />
+  <BrandPageExpertOpinion data={uyumSureciExpertOpinion} />
+  <BrandPageFaq data={uyumSureciFaq} />
+  <BrandPageFinalCta data={uyumSureciFinalCta} />
+  <BrandPageRelatedContent data={uyumSureciRelatedContent} />
+</MainLayout>

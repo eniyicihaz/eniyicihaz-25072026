@@ -1,0 +1,82 @@
+---
+// Ekonomik Seri — /segmentler/ekonomik-seri. Third and final page of the
+// "Segmentler" series (see header.data.ts's brandsMega third column) —
+// completing the brandsMega mega menu's "Segmentler" column entirely
+// (three genuinely new pages: Premium Seri, Standart Seri, Ekonomik
+// Seri; plus three menu items already wired to existing devicesMega
+// content on Premium Seri: Şarj Edilebilir Seri, Görünmez Seri, Çocuk
+// Serisi). Same candidacy-based content genre as Premium Seri and
+// Standart Seri.
+//
+// The TechEvolution "stage" slot reuses the same genuine three-rung tier
+// ladder used on the two prior siblings (Ekonomik -> Standart ->
+// Premium), with "bestFor" swapped to "Bu sayfanın konusu" on the
+// Ekonomik rung. The KulakArkasiComparison table deliberately does NOT
+// repeat the Standart-vs-Ekonomik pair already covered on Standart
+// Seri's own comparison (same sides, just swapped, would be redundant);
+// instead it pivots to the axis genuinely specific to this
+// price-sensitive segment — an orijinal ekonomik-seri cihaz vs. a
+// non-original "cheap" imitation — the same technique the dB-degree
+// ladder pages used for their own final rung. This also ties the
+// Segmentler series back to the "Neden Orijinal" series' own Güvenilir
+// Teknoloji page.
+//
+// accentColor: yeşil / green-600 (#16a34a) — third and final color in
+// the fresh accent rotation opened for this series on Premium Seri's
+// hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Uygun? ->
+// Avantajları -> Dikkat Edilmesi Gerekenler -> Seri Karşılaştırması
+// (Ekonomik/Standart/Premium ladder) -> Öne Çıkan Özellikler ->
+// Teknolojiler -> Markalara Göre İnceleyin -> Orijinal Ekonomik Seri vs
+// Orijinal Olmayan Ucuz Ürün -> Uzman Yorumu -> SSS -> Premium CTA ->
+// İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { ekonomikSeriHero } from "../../data/ekonomik-seri/hero";
+import { ekonomikSeriIntro } from "../../data/ekonomik-seri/intro";
+import { ekonomikSeriIdealUser } from "../../data/ekonomik-seri/ideal-user";
+import { ekonomikSeriAdvantages } from "../../data/ekonomik-seri/advantages";
+import { ekonomikSeriConsiderations } from "../../data/ekonomik-seri/considerations";
+import { ekonomikSeriEvolution } from "../../data/ekonomik-seri/evolution";
+import { ekonomikSeriUseCases } from "../../data/ekonomik-seri/use-cases";
+import { ekonomikSeriTechnology } from "../../data/ekonomik-seri/technology";
+import { ekonomikSeriRecommendedBrands } from "../../data/ekonomik-seri/recommended-brands";
+import { ekonomikSeriComparison } from "../../data/ekonomik-seri/comparison";
+import { ekonomikSeriExpertOpinion } from "../../data/ekonomik-seri/expert-opinion";
+import { ekonomikSeriFaq } from "../../data/ekonomik-seri/faq";
+import { ekonomikSeriRelatedContent } from "../../data/ekonomik-seri/related-content";
+import { ekonomikSeriFinalCta } from "../../data/ekonomik-seri/final-cta";
+---
+
+<MainLayout
+  title="Ekonomik Seri İşitme Cihazları | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Ekonomik seri işitme cihazları nedir, kimler için uygundur? Uygun fiyat, sade kullanım ve ekonomik seri ile orijinal ürün güvencesi hakkında bilmeniz gerekenleri keşfedin."
+>
+  <BrandPageHero data={ekonomikSeriHero} />
+  <BrandPageIntro data={ekonomikSeriIntro} />
+  <BrandPageIdealUser data={ekonomikSeriIdealUser} />
+  <BrandPageAdvantages data={ekonomikSeriAdvantages} />
+  <BrandPageIdealUser data={ekonomikSeriConsiderations} />
+  <BrandPageTechEvolution data={ekonomikSeriEvolution} />
+  <BrandPageTechnology data={ekonomikSeriUseCases} />
+  <BrandPageEcosystem data={ekonomikSeriTechnology} />
+  <BrandPageRelatedContent data={ekonomikSeriRecommendedBrands} />
+  <KulakArkasiComparison data={ekonomikSeriComparison} />
+  <BrandPageExpertOpinion data={ekonomikSeriExpertOpinion} />
+  <BrandPageFaq data={ekonomikSeriFaq} />
+  <BrandPageFinalCta data={ekonomikSeriFinalCta} />
+  <BrandPageRelatedContent data={ekonomikSeriRelatedContent} />
+</MainLayout>

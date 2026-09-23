@@ -1,0 +1,67 @@
+---
+// Kişiye Özel Programlama — /uygulama-ayar/kisiye-ozel-programlama.
+// Second page of the "Uygulama & Ayar" series (see header.data.ts's
+// servicesMega second column), following Cihaz Uygulama. Same service
+// genre — this page's own scope is the ongoing, iterative fine-tuning
+// craftsmanship (feedback-driven gain/compression adjustment, multiple
+// environment programs, data-logging-informed refinement) that follows
+// the first fitting appointment already covered by Cihaz Uygulama.
+//
+// accentColor: eflatun / violet-600 (#7c3aed) — second color in the
+// fresh accent rotation opened for this series on Cihaz Uygulama's
+// hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Kapsar? -> Kimler
+// İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Süreç
+// Adımları -> Neler Ayarlanır -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Tek Programlı vs Çoklu Ortam Programlı -> Uzman Yorumu
+// -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { kisiyeOzelProgramlamaHero } from "../../data/kisiye-ozel-programlama/hero";
+import { kisiyeOzelProgramlamaIntro } from "../../data/kisiye-ozel-programlama/intro";
+import { kisiyeOzelProgramlamaIdealUser } from "../../data/kisiye-ozel-programlama/ideal-user";
+import { kisiyeOzelProgramlamaAdvantages } from "../../data/kisiye-ozel-programlama/advantages";
+import { kisiyeOzelProgramlamaConsiderations } from "../../data/kisiye-ozel-programlama/considerations";
+import { kisiyeOzelProgramlamaEvolution } from "../../data/kisiye-ozel-programlama/evolution";
+import { kisiyeOzelProgramlamaUseCases } from "../../data/kisiye-ozel-programlama/use-cases";
+import { kisiyeOzelProgramlamaTechnology } from "../../data/kisiye-ozel-programlama/technology";
+import { kisiyeOzelProgramlamaRecommendedBrands } from "../../data/kisiye-ozel-programlama/recommended-brands";
+import { kisiyeOzelProgramlamaComparison } from "../../data/kisiye-ozel-programlama/comparison";
+import { kisiyeOzelProgramlamaExpertOpinion } from "../../data/kisiye-ozel-programlama/expert-opinion";
+import { kisiyeOzelProgramlamaFaq } from "../../data/kisiye-ozel-programlama/faq";
+import { kisiyeOzelProgramlamaRelatedContent } from "../../data/kisiye-ozel-programlama/related-content";
+import { kisiyeOzelProgramlamaFinalCta } from "../../data/kisiye-ozel-programlama/final-cta";
+---
+
+<MainLayout
+  title="Kişiye Özel Programlama | İşitme Cihazı İnce Ayarı | EniyiCihaz"
+  description="İşitme cihazınızın kişiye özel programlanması nasıl yapılır? Geri bildirime dayalı ince ayar, ortama özel dinleme programları ve veri kaydı desteği hakkında bilgi edinin."
+>
+  <BrandPageHero data={kisiyeOzelProgramlamaHero} />
+  <BrandPageIntro data={kisiyeOzelProgramlamaIntro} />
+  <BrandPageIdealUser data={kisiyeOzelProgramlamaIdealUser} />
+  <BrandPageAdvantages data={kisiyeOzelProgramlamaAdvantages} />
+  <BrandPageIdealUser data={kisiyeOzelProgramlamaConsiderations} />
+  <BrandPageTechEvolution data={kisiyeOzelProgramlamaEvolution} />
+  <BrandPageTechnology data={kisiyeOzelProgramlamaUseCases} />
+  <BrandPageEcosystem data={kisiyeOzelProgramlamaTechnology} />
+  <BrandPageRelatedContent data={kisiyeOzelProgramlamaRecommendedBrands} />
+  <KulakArkasiComparison data={kisiyeOzelProgramlamaComparison} />
+  <BrandPageExpertOpinion data={kisiyeOzelProgramlamaExpertOpinion} />
+  <BrandPageFaq data={kisiyeOzelProgramlamaFaq} />
+  <BrandPageFinalCta data={kisiyeOzelProgramlamaFinalCta} />
+  <BrandPageRelatedContent data={kisiyeOzelProgramlamaRelatedContent} />
+</MainLayout>

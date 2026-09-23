@@ -19,6 +19,11 @@ export interface OticonTechnologiesContent {
   heading: string;
   intro: string;
   items: OticonTechnology[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorHoverBorder: string;
 }
 
 export const oticonTechnologies: OticonTechnologiesContent = {
@@ -26,6 +31,13 @@ export const oticonTechnologies: OticonTechnologiesContent = {
   heading: "Oticon'u Farklı Kılan Teknolojiler",
   intro:
     "Oticon'un işitme cihazlarında kullandığı temel teknoloji yaklaşımları.",
+  // Precomputed rgb() decomposition of #5fb85a — reproduces the values that
+  // were previously hardcoded directly in OticonTechnologies.astro's CSS.
+  accentColor: "#5fb85a",
+  accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
+  accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
+  accentColorBadgeText: "#4a9a45",
+  accentColorHoverBorder: "rgb(95 184 90 / 0.5)",
   items: [
     {
       label: "BRAIN",

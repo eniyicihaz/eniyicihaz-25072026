@@ -1,0 +1,57 @@
+---
+// Widex brand page (/markalar/widex). Fourth brand page built on the
+// shared Brand Component Architecture (see src/components/brand-page/*)
+// — no new components, no new design language; all 14 sections reuse the
+// exact same components Oticon, Phonak and Signia use, fed by this
+// page's own src/data/widex/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { widexHero } from "../../data/widex/hero";
+import { widexOverview } from "../../data/widex/overview";
+import { widexIntro } from "../../data/widex/intro";
+import { widexTechnology } from "../../data/widex/technology";
+import { widexEcosystem } from "../../data/widex/ecosystem";
+import { widexPlatform } from "../../data/widex/platform";
+import { widexModels } from "../../data/widex/models";
+import { widexComparison } from "../../data/widex/comparison";
+import { widexIdealUser } from "../../data/widex/ideal-user";
+import { widexAdvantages } from "../../data/widex/advantages";
+import { widexExpertOpinion } from "../../data/widex/expert-opinion";
+import { widexFaq } from "../../data/widex/faq";
+import { widexRelatedContent } from "../../data/widex/related-content";
+import { widexFinalCta } from "../../data/widex/final-cta";
+---
+
+<MainLayout
+  title="Widex İşitme Cihazları | EniyiCihaz"
+  description="Widex'in doğal ses felsefesi PureSound™, SoundSense Learn kişiselleştirmesi ve Allure, SmartRIC, Moment gibi model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={widexHero} />
+  <BrandPageOverview data={widexOverview} />
+  <BrandPageIntro data={widexIntro} />
+  <BrandPageTechnology data={widexTechnology} />
+  <BrandPageEcosystem data={widexEcosystem} />
+  <BrandPageTechEvolution data={widexPlatform} />
+  <BrandPageModels data={widexModels} />
+  <BrandPageComparison data={widexComparison} />
+  <BrandPageIdealUser data={widexIdealUser} />
+  <BrandPageAdvantages data={widexAdvantages} />
+  <BrandPageExpertOpinion data={widexExpertOpinion} />
+  <BrandPageFaq data={widexFaq} />
+  <BrandPageRelatedContent data={widexRelatedContent} />
+  <BrandPageFinalCta data={widexFinalCta} />
+</MainLayout>

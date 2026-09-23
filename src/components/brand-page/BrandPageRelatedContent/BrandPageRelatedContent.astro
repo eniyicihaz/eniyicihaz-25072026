@@ -1,0 +1,244 @@
+---
+// BrandPageRelatedContent — shared, cross-brand internal-linking section
+// (Hub-and-Spoke, see SEARCH_STRATEGY.md). New component, not a
+// migration: no Oticon equivalent (see PHONAK MASTER BLUEPRINT §6.13).
+import { ArrowRight } from "lucide-astro";
+
+export interface BrandPageRelatedLink {
+  label: string;
+  description: string;
+  href: string;
+}
+
+export interface BrandPageRelatedContentContent {
+  badge: string;
+  heading: string;
+  links: BrandPageRelatedLink[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+}
+
+interface Props {
+  data: BrandPageRelatedContentContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="brand-page-related"
+  aria-labelledby="brand-page-related-title"
+  style={`--bprc-accent:${data.accentColor}; --bprc-badge-bg:${data.accentColorBadgeBg}; --bprc-badge-border:${data.accentColorBadgeBorder}; --bprc-badge-text:${data.accentColorBadgeText};`}
+>
+  <div class="brand-page-related__inner">
+    <div class="brand-page-related__header">
+      <p class="brand-page-related__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-page-related__heading" id="brand-page-related-title" data-rise>
+        {data.heading}
+      </h2>
+    </div>
+
+    <div class="brand-page-related__grid" data-rise>
+      {
+        data.links.map((link) => (
+          <a class="brand-page-related__card" href={link.href}>
+            <span class="brand-page-related__label">{link.label}</span>
+            <span class="brand-page-related__desc">{link.description}</span>
+            <span class="brand-page-related__arrow">
+              <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-related");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-related {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-20);
+    --bprc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-related__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-related__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-related__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bprc-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bprc-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bprc-badge-text);
+  }
+
+  .brand-page-related__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2.125rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-related__grid {
+    margin: var(--space-10) 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .brand-page-related__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* Grid gives every card in a row the same stretched height; without
+       this, differing description lengths left the arrow sitting at a
+       different vertical position per card. height: 100% + margin-top:
+       auto on the arrow (below) pins it to the same baseline in every
+       card regardless of how many lines the description wraps to. */
+    height: 100%;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 300ms var(--bprc-ease), border-color 300ms var(--bprc-ease), box-shadow 300ms var(--bprc-ease);
+  }
+
+  .brand-page-related__card:hover {
+    transform: translateY(-3px);
+    border-color: var(--bprc-accent);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .brand-page-related__label {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+  }
+
+  .brand-page-related__desc {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-related__arrow {
+    display: inline-flex;
+    margin-top: auto;
+    padding-top: var(--space-4);
+    color: var(--bprc-accent);
+    transition: transform 300ms var(--bprc-ease);
+  }
+
+  .brand-page-related__card:hover .brand-page-related__arrow {
+    transform: translateX(3px);
+  }
+
+  .brand-page-related[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-related[data-anim="in"] [data-rise] {
+    animation: brand-page-related-rise 600ms var(--bprc-ease) both;
+  }
+
+  .brand-page-related[data-anim="in"] .brand-page-related__grid {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-page-related-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .brand-page-related__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-related {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-related__grid {
+      margin-top: var(--space-8);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-related[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-related__card {
+      transition: none;
+    }
+  }
+</style>

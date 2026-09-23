@@ -1,0 +1,402 @@
+---
+// ContactLocationCard — the "control tower" of /iletisim: map + address +
+// both real phone numbers + WhatsApp + hours + directions, in one block.
+// New component because nothing in the codebase combines this shape
+// (BrandHero/BrandCriteria/etc. don't carry a map or dual-phone/hours
+// layout) — see the plan's §11.
+//
+// Info block renders first in markup (address/phones/hours), map second —
+// so on mobile the info a 60+ user actually needs is what they see first,
+// with the map available by scrolling, not the reverse (PRINCIPLES.md §6).
+// On desktop a two-column grid places them side by side in that same
+// document order.
+import { MapPin, Phone, Clock, Navigation } from "lucide-astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import type { CompanyInfo } from "../../footer/Footer/footer.types";
+
+export interface ContactLocationCardContent {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  addressLabel: string;
+  directionsLabel: string;
+  phonesLabel: string;
+  whatsappLabel: string;
+  whatsappHref: string;
+  emailLabel: string;
+  hoursLabel: string;
+  mapTitle: string;
+  company: CompanyInfo;
+}
+
+interface Props {
+  data: ContactLocationCardContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="contact-location" aria-labelledby="contact-location-title">
+  <div class="contact-location__header">
+    <p class="contact-location__eyebrow" data-rise>{data.eyebrow}</p>
+    <h2 class="contact-location__heading" id="contact-location-title" data-rise>
+      {data.heading}
+    </h2>
+    <p class="contact-location__intro" data-rise>{data.intro}</p>
+  </div>
+
+  <div class="contact-location__grid">
+    <div class="contact-location__info" data-rise>
+      <div class="contact-location__row">
+        <span class="contact-location__icon" aria-hidden="true">
+          <MapPin size={20} stroke-width={1.75} />
+        </span>
+        <div class="contact-location__body">
+          <p class="contact-location__label">{data.addressLabel}</p>
+          <address class="contact-location__address">{data.company.address}</address>
+          <a class="contact-location__action" href={data.company.directionsHref}>
+            <Navigation size={14} stroke-width={2.5} aria-hidden="true" />
+            {data.directionsLabel}
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-location__row">
+        <span class="contact-location__icon" aria-hidden="true">
+          <Phone size={20} stroke-width={1.75} />
+        </span>
+        <div class="contact-location__body">
+          <p class="contact-location__label">{data.phonesLabel}</p>
+          <div class="contact-location__phones">
+            {data.company.phones.map((phone) => (
+              <a class="contact-location__phone" href={phone.href}>
+                <span class="contact-location__phone-number">{phone.number}</span>
+                {phone.label && <span class="contact-location__phone-label">{phone.label}</span>}
+              </a>
+            ))}
+          </div>
+          <a class="contact-location__action" href={data.whatsappHref}>
+            <WhatsAppIcon size={14} />
+            {data.whatsappLabel}
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-location__row">
+        <span class="contact-location__icon" aria-hidden="true">
+          <Clock size={20} stroke-width={1.75} />
+        </span>
+        <div class="contact-location__body">
+          <p class="contact-location__label">{data.hoursLabel}</p>
+          <dl class="contact-location__hours">
+            {data.company.hours.map((entry) => (
+              <div class="contact-location__hours-row">
+                <dt>{entry.days}</dt>
+                <dd>{entry.time}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-location__map-wrap" data-rise>
+      <iframe
+        class="contact-location__map"
+        src={data.company.mapEmbedSrc}
+        title={data.mapTitle}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site.
+    var section = document.querySelector(".contact-location");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .contact-location {
+    position: relative;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-20);
+    --cl-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .contact-location__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .contact-location__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .contact-location__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .contact-location__intro {
+    margin: var(--space-4) auto 0;
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .contact-location__grid {
+    max-width: var(--container-2xl);
+    margin: var(--space-14) auto 0;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: stretch;
+  }
+
+  .contact-location__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-8);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+  }
+
+  .contact-location__row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .contact-location__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .contact-location__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .contact-location__label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .contact-location__address {
+    font-style: normal;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .contact-location__action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: fit-content;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .contact-location__action:hover {
+    text-decoration: underline;
+  }
+
+  .contact-location__action:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .contact-location__phones {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .contact-location__phone {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    width: fit-content;
+    text-decoration: none;
+  }
+
+  .contact-location__phone-number {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text);
+  }
+
+  .contact-location__phone:hover .contact-location__phone-number {
+    color: var(--color-primary);
+  }
+
+  .contact-location__phone-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .contact-location__hours {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: 0;
+  }
+
+  .contact-location__hours-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .contact-location__hours-row dt {
+    color: var(--color-text-muted);
+  }
+
+  .contact-location__hours-row dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .contact-location__map-wrap {
+    min-height: 22rem;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .contact-location__map {
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    border: 0;
+    display: block;
+  }
+
+  /* --- Entrance ---------------------------------------------------------- */
+
+  .contact-location[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .contact-location[data-anim="in"] [data-rise] {
+    animation: contact-location-rise 600ms var(--cl-ease) both;
+  }
+
+  .contact-location[data-anim="in"] .contact-location__map-wrap {
+    animation-delay: 120ms;
+  }
+
+  @keyframes contact-location-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive: info first, map second on mobile ---------------------- */
+
+  @media (max-width: 900px) {
+    .contact-location__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .contact-location {
+      padding-block: var(--space-14);
+    }
+
+    .contact-location__info {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-location[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

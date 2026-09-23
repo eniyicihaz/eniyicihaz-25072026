@@ -1,0 +1,465 @@
+---
+// SgkSupport — the SGK pillar page's support section: not a generic
+// "Hizmetlerimiz" grid, but a walkthrough of how we help at every stage
+// of the SGK process (consultation -> paperwork -> device fit -> service).
+// Own data namespace (../../../data/sgk/support), independent of the rest
+// of sgk/*.
+import {
+  Stethoscope,
+  FileCheck2,
+  Ear,
+  Settings2,
+  Wrench,
+  HeartHandshake,
+  Check,
+  ArrowRight,
+  Phone,
+  MessageCircle,
+} from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { sgkSupport } from "../../../data/sgk/support";
+import { contactConfig } from "../../../config";
+
+const cardIcons = [Stethoscope, FileCheck2, Ear, Settings2, Wrench, HeartHandshake];
+---
+
+<section class="sgk-support" aria-labelledby="sgk-support-title">
+  <div class="sgk-support__inner">
+    <div class="sgk-support__head" data-rise>
+      <p class="sgk-support__badge">{sgkSupport.badge}</p>
+      <h2 class="sgk-support__heading" id="sgk-support-title">{sgkSupport.heading}</h2>
+      <p class="sgk-support__intro">{sgkSupport.intro}</p>
+    </div>
+
+    <div class="sgk-support__grid" data-rise>
+      {
+        sgkSupport.cards.map((card, i) => {
+          const Icon = cardIcons[i % cardIcons.length];
+          return (
+            <div class="sgk-support__card">
+              <span class="sgk-support__card-icon" aria-hidden="true">
+                <Icon size={22} stroke-width={1.75} />
+              </span>
+              <p class="sgk-support__card-title">{card.title}</p>
+              <p class="sgk-support__card-text">{card.text}</p>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <div class="sgk-support__trust" data-rise>
+      {
+        sgkSupport.trustItems.map((item) => (
+          <span class="sgk-support__trust-item">
+            <span class="sgk-support__trust-icon" aria-hidden="true">
+              <Check size={12} stroke-width={2.5} />
+            </span>
+            {item}
+          </span>
+        ))
+      }
+    </div>
+
+    <div class="sgk-support__related" data-rise>
+      <span class="sgk-support__related-label">{sgkSupport.relatedLabel}</span>
+      <div class="sgk-support__related-links">
+        {
+          sgkSupport.relatedLinks.map((link) => (
+            <a class="sgk-support__related-link" href={link.href}>
+              <span>{link.label}</span>
+              <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="sgk-support__cta" data-rise>
+      <p class="sgk-support__cta-heading">{sgkSupport.cta.heading}</p>
+      <p class="sgk-support__cta-subtext">{sgkSupport.cta.subtext}</p>
+      <div class="sgk-support__cta-actions">
+        <CtaButton
+          label={sgkSupport.cta.primaryLabel}
+          href={contactConfig.phone.href}
+          variant="solid"
+          iconLeft={Phone}
+        />
+        <CtaButton
+          label={sgkSupport.cta.secondaryLabel}
+          href={contactConfig.whatsapp.href}
+          variant="outline"
+          iconLeft={MessageCircle}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-support");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as the rest
+    // of the SGK page: default-visible CSS, JS-only "armed" opt-in, three
+    // independent safety nets so content can never get stuck hidden.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-support {
+    position: relative;
+    background: var(--color-white);
+    padding-block: var(--space-24);
+    --ss-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-support__inner {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .sgk-support__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sgk-support__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-support__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-support__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Cards: 3x2 premium grid --------------------------------------------- */
+
+  .sgk-support__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-16);
+  }
+
+  .sgk-support__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-7);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: transform 320ms var(--ss-ease), box-shadow 320ms var(--ss-ease),
+      border-color 320ms var(--ss-ease);
+  }
+
+  .sgk-support__card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(37 99 235 / 0.3);
+    box-shadow: 0 24px 48px -24px rgb(37 99 235 / 0.28);
+  }
+
+  .sgk-support__card-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+    transition: transform 320ms var(--ss-ease), background-color 320ms var(--ss-ease);
+  }
+
+  .sgk-support__card:hover .sgk-support__card-icon {
+    background: rgb(37 99 235 / 0.14);
+    transform: scale(1.06);
+  }
+
+  .sgk-support__card-title {
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-support__card-text {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Trust band ------------------------------------------------------------ */
+
+  .sgk-support__trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3) var(--space-6);
+    margin-top: var(--space-12);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+  }
+
+  .sgk-support__trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-support__trust-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgb(37 99 235 / 0.1);
+    color: var(--color-primary);
+  }
+
+  /* --- Related / internal linking ------------------------------------------ */
+
+  .sgk-support__related {
+    max-width: 860px;
+    margin: var(--space-10) auto 0;
+    text-align: center;
+  }
+
+  .sgk-support__related-label {
+    display: block;
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .sgk-support__related-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .sgk-support__related-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 220ms var(--ss-ease), color 220ms var(--ss-ease),
+      transform 220ms var(--ss-ease);
+  }
+
+  .sgk-support__related-link svg {
+    color: var(--color-primary);
+    transition: transform 220ms var(--ss-ease);
+  }
+
+  .sgk-support__related-link:hover {
+    border-color: rgb(37 99 235 / 0.35);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .sgk-support__related-link:hover svg {
+    transform: translateX(2px);
+  }
+
+  .sgk-support__related-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- CTA banner ------------------------------------------------------------ */
+
+  .sgk-support__cta {
+    max-width: 720px;
+    margin: var(--space-12) auto 0;
+    padding: var(--space-10);
+    text-align: center;
+    background: rgb(37 99 235 / 0.05);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sgk-support__cta-heading {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-support__cta-subtext {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-support__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .sgk-support[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--ss-ease), transform 600ms var(--ss-ease);
+  }
+
+  .sgk-support[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-support[data-anim="armed"] .sgk-support__head { transition-delay: 0ms; }
+  .sgk-support[data-anim="armed"] .sgk-support__grid { transition-delay: 80ms; }
+  .sgk-support[data-anim="armed"] .sgk-support__trust { transition-delay: 160ms; }
+  .sgk-support[data-anim="armed"] .sgk-support__related { transition-delay: 200ms; }
+  .sgk-support[data-anim="armed"] .sgk-support__cta { transition-delay: 240ms; }
+
+  /* --- Responsive ------------------------------------------------------------ */
+
+  @media (max-width: 1023px) {
+    .sgk-support {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-support__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: var(--space-12);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-support__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sgk-support__trust {
+      justify-content: flex-start;
+    }
+
+    .sgk-support__related-links {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sgk-support__related-link {
+      justify-content: center;
+    }
+
+    .sgk-support__cta {
+      padding: var(--space-6);
+    }
+
+    .sgk-support__cta-actions {
+      flex-direction: column;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-support[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sgk-support__card,
+    .sgk-support__card-icon,
+    .sgk-support__related-link,
+    .sgk-support__related-link svg {
+      transition: none;
+    }
+  }
+</style>

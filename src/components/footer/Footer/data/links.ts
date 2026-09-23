@@ -8,12 +8,13 @@ export const linkColumns: LinkColumn[] = [
   {
     title: "İşitme Cihazları",
     links: [
-      { label: "Kulak Arkası (BTE)", href: "#" },
-      { label: "Kulak İçi (ITE)", href: "#" },
-      { label: "Şarj Edilebilir Cihazlar", href: "#" },
-      { label: "Bluetooth Özellikli Cihazlar", href: "#" },
-      { label: "Görünmez (CIC) Cihazlar", href: "#" },
-      { label: "Çocuklara Özel Cihazlar", href: "#" },
+      { label: "Kulak Arkası (BTE)", href: "/isitme-cihazlari/kulak-arkasi-bte" },
+      { label: "Kulak İçi (ITE)", href: "/isitme-cihazlari/kulak-ici-ite" },
+      { label: "Şarj Edilebilir Cihazlar", href: "/isitme-cihazlari/sarj-edilebilir" },
+      { label: "Bluetooth Özellikli Cihazlar", href: "/isitme-cihazlari/bluetooth-ozellikli" },
+      { label: "Görünmez (CIC) Cihazlar", href: "/isitme-cihazlari/gorunmez-cic" },
+      { label: "Çocuklara Özel Cihazlar", href: "/isitme-cihazlari/cocuklara-ozel" },
+      { label: "Suya Dayanıklı Cihazlar", href: "/isitme-cihazlari/suya-dayanikli" },
     ],
   },
   {

@@ -1,0 +1,57 @@
+---
+// A&M brand page (/markalar/am). Built on the shared Brand Component
+// Architecture (see src/components/brand-page/*) — no new components, no
+// new design language; all 14 sections reuse the exact same components
+// every other brand page on this site uses, fed by this page's own
+// src/data/am/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { amHero } from "../../data/am/hero";
+import { amOverview } from "../../data/am/overview";
+import { amIntro } from "../../data/am/intro";
+import { amTechnology } from "../../data/am/technology";
+import { amEcosystem } from "../../data/am/ecosystem";
+import { amPlatform } from "../../data/am/platform";
+import { amModels } from "../../data/am/models";
+import { amComparison } from "../../data/am/comparison";
+import { amIdealUser } from "../../data/am/ideal-user";
+import { amAdvantages } from "../../data/am/advantages";
+import { amExpertOpinion } from "../../data/am/expert-opinion";
+import { amFaq } from "../../data/am/faq";
+import { amRelatedContent } from "../../data/am/related-content";
+import { amFinalCta } from "../../data/am/final-cta";
+---
+
+<MainLayout
+  title="A&M Hearing İşitme Cihazları | EniyiCihaz"
+  description="A&M Hearing'in WS Audiology grubu altyapısıyla üretilen XTM serisi işitme cihazlarını Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={amHero} />
+  <BrandPageOverview data={amOverview} />
+  <BrandPageIntro data={amIntro} />
+  <BrandPageTechnology data={amTechnology} />
+  <BrandPageEcosystem data={amEcosystem} />
+  <BrandPageTechEvolution data={amPlatform} />
+  <BrandPageModels data={amModels} />
+  <BrandPageComparison data={amComparison} />
+  <BrandPageIdealUser data={amIdealUser} />
+  <BrandPageAdvantages data={amAdvantages} />
+  <BrandPageExpertOpinion data={amExpertOpinion} />
+  <BrandPageFaq data={amFaq} />
+  <BrandPageRelatedContent data={amRelatedContent} />
+  <BrandPageFinalCta data={amFinalCta} />
+</MainLayout>

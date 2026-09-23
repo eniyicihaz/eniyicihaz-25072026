@@ -1,0 +1,72 @@
+---
+// Teknik Servis — /servis-bakim/teknik-servis. First page of the new
+// "Servis & Bakım" series (see header.data.ts's servicesMega third
+// column). A new content genre distinct from both Değerlendirme
+// (diagnostic) and Uygulama & Ayar (fitting/adjustment): this series
+// covers what happens when something is actually malfunctioning or
+// needs physical upkeep — starting with reactive repair.
+//
+// Distinct from the still-unbuilt "Periyodik Bakım" sibling (routine,
+// scheduled physical maintenance) and from Kontrol Randevusu
+// (Uygulama & Ayar's own routine hearing+performance review, which
+// this page cross-references for complaints that may not actually be a
+// hardware fault).
+//
+// accentColor: kırmızı / red-600 (#dc2626) — first color in a fresh
+// accent rotation opened for this series; see hero.ts for the full
+// rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Kapsar? -> Kimler
+// İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Süreç
+// Adımları -> Hangi Sorunları Kapsar -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Yerinde Onarım vs Üretici Servisi -> Uzman Yorumu -> SSS
+// -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { teknikServisHero } from "../../data/teknik-servis/hero";
+import { teknikServisIntro } from "../../data/teknik-servis/intro";
+import { teknikServisIdealUser } from "../../data/teknik-servis/ideal-user";
+import { teknikServisAdvantages } from "../../data/teknik-servis/advantages";
+import { teknikServisConsiderations } from "../../data/teknik-servis/considerations";
+import { teknikServisEvolution } from "../../data/teknik-servis/evolution";
+import { teknikServisUseCases } from "../../data/teknik-servis/use-cases";
+import { teknikServisTechnology } from "../../data/teknik-servis/technology";
+import { teknikServisRecommendedBrands } from "../../data/teknik-servis/recommended-brands";
+import { teknikServisComparison } from "../../data/teknik-servis/comparison";
+import { teknikServisExpertOpinion } from "../../data/teknik-servis/expert-opinion";
+import { teknikServisFaq } from "../../data/teknik-servis/faq";
+import { teknikServisRelatedContent } from "../../data/teknik-servis/related-content";
+import { teknikServisFinalCta } from "../../data/teknik-servis/final-cta";
+---
+
+<MainLayout
+  title="Teknik Servis | İşitme Cihazı Onarım Hizmeti | EniyiCihaz"
+  description="İşitme cihazı teknik servis hizmeti nasıl işler? Ses kesintisi, fiziksel hasar veya su teması gibi durumlarda yerinde teşhis ve onarım süreci hakkında bilgi edinin."
+>
+  <BrandPageHero data={teknikServisHero} />
+  <BrandPageIntro data={teknikServisIntro} />
+  <BrandPageIdealUser data={teknikServisIdealUser} />
+  <BrandPageAdvantages data={teknikServisAdvantages} />
+  <BrandPageIdealUser data={teknikServisConsiderations} />
+  <BrandPageTechEvolution data={teknikServisEvolution} />
+  <BrandPageTechnology data={teknikServisUseCases} />
+  <BrandPageEcosystem data={teknikServisTechnology} />
+  <BrandPageRelatedContent data={teknikServisRecommendedBrands} />
+  <KulakArkasiComparison data={teknikServisComparison} />
+  <BrandPageExpertOpinion data={teknikServisExpertOpinion} />
+  <BrandPageFaq data={teknikServisFaq} />
+  <BrandPageFinalCta data={teknikServisFinalCta} />
+  <BrandPageRelatedContent data={teknikServisRelatedContent} />
+</MainLayout>

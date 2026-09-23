@@ -1,6 +1,7 @@
 ---
 import { ChevronDown } from "lucide-astro";
 import type { NavItem } from "../../header.types";
+import { isActive } from "../../isActive";
 
 interface Props {
   items: NavItem[];
@@ -8,9 +9,6 @@ interface Props {
 }
 
 const { items, currentPath } = Astro.props;
-
-const isActive = (href: string) =>
-  href === "/" ? currentPath === "/" : href !== "#" && currentPath.startsWith(href);
 ---
 
 <nav class="hd-nav" aria-label="Ana menü">
@@ -26,6 +24,7 @@ const isActive = (href: string) =>
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls={`hd-mega-${item.mega.id}`}
+              aria-current={isActive(item.href, currentPath) ? "true" : undefined}
             >
               <span>{item.label}</span>
               <ChevronDown class="hd-nav__chev" size={16} aria-hidden="true" />
@@ -36,7 +35,7 @@ const isActive = (href: string) =>
             <a
               class="hd-nav__link"
               href={item.href}
-              aria-current={isActive(item.href) ? "page" : undefined}
+              aria-current={isActive(item.href, currentPath) ? "page" : undefined}
             >
               {item.label}
             </a>
@@ -106,6 +105,7 @@ const isActive = (href: string) =>
   .hd-nav__link:hover,
   .hd-nav__trigger:hover,
   .hd-nav__trigger[aria-expanded="true"],
+  .hd-nav__trigger[aria-current="true"],
   .hd-nav__link[aria-current="page"] {
     color: var(--color-text);
   }
@@ -113,6 +113,7 @@ const isActive = (href: string) =>
   .hd-nav__link:hover::after,
   .hd-nav__trigger:hover::after,
   .hd-nav__trigger[aria-expanded="true"]::after,
+  .hd-nav__trigger[aria-current="true"]::after,
   .hd-nav__link[aria-current="page"]::after {
     transform: scaleX(1);
   }

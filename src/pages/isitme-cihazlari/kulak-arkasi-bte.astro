@@ -1,0 +1,64 @@
+---
+// Kulak Arkası (BTE) İşitme Cihazı — /isitme-cihazlari/kulak-arkasi-bte.
+// Master template for every future "İşitme Cihazı Çeşitleri" product page
+// (Kulak İçi, Şarjlı, Bluetooth, Görünmez, ... — see header.data.ts's
+// devicesMega first column). Built entirely on the shared, data-driven
+// Brand Component Architecture (see src/components/brand-page/*) already
+// proven across every /markalar/{brand} page — no new components beyond
+// KulakArkasiComparison, which fills the one real gap (a head-to-head
+// device-type comparison table; see that component's own header comment).
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Uygun? ->
+// Avantajları -> Dikkat Edilmesi Gerekenler -> İşitme Kaybı Seviyelerine
+// Göre Kullanımı -> Kullanım Alanları -> Teknolojiler -> Önerilen Marka ve
+// Modeller -> Kulak Arkası vs Kulak İçi -> Uzman Yorumu -> SSS -> Premium
+// CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { kulakArkasiHero } from "../../data/kulak-arkasi/hero";
+import { kulakArkasiIntro } from "../../data/kulak-arkasi/intro";
+import { kulakArkasiIdealUser } from "../../data/kulak-arkasi/ideal-user";
+import { kulakArkasiAdvantages } from "../../data/kulak-arkasi/advantages";
+import { kulakArkasiConsiderations } from "../../data/kulak-arkasi/considerations";
+import { kulakArkasiHearingLossLevels } from "../../data/kulak-arkasi/hearing-loss-levels";
+import { kulakArkasiUseCases } from "../../data/kulak-arkasi/use-cases";
+import { kulakArkasiTechnology } from "../../data/kulak-arkasi/technology";
+import { kulakArkasiRecommendedBrands } from "../../data/kulak-arkasi/recommended-brands";
+import { kulakArkasiComparison } from "../../data/kulak-arkasi/comparison";
+import { kulakArkasiExpertOpinion } from "../../data/kulak-arkasi/expert-opinion";
+import { kulakArkasiFaq } from "../../data/kulak-arkasi/faq";
+import { kulakArkasiRelatedContent } from "../../data/kulak-arkasi/related-content";
+import { kulakArkasiFinalCta } from "../../data/kulak-arkasi/final-cta";
+---
+
+<MainLayout
+  title="Kulak Arkası (BTE) İşitme Cihazı Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Kulak arkası (BTE) işitme cihazı nedir, kimler için uygundur, avantajları ve dikkat edilmesi gerekenler nelerdir? Kulak içi (ITE) ile karşılaştırma ve marka rehberi."
+>
+  <BrandPageHero data={kulakArkasiHero} />
+  <BrandPageIntro data={kulakArkasiIntro} />
+  <BrandPageIdealUser data={kulakArkasiIdealUser} />
+  <BrandPageAdvantages data={kulakArkasiAdvantages} />
+  <BrandPageIdealUser data={kulakArkasiConsiderations} />
+  <BrandPageTechEvolution data={kulakArkasiHearingLossLevels} />
+  <BrandPageTechnology data={kulakArkasiUseCases} />
+  <BrandPageEcosystem data={kulakArkasiTechnology} />
+  <BrandPageRelatedContent data={kulakArkasiRecommendedBrands} />
+  <KulakArkasiComparison data={kulakArkasiComparison} />
+  <BrandPageExpertOpinion data={kulakArkasiExpertOpinion} />
+  <BrandPageFaq data={kulakArkasiFaq} />
+  <BrandPageFinalCta data={kulakArkasiFinalCta} />
+  <BrandPageRelatedContent data={kulakArkasiRelatedContent} />
+</MainLayout>

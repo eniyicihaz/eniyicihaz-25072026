@@ -2,12 +2,14 @@
 import { ChevronRight, ArrowRight } from "lucide-astro";
 import { icons } from "../../icons";
 import type { MegaMenuData } from "../../header.types";
+import { isActive } from "../../isActive";
 
 interface Props {
   data: MegaMenuData;
+  currentPath: string;
 }
 
-const { data } = Astro.props;
+const { data, currentPath } = Astro.props;
 const PromoBg = icons.ear as any; // decorative placeholder illustration
 ---
 
@@ -19,19 +21,31 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
   aria-label={`${data.id} menüsü`}
 >
   <div class="hd-mega__inner">
-    <!-- Column 1: Promo (~28%) -->
-    <div class="hd-mega__promo">
+    <!-- Column 1: Promo (35%) -->
+    <div class:list={["hd-mega__promo", { "hd-mega__promo--has-image": Boolean(data.promo.image) }]}>
       <div class="hd-mega__promo-body">
         <h2 class="hd-mega__promo-title">{data.promo.title}</h2>
         <p class="hd-mega__promo-text">{data.promo.text}</p>
-        <a class="hd-mega__promo-cta" href={data.promo.cta.href}>
+        <a
+          class="hd-mega__promo-cta"
+          href={data.promo.cta.href}
+          aria-current={isActive(data.promo.cta.href, currentPath) ? "page" : undefined}
+        >
           <span>{data.promo.cta.label}</span>
-          <ArrowRight size={16} aria-hidden="true" />
+          <ArrowRight class="hd-mega__promo-cta-arrow" size={16} aria-hidden="true" />
         </a>
       </div>
-      <div class="hd-mega__promo-art" aria-hidden="true">
-        <PromoBg size={140} strokeWidth={1} />
-      </div>
+      {
+        data.promo.image ? (
+          <div class="hd-mega__promo-image" aria-hidden="true">
+            <img src={data.promo.image} alt="" loading="lazy" />
+          </div>
+        ) : (
+          <div class="hd-mega__promo-art" aria-hidden="true">
+            <PromoBg size={200} strokeWidth={1} />
+          </div>
+        )
+      }
     </div>
 
     <!-- Columns 2-4: link groups -->
@@ -49,16 +63,24 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
             <ul class="hd-mega__list">
               {col.links.map((link) => (
                 <li>
-                  <a class="hd-mega__link" href={link.href}>
+                  <a
+                    class="hd-mega__link"
+                    href={link.href}
+                    aria-current={isActive(link.href, currentPath) ? "page" : undefined}
+                  >
                     <span>{link.label}</span>
                     <ChevronRight class="hd-mega__link-chev" size={16} aria-hidden="true" />
                   </a>
                 </li>
               ))}
             </ul>
-            <a class="hd-mega__more" href={col.footer.href}>
+            <a
+              class="hd-mega__more"
+              href={col.footer.href}
+              aria-current={isActive(col.footer.href, currentPath) ? "page" : undefined}
+            >
               <span>{col.footer.label}</span>
-              <ArrowRight size={15} aria-hidden="true" />
+              <ArrowRight class="hd-mega__more-arrow" size={15} aria-hidden="true" />
             </a>
           </section>
         );
@@ -91,6 +113,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
                         <span class="hd-mega__support-title">{item.title}</span>
                         <span class="hd-mega__support-desc">{item.desc}</span>
                       </span>
+                      <ChevronRight class="hd-mega__support-chev" size={16} aria-hidden="true" />
                     </a>
                   </li>
                 );
@@ -99,7 +122,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
             </div>
             <a class="hd-mega__more" href={data.support.footer.href}>
               <span>{data.support.footer.label}</span>
-              <ArrowRight size={15} aria-hidden="true" />
+              <ArrowRight class="hd-mega__more-arrow" size={15} aria-hidden="true" />
             </a>
           </section>
         );
@@ -111,6 +134,12 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
 <style>
   /* Full-width panel — no card, no radius, spans the viewport */
   .hd-mega {
+    /* Single shared floor for every promo panel's height, across all four
+       menus (this component is the only mega-menu implementation) —
+       "compact but premium": trimmed from a hardcoded 320px as part of an
+       across-the-board height pass, named/scoped so future tuning has one
+       place to happen rather than per-menu guesswork. */
+    --hd-mega-promo-min-h: 280px;
     position: absolute;
     top: 100%;
     left: 0;
@@ -138,40 +167,221 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
 
   .hd-mega__inner {
     display: grid;
-    grid-template-columns: 34fr 16.5fr 16.5fr 16.5fr 16.5fr;
+    /* 35% promo, the remaining ~65% split evenly across all four right-side
+       columns (~16.25% each) — the original spacious proportion. A prior
+       pass over-narrowed the three discovery columns to 15% to hand the
+       support column 20%, which cramped long labels (e.g. "Tinnitus
+       (Kulak Çınlaması) Çözümleri"); reverted so every right-side column
+       gets its fair, generous share again. */
+    grid-template-columns: 35fr 16.25fr 16.25fr 16.25fr 16.25fr;
     gap: var(--space-8);
-    padding-block: var(--space-10);
+    /* Trimmed from space-10 — the outer air the whole compact-premium pass
+       is aimed at; column gap stays untouched since it's horizontal, not
+       part of the panel's height. */
+    padding-block: var(--space-8);
     padding-inline: var(--hd-pad);
     align-items: stretch;
   }
 
-  /* ---- Promo ---- */
+  /* ---- Promo ----
+     Content is vertically centred (not space-between) so the block reads
+     intentionally composed regardless of how tall the row grows to match
+     the longest discovery column — space-between was stranding the art in
+     an oversized gap on tall rows. The Ear glyph moves out of flow into an
+     absolutely-positioned corner watermark, layered under a soft primary
+     glow for depth (the same "radial glow, existing tokens" recipe already
+     used on Hero/Closing) — one intentional decoration, not a placeholder
+     icon plus dead space. */
   .hd-mega__promo {
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-6);
-    min-height: 320px;
-    padding: var(--space-8);
+    justify-content: center;
+    min-height: var(--hd-mega-promo-min-h);
+    /* Trimmed from space-8 — the panel's real height is driven by
+       align-items: stretch matching its tallest sibling column, so this
+       padding was the gap between the (vertically centred) title/CTA
+       block and the panel's own edges; tightening it closes most of the
+       "too much air above/below" the screenshot flagged. */
+    padding: var(--space-6);
     border-radius: var(--radius-xl);
     background: var(--color-text);
     color: var(--color-text-inverse);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
     overflow: hidden;
+  }
+
+  /* Skipped when a real product photo is present (--has-image) — the photo
+     already carries its own glow/light, a second CSS glow on top would just
+     muddy it. */
+  .hd-mega__promo:not(.hd-mega__promo--has-image)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(55% 55% at 82% 100%, rgb(37 99 235 / 0.35), transparent 72%);
+    pointer-events: none;
+  }
+
+  /* ---- Promo photo (İşitme Cihazları only — data.promo.image) ----
+     object-fit: contain, never cover: the panel's height is driven by
+     whichever sibling column is tallest (align-items: stretch on the grid),
+     so its aspect ratio is unpredictable — a `cover` crop could plausibly
+     eat into the device on a narrow-but-tall panel. `contain` guarantees
+     the full photo, devices included, is always visible; anchoring
+     right/bottom keeps the product hugging the corner it already occupies
+     in the source photo, and lets any leftover space fall on the left —
+     exactly the "boş sol alan" the photo already reserves for this text. */
+  .hd-mega__promo-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hd-mega__promo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: right bottom;
+    display: block;
+    transition: transform var(--transition-base);
+  }
+
+  /* Very light left-to-right fade in the panel's own bg color — blends the
+     photo's own (slightly deeper) navy into the panel background at the
+     seams, and reinforces the dark zone the title/CTA sit on. Fully
+     transparent by 38%, well before the device itself begins (~40%), so
+     the product side is never dimmed. */
+  .hd-mega__promo-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--color-text) 0%, rgb(15 23 42 / 0.6) 18%, transparent 38%);
+    pointer-events: none;
+  }
+
+  /* Same restrained ambient-hover register as the icon variant below —
+     a barely-there scale, never a pan/parallax that could hint at motion
+     sickness or feel like a "hover effect" rather than quality material. */
+  .hd-mega__promo:hover .hd-mega__promo-image img,
+  .hd-mega__promo:focus-within .hd-mega__promo-image img {
+    transform: scale(1.02);
+  }
+
+  .hd-mega__promo-body {
     position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Small kicker bar above the headline — a purely decorative hierarchy
+     cue (no new copy), the same "accent bar" register used elsewhere on
+     the site to lead a section's headline. */
+  .hd-mega__promo-title::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 3px;
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
   }
 
   .hd-mega__promo-title {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-semibold);
-    line-height: 1.15;
+    /* The sitewide h1–h6 base rule (typography.css) sets a dark
+       `color: var(--color-text)` on every heading with no override here —
+       on this panel's dark background that rendered the headline
+       invisible (same dark tone as the navy behind it). Pre-existing, not
+       something this pass introduced, but squarely in scope: fixing it is
+       what "strengthen typography hierarchy" requires. */
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.12;
     letter-spacing: -0.02em;
     margin: 0 0 var(--space-3);
   }
 
+  /* Markalar's photo places its logo ring higher and further left (~52%
+     of the panel width) than İşitme Cihazları's device (~38-40%, but low
+     enough that the title's natural wrap never reaches it) — measured by
+     rendering both and comparing the title's right edge against each
+     photo's actual content start. Only Markalar's title collided with its
+     photo, so only Markalar gets a width cap; İşitme Cihazları keeps its
+     natural (already-safe) wrap. Scoped by the DOM id Astro already
+     derives from data.id, not a new hardcoded value. */
+  #hd-mega-markalar .hd-mega__promo-title {
+    max-width: 46%;
+  }
+
+  /* Hizmetlerimiz's photo is the densest of the three: people + glow ring
+     upper-right, a case/device cluster mid-panel, and — lower down — a
+     shield icon and wave graphic that reach further left (down to ~21% of
+     panel width around 75-80% of its height) than either other photo's
+     danger zone. Centering the text block (the other two menus' recipe)
+     put the CTA right in that lower danger band; measured on-screen, the
+     fix that actually keeps every element clear is top-anchoring the
+     whole block instead (`flex-start`, not `center`) so it lives in the
+     photo's safer upper half, plus width caps on both the title and the
+     description (its 81-character sentence doesn't fit 2 lines at a
+     width that's also safe, so it wraps to 3 short lines instead — never
+     restricted to begin with, unlike the title). The internal gaps below
+     are trimmed via existing spacing tokens only, to compensate for that
+     extra line and keep the CTA in its verified-safe position. */
+  #hd-mega-hizmetler .hd-mega__promo {
+    justify-content: flex-start;
+    padding-top: var(--space-4);
+  }
+
+  #hd-mega-hizmetler .hd-mega__promo-title {
+    max-width: 52%;
+    margin-bottom: var(--space-2);
+  }
+
+  #hd-mega-hizmetler .hd-mega__promo-title::before {
+    margin-bottom: var(--space-2);
+  }
+
+  #hd-mega-hizmetler .hd-mega__promo-text {
+    max-width: 42%;
+  }
+
+  #hd-mega-hizmetler .hd-mega__promo-cta {
+    margin-top: var(--space-2);
+  }
+
+  /* Bilgi Merkezi's photo is requested as a `cover` fill rather than the
+     `contain` used by the other three — its own aspect (1536×1024, 1.5:1)
+     is close enough to this panel's rendered aspect (~1.59:1 measured at a
+     1920px viewport) that a centered cover crop only trims a sliver off
+     the top/bottom, never touching the laptop, books, hearing aid or the
+     ear sculpture the source explicitly asks to keep intact — so no
+     right/bottom anchoring is needed here, unlike the contain variants. */
+  #hd-mega-bilgi .hd-mega__promo-image img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Same shape of problem as Hizmetlerimiz: the photo's content (open book,
+     stacked books, glowing ear sculpture) starts much further left than the
+     other three photos, so the title/description need a width cap to stay
+     clear of it. Measured safe at ~50%/40% against the rendered image. */
+  #hd-mega-bilgi .hd-mega__promo-title {
+    max-width: 50%;
+  }
+
+  #hd-mega-bilgi .hd-mega__promo-text {
+    max-width: 40%;
+  }
+
   .hd-mega__promo-text {
     font-size: var(--font-size-md);
-    line-height: var(--line-height-normal);
-    color: rgb(226 235 250 / 0.85);
+    line-height: var(--line-height-relaxed);
+    color: rgb(226 235 250 / 0.75);
+    max-width: 32ch;
     margin: 0;
   }
 
@@ -179,7 +389,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    margin-top: var(--space-5);
+    margin-top: var(--space-6);
     height: 46px;
     padding-inline: var(--space-5);
     border-radius: var(--radius-lg);
@@ -195,9 +405,21 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
       box-shadow var(--transition-base);
   }
 
-  .hd-mega__promo-cta:hover {
+  .hd-mega__promo-cta:hover,
+  .hd-mega__promo-cta:focus-visible,
+  .hd-mega__promo-cta[aria-current="page"] {
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
+  }
+
+  .hd-mega__promo-cta-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  .hd-mega__promo-cta:hover .hd-mega__promo-cta-arrow,
+  .hd-mega__promo-cta:focus-visible .hd-mega__promo-cta-arrow,
+  .hd-mega__promo-cta[aria-current="page"] .hd-mega__promo-cta-arrow {
+    transform: translateX(3px);
   }
 
   .hd-mega__promo-cta:focus-visible {
@@ -206,9 +428,23 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
   }
 
   .hd-mega__promo-art {
-    align-self: flex-end;
-    color: rgb(255 255 255 / 0.14);
+    position: absolute;
+    right: -28px;
+    bottom: -28px;
+    z-index: 0;
+    color: rgb(255 255 255 / 0.10);
     pointer-events: none;
+    transition: color var(--transition-base), transform var(--transition-base);
+  }
+
+  /* The ear glyph is decorative only — no hover target of its own. It
+     just answers ambiently when the panel itself is engaged with,
+     the smallest possible move + a touch more presence, never a
+     "graphic that animates". */
+  .hd-mega__promo:hover .hd-mega__promo-art,
+  .hd-mega__promo:focus-within .hd-mega__promo-art {
+    color: rgb(255 255 255 / 0.14);
+    transform: translate(-3px, -3px);
   }
 
   /* ---- Link columns ---- */
@@ -218,6 +454,10 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     flex-direction: column;
   }
 
+  /* Hairline rule under every heading — a shared alignment line across
+     all four link columns (all columns should align top to bottom) and a
+     clear break between heading and list, without boxing the column in a
+     card. */
   .hd-mega__col-title {
     display: flex;
     align-items: center;
@@ -226,7 +466,9 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.01em;
     color: var(--color-text);
-    margin: 0 0 var(--space-4);
+    margin: 0 0 var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
     min-height: 32px;
   }
 
@@ -239,11 +481,21 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     background: var(--primary-light);
     color: var(--color-primary);
     flex: none;
+    transition: background-color var(--transition-fast);
+  }
+
+  /* The heading itself stays static (it isn't a link) — only the icon
+     gets a very restrained emphasis, and it responds to the whole column
+     (mouse hover or keyboard focus anywhere inside it), not just the
+     heading, so it reads as ambient "you're browsing this category". */
+  .hd-mega__col:hover .hd-mega__col-icon,
+  .hd-mega__col:focus-within .hd-mega__col-icon {
+    background: rgb(37 99 235 / 0.16);
   }
 
   .hd-mega__list {
     list-style: none;
-    margin: 0 0 var(--space-4);
+    margin: 0 0 var(--space-3);
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -256,7 +508,10 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     align-items: center;
     justify-content: space-between;
     gap: var(--space-2);
-    padding: var(--space-2) var(--space-3);
+    /* Vertical padding trimmed from space-2 — the biggest single lever on
+       row height with 6-7 links per column; horizontal padding untouched
+       so the hover pill keeps the same width/feel, just a touch shorter. */
+    padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-md);
     font-size: var(--font-size-md);
     line-height: 1.45;
@@ -265,7 +520,8 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     text-decoration: none;
     transition:
       color var(--transition-fast),
-      background-color var(--transition-fast);
+      background-color var(--transition-fast),
+      transform var(--transition-fast);
   }
 
   .hd-mega__link-chev {
@@ -279,40 +535,77 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     flex: none;
   }
 
-  .hd-mega__link:hover {
-    color: var(--color-text);
-    background: var(--color-surface);
+  /* Premium hover: the same light-blue surface used across the panel
+     (primary-light, not a neutral grey), text leaning into primary blue
+     with a touch more weight, and a short rightward nudge — restrained,
+     150ms. Keyboard focus gets the identical treatment (not just a ring)
+     so the two input modes feel consistent. */
+  .hd-mega__link:hover,
+  .hd-mega__link:focus-visible,
+  .hd-mega__link[aria-current="page"] {
+    color: var(--color-primary);
+    background: var(--primary-light);
+    font-weight: var(--font-weight-medium);
+    transform: translateX(4px);
   }
 
-  .hd-mega__link:hover .hd-mega__link-chev {
+  .hd-mega__link:hover .hd-mega__link-chev,
+  .hd-mega__link:focus-visible .hd-mega__link-chev,
+  .hd-mega__link[aria-current="page"] .hd-mega__link-chev {
     color: var(--color-primary);
     opacity: 1;
     transform: translateX(0);
   }
 
+  /* Ring drawn last so it wins over the shared hover treatment above for
+     this one property — the a11y signal stays the clearest thing on the
+     row, not competing with a decorative shadow. */
   .hd-mega__link:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
   }
 
+  /* The column's "see all" link, restyled as one row of a shared footer
+     rail: full column width, a hairline top divider, identical across all
+     four columns (three discovery + support) so — combined with the
+     grid's stretch-aligned row height, which already bottom-anchors every
+     one of them at the same baseline — they read as one continuous
+     navigation strip rather than four unrelated links. */
   .hd-mega__more {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: var(--space-2);
     margin-top: auto;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-3) var(--space-3) var(--space-1);
+    border-top: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     letter-spacing: -0.01em;
     color: var(--color-primary);
     text-decoration: none;
-    border-radius: var(--radius-md);
-    align-self: flex-start;
-    transition: gap var(--transition-fast);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
   }
 
-  .hd-mega__more:hover {
-    gap: var(--space-3);
+  /* Stronger than the discovery links (these are destination CTAs) — a
+     light-blue fill across the row plus a deepened primary. The arrow
+     itself carries the "movement" (transform-only, not a `gap` animation,
+     so nothing about the row's own box ever reflows). */
+  .hd-mega__more:hover,
+  .hd-mega__more:focus-visible,
+  .hd-mega__more[aria-current="page"] {
+    background: var(--primary-light);
+    color: var(--color-primary-hover);
+  }
+
+  .hd-mega__more-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  .hd-mega__more:hover .hd-mega__more-arrow,
+  .hd-mega__more:focus-visible .hd-mega__more-arrow,
+  .hd-mega__more[aria-current="page"] .hd-mega__more-arrow {
+    transform: translateX(3px);
   }
 
   .hd-mega__more:focus-visible {
@@ -320,13 +613,18 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     box-shadow: var(--focus-ring);
   }
 
-  /* ---- Support column (title outside, items in a card) ---- */
+  /* ---- Support column (title outside, items in a card) ----
+     A quieter surface than the discovery columns (kept lighter than the
+     main content area on purpose): each row is its own distinct,
+     interactive service entry, with a restrained hover — surface lift +
+     icon tint + a slight nudge, the same register as the discovery links
+     so the whole panel reads as one system, not a heavier competing one. */
   .hd-mega__support-card {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-bottom: var(--space-4);
-    padding: var(--space-3);
+    margin-bottom: var(--space-3);
+    padding: var(--space-2);
     border-radius: var(--radius-xl);
     background: var(--color-surface);
   }
@@ -337,7 +635,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    gap: var(--space-2);
     flex: 1;
   }
 
@@ -345,15 +643,41 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     display: flex;
     align-items: center;
     gap: var(--space-3);
-    padding: var(--space-3);
+    /* Vertical padding trimmed to match the discovery links' proportion;
+       horizontal untouched (keeps the icon/text/chevron rhythm intact). */
+    padding: var(--space-2) var(--space-3);
     border-radius: var(--radius-lg);
     text-decoration: none;
-    transition: background-color var(--transition-fast);
+    transition:
+      background-color var(--transition-fast),
+      transform var(--transition-fast);
   }
 
-  .hd-mega__support-item:hover {
-    background: var(--color-white);
+  /* A "premium service selector": more noticeable than the discovery
+     links (a light-blue fill instead of white, the icon deepens toward
+     primary and lifts slightly) but still restrained — the icon stays
+     white so it keeps reading against the now-tinted row. */
+  .hd-mega__support-item:hover,
+  .hd-mega__support-item:focus-visible {
+    background: var(--primary-light);
+    transform: translateX(3px);
+  }
+
+  .hd-mega__support-item:hover .hd-mega__support-icon,
+  .hd-mega__support-item:focus-visible .hd-mega__support-icon {
+    color: var(--color-primary-hover);
     box-shadow: var(--shadow-xs);
+  }
+
+  .hd-mega__support-item:hover .hd-mega__support-desc,
+  .hd-mega__support-item:focus-visible .hd-mega__support-desc {
+    color: var(--color-text-muted);
+  }
+
+  .hd-mega__support-item:hover .hd-mega__support-chev,
+  .hd-mega__support-item:focus-visible .hd-mega__support-chev {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   .hd-mega__support-item:focus-visible {
@@ -370,10 +694,13 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     background: var(--color-white);
     color: var(--color-primary);
     flex: none;
+    transition: color var(--transition-fast), box-shadow var(--transition-fast);
   }
 
   .hd-mega__support-text {
     display: flex;
+    flex: 1;
+    min-width: 0;
     flex-direction: column;
     line-height: 1.25;
   }
@@ -388,19 +715,32 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
   .hd-mega__support-desc {
     font-size: var(--font-size-sm);
     color: var(--color-text-soft);
+    transition: color var(--transition-fast);
+  }
+
+  /* Optional trailing arrow (same reveal recipe as the discovery links'
+     chevron) — always in the DOM/flow at its full size, just invisible at
+     rest, so the row's width/text area is identical before and after
+     hover: nothing shifts. */
+  .hd-mega__support-chev {
+    color: var(--color-primary);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    flex: none;
   }
 
   /* Promo is the most important area — it is preserved, not hidden.
      Ratios scale down gently as the viewport narrows. */
   @media (max-width: 1439px) {
     .hd-mega__inner {
-      grid-template-columns: 30fr 17.5fr 17.5fr 17.5fr 17.5fr;
+      grid-template-columns: 31fr 17.25fr 17.25fr 17.25fr 17.25fr;
     }
   }
 
   @media (max-width: 1279px) {
     .hd-mega__inner {
-      grid-template-columns: 28fr 18fr 18fr 18fr 18fr;
+      grid-template-columns: 29fr 17.75fr 17.75fr 17.75fr 17.75fr;
       gap: var(--space-6);
     }
   }
@@ -420,6 +760,33 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
       transform: none;
     }
     .hd-mega[data-open] {
+      transform: none;
+    }
+    .hd-mega__link:hover,
+    .hd-mega__link:focus-visible,
+    .hd-mega__link[aria-current="page"],
+    .hd-mega__support-item:hover,
+    .hd-mega__support-item:focus-visible,
+    .hd-mega__promo-cta:hover,
+    .hd-mega__promo-cta:focus-visible,
+    .hd-mega__promo-cta[aria-current="page"] {
+      transform: none;
+    }
+    .hd-mega__link:hover .hd-mega__link-chev,
+    .hd-mega__link:focus-visible .hd-mega__link-chev,
+    .hd-mega__link[aria-current="page"] .hd-mega__link-chev,
+    .hd-mega__support-item:hover .hd-mega__support-chev,
+    .hd-mega__support-item:focus-visible .hd-mega__support-chev,
+    .hd-mega__more:hover .hd-mega__more-arrow,
+    .hd-mega__more:focus-visible .hd-mega__more-arrow,
+    .hd-mega__more[aria-current="page"] .hd-mega__more-arrow,
+    .hd-mega__promo-cta:hover .hd-mega__promo-cta-arrow,
+    .hd-mega__promo-cta:focus-visible .hd-mega__promo-cta-arrow,
+    .hd-mega__promo-cta[aria-current="page"] .hd-mega__promo-cta-arrow,
+    .hd-mega__promo:hover .hd-mega__promo-art,
+    .hd-mega__promo:focus-within .hd-mega__promo-art,
+    .hd-mega__promo:hover .hd-mega__promo-image img,
+    .hd-mega__promo:focus-within .hd-mega__promo-image img {
       transform: none;
     }
   }

@@ -1,0 +1,424 @@
+---
+// SgkHero — Hero section of the SGK pillar page (/sgk-isitme-cihazi-odemesi).
+// Independent component tree (own data namespace: ../../../data/sgk/hero),
+// not a copy of OticonHero — light background, the site's own blue accent
+// (--color-primary, untouched/unscoped), and its own layout. Contact links
+// come from the shared contactConfig, never hardcoded.
+import { Phone, MessageCircle, ShieldCheck, Stethoscope, CalendarClock } from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { sgkHero } from "../../../data/sgk/hero";
+import { contactConfig } from "../../../config";
+
+const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
+---
+
+<section class="sgk-hero" aria-labelledby="sgk-hero-title">
+  <div class="sgk-hero__bg" aria-hidden="true"></div>
+
+  <div class="sgk-hero__inner">
+    <div class="sgk-hero__content">
+      <p class="sgk-hero__badge" data-rise>{sgkHero.badge}</p>
+
+      <h1 class="sgk-hero__heading" id="sgk-hero-title" data-rise>
+        {sgkHero.heading}
+      </h1>
+
+      <p class="sgk-hero__intro" data-rise>{sgkHero.intro}</p>
+
+      <div class="sgk-hero__actions" data-rise>
+        <CtaButton
+          label={sgkHero.ctaPrimaryLabel}
+          href={contactConfig.phone.href}
+          variant="solid"
+          iconLeft={Phone}
+        />
+        <CtaButton
+          label={sgkHero.ctaSecondaryLabel}
+          href={contactConfig.whatsapp.href}
+          variant="outline"
+          iconLeft={MessageCircle}
+        />
+      </div>
+
+      <div class="sgk-hero__trust" data-rise>
+        {
+          sgkHero.trustItems.map((item, i) => {
+            const Icon = trustIcons[i % trustIcons.length];
+            return (
+              <div class="sgk-hero__trust-item">
+                <span class="sgk-hero__trust-icon" aria-hidden="true">
+                  <Icon size={18} stroke-width={2} />
+                </span>
+                <span class="sgk-hero__trust-text">
+                  <span class="sgk-hero__trust-title">{item.title}</span>
+                  <span class="sgk-hero__trust-desc">{item.description}</span>
+                </span>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div class="sgk-hero__visual" data-rise>
+      <div class="sgk-hero__glow" aria-hidden="true"></div>
+
+      <div class="sgk-hero__frame">
+        <img
+          class="sgk-hero__image"
+          src={sgkHero.image.src}
+          alt={sgkHero.image.alt}
+          width={sgkHero.image.width}
+          height={sgkHero.image.height}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+
+      <div class="sgk-hero__floating">
+        <span class="sgk-hero__floating-icon" aria-hidden="true">
+          <ShieldCheck size={20} stroke-width={1.75} />
+        </span>
+        <span class="sgk-hero__floating-text">
+          <span class="sgk-hero__floating-title">{sgkHero.floatingCard.title}</span>
+          <span class="sgk-hero__floating-desc">{sgkHero.floatingCard.description}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-hero");
+    if (!section) return;
+
+    // ───────────────────────────────────────────────────────────────────
+    // PROGRESSIVE-ENHANCEMENT ENTRANCE ANIMATION — safe-by-construction.
+    // Same architecture as OticonModels: default CSS renders everything
+    // fully visible (no [data-anim] attribute = opacity:1 / no transform).
+    // JS only ever *opts in* to a temporary "armed" state right before a
+    // transition-based reveal — it never hides content on its own. Three
+    // independent safety nets guarantee the reveal always fires even if a
+    // tab is backgrounded mid-transition or restored from bfcache:
+    //   1. an unconditional 2s failsafe timer,
+    //   2. a visibilitychange listener,
+    //   3. a pageshow listener.
+    // ───────────────────────────────────────────────────────────────────
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--color-white);
+    padding-block: var(--space-20);
+    --sh-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Very subtle blue-tinted background gradient — atmosphere, not decoration. */
+  .sgk-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(760px 480px at 88% 8%, rgb(37 99 235 / 0.07), transparent 60%),
+      radial-gradient(600px 460px at -6% 92%, rgb(37 99 235 / 0.05), transparent 60%);
+  }
+
+  .sgk-hero__inner {
+    position: relative;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 54% 46%;
+    align-items: center;
+    gap: var(--space-12);
+    width: 100%;
+  }
+
+  /* --- Left: content --------------------------------------------------- */
+
+  .sgk-hero__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-hero__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-hero__intro {
+    margin: var(--space-5) 0 0;
+    max-width: 36rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  /* --- Trust chips: light, quiet, informational --------------------------- */
+
+  .sgk-hero__trust {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-10);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sgk-hero__trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .sgk-hero__trust-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+  }
+
+  .sgk-hero__trust-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .sgk-hero__trust-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .sgk-hero__trust-desc {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-soft);
+  }
+
+  /* --- Right: premium-framed image + floating card ------------------------ */
+
+  .sgk-hero__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sgk-hero__glow {
+    position: absolute;
+    inset: -8%;
+    z-index: -1;
+    background: radial-gradient(closest-side, rgb(37 99 235 / 0.28), transparent 72%);
+    filter: blur(40px);
+  }
+
+  .sgk-hero__frame {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    border: 1px solid rgb(37 99 235 / 0.12);
+    background: var(--color-white);
+    box-shadow:
+      0 30px 60px -24px rgb(37 99 235 / 0.35),
+      var(--shadow-lg);
+  }
+
+  .sgk-hero__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .sgk-hero__floating {
+    position: absolute;
+    left: var(--space-4);
+    bottom: calc(-1 * var(--space-6));
+    width: 260px;
+    max-width: calc(100% - var(--space-4));
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: rgb(255 255 255 / 0.72);
+    border: 1px solid rgb(255 255 255 / 0.6);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+
+  .sgk-hero__floating-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.12);
+    color: var(--color-primary);
+  }
+
+  .sgk-hero__floating-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .sgk-hero__floating-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .sgk-hero__floating-desc {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance: progressive-enhancement, transition-based (not
+     @keyframes) — see the script above for why. --- */
+
+  .sgk-hero[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 600ms var(--sh-ease), transform 600ms var(--sh-ease);
+  }
+
+  .sgk-hero[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-hero[data-anim="armed"] .sgk-hero__badge { transition-delay: 40ms; }
+  .sgk-hero[data-anim="armed"] .sgk-hero__heading { transition-delay: 80ms; }
+  .sgk-hero[data-anim="armed"] .sgk-hero__intro { transition-delay: 120ms; }
+  .sgk-hero[data-anim="armed"] .sgk-hero__actions { transition-delay: 160ms; }
+  .sgk-hero[data-anim="armed"] .sgk-hero__trust { transition-delay: 200ms; }
+  .sgk-hero[data-anim="armed"] .sgk-hero__visual { transition-delay: 140ms; }
+
+  /* --- Responsive ----------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .sgk-hero {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-12);
+    }
+
+    .sgk-hero__visual {
+      order: -1;
+      flex-direction: column;
+    }
+
+    .sgk-hero__frame {
+      max-width: 460px;
+      margin-inline: auto;
+    }
+
+    .sgk-hero__floating {
+      position: static;
+      width: 100%;
+      max-width: 100%;
+      margin-top: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-hero__trust {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sgk-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-hero[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

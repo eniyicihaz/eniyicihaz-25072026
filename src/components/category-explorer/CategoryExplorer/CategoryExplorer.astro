@@ -1,0 +1,217 @@
+---
+// CategoryExplorer — new homepage section (plan §B position 5, §H).
+// Bridges Solution's "neden böyle oluyor" explanation to "peki ne tür
+// çözüm var" — a horizontal-scroll discovery rail across the 7 real
+// /isitme-cihazlari device-type pages, framed as "size uygun tipi
+// keşfedin", not a product catalog or SEO grid (see CategoryCard.astro's
+// comment for why BrandShowcase/BrandExtended weren't reused here).
+// Visible H2 (plan §J: this section is a meaningful, navigable topic,
+// unlike Empathy/Sound Room's whisper-register sr-only headings).
+import CategoryCard from "./atoms/CategoryCard/CategoryCard.astro";
+import { categoryExplorer } from "../../../data/category-explorer/category-explorer.data";
+---
+
+<section class="category-explorer" aria-labelledby="category-explorer-title">
+  <div class="category-explorer__header">
+    <p class="category-explorer__eyebrow" data-rise>{categoryExplorer.eyebrow}</p>
+    <h2 class="category-explorer__heading" id="category-explorer-title" data-rise>
+      {categoryExplorer.heading}
+    </h2>
+    <p class="category-explorer__intro" data-rise>{categoryExplorer.intro}</p>
+  </div>
+
+  <div class="category-explorer__rail" data-rise>
+    {categoryExplorer.items.map((item) => <CategoryCard item={item} />)}
+  </div>
+
+  <div class="category-explorer__footer" data-rise>
+    <a class="category-explorer__hub-link" href={categoryExplorer.hubCta.href}>
+      {categoryExplorer.hubCta.label} →
+    </a>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".category-explorer");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .category-explorer {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    /* Trimmed one step (was space-20 both) — homepage rhythm pass:
+       shortens the handoff from Solution's closing line above and the
+       section's own footer air below. */
+    padding-block: var(--space-16);
+    --ce-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    /* Local fallback for the shared --space-14 token (56px, following the
+       site's space-N = N*4px scale) — kept scoped to this component
+       rather than added to the global token file, since it's the only
+       homepage-only usage being touched in this pass. */
+    --ce-gap-lg: 56px;
+  }
+
+  .category-explorer__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .category-explorer__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .category-explorer__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .category-explorer__intro {
+    margin: var(--space-4) auto 0;
+    max-width: 36rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Discovery rail: horizontal scroll, not a static grid — the
+     scrolling itself is the "keşif" gesture, and it visually separates
+     this section from the bordered-card grids on /markalar,
+     /isitme-cihazlari, /bilgi-merkezi. --- */
+  .category-explorer__rail {
+    display: flex;
+    gap: var(--space-4);
+    margin: var(--ce-gap-lg) 0 0;
+    padding: var(--space-2) var(--space-6) var(--space-4);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .category-explorer__rail::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .category-explorer__rail::-webkit-scrollbar-thumb {
+    background: var(--color-border-hover);
+    border-radius: var(--radius-full);
+  }
+
+  .category-explorer__footer {
+    margin: var(--space-8) 0 0;
+    text-align: center;
+  }
+
+  .category-explorer__hub-link {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .category-explorer__hub-link:hover {
+    text-decoration: underline;
+  }
+
+  .category-explorer__hub-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* --- Entrance ---------------------------------------------------------- */
+
+  .category-explorer[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .category-explorer[data-anim="in"] [data-rise] {
+    animation: category-explorer-rise 600ms var(--ce-ease) both;
+  }
+
+  .category-explorer[data-anim="in"] .category-explorer__rail {
+    animation-delay: 100ms;
+  }
+
+  .category-explorer[data-anim="in"] .category-explorer__footer {
+    animation-delay: 160ms;
+  }
+
+  @keyframes category-explorer-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 640px) {
+    .category-explorer {
+      padding-block: var(--ce-gap-lg);
+    }
+
+    .category-explorer__rail {
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .category-explorer[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

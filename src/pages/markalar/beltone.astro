@@ -1,0 +1,57 @@
+---
+// Beltone brand page (/markalar/beltone). Built on the shared Brand
+// Component Architecture (see src/components/brand-page/*) — no new
+// components, no new design language; all 14 sections reuse the exact
+// same components every other brand page on this site uses, fed by this
+// page's own src/data/beltone/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { beltoneHero } from "../../data/beltone/hero";
+import { beltoneOverview } from "../../data/beltone/overview";
+import { beltoneIntro } from "../../data/beltone/intro";
+import { beltoneTechnology } from "../../data/beltone/technology";
+import { beltoneEcosystem } from "../../data/beltone/ecosystem";
+import { beltonePlatform } from "../../data/beltone/platform";
+import { beltoneModels } from "../../data/beltone/models";
+import { beltoneComparison } from "../../data/beltone/comparison";
+import { beltoneIdealUser } from "../../data/beltone/ideal-user";
+import { beltoneAdvantages } from "../../data/beltone/advantages";
+import { beltoneExpertOpinion } from "../../data/beltone/expert-opinion";
+import { beltoneFaq } from "../../data/beltone/faq";
+import { beltoneRelatedContent } from "../../data/beltone/related-content";
+import { beltoneFinalCta } from "../../data/beltone/final-cta";
+---
+
+<MainLayout
+  title="Beltone İşitme Cihazları | EniyiCihaz"
+  description="Beltone'un 1940'tan bu yana süregelen Amerikan mirasını, Envision ailesinin yapay zekâ destekli DNN işlemesini ve diğer model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={beltoneHero} />
+  <BrandPageOverview data={beltoneOverview} />
+  <BrandPageIntro data={beltoneIntro} />
+  <BrandPageTechnology data={beltoneTechnology} />
+  <BrandPageEcosystem data={beltoneEcosystem} />
+  <BrandPageTechEvolution data={beltonePlatform} />
+  <BrandPageModels data={beltoneModels} />
+  <BrandPageComparison data={beltoneComparison} />
+  <BrandPageIdealUser data={beltoneIdealUser} />
+  <BrandPageAdvantages data={beltoneAdvantages} />
+  <BrandPageExpertOpinion data={beltoneExpertOpinion} />
+  <BrandPageFaq data={beltoneFaq} />
+  <BrandPageRelatedContent data={beltoneRelatedContent} />
+  <BrandPageFinalCta data={beltoneFinalCta} />
+</MainLayout>

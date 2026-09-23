@@ -1,0 +1,57 @@
+---
+// Sonic brand page (/markalar/sonic). Built on the shared Brand
+// Component Architecture (see src/components/brand-page/*) — no new
+// components, no new design language; all 14 sections reuse the exact
+// same components every other brand page on this site uses, fed by this
+// page's own src/data/sonic/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { sonicHero } from "../../data/sonic/hero";
+import { sonicOverview } from "../../data/sonic/overview";
+import { sonicIntro } from "../../data/sonic/intro";
+import { sonicTechnology } from "../../data/sonic/technology";
+import { sonicEcosystem } from "../../data/sonic/ecosystem";
+import { sonicPlatform } from "../../data/sonic/platform";
+import { sonicModels } from "../../data/sonic/models";
+import { sonicComparison } from "../../data/sonic/comparison";
+import { sonicIdealUser } from "../../data/sonic/ideal-user";
+import { sonicAdvantages } from "../../data/sonic/advantages";
+import { sonicExpertOpinion } from "../../data/sonic/expert-opinion";
+import { sonicFaq } from "../../data/sonic/faq";
+import { sonicRelatedContent } from "../../data/sonic/related-content";
+import { sonicFinalCta } from "../../data/sonic/final-cta";
+---
+
+<MainLayout
+  title="Sonic İşitme Cihazları | EniyiCihaz"
+  description="Sonic'in SoundDNA platformunu, Enchant ve Radiant model ailelerini, 1998'den bu yana süregelen Amerikan mühendislik mirasını Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={sonicHero} />
+  <BrandPageOverview data={sonicOverview} />
+  <BrandPageIntro data={sonicIntro} />
+  <BrandPageTechnology data={sonicTechnology} />
+  <BrandPageEcosystem data={sonicEcosystem} />
+  <BrandPageTechEvolution data={sonicPlatform} />
+  <BrandPageModels data={sonicModels} />
+  <BrandPageComparison data={sonicComparison} />
+  <BrandPageIdealUser data={sonicIdealUser} />
+  <BrandPageAdvantages data={sonicAdvantages} />
+  <BrandPageExpertOpinion data={sonicExpertOpinion} />
+  <BrandPageFaq data={sonicFaq} />
+  <BrandPageRelatedContent data={sonicRelatedContent} />
+  <BrandPageFinalCta data={sonicFinalCta} />
+</MainLayout>

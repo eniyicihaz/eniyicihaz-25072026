@@ -8,6 +8,9 @@ export interface ClosingSecondaryContact {
   lead: string;
   label: string;
   href: string;
+  /** WhatsApp alternative, plain text link — same weight as the phone
+   *  link, never styled as a competing button (plan §F). */
+  whatsapp: { label: string; href: string };
 }
 
 export interface ClosingContent {

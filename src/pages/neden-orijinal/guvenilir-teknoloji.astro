@@ -1,0 +1,85 @@
+---
+// Güvenilir Teknoloji — /neden-orijinal/guvenilir-teknoloji. First page
+// of the "Neden Orijinal" series (see header.data.ts's brandsMega second
+// column). This is a new content genre for this session's Brand
+// Component Architecture: not a device category or a needs profile, but
+// a trust/authenticity topic under the Markalar mega — why buying
+// original, authorized-channel hearing aids matters. Built on the same
+// master templates and shared, data-driven components used throughout
+// devicesMega (same KulakArkasiComparison component, already generic,
+// reused as-is), but every section is reframed around authenticity
+// rather than hearing health:
+//
+// - The "candidacy"/"symptom" slot becomes authenticity red flags
+//   (unusually low price, no invoice, unverifiable serial number).
+// - "Dikkat Edilmesi Gerekenler" covers consequences of skipping
+//   verification (lost warranty rights, refused service) rather than a
+//   health-safety warning — so there is no self-diagnosis disclaimer on
+//   this page, unlike every hearing-health page this session.
+// - The TechEvolution "stage" slot becomes a 4-step verification
+//   checklist (yetkili bayi -> fatura/garanti -> seri numarası ->
+//   resmi kayıt) instead of a severity ladder or feature-priority list.
+// - The KulakArkasiComparison table compares an original,
+//   authorized-channel product against a parallel-import/counterfeit
+//   one — the first use of that component for a non-device-family axis.
+//
+// accentColor: koyu mavi / blue-700 (#1d4ed8) — opens a fresh accent
+// rotation for the brandsMega "Neden Orijinal" column; see hero.ts for
+// the full rationale on why this doesn't need to avoid devicesMega's
+// already-used hues.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Doğrulanır? ->
+// Sıkça Karşılaşılan İşaretler -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Orijinallik Doğrulama Adımları -> Öne Çıkan Güvenceler
+// -> Teknolojiler -> Yetkili Olduğumuz Markalar -> Orijinal Ürün vs
+// Paralel İthal/Sahte Ürün -> Uzman Yorumu -> SSS -> Premium CTA ->
+// İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { guvenilirTeknolojiHero } from "../../data/guvenilir-teknoloji/hero";
+import { guvenilirTeknolojiIntro } from "../../data/guvenilir-teknoloji/intro";
+import { guvenilirTeknolojiIdealUser } from "../../data/guvenilir-teknoloji/ideal-user";
+import { guvenilirTeknolojiAdvantages } from "../../data/guvenilir-teknoloji/advantages";
+import { guvenilirTeknolojiConsiderations } from "../../data/guvenilir-teknoloji/considerations";
+import { guvenilirTeknolojiEvolution } from "../../data/guvenilir-teknoloji/evolution";
+import { guvenilirTeknolojiUseCases } from "../../data/guvenilir-teknoloji/use-cases";
+import { guvenilirTeknolojiTechnology } from "../../data/guvenilir-teknoloji/technology";
+import { guvenilirTeknolojiRecommendedBrands } from "../../data/guvenilir-teknoloji/recommended-brands";
+import { guvenilirTeknolojiComparison } from "../../data/guvenilir-teknoloji/comparison";
+import { guvenilirTeknolojiExpertOpinion } from "../../data/guvenilir-teknoloji/expert-opinion";
+import { guvenilirTeknolojiFaq } from "../../data/guvenilir-teknoloji/faq";
+import { guvenilirTeknolojiRelatedContent } from "../../data/guvenilir-teknoloji/related-content";
+import { guvenilirTeknolojiFinalCta } from "../../data/guvenilir-teknoloji/final-cta";
+---
+
+<MainLayout
+  title="Güvenilir Teknoloji: Orijinal İşitme Cihazı Nasıl Doğrulanır? | EniyiCihaz"
+  description="Orijinal ve yetkili distribütör güvencesiyle satılan işitme cihazları neden güvenilirdir? Orijinallik doğrulama adımlarını, seri numarası kontrolünü ve paralel ithal ürün risklerini öğrenin."
+>
+  <BrandPageHero data={guvenilirTeknolojiHero} />
+  <BrandPageIntro data={guvenilirTeknolojiIntro} />
+  <BrandPageIdealUser data={guvenilirTeknolojiIdealUser} />
+  <BrandPageAdvantages data={guvenilirTeknolojiAdvantages} />
+  <BrandPageIdealUser data={guvenilirTeknolojiConsiderations} />
+  <BrandPageTechEvolution data={guvenilirTeknolojiEvolution} />
+  <BrandPageTechnology data={guvenilirTeknolojiUseCases} />
+  <BrandPageEcosystem data={guvenilirTeknolojiTechnology} />
+  <BrandPageRelatedContent data={guvenilirTeknolojiRecommendedBrands} />
+  <KulakArkasiComparison data={guvenilirTeknolojiComparison} />
+  <BrandPageExpertOpinion data={guvenilirTeknolojiExpertOpinion} />
+  <BrandPageFaq data={guvenilirTeknolojiFaq} />
+  <BrandPageFinalCta data={guvenilirTeknolojiFinalCta} />
+  <BrandPageRelatedContent data={guvenilirTeknolojiRelatedContent} />
+</MainLayout>

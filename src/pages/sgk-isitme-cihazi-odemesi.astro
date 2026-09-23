@@ -1,0 +1,33 @@
+---
+// SGK pillar page — URL preserved exactly from the old site (real SEO
+// value). Hero (M1) only for this pass; the page will grow into a full
+// guide (katkı payı, rapor süreci, gerekli belgeler, çocuklarda SGK,
+// yenileme hakkı, SSS) in later passes.
+import MainLayout from "../layouts/MainLayout.astro";
+import SgkHero from "../components/sgk/SgkHero/SgkHero.astro";
+import SgkProcess from "../components/sgk/SgkProcess/SgkProcess.astro";
+import SgkKnowledge from "../components/sgk/SgkKnowledge/SgkKnowledge.astro";
+import SgkPayments from "../components/sgk/SgkPayments/SgkPayments.astro";
+import SgkInsight from "../components/sgk/SgkInsight/SgkInsight.astro";
+import SgkEligibility from "../components/sgk/SgkEligibility/SgkEligibility.astro";
+import SgkSupport from "../components/sgk/SgkSupport/SgkSupport.astro";
+import SgkFaq from "../components/sgk/SgkFaq/SgkFaq.astro";
+import SgkBrands from "../components/sgk/SgkBrands/SgkBrands.astro";
+import SgkTrustBar from "../components/sgk/SgkTrustBar/SgkTrustBar.astro";
+---
+
+<MainLayout
+  title="2026 SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi | EniyiCihaz"
+  description="SGK işitme cihazı ödemesi, katkı payı, devlet desteği, rapor süreci ve gerekli belgeler hakkında güncel rehber. SGK anlaşmalı işitme merkezinde ücretsiz işitme testi."
+>
+  <SgkHero />
+  <SgkProcess />
+  <SgkKnowledge />
+  <SgkPayments />
+  <SgkInsight />
+  <SgkEligibility />
+  <SgkSupport />
+  <SgkFaq />
+  <SgkBrands />
+  <SgkTrustBar />
+</MainLayout>

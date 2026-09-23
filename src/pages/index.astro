@@ -1,22 +1,41 @@
 ---
+// Ana Sayfa — Local Entity Hub + Discovery + CRO mimarisi (homepage plan,
+// üçüncü aşama). Bölüm sırası ve rolü plan §B/§C'de belgelenmiş; kısaca:
+// Hero (kim/ne/nerede) → Empathy (farkındalık) → Sound Room (deneyim) →
+// Solution (anlama) → Kategori Keşfi (cihazları keşfetme) → Hizmetlerimiz
+// Özeti (hizmetleri anlama) → Brands (marka bağımsızlığı) → Guide (süreci
+// anlama) → Trust (yerel güven) → Bilgi Merkezi Girişi (bilgiye devam
+// etme) → Closing (iletişime geçme). Title/description artık sayfaya özel
+// — önceden MainLayout'un jenerik varsayılanına düşüyordu.
 import MainLayout from "../layouts/MainLayout.astro";
 import Hero from "../components/hero/Hero/Hero.astro";
-import Brands from "../components/brands/Brands/Brands.astro";
 import Empathy from "../components/empathy/Empathy/Empathy.astro";
 import SoundRoom from "../components/sound-room/SoundRoom/SoundRoom.astro";
 import Solution from "../components/solution/Solution/Solution.astro";
+import CategoryExplorer from "../components/category-explorer/CategoryExplorer/CategoryExplorer.astro";
+import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
+import Brands from "../components/brands/Brands/Brands.astro";
 import Guide from "../components/guide/Guide/Guide.astro";
 import Trust from "../components/trust/Trust/Trust.astro";
+import KnowledgeGate from "../components/knowledge-gate/KnowledgeGate/KnowledgeGate.astro";
 import Closing from "../components/closing/Closing/Closing.astro";
+
+import { homeServices } from "../data/home/services";
 ---
 
-<MainLayout>
+<MainLayout
+  title="Avrasya İşitme Cihazları | Darıca, Kocaeli SGK Anlaşmalı İşitme Merkezi | EniyiCihaz"
+  description="Avrasya İşitme Cihazları; Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi. Ücretsiz işitme testi, cihaz uygulaması ve SGK danışmanlığı sunuyoruz."
+>
   <Hero />
-  <Brands />
   <Empathy />
   <SoundRoom />
   <Solution />
+  <CategoryExplorer />
+  <BrandCriteria data={homeServices} />
+  <Brands />
   <Guide />
   <Trust />
+  <KnowledgeGate />
   <Closing />
 </MainLayout>

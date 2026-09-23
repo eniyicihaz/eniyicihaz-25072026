@@ -6,7 +6,7 @@
 import { ShieldCheck } from "lucide-astro";
 import { brands as content } from "./brands.data";
 
-const { badge, heading, subhead, brands, trust } = content;
+const { badge, heading, subhead, brands, trust, hubCta } = content;
 ---
 
 <section class="brands" aria-labelledby="brands-title">
@@ -49,14 +49,18 @@ const { badge, heading, subhead, brands, trust } = content;
     </div>
   </div>
 
-  <div class="brands__trust" data-rise>
+  <a class="brands__trust" href={trust.href} data-rise>
     <span class="brands__trust-icon" aria-hidden="true">
       <ShieldCheck size={18} stroke-width={2} />
     </span>
     <span class="brands__trust-label">{trust.label}</span>
     <span class="brands__trust-divider" aria-hidden="true"></span>
     <span class="brands__trust-desc">{trust.description}</span>
-  </div>
+  </a>
+
+  <p class="brands__hub-link-wrap" data-rise>
+    <a class="brands__hub-link" href={hubCta.href}>{hubCta.label} →</a>
+  </p>
 </section>
 
 <script is:inline>
@@ -104,7 +108,10 @@ const { badge, heading, subhead, brands, trust } = content;
     position: relative;
     background: var(--color-background);
     color: var(--color-text);
-    padding-block: var(--space-24);
+    /* Trimmed (was space-24 both) — homepage rhythm pass: the logo band
+       and everything below it (SGK line, hub link) were sitting well
+       clear of the section edges, reading taller than the content needed. */
+    padding-block: var(--space-16) var(--space-12);
   }
 
   .brands__header {
@@ -150,7 +157,7 @@ const { badge, heading, subhead, brands, trust } = content;
      feels expansive; a soft edge mask instead of a hard clip is the
      "yumuşak geçiş" that keeps it premium rather than a scrolling ticker. */
   .brands__marquee {
-    margin-top: var(--space-16);
+    margin-top: var(--space-10);
     overflow: hidden;
     mask-image: linear-gradient(
       to right,
@@ -191,11 +198,22 @@ const { badge, heading, subhead, brands, trust } = content;
     animation-play-state: paused;
   }
 
+  /* Fixed-footprint box (width AND height, not just height) — the source
+     logo files vary widely in canvas aspect ratio and internal padding
+     (some tightly cropped wordmarks, some generously padded, one with its
+     own colored background card), so a height-only box let each logo's
+     rendered width swing wildly (confirmed: some 3-4x wider than others),
+     breaking the marquee's horizontal rhythm and reading as uneven/
+     overflowing (visual QA round). Every logo now gets an identical box;
+     `object-fit: contain` inside it balances optical weight without
+     upscaling small source art or clipping wide wordmarks. */
   .brands__logo {
     flex: none;
     display: grid;
     place-items: center;
-    height: 108px;
+    width: 148px;
+    height: var(--space-16);
+    padding: var(--space-2) var(--space-4);
     border-radius: var(--radius-sm);
     opacity: 0.85;
     transition: opacity var(--transition-base);
@@ -211,29 +229,67 @@ const { badge, heading, subhead, brands, trust } = content;
   }
 
   .brands__logo img {
-    /* A direct px height (not 100%) — `place-items: center` above sizes
-       this grid item to its own content instead of stretching it to fill
-       the cell, so a percentage height here had nothing definite to
-       resolve against and fell back to the image's raw natural size
-       (confirmed: rendering at 887px instead of 36px). A fixed height
-       sidesteps that resolution question entirely. Width stays auto, so
-       proportions are never distorted. */
-    height: 108px;
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
+    height: auto;
+    object-fit: contain;
     display: block;
+  }
+
+  @media (max-width: 640px) {
+    .brands__logo {
+      width: 112px;
+      height: var(--space-12);
+    }
   }
 
   /* --- Trust line -------------------------------------------------------
      Deliberately quiet: small type, no card, no shadow — a footnote-weight
      fact, not a second CTA competing with Hero's. */
   .brands__trust {
-    margin-top: var(--space-12);
+    margin-top: var(--space-6);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
     padding-inline: var(--space-6);
+    width: fit-content;
+    margin-inline: auto;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+  }
+
+  .brands__trust:hover .brands__trust-label {
+    color: var(--color-primary);
+  }
+
+  .brands__trust:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .brands__hub-link-wrap {
+    margin: var(--space-4) 0 0;
+    text-align: center;
+  }
+
+  .brands__hub-link {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .brands__hub-link:hover {
+    text-decoration: underline;
+  }
+
+  .brands__hub-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
   }
 
   .brands__trust-icon {
@@ -295,11 +351,11 @@ const { badge, heading, subhead, brands, trust } = content;
 
   @media (max-width: 767px) {
     .brands {
-      padding-block: var(--space-16);
+      padding-block: var(--space-12) var(--space-10);
     }
 
     .brands__marquee {
-      margin-top: var(--space-10);
+      margin-top: var(--space-8);
     }
 
     .brands__trust {

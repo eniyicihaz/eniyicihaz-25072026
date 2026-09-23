@@ -1,0 +1,250 @@
+---
+// BrandPageTechnology — shared, cross-brand "teaser grid" section (short
+// technology overview, 6 cards). Generic counterpart of Oticon's original
+// OticonTechnologies (M3); data-driven so every brand page can reuse it.
+
+export interface BrandPageTechnologyItem {
+  label: string;
+  title: string;
+  description: string;
+}
+
+export interface BrandPageTechnologyContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  items: BrandPageTechnologyItem[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorHoverBorder: string;
+}
+
+interface Props {
+  data: BrandPageTechnologyContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="brand-page-tech"
+  aria-labelledby="brand-page-tech-title"
+  style={`--bpt-accent:${data.accentColor}; --bpt-badge-bg:${data.accentColorBadgeBg}; --bpt-badge-border:${data.accentColorBadgeBorder}; --bpt-badge-text:${data.accentColorBadgeText}; --bpt-hover-border:${data.accentColorHoverBorder};`}
+>
+  <div class="brand-page-tech__inner">
+    <div class="brand-page-tech__header">
+      <p class="brand-page-tech__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-page-tech__heading" id="brand-page-tech-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="brand-page-tech__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="brand-page-tech__grid">
+      {
+        data.items.map((item) => (
+          <div class="brand-page-tech__card" data-rise>
+            <p class="brand-page-tech__label">{item.label}</p>
+            <p class="brand-page-tech__title">{item.title}</p>
+            <p class="brand-page-tech__desc">{item.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-tech");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-tech {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bpt-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-tech__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-tech__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-tech__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpt-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpt-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpt-badge-text);
+  }
+
+  .brand-page-tech__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-tech__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-tech__grid {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .brand-page-tech__card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-8);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+    transition: transform 300ms var(--bpt-ease), border-color 300ms var(--bpt-ease), box-shadow 300ms var(--bpt-ease);
+  }
+
+  .brand-page-tech__card:hover {
+    transform: translateY(-5px);
+    border-color: var(--bpt-hover-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .brand-page-tech__label {
+    margin: 0;
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bpt-accent);
+  }
+
+  .brand-page-tech__title {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .brand-page-tech__desc {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-tech[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-tech[data-anim="in"] [data-rise] {
+    animation: brand-page-tech-rise 600ms var(--bpt-ease) both;
+  }
+
+  .brand-page-tech[data-anim="in"] .brand-page-tech__card:nth-child(1) { animation-delay: 60ms; }
+  .brand-page-tech[data-anim="in"] .brand-page-tech__card:nth-child(2) { animation-delay: 100ms; }
+  .brand-page-tech[data-anim="in"] .brand-page-tech__card:nth-child(3) { animation-delay: 140ms; }
+  .brand-page-tech[data-anim="in"] .brand-page-tech__card:nth-child(4) { animation-delay: 180ms; }
+  .brand-page-tech[data-anim="in"] .brand-page-tech__card:nth-child(5) { animation-delay: 220ms; }
+  .brand-page-tech[data-anim="in"] .brand-page-tech__card:nth-child(6) { animation-delay: 260ms; }
+
+  @keyframes brand-page-tech-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .brand-page-tech__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-tech {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-tech__grid {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+
+    .brand-page-tech__card {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-tech[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-tech__card {
+      transition: none;
+    }
+  }
+</style>

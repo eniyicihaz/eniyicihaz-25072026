@@ -1,15 +1,36 @@
 ---
-// BrandExtended — M6 of the /markalar ("Tüm Markalar") page, directly under
-// BrandBuyingGuide (M5). This page is built up modularly (M1...M6…); this
-// component is only ever M6. Do not add later modules here — each gets its
-// own component.
+// BrandExtended — M6 of the modular hub-page system (originally built for
+// /markalar; now also reused by /isitme-cihazlari, /hizmetlerimiz and
+// /bilgi-merkezi), directly under M5 (BuyingGuide). Always M6 of its
+// page — do not add later modules here, each gets its own component.
+// Generic: takes its content via the `data` prop; each item's `href` is
+// now explicit rather than a `/markalar/` prefix + slug.
 //
 // A secondary showcase, not a plain logo wall: same card family as
 // BrandShowcase (M2) — border, surface, grayscale-to-color hover — but
 // scaled down (smaller padding/logo/heading, no lift, no "Markayı Gör"
 // reveal) so it reads as M2's quieter second-tier sibling, not a
 // low-effort afterthought.
-import { brandExtended } from "../../../data/brands/extended";
+
+export interface ExtendedBrand {
+  name: string;
+  href: string;
+  logo?: string;
+  icon?: any;
+}
+
+export interface BrandExtendedContent {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  brands: ExtendedBrand[];
+}
+
+interface Props {
+  data: BrandExtendedContent;
+}
+
+const { data: brandExtended } = Astro.props;
 ---
 
 <section class="brand-extended" aria-labelledby="brand-extended-title">
@@ -23,12 +44,19 @@ import { brandExtended } from "../../../data/brands/extended";
 
   <div class="brand-extended__grid">
     {
-      brandExtended.brands.map((brand) => (
-        <a class="brand-extended__card" href={`/markalar/${brand.slug}`} data-rise>
-          <span class="brand-extended__logo-wrap">
-            <img src={brand.logo} alt={brand.name} loading="lazy" />
-          </span>
-          <span class="brand-extended__name">{brand.name}</span>
+      brandExtended.brands.map((item) => (
+        <a class="brand-extended__card" href={item.href} data-rise>
+          {item.logo && (
+            <span class="brand-extended__logo-wrap">
+              <img src={item.logo} alt={item.name} loading="lazy" />
+            </span>
+          )}
+          {!item.logo && item.icon && (
+            <span class="brand-extended__logo-wrap brand-extended__icon-wrap">
+              <item.icon size={22} stroke-width={1.75} aria-hidden="true" />
+            </span>
+          )}
+          <span class="brand-extended__name">{item.name}</span>
         </a>
       ))
     }
@@ -207,6 +235,21 @@ import { brandExtended } from "../../../data/brands/extended";
   .brand-extended__card:hover .brand-extended__logo-wrap img,
   .brand-extended__card:focus-visible .brand-extended__logo-wrap img {
     filter: none;
+    opacity: 1;
+  }
+
+  /* Icon fallback (no per-item logo art): centered within the same
+     180px-tall slot, same quiet-by-default/color-on-hover treatment. */
+  .brand-extended__icon-wrap {
+    align-items: center;
+    color: var(--color-text-muted);
+    opacity: 0.8;
+    transition: color 300ms var(--be-ease), opacity 300ms var(--be-ease);
+  }
+
+  .brand-extended__card:hover .brand-extended__icon-wrap,
+  .brand-extended__card:focus-visible .brand-extended__icon-wrap {
+    color: var(--color-primary);
     opacity: 1;
   }
 

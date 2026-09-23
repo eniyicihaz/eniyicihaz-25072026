@@ -1,0 +1,90 @@
+---
+// Kolay Değişim — /neden-orijinal/kolay-degisim. Sixth and final page of
+// the "Neden Orijinal" series (see header.data.ts's brandsMega second
+// column) — completing the brandsMega mega menu's "Neden Orijinal"
+// column entirely (all six items now real). Same trust/authenticity
+// content genre as the five prior siblings — this page's own angle is
+// the exchange/upgrade process itself (trial-period reconsideration,
+// defect replacement, needs-change model transitions) rather than the
+// product, its support infrastructure, its accessories, or the
+// consultancy that precedes purchase. Built on the same master templates
+// and shared, data-driven components used throughout the session (same
+// KulakArkasiComparison component, already generic, reused as-is), with
+// every section reframed around the exchange process rather than
+// hearing health:
+//
+// - The "candidacy"/"symptom" slot becomes the consequences of lacking
+//   an exchange guarantee (stuck with an unsuitable device, unclear
+//   terms, wasted reinvestment, unpredictable timelines, dissatisfaction).
+// - "Dikkat Edilmesi Gerekenler" covers practical exchange-scope caveats
+//   (time-limited right, condition-dependent, possible price
+//   difference, unauthorized channels lack this guarantee) rather than
+//   a health-safety warning — no self-diagnosis disclaimer here, same
+//   as the five prior pages.
+// - The TechEvolution "stage" slot becomes a 4-step exchange process
+//   (talep/değerlendirme -> alternatif belirleme -> koşul netleştirme ->
+//   teslim) instead of a severity ladder or a different process for
+//   another subject.
+// - The KulakArkasiComparison table compares the exchange experience on
+//   an authorized-channel purchase against an unauthorized one — this
+//   page's own natural comparison axis.
+//
+// accentColor: gül kırmızısı / rose-600 (#e11d48) — sixth and final
+// color in the fresh accent rotation opened for this series on
+// Güvenilir Teknoloji's hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Değişim Güvencesi Olmadan Karşılaşılabilecek Sonuçlar -> Avantajları
+// -> Dikkat Edilmesi Gerekenler -> Değişim Süreci -> Değişim
+// Güvencelerimiz -> Teknolojiler -> Markalara Göre İnceleyin -> Yetkili
+// vs Yetkisiz Kanalda Değişim -> Uzman Yorumu -> SSS -> Premium CTA ->
+// İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { kolayDegisimHero } from "../../data/kolay-degisim/hero";
+import { kolayDegisimIntro } from "../../data/kolay-degisim/intro";
+import { kolayDegisimIdealUser } from "../../data/kolay-degisim/ideal-user";
+import { kolayDegisimAdvantages } from "../../data/kolay-degisim/advantages";
+import { kolayDegisimConsiderations } from "../../data/kolay-degisim/considerations";
+import { kolayDegisimEvolution } from "../../data/kolay-degisim/evolution";
+import { kolayDegisimUseCases } from "../../data/kolay-degisim/use-cases";
+import { kolayDegisimTechnology } from "../../data/kolay-degisim/technology";
+import { kolayDegisimRecommendedBrands } from "../../data/kolay-degisim/recommended-brands";
+import { kolayDegisimComparison } from "../../data/kolay-degisim/comparison";
+import { kolayDegisimExpertOpinion } from "../../data/kolay-degisim/expert-opinion";
+import { kolayDegisimFaq } from "../../data/kolay-degisim/faq";
+import { kolayDegisimRelatedContent } from "../../data/kolay-degisim/related-content";
+import { kolayDegisimFinalCta } from "../../data/kolay-degisim/final-cta";
+---
+
+<MainLayout
+  title="Kolay Değişim: İşitme Cihazı Değişim ve İhtiyaç Güncelleme Süreci | EniyiCihaz"
+  description="Orijinal işitme cihazlarında kolay değişim süreci nasıl işler? Deneme sonrası değerlendirme, üretim hatası güvencesi ve ihtiyaç değişikliğinde model geçişi hakkında bilgi alın."
+>
+  <BrandPageHero data={kolayDegisimHero} />
+  <BrandPageIntro data={kolayDegisimIntro} />
+  <BrandPageIdealUser data={kolayDegisimIdealUser} />
+  <BrandPageAdvantages data={kolayDegisimAdvantages} />
+  <BrandPageIdealUser data={kolayDegisimConsiderations} />
+  <BrandPageTechEvolution data={kolayDegisimEvolution} />
+  <BrandPageTechnology data={kolayDegisimUseCases} />
+  <BrandPageEcosystem data={kolayDegisimTechnology} />
+  <BrandPageRelatedContent data={kolayDegisimRecommendedBrands} />
+  <KulakArkasiComparison data={kolayDegisimComparison} />
+  <BrandPageExpertOpinion data={kolayDegisimExpertOpinion} />
+  <BrandPageFaq data={kolayDegisimFaq} />
+  <BrandPageFinalCta data={kolayDegisimFinalCta} />
+  <BrandPageRelatedContent data={kolayDegisimRelatedContent} />
+</MainLayout>

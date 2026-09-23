@@ -1,0 +1,69 @@
+---
+// Timpanometri — /degerlendirme/timpanometri. Third page of the
+// "Değerlendirme" series (see header.data.ts's servicesMega first
+// column), following Ücretsiz İşitme Testi and Odyometri. Same clinical
+// service-page genre and full health-content safety discipline
+// (self-diagnosis disclaimers, urgent-care flags) — this page's own
+// scope is the specific timpanometri procedure (an objective, response-
+// free middle-ear test) rather than the subjective threshold test
+// already covered on Odyometri, which this page's own comparison
+// section explicitly contrasts against.
+//
+// accentColor: mor / purple-600 (#9333ea) — third color in the fresh
+// accent rotation opened for this series on Ücretsiz İşitme Testi's
+// hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Değerlendirir? ->
+// Kimler İçin Önerilir? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Test Adımları -> Timpanometride Neler Değerlendirilir -> Teknolojiler
+// -> Markalara Göre İnceleyin -> Timpanometri vs Odyometri -> Uzman
+// Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { timpanometriHero } from "../../data/timpanometri/hero";
+import { timpanometriIntro } from "../../data/timpanometri/intro";
+import { timpanometriIdealUser } from "../../data/timpanometri/ideal-user";
+import { timpanometriAdvantages } from "../../data/timpanometri/advantages";
+import { timpanometriConsiderations } from "../../data/timpanometri/considerations";
+import { timpanometriEvolution } from "../../data/timpanometri/evolution";
+import { timpanometriUseCases } from "../../data/timpanometri/use-cases";
+import { timpanometriTechnology } from "../../data/timpanometri/technology";
+import { timpanometriRecommendedBrands } from "../../data/timpanometri/recommended-brands";
+import { timpanometriComparison } from "../../data/timpanometri/comparison";
+import { timpanometriExpertOpinion } from "../../data/timpanometri/expert-opinion";
+import { timpanometriFaq } from "../../data/timpanometri/faq";
+import { timpanometriRelatedContent } from "../../data/timpanometri/related-content";
+import { timpanometriFinalCta } from "../../data/timpanometri/final-cta";
+---
+
+<MainLayout
+  title="Timpanometri Nedir? Orta Kulak Değerlendirmesi | EniyiCihaz"
+  description="Timpanometri nasıl yapılır, neyi değerlendirir? Orta kulak basıncı, kulak zarı hareketliliği ve akustik refleks ölçümü hakkında bilgi edinin."
+>
+  <BrandPageHero data={timpanometriHero} />
+  <BrandPageIntro data={timpanometriIntro} />
+  <BrandPageIdealUser data={timpanometriIdealUser} />
+  <BrandPageAdvantages data={timpanometriAdvantages} />
+  <BrandPageIdealUser data={timpanometriConsiderations} />
+  <BrandPageTechEvolution data={timpanometriEvolution} />
+  <BrandPageTechnology data={timpanometriUseCases} />
+  <BrandPageEcosystem data={timpanometriTechnology} />
+  <BrandPageRelatedContent data={timpanometriRecommendedBrands} />
+  <KulakArkasiComparison data={timpanometriComparison} />
+  <BrandPageExpertOpinion data={timpanometriExpertOpinion} />
+  <BrandPageFaq data={timpanometriFaq} />
+  <BrandPageFinalCta data={timpanometriFinalCta} />
+  <BrandPageRelatedContent data={timpanometriRelatedContent} />
+</MainLayout>

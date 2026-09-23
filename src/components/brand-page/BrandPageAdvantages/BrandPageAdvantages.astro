@@ -1,0 +1,512 @@
+---
+// BrandPageAdvantages — shared, cross-brand asymmetric bento conversion
+// section (hero card + 5 supporting cards). Generic counterpart of
+// Oticon's original OticonWhyOticon; data-driven so every brand page can
+// reuse it. Grid areas are fixed (hero/slot1..slot4 in the same visual
+// rhythm Oticon established) — `items` must always contain exactly 5
+// entries, in order: [slot1, slot2, slot3(wide), slot4(wide), slot5(wide)].
+
+export interface BrandPageAdvantage {
+  icon: any;
+  category: string;
+  title: string;
+  description: string;
+}
+
+export interface BrandPageAdvantagesContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  hero: BrandPageAdvantage;
+  items: BrandPageAdvantage[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorIconBg: string;
+  accentColorHoverBorder: string;
+  // Opt-in premium hover polish (Ücretsiz İşitme Testi's "Avantajları")
+  // — scoped under .brand-page-adv--premium so every other page using
+  // this shared component (80+ instances) renders exactly as before
+  // when these are omitted.
+  premium?: boolean;
+  accentColorHoverBg?: string; // cell background on hover — default: unchanged (var(--color-background))
+  accentColorGlow?: string; // soft accent-tinted shadow color on hover — default: none (base shadow only)
+  accentColorIconBgHover?: string; // icon box background on hover — default: accentColorIconBg (no change)
+}
+
+interface Props {
+  data: BrandPageAdvantagesContent;
+}
+
+const { data } = Astro.props;
+
+const HeroIcon = data.hero.icon;
+const [slot1, slot2, slot3, slot4, slot5] = data.items;
+const Slot1Icon = slot1.icon;
+const Slot2Icon = slot2.icon;
+const Slot3Icon = slot3.icon;
+const Slot4Icon = slot4.icon;
+const Slot5Icon = slot5.icon;
+
+const extraVars = [
+  data.accentColorHoverBg ? `--bpad-hover-bg:${data.accentColorHoverBg};` : "",
+  data.accentColorGlow ? `--bpad-glow:${data.accentColorGlow};` : "",
+  data.accentColorIconBgHover ? `--bpad-icon-bg-hover:${data.accentColorIconBgHover};` : "",
+].join(" ");
+---
+
+<section
+  class:list={["brand-page-adv", { "brand-page-adv--premium": data.premium }]}
+  aria-labelledby="brand-page-adv-title"
+  style={`--bpad-accent:${data.accentColor}; --bpad-badge-bg:${data.accentColorBadgeBg}; --bpad-badge-border:${data.accentColorBadgeBorder}; --bpad-badge-text:${data.accentColorBadgeText}; --bpad-icon-bg:${data.accentColorIconBg}; --bpad-hover-border:${data.accentColorHoverBorder}; ${extraVars}`}
+>
+  <div class="brand-page-adv__inner">
+    <div class="brand-page-adv__header">
+      <p class="brand-page-adv__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-page-adv__heading" id="brand-page-adv-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="brand-page-adv__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="brand-page-adv__bento">
+      <div class="brand-page-adv__cell brand-page-adv__cell--hero" data-rise>
+        <span class="brand-page-adv__icon brand-page-adv__icon--lg">
+          <HeroIcon size={30} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <p class="brand-page-adv__category">{data.hero.category}</p>
+        <p class="brand-page-adv__title brand-page-adv__title--lg">{data.hero.title}</p>
+        <p class="brand-page-adv__desc brand-page-adv__desc--lg">{data.hero.description}</p>
+      </div>
+
+      <div class="brand-page-adv__cell brand-page-adv__cell--s1" data-rise>
+        <span class="brand-page-adv__icon">
+          <Slot1Icon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <p class="brand-page-adv__category">{slot1.category}</p>
+        <p class="brand-page-adv__title">{slot1.title}</p>
+        <p class="brand-page-adv__desc">{slot1.description}</p>
+      </div>
+
+      <div class="brand-page-adv__cell brand-page-adv__cell--s2" data-rise>
+        <span class="brand-page-adv__icon">
+          <Slot2Icon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <p class="brand-page-adv__category">{slot2.category}</p>
+        <p class="brand-page-adv__title">{slot2.title}</p>
+        <p class="brand-page-adv__desc">{slot2.description}</p>
+      </div>
+
+      <div class="brand-page-adv__cell brand-page-adv__cell--s3" data-rise>
+        <span class="brand-page-adv__icon">
+          <Slot3Icon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="brand-page-adv__horizontal-text">
+          <p class="brand-page-adv__category">{slot3.category}</p>
+          <p class="brand-page-adv__title">{slot3.title}</p>
+          <p class="brand-page-adv__desc">{slot3.description}</p>
+        </span>
+      </div>
+
+      <div class="brand-page-adv__cell brand-page-adv__cell--s4" data-rise>
+        <span class="brand-page-adv__icon">
+          <Slot4Icon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="brand-page-adv__horizontal-text">
+          <p class="brand-page-adv__category">{slot4.category}</p>
+          <p class="brand-page-adv__title">{slot4.title}</p>
+          <p class="brand-page-adv__desc">{slot4.description}</p>
+        </span>
+      </div>
+
+      <div class="brand-page-adv__cell brand-page-adv__cell--s5" data-rise>
+        <span class="brand-page-adv__icon">
+          <Slot5Icon size={22} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="brand-page-adv__horizontal-text">
+          <p class="brand-page-adv__category">{slot5.category}</p>
+          <p class="brand-page-adv__title">{slot5.title}</p>
+          <p class="brand-page-adv__desc">{slot5.description}</p>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-adv");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-adv {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bpad-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-adv__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-adv__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-adv__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpad-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpad-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpad-badge-text);
+  }
+
+  .brand-page-adv__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2rem, 1.6rem + 2vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-adv__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-adv__bento {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 180px 180px auto;
+    grid-template-areas:
+      "hero hero s1 s2"
+      "hero hero s3 s3"
+      "s4 s4 s5 s5";
+    gap: var(--space-5);
+  }
+
+  .brand-page-adv__cell--hero { grid-area: hero; }
+  .brand-page-adv__cell--s1 { grid-area: s1; }
+  .brand-page-adv__cell--s2 { grid-area: s2; }
+  .brand-page-adv__cell--s3 { grid-area: s3; }
+  .brand-page-adv__cell--s4 { grid-area: s4; }
+  .brand-page-adv__cell--s5 { grid-area: s5; }
+
+  .brand-page-adv__cell {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-7);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+    transition: transform 300ms var(--bpad-ease), border-color 300ms var(--bpad-ease), box-shadow 300ms var(--bpad-ease);
+  }
+
+  .brand-page-adv__cell:hover {
+    transform: translateY(-5px);
+    border-color: var(--bpad-hover-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .brand-page-adv__cell--hero {
+    justify-content: center;
+    padding: var(--space-10);
+  }
+
+  .brand-page-adv__cell--s3,
+  .brand-page-adv__cell--s4,
+  .brand-page-adv__cell--s5 {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .brand-page-adv__horizontal-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-page-adv__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: var(--bpad-icon-bg);
+    color: var(--bpad-accent);
+    transition: transform 300ms var(--bpad-ease);
+  }
+
+  .brand-page-adv__icon--lg {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-xl);
+  }
+
+  .brand-page-adv__cell:hover .brand-page-adv__icon {
+    transform: scale(1.08);
+  }
+
+  .brand-page-adv__category {
+    margin: var(--space-4) 0 0;
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bpad-accent);
+  }
+
+  .brand-page-adv__cell--s3 .brand-page-adv__category,
+  .brand-page-adv__cell--s4 .brand-page-adv__category,
+  .brand-page-adv__cell--s5 .brand-page-adv__category {
+    margin-top: 0;
+  }
+
+  .brand-page-adv__title {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .brand-page-adv__title--lg {
+    margin-top: var(--space-3);
+    max-width: 18ch;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .brand-page-adv__desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-adv__desc--lg {
+    max-width: 32ch;
+    font-size: var(--font-size-md);
+  }
+
+  .brand-page-adv[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-adv[data-anim="in"] [data-rise] {
+    animation: brand-page-adv-rise 650ms var(--bpad-ease) both;
+  }
+
+  .brand-page-adv[data-anim="in"] .brand-page-adv__cell--hero { animation-delay: 40ms; }
+  .brand-page-adv[data-anim="in"] .brand-page-adv__cell--s1 { animation-delay: 90ms; }
+  .brand-page-adv[data-anim="in"] .brand-page-adv__cell--s2 { animation-delay: 130ms; }
+  .brand-page-adv[data-anim="in"] .brand-page-adv__cell--s3 { animation-delay: 170ms; }
+  .brand-page-adv[data-anim="in"] .brand-page-adv__cell--s4 { animation-delay: 210ms; }
+  .brand-page-adv[data-anim="in"] .brand-page-adv__cell--s5 { animation-delay: 250ms; }
+
+  @keyframes brand-page-adv-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .brand-page-adv__bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto;
+      grid-template-areas:
+        "hero hero"
+        "s1 s2"
+        "s3 s3"
+        "s4 s4"
+        "s5 s5";
+    }
+
+    .brand-page-adv__cell--hero {
+      padding: var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-adv {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-adv__bento {
+      margin-top: var(--space-10);
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "hero"
+        "s1"
+        "s2"
+        "s3"
+        "s4"
+        "s5";
+    }
+
+    .brand-page-adv__cell {
+      padding: var(--space-6);
+    }
+
+    .brand-page-adv__cell--hero {
+      padding: var(--space-7);
+    }
+
+    .brand-page-adv__cell--s3,
+    .brand-page-adv__cell--s4,
+    .brand-page-adv__cell--s5 {
+      flex-direction: column;
+    }
+
+    .brand-page-adv__cell--s3 .brand-page-adv__category,
+    .brand-page-adv__cell--s4 .brand-page-adv__category,
+    .brand-page-adv__cell--s5 .brand-page-adv__category {
+      margin-top: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-adv[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-adv__cell,
+    .brand-page-adv__icon {
+      transition: none;
+    }
+  }
+
+  /* ==== Premium hover variant (data.premium) ===============================
+     Entirely scoped under this modifier class — none of the rules above are
+     touched, so every other page rendering this shared component (80+
+     instances) keeps its exact current look. Cards are informational, not
+     links: no cursor change, no new interactive semantics — only a calmer,
+     more refined visual response to a real mouse hover. */
+
+  /* Row 1 is a fixed 180px in the base rule, which this page's s1/s2 text
+     (Ücretsiz / Hızlı Süreç) overflows by ~16px at desktop widths — the
+     row simply isn't tall enough for that content at that column width.
+     minmax keeps 180px as the floor (so anything that already fit renders
+     pixel-identical) and only grows exactly as much as the content needs;
+     hero shares this row (grid-template-areas is unchanged) so it gains
+     the same few extra pixels of height, staying centered via its own
+     existing justify-content:center — no padding, column, or area change. */
+  .brand-page-adv--premium .brand-page-adv__bento {
+    grid-template-rows: minmax(180px, auto) minmax(180px, auto) auto;
+  }
+
+  .brand-page-adv--premium .brand-page-adv__cell {
+    transition:
+      transform 200ms var(--bpad-ease),
+      border-color 200ms var(--bpad-ease),
+      box-shadow 200ms var(--bpad-ease),
+      background-color 200ms var(--bpad-ease);
+  }
+
+  .brand-page-adv--premium .brand-page-adv__cell:hover {
+    /* !important: every cell also carries [data-rise] for the section's
+       one-time scroll-entrance animation, which sets its own `transform`
+       via animation fill-mode "both" — that keeps outranking a plain
+       :hover declaration on the same property indefinitely (a pre-existing
+       characteristic of the shared entrance-animation script, not
+       something specific to this variant: the base, non-premium
+       :hover{transform:translateY(-5px)} rule silently never applies for
+       the same reason, on every page using this component). Scoped to
+       .premium only — the base rule and shared script are untouched, so
+       every other page's behavior (including that pre-existing quirk) is
+       unaffected. */
+    transform: translateY(-4px) !important;
+    border-color: var(--bpad-hover-border);
+    background: var(--bpad-hover-bg, var(--color-background));
+    box-shadow: var(--shadow-sm), 0 0 0 1px var(--bpad-glow, transparent);
+  }
+
+  .brand-page-adv--premium .brand-page-adv__icon {
+    transition: transform 200ms var(--bpad-ease), background-color 200ms var(--bpad-ease);
+  }
+
+  /* Dialed down from the base 1.08 — "very light scale", per spec. */
+  .brand-page-adv--premium .brand-page-adv__cell:hover .brand-page-adv__icon {
+    transform: scale(1.03);
+    background: var(--bpad-icon-bg-hover, var(--bpad-icon-bg));
+  }
+
+  .brand-page-adv--premium .brand-page-adv__title {
+    transition: color 200ms var(--bpad-ease);
+  }
+
+  .brand-page-adv--premium .brand-page-adv__cell:hover .brand-page-adv__title {
+    color: var(--bpad-accent);
+  }
+
+  /* The base reduced-motion rule targets .brand-page-adv__cell/__icon
+     directly, but this variant's own hover rules are more specific (two
+     classes) and would otherwise win over it — so transform needs its own
+     explicit reduced-motion override too. */
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-adv--premium .brand-page-adv__cell,
+    .brand-page-adv--premium .brand-page-adv__icon {
+      transition: none;
+    }
+
+    .brand-page-adv--premium .brand-page-adv__cell:hover,
+    .brand-page-adv--premium .brand-page-adv__cell:hover .brand-page-adv__icon {
+      transform: none;
+    }
+  }
+</style>

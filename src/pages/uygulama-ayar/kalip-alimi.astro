@@ -1,0 +1,67 @@
+---
+// Kalıp Alımı — /uygulama-ayar/kalip-alimi. Fourth page of the
+// "Uygulama & Ayar" series (see header.data.ts's servicesMega second
+// column), following Cihaz Uygulama, Kişiye Özel Programlama and Cihaz
+// Deneme. A new physical/practical process within this series — this
+// page covers the ear-impression and custom-mold fabrication process
+// itself, distinct from the software-programming and decision-support
+// focus of the three prior siblings.
+//
+// accentColor: pembe / pink-600 (#db2777) — fourth color in the fresh
+// accent rotation opened for this series; see hero.ts for the full
+// rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Kimler İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Süreç Adımları -> Neler Yapılır -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Standart Kulak Ucu vs Kişiye Özel Kalıp -> Uzman Yorumu
+// -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { kalipAlimiHero } from "../../data/kalip-alimi/hero";
+import { kalipAlimiIntro } from "../../data/kalip-alimi/intro";
+import { kalipAlimiIdealUser } from "../../data/kalip-alimi/ideal-user";
+import { kalipAlimiAdvantages } from "../../data/kalip-alimi/advantages";
+import { kalipAlimiConsiderations } from "../../data/kalip-alimi/considerations";
+import { kalipAlimiEvolution } from "../../data/kalip-alimi/evolution";
+import { kalipAlimiUseCases } from "../../data/kalip-alimi/use-cases";
+import { kalipAlimiTechnology } from "../../data/kalip-alimi/technology";
+import { kalipAlimiRecommendedBrands } from "../../data/kalip-alimi/recommended-brands";
+import { kalipAlimiComparison } from "../../data/kalip-alimi/comparison";
+import { kalipAlimiExpertOpinion } from "../../data/kalip-alimi/expert-opinion";
+import { kalipAlimiFaq } from "../../data/kalip-alimi/faq";
+import { kalipAlimiRelatedContent } from "../../data/kalip-alimi/related-content";
+import { kalipAlimiFinalCta } from "../../data/kalip-alimi/final-cta";
+---
+
+<MainLayout
+  title="Kalıp Alımı | Kişiye Özel Kulak Kalıbı Süreci | EniyiCihaz"
+  description="Kulak kalıbı alımı nasıl yapılır? Kulak muayenesi, kalıp malzemesi enjeksiyonu ve laboratuvar üretimiyle kişiye özel kulak kalıbı süreci hakkında bilgi edinin."
+>
+  <BrandPageHero data={kalipAlimiHero} />
+  <BrandPageIntro data={kalipAlimiIntro} />
+  <BrandPageIdealUser data={kalipAlimiIdealUser} />
+  <BrandPageAdvantages data={kalipAlimiAdvantages} />
+  <BrandPageIdealUser data={kalipAlimiConsiderations} />
+  <BrandPageTechEvolution data={kalipAlimiEvolution} />
+  <BrandPageTechnology data={kalipAlimiUseCases} />
+  <BrandPageEcosystem data={kalipAlimiTechnology} />
+  <BrandPageRelatedContent data={kalipAlimiRecommendedBrands} />
+  <KulakArkasiComparison data={kalipAlimiComparison} />
+  <BrandPageExpertOpinion data={kalipAlimiExpertOpinion} />
+  <BrandPageFaq data={kalipAlimiFaq} />
+  <BrandPageFinalCta data={kalipAlimiFinalCta} />
+  <BrandPageRelatedContent data={kalipAlimiRelatedContent} />
+</MainLayout>

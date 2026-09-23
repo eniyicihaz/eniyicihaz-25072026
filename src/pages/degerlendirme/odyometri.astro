@@ -1,0 +1,69 @@
+---
+// Odyometri — /degerlendirme/odyometri. Second page of the
+// "Değerlendirme" series (see header.data.ts's servicesMega first
+// column), following Ücretsiz İşitme Testi. Same clinical service-page
+// genre and full health-content safety discipline (self-diagnosis
+// disclaimers, urgent-care flags) — this page's own scope is the
+// specific odyometri procedure (air/bone conduction, speech audiometry,
+// reading an odyogram) rather than the overall free-test appointment
+// experience already covered on Ücretsiz İşitme Testi, which this
+// page's Ecosystem section previewed and now expands on in full.
+//
+// accentColor: çivit / indigo-600 (#4f46e5) — second color in the fresh
+// accent rotation opened for this series on Ücretsiz İşitme Testi's
+// hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Ölçer? -> Kimler
+// İçin Önerilir? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Test
+// Adımları -> Odyometride Ölçülen Değerler -> Teknolojiler -> Markalara
+// Göre İnceleyin -> Saf Ses vs Konuşma Odyometrisi -> Uzman Yorumu ->
+// SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { odyometriHero } from "../../data/odyometri/hero";
+import { odyometriIntro } from "../../data/odyometri/intro";
+import { odyometriIdealUser } from "../../data/odyometri/ideal-user";
+import { odyometriAdvantages } from "../../data/odyometri/advantages";
+import { odyometriConsiderations } from "../../data/odyometri/considerations";
+import { odyometriEvolution } from "../../data/odyometri/evolution";
+import { odyometriUseCases } from "../../data/odyometri/use-cases";
+import { odyometriTechnology } from "../../data/odyometri/technology";
+import { odyometriRecommendedBrands } from "../../data/odyometri/recommended-brands";
+import { odyometriComparison } from "../../data/odyometri/comparison";
+import { odyometriExpertOpinion } from "../../data/odyometri/expert-opinion";
+import { odyometriFaq } from "../../data/odyometri/faq";
+import { odyometriRelatedContent } from "../../data/odyometri/related-content";
+import { odyometriFinalCta } from "../../data/odyometri/final-cta";
+---
+
+<MainLayout
+  title="Odyometri Nedir? İşitme Eşiği Testi ve Odyogram | EniyiCihaz"
+  description="Odyometri nasıl yapılır, neyi ölçer? Hava yolu ve kemik yolu iletimi, konuşma odyometrisi ve odyogram sonuçlarının nasıl okunduğu hakkında bilgi edinin."
+>
+  <BrandPageHero data={odyometriHero} />
+  <BrandPageIntro data={odyometriIntro} />
+  <BrandPageIdealUser data={odyometriIdealUser} />
+  <BrandPageAdvantages data={odyometriAdvantages} />
+  <BrandPageIdealUser data={odyometriConsiderations} />
+  <BrandPageTechEvolution data={odyometriEvolution} />
+  <BrandPageTechnology data={odyometriUseCases} />
+  <BrandPageEcosystem data={odyometriTechnology} />
+  <BrandPageRelatedContent data={odyometriRecommendedBrands} />
+  <KulakArkasiComparison data={odyometriComparison} />
+  <BrandPageExpertOpinion data={odyometriExpertOpinion} />
+  <BrandPageFaq data={odyometriFaq} />
+  <BrandPageFinalCta data={odyometriFinalCta} />
+  <BrandPageRelatedContent data={odyometriRelatedContent} />
+</MainLayout>

@@ -1,0 +1,71 @@
+---
+// Cihaz Temizliği — /servis-bakim/cihaz-temizligi. Third page of the
+// "Servis & Bakım" series (see header.data.ts's servicesMega third
+// column), following Teknik Servis and Periyodik Bakım. Both prior
+// siblings' own content cross-reference this page for daily cleaning
+// and storage advice — this page delivers on that promise.
+//
+// This is the reader's own DAILY at-home routine (wiping, dry storage,
+// what never to use) — distinct from Periyodik Bakım's scheduled
+// professional part-replacement appointment and from Teknik Servis's
+// reactive repair. evolution.ts is deliberately repurposed as a daily
+// evening routine rather than a one-time appointment sequence.
+//
+// accentColor: gök mavisi / sky-500 (#0ea5e9) — third color in the
+// fresh accent rotation opened for this series; see hero.ts for the
+// full rationale.
+//
+// 14-section flow, in order: Hero -> Neden Önemlidir? -> Kimler İçin
+// Önemlidir? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Günlük
+// Rutin -> Nelere Dikkat Edilir -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Elektronik vs Standart Saklama Kutusu -> Uzman Yorumu ->
+// SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { cihazTemizligiHero } from "../../data/cihaz-temizligi/hero";
+import { cihazTemizligiIntro } from "../../data/cihaz-temizligi/intro";
+import { cihazTemizligiIdealUser } from "../../data/cihaz-temizligi/ideal-user";
+import { cihazTemizligiAdvantages } from "../../data/cihaz-temizligi/advantages";
+import { cihazTemizligiConsiderations } from "../../data/cihaz-temizligi/considerations";
+import { cihazTemizligiEvolution } from "../../data/cihaz-temizligi/evolution";
+import { cihazTemizligiUseCases } from "../../data/cihaz-temizligi/use-cases";
+import { cihazTemizligiTechnology } from "../../data/cihaz-temizligi/technology";
+import { cihazTemizligiRecommendedBrands } from "../../data/cihaz-temizligi/recommended-brands";
+import { cihazTemizligiComparison } from "../../data/cihaz-temizligi/comparison";
+import { cihazTemizligiExpertOpinion } from "../../data/cihaz-temizligi/expert-opinion";
+import { cihazTemizligiFaq } from "../../data/cihaz-temizligi/faq";
+import { cihazTemizligiRelatedContent } from "../../data/cihaz-temizligi/related-content";
+import { cihazTemizligiFinalCta } from "../../data/cihaz-temizligi/final-cta";
+---
+
+<MainLayout
+  title="Cihaz Temizliği | İşitme Cihazı Günlük Bakım Rehberi | EniyiCihaz"
+  description="İşitme cihazınızı günlük olarak nasıl temizlemeli ve saklamalısınız? Doğru malzeme, kuru saklama ve kaçınılması gereken temizlik hataları hakkında bilgi edinin."
+>
+  <BrandPageHero data={cihazTemizligiHero} />
+  <BrandPageIntro data={cihazTemizligiIntro} />
+  <BrandPageIdealUser data={cihazTemizligiIdealUser} />
+  <BrandPageAdvantages data={cihazTemizligiAdvantages} />
+  <BrandPageIdealUser data={cihazTemizligiConsiderations} />
+  <BrandPageTechEvolution data={cihazTemizligiEvolution} />
+  <BrandPageTechnology data={cihazTemizligiUseCases} />
+  <BrandPageEcosystem data={cihazTemizligiTechnology} />
+  <BrandPageRelatedContent data={cihazTemizligiRecommendedBrands} />
+  <KulakArkasiComparison data={cihazTemizligiComparison} />
+  <BrandPageExpertOpinion data={cihazTemizligiExpertOpinion} />
+  <BrandPageFaq data={cihazTemizligiFaq} />
+  <BrandPageFinalCta data={cihazTemizligiFinalCta} />
+  <BrandPageRelatedContent data={cihazTemizligiRelatedContent} />
+</MainLayout>

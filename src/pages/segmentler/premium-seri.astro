@@ -1,0 +1,78 @@
+---
+// Premium Seri — /segmentler/premium-seri. First page of the
+// "Segmentler" series (see header.data.ts's brandsMega third column). A
+// new content genre within Markalar, distinct from "Neden Orijinal"
+// (trust/authenticity topics): this series covers product tiers that
+// cut across all brands. This page reverts to the original (non-trust)
+// Brand Component Architecture used throughout devicesMega — candidacy
+// profiles, genuine feature advantages, a real tier ladder — since
+// "which product tier fits your needs" is the same kind of question as
+// the İhtiyacınıza Göre pages, not a trust topic.
+//
+// Three of the six "Segmentler" menu items (Şarj Edilebilir Seri,
+// Görünmez Seri, Çocuk Serisi) duplicate existing devicesMega topics by
+// design and will be wired directly to /isitme-cihazlari/sarj-edilebilir,
+// /isitme-cihazlari/gorunmez-cic and /isitme-cihazlari/cocuklara-ozel
+// rather than getting new duplicate pages — see related-content.ts for
+// the forward links. Only Premium Seri, Standart Seri and Ekonomik Seri
+// need genuinely new content.
+//
+// accentColor: altın sarısı / yellow-500 (#eab308) — opens a fresh
+// accent rotation for the brandsMega "Segmentler" column; see hero.ts
+// for the full rationale, including why this stays a full hue-family
+// away from the sitewide warning-amber token.
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Uygun? ->
+// Avantajları -> Dikkat Edilmesi Gerekenler -> Seri Karşılaştırması
+// (Ekonomik/Standart/Premium ladder) -> Öne Çıkan Özellikler ->
+// Teknolojiler -> Markalara Göre İnceleyin -> Premium vs Standart Seri
+// -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { premiumSeriHero } from "../../data/premium-seri/hero";
+import { premiumSeriIntro } from "../../data/premium-seri/intro";
+import { premiumSeriIdealUser } from "../../data/premium-seri/ideal-user";
+import { premiumSeriAdvantages } from "../../data/premium-seri/advantages";
+import { premiumSeriConsiderations } from "../../data/premium-seri/considerations";
+import { premiumSeriEvolution } from "../../data/premium-seri/evolution";
+import { premiumSeriUseCases } from "../../data/premium-seri/use-cases";
+import { premiumSeriTechnology } from "../../data/premium-seri/technology";
+import { premiumSeriRecommendedBrands } from "../../data/premium-seri/recommended-brands";
+import { premiumSeriComparison } from "../../data/premium-seri/comparison";
+import { premiumSeriExpertOpinion } from "../../data/premium-seri/expert-opinion";
+import { premiumSeriFaq } from "../../data/premium-seri/faq";
+import { premiumSeriRelatedContent } from "../../data/premium-seri/related-content";
+import { premiumSeriFinalCta } from "../../data/premium-seri/final-cta";
+---
+
+<MainLayout
+  title="Premium Seri İşitme Cihazları | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Premium seri işitme cihazları nedir, kimler için uygundur? Yapay zeka destekli ses işleme, tam kablosuz bağlantı ve premium seri ile standart seri karşılaştırmasını keşfedin."
+>
+  <BrandPageHero data={premiumSeriHero} />
+  <BrandPageIntro data={premiumSeriIntro} />
+  <BrandPageIdealUser data={premiumSeriIdealUser} />
+  <BrandPageAdvantages data={premiumSeriAdvantages} />
+  <BrandPageIdealUser data={premiumSeriConsiderations} />
+  <BrandPageTechEvolution data={premiumSeriEvolution} />
+  <BrandPageTechnology data={premiumSeriUseCases} />
+  <BrandPageEcosystem data={premiumSeriTechnology} />
+  <BrandPageRelatedContent data={premiumSeriRecommendedBrands} />
+  <KulakArkasiComparison data={premiumSeriComparison} />
+  <BrandPageExpertOpinion data={premiumSeriExpertOpinion} />
+  <BrandPageFaq data={premiumSeriFaq} />
+  <BrandPageFinalCta data={premiumSeriFinalCta} />
+  <BrandPageRelatedContent data={premiumSeriRelatedContent} />
+</MainLayout>

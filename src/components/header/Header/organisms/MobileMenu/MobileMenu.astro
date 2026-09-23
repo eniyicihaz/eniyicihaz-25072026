@@ -2,15 +2,17 @@
 import { ChevronDown, X, Phone } from "lucide-astro";
 import { icons } from "../../icons";
 import type { HeaderData } from "../../header.types";
+import { isActive } from "../../isActive";
 
 interface Props {
   brand: HeaderData["brand"];
   items: HeaderData["nav"];
   phone: HeaderData["phone"];
   cta: HeaderData["cta"];
+  currentPath: string;
 }
 
-const { brand, items, phone, cta } = Astro.props;
+const { brand, items, phone, cta, currentPath } = Astro.props;
 const CtaIcon = icons[cta.icon] as any;
 ---
 
@@ -43,6 +45,7 @@ const CtaIcon = icons[cta.icon] as any;
                   class="hd-mobile__acc-trigger"
                   data-action="toggle-accordion"
                   aria-expanded="false"
+                  aria-current={isActive(item.href, currentPath) ? "true" : undefined}
                 >
                   <span>{item.label}</span>
                   <ChevronDown class="hd-mobile__acc-chev" size={18} aria-hidden="true" />
@@ -61,7 +64,11 @@ const CtaIcon = icons[cta.icon] as any;
                         <ul class="hd-mobile__sub-list">
                           {col.links.map((link) => (
                             <li>
-                              <a class="hd-mobile__sub-link" href={link.href}>
+                              <a
+                                class="hd-mobile__sub-link"
+                                href={link.href}
+                                aria-current={isActive(link.href, currentPath) ? "page" : undefined}
+                              >
                                 {link.label}
                               </a>
                             </li>
@@ -70,14 +77,22 @@ const CtaIcon = icons[cta.icon] as any;
                       </div>
                     );
                   })}
-                  <a class="hd-mobile__sub-all" href={item.mega.support.footer.href}>
+                  <a
+                    class="hd-mobile__sub-all"
+                    href={item.mega.support.footer.href}
+                    aria-current={isActive(item.mega.support.footer.href, currentPath) ? "page" : undefined}
+                  >
                     {item.mega.support.footer.label}
                   </a>
                 </div>
               </li>
             ) : (
               <li>
-                <a class="hd-mobile__link" href={item.href}>
+                <a
+                  class="hd-mobile__link"
+                  href={item.href}
+                  aria-current={isActive(item.href, currentPath) ? "page" : undefined}
+                >
                   {item.label}
                 </a>
               </li>
@@ -223,8 +238,15 @@ const CtaIcon = icons[cta.icon] as any;
   }
 
   .hd-mobile__link:hover,
-  .hd-mobile__acc-trigger:hover {
+  .hd-mobile__acc-trigger:hover,
+  .hd-mobile__link[aria-current="page"],
+  .hd-mobile__acc-trigger[aria-current="true"] {
     background: var(--color-surface);
+  }
+
+  .hd-mobile__link[aria-current="page"],
+  .hd-mobile__acc-trigger[aria-current="true"] {
+    color: var(--color-primary);
   }
   .hd-mobile__link:focus-visible,
   .hd-mobile__acc-trigger:focus-visible {
@@ -284,7 +306,8 @@ const CtaIcon = icons[cta.icon] as any;
     text-decoration: none;
     border-radius: var(--radius-md);
   }
-  .hd-mobile__sub-link:hover {
+  .hd-mobile__sub-link:hover,
+  .hd-mobile__sub-link[aria-current="page"] {
     color: var(--color-text);
     background: var(--color-surface);
   }

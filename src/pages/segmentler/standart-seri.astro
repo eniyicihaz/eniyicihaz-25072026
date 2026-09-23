@@ -1,0 +1,77 @@
+---
+// Standart Seri — /segmentler/standart-seri. Second page of the
+// "Segmentler" series (see header.data.ts's brandsMega third column),
+// following Premium Seri. Same candidacy-based content genre — this
+// page's own angle is the balanced, everyday tier rather than the
+// top-of-line one. Built on the same master templates and shared,
+// data-driven components used throughout devicesMega and Premium Seri
+// (same KulakArkasiComparison component, already generic, reused
+// as-is).
+//
+// The TechEvolution "stage" slot reuses Premium Seri's own genuine
+// three-rung tier ladder (Ekonomik -> Standart -> Premium), with
+// "bestFor" swapped to "Bu sayfanın konusu" on the Standart rung. The
+// KulakArkasiComparison table completes the ladder's pairwise coverage:
+// Premium Seri already compares Premium vs Standart, so this page
+// covers the other adjacent pair, Standart vs Ekonomik.
+//
+// accentColor: gök mavisi / sky-600 (#0284c7) — second color in the
+// fresh accent rotation opened for this series on Premium Seri's
+// hero.ts; see that file for the full rationale, including why this
+// page's hero image comes from the site's wider brand catalog (Vista B)
+// rather than one of the six primary brands.
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Uygun? ->
+// Avantajları -> Dikkat Edilmesi Gerekenler -> Seri Karşılaştırması
+// (Ekonomik/Standart/Premium ladder) -> Öne Çıkan Özellikler ->
+// Teknolojiler -> Markalara Göre İnceleyin -> Standart vs Ekonomik Seri
+// -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { standartSeriHero } from "../../data/standart-seri/hero";
+import { standartSeriIntro } from "../../data/standart-seri/intro";
+import { standartSeriIdealUser } from "../../data/standart-seri/ideal-user";
+import { standartSeriAdvantages } from "../../data/standart-seri/advantages";
+import { standartSeriConsiderations } from "../../data/standart-seri/considerations";
+import { standartSeriEvolution } from "../../data/standart-seri/evolution";
+import { standartSeriUseCases } from "../../data/standart-seri/use-cases";
+import { standartSeriTechnology } from "../../data/standart-seri/technology";
+import { standartSeriRecommendedBrands } from "../../data/standart-seri/recommended-brands";
+import { standartSeriComparison } from "../../data/standart-seri/comparison";
+import { standartSeriExpertOpinion } from "../../data/standart-seri/expert-opinion";
+import { standartSeriFaq } from "../../data/standart-seri/faq";
+import { standartSeriRelatedContent } from "../../data/standart-seri/related-content";
+import { standartSeriFinalCta } from "../../data/standart-seri/final-cta";
+---
+
+<MainLayout
+  title="Standart Seri İşitme Cihazları | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Standart seri işitme cihazları nedir, kimler için uygundur? Dengeli teknoloji, fiyat-performans dengesi ve standart seri ile ekonomik seri karşılaştırmasını keşfedin."
+>
+  <BrandPageHero data={standartSeriHero} />
+  <BrandPageIntro data={standartSeriIntro} />
+  <BrandPageIdealUser data={standartSeriIdealUser} />
+  <BrandPageAdvantages data={standartSeriAdvantages} />
+  <BrandPageIdealUser data={standartSeriConsiderations} />
+  <BrandPageTechEvolution data={standartSeriEvolution} />
+  <BrandPageTechnology data={standartSeriUseCases} />
+  <BrandPageEcosystem data={standartSeriTechnology} />
+  <BrandPageRelatedContent data={standartSeriRecommendedBrands} />
+  <KulakArkasiComparison data={standartSeriComparison} />
+  <BrandPageExpertOpinion data={standartSeriExpertOpinion} />
+  <BrandPageFaq data={standartSeriFaq} />
+  <BrandPageFinalCta data={standartSeriFinalCta} />
+  <BrandPageRelatedContent data={standartSeriRelatedContent} />
+</MainLayout>

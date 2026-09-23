@@ -1,0 +1,267 @@
+---
+// BrandPageOverview — shared, cross-brand "quick facts" section that
+// sits right after BrandPageHero on every brand page (see PHONAK MASTER
+// BLUEPRINT §3.1/§6.2). Deliberately brand-neutral in color (uses the
+// site's own primary blue, not each brand's accent) so it reads as a
+// consistent, standardized "ID card" pattern across every brand page —
+// unlike the Hero, which is intentionally brand-accented.
+import { Calendar, MapPin, Sparkles, Cpu, Bluetooth, Users } from "lucide-astro";
+
+export interface BrandPageOverviewCard {
+  icon: "calendar" | "map-pin" | "sparkles" | "cpu" | "bluetooth" | "users";
+  label: string;
+  value: string;
+}
+
+export interface BrandPageOverviewContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  cards: BrandPageOverviewCard[];
+}
+
+interface Props {
+  data: BrandPageOverviewContent;
+}
+
+const { data } = Astro.props;
+
+const icons = {
+  calendar: Calendar,
+  "map-pin": MapPin,
+  sparkles: Sparkles,
+  cpu: Cpu,
+  bluetooth: Bluetooth,
+  users: Users,
+} as const;
+---
+
+<section class="brand-page-overview" aria-labelledby="brand-page-overview-title">
+  <div class="brand-page-overview__inner">
+    <div class="brand-page-overview__head" data-rise>
+      <p class="brand-page-overview__badge">{data.badge}</p>
+      <h2 class="brand-page-overview__heading" id="brand-page-overview-title">{data.heading}</h2>
+      <p class="brand-page-overview__intro">{data.intro}</p>
+    </div>
+
+    <div class="brand-page-overview__grid" data-rise>
+      {
+        data.cards.map((card) => {
+          const Icon = icons[card.icon];
+          return (
+            <div class="brand-page-overview__card">
+              <span class="brand-page-overview__card-icon" aria-hidden="true">
+                <Icon size={20} stroke-width={1.75} />
+              </span>
+              <p class="brand-page-overview__card-label">{card.label}</p>
+              <p class="brand-page-overview__card-value">{card.value}</p>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same safe, progressive-enhancement entrance architecture used
+    // throughout the project's newer sections: default-visible CSS,
+    // JS-only "armed" opt-in, three independent safety nets so content
+    // can never get stuck hidden.
+    var section = document.querySelector(".brand-page-overview");
+    if (!section) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-overview {
+    position: relative;
+    background: var(--color-white);
+    padding-block: var(--space-20);
+    --bpo-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-overview__inner {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-overview__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-overview__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brand-page-overview__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-overview__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-overview__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-14);
+  }
+
+  .brand-page-overview__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: transform 300ms var(--bpo-ease), box-shadow 300ms var(--bpo-ease),
+      border-color 300ms var(--bpo-ease);
+  }
+
+  .brand-page-overview__card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(37 99 235 / 0.28);
+    box-shadow: var(--shadow-md);
+  }
+
+  .brand-page-overview__card-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+  }
+
+  .brand-page-overview__card-label {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .brand-page-overview__card-value {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .brand-page-overview[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--bpo-ease), transform 600ms var(--bpo-ease);
+  }
+
+  .brand-page-overview[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .brand-page-overview[data-anim="armed"] .brand-page-overview__head { transition-delay: 0ms; }
+  .brand-page-overview[data-anim="armed"] .brand-page-overview__grid { transition-delay: 80ms; }
+
+  @media (max-width: 1023px) {
+    .brand-page-overview {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-overview__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-overview__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-overview[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .brand-page-overview__card {
+      transition: none;
+    }
+  }
+</style>

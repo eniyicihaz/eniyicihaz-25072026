@@ -24,9 +24,7 @@ import {
   Sparkles,
   ShieldCheck,
   Award,
-  Bluetooth,
   BatteryCharging,
-  Waves,
   BookOpen,
   HelpCircle,
   Newspaper,
@@ -55,9 +53,7 @@ export type IconKey =
   | "sparkles"
   | "shield"
   | "award"
-  | "bluetooth"
   | "battery"
-  | "waves"
   | "book"
   | "help"
   | "news"
@@ -85,9 +81,7 @@ export const icons: Record<IconKey, unknown> = {
   sparkles: Sparkles,
   shield: ShieldCheck,
   award: Award,
-  bluetooth: Bluetooth,
   battery: BatteryCharging,
-  waves: Waves,
   book: BookOpen,
   help: HelpCircle,
   news: Newspaper,

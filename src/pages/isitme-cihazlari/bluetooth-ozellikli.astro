@@ -1,0 +1,69 @@
+---
+// Bluetooth Özellikli İşitme Cihazı — /isitme-cihazlari/bluetooth-ozellikli.
+// Fourth page of the "İşitme Cihazı Çeşitleri" product-page series (see
+// header.data.ts's devicesMega first column), built directly on the
+// Kulak Arkası (BTE) / Kulak İçi (ITE) / Şarj Edilebilir master templates
+// — same shared, data-driven Brand Component Architecture, same
+// KulakArkasiComparison component (already generic, reused as-is), same
+// accent-scoping pattern with its own camgöbeği (#0891b2) category accent.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Çalışır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Bluetooth
+// Teknolojisinin Gelişimi -> Bluetooth ile Yapabilecekleriniz ->
+// Teknolojiler -> Önerilen Marka ve Modeller -> Bluetooth Özellikli vs
+// Klasik -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for "Bluetooth ile
+// Yapabilecekleriniz", and BTE's hearing-loss-level slot becomes a
+// genuine technology timeline — Bluetooth'un işitme cihazlarındaki
+// gelişimi — since bu sayfa bir cihaz tipini değil bir bağlantı özelliğini
+// konu aldığından dB seviyesi veya cihaz ailesi kapsamı yerine teknolojik
+// evrim daha anlamlı; see evolution.ts and use-cases.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { bluetoothHero } from "../../data/bluetooth/hero";
+import { bluetoothIntro } from "../../data/bluetooth/intro";
+import { bluetoothIdealUser } from "../../data/bluetooth/ideal-user";
+import { bluetoothAdvantages } from "../../data/bluetooth/advantages";
+import { bluetoothConsiderations } from "../../data/bluetooth/considerations";
+import { bluetoothEvolution } from "../../data/bluetooth/evolution";
+import { bluetoothUseCases } from "../../data/bluetooth/use-cases";
+import { bluetoothTechnology } from "../../data/bluetooth/technology";
+import { bluetoothRecommendedBrands } from "../../data/bluetooth/recommended-brands";
+import { bluetoothComparison } from "../../data/bluetooth/comparison";
+import { bluetoothExpertOpinion } from "../../data/bluetooth/expert-opinion";
+import { bluetoothFaq } from "../../data/bluetooth/faq";
+import { bluetoothRelatedContent } from "../../data/bluetooth/related-content";
+import { bluetoothFinalCta } from "../../data/bluetooth/final-cta";
+---
+
+<MainLayout
+  title="Bluetooth Özellikli İşitme Cihazı Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Bluetooth özellikli işitme cihazı nedir, nasıl çalışır, telefon ve TV'ye nasıl bağlanır? Avantajları, dikkat edilmesi gerekenler ve Bluetooth özelliksiz (klasik) cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={bluetoothHero} />
+  <BrandPageIntro data={bluetoothIntro} />
+  <BrandPageIdealUser data={bluetoothIdealUser} />
+  <BrandPageAdvantages data={bluetoothAdvantages} />
+  <BrandPageIdealUser data={bluetoothConsiderations} />
+  <BrandPageTechEvolution data={bluetoothEvolution} />
+  <BrandPageTechnology data={bluetoothUseCases} />
+  <BrandPageEcosystem data={bluetoothTechnology} />
+  <BrandPageRelatedContent data={bluetoothRecommendedBrands} />
+  <KulakArkasiComparison data={bluetoothComparison} />
+  <BrandPageExpertOpinion data={bluetoothExpertOpinion} />
+  <BrandPageFaq data={bluetoothFaq} />
+  <BrandPageFinalCta data={bluetoothFinalCta} />
+  <BrandPageRelatedContent data={bluetoothRelatedContent} />
+</MainLayout>

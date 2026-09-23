@@ -1,0 +1,62 @@
+---
+// Rapor Süreci — /sgk/rapor-sureci. Second page of the "SGK & Haklar"
+// series (see header.data.ts's knowledgeMega third column), following
+// /sgk/katki-payi.
+//
+// accentColor: camgöbeği / cyan-600 (#0891b2) — second color in this
+// column's own accent rotation; see hero.ts for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Önemlidir?
+// -> Doğru Sürecin Faydaları -> Dikkat Edilmesi Gerekenler -> Sürecin
+// Adımları -> Kullanılan Değerlendirme Yöntemleri -> Rapor Sisteminin
+// Bileşenleri -> Markalara Göre İnceleyin -> Devlet vs Özel Hastane ->
+// Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { raporSureciHero } from "../../data/rapor-sureci/hero";
+import { raporSureciIntro } from "../../data/rapor-sureci/intro";
+import { raporSureciIdealUser } from "../../data/rapor-sureci/ideal-user";
+import { raporSureciAdvantages } from "../../data/rapor-sureci/advantages";
+import { raporSureciConsiderations } from "../../data/rapor-sureci/considerations";
+import { raporSureciEvolution } from "../../data/rapor-sureci/evolution";
+import { raporSureciUseCases } from "../../data/rapor-sureci/use-cases";
+import { raporSureciTechnology } from "../../data/rapor-sureci/technology";
+import { raporSureciRecommendedBrands } from "../../data/rapor-sureci/recommended-brands";
+import { raporSureciComparison } from "../../data/rapor-sureci/comparison";
+import { raporSureciExpertOpinion } from "../../data/rapor-sureci/expert-opinion";
+import { raporSureciFaq } from "../../data/rapor-sureci/faq";
+import { raporSureciRelatedContent } from "../../data/rapor-sureci/related-content";
+import { raporSureciFinalCta } from "../../data/rapor-sureci/final-cta";
+---
+
+<MainLayout
+  title="SGK Rapor Süreci | İşitme Cihazı Sağlık Kurulu Raporu Nasıl Alınır? | EniyiCihaz"
+  description="SGK işitme cihazı sağlık kurulu (heyet) raporu nasıl alınır? KBB muayenesinden reçeteye, rapor sürecinin adımlarını öğrenin."
+>
+  <BrandPageHero data={raporSureciHero} />
+  <BrandPageIntro data={raporSureciIntro} />
+  <BrandPageIdealUser data={raporSureciIdealUser} />
+  <BrandPageAdvantages data={raporSureciAdvantages} />
+  <BrandPageIdealUser data={raporSureciConsiderations} />
+  <BrandPageTechEvolution data={raporSureciEvolution} />
+  <BrandPageTechnology data={raporSureciUseCases} />
+  <BrandPageEcosystem data={raporSureciTechnology} />
+  <BrandPageRelatedContent data={raporSureciRecommendedBrands} />
+  <KulakArkasiComparison data={raporSureciComparison} />
+  <BrandPageExpertOpinion data={raporSureciExpertOpinion} />
+  <BrandPageFaq data={raporSureciFaq} />
+  <BrandPageFinalCta data={raporSureciFinalCta} />
+  <BrandPageRelatedContent data={raporSureciRelatedContent} />
+</MainLayout>

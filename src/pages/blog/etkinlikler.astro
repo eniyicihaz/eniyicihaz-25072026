@@ -1,0 +1,75 @@
+---
+// Etkinlikler — /blog/etkinlikler. Sixth and final page of the "Blog &
+// Haberler" series (see header.data.ts's knowledgeMega second column),
+// following /blog/yeni-teknolojiler, /blog/uzman-gorusleri,
+// /blog/basari-hikayeleri, /blog/sik-sorulan-sorular and
+// /blog/kampanyalar.
+//
+// CRITICAL accuracy note: contains NO specific past or upcoming event
+// dates/locations for this clinic — events are time-bound and stating
+// one here would go stale almost immediately. Every section explains
+// general event CATEGORIES and always defers to a live phone/WhatsApp
+// call for the current schedule. Same discipline as
+// /blog/kampanyalar. See hero.ts and considerations.ts for the full
+// rationale.
+//
+// accentColor: zümrüt / emerald-600 (#059669) — sixth and final color
+// in this column's own accent rotation; see hero.ts for the full
+// rationale. This completes the entire "Blog & Haberler" column — all
+// six menu items now point to real pages.
+//
+// 14-section flow, in order: Hero -> Etkinliklerimiz Nasıl İşler? ->
+// Kimler İçin Önemlidir? -> Kategorilerin Faydaları -> Dikkat Edilmesi
+// Gerekenler -> Etkinliklere Nasıl Katılabilirsiniz? -> Etkinlik
+// Kategorileri -> Sürece Daha Yakından Bakış -> Markalara Göre
+// İnceleyin -> Bireysel Randevu vs Etkinlik Karşılaştırması -> Uzman
+// Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { etkinliklerHero } from "../../data/etkinlikler/hero";
+import { etkinliklerIntro } from "../../data/etkinlikler/intro";
+import { etkinliklerIdealUser } from "../../data/etkinlikler/ideal-user";
+import { etkinliklerAdvantages } from "../../data/etkinlikler/advantages";
+import { etkinliklerConsiderations } from "../../data/etkinlikler/considerations";
+import { etkinliklerEvolution } from "../../data/etkinlikler/evolution";
+import { etkinliklerUseCases } from "../../data/etkinlikler/use-cases";
+import { etkinliklerTechnology } from "../../data/etkinlikler/technology";
+import { etkinliklerRecommendedBrands } from "../../data/etkinlikler/recommended-brands";
+import { etkinliklerComparison } from "../../data/etkinlikler/comparison";
+import { etkinliklerExpertOpinion } from "../../data/etkinlikler/expert-opinion";
+import { etkinliklerFaq } from "../../data/etkinlikler/faq";
+import { etkinliklerRelatedContent } from "../../data/etkinlikler/related-content";
+import { etkinliklerFinalCta } from "../../data/etkinlikler/final-cta";
+---
+
+<MainLayout
+  title="Etkinlikler | İşitme Sağlığı Etkinliklerimiz | EniyiCihaz"
+  description="Farkındalık günleri, okul taramaları ve kurumsal işbirlikleri gibi etkinlik kategorilerimizi genel hatlarıyla öğrenin; güncel takvim için bizi arayın."
+>
+  <BrandPageHero data={etkinliklerHero} />
+  <BrandPageIntro data={etkinliklerIntro} />
+  <BrandPageIdealUser data={etkinliklerIdealUser} />
+  <BrandPageAdvantages data={etkinliklerAdvantages} />
+  <BrandPageIdealUser data={etkinliklerConsiderations} />
+  <BrandPageTechEvolution data={etkinliklerEvolution} />
+  <BrandPageTechnology data={etkinliklerUseCases} />
+  <BrandPageEcosystem data={etkinliklerTechnology} />
+  <BrandPageRelatedContent data={etkinliklerRecommendedBrands} />
+  <KulakArkasiComparison data={etkinliklerComparison} />
+  <BrandPageExpertOpinion data={etkinliklerExpertOpinion} />
+  <BrandPageFaq data={etkinliklerFaq} />
+  <BrandPageFinalCta data={etkinliklerFinalCta} />
+  <BrandPageRelatedContent data={etkinliklerRelatedContent} />
+</MainLayout>

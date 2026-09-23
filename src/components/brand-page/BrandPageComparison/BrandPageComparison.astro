@@ -1,0 +1,439 @@
+---
+// BrandPageComparison — shared, cross-brand quick comparison table.
+// Generic counterpart of Oticon's original OticonComparison; data-driven so
+// every brand page can reuse it. Column labels and the 4th column's meaning
+// (dot-scale "levels" for Oticon, or a short descriptive tag for brands
+// without an established tier system) are configurable per brand via
+// `columnLabels` — each row picks levelCount (dots) or levelLabel (tag),
+// never both.
+
+export interface BrandPageComparisonRow {
+  series: string;
+  isNew?: boolean;
+  technology: string;
+  profile: string;
+  profileIcon: any;
+  levelCount?: number;
+  levelLabel?: string;
+}
+
+export interface BrandPageComparisonContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  columnLabels: { series: string; technology: string; profile: string; fourth: string };
+  maxLevels: number;
+  rows: BrandPageComparisonRow[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorNewTagBg: string;
+  accentColorIconBg: string;
+  accentColorLevelTagBg: string;
+  accentColorDark: string;
+  // Optional per-brand override — see BrandPageHero's equivalent fields
+  // for why this exists. Omit and the original hardcoded navy is used;
+  // every brand page built before the Signia theme revision omits it.
+  headerBg?: string; // .brand-page-comparison__row--head background — default: #0f2547
+}
+
+interface Props {
+  data: BrandPageComparisonContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="brand-page-comparison"
+  aria-labelledby="brand-page-comparison-title"
+  style={`--bpcmp-accent:${data.accentColor}; --bpcmp-badge-bg:${data.accentColorBadgeBg}; --bpcmp-badge-border:${data.accentColorBadgeBorder}; --bpcmp-badge-text:${data.accentColorBadgeText}; --bpcmp-new-tag-bg:${data.accentColorNewTagBg}; --bpcmp-icon-bg:${data.accentColorIconBg}; --bpcmp-level-tag-bg:${data.accentColorLevelTagBg}; --bpcmp-dark:${data.accentColorDark}; ${data.headerBg ? `--bpcmp-header-bg:${data.headerBg};` : ""}`}
+>
+  <div class="brand-page-comparison__inner">
+    <div class="brand-page-comparison__header">
+      <p class="brand-page-comparison__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-page-comparison__heading" id="brand-page-comparison-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="brand-page-comparison__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="brand-page-comparison__card" data-rise>
+      <div class="brand-page-comparison__row brand-page-comparison__row--head" aria-hidden="true">
+        <span>{data.columnLabels.series}</span>
+        <span>{data.columnLabels.technology}</span>
+        <span>{data.columnLabels.profile}</span>
+        <span>{data.columnLabels.fourth}</span>
+      </div>
+
+      <div class="brand-page-comparison__body" role="table" aria-label={data.heading}>
+        {
+          data.rows.map((row) => {
+            const ProfileIcon = row.profileIcon;
+            return (
+              <div class="brand-page-comparison__row" role="row">
+                <span class="brand-page-comparison__cell brand-page-comparison__cell--series" role="cell">
+                  <span class="brand-page-comparison__series-label">
+                    <span>{row.series}</span>
+                    {row.isNew && <span class="brand-page-comparison__new-tag">Yeni</span>}
+                  </span>
+                </span>
+
+                <span class="brand-page-comparison__cell brand-page-comparison__cell--tech" role="cell">
+                  <span class="brand-page-comparison__chip">{row.technology}</span>
+                </span>
+
+                <span class="brand-page-comparison__cell brand-page-comparison__cell--profile" role="cell">
+                  <span class="brand-page-comparison__profile-icon">
+                    <ProfileIcon size={16} stroke-width={1.75} aria-hidden="true" />
+                  </span>
+                  <span>{row.profile}</span>
+                </span>
+
+                <span class="brand-page-comparison__cell brand-page-comparison__cell--levels" role="cell">
+                  {row.levelLabel ? (
+                    <span class="brand-page-comparison__level-tag">{row.levelLabel}</span>
+                  ) : (
+                    <span class="brand-page-comparison__dots" aria-label={`${row.levelCount} seviye`}>
+                      {Array.from({ length: data.maxLevels }).map((_, i) => (
+                        <span
+                          class="brand-page-comparison__dot"
+                          data-filled={i < (row.levelCount ?? 0) ? "true" : "false"}
+                        />
+                      ))}
+                    </span>
+                  )}
+                </span>
+
+                <span class="brand-page-comparison__mobile-label brand-page-comparison__mobile-label--tech">{data.columnLabels.technology}</span>
+                <span class="brand-page-comparison__mobile-label brand-page-comparison__mobile-label--profile">{data.columnLabels.profile}</span>
+                <span class="brand-page-comparison__mobile-label brand-page-comparison__mobile-label--levels">{data.columnLabels.fourth}</span>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-comparison");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-comparison {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bpcmp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --bpcmp-cols: 1fr 1.1fr 1.4fr 1.1fr;
+  }
+
+  .brand-page-comparison__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-comparison__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-comparison__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpcmp-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpcmp-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpcmp-badge-text);
+  }
+
+  .brand-page-comparison__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-comparison__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-comparison__card {
+    margin: var(--space-12) 0 0;
+    overflow: hidden;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .brand-page-comparison__row {
+    display: grid;
+    grid-template-columns: var(--bpcmp-cols);
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .brand-page-comparison__row--head {
+    padding: var(--space-5) var(--space-8);
+    background: var(--bpcmp-header-bg, #0f2547);
+  }
+
+  .brand-page-comparison__row--head span {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .brand-page-comparison__body .brand-page-comparison__row {
+    padding: var(--space-6) var(--space-8);
+    border-top: 1px solid var(--color-border);
+    transition: transform 250ms var(--bpcmp-ease), background-color 250ms var(--bpcmp-ease), box-shadow 250ms var(--bpcmp-ease);
+  }
+
+  .brand-page-comparison__body .brand-page-comparison__row:hover {
+    transform: translateY(-2px);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-xs);
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-page-comparison__mobile-label {
+    display: none;
+  }
+
+  .brand-page-comparison__series-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-page-comparison__new-tag {
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-full);
+    background: var(--bpcmp-new-tag-bg);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    color: var(--bpcmp-dark);
+  }
+
+  .brand-page-comparison__chip {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-comparison__cell--profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-md);
+    color: var(--color-text);
+  }
+
+  .brand-page-comparison__profile-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--bpcmp-icon-bg);
+    color: var(--bpcmp-badge-text);
+  }
+
+  .brand-page-comparison__dots {
+    display: inline-flex;
+    gap: var(--space-2);
+  }
+
+  .brand-page-comparison__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: var(--radius-full);
+    background: transparent;
+    border: 1.5px solid var(--color-border-hover);
+  }
+
+  .brand-page-comparison__dot[data-filled="true"] {
+    background: var(--bpcmp-badge-text);
+    border-color: var(--bpcmp-badge-text);
+  }
+
+  .brand-page-comparison__level-tag {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--bpcmp-level-tag-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--bpcmp-dark);
+  }
+
+  .brand-page-comparison[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-comparison[data-anim="in"] [data-rise] {
+    animation: brand-page-comparison-rise 600ms var(--bpcmp-ease) both;
+  }
+
+  .brand-page-comparison[data-anim="in"] .brand-page-comparison__card {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-page-comparison-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .brand-page-comparison__row--head {
+      display: none;
+    }
+
+    .brand-page-comparison__card {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .brand-page-comparison__body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .brand-page-comparison__body .brand-page-comparison__row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+      padding: var(--space-6);
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+    }
+
+    .brand-page-comparison__body .brand-page-comparison__row:hover {
+      transform: none;
+    }
+
+    .brand-page-comparison__mobile-label {
+      display: block;
+      margin-top: var(--space-2);
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-soft);
+    }
+
+    .brand-page-comparison__cell--series {
+      order: 0;
+      margin-bottom: var(--space-1);
+    }
+    .brand-page-comparison__mobile-label--tech {
+      order: 1;
+    }
+    .brand-page-comparison__cell--tech {
+      order: 2;
+    }
+    .brand-page-comparison__mobile-label--profile {
+      order: 3;
+    }
+    .brand-page-comparison__cell--profile {
+      order: 4;
+    }
+    .brand-page-comparison__mobile-label--levels {
+      order: 5;
+    }
+    .brand-page-comparison__cell--levels {
+      order: 6;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-comparison {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-comparison__card {
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-comparison[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-comparison__body .brand-page-comparison__row {
+      transition: none;
+    }
+  }
+</style>

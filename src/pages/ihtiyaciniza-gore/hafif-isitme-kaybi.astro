@@ -1,0 +1,77 @@
+---
+// Hafif İşitme Kaybı — /ihtiyaciniza-gore/hafif-isitme-kaybi. First page
+// of the "İhtiyacınıza Göre" product-page series (see header.data.ts's
+// devicesMega third column) — a new series, separate from the completed
+// "İşitme Cihazı Çeşitleri" and "Teknolojilere Göre" series, hence its
+// own /ihtiyaciniza-gore/ route prefix. Built directly on the
+// /isitme-cihazlari/* and /teknolojiler/* master templates — same shared,
+// data-driven Brand Component Architecture, same KulakArkasiComparison
+// component (already generic, reused as-is), same accent-scoping pattern
+// with its own pembe/pink (#db2777) category accent.
+//
+// A health-classification topic, handled with the same care as the
+// Tinnitus page: self-diagnosis is never implied, and every section
+// (Nedir?, Belirtiler, Dikkat Edilmesi Gerekenler, Uzman Yorumu, FAQ)
+// routes back to a proper audiometric test (odyometri) as the only way
+// to confirm degree and type.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Anlaşılır? ->
+// Günlük Yaşamdaki Belirtiler -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Derecelere Göre (Hafif Kaybın Yeri) -> Öne Çıkan
+// Özellikler -> Teknolojiler -> Önerilen Marka ve Modeller -> Hafif vs
+// Orta Derece -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kimler İçin Uygun" slot is repurposed here for everyday
+// recognizable symptoms rather than candidacy — since bu sayfanın kendisi
+// zaten bir ihtiyaç/derece kategorisi olduğundan candidacy tekrar etmek
+// döngüsel olurdu — and BTE's hearing-loss-level slot becomes the genuine
+// dB-based degree ladder itself, positioning "hafif" as the first rung;
+// see evolution.ts and ideal-user.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { hafifIsitmeKaybiHero } from "../../data/hafif-isitme-kaybi/hero";
+import { hafifIsitmeKaybiIntro } from "../../data/hafif-isitme-kaybi/intro";
+import { hafifIsitmeKaybiIdealUser } from "../../data/hafif-isitme-kaybi/ideal-user";
+import { hafifIsitmeKaybiAdvantages } from "../../data/hafif-isitme-kaybi/advantages";
+import { hafifIsitmeKaybiConsiderations } from "../../data/hafif-isitme-kaybi/considerations";
+import { hafifIsitmeKaybiEvolution } from "../../data/hafif-isitme-kaybi/evolution";
+import { hafifIsitmeKaybiUseCases } from "../../data/hafif-isitme-kaybi/use-cases";
+import { hafifIsitmeKaybiTechnology } from "../../data/hafif-isitme-kaybi/technology";
+import { hafifIsitmeKaybiRecommendedBrands } from "../../data/hafif-isitme-kaybi/recommended-brands";
+import { hafifIsitmeKaybiComparison } from "../../data/hafif-isitme-kaybi/comparison";
+import { hafifIsitmeKaybiExpertOpinion } from "../../data/hafif-isitme-kaybi/expert-opinion";
+import { hafifIsitmeKaybiFaq } from "../../data/hafif-isitme-kaybi/faq";
+import { hafifIsitmeKaybiRelatedContent } from "../../data/hafif-isitme-kaybi/related-content";
+import { hafifIsitmeKaybiFinalCta } from "../../data/hafif-isitme-kaybi/final-cta";
+---
+
+<MainLayout
+  title="Hafif İşitme Kaybı İçin Cihaz Rehberi | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Hafif işitme kaybı (26-40 dB) nedir, nasıl anlaşılır? Günlük yaşamdaki belirtileri, öne çıkan cihaz özellikleri ve orta derece kayıpla karşılaştırma."
+>
+  <BrandPageHero data={hafifIsitmeKaybiHero} />
+  <BrandPageIntro data={hafifIsitmeKaybiIntro} />
+  <BrandPageIdealUser data={hafifIsitmeKaybiIdealUser} />
+  <BrandPageAdvantages data={hafifIsitmeKaybiAdvantages} />
+  <BrandPageIdealUser data={hafifIsitmeKaybiConsiderations} />
+  <BrandPageTechEvolution data={hafifIsitmeKaybiEvolution} />
+  <BrandPageTechnology data={hafifIsitmeKaybiUseCases} />
+  <BrandPageEcosystem data={hafifIsitmeKaybiTechnology} />
+  <BrandPageRelatedContent data={hafifIsitmeKaybiRecommendedBrands} />
+  <KulakArkasiComparison data={hafifIsitmeKaybiComparison} />
+  <BrandPageExpertOpinion data={hafifIsitmeKaybiExpertOpinion} />
+  <BrandPageFaq data={hafifIsitmeKaybiFaq} />
+  <BrandPageFinalCta data={hafifIsitmeKaybiFinalCta} />
+  <BrandPageRelatedContent data={hafifIsitmeKaybiRelatedContent} />
+</MainLayout>

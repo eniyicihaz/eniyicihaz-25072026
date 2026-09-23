@@ -1,0 +1,57 @@
+---
+// ReSound brand page (/markalar/resound). Fifth brand page built on the
+// shared Brand Component Architecture (see src/components/brand-page/*)
+// — no new components, no new design language; all 14 sections reuse the
+// exact same components Oticon, Phonak, Signia and Widex use, fed by this
+// page's own src/data/resound/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { resoundHero } from "../../data/resound/hero";
+import { resoundOverview } from "../../data/resound/overview";
+import { resoundIntro } from "../../data/resound/intro";
+import { resoundTechnology } from "../../data/resound/technology";
+import { resoundEcosystem } from "../../data/resound/ecosystem";
+import { resoundPlatform } from "../../data/resound/platform";
+import { resoundModels } from "../../data/resound/models";
+import { resoundComparison } from "../../data/resound/comparison";
+import { resoundIdealUser } from "../../data/resound/ideal-user";
+import { resoundAdvantages } from "../../data/resound/advantages";
+import { resoundExpertOpinion } from "../../data/resound/expert-opinion";
+import { resoundFaq } from "../../data/resound/faq";
+import { resoundRelatedContent } from "../../data/resound/related-content";
+import { resoundFinalCta } from "../../data/resound/final-cta";
+---
+
+<MainLayout
+  title="ReSound İşitme Cihazları | EniyiCihaz"
+  description="ReSound'un M&RIE mekansal işitme teknolojisi, Auracast bağlantı desteği ve Vivia, Nexia, Omnia gibi model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={resoundHero} />
+  <BrandPageOverview data={resoundOverview} />
+  <BrandPageIntro data={resoundIntro} />
+  <BrandPageTechnology data={resoundTechnology} />
+  <BrandPageEcosystem data={resoundEcosystem} />
+  <BrandPageTechEvolution data={resoundPlatform} />
+  <BrandPageModels data={resoundModels} />
+  <BrandPageComparison data={resoundComparison} />
+  <BrandPageIdealUser data={resoundIdealUser} />
+  <BrandPageAdvantages data={resoundAdvantages} />
+  <BrandPageExpertOpinion data={resoundExpertOpinion} />
+  <BrandPageFaq data={resoundFaq} />
+  <BrandPageRelatedContent data={resoundRelatedContent} />
+  <BrandPageFinalCta data={resoundFinalCta} />
+</MainLayout>

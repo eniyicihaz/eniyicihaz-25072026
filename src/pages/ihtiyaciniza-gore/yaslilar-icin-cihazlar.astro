@@ -1,0 +1,83 @@
+---
+// Yaşlılar İçin Cihazlar — /ihtiyaciniza-gore/yaslilar-icin-cihazlar.
+// Sixth page of the "İhtiyacınıza Göre" product-page series (see
+// header.data.ts's devicesMega third column), following the completed
+// four-page dB-degree ladder and the laterality-based Tek Taraflı page.
+// Built on the same master templates and shared, data-driven Brand
+// Component Architecture, same KulakArkasiComparison component (already
+// generic, reused as-is), same accent-scoping pattern with its own sarı
+// / yellow (#ca8a04) category accent.
+//
+// Unlike the prior five pages in this series, this page's axis is not a
+// clinical classification at all (severity or laterality) but an
+// age-related practical-needs profile: ease of use, family/caregiver
+// involvement, and charging simplicity. Health-adjacent care is still
+// taken throughout — self-diagnosis is never implied, sudden-onset loss
+// is flagged as a different, urgent scenario from the gradual change
+// this page otherwise covers, and the possible link between untreated
+// hearing loss and social isolation / cognitive change is presented as
+// hedged research findings, never a diagnostic claim.
+//
+// Deliberately scoped apart from already-built technology pages: rather
+// than re-explaining RemoteCare, AI-driven environment detection or
+// rechargeable systems from scratch, this page's own Ecosystem section
+// cross-references Uzaktan Kontrol Özellikleri, Yapay Zeka Destekli
+// Cihazlar and Şarj Edilebilir Cihazlar, focusing instead on why each of
+// those features matters specifically for this need group.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Anlaşılır? ->
+// Günlük Yaşamdaki Belirtiler -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Öncelikli Özellikler (kolay kullanım/şarj/aile
+// desteği/otomatik ayar) -> Öne Çıkan Özellikler -> Teknolojiler ->
+// Önerilen Marka ve Modeller -> Aile Destekli Uzaktan Ayar vs Geleneksel
+// Klinik Ayarı -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili
+// İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { yaslilarIcinCihazlarHero } from "../../data/yaslilar-icin-cihazlar/hero";
+import { yaslilarIcinCihazlarIntro } from "../../data/yaslilar-icin-cihazlar/intro";
+import { yaslilarIcinCihazlarIdealUser } from "../../data/yaslilar-icin-cihazlar/ideal-user";
+import { yaslilarIcinCihazlarAdvantages } from "../../data/yaslilar-icin-cihazlar/advantages";
+import { yaslilarIcinCihazlarConsiderations } from "../../data/yaslilar-icin-cihazlar/considerations";
+import { yaslilarIcinCihazlarEvolution } from "../../data/yaslilar-icin-cihazlar/evolution";
+import { yaslilarIcinCihazlarUseCases } from "../../data/yaslilar-icin-cihazlar/use-cases";
+import { yaslilarIcinCihazlarTechnology } from "../../data/yaslilar-icin-cihazlar/technology";
+import { yaslilarIcinCihazlarRecommendedBrands } from "../../data/yaslilar-icin-cihazlar/recommended-brands";
+import { yaslilarIcinCihazlarComparison } from "../../data/yaslilar-icin-cihazlar/comparison";
+import { yaslilarIcinCihazlarExpertOpinion } from "../../data/yaslilar-icin-cihazlar/expert-opinion";
+import { yaslilarIcinCihazlarFaq } from "../../data/yaslilar-icin-cihazlar/faq";
+import { yaslilarIcinCihazlarRelatedContent } from "../../data/yaslilar-icin-cihazlar/related-content";
+import { yaslilarIcinCihazlarFinalCta } from "../../data/yaslilar-icin-cihazlar/final-cta";
+---
+
+<MainLayout
+  title="Yaşlılar İçin İşitme Cihazı Rehberi | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Yaşa bağlı işitme kaybı nedir, yaşlı kullanıcılar için hangi cihaz özellikleri önceliklendirilir? Kolay kullanım, aile destekli uzaktan ayar ve şarj kolaylığı seçeneklerini keşfedin."
+>
+  <BrandPageHero data={yaslilarIcinCihazlarHero} />
+  <BrandPageIntro data={yaslilarIcinCihazlarIntro} />
+  <BrandPageIdealUser data={yaslilarIcinCihazlarIdealUser} />
+  <BrandPageAdvantages data={yaslilarIcinCihazlarAdvantages} />
+  <BrandPageIdealUser data={yaslilarIcinCihazlarConsiderations} />
+  <BrandPageTechEvolution data={yaslilarIcinCihazlarEvolution} />
+  <BrandPageTechnology data={yaslilarIcinCihazlarUseCases} />
+  <BrandPageEcosystem data={yaslilarIcinCihazlarTechnology} />
+  <BrandPageRelatedContent data={yaslilarIcinCihazlarRecommendedBrands} />
+  <KulakArkasiComparison data={yaslilarIcinCihazlarComparison} />
+  <BrandPageExpertOpinion data={yaslilarIcinCihazlarExpertOpinion} />
+  <BrandPageFaq data={yaslilarIcinCihazlarFaq} />
+  <BrandPageFinalCta data={yaslilarIcinCihazlarFinalCta} />
+  <BrandPageRelatedContent data={yaslilarIcinCihazlarRelatedContent} />
+</MainLayout>

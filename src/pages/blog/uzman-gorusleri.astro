@@ -1,0 +1,65 @@
+---
+// Uzman Görüşleri — /blog/uzman-gorusleri. Second page of the "Blog &
+// Haberler" series (see header.data.ts's knowledgeMega second column),
+// following /blog/yeni-teknolojiler. A myth-vs-fact educational
+// showcase page, not a dated blog post — see hero.ts for the framing
+// rationale.
+//
+// accentColor: mor / violet-600 (#7c3aed) — second color in this
+// column's own accent rotation; see hero.ts for the full rationale.
+//
+// 14-section flow, in order: Hero -> Neden Doğru Bilgi Önemlidir? ->
+// Kimler İçin Önemlidir? -> Doğru Bilginin Faydaları -> Dikkat
+// Edilmesi Gerekenler -> En Sık Duyulan 5 Yanlış Bilgi -> Diğer Yaygın
+// Sorular -> Daha Derin Bakış -> Markalara Göre İnceleyin -> Yaygın
+// Algı vs Uzman Görüşü Karşılaştırması -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { uzmanGorusleriHero } from "../../data/uzman-gorusleri/hero";
+import { uzmanGorusleriIntro } from "../../data/uzman-gorusleri/intro";
+import { uzmanGorusleriIdealUser } from "../../data/uzman-gorusleri/ideal-user";
+import { uzmanGorusleriAdvantages } from "../../data/uzman-gorusleri/advantages";
+import { uzmanGorusleriConsiderations } from "../../data/uzman-gorusleri/considerations";
+import { uzmanGorusleriEvolution } from "../../data/uzman-gorusleri/evolution";
+import { uzmanGorusleriUseCases } from "../../data/uzman-gorusleri/use-cases";
+import { uzmanGorusleriTechnology } from "../../data/uzman-gorusleri/technology";
+import { uzmanGorusleriRecommendedBrands } from "../../data/uzman-gorusleri/recommended-brands";
+import { uzmanGorusleriComparison } from "../../data/uzman-gorusleri/comparison";
+import { uzmanGorusleriExpertOpinion } from "../../data/uzman-gorusleri/expert-opinion";
+import { uzmanGorusleriFaq } from "../../data/uzman-gorusleri/faq";
+import { uzmanGorusleriRelatedContent } from "../../data/uzman-gorusleri/related-content";
+import { uzmanGorusleriFinalCta } from "../../data/uzman-gorusleri/final-cta";
+---
+
+<MainLayout
+  title="Uzman Görüşleri | İşitme Sağlığında Doğrular ve Yanlışlar | EniyiCihaz"
+  description="İşitme kaybı ve işitme cihazları hakkında en sık duyulan yanlış bilgileri ve uzman görüşünü öğrenin."
+>
+  <BrandPageHero data={uzmanGorusleriHero} />
+  <BrandPageIntro data={uzmanGorusleriIntro} />
+  <BrandPageIdealUser data={uzmanGorusleriIdealUser} />
+  <BrandPageAdvantages data={uzmanGorusleriAdvantages} />
+  <BrandPageIdealUser data={uzmanGorusleriConsiderations} />
+  <BrandPageTechEvolution data={uzmanGorusleriEvolution} />
+  <BrandPageTechnology data={uzmanGorusleriUseCases} />
+  <BrandPageEcosystem data={uzmanGorusleriTechnology} />
+  <BrandPageRelatedContent data={uzmanGorusleriRecommendedBrands} />
+  <KulakArkasiComparison data={uzmanGorusleriComparison} />
+  <BrandPageExpertOpinion data={uzmanGorusleriExpertOpinion} />
+  <BrandPageFaq data={uzmanGorusleriFaq} />
+  <BrandPageFinalCta data={uzmanGorusleriFinalCta} />
+  <BrandPageRelatedContent data={uzmanGorusleriRelatedContent} />
+</MainLayout>

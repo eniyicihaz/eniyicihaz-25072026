@@ -1,0 +1,84 @@
+---
+// Uzun Ömürlü Cihazlar — /neden-orijinal/uzun-omurlu-cihazlar. Second
+// page of the "Neden Orijinal" series (see header.data.ts's brandsMega
+// second column), following Güvenilir Teknoloji. Same trust/authenticity
+// content genre: device longevity as a direct consequence of buying
+// original, authorized-channel products with genuine components and
+// proper maintenance support. Built on the same master templates and
+// shared, data-driven components used throughout the session (same
+// KulakArkasiComparison component, already generic, reused as-is), with
+// every section reframed around durability rather than hearing health:
+//
+// - The "candidacy"/"symptom" slot becomes risk factors that shorten
+//   device lifespan (moisture neglect, skipped checkups, counterfeit
+//   parts, poor storage, bad charging habits).
+// - "Dikkat Edilmesi Gerekenler" covers maintenance pitfalls (unlicensed
+//   repairs voiding warranty, fake parts) rather than a health-safety
+//   warning — no self-diagnosis disclaimer here, same as Güvenilir
+//   Teknoloji.
+// - The TechEvolution "stage" slot becomes a 4-step maintenance routine
+//   (günlük temizlik -> periyodik kontrol -> orijinal yedek parça ->
+//   doğru saklama) instead of a severity ladder or verification
+//   checklist.
+// - The KulakArkasiComparison table compares a well-maintained,
+//   original-parts device against a neglected/counterfeit-parts one —
+//   this page's own natural comparison axis.
+//
+// accentColor: zümrüt yeşili / emerald-600 (#059669) — second color in
+// the fresh accent rotation opened for this series on Güvenilir
+// Teknoloji's hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyle Mümkün Olur? ->
+// Cihaz Ömrünü Kısaltan Nedenler -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Ömür Uzatma Adımları -> Öne Çıkan Güvenceler ->
+// Teknolojiler -> Markalara Göre İnceleyin -> Bakımlı vs Bakımsız Cihaz
+// -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { uzunOmurluCihazlarHero } from "../../data/uzun-omurlu-cihazlar/hero";
+import { uzunOmurluCihazlarIntro } from "../../data/uzun-omurlu-cihazlar/intro";
+import { uzunOmurluCihazlarIdealUser } from "../../data/uzun-omurlu-cihazlar/ideal-user";
+import { uzunOmurluCihazlarAdvantages } from "../../data/uzun-omurlu-cihazlar/advantages";
+import { uzunOmurluCihazlarConsiderations } from "../../data/uzun-omurlu-cihazlar/considerations";
+import { uzunOmurluCihazlarEvolution } from "../../data/uzun-omurlu-cihazlar/evolution";
+import { uzunOmurluCihazlarUseCases } from "../../data/uzun-omurlu-cihazlar/use-cases";
+import { uzunOmurluCihazlarTechnology } from "../../data/uzun-omurlu-cihazlar/technology";
+import { uzunOmurluCihazlarRecommendedBrands } from "../../data/uzun-omurlu-cihazlar/recommended-brands";
+import { uzunOmurluCihazlarComparison } from "../../data/uzun-omurlu-cihazlar/comparison";
+import { uzunOmurluCihazlarExpertOpinion } from "../../data/uzun-omurlu-cihazlar/expert-opinion";
+import { uzunOmurluCihazlarFaq } from "../../data/uzun-omurlu-cihazlar/faq";
+import { uzunOmurluCihazlarRelatedContent } from "../../data/uzun-omurlu-cihazlar/related-content";
+import { uzunOmurluCihazlarFinalCta } from "../../data/uzun-omurlu-cihazlar/final-cta";
+---
+
+<MainLayout
+  title="Uzun Ömürlü İşitme Cihazları: Cihaz Ömrünü Uzatmanın Yolları | EniyiCihaz"
+  description="Orijinal işitme cihazlarını uzun ömürlü kılan nedir? Kaliteli bileşenler, düzenli bakım, orijinal yedek parça desteği ve cihaz ömrünü uzatma adımlarını öğrenin."
+>
+  <BrandPageHero data={uzunOmurluCihazlarHero} />
+  <BrandPageIntro data={uzunOmurluCihazlarIntro} />
+  <BrandPageIdealUser data={uzunOmurluCihazlarIdealUser} />
+  <BrandPageAdvantages data={uzunOmurluCihazlarAdvantages} />
+  <BrandPageIdealUser data={uzunOmurluCihazlarConsiderations} />
+  <BrandPageTechEvolution data={uzunOmurluCihazlarEvolution} />
+  <BrandPageTechnology data={uzunOmurluCihazlarUseCases} />
+  <BrandPageEcosystem data={uzunOmurluCihazlarTechnology} />
+  <BrandPageRelatedContent data={uzunOmurluCihazlarRecommendedBrands} />
+  <KulakArkasiComparison data={uzunOmurluCihazlarComparison} />
+  <BrandPageExpertOpinion data={uzunOmurluCihazlarExpertOpinion} />
+  <BrandPageFaq data={uzunOmurluCihazlarFaq} />
+  <BrandPageFinalCta data={uzunOmurluCihazlarFinalCta} />
+  <BrandPageRelatedContent data={uzunOmurluCihazlarRelatedContent} />
+</MainLayout>

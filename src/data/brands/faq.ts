@@ -1,7 +1,9 @@
 // M8 (FAQ) content for the "Tüm Markalar" (/markalar) page. This page is
 // built up modularly (M1...M8…), each an independent section/component —
 // this file only ever holds M8's data. The page's final section, closing
-// it before the Footer.
+// it before the Footer. BrandFaq.astro is now generic (reused by every
+// hub page), so its interface lives in the component file and is
+// imported back here.
 //
 // Deliberately brand-agnostic and non-promotional: no named brand is shown
 // as superior to another, no invented technical spec or price figure, no
@@ -9,17 +11,7 @@
 // or traceable to COMPANY.md's real services/process (free hearing test,
 // SGK-affiliated status, trial process, technical service).
 
-export interface FaqItem {
-  question: string;
-  answer: string;
-}
-
-export interface BrandFaqContent {
-  eyebrow: string;
-  heading: string;
-  intro: string;
-  items: FaqItem[];
-}
+import type { BrandFaqContent } from "../../components/brands/BrandFaq/BrandFaq.astro";
 
 export const brandFaq: BrandFaqContent = {
   eyebrow: "Sık Sorulan Sorular",

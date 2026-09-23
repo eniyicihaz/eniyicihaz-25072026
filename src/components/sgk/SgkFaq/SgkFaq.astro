@@ -1,0 +1,419 @@
+---
+// SgkFaq — the SGK pillar page's FAQ section. Reusable, fully accessible
+// accordion built on native <details>/<summary> (not a JS-built widget) so
+// keyboard support, screen-reader semantics and progressive enhancement
+// come from the platform itself — the smooth open/close animation is pure
+// CSS (grid-template-rows trick), no script required for the interaction
+// to work. Own data namespace (../../../data/sgk/faq), independent of the
+// rest of sgk/*.
+//
+// The FAQPage JSON-LD schema below is generated directly from
+// sgkFaq.items, so the schema can never drift from the visible content.
+import { Plus, Phone, MessageCircle } from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { sgkFaq } from "../../../data/sgk/faq";
+import { contactConfig } from "../../../config";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: sgkFaq.items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<section class="sgk-faq" aria-labelledby="sgk-faq-title">
+  <div class="sgk-faq__inner">
+    <div class="sgk-faq__head" data-rise>
+      <p class="sgk-faq__badge">{sgkFaq.badge}</p>
+      <h2 class="sgk-faq__heading" id="sgk-faq-title">{sgkFaq.heading}</h2>
+      <p class="sgk-faq__intro">{sgkFaq.intro}</p>
+    </div>
+
+    <div class="sgk-faq__list" data-rise>
+      {
+        sgkFaq.items.map((item, i) => (
+          <details class="sgk-faq__item">
+            <summary class="sgk-faq__question">
+              <span>{item.question}</span>
+              <span class="sgk-faq__icon" aria-hidden="true">
+                <Plus size={18} stroke-width={2} />
+              </span>
+            </summary>
+            <div class="sgk-faq__answer">
+              <div class="sgk-faq__answer-inner">
+                <p>{item.answer}</p>
+                {item.relatedLinks && item.relatedLinks.length > 0 && (
+                  <div class="sgk-faq__answer-links">
+                    {item.relatedLinks.map((link) => (
+                      <a href={link.href}>{link.label}</a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="sgk-faq__help" data-rise>
+      <p class="sgk-faq__help-title">{sgkFaq.help.title}</p>
+      <p class="sgk-faq__help-subtext">{sgkFaq.help.subtext}</p>
+      <div class="sgk-faq__help-actions">
+        <CtaButton
+          label={sgkFaq.help.primaryLabel}
+          href={contactConfig.phone.href}
+          variant="solid"
+          iconLeft={Phone}
+        />
+        <CtaButton
+          label={sgkFaq.help.secondaryLabel}
+          href={contactConfig.whatsapp.href}
+          variant="outline"
+          iconLeft={MessageCircle}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-faq");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as the rest
+    // of the SGK page: default-visible CSS, JS-only "armed" opt-in, three
+    // independent safety nets so content can never get stuck hidden. The
+    // accordion itself needs none of this — <details>/<summary> works
+    // natively with zero JavaScript.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-faq {
+    position: relative;
+    background: var(--color-surface);
+    padding-block: var(--space-24);
+    --sf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-faq__inner {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .sgk-faq__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sgk-faq__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-faq__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-faq__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Accordion: native <details>, premium chrome ------------------------- */
+
+  .sgk-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-14);
+  }
+
+  .sgk-faq__item {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xs);
+    transition: border-color 260ms var(--sf-ease), box-shadow 260ms var(--sf-ease);
+  }
+
+  .sgk-faq__item:hover {
+    border-color: rgb(37 99 235 / 0.3);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sgk-faq__item[open] {
+    border-color: rgb(37 99 235 / 0.35);
+    box-shadow: var(--shadow-md);
+  }
+
+  .sgk-faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-7);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .sgk-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .sgk-faq__question:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-lg);
+  }
+
+  .sgk-faq__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+    transition: transform 300ms var(--sf-ease), background-color 300ms var(--sf-ease);
+  }
+
+  .sgk-faq__item[open] .sgk-faq__icon {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    transform: rotate(135deg);
+  }
+
+  /* The grid-rows trick: animates height without JS and without needing
+     to know the content's rendered height in advance. */
+  .sgk-faq__answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 380ms var(--sf-ease);
+  }
+
+  .sgk-faq__item[open] > .sgk-faq__answer {
+    grid-template-rows: 1fr;
+  }
+
+  .sgk-faq__answer-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .sgk-faq__answer-inner p {
+    margin: 0;
+    padding: 0 var(--space-7) var(--space-3);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-faq__answer-inner p:last-child {
+    padding-bottom: var(--space-6);
+  }
+
+  .sgk-faq__answer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    padding: 0 var(--space-7) var(--space-6);
+  }
+
+  .sgk-faq__answer-links a {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sgk-faq__answer-links a:hover {
+    text-decoration: underline;
+  }
+
+  .sgk-faq__answer-links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* --- Final help card ------------------------------------------------------ */
+
+  .sgk-faq__help {
+    max-width: 720px;
+    margin: var(--space-14) auto 0;
+    padding: var(--space-10);
+    text-align: center;
+    background: rgb(37 99 235 / 0.05);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sgk-faq__help-title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-faq__help-subtext {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-faq__help-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .sgk-faq[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--sf-ease), transform 600ms var(--sf-ease);
+  }
+
+  .sgk-faq[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-faq[data-anim="armed"] .sgk-faq__head { transition-delay: 0ms; }
+  .sgk-faq[data-anim="armed"] .sgk-faq__list { transition-delay: 80ms; }
+  .sgk-faq[data-anim="armed"] .sgk-faq__help { transition-delay: 160ms; }
+
+  /* --- Responsive ------------------------------------------------------------ */
+
+  @media (max-width: 1023px) {
+    .sgk-faq {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-faq__list {
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-faq__question {
+      padding: var(--space-5);
+      font-size: var(--font-size-sm);
+    }
+
+    .sgk-faq__answer-inner p,
+    .sgk-faq__answer-links {
+      padding-inline: var(--space-5);
+    }
+
+    .sgk-faq__answer-inner p {
+      padding-bottom: var(--space-5);
+    }
+
+    .sgk-faq__help {
+      padding: var(--space-6);
+    }
+
+    .sgk-faq__help-actions {
+      flex-direction: column;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-faq[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sgk-faq__item,
+    .sgk-faq__icon,
+    .sgk-faq__answer {
+      transition: none;
+    }
+  }
+</style>

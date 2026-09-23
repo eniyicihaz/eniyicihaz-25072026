@@ -32,6 +32,8 @@ export interface CompanyInfo {
   about: string;
   address: string;
   directionsHref: string;
+  /** iframe src for an embedded map (address-text-based, no API key). */
+  mapEmbedSrc: string;
   phones: PhoneEntry[];
   email: string;
   hours: HoursEntry[];

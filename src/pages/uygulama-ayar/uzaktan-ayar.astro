@@ -1,0 +1,75 @@
+---
+// Uzaktan Ayar — /uygulama-ayar/uzaktan-ayar. Fifth page of the
+// "Uygulama & Ayar" series (see header.data.ts's servicesMega second
+// column), following Cihaz Uygulama, Kişiye Özel Programlama, Cihaz
+// Deneme and Kalıp Alımı.
+//
+// Genre note: the existing /teknolojiler/uzaktan-kontrol page already
+// covers the remote-control/TeleCare TECHNOLOGY in depth (app control,
+// physical remotes, video-call teleaudiology, AI suggestions) as a
+// cross-brand device feature. This page deliberately does not
+// re-explain that technology — it covers the SERVICE side: how booking
+// and running an actual remote-adjustment session with this clinic
+// works (eligibility, session structure, security, limitations). Same
+// successful genre split already used for Tinnitus Değerlendirme vs.
+// Tinnitus Çözümleri. See hero.ts for the full rationale.
+//
+// accentColor: yeşil / green-600 (#16a34a) — fifth color in the fresh
+// accent rotation opened for this series; deliberately distinct from
+// Uzaktan Kontrol's own sky-blue so the two cross-linked pages read as
+// clearly separate.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Kapsar? -> Kimler
+// İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Süreç
+// Adımları -> Neler Yapılabilir -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Uzaktan vs Yüz Yüze Randevu -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { uzaktanAyarHero } from "../../data/uzaktan-ayar/hero";
+import { uzaktanAyarIntro } from "../../data/uzaktan-ayar/intro";
+import { uzaktanAyarIdealUser } from "../../data/uzaktan-ayar/ideal-user";
+import { uzaktanAyarAdvantages } from "../../data/uzaktan-ayar/advantages";
+import { uzaktanAyarConsiderations } from "../../data/uzaktan-ayar/considerations";
+import { uzaktanAyarEvolution } from "../../data/uzaktan-ayar/evolution";
+import { uzaktanAyarUseCases } from "../../data/uzaktan-ayar/use-cases";
+import { uzaktanAyarTechnology } from "../../data/uzaktan-ayar/technology";
+import { uzaktanAyarRecommendedBrands } from "../../data/uzaktan-ayar/recommended-brands";
+import { uzaktanAyarComparison } from "../../data/uzaktan-ayar/comparison";
+import { uzaktanAyarExpertOpinion } from "../../data/uzaktan-ayar/expert-opinion";
+import { uzaktanAyarFaq } from "../../data/uzaktan-ayar/faq";
+import { uzaktanAyarRelatedContent } from "../../data/uzaktan-ayar/related-content";
+import { uzaktanAyarFinalCta } from "../../data/uzaktan-ayar/final-cta";
+---
+
+<MainLayout
+  title="Uzaktan Ayar | Video Görüşmeyle İşitme Cihazı Ayarı | EniyiCihaz"
+  description="Uzaktan ayar hizmeti nasıl işler? Kliniğe gelmeden video görüşme üzerinden işitme cihazı ayar güncellemesi almak için uygunluk, güvenlik ve süreç hakkında bilgi edinin."
+>
+  <BrandPageHero data={uzaktanAyarHero} />
+  <BrandPageIntro data={uzaktanAyarIntro} />
+  <BrandPageIdealUser data={uzaktanAyarIdealUser} />
+  <BrandPageAdvantages data={uzaktanAyarAdvantages} />
+  <BrandPageIdealUser data={uzaktanAyarConsiderations} />
+  <BrandPageTechEvolution data={uzaktanAyarEvolution} />
+  <BrandPageTechnology data={uzaktanAyarUseCases} />
+  <BrandPageEcosystem data={uzaktanAyarTechnology} />
+  <BrandPageRelatedContent data={uzaktanAyarRecommendedBrands} />
+  <KulakArkasiComparison data={uzaktanAyarComparison} />
+  <BrandPageExpertOpinion data={uzaktanAyarExpertOpinion} />
+  <BrandPageFaq data={uzaktanAyarFaq} />
+  <BrandPageFinalCta data={uzaktanAyarFinalCta} />
+  <BrandPageRelatedContent data={uzaktanAyarRelatedContent} />
+</MainLayout>

@@ -1,6 +1,8 @@
 // M7 (Expert Support) content for the "Tüm Markalar" (/markalar) page. This
 // page is built up modularly (M1...M7…), each an independent
 // section/component — this file only ever holds M7's data.
+// BrandExpertSupport.astro is now generic (reused by every hub page), so
+// its interface lives in the component file and is imported back here.
 //
 // The page's final major section before the Footer — its strongest
 // conversion point. M2–M6 already did the informing (brands, differences,
@@ -15,29 +17,7 @@
 // still routes to a real phone call.
 
 import { UserCheck, ShieldCheck, CalendarCheck, Headphones } from "lucide-astro";
-
-export interface ExpertSupportCta {
-  label: string;
-  href: string;
-}
-
-export interface ExpertSupportBandItem {
-  icon: any;
-  label: string;
-}
-
-export interface BrandExpertSupportContent {
-  eyebrow: string;
-  heading: string;
-  paragraph: string;
-  trustPoints: string[];
-  ctaPrimary: ExpertSupportCta;
-  ctaSecondary: ExpertSupportCta;
-  reassurance: string;
-  panelHeading: string;
-  panelBody: string;
-  band: ExpertSupportBandItem[];
-}
+import type { BrandExpertSupportContent } from "../../components/brands/BrandExpertSupport/BrandExpertSupport.astro";
 
 export const brandExpertSupport: BrandExpertSupportContent = {
   eyebrow: "Son Adım",

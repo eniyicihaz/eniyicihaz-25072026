@@ -1,0 +1,69 @@
+---
+// Periyodik Bakım — /servis-bakim/periyodik-bakim. Second page of the
+// "Servis & Bakım" series (see header.data.ts's servicesMega third
+// column), following Teknik Servis. A scheduled, proactive clinic
+// appointment where wearable/consumable parts (wax guards, tubing,
+// domes) are professionally replaced and the device is inspected
+// before wear becomes a problem — distinct from Teknik Servis
+// (reactive repair), Kontrol Randevusu (holistic hearing+performance
+// review), and the still-unbuilt "Cihaz Temizliği" sibling (daily
+// at-home-care education, cross-referenced throughout).
+//
+// accentColor: misket limonu / lime-600 (#65a30d) — second color in
+// the fresh accent rotation opened for this series; see hero.ts for
+// the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Kimler İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Randevu Adımları -> Neler Yapılır -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Periyodik Bakım vs Günlük Ev Bakımı -> Uzman Yorumu ->
+// SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { periyodikBakimHero } from "../../data/periyodik-bakim/hero";
+import { periyodikBakimIntro } from "../../data/periyodik-bakim/intro";
+import { periyodikBakimIdealUser } from "../../data/periyodik-bakim/ideal-user";
+import { periyodikBakimAdvantages } from "../../data/periyodik-bakim/advantages";
+import { periyodikBakimConsiderations } from "../../data/periyodik-bakim/considerations";
+import { periyodikBakimEvolution } from "../../data/periyodik-bakim/evolution";
+import { periyodikBakimUseCases } from "../../data/periyodik-bakim/use-cases";
+import { periyodikBakimTechnology } from "../../data/periyodik-bakim/technology";
+import { periyodikBakimRecommendedBrands } from "../../data/periyodik-bakim/recommended-brands";
+import { periyodikBakimComparison } from "../../data/periyodik-bakim/comparison";
+import { periyodikBakimExpertOpinion } from "../../data/periyodik-bakim/expert-opinion";
+import { periyodikBakimFaq } from "../../data/periyodik-bakim/faq";
+import { periyodikBakimRelatedContent } from "../../data/periyodik-bakim/related-content";
+import { periyodikBakimFinalCta } from "../../data/periyodik-bakim/final-cta";
+---
+
+<MainLayout
+  title="Periyodik Bakım | İşitme Cihazı Bakım Randevusu | EniyiCihaz"
+  description="Periyodik bakım randevusu ne içerir? Balmumu filtresi ve tüp değişimi, genel aşınma kontrolü ve fonksiyon testiyle önleyici işitme cihazı bakımı hakkında bilgi edinin."
+>
+  <BrandPageHero data={periyodikBakimHero} />
+  <BrandPageIntro data={periyodikBakimIntro} />
+  <BrandPageIdealUser data={periyodikBakimIdealUser} />
+  <BrandPageAdvantages data={periyodikBakimAdvantages} />
+  <BrandPageIdealUser data={periyodikBakimConsiderations} />
+  <BrandPageTechEvolution data={periyodikBakimEvolution} />
+  <BrandPageTechnology data={periyodikBakimUseCases} />
+  <BrandPageEcosystem data={periyodikBakimTechnology} />
+  <BrandPageRelatedContent data={periyodikBakimRecommendedBrands} />
+  <KulakArkasiComparison data={periyodikBakimComparison} />
+  <BrandPageExpertOpinion data={periyodikBakimExpertOpinion} />
+  <BrandPageFaq data={periyodikBakimFaq} />
+  <BrandPageFinalCta data={periyodikBakimFinalCta} />
+  <BrandPageRelatedContent data={periyodikBakimRelatedContent} />
+</MainLayout>

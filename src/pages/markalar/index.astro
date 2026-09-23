@@ -5,6 +5,11 @@
 // Buying Guide), M6 (Brand Extended), M7 (Expert Support) and M8 (FAQ) —
 // M8 is the page's final section. Do not add later modules until they're
 // specifically requested.
+//
+// The M1-M8 components are now generic (data prop instead of a fixed
+// import), reused by /isitme-cihazlari, /hizmetlerimiz and
+// /bilgi-merkezi — this page now passes its own data/brands/* content
+// explicitly, same as every other page on the site.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandHero from "../../components/brands/BrandHero/BrandHero.astro";
 import BrandShowcase from "../../components/brands/BrandShowcase/BrandShowcase.astro";
@@ -14,18 +19,27 @@ import BrandBuyingGuide from "../../components/brands/BrandBuyingGuide/BrandBuyi
 import BrandExtended from "../../components/brands/BrandExtended/BrandExtended.astro";
 import BrandExpertSupport from "../../components/brands/BrandExpertSupport/BrandExpertSupport.astro";
 import BrandFaq from "../../components/brands/BrandFaq/BrandFaq.astro";
+
+import { brandHero } from "../../data/brands/hero";
+import { brandShowcase } from "../../data/brands/showcase";
+import { brandCriteria } from "../../data/brands/criteria";
+import { brandDecision } from "../../data/brands/decision";
+import { brandBuyingGuide } from "../../data/brands/buying-guide";
+import { brandExtended } from "../../data/brands/extended";
+import { brandExpertSupport } from "../../data/brands/expert-support";
+import { brandFaq } from "../../data/brands/faq";
 ---
 
 <MainLayout
   title="Tüm Markalar | EniyiCihaz"
   description="Oticon, Phonak, Signia, Widex, ReSound ve daha birçok dünya markasını karşılaştırın, size en uygun işitme cihazı teknolojisini keşfedin."
 >
-  <BrandHero />
-  <BrandShowcase />
-  <BrandCriteria />
-  <BrandDecision />
-  <BrandBuyingGuide />
-  <BrandExtended />
-  <BrandExpertSupport />
-  <BrandFaq />
+  <BrandHero data={brandHero} />
+  <BrandShowcase data={brandShowcase} />
+  <BrandCriteria data={brandCriteria} />
+  <BrandDecision data={brandDecision} />
+  <BrandBuyingGuide data={brandBuyingGuide} />
+  <BrandExtended data={brandExtended} />
+  <BrandExpertSupport data={brandExpertSupport} />
+  <BrandFaq data={brandFaq} />
 </MainLayout>

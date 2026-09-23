@@ -1,0 +1,68 @@
+---
+// Şarj Edilebilir İşitme Cihazı — /isitme-cihazlari/sarj-edilebilir.
+// Third page of the "İşitme Cihazı Çeşitleri" product-page series (see
+// header.data.ts's devicesMega first column), built directly on the
+// Kulak Arkası (BTE) / Kulak İçi (ITE) master templates — same shared,
+// data-driven Brand Component Architecture, same KulakArkasiComparison
+// component (already generic, reused as-is), same accent-scoping pattern
+// with its own zümrüt yeşili (#059669) category accent.
+//
+// 13-section flow, in order: Hero -> Nedir? + Nasıl Çalışır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Hangi Cihaz
+// Tiplerinde Şarjlı Seçenek Bulunur? -> Şarj Teknolojisi Türleri ->
+// Teknolojiler -> Önerilen Marka ve Modeller -> Şarj Edilebilir vs Pilli
+// -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" / ITE's "Cihaz Türleri" slot is repurposed
+// here for "Şarj Teknolojisi Türleri" — temaslı, indüksiyonlu, hızlı şarj,
+// powerbank kutu — and BTE's hearing-loss-level slot becomes "Hangi Cihaz
+// Tiplerinde Bulunur", since şarj edilebilirlik bir cihaz tipi değil bir
+// güç seçeneğidir; see device-coverage.ts and charging-types.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { sarjEdilebilirHero } from "../../data/sarj-edilebilir/hero";
+import { sarjEdilebilirIntro } from "../../data/sarj-edilebilir/intro";
+import { sarjEdilebilirIdealUser } from "../../data/sarj-edilebilir/ideal-user";
+import { sarjEdilebilirAdvantages } from "../../data/sarj-edilebilir/advantages";
+import { sarjEdilebilirConsiderations } from "../../data/sarj-edilebilir/considerations";
+import { sarjEdilebilirDeviceCoverage } from "../../data/sarj-edilebilir/device-coverage";
+import { sarjEdilebilirChargingTypes } from "../../data/sarj-edilebilir/charging-types";
+import { sarjEdilebilirTechnology } from "../../data/sarj-edilebilir/technology";
+import { sarjEdilebilirRecommendedBrands } from "../../data/sarj-edilebilir/recommended-brands";
+import { sarjEdilebilirComparison } from "../../data/sarj-edilebilir/comparison";
+import { sarjEdilebilirExpertOpinion } from "../../data/sarj-edilebilir/expert-opinion";
+import { sarjEdilebilirFaq } from "../../data/sarj-edilebilir/faq";
+import { sarjEdilebilirRelatedContent } from "../../data/sarj-edilebilir/related-content";
+import { sarjEdilebilirFinalCta } from "../../data/sarj-edilebilir/final-cta";
+---
+
+<MainLayout
+  title="Şarj Edilebilir İşitme Cihazı Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Şarj edilebilir işitme cihazı nedir, nasıl çalışır, hangi cihaz tiplerinde bulunur? Avantajları, dikkat edilmesi gerekenler ve pilli (değiştirilebilir pil) cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={sarjEdilebilirHero} />
+  <BrandPageIntro data={sarjEdilebilirIntro} />
+  <BrandPageIdealUser data={sarjEdilebilirIdealUser} />
+  <BrandPageAdvantages data={sarjEdilebilirAdvantages} />
+  <BrandPageIdealUser data={sarjEdilebilirConsiderations} />
+  <BrandPageTechEvolution data={sarjEdilebilirDeviceCoverage} />
+  <BrandPageTechnology data={sarjEdilebilirChargingTypes} />
+  <BrandPageEcosystem data={sarjEdilebilirTechnology} />
+  <BrandPageRelatedContent data={sarjEdilebilirRecommendedBrands} />
+  <KulakArkasiComparison data={sarjEdilebilirComparison} />
+  <BrandPageExpertOpinion data={sarjEdilebilirExpertOpinion} />
+  <BrandPageFaq data={sarjEdilebilirFaq} />
+  <BrandPageFinalCta data={sarjEdilebilirFinalCta} />
+  <BrandPageRelatedContent data={sarjEdilebilirRelatedContent} />
+</MainLayout>

@@ -1,0 +1,72 @@
+---
+// Garanti İşlemleri — /servis-bakim/garanti-islemleri. Fifth page of
+// the "Servis & Bakım" series (see header.data.ts's servicesMega third
+// column), following Teknik Servis, Periyodik Bakım, Cihaz Temizliği
+// and Pil & Aksesuar.
+//
+// Genre note: the existing /neden-orijinal/kolay-degisim page already
+// covers the SATISFACTION-BASED exchange guarantee (trial
+// dissatisfaction, changing needs, model swaps). This page deliberately
+// does not repeat that — it covers the technical WARRANTY CLAIM
+// process: manufacturing-defect coverage, what voids it, required
+// documentation, and the claim process itself. comparison.ts makes the
+// distinction between the two processes explicit.
+//
+// accentColor: çivit / indigo-600 (#4f46e5) — fifth color in the fresh
+// accent rotation opened for this series; see hero.ts for the full
+// rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Kapsar? -> Kimler
+// İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Süreç
+// Adımları -> Kapsamda Neler Yer Alır -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Garanti vs Kolay Değişim -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { garantiIslemleriHero } from "../../data/garanti-islemleri/hero";
+import { garantiIslemleriIntro } from "../../data/garanti-islemleri/intro";
+import { garantiIslemleriIdealUser } from "../../data/garanti-islemleri/ideal-user";
+import { garantiIslemleriAdvantages } from "../../data/garanti-islemleri/advantages";
+import { garantiIslemleriConsiderations } from "../../data/garanti-islemleri/considerations";
+import { garantiIslemleriEvolution } from "../../data/garanti-islemleri/evolution";
+import { garantiIslemleriUseCases } from "../../data/garanti-islemleri/use-cases";
+import { garantiIslemleriTechnology } from "../../data/garanti-islemleri/technology";
+import { garantiIslemleriRecommendedBrands } from "../../data/garanti-islemleri/recommended-brands";
+import { garantiIslemleriComparison } from "../../data/garanti-islemleri/comparison";
+import { garantiIslemleriExpertOpinion } from "../../data/garanti-islemleri/expert-opinion";
+import { garantiIslemleriFaq } from "../../data/garanti-islemleri/faq";
+import { garantiIslemleriRelatedContent } from "../../data/garanti-islemleri/related-content";
+import { garantiIslemleriFinalCta } from "../../data/garanti-islemleri/final-cta";
+---
+
+<MainLayout
+  title="Garanti İşlemleri | İşitme Cihazı Garanti Süreci | EniyiCihaz"
+  description="İşitme cihazı garanti işlemleri nasıl yürütülür? Garanti kapsamı, gerekli belgeler, kapsam dışı durumlar ve garanti talep süreci hakkında bilgi edinin."
+>
+  <BrandPageHero data={garantiIslemleriHero} />
+  <BrandPageIntro data={garantiIslemleriIntro} />
+  <BrandPageIdealUser data={garantiIslemleriIdealUser} />
+  <BrandPageAdvantages data={garantiIslemleriAdvantages} />
+  <BrandPageIdealUser data={garantiIslemleriConsiderations} />
+  <BrandPageTechEvolution data={garantiIslemleriEvolution} />
+  <BrandPageTechnology data={garantiIslemleriUseCases} />
+  <BrandPageEcosystem data={garantiIslemleriTechnology} />
+  <BrandPageRelatedContent data={garantiIslemleriRecommendedBrands} />
+  <KulakArkasiComparison data={garantiIslemleriComparison} />
+  <BrandPageExpertOpinion data={garantiIslemleriExpertOpinion} />
+  <BrandPageFaq data={garantiIslemleriFaq} />
+  <BrandPageFinalCta data={garantiIslemleriFinalCta} />
+  <BrandPageRelatedContent data={garantiIslemleriRelatedContent} />
+</MainLayout>

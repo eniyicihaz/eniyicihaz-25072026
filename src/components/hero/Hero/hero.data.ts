@@ -3,16 +3,28 @@
 // "Binlerce Mutlu Kullanıcı" from the reference was replaced with "Kişiye
 // Özel Yaklaşım" — a verifiable, timeless claim already used precedent in
 // this project, instead of an invented/unverifiable user count (PRINCIPLES §5).
+//
+// `badge` was "İşitme Sağlığınız İçin En Doğru Adrestesiniz" — a superlative
+// claim PRINCIPLES §5 forbids, and a drift from HERO_SPECIFICATION.md's own
+// locked eyebrow ("2009'DAN BERİ · SGK ANLAŞMALI"). Replaced with a real,
+// location-grounded fact instead. `contextSentence` is the same canonical
+// entity-definition sentence used verbatim in src/data/contact/hero.ts's
+// `definitionSentence` — reused, not reworded, so the homepage and
+// /iletisim never describe the business two different ways (GEO
+// non-contradiction, SEARCH_STRATEGY.md §9).
 import type { HeroContent } from "./hero.types";
 
 export const hero: HeroContent = {
-  badge: "İşitme Sağlığınız İçin En Doğru Adrestesiniz",
+  badge: "Darıca, Kocaeli · SGK Anlaşmalı İşitme Merkezi",
   headlineLine1: "Duymak,",
   headlineLine2: "anlamaktır.",
+  contextSentence:
+    "Avrasya İşitme Cihazları, Darıca, Kocaeli'de bulunan SGK anlaşmalı bir işitme cihazı satış ve uygulama merkezidir.",
   subhead:
     "İşitme kaybı yalnızca duymamak değildir. Anlamak, iletişim kurmak ve sevdiklerinizle bağ kurmaktır.",
   ctaPrimary: { label: "Ücretsiz İşitme Testi", href: "/iletisim" },
   ctaSecondary: { label: "Bizi Arayın", href: "tel:+905337733199" },
+  ctaWhatsapp: { label: "WhatsApp'tan Yaz", href: "https://wa.me/905337733199" },
   cards: [
     {
       image: "/images/heroes/hero-01.webp",

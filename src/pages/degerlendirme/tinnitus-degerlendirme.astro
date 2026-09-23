@@ -1,0 +1,74 @@
+---
+// Tinnitus Değerlendirme — /degerlendirme/tinnitus-degerlendirme. Fifth
+// page of the "Değerlendirme" series (see header.data.ts's servicesMega
+// first column), following Ücretsiz İşitme Testi, Odyometri,
+// Timpanometri and Çocuk İşitme Testi. Same clinical service-page genre
+// and full health-content safety discipline (self-diagnosis
+// disclaimers, urgent-care flags for unilateral/pulsatile tinnitus).
+//
+// Distinct from the existing /teknolojiler/tinnitus-cozumleri page: that
+// page covers device-side sound-generator/fractal-tone support
+// technology; this page covers the assessment process that comes first
+// (history, audiometry, pitch/loudness matching, THI questionnaire).
+// technology.ts's "maskeleme-denemesi" item and recommended-brands.ts
+// both cross-reference the Tinnitus Çözümleri page rather than
+// re-explaining its content.
+//
+// accentColor: zümrüt yeşili / emerald-600 (#059669) — fifth color in
+// the fresh accent rotation opened for this series on Ücretsiz İşitme
+// Testi's hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Kapsar? -> Kimler
+// İçin Önerilir? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Değerlendirme Adımları -> Neler İncelenir -> Teknolojiler -> Markalara
+// Göre İnceleyin -> Subjektif vs Objektif Tinnitus -> Uzman Yorumu ->
+// SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { tinnitusDegerlendirmeHero } from "../../data/tinnitus-degerlendirme/hero";
+import { tinnitusDegerlendirmeIntro } from "../../data/tinnitus-degerlendirme/intro";
+import { tinnitusDegerlendirmeIdealUser } from "../../data/tinnitus-degerlendirme/ideal-user";
+import { tinnitusDegerlendirmeAdvantages } from "../../data/tinnitus-degerlendirme/advantages";
+import { tinnitusDegerlendirmeConsiderations } from "../../data/tinnitus-degerlendirme/considerations";
+import { tinnitusDegerlendirmeEvolution } from "../../data/tinnitus-degerlendirme/evolution";
+import { tinnitusDegerlendirmeUseCases } from "../../data/tinnitus-degerlendirme/use-cases";
+import { tinnitusDegerlendirmeTechnology } from "../../data/tinnitus-degerlendirme/technology";
+import { tinnitusDegerlendirmeRecommendedBrands } from "../../data/tinnitus-degerlendirme/recommended-brands";
+import { tinnitusDegerlendirmeComparison } from "../../data/tinnitus-degerlendirme/comparison";
+import { tinnitusDegerlendirmeExpertOpinion } from "../../data/tinnitus-degerlendirme/expert-opinion";
+import { tinnitusDegerlendirmeFaq } from "../../data/tinnitus-degerlendirme/faq";
+import { tinnitusDegerlendirmeRelatedContent } from "../../data/tinnitus-degerlendirme/related-content";
+import { tinnitusDegerlendirmeFinalCta } from "../../data/tinnitus-degerlendirme/final-cta";
+---
+
+<MainLayout
+  title="Tinnitus Değerlendirme | Kulak Çınlaması Muayenesi | EniyiCihaz"
+  description="Tinnitus (kulak çınlaması) değerlendirmesi nasıl yapılır? Öykü alma, odyometri, tinnitus eşleştirme ve THI anketi ile değerlendirme süreci hakkında bilgi edinin."
+>
+  <BrandPageHero data={tinnitusDegerlendirmeHero} />
+  <BrandPageIntro data={tinnitusDegerlendirmeIntro} />
+  <BrandPageIdealUser data={tinnitusDegerlendirmeIdealUser} />
+  <BrandPageAdvantages data={tinnitusDegerlendirmeAdvantages} />
+  <BrandPageIdealUser data={tinnitusDegerlendirmeConsiderations} />
+  <BrandPageTechEvolution data={tinnitusDegerlendirmeEvolution} />
+  <BrandPageTechnology data={tinnitusDegerlendirmeUseCases} />
+  <BrandPageEcosystem data={tinnitusDegerlendirmeTechnology} />
+  <BrandPageRelatedContent data={tinnitusDegerlendirmeRecommendedBrands} />
+  <KulakArkasiComparison data={tinnitusDegerlendirmeComparison} />
+  <BrandPageExpertOpinion data={tinnitusDegerlendirmeExpertOpinion} />
+  <BrandPageFaq data={tinnitusDegerlendirmeFaq} />
+  <BrandPageFinalCta data={tinnitusDegerlendirmeFinalCta} />
+  <BrandPageRelatedContent data={tinnitusDegerlendirmeRelatedContent} />
+</MainLayout>

@@ -1,0 +1,312 @@
+---
+// ContactServiceArea — "Hizmet Bölgeleri" section for /iletisim. New
+// component because BrandExtended assumes every item links to a real
+// page (its `href` is effectively required in practice); region names
+// have no dedicated pages yet, so rendering them as link-cards would
+// violate "only real URLs" (see the plan's §6/§11). Renders items as
+// plain text unless a real `href` is supplied, grouped by
+// COMPANY.md §17's tier (merkez → öncelikli → çevre) — never flattened
+// into a bare keyword list.
+import { MapPin } from "lucide-astro";
+
+export type ServiceAreaTier = "merkez" | "oncelikli" | "cevre";
+
+export interface ServiceAreaItem {
+  name: string;
+  tier: ServiceAreaTier;
+  description: string;
+  href?: string;
+}
+
+export interface ContactServiceAreaContent {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  tierLabels: Record<ServiceAreaTier, string>;
+  items: ServiceAreaItem[];
+  closing: string;
+}
+
+interface Props {
+  data: ContactServiceAreaContent;
+}
+
+const { data } = Astro.props;
+
+const tierOrder: ServiceAreaTier[] = ["merkez", "oncelikli", "cevre"];
+const groups = tierOrder
+  .map((tier) => ({ tier, items: data.items.filter((item) => item.tier === tier) }))
+  .filter((group) => group.items.length > 0);
+---
+
+<section class="contact-service-area" aria-labelledby="contact-service-area-title">
+  <div class="contact-service-area__header">
+    <p class="contact-service-area__eyebrow" data-rise>{data.eyebrow}</p>
+    <h2 class="contact-service-area__heading" id="contact-service-area-title" data-rise>
+      {data.heading}
+    </h2>
+    <p class="contact-service-area__intro" data-rise>{data.intro}</p>
+  </div>
+
+  <div class="contact-service-area__groups">
+    {groups.map((group) => (
+      <div class="contact-service-area__group" data-rise>
+        <p class="contact-service-area__tier-label">{data.tierLabels[group.tier]}</p>
+        <ul class="contact-service-area__list">
+          {group.items.map((item) => (
+            <li class="contact-service-area__item">
+              <span class="contact-service-area__item-icon" aria-hidden="true">
+                <MapPin size={16} stroke-width={2} />
+              </span>
+              <span class="contact-service-area__item-body">
+                {item.href ? (
+                  <a class="contact-service-area__item-name contact-service-area__item-name--link" href={item.href}>
+                    {item.name}
+                  </a>
+                ) : (
+                  <span class="contact-service-area__item-name">{item.name}</span>
+                )}
+                <span class="contact-service-area__item-desc">{item.description}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <p class="contact-service-area__closing" data-rise>{data.closing}</p>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site.
+    var section = document.querySelector(".contact-service-area");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .contact-service-area {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-20);
+    --csa-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .contact-service-area__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .contact-service-area__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .contact-service-area__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .contact-service-area__intro {
+    margin: var(--space-4) auto 0;
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .contact-service-area__groups {
+    max-width: var(--container-2xl);
+    margin: var(--space-14) auto 0;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .contact-service-area__group {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+  }
+
+  .contact-service-area__tier-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .contact-service-area__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact-service-area__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .contact-service-area__item-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 28px;
+    height: 28px;
+    margin-top: 2px;
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+    color: var(--color-primary);
+  }
+
+  .contact-service-area__item-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+  }
+
+  .contact-service-area__item-name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .contact-service-area__item-name--link {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .contact-service-area__item-name--link:hover {
+    text-decoration: underline;
+  }
+
+  .contact-service-area__item-name--link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .contact-service-area__item-desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .contact-service-area__closing {
+    max-width: 34rem;
+    margin: var(--space-12) auto 0;
+    padding-inline: var(--space-6);
+    text-align: center;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance ---------------------------------------------------------- */
+
+  .contact-service-area[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .contact-service-area[data-anim="in"] [data-rise] {
+    animation: contact-service-area-rise 600ms var(--csa-ease) both;
+  }
+
+  .contact-service-area[data-anim="in"] .contact-service-area__group:nth-child(1) { animation-delay: 60ms; }
+  .contact-service-area[data-anim="in"] .contact-service-area__group:nth-child(2) { animation-delay: 110ms; }
+  .contact-service-area[data-anim="in"] .contact-service-area__group:nth-child(3) { animation-delay: 160ms; }
+
+  @keyframes contact-service-area-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .contact-service-area__groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .contact-service-area {
+      padding-block: var(--space-14);
+    }
+
+    .contact-service-area__groups {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-service-area[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+// İşitme Kaybı Nedir? — /rehberler/isitme-kaybi-nedir. First page of
+// the new "Rehberler" series (see header.data.ts's knowledgeMega first
+// column) — the flagship educational entry point for the "Bilgi
+// Merkezi" mega menu. A new content genre distinct from every prior
+// series this session: pure educational/knowledge-base content rather
+// than a bookable service or product-candidacy page.
+//
+// Distinct from the existing "İhtiyacınıza Göre" degree-specific
+// product series: those pages are candidacy pages framed around device
+// recommendations for a specific dB range (degree classification).
+// This page owns the TYPE classification instead (iletim tipi /
+// sensörinöral / karma / merkezi) — genuinely different axis, cross-
+// linked rather than duplicated via related-content.ts.
+//
+// accentColor: mavi / blue-600 (#2563eb) — first color in a fresh
+// accent rotation opened for the "Rehberler" column; see hero.ts for
+// the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler Risk Altında? ->
+// Erken Tespitin Faydaları -> Ne Zaman Uzmana Başvurulmalı? -> İşitme
+// Kaybı Türleri -> Yaygın Nedenler -> Teknolojiler -> Markalara Göre
+// İnceleyin -> İletim Tipi vs Sensörinöral -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { isitmeKaybiNedirHero } from "../../data/isitme-kaybi-nedir/hero";
+import { isitmeKaybiNedirIntro } from "../../data/isitme-kaybi-nedir/intro";
+import { isitmeKaybiNedirIdealUser } from "../../data/isitme-kaybi-nedir/ideal-user";
+import { isitmeKaybiNedirAdvantages } from "../../data/isitme-kaybi-nedir/advantages";
+import { isitmeKaybiNedirConsiderations } from "../../data/isitme-kaybi-nedir/considerations";
+import { isitmeKaybiNedirEvolution } from "../../data/isitme-kaybi-nedir/evolution";
+import { isitmeKaybiNedirUseCases } from "../../data/isitme-kaybi-nedir/use-cases";
+import { isitmeKaybiNedirTechnology } from "../../data/isitme-kaybi-nedir/technology";
+import { isitmeKaybiNedirRecommendedBrands } from "../../data/isitme-kaybi-nedir/recommended-brands";
+import { isitmeKaybiNedirComparison } from "../../data/isitme-kaybi-nedir/comparison";
+import { isitmeKaybiNedirExpertOpinion } from "../../data/isitme-kaybi-nedir/expert-opinion";
+import { isitmeKaybiNedirFaq } from "../../data/isitme-kaybi-nedir/faq";
+import { isitmeKaybiNedirRelatedContent } from "../../data/isitme-kaybi-nedir/related-content";
+import { isitmeKaybiNedirFinalCta } from "../../data/isitme-kaybi-nedir/final-cta";
+---
+
+<MainLayout
+  title="İşitme Kaybı Nedir? | Türleri, Nedenleri ve Belirtileri | EniyiCihaz"
+  description="İşitme kaybı nedir, türleri ve nedenleri nelerdir? İletim tipi, sensörinöral ve karma işitme kaybı ile ne zaman uzmana başvurulması gerektiği hakkında bilgi edinin."
+>
+  <BrandPageHero data={isitmeKaybiNedirHero} />
+  <BrandPageIntro data={isitmeKaybiNedirIntro} />
+  <BrandPageIdealUser data={isitmeKaybiNedirIdealUser} />
+  <BrandPageAdvantages data={isitmeKaybiNedirAdvantages} />
+  <BrandPageIdealUser data={isitmeKaybiNedirConsiderations} />
+  <BrandPageTechEvolution data={isitmeKaybiNedirEvolution} />
+  <BrandPageTechnology data={isitmeKaybiNedirUseCases} />
+  <BrandPageEcosystem data={isitmeKaybiNedirTechnology} />
+  <BrandPageRelatedContent data={isitmeKaybiNedirRecommendedBrands} />
+  <KulakArkasiComparison data={isitmeKaybiNedirComparison} />
+  <BrandPageExpertOpinion data={isitmeKaybiNedirExpertOpinion} />
+  <BrandPageFaq data={isitmeKaybiNedirFaq} />
+  <BrandPageFinalCta data={isitmeKaybiNedirFinalCta} />
+  <BrandPageRelatedContent data={isitmeKaybiNedirRelatedContent} />
+</MainLayout>

@@ -1,0 +1,83 @@
+---
+// Aktif Yaşam İçin Cihazlar — /ihtiyaciniza-gore/aktif-yasam-icin-cihazlar.
+// Seventh and final page of the "İhtiyacınıza Göre" product-page series
+// (see header.data.ts's devicesMega third column) — completing the
+// devicesMega mega menu entirely (all three columns now fully real).
+// Built on the same master templates and shared, data-driven Brand
+// Component Architecture, same KulakArkasiComparison component (already
+// generic, reused as-is), same accent-scoping pattern with its own gri /
+// gray (#4b5563) category accent — the last remaining distinct Tailwind
+// named hue not yet used as a primary accent anywhere in this session.
+//
+// Like Yaşlılar İçin Cihazlar, this page's axis is a practical-needs
+// profile rather than a clinical classification — here, an active/mobile
+// daily lifestyle (sport, outdoor activity, frequent travel) instead of
+// age. Health-adjacent care is still taken throughout: self-diagnosis is
+// never implied, sudden-onset loss is flagged as a different, urgent
+// scenario, and the intro explicitly states this page is not a severity
+// or laterality classification at all.
+//
+// Deliberately scoped apart from already-built technology pages: rather
+// than re-explaining IP-rating test methodology or rechargeable battery
+// chemistry from scratch, this page's own Ecosystem section
+// cross-references Suya Dayanıklı Cihazlar and Şarj Edilebilir Cihazlar,
+// focusing instead on why each of those features matters specifically
+// for an active lifestyle, plus two genuinely new topics for this page
+// (secure-retention hardware and wind-noise reduction).
+//
+// 14-section flow, in order: Hero -> Nedir? + Kimler İçin Uygun? ->
+// Bu Sayfa Kimler İçin Uygun? (aktivite senaryoları) -> Avantajları ->
+// Dikkat Edilmesi Gerekenler -> Öncelikli Özellikler (güvenli oturma/IP
+// koruma/rüzgar gürültüsü/hızlı şarj) -> Öne Çıkan Özellikler ->
+// Teknolojiler -> Önerilen Marka ve Modeller -> Güvenli Oturmalı
+// Sportif Modeller vs Standart RIC -> Uzman Yorumu -> SSS -> Premium
+// CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { aktifYasamIcinCihazlarHero } from "../../data/aktif-yasam-icin-cihazlar/hero";
+import { aktifYasamIcinCihazlarIntro } from "../../data/aktif-yasam-icin-cihazlar/intro";
+import { aktifYasamIcinCihazlarIdealUser } from "../../data/aktif-yasam-icin-cihazlar/ideal-user";
+import { aktifYasamIcinCihazlarAdvantages } from "../../data/aktif-yasam-icin-cihazlar/advantages";
+import { aktifYasamIcinCihazlarConsiderations } from "../../data/aktif-yasam-icin-cihazlar/considerations";
+import { aktifYasamIcinCihazlarEvolution } from "../../data/aktif-yasam-icin-cihazlar/evolution";
+import { aktifYasamIcinCihazlarUseCases } from "../../data/aktif-yasam-icin-cihazlar/use-cases";
+import { aktifYasamIcinCihazlarTechnology } from "../../data/aktif-yasam-icin-cihazlar/technology";
+import { aktifYasamIcinCihazlarRecommendedBrands } from "../../data/aktif-yasam-icin-cihazlar/recommended-brands";
+import { aktifYasamIcinCihazlarComparison } from "../../data/aktif-yasam-icin-cihazlar/comparison";
+import { aktifYasamIcinCihazlarExpertOpinion } from "../../data/aktif-yasam-icin-cihazlar/expert-opinion";
+import { aktifYasamIcinCihazlarFaq } from "../../data/aktif-yasam-icin-cihazlar/faq";
+import { aktifYasamIcinCihazlarRelatedContent } from "../../data/aktif-yasam-icin-cihazlar/related-content";
+import { aktifYasamIcinCihazlarFinalCta } from "../../data/aktif-yasam-icin-cihazlar/final-cta";
+---
+
+<MainLayout
+  title="Aktif Yaşam İçin İşitme Cihazı Rehberi | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Spor yapan, sık seyahat eden veya hareketli bir yaşam süren kullanıcılar için hangi cihaz özellikleri önceliklendirilir? Güvenli oturma, rüzgar gürültüsü azaltma ve hızlı şarj seçeneklerini keşfedin."
+>
+  <BrandPageHero data={aktifYasamIcinCihazlarHero} />
+  <BrandPageIntro data={aktifYasamIcinCihazlarIntro} />
+  <BrandPageIdealUser data={aktifYasamIcinCihazlarIdealUser} />
+  <BrandPageAdvantages data={aktifYasamIcinCihazlarAdvantages} />
+  <BrandPageIdealUser data={aktifYasamIcinCihazlarConsiderations} />
+  <BrandPageTechEvolution data={aktifYasamIcinCihazlarEvolution} />
+  <BrandPageTechnology data={aktifYasamIcinCihazlarUseCases} />
+  <BrandPageEcosystem data={aktifYasamIcinCihazlarTechnology} />
+  <BrandPageRelatedContent data={aktifYasamIcinCihazlarRecommendedBrands} />
+  <KulakArkasiComparison data={aktifYasamIcinCihazlarComparison} />
+  <BrandPageExpertOpinion data={aktifYasamIcinCihazlarExpertOpinion} />
+  <BrandPageFaq data={aktifYasamIcinCihazlarFaq} />
+  <BrandPageFinalCta data={aktifYasamIcinCihazlarFinalCta} />
+  <BrandPageRelatedContent data={aktifYasamIcinCihazlarRelatedContent} />
+</MainLayout>

@@ -1,9 +1,27 @@
 ---
-// BrandBuyingGuide — M5 of the /markalar ("Tüm Markalar") page, directly
-// under BrandDecision (M4). This page is built up modularly (M1...M5…);
-// this component is only ever M5. Do not add later modules here — each
-// gets its own component.
-import { brandBuyingGuide } from "../../../data/brands/buying-guide";
+// BrandBuyingGuide — M5 of the modular hub-page system (originally built
+// for /markalar; now also reused by /isitme-cihazlari, /hizmetlerimiz and
+// /bilgi-merkezi), directly under M4 (Decision). Always M5 of its page —
+// do not add later modules here, each gets its own component. Generic:
+// takes its content via the `data` prop.
+export interface BuyingGuideCriterion {
+  title: string;
+  description: string;
+}
+
+export interface BrandBuyingGuideContent {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  criteria: BuyingGuideCriterion[];
+  closing: string;
+}
+
+interface Props {
+  data: BrandBuyingGuideContent;
+}
+
+const { data: brandBuyingGuide } = Astro.props;
 ---
 
 <section class="brand-buying-guide" aria-labelledby="brand-buying-guide-title">

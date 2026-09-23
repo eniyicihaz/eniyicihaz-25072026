@@ -25,9 +25,23 @@ export interface OticonWhyOticonContent {
   intro: string;
   hero: WhyOticonReason;
   items: WhyOticonReason[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorIconBg: string;
+  accentColorHoverBorder: string;
 }
 
 export const oticonWhyOticon: OticonWhyOticonContent = {
+  // Precomputed rgb() decomposition of #5fb85a — reproduces the values
+  // previously hardcoded directly in OticonWhyOticon.astro's CSS.
+  accentColor: "#5fb85a",
+  accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
+  accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
+  accentColorBadgeText: "#4a9a45",
+  accentColorIconBg: "rgb(95 184 90 / 0.1)",
+  accentColorHoverBorder: "rgb(95 184 90 / 0.45)",
   badge: "NEDEN OTİCON?",
   heading: "Kullanıcılar Neden Oticon Tercih Ediyor?",
   intro: "Oticon'u farklı kılan yaklaşımı ve ürün çeşitliliğini bir arada sunuyoruz.",

@@ -28,9 +28,25 @@ export interface OticonTechExplorerContent {
   heading: string;
   intro: string;
   items: OticonTechExplorerItem[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorNavActiveBg: string;
+  accentColorCalloutBg: string;
+  accentColorCalloutLabel: string;
 }
 
 export const oticonTechExplorer: OticonTechExplorerContent = {
+  // Precomputed rgb() decomposition of #5fb85a — reproduces the values
+  // previously hardcoded directly in OticonTechnologyExplorer.astro's CSS.
+  accentColor: "#5fb85a",
+  accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
+  accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
+  accentColorBadgeText: "#4a9a45",
+  accentColorNavActiveBg: "rgb(95 184 90 / 0.1)",
+  accentColorCalloutBg: "rgb(95 184 90 / 0.06)",
+  accentColorCalloutLabel: "#3f8a3a",
   badge: "TEKNOLOJİ REHBERİ",
   heading: "Oticon İşitme Cihazlarında Kullanılan Teknolojiler",
   intro: "Her teknolojiyi seçerek nasıl çalıştığını ve size sağladığı avantajları inceleyebilirsiniz.",

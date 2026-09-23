@@ -1,14 +1,17 @@
 import type { BrandsContent } from "./brands.types";
 
 // Logo files live in /public/images/brands/ (referenced by plain path, not
-// import — Astro serves public/ files as-is). Each brand also links to
-// /markalar/{slug}, currently an empty stub page (same convention as
-// /iletisim, /hakkimizda) so nothing 404s.
+// import — Astro serves public/ files as-is). Each brand links to its real,
+// fully-built /markalar/{slug} page (no longer a stub — all 18 brand pages
+// shipped this project). Heading/subhead rewritten to drop "en iyi/lider"
+// superlatives (PRINCIPLES §5) and instead state the actual objection this
+// section exists to resolve: "kendi markasını değil, bana uygun olanı mı
+// öneriyor?" (homepage plan §G/§4).
 export const brands: BrandsContent = {
   badge: "18+ Dünya Markası",
-  heading: "Dünyanın Lider İşitme Cihazı Markaları",
+  heading: "18'den Fazla Dünya Markasıyla Çalışıyoruz",
   subhead:
-    "En iyi markaları, en doğru işitme çözümünü sunabilmek için sizlerle buluşturuyoruz.",
+    "Tek bir markaya bağlı değiliz; işitme kaybınıza ve yaşam tarzınıza göre, aralarından size en uygun olanı öneriyoruz.",
   brands: [
     { name: "Oticon", slug: "oticon", logo: "/images/brands/oticon-logo-seffaf.webp" },
     { name: "Phonak", slug: "phonak", logo: "/images/brands/phonak-logo-seffaf.webp" },
@@ -41,5 +44,7 @@ export const brands: BrandsContent = {
     label: "SGK Anlaşmalı İşitme Cihazları",
     description:
       "Tüm SGK kapsamındaki işlemleriniz için uzman desteği sağlıyoruz.",
+    href: "/sgk-isitme-cihazi-odemesi",
   },
+  hubCta: { label: "Tüm markaları inceleyin", href: "/markalar" },
 };

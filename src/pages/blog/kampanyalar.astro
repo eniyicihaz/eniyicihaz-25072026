@@ -1,0 +1,71 @@
+---
+// Kampanyalar — /blog/kampanyalar. Fifth page of the "Blog & Haberler"
+// series (see header.data.ts's knowledgeMega second column), following
+// /blog/yeni-teknolojiler, /blog/uzman-gorusleri,
+// /blog/basari-hikayeleri and /blog/sik-sorulan-sorular.
+//
+// CRITICAL accuracy note: contains NO specific dated/expiring offer
+// figures — campaigns are time-limited and stating a percentage or
+// price here would go stale almost immediately. Every section explains
+// general campaign CATEGORIES and always defers to a live phone/
+// WhatsApp call for the current, active campaign. See hero.ts and
+// considerations.ts for the full rationale.
+//
+// accentColor: fuşya / fuchsia-600 (#c026d3) — fifth color in this
+// column's own accent rotation; see hero.ts for the full rationale.
+//
+// 14-section flow, in order: Hero -> Kampanyalarımız Nasıl İşler? ->
+// Kimler İçin Önemlidir? -> Kategorilerin Faydaları -> Dikkat Edilmesi
+// Gerekenler -> Kampanyadan Nasıl Yararlanırsınız? -> Kampanya
+// Kategorileri -> Sürece Daha Yakından Bakış -> Markalara Göre
+// İnceleyin -> Kampanyalı vs Standart Alım Karşılaştırması -> Uzman
+// Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { kampanyalarHero } from "../../data/kampanyalar/hero";
+import { kampanyalarIntro } from "../../data/kampanyalar/intro";
+import { kampanyalarIdealUser } from "../../data/kampanyalar/ideal-user";
+import { kampanyalarAdvantages } from "../../data/kampanyalar/advantages";
+import { kampanyalarConsiderations } from "../../data/kampanyalar/considerations";
+import { kampanyalarEvolution } from "../../data/kampanyalar/evolution";
+import { kampanyalarUseCases } from "../../data/kampanyalar/use-cases";
+import { kampanyalarTechnology } from "../../data/kampanyalar/technology";
+import { kampanyalarRecommendedBrands } from "../../data/kampanyalar/recommended-brands";
+import { kampanyalarComparison } from "../../data/kampanyalar/comparison";
+import { kampanyalarExpertOpinion } from "../../data/kampanyalar/expert-opinion";
+import { kampanyalarFaq } from "../../data/kampanyalar/faq";
+import { kampanyalarRelatedContent } from "../../data/kampanyalar/related-content";
+import { kampanyalarFinalCta } from "../../data/kampanyalar/final-cta";
+---
+
+<MainLayout
+  title="Kampanyalar | İşitme Cihazı Kampanyaları | EniyiCihaz"
+  description="Yeni kullanıcı, aile paketi ve sezonluk gibi kampanya kategorilerimizi genel hatlarıyla öğrenin; güncel kampanyalar için bizi arayın."
+>
+  <BrandPageHero data={kampanyalarHero} />
+  <BrandPageIntro data={kampanyalarIntro} />
+  <BrandPageIdealUser data={kampanyalarIdealUser} />
+  <BrandPageAdvantages data={kampanyalarAdvantages} />
+  <BrandPageIdealUser data={kampanyalarConsiderations} />
+  <BrandPageTechEvolution data={kampanyalarEvolution} />
+  <BrandPageTechnology data={kampanyalarUseCases} />
+  <BrandPageEcosystem data={kampanyalarTechnology} />
+  <BrandPageRelatedContent data={kampanyalarRecommendedBrands} />
+  <KulakArkasiComparison data={kampanyalarComparison} />
+  <BrandPageExpertOpinion data={kampanyalarExpertOpinion} />
+  <BrandPageFaq data={kampanyalarFaq} />
+  <BrandPageFinalCta data={kampanyalarFinalCta} />
+  <BrandPageRelatedContent data={kampanyalarRelatedContent} />
+</MainLayout>

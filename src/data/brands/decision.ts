@@ -1,6 +1,8 @@
 // M4 (Brand Decision) content for the "Tüm Markalar" (/markalar) page. This
 // page is built up modularly (M1, M2, M3…), each an independent
 // section/component — this file only ever holds M4's data.
+// BrandDecision.astro is now generic (reused by every hub page), so its
+// interface lives in the component file and is imported back here.
 //
 // Deliberately not a brand-vs-brand comparison: the project has no verified
 // per-brand technical specs or expert commentary, so a feature-comparison
@@ -10,26 +12,8 @@
 // the same CTA content already used elsewhere on the site (tel/WhatsApp),
 // not a new claim.
 
-export interface DecisionScenario {
-  icon: any;
-  title: string;
-  description: string;
-}
-
-export interface BrandDecisionContent {
-  eyebrow: string;
-  heading: string;
-  intro: string;
-  scenarios: DecisionScenario[];
-  panel: {
-    title: string;
-    description: string;
-    ctaPrimary: { label: string; href: string };
-    ctaSecondary: { label: string; href: string };
-  };
-}
-
 import { Activity, Smartphone, Zap, EyeOff, Wallet, Compass } from "lucide-astro";
+import type { BrandDecisionContent } from "../../components/brands/BrandDecision/BrandDecision.astro";
 
 export const brandDecision: BrandDecisionContent = {
   eyebrow: "Karar Adımı",

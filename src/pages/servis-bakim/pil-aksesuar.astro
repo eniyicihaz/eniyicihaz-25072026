@@ -1,0 +1,71 @@
+---
+// Pil & Aksesuar — /servis-bakim/pil-aksesuar. Fourth page of the
+// "Servis & Bakım" series (see header.data.ts's servicesMega third
+// column), following Teknik Servis, Periyodik Bakım and Cihaz
+// Temizliği. Cihaz Temizliği's own technology.ts explicitly
+// cross-references this page — this page delivers on that promise.
+//
+// This is a catalog/info page about the actual products (battery
+// types, chargers, storage/cleaning accessories) rather than an
+// appointment-based service; evolution.ts is repurposed as a
+// selection guide, same flexible reuse technique as Cihaz Temizliği's
+// own daily-routine framing.
+//
+// accentColor: sarı-600 / yellow-600 (#ca8a04) — fourth color in the
+// fresh accent rotation opened for this series; see hero.ts for the
+// full rationale.
+//
+// 14-section flow, in order: Hero -> Nelerdir? -> Kimler İçin
+// Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Seçim
+// Rehberi -> Hangi Seçenekler Sunulur -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Çinko-Hava vs Lityum-İyon -> Uzman Yorumu -> SSS ->
+// Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { pilAksesuarHero } from "../../data/pil-aksesuar/hero";
+import { pilAksesuarIntro } from "../../data/pil-aksesuar/intro";
+import { pilAksesuarIdealUser } from "../../data/pil-aksesuar/ideal-user";
+import { pilAksesuarAdvantages } from "../../data/pil-aksesuar/advantages";
+import { pilAksesuarConsiderations } from "../../data/pil-aksesuar/considerations";
+import { pilAksesuarEvolution } from "../../data/pil-aksesuar/evolution";
+import { pilAksesuarUseCases } from "../../data/pil-aksesuar/use-cases";
+import { pilAksesuarTechnology } from "../../data/pil-aksesuar/technology";
+import { pilAksesuarRecommendedBrands } from "../../data/pil-aksesuar/recommended-brands";
+import { pilAksesuarComparison } from "../../data/pil-aksesuar/comparison";
+import { pilAksesuarExpertOpinion } from "../../data/pil-aksesuar/expert-opinion";
+import { pilAksesuarFaq } from "../../data/pil-aksesuar/faq";
+import { pilAksesuarRelatedContent } from "../../data/pil-aksesuar/related-content";
+import { pilAksesuarFinalCta } from "../../data/pil-aksesuar/final-cta";
+---
+
+<MainLayout
+  title="Pil & Aksesuar | İşitme Cihazı Pil ve Aksesuar Seçenekleri | EniyiCihaz"
+  description="İşitme cihazınız için pil ve aksesuar seçenekleri nelerdir? Çinko-hava pil, şarjlı lityum-iyon sistem, saklama kutusu ve yedek parça seçenekleri hakkında bilgi edinin."
+>
+  <BrandPageHero data={pilAksesuarHero} />
+  <BrandPageIntro data={pilAksesuarIntro} />
+  <BrandPageIdealUser data={pilAksesuarIdealUser} />
+  <BrandPageAdvantages data={pilAksesuarAdvantages} />
+  <BrandPageIdealUser data={pilAksesuarConsiderations} />
+  <BrandPageTechEvolution data={pilAksesuarEvolution} />
+  <BrandPageTechnology data={pilAksesuarUseCases} />
+  <BrandPageEcosystem data={pilAksesuarTechnology} />
+  <BrandPageRelatedContent data={pilAksesuarRecommendedBrands} />
+  <KulakArkasiComparison data={pilAksesuarComparison} />
+  <BrandPageExpertOpinion data={pilAksesuarExpertOpinion} />
+  <BrandPageFaq data={pilAksesuarFaq} />
+  <BrandPageFinalCta data={pilAksesuarFinalCta} />
+  <BrandPageRelatedContent data={pilAksesuarRelatedContent} />
+</MainLayout>

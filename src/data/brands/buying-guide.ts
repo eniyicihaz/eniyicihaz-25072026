@@ -1,6 +1,8 @@
 // M5 (Buying Guide) content for the "Tüm Markalar" (/markalar) page. This
 // page is built up modularly (M1...M5…), each an independent
 // section/component — this file only ever holds M5's data.
+// BrandBuyingGuide.astro is now generic (reused by every hub page), so
+// its interface lives in the component file and is imported back here.
 //
 // Deliberately brand-agnostic and axis-shifted from M2/M3/M4: those all
 // reasoned about brands (introduce → differentiate → match to the user).
@@ -8,18 +10,7 @@
 // non-controversial hearing-aid buying criteria, not tied to any
 // manufacturer, so there's nothing here to fabricate or verify per-brand.
 
-export interface BuyingGuideCriterion {
-  title: string;
-  description: string;
-}
-
-export interface BrandBuyingGuideContent {
-  eyebrow: string;
-  heading: string;
-  intro: string;
-  criteria: BuyingGuideCriterion[];
-  closing: string;
-}
+import type { BrandBuyingGuideContent } from "../../components/brands/BrandBuyingGuide/BrandBuyingGuide.astro";
 
 export const brandBuyingGuide: BrandBuyingGuideContent = {
   eyebrow: "Karar Öncesi",

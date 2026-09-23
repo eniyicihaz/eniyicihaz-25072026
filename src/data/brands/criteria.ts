@@ -1,6 +1,8 @@
 // M3 (Brand Criteria) content for the "Tüm Markalar" (/markalar) page. This
 // page is built up modularly (M1, M2, M3…), each an independent
 // section/component — this file only ever holds M3's data.
+// BrandCriteria.astro is now generic (reused by every hub page), so its
+// interface lives in the component file and is imported back here.
 //
 // Deliberately brand-agnostic: these are general decision criteria (what
 // each category means and why it matters), not brand-vs-brand comparisons.
@@ -10,22 +12,7 @@
 // needs without inventing facts about real medical-device manufacturers.
 
 import { AudioWaveform, BrainCircuit, Bluetooth, Palette, BatteryCharging, Users } from "lucide-astro";
-
-export interface BrandCriterion {
-  // A lucide-astro icon component reference (same convention as
-  // CtaButton's iconLeft/iconRight props).
-  icon: any;
-  title: string;
-  description: string;
-}
-
-export interface BrandCriteriaContent {
-  eyebrow: string;
-  heading: string;
-  intro: string;
-  criteria: BrandCriterion[];
-  closing: string;
-}
+import type { BrandCriteriaContent } from "../../components/brands/BrandCriteria/BrandCriteria.astro";
 
 export const brandCriteria: BrandCriteriaContent = {
   eyebrow: "Seçim Rehberi",

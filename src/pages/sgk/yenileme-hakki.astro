@@ -1,0 +1,64 @@
+---
+// Yenileme Hakkı — /sgk/yenileme-hakki. Fifth and final page of the
+// "SGK & Haklar" series (see header.data.ts's knowledgeMega third
+// column), following /sgk/katki-payi, /sgk/rapor-sureci,
+// /sgk/gerekli-belgeler and /sgk/cocuklarda-sgk.
+//
+// accentColor: turkuaz / teal-600 (#0d9488) — fifth color in this
+// column's own accent rotation; see hero.ts for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Önemlidir?
+// -> Hakkın Faydaları -> Dikkat Edilmesi Gerekenler -> Sürecin
+// Adımları -> Yenileme Nedenleri -> Yenileme Sisteminin Bileşenleri ->
+// Markalara Göre İnceleyin -> Standart vs Erken Yenileme
+// Karşılaştırması -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili
+// İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { yenilemeHakkiHero } from "../../data/yenileme-hakki/hero";
+import { yenilemeHakkiIntro } from "../../data/yenileme-hakki/intro";
+import { yenilemeHakkiIdealUser } from "../../data/yenileme-hakki/ideal-user";
+import { yenilemeHakkiAdvantages } from "../../data/yenileme-hakki/advantages";
+import { yenilemeHakkiConsiderations } from "../../data/yenileme-hakki/considerations";
+import { yenilemeHakkiEvolution } from "../../data/yenileme-hakki/evolution";
+import { yenilemeHakkiUseCases } from "../../data/yenileme-hakki/use-cases";
+import { yenilemeHakkiTechnology } from "../../data/yenileme-hakki/technology";
+import { yenilemeHakkiRecommendedBrands } from "../../data/yenileme-hakki/recommended-brands";
+import { yenilemeHakkiComparison } from "../../data/yenileme-hakki/comparison";
+import { yenilemeHakkiExpertOpinion } from "../../data/yenileme-hakki/expert-opinion";
+import { yenilemeHakkiFaq } from "../../data/yenileme-hakki/faq";
+import { yenilemeHakkiRelatedContent } from "../../data/yenileme-hakki/related-content";
+import { yenilemeHakkiFinalCta } from "../../data/yenileme-hakki/final-cta";
+---
+
+<MainLayout
+  title="Yenileme Hakkı | SGK İşitme Cihazı Yenileme Süreci | EniyiCihaz"
+  description="SGK işitme cihazı yenileme hakkı nasıl işler? Standart ve erken yenileme arasındaki farkları, gerekli belgeleri ve süreci öğrenin."
+>
+  <BrandPageHero data={yenilemeHakkiHero} />
+  <BrandPageIntro data={yenilemeHakkiIntro} />
+  <BrandPageIdealUser data={yenilemeHakkiIdealUser} />
+  <BrandPageAdvantages data={yenilemeHakkiAdvantages} />
+  <BrandPageIdealUser data={yenilemeHakkiConsiderations} />
+  <BrandPageTechEvolution data={yenilemeHakkiEvolution} />
+  <BrandPageTechnology data={yenilemeHakkiUseCases} />
+  <BrandPageEcosystem data={yenilemeHakkiTechnology} />
+  <BrandPageRelatedContent data={yenilemeHakkiRecommendedBrands} />
+  <KulakArkasiComparison data={yenilemeHakkiComparison} />
+  <BrandPageExpertOpinion data={yenilemeHakkiExpertOpinion} />
+  <BrandPageFaq data={yenilemeHakkiFaq} />
+  <BrandPageFinalCta data={yenilemeHakkiFinalCta} />
+  <BrandPageRelatedContent data={yenilemeHakkiRelatedContent} />
+</MainLayout>

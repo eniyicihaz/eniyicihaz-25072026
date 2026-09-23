@@ -1,0 +1,57 @@
+---
+// Audio Service brand page (/markalar/audio-service). Built on the
+// shared Brand Component Architecture (see src/components/brand-page/*)
+// — no new components, no new design language; all 14 sections reuse the
+// exact same components every other brand page on this site uses, fed
+// by this page's own src/data/audio-service/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { audioServiceHero } from "../../data/audio-service/hero";
+import { audioServiceOverview } from "../../data/audio-service/overview";
+import { audioServiceIntro } from "../../data/audio-service/intro";
+import { audioServiceTechnology } from "../../data/audio-service/technology";
+import { audioServiceEcosystem } from "../../data/audio-service/ecosystem";
+import { audioServicePlatform } from "../../data/audio-service/platform";
+import { audioServiceModels } from "../../data/audio-service/models";
+import { audioServiceComparison } from "../../data/audio-service/comparison";
+import { audioServiceIdealUser } from "../../data/audio-service/ideal-user";
+import { audioServiceAdvantages } from "../../data/audio-service/advantages";
+import { audioServiceExpertOpinion } from "../../data/audio-service/expert-opinion";
+import { audioServiceFaq } from "../../data/audio-service/faq";
+import { audioServiceRelatedContent } from "../../data/audio-service/related-content";
+import { audioServiceFinalCta } from "../../data/audio-service/final-cta";
+---
+
+<MainLayout
+  title="Audio Service İşitme Cihazları | EniyiCihaz"
+  description="Audio Service'in kulak içi (ITE) uzmanlığını, Mood, Quix ve Stiline model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={audioServiceHero} />
+  <BrandPageOverview data={audioServiceOverview} />
+  <BrandPageIntro data={audioServiceIntro} />
+  <BrandPageTechnology data={audioServiceTechnology} />
+  <BrandPageEcosystem data={audioServiceEcosystem} />
+  <BrandPageTechEvolution data={audioServicePlatform} />
+  <BrandPageModels data={audioServiceModels} />
+  <BrandPageComparison data={audioServiceComparison} />
+  <BrandPageIdealUser data={audioServiceIdealUser} />
+  <BrandPageAdvantages data={audioServiceAdvantages} />
+  <BrandPageExpertOpinion data={audioServiceExpertOpinion} />
+  <BrandPageFaq data={audioServiceFaq} />
+  <BrandPageRelatedContent data={audioServiceRelatedContent} />
+  <BrandPageFinalCta data={audioServiceFinalCta} />
+</MainLayout>

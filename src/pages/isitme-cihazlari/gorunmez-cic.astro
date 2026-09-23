@@ -1,0 +1,72 @@
+---
+// Görünmez (CIC) İşitme Cihazı — /isitme-cihazlari/gorunmez-cic. Sixth
+// page of the "İşitme Cihazı Çeşitleri" product-page series (see
+// header.data.ts's devicesMega first column), built directly on the
+// Kulak Arkası (BTE) / Kulak İçi (ITE) / Şarj Edilebilir / Bluetooth
+// Özellikli / Çocuklara Özel master templates — same shared, data-driven
+// Brand Component Architecture, same KulakArkasiComparison component
+// (already generic, reused as-is), same accent-scoping pattern with its
+// own deliberately muted grafit/slate (#475569) category accent, chosen
+// to echo the page's own subject: discretion.
+//
+// 14-section flow, in order: Hero -> Nedir? + Farkı Nedir? -> Kimler İçin
+// Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Cihazlandırma
+// Süreci -> Uygunluk Kriterleri -> Teknolojiler -> Önerilen Marka ve
+// Modeller -> Görünmez vs Görünür -> Uzman Yorumu -> SSS -> Premium CTA
+// -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for "Uygunluk
+// Kriterleri" — the practical candidacy factors specific to CIC/IIC that
+// the ITE master page's device-types.ts does not cover — and BTE's
+// hearing-loss-level slot becomes the genuine four-step custom-shell
+// fabrication process, since bu sayfa bir işitme kaybı derecesini değil
+// kişiye özel üretim sürecini konu aldığından süreç aşamaları daha
+// anlamlı; see fitting-process.ts and candidacy.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { gorunmezCicHero } from "../../data/gorunmez-cic/hero";
+import { gorunmezCicIntro } from "../../data/gorunmez-cic/intro";
+import { gorunmezCicIdealUser } from "../../data/gorunmez-cic/ideal-user";
+import { gorunmezCicAdvantages } from "../../data/gorunmez-cic/advantages";
+import { gorunmezCicConsiderations } from "../../data/gorunmez-cic/considerations";
+import { gorunmezCicFittingProcess } from "../../data/gorunmez-cic/fitting-process";
+import { gorunmezCicCandidacy } from "../../data/gorunmez-cic/candidacy";
+import { gorunmezCicTechnology } from "../../data/gorunmez-cic/technology";
+import { gorunmezCicRecommendedBrands } from "../../data/gorunmez-cic/recommended-brands";
+import { gorunmezCicComparison } from "../../data/gorunmez-cic/comparison";
+import { gorunmezCicExpertOpinion } from "../../data/gorunmez-cic/expert-opinion";
+import { gorunmezCicFaq } from "../../data/gorunmez-cic/faq";
+import { gorunmezCicRelatedContent } from "../../data/gorunmez-cic/related-content";
+import { gorunmezCicFinalCta } from "../../data/gorunmez-cic/final-cta";
+---
+
+<MainLayout
+  title="Görünmez (CIC) İşitme Cihazı Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Görünmez (CIC/IIC) işitme cihazı nedir, kimler için uygundur? Uygunluk kriterleri, cihazlandırma süreci ve görünür (BTE/ITE) cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={gorunmezCicHero} />
+  <BrandPageIntro data={gorunmezCicIntro} />
+  <BrandPageIdealUser data={gorunmezCicIdealUser} />
+  <BrandPageAdvantages data={gorunmezCicAdvantages} />
+  <BrandPageIdealUser data={gorunmezCicConsiderations} />
+  <BrandPageTechEvolution data={gorunmezCicFittingProcess} />
+  <BrandPageTechnology data={gorunmezCicCandidacy} />
+  <BrandPageEcosystem data={gorunmezCicTechnology} />
+  <BrandPageRelatedContent data={gorunmezCicRecommendedBrands} />
+  <KulakArkasiComparison data={gorunmezCicComparison} />
+  <BrandPageExpertOpinion data={gorunmezCicExpertOpinion} />
+  <BrandPageFaq data={gorunmezCicFaq} />
+  <BrandPageFinalCta data={gorunmezCicFinalCta} />
+  <BrandPageRelatedContent data={gorunmezCicRelatedContent} />
+</MainLayout>

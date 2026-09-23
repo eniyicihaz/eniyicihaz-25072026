@@ -8,13 +8,18 @@
 interface Props {
   title: string;
   description: string;
+  href?: string;
+  linkLabel?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, href, linkLabel } = Astro.props;
 ---
 
 <div class="trust-fact" data-rise>
   <h3 class="trust-fact__title">{title}</h3>
   <p class="trust-fact__description">{description}</p>
+  {href && linkLabel && (
+    <a class="trust-fact__link" href={href}>{linkLabel} →</a>
+  )}
 </div>
 
 <style>
@@ -39,5 +44,24 @@ const { title, description } = Astro.props;
     font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
+  }
+
+  .trust-fact__link {
+    display: inline-block;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .trust-fact__link:hover {
+    text-decoration: underline;
+  }
+
+  .trust-fact__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
   }
 </style>

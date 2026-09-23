@@ -8,6 +8,7 @@
 // source vector, which isn't available — omitted rather than guessed, so as
 // not to invent a shape not actually in the reference.
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import {
   Ear,
   Phone,
@@ -48,6 +49,7 @@ const IconSupportB = cardIcons[cardSupportB.icon];
           <span class="hero__headline-accent">{hero.headlineLine2}</span>
         </h1>
 
+        <p class="hero__context">{hero.contextSentence}</p>
         <p class="hero__subhead">{hero.subhead}</p>
 
         <div class="hero__actions">
@@ -63,6 +65,18 @@ const IconSupportB = cardIcons[cardSupportB.icon];
             variant="outline"
             iconLeft={Phone}
           />
+          {
+            /* Hand-written (not <CtaButton>) — same reasoning as
+               BrandHero/ContactHero: CtaButton's iconLeft expects a
+               lucide-astro component, and the real WhatsApp glyph isn't
+               one. Mirrors CtaButton's outline recipe exactly so it sits
+               level with the two CtaButton instances beside it. Third and
+               last Hero CTA — capped at 3 per the homepage plan. */
+          }
+          <a class="hero__whatsapp-btn" href={hero.ctaWhatsapp.href}>
+            <WhatsAppIcon />
+            <span>{hero.ctaWhatsapp.label}</span>
+          </a>
         </div>
       </div>
 
@@ -273,12 +287,24 @@ const IconSupportB = cardIcons[cardSupportB.icon];
     color: var(--color-primary-hover);
   }
 
+  /* Entity/location sentence — the AI-quotable "kim/ne/nerede" answer,
+     visually a touch heavier than the emotional subhead below it so it
+     reads as the page's canonical definition, not just more body copy. */
+  .hero__context {
+    margin: var(--space-5) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
   .hero__subhead {
     /* Rhythm is now a deliberate 16 / 24 / 32 step (not the previous
        cramped 16/20/24) — each gap reads as a clear decision rather than
        incidental spacing, and the CTA group gets the most air of all since
        it's the one place the eye should act. */
-    margin: var(--space-6) 0 0;
+    margin: var(--space-3) 0 0;
     max-width: 32rem;
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
@@ -290,6 +316,37 @@ const IconSupportB = cardIcons[cardSupportB.icon];
     flex-wrap: wrap;
     gap: var(--space-4);
     margin-top: var(--space-8);
+  }
+
+  /* Mirrors CtaButton's outline recipe so the hand-written WhatsApp button
+     sits visually level with the two real CtaButton instances beside it. */
+  .hero__whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 56px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+  }
+
+  .hero__whatsapp-btn:hover {
+    background: var(--color-surface);
+    border-color: var(--color-border-hover);
+  }
+
+  .hero__whatsapp-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
   }
 
   /* --- Right column: asymmetric editorial gallery ---------------------
@@ -660,6 +717,10 @@ const IconSupportB = cardIcons[cardSupportB.icon];
     .hero__actions {
       flex-direction: column;
       align-items: stretch;
+    }
+
+    .hero__whatsapp-btn {
+      width: 100%;
     }
 
     .hero__trust {

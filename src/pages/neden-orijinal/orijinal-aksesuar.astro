@@ -1,0 +1,88 @@
+---
+// Orijinal Aksesuar — /neden-orijinal/orijinal-aksesuar. Fourth page of
+// the "Neden Orijinal" series (see header.data.ts's brandsMega second
+// column), following Güvenilir Teknoloji, Uzun Ömürlü Cihazlar and
+// Yaygın Servis Ağı. Same trust/authenticity content genre — this page's
+// own angle is the everyday consumable/fit accessories (kulak ucu,
+// cerumen filtresi, pil, şarj, streaming aksesuarları) rather than
+// structural spare parts (Uzun Ömürlü Cihazlar) or the service network
+// itself (Yaygın Servis Ağı). Built on the same master templates and
+// shared, data-driven components used throughout the session (same
+// KulakArkasiComparison component, already generic, reused as-is), with
+// every section reframed around accessory authenticity rather than
+// hearing health:
+//
+// - The "candidacy"/"symptom" slot becomes the sıkça görülen sonuçları
+//   of non-original accessory use (sound-quality loss, ear irritation,
+//   battery/charging incompatibility, physical damage, hygiene issues).
+// - "Dikkat Edilmesi Gerekenler" covers practical accessory-shopping
+//   caveats (model-specific compatibility, filter-change cadence,
+//   warranty risk) rather than a health-safety warning — no
+//   self-diagnosis disclaimer here, same as the three prior pages.
+// - The TechEvolution "stage" slot becomes a 4-step accessory-renewal
+//   process (model tespiti -> aksesuar seçimi -> yetkili temin ->
+//   düzenli değişim) instead of a severity ladder or a different
+//   process for another subject.
+// - The KulakArkasiComparison table compares original accessories
+//   against generic/third-party ones — this page's own natural
+//   comparison axis.
+//
+// accentColor: eflatun / violet-600 (#7c3aed) — fourth color in the
+// fresh accent rotation opened for this series on Güvenilir Teknoloji's
+// hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
+// Uyumsuz Aksesuarın Sıkça Görülen Sonuçları -> Avantajları -> Dikkat
+// Edilmesi Gerekenler -> Aksesuar Yenileme Adımları -> Öne Çıkan
+// Aksesuarlar -> Teknolojiler -> Markalara Göre İnceleyin -> Orijinal vs
+// Jenerik Aksesuar -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili
+// İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { orijinalAksesuarHero } from "../../data/orijinal-aksesuar/hero";
+import { orijinalAksesuarIntro } from "../../data/orijinal-aksesuar/intro";
+import { orijinalAksesuarIdealUser } from "../../data/orijinal-aksesuar/ideal-user";
+import { orijinalAksesuarAdvantages } from "../../data/orijinal-aksesuar/advantages";
+import { orijinalAksesuarConsiderations } from "../../data/orijinal-aksesuar/considerations";
+import { orijinalAksesuarEvolution } from "../../data/orijinal-aksesuar/evolution";
+import { orijinalAksesuarUseCases } from "../../data/orijinal-aksesuar/use-cases";
+import { orijinalAksesuarTechnology } from "../../data/orijinal-aksesuar/technology";
+import { orijinalAksesuarRecommendedBrands } from "../../data/orijinal-aksesuar/recommended-brands";
+import { orijinalAksesuarComparison } from "../../data/orijinal-aksesuar/comparison";
+import { orijinalAksesuarExpertOpinion } from "../../data/orijinal-aksesuar/expert-opinion";
+import { orijinalAksesuarFaq } from "../../data/orijinal-aksesuar/faq";
+import { orijinalAksesuarRelatedContent } from "../../data/orijinal-aksesuar/related-content";
+import { orijinalAksesuarFinalCta } from "../../data/orijinal-aksesuar/final-cta";
+---
+
+<MainLayout
+  title="Orijinal Aksesuar: İşitme Cihazı Kulak Ucu, Filtre ve Pil | EniyiCihaz"
+  description="Orijinal işitme cihazı aksesuarları neden önemlidir? Kulak ucu, cerumen filtresi, pil ve şarj aksesuarlarında doğru uyum ve hijyen için bilmeniz gerekenler."
+>
+  <BrandPageHero data={orijinalAksesuarHero} />
+  <BrandPageIntro data={orijinalAksesuarIntro} />
+  <BrandPageIdealUser data={orijinalAksesuarIdealUser} />
+  <BrandPageAdvantages data={orijinalAksesuarAdvantages} />
+  <BrandPageIdealUser data={orijinalAksesuarConsiderations} />
+  <BrandPageTechEvolution data={orijinalAksesuarEvolution} />
+  <BrandPageTechnology data={orijinalAksesuarUseCases} />
+  <BrandPageEcosystem data={orijinalAksesuarTechnology} />
+  <BrandPageRelatedContent data={orijinalAksesuarRecommendedBrands} />
+  <KulakArkasiComparison data={orijinalAksesuarComparison} />
+  <BrandPageExpertOpinion data={orijinalAksesuarExpertOpinion} />
+  <BrandPageFaq data={orijinalAksesuarFaq} />
+  <BrandPageFinalCta data={orijinalAksesuarFinalCta} />
+  <BrandPageRelatedContent data={orijinalAksesuarRelatedContent} />
+</MainLayout>

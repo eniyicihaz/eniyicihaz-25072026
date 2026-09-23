@@ -1,0 +1,76 @@
+---
+// İleri Derece İşitme Kaybı — /ihtiyaciniza-gore/ileri-derece-isitme-kaybi.
+// Third page of the "İhtiyacınıza Göre" product-page series (see
+// header.data.ts's devicesMega third column), built directly on the
+// Hafif / Orta Derece İşitme Kaybı master templates — same shared,
+// data-driven Brand Component Architecture, same KulakArkasiComparison
+// component (already generic, reused as-is), same accent-scoping pattern
+// with its own taş grisi/stone (#57534e) category accent, chosen for its
+// deliberately weightier, more serious tone.
+//
+// A health-classification topic, handled with the same care as the
+// sibling degree pages and the Tinnitus page: self-diagnosis is never
+// implied, and every section (Nedir?, Belirtiler, Dikkat Edilmesi
+// Gerekenler, Uzman Yorumu, FAQ) routes back to a proper audiometric test
+// (odyometri) as the only way to confirm degree and type.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Anlaşılır? ->
+// Günlük Yaşamdaki Belirtiler -> Avantajları -> Dikkat Edilmesi
+// Gerekenler -> Derecelere Göre (İleri Derecenin Yeri) -> Öne Çıkan
+// Özellikler -> Teknolojiler -> Önerilen Marka ve Modeller -> İleri vs
+// Çok İleri Derece -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili
+// İçerikler.
+// (Same repurposing as the sibling degree pages: BTE's "Kimler İçin
+// Uygun" slot becomes everyday recognizable symptoms rather than
+// candidacy, and BTE's hearing-loss-level slot becomes the genuine
+// dB-based degree ladder, this time positioning "ileri" as the current
+// stage; see evolution.ts and ideal-user.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { ileriDereceIsitmeKaybiHero } from "../../data/ileri-derece-isitme-kaybi/hero";
+import { ileriDereceIsitmeKaybiIntro } from "../../data/ileri-derece-isitme-kaybi/intro";
+import { ileriDereceIsitmeKaybiIdealUser } from "../../data/ileri-derece-isitme-kaybi/ideal-user";
+import { ileriDereceIsitmeKaybiAdvantages } from "../../data/ileri-derece-isitme-kaybi/advantages";
+import { ileriDereceIsitmeKaybiConsiderations } from "../../data/ileri-derece-isitme-kaybi/considerations";
+import { ileriDereceIsitmeKaybiEvolution } from "../../data/ileri-derece-isitme-kaybi/evolution";
+import { ileriDereceIsitmeKaybiUseCases } from "../../data/ileri-derece-isitme-kaybi/use-cases";
+import { ileriDereceIsitmeKaybiTechnology } from "../../data/ileri-derece-isitme-kaybi/technology";
+import { ileriDereceIsitmeKaybiRecommendedBrands } from "../../data/ileri-derece-isitme-kaybi/recommended-brands";
+import { ileriDereceIsitmeKaybiComparison } from "../../data/ileri-derece-isitme-kaybi/comparison";
+import { ileriDereceIsitmeKaybiExpertOpinion } from "../../data/ileri-derece-isitme-kaybi/expert-opinion";
+import { ileriDereceIsitmeKaybiFaq } from "../../data/ileri-derece-isitme-kaybi/faq";
+import { ileriDereceIsitmeKaybiRelatedContent } from "../../data/ileri-derece-isitme-kaybi/related-content";
+import { ileriDereceIsitmeKaybiFinalCta } from "../../data/ileri-derece-isitme-kaybi/final-cta";
+---
+
+<MainLayout
+  title="İleri Derece İşitme Kaybı İçin Cihaz Rehberi | Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="İleri derece işitme kaybı (56-70 dB) nedir, nasıl anlaşılır? Günlük yaşamdaki belirtileri, öne çıkan cihaz özellikleri ve çok ileri derece kayıpla karşılaştırma."
+>
+  <BrandPageHero data={ileriDereceIsitmeKaybiHero} />
+  <BrandPageIntro data={ileriDereceIsitmeKaybiIntro} />
+  <BrandPageIdealUser data={ileriDereceIsitmeKaybiIdealUser} />
+  <BrandPageAdvantages data={ileriDereceIsitmeKaybiAdvantages} />
+  <BrandPageIdealUser data={ileriDereceIsitmeKaybiConsiderations} />
+  <BrandPageTechEvolution data={ileriDereceIsitmeKaybiEvolution} />
+  <BrandPageTechnology data={ileriDereceIsitmeKaybiUseCases} />
+  <BrandPageEcosystem data={ileriDereceIsitmeKaybiTechnology} />
+  <BrandPageRelatedContent data={ileriDereceIsitmeKaybiRecommendedBrands} />
+  <KulakArkasiComparison data={ileriDereceIsitmeKaybiComparison} />
+  <BrandPageExpertOpinion data={ileriDereceIsitmeKaybiExpertOpinion} />
+  <BrandPageFaq data={ileriDereceIsitmeKaybiFaq} />
+  <BrandPageFinalCta data={ileriDereceIsitmeKaybiFinalCta} />
+  <BrandPageRelatedContent data={ileriDereceIsitmeKaybiRelatedContent} />
+</MainLayout>

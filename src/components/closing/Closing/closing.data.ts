@@ -11,6 +11,7 @@ export const closing: ClosingContent = {
     lead: "ya da bizi arayın:",
     label: "0533 773 31 99",
     href: "tel:+905337733199",
+    whatsapp: { label: "WhatsApp'tan yazın", href: "https://wa.me/905337733199" },
   },
   reassurance: "Baskı yok, sadece bir konuşma.",
 };

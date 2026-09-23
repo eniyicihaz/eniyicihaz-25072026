@@ -1,0 +1,70 @@
+---
+// Çocuklara Özel İşitme Cihazı — /isitme-cihazlari/cocuklara-ozel.
+// Fifth page of the "İşitme Cihazı Çeşitleri" product-page series (see
+// header.data.ts's devicesMega first column), built directly on the
+// Kulak Arkası (BTE) / Kulak İçi (ITE) / Şarj Edilebilir / Bluetooth
+// Özellikli master templates — same shared, data-driven Brand Component
+// Architecture, same KulakArkasiComparison component (already generic,
+// reused as-is), same accent-scoping pattern with its own gül kırmızısı
+// (#e11d48) category accent.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Farklıdır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Yaşa Göre
+// Cihaz Seçimi -> Güvenlik ve Kullanım Özellikleri -> Teknolojiler ->
+// Önerilen Marka ve Modeller -> Çocuklara Özel vs Standart Yetişkin ->
+// Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for "Güvenlik ve
+// Kullanım Özellikleri", and BTE's hearing-loss-level slot becomes a
+// genuine age-stage progression — bebeklik, okul öncesi, okul çağı,
+// ergenlik — since bu sayfa bir işitme kaybı derecesini değil bir yaş
+// grubunu konu aldığından yaşa göre ilerleme daha anlamlı; see
+// age-stages.ts and safety-features.ts.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { cocuklaraOzelHero } from "../../data/cocuklara-ozel/hero";
+import { cocuklaraOzelIntro } from "../../data/cocuklara-ozel/intro";
+import { cocuklaraOzelIdealUser } from "../../data/cocuklara-ozel/ideal-user";
+import { cocuklaraOzelAdvantages } from "../../data/cocuklara-ozel/advantages";
+import { cocuklaraOzelConsiderations } from "../../data/cocuklara-ozel/considerations";
+import { cocuklaraOzelAgeStages } from "../../data/cocuklara-ozel/age-stages";
+import { cocuklaraOzelSafetyFeatures } from "../../data/cocuklara-ozel/safety-features";
+import { cocuklaraOzelTechnology } from "../../data/cocuklara-ozel/technology";
+import { cocuklaraOzelRecommendedBrands } from "../../data/cocuklara-ozel/recommended-brands";
+import { cocuklaraOzelComparison } from "../../data/cocuklara-ozel/comparison";
+import { cocuklaraOzelExpertOpinion } from "../../data/cocuklara-ozel/expert-opinion";
+import { cocuklaraOzelFaq } from "../../data/cocuklara-ozel/faq";
+import { cocuklaraOzelRelatedContent } from "../../data/cocuklara-ozel/related-content";
+import { cocuklaraOzelFinalCta } from "../../data/cocuklara-ozel/final-cta";
+---
+
+<MainLayout
+  title="Çocuklara Özel İşitme Cihazı Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Çocuklara özel işitme cihazı nedir, yetişkin cihazlarından farkı nedir? Kilitli pil kapağı, dayanıklılık, Roger/FM uyumu ve yaşa göre cihaz seçimi hakkında merak edilenler."
+>
+  <BrandPageHero data={cocuklaraOzelHero} />
+  <BrandPageIntro data={cocuklaraOzelIntro} />
+  <BrandPageIdealUser data={cocuklaraOzelIdealUser} />
+  <BrandPageAdvantages data={cocuklaraOzelAdvantages} />
+  <BrandPageIdealUser data={cocuklaraOzelConsiderations} />
+  <BrandPageTechEvolution data={cocuklaraOzelAgeStages} />
+  <BrandPageTechnology data={cocuklaraOzelSafetyFeatures} />
+  <BrandPageEcosystem data={cocuklaraOzelTechnology} />
+  <BrandPageRelatedContent data={cocuklaraOzelRecommendedBrands} />
+  <KulakArkasiComparison data={cocuklaraOzelComparison} />
+  <BrandPageExpertOpinion data={cocuklaraOzelExpertOpinion} />
+  <BrandPageFaq data={cocuklaraOzelFaq} />
+  <BrandPageFinalCta data={cocuklaraOzelFinalCta} />
+  <BrandPageRelatedContent data={cocuklaraOzelRelatedContent} />
+</MainLayout>

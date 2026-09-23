@@ -1,0 +1,474 @@
+---
+// SgkInsight — the SGK pillar page's interpretation section, right after
+// the payment-amounts table. Deliberately does not repeat those figures;
+// it explains what drives them (editorial two-column layout, not a wall
+// of text) plus a highlighted expert-advice quote. Own data namespace
+// (../../../data/sgk/insight), independent of hero/process/knowledge/payments.
+import { Users, Building2, Sliders, RefreshCw, UserCheck, Quote, ArrowRight } from "lucide-astro";
+import { sgkInsight } from "../../../data/sgk/insight";
+
+const pointIcons = [Users, Building2, Sliders, RefreshCw];
+const cardIcons = [Users, Building2, RefreshCw, UserCheck];
+---
+
+<section class="sgk-insight" aria-labelledby="sgk-insight-title">
+  <div class="sgk-insight__inner">
+    <div class="sgk-insight__head" data-rise>
+      <p class="sgk-insight__badge">{sgkInsight.badge}</p>
+      <h2 class="sgk-insight__heading" id="sgk-insight-title">{sgkInsight.heading}</h2>
+      <p class="sgk-insight__intro">{sgkInsight.intro}</p>
+    </div>
+
+    <div class="sgk-insight__body">
+      <div class="sgk-insight__points" data-rise>
+        {
+          sgkInsight.points.map((point, i) => {
+            const Icon = pointIcons[i % pointIcons.length];
+            return (
+              <div class="sgk-insight__point">
+                <span class="sgk-insight__point-icon" aria-hidden="true">
+                  <Icon size={18} stroke-width={1.75} />
+                </span>
+                <div class="sgk-insight__point-body">
+                  <p class="sgk-insight__point-title">{point.title}</p>
+                  <p class="sgk-insight__point-text">{point.text}</p>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+
+      <div class="sgk-insight__cards" data-rise>
+        {
+          sgkInsight.cards.map((card, i) => {
+            const Icon = cardIcons[i % cardIcons.length];
+            return (
+              <div class="sgk-insight__card">
+                <span class="sgk-insight__card-icon" aria-hidden="true">
+                  <Icon size={18} stroke-width={1.75} />
+                </span>
+                <p class="sgk-insight__card-title">{card.title}</p>
+                <p class="sgk-insight__card-text">{card.text}</p>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div class="sgk-insight__quote" data-rise>
+      <span class="sgk-insight__quote-icon" aria-hidden="true">
+        <Quote size={26} stroke-width={1.5} />
+      </span>
+      <div class="sgk-insight__quote-body">
+        <p class="sgk-insight__quote-label">{sgkInsight.quote.label}</p>
+        <p class="sgk-insight__quote-text">{sgkInsight.quote.text}</p>
+      </div>
+    </div>
+
+    <div class="sgk-insight__related" data-rise>
+      <span class="sgk-insight__related-label">{sgkInsight.relatedLabel}</span>
+      <div class="sgk-insight__related-links">
+        {
+          sgkInsight.relatedLinks.map((link) => (
+            <a class="sgk-insight__related-link" href={link.href}>
+              <span>{link.label}</span>
+              <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-insight");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as the rest
+    // of the SGK page: default-visible CSS, JS-only "armed" opt-in, three
+    // independent safety nets so content can never get stuck hidden.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-insight {
+    position: relative;
+    background: var(--color-white);
+    padding-block: var(--space-24);
+    --si-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-insight__inner {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .sgk-insight__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sgk-insight__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-insight__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-insight__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Two-column editorial body ------------------------------------------ */
+
+  .sgk-insight__body {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-12);
+    margin-top: var(--space-16);
+    align-items: start;
+  }
+
+  .sgk-insight__points {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .sgk-insight__point {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .sgk-insight__point-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+  }
+
+  .sgk-insight__point-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sgk-insight__point-title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-insight__point-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-insight__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+    align-content: start;
+  }
+
+  .sgk-insight__card {
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: transform 300ms var(--si-ease), border-color 300ms var(--si-ease),
+      box-shadow 300ms var(--si-ease);
+  }
+
+  .sgk-insight__card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(37 99 235 / 0.28);
+    box-shadow: var(--shadow-md);
+  }
+
+  .sgk-insight__card-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+  }
+
+  .sgk-insight__card-title {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+  }
+
+  .sgk-insight__card-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Expert quote --------------------------------------------------------- */
+
+  .sgk-insight__quote {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-5);
+    max-width: 860px;
+    margin: var(--space-14) auto 0;
+    padding: var(--space-8);
+    background: rgb(37 99 235 / 0.05);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    border-left: 3px solid var(--color-primary);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sgk-insight__quote-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid rgb(37 99 235 / 0.2);
+    color: var(--color-primary);
+  }
+
+  .sgk-insight__quote-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sgk-insight__quote-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .sgk-insight__quote-text {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  /* --- Related / internal linking ------------------------------------------ */
+
+  .sgk-insight__related {
+    max-width: 860px;
+    margin: var(--space-10) auto 0;
+    text-align: center;
+  }
+
+  .sgk-insight__related-label {
+    display: block;
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .sgk-insight__related-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .sgk-insight__related-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 220ms var(--si-ease), color 220ms var(--si-ease),
+      transform 220ms var(--si-ease);
+  }
+
+  .sgk-insight__related-link svg {
+    color: var(--color-primary);
+    transition: transform 220ms var(--si-ease);
+  }
+
+  .sgk-insight__related-link:hover {
+    border-color: rgb(37 99 235 / 0.35);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .sgk-insight__related-link:hover svg {
+    transform: translateX(2px);
+  }
+
+  .sgk-insight__related-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .sgk-insight[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--si-ease), transform 600ms var(--si-ease);
+  }
+
+  .sgk-insight[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-insight[data-anim="armed"] .sgk-insight__head { transition-delay: 0ms; }
+  .sgk-insight[data-anim="armed"] .sgk-insight__points { transition-delay: 80ms; }
+  .sgk-insight[data-anim="armed"] .sgk-insight__cards { transition-delay: 140ms; }
+  .sgk-insight[data-anim="armed"] .sgk-insight__quote { transition-delay: 200ms; }
+  .sgk-insight[data-anim="armed"] .sgk-insight__related { transition-delay: 260ms; }
+
+  /* --- Responsive ------------------------------------------------------------ */
+
+  @media (max-width: 1023px) {
+    .sgk-insight {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-insight__body {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+      margin-top: var(--space-12);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-insight__cards {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sgk-insight__quote {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+
+    .sgk-insight__quote-text {
+      font-size: var(--font-size-lg);
+    }
+
+    .sgk-insight__related-links {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sgk-insight__related-link {
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-insight[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sgk-insight__card,
+    .sgk-insight__related-link,
+    .sgk-insight__related-link svg {
+      transition: none;
+    }
+  }
+</style>

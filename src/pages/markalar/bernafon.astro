@@ -1,0 +1,58 @@
+---
+// Bernafon brand page (/markalar/bernafon). Seventh brand page built on
+// the shared Brand Component Architecture (see
+// src/components/brand-page/*) — no new components, no new design
+// language; all 14 sections reuse the exact same components Oticon,
+// Phonak, Signia, Widex, ReSound and NuEar use, fed by this page's own
+// src/data/bernafon/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { bernafonHero } from "../../data/bernafon/hero";
+import { bernafonOverview } from "../../data/bernafon/overview";
+import { bernafonIntro } from "../../data/bernafon/intro";
+import { bernafonTechnology } from "../../data/bernafon/technology";
+import { bernafonEcosystem } from "../../data/bernafon/ecosystem";
+import { bernafonPlatform } from "../../data/bernafon/platform";
+import { bernafonModels } from "../../data/bernafon/models";
+import { bernafonComparison } from "../../data/bernafon/comparison";
+import { bernafonIdealUser } from "../../data/bernafon/ideal-user";
+import { bernafonAdvantages } from "../../data/bernafon/advantages";
+import { bernafonExpertOpinion } from "../../data/bernafon/expert-opinion";
+import { bernafonFaq } from "../../data/bernafon/faq";
+import { bernafonRelatedContent } from "../../data/bernafon/related-content";
+import { bernafonFinalCta } from "../../data/bernafon/final-cta";
+---
+
+<MainLayout
+  title="Bernafon İşitme Cihazları | EniyiCihaz"
+  description="Bernafon'un Smart Sensor hareket algılama teknolojisi, Machine Learning 2.0 ve Encanta, Juna gibi model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={bernafonHero} />
+  <BrandPageOverview data={bernafonOverview} />
+  <BrandPageIntro data={bernafonIntro} />
+  <BrandPageTechnology data={bernafonTechnology} />
+  <BrandPageEcosystem data={bernafonEcosystem} />
+  <BrandPageTechEvolution data={bernafonPlatform} />
+  <BrandPageModels data={bernafonModels} />
+  <BrandPageComparison data={bernafonComparison} />
+  <BrandPageIdealUser data={bernafonIdealUser} />
+  <BrandPageAdvantages data={bernafonAdvantages} />
+  <BrandPageExpertOpinion data={bernafonExpertOpinion} />
+  <BrandPageFaq data={bernafonFaq} />
+  <BrandPageRelatedContent data={bernafonRelatedContent} />
+  <BrandPageFinalCta data={bernafonFinalCta} />
+</MainLayout>

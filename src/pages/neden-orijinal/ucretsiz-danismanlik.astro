@@ -1,0 +1,88 @@
+---
+// Ücretsiz Danışmanlık — /neden-orijinal/ucretsiz-danismanlik. Fifth
+// page of the "Neden Orijinal" series (see header.data.ts's brandsMega
+// second column), following Güvenilir Teknoloji, Uzun Ömürlü Cihazlar,
+// Yaygın Servis Ağı and Orijinal Aksesuar. Same trust/authenticity
+// content genre — this page's own angle is the free expert-guidance
+// process itself (hearing test, needs analysis, demo trial, SGK
+// guidance) rather than the product or its support infrastructure.
+// Built on the same master templates and shared, data-driven components
+// used throughout the session (same KulakArkasiComparison component,
+// already generic, reused as-is), with every section reframed around
+// the consultancy process rather than hearing health:
+//
+// - The "candidacy"/"symptom" slot becomes the sıkça görülen sonuçları
+//   of deciding without guidance (wrong device fit, budget mismatch,
+//   missed SGK support, comfort issues, buyer's remorse).
+// - "Dikkat Edilmesi Gerekenler" covers practical process caveats (no
+//   purchase obligation, appointment needed, extra SGK documents) rather
+//   than a health-safety warning — no self-diagnosis disclaimer here,
+//   same as the four prior pages (though the process itself still opens
+//   with a proper audiometric evaluation, per intro.ts).
+// - The TechEvolution "stage" slot becomes a 4-step consultancy process
+//   (ücretsiz işitme testi -> ihtiyaç analizi -> cihaz önerisi/demo ->
+//   SGK ve fiyat bilgilendirmesi) instead of a severity ladder or a
+//   different process for another subject.
+// - The KulakArkasiComparison table compares an informed,
+//   consultancy-backed decision against an unadvised one — this page's
+//   own natural comparison axis.
+//
+// accentColor: deniz mavisi-yeşili / teal-600 (#0d9488) — fifth color in
+// the fresh accent rotation opened for this series on Güvenilir
+// Teknoloji's hero.ts; see that file for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl İşler? ->
+// Danışmanlık Almadan Karar Vermenin Riskleri -> Avantajları -> Dikkat
+// Edilmesi Gerekenler -> Danışmanlık Süreci -> Danışmanlık Kapsamı ->
+// Teknolojiler -> Markalara Göre İnceleyin -> Danışmanlıklı vs
+// Danışmanlıksız Karar -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili
+// İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { ucretsizDanismanlikHero } from "../../data/ucretsiz-danismanlik/hero";
+import { ucretsizDanismanlikIntro } from "../../data/ucretsiz-danismanlik/intro";
+import { ucretsizDanismanlikIdealUser } from "../../data/ucretsiz-danismanlik/ideal-user";
+import { ucretsizDanismanlikAdvantages } from "../../data/ucretsiz-danismanlik/advantages";
+import { ucretsizDanismanlikConsiderations } from "../../data/ucretsiz-danismanlik/considerations";
+import { ucretsizDanismanlikEvolution } from "../../data/ucretsiz-danismanlik/evolution";
+import { ucretsizDanismanlikUseCases } from "../../data/ucretsiz-danismanlik/use-cases";
+import { ucretsizDanismanlikTechnology } from "../../data/ucretsiz-danismanlik/technology";
+import { ucretsizDanismanlikRecommendedBrands } from "../../data/ucretsiz-danismanlik/recommended-brands";
+import { ucretsizDanismanlikComparison } from "../../data/ucretsiz-danismanlik/comparison";
+import { ucretsizDanismanlikExpertOpinion } from "../../data/ucretsiz-danismanlik/expert-opinion";
+import { ucretsizDanismanlikFaq } from "../../data/ucretsiz-danismanlik/faq";
+import { ucretsizDanismanlikRelatedContent } from "../../data/ucretsiz-danismanlik/related-content";
+import { ucretsizDanismanlikFinalCta } from "../../data/ucretsiz-danismanlik/final-cta";
+---
+
+<MainLayout
+  title="Ücretsiz Danışmanlık: İşitme Cihazı Seçiminde Uzman Desteği | EniyiCihaz"
+  description="Ücretsiz işitme testi ve uzman danışmanlığımızla size en uygun işitme cihazını satış baskısı olmadan birlikte belirleyin. SGK bilgilendirmesi ve demo cihaz deneme imkânı."
+>
+  <BrandPageHero data={ucretsizDanismanlikHero} />
+  <BrandPageIntro data={ucretsizDanismanlikIntro} />
+  <BrandPageIdealUser data={ucretsizDanismanlikIdealUser} />
+  <BrandPageAdvantages data={ucretsizDanismanlikAdvantages} />
+  <BrandPageIdealUser data={ucretsizDanismanlikConsiderations} />
+  <BrandPageTechEvolution data={ucretsizDanismanlikEvolution} />
+  <BrandPageTechnology data={ucretsizDanismanlikUseCases} />
+  <BrandPageEcosystem data={ucretsizDanismanlikTechnology} />
+  <BrandPageRelatedContent data={ucretsizDanismanlikRecommendedBrands} />
+  <KulakArkasiComparison data={ucretsizDanismanlikComparison} />
+  <BrandPageExpertOpinion data={ucretsizDanismanlikExpertOpinion} />
+  <BrandPageFaq data={ucretsizDanismanlikFaq} />
+  <BrandPageFinalCta data={ucretsizDanismanlikFinalCta} />
+  <BrandPageRelatedContent data={ucretsizDanismanlikRelatedContent} />
+</MainLayout>

@@ -1,0 +1,71 @@
+---
+// Onarım Takibi — /servis-bakim/onarim-takibi. Sixth and final page of
+// the "Servis & Bakım" series (see header.data.ts's servicesMega third
+// column), following Teknik Servis, Periyodik Bakım, Cihaz Temizliği,
+// Pil & Aksesuar and Garanti İşlemleri. Every item in this column is
+// now a real route.
+//
+// This page covers the STATUS TRACKING experience itself — once a
+// device has already been sent for repair (Teknik Servis) or a
+// warranty claim (Garanti İşlemleri), how the customer follows its
+// progress stage by stage. evolution.ts is repurposed as literal
+// package-tracker-style stages rather than a clinic-visit sequence.
+//
+// accentColor: eflatun / fuchsia-600 (#c026d3) — sixth and final color
+// in the fresh accent rotation opened for this series; see hero.ts for
+// the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Kapsar? -> Kimler
+// İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Takip
+// Aşamaları -> Neler Sunulur -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Yerinde vs Üretici Servisi Takibi -> Uzman Yorumu -> SSS
+// -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { onarimTakibiHero } from "../../data/onarim-takibi/hero";
+import { onarimTakibiIntro } from "../../data/onarim-takibi/intro";
+import { onarimTakibiIdealUser } from "../../data/onarim-takibi/ideal-user";
+import { onarimTakibiAdvantages } from "../../data/onarim-takibi/advantages";
+import { onarimTakibiConsiderations } from "../../data/onarim-takibi/considerations";
+import { onarimTakibiEvolution } from "../../data/onarim-takibi/evolution";
+import { onarimTakibiUseCases } from "../../data/onarim-takibi/use-cases";
+import { onarimTakibiTechnology } from "../../data/onarim-takibi/technology";
+import { onarimTakibiRecommendedBrands } from "../../data/onarim-takibi/recommended-brands";
+import { onarimTakibiComparison } from "../../data/onarim-takibi/comparison";
+import { onarimTakibiExpertOpinion } from "../../data/onarim-takibi/expert-opinion";
+import { onarimTakibiFaq } from "../../data/onarim-takibi/faq";
+import { onarimTakibiRelatedContent } from "../../data/onarim-takibi/related-content";
+import { onarimTakibiFinalCta } from "../../data/onarim-takibi/final-cta";
+---
+
+<MainLayout
+  title="Onarım Takibi | İşitme Cihazı Onarım Süreci Takibi | EniyiCihaz"
+  description="Onarımdaki işitme cihazınızın durumunu nasıl takip edersiniz? Aşama aşama görünürlük, SMS/WhatsApp bildirimleri ve tahmini teslim süresi hakkında bilgi edinin."
+>
+  <BrandPageHero data={onarimTakibiHero} />
+  <BrandPageIntro data={onarimTakibiIntro} />
+  <BrandPageIdealUser data={onarimTakibiIdealUser} />
+  <BrandPageAdvantages data={onarimTakibiAdvantages} />
+  <BrandPageIdealUser data={onarimTakibiConsiderations} />
+  <BrandPageTechEvolution data={onarimTakibiEvolution} />
+  <BrandPageTechnology data={onarimTakibiUseCases} />
+  <BrandPageEcosystem data={onarimTakibiTechnology} />
+  <BrandPageRelatedContent data={onarimTakibiRecommendedBrands} />
+  <KulakArkasiComparison data={onarimTakibiComparison} />
+  <BrandPageExpertOpinion data={onarimTakibiExpertOpinion} />
+  <BrandPageFaq data={onarimTakibiFaq} />
+  <BrandPageFinalCta data={onarimTakibiFinalCta} />
+  <BrandPageRelatedContent data={onarimTakibiRelatedContent} />
+</MainLayout>

@@ -1,0 +1,57 @@
+---
+// Audifon brand page (/markalar/audifon). Built on the shared Brand
+// Component Architecture (see src/components/brand-page/*) — no new
+// components, no new design language; all 14 sections reuse the exact
+// same components every other brand page on this site uses, fed by this
+// page's own src/data/audifon/*.ts content.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { audifonHero } from "../../data/audifon/hero";
+import { audifonOverview } from "../../data/audifon/overview";
+import { audifonIntro } from "../../data/audifon/intro";
+import { audifonTechnology } from "../../data/audifon/technology";
+import { audifonEcosystem } from "../../data/audifon/ecosystem";
+import { audifonPlatform } from "../../data/audifon/platform";
+import { audifonModels } from "../../data/audifon/models";
+import { audifonComparison } from "../../data/audifon/comparison";
+import { audifonIdealUser } from "../../data/audifon/ideal-user";
+import { audifonAdvantages } from "../../data/audifon/advantages";
+import { audifonExpertOpinion } from "../../data/audifon/expert-opinion";
+import { audifonFaq } from "../../data/audifon/faq";
+import { audifonRelatedContent } from "../../data/audifon/related-content";
+import { audifonFinalCta } from "../../data/audifon/final-cta";
+---
+
+<MainLayout
+  title="Audifon İşitme Cihazları | EniyiCihaz"
+  description="Audifon'un Cosma Chip Technology altyapısı, tinnitus'a özel Sueno Pro çözümü ve rega, sino gibi model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <BrandPageHero data={audifonHero} />
+  <BrandPageOverview data={audifonOverview} />
+  <BrandPageIntro data={audifonIntro} />
+  <BrandPageTechnology data={audifonTechnology} />
+  <BrandPageEcosystem data={audifonEcosystem} />
+  <BrandPageTechEvolution data={audifonPlatform} />
+  <BrandPageModels data={audifonModels} />
+  <BrandPageComparison data={audifonComparison} />
+  <BrandPageIdealUser data={audifonIdealUser} />
+  <BrandPageAdvantages data={audifonAdvantages} />
+  <BrandPageExpertOpinion data={audifonExpertOpinion} />
+  <BrandPageFaq data={audifonFaq} />
+  <BrandPageRelatedContent data={audifonRelatedContent} />
+  <BrandPageFinalCta data={audifonFinalCta} />
+</MainLayout>

@@ -14,17 +14,19 @@ import { guide } from "./guide.data";
   <div class="guide__inner">
     <p class="guide__context" data-rise>{guide.contextSentence}</p>
 
-    <ol class="guide__steps">
-      {
-        guide.steps.map((step, i) => (
-          <GuideStep
-            index={i + 1}
-            title={step.title}
-            description={step.description}
-          />
-        ))
-      }
-    </ol>
+    <div class="guide__panel" data-rise>
+      <ol class="guide__steps">
+        {
+          guide.steps.map((step, i) => (
+            <GuideStep
+              index={i + 1}
+              title={step.title}
+              description={step.description}
+            />
+          ))
+        }
+      </ol>
+    </div>
 
     <div class="guide__cta" data-rise>
       <CtaButton label={guide.cta.label} href={guide.cta.href} />
@@ -76,7 +78,7 @@ import { guide } from "./guide.data";
     position: relative;
     background: var(--color-background);
     color: var(--color-text);
-    padding-block: var(--space-24);
+    padding-block: var(--space-20) var(--space-16);
     --guide-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --guide-rise-dur: 700ms;
   }
@@ -102,7 +104,7 @@ import { guide } from "./guide.data";
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-10);
+    gap: var(--space-8);
   }
 
   .guide__context {
@@ -112,6 +114,19 @@ import { guide } from "./guide.data";
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
     text-align: center;
+  }
+
+  /* Single, very light shared surface — not 3 separate cards (GUIDE §12:
+     no step may visually dominate another). Its only job is to define the
+     section as one bounded, intentional area instead of the steps
+     floating in open background, reducing the "too empty" feel flagged in
+     visual QA without adding any per-step chrome. */
+  .guide__panel {
+    width: 100%;
+    padding: var(--space-8);
+    border-radius: var(--radius-2xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
   }
 
   .guide__steps {
@@ -204,7 +219,11 @@ import { guide } from "./guide.data";
 
   @media (max-width: 640px) {
     .guide {
-      padding-block: var(--space-16);
+      padding-block: var(--space-12);
+    }
+
+    .guide__panel {
+      padding: var(--space-6) var(--space-4);
     }
   }
 

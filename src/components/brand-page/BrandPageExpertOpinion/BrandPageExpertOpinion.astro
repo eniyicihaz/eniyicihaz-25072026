@@ -1,0 +1,193 @@
+---
+// BrandPageExpertOpinion — shared, cross-brand expert-perspective quote
+// section. New component, not a migration: no Oticon equivalent (see
+// PHONAK MASTER BLUEPRINT §6.11). Deliberately not a named/personal
+// testimonial — presented as the clinic's own general assessment, the
+// same safe pattern already used for the SGK page's insight card
+// (PRINCIPLES.md §7 — no fabricated trust signal).
+import { Quote } from "lucide-astro";
+
+export interface BrandPageExpertOpinionContent {
+  badge: string;
+  heading: string;
+  quote: string;
+  note: string;
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+}
+
+interface Props {
+  data: BrandPageExpertOpinionContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="brand-page-expert"
+  aria-labelledby="brand-page-expert-title"
+  style={`--bpeo-accent:${data.accentColor}; --bpeo-badge-bg:${data.accentColorBadgeBg}; --bpeo-badge-border:${data.accentColorBadgeBorder}; --bpeo-badge-text:${data.accentColorBadgeText};`}
+>
+  <div class="brand-page-expert__inner">
+    <p class="brand-page-expert__badge" data-rise>{data.badge}</p>
+    <h2 class="brand-page-expert__heading" id="brand-page-expert-title" data-rise>
+      {data.heading}
+    </h2>
+
+    <div class="brand-page-expert__card" data-rise>
+      <span class="brand-page-expert__quote-icon" aria-hidden="true">
+        <Quote size={28} stroke-width={1.75} />
+      </span>
+      <p class="brand-page-expert__quote">{data.quote}</p>
+      <p class="brand-page-expert__note">{data.note}</p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-expert");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-expert {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-20);
+    --bpeo-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-expert__inner {
+    max-width: 48rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .brand-page-expert__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpeo-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpeo-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpeo-badge-text);
+  }
+
+  .brand-page-expert__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-expert__card {
+    margin: var(--space-10) 0 0;
+    padding: var(--space-10) var(--space-8);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .brand-page-expert__quote-icon {
+    display: inline-flex;
+    color: var(--bpeo-accent);
+  }
+
+  .brand-page-expert__quote {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-page-expert__note {
+    margin: var(--space-6) 0 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-expert[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-expert[data-anim="in"] [data-rise] {
+    animation: brand-page-expert-rise 600ms var(--bpeo-ease) both;
+  }
+
+  .brand-page-expert[data-anim="in"] .brand-page-expert__card {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-page-expert-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-expert {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-expert__card {
+      padding: var(--space-8) var(--space-6);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-expert[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

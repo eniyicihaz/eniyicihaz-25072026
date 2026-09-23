@@ -1,0 +1,118 @@
+---
+// Signia brand page (/markalar/signia). Third brand page built on the
+// shared Brand Component Architecture (see SIGNIA MASTER BLUEPRINT,
+// src/components/brand-page/*) — no new components, no new design
+// language; all 14 sections reuse the exact same components Oticon and
+// Phonak use, fed by this page's own src/data/signia/*.ts content.
+//
+// === SIGNIA BRAND THEME REVISION (2026-07, v2) ===
+// v1 of this revision scoped the page to a full dark theme. Per explicit
+// follow-up feedback, that was wrong: every brand page on this site
+// (including this one) shares one light, white-dominant design system —
+// only the BRAND ACCENT is meant to change per brand, not the underlying
+// light/dark theme itself. v2 keeps Signia's real bordo accent
+// (#B21F4B) but reverts every section back to the site's normal light
+// palette, Hero included (the one section that's *always* dark on every
+// other brand page — Signia's Hero is deliberately the exception here,
+// per the explicit brief asking for a fully light Hero too).
+//
+// Every BrandPage* section reads its own section/card/border/text colors
+// from a handful of SITE-WIDE CSS custom properties (--color-background,
+// --color-surface, --color-border, --color-text, --color-text-muted,
+// --color-text-soft, --color-primary — see src/ds/styles/base/
+// variables.css for their global values, which are already light/white).
+// Those tokens are shared by literally every page on the site, so they
+// can't be reassigned globally without touching every other brand page
+// and the rest of the site. The ".signia-premium-theme" wrapper below
+// re-declares just those tokens — to values very close to (but precisely
+// specified by) the site's own defaults — scoped to this page's own
+// component tree via ordinary CSS custom-property inheritance. No shared
+// component file's HTML, structure, layout, or responsive behavior
+// changes; only the *values* those components already read change, and
+// only inside this wrapper.
+//
+// The Hero and Final CTA sections additionally use their own
+// component-level optional override fields (see BrandPageHero.astro /
+// BrandPageFinalCta.astro) for the handful of values that were always
+// hardcoded dark-on-every-brand (Hero's background photo + light-on-dark
+// text, Final CTA's dark card) — those two are the only sections on the
+// entire site where "light theme" isn't already the shared default, so
+// they need their light-mode colors supplied explicitly per this page's
+// own data files (see src/data/signia/hero.ts and final-cta.ts).
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { signiaHero } from "../../data/signia/hero";
+import { signiaOverview } from "../../data/signia/overview";
+import { signiaIntro } from "../../data/signia/intro";
+import { signiaTechnology } from "../../data/signia/technology";
+import { signiaEcosystem } from "../../data/signia/ecosystem";
+import { signiaPlatform } from "../../data/signia/platform";
+import { signiaModels } from "../../data/signia/models";
+import { signiaComparison } from "../../data/signia/comparison";
+import { signiaIdealUser } from "../../data/signia/ideal-user";
+import { signiaAdvantages } from "../../data/signia/advantages";
+import { signiaExpertOpinion } from "../../data/signia/expert-opinion";
+import { signiaFaq } from "../../data/signia/faq";
+import { signiaRelatedContent } from "../../data/signia/related-content";
+import { signiaFinalCta } from "../../data/signia/final-cta";
+---
+
+<MainLayout
+  title="Signia İşitme Cihazları | EniyiCihaz"
+  description="Signia'nın yapay zekâ destekli Own Voice Processing teknolojisi, Signia Assistant ve Styletto, Pure, Insio gibi model ailelerini Avrasya İşitme'de keşfedin."
+>
+  <div class="signia-premium-theme">
+    <BrandPageHero data={signiaHero} />
+    <BrandPageOverview data={signiaOverview} />
+    <BrandPageIntro data={signiaIntro} />
+    <BrandPageTechnology data={signiaTechnology} />
+    <BrandPageEcosystem data={signiaEcosystem} />
+    <BrandPageTechEvolution data={signiaPlatform} />
+    <BrandPageModels data={signiaModels} />
+    <BrandPageComparison data={signiaComparison} />
+    <BrandPageIdealUser data={signiaIdealUser} />
+    <BrandPageAdvantages data={signiaAdvantages} />
+    <BrandPageExpertOpinion data={signiaExpertOpinion} />
+    <BrandPageFaq data={signiaFaq} />
+    <BrandPageRelatedContent data={signiaRelatedContent} />
+    <BrandPageFinalCta data={signiaFinalCta} />
+  </div>
+</MainLayout>
+
+<style>
+  /* Signia brand theme revision (2026-07, v2) — scoped token override,
+     see the frontmatter comment above for the full rationale. Every
+     value here is only ever read by the BrandPage* components already
+     rendered inside this wrapper; nothing outside .signia-premium-theme
+     (header, footer, every other page) is affected. Light palette per
+     the v2 brief's exact spec — only --color-primary (drives badge
+     text/icons/link colors across every section) is the brand accent;
+     everything else is the site's own light design system, restated
+     here with this page's own precise values instead of relying on the
+     global defaults (which are close, but not byte-identical). */
+  .signia-premium-theme {
+    --color-primary: #b21f4b;
+    --color-white: #ffffff;
+    --color-background: #ffffff;
+    --color-surface: #f8f8f8;
+    --color-border: #e9e9e9;
+    --color-border-hover: #d9d9d9;
+    --color-text: #1b1b1b;
+    --color-text-muted: #666666;
+    --color-text-soft: #8e8e8e;
+  }
+</style>

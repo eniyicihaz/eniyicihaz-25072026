@@ -1,0 +1,323 @@
+---
+// BrandPageTechEvolution — shared, cross-brand "Technology Evolution"
+// editorial section. New component, not a migration: Phonak's blueprint
+// deliberately replaces Oticon's technical Segments/tier table with a
+// narrative-driven timeline — what each technology generation brought and
+// who it suits, not a memorized platform name (see PHONAK MASTER
+// BLUEPRINT §6.6). A connecting rail on desktop visually reads as
+// progression from newest to oldest generation.
+
+export interface BrandPageTechEvolutionStage {
+  era: string;
+  whatItBrought: string;
+  bestFor: string;
+  families: string[];
+}
+
+export interface BrandPageTechEvolutionContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  stages: BrandPageTechEvolutionStage[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+}
+
+interface Props {
+  data: BrandPageTechEvolutionContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="brand-page-techevo"
+  aria-labelledby="brand-page-techevo-title"
+  style={`--bpte-accent:${data.accentColor}; --bpte-badge-bg:${data.accentColorBadgeBg}; --bpte-badge-border:${data.accentColorBadgeBorder}; --bpte-badge-text:${data.accentColorBadgeText};`}
+>
+  <div class="brand-page-techevo__inner">
+    <div class="brand-page-techevo__header">
+      <p class="brand-page-techevo__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-page-techevo__heading" id="brand-page-techevo-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="brand-page-techevo__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="brand-page-techevo__rail" data-rise>
+      {
+        data.stages.map((stage, index) => (
+          <div class="brand-page-techevo__stage">
+            <div class="brand-page-techevo__marker">
+              <span class="brand-page-techevo__dot" data-current={index === 0 ? "true" : "false"} />
+              {index < data.stages.length - 1 && <span class="brand-page-techevo__line" />}
+            </div>
+
+            <div class="brand-page-techevo__card">
+              <p class="brand-page-techevo__era">{stage.era}</p>
+              <p class="brand-page-techevo__brought">{stage.whatItBrought}</p>
+              <p class="brand-page-techevo__best-for">
+                <span class="brand-page-techevo__best-for-label">Kimler İçin</span>
+                <span>{stage.bestFor}</span>
+              </p>
+              <div class="brand-page-techevo__families">
+                {stage.families.map((family) => (
+                  <span class="brand-page-techevo__family">{family}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-techevo");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-techevo {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bpte-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-techevo__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-techevo__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-techevo__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpte-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpte-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpte-badge-text);
+  }
+
+  .brand-page-techevo__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-techevo__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-techevo__rail {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .brand-page-techevo__stage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-page-techevo__marker {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .brand-page-techevo__dot {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-full);
+    background: var(--color-border-hover);
+  }
+
+  .brand-page-techevo__dot[data-current="true"] {
+    background: var(--bpte-accent);
+    box-shadow: 0 0 0 4px var(--bpte-badge-bg);
+  }
+
+  .brand-page-techevo__line {
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .brand-page-techevo__card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--space-6);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+    transition: transform 300ms var(--bpte-ease), box-shadow 300ms var(--bpte-ease);
+  }
+
+  .brand-page-techevo__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .brand-page-techevo__era {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-page-techevo__brought {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-techevo__best-for {
+    margin: var(--space-4) 0 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .brand-page-techevo__best-for-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .brand-page-techevo__families {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .brand-page-techevo__family {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-techevo[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-techevo[data-anim="in"] [data-rise] {
+    animation: brand-page-techevo-rise 650ms var(--bpte-ease) both;
+  }
+
+  .brand-page-techevo[data-anim="in"] .brand-page-techevo__rail {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-page-techevo-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .brand-page-techevo__rail {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+
+    .brand-page-techevo__line {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-techevo {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-techevo__rail {
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-techevo[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-techevo__card {
+      transition: none;
+    }
+  }
+</style>

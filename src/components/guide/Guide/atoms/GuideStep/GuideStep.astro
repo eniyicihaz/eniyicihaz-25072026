@@ -28,7 +28,10 @@ const { index, title, description } = Astro.props;
   }
 
   /* The light "lift" (spec §3) lives only on the badge — not a full
-     bordered card — so the connecting line can read as passing behind it. */
+     bordered card — so the connecting line can read as passing behind it.
+     Badge now sits on the shared .guide__panel surface (visual QA round),
+     so its background flips to --color-background to keep contrasting
+     with its surroundings instead of blending into the panel. */
   .guide-step__badge {
     display: inline-flex;
     align-items: center;
@@ -36,7 +39,7 @@ const { index, title, description } = Astro.props;
     width: var(--space-8);
     height: var(--space-8);
     border-radius: var(--radius-full);
-    background: var(--color-surface);
+    background: var(--color-background);
     border: 1px solid var(--color-border-hover);
     box-shadow: var(--shadow-sm);
     color: var(--color-text-muted);

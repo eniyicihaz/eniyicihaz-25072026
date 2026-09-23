@@ -1,33 +1,10 @@
 // M1 (Hero) content for the "Tüm Markalar" (/markalar) page. This page is
 // built up modularly (M1, M2, M3…), each an independent section/component —
-// this file only ever holds M1's data.
+// this file only ever holds M1's data. BrandHero.astro is now generic
+// (reused by every hub page), so its interface lives in the component
+// file and is imported back here.
 
-export interface BrandHeroCta {
-  label: string;
-  href: string;
-}
-
-export interface BrandHeroImage {
-  src: string;
-  alt: string;
-}
-
-export interface BrandHeroFloatingCard {
-  value: string;
-  label: string;
-  description: string;
-}
-
-export interface BrandHeroContent {
-  badge: string;
-  headingLines: string[];
-  description: string[];
-  ctaPrimary: BrandHeroCta;
-  ctaSecondary: BrandHeroCta;
-  trustPills: string[];
-  image: BrandHeroImage;
-  floatingCard: BrandHeroFloatingCard;
-}
+import type { BrandHeroContent } from "../../components/brands/BrandHero/BrandHero.astro";
 
 export const brandHero: BrandHeroContent = {
   badge: "18+ Dünya Markası",

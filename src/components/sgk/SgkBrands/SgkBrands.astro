@@ -1,0 +1,685 @@
+---
+// SgkBrands — the SGK pillar page's final content section: the
+// Pillar Page -> Cluster Pages bridge into every real /markalar/{slug}
+// brand page (18 total — 6 featured + 12 others, both pulled straight
+// from brands/showcase.ts + brands/extended.ts, never re-hardcoded here).
+// Own page-copy namespace (../../../data/sgk/brands), independent of the
+// rest of sgk/*.
+import { ArrowRight, Star, LayoutGrid, Lightbulb, Check, Phone, MessageCircle } from "lucide-astro";
+import { sgkBrands } from "../../../data/sgk/brands";
+import { contactConfig } from "../../../config";
+---
+
+<section class="sgk-brands" aria-labelledby="sgk-brands-title">
+  <div class="sgk-brands__inner">
+    <div class="sgk-brands__head" data-rise>
+      <p class="sgk-brands__badge">{sgkBrands.badge}</p>
+      <h2 class="sgk-brands__heading" id="sgk-brands-title">{sgkBrands.heading}</h2>
+      <p class="sgk-brands__intro">{sgkBrands.intro}</p>
+    </div>
+
+    <h3 class="sgk-brands__group-label" data-rise>
+      <Star size={15} stroke-width={2} aria-hidden="true" />
+      <span>{sgkBrands.featuredLabel}</span>
+    </h3>
+
+    <div class="sgk-brands__grid sgk-brands__grid--featured" data-rise>
+      {
+        sgkBrands.featuredBrands.map((brand) => (
+          <a class="sgk-brands__card sgk-brands__card--featured" href={`/markalar/${brand.slug}`}>
+            <span class="sgk-brands__logo-wrap">
+              <img
+                class="sgk-brands__logo"
+                src={brand.logo}
+                alt={`${brand.name} logo`}
+                loading="lazy"
+                decoding="async"
+                width="200"
+                height="100"
+              />
+            </span>
+            <p class="sgk-brands__card-text">{brand.text}</p>
+            <span class="sgk-brands__card-link">
+              <span>{sgkBrands.cardLinkLabel}</span>
+              <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <h3 class="sgk-brands__group-label sgk-brands__group-label--other" data-rise>
+      <LayoutGrid size={15} stroke-width={2} aria-hidden="true" />
+      <span>{sgkBrands.otherLabel}</span>
+    </h3>
+
+    <div class="sgk-brands__grid sgk-brands__grid--other" data-rise>
+      {
+        sgkBrands.otherBrands.map((brand) => (
+          <a class="sgk-brands__card sgk-brands__card--compact" href={`/markalar/${brand.slug}`}>
+            <span class="sgk-brands__logo-wrap sgk-brands__logo-wrap--compact">
+              <img
+                class="sgk-brands__logo"
+                src={brand.logo}
+                alt={`${brand.name} logo`}
+                loading="lazy"
+                decoding="async"
+                width="140"
+                height="64"
+              />
+            </span>
+            <span class="sgk-brands__card-link sgk-brands__card-link--compact">
+              <span>{sgkBrands.cardLinkLabel}</span>
+              <ArrowRight size={13} stroke-width={2} aria-hidden="true" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="sgk-brands__notice" data-rise>
+      <span class="sgk-brands__notice-icon" aria-hidden="true">
+        <Lightbulb size={20} stroke-width={1.75} />
+      </span>
+      <div class="sgk-brands__notice-body">
+        <p class="sgk-brands__notice-label">{sgkBrands.notice.label}</p>
+        <p class="sgk-brands__notice-text">{sgkBrands.notice.text}</p>
+      </div>
+    </div>
+
+    <div class="sgk-brands__cta" data-rise>
+      <div class="sgk-brands__cta-glow" aria-hidden="true"></div>
+      <div class="sgk-brands__cta-content">
+        <h3 class="sgk-brands__cta-heading">{sgkBrands.cta.heading}</h3>
+
+        <div class="sgk-brands__cta-chips">
+          {
+            sgkBrands.cta.chips.map((chip) => (
+              <span class="sgk-brands__cta-chip">
+                <Check size={12} stroke-width={2.5} aria-hidden="true" />
+                {chip}
+              </span>
+            ))
+          }
+        </div>
+
+        <p class="sgk-brands__cta-subtext">{sgkBrands.cta.subtext}</p>
+
+        <div class="sgk-brands__cta-actions">
+          <a class="sgk-brands__cta-btn sgk-brands__cta-btn--solid" href={contactConfig.phone.href}>
+            <Phone size={20} stroke-width={2} aria-hidden="true" />
+            <span>{sgkBrands.cta.primaryLabel}</span>
+          </a>
+          <a
+            class="sgk-brands__cta-btn sgk-brands__cta-btn--outline"
+            href={contactConfig.whatsapp.href}
+          >
+            <MessageCircle size={20} stroke-width={2} aria-hidden="true" />
+            <span>{sgkBrands.cta.secondaryLabel}</span>
+          </a>
+        </div>
+
+        <div class="sgk-brands__cta-trust">
+          {
+            sgkBrands.cta.trustItems.map((item) => (
+              <span class="sgk-brands__cta-trust-item">
+                <Check size={12} stroke-width={2.5} aria-hidden="true" />
+                {item}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-brands");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as the rest
+    // of the SGK page: default-visible CSS, JS-only "armed" opt-in, three
+    // independent safety nets so content can never get stuck hidden.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-brands {
+    position: relative;
+    background: var(--color-white);
+    padding-block: var(--space-24);
+    --sb-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-brands__inner {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .sgk-brands__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sgk-brands__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-brands__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-brands__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Group labels -------------------------------------------------------- */
+
+  .sgk-brands__group-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: var(--space-20) 0 var(--space-7);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .sgk-brands__group-label svg {
+    flex: none;
+  }
+
+  .sgk-brands__group-label--other {
+    margin-top: var(--space-24);
+    color: var(--color-text-soft);
+  }
+
+  /* --- Cards: shared flex-column skeleton. The CTA link always carries
+     margin-top:auto, which — inside a flex column card that CSS Grid has
+     already stretched to match its row's tallest neighbour
+     (align-items:stretch is Grid's default) — consumes exactly the
+     leftover vertical space. That pins every card's link to the same
+     bottom edge regardless of description length or logo aspect ratio,
+     with zero JS measurement needed. --- */
+
+  .sgk-brands__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .sgk-brands__grid--featured {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sgk-brands__grid--other {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .sgk-brands__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 320ms var(--sb-ease), box-shadow 320ms var(--sb-ease),
+      border-color 320ms var(--sb-ease);
+  }
+
+  .sgk-brands__card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(240px 160px at 12% 0%, rgb(37 99 235 / 0.12), transparent 72%);
+    opacity: 0;
+    transition: opacity 320ms var(--sb-ease);
+  }
+
+  .sgk-brands__card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(37 99 235 / 0.32);
+    box-shadow: 0 28px 52px -24px rgb(37 99 235 / 0.32);
+  }
+
+  .sgk-brands__card:hover::before {
+    opacity: 1;
+  }
+
+  .sgk-brands__card:hover .sgk-brands__logo {
+    transform: scale(1.04);
+  }
+
+  .sgk-brands__card:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .sgk-brands__card--featured {
+    padding: var(--space-6) var(--space-7) var(--space-7);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sgk-brands__card--compact {
+    padding: var(--space-4);
+  }
+
+  /* Logo is the card's focal point: a fixed, generous box it fills to the
+     largest size its own aspect ratio allows (contain, never cropped,
+     never upscaled beyond native resolution via max-width/max-height). */
+  .sgk-brands__logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 96px;
+  }
+
+  .sgk-brands__logo-wrap--compact {
+    height: 64px;
+  }
+
+  .sgk-brands__logo {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 320ms var(--sb-ease);
+  }
+
+  .sgk-brands__card-text {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-brands__card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: auto;
+    padding-top: var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    transition: color 220ms var(--sb-ease);
+  }
+
+  .sgk-brands__card-link--compact {
+    font-size: var(--font-size-xs);
+  }
+
+  .sgk-brands__card-link svg {
+    transition: transform 220ms var(--sb-ease);
+  }
+
+  .sgk-brands__card:hover .sgk-brands__card-link {
+    color: var(--color-primary-hover);
+  }
+
+  .sgk-brands__card:hover .sgk-brands__card-link svg {
+    transform: translateX(3px);
+  }
+
+  /* --- Notice -------------------------------------------------------------- */
+
+  .sgk-brands__notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    max-width: 860px;
+    margin: var(--space-14) auto 0;
+    padding: var(--space-6);
+    background: rgb(37 99 235 / 0.05);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sgk-brands__notice-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid rgb(37 99 235 / 0.2);
+    color: var(--color-primary);
+  }
+
+  .sgk-brands__notice-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sgk-brands__notice-label {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .sgk-brands__notice-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Final CTA: the page's true closing banner — deliberately bolder
+     than the quiet in-page CTA boxes above it (Payments/Eligibility/
+     Support all use the same light rgb(37 99 235 / 0.05) tint; this one
+     earns a real gradient because it's the last thing a visitor sees). --- */
+
+  .sgk-brands__cta {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin-top: var(--space-14);
+    padding: var(--space-12) var(--space-8);
+    text-align: center;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-active) 0%,
+      var(--color-primary-hover) 45%,
+      var(--color-primary) 100%
+    );
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 36px 64px -28px rgb(30 64 175 / 0.45);
+  }
+
+  .sgk-brands__cta-glow {
+    position: absolute;
+    top: -30%;
+    right: -8%;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(closest-side, rgb(255 255 255 / 0.2), transparent 72%);
+    z-index: -1;
+  }
+
+  .sgk-brands__cta-content {
+    position: relative;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .sgk-brands__cta-heading {
+    margin: 0;
+    font-size: clamp(1.375rem, 1.05rem + 1.4vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--color-text-inverse);
+  }
+
+  .sgk-brands__cta-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .sgk-brands__cta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.14);
+    border: 1px solid rgb(255 255 255 / 0.24);
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-inverse);
+  }
+
+  .sgk-brands__cta-chip svg {
+    flex: none;
+    color: #bfdbfe;
+  }
+
+  .sgk-brands__cta-subtext {
+    max-width: 34rem;
+    margin: var(--space-5) auto 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.9);
+  }
+
+  .sgk-brands__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-7);
+  }
+
+  .sgk-brands__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 60px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.005em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 260ms var(--sb-ease), box-shadow 260ms var(--sb-ease),
+      background-color 260ms var(--sb-ease);
+  }
+
+  .sgk-brands__cta-btn--solid {
+    background: var(--color-white);
+    color: var(--color-primary);
+    box-shadow: 0 14px 30px -12px rgb(15 23 42 / 0.4);
+  }
+
+  .sgk-brands__cta-btn--solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 38px -14px rgb(15 23 42 / 0.45);
+  }
+
+  .sgk-brands__cta-btn--outline {
+    background: rgb(255 255 255 / 0.1);
+    border: 1px solid rgb(255 255 255 / 0.42);
+    color: var(--color-text-inverse);
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+  }
+
+  .sgk-brands__cta-btn--outline:hover {
+    background: rgb(255 255 255 / 0.18);
+    transform: translateY(-2px);
+  }
+
+  .sgk-brands__cta-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 0.65);
+  }
+
+  .sgk-brands__cta-trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2) var(--space-5);
+    margin-top: var(--space-7);
+    padding-top: var(--space-6);
+    border-top: 1px solid rgb(255 255 255 / 0.18);
+  }
+
+  .sgk-brands__cta-trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: rgb(255 255 255 / 0.88);
+  }
+
+  .sgk-brands__cta-trust-item svg {
+    flex: none;
+    color: #bfdbfe;
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .sgk-brands[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--sb-ease), transform 600ms var(--sb-ease);
+  }
+
+  .sgk-brands[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-brands[data-anim="armed"] .sgk-brands__head { transition-delay: 0ms; }
+  .sgk-brands[data-anim="armed"] .sgk-brands__grid--featured { transition-delay: 80ms; }
+  .sgk-brands[data-anim="armed"] .sgk-brands__grid--other { transition-delay: 140ms; }
+  .sgk-brands[data-anim="armed"] .sgk-brands__notice { transition-delay: 200ms; }
+  .sgk-brands[data-anim="armed"] .sgk-brands__cta { transition-delay: 240ms; }
+
+  /* --- Responsive ------------------------------------------------------------ */
+
+  @media (max-width: 1023px) {
+    .sgk-brands {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-brands__grid--featured {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sgk-brands__grid--other {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .sgk-brands__group-label {
+      margin-top: var(--space-12);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-brands__grid--featured,
+    .sgk-brands__grid--other {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sgk-brands__cta {
+      padding: var(--space-8) var(--space-5);
+    }
+
+    .sgk-brands__cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sgk-brands__cta-btn {
+      width: 100%;
+    }
+
+    .sgk-brands__cta-trust {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-brands[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sgk-brands__card,
+    .sgk-brands__card::before,
+    .sgk-brands__logo,
+    .sgk-brands__card-link svg,
+    .sgk-brands__cta-btn {
+      transition: none;
+    }
+  }
+</style>

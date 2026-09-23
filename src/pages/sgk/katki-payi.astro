@@ -1,0 +1,72 @@
+---
+// SGK Katkı Payı — /sgk/katki-payi. First page of the new "SGK &
+// Haklar" series (see header.data.ts's knowledgeMega third column).
+//
+// CRITICAL accuracy note: the real SGK pillar page
+// (/sgk-isitme-cihazi-odemesi) already publishes specific, date-stamped
+// 2026 TL figures for SGK support amounts (src/data/sgk/payments.ts).
+// This page deliberately does NOT restate any of those specific
+// amounts — every section explains the katkı payı CONCEPT and
+// CALCULATION MECHANISM in general terms and defers to the pillar page
+// for current figures, avoiding the risk of two pages independently
+// going stale and contradicting each other. See hero.ts and
+// considerations.ts for the full rationale.
+//
+// accentColor: yeşil / green-600 (#16a34a) — first color in a fresh
+// accent rotation opened for the "SGK & Haklar" column; see hero.ts
+// for the full rationale.
+//
+// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Önemlidir?
+// -> SGK Desteğinin Faydaları -> Dikkat Edilmesi Gerekenler ->
+// Hesaplama Adımları -> Etkileyen Faktörler -> Teknolojiler ->
+// Markalara Göre İnceleyin -> Anlaşmalı vs Anlaşmasız Merkez -> Uzman
+// Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { sgkKatkiPayiHero } from "../../data/sgk-katki-payi/hero";
+import { sgkKatkiPayiIntro } from "../../data/sgk-katki-payi/intro";
+import { sgkKatkiPayiIdealUser } from "../../data/sgk-katki-payi/ideal-user";
+import { sgkKatkiPayiAdvantages } from "../../data/sgk-katki-payi/advantages";
+import { sgkKatkiPayiConsiderations } from "../../data/sgk-katki-payi/considerations";
+import { sgkKatkiPayiEvolution } from "../../data/sgk-katki-payi/evolution";
+import { sgkKatkiPayiUseCases } from "../../data/sgk-katki-payi/use-cases";
+import { sgkKatkiPayiTechnology } from "../../data/sgk-katki-payi/technology";
+import { sgkKatkiPayiRecommendedBrands } from "../../data/sgk-katki-payi/recommended-brands";
+import { sgkKatkiPayiComparison } from "../../data/sgk-katki-payi/comparison";
+import { sgkKatkiPayiExpertOpinion } from "../../data/sgk-katki-payi/expert-opinion";
+import { sgkKatkiPayiFaq } from "../../data/sgk-katki-payi/faq";
+import { sgkKatkiPayiRelatedContent } from "../../data/sgk-katki-payi/related-content";
+import { sgkKatkiPayiFinalCta } from "../../data/sgk-katki-payi/final-cta";
+---
+
+<MainLayout
+  title="SGK Katkı Payı | İşitme Cihazında Katkı Payı Nasıl Hesaplanır? | EniyiCihaz"
+  description="SGK katkı payı nedir ve nasıl hesaplanır? Yaş grubu, çalışan/emekli durumu ve cihaz fiyatına göre katkı payı hesaplama mantığı hakkında bilgi edinin."
+>
+  <BrandPageHero data={sgkKatkiPayiHero} />
+  <BrandPageIntro data={sgkKatkiPayiIntro} />
+  <BrandPageIdealUser data={sgkKatkiPayiIdealUser} />
+  <BrandPageAdvantages data={sgkKatkiPayiAdvantages} />
+  <BrandPageIdealUser data={sgkKatkiPayiConsiderations} />
+  <BrandPageTechEvolution data={sgkKatkiPayiEvolution} />
+  <BrandPageTechnology data={sgkKatkiPayiUseCases} />
+  <BrandPageEcosystem data={sgkKatkiPayiTechnology} />
+  <BrandPageRelatedContent data={sgkKatkiPayiRecommendedBrands} />
+  <KulakArkasiComparison data={sgkKatkiPayiComparison} />
+  <BrandPageExpertOpinion data={sgkKatkiPayiExpertOpinion} />
+  <BrandPageFaq data={sgkKatkiPayiFaq} />
+  <BrandPageFinalCta data={sgkKatkiPayiFinalCta} />
+  <BrandPageRelatedContent data={sgkKatkiPayiRelatedContent} />
+</MainLayout>

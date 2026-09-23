@@ -1,0 +1,74 @@
+---
+// Uzaktan Kontrol Özellikleri — /teknolojiler/uzaktan-kontrol. Sixth page
+// of the "Teknolojilere Göre" product-page series (see header.data.ts's
+// devicesMega second column), built directly on the Yapay Zeka Destekli /
+// Gürültü Engelleme / Konuşma Odaklı / Kablosuz Bağlantı / Şarjlı
+// Teknolojiler master templates — same shared, data-driven Brand
+// Component Architecture, same KulakArkasiComparison component (already
+// generic, reused as-is), same accent-scoping pattern with its own gök
+// mavisi/sky (#0284c7) category accent.
+//
+// 14-section flow, in order: Hero -> Nedir? + Nasıl Çalışır? -> Kimler
+// İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler -> Teknolojinin
+// Gelişimi -> Kullanım Alanları -> Teknolojiler -> Önerilen Marka ve
+// Modeller -> Uzaktan Kontrol Destekli vs Standart -> Uzman Yorumu -> SSS
+// -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for remote-control-
+// specific everyday scenarios, and BTE's hearing-loss-level slot becomes
+// a genuine remote-control technology timeline — physical remotes through
+// today's AI-assisted TeleCare suggestions — since bu sayfa bir işitme
+// kaybı derecesini değil bir kontrol/destek teknolojisini konu aldığından
+// teknolojik evrim daha anlamlı; see evolution.ts and use-cases.ts. Two
+// distinct categories are covered throughout: user-facing direct control
+// (app, physical remote) and clinician-facing remote support/TeleCare —
+// the Ecosystem section's AI item cross-references Yapay Zeka Destekli
+// rather than duplicating it.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { uzaktanKontrolHero } from "../../data/uzaktan-kontrol/hero";
+import { uzaktanKontrolIntro } from "../../data/uzaktan-kontrol/intro";
+import { uzaktanKontrolIdealUser } from "../../data/uzaktan-kontrol/ideal-user";
+import { uzaktanKontrolAdvantages } from "../../data/uzaktan-kontrol/advantages";
+import { uzaktanKontrolConsiderations } from "../../data/uzaktan-kontrol/considerations";
+import { uzaktanKontrolEvolution } from "../../data/uzaktan-kontrol/evolution";
+import { uzaktanKontrolUseCases } from "../../data/uzaktan-kontrol/use-cases";
+import { uzaktanKontrolTechnology } from "../../data/uzaktan-kontrol/technology";
+import { uzaktanKontrolRecommendedBrands } from "../../data/uzaktan-kontrol/recommended-brands";
+import { uzaktanKontrolComparison } from "../../data/uzaktan-kontrol/comparison";
+import { uzaktanKontrolExpertOpinion } from "../../data/uzaktan-kontrol/expert-opinion";
+import { uzaktanKontrolFaq } from "../../data/uzaktan-kontrol/faq";
+import { uzaktanKontrolRelatedContent } from "../../data/uzaktan-kontrol/related-content";
+import { uzaktanKontrolFinalCta } from "../../data/uzaktan-kontrol/final-cta";
+---
+
+<MainLayout
+  title="Uzaktan Kontrol Özellikleri Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Uzaktan kontrol özellikleri nedir, uygulama ve uzaktan destek (TeleCare) nasıl çalışır? Avantajları, dikkat edilmesi gerekenler ve standart cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={uzaktanKontrolHero} />
+  <BrandPageIntro data={uzaktanKontrolIntro} />
+  <BrandPageIdealUser data={uzaktanKontrolIdealUser} />
+  <BrandPageAdvantages data={uzaktanKontrolAdvantages} />
+  <BrandPageIdealUser data={uzaktanKontrolConsiderations} />
+  <BrandPageTechEvolution data={uzaktanKontrolEvolution} />
+  <BrandPageTechnology data={uzaktanKontrolUseCases} />
+  <BrandPageEcosystem data={uzaktanKontrolTechnology} />
+  <BrandPageRelatedContent data={uzaktanKontrolRecommendedBrands} />
+  <KulakArkasiComparison data={uzaktanKontrolComparison} />
+  <BrandPageExpertOpinion data={uzaktanKontrolExpertOpinion} />
+  <BrandPageFaq data={uzaktanKontrolFaq} />
+  <BrandPageFinalCta data={uzaktanKontrolFinalCta} />
+  <BrandPageRelatedContent data={uzaktanKontrolRelatedContent} />
+</MainLayout>

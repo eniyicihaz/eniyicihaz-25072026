@@ -1,0 +1,83 @@
+---
+// Şarjlı Teknolojiler — /teknolojiler/sarjli-teknolojiler. Fifth page of
+// the "Teknolojilere Göre" product-page series (see header.data.ts's
+// devicesMega second column), built directly on the Yapay Zeka Destekli /
+// Gürültü Engelleme / Konuşma Odaklı / Kablosuz Bağlantı master templates
+// — same shared, data-driven Brand Component Architecture, same
+// KulakArkasiComparison component (already generic, reused as-is), same
+// accent-scoping pattern with its own kırmızı/red (#dc2626) category
+// accent, evoking a charging-indicator LED.
+//
+// Deliberately scoped apart from the already-built Şarj Edilebilir
+// Cihazlar page (/isitme-cihazlari/sarj-edilebilir): that page is a
+// buying-guide (rechargeable vs disposable-battery device choice,
+// charging methods as a user-facing feature, device-family coverage).
+// This page instead goes under the hood into the battery and
+// charge-management engineering — lithium-ion cell chemistry, the smart
+// charge-management circuit (BMS), charge-cycle lifespan, inductive-
+// charging physics — and cross-links to the sibling page rather than
+// re-explaining its content.
+//
+// 14-section flow, in order: Hero -> Nedir? + Hangi Bileşenleri Kapsar?
+// -> Kimler İçin Uygun? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Teknolojinin Gelişimi -> Mühendislik Özellikleri -> Teknolojiler ->
+// Önerilen Marka ve Modeller -> Gelişmiş Şarj Yönetimli vs Standart ->
+// Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// (BTE's "Kullanım Alanları" slot is repurposed here for engineering
+// properties rather than everyday scenarios, and BTE's hearing-loss-level
+// slot becomes a genuine battery-chemistry timeline — zinc-air through
+// today's smart-managed lithium-ion — since bu sayfa bir işitme kaybı
+// derecesini değil bir pil kimyası tarihini konu aldığından teknolojik
+// evrim daha anlamlı; see evolution.ts and use-cases.ts. The comparison
+// table also deliberately compares WITHIN the rechargeable category
+// (advanced BMS vs basic charging circuit) rather than repeating the
+// sibling page's rechargeable-vs-disposable table.)
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { sarjliTeknolojilerHero } from "../../data/sarjli-teknolojiler/hero";
+import { sarjliTeknolojilerIntro } from "../../data/sarjli-teknolojiler/intro";
+import { sarjliTeknolojilerIdealUser } from "../../data/sarjli-teknolojiler/ideal-user";
+import { sarjliTeknolojilerAdvantages } from "../../data/sarjli-teknolojiler/advantages";
+import { sarjliTeknolojilerConsiderations } from "../../data/sarjli-teknolojiler/considerations";
+import { sarjliTeknolojilerEvolution } from "../../data/sarjli-teknolojiler/evolution";
+import { sarjliTeknolojilerUseCases } from "../../data/sarjli-teknolojiler/use-cases";
+import { sarjliTeknolojilerTechnology } from "../../data/sarjli-teknolojiler/technology";
+import { sarjliTeknolojilerRecommendedBrands } from "../../data/sarjli-teknolojiler/recommended-brands";
+import { sarjliTeknolojilerComparison } from "../../data/sarjli-teknolojiler/comparison";
+import { sarjliTeknolojilerExpertOpinion } from "../../data/sarjli-teknolojiler/expert-opinion";
+import { sarjliTeknolojilerFaq } from "../../data/sarjli-teknolojiler/faq";
+import { sarjliTeknolojilerRelatedContent } from "../../data/sarjli-teknolojiler/related-content";
+import { sarjliTeknolojilerFinalCta } from "../../data/sarjli-teknolojiler/final-cta";
+---
+
+<MainLayout
+  title="Şarjlı Teknolojiler Nedir? Fiyat, Model ve Marka Rehberi | EniyiCihaz"
+  description="Şarjlı teknolojiler nedir, lityum-iyon pil ve akıllı şarj yönetimi nasıl çalışır? Avantajları, dikkat edilmesi gerekenler ve standart şarjlı cihazlarla karşılaştırma."
+>
+  <BrandPageHero data={sarjliTeknolojilerHero} />
+  <BrandPageIntro data={sarjliTeknolojilerIntro} />
+  <BrandPageIdealUser data={sarjliTeknolojilerIdealUser} />
+  <BrandPageAdvantages data={sarjliTeknolojilerAdvantages} />
+  <BrandPageIdealUser data={sarjliTeknolojilerConsiderations} />
+  <BrandPageTechEvolution data={sarjliTeknolojilerEvolution} />
+  <BrandPageTechnology data={sarjliTeknolojilerUseCases} />
+  <BrandPageEcosystem data={sarjliTeknolojilerTechnology} />
+  <BrandPageRelatedContent data={sarjliTeknolojilerRecommendedBrands} />
+  <KulakArkasiComparison data={sarjliTeknolojilerComparison} />
+  <BrandPageExpertOpinion data={sarjliTeknolojilerExpertOpinion} />
+  <BrandPageFaq data={sarjliTeknolojilerFaq} />
+  <BrandPageFinalCta data={sarjliTeknolojilerFinalCta} />
+  <BrandPageRelatedContent data={sarjliTeknolojilerRelatedContent} />
+</MainLayout>

@@ -1,0 +1,615 @@
+---
+// BrandPageHero — generic, data-driven Hero for every brand page
+// (/markalar/{slug}). First component of the Brand Component Architecture
+// refactor: previously OticonHero.astro (marka-özel, oticonHero'yu
+// doğrudan import ediyordu), şimdi herhangi bir brand page'in kendi
+// content dosyasını (oticon/hero.ts, phonak/hero.ts, ...) `data` prop'u
+// olarak alan tek, paylaşılan component. Template/stil/script Oticon'un
+// orijinaliyle birebir aynı — yalnızca veri kaynağı prop'a taşındı ve
+// CSS sınıfları/animasyon script'i marka-agnostik isimlere yeniden
+// adlandırıldı (görsel/davranışsal fark yok).
+import { Phone, MessageCircle, BrainCircuit } from "lucide-astro";
+
+export interface BrandPageHeroFeature {
+  label: string;
+  accent: string;
+  title: string;
+  description: string;
+}
+
+export interface BrandPageHeroContent {
+  badge: string;
+  headingLines: string[];
+  paragraphs: string[];
+  ctaPrimary: { label: string; href: string };
+  ctaSecondary: { label: string; href: string };
+  features: BrandPageHeroFeature[];
+  image: { src: string; alt: string };
+  floatingCard: { title: string; description: string };
+  accentColor: string;
+  accentColorHover: string;
+  // Pre-computed translucent variants of accentColor (e.g.
+  // "rgb(95 184 90 / 0.12)"), supplied by the data layer rather than
+  // derived in CSS at runtime — keeps this component free of modern
+  // CSS color functions (relative color syntax / color-mix) whose
+  // browser support is still newer than the rest of this project's CSS.
+  accentColorSoft: string; // ~0.12 opacity — badge/floating-icon backgrounds
+  accentColorBorder: string; // ~0.4 opacity — badge border, focus ring
+  // Optional per-brand overrides for values that were hardcoded (all
+  // sourced from Oticon's original dark/green build) until the Signia
+  // theme revision. Omit any of them and the exact previous hardcoded
+  // value is used — every brand page built before this revision supplies
+  // none of these and renders pixel-identical to before. The first four
+  // existed since Signia v1 (dark-theme revision); the rest were added
+  // for Signia v2, which needed a fully *light* Hero — the original
+  // markup assumes light-on-dark text throughout, so a light background
+  // needs its own dark-on-light text/border set too.
+  heroBackground?: string; // .brand-page-hero__bg's background (image/gradient) — default: url(oticon-hero-bg.webp)
+  heroBaseBg?: string; // .brand-page-hero's own background-color fallback — default: #0a120d
+  ctaTextColor?: string; // solid CTA button text color — default: #0a1408 (assumes a light accent; override for dark accents)
+  floatingCardBg?: string; // image-side floating card background — default: rgb(10 20 14 / 0.7)
+  heroTextColor?: string; // heading / feature-title / floating-title — default: var(--color-text-inverse) (white)
+  heroTextMuted?: string; // paragraph text — default: rgb(255 255 255 / 0.72)
+  heroFeatureLabelColor?: string; // feature card eyebrow label — default: rgb(255 255 255 / 0.5)
+  heroFeatureDescColor?: string; // feature card description — default: rgb(255 255 255 / 0.6)
+  heroFloatingDescColor?: string; // floating card description — default: rgb(255 255 255 / 0.68)
+  heroFeatureCardBg?: string; // feature card background — default: rgb(255 255 255 / 0.05)
+  heroFeatureCardBorder?: string; // feature card border — default: rgb(255 255 255 / 0.1)
+  heroFloatingCardBorder?: string; // floating card border — default: rgb(255 255 255 / 0.14)
+  heroOutlineText?: string; // secondary CTA text — default: var(--color-text-inverse) (white)
+  heroOutlineBorder?: string; // secondary CTA border — default: rgb(255 255 255 / 0.28)
+  heroOutlineHoverBg?: string; // secondary CTA hover background — default: rgb(255 255 255 / 0.06)
+  heroOutlineHoverBorder?: string; // secondary CTA hover border — default: rgb(255 255 255 / 0.45)
+  heroFeatureHoverBg?: string; // feature card hover background — default: none (no hover state before Signia v2)
+  heroFeatureHoverBorder?: string; // feature card hover border — default: none (no hover state before Signia v2)
+  // Hero Background System (Signia v3) — a 5th, independently-recolorable
+  // layer stacked on top of heroBackground's 4 layers (base/gradient/
+  // glow/soft-top-light, all still composed into one `heroBackground`
+  // background value). This is the abstract "wave" motif every brand's
+  // Hero has always shown (previously baked into the shared green Oticon
+  // photo, so it could only ever be that one green photo) — now a
+  // standalone recolorable SVG (see public/images/hero/wave-lines.svg)
+  // rendered via CSS mask, so its color/opacity become per-brand data
+  // instead of pixels in a shared image. Omit both and the layer is
+  // fully transparent (opacity 0) — every brand page built before this
+  // revision omits both and is completely unaffected.
+  heroWaveColor?: string; // tints the wave-lines.svg mask — default: transparent (layer invisible)
+  heroWaveOpacity?: string; // default: 0
+  // Maico contrast fix (2026-07) — some brands' real accentColor is dark
+  // enough (e.g. Maico's near-black navy #10233F) that using it directly
+  // for the badge text / CTA button background / floating-icon color
+  // *within the Hero* is nearly invisible against the Hero's own dark
+  // background — even though that same accentColor reads perfectly fine
+  // everywhere else on the page (badges/icons/borders on the site's
+  // normal white sections). These two fields let a brand supply a
+  // brighter, still-on-brand shade for Hero-only UI elements without
+  // changing accentColor/accentColorHover (which stay the true brand
+  // color everywhere else, incl. Overview through FAQ). Omit both and
+  // the Hero uses accentColor/accentColorHover exactly as before — every
+  // brand page built before this fix supplies neither.
+  heroAccent?: string; // overrides --bph-accent (badge text, button bg, floating-icon color, CTA border) — default: accentColor
+  heroAccentHover?: string; // overrides --bph-accent-hover (button hover bg) — default: accentColorHover
+  // Photographic-visual variant (Ücretsiz İşitme Testi) — for a page whose
+  // data.image is a full dark photo scene rather than a small product
+  // cutout on transparent background. All three default to the exact
+  // prior fixed values, so every page built before this addition (every
+  // product-cutout brand page) renders pixel-identical.
+  heroImageMaxWidth?: string; // overrides .brand-page-hero__image's max-width — default: 560px
+  heroImageMask?: string; // mask-image on .brand-page-hero__image — feathers a photo's edges into the Hero's own dark bg instead of it reading as a pasted rectangle — default: none (no mask, current behavior)
+  heroImageGlow?: string; // background of a soft blurred glow layer behind the image — default: none (no layer)
+  // A full photo (vs. a small product cutout) can have real content sitting
+  // exactly where the floating card has always docked (bottom-right) —
+  // these move the card without touching its text. Default `inset` value
+  // reproduces the prior fixed right:0;bottom:4% exactly.
+  heroFloatingCardInset?: string; // overrides floating-card's `inset` (top right bottom left) — default: "auto 0 4% auto"
+  heroFloatingCardWidth?: string; // overrides floating-card's width — default: 320px
+}
+
+interface Props {
+  data: BrandPageHeroContent;
+}
+
+const { data } = Astro.props;
+
+const heroStyleOverrides = [
+  data.heroBackground ? `--bph-bg-image:${data.heroBackground};` : "",
+  data.heroBaseBg ? `--bph-base-bg:${data.heroBaseBg};` : "",
+  data.ctaTextColor ? `--bph-cta-text:${data.ctaTextColor};` : "",
+  data.floatingCardBg ? `--bph-floating-bg:${data.floatingCardBg};` : "",
+  data.heroTextColor ? `--bph-text:${data.heroTextColor};` : "",
+  data.heroTextMuted ? `--bph-text-muted:${data.heroTextMuted};` : "",
+  data.heroFeatureLabelColor ? `--bph-feature-label:${data.heroFeatureLabelColor};` : "",
+  data.heroFeatureDescColor ? `--bph-feature-desc:${data.heroFeatureDescColor};` : "",
+  data.heroFloatingDescColor ? `--bph-floating-desc:${data.heroFloatingDescColor};` : "",
+  data.heroFeatureCardBg ? `--bph-feature-bg:${data.heroFeatureCardBg};` : "",
+  data.heroFeatureCardBorder ? `--bph-feature-border:${data.heroFeatureCardBorder};` : "",
+  data.heroFloatingCardBorder ? `--bph-floating-border:${data.heroFloatingCardBorder};` : "",
+  data.heroOutlineText ? `--bph-outline-text:${data.heroOutlineText};` : "",
+  data.heroOutlineBorder ? `--bph-outline-border:${data.heroOutlineBorder};` : "",
+  data.heroOutlineHoverBg ? `--bph-outline-hover-bg:${data.heroOutlineHoverBg};` : "",
+  data.heroOutlineHoverBorder ? `--bph-outline-hover-border:${data.heroOutlineHoverBorder};` : "",
+  data.heroFeatureHoverBg ? `--bph-feature-hover-bg:${data.heroFeatureHoverBg};` : "",
+  data.heroFeatureHoverBorder ? `--bph-feature-hover-border:${data.heroFeatureHoverBorder};` : "",
+  data.heroWaveColor ? `--bph-wave-color:${data.heroWaveColor};` : "",
+  data.heroWaveOpacity ? `--bph-wave-opacity:${data.heroWaveOpacity};` : "",
+  data.heroImageMaxWidth ? `--bph-image-max-width:${data.heroImageMaxWidth};` : "",
+  data.heroImageMask ? `--bph-image-mask:${data.heroImageMask};` : "",
+  data.heroImageGlow ? `--bph-image-glow:${data.heroImageGlow};` : "",
+  data.heroFloatingCardInset ? `--bph-floating-inset:${data.heroFloatingCardInset};` : "",
+  data.heroFloatingCardWidth ? `--bph-floating-width:${data.heroFloatingCardWidth};` : "",
+].join(" ");
+---
+
+<section
+  class="brand-page-hero"
+  aria-labelledby="brand-page-hero-title"
+  style={`--bph-accent:${data.heroAccent || data.accentColor}; --bph-accent-hover:${data.heroAccentHover || data.accentColorHover}; --bph-accent-soft:${data.accentColorSoft}; --bph-accent-border:${data.accentColorBorder}; ${heroStyleOverrides}`}
+>
+  <div class="brand-page-hero__bg" aria-hidden="true"></div>
+  <div class="brand-page-hero__wave" aria-hidden="true"></div>
+
+  <div class="brand-page-hero__inner">
+    <div class="brand-page-hero__content">
+      <p class="brand-page-hero__badge" data-rise>{data.badge}</p>
+
+      <h1 class="brand-page-hero__heading" id="brand-page-hero-title" data-rise>
+        {data.headingLines.map((line) => <span class="brand-page-hero__heading-line">{line}</span>)}
+      </h1>
+
+      {
+        data.paragraphs.map((p) => (
+          <p class="brand-page-hero__paragraph" data-rise>
+            {p}
+          </p>
+        ))
+      }
+
+      <div class="brand-page-hero__actions" data-rise>
+        <a class="brand-page-hero__cta brand-page-hero__cta--solid" href={data.ctaPrimary.href}>
+          <Phone size={18} stroke-width={2} aria-hidden="true" />
+          <span>{data.ctaPrimary.label}</span>
+        </a>
+        <a class="brand-page-hero__cta brand-page-hero__cta--outline" href={data.ctaSecondary.href}>
+          <MessageCircle size={18} stroke-width={2} aria-hidden="true" />
+          <span>{data.ctaSecondary.label}</span>
+        </a>
+      </div>
+
+      <div class="brand-page-hero__features" data-rise>
+        {
+          data.features.map((feature) => (
+            <div class="brand-page-hero__feature" style={`--feature-accent:${feature.accent};`}>
+              <p class="brand-page-hero__feature-label">{feature.label}</p>
+              <p class="brand-page-hero__feature-title">{feature.title}</p>
+              <p class="brand-page-hero__feature-desc">{feature.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="brand-page-hero__visual" data-rise>
+      <img
+        class="brand-page-hero__image"
+        src={data.image.src}
+        alt={data.image.alt}
+        width="900"
+        height="900"
+      />
+
+      <div class="brand-page-hero__floating-card">
+        <span class="brand-page-hero__floating-icon">
+          <BrainCircuit size={20} stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="brand-page-hero__floating-text">
+          <span class="brand-page-hero__floating-title">{data.floatingCard.title}</span>
+          <span class="brand-page-hero__floating-desc">{data.floatingCard.description}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Same entrance state-machine as every other section on the site:
+    // IntersectionObserver, a failsafe timeout, and a
+    // prefers-reduced-motion bail.
+    var section = document.querySelector(".brand-page-hero");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 920px;
+    display: flex;
+    align-items: center;
+    background: var(--bph-base-bg, #0a120d);
+    color: var(--color-text-inverse);
+    padding-block: var(--space-20);
+    --bph-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* The provided reference background asset — dark left, accent glow
+     right, wave visible low-center — covers the section at full height
+     without cropping its left-right composition. No overlay on top: the
+     asset's own left side is already near-black, so text contrast
+     doesn't need one. */
+  .brand-page-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--bph-bg-image, url("/images/pages/oticon-hero-bg.webp"));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Hero Background System (Signia v3) — recolorable "wave" layer.
+     wave-lines.svg supplies the shape only (a handful of soft curved
+     strands); its actual color/opacity are per-brand data (--bph-wave-*),
+     applied via CSS mask so the same one asset can become any brand's
+     accent color without a separate image per brand. Defaults to fully
+     transparent, so this is a no-op for every brand page that doesn't
+     set heroWaveColor/heroWaveOpacity. */
+  .brand-page-hero__wave {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--bph-wave-color, transparent);
+    opacity: var(--bph-wave-opacity, 0);
+    -webkit-mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+  }
+
+  .brand-page-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 52% 48%;
+    align-items: center;
+    gap: var(--space-10);
+    width: 100%;
+  }
+
+  /* --- Left: content --------------------------------------------------------- */
+
+  .brand-page-hero__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bph-accent-border);
+    border-radius: var(--radius-full);
+    background: var(--bph-accent-soft);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bph-accent);
+  }
+
+  .brand-page-hero__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--bph-text, var(--color-text-inverse));
+  }
+
+  .brand-page-hero__heading-line {
+    display: block;
+  }
+
+  .brand-page-hero__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--bph-text-muted, rgb(255 255 255 / 0.72));
+  }
+
+  .brand-page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .brand-page-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 56px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 300ms var(--bph-ease), background-color 300ms var(--bph-ease), border-color 300ms var(--bph-ease);
+  }
+
+  .brand-page-hero__cta--solid {
+    background: var(--bph-accent);
+    border: 1px solid var(--bph-accent);
+    color: var(--bph-cta-text, #0a1408);
+  }
+
+  .brand-page-hero__cta--solid:hover {
+    background: var(--bph-accent-hover);
+    transform: translateY(-2px);
+  }
+
+  .brand-page-hero__cta--outline {
+    background: transparent;
+    border: 1px solid var(--bph-outline-border, rgb(255 255 255 / 0.28));
+    color: var(--bph-outline-text, var(--color-text-inverse));
+  }
+
+  .brand-page-hero__cta--outline:hover {
+    background: var(--bph-outline-hover-bg, rgb(255 255 255 / 0.06));
+    border-color: var(--bph-outline-hover-border, rgb(255 255 255 / 0.45));
+    transform: translateY(-2px);
+  }
+
+  .brand-page-hero__cta:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--bph-accent-border);
+  }
+
+  /* --- Feature cards: glass, no heavy shadow -------------------------------- */
+
+  .brand-page-hero__features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-10);
+  }
+
+  .brand-page-hero__feature {
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    background: var(--bph-feature-bg, rgb(255 255 255 / 0.05));
+    border: 1px solid var(--bph-feature-border, rgb(255 255 255 / 0.1));
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    transition: border-color 250ms var(--bph-ease), background-color 250ms var(--bph-ease);
+  }
+
+  .brand-page-hero__feature:hover {
+    background: var(--bph-feature-hover-bg, var(--bph-feature-bg, rgb(255 255 255 / 0.05)));
+    border-color: var(--bph-feature-hover-border, var(--bph-feature-border, rgb(255 255 255 / 0.1)));
+  }
+
+  .brand-page-hero__feature::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--feature-accent);
+  }
+
+  .brand-page-hero__feature-label {
+    margin: 0;
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bph-feature-label, rgb(255 255 255 / 0.5));
+  }
+
+  .brand-page-hero__feature-title {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--bph-text, var(--color-text-inverse));
+  }
+
+  .brand-page-hero__feature-desc {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--bph-feature-desc, rgb(255 255 255 / 0.6));
+  }
+
+  /* --- Right: image + floating card ------------------------------------------ */
+
+  .brand-page-hero__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Soft ambient glow behind the image — invisible (background:none) unless
+     a page supplies heroImageGlow, so every existing product-cutout page is
+     unaffected. Oversized + blurred so it reads as diffuse light, not a
+     shape with edges of its own. */
+  .brand-page-hero__visual::before {
+    content: "";
+    position: absolute;
+    inset: -12%;
+    z-index: -1;
+    background: var(--bph-image-glow, none);
+    filter: blur(48px);
+    pointer-events: none;
+  }
+
+  .brand-page-hero__image {
+    width: 100%;
+    height: auto;
+    max-width: var(--bph-image-max-width, 560px);
+    object-fit: contain;
+    -webkit-mask-image: var(--bph-image-mask, none);
+    mask-image: var(--bph-image-mask, none);
+  }
+
+  .brand-page-hero__floating-card {
+    position: absolute;
+    inset: var(--bph-floating-inset, auto 0 4% auto);
+    width: var(--bph-floating-width, 320px);
+    max-width: calc(100% - var(--space-4));
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5) var(--space-6);
+    background: var(--bph-floating-bg, rgb(10 20 14 / 0.7));
+    border: 1px solid var(--bph-floating-border, rgb(255 255 255 / 0.14));
+    border-radius: var(--radius-2xl);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+  }
+
+  .brand-page-hero__floating-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    background: var(--bph-accent-soft);
+    color: var(--bph-accent);
+  }
+
+  .brand-page-hero__floating-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .brand-page-hero__floating-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--bph-text, var(--color-text-inverse));
+  }
+
+  .brand-page-hero__floating-desc {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--bph-floating-desc, rgb(255 255 255 / 0.68));
+  }
+
+  /* --- Entrance: same fade-up state machine as every other section on the
+     site (IntersectionObserver + data-anim, driven by the inline script
+     above). --- */
+
+  .brand-page-hero[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-page-hero[data-anim="in"] [data-rise] {
+    animation: brand-page-hero-rise 700ms var(--bph-ease) both;
+  }
+
+  .brand-page-hero[data-anim="in"] .brand-page-hero__badge { animation-delay: 40ms; }
+  .brand-page-hero[data-anim="in"] .brand-page-hero__heading { animation-delay: 90ms; }
+  .brand-page-hero[data-anim="in"] .brand-page-hero__paragraph:nth-of-type(1) { animation-delay: 140ms; }
+  .brand-page-hero[data-anim="in"] .brand-page-hero__paragraph:nth-of-type(2) { animation-delay: 180ms; }
+  .brand-page-hero[data-anim="in"] .brand-page-hero__actions { animation-delay: 220ms; }
+  .brand-page-hero[data-anim="in"] .brand-page-hero__features { animation-delay: 260ms; }
+  .brand-page-hero[data-anim="in"] .brand-page-hero__visual { animation-delay: 140ms; }
+
+  @keyframes brand-page-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .brand-page-hero {
+      min-height: 0;
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-12);
+    }
+
+    .brand-page-hero__visual {
+      order: -1;
+      flex-direction: column;
+    }
+
+    .brand-page-hero__floating-card {
+      position: static;
+      width: 100%;
+      max-width: 100%;
+      margin-top: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-hero__features {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .brand-page-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .brand-page-hero__image {
+      max-width: 340px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-hero[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-page-hero__cta {
+      transition: none;
+    }
+  }
+</style>

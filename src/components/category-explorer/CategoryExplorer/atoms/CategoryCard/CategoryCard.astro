@@ -1,0 +1,108 @@
+---
+// CategoryCard — one device-type card inside the CategoryExplorer rail.
+// Deliberately not BrandShowcase's card recipe (bordered box, grayscale
+// logo, lift-on-hover) — that register already belongs to the hub-grid
+// pages (/markalar, /isitme-cihazlari, /bilgi-merkezi); reusing it here
+// would make this section read as another SEO grid, which the section
+// is explicitly designed not to be. Quieter surface, icon in a soft
+// circle, one factual descriptive line — an invitation to explore, not
+// a catalog tile.
+import { ArrowRight } from "lucide-astro";
+import type { CategoryExplorerItem } from "../../../../../data/category-explorer/category-explorer.data";
+
+interface Props {
+  item: CategoryExplorerItem;
+}
+
+const { item } = Astro.props;
+---
+
+<a class="category-card" href={item.href} data-rise>
+  <span class="category-card__icon" aria-hidden="true">
+    <item.icon size={22} stroke-width={1.75} />
+  </span>
+  <span class="category-card__name">{item.name}</span>
+  <span class="category-card__desc">{item.description}</span>
+  <span class="category-card__cta">
+    İncele
+    <ArrowRight size={14} stroke-width={2.5} aria-hidden="true" />
+  </span>
+</a>
+
+<style>
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex: 0 0 auto;
+    width: 15rem;
+    scroll-snap-align: start;
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    text-decoration: none;
+    transition: background-color var(--transition-base);
+  }
+
+  .category-card:hover,
+  .category-card:focus-visible {
+    background: var(--color-background);
+  }
+
+  .category-card:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .category-card__icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    color: var(--color-primary);
+  }
+
+  .category-card:hover .category-card__icon,
+  .category-card:focus-visible .category-card__icon {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .category-card__name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .category-card__desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .category-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: auto;
+    padding-top: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .category-card {
+      width: 13.5rem;
+      padding: var(--space-5);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .category-card {
+      transition: none;
+    }
+  }
+</style>

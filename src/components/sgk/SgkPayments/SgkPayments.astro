@@ -1,0 +1,699 @@
+---
+// SgkPayments — the SGK pillar page's highest-intent section: "SGK ne kadar
+// ödüyor?". Deliberately dual-format per the brief — the real infographic
+// (premium-framed) AND the same numbers reproduced as a semantic HTML
+// table, so the figures are readable from either the image or the markup
+// and fully crawlable/accessible. Own data namespace
+// (../../../data/sgk/payments), independent of hero/process/knowledge.
+import {
+  Check,
+  BatteryCharging,
+  Pin,
+  Phone,
+  MessageCircle,
+  Users,
+  Briefcase,
+  UserCheck,
+  Wallet,
+} from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { sgkPayments } from "../../../data/sgk/payments";
+import { contactConfig } from "../../../config";
+
+const colIcons = [Users, Briefcase, UserCheck, Wallet];
+---
+
+<section class="sgk-payments" aria-labelledby="sgk-payments-title">
+  <div class="sgk-payments__inner">
+    <div class="sgk-payments__head" data-rise>
+      <p class="sgk-payments__badge">{sgkPayments.badge}</p>
+      <h2 class="sgk-payments__heading" id="sgk-payments-title">{sgkPayments.heading}</h2>
+      <p class="sgk-payments__subheading">{sgkPayments.subheading}</p>
+    </div>
+
+    <div class="sgk-payments__visual" data-rise>
+      <div class="sgk-payments__glow" aria-hidden="true"></div>
+      <div class="sgk-payments__frame">
+        <img
+          class="sgk-payments__image"
+          src={sgkPayments.infographic.src}
+          alt={sgkPayments.infographic.alt}
+          width={sgkPayments.infographic.width}
+          height={sgkPayments.infographic.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="sgk-payments__chips">
+        {
+          sgkPayments.infoChips.map((chip) => (
+            <span class="sgk-payments__chip">
+              <Check size={13} stroke-width={2.5} aria-hidden="true" />
+              {chip}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="sgk-payments__table-wrap" data-rise>
+      <div class="sgk-payments__table-head">
+        <span class="sgk-payments__validity">{sgkPayments.validity}</span>
+      </div>
+
+      <div class="sgk-payments__table-scroll">
+        <table class="sgk-payments__table">
+          <caption class="sgk-payments__caption">{sgkPayments.tableCaption}</caption>
+          <thead>
+            <tr>
+              {
+                [
+                  sgkPayments.columns.ageRange,
+                  sgkPayments.columns.employed,
+                  sgkPayments.columns.retired,
+                  sgkPayments.columns.retiredDeduction,
+                ].map((label, i) => {
+                  const Icon = colIcons[i];
+                  return (
+                    <th scope="col">
+                      <Icon size={14} stroke-width={2} aria-hidden="true" />
+                      <span>{label}</span>
+                    </th>
+                  );
+                })
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              sgkPayments.rows.map((row) => (
+                <tr>
+                  <th scope="row" data-label={sgkPayments.columns.ageRange}>
+                    {row.ageRange}
+                  </th>
+                  <td data-label={sgkPayments.columns.employed}>{row.employed}</td>
+                  <td data-label={sgkPayments.columns.retired}>{row.retired}</td>
+                  <td data-label={sgkPayments.columns.retiredDeduction}>{row.retiredDeduction}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sgk-payments__battery">
+        <span class="sgk-payments__battery-icon" aria-hidden="true">
+          <BatteryCharging size={22} stroke-width={1.75} />
+        </span>
+        <div class="sgk-payments__battery-body">
+          <p class="sgk-payments__battery-label">{sgkPayments.battery.label}</p>
+          <p class="sgk-payments__battery-note">{sgkPayments.battery.note}</p>
+        </div>
+        <p class="sgk-payments__battery-amount">{sgkPayments.battery.amount}</p>
+      </div>
+
+      <p class="sgk-payments__source">{sgkPayments.sourceNote}</p>
+    </div>
+
+    <div class="sgk-payments__notice" data-rise>
+      <span class="sgk-payments__notice-icon" aria-hidden="true">
+        <Pin size={20} stroke-width={1.75} />
+      </span>
+      <div class="sgk-payments__notice-body">
+        <p class="sgk-payments__notice-label">{sgkPayments.notice.label}</p>
+        <p class="sgk-payments__notice-text">{sgkPayments.notice.text}</p>
+      </div>
+    </div>
+
+    <div class="sgk-payments__cta" data-rise>
+      <p class="sgk-payments__cta-text">{sgkPayments.cta.heading}</p>
+      <div class="sgk-payments__cta-actions">
+        <CtaButton
+          label={sgkPayments.cta.primaryLabel}
+          href={contactConfig.phone.href}
+          variant="solid"
+          iconLeft={Phone}
+        />
+        <CtaButton
+          label={sgkPayments.cta.secondaryLabel}
+          href={contactConfig.whatsapp.href}
+          variant="outline"
+          iconLeft={MessageCircle}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-payments");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as the rest
+    // of the SGK page: default-visible CSS, JS-only "armed" opt-in, three
+    // independent safety nets so content can never get stuck hidden.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-payments {
+    position: relative;
+    background: var(--color-surface);
+    padding-block: var(--space-24);
+    --spm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-payments__inner {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .sgk-payments__head {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sgk-payments__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-payments__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-payments__subheading {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Visual: premium-framed infographic --------------------------------- */
+
+  .sgk-payments__visual {
+    position: relative;
+    margin-top: var(--space-14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sgk-payments__glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(900px, 90%);
+    height: 60%;
+    z-index: -1;
+    background: radial-gradient(closest-side, rgb(37 99 235 / 0.16), transparent 72%);
+    filter: blur(48px);
+  }
+
+  .sgk-payments__frame {
+    width: 100%;
+    max-width: 860px;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    border: 1px solid rgb(37 99 235 / 0.14);
+    background: rgb(255 255 255 / 0.6);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    box-shadow: 0 36px 70px -30px rgb(37 99 235 / 0.32), var(--shadow-lg);
+    padding: var(--space-3);
+    transition: transform 380ms var(--spm-ease), box-shadow 380ms var(--spm-ease);
+  }
+
+  .sgk-payments__frame:hover {
+    transform: scale(1.012);
+    box-shadow: 0 44px 84px -30px rgb(37 99 235 / 0.4), var(--shadow-xl);
+  }
+
+  .sgk-payments__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-xl);
+  }
+
+  .sgk-payments__chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    max-width: 860px;
+  }
+
+  .sgk-payments__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-payments__chip svg {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  /* --- Table: the same data, HTML + accessible ---------------------------- */
+
+  .sgk-payments__table-wrap {
+    max-width: 860px;
+    margin: var(--space-14) auto 0;
+    padding: var(--space-8);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sgk-payments__table-head {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-4);
+  }
+
+  .sgk-payments__validity {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .sgk-payments__table-scroll {
+    overflow-x: auto;
+  }
+
+  .sgk-payments__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .sgk-payments__caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .sgk-payments__table th,
+  .sgk-payments__table td {
+    padding: var(--space-4) var(--space-4);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+
+  .sgk-payments__table thead th {
+    display: table-cell;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+    background: var(--color-surface);
+  }
+
+  .sgk-payments__table thead th span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .sgk-payments__table thead th svg {
+    color: var(--color-primary);
+  }
+
+  .sgk-payments__table thead tr th:first-child {
+    border-top-left-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
+  }
+  .sgk-payments__table thead tr th:last-child {
+    border-top-right-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+  }
+
+  .sgk-payments__table tbody th {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .sgk-payments__table tbody td {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sgk-payments__table tbody tr:last-child th,
+  .sgk-payments__table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* --- Battery support: its own highlighted row --------------------------- */
+
+  .sgk-payments__battery {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+  }
+
+  .sgk-payments__battery-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+  }
+
+  .sgk-payments__battery-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sgk-payments__battery-label {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .sgk-payments__battery-note {
+    margin: 2px 0 0;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-payments__battery-amount {
+    flex: none;
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sgk-payments__source {
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-soft);
+  }
+
+  /* --- Notice -------------------------------------------------------------- */
+
+  .sgk-payments__notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    max-width: 860px;
+    margin: var(--space-8) auto 0;
+    padding: var(--space-6);
+    background: rgb(37 99 235 / 0.05);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sgk-payments__notice-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid rgb(37 99 235 / 0.2);
+    color: var(--color-primary);
+  }
+
+  .sgk-payments__notice-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sgk-payments__notice-label {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .sgk-payments__notice-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- CTA ------------------------------------------------------------------ */
+
+  .sgk-payments__cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    max-width: 860px;
+    margin: var(--space-10) auto 0;
+    padding: var(--space-8);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sgk-payments__cta-text {
+    margin: 0;
+    max-width: 28rem;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-payments__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .sgk-payments[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--spm-ease), transform 600ms var(--spm-ease);
+  }
+
+  .sgk-payments[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-payments[data-anim="armed"] .sgk-payments__head { transition-delay: 0ms; }
+  .sgk-payments[data-anim="armed"] .sgk-payments__visual { transition-delay: 70ms; }
+  .sgk-payments[data-anim="armed"] .sgk-payments__table-wrap { transition-delay: 140ms; }
+  .sgk-payments[data-anim="armed"] .sgk-payments__notice { transition-delay: 210ms; }
+  .sgk-payments[data-anim="armed"] .sgk-payments__cta { transition-delay: 260ms; }
+
+  /* --- Responsive ------------------------------------------------------------ */
+
+  @media (max-width: 1023px) {
+    .sgk-payments {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-payments__table-wrap,
+    .sgk-payments__cta {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-payments__cta {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+
+    .sgk-payments__cta-text {
+      max-width: none;
+    }
+
+    .sgk-payments__cta-actions {
+      flex-direction: column;
+    }
+
+    .sgk-payments__battery {
+      flex-wrap: wrap;
+    }
+
+    .sgk-payments__battery-amount {
+      width: 100%;
+      text-align: right;
+    }
+
+    /* Table -> stacked cards: no data is hidden, just re-flowed. */
+    .sgk-payments__table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .sgk-payments__table,
+    .sgk-payments__table tbody,
+    .sgk-payments__table tr,
+    .sgk-payments__table th,
+    .sgk-payments__table td {
+      display: block;
+      width: 100%;
+      white-space: normal;
+    }
+
+    .sgk-payments__table tr {
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .sgk-payments__table tr:first-child {
+      padding-top: 0;
+    }
+
+    .sgk-payments__table tbody tr:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .sgk-payments__table tbody th {
+      padding: 0 0 var(--space-3);
+      border-bottom: none;
+      font-size: var(--font-size-md);
+    }
+
+    .sgk-payments__table td {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-2) 0;
+      border-bottom: none;
+    }
+
+    .sgk-payments__table td::before {
+      content: attr(data-label);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text-soft);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-payments[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sgk-payments__frame {
+      transition: none;
+    }
+  }
+</style>

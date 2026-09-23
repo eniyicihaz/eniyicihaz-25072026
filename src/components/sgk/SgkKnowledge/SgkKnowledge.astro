@@ -1,0 +1,393 @@
+---
+// SgkKnowledge — third section of the SGK pillar page. Replaces the old
+// site's single long paragraph block with a scannable knowledge grid: six
+// short, self-contained cards plus one highlighted notice card. Own data
+// namespace (../../../data/sgk/knowledge), independent of SgkHero/SgkProcess.
+import {
+  Users,
+  Wallet,
+  FileCheck2,
+  ClipboardCheck,
+  RefreshCw,
+  UserCheck,
+  Lightbulb,
+  ArrowRight,
+  Phone,
+} from "lucide-astro";
+import { sgkKnowledge } from "../../../data/sgk/knowledge";
+import { contactConfig } from "../../../config";
+
+const cardIcons = [Users, Wallet, FileCheck2, ClipboardCheck, RefreshCw, UserCheck];
+---
+
+<section class="sgk-knowledge" aria-labelledby="sgk-knowledge-title">
+  <div class="sgk-knowledge__inner">
+    <div class="sgk-knowledge__head" data-rise>
+      <p class="sgk-knowledge__badge">{sgkKnowledge.badge}</p>
+      <h2 class="sgk-knowledge__heading" id="sgk-knowledge-title">{sgkKnowledge.heading}</h2>
+      <p class="sgk-knowledge__intro">{sgkKnowledge.intro}</p>
+    </div>
+
+    <div class="sgk-knowledge__grid">
+      {
+        sgkKnowledge.cards.map((card, i) => {
+          const Icon = cardIcons[i % cardIcons.length];
+          return (
+            <div class="sgk-knowledge__card" data-rise>
+              <span class="sgk-knowledge__card-icon" aria-hidden="true">
+                <Icon size={22} stroke-width={1.75} />
+              </span>
+              <h3 class="sgk-knowledge__card-title">{card.title}</h3>
+              <p class="sgk-knowledge__card-desc">{card.description}</p>
+              <a class="sgk-knowledge__card-link" href={card.href}>
+                <span>{sgkKnowledge.cardLinkLabel}</span>
+                <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+              </a>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <div class="sgk-knowledge__notice" data-rise>
+      <span class="sgk-knowledge__notice-icon" aria-hidden="true">
+        <Lightbulb size={22} stroke-width={1.75} />
+      </span>
+      <div class="sgk-knowledge__notice-body">
+        <p class="sgk-knowledge__notice-label">{sgkKnowledge.notice.label}</p>
+        <p class="sgk-knowledge__notice-text">{sgkKnowledge.notice.text}</p>
+      </div>
+      <a class="sgk-knowledge__notice-cta" href={contactConfig.phone.href}>
+        <Phone size={15} stroke-width={2} aria-hidden="true" />
+        <span>{sgkKnowledge.notice.contactLabel}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-knowledge");
+    if (!section) return;
+
+    // Same safe, progressive-enhancement entrance architecture as the rest
+    // of the SGK page: default-visible CSS, JS-only "armed" opt-in, three
+    // independent safety nets so content can never get stuck hidden.
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-knowledge {
+    position: relative;
+    background: var(--color-white);
+    padding-block: var(--space-24);
+    --sk-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-knowledge__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .sgk-knowledge__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sgk-knowledge__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(37 99 235 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-knowledge__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-knowledge__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Grid ---------------------------------------------------------------- */
+
+  .sgk-knowledge__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-16);
+  }
+
+  .sgk-knowledge__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-7);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: transform 320ms var(--sk-ease), box-shadow 320ms var(--sk-ease),
+      border-color 320ms var(--sk-ease);
+  }
+
+  .sgk-knowledge__card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(37 99 235 / 0.3);
+    box-shadow: 0 24px 48px -24px rgb(37 99 235 / 0.28);
+  }
+
+  .sgk-knowledge__card-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+    transition: transform 320ms var(--sk-ease), background-color 320ms var(--sk-ease);
+  }
+
+  .sgk-knowledge__card:hover .sgk-knowledge__card-icon {
+    background: rgb(37 99 235 / 0.14);
+    transform: scale(1.06);
+  }
+
+  .sgk-knowledge__card-title {
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    color: var(--color-text);
+  }
+
+  .sgk-knowledge__card-desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-knowledge__card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-5);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sgk-knowledge__card-link svg {
+    transition: transform 220ms var(--sk-ease);
+  }
+
+  .sgk-knowledge__card-link:hover svg {
+    transform: translateX(3px);
+  }
+
+  .sgk-knowledge__card-link:focus-visible,
+  .sgk-knowledge__notice-cta:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* --- Notice: highlighted callout, not a card among cards ------------------ */
+
+  .sgk-knowledge__notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-5);
+    margin-top: var(--space-10);
+    padding: var(--space-7);
+    background: rgb(37 99 235 / 0.05);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sgk-knowledge__notice-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid rgb(37 99 235 / 0.2);
+    color: var(--color-primary);
+  }
+
+  .sgk-knowledge__notice-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sgk-knowledge__notice-label {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+  }
+
+  .sgk-knowledge__notice-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-knowledge__notice-cta {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: var(--space-2);
+    align-self: center;
+    height: 44px;
+    padding-inline: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid rgb(37 99 235 / 0.3);
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 220ms var(--sk-ease), transform 220ms var(--sk-ease);
+  }
+
+  .sgk-knowledge__notice-cta:hover {
+    background: rgb(37 99 235 / 0.08);
+    transform: translateY(-1px);
+  }
+
+  /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */
+
+  .sgk-knowledge[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms var(--sk-ease), transform 600ms var(--sk-ease);
+  }
+
+  .sgk-knowledge[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sgk-knowledge[data-anim="armed"] .sgk-knowledge__head { transition-delay: 0ms; }
+  .sgk-knowledge[data-anim="armed"] .sgk-knowledge__card:nth-child(1) { transition-delay: 60ms; }
+  .sgk-knowledge[data-anim="armed"] .sgk-knowledge__card:nth-child(2) { transition-delay: 110ms; }
+  .sgk-knowledge[data-anim="armed"] .sgk-knowledge__card:nth-child(3) { transition-delay: 160ms; }
+  .sgk-knowledge[data-anim="armed"] .sgk-knowledge__card:nth-child(4) { transition-delay: 210ms; }
+  .sgk-knowledge[data-anim="armed"] .sgk-knowledge__card:nth-child(5) { transition-delay: 260ms; }
+  .sgk-knowledge[data-anim="armed"] .sgk-knowledge__card:nth-child(6) { transition-delay: 310ms; }
+  .sgk-knowledge[data-anim="armed"] .sgk-knowledge__notice { transition-delay: 360ms; }
+
+  /* --- Responsive ---------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .sgk-knowledge {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-knowledge__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: var(--space-12);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-knowledge__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sgk-knowledge__notice {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sgk-knowledge__notice-cta {
+      align-self: stretch;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-knowledge[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sgk-knowledge__card,
+    .sgk-knowledge__card-icon,
+    .sgk-knowledge__card-link svg,
+    .sgk-knowledge__notice-cta {
+      transition: none;
+    }
+  }
+</style>

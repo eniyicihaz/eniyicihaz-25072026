@@ -1,0 +1,202 @@
+---
+// KnowledgeGate — "Bilgi Merkezi Girişi" (plan §B position 10, §H). The
+// homepage's lowest-commitment section: a minimal, single-file organism
+// (Empathy/Closing scale) offering a soft "keep learning" off-ramp right
+// before Closing's invitation — not a replacement for /bilgi-merkezi,
+// just a real, small gate to it. Deliberately no card chrome/icons (that
+// register belongs to Category Explorer/Services) — plain text links,
+// quieter than either.
+import { knowledgeGate } from "../../../data/knowledge-gate/knowledge-gate.data";
+---
+
+<section class="knowledge-gate" aria-labelledby="knowledge-gate-title">
+  <p class="knowledge-gate__eyebrow" data-rise>{knowledgeGate.eyebrow}</p>
+  <h2 class="knowledge-gate__heading" id="knowledge-gate-title" data-rise>
+    {knowledgeGate.heading}
+  </h2>
+  <p class="knowledge-gate__intro" data-rise>{knowledgeGate.intro}</p>
+
+  <ul class="knowledge-gate__topics" data-rise>
+    {knowledgeGate.topics.map((topic) => (
+      <li>
+        <a href={topic.href}>{topic.label}</a>
+      </li>
+    ))}
+  </ul>
+
+  <a class="knowledge-gate__hub-link" href={knowledgeGate.hubCta.href} data-rise>
+    {knowledgeGate.hubCta.label} →
+  </a>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".knowledge-gate");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .knowledge-gate {
+    position: relative;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    text-align: center;
+    --kg-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .knowledge-gate__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .knowledge-gate__heading {
+    margin: var(--space-4) auto 0;
+    max-width: 32rem;
+    font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .knowledge-gate__intro {
+    margin: var(--space-3) auto 0;
+    max-width: 30rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .knowledge-gate__topics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3) var(--space-6);
+    margin: var(--space-8) auto 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .knowledge-gate__topics a {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border-hover);
+  }
+
+  .knowledge-gate__topics a:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .knowledge-gate__topics a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .knowledge-gate__hub-link {
+    display: inline-block;
+    margin-top: var(--space-6);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .knowledge-gate__hub-link:hover {
+    text-decoration: underline;
+  }
+
+  .knowledge-gate__hub-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .knowledge-gate[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .knowledge-gate[data-anim="in"] [data-rise] {
+    animation: knowledge-gate-rise 600ms var(--kg-ease) both;
+  }
+
+  .knowledge-gate[data-anim="in"] .knowledge-gate__topics {
+    animation-delay: 100ms;
+  }
+
+  .knowledge-gate[data-anim="in"] .knowledge-gate__hub-link {
+    animation-delay: 160ms;
+  }
+
+  @keyframes knowledge-gate-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .knowledge-gate {
+      padding-block: var(--space-12);
+    }
+
+    .knowledge-gate__topics {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .knowledge-gate[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

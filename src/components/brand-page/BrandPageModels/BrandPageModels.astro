@@ -1,0 +1,470 @@
+---
+// BrandPageModels — shared, cross-brand product showcase grid. Generic
+// counterpart of Oticon's original OticonModels (M5); data-driven so every
+// brand page can reuse it.
+//
+// Feature-badge system (cross-brand standard, see PHONAK MASTER BLUEPRINT
+// §6.7/§7): each product's `tags` now render as small icon+label badges
+// instead of plain text pills. The lookup below covers every tag string
+// already used across Oticon's and Phonak's own product data; any tag not
+// in the map falls back to a plain, icon-less pill — the exact visual
+// Oticon's tags used before this upgrade — so nothing can silently break
+// if a future brand introduces a new tag.
+import {
+  ArrowRight,
+  Bluetooth,
+  BatteryCharging,
+  Battery,
+  Ear,
+  Radio,
+  Zap,
+  Baby,
+  Shuffle,
+  Cpu,
+  Brain,
+  Volume2,
+} from "lucide-astro";
+
+const badgeMap: Record<string, { icon: any; color: string }> = {
+  "bluetooth": { icon: Bluetooth, color: "#2563eb" },
+  "şarjlı": { icon: BatteryCharging, color: "#16a34a" },
+  "pilli": { icon: Battery, color: "#64748b" },
+  "kulak içi": { icon: Ear, color: "#0d9488" },
+  "ric": { icon: Radio, color: "#64748b" },
+  "bte": { icon: Radio, color: "#64748b" },
+  "power": { icon: Zap, color: "#ea580c" },
+  "çocuk": { icon: Baby, color: "#db2777" },
+  "tek taraflı": { icon: Shuffle, color: "#7c3aed" },
+  "ai": { icon: Cpu, color: "#4f46e5" },
+  "brainhearing": { icon: Brain, color: "#16a34a" },
+  "güçlü kayıplar": { icon: Volume2, color: "#ea580c" },
+};
+
+export interface BrandPageProduct {
+  slug: string;
+  category: string;
+  name: string;
+  description: string;
+  tags: string[];
+  image: string;
+}
+
+export interface BrandPageModelsContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  ctaLabel: string;
+  items: BrandPageProduct[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorHoverBorder: string;
+  accentColorGlow: string;
+  accentColorFocus: string;
+}
+
+interface Props {
+  data: BrandPageModelsContent;
+}
+
+const { data } = Astro.props;
+
+// Plain server-side hex→rgba conversion (runs once at build time, output is
+// a literal rgba() string in the static HTML) — not a browser-side CSS
+// color function, so there's no runtime compatibility risk.
+function hexToRgba(hex: string, alpha: number) {
+  const value = hex.replace("#", "");
+  const r = parseInt(value.substring(0, 2), 16);
+  const g = parseInt(value.substring(2, 4), 16);
+  const b = parseInt(value.substring(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+---
+
+<section
+  class="brand-page-models"
+  aria-labelledby="brand-page-models-title"
+  style={`--bpm-accent:${data.accentColor}; --bpm-badge-bg:${data.accentColorBadgeBg}; --bpm-badge-border:${data.accentColorBadgeBorder}; --bpm-badge-text:${data.accentColorBadgeText}; --bpm-hover-border:${data.accentColorHoverBorder}; --bpm-glow:${data.accentColorGlow}; --bpm-focus:${data.accentColorFocus};`}
+>
+  <div class="brand-page-models__inner">
+    <div class="brand-page-models__header">
+      <p class="brand-page-models__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-page-models__heading" id="brand-page-models-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="brand-page-models__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="brand-page-models__grid">
+      {
+        data.items.map((item) => (
+          <a class="brand-page-models__card" href="#" data-rise>
+            <span class="brand-page-models__category">{item.category}</span>
+
+            <span class="brand-page-models__media">
+              <span class="brand-page-models__glow" aria-hidden="true" />
+              <img
+                class="brand-page-models__image"
+                src={item.image}
+                alt={item.name}
+                loading="lazy"
+                width="500"
+                height="500"
+              />
+            </span>
+
+            <span class="brand-page-models__name">{item.name}</span>
+            <span class="brand-page-models__desc">{item.description}</span>
+
+            <span class="brand-page-models__badges">
+              {item.tags.map((tag) => {
+                // Turkish "İ" and ASCII "I" lowercase in opposite directions
+                // depending on locale (tr-TR turns "I" into "ı", not "i") —
+                // neither plain toLowerCase() nor the tr-TR locale alone
+                // handles both "İçi" and "RIC" correctly, so "İ" is
+                // normalized explicitly before a locale-independent lowercase.
+                const match = badgeMap[tag.replace(/İ/g, "i").toLowerCase()];
+                return match ? (
+                  <span
+                    class="brand-page-models__feature-badge"
+                    style={`--fb-color:${match.color}; --fb-bg:${hexToRgba(match.color, 0.1)};`}
+                  >
+                    <match.icon size={12} stroke-width={2} aria-hidden="true" />
+                    <span>{tag}</span>
+                  </span>
+                ) : (
+                  <span class="brand-page-models__tag">{tag}</span>
+                );
+              })}
+            </span>
+
+            <span class="brand-page-models__link">
+              <span>{data.ctaLabel}</span>
+              <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-page-models");
+    if (!section) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    var revealed = false;
+    var armed = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    setTimeout(reveal, 2000);
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && armed && !revealed) reveal();
+    });
+
+    window.addEventListener("pageshow", function () {
+      if (armed && !revealed) reveal();
+    });
+
+    io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+
+        if (document.visibilityState !== "visible") {
+          reveal();
+          return;
+        }
+
+        armed = true;
+        section.dataset.anim = "armed";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(reveal);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-page-models {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bpm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-page-models__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-page-models__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-page-models__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bpm-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bpm-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bpm-badge-text);
+  }
+
+  .brand-page-models__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-page-models__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-models__grid {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .brand-page-models__card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 540px;
+    padding: var(--space-6) var(--space-6) var(--space-5);
+    background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 60%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 300ms var(--bpm-ease), border-color 300ms var(--bpm-ease), box-shadow 300ms var(--bpm-ease);
+  }
+
+  .brand-page-models__card:hover {
+    transform: translateY(-6px);
+    border-color: var(--bpm-hover-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .brand-page-models__card:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-md), 0 0 0 3px var(--bpm-focus);
+  }
+
+  .brand-page-models__category {
+    flex: none;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-models__media {
+    position: relative;
+    flex: none;
+    width: 100%;
+    height: 300px;
+    margin-top: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-page-models__glow {
+    position: absolute;
+    inset: -10%;
+    z-index: -1;
+    background: radial-gradient(50% 50% at 50% 55%, var(--bpm-glow), transparent 72%);
+    filter: blur(4px);
+  }
+
+  .brand-page-models__image {
+    height: 100%;
+    width: auto;
+    max-width: 128%;
+    object-fit: contain;
+    transition: transform 400ms var(--bpm-ease);
+  }
+
+  .brand-page-models__card:hover .brand-page-models__image {
+    transform: scale(1.05);
+  }
+
+  .brand-page-models__name {
+    margin-top: var(--space-4);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .brand-page-models__desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-top: var(--space-2);
+    max-width: 30ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-page-models__badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .brand-page-models__tag {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  /* Premium feature badge — icon + label, colored per feature type, same
+     visual weight regardless of which brand page it appears on. */
+  .brand-page-models__feature-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    background: var(--fb-bg);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--fb-color);
+  }
+
+  .brand-page-models__feature-badge svg {
+    flex: none;
+  }
+
+  .brand-page-models__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: auto;
+    padding-top: var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+
+  .brand-page-models__link svg {
+    transition: transform 300ms var(--bpm-ease);
+  }
+
+  .brand-page-models__card:hover .brand-page-models__link svg {
+    transform: translateX(3px);
+  }
+
+  .brand-page-models[data-anim="armed"] [data-rise] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 600ms var(--bpm-ease), transform 600ms var(--bpm-ease);
+  }
+
+  .brand-page-models[data-anim="in"] [data-rise] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(1) { transition-delay: 40ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(2) { transition-delay: 70ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(3) { transition-delay: 100ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(4) { transition-delay: 130ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(5) { transition-delay: 160ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(6) { transition-delay: 190ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(7) { transition-delay: 220ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(8) { transition-delay: 250ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(9) { transition-delay: 280ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(10) { transition-delay: 310ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(11) { transition-delay: 340ms; }
+  .brand-page-models[data-anim="armed"] .brand-page-models__card:nth-child(12) { transition-delay: 370ms; }
+
+  @media (max-width: 1279px) {
+    .brand-page-models__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-page-models {
+      padding-block: var(--space-16);
+    }
+
+    .brand-page-models__grid {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+
+    .brand-page-models__card {
+      height: auto;
+      min-height: 460px;
+      padding: var(--space-5);
+    }
+
+    .brand-page-models__media {
+      height: 220px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-page-models[data-anim="armed"] [data-rise] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .brand-page-models__card,
+    .brand-page-models__image,
+    .brand-page-models__link svg {
+      transition: none;
+    }
+  }
+</style>

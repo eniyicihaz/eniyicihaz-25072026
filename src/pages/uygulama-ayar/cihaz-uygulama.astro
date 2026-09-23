@@ -1,0 +1,68 @@
+---
+// Cihaz Uygulama — /uygulama-ayar/cihaz-uygulama. First page of the new
+// "Uygulama & Ayar" series (see header.data.ts's servicesMega second
+// column). A new content genre distinct from Neden Orijinal (trust) and
+// Değerlendirme (diagnostic): this series covers the fitting/adjustment
+// SERVICE itself, starting with the first fitting appointment as a
+// whole (physical placement check, audiogram-based initial programming,
+// verification measurement, usage orientation).
+//
+// accentColor: mavi / blue-600 (#2563eb) — first color in a fresh
+// accent rotation opened for this series; see hero.ts for the full
+// rationale, including why reusing blue from the unrelated Kulak Arkası
+// (BTE) page (a different mega-menu column) is fine.
+//
+// 14-section flow, in order: Hero -> Nedir? + Neyi Kapsar? -> Kimler
+// İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
+// Randevu Adımları -> Neler Yapılır -> Teknolojiler -> Markalara Göre
+// İnceleyin -> Fabrika Ayarı vs Profesyonel Uygulama -> Uzman Yorumu ->
+// SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { cihazUygulamaHero } from "../../data/cihaz-uygulama/hero";
+import { cihazUygulamaIntro } from "../../data/cihaz-uygulama/intro";
+import { cihazUygulamaIdealUser } from "../../data/cihaz-uygulama/ideal-user";
+import { cihazUygulamaAdvantages } from "../../data/cihaz-uygulama/advantages";
+import { cihazUygulamaConsiderations } from "../../data/cihaz-uygulama/considerations";
+import { cihazUygulamaEvolution } from "../../data/cihaz-uygulama/evolution";
+import { cihazUygulamaUseCases } from "../../data/cihaz-uygulama/use-cases";
+import { cihazUygulamaTechnology } from "../../data/cihaz-uygulama/technology";
+import { cihazUygulamaRecommendedBrands } from "../../data/cihaz-uygulama/recommended-brands";
+import { cihazUygulamaComparison } from "../../data/cihaz-uygulama/comparison";
+import { cihazUygulamaExpertOpinion } from "../../data/cihaz-uygulama/expert-opinion";
+import { cihazUygulamaFaq } from "../../data/cihaz-uygulama/faq";
+import { cihazUygulamaRelatedContent } from "../../data/cihaz-uygulama/related-content";
+import { cihazUygulamaFinalCta } from "../../data/cihaz-uygulama/final-cta";
+---
+
+<MainLayout
+  title="Cihaz Uygulama | İşitme Cihazı Uygulama Randevusu | EniyiCihaz"
+  description="İşitme cihazı uygulama randevusu nasıl işler? Fiziksel yerleştirme, odyograma dayalı programlama, doğrulama ölçümü ve kullanım eğitimi hakkında bilgi edinin."
+>
+  <BrandPageHero data={cihazUygulamaHero} />
+  <BrandPageIntro data={cihazUygulamaIntro} />
+  <BrandPageIdealUser data={cihazUygulamaIdealUser} />
+  <BrandPageAdvantages data={cihazUygulamaAdvantages} />
+  <BrandPageIdealUser data={cihazUygulamaConsiderations} />
+  <BrandPageTechEvolution data={cihazUygulamaEvolution} />
+  <BrandPageTechnology data={cihazUygulamaUseCases} />
+  <BrandPageEcosystem data={cihazUygulamaTechnology} />
+  <BrandPageRelatedContent data={cihazUygulamaRecommendedBrands} />
+  <KulakArkasiComparison data={cihazUygulamaComparison} />
+  <BrandPageExpertOpinion data={cihazUygulamaExpertOpinion} />
+  <BrandPageFaq data={cihazUygulamaFaq} />
+  <BrandPageFinalCta data={cihazUygulamaFinalCta} />
+  <BrandPageRelatedContent data={cihazUygulamaRelatedContent} />
+</MainLayout>

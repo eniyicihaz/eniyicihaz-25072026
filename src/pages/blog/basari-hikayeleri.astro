@@ -1,0 +1,71 @@
+---
+// Başarı Hikayeleri — /blog/basari-hikayeleri. Third page of the "Blog
+// & Haberler" series (see header.data.ts's knowledgeMega second
+// column), following /blog/yeni-teknolojiler and
+// /blog/uzman-gorusleri.
+//
+// CRITICAL content-integrity note: this page contains NO fabricated
+// named/dated patient testimonials or case studies — every section
+// describes general, aggregate categories of positive outcomes,
+// framed as the clinic's own observation, never as a specific
+// person's story. See hero.ts and considerations.ts for the full
+// rationale.
+//
+// accentColor: turuncu / orange-600 (#ea580c) — third color in this
+// column's own accent rotation; see hero.ts for the full rationale.
+//
+// 14-section flow, in order: Hero -> Bu Sayfa Neyi Paylaşıyor? ->
+// Kimler İçin Önemlidir? -> Genel Deneyim Kategorileri -> Dikkat
+// Edilmesi Gerekenler -> Genel Sürecin Aşamaları -> Olumlu Değişimin
+// Gözlemlendiği Alanlar -> Yaşam Alanlarına Bakış -> Markalara Göre
+// İnceleyin -> Destek Öncesi vs Sonrası Karşılaştırması -> Uzman
+// Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
+import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+
+import { basariHikayeleriHero } from "../../data/basari-hikayeleri/hero";
+import { basariHikayeleriIntro } from "../../data/basari-hikayeleri/intro";
+import { basariHikayeleriIdealUser } from "../../data/basari-hikayeleri/ideal-user";
+import { basariHikayeleriAdvantages } from "../../data/basari-hikayeleri/advantages";
+import { basariHikayeleriConsiderations } from "../../data/basari-hikayeleri/considerations";
+import { basariHikayeleriEvolution } from "../../data/basari-hikayeleri/evolution";
+import { basariHikayeleriUseCases } from "../../data/basari-hikayeleri/use-cases";
+import { basariHikayeleriTechnology } from "../../data/basari-hikayeleri/technology";
+import { basariHikayeleriRecommendedBrands } from "../../data/basari-hikayeleri/recommended-brands";
+import { basariHikayeleriComparison } from "../../data/basari-hikayeleri/comparison";
+import { basariHikayeleriExpertOpinion } from "../../data/basari-hikayeleri/expert-opinion";
+import { basariHikayeleriFaq } from "../../data/basari-hikayeleri/faq";
+import { basariHikayeleriRelatedContent } from "../../data/basari-hikayeleri/related-content";
+import { basariHikayeleriFinalCta } from "../../data/basari-hikayeleri/final-cta";
+---
+
+<MainLayout
+  title="Başarı Hikayeleri | İşitme Cihazının Hayata Kattıkları | EniyiCihaz"
+  description="İşitme cihazı kullanmanın aile iletişimi, sosyal hayat ve iş hayatına genel katkılarını, gizliliğe saygılı genel deneyim kategorileriyle öğrenin."
+>
+  <BrandPageHero data={basariHikayeleriHero} />
+  <BrandPageIntro data={basariHikayeleriIntro} />
+  <BrandPageIdealUser data={basariHikayeleriIdealUser} />
+  <BrandPageAdvantages data={basariHikayeleriAdvantages} />
+  <BrandPageIdealUser data={basariHikayeleriConsiderations} />
+  <BrandPageTechEvolution data={basariHikayeleriEvolution} />
+  <BrandPageTechnology data={basariHikayeleriUseCases} />
+  <BrandPageEcosystem data={basariHikayeleriTechnology} />
+  <BrandPageRelatedContent data={basariHikayeleriRecommendedBrands} />
+  <KulakArkasiComparison data={basariHikayeleriComparison} />
+  <BrandPageExpertOpinion data={basariHikayeleriExpertOpinion} />
+  <BrandPageFaq data={basariHikayeleriFaq} />
+  <BrandPageFinalCta data={basariHikayeleriFinalCta} />
+  <BrandPageRelatedContent data={basariHikayeleriRelatedContent} />
+</MainLayout>
