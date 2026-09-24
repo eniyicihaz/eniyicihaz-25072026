@@ -1,0 +1,262 @@
+---
+// TestTrial — Stage 3 (Test). Deliberately the most minimal stage on the
+// page (plan §2 "test sırasında minimalizm"): ear indicator, a coarse
+// progress readout, two large equal-weight answer buttons, and a stop
+// control. No marketing copy, stats, or trust content lives here — that
+// belongs only in Stage 1/4. HearingScreen's script drives every dynamic
+// bit through data-attributes; this file only renders the static shell.
+import { VolumeX } from "lucide-astro";
+import EarIndicator from "../../atoms/EarIndicator/EarIndicator.astro";
+import ProgressDots from "../../atoms/ProgressDots/ProgressDots.astro";
+
+interface Props {
+  totalFrequencies: number;
+  listenPrompt: string;
+  question: string;
+  helper: string;
+  heardLabel: string;
+  notHeardLabel: string;
+  stopLabel: string;
+  footnote: string;
+  pausedHeading: string;
+  resumeLabel: string;
+}
+
+const {
+  totalFrequencies,
+  listenPrompt,
+  question,
+  helper,
+  heardLabel,
+  notHeardLabel,
+  stopLabel,
+  footnote,
+  pausedHeading,
+  resumeLabel,
+} = Astro.props;
+---
+
+<div class="test-trial" data-hs-stage="testing" data-trial-phase="listening">
+  <div class="test-trial__top">
+    <EarIndicator label="" />
+    <ProgressDots total={totalFrequencies} />
+  </div>
+
+  <p class="test-trial__listen">{listenPrompt}</p>
+
+  <div class="test-trial__question">
+    <p class="test-trial__question-text">{question}</p>
+    <p class="test-trial__helper">{helper}</p>
+  </div>
+
+  <div class="test-trial__answers">
+    <button type="button" class="test-trial__answer test-trial__answer--yes" data-action="answer-heard" disabled>
+      {heardLabel}
+    </button>
+    <button
+      type="button"
+      class="test-trial__answer test-trial__answer--no"
+      data-action="answer-not-heard"
+      disabled
+    >
+      {notHeardLabel}
+    </button>
+  </div>
+
+  <button type="button" class="test-trial__stop" data-action="stop-sound">
+    <VolumeX size={16} stroke-width={2} aria-hidden="true" />
+    <span>{stopLabel}</span>
+  </button>
+
+  <p class="test-trial__footnote">{footnote}</p>
+
+  <div class="test-trial__paused" data-paused-overlay hidden>
+    <p class="test-trial__paused-heading">{pausedHeading}</p>
+    <button type="button" class="test-trial__resume" data-action="resume-screening">{resumeLabel}</button>
+  </div>
+</div>
+
+<style>
+  .test-trial {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-10);
+    max-width: 28rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .test-trial__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .test-trial__listen {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .test-trial__question {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .test-trial__question-text {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .test-trial__helper {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-soft);
+  }
+
+  /* Phase toggle — "listening" shows only the listen prompt; "answering"
+     shows the question + helper. Both nodes stay in the DOM (no layout
+     jump), only opacity/visibility switch. */
+  .test-trial[data-trial-phase="answering"] .test-trial__listen {
+    display: none;
+  }
+  .test-trial[data-trial-phase="listening"] .test-trial__question {
+    display: none;
+  }
+
+  .test-trial__answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  .test-trial__answer {
+    min-height: 88px;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+  }
+
+  .test-trial__answer:disabled {
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+  }
+
+  .test-trial__answer:not(:disabled):active {
+    transform: scale(0.98);
+  }
+
+  .test-trial__answer:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .test-trial__answer--yes {
+    border: none;
+    background: var(--hs-accent, var(--color-primary));
+    color: var(--color-text-inverse);
+  }
+
+  .test-trial__answer--no {
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    color: var(--color-text);
+  }
+
+  .test-trial__answer--no:hover:not(:disabled) {
+    border-color: var(--color-border-hover);
+    background: var(--color-surface);
+  }
+
+  .test-trial__stop {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    background: transparent;
+    color: var(--color-text-soft);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+  }
+
+  .test-trial__stop:hover {
+    color: var(--color-text-muted);
+  }
+
+  .test-trial__stop:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .test-trial__footnote {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+  }
+
+  .test-trial__paused {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    background: var(--color-background);
+  }
+
+  .test-trial__paused-heading {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .test-trial__resume {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding-inline: var(--space-8);
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--hs-accent, var(--color-primary));
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+  }
+
+  .test-trial__resume:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  @media (max-width: 640px) {
+    .test-trial__answer {
+      min-height: 72px;
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .test-trial__answer {
+      transition: none;
+    }
+    .test-trial__answer:not(:disabled):active {
+      transform: none;
+    }
+  }
+</style>

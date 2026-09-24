@@ -1,13 +1,11 @@
 // "İlgili İçerikler" internal-linking section for the /degerlendirme/
-// ucretsiz-isitme-testi page (Hub-and-Spoke). Renders through the
-// shared BrandPageRelatedContent component — its second use on this
-// page (the first is recommended-brands.ts). Links to the real
-// Odyometri, Timpanometri and Çocuk İşitme Testi pages, the real
-// Tinnitus (Kulak Çınlaması) Çözümleri page and the real SGK pillar
-// page — all four other "Değerlendirme" siblings built so far are now
-// real (this section keeps five links total, so SGK is included here
-// while Çocuk İşitme Testi is added in place of Tinnitus Değerlendirme,
-// which is not yet built).
+// ucretsiz-isitme-testi page (Hub-and-Spoke). Renders through the shared
+// BrandPageRelatedContent component. Redesign plan §1: the "Çocuk İşitme
+// Testi" link now points to its real, existing page (it was a "#"
+// placeholder when this file was first written, before that page
+// existed) and a link to the new online screening tool is added —
+// completing the online-vs-clinical cross-link this page's own
+// comparison.ts section already sets up.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
@@ -15,6 +13,11 @@ export const ucretsizIsitmeTestiRelatedContent: BrandPageRelatedContentContent =
   badge: "İLGİLİ İÇERİKLER",
   heading: "Devam Etmek İçin",
   links: [
+    {
+      label: "Online İşitme Taraması",
+      description: "Merkeze gelmeden önce kulaklığınızla online bir ön değerlendirme yapın.",
+      href: "/degerlendirme/online-isitme-testi",
+    },
     {
       label: "Odyometri",
       description: "Odyometrinin nasıl çalıştığını ve neler ölçtüğünü daha yakından tanıyın.",
@@ -28,7 +31,7 @@ export const ucretsizIsitmeTestiRelatedContent: BrandPageRelatedContentContent =
     {
       label: "Çocuk İşitme Testi",
       description: "Çocuklar için işitme testi sürecini yakından tanıyın.",
-      href: "#",
+      href: "/degerlendirme/cocuk-isitme-testi",
     },
     {
       label: "Tinnitus (Kulak Çınlaması) Çözümleri",

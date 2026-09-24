@@ -1,17 +1,16 @@
-// "Uzman Yorumu" section for the /degerlendirme/ucretsiz-isitme-testi
-// page. Renders through the shared BrandPageExpertOpinion component.
-// Framed as the clinic's own general assessment, not a named/personal
-// testimonial and never a diagnostic claim — same safe pattern used on
-// every prior page, foregrounded here given the clinical subject.
-
+// "Baskısız, Profesyonel Bir Değerlendirme" — redesign plan §2, Bölüm
+// 3+7 (deliberately merged: both said the same thing — "this isn't a
+// sales process" and "no pressure after the result" — keeping them
+// separate would have read as padding). Renders through the existing
+// BrandPageExpertOpinion component (quote + note), unchanged.
 import type { BrandPageExpertOpinionContent } from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
 
 export const ucretsizIsitmeTestiExpertOpinion: BrandPageExpertOpinionContent = {
-  badge: "UZMAN YORUMU",
-  heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
+  badge: "PROFESYONEL YAKLAŞIM",
+  heading: "Baskısız, Profesyonel Bir Değerlendirme",
   quote:
-    "İşitme sağlığınız hakkında güvenilir bilgi edinmenin tek yolu, bir odyometrist eşliğinde yapılan profesyonel bir işitme testidir; bu nedenle şikayeti olan veya olmayan herkese düzenli aralıklarla test yaptırmalarını öneriyoruz.",
-  note: "Ücretsiz işitme testimiz hakkında bilgi almak veya randevu oluşturmak için bizimle iletişime geçebilirsiniz.",
+    "Ücretsiz işitme testi, yalnızca cihaz satışı için yapılan bir işlem değildir; öncelik işitme durumunuzun değerlendirilmesi ve ihtiyacınızın doğru anlaşılmasıdır. Uygun bir çözüm varsa, bunu size hiçbir baskı hissettirmeden birlikte görüşürüz.",
+  note: "Test sonucunuz ne olursa olsun, karar vermeden önce seçenekleri birlikte değerlendirebilirsiniz.",
   accentColor: "#0891b2",
   accentColorBadgeBg: "rgb(8 145 178 / 0.08)",
   accentColorBadgeBorder: "rgb(8 145 178 / 0.35)",

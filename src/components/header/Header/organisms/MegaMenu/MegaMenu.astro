@@ -105,7 +105,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
                 const ItemIcon = icons[item.icon] as any;
                 return (
                   <li>
-                    <a class="hd-mega__support-item" href="#">
+                    <a class="hd-mega__support-item" href={item.href ?? "#"}>
                       <span class="hd-mega__support-icon" aria-hidden="true">
                         <ItemIcon size={20} />
                       </span>

@@ -26,6 +26,8 @@ export interface MegaSupportItem {
   icon: IconKey;
   title: string;
   desc: string;
+  /** Optional destination — items without one render as inert "#" rows (unchanged legacy behavior). */
+  href?: string;
 }
 
 /** The 5th column — richer support cards. */

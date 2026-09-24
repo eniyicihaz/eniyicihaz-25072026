@@ -1,0 +1,222 @@
+---
+// Kişiye Özel Ayar — /uygulama-ayar/kisiye-ozel-ayar. Konumlandırma:
+// cihaz almadan/sürece başlamadan önceki karar/güven evresi — "neden
+// kişiye özel ayar gerekir, süreç nasıl işler, Darıca/Gebze/Çayırova'da
+// nereye gidilir" (bkz. implementasyon planı). Mevcut
+// /uygulama-ayar/kisiye-ozel-programlama sayfası (devam eden ince-ayar/
+// veri kaydı evresi) BİLİNÇLİ olarak dokunulmadan bırakıldı; bu sayfanın
+// İlgili İçerikler bölümünden ona tek yönlü çapraz link veriliyor.
+//
+// Sıra: Breadcrumb -> Hero (SoundProfileHero) -> Hızlı Bilgiler -> Neden
+// Kişiye Özel Ayar? -> Bir Cihaz, Farklı Hayatlar -> Ayar Nasıl Yapılır?
+// -> Gerçek Hayat Senaryoları -> Mevcut Cihazınız Varsa -> Marka Bağımsız
+// Yaklaşımımız -> Darıca/Gebze/Çayırova Konum -> SSS -> Son CTA ->
+// İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import SoundProfileHero from "../../components/shared/SoundProfileHero/SoundProfileHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
+import TuningProcess from "../../components/shared/TuningProcess/TuningProcess.astro";
+import SoundConcernList from "../../components/shared/SoundConcernList/SoundConcernList.astro";
+import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
+import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import { ArrowRight } from "lucide-astro";
+
+import { kisiyeOzelAyarHero } from "../../data/kisiye-ozel-ayar/hero";
+import { kisiyeOzelAyarOverview } from "../../data/kisiye-ozel-ayar/overview";
+import { kisiyeOzelAyarIntro } from "../../data/kisiye-ozel-ayar/intro";
+import { kisiyeOzelAyarIdealUser } from "../../data/kisiye-ozel-ayar/ideal-user";
+import { kisiyeOzelAyarTuningProcess } from "../../data/kisiye-ozel-ayar/tuning-process";
+import { kisiyeOzelAyarConcerns } from "../../data/kisiye-ozel-ayar/concerns";
+import { kisiyeOzelAyarSignalQuestions } from "../../data/kisiye-ozel-ayar/signal-questions";
+import { kisiyeOzelAyarBrandNeutral } from "../../data/kisiye-ozel-ayar/brand-neutral";
+import { kisiyeOzelAyarLocation } from "../../data/kisiye-ozel-ayar/location";
+import { kisiyeOzelAyarServiceArea } from "../../data/kisiye-ozel-ayar/service-area";
+import { kisiyeOzelAyarFaq } from "../../data/kisiye-ozel-ayar/faq";
+import { kisiyeOzelAyarFinalCta } from "../../data/kisiye-ozel-ayar/final-cta";
+import { kisiyeOzelAyarRelatedContent } from "../../data/kisiye-ozel-ayar/related-content";
+
+import { company } from "../../components/footer/Footer/data/company";
+
+const PAGE_URL = "https://www.eniyicihaz.com/uygulama-ayar/kisiye-ozel-ayar";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Kişiye Özel Ayar", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+
+// Same MedicalBusiness node as /iletisim, Ücretsiz İşitme Testi ve Cihaz
+// Deneme — same @id, same real NAP source, extending the sitewide
+// Organization rather than declaring a second entity.
+const medicalBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "@id": "https://www.eniyicihaz.com/#organization",
+  name: company.legalName,
+  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; işitme cihazının kişiye özel ayarlanması hakkında bilgi ve randevu imkânı sunar.",
+  url: PAGE_URL,
+  telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
+  email: company.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat",
+    addressLocality: "Darıca",
+    addressRegion: "Kocaeli",
+    addressCountry: "TR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 40.772815433889605,
+    longitude: 29.4047968764159,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:45",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "19:00",
+    },
+  ],
+  areaServed: kisiyeOzelAyarServiceArea.items.map((item) => item.name),
+};
+---
+
+<MainLayout
+  title="Kişiye Özel İşitme Cihazı Ayarı | Darıca, Gebze, Çayırova | EniyiCihaz"
+  description="Darıca, Gebze ve Çayırova'da işitme cihazınızın günlük yaşamınıza ve dinleme ihtiyaçlarınıza uygun şekilde kişiye özel ayarlanması hakkında bilgi alın."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="koa-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <SoundProfileHero data={kisiyeOzelAyarHero} />
+  <BrandPageOverview data={kisiyeOzelAyarOverview} />
+  <BrandPageIntro data={kisiyeOzelAyarIntro} />
+  <BrandPageIdealUser data={kisiyeOzelAyarIdealUser} />
+  <TuningProcess data={kisiyeOzelAyarTuningProcess} />
+  <SoundConcernList data={kisiyeOzelAyarConcerns} />
+
+  <div id="mevcut-cihaz">
+    <BrandPageSignalList data={kisiyeOzelAyarSignalQuestions} />
+  </div>
+
+  <section class="koa-simple-section" aria-labelledby="koa-brands-title">
+    <div class="koa-simple-section__inner">
+      <p class="koa-simple-section__eyebrow">{kisiyeOzelAyarBrandNeutral.eyebrow}</p>
+      <h2 class="koa-simple-section__heading" id="koa-brands-title">{kisiyeOzelAyarBrandNeutral.heading}</h2>
+      <p class="koa-simple-section__body">{kisiyeOzelAyarBrandNeutral.body}</p>
+      <a class="koa-simple-section__link" href={kisiyeOzelAyarBrandNeutral.href}>
+        <span>{kisiyeOzelAyarBrandNeutral.linkLabel}</span>
+        <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+      </a>
+    </div>
+  </section>
+
+  <ContactLocationCard data={kisiyeOzelAyarLocation} />
+  <ContactServiceArea data={kisiyeOzelAyarServiceArea} />
+
+  <BrandPageFaq data={kisiyeOzelAyarFaq} />
+  <BrandPageFinalCta data={kisiyeOzelAyarFinalCta} />
+  <BrandPageRelatedContent data={kisiyeOzelAyarRelatedContent} />
+</MainLayout>
+
+<style>
+  .koa-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  .koa-simple-section {
+    background: var(--color-surface);
+    padding-block: var(--space-16);
+  }
+
+  .koa-simple-section__inner {
+    max-width: 42rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .koa-simple-section__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4f46e5;
+  }
+
+  .koa-simple-section__heading {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .koa-simple-section__body {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .koa-simple-section__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: #4f46e5;
+    text-decoration: none;
+  }
+
+  .koa-simple-section__link:hover {
+    text-decoration: underline;
+  }
+
+  .koa-simple-section__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 640px) {
+    .koa-simple-section {
+      padding-block: var(--space-10);
+    }
+  }
+</style>

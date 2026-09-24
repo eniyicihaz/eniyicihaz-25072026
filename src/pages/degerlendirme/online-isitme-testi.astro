@@ -1,0 +1,76 @@
+---
+// Online İşitme Testi — /degerlendirme/online-isitme-testi. Sixth page
+// of the "Değerlendirme" series (header.data.ts's servicesMega first
+// column), but a distinct topic from every sibling: a self-administered,
+// browser-based (Web Audio API) hearing SCREENING tool, not a clinical/
+// in-person procedure. See the implementation plan
+// (online-isitme-taramasi) for the full architecture, algorithm and
+// locked non-diagnostic language rules.
+//
+// Positioning is kept strictly consistent with
+// src/data/ucretsiz-isitme-testi/comparison.ts's "Klinik vs Online Test"
+// table — this page IS the "online/kendi kendine yapılan test" side of
+// that comparison, so it never claims clinical accuracy, dB/dB HL
+// measurement, or a diagnosis (PRINCIPLES.md §5).
+//
+// Flow: Breadcrumb -> Hero -> Intro (ne, ne değil) -> HearingScreen
+// (interactive widget) -> FinalCta (strongest CTA, right under the
+// result) -> Faq -> RelatedContent.
+import MainLayout from "../../layouts/MainLayout.astro";
+import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import HearingScreen from "../../components/hearing-screen/HearingScreen/HearingScreen.astro";
+
+import { onlineIsitmeTestiHero } from "../../data/online-isitme-testi/hero";
+import { onlineIsitmeTestiIntro } from "../../data/online-isitme-testi/intro";
+import { onlineIsitmeTestiFinalCta } from "../../data/online-isitme-testi/final-cta";
+import { onlineIsitmeTestiFaq } from "../../data/online-isitme-testi/faq";
+import { onlineIsitmeTestiRelatedContent } from "../../data/online-isitme-testi/related-content";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Değerlendirme", href: "/degerlendirme/ucretsiz-isitme-testi" },
+  { label: "Online İşitme Testi", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+---
+
+<MainLayout
+  title="Online İşitme Testi | Darıca, Gebze, Çayırova — Ücretsiz Ön Değerlendirme | EniyiCihaz"
+  description="Kulaklığınızla birkaç dakikada tamamlayabileceğiniz online işitme taraması. Darıca, Gebze ve Çayırova'da profesyonel işitme testi için ücretsiz randevu alın. Klinik teşhis aracı değildir."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <div class="online-isitme-testi-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <BrandPageHero data={onlineIsitmeTestiHero} />
+  <BrandPageIntro data={onlineIsitmeTestiIntro} />
+  <HearingScreen accentColor={onlineIsitmeTestiHero.accentColor} />
+  <BrandPageFinalCta data={onlineIsitmeTestiFinalCta} />
+  <BrandPageFaq data={onlineIsitmeTestiFaq} />
+  <BrandPageRelatedContent data={onlineIsitmeTestiRelatedContent} />
+</MainLayout>
+
+<style>
+  .online-isitme-testi-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+</style>

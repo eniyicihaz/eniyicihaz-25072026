@@ -1,7 +1,8 @@
 // Footer link columns.
 // Titles and labels mirror the header mega menus (header.data.ts) so the
-// site speaks one language. Real routes are not defined yet, so links stay
-// "#" — the same convention the header already uses.
+// site speaks one language. Remaining "#" entries have no real route yet
+// and stay as placeholders (the header's own convention) until one
+// exists — swap to a real href here the day each page ships.
 import type { LinkColumn } from "../footer.types";
 
 export const linkColumns: LinkColumn[] = [
@@ -20,7 +21,7 @@ export const linkColumns: LinkColumn[] = [
   {
     title: "Hizmetlerimiz",
     links: [
-      { label: "Ücretsiz İşitme Testi", href: "#" },
+      { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi" },
       { label: "İşitme Değerlendirmesi", href: "#" },
       { label: "Cihaz Uygulaması ve Ayarı", href: "#" },
       { label: "Kulak Kalıbı Uygulaması", href: "#" },

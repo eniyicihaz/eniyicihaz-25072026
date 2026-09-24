@@ -1,0 +1,300 @@
+---
+// ExperienceHero — shared, centered/editorial hero: big centered
+// typography + a full-width "sound wave" band (public/images/hero/
+// wave-lines.svg, tinted per-page via accentColor — third reuse of this
+// asset after BrandPageHero and BrandPageIdealUser--premium, no new
+// asset invented) with a product photo floating in its center, and a
+// short 3-step experience teaser underneath. Built for Cihaz Deneme
+// because BrandPageHero's fixed 52/48 text-left/image-right split
+// can't produce this — even with every prop overridden, the underlying
+// grid is the same "split hero" every other service page already uses
+// (see the Cihaz Deneme redesign plan §2). Kept generic/prop-driven so
+// a future "deneyim odaklı" page can reuse it without copying it.
+import CtaButton from "../CtaButton/CtaButton.astro";
+
+export interface ExperienceHeroContent {
+  eyebrow: string;
+  headingLines: string[];
+  lead: string;
+  paragraph: string;
+  ctaPrimary: { label: string; href: string };
+  ctaSecondary: { label: string; href: string };
+  steps: string[];
+  image: { src: string; alt: string };
+  accentColor: string;
+}
+
+interface Props {
+  data: ExperienceHeroContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="experience-hero"
+  aria-labelledby="experience-hero-title"
+  style={`--eh-accent:${data.accentColor};`}
+>
+  <div class="experience-hero__inner">
+    <p class="experience-hero__eyebrow" data-rise>{data.eyebrow}</p>
+
+    <h1 class="experience-hero__heading" id="experience-hero-title" data-rise>
+      {data.headingLines.map((line) => <span class="experience-hero__heading-line">{line}</span>)}
+    </h1>
+
+    <p class="experience-hero__lead" data-rise>{data.lead}</p>
+    <p class="experience-hero__paragraph" data-rise>{data.paragraph}</p>
+
+    <div class="experience-hero__stage" data-rise>
+      <div class="experience-hero__wave" aria-hidden="true"></div>
+      <div class="experience-hero__product">
+        <img src={data.image.src} alt={data.image.alt} width="320" height="320" loading="eager" />
+      </div>
+    </div>
+
+    <ol class="experience-hero__steps" data-rise>
+      {
+        data.steps.map((step, i) => (
+          <li class="experience-hero__step">
+            <span class="experience-hero__step-num">{i + 1}</span>
+            <span>{step}</span>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="experience-hero__actions" data-rise>
+      <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} />
+      <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} variant="outline" />
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".experience-hero");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .experience-hero {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16) var(--space-20);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .experience-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .experience-hero__eyebrow {
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--eh-accent);
+  }
+
+  .experience-hero__heading {
+    margin: var(--space-5) 0 0;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(2.25rem, 1.7rem + 2.6vw, 4rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+  }
+
+  .experience-hero__lead {
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--eh-accent);
+  }
+
+  .experience-hero__paragraph {
+    margin: var(--space-3) 0 0;
+    max-width: 36rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Stage: full-bleed wave band with a floating product photo --- */
+  .experience-hero__stage {
+    position: relative;
+    width: 100vw;
+    margin: var(--space-10) calc(50% - 50vw) 0;
+    height: clamp(220px, 30vw, 340px);
+    display: grid;
+    place-items: center;
+  }
+
+  .experience-hero__wave {
+    position: absolute;
+    inset: 0;
+    background: var(--eh-accent);
+    opacity: 0.16;
+    -webkit-mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    pointer-events: none;
+  }
+
+  .experience-hero__product {
+    position: relative;
+    width: clamp(160px, 20vw, 240px);
+    height: clamp(160px, 20vw, 240px);
+    border-radius: var(--radius-2xl);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-xl);
+    display: grid;
+    place-items: center;
+    padding: var(--space-6);
+  }
+
+  .experience-hero__product img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .experience-hero__steps {
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .experience-hero__step {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .experience-hero__step-num {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--eh-accent);
+    color: var(--color-text-inverse);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .experience-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .experience-hero[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .experience-hero[data-anim="in"] [data-rise] {
+    animation: experience-hero-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .experience-hero[data-anim="in"] .experience-hero__stage {
+    animation-delay: 100ms;
+  }
+
+  .experience-hero[data-anim="in"] .experience-hero__steps {
+    animation-delay: 180ms;
+  }
+
+  .experience-hero[data-anim="in"] .experience-hero__actions {
+    animation-delay: 240ms;
+  }
+
+  @keyframes experience-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .experience-hero {
+      padding-block: var(--space-12) var(--space-14);
+    }
+
+    .experience-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .experience-hero[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

@@ -12,7 +12,7 @@ export const ucretsizIsitmeTestiIntro: BrandPageIntroContent = {
   badge: "ÜCRETSİZ İŞİTME TESTİ NEDİR?",
   heading: "Ücretsiz İşitme Testi Nedir ve Nasıl İşler?",
   paragraphs: [
-    "Ücretsiz işitme testi, işitme durumunuzun bir odyometrist tarafından profesyonel ekipmanlarla değerlendirildiği, herhangi bir ücret talep edilmeyen bir hizmettir.",
+    "Ücretsiz işitme testi, Darıca'daki merkezimizde işitme durumunuzun bir odyometrist tarafından profesyonel ekipmanlarla değerlendirildiği, herhangi bir ücret talep edilmeyen bir hizmettir.",
     "Test sırasında farklı frekans ve şiddetteki seslere verdiğiniz tepkiler ölçülür; bu ölçümler bir odyogram üzerinde kaydedilir.",
     "Test sonuçları, işitme kaybınızın olup olmadığını, varsa türünü ve derecesini belirlemeye yardımcı olur; ancak kesin tanı ve tedavi yönlendirmesi için sonuçların bir uzman tarafından yorumlanması gerekir.",
     "Bu sayfa genel bir bilgilendirme amacı taşır, kendi kendine tanı koymak için kullanılmamalıdır; işitme durumunuzu öğrenmenin tek güvenilir yolu bir odyometriste muayene olmaktır.",

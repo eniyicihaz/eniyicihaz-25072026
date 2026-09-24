@@ -1,0 +1,185 @@
+---
+// ScreenIntro — Stage 1 (Hazırlık/Landing). The user's first gesture on
+// this stage's "Başlat" button is what creates/unlocks the shared
+// AudioContext (plan §4/§7) — HearingScreen's script listens for
+// [data-action="start-screening"].
+import { CheckCircle2, Info } from "lucide-astro";
+
+interface NoticeContent {
+  heading: string;
+  paragraphs: string[];
+}
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  bullets: string[];
+  notice: NoticeContent;
+  startLabel: string;
+  disclaimer: string;
+}
+
+const { eyebrow, heading, bullets, notice, startLabel, disclaimer } = Astro.props;
+---
+
+<div class="screen-intro" data-hs-stage="intro">
+  <p class="screen-intro__eyebrow">{eyebrow}</p>
+  <h3 class="screen-intro__heading">{heading}</h3>
+
+  <ul class="screen-intro__bullets">
+    {
+      bullets.map((bullet) => (
+        <li>
+          <CheckCircle2 size={18} stroke-width={2} aria-hidden="true" />
+          <span>{bullet}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="screen-intro__notice">
+    <Info size={20} stroke-width={2} aria-hidden="true" />
+    <div>
+      <p class="screen-intro__notice-heading">{notice.heading}</p>
+      {notice.paragraphs.map((p) => <p class="screen-intro__notice-text">{p}</p>)}
+    </div>
+  </div>
+
+  <button type="button" class="screen-intro__start" data-action="start-screening">
+    {startLabel}
+  </button>
+
+  <p class="screen-intro__disclaimer">{disclaimer}</p>
+</div>
+
+<style>
+  .screen-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    text-align: center;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  .screen-intro__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--hs-accent, var(--color-primary));
+  }
+
+  .screen-intro__heading {
+    margin: 0;
+    font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .screen-intro__bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: left;
+    width: 100%;
+  }
+
+  .screen-intro__bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .screen-intro__bullets svg {
+    flex: none;
+    margin-top: 2px;
+    color: var(--hs-accent, var(--color-primary));
+  }
+
+  .screen-intro__notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-info);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    text-align: left;
+  }
+
+  .screen-intro__notice svg {
+    flex: none;
+    margin-top: 2px;
+    color: var(--color-info);
+  }
+
+  .screen-intro__notice-heading {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .screen-intro__notice-text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .screen-intro__notice-text + .screen-intro__notice-text {
+    margin-top: var(--space-2);
+  }
+
+  .screen-intro__start {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    padding-inline: var(--space-10);
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--hs-accent, var(--color-primary));
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .screen-intro__start:hover {
+    transform: translateY(-2px);
+  }
+
+  .screen-intro__start:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .screen-intro__disclaimer {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+    line-height: var(--line-height-relaxed);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .screen-intro__start {
+      transition: none;
+    }
+    .screen-intro__start:hover {
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+// ProgressDots — coarse "X / total" progress indicator for the Test
+// stage. Deliberately not a numbered Stepper (ds/components/ui/atoms/
+// Stepper) — during the test the plan's minimalism rule (§2) asks for
+// the least information possible, not a labelled step list. Rendered
+// once; HearingScreen's script updates it live via [data-progress-dots]
+// (toggling `data-state` on each dot) and the [data-progress-text] node.
+interface Props {
+  total: number;
+}
+
+const { total } = Astro.props;
+const indices = Array.from({ length: total }, (_, i) => i);
+---
+
+<div class="progress-dots" data-progress-dots data-total={total}>
+  <div class="progress-dots__row" role="presentation">
+    {indices.map((i) => <span class="progress-dots__dot" data-index={i} data-state="pending" />)}
+  </div>
+  <p class="progress-dots__text" data-progress-text aria-live="polite">1 / {total}</p>
+</div>
+
+<style>
+  .progress-dots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .progress-dots__row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .progress-dots__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--color-border);
+    transition: background-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .progress-dots__dot[data-state="done"] {
+    background: var(--hs-accent, var(--color-primary));
+  }
+
+  .progress-dots__dot[data-state="active"] {
+    background: var(--hs-accent, var(--color-primary));
+    transform: scale(1.35);
+  }
+
+  .progress-dots__text {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress-dots__dot {
+      transition: none;
+    }
+  }
+</style>

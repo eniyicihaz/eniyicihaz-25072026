@@ -1,78 +1,343 @@
 ---
-// Ücretsiz İşitme Testi — /degerlendirme/ucretsiz-isitme-testi. First
-// page of the "Değerlendirme" series (see header.data.ts's servicesMega
-// first column) — a new content genre within the site: a clinical
-// SERVICE page rather than a product, trust, or tier page. Built on the
-// same master templates and shared, data-driven Brand Component
-// Architecture used throughout the session (same KulakArkasiComparison
-// component, already generic, reused as-is), but this series returns to
-// the full health-content safety discipline used in the İhtiyacınıza
-// Göre series (self-diagnosis disclaimers, urgent-care flags, hedged
-// language), since this page's subject is a diagnostic procedure, not a
-// product category.
+// Ücretsiz İşitme Testi — /degerlendirme/ucretsiz-isitme-testi. Darıca
+// odaklı premium redesign (bkz. implementasyon planı). Ana hedef bölge
+// Darıca; Gebze ve Çayırova doğal destekleyici bölgeler olarak sayfa
+// boyunca birkaç yerde (Hero, Bölüm 5, Bölüm 11, SSS) geçer — her
+// paragrafta tekrar edilmez. URL, mevcut SEO değerini korumak için
+// değiştirilmedi.
 //
-// Scope note: this page covers the overall free-test service and
-// appointment experience; the more specific technical procedures
-// (Odyometri, Timpanometri, Çocuk İşitme Testi, Tinnitus Değerlendirme)
-// get their own future pages in this series — this page's own Ecosystem
-// section previews and cross-references each rather than re-explaining
-// them in full.
-//
-// accentColor: camgöbeği / cyan-600 (#0891b2) — opens a fresh accent
-// rotation for the servicesMega "Değerlendirme" column; see hero.ts for
-// the full rationale.
-//
-// 14-section flow, in order: Hero -> Nedir? + Nasıl İşler? -> Kimler
-// İşitme Testi Yaptırmalı? -> Avantajları -> Dikkat Edilmesi Gerekenler
-// -> Test Süreci -> Testte Neler Değerlendirilir -> Teknolojiler ->
-// Markalara Göre İnceleyin -> Klinik vs Online Test -> Uzman Yorumu ->
-// SSS -> Premium CTA -> İlgili İçerikler.
+// 24 bölümlük akış (sırasıyla): Breadcrumb -> Hero -> İşitmenizi
+// Ertelemeyin (awareness) -> Nedir/Nasıl İşler (intro) -> Test Süreci
+// (process, 5 adım) -> Baskısız Profesyonel Değerlendirme (expert
+// opinion, eski Bölüm 3+7 birleşik) -> Kimler Yaptırmalı (ideal-user, 7
+// profil) + kapanış CTA satırı -> Testte Neler Değerlendirilir
+// (use-cases) -> Neden Avrasya İşitme (local-trust) -> Test Sonrası Ne
+// Olur (aftercare, 7 adım) -> SGK -> Cihaz Deneme -> İlişkili Testler
+// (technology) -> Klinik vs Online (comparison) -> Online Taramayı
+// Deneyin (callout) -> Markalara Göre (recommended-brands) -> Bize
+// Ulaşın (location) -> Gebze/Çayırova (service-area) -> SSS (faq) ->
+// Son CTA (final-cta) -> İlgili İçerikler (related-content).
 import MainLayout from "../../layouts/MainLayout.astro";
+import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
+import ProcessTimeline from "../../components/shared/ProcessTimeline/ProcessTimeline.astro";
+import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
 import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
-import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
-import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
 import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
 import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
 import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
-import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
-import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
+import CtaButton from "../../components/shared/CtaButton/CtaButton.astro";
+import { ShieldCheck, Headphones, CheckCircle2, ArrowRight } from "lucide-astro";
 
 import { ucretsizIsitmeTestiHero } from "../../data/ucretsiz-isitme-testi/hero";
+import { ucretsizIsitmeTestiAwareness } from "../../data/ucretsiz-isitme-testi/awareness";
 import { ucretsizIsitmeTestiIntro } from "../../data/ucretsiz-isitme-testi/intro";
-import { ucretsizIsitmeTestiIdealUser } from "../../data/ucretsiz-isitme-testi/ideal-user";
-import { ucretsizIsitmeTestiAdvantages } from "../../data/ucretsiz-isitme-testi/advantages";
-import { ucretsizIsitmeTestiConsiderations } from "../../data/ucretsiz-isitme-testi/considerations";
-import { ucretsizIsitmeTestiEvolution } from "../../data/ucretsiz-isitme-testi/evolution";
-import { ucretsizIsitmeTestiUseCases } from "../../data/ucretsiz-isitme-testi/use-cases";
-import { ucretsizIsitmeTestiTechnology } from "../../data/ucretsiz-isitme-testi/technology";
-import { ucretsizIsitmeTestiRecommendedBrands } from "../../data/ucretsiz-isitme-testi/recommended-brands";
-import { ucretsizIsitmeTestiComparison } from "../../data/ucretsiz-isitme-testi/comparison";
+import { ucretsizIsitmeTestiProcess } from "../../data/ucretsiz-isitme-testi/process";
 import { ucretsizIsitmeTestiExpertOpinion } from "../../data/ucretsiz-isitme-testi/expert-opinion";
+import { ucretsizIsitmeTestiIdealUser } from "../../data/ucretsiz-isitme-testi/ideal-user";
+import { ucretsizIsitmeTestiUseCases } from "../../data/ucretsiz-isitme-testi/use-cases";
+import { ucretsizIsitmeTestiLocalTrust } from "../../data/ucretsiz-isitme-testi/local-trust";
+import { ucretsizIsitmeTestiAftercare } from "../../data/ucretsiz-isitme-testi/aftercare";
+import { ucretsizIsitmeTestiTechnology } from "../../data/ucretsiz-isitme-testi/technology";
+import { ucretsizIsitmeTestiComparison } from "../../data/ucretsiz-isitme-testi/comparison";
+import { ucretsizIsitmeTestiRecommendedBrands } from "../../data/ucretsiz-isitme-testi/recommended-brands";
+import { ucretsizIsitmeTestiLocation } from "../../data/ucretsiz-isitme-testi/location";
+import { ucretsizIsitmeTestiServiceArea } from "../../data/ucretsiz-isitme-testi/service-area";
 import { ucretsizIsitmeTestiFaq } from "../../data/ucretsiz-isitme-testi/faq";
-import { ucretsizIsitmeTestiRelatedContent } from "../../data/ucretsiz-isitme-testi/related-content";
 import { ucretsizIsitmeTestiFinalCta } from "../../data/ucretsiz-isitme-testi/final-cta";
+import { ucretsizIsitmeTestiRelatedContent } from "../../data/ucretsiz-isitme-testi/related-content";
+import { idealUserClosing, sgkSection, trialSection, onlineScreeningSection } from "../../data/ucretsiz-isitme-testi/inline-sections";
+
+import { company } from "../../components/footer/Footer/data/company";
+
+const PAGE_URL = "https://www.eniyicihaz.com/degerlendirme/ucretsiz-isitme-testi";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Ücretsiz İşitme Testi", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+
+// Extends the sitewide Organization node (MainLayout.astro) via the same
+// `@id` used by /iletisim's own MedicalBusiness node — one real business
+// described on two pages, not two competing entities (SEARCH_STRATEGY §5
+// Entity Tutarlılığı). Same NAP data source (company.ts) as everywhere
+// else on the site; priceRange stays omitted (price is never published).
+const medicalBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "@id": "https://www.eniyicihaz.com/#organization",
+  name: company.legalName,
+  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; ücretsiz işitme testi ve işitme cihazı danışmanlığı hizmeti sunar.",
+  url: PAGE_URL,
+  telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
+  email: company.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat",
+    addressLocality: "Darıca",
+    addressRegion: "Kocaeli",
+    addressCountry: "TR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 40.772815433889605,
+    longitude: 29.4047968764159,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:45",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "19:00",
+    },
+  ],
+  areaServed: ucretsizIsitmeTestiServiceArea.items.map((item) => item.name),
+};
 ---
 
 <MainLayout
-  title="Ücretsiz İşitme Testi | Odyometrist Eşliğinde Değerlendirme | EniyiCihaz"
-  description="Ücretsiz işitme testi nasıl yapılır, kimler yaptırmalı? Odyometrist eşliğinde yapılan test süreci, testte neler değerlendirildiği ve sonrasında olacaklar hakkında bilgi edinin."
+  title="Darıca'da Ücretsiz İşitme Testi | Avrasya İşitme Cihazları | EniyiCihaz"
+  description="Darıca'da SGK anlaşmalı Avrasya İşitme'de ücretsiz işitme testi yaptırın. Profesyonel odyometrist eşliğinde değerlendirme, aynı gün sonuç. Gebze ve Çayırova'dan da ulaşabilirsiniz."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="uit-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
   <BrandPageHero data={ucretsizIsitmeTestiHero} />
+  <BrandPageSignalList data={ucretsizIsitmeTestiAwareness} />
   <BrandPageIntro data={ucretsizIsitmeTestiIntro} />
-  <BrandPageIdealUser data={ucretsizIsitmeTestiIdealUser} />
-  <BrandPageAdvantages data={ucretsizIsitmeTestiAdvantages} />
-  <BrandPageIdealUser data={ucretsizIsitmeTestiConsiderations} />
-  <BrandPageTechEvolution data={ucretsizIsitmeTestiEvolution} />
-  <BrandPageTechnology data={ucretsizIsitmeTestiUseCases} />
-  <BrandPageEcosystem data={ucretsizIsitmeTestiTechnology} />
-  <BrandPageRelatedContent data={ucretsizIsitmeTestiRecommendedBrands} />
-  <KulakArkasiComparison data={ucretsizIsitmeTestiComparison} />
+  <ProcessTimeline data={ucretsizIsitmeTestiProcess} />
   <BrandPageExpertOpinion data={ucretsizIsitmeTestiExpertOpinion} />
+
+  <BrandPageIdealUser data={ucretsizIsitmeTestiIdealUser} />
+  <div class="uit-inline-cta">
+    <p class="uit-inline-cta__text">{idealUserClosing.text}</p>
+    <CtaButton label={idealUserClosing.ctaLabel} href={idealUserClosing.href} />
+  </div>
+
+  <BrandPageTechnology data={ucretsizIsitmeTestiUseCases} />
+  <BrandPageSignalList data={ucretsizIsitmeTestiLocalTrust} />
+  <ProcessTimeline data={ucretsizIsitmeTestiAftercare} />
+
+  <section class="uit-simple-section" aria-labelledby="uit-sgk-title">
+    <div class="uit-simple-section__inner">
+      <p class="uit-simple-section__eyebrow">{sgkSection.eyebrow}</p>
+      <h2 class="uit-simple-section__heading" id="uit-sgk-title">{sgkSection.heading}</h2>
+      <p class="uit-simple-section__body">{sgkSection.body}</p>
+      <a class="uit-simple-section__link" href={sgkSection.href}>
+        <ShieldCheck size={16} stroke-width={2} aria-hidden="true" />
+        <span>{sgkSection.linkLabel}</span>
+        <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+      </a>
+    </div>
+  </section>
+
+  <section class="uit-simple-section uit-simple-section--alt" aria-labelledby="uit-trial-title">
+    <div class="uit-simple-section__inner">
+      <p class="uit-simple-section__eyebrow">{trialSection.eyebrow}</p>
+      <h2 class="uit-simple-section__heading" id="uit-trial-title">{trialSection.heading}</h2>
+      <p class="uit-simple-section__body">{trialSection.body}</p>
+      <ul class="uit-simple-section__bullets">
+        {trialSection.bullets.map((bullet) => (
+          <li>
+            <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+            <span>{bullet}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <BrandPageEcosystem data={ucretsizIsitmeTestiTechnology} />
+  <KulakArkasiComparison data={ucretsizIsitmeTestiComparison} />
+
+  <section class="uit-simple-section" aria-labelledby="uit-online-title">
+    <div class="uit-simple-section__inner uit-simple-section__inner--center">
+      <p class="uit-simple-section__eyebrow">{onlineScreeningSection.eyebrow}</p>
+      <h2 class="uit-simple-section__heading" id="uit-online-title">{onlineScreeningSection.heading}</h2>
+      <p class="uit-simple-section__body">{onlineScreeningSection.body}</p>
+      <CtaButton
+        label={onlineScreeningSection.ctaLabel}
+        href={onlineScreeningSection.href}
+        variant="outline"
+        iconRight={Headphones}
+      />
+      <p class="uit-simple-section__note">{onlineScreeningSection.note}</p>
+    </div>
+  </section>
+
+  <BrandPageRelatedContent data={ucretsizIsitmeTestiRecommendedBrands} />
+
+  <ContactLocationCard data={ucretsizIsitmeTestiLocation} />
+  <ContactServiceArea data={ucretsizIsitmeTestiServiceArea} />
+
   <BrandPageFaq data={ucretsizIsitmeTestiFaq} />
   <BrandPageFinalCta data={ucretsizIsitmeTestiFinalCta} />
   <BrandPageRelatedContent data={ucretsizIsitmeTestiRelatedContent} />
 </MainLayout>
+
+<style>
+  .uit-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  /* Small closing CTA line directly under "Kimler İşitme Testi
+     Yaptırmalı?" — BrandPageIdealUser has no per-section CTA slot, so
+     this is composed here rather than forcing a new prop into a shared
+     component 100+ pages already use. */
+  .uit-inline-cta {
+    max-width: var(--container-lg);
+    margin: calc(-1 * var(--space-12)) auto var(--space-4);
+    padding: 0 var(--space-6) var(--space-16);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+    text-align: center;
+  }
+
+  .uit-inline-cta__text {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  /* Shared shell for the three lightweight, component-free sections
+     (SGK / Cihaz Deneme / Online Tarama callout) — quiet, no card
+     fatigue, consistent with plan §2's "component yok, inline" rows. */
+  .uit-simple-section {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .uit-simple-section--alt {
+    background: var(--color-surface);
+  }
+
+  .uit-simple-section__inner {
+    max-width: 42rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .uit-simple-section__inner--center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .uit-simple-section__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+  }
+
+  .uit-simple-section__heading {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .uit-simple-section__body {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .uit-simple-section__note {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+  }
+
+  .uit-simple-section__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .uit-simple-section__link:hover {
+    text-decoration: underline;
+  }
+
+  .uit-simple-section__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .uit-simple-section__bullets {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .uit-simple-section__bullets li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .uit-simple-section__bullets svg {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .uit-inline-cta {
+      margin-top: calc(-1 * var(--space-8));
+      padding-bottom: var(--space-10);
+    }
+    .uit-simple-section {
+      padding-block: var(--space-10);
+    }
+  }
+</style>

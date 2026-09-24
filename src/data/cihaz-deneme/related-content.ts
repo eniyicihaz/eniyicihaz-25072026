@@ -1,20 +1,18 @@
-// "İlgili İçerikler" internal-linking section for the /uygulama-ayar/
-// cihaz-deneme page (Hub-and-Spoke). Renders through the shared
-// BrandPageRelatedContent component — its second use on this page (the
-// first is recommended-brands.ts). Links back to the real Cihaz
-// Uygulama and Kişiye Özel Programlama pages (the natural siblings this
-// trial period connects to before and after purchase), the real
-// Kolay Değişim page (Neden Orijinal series) — a natural next step
-// after a purchase decision is made, since that page covers the
-// post-purchase exchange guarantee this trial period precedes — and
-// the real Kalıp Alımı page.
-
+// "İlgili İçerikler" internal-linking section for /uygulama-ayar/
+// cihaz-deneme (Hub-and-Spoke) — redesign plan §1. Renders through the
+// existing BrandPageRelatedContent component. Ücretsiz İşitme Testi link
+// added at the top — the natural prior step before a device trial.
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
 export const cihazDenemeRelatedContent: BrandPageRelatedContentContent = {
   badge: "İLGİLİ İÇERİKLER",
   heading: "Devam Etmek İçin",
   links: [
+    {
+      label: "Ücretsiz İşitme Testi",
+      description: "Cihaz denemeden önce Darıca'daki merkezimizde ücretsiz işitme testinizi yaptırın.",
+      href: "/degerlendirme/ucretsiz-isitme-testi",
+    },
     {
       label: "Cihaz Uygulama",
       description: "Deneme sonrası kalıcı uygulama randevusunun nasıl işlediğini tanıyın.",

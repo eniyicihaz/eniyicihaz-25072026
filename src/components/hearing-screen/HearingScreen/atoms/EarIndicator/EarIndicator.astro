@@ -1,0 +1,39 @@
+---
+// EarIndicator — small badge naming the ear currently under test.
+// Presentation-only atom; the parent (HearingScreen) supplies the label
+// via `data-ear-label` targets, so this same markup can be re-labelled
+// client-side without re-rendering the component (see HearingScreen.astro's
+// script — it writes textContent into [data-ear-indicator-label]).
+import { Ear as EarIcon } from "lucide-astro";
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<span class="ear-indicator">
+  <EarIcon size={16} stroke-width={2} aria-hidden="true" />
+  <span data-ear-indicator-label>{label}</span>
+</span>
+
+<style>
+  .ear-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .ear-indicator svg {
+    flex: none;
+    color: var(--hs-accent, var(--color-primary));
+  }
+</style>

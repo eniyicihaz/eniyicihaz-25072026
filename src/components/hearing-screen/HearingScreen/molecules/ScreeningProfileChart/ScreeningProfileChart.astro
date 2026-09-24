@@ -1,0 +1,208 @@
+---
+// ScreeningProfileChart — "Tarama Profili". Audiogram-inspired but
+// deliberately NOT a clinical audiogram: the vertical axis is three
+// named, discrete bands (never a continuous/numeric dB or dB HL scale —
+// implementation plan §4.2, a locked decision). Plain CSS Grid, not SVG
+// — consistent with the rest of the site (no SVG data-viz precedent
+// anywhere else; KulakArkasiComparison etc. are all plain HTML/CSS) and
+// trivially responsive without viewBox/scale math.
+//
+// Static shell only — HearingScreen's script fills each
+// [data-chart-cell] with 0–2 marker dots (one per ear that landed in
+// that band/frequency) once a result exists, and sets this element's
+// `aria-label` to a one-sentence summary (role="img": the grid's visible
+// row/column text is presentational once that summary exists — the
+// full per-frequency breakdown remains available as real text in the
+// sibling <details> element in ResultProfile.astro, not lost).
+import type { FrequencyHz } from "../../hearing-screen.types";
+
+interface Props {
+  title: string;
+  caption: string;
+  frequencies: FrequencyHz[];
+  rowOrder: ("comfortable" | "strained" | "missed")[];
+  rowLabels: Record<string, string>;
+  frequencyLabels: Record<number, string>;
+  legend: { right: string; left: string };
+}
+
+const { title, caption, frequencies, rowOrder, rowLabels, frequencyLabels, legend } = Astro.props;
+const columns = `minmax(72px, auto) repeat(${frequencies.length}, 1fr)`;
+---
+
+<div class="screening-chart">
+  <p class="screening-chart__title">{title}</p>
+
+  <div class="screening-chart__grid" style={`grid-template-columns:${columns};`} role="img" data-chart-grid>
+    <div class="screening-chart__corner" aria-hidden="true"></div>
+    {
+      frequencies.map((freq) => (
+        <div class="screening-chart__freq-label">{frequencyLabels[freq]}</div>
+      ))
+    }
+
+    {
+      rowOrder.map((band) => (
+        <>
+          <div class="screening-chart__row-label" data-band={band}>
+            {rowLabels[band]}
+          </div>
+          {frequencies.map((freq) => (
+            <div class="screening-chart__cell" data-chart-cell={`${band}:${freq}`} />
+          ))}
+        </>
+      ))
+    }
+  </div>
+
+  <div class="screening-chart__legend">
+    <span class="screening-chart__legend-item">
+      <span class="screening-chart__marker screening-chart__marker--right" aria-hidden="true"></span>
+      {legend.right}
+    </span>
+    <span class="screening-chart__legend-item">
+      <span class="screening-chart__marker screening-chart__marker--left" aria-hidden="true"></span>
+      {legend.left}
+    </span>
+  </div>
+
+  <p class="screening-chart__caption">{caption}</p>
+</div>
+
+<style>
+  .screening-chart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .screening-chart__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-align: center;
+  }
+
+  .screening-chart__grid {
+    display: grid;
+    gap: 2px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .screening-chart__corner,
+  .screening-chart__freq-label,
+  .screening-chart__row-label,
+  .screening-chart__cell {
+    background: var(--color-background);
+    padding: var(--space-2);
+  }
+
+  .screening-chart__freq-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-soft);
+  }
+
+  .screening-chart__row-label {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+  }
+
+  .screening-chart__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 40px;
+  }
+
+  .screening-chart__legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+  }
+
+  .screening-chart__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .screening-chart__marker {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    flex: none;
+  }
+
+  .screening-chart__marker--right {
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+  }
+
+  .screening-chart__marker--left {
+    background: var(--hs-accent, var(--color-secondary));
+    transform: rotate(45deg);
+  }
+
+  .screening-chart__caption {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+  }
+
+  /* Marker dots — created client-side (see HearingScreen.astro), styled
+     globally here since they're injected, not authored in this file's
+     own template. */
+  .screening-chart__cell :global(.screening-chart__dot) {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    flex: none;
+  }
+  .screening-chart__cell :global(.screening-chart__dot--right) {
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+  }
+  .screening-chart__cell :global(.screening-chart__dot--left) {
+    background: var(--hs-accent, var(--color-secondary));
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 640px) {
+    .screening-chart__grid {
+      grid-template-columns: minmax(52px, auto) repeat(5, 1fr) !important;
+    }
+    .screening-chart__row-label,
+    .screening-chart__freq-label {
+      font-size: 0.65rem;
+      padding: var(--space-1) 2px;
+    }
+    .screening-chart__cell {
+      min-height: 32px;
+      padding: var(--space-1);
+    }
+    .screening-chart__marker,
+    .screening-chart__cell :global(.screening-chart__dot) {
+      width: 9px;
+      height: 9px;
+    }
+  }
+</style>

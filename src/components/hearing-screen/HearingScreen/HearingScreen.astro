@@ -1,0 +1,734 @@
+---
+// HearingScreen — online işitme taraması organism. Web Audio tabanlı,
+// gerçek saf ton çalan tek component; SoundRoom'un aksine (bkz.
+// docs/SOUND_ROOM_SPECIFICATION.md §2 — "gerçek ses simülasyonu YOK")
+// bu bilinçli olarak farklı bir amaca hizmet eder: sembolik bir deneyim
+// değil, gerçek bir tarama aracı. Bkz. implementasyon planı §3/§4/§5/§6.
+//
+// Dört aşama (intro → headphone-check → testing → result) tek DOM
+// ağacında birlikte var olur; görünürlük yalnızca kök elemanın
+// `data-stage` attribute'u ile CSS üzerinden yönetilir (Header.astro'nun
+// `data-open`/`aria-expanded` desenindeki gibi tek noktadan state).
+import ScreenIntro from "./molecules/ScreenIntro/ScreenIntro.astro";
+import HeadphoneCheck from "./molecules/HeadphoneCheck/HeadphoneCheck.astro";
+import TestTrial from "./molecules/TestTrial/TestTrial.astro";
+import ResultProfile from "./molecules/ResultProfile/ResultProfile.astro";
+import type { OutcomeBand } from "./hearing-screen.types";
+import {
+  FREQUENCIES,
+  EAR_LABEL,
+  screenIntroContent,
+  preTestNoticeContent,
+  headphoneCheckContent,
+  testTrialContent,
+  resultProfileContent,
+  overallProfileContent,
+} from "./hearing-screen.data";
+
+interface Props {
+  accentColor?: string;
+}
+
+const { accentColor } = Astro.props;
+
+const chartContent = {
+  title: resultProfileContent.chartTitle,
+  caption: resultProfileContent.chartCaption,
+  frequencies: FREQUENCIES,
+  rowOrder: ["comfortable", "strained", "missed"] as OutcomeBand[],
+  rowLabels: resultProfileContent.chartRowLabels,
+  frequencyLabels: resultProfileContent.chartFrequencyLabels,
+  legend: resultProfileContent.chartLegend,
+};
+---
+
+<section
+  class="hearing-screen"
+  id="online-isitme-taramasi"
+  aria-labelledby="hearing-screen-title"
+  data-hearing-screen
+  data-stage="intro"
+  style={accentColor ? `--hs-accent:${accentColor};` : undefined}
+>
+  <h2 class="hearing-screen__heading" id="hearing-screen-title">Online İşitme Taraması</h2>
+
+  <div class="hearing-screen__panel" data-rise>
+    <ScreenIntro
+      eyebrow={screenIntroContent.eyebrow}
+      heading={screenIntroContent.heading}
+      bullets={screenIntroContent.bullets}
+      notice={preTestNoticeContent}
+      startLabel={screenIntroContent.startLabel}
+      disclaimer={screenIntroContent.disclaimer}
+    />
+
+    <HeadphoneCheck {...headphoneCheckContent} stopLabel={testTrialContent.stopLabel} />
+
+    <TestTrial
+      totalFrequencies={FREQUENCIES.length}
+      listenPrompt={testTrialContent.listenPrompt}
+      question={testTrialContent.question}
+      helper={testTrialContent.helper}
+      heardLabel={testTrialContent.heardLabel}
+      notHeardLabel={testTrialContent.notHeardLabel}
+      stopLabel={testTrialContent.stopLabel}
+      footnote={testTrialContent.footnote}
+      pausedHeading={testTrialContent.pausedHeading}
+      resumeLabel={testTrialContent.resumeLabel}
+    />
+
+    <ResultProfile
+      heading={resultProfileContent.heading}
+      subheading={resultProfileContent.subheading}
+      intro={resultProfileContent.intro}
+      channelWarning={resultProfileContent.channelWarning}
+      guessingWarning={resultProfileContent.guessingWarning}
+      disclaimer={resultProfileContent.disclaimer}
+      restartLabel={resultProfileContent.restartLabel}
+      detailsLabel={resultProfileContent.detailsLabel}
+      rightLabel={EAR_LABEL.right}
+      leftLabel={EAR_LABEL.left}
+      chart={chartContent}
+      profiles={overallProfileContent}
+    />
+  </div>
+</section>
+
+<script>
+  import {
+    FREQUENCIES,
+    EAR_ORDER,
+    EAR_LABEL,
+    engineConfig,
+    NEUTRAL_OUTCOME_COPY,
+    overallProfileThresholds,
+  } from "./hearing-screen.data";
+  import type {
+    Ear,
+    FrequencyHz,
+    ChannelCheckAnswer,
+    OutcomeBand,
+    FrequencyOutcome,
+    ScreeningResult,
+    TrialLog,
+    OverallProfileKey,
+  } from "./hearing-screen.types";
+
+  const STORAGE_KEY = "hs:online-isitme-testi:result";
+
+  function initHearingScreen(root: HTMLElement): void {
+    if (root.dataset.ready === "true") return;
+    root.dataset.ready = "true";
+
+    // ---------- Entrance (SoundRoom/BrandExpertSupport pattern) ----------
+    const panel = root.querySelector<HTMLElement>(".hearing-screen__panel");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (panel && "IntersectionObserver" in window && !reduceMotion) {
+      panel.dataset.anim = "pending";
+      let ioAlive = false;
+      const failsafe = window.setTimeout(() => {
+        if (!ioAlive) reveal();
+      }, 1500);
+      const io = new IntersectionObserver(
+        (entries) => {
+          ioAlive = true;
+          window.clearTimeout(failsafe);
+          if (entries[0].isIntersecting) reveal();
+        },
+        { threshold: 0.15 }
+      );
+      function reveal(): void {
+        if (panel!.dataset.anim !== "pending") return;
+        panel!.dataset.anim = "in";
+        io.disconnect();
+      }
+      io.observe(root);
+    }
+
+    // ---------- DOM refs ----------
+    const earIndicatorLabel = root.querySelector<HTMLElement>("[data-ear-indicator-label]");
+    const progressDots = root.querySelector<HTMLElement>("[data-progress-dots]");
+    const progressText = root.querySelector<HTMLElement>("[data-progress-text]");
+    const heardBtn = root.querySelector<HTMLButtonElement>('[data-action="answer-heard"]');
+    const notHeardBtn = root.querySelector<HTMLButtonElement>('[data-action="answer-not-heard"]');
+    const pausedOverlay = root.querySelector<HTMLElement>("[data-paused-overlay]");
+    const channelStep = root.querySelector<HTMLElement>("[data-channel-step]");
+    const channelAnswersWrap = root.querySelector<HTMLElement>("[data-channel-answers]");
+    const continueBtn = root.querySelector<HTMLButtonElement>('[data-action="continue-to-test"]');
+    const resultRightList = root.querySelector<HTMLElement>('[data-result-list="right"]');
+    const resultLeftList = root.querySelector<HTMLElement>('[data-result-list="left"]');
+    const channelWarningEl = root.querySelector<HTMLElement>("[data-channel-warning]");
+    const guessingWarningEl = root.querySelector<HTMLElement>("[data-guessing-warning]");
+    const testTrialRoot = root.querySelector<HTMLElement>('[data-hs-stage="testing"]');
+    const chartGrid = root.querySelector<HTMLElement>("[data-chart-grid]");
+    const profileCards = root.querySelectorAll<HTMLElement>("[data-profile-card]");
+
+    // ---------- Web Audio graph ----------
+    // OscillatorNode -> envelope(GainNode, fade) -> level(GainNode, relative
+    // step) -> StereoPannerNode -> masterSafetyGain(GainNode, fixed ceiling,
+    // created once, never modified after creation) -> destination. See plan §4.
+    let audioCtx: AudioContext | null = null;
+    let masterSafetyGain: GainNode | null = null;
+    let activeNodes: { osc: OscillatorNode; envelope: GainNode } | null = null;
+
+    function ensureAudioContext(): AudioContext {
+      if (!audioCtx) {
+        const Ctor = window.AudioContext || (window as any).webkitAudioContext;
+        audioCtx = new Ctor();
+        masterSafetyGain = audioCtx!.createGain();
+        masterSafetyGain.gain.value = engineConfig.masterSafetyGain;
+        masterSafetyGain.connect(audioCtx!.destination);
+      }
+      if (audioCtx!.state === "suspended") audioCtx!.resume();
+      return audioCtx!;
+    }
+
+    // Relative gain only — never a dB/dB HL value (plan §4/§6).
+    function stepToGain(step: number): number {
+      const drop = engineConfig.comfortStep - step;
+      return engineConfig.comfortGain * Math.pow(engineConfig.levelRatio, Math.max(0, drop));
+    }
+
+    function stopSound(): void {
+      if (!activeNodes || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      const fade = engineConfig.fadeMs / 1000;
+      try {
+        activeNodes.envelope.gain.cancelScheduledValues(now);
+        activeNodes.envelope.gain.setValueAtTime(activeNodes.envelope.gain.value, now);
+        activeNodes.envelope.gain.linearRampToValueAtTime(0, now + fade);
+        activeNodes.osc.stop(now + fade + 0.01);
+      } catch {
+        // already stopped — no-op
+      }
+      activeNodes = null;
+    }
+
+    function playTone(opts: { frequency: number; pan: number; step: number; durationMs: number }): Promise<void> {
+      const ctx = ensureAudioContext();
+      stopSound();
+      return new Promise((resolve) => {
+        const osc = ctx.createOscillator();
+        osc.type = "sine";
+        osc.frequency.value = opts.frequency;
+
+        const envelope = ctx.createGain();
+        envelope.gain.value = 0;
+
+        const level = ctx.createGain();
+        level.gain.value = stepToGain(opts.step);
+
+        const panner = ctx.createStereoPanner();
+        panner.pan.value = opts.pan;
+
+        osc.connect(envelope);
+        envelope.connect(level);
+        level.connect(panner);
+        panner.connect(masterSafetyGain!);
+
+        const now = ctx.currentTime;
+        const fade = engineConfig.fadeMs / 1000;
+        const duration = opts.durationMs / 1000;
+        envelope.gain.setValueAtTime(0, now);
+        envelope.gain.linearRampToValueAtTime(1, now + fade);
+        envelope.gain.setValueAtTime(1, Math.max(now + fade, now + duration - fade));
+        envelope.gain.linearRampToValueAtTime(0, now + duration);
+
+        activeNodes = { osc, envelope };
+        osc.start(now);
+        osc.stop(now + duration + 0.02);
+        osc.onended = () => {
+          if (activeNodes && activeNodes.osc === osc) activeNodes = null;
+          resolve();
+        };
+      });
+    }
+
+    // ---------- Pause on tab hidden (plan §6/§7) ----------
+    let paused = false;
+    let pausedWaiters: Array<() => void> = [];
+
+    function waitIfPaused(): Promise<void> {
+      if (!paused) return Promise.resolve();
+      return new Promise((resolve) => pausedWaiters.push(resolve));
+    }
+
+    function pauseScreening(): void {
+      if (root.dataset.stage !== "testing" || paused) return;
+      paused = true;
+      stopSound();
+      if (pendingAnswerTimeout) window.clearTimeout(pendingAnswerTimeout);
+      setAnswerButtonsEnabled(false);
+      if (pausedOverlay) pausedOverlay.hidden = false;
+    }
+
+    function resumeScreening(): void {
+      if (!paused) return;
+      paused = false;
+      if (pausedOverlay) pausedOverlay.hidden = true;
+      if (pendingAnswerResolve) {
+        setAnswerButtonsEnabled(true);
+        pendingAnswerTimeout = window.setTimeout(() => {
+          pendingAnswerResolve?.(false);
+        }, engineConfig.autoAdvanceTimeoutMs);
+      }
+      const waiters = pausedWaiters;
+      pausedWaiters = [];
+      waiters.forEach((resolve) => resolve());
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) pauseScreening();
+    });
+
+    // ---------- Answer handling ----------
+    let pendingAnswerResolve: ((heard: boolean) => void) | null = null;
+    let pendingAnswerTimeout: number | undefined;
+
+    function setAnswerButtonsEnabled(enabled: boolean): void {
+      if (heardBtn) heardBtn.disabled = !enabled;
+      if (notHeardBtn) notHeardBtn.disabled = !enabled;
+    }
+
+    function waitForAnswer(): Promise<boolean> {
+      setAnswerButtonsEnabled(true);
+      return new Promise((resolve) => {
+        pendingAnswerResolve = (heard: boolean) => {
+          pendingAnswerResolve = null;
+          if (pendingAnswerTimeout) window.clearTimeout(pendingAnswerTimeout);
+          setAnswerButtonsEnabled(false);
+          resolve(heard);
+        };
+        pendingAnswerTimeout = window.setTimeout(() => {
+          pendingAnswerResolve?.(false);
+        }, engineConfig.autoAdvanceTimeoutMs);
+      });
+    }
+
+    // ---------- Progress / ear indicator ----------
+    function setEarIndicator(ear: Ear): void {
+      if (earIndicatorLabel) earIndicatorLabel.textContent = EAR_LABEL[ear];
+    }
+
+    function setProgress(current: number, total: number): void {
+      if (progressText) progressText.textContent = `${current} / ${total}`;
+      if (progressDots) {
+        progressDots.querySelectorAll<HTMLElement>(".progress-dots__dot").forEach((dot) => {
+          const idx = Number(dot.dataset.index);
+          dot.dataset.state = idx < current - 1 ? "done" : idx === current - 1 ? "active" : "pending";
+        });
+      }
+    }
+
+    // ---------- Stage switching ----------
+    function setStage(stage: string): void {
+      root.dataset.stage = stage;
+    }
+
+    // ---------- Comfort / channel check ----------
+    let channelCheckAnswer: ChannelCheckAnswer | null = null;
+
+    async function playComfortTone(): Promise<void> {
+      await playTone({
+        frequency: engineConfig.referenceFrequency,
+        pan: 0,
+        step: engineConfig.comfortStep,
+        durationMs: engineConfig.toneDurationMs,
+      });
+      if (channelStep) channelStep.hidden = false;
+    }
+
+    async function playChannelCheckTone(): Promise<void> {
+      await playTone({
+        frequency: engineConfig.referenceFrequency,
+        pan: -1,
+        step: engineConfig.comfortStep - 1,
+        durationMs: 700,
+      });
+      await new Promise((r) => window.setTimeout(r, 250));
+      await playTone({
+        frequency: engineConfig.referenceFrequency,
+        pan: 1,
+        step: engineConfig.comfortStep - 1,
+        durationMs: 700,
+      });
+      if (channelAnswersWrap) channelAnswersWrap.hidden = false;
+    }
+
+    // ---------- Adaptive bracketing algorithm (plan §5) ----------
+    // `band` classification is internal only — always rendered through
+    // NEUTRAL_OUTCOME_COPY (plan §5.1), never as a raw label or number.
+    //
+    // Direction: stepToGain(step) gets LOUDER as step rises toward
+    // comfortStep. A LOW finalStep means the tone was still heard even
+    // very quiet relative to the user's own comfort level — GOOD
+    // sensitivity. A HIGH finalStep means it was only detected near the
+    // comfort ceiling — POOR sensitivity. (Previously inverted here —
+    // see UX plan §1 — which made "always heard" runs classify as
+    // "missed" and vice versa.)
+    function classify(step: number): OutcomeBand {
+      if (step <= engineConfig.comfortableMaxStep) return "comfortable";
+      if (step <= engineConfig.strainedMaxStep) return "strained";
+      return "missed";
+    }
+
+    function setTrialPhase(phase: "listening" | "answering"): void {
+      if (testTrialRoot) testTrialRoot.dataset.trialPhase = phase;
+    }
+
+    async function runAdaptiveFrequency(ear: Ear, frequency: FrequencyHz): Promise<FrequencyOutcome> {
+      let step = engineConfig.startStepByFrequency[frequency] ?? engineConfig.startStep;
+      let direction: "up" | "down" | null = null;
+      const reversals: number[] = [];
+      const trials: TrialLog[] = [];
+      const pan = ear === "right" ? 1 : -1;
+
+      while (
+        trials.length < engineConfig.maxTrialsPerFrequency &&
+        reversals.length < engineConfig.reversalsTarget
+      ) {
+        await waitIfPaused();
+        setTrialPhase("listening");
+        const isCatch = Math.random() < engineConfig.catchTrialRate;
+        if (isCatch) {
+          await new Promise((r) => window.setTimeout(r, engineConfig.toneDurationMs));
+        } else {
+          await playTone({ frequency, pan, step, durationMs: engineConfig.toneDurationMs });
+        }
+        await waitIfPaused();
+        setTrialPhase("answering");
+        const heard = await waitForAnswer();
+        trials.push({ ear, frequency, levelStep: step, heard, isCatchTrial: isCatch, timestamp: Date.now() });
+
+        if (!isCatch) {
+          const newDirection: "up" | "down" = heard ? "down" : "up";
+          if (direction && newDirection !== direction) reversals.push(step);
+          direction = newDirection;
+          // Coarse-then-fine bracketing: bigger steps until the first
+          // reversal is found (reach the crossing point quickly), single
+          // steps for every move after that (refine) — see UX plan §1.1.
+          const stepSize = reversals.length === 0 ? engineConfig.coarseStepSize : engineConfig.fineStepSize;
+          step = heard
+            ? Math.max(engineConfig.minStep, step - stepSize)
+            : Math.min(engineConfig.comfortStep, step + stepSize);
+        }
+
+        await new Promise((r) => window.setTimeout(r, engineConfig.interTrialSilenceMs));
+      }
+
+      const lastReversals = reversals.slice(-2);
+      const finalStep = lastReversals.length
+        ? lastReversals.reduce((a, b) => a + b, 0) / lastReversals.length
+        : trials[trials.length - 1]?.levelStep ?? step;
+
+      return {
+        frequency,
+        finalStep,
+        band: classify(finalStep),
+        reversalCount: reversals.length,
+        trialCount: trials.length,
+        suspectedGuessing: trials.some((t) => t.isCatchTrial && t.heard),
+      };
+    }
+
+    async function runScreening(): Promise<void> {
+      const result: ScreeningResult = {
+        right: [],
+        left: [],
+        channelCheck: channelCheckAnswer,
+        completedAt: 0,
+      };
+
+      for (const ear of EAR_ORDER) {
+        setEarIndicator(ear);
+        for (let i = 0; i < FREQUENCIES.length; i += 1) {
+          setProgress(i + 1, FREQUENCIES.length);
+          const outcome = await runAdaptiveFrequency(ear, FREQUENCIES[i]);
+          result[ear].push(outcome);
+        }
+      }
+
+      result.completedAt = Date.now();
+      finishScreening(result);
+    }
+
+    function finishScreening(result: ScreeningResult): void {
+      try {
+        window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(result));
+      } catch {
+        // sessionStorage unavailable (e.g. private mode edge cases) — non-fatal
+      }
+      renderResult(result);
+      setStage("result");
+    }
+
+    // ---------- Overall profile (plan §4.3) ----------
+    function computeOverallProfile(result: ScreeningResult): OverallProfileKey {
+      const all = [...result.right, ...result.left];
+      const missedCount = all.filter((o) => o.band === "missed").length;
+      const strainedCount = all.filter((o) => o.band === "strained").length;
+      if (missedCount === 0 && strainedCount <= overallProfileThresholds.comfortableMaxStrained) {
+        return "comfortable";
+      }
+      if (missedCount <= overallProfileThresholds.someStrainMaxMissed) return "some-strain";
+      return "multi-strain";
+    }
+
+    function describeOverallProfile(key: OverallProfileKey): string {
+      if (key === "comfortable") return "her iki kulakta da sesler genel olarak rahat algılandı";
+      if (key === "some-strain") return "bazı frekanslarda kısmi zorlanma görüldü";
+      return "birden fazla frekans bölgesinde belirgin zorlanma görüldü";
+    }
+
+    function renderOverallProfile(key: OverallProfileKey): void {
+      profileCards.forEach((card) => {
+        card.hidden = card.dataset.profileCard !== key;
+      });
+    }
+
+    // ---------- Chart (plan §4.2) — discrete 3-band grid, never a
+    // continuous/numeric axis; each marker dot is purely decorative
+    // (aria-hidden via the chart's own role="img" + one-line aria-label). ----------
+    function renderChart(result: ScreeningResult): void {
+      root.querySelectorAll<HTMLElement>("[data-chart-cell]").forEach((cell) => {
+        cell.innerHTML = "";
+      });
+
+      const placeMarker = (ear: Ear, outcome: FrequencyOutcome): void => {
+        const cell = root.querySelector<HTMLElement>(
+          `[data-chart-cell="${outcome.band}:${outcome.frequency}"]`
+        );
+        if (!cell) return;
+        const dot = document.createElement("span");
+        dot.className = `screening-chart__dot screening-chart__dot--${ear}`;
+        dot.setAttribute("aria-hidden", "true");
+        cell.append(dot);
+      };
+
+      result.right.forEach((outcome) => placeMarker("right", outcome));
+      result.left.forEach((outcome) => placeMarker("left", outcome));
+
+      if (chartGrid) {
+        const profileKey = computeOverallProfile(result);
+        chartGrid.setAttribute("aria-label", `Tarama profili grafiği: ${describeOverallProfile(profileKey)}.`);
+      }
+    }
+
+    function renderResult(result: ScreeningResult): void {
+      renderResultColumn(resultRightList, result.right);
+      renderResultColumn(resultLeftList, result.left);
+      renderChart(result);
+      renderOverallProfile(computeOverallProfile(result));
+
+      const channelUnreliable = result.channelCheck === "both" || result.channelCheck === "unsure";
+      if (channelWarningEl) channelWarningEl.hidden = !channelUnreliable;
+
+      const anyGuessing = [...result.right, ...result.left].some((o) => o.suspectedGuessing);
+      if (guessingWarningEl) guessingWarningEl.hidden = !anyGuessing;
+    }
+
+    function renderResultColumn(list: HTMLElement | null, outcomes: FrequencyOutcome[]): void {
+      if (!list) return;
+      list.innerHTML = "";
+      outcomes.forEach((outcome) => {
+        const li = document.createElement("li");
+        const freq = document.createElement("span");
+        freq.className = "result-profile__freq";
+        freq.textContent = `${outcome.frequency} Hz`;
+        const sentence = document.createElement("span");
+        sentence.className = "result-profile__sentence";
+        sentence.textContent = NEUTRAL_OUTCOME_COPY[outcome.band];
+        li.append(freq, sentence);
+        list.append(li);
+      });
+    }
+
+    function resetScreening(): void {
+      try {
+        window.sessionStorage.removeItem(STORAGE_KEY);
+      } catch {
+        // ignore
+      }
+      channelCheckAnswer = null;
+      if (channelStep) channelStep.hidden = true;
+      if (channelAnswersWrap) channelAnswersWrap.hidden = true;
+      channelAnswersWrap
+        ?.querySelectorAll<HTMLElement>("[data-channel-answer]")
+        .forEach((btn) => btn.removeAttribute("aria-pressed"));
+      if (continueBtn) continueBtn.disabled = true;
+      root.querySelectorAll<HTMLElement>("[data-chart-cell]").forEach((cell) => {
+        cell.innerHTML = "";
+      });
+      profileCards.forEach((card) => {
+        card.hidden = true;
+      });
+      setTrialPhase("listening");
+      setStage("intro");
+    }
+
+    // ---------- Restore a completed result on reload (plan §8) ----------
+    try {
+      const saved = window.sessionStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const result = JSON.parse(saved) as ScreeningResult;
+        renderResult(result);
+        setStage("result");
+      }
+    } catch {
+      // ignore malformed/unavailable storage
+    }
+
+    // ---------- Event delegation ----------
+    root.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+
+      const channelAnswerBtn = target.closest<HTMLElement>("[data-channel-answer]");
+      if (channelAnswerBtn) {
+        channelCheckAnswer = channelAnswerBtn.dataset.channelAnswer as ChannelCheckAnswer;
+        channelAnswersWrap
+          ?.querySelectorAll<HTMLElement>("[data-channel-answer]")
+          .forEach((btn) => btn.setAttribute("aria-pressed", String(btn === channelAnswerBtn)));
+        if (continueBtn) continueBtn.disabled = false;
+        return;
+      }
+
+      const actionEl = target.closest<HTMLElement>("[data-action]");
+      if (!actionEl) return;
+
+      switch (actionEl.dataset.action) {
+        case "start-screening":
+          ensureAudioContext();
+          setStage("headphone-check");
+          break;
+        case "play-comfort-tone":
+          playComfortTone();
+          break;
+        case "play-channel-tone":
+          playChannelCheckTone();
+          break;
+        case "continue-to-test":
+          if (!continueBtn?.disabled) {
+            setStage("testing");
+            runScreening();
+          }
+          break;
+        case "answer-heard":
+          pendingAnswerResolve?.(true);
+          break;
+        case "answer-not-heard":
+          pendingAnswerResolve?.(false);
+          break;
+        case "stop-sound":
+          stopSound();
+          break;
+        case "resume-screening":
+          resumeScreening();
+          break;
+        case "restart-screening":
+          resetScreening();
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  function boot(): void {
+    document.querySelectorAll<HTMLElement>("[data-hearing-screen]").forEach((el) => initHearingScreen(el));
+  }
+
+  if (document.readyState !== "loading") boot();
+  else document.addEventListener("DOMContentLoaded", boot);
+</script>
+
+<style>
+  .hearing-screen {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    --hs-accent: var(--color-primary);
+  }
+
+  /* sr-only heading — names the section for the outline/screen readers,
+     same recipe as SoundRoom/Empathy. */
+  .hearing-screen__heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .hearing-screen__panel {
+    position: relative;
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding: var(--space-12) var(--space-8);
+    border-radius: var(--radius-2xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Stage visibility — keyed off the root's `data-stage`. Children come
+     from separately-scoped molecule components, so :global() is required
+     to reach into their markup (Astro's CSS scoping is per-file). */
+  .hearing-screen :global([data-hs-stage]) {
+    display: none;
+  }
+  .hearing-screen[data-stage="intro"] :global([data-hs-stage="intro"]),
+  .hearing-screen[data-stage="headphone-check"] :global([data-hs-stage="headphone-check"]),
+  .hearing-screen[data-stage="testing"] :global([data-hs-stage="testing"]),
+  .hearing-screen[data-stage="result"] :global([data-hs-stage="result"]) {
+    display: flex;
+  }
+
+  /* --- Entrance --- */
+
+  .hearing-screen__panel[data-anim="pending"] {
+    opacity: 0;
+  }
+
+  .hearing-screen__panel[data-anim="in"] {
+    animation: hearing-screen-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes hearing-screen-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive (project's actual production breakpoints) --- */
+
+  @media (max-width: 1023px) {
+    .hearing-screen__panel {
+      padding: var(--space-10) var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hearing-screen {
+      padding-block: var(--space-12);
+    }
+    .hearing-screen__panel {
+      padding: var(--space-8) var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hearing-screen__panel[data-anim="in"] {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,240 @@
+---
+// HeadphoneCheck — Stage 2 (Kulaklık & ortam kontrolü). Two short
+// sub-steps rendered together: (1) the comfort/reference tone, whose
+// level becomes the algorithm's never-to-exceed ceiling (plan §4), and
+// (2) a hard-panned left/right channel-recognition check (plan §7 —
+// software cannot verify real L/R routing, so this is a self-reported
+// gate, not a hard block). HearingScreen's script wires up the
+// [data-action] buttons and reveals the channel step + continue button
+// only after the comfort tone has been played at least once.
+import { Volume2, Ear as EarIcon, VolumeX } from "lucide-astro";
+
+interface ChannelAnswer {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  eyebrow: string;
+  comfortHeading: string;
+  comfortDescription: string;
+  playComfortLabel: string;
+  channelHeading: string;
+  channelDescription: string;
+  playChannelLabel: string;
+  channelAnswers: readonly ChannelAnswer[];
+  continueLabel: string;
+  stopLabel: string;
+}
+
+const {
+  eyebrow,
+  comfortHeading,
+  comfortDescription,
+  playComfortLabel,
+  channelHeading,
+  channelDescription,
+  playChannelLabel,
+  channelAnswers,
+  continueLabel,
+  stopLabel,
+} = Astro.props;
+---
+
+<div class="headphone-check" data-hs-stage="headphone-check">
+  <p class="headphone-check__eyebrow">{eyebrow}</p>
+
+  <section class="headphone-check__step" aria-labelledby="hs-comfort-heading">
+    <h3 class="headphone-check__heading" id="hs-comfort-heading">{comfortHeading}</h3>
+    <p class="headphone-check__desc">{comfortDescription}</p>
+    <button type="button" class="headphone-check__play" data-action="play-comfort-tone">
+      <Volume2 size={20} stroke-width={2} aria-hidden="true" />
+      <span>{playComfortLabel}</span>
+    </button>
+  </section>
+
+  <section
+    class="headphone-check__step"
+    aria-labelledby="hs-channel-heading"
+    data-channel-step
+    hidden
+  >
+    <h3 class="headphone-check__heading" id="hs-channel-heading">{channelHeading}</h3>
+    <p class="headphone-check__desc">{channelDescription}</p>
+    <button type="button" class="headphone-check__play" data-action="play-channel-tone">
+      <EarIcon size={20} stroke-width={2} aria-hidden="true" />
+      <span>{playChannelLabel}</span>
+    </button>
+
+    <div class="headphone-check__answers" role="group" aria-label={channelHeading} hidden data-channel-answers>
+      {
+        channelAnswers.map((answer) => (
+          <button type="button" class="headphone-check__answer" data-channel-answer={answer.value}>
+            {answer.label}
+          </button>
+        ))
+      }
+    </div>
+  </section>
+
+  <button type="button" class="headphone-check__continue" data-action="continue-to-test" disabled>
+    {continueLabel}
+  </button>
+
+  <button type="button" class="headphone-check__stop" data-action="stop-sound">
+    <VolumeX size={16} stroke-width={2} aria-hidden="true" />
+    <span>{stopLabel}</span>
+  </button>
+</div>
+
+<style>
+  .headphone-check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+    max-width: 34rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .headphone-check__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--hs-accent, var(--color-primary));
+  }
+
+  .headphone-check__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  .headphone-check__heading {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .headphone-check__desc {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .headphone-check__play {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 48px;
+    padding-inline: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .headphone-check__play:hover {
+    border-color: var(--hs-accent, var(--color-primary));
+    background: var(--color-surface);
+  }
+
+  .headphone-check__play:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .headphone-check__answers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .headphone-check__answer {
+    min-height: 48px;
+    padding-inline: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .headphone-check__answer:hover {
+    border-color: var(--hs-accent, var(--color-primary));
+  }
+
+  .headphone-check__answer:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .headphone-check__answer[aria-pressed="true"] {
+    border-color: var(--hs-accent, var(--color-primary));
+    background: var(--hs-accent, var(--color-primary));
+    color: var(--color-text-inverse);
+  }
+
+  .headphone-check__continue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    padding-inline: var(--space-10);
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--hs-accent, var(--color-primary));
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: opacity var(--transition-base);
+  }
+
+  .headphone-check__continue:disabled {
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+  }
+
+  .headphone-check__continue:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .headphone-check__stop {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    background: transparent;
+    color: var(--color-text-soft);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+  }
+
+  .headphone-check__stop:hover {
+    color: var(--color-text-muted);
+  }
+
+  .headphone-check__stop:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+</style>

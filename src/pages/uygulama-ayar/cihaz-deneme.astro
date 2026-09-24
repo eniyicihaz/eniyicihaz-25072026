@@ -1,68 +1,366 @@
 ---
-// Cihaz Deneme — /uygulama-ayar/cihaz-deneme. Third page of the
-// "Uygulama & Ayar" series (see header.data.ts's servicesMega second
-// column), following Cihaz Uygulama and Kişiye Özel Programlama. Same
-// service genre — this page's own scope is the extended, take-home
-// trial period BEFORE a purchase decision is made, distinct from Cihaz
-// Uygulama's brief in-appointment "Ortam Senaryoları Üzerinde Deneme"
-// step and from the unrelated post-purchase "Kolay Değişim" page
-// (Neden Orijinal series).
+// Cihaz Deneme — /uygulama-ayar/cihaz-deneme. Darıca odaklı, görsel
+// olarak Ücretsiz İşitme Testi'nden bilinçli şekilde farklı bir
+// yeniden tasarım (bkz. implementasyon planı). "Sağlık/değerlendirme"
+// yerine "deneyim/teknoloji/keşif" hissi vermek için: yeni bir editoryal
+// hero (ExperienceHero, split-layout DEĞİL), yeni bir senaryo rail'i
+// (ScenarioRail), ve sitede ilk kez kullanılan üç hazır component
+// (BrandPageOverview, BrandPageComparison, BrandPageModels).
 //
-// accentColor: deniz mavisi-yeşili / teal-600 (#0d9488) — third color
-// in the fresh accent rotation opened for this series; see hero.ts for
-// the full rationale.
-//
-// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
-// Kimler İçin Uygundur? -> Avantajları -> Dikkat Edilmesi Gerekenler ->
-// Süreç Adımları -> Neler Test Edilir -> Teknolojiler -> Markalara Göre
-// İnceleyin -> Klinik İçi vs Uzun Süreli Deneme -> Uzman Yorumu -> SSS
-// -> Premium CTA -> İlgili İçerikler.
+// Sıra: Breadcrumb -> Hero -> Hızlı Bilgiler -> Bir Cihaz Herkese Uymaz
+// -> Bir Gününüzün Ses Haritası -> Deneyim Yolculuğu -> Klinik İçi vs
+// Uzun Süreli Deneme -> Deneme Sürecinde Kullanılan Yöntemler -> Nelere
+// Bakmalı -> Teknoloji Seviyeleri Karşılaştırması -> Örnek Modeller ->
+// Kimler Denemeli -> Memnun Değilseniz -> Ücretli mi -> Darıca'da Bize
+// Ulaşın -> Markalar -> SGK -> SSS -> Son CTA -> İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
-import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import ExperienceHero from "../../components/shared/ExperienceHero/ExperienceHero.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
-import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
-import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
-import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
-import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import ScenarioRail from "../../components/shared/ScenarioRail/ScenarioRail.astro";
+import BrandBuyingGuide from "../../components/brands/BrandBuyingGuide/BrandBuyingGuide.astro";
+import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
 import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
-import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
+import BrandPageComparison from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
-import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
+import CtaButton from "../../components/shared/CtaButton/CtaButton.astro";
+import { ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-astro";
 
 import { cihazDenemeHero } from "../../data/cihaz-deneme/hero";
+import { cihazDenemeOverview } from "../../data/cihaz-deneme/overview";
 import { cihazDenemeIntro } from "../../data/cihaz-deneme/intro";
-import { cihazDenemeIdealUser } from "../../data/cihaz-deneme/ideal-user";
-import { cihazDenemeAdvantages } from "../../data/cihaz-deneme/advantages";
-import { cihazDenemeConsiderations } from "../../data/cihaz-deneme/considerations";
-import { cihazDenemeEvolution } from "../../data/cihaz-deneme/evolution";
-import { cihazDenemeUseCases } from "../../data/cihaz-deneme/use-cases";
-import { cihazDenemeTechnology } from "../../data/cihaz-deneme/technology";
-import { cihazDenemeRecommendedBrands } from "../../data/cihaz-deneme/recommended-brands";
+import { cihazDenemeScenarios } from "../../data/cihaz-deneme/scenarios";
+import { cihazDenemeJourney } from "../../data/cihaz-deneme/journey";
 import { cihazDenemeComparison } from "../../data/cihaz-deneme/comparison";
+import { cihazDenemeTechnology } from "../../data/cihaz-deneme/technology";
+import { cihazDenemeSignalQuestions } from "../../data/cihaz-deneme/signal-questions";
+import { cihazDenemeComparisonTiers } from "../../data/cihaz-deneme/comparison-tiers";
+import { cihazDenemeModels } from "../../data/cihaz-deneme/models";
+import { cihazDenemeIdealUser } from "../../data/cihaz-deneme/ideal-user";
 import { cihazDenemeExpertOpinion } from "../../data/cihaz-deneme/expert-opinion";
+import { cihazDenemeLocation } from "../../data/cihaz-deneme/location";
+import { cihazDenemeServiceArea } from "../../data/cihaz-deneme/service-area";
 import { cihazDenemeFaq } from "../../data/cihaz-deneme/faq";
-import { cihazDenemeRelatedContent } from "../../data/cihaz-deneme/related-content";
 import { cihazDenemeFinalCta } from "../../data/cihaz-deneme/final-cta";
+import { cihazDenemeRelatedContent } from "../../data/cihaz-deneme/related-content";
+import { possibleReasons, pricingSection, brandsTeaser, sgkSection } from "../../data/cihaz-deneme/inline-sections";
+
+import { company } from "../../components/footer/Footer/data/company";
+
+const PAGE_URL = "https://www.eniyicihaz.com/uygulama-ayar/cihaz-deneme";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Cihaz Deneme", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+
+// Same MedicalBusiness node as /iletisim and the redesigned Ücretsiz
+// İşitme Testi page — same @id, same real NAP source, extending the
+// sitewide Organization rather than declaring a second entity.
+const medicalBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "@id": "https://www.eniyicihaz.com/#organization",
+  name: company.legalName,
+  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; satın almadan önce işitme cihazı deneme imkânı sunar.",
+  url: PAGE_URL,
+  telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
+  email: company.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat",
+    addressLocality: "Darıca",
+    addressRegion: "Kocaeli",
+    addressCountry: "TR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 40.772815433889605,
+    longitude: 29.4047968764159,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:45",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "19:00",
+    },
+  ],
+  areaServed: cihazDenemeServiceArea.items.map((item) => item.name),
+};
 ---
 
 <MainLayout
-  title="Cihaz Deneme | Satın Almadan Önce İşitme Cihazı Deneyin | EniyiCihaz"
-  description="İşitme cihazı deneme süreci nasıl işler? Satın alma yükümlülüğü olmadan, gerçek yaşam koşullarında cihaz deneme fırsatı hakkında bilgi edinin."
+  title="Darıca'da İşitme Cihazı Deneme | Avrasya İşitme Cihazları | EniyiCihaz"
+  description="Darıca'da Avrasya İşitme'de işitme cihazınızı satın almadan önce ücretsiz deneyin. Gerçek yaşam koşullarında test edin, karşılaştırın, karar verin. Gebze ve Çayırova'dan da ulaşabilirsiniz."
 >
-  <BrandPageHero data={cihazDenemeHero} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="cd-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <ExperienceHero data={cihazDenemeHero} />
+  <BrandPageOverview data={cihazDenemeOverview} />
   <BrandPageIntro data={cihazDenemeIntro} />
-  <BrandPageIdealUser data={cihazDenemeIdealUser} />
-  <BrandPageAdvantages data={cihazDenemeAdvantages} />
-  <BrandPageIdealUser data={cihazDenemeConsiderations} />
-  <BrandPageTechEvolution data={cihazDenemeEvolution} />
-  <BrandPageTechnology data={cihazDenemeUseCases} />
-  <BrandPageEcosystem data={cihazDenemeTechnology} />
-  <BrandPageRelatedContent data={cihazDenemeRecommendedBrands} />
+  <ScenarioRail data={cihazDenemeScenarios} />
+  <BrandBuyingGuide data={cihazDenemeJourney} />
   <KulakArkasiComparison data={cihazDenemeComparison} />
+  <BrandPageEcosystem data={cihazDenemeTechnology} />
+  <BrandPageSignalList data={cihazDenemeSignalQuestions} />
+  <BrandPageComparison data={cihazDenemeComparisonTiers} />
+  <BrandPageModels data={cihazDenemeModels} />
+  <BrandPageIdealUser data={cihazDenemeIdealUser} />
+
   <BrandPageExpertOpinion data={cihazDenemeExpertOpinion} />
+  <div class="cd-reasons">
+    <p class="cd-reasons__intro">{possibleReasons.intro}</p>
+    <ul class="cd-reasons__list">
+      {possibleReasons.items.map((item) => (
+        <li>
+          <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <section class="cd-simple-section" aria-labelledby="cd-pricing-title">
+    <div class="cd-simple-section__inner">
+      <p class="cd-simple-section__eyebrow">{pricingSection.eyebrow}</p>
+      <h2 class="cd-simple-section__heading" id="cd-pricing-title">{pricingSection.heading}</h2>
+      <p class="cd-simple-section__body">{pricingSection.body}</p>
+      <p class="cd-simple-section__terms-intro">{pricingSection.termsIntro}</p>
+      <ul class="cd-simple-section__bullets">
+        {pricingSection.terms.map((term) => (
+          <li>
+            <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+            <span>{term}</span>
+          </li>
+        ))}
+      </ul>
+      <CtaButton label={pricingSection.ctaLabel} href={pricingSection.ctaHref} variant="outline" />
+    </div>
+  </section>
+
+  <ContactLocationCard data={cihazDenemeLocation} />
+  <ContactServiceArea data={cihazDenemeServiceArea} />
+
+  <section class="cd-simple-section cd-simple-section--alt" aria-labelledby="cd-brands-title">
+    <div class="cd-simple-section__inner cd-simple-section__inner--center">
+      <p class="cd-simple-section__eyebrow">{brandsTeaser.eyebrow}</p>
+      <h2 class="cd-simple-section__heading" id="cd-brands-title">{brandsTeaser.heading}</h2>
+      <p class="cd-simple-section__body">{brandsTeaser.body}</p>
+      <a class="cd-simple-section__link" href={brandsTeaser.href}>
+        <span>{brandsTeaser.linkLabel}</span>
+        <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+      </a>
+    </div>
+  </section>
+
+  <section class="cd-simple-section" aria-labelledby="cd-sgk-title">
+    <div class="cd-simple-section__inner cd-simple-section__inner--center">
+      <p class="cd-simple-section__eyebrow">{sgkSection.eyebrow}</p>
+      <h2 class="cd-simple-section__heading" id="cd-sgk-title">{sgkSection.heading}</h2>
+      <p class="cd-simple-section__body">{sgkSection.body}</p>
+      <a class="cd-simple-section__link" href={sgkSection.href}>
+        <ShieldCheck size={16} stroke-width={2} aria-hidden="true" />
+        <span>{sgkSection.linkLabel}</span>
+        <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+      </a>
+    </div>
+  </section>
+
   <BrandPageFaq data={cihazDenemeFaq} />
   <BrandPageFinalCta data={cihazDenemeFinalCta} />
   <BrandPageRelatedContent data={cihazDenemeRelatedContent} />
 </MainLayout>
+
+<style>
+  .cd-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  /* Possible-reasons list directly under the "memnun değilseniz" quote —
+     small, quiet, no section chrome of its own. */
+  .cd-reasons {
+    max-width: 36rem;
+    margin: calc(-1 * var(--space-10)) auto var(--space-16);
+    padding: 0 var(--space-6) var(--space-16);
+    text-align: center;
+  }
+
+  .cd-reasons__intro {
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  .cd-reasons__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: left;
+  }
+
+  .cd-reasons__list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .cd-reasons__list svg {
+    flex: none;
+    color: #0d9488;
+  }
+
+  /* Shared shell for the lightweight, component-free sections (Ücretli
+     mi / Markalar / SGK) — quiet, no card fatigue. */
+  .cd-simple-section {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .cd-simple-section--alt {
+    background: var(--color-surface);
+  }
+
+  .cd-simple-section__inner {
+    max-width: 42rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .cd-simple-section__inner--center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .cd-simple-section__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0d9488;
+  }
+
+  .cd-simple-section__heading {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .cd-simple-section__body {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .cd-simple-section__terms-intro {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .cd-simple-section__bullets {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .cd-simple-section__bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    text-align: left;
+  }
+
+  .cd-simple-section__bullets svg {
+    flex: none;
+    margin-top: 2px;
+    color: #0d9488;
+  }
+
+  .cd-simple-section__inner > :global(.cta-button) {
+    margin-top: var(--space-6);
+  }
+
+  .cd-simple-section__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: #0d9488;
+    text-decoration: none;
+  }
+
+  .cd-simple-section__link:hover {
+    text-decoration: underline;
+  }
+
+  .cd-simple-section__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 640px) {
+    .cd-simple-section {
+      padding-block: var(--space-10);
+    }
+    .cd-reasons {
+      margin-bottom: var(--space-10);
+      padding-bottom: var(--space-10);
+    }
+  }
+</style>

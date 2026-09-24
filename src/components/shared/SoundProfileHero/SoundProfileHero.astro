@@ -1,0 +1,345 @@
+---
+// SoundProfileHero — shared, editorial hero built for Kişiye Özel Ayar.
+// Neither BrandPageHero (split text/product-photo) nor ExperienceHero
+// (centered heading + wave band + product photo) fit here: both are
+// product-centric, and this page's subject is the *adjustment* itself,
+// not a device. Right side renders a purely decorative, CSS-only
+// "frequency panel" (a small set of variable-height bars with one
+// highlighted band) instead of any product image or stock photo —
+// deliberately distinct from HearingScreen's ScreeningProfileChart
+// (a real, if simplified, hearing-profile grid) so neither reads as
+// clinical measurement data.
+import CtaButton from "../CtaButton/CtaButton.astro";
+
+export interface SoundProfileHeroBar {
+  label: string;
+  value: number; // 0-100, relative bar height
+  highlighted?: boolean;
+}
+
+export interface SoundProfileHeroContent {
+  eyebrow: string;
+  heading: string;
+  subheading: string;
+  paragraph: string;
+  ctaPrimary: { label: string; href: string };
+  ctaSecondary: { label: string; href: string };
+  ctaTertiary: { label: string; href: string };
+  panelLabel: string;
+  panelCaption: string;
+  bars: SoundProfileHeroBar[];
+  accentColor: string;
+}
+
+interface Props {
+  data: SoundProfileHeroContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="sound-profile-hero"
+  aria-labelledby="sound-profile-hero-title"
+  style={`--sph-accent:${data.accentColor};`}
+>
+  <div class="sound-profile-hero__inner">
+    <div class="sound-profile-hero__content" data-rise>
+      <p class="sound-profile-hero__eyebrow">{data.eyebrow}</p>
+      <h1 class="sound-profile-hero__heading" id="sound-profile-hero-title">{data.heading}</h1>
+      <p class="sound-profile-hero__subheading">{data.subheading}</p>
+      <p class="sound-profile-hero__paragraph">{data.paragraph}</p>
+
+      <div class="sound-profile-hero__actions">
+        <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} />
+        <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} variant="outline" />
+      </div>
+
+      <a class="sound-profile-hero__tertiary" href={data.ctaTertiary.href}>{data.ctaTertiary.label}</a>
+    </div>
+
+    <div class="sound-profile-hero__panel" data-rise aria-hidden="true">
+      <p class="sound-profile-hero__panel-label">{data.panelLabel}</p>
+
+      <div class="sound-profile-hero__chart">
+        {
+          data.bars.map((bar) => (
+            <div class="sound-profile-hero__bar-col">
+              {bar.highlighted && <span class="sound-profile-hero__handle" />}
+              <span
+                class:list={["sound-profile-hero__bar", { "sound-profile-hero__bar--highlighted": bar.highlighted }]}
+                style={`--bar-h:${bar.value}%;`}
+              />
+              <span class="sound-profile-hero__bar-label">{bar.label}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="sound-profile-hero__panel-caption">{data.panelCaption}</p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sound-profile-hero");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sound-profile-hero {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-20);
+    --sph-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sound-profile-hero__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .sound-profile-hero__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sph-accent);
+  }
+
+  .sound-profile-hero__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2.25rem, 1.7rem + 2.6vw, 3.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+  }
+
+  .sound-profile-hero__subheading {
+    margin: var(--space-5) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .sound-profile-hero__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sound-profile-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .sound-profile-hero__tertiary {
+    display: inline-block;
+    margin-top: var(--space-5);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .sound-profile-hero__tertiary:hover {
+    color: var(--sph-accent);
+  }
+
+  /* --- Frequency panel: pure CSS, no image asset -------------------------- */
+
+  .sound-profile-hero__panel {
+    padding: var(--space-8) var(--space-7);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .sound-profile-hero__panel-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .sound-profile-hero__chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-2);
+    height: 200px;
+    margin-top: var(--space-8);
+  }
+
+  .sound-profile-hero__bar-col {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  .sound-profile-hero__bar {
+    width: 100%;
+    max-width: 22px;
+    height: var(--bar-h);
+    border-radius: var(--radius-full);
+    background: var(--color-border-hover);
+  }
+
+  .sound-profile-hero__bar--highlighted {
+    background: var(--sph-accent);
+    box-shadow: 0 8px 20px -8px var(--sph-accent);
+  }
+
+  .sound-profile-hero__handle {
+    position: absolute;
+    top: -14px;
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    border: 2px solid var(--sph-accent);
+  }
+
+  .sound-profile-hero__bar-label {
+    margin-top: var(--space-3);
+    font-size: 0.625rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-soft);
+  }
+
+  .sound-profile-hero__panel-caption {
+    margin: var(--space-6) 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance ------------------------------------------------------------ */
+
+  .sound-profile-hero[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .sound-profile-hero[data-anim="in"] [data-rise] {
+    animation: sound-profile-hero-rise 600ms var(--sph-ease) both;
+  }
+
+  .sound-profile-hero[data-anim="in"] .sound-profile-hero__panel {
+    animation-delay: 100ms;
+  }
+
+  @keyframes sound-profile-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ----------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .sound-profile-hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .sound-profile-hero__panel {
+      max-width: 30rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sound-profile-hero {
+      padding-block: var(--space-14);
+    }
+
+    .sound-profile-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sound-profile-hero__panel {
+      padding: var(--space-6) var(--space-5);
+    }
+
+    .sound-profile-hero__chart {
+      height: 160px;
+    }
+
+    .sound-profile-hero__bar {
+      max-width: 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sound-profile-hero[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

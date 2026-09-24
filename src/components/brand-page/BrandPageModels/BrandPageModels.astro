@@ -47,6 +47,8 @@ export interface BrandPageProduct {
   description: string;
   tags: string[];
   image: string;
+  /** Optional destination — items without one render as inert "#" cards (unchanged legacy behavior). */
+  href?: string;
 }
 
 export interface BrandPageModelsContent {
@@ -99,7 +101,7 @@ function hexToRgba(hex: string, alpha: number) {
     <div class="brand-page-models__grid">
       {
         data.items.map((item) => (
-          <a class="brand-page-models__card" href="#" data-rise>
+          <a class="brand-page-models__card" href={item.href ?? "#"} data-rise>
             <span class="brand-page-models__category">{item.category}</span>
 
             <span class="brand-page-models__media">

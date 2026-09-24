@@ -1,0 +1,260 @@
+---
+// TuningProcess — shared, single-column numbered step list connected by a
+// thin vertical rail. Built for Kişiye Özel Ayar's "Ayar Nasıl Yapılır?"
+// section: BrandBuyingGuide's 2-column plain-typographic 01-06 list is
+// already used on the closely related Cihaz Deneme page, and
+// ProcessTimeline/SgkProcess's icon-node + horizontal track is used
+// elsewhere too — reusing either here would make this page read as a
+// repeat of a page it must be visually distinct from. This is a third,
+// deliberately quieter visual: no icons, a small numbered circle on a
+// single vertical line, content to its right.
+export interface TuningProcessStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface TuningProcessContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  steps: TuningProcessStep[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+}
+
+interface Props {
+  data: TuningProcessContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="tuning-process"
+  aria-labelledby="tuning-process-title"
+  style={`--tp-accent:${data.accentColor}; --tp-badge-bg:${data.accentColorBadgeBg}; --tp-badge-border:${data.accentColorBadgeBorder}; --tp-badge-text:${data.accentColorBadgeText};`}
+>
+  <div class="tuning-process__inner">
+    <div class="tuning-process__header">
+      <p class="tuning-process__badge" data-rise>{data.badge}</p>
+      <h2 class="tuning-process__heading" id="tuning-process-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="tuning-process__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <ol class="tuning-process__list" data-rise>
+      {
+        data.steps.map((step) => (
+          <li class="tuning-process__step">
+            <span class="tuning-process__marker" aria-hidden="true">{step.number}</span>
+            <div class="tuning-process__body">
+              <p class="tuning-process__title">{step.title}</p>
+              <p class="tuning-process__desc">{step.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".tuning-process");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .tuning-process {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --tp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .tuning-process__inner {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .tuning-process__header {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .tuning-process__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--tp-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--tp-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--tp-badge-text);
+  }
+
+  .tuning-process__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .tuning-process__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .tuning-process__list {
+    position: relative;
+    margin: var(--space-14) 0 0;
+    padding: 0;
+    list-style: none;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  .tuning-process__list::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    bottom: 14px;
+    left: 17px;
+    width: 1px;
+    background: var(--color-border);
+  }
+
+  .tuning-process__step {
+    position: relative;
+    display: flex;
+    gap: var(--space-5);
+    padding-block: var(--space-5);
+  }
+
+  .tuning-process__marker {
+    position: relative;
+    z-index: 1;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    border: 1.5px solid var(--tp-accent);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--tp-accent);
+  }
+
+  .tuning-process__body {
+    padding-top: var(--space-1);
+  }
+
+  .tuning-process__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .tuning-process__desc {
+    margin: var(--space-2) 0 0;
+    max-width: 44ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .tuning-process[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .tuning-process[data-anim="in"] [data-rise] {
+    animation: tuning-process-rise 600ms var(--tp-ease) both;
+  }
+
+  .tuning-process[data-anim="in"] .tuning-process__list {
+    animation-delay: 100ms;
+  }
+
+  @keyframes tuning-process-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tuning-process {
+      padding-block: var(--space-16);
+    }
+
+    .tuning-process__list {
+      margin-top: var(--space-10);
+    }
+
+    .tuning-process__list::before {
+      left: 15px;
+    }
+
+    .tuning-process__marker {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tuning-process[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

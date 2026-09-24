@@ -27,31 +27,31 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const ucretsizIsitmeTestiHero: BrandPageHeroContent = {
-  badge: "HİZMETLERİMİZ · DEĞERLENDİRME · ÜCRETSİZ İŞİTME TESTİ",
-  headingLines: ["Ücretsiz İşitme Testi", "Nasıl Yapılır?"],
+  badge: "DARICA · SGK ANLAŞMALI İŞİTME MERKEZİ",
+  headingLines: ["Darıca'da Ücretsiz", "İşitme Testi"],
   paragraphs: [
-    "Ücretsiz işitme testi, işitme durumunuzu bir odyometrist eşliğinde profesyonel olarak değerlendirmenizi sağlayan, herhangi bir ücret talep edilmeden sunulan bir hizmettir.",
-    "Avrasya İşitme'de, işitme sağlığınızı öğrenmenin ilk adımı olan ücretsiz işitme testini deneyimli odyometrist kadromuzla gerçekleştiriyoruz.",
+    "İşitmenizi profesyonelce değerlendirelim. Darıca'daki merkezimizde, deneyimli bir odyometrist eşliğinde, herhangi bir ücret talep edilmeden işitme testinizi gerçekleştiriyoruz.",
+    "Darıca, Gebze ve Çayırova'dan gelen danışanlarımız için randevu süreci aynı şekilde işler — merkezimize kolayca ulaşabilir, aynı gün test olabilirsiniz.",
   ],
-  ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
+  ctaPrimary: { label: "Ücretsiz İşitme Testi İçin Randevu Al", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href },
   features: [
     {
       label: "UZMAN EŞLİĞİNDE",
       accent: "#0891b2",
-      title: "Deneyimli Odyometrist Eşliğinde Değerlendirme",
+      title: "Profesyonel Odyometrist Eşliğinde Değerlendirme",
       description: "Testiniz, alanında deneyimli bir odyometrist tarafından gerçekleştirilir.",
     },
     {
       label: "ÜCRETSİZ",
       accent: "#0e7490",
-      title: "Herhangi Bir Ücret Talep Edilmez",
-      description: "İşitme testi, herhangi bir ücret veya taahhüt gerektirmeden sunulur.",
+      title: "Ücretsiz Ön Değerlendirme, Taahhüt Yok",
+      description: "İşitme testi, herhangi bir ücret veya satın alma taahhüdü gerektirmeden sunulur.",
     },
     {
-      label: "HIZLI SONUÇ",
+      label: "HIZLI SÜREÇ",
       accent: "#155e75",
-      title: "Sonuçlarınızı Aynı Gün Öğrenirsiniz",
+      title: "Randevuyla Hızlı, Akıcı Bir Süreç",
       description: "Test sonuçlarınız, görüşme sonunda sizinle birlikte değerlendirilir.",
     },
   ],

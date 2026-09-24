@@ -1,0 +1,276 @@
+---
+// SoundConcernList — shared, three-part diagnostic list: SORUN → OLASI
+// NEDEN → AYAR SÜRECİNDE NE DEĞERLENDİRİLİR. Built for Kişiye Özel Ayar's
+// "Gerçek Hayat Senaryoları" section. No existing component supports a
+// multi-part per-item structure (BrandPageSignalList/BrandPageFaq/
+// ScenarioRail are all single-description-per-item) — see the plan's
+// research phase. Deliberately not an accordion: every part is visible
+// at once so a visitor can self-diagnose without extra clicks, and
+// deliberately not framed as a diagnosis — "olası neden" and "ne
+// değerlendirilir" only, never a stated cause or promised outcome.
+import { Quote } from "lucide-astro";
+
+export interface SoundConcern {
+  question: string;
+  cause: string;
+  evaluation: string;
+}
+
+export interface SoundConcernListContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  causeLabel: string;
+  evaluationLabel: string;
+  concerns: SoundConcern[];
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+}
+
+interface Props {
+  data: SoundConcernListContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="sound-concern-list"
+  aria-labelledby="sound-concern-list-title"
+  style={`--scl-accent:${data.accentColor}; --scl-badge-bg:${data.accentColorBadgeBg}; --scl-badge-border:${data.accentColorBadgeBorder}; --scl-badge-text:${data.accentColorBadgeText};`}
+>
+  <div class="sound-concern-list__inner">
+    <div class="sound-concern-list__header">
+      <p class="sound-concern-list__badge" data-rise>{data.badge}</p>
+      <h2 class="sound-concern-list__heading" id="sound-concern-list-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="sound-concern-list__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="sound-concern-list__list" data-rise>
+      {
+        data.concerns.map((concern) => (
+          <article class="sound-concern-list__item">
+            <div class="sound-concern-list__question">
+              <Quote size={18} stroke-width={2} aria-hidden="true" class="sound-concern-list__quote-icon" />
+              <p>{concern.question}</p>
+            </div>
+
+            <div class="sound-concern-list__answers">
+              <div class="sound-concern-list__answer">
+                <p class="sound-concern-list__answer-label">{data.causeLabel}</p>
+                <p class="sound-concern-list__answer-text">{concern.cause}</p>
+              </div>
+              <div class="sound-concern-list__answer">
+                <p class="sound-concern-list__answer-label sound-concern-list__answer-label--accent">{data.evaluationLabel}</p>
+                <p class="sound-concern-list__answer-text">{concern.evaluation}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sound-concern-list");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sound-concern-list {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --scl-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sound-concern-list__inner {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .sound-concern-list__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sound-concern-list__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--scl-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--scl-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--scl-badge-text);
+  }
+
+  .sound-concern-list__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sound-concern-list__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sound-concern-list__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin: var(--space-14) 0 0;
+  }
+
+  .sound-concern-list__item {
+    padding: var(--space-7);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+  }
+
+  .sound-concern-list__question {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .sound-concern-list__quote-icon {
+    flex: none;
+    margin-top: 3px;
+    color: var(--scl-accent);
+  }
+
+  .sound-concern-list__question p {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+
+  .sound-concern-list__answers {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sound-concern-list__answer-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .sound-concern-list__answer-label--accent {
+    color: var(--scl-accent);
+  }
+
+  .sound-concern-list__answer-text {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sound-concern-list[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .sound-concern-list[data-anim="in"] [data-rise] {
+    animation: sound-concern-list-rise 600ms var(--scl-ease) both;
+  }
+
+  .sound-concern-list[data-anim="in"] .sound-concern-list__list {
+    animation-delay: 100ms;
+  }
+
+  @keyframes sound-concern-list-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sound-concern-list {
+      padding-block: var(--space-16);
+    }
+
+    .sound-concern-list__list {
+      margin-top: var(--space-10);
+    }
+
+    .sound-concern-list__item {
+      padding: var(--space-5);
+    }
+
+    .sound-concern-list__answers {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sound-concern-list[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

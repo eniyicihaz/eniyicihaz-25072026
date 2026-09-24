@@ -1,0 +1,324 @@
+---
+// ResultProfile — Stage 4 ("Online Tarama Sonucunuz"). Static shell only:
+// the chart's marker dots, the visible overall-profile card, and the
+// per-frequency <details> list are all filled/toggled at runtime by
+// HearingScreen's script — this file never hardcodes a diagnostic-
+// sounding label (plan §4, §5.1). The two warning banners and all three
+// overall-profile cards are hidden by default and only unhidden by the
+// script when actually applicable, never shown as scare text otherwise.
+import { AlertTriangle, RotateCcw } from "lucide-astro";
+import ScreeningProfileChart from "../ScreeningProfileChart/ScreeningProfileChart.astro";
+import type { FrequencyHz, OutcomeBand, OverallProfileKey } from "../../hearing-screen.types";
+
+interface ChartContent {
+  title: string;
+  caption: string;
+  frequencies: FrequencyHz[];
+  rowOrder: OutcomeBand[];
+  rowLabels: Record<string, string>;
+  frequencyLabels: Record<number, string>;
+  legend: { right: string; left: string };
+}
+
+interface ProfileEntry {
+  title: string;
+  body: string;
+  ctaLine: string | null;
+}
+
+interface Props {
+  heading: string;
+  subheading: string;
+  intro: string;
+  channelWarning: string;
+  guessingWarning: string;
+  disclaimer: string;
+  restartLabel: string;
+  detailsLabel: string;
+  rightLabel: string;
+  leftLabel: string;
+  chart: ChartContent;
+  profiles: Record<OverallProfileKey, ProfileEntry>;
+}
+
+const {
+  heading,
+  subheading,
+  intro,
+  channelWarning,
+  guessingWarning,
+  disclaimer,
+  restartLabel,
+  detailsLabel,
+  rightLabel,
+  leftLabel,
+  chart,
+  profiles,
+} = Astro.props;
+
+const profileEntries = Object.entries(profiles) as [OverallProfileKey, ProfileEntry][];
+---
+
+<div class="result-profile" data-hs-stage="result">
+  <h3 class="result-profile__heading">{heading}</h3>
+  <p class="result-profile__subheading">{subheading}</p>
+
+  <p class="result-profile__warning" data-channel-warning hidden>
+    <AlertTriangle size={16} stroke-width={2} aria-hidden="true" />
+    <span>{channelWarning}</span>
+  </p>
+  <p class="result-profile__warning" data-guessing-warning hidden>
+    <AlertTriangle size={16} stroke-width={2} aria-hidden="true" />
+    <span>{guessingWarning}</span>
+  </p>
+
+  <ScreeningProfileChart
+    title={chart.title}
+    caption={chart.caption}
+    frequencies={chart.frequencies}
+    rowOrder={chart.rowOrder}
+    rowLabels={chart.rowLabels}
+    frequencyLabels={chart.frequencyLabels}
+    legend={chart.legend}
+  />
+
+  <div class="result-profile__overall">
+    {
+      profileEntries.map(([key, profile]) => (
+        <div class="result-profile__profile-card" data-profile-card={key} hidden>
+          <p class="result-profile__profile-title">{profile.title}</p>
+          <p class="result-profile__profile-body">{profile.body}</p>
+          {profile.ctaLine && <p class="result-profile__profile-cta">{profile.ctaLine}</p>}
+        </div>
+      ))
+    }
+  </div>
+
+  <details class="result-profile__details">
+    <summary>{detailsLabel}</summary>
+    <p class="result-profile__intro">{intro}</p>
+    <div class="result-profile__columns">
+      <section class="result-profile__column" aria-labelledby="hs-result-right-title">
+        <h4 class="result-profile__column-title" id="hs-result-right-title">{rightLabel}</h4>
+        <ul class="result-profile__list" data-result-list="right"></ul>
+      </section>
+      <section class="result-profile__column" aria-labelledby="hs-result-left-title">
+        <h4 class="result-profile__column-title" id="hs-result-left-title">{leftLabel}</h4>
+        <ul class="result-profile__list" data-result-list="left"></ul>
+      </section>
+    </div>
+  </details>
+
+  <p class="result-profile__disclaimer">{disclaimer}</p>
+
+  <button type="button" class="result-profile__restart" data-action="restart-screening">
+    <RotateCcw size={14} stroke-width={2} aria-hidden="true" />
+    <span>{restartLabel}</span>
+  </button>
+</div>
+
+<style>
+  .result-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .result-profile__heading {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .result-profile__subheading {
+    margin: calc(-1 * var(--space-4)) 0 0;
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .result-profile__warning {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-warning);
+    border-radius: var(--radius-md);
+    background: rgb(217 119 6 / 0.08);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    text-align: left;
+    width: 100%;
+  }
+
+  .result-profile__warning svg {
+    flex: none;
+    margin-top: 1px;
+    color: var(--color-warning);
+  }
+
+  /* --- Overall profile card — one calm, uniform style regardless of
+     which of the three profiles is shown. Severity is never communicated
+     through alarming color (no warning/danger red-orange here) — only
+     through the text itself, consistent with PRINCIPLES.md's calm,
+     non-alarming tone for a health-adjacent screening. --- */
+  .result-profile__overall {
+    width: 100%;
+  }
+
+  .result-profile__profile-card {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    text-align: left;
+  }
+
+  .result-profile__profile-title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .result-profile__profile-body {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .result-profile__profile-cta {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--hs-accent, var(--color-primary));
+  }
+
+  /* --- Details disclosure — de-emphasized, native, fully accessible --- */
+  .result-profile__details {
+    width: 100%;
+    text-align: left;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-4);
+  }
+
+  .result-profile__details summary {
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .result-profile__details summary:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .result-profile__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+  }
+
+  .result-profile__columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    width: 100%;
+    margin-top: var(--space-4);
+  }
+
+  .result-profile__column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    text-align: left;
+  }
+
+  .result-profile__column-title {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--hs-accent, var(--color-primary));
+  }
+
+  .result-profile__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .result-profile__list :global(li) {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .result-profile__list :global(.result-profile__freq) {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-soft);
+  }
+
+  .result-profile__list :global(.result-profile__sentence) {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .result-profile__disclaimer {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+    line-height: var(--line-height-relaxed);
+  }
+
+  /* --- Restart — deliberately the quietest control on the screen (plan
+     §4.4): a small text-link, not a button, so it never competes with
+     the professional-test CTA that follows this widget on the page. --- */
+  .result-profile__restart {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: none;
+    background: transparent;
+    color: var(--color-text-soft);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+  }
+
+  .result-profile__restart:hover {
+    color: var(--color-text-muted);
+  }
+
+  .result-profile__restart:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 640px) {
+    .result-profile__columns {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

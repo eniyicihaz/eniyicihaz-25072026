@@ -1,0 +1,339 @@
+---
+// ProcessTimeline — shared, generic step-by-step process visualization:
+// numbered icon node + connecting track line (desktop), 2-column grid
+// (tablet), left-aligned vertical timeline (mobile). Generic/prop-driven
+// extraction of the visual recipe proven by
+// src/components/sgk/SgkProcess/SgkProcess.astro, which is NOT reusable
+// as-is (imports its own fixed 4-step data, hardcodes 4 icons via a
+// `stepIcons[i % 4]` cycle, and its entrance CSS only defines
+// nth-child delays up to a 4th step). SgkProcess itself is left
+// untouched — this is a new sibling, not a refactor, so the SGK page
+// carries zero regression risk.
+//
+// Truly N-step agnostic (used with 5 steps and with 7 steps on the same
+// page — Ücretsiz İşitme Testi redesign, plan §2/§4): each step supplies
+// its own icon, and entrance stagger delays are computed inline per index
+// rather than via a fixed set of :nth-child rules.
+export interface ProcessTimelineStep {
+  icon: any;
+  title: string;
+  description: string;
+}
+
+export interface ProcessTimelineContent {
+  eyebrow: string;
+  heading: string;
+  subheading?: string;
+  steps: ProcessTimelineStep[];
+  closing?: string;
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+}
+
+interface Props {
+  data: ProcessTimelineContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="process-timeline"
+  aria-labelledby="process-timeline-title"
+  style={`--pt-accent:${data.accentColor}; --pt-badge-bg:${data.accentColorBadgeBg}; --pt-badge-border:${data.accentColorBadgeBorder};`}
+>
+  <div class="process-timeline__inner">
+    <div class="process-timeline__head" data-rise>
+      <p class="process-timeline__eyebrow">{data.eyebrow}</p>
+      <h2 class="process-timeline__heading" id="process-timeline-title">{data.heading}</h2>
+      {data.subheading && <p class="process-timeline__subheading">{data.subheading}</p>}
+    </div>
+
+    <div class="process-timeline__flow">
+      <div class="process-timeline__track" aria-hidden="true"></div>
+      {
+        data.steps.map((step, i) => {
+          const Icon = step.icon;
+          return (
+            <div class="process-timeline__step" data-rise style={`animation-delay:${i * 70}ms`}>
+              <div class="process-timeline__node">
+                <Icon size={22} stroke-width={1.75} aria-hidden="true" />
+                <span class="process-timeline__number">{i + 1}</span>
+              </div>
+              <div class="process-timeline__body">
+                <h3 class="process-timeline__title">{step.title}</h3>
+                <p class="process-timeline__desc">{step.description}</p>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    {data.closing && <p class="process-timeline__closing" data-rise>{data.closing}</p>}
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // querySelectorAll + forEach (not querySelector) — this component is
+    // used more than once on the same page (e.g. Ücretsiz İşitme Testi's
+    // 5-step and 7-step sections), and Astro deduplicates identical
+    // `is:inline` scripts across repeated component instances, so this
+    // one script body must independently wire up every instance itself.
+    document.querySelectorAll(".process-timeline").forEach(function (section) {
+      if (section.dataset.ready === "true") return;
+      section.dataset.ready = "true";
+
+      if (!("IntersectionObserver" in window)) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      section.dataset.anim = "pending";
+
+      var revealed = false;
+      var ioAlive = false;
+      var io;
+
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        section.dataset.anim = "in";
+        if (io) io.disconnect();
+      }
+
+      var failsafe = setTimeout(function () {
+        if (!ioAlive) reveal();
+      }, 1500);
+
+      io = new IntersectionObserver(
+        function (entries) {
+          ioAlive = true;
+          clearTimeout(failsafe);
+          if (entries[0].isIntersecting) reveal();
+        },
+        { threshold: 0.15 }
+      );
+
+      io.observe(section);
+    });
+  })();
+</script>
+
+<style>
+  .process-timeline {
+    position: relative;
+    background: var(--color-surface);
+    padding-block: var(--space-24);
+    --pt-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .process-timeline__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .process-timeline__head {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .process-timeline__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--pt-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--pt-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: var(--pt-accent);
+  }
+
+  .process-timeline__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .process-timeline__subheading {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Flow: desktop = horizontal, connected by a single track --- */
+
+  .process-timeline__flow {
+    position: relative;
+    display: flex;
+    gap: var(--space-8);
+    margin-top: var(--space-16);
+  }
+
+  .process-timeline__track {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-border) 6%, var(--color-border) 94%, transparent);
+    z-index: 0;
+  }
+
+  .process-timeline__step {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+  }
+
+  .process-timeline__node {
+    position: relative;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    color: var(--pt-accent);
+  }
+
+  .process-timeline__number {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--pt-accent);
+    color: var(--color-text-inverse);
+    font-size: 0.625rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .process-timeline__body {
+    max-width: 240px;
+    margin-inline: auto;
+  }
+
+  .process-timeline__title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .process-timeline__desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .process-timeline__closing {
+    max-width: 42rem;
+    margin: var(--space-12) auto 0;
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance --- */
+
+  .process-timeline[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .process-timeline[data-anim="in"] [data-rise] {
+    animation: process-timeline-rise 600ms var(--pt-ease) both;
+  }
+
+  @keyframes process-timeline-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 1023px) {
+    .process-timeline {
+      padding-block: var(--space-16);
+    }
+
+    .process-timeline__track {
+      display: none;
+    }
+
+    .process-timeline__flow {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-12) var(--space-8);
+      margin-top: var(--space-12);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .process-timeline__flow {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .process-timeline__step {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      gap: var(--space-4);
+    }
+
+    .process-timeline__step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 29px;
+      top: 60px;
+      bottom: calc(-1 * var(--space-8));
+      width: 2px;
+      background: var(--color-border);
+    }
+
+    .process-timeline__body {
+      max-width: none;
+      margin-inline: 0;
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-timeline[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>
