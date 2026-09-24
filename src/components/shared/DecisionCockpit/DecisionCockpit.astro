@@ -1,0 +1,315 @@
+---
+// DecisionCockpit — shared, editorial hero for Marka Danışmanlığı. Neither
+// BrandPageHero (split/product-photo) nor ExperienceHero/SoundProfileHero
+// (wave band / frequency bars) fit a "decision-making" theme — this page
+// is about choosing between brands, not a product or a sound profile.
+// Right side renders a purely decorative, CSS-only "decision panel": a
+// stack of labeled criterion tracks with a fixed marker each, illustrating
+// "this is where the decision gets made" without being a real interactive
+// quiz (no JS logic, no state — matches the site's performance rule
+// against unnecessary client-side scripting).
+import CtaButton from "../CtaButton/CtaButton.astro";
+
+export interface DecisionCockpitCriterion {
+  label: string;
+  position: number; // 0-100, fixed illustrative marker position along the track
+}
+
+export interface DecisionCockpitContent {
+  eyebrow: string;
+  heading: string;
+  subheading: string;
+  paragraph: string;
+  ctaPrimary: { label: string; href: string };
+  ctaSecondary: { label: string; href: string };
+  panelLabel: string;
+  panelCaption: string;
+  criteria: DecisionCockpitCriterion[];
+  accentColor: string;
+}
+
+interface Props {
+  data: DecisionCockpitContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="decision-cockpit"
+  aria-labelledby="decision-cockpit-title"
+  style={`--dc-accent:${data.accentColor};`}
+>
+  <div class="decision-cockpit__inner">
+    <div class="decision-cockpit__content" data-rise>
+      <p class="decision-cockpit__eyebrow">{data.eyebrow}</p>
+      <h1 class="decision-cockpit__heading" id="decision-cockpit-title">{data.heading}</h1>
+      <p class="decision-cockpit__subheading">{data.subheading}</p>
+      <p class="decision-cockpit__paragraph">{data.paragraph}</p>
+
+      <div class="decision-cockpit__actions">
+        <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} />
+        <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} variant="outline" />
+      </div>
+    </div>
+
+    <div class="decision-cockpit__panel" data-rise aria-hidden="true">
+      <p class="decision-cockpit__panel-label">{data.panelLabel}</p>
+
+      <div class="decision-cockpit__criteria">
+        {
+          data.criteria.map((criterion) => (
+            <div class="decision-cockpit__row">
+              <span class="decision-cockpit__row-label">{criterion.label}</span>
+              <span class="decision-cockpit__track">
+                <span class="decision-cockpit__fill" style={`width:${criterion.position}%;`} />
+                <span class="decision-cockpit__marker" style={`left:${criterion.position}%;`} />
+              </span>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="decision-cockpit__panel-caption">{data.panelCaption}</p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".decision-cockpit");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .decision-cockpit {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-20);
+    --dc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .decision-cockpit__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .decision-cockpit__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dc-accent);
+  }
+
+  .decision-cockpit__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2.25rem, 1.7rem + 2.6vw, 3.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+  }
+
+  .decision-cockpit__subheading {
+    margin: var(--space-5) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .decision-cockpit__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .decision-cockpit__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  /* --- Decision panel: pure CSS, no image asset, no real interactivity --- */
+
+  .decision-cockpit__panel {
+    padding: var(--space-8) var(--space-7);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .decision-cockpit__panel-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .decision-cockpit__criteria {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .decision-cockpit__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .decision-cockpit__row-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  .decision-cockpit__track {
+    position: relative;
+    display: block;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-border);
+  }
+
+  .decision-cockpit__fill {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    border-radius: var(--radius-full);
+    background: var(--dc-accent);
+    opacity: 0.35;
+  }
+
+  .decision-cockpit__marker {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    border: 2px solid var(--dc-accent);
+    transform: translate(-50%, -50%);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .decision-cockpit__panel-caption {
+    margin: var(--space-6) 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance ------------------------------------------------------------ */
+
+  .decision-cockpit[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .decision-cockpit[data-anim="in"] [data-rise] {
+    animation: decision-cockpit-rise 600ms var(--dc-ease) both;
+  }
+
+  .decision-cockpit[data-anim="in"] .decision-cockpit__panel {
+    animation-delay: 100ms;
+  }
+
+  @keyframes decision-cockpit-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ----------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .decision-cockpit__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .decision-cockpit__panel {
+      max-width: 30rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .decision-cockpit {
+      padding-block: var(--space-14);
+    }
+
+    .decision-cockpit__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .decision-cockpit__panel {
+      padding: var(--space-6) var(--space-5);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .decision-cockpit[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

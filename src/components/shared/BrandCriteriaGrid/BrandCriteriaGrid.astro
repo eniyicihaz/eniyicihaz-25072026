@@ -1,0 +1,265 @@
+---
+// BrandCriteriaGrid — shared grid of comparison criteria. Built for Marka
+// Danışmanlığı's "Karşılaştırırken Bakılacak Kriterler" section.
+// Deliberately NOT a filled brand×feature matrix: the project has no
+// verified, structured per-brand technical spec data (connectivity,
+// charging wattage, IP rating, etc. — only marketing tags and intra-brand
+// tier comparisons exist), so populating a real matrix would mean
+// fabricating claims about real medical-device manufacturers. Instead,
+// each tile names ONE evaluation criterion and points the visitor to the
+// brand's own page to check it — honest, and never goes stale.
+export interface BrandCriteriaItem {
+  icon: any;
+  title: string;
+  description: string;
+}
+
+export interface BrandCriteriaGridContent {
+  badge: string;
+  heading: string;
+  intro: string;
+  items: BrandCriteriaItem[];
+  closing?: string;
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+  accentColorIconBg: string;
+}
+
+interface Props {
+  data: BrandCriteriaGridContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="brand-criteria-grid"
+  aria-labelledby="brand-criteria-grid-title"
+  style={`--bcg-accent:${data.accentColor}; --bcg-badge-bg:${data.accentColorBadgeBg}; --bcg-badge-border:${data.accentColorBadgeBorder}; --bcg-badge-text:${data.accentColorBadgeText}; --bcg-icon-bg:${data.accentColorIconBg};`}
+>
+  <div class="brand-criteria-grid__inner">
+    <div class="brand-criteria-grid__header">
+      <p class="brand-criteria-grid__badge" data-rise>{data.badge}</p>
+      <h2 class="brand-criteria-grid__heading" id="brand-criteria-grid-title" data-rise>
+        {data.heading}
+      </h2>
+      <p class="brand-criteria-grid__intro" data-rise>{data.intro}</p>
+    </div>
+
+    <div class="brand-criteria-grid__grid" data-rise>
+      {
+        data.items.map((item) => {
+          const Icon = item.icon;
+          return (
+            <div class="brand-criteria-grid__tile">
+              <span class="brand-criteria-grid__icon" aria-hidden="true">
+                <Icon size={20} stroke-width={1.75} />
+              </span>
+              <p class="brand-criteria-grid__title">{item.title}</p>
+              <p class="brand-criteria-grid__desc">{item.description}</p>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    {data.closing && <p class="brand-criteria-grid__closing" data-rise>{data.closing}</p>}
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".brand-criteria-grid");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .brand-criteria-grid {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-24);
+    --bcg-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand-criteria-grid__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brand-criteria-grid__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .brand-criteria-grid__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--bcg-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--bcg-badge-bg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: var(--bcg-badge-text);
+  }
+
+  .brand-criteria-grid__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .brand-criteria-grid__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-criteria-grid__grid {
+    margin: var(--space-14) 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .brand-criteria-grid__tile {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-7);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xs);
+    transition: transform 300ms var(--bcg-ease), box-shadow 300ms var(--bcg-ease);
+  }
+
+  .brand-criteria-grid__tile:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .brand-criteria-grid__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: var(--bcg-icon-bg);
+    color: var(--bcg-accent);
+  }
+
+  .brand-criteria-grid__title {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+  }
+
+  .brand-criteria-grid__desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-criteria-grid__closing {
+    margin: var(--space-10) auto 0;
+    max-width: 44rem;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-soft);
+  }
+
+  .brand-criteria-grid[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .brand-criteria-grid[data-anim="in"] [data-rise] {
+    animation: brand-criteria-grid-rise 600ms var(--bcg-ease) both;
+  }
+
+  .brand-criteria-grid[data-anim="in"] .brand-criteria-grid__grid {
+    animation-delay: 100ms;
+  }
+
+  @keyframes brand-criteria-grid-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .brand-criteria-grid__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-criteria-grid {
+      padding-block: var(--space-16);
+    }
+
+    .brand-criteria-grid__grid {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-criteria-grid[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .brand-criteria-grid__tile {
+      transition: none;
+    }
+  }
+</style>

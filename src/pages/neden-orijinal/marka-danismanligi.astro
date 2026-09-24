@@ -1,0 +1,247 @@
+---
+// Marka Danışmanlığı — /neden-orijinal/marka-danismanligi. Mega menüde
+// "Marka Desteği" kolonunun 4. öğesi; diğer 3 öğe (Orijinallik Garantisi,
+// Yetkili Servis, Aksesuar & Yedek) zaten var olan kardeş sayfalara
+// (guvenilir-teknoloji, yaygin-servis-agi, orijinal-aksesuar) bağlandı —
+// bu konu ("hangi marka bana uygun?") derinlemesine işlenen tek gerçekten
+// boş konuydu (bkz. implementasyon planı). Konumlandırma: "Marka Değil,
+// Size Uyan Çözüm" — üstünlük iddiası yok, ihtiyaç odaklı danışmanlık.
+//
+// Sıra: Breadcrumb -> Hero (DecisionCockpit) -> Hızlı Bilgiler -> Marka
+// Seçmeden Önce İhtiyacınızı Tanıyın -> 6 Soruda İhtiyacınız -> Farklı
+// Markalar, Farklı Yaklaşımlar -> Karşılaştırırken Bakılacak Kriterler ->
+// Darıca'da Marka Danışmanlığı -> SSS -> Son CTA -> İlgili İçerikler.
+import MainLayout from "../../layouts/MainLayout.astro";
+import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import DecisionCockpit from "../../components/shared/DecisionCockpit/DecisionCockpit.astro";
+import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
+import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
+import BrandCriteriaGrid from "../../components/shared/BrandCriteriaGrid/BrandCriteriaGrid.astro";
+import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+
+import { markaDanismanligiHero } from "../../data/marka-danismanligi/hero";
+import { markaDanismanligiOverview } from "../../data/marka-danismanligi/overview";
+import { markaDanismanligiIntro } from "../../data/marka-danismanligi/intro";
+import { markaDanismanligiSignalQuestions } from "../../data/marka-danismanligi/signal-questions";
+import { markaDanismanligiCriteria } from "../../data/marka-danismanligi/criteria";
+import { markaDanismanligiLocation } from "../../data/marka-danismanligi/location";
+import { markaDanismanligiServiceArea } from "../../data/marka-danismanligi/service-area";
+import { markaDanismanligiFaq } from "../../data/marka-danismanligi/faq";
+import { markaDanismanligiFinalCta } from "../../data/marka-danismanligi/final-cta";
+import { markaDanismanligiRelatedContent } from "../../data/marka-danismanligi/related-content";
+
+import { brandShowcase } from "../../data/brands/showcase";
+import { brandExtended } from "../../data/brands/extended";
+import { company } from "../../components/footer/Footer/data/company";
+
+const allBrands = [...brandShowcase.brands, ...brandExtended.brands];
+
+const PAGE_URL = "https://www.eniyicihaz.com/neden-orijinal/marka-danismanligi";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Marka Danışmanlığı", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+
+// Same MedicalBusiness node as every other page on the site — same @id,
+// same real NAP source, extending the sitewide Organization.
+const medicalBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "@id": "https://www.eniyicihaz.com/#organization",
+  name: company.legalName,
+  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; ihtiyacınıza uygun işitme cihazı markasını belirlemenize yardımcı olur.",
+  url: PAGE_URL,
+  telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
+  email: company.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat",
+    addressLocality: "Darıca",
+    addressRegion: "Kocaeli",
+    addressCountry: "TR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 40.772815433889605,
+    longitude: 29.4047968764159,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:45",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "19:00",
+    },
+  ],
+  areaServed: markaDanismanligiServiceArea.items.map((item) => item.name),
+};
+---
+
+<MainLayout
+  title="Marka Danışmanlığı | Size Uygun İşitme Cihazı Markası | EniyiCihaz"
+  description="Darıca'daki merkezimizde, Gebze ve Çayırova'dan gelen danışanlarımız da dahil, ihtiyacınıza uygun işitme cihazı markasını birlikte değerlendiriyoruz. Marka değil, size uyan çözüm."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="md-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <DecisionCockpit data={markaDanismanligiHero} />
+  <BrandPageOverview data={markaDanismanligiOverview} />
+  <BrandPageIntro data={markaDanismanligiIntro} />
+  <BrandPageSignalList data={markaDanismanligiSignalQuestions} />
+
+  <section class="md-brand-grid" aria-labelledby="md-brand-grid-title">
+    <div class="md-brand-grid__header">
+      <p class="md-brand-grid__eyebrow">FARKLI MARKALAR, FARKLI YAKLAŞIMLAR</p>
+      <h2 class="md-brand-grid__heading" id="md-brand-grid-title">Çalıştığımız Markalar</h2>
+      <p class="md-brand-grid__intro">Hiçbirini diğerine üstün göstermeden, tamamını inceleyebilirsiniz.</p>
+    </div>
+    <div class="md-brand-grid__grid">
+      {allBrands.map((brand) => (
+        <a class="md-brand-grid__logo" href={brand.href} aria-label={brand.name}>
+          <img src={brand.logo} alt={brand.name} loading="lazy" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <BrandCriteriaGrid data={markaDanismanligiCriteria} />
+
+  <ContactLocationCard data={markaDanismanligiLocation} />
+  <ContactServiceArea data={markaDanismanligiServiceArea} />
+
+  <BrandPageFaq data={markaDanismanligiFaq} />
+  <BrandPageFinalCta data={markaDanismanligiFinalCta} />
+  <BrandPageRelatedContent data={markaDanismanligiRelatedContent} />
+</MainLayout>
+
+<style>
+  .md-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  .md-brand-grid {
+    background: var(--color-background);
+    padding-block: var(--space-20);
+  }
+
+  .md-brand-grid__header {
+    max-width: 44rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .md-brand-grid__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b45309;
+  }
+
+  .md-brand-grid__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .md-brand-grid__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .md-brand-grid__grid {
+    max-width: var(--container-2xl);
+    margin: var(--space-12) auto 0;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .md-brand-grid__logo {
+    display: grid;
+    place-items: center;
+    height: 88px;
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .md-brand-grid__logo:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .md-brand-grid__logo:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .md-brand-grid__logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media (max-width: 1023px) {
+    .md-brand-grid__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .md-brand-grid {
+      padding-block: var(--space-14);
+    }
+
+    .md-brand-grid__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+    }
+
+    .md-brand-grid__logo {
+      height: 68px;
+      padding: var(--space-2);
+    }
+  }
+</style>
