@@ -1,5 +1,5 @@
 ---
-import { ChevronRight, ArrowRight } from "lucide-astro";
+import { ChevronRight, ArrowRight, Check } from "lucide-astro";
 import { icons } from "../../icons";
 import type { MegaMenuData } from "../../header.types";
 import { isActive } from "../../isActive";
@@ -24,6 +24,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     <!-- Column 1: Promo (35%) -->
     <div class:list={["hd-mega__promo", { "hd-mega__promo--has-image": Boolean(data.promo.image) }]}>
       <div class="hd-mega__promo-body">
+        {data.promo.badge && <p class="hd-mega__promo-badge">{data.promo.badge}</p>}
         <h2 class="hd-mega__promo-title">{data.promo.title}</h2>
         <p class="hd-mega__promo-text">{data.promo.text}</p>
         <a
@@ -34,15 +35,55 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
           <span>{data.promo.cta.label}</span>
           <ArrowRight class="hd-mega__promo-cta-arrow" size={16} aria-hidden="true" />
         </a>
+        {
+          data.promo.trustItems && (
+            <ul class="hd-mega__promo-trust">
+              {data.promo.trustItems.map((item) => (
+                <li>
+                  <Check size={14} stroke-width={2.5} aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+        {
+          data.promo.tags && (
+            <ul class="hd-mega__promo-tags">
+              {data.promo.tags.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
+          )
+        }
       </div>
       {
         data.promo.image ? (
           <div class="hd-mega__promo-image" aria-hidden="true">
             <img src={data.promo.image} alt="" loading="lazy" />
           </div>
+        ) : data.promo.badge ? (
+          <div class="hd-mega__promo-illustration" aria-hidden="true">
+            <span class="hd-mega__promo-ring hd-mega__promo-ring--1" />
+            <span class="hd-mega__promo-ring hd-mega__promo-ring--2" />
+            <span class="hd-mega__promo-ring hd-mega__promo-ring--3" />
+            <span class="hd-mega__promo-illustration-icon">
+              <PromoBg size={30} strokeWidth={1.75} />
+            </span>
+          </div>
         ) : (
           <div class="hd-mega__promo-art" aria-hidden="true">
             <PromoBg size={200} strokeWidth={1} />
+          </div>
+        )
+      }
+      {
+        data.promo.floatingBadge && (
+          <div class="hd-mega__promo-floating">
+            <span class="hd-mega__promo-floating-icon" aria-hidden="true">
+              <PromoBg size={16} stroke-width={2} />
+            </span>
+            <span>{data.promo.floatingBadge}</span>
           </div>
         )
       }
@@ -60,6 +101,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
               </span>
               {col.title}
             </h3>
+            {col.description && <p class="hd-mega__col-desc">{col.description}</p>}
             <ul class="hd-mega__list">
               {col.links.map((link) => (
                 <li>
@@ -68,7 +110,10 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
                     href={link.href}
                     aria-current={isActive(link.href, currentPath) ? "page" : undefined}
                   >
-                    <span>{link.label}</span>
+                    <span class="hd-mega__link-label">
+                      {link.logo && <img class="hd-mega__link-logo" src={link.logo} alt="" loading="lazy" />}
+                      <span>{link.label}</span>
+                    </span>
                     <ChevronRight class="hd-mega__link-chev" size={16} aria-hidden="true" />
                   </a>
                 </li>
@@ -317,27 +362,122 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     max-width: 46%;
   }
 
-  /* Hizmetlerimiz's photo is the densest of the three: people + glow ring
-     upper-right, a case/device cluster mid-panel, and — lower down — a
-     shield icon and wave graphic that reach further left (down to ~21% of
-     panel width around 75-80% of its height) than either other photo's
-     danger zone. Centering the text block (the other two menus' recipe)
-     put the CTA right in that lower danger band; measured on-screen, the
-     fix that actually keeps every element clear is top-anchoring the
-     whole block instead (`flex-start`, not `center`) so it lives in the
-     photo's safer upper half, plus width caps on both the title and the
-     description (its 81-character sentence doesn't fit 2 lines at a
-     width that's also safe, so it wraps to 3 short lines instead — never
-     restricted to begin with, unlike the title). The internal gaps below
-     are trimmed via existing spacing tokens only, to compensate for that
-     extra line and keep the CTA in its verified-safe position. */
+  /* İşitme Cihazları never had a title width cap (its device photo hugs
+     the corner rather than climbing high like Markalar's ring) — but
+     paired with `object-fit: cover` below the photo now reaches the full
+     card, so the title needs the same safety cap as its two siblings to
+     never run into the device's side of the panel. */
+  #hd-mega-cihazlar .hd-mega__promo-title {
+    max-width: 50%;
+  }
+
+  /* İşitme Cihazları / Markalar / Bilgi Merkezi — premium light-theme promo
+     panel, mirroring the recipe already proven on #hd-mega-hizmetler below
+     (duplicated per-ID rather than generalized into a shared rule, since
+     the hizmetler rules must stay completely untouched). These three keep
+     their real product/brand/content photo — only the panel's background
+     and text colors move from dark-navy to light, matching the reference. */
+  #hd-mega-cihazlar .hd-mega__promo,
+  #hd-mega-markalar .hd-mega__promo,
+  #hd-mega-bilgi .hd-mega__promo {
+    background: linear-gradient(165deg, rgb(37 99 235 / 0.06), var(--color-white) 60%);
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+
+  #hd-mega-cihazlar .hd-mega__promo-title,
+  #hd-mega-markalar .hd-mega__promo-title,
+  #hd-mega-bilgi .hd-mega__promo-title {
+    color: var(--color-text);
+  }
+
+  #hd-mega-cihazlar .hd-mega__promo-text,
+  #hd-mega-markalar .hd-mega__promo-text,
+  #hd-mega-bilgi .hd-mega__promo-text {
+    color: var(--color-text-muted);
+  }
+
+  #hd-mega-cihazlar .hd-mega__promo-cta,
+  #hd-mega-markalar .hd-mega__promo-cta,
+  #hd-mega-bilgi .hd-mega__promo-cta {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  #hd-mega-cihazlar .hd-mega__promo-cta:hover,
+  #hd-mega-cihazlar .hd-mega__promo-cta:focus-visible,
+  #hd-mega-cihazlar .hd-mega__promo-cta[aria-current="page"],
+  #hd-mega-markalar .hd-mega__promo-cta:hover,
+  #hd-mega-markalar .hd-mega__promo-cta:focus-visible,
+  #hd-mega-markalar .hd-mega__promo-cta[aria-current="page"],
+  #hd-mega-bilgi .hd-mega__promo-cta:hover,
+  #hd-mega-bilgi .hd-mega__promo-cta:focus-visible,
+  #hd-mega-bilgi .hd-mega__promo-cta[aria-current="page"] {
+    background: var(--color-primary-hover);
+  }
+
+  /* İşitme Cihazları / Markalar photo: was `contain`, which only scales
+     to the card's WIDTH — on a card taller than the photo's own aspect
+     ratio (the common case once the row stretches to match a 6-7 item
+     column) that leaves a band of bare card background above the photo,
+     splitting the card into two visually disconnected halves. `cover`
+     fills the card fully at every row height instead, so the photo and
+     the text column read as one composed panel — matching how Bilgi
+     Merkezi's photo (already `cover`, further below) and Hizmetlerimiz's
+     illustration (always vertically centred) both behave. */
+  #hd-mega-cihazlar .hd-mega__promo-image img,
+  #hd-mega-markalar .hd-mega__promo-image img {
+    object-fit: cover;
+  }
+
+  /* The photo's left-edge fade (base rule, further below) blends into a
+     dark panel — on these now-light panels it must fade into white
+     instead, or the photo's left edge shows an ugly dark seam. Widened
+     from the original dark-panel recipe's 38% cutoff: with the photo now
+     `cover`-filling the whole card, the opaque zone has to reach past
+     the title's own 46-50% width cap above (plus a soft margin) so dark
+     text is never read directly against the bare photo — the previous
+     38% cutoff left the photo fully exposed under most of the title. */
+  #hd-mega-cihazlar .hd-mega__promo-image::after,
+  #hd-mega-markalar .hd-mega__promo-image::after,
+  #hd-mega-bilgi .hd-mega__promo-image::after {
+    background: linear-gradient(
+      90deg,
+      var(--color-white) 0%,
+      var(--color-white) 46%,
+      rgb(255 255 255 / 0.55) 56%,
+      transparent 70%
+    );
+  }
+
+  /* Hizmetlerimiz — premium light-theme promo panel (redesign pass).
+     Deliberately the ONLY menu with no photo: no image-generation tool is
+     available in this environment and the old dark illustrated graphic
+     (mega-menu-hizmetlerimiz.webp) was retired rather than reused, so
+     this panel gets a bespoke CSS/SVG illustration (concentric rings +
+     an icon tile) instead — real assets or none, never a fabricated
+     photo. Every rule here is scoped to #hd-mega-hizmetler; the dark
+     panel + photo/Ear-glyph fallback used by the other three menus is
+     completely untouched. */
   #hd-mega-hizmetler .hd-mega__promo {
     justify-content: flex-start;
-    padding-top: var(--space-4);
+    padding-top: var(--space-5);
+    background: linear-gradient(165deg, rgb(37 99 235 / 0.06), var(--color-white) 60%);
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+
+  #hd-mega-hizmetler .hd-mega__promo::before {
+    display: none;
+  }
+
+  #hd-mega-hizmetler .hd-mega__promo-body {
+    max-width: 60%;
   }
 
   #hd-mega-hizmetler .hd-mega__promo-title {
-    max-width: 52%;
+    color: var(--color-text);
+    max-width: none;
     margin-bottom: var(--space-2);
   }
 
@@ -346,11 +486,189 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
   }
 
   #hd-mega-hizmetler .hd-mega__promo-text {
-    max-width: 42%;
+    color: var(--color-text-muted);
+    max-width: none;
   }
 
   #hd-mega-hizmetler .hd-mega__promo-cta {
-    margin-top: var(--space-2);
+    margin-top: var(--space-4);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  #hd-mega-hizmetler .hd-mega__promo-cta:hover,
+  #hd-mega-hizmetler .hd-mega__promo-cta:focus-visible,
+  #hd-mega-hizmetler .hd-mega__promo-cta[aria-current="page"] {
+    background: var(--color-primary-hover);
+  }
+
+  /* Eyebrow badge above the title (data.promo.badge). */
+  .hd-mega__promo-badge {
+    display: inline-block;
+    align-self: flex-start;
+    margin: 0 0 var(--space-3);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--primary-light);
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+  }
+
+  /* Trust checklist under the CTA (data.promo.trustItems) — 2x2, quiet. */
+  .hd-mega__promo-trust {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .hd-mega__promo-trust li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .hd-mega__promo-trust li svg {
+    flex: none;
+    color: var(--color-success);
+  }
+
+  /* Small real-category pill tags under the CTA (data.promo.tags) — for
+     the dark photo-backed panels (İşitme Cihazları today). Semi-transparent
+     white so it reads on the dark panel, matching the badge/trust chips'
+     restrained register used elsewhere on this component. */
+  .hd-mega__promo-tags {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hd-mega__promo-tags li {
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgb(255 255 255 / 0.18);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: rgb(226 235 250 / 0.85);
+  }
+
+  /* CSS/SVG illustration — concentric rings + an icon tile, replacing the
+     photo region for menus that set `promo.badge` (Hizmetlerimiz only).
+     Sized/positioned to fill more of the panel's right side (closer to
+     the edge, larger footprint) per the "azalt sağdaki boşluğu" pass —
+     the text column's own max-width is untouched, only this element and
+     its surrounding air changed. */
+  .hd-mega__promo-illustration {
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    z-index: 0;
+    width: 264px;
+    height: 264px;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+
+  /* Faint "frequency lines" behind the rings — a bare-bones technical
+     texture (varying-height bars via a repeating gradient), not a full
+     graphic asset. Kept extremely subtle so it reads as ambient detail,
+     never competes with the rings/icon in front of it. */
+  .hd-mega__promo-illustration::before {
+    content: "";
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 60%;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgb(37 99 235 / 0.1) 0 2px,
+      transparent 2px 14px
+    );
+    mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+  }
+
+  .hd-mega__promo-ring {
+    grid-area: 1 / 1;
+    border-radius: 50%;
+    border: 1.5px solid rgb(37 99 235 / 0.22);
+  }
+
+  .hd-mega__promo-ring--1 {
+    width: 106px;
+    height: 106px;
+    border-color: rgb(37 99 235 / 0.3);
+  }
+
+  .hd-mega__promo-ring--2 {
+    width: 176px;
+    height: 176px;
+    border-color: rgb(37 99 235 / 0.18);
+  }
+
+  .hd-mega__promo-ring--3 {
+    width: 246px;
+    height: 246px;
+    border-color: rgb(37 99 235 / 0.1);
+  }
+
+  .hd-mega__promo-illustration-icon {
+    grid-area: 1 / 1;
+    display: grid;
+    place-items: center;
+    width: 76px;
+    height: 76px;
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Floating badge card (data.promo.floatingBadge), overlapping the
+     illustration's bottom-right corner — sized up and given a border for
+     more presence per the "biraz daha belirgin" pass. */
+  .hd-mega__promo-floating {
+    position: absolute;
+    right: var(--space-4);
+    bottom: var(--space-4);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    max-width: 196px;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .hd-mega__promo-floating-icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--primary-light);
+    color: var(--color-primary);
+    flex: none;
   }
 
   /* Bilgi Merkezi's photo is requested as a `cover` fill rather than the
@@ -484,6 +802,15 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     transition: background-color var(--transition-fast);
   }
 
+  /* Optional one-line column summary (col.description) — only
+     Hizmetlerimiz sets this today; other menus simply never render it. */
+  .hd-mega__col-desc {
+    margin: calc(-1 * var(--space-2)) 0 var(--space-3);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-soft);
+  }
+
   /* The heading itself stays static (it isn't a link) — only the icon
      gets a very restrained emphasis, and it responds to the whole column
      (mouse hover or keyboard focus anywhere inside it), not just the
@@ -522,6 +849,24 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
       color var(--transition-fast),
       background-color var(--transition-fast),
       transform var(--transition-fast);
+  }
+
+  /* Wraps the optional logo + label as one flex group, so .hd-mega__link
+     keeps exactly two top-level children (this group + the chevron) and
+     `justify-content: space-between` still puts the chevron flush right —
+     only Markalar's featured-brand links set `link.logo` today. */
+  .hd-mega__link-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .hd-mega__link-logo {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
   }
 
   .hd-mega__link-chev {
@@ -730,6 +1075,183 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     flex: none;
   }
 
+  /* Hizmetlerimiz — "Hızlı Erişim" as 4 individual pastel cards instead of
+     one unified list card. Markup is untouched (still one <ul><li> list);
+     every rule below is scoped to #hd-mega-hizmetler, so the other three
+     menus' support column keeps its existing unified-card look exactly
+     as before. */
+  #hd-mega-hizmetler .hd-mega__support-card {
+    background: transparent;
+    padding: 0;
+  }
+
+  #hd-mega-hizmetler .hd-mega__support {
+    gap: var(--space-3);
+  }
+
+  #hd-mega-hizmetler .hd-mega__support-item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--hd-support-tint, var(--color-surface));
+    box-shadow: var(--shadow-xs);
+    padding: var(--space-4);
+    transition:
+      transform var(--transition-fast),
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
+  }
+
+  #hd-mega-hizmetler .hd-mega__support-item:hover,
+  #hd-mega-hizmetler .hd-mega__support-item:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Very light per-card pastel tint, in list order — no data-schema
+     change needed, the order (Randevu Al/Bizi Arayın/Merkezimiz/SGK) is
+     already fixed in header.data.ts. */
+  #hd-mega-hizmetler .hd-mega__support li:nth-child(1) .hd-mega__support-item {
+    --hd-support-tint: rgb(37 99 235 / 0.06);
+  }
+  #hd-mega-hizmetler .hd-mega__support li:nth-child(2) .hd-mega__support-item {
+    --hd-support-tint: rgb(22 163 74 / 0.06);
+  }
+  #hd-mega-hizmetler .hd-mega__support li:nth-child(3) .hd-mega__support-item {
+    --hd-support-tint: rgb(217 119 6 / 0.06);
+  }
+  #hd-mega-hizmetler .hd-mega__support li:nth-child(4) .hd-mega__support-item {
+    --hd-support-tint: rgb(124 58 237 / 0.06);
+  }
+
+  #hd-mega-hizmetler .hd-mega__support-icon {
+    background: var(--color-white);
+    box-shadow: var(--shadow-xs);
+  }
+
+  /* The chevron becomes an always-visible circular arrow button (reference
+     shows a solid circle, not a hover-reveal chevron). */
+  #hd-mega-hizmetler .hd-mega__support-chev {
+    opacity: 1;
+    transform: none;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-white);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-xs);
+    transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  #hd-mega-hizmetler .hd-mega__support-item:hover .hd-mega__support-chev,
+  #hd-mega-hizmetler .hd-mega__support-item:focus-visible .hd-mega__support-chev {
+    transform: translateX(2px);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  /* İşitme Cihazları / Markalar / Bilgi Merkezi — support column as 4
+     individual pastel cards, mirroring the #hd-mega-hizmetler pattern
+     above rule-for-rule (duplicated per-ID, not generalized, so the
+     hizmetler rules stay completely untouched). Markup is unchanged —
+     still one <ul><li> list per menu. */
+  #hd-mega-cihazlar .hd-mega__support-card,
+  #hd-mega-markalar .hd-mega__support-card,
+  #hd-mega-bilgi .hd-mega__support-card {
+    background: transparent;
+    padding: 0;
+  }
+
+  #hd-mega-cihazlar .hd-mega__support,
+  #hd-mega-markalar .hd-mega__support,
+  #hd-mega-bilgi .hd-mega__support {
+    gap: var(--space-3);
+  }
+
+  #hd-mega-cihazlar .hd-mega__support-item,
+  #hd-mega-markalar .hd-mega__support-item,
+  #hd-mega-bilgi .hd-mega__support-item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--hd-support-tint, var(--color-surface));
+    box-shadow: var(--shadow-xs);
+    padding: var(--space-4);
+    transition:
+      transform var(--transition-fast),
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
+  }
+
+  #hd-mega-cihazlar .hd-mega__support-item:hover,
+  #hd-mega-cihazlar .hd-mega__support-item:focus-visible,
+  #hd-mega-markalar .hd-mega__support-item:hover,
+  #hd-mega-markalar .hd-mega__support-item:focus-visible,
+  #hd-mega-bilgi .hd-mega__support-item:hover,
+  #hd-mega-bilgi .hd-mega__support-item:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Same blue/green/amber/purple pastel sequence, in list order, on all
+     three menus. */
+  #hd-mega-cihazlar .hd-mega__support li:nth-child(1) .hd-mega__support-item,
+  #hd-mega-markalar .hd-mega__support li:nth-child(1) .hd-mega__support-item,
+  #hd-mega-bilgi .hd-mega__support li:nth-child(1) .hd-mega__support-item {
+    --hd-support-tint: rgb(37 99 235 / 0.06);
+  }
+  #hd-mega-cihazlar .hd-mega__support li:nth-child(2) .hd-mega__support-item,
+  #hd-mega-markalar .hd-mega__support li:nth-child(2) .hd-mega__support-item,
+  #hd-mega-bilgi .hd-mega__support li:nth-child(2) .hd-mega__support-item {
+    --hd-support-tint: rgb(22 163 74 / 0.06);
+  }
+  #hd-mega-cihazlar .hd-mega__support li:nth-child(3) .hd-mega__support-item,
+  #hd-mega-markalar .hd-mega__support li:nth-child(3) .hd-mega__support-item,
+  #hd-mega-bilgi .hd-mega__support li:nth-child(3) .hd-mega__support-item {
+    --hd-support-tint: rgb(217 119 6 / 0.06);
+  }
+  #hd-mega-cihazlar .hd-mega__support li:nth-child(4) .hd-mega__support-item,
+  #hd-mega-markalar .hd-mega__support li:nth-child(4) .hd-mega__support-item,
+  #hd-mega-bilgi .hd-mega__support li:nth-child(4) .hd-mega__support-item {
+    --hd-support-tint: rgb(124 58 237 / 0.06);
+  }
+
+  #hd-mega-cihazlar .hd-mega__support-icon,
+  #hd-mega-markalar .hd-mega__support-icon,
+  #hd-mega-bilgi .hd-mega__support-icon {
+    background: var(--color-white);
+    box-shadow: var(--shadow-xs);
+  }
+
+  #hd-mega-cihazlar .hd-mega__support-chev,
+  #hd-mega-markalar .hd-mega__support-chev,
+  #hd-mega-bilgi .hd-mega__support-chev {
+    opacity: 1;
+    transform: none;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-white);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-xs);
+    transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  #hd-mega-cihazlar .hd-mega__support-item:hover .hd-mega__support-chev,
+  #hd-mega-cihazlar .hd-mega__support-item:focus-visible .hd-mega__support-chev,
+  #hd-mega-markalar .hd-mega__support-item:hover .hd-mega__support-chev,
+  #hd-mega-markalar .hd-mega__support-item:focus-visible .hd-mega__support-chev,
+  #hd-mega-bilgi .hd-mega__support-item:hover .hd-mega__support-chev,
+  #hd-mega-bilgi .hd-mega__support-item:focus-visible .hd-mega__support-chev {
+    transform: translateX(2px);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
   /* Promo is the most important area — it is preserved, not hidden.
      Ratios scale down gently as the viewport narrows. */
   @media (max-width: 1439px) {
@@ -742,6 +1264,78 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     .hd-mega__inner {
       grid-template-columns: 29fr 17.75fr 17.75fr 17.75fr 17.75fr;
       gap: var(--space-6);
+    }
+  }
+
+  /* Guarantees the three discovery-column footer CTAs ("Değerlendirme
+     Hizmetleri" / "Uygulama Hizmetleri" / "Servis Hizmetleri") never wrap
+     to a second line — a 2-line footer breaks the shared bottom-aligned
+     baseline the three columns are meant to share (margin-top:auto on
+     .hd-mega__more, grid stretch on the row). Scoped so other menus'
+     footer labels (which may legitimately be longer) keep wrapping if
+     they need to. */
+  #hd-mega-hizmetler .hd-mega__col .hd-mega__more {
+    white-space: nowrap;
+  }
+
+  /* Hizmetlerimiz's own grid ratios (35/45/20, matching the reference
+     layout's more generous "Hızlı Erişim" column) — scoped so the other
+     three menus keep their existing 35/65-split-four-ways ratios at every
+     breakpoint. */
+  #hd-mega-hizmetler .hd-mega__inner {
+    grid-template-columns: 35fr 15fr 15fr 15fr 20fr;
+  }
+
+  @media (max-width: 1439px) {
+    #hd-mega-hizmetler .hd-mega__inner {
+      grid-template-columns: 32fr 15.5fr 15.5fr 15.5fr 21.5fr;
+    }
+  }
+
+  @media (max-width: 1279px) {
+    #hd-mega-hizmetler .hd-mega__inner {
+      grid-template-columns: 29fr 16fr 16fr 16fr 23fr;
+    }
+  }
+
+  /* İşitme Cihazları / Markalar / Bilgi Merkezi — same 35/45/20-ish
+     rebalance as #hd-mega-hizmetler above (values copied verbatim, not
+     shared, so the hizmetler rule stays untouched): the support column's
+     four titles ("Ücretsiz İşitme Testi", "Kişiye Özel Ayar", "Teknik
+     Servis"...) were wrapping to 2-3 cramped lines at the base 16.25%
+     share every discovery column also got. Support gains the same 20%
+     (21.5%/23% as the viewport narrows) the reference design gives it;
+     the three discovery columns give up a proportional sliver each. */
+  #hd-mega-cihazlar .hd-mega__inner,
+  #hd-mega-markalar .hd-mega__inner,
+  #hd-mega-bilgi .hd-mega__inner {
+    grid-template-columns: 35fr 15fr 15fr 15fr 20fr;
+  }
+
+  /* Same reason #hd-mega-hizmetler needs this above: narrowing the
+     discovery columns to 15% to fund the wider support column risks
+     wrapping their own footer CTAs ("Tüm İşitme Cihazları", "Diğer Tüm
+     Markalar", "Tüm Değerlendirmeler"...) to a second line, which would
+     break the shared bottom-aligned baseline across all four columns. */
+  #hd-mega-cihazlar .hd-mega__col .hd-mega__more,
+  #hd-mega-markalar .hd-mega__col .hd-mega__more,
+  #hd-mega-bilgi .hd-mega__col .hd-mega__more {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1439px) {
+    #hd-mega-cihazlar .hd-mega__inner,
+    #hd-mega-markalar .hd-mega__inner,
+    #hd-mega-bilgi .hd-mega__inner {
+      grid-template-columns: 32fr 15.5fr 15.5fr 15.5fr 21.5fr;
+    }
+  }
+
+  @media (max-width: 1279px) {
+    #hd-mega-cihazlar .hd-mega__inner,
+    #hd-mega-markalar .hd-mega__inner,
+    #hd-mega-bilgi .hd-mega__inner {
+      grid-template-columns: 29fr 16fr 16fr 16fr 23fr;
     }
   }
 
@@ -786,7 +1380,26 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     .hd-mega__promo:hover .hd-mega__promo-art,
     .hd-mega__promo:focus-within .hd-mega__promo-art,
     .hd-mega__promo:hover .hd-mega__promo-image img,
-    .hd-mega__promo:focus-within .hd-mega__promo-image img {
+    .hd-mega__promo:focus-within .hd-mega__promo-image img,
+    /* Every menu's pastel support-card hover/chevron transforms are
+       ID-scoped (higher specificity than the class-only rules above), so
+       each needs its own explicit reset here too. */
+    #hd-mega-hizmetler .hd-mega__support-item:hover,
+    #hd-mega-hizmetler .hd-mega__support-item:focus-visible,
+    #hd-mega-hizmetler .hd-mega__support-item:hover .hd-mega__support-chev,
+    #hd-mega-hizmetler .hd-mega__support-item:focus-visible .hd-mega__support-chev,
+    #hd-mega-cihazlar .hd-mega__support-item:hover,
+    #hd-mega-cihazlar .hd-mega__support-item:focus-visible,
+    #hd-mega-cihazlar .hd-mega__support-item:hover .hd-mega__support-chev,
+    #hd-mega-cihazlar .hd-mega__support-item:focus-visible .hd-mega__support-chev,
+    #hd-mega-markalar .hd-mega__support-item:hover,
+    #hd-mega-markalar .hd-mega__support-item:focus-visible,
+    #hd-mega-markalar .hd-mega__support-item:hover .hd-mega__support-chev,
+    #hd-mega-markalar .hd-mega__support-item:focus-visible .hd-mega__support-chev,
+    #hd-mega-bilgi .hd-mega__support-item:hover,
+    #hd-mega-bilgi .hd-mega__support-item:focus-visible,
+    #hd-mega-bilgi .hd-mega__support-item:hover .hd-mega__support-chev,
+    #hd-mega-bilgi .hd-mega__support-item:focus-visible .hd-mega__support-chev {
       transform: none;
     }
   }

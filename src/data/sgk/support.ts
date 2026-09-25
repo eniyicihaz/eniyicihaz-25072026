@@ -3,11 +3,8 @@
 // every stage of the SGK process. Own namespace, independent of the rest
 // of sgk/*.
 //
-// relatedLinks point to real pages where they already exist (/markalar);
-// everything else falls back to the SGK guide page itself until its real
-// destination (cihaz seçim rehberi, teknik servis, ücretsiz işitme testi)
-// is built — none of those exist yet (confirmed via header.data.ts, still
-// placeholder "#" links).
+// relatedLinks all point to real, existing pages now (cihaz seçim
+// rehberi, işitme cihazı markaları, teknik servis, ücretsiz işitme testi).
 
 export interface SgkSupportCard {
   title: string;
@@ -69,10 +66,10 @@ export const sgkSupport: SgkSupportContent = {
   ],
   relatedLabel: "Bu konuyla ilgili devamı",
   relatedLinks: [
-    { label: "Cihaz Seçim Rehberi", href: "/sgk-isitme-cihazi-odemesi" },
+    { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi" },
     { label: "İşitme Cihazı Markaları", href: "/markalar" },
-    { label: "Teknik Servis", href: "/sgk-isitme-cihazi-odemesi" },
-    { label: "Ücretsiz İşitme Testi", href: "/sgk-isitme-cihazi-odemesi" },
+    { label: "Teknik Servis", href: "/servis-bakim/teknik-servis" },
+    { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi" },
   ],
   cta: {
     heading: "SGK süreciniz hakkında ücretsiz destek almak ister misiniz?",

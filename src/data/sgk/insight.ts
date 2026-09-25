@@ -3,11 +3,11 @@
 // figures; it explains what drives them and what to watch out for. Own
 // namespace, independent of hero/process/knowledge/payments.
 //
-// relatedLinks: "SGK Katkı Payı" now points to its real page
-// (/sgk/katki-payi) and "İşitme Cihazı Seçim Rehberi" now points to the
-// real Cihaz Seçim Rehberi page (/rehberler/cihaz-secim-rehberi); "SGK
-// Mevzuatı" doesn't exist yet and still points back to the pillar page
-// itself. Swap its href once its real destination page is built.
+// relatedLinks: "SGK Katkı Payı" points to its real page (/sgk/katki-payi)
+// and "İşitme Cihazı Seçim Rehberi" to the real Cihaz Seçim Rehberi page
+// (/rehberler/cihaz-secim-rehberi); no dedicated "SGK Mevzuatı" page
+// exists, so that entry anchors to this page's own current-rates section
+// instead of inventing a URL.
 
 export interface SgkInsightPoint {
   title: string;
@@ -84,6 +84,6 @@ export const sgkInsight: SgkInsightContent = {
   relatedLinks: [
     { label: "SGK Katkı Payı", href: "/sgk/katki-payi" },
     { label: "İşitme Cihazı Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi" },
-    { label: "SGK Mevzuatı", href: "/sgk-isitme-cihazi-odemesi" },
+    { label: "Güncel SGK Ödeme Tutarları", href: "#sgk-payments-title" },
   ],
 };

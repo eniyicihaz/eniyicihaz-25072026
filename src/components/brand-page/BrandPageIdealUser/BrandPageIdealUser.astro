@@ -170,16 +170,18 @@ const extraVars = [
   }
 
   .brand-page-idealuser__grid {
-    margin: var(--space-14) 0 0;
+    margin: var(--space-10) 0 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--space-6);
+    align-items: stretch;
   }
 
   .brand-page-idealuser__card {
     display: flex;
     flex-direction: column;
-    padding: var(--space-7);
+    height: 100%;
+    padding: var(--space-8);
     background: var(--color-background);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-2xl);
@@ -223,7 +225,12 @@ const extraVars = [
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
-    margin-top: var(--space-4);
+    /* Pinned to the bottom of the card (not a fixed margin-top) so the
+       tag row lands on the same baseline across a row regardless of how
+       many lines the description above it wraps to — same technique
+       already used by the --premium variant below. */
+    margin-top: auto;
+    padding-top: var(--space-4);
   }
 
   .brand-page-idealuser__family {

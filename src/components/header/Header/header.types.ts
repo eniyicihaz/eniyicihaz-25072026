@@ -10,12 +10,19 @@ import type { IconKey } from "./icons";
 export interface NavLink {
   label: string;
   href: string;
+  /** Optional small logo shown before the label (only Markalar's featured
+   * column sets this today — every other link renders exactly as before). */
+  logo?: string;
 }
 
 /** A titled column of links inside a mega menu. */
 export interface MegaColumn {
   icon: IconKey;
   title: string;
+  /** Optional one-line summary shown under the title. Only Hizmetlerimiz
+   * sets this today — every other menu's columns render exactly as
+   * before when it's omitted. */
+  description?: string;
   links: NavLink[];
   /** Bottom "see all" link. */
   footer: NavLink;
@@ -45,6 +52,19 @@ export interface MegaPromo {
   cta: NavLink;
   /** Optional product image; a placeholder illustration is shown when absent. */
   image?: string;
+  /** Small eyebrow label above the title. Only Hizmetlerimiz sets this —
+   * when present it also switches the panel to the light CSS/SVG
+   * illustration (rings + icon) instead of the plain Ear-glyph fallback,
+   * without touching menus that only set `image`. */
+  badge?: string;
+  /** Short checklist under the CTA (2x2 grid). Optional, additive. */
+  trustItems?: string[];
+  /** Small floating badge card overlaid on the illustration's corner. */
+  floatingBadge?: string;
+  /** Small pill tags rendered under the CTA (dark-panel menus — İşitme
+   * Cihazları). Independent of `trustItems` (which uses a checklist
+   * register); these are plain, real category-name chips. */
+  tags?: string[];
 }
 
 /** Full mega menu payload behind a top-level nav item. */

@@ -89,6 +89,12 @@ export const sgkFaq: SgkFaqContent = {
       answer:
         "Evet, uzman ekibimiz rapor ve reçete sürecinden SGK başvurusuna kadar her aşamada size destek olur. Sürecin tamamında yalnız değilsiniz.",
     },
+    {
+      question: "SGK anlaşmalı işitme merkezine nasıl başvurulur?",
+      answer:
+        "Öncelikle işitme değerlendirmesi için merkezimize başvurabilir, ardından gerekli sağlık kurulu raporu ve reçete sürecini birlikte takip edebilirsiniz. Darıca'daki merkezimize telefon veya WhatsApp üzerinden ulaşarak randevu talep edebilirsiniz.",
+      relatedLinks: [{ label: "İletişim", href: "/iletisim" }],
+    },
   ],
   help: {
     title: "Aradığınız sorunun cevabını bulamadınız mı?",

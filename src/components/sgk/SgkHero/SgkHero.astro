@@ -64,6 +64,7 @@ const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
       <div class="sgk-hero__glow" aria-hidden="true"></div>
 
       <div class="sgk-hero__frame">
+        <span class="sgk-hero__date-chip">{sgkHero.dateBadge}</span>
         <img
           class="sgk-hero__image"
           src={sgkHero.image.src}
@@ -302,6 +303,23 @@ const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  /* Small "current year" chip — ties the hero to the real 2026 figures
+     further down the page without repeating any amount. */
+  .sgk-hero__date-chip {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    z-index: 1;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.02em;
+    box-shadow: var(--shadow-sm);
   }
 
   .sgk-hero__floating {

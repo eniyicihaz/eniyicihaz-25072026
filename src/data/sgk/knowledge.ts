@@ -2,10 +2,9 @@
 // grid replacing what used to be one long paragraph block. Own namespace,
 // independent of hero.ts/process.ts.
 //
-// Card hrefs all point back to the pillar page itself for now — the SGK
-// hub's future sub-pages (katkı payı, rapor süreci, gerekli belgeler,
-// SGK mevzuatı) don't exist yet. Swap each href once its real destination
-// page is built; nothing else in the component needs to change.
+// Card hrefs now point to each card's real destination: the SGK hub's
+// sub-pages where they exist, or the most relevant on-page section anchor
+// where no dedicated "SGK mevzuatı" page exists (no invented URL).
 
 export interface SgkKnowledgeCard {
   title: string;
@@ -32,37 +31,37 @@ export const sgkKnowledge: SgkKnowledgeContent = {
       title: "Kimler SGK Desteğinden Yararlanabilir?",
       description:
         "İşitme kaybı sağlık kurulu raporuyla belgelenen ve SGK'ya bağlı vatandaşlar, belirlenen şartları sağladığında işitme cihazı devlet desteğinden faydalanabilir.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "#sgk-eligibility-title",
     },
     {
       title: "Destek Tutarları Nasıl Belirlenir?",
       description:
         "SGK katkı payı; yaş grubuna, cihaz tipine ve güncel SGK mevzuatına göre değişiklik gösterebilir.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk/katki-payi",
     },
     {
       title: "Hangi Belgeler Gereklidir?",
       description:
         "Başvuru için işitme cihazı raporu, uzman hekim reçetesi ve SGK'nın istediği diğer evrakların eksiksiz tamamlanması gerekir.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk/gerekli-belgeler",
     },
     {
       title: "SGK Başvurusu Nasıl Yapılır?",
       description:
         "Rapor ve reçete tamamlandıktan sonra belgeler SGK'ya iletilir; başvuru süreci mevzuata uygun şekilde takip edilir.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk/rapor-sureci",
     },
     {
       title: "Güncel SGK Mevzuatı",
       description:
         "SGK katkı payları ve destek tutarları dönemsel olarak güncellenebilir; başvurudan önce güncel mevzuatı kontrol etmek önemlidir.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "#sgk-payments-title",
     },
     {
       title: "Uzman Desteği",
       description:
         "Süreç boyunca doğru yönlendirme almak, hem zaman kaybını önler hem de başvurunun eksiksiz ilerlemesini sağlar.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "#sgk-support-title",
     },
   ],
   cardLinkLabel: "Daha Fazla Bilgi",

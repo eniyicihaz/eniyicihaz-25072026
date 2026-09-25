@@ -1,33 +1,220 @@
 ---
 // SGK pillar page — URL preserved exactly from the old site (real SEO
-// value). Hero (M1) only for this pass; the page will grow into a full
-// guide (katkı payı, rapor süreci, gerekli belgeler, çocuklarda SGK,
-// yenileme hakkı, SSS) in later passes.
+// value). Premium redesign pass (see plan): existing 10 Sgk* sections
+// kept and strengthened (stale self-referencing hrefs repaired to real
+// destination pages), plus Breadcrumb+MedicalBusiness schema, a quick-nav
+// strip, a "Ben Hangi Gruptayım?" self-identification section, a "SGK
+// Rehber Hub" internal-linking grid, and a Darıca local section — all
+// added using existing, already-proven components. The 2026 payment
+// figures/image/table (SgkPayments + payments.ts) are untouched.
 import MainLayout from "../layouts/MainLayout.astro";
+import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import SgkHero from "../components/sgk/SgkHero/SgkHero.astro";
 import SgkProcess from "../components/sgk/SgkProcess/SgkProcess.astro";
 import SgkKnowledge from "../components/sgk/SgkKnowledge/SgkKnowledge.astro";
 import SgkPayments from "../components/sgk/SgkPayments/SgkPayments.astro";
+import BrandPageIdealUser from "../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import SgkInsight from "../components/sgk/SgkInsight/SgkInsight.astro";
 import SgkEligibility from "../components/sgk/SgkEligibility/SgkEligibility.astro";
 import SgkSupport from "../components/sgk/SgkSupport/SgkSupport.astro";
+import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import ContactServiceArea from "../components/contact/ContactServiceArea/ContactServiceArea.astro";
 import SgkFaq from "../components/sgk/SgkFaq/SgkFaq.astro";
 import SgkBrands from "../components/sgk/SgkBrands/SgkBrands.astro";
 import SgkTrustBar from "../components/sgk/SgkTrustBar/SgkTrustBar.astro";
+
+import { sgkIdealUser } from "../data/sgk/ideal-user";
+import { sgkRelatedContent } from "../data/sgk/related-content";
+import { sgkLocation } from "../data/sgk/location";
+import { sgkServiceArea } from "../data/sgk/service-area";
+import { company } from "../components/footer/Footer/data/company";
+
+const PAGE_URL = "https://www.eniyicihaz.com/sgk-isitme-cihazi-odemesi";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "SGK İşitme Cihazı Ödemesi", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+
+// Same MedicalBusiness node as every other page on the site — same @id,
+// same real NAP source, extending the sitewide Organization (already
+// injected once by MainLayout) rather than declaring a second entity.
+const medicalBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "@id": "https://www.eniyicihaz.com/#organization",
+  name: company.legalName,
+  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; SGK işitme cihazı ödemesi, katkı payı ve başvuru süreci hakkında rehberlik eder.",
+  url: PAGE_URL,
+  telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
+  email: company.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat",
+    addressLocality: "Darıca",
+    addressRegion: "Kocaeli",
+    addressCountry: "TR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 40.772815433889605,
+    longitude: 29.4047968764159,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:45",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "19:00",
+    },
+  ],
+  areaServed: sgkServiceArea.items.map((item) => item.name),
+};
+
+const quickLinks = [
+  { label: "2026 SGK Desteği", href: "#sgk-payments-title" },
+  { label: "Çalışan / Emekli", href: "#sgk-eligibility-title" },
+  { label: "Çocuk / Yetişkin", href: "#brand-page-idealuser-title" },
+  { label: "Rapor Süreci", href: "/sgk/rapor-sureci" },
+  { label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler" },
+  { label: "Yenileme", href: "/sgk/yenileme-hakki" },
+];
 ---
 
 <MainLayout
   title="2026 SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi | EniyiCihaz"
   description="SGK işitme cihazı ödemesi, katkı payı, devlet desteği, rapor süreci ve gerekli belgeler hakkında güncel rehber. SGK anlaşmalı işitme merkezinde ücretsiz işitme testi."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="sgk-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
   <SgkHero />
+
+  <nav class="sgk-quicknav" aria-label="Hızlı bağlantılar">
+    <div class="sgk-quicknav__track">
+      {quickLinks.map((link) => (
+        <a class="sgk-quicknav__pill" href={link.href}>{link.label}</a>
+      ))}
+    </div>
+  </nav>
+
   <SgkProcess />
   <SgkKnowledge />
   <SgkPayments />
+  <div class="sgk-idealuser-scope">
+    <BrandPageIdealUser data={sgkIdealUser} />
+  </div>
   <SgkInsight />
   <SgkEligibility />
   <SgkSupport />
+  <BrandPageRelatedContent data={sgkRelatedContent} />
+  <ContactLocationCard data={sgkLocation} />
+  <ContactServiceArea data={sgkServiceArea} />
   <SgkFaq />
   <SgkBrands />
   <SgkTrustBar />
 </MainLayout>
+
+<style>
+  .sgk-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  /* Quiet single-row pill nav — deliberately not a card grid (redesign
+     brief: "gereksiz kart kalabalığı oluşturma"). Horizontal scroll on
+     narrow screens instead of wrapping, so it never breaks into a messy
+     multi-line block on mobile. */
+  .sgk-quicknav {
+    background: var(--color-surface);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .sgk-quicknav__track {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-3) var(--space-6);
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .sgk-quicknav__pill {
+    flex: none;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color var(--transition-base), color var(--transition-base);
+  }
+
+  .sgk-quicknav__pill:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .sgk-quicknav__pill:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  @media (max-width: 640px) {
+    .sgk-quicknav__track {
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+
+  /* Scoped, page-only override of the shared BrandPageIdealUser grid for
+     this page's 5-card "Ben Hangi Gruptayım?" section — :global() here is
+     bundled into this page's own CSS output, so it never reaches any
+     other page that also uses BrandPageIdealUser. At desktop widths its
+     default auto-fit grid would otherwise wrap 5 cards into an uneven
+     3+2 split (a shorter, awkward last row); forcing exactly 5 columns
+     keeps all 5 cards in one row, same width, same height. Tablet/mobile
+     are left untouched — they already inherit the component's own
+     tested 2-col / 1-col breakpoints. */
+  .sgk-idealuser-scope :global(.brand-page-idealuser__grid) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  @media (max-width: 1023px) {
+    .sgk-idealuser-scope :global(.brand-page-idealuser__grid) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-idealuser-scope :global(.brand-page-idealuser__grid) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

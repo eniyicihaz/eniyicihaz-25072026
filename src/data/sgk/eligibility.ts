@@ -4,12 +4,11 @@
 // eligibility (uygunluk) check, not a repeat of the process or figures
 // already covered. Own namespace, independent of the other sgk/* files.
 //
-// relatedLinks: "SGK Katkı Payı", "Rapor Süreci", "Gerekli Belgeler"
-// and "Çocuklarda SGK" now point to their real pages (/sgk/katki-payi,
-// /sgk/rapor-sureci, /sgk/gerekli-belgeler, /sgk/cocuklarda-sgk); the
-// remaining sub-page (SGK mevzuatı) doesn't exist yet and still points
-// back to the pillar page itself. Swap its href once its real
-// destination page is built.
+// relatedLinks: "SGK Katkı Payı", "Rapor Süreci", "Gerekli Belgeler" and
+// "Çocuklarda SGK" point to their real pages (/sgk/katki-payi,
+// /sgk/rapor-sureci, /sgk/gerekli-belgeler, /sgk/cocuklarda-sgk); no
+// dedicated "SGK mevzuatı" page exists, so that entry anchors to this
+// page's own current-rates section instead of inventing a URL.
 
 export interface SgkEligibilityGroup {
   title: string;
@@ -82,7 +81,7 @@ export const sgkEligibility: SgkEligibilityContent = {
     { label: "Rapor Süreci", href: "/sgk/rapor-sureci" },
     { label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler" },
     { label: "Çocuklarda SGK", href: "/sgk/cocuklarda-sgk" },
-    { label: "SGK Mevzuatı", href: "/sgk-isitme-cihazi-odemesi" },
+    { label: "Güncel SGK Ödeme Tutarları", href: "#sgk-payments-title" },
   ],
   action: {
     title: "SGK Desteği Almaya Uygun Musunuz?",
