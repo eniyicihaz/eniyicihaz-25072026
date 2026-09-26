@@ -5,6 +5,7 @@ import HeaderActions from "./molecules/HeaderActions/HeaderActions.astro";
 import Navbar from "./organisms/Navbar/Navbar.astro";
 import MegaMenu from "./organisms/MegaMenu/MegaMenu.astro";
 import MobileMenu from "./organisms/MobileMenu/MobileMenu.astro";
+import SearchOverlay from "./organisms/SearchOverlay/SearchOverlay.astro";
 import { headerData } from "./header.data";
 import type { HeaderData } from "./header.types";
 
@@ -49,6 +50,8 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     cta={data.cta}
     currentPath={currentPath}
   />
+
+  <SearchOverlay />
 </div>
 
 <style>
@@ -202,6 +205,31 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     );
     applyStuck();
 
+    /* ---------- Search overlay ----------
+       Defined before Mega menu/Mobile drawer below, which both call
+       setSearch(false) so opening either one always closes search first —
+       only one of the three (mega, mobile, search) is ever open at once. */
+    const search = root.querySelector<HTMLElement>("[data-search]");
+    const searchInput = search?.querySelector<HTMLInputElement>("[data-search-input]") ?? null;
+    let restoreSearchFocus: HTMLElement | null = null;
+
+    const setSearch = (open: boolean): void => {
+      if (!search) return;
+      search.toggleAttribute("data-open", open);
+      search.setAttribute("aria-hidden", open ? "false" : "true");
+      document.body.style.overflow = open ? "hidden" : "";
+      if (open) {
+        restoreSearchFocus = document.activeElement as HTMLElement | null;
+        requestAnimationFrame(() => searchInput?.focus());
+      } else if (searchInput) {
+        searchInput.value = "";
+        searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+        restoreSearchFocus?.focus();
+      }
+    };
+
+    search?.querySelector<HTMLElement>("[data-search-backdrop]")?.addEventListener("click", () => setSearch(false));
+
     /* ---------- Mega menu ---------- */
     const triggers = Array.from(
       root.querySelectorAll<HTMLElement>("[data-mega-trigger]")
@@ -212,6 +240,7 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     let closeTimer: number | undefined;
 
     const setMega = (id: string | null): void => {
+      if (id) setSearch(false);
       triggers.forEach((t) =>
         t.setAttribute("aria-expanded", t.dataset.megaTrigger === id ? "true" : "false")
       );
@@ -260,6 +289,7 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
 
     const setMobile = (open: boolean): void => {
       if (!mobile) return;
+      if (open) setSearch(false);
       mobile.toggleAttribute("data-open", open);
       mobile.setAttribute("aria-hidden", open ? "false" : "true");
       document.body.style.overflow = open ? "hidden" : "";
@@ -280,6 +310,8 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
       const action = el.dataset.action;
       if (action === "open-mobile") setMobile(true);
       else if (action === "close-mobile") setMobile(false);
+      else if (action === "open-search") setSearch(true);
+      else if (action === "close-search") setSearch(false);
       else if (action === "toggle-accordion") {
         const group = el.closest<HTMLElement>("[data-accordion]");
         if (group) {
@@ -292,6 +324,10 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     /* ---------- Escape ---------- */
     document.addEventListener("keydown", (e) => {
       if (e.key !== "Escape") return;
+      if (search?.hasAttribute("data-open")) {
+        setSearch(false);
+        return;
+      }
       if (mobile?.hasAttribute("data-open")) {
         setMobile(false);
         return;

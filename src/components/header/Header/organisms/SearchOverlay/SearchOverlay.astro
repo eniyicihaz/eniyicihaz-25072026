@@ -1,0 +1,608 @@
+---
+// SearchOverlay — shared, site-wide search panel opened from the header's
+// search button. Always rendered in the DOM (like MegaMenu/MobileMenu),
+// shown/hidden via the `data-open` attribute toggled centrally by
+// Header.astro's existing script — no framework, no build-time
+// open/close branching (the DS `Modal` atom does `if (!open) return null`,
+// which can't be toggled client-side in a no-framework Astro project, so
+// it isn't used here; see plan).
+//
+// Results come entirely from `searchIndex` (src/data/search/index.ts), a
+// hand-curated list of every real, live page — /ds/* and any unfinished
+// (empty) page are deliberately excluded. No new route is created: Enter
+// or a click on a result navigates straight to that real page's existing
+// URL, so there is nothing new for search engines to index.
+import { Search, X } from "lucide-astro";
+import { searchIndex } from "../../../../../data/search";
+---
+
+<div class="hd-search" data-search role="dialog" aria-modal="true" aria-label="Site içi arama" aria-hidden="true">
+  <div class="hd-search__backdrop" data-search-backdrop></div>
+
+  <div class="hd-search__panel">
+    <div class="hd-search__field">
+      <Search class="hd-search__field-icon" size={22} stroke-width={2} aria-hidden="true" />
+      <input
+        class="hd-search__input"
+        type="text"
+        data-search-input
+        placeholder="Ne arıyorsunuz?"
+        aria-label="Sitede ara"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+      <button type="button" class="hd-search__close" data-action="close-search" aria-label="Aramayı kapat">
+        <X size={20} stroke-width={2} aria-hidden="true" />
+      </button>
+    </div>
+
+    <p class="hd-search__meta" data-search-meta></p>
+
+    <div class="hd-search__results" data-search-results aria-live="polite"></div>
+
+    <p class="hd-search__kbd-hint">
+      <kbd>Enter</kbd>
+      <span>ilk sonuca git</span>
+      <kbd>Esc</kbd>
+      <span>kapat</span>
+    </p>
+  </div>
+</div>
+
+<script type="application/json" id="hd-search-index" set:html={JSON.stringify(searchIndex)} />
+
+<script>
+  interface SearchItem {
+    title: string;
+    description: string;
+    href: string;
+  }
+
+  const SUGGESTIONS = ["İşitme Cihazları", "SGK", "İşitme Testi", "Cihaz Deneme", "Teknik Servis"];
+
+  // Inline lucide glyphs (file-text / chevron-right) — the results list is
+  // built via innerHTML string concatenation for performance on every
+  // keystroke, so the lucide-astro components used elsewhere in this file
+  // can't be invoked here; these two paths are copied from the same lucide
+  // set already used throughout the header (ChevronRight's path matches
+  // MegaMenu's own chevrons exactly).
+  // width/height are set as real HTML attributes (not just CSS) on purpose:
+  // this markup is injected via innerHTML at runtime, so it never receives
+  // Astro's scoped data-astro-cid-* attribute — any `.hd-search__x svg {...}`
+  // rule in a normal <style> block silently never matches it. Explicit
+  // width/height attributes size the SVG correctly with zero dependency on
+  // CSS at all (root cause of the "giant icon" bug — see is:global block
+  // below for the belt-and-suspenders CSS backup).
+  const RESULT_ICON_SVG =
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>';
+  const CHEVRON_ICON_SVG =
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+
+  const MAX_RESULTS = 8;
+
+  function escapeHtml(value: string): string {
+    const div = document.createElement("div");
+    div.textContent = value;
+    return div.innerHTML;
+  }
+
+  function idleHtml(): string {
+    const chips = SUGGESTIONS.map(
+      (label) => `<button type="button" class="hd-search__suggestion" data-search-suggestion>${escapeHtml(label)}</button>`
+    ).join("");
+    return `
+      <div class="hd-search__idle">
+        <p class="hd-search__idle-title">Ne arıyorsunuz?</p>
+        <div class="hd-search__suggestions">${chips}</div>
+      </div>`;
+  }
+
+  function emptyHtml(): string {
+    return `
+      <div class="hd-search__empty">
+        <p class="hd-search__empty-title">Aradığınız konuyla eşleşen bir sayfa bulunamadı.</p>
+        <p class="hd-search__empty-hint">İşitme cihazı, SGK, Darıca, işitme testi gibi terimleri deneyebilirsiniz.</p>
+      </div>`;
+  }
+
+  function resultRowHtml(item: SearchItem): string {
+    return `
+      <li>
+        <a class="hd-search__result" href="${item.href}">
+          <span class="hd-search__result-icon" aria-hidden="true">${RESULT_ICON_SVG}</span>
+          <span class="hd-search__result-text">
+            <span class="hd-search__result-title">${escapeHtml(item.title)}</span>
+            <span class="hd-search__result-desc">${escapeHtml(item.description)}</span>
+          </span>
+          <span class="hd-search__result-chevron" aria-hidden="true">${CHEVRON_ICON_SVG}</span>
+        </a>
+      </li>`;
+  }
+
+  function initSearch(section: HTMLElement): void {
+    if (section.dataset.ready === "true") return;
+    section.dataset.ready = "true";
+
+    const input = section.querySelector<HTMLInputElement>("[data-search-input]");
+    const metaEl = section.querySelector<HTMLElement>("[data-search-meta]");
+    const resultsEl = section.querySelector<HTMLElement>("[data-search-results]");
+    const dataEl = document.getElementById("hd-search-index");
+    if (!input || !metaEl || !resultsEl || !dataEl) return;
+
+    let items: SearchItem[] = [];
+    try {
+      items = JSON.parse(dataEl.textContent || "[]") as SearchItem[];
+    } catch {
+      items = [];
+    }
+
+    const normalize = (value: string): string => value.toLocaleLowerCase("tr").trim();
+
+    // Ranking: title match (especially a match at the very start of the
+    // title) outranks a match that only appears in the description — so
+    // searching "SGK" surfaces "SGK İşitme Cihazı Ödemesi" before
+    // "İletişim" (which only mentions SGK in its description).
+    const scoreItem = (item: SearchItem, q: string): number => {
+      const title = normalize(item.title);
+      if (title.startsWith(q)) return 3;
+      if (title.includes(q)) return 2;
+      if (normalize(item.description).includes(q)) return 1;
+      return 0;
+    };
+
+    let currentResults: SearchItem[] = [];
+
+    const renderIdle = (): void => {
+      resultsEl.innerHTML = idleHtml();
+      metaEl.textContent = "";
+      currentResults = [];
+    };
+
+    const render = (query: string): void => {
+      const q = normalize(query);
+
+      if (!q) {
+        renderIdle();
+        return;
+      }
+
+      const matches = items
+        .map((item) => ({ item, score: scoreItem(item, q) }))
+        .filter((entry) => entry.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .map((entry) => entry.item);
+
+      if (matches.length === 0) {
+        resultsEl.innerHTML = emptyHtml();
+        metaEl.textContent = "";
+        currentResults = [];
+        return;
+      }
+
+      currentResults = matches.slice(0, MAX_RESULTS);
+      metaEl.textContent = `${matches.length} sonuç bulundu`;
+
+      let html = `<ul class="hd-search__list">${currentResults.map(resultRowHtml).join("")}</ul>`;
+      if (matches.length > MAX_RESULTS) {
+        html += `<p class="hd-search__more">Daha fazla sonuç için aramaya devam edin.</p>`;
+      }
+      resultsEl.innerHTML = html;
+    };
+
+    renderIdle();
+
+    // Delegated so it keeps working after every innerHTML swap above.
+    resultsEl.addEventListener("click", (e) => {
+      const chip = (e.target as HTMLElement).closest<HTMLElement>("[data-search-suggestion]");
+      if (!chip) return;
+      const text = chip.textContent ?? "";
+      input.value = text;
+      input.focus();
+      render(text);
+    });
+
+    let debounceTimer: number | undefined;
+    input.addEventListener("input", () => {
+      window.clearTimeout(debounceTimer);
+      debounceTimer = window.setTimeout(() => render(input.value), 80);
+    });
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        if (currentResults[0]) window.location.href = currentResults[0].href;
+      }
+    });
+  }
+
+  const boot = (): void => {
+    document.querySelectorAll<HTMLElement>("[data-search]").forEach((el) => initSearch(el));
+  };
+
+  if (document.readyState !== "loading") boot();
+  else document.addEventListener("DOMContentLoaded", boot);
+</script>
+
+<style>
+  .hd-search {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    display: none;
+  }
+
+  .hd-search[data-open] {
+    display: block;
+  }
+
+  .hd-search__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(15 23 42 / 0.55);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .hd-search[data-open] .hd-search__backdrop {
+    opacity: 1;
+  }
+
+  .hd-search__panel {
+    position: relative;
+    margin: 10vh auto 0;
+    width: min(680px, calc(100% - var(--space-8)));
+    max-height: min(74vh, 660px);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .hd-search[data-open] .hd-search__panel {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hd-search__field {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex: none;
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hd-search__field-icon {
+    flex: none;
+    color: var(--color-text-soft);
+  }
+
+  .hd-search__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .hd-search__input::placeholder {
+    color: var(--color-text-soft);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .hd-search__close {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  .hd-search__close:hover {
+    background: var(--color-border);
+    color: var(--color-text);
+  }
+
+  .hd-search__close:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* Small, quiet result-count line — collapses to nothing (no padding/
+     border) when empty (idle/empty states), rather than showing a hollow bar. */
+  .hd-search__meta {
+    flex: none;
+    margin: 0;
+    padding: var(--space-3) var(--space-6) 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-soft);
+  }
+
+  .hd-search__meta:empty {
+    display: none;
+  }
+
+  .hd-search__results {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: var(--space-3) var(--space-4) var(--space-4);
+  }
+
+  .hd-search__kbd-hint {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    padding: var(--space-3) var(--space-6);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+  }
+
+  .hd-search__kbd-hint kbd {
+    display: inline-grid;
+    place-items: center;
+    min-width: 22px;
+    height: 20px;
+    padding-inline: var(--space-1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .hd-search__panel {
+      margin: 0;
+      width: 100%;
+      max-height: 100%;
+      height: 100%;
+      border-radius: 0;
+      border: none;
+    }
+
+    .hd-search__field {
+      padding: var(--space-4);
+    }
+
+    .hd-search__input {
+      font-size: var(--font-size-lg);
+    }
+
+    .hd-search__meta {
+      padding: var(--space-3) var(--space-4) 0;
+    }
+
+    .hd-search__results {
+      padding: var(--space-3);
+    }
+
+    .hd-search__kbd-hint {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hd-search__backdrop,
+    .hd-search__panel {
+      transition: none;
+    }
+  }
+</style>
+
+<!--
+  Root cause of the "giant icon" bug: everything inside .hd-search__results
+  (idle state, empty state, and every result row) is injected at runtime via
+  resultsEl.innerHTML in the script above — it is never part of Astro's
+  static template. Astro's scoped <style> works by stamping a
+  data-astro-cid-* attribute onto every element in the template and
+  appending [data-astro-cid-*] to each compiled selector; DOM nodes created
+  later via innerHTML never receive that attribute, so a normal scoped
+  `.hd-search__result-icon svg { width: 20px; height: 20px }` rule silently
+  never matched them. With no width/height and no applying CSS, the inline
+  SVG fell back to the browser's default replaced-element size (300×150),
+  then the sitewide `svg { max-width: 100% }` reset let it balloon to fill
+  the row. Fix: this block is `is:global` (unscoped) so it actually reaches
+  the dynamically-injected markup; the SVG strings in the script also now
+  carry real width/height HTML attributes as a second, CSS-independent
+  safety net. Class names are specific enough (`hd-search__*`) that this
+  being global does not risk colliding with anything else on the site.
+-->
+<style is:global>
+  .hd-search__idle {
+    padding: var(--space-8) var(--space-4) var(--space-4);
+    text-align: center;
+  }
+
+  .hd-search__idle-title {
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  .hd-search__suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .hd-search__suggestion {
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  .hd-search__suggestion:hover,
+  .hd-search__suggestion:focus-visible {
+    background: var(--primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    outline: none;
+  }
+
+  .hd-search__empty {
+    padding: var(--space-8) var(--space-4);
+    text-align: center;
+  }
+
+  .hd-search__empty-title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .hd-search__empty-hint {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-soft);
+  }
+
+  /* ---- Result rows ----
+     Fixed dimensions everywhere that matters (icon box, icon svg, chevron
+     svg) so nothing can balloon regardless of what content sits inside. */
+  .hd-search__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .hd-search__result {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    min-height: 70px;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .hd-search__result:hover,
+  .hd-search__result:focus-visible {
+    background: var(--primary-light);
+    border-color: var(--color-primary);
+    outline: none;
+  }
+
+  .hd-search__result-icon {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-primary);
+    overflow: hidden;
+  }
+
+  /* Belt-and-suspenders: the SVG strings in the script already carry real
+     width/height attributes, but this pins it again in case any other
+     global rule on the page ever targets bare `svg`. */
+  .hd-search__result-icon svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+  }
+
+  .hd-search__result-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .hd-search__result-title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .hd-search__result-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    color: var(--color-text-soft);
+  }
+
+  .hd-search__result-chevron {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    flex: 0 0 18px;
+    color: var(--color-text-soft);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .hd-search__result-chevron svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+  }
+
+  .hd-search__result:hover .hd-search__result-chevron,
+  .hd-search__result:focus-visible .hd-search__result-chevron {
+    color: var(--color-primary);
+    transform: translateX(2px);
+  }
+
+  .hd-search__more {
+    margin: var(--space-3) 0 0;
+    padding: 0 var(--space-1);
+    text-align: center;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+  }
+</style>
