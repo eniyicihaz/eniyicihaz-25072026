@@ -1,0 +1,113 @@
+---
+// Site Haritası — /site-haritasi. Saf navigasyon/yardımcı sayfa; ağır
+// hero veya satış CTA'sı yok. Amaç: sitedeki 92 gerçek sayfayı 15
+// kategoride, hızlı taranabilir tek bir listede sunmak. XML sitemap'in
+// yerine geçmiyor — o ayrı, otomatik üretilen, arama motorları için
+// olan altyapı (astro.config.mjs); bu sayfa insan kullanıcılar için.
+import MainLayout from "../layouts/MainLayout.astro";
+import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import SitemapSection from "../components/shared/SitemapSection/SitemapSection.astro";
+import { sitemapCategories } from "../data/site-haritasi";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Site Haritası", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+---
+
+<MainLayout
+  title="Site Haritası | EniyiCihaz"
+  description="Eniyicihaz.com sitesindeki tüm sayfalara tek bir yerden ulaşın: işitme cihazları, hizmetlerimiz, markalar, SGK bilgileri, rehberler ve daha fazlası."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <div class="site-map-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <header class="site-map-intro">
+    <h1 class="site-map-intro__title">Site Haritası</h1>
+    <p class="site-map-intro__text">Sitemizdeki tüm sayfalara buradan ulaşabilirsiniz.</p>
+  </header>
+
+  <main class="site-map">
+    <div class="site-map__grid">
+      {sitemapCategories.map((category) => (
+        <SitemapSection data={category} />
+      ))}
+    </div>
+  </main>
+</MainLayout>
+
+<style>
+  .site-map-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  .site-map-intro {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-8) var(--space-6) 0;
+  }
+
+  .site-map-intro__title {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.015em;
+    color: var(--color-text);
+  }
+
+  .site-map-intro__text {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .site-map {
+    padding: var(--space-8) 0 var(--space-16);
+  }
+
+  .site-map__grid {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-10) var(--space-8);
+  }
+
+  @media (max-width: 1023px) {
+    .site-map__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .site-map-intro {
+      padding-top: var(--space-6);
+    }
+
+    .site-map {
+      padding-block: var(--space-6) var(--space-10);
+    }
+
+    .site-map__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+  }
+</style>

@@ -1,0 +1,430 @@
+---
+// HomeVisitHero — shared, one-off editorial hero built for Evde İşitme
+// Cihazı Hizmeti. Every existing hero is either product-centric
+// (BrandPageHero/BrandHero: split text + product photo, ExperienceHero:
+// centered heading + wave band + product photo) or already claimed by a
+// specific page's own concept (SoundProfileHero's CSS frequency-bar panel
+// belongs to Kişiye Özel Ayar, SgkHero/ContactHero to their own pages).
+// None represent a *home visit* — so this is a genuinely new visual:
+// instead of a device or a measurement chart, the right panel is a small
+// CSS-only "route" diagram (Merkez → Eviniz, a dashed line between two
+// point-icons) that literally draws the page's subject — the service
+// travelling to the visitor, not the visitor travelling to the service.
+import { Building2, Home, ArrowRight, Phone, MessageCircle } from "lucide-astro";
+
+export interface HomeVisitHeroContent {
+  eyebrow: string;
+  heading: string;
+  subheading: string;
+  paragraph: string;
+  ctaPrimary: { label: string; href: string };
+  ctaSecondary: { label: string; href: string };
+  routeFromLabel: string;
+  routeToLabel: string;
+  routeCaption: string;
+  areaTags: string[];
+  accentColor: string;
+}
+
+interface Props {
+  data: HomeVisitHeroContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="home-visit-hero" aria-labelledby="home-visit-hero-title" style={`--hvh-accent:${data.accentColor};`}>
+  <div class="home-visit-hero__inner">
+    <div class="home-visit-hero__content" data-rise>
+      <p class="home-visit-hero__eyebrow">{data.eyebrow}</p>
+      <h1 class="home-visit-hero__heading" id="home-visit-hero-title">{data.heading}</h1>
+      <p class="home-visit-hero__subheading">{data.subheading}</p>
+      <p class="home-visit-hero__paragraph">{data.paragraph}</p>
+
+      <div class="home-visit-hero__actions">
+        <a class="home-visit-hero__cta home-visit-hero__cta--primary" href={data.ctaPrimary.href}>
+          <span>{data.ctaPrimary.label}</span>
+          <Phone size={16} stroke-width={2} aria-hidden="true" />
+        </a>
+        <a class="home-visit-hero__cta home-visit-hero__cta--secondary" href={data.ctaSecondary.href}>
+          <MessageCircle size={16} stroke-width={2} aria-hidden="true" />
+          <span>{data.ctaSecondary.label}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="home-visit-hero__panel" data-rise aria-hidden="true">
+      <div class="home-visit-hero__route">
+        <div class="home-visit-hero__route-point">
+          <span class="home-visit-hero__route-icon">
+            <Building2 size={20} stroke-width={2} />
+          </span>
+          <span class="home-visit-hero__route-label">{data.routeFromLabel}</span>
+        </div>
+
+        <div class="home-visit-hero__route-line">
+          <span class="home-visit-hero__route-dot" />
+          <ArrowRight class="home-visit-hero__route-arrow" size={16} stroke-width={2} />
+        </div>
+
+        <div class="home-visit-hero__route-point home-visit-hero__route-point--home">
+          <span class="home-visit-hero__route-icon home-visit-hero__route-icon--home">
+            <Home size={20} stroke-width={2} />
+          </span>
+          <span class="home-visit-hero__route-label">{data.routeToLabel}</span>
+        </div>
+      </div>
+
+      <p class="home-visit-hero__route-caption">{data.routeCaption}</p>
+
+      <ul class="home-visit-hero__tags">
+        {data.areaTags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".home-visit-hero");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .home-visit-hero {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-20);
+    --hvh-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .home-visit-hero__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .home-visit-hero__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--hvh-accent);
+  }
+
+  .home-visit-hero__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2.25rem, 1.7rem + 2.6vw, 3.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+  }
+
+  .home-visit-hero__subheading {
+    margin: var(--space-5) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .home-visit-hero__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .home-visit-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .home-visit-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 48px;
+    padding-inline: var(--space-5);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast),
+      background-color var(--transition-fast);
+  }
+
+  .home-visit-hero__cta--primary {
+    background: var(--hvh-accent);
+    color: var(--color-text-inverse);
+  }
+
+  .home-visit-hero__cta--primary:hover,
+  .home-visit-hero__cta--primary:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .home-visit-hero__cta--secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .home-visit-hero__cta--secondary:hover,
+  .home-visit-hero__cta--secondary:focus-visible {
+    border-color: var(--hvh-accent);
+    color: var(--hvh-accent);
+  }
+
+  .home-visit-hero__cta:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Route panel: pure CSS, no image asset -------------------------- */
+
+  .home-visit-hero__panel {
+    padding: var(--space-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .home-visit-hero__route {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .home-visit-hero__route-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    flex: none;
+    width: 88px;
+    text-align: center;
+  }
+
+  .home-visit-hero__route-icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  .home-visit-hero__route-icon--home {
+    background: var(--hvh-accent);
+    border-color: var(--hvh-accent);
+    color: var(--color-text-inverse);
+    box-shadow: 0 10px 24px -10px var(--hvh-accent);
+  }
+
+  .home-visit-hero__route-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-soft);
+  }
+
+  .home-visit-hero__route-line {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 56px;
+    margin-top: 28px;
+    border-top: 2px dashed var(--color-border-hover);
+  }
+
+  .home-visit-hero__route-dot {
+    position: absolute;
+    left: 8%;
+    top: -5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--hvh-accent);
+  }
+
+  .home-visit-hero__route-arrow {
+    position: relative;
+    top: -9px;
+    color: var(--hvh-accent);
+    background: var(--color-surface);
+  }
+
+  .home-visit-hero__route-caption {
+    margin: var(--space-6) 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .home-visit-hero__tags {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .home-visit-hero__tags li {
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance ------------------------------------------------------------ */
+
+  .home-visit-hero[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .home-visit-hero[data-anim="in"] [data-rise] {
+    animation: home-visit-hero-rise 600ms var(--hvh-ease) both;
+  }
+
+  .home-visit-hero[data-anim="in"] .home-visit-hero__panel {
+    animation-delay: 100ms;
+  }
+
+  @keyframes home-visit-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes home-visit-hero-dot-travel {
+    0%,
+    100% {
+      left: 8%;
+    }
+    50% {
+      left: 82%;
+    }
+  }
+
+  .home-visit-hero[data-anim="in"] .home-visit-hero__route-dot {
+    animation: home-visit-hero-dot-travel 3.2s ease-in-out 900ms infinite;
+  }
+
+  /* --- Responsive ----------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .home-visit-hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .home-visit-hero__panel {
+      max-width: 30rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-visit-hero {
+      padding-block: var(--space-10);
+    }
+
+    .home-visit-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .home-visit-hero__panel {
+      padding: var(--space-6) var(--space-5);
+    }
+
+    .home-visit-hero__route-point {
+      width: 72px;
+    }
+
+    .home-visit-hero__route-icon {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-visit-hero[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .home-visit-hero[data-anim="in"] .home-visit-hero__route-dot {
+      animation: none;
+      left: 45%;
+    }
+  }
+</style>

@@ -1,0 +1,291 @@
+---
+// CenterGallery — shared, one-off editorial section built for
+// Hakkımızda's "Darıca'daki Merkezimiz". Narrative text on one side,
+// an asymmetric real-photo composition on the other: one large feature
+// photo, two smaller support photos beneath it, and a small floating
+// "bizi bulun" card (a third, tiny photo + caption) overlapping the
+// feature photo's corner — deliberately not a plain 3-column grid, so
+// the photos read as one composed scene rather than a decorative strip.
+// New, generic-shaped sibling of the homepage Hero's "1 feature + 2
+// stacked support" card gallery (that one is page-hardcoded, imports its
+// own fixed data, so it isn't reusable here — same reasoning already
+// applied by ProcessTimeline when it was extracted from SgkProcess).
+export interface CenterGalleryImage {
+  src: string;
+  alt: string;
+}
+
+export interface CenterGalleryContent {
+  badge: string;
+  heading: string;
+  paragraphs: string[];
+  featureImage: CenterGalleryImage;
+  supportImages: [CenterGalleryImage, CenterGalleryImage];
+  locationImage: CenterGalleryImage;
+  locationCaption: string;
+  accentColor: string;
+  accentColorBadgeBg: string;
+  accentColorBadgeBorder: string;
+  accentColorBadgeText: string;
+}
+
+interface Props {
+  data: CenterGalleryContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="center-gallery"
+  aria-labelledby="center-gallery-title"
+  style={`--cg-accent:${data.accentColor}; --cg-badge-bg:${data.accentColorBadgeBg}; --cg-badge-border:${data.accentColorBadgeBorder}; --cg-badge-text:${data.accentColorBadgeText};`}
+>
+  <div class="center-gallery__inner">
+    <div class="center-gallery__copy" data-rise>
+      <p class="center-gallery__badge">{data.badge}</p>
+      <h2 class="center-gallery__heading" id="center-gallery-title">{data.heading}</h2>
+      {data.paragraphs.map((paragraph) => (
+        <p class="center-gallery__paragraph">{paragraph}</p>
+      ))}
+    </div>
+
+    <div class="center-gallery__photos" data-rise>
+      <div class="center-gallery__feature">
+        <img class="center-gallery__feature-image" src={data.featureImage.src} alt={data.featureImage.alt} loading="lazy" />
+
+        <div class="center-gallery__location-card">
+          <img class="center-gallery__location-image" src={data.locationImage.src} alt={data.locationImage.alt} loading="lazy" />
+          <p class="center-gallery__location-caption">{data.locationCaption}</p>
+        </div>
+      </div>
+
+      <div class="center-gallery__support">
+        <img class="center-gallery__support-image" src={data.supportImages[0].src} alt={data.supportImages[0].alt} loading="lazy" />
+        <img class="center-gallery__support-image" src={data.supportImages[1].src} alt={data.supportImages[1].alt} loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .center-gallery {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .center-gallery__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .center-gallery__badge {
+    display: inline-block;
+    margin: 0 0 var(--space-3);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--cg-badge-border);
+    border-radius: var(--radius-full);
+    background: var(--cg-badge-bg);
+    color: var(--cg-badge-text);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .center-gallery__heading {
+    margin: 0 0 var(--space-4);
+    font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    color: var(--color-text);
+  }
+
+  .center-gallery__paragraph {
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .center-gallery__paragraph:last-child {
+    margin-bottom: 0;
+  }
+
+  /* --- Photo composition: feature + 2 support + floating location card --- */
+
+  .center-gallery__photos {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .center-gallery__feature {
+    position: relative;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .center-gallery__feature-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .center-gallery__support {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .center-gallery__support-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .center-gallery__location-card {
+    position: absolute;
+    left: var(--space-4);
+    bottom: var(--space-4);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    max-width: 220px;
+    padding: var(--space-2);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .center-gallery__location-image {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+  }
+
+  .center-gallery__location-caption {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.35;
+    color: var(--color-text);
+  }
+
+  /* --- Entrance ------------------------------------------------------------
+     Hidden ONLY while [data-anim="pending"] (set by the script below right
+     before it starts observing) — if JS never runs (disabled/blocked), the
+     attribute is never added and content stays visible by default. */
+
+  .center-gallery[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .center-gallery[data-anim="in"] [data-rise] {
+    animation: center-gallery-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .center-gallery[data-anim="in"] .center-gallery__photos {
+    animation-delay: 120ms;
+  }
+
+  @keyframes center-gallery-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ----------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .center-gallery__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .center-gallery {
+      padding-block: var(--space-10);
+    }
+
+    .center-gallery__photos {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .center-gallery__support {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+
+    .center-gallery__location-card {
+      max-width: 180px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .center-gallery[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var sections = document.querySelectorAll(".center-gallery");
+    if (!sections.length) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    sections.forEach(function (section) {
+      section.dataset.anim = "pending";
+
+      var revealed = false;
+      var ioAlive = false;
+      var io;
+
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        section.dataset.anim = "in";
+        if (io) io.disconnect();
+      }
+
+      var failsafe = setTimeout(function () {
+        if (!ioAlive) reveal();
+      }, 1500);
+
+      io = new IntersectionObserver(
+        function (entries) {
+          ioAlive = true;
+          clearTimeout(failsafe);
+          if (entries[0].isIntersecting) reveal();
+        },
+        { threshold: 0.15 }
+      );
+
+      io.observe(section);
+    });
+  })();
+</script>

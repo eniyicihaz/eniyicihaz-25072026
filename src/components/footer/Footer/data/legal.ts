@@ -8,6 +8,6 @@ export const legal: LegalContent = {
     { label: "KVKK Aydınlatma Metni", href: "#" },
     { label: "Gizlilik Politikası", href: "#" },
     { label: "Çerez Politikası", href: "#" },
-    { label: "Site Haritası", href: "#" },
+    { label: "Site Haritası", href: "/site-haritasi" },
   ],
 };

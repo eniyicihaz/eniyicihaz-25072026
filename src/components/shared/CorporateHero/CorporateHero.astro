@@ -1,0 +1,289 @@
+---
+// CorporateHero — shared, one-off full-bleed corporate hero built for
+// Hakkımızda. Every existing hero splits the viewport into a text column
+// and a photo/illustration column (BrandPageHero/BrandHero, ExperienceHero,
+// SoundProfileHero, HomeVisitHero). This page needed something that reads
+// as "we are a real, physical place" from the first frame — so instead of
+// a split layout, the real center photo fills the entire hero, a dark
+// scrim keeps the headline readable, and a white "trust strip" card
+// overlaps the photo's bottom edge (pure CSS negative-margin overlap, no
+// absolute positioning) to bridge into the page's first white section.
+import { MapPin } from "lucide-astro";
+
+export interface CorporateHeroStat {
+  value: string;
+  label: string;
+}
+
+export interface CorporateHeroContent {
+  locationLabel: string;
+  heading: string;
+  subheading: string;
+  image: string;
+  imageAlt: string;
+  stats: CorporateHeroStat[];
+}
+
+interface Props {
+  data: CorporateHeroContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="corporate-hero" aria-labelledby="corporate-hero-title">
+  <div class="corporate-hero__photo">
+    <img class="corporate-hero__image" src={data.image} alt={data.imageAlt} loading="eager" />
+    <div class="corporate-hero__scrim" aria-hidden="true" />
+
+    <div class="corporate-hero__content" data-rise>
+      <span class="corporate-hero__location">
+        <MapPin size={14} stroke-width={2.5} aria-hidden="true" />
+        <span>{data.locationLabel}</span>
+      </span>
+      <h1 class="corporate-hero__heading" id="corporate-hero-title">{data.heading}</h1>
+      <p class="corporate-hero__subheading">{data.subheading}</p>
+    </div>
+  </div>
+
+  <div class="corporate-hero__stats-wrap" data-rise>
+    <ul class="corporate-hero__stats">
+      {data.stats.map((stat) => (
+        <li class="corporate-hero__stat">
+          <span class="corporate-hero__stat-value">{stat.value}</span>
+          <span class="corporate-hero__stat-label">{stat.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".corporate-hero");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .corporate-hero {
+    --ch-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    background: var(--color-background);
+  }
+
+  .corporate-hero__photo {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .corporate-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+  }
+
+  .corporate-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, var(--color-text) 0%, rgb(15 23 42 / 0.55) 45%, rgb(15 23 42 / 0.15) 75%, transparent 100%);
+  }
+
+  .corporate-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    width: 100%;
+    padding: var(--space-10) var(--space-6) var(--space-16);
+    color: var(--color-text-inverse);
+  }
+
+  .corporate-hero__location {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgb(255 255 255 / 0.3);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.1);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .corporate-hero__heading {
+    margin: var(--space-5) 0 0;
+    max-width: 44rem;
+    font-size: clamp(2rem, 1.5rem + 2.4vw, 3.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--color-text-inverse);
+  }
+
+  .corporate-hero__subheading {
+    margin: var(--space-4) 0 0;
+    max-width: 36rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  /* Overlaps the photo's bottom edge via a plain negative margin — no
+     absolute positioning needed, so it stays in normal flow and never
+     collides with whatever section follows. */
+  .corporate-hero__stats-wrap {
+    position: relative;
+    z-index: 2;
+    margin-top: calc(-1 * var(--space-12));
+    padding-inline: var(--space-6);
+  }
+
+  .corporate-hero__stats {
+    list-style: none;
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-6);
+    max-width: var(--container-2xl);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .corporate-hero__stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    text-align: center;
+  }
+
+  .corporate-hero__stat:not(:last-child) {
+    border-right: 1px solid var(--color-border);
+  }
+
+  .corporate-hero__stat-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .corporate-hero__stat-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-soft);
+  }
+
+  /* --- Entrance ------------------------------------------------------------ */
+
+  .corporate-hero[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .corporate-hero[data-anim="in"] [data-rise] {
+    animation: corporate-hero-rise 600ms var(--ch-ease) both;
+  }
+
+  .corporate-hero[data-anim="in"] .corporate-hero__stats-wrap {
+    animation-delay: 150ms;
+  }
+
+  @keyframes corporate-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive ----------------------------------------------------------- */
+
+  @media (max-width: 768px) {
+    .corporate-hero__photo {
+      min-height: 460px;
+    }
+
+    .corporate-hero__stats {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+
+    .corporate-hero__stat {
+      border-right: none !important;
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .corporate-hero__stat:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .corporate-hero__photo {
+      min-height: 420px;
+    }
+
+    .corporate-hero__content {
+      padding: var(--space-6) var(--space-4) var(--space-10);
+    }
+
+    .corporate-hero__stats-wrap {
+      padding-inline: var(--space-4);
+    }
+
+    .corporate-hero__stats {
+      padding: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .corporate-hero[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

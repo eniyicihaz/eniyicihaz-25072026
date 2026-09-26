@@ -1,8 +1,10 @@
 // Footer link columns.
 // Titles and labels mirror the header mega menus (header.data.ts) so the
-// site speaks one language. Remaining "#" entries have no real route yet
-// and stay as placeholders (the header's own convention) until one
-// exists — swap to a real href here the day each page ships.
+// site speaks one language. Every link below now points to a real,
+// existing page — audited against src/pages/ directly. Where no single
+// page matches the footer label exactly (e.g. "İşitme Değerlendirmesi"),
+// the closest real hub already used for that purpose elsewhere on the
+// site is used instead — never "#", never an invented route.
 import type { LinkColumn } from "../footer.types";
 
 export const linkColumns: LinkColumn[] = [
@@ -22,20 +24,20 @@ export const linkColumns: LinkColumn[] = [
     title: "Hizmetlerimiz",
     links: [
       { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi" },
-      { label: "İşitme Değerlendirmesi", href: "#" },
-      { label: "Cihaz Uygulaması ve Ayarı", href: "#" },
-      { label: "Kulak Kalıbı Uygulaması", href: "#" },
-      { label: "Teknik Servis ve Bakım", href: "#" },
-      { label: "SGK Danışmanlığı", href: "#" },
+      { label: "İşitme Değerlendirmesi", href: "/hizmetlerimiz" },
+      { label: "Cihaz Uygulaması ve Ayarı", href: "/uygulama-ayar/cihaz-uygulama" },
+      { label: "Kulak Kalıbı Uygulaması", href: "/uygulama-ayar/kalip-alimi" },
+      { label: "Teknik Servis ve Bakım", href: "/servis-bakim/teknik-servis" },
+      { label: "SGK Danışmanlığı", href: "/sgk-isitme-cihazi-odemesi" },
     ],
   },
   {
     title: "Bilgi Merkezi",
     links: [
-      { label: "İşitme Kaybı Nedir?", href: "#" },
-      { label: "Cihaz Seçim Rehberi", href: "#" },
-      { label: "SGK Katkı Payı", href: "#" },
-      { label: "Sık Sorulan Sorular", href: "#" },
+      { label: "İşitme Kaybı Nedir?", href: "/rehberler/isitme-kaybi-nedir" },
+      { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi" },
+      { label: "SGK Katkı Payı", href: "/sgk/katki-payi" },
+      { label: "Sık Sorulan Sorular", href: "/blog/sik-sorulan-sorular" },
       { label: "Hakkımızda", href: "/hakkimizda" },
       { label: "İletişim", href: "/iletisim" },
     ],

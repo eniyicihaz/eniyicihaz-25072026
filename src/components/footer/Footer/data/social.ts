@@ -1,25 +1,25 @@
-// Social profiles. Account URLs are not provided yet; hrefs stay "#" until
-// the real profiles are supplied. WhatsApp points at the mobile line in
-// company.ts (§1 COMPANY.md).
+// Social profiles. WhatsApp points at the mobile line in company.ts
+// (§1 COMPANY.md); Facebook/Instagram/YouTube are the real, verified
+// account URLs supplied for the business.
 import type { SocialItem } from "../footer.types";
 
 export const social: SocialItem[] = [
   {
     platform: "Facebook",
     iconKey: "facebook",
-    href: "#",
+    href: "https://www.facebook.com/daricaisitmecihazi",
     label: "Facebook sayfamız",
   },
   {
     platform: "Instagram",
     iconKey: "instagram",
-    href: "#",
+    href: "https://www.instagram.com/avrasyaisitme",
     label: "Instagram hesabımız",
   },
   {
     platform: "YouTube",
     iconKey: "youtube",
-    href: "#",
+    href: "https://www.youtube.com/@EniyiCihaz",
     label: "YouTube kanalımız",
   },
   {

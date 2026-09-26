@@ -1,0 +1,177 @@
+---
+// SitemapSection — shared, count-agnostic category block for
+// /site-haritasi. One instance per category (15 on that page), so it
+// uses aria-label (not aria-labelledby+id) to stay collision-free —
+// same technique already used by the footer's LinkColumn for the same
+// multi-instance-per-page reason. Deliberately quiet: plain text + a
+// small chevron, no card border/shadow — the footer's LinkColumn atoms
+// depend on footer-only CSS custom properties (footer.tokens.css) and
+// aren't reusable on a plain page, so this is a small, real, generic
+// sibling instead of forcing that reuse.
+import { ChevronRight } from "lucide-astro";
+
+export interface SitemapSectionLink {
+  label: string;
+  href: string;
+  logo?: string;
+}
+
+export interface SitemapSectionContent {
+  icon: any;
+  title: string;
+  links: SitemapSectionLink[];
+  // Opt-in 2-column internal layout — only Markalar (19 short brand
+  // names) sets this. Visual-balance fix: without it, Markalar's list
+  // runs 2-3x taller than every other category sharing its grid row,
+  // producing large uneven gaps (found via live browser check).
+  columns?: 2;
+}
+
+interface Props {
+  data: SitemapSectionContent;
+}
+
+const { data } = Astro.props;
+const Icon = data.icon;
+---
+
+<section class="sitemap-section" aria-label={data.title}>
+  <h2 class="sitemap-section__title">
+    <span class="sitemap-section__icon" aria-hidden="true">
+      <Icon size={18} stroke-width={2} />
+    </span>
+    {data.title}
+  </h2>
+  <ul class:list={["sitemap-section__list", { "sitemap-section__list--cols-2": data.columns === 2 }]}>
+    {
+      data.links.map((link) => (
+        <li>
+          <a class="sitemap-section__link" href={link.href}>
+            {link.logo && <img class="sitemap-section__logo" src={link.logo} alt="" loading="lazy" />}
+            <span class="sitemap-section__label">{link.label}</span>
+            <ChevronRight class="sitemap-section__chevron" size={14} stroke-width={2} aria-hidden="true" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .sitemap-section {
+    min-width: 0;
+  }
+
+  .sitemap-section__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sitemap-section__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--primary-light);
+    color: var(--color-primary);
+  }
+
+  .sitemap-section__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  /* Markalar only: 19 short brand names in one flex column made that
+     section roughly 2-3x taller than everything sharing its grid row
+     (confirmed in a live browser check). A 2-column mini-grid keeps the
+     same compact link style but roughly halves the section's height. */
+  .sitemap-section__list--cols-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 var(--space-3);
+  }
+
+  @media (max-width: 767px) {
+    .sitemap-section__list--cols-2 {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .sitemap-section__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-1);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-text-muted);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  .sitemap-section__link:hover,
+  .sitemap-section__link:focus-visible {
+    background: var(--primary-light);
+    color: var(--color-primary);
+    outline: none;
+  }
+
+  .sitemap-section__logo {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .sitemap-section__label {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+  }
+
+  .sitemap-section__chevron {
+    flex: none;
+    color: var(--color-text-soft);
+    opacity: 0;
+    transform: translateX(-3px);
+    transition: opacity var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .sitemap-section__link:hover .sitemap-section__chevron,
+  .sitemap-section__link:focus-visible .sitemap-section__chevron {
+    opacity: 1;
+    transform: none;
+    color: var(--color-primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sitemap-section__link,
+    .sitemap-section__chevron {
+      transition: none;
+    }
+  }
+
+  /* Comfortable tap targets on touch devices — same principle already
+     applied sitewide, just re-stated here since this list is denser
+     than most (up to 19 rows in one section). */
+  @media (max-width: 640px) {
+    .sitemap-section__link {
+      padding: var(--space-3) var(--space-1);
+    }
+  }
+</style>
