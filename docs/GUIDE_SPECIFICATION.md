@@ -1,8 +1,8 @@
 # GUIDE_SPECIFICATION.md
 
-> Ana sayfanın dördüncü bölümü — Solution'ın bıraktığı "sırada ne var?" sorusuna cevap veren, belirsizliği kaldıran durak (`HOMEPAGE_CREATIVE_DIRECTION.md` Bölüm 4 "Rehber" ile aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
+> Ana sayfanın Guide bölümü — Solution'ın bıraktığı "sırada ne var?" sorusuna cevap veren, belirsizliği kaldıran durak (`docs/HOMEPAGE_SPECIFICATION.md`'deki "Guide" ile aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
 >
-> **Kanonik kaynaklar:** amaç/hikâye → `HOMEPAGE_CREATIVE_DIRECTION.md` (Bölüm 4) · ton/CTA sistemi → `PRINCIPLES.md §3/§4/§9` · gerçek süreç bilgisi (ücretsiz test/değerlendirme/deneme) → `COMPANY.md` · görsel dil → `DESIGN_SYSTEM_GUIDE.md §6`. Çelişkide kanonik doküman esastır.
+> **Kanonik kaynaklar:** amaç/hikâye → `docs/HOMEPAGE_SPECIFICATION.md` · ton/CTA sistemi → `PRINCIPLES.md §3/§4/§9` · gerçek süreç bilgisi (ücretsiz test/değerlendirme/deneme) → `COMPANY.md` · görsel dil → `DESIGN_SYSTEM_GUIDE.md §6`. Çelişkide kanonik doküman esastır.
 >
 > **Sabit çerçeve:** Amaç = "Belirsizliği kaldırır, ikna etmez" · Lider katman = hikâye · Kompozisyon = giriş cümlesi + 3 adımlık yol + tek CTA · Işık/Gölge = ◐ hafif kart lift · Noise→Signal = ◐ işlevsel bağlayıcı çizgi (yol) · CTA = **var** — ilk kez, ama bölümün görsel kahramanı değil.
 

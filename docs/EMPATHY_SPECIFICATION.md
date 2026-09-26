@@ -2,7 +2,7 @@
 
 > Ana sayfa Empati bölümünün referans standardı. Hero'nun kurduğu görsel dile (Noise → Signal, imza easing, `data-rise`/`data-anim` deseni) sadık kalır ama akustik yoğunluğu bilinçli olarak sessizliğe indirir — bu bölümde söz hikâyededir, akustik dilde değil. Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
 >
-> **Kanonik kaynaklar:** amaç/hikâye → `HOMEPAGE_CREATIVE_DIRECTION.md` (Bölüm 1 · Empati) · sayfa ritmi → `HOMEPAGE_MOODBOARD.md` · ton/kırmızı çizgiler → `PRINCIPLES.md §4/§5` · token & görsel sistem → `DESIGN_SYSTEM_GUIDE.md` + `src/ds/styles/base/variables.css` · Hero'nun kurduğu değişmez gramer → `docs/HERO_SPECIFICATION.md`. Çelişkide kanonik doküman esastır.
+> **Kanonik kaynaklar:** amaç/hikâye ve sayfa ritmi → `docs/HOMEPAGE_SPECIFICATION.md` (Empati bölümü) · ton/kırmızı çizgiler → `PRINCIPLES.md §4/§5` · token & görsel sistem → `DESIGN_SYSTEM_GUIDE.md` + `src/ds/styles/base/variables.css` · Hero'nun kurduğu değişmez gramer → `docs/HERO_SPECIFICATION.md`. Çelişkide kanonik doküman esastır.
 >
 > **Sabit çerçeve (moodboard):** Amaç = "Görülmek" · Lider katman = hikâye · Kompozisyon = dar kolon, ortalı, şiirsel satırlar · Işık/Gölge = neredeyse düz (○) · Noise→Signal = tek soluk çizgi (○) · CTA = yok.
 

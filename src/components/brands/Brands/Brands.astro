@@ -27,7 +27,12 @@ const { badge, heading, subhead, brands, trust, hubCta } = content;
            enough to load eagerly and sidestep the bug entirely. */
         brands.map((brand) => (
           <a class="brands__logo" href={`/markalar/${brand.slug}`} aria-label={brand.name}>
-            <img src={brand.logo} alt={brand.name} />
+            <img
+              src={brand.logo}
+              width={brand.logoWidth}
+              height={brand.logoHeight}
+              alt={brand.name}
+            />
           </a>
         ))
       }
@@ -42,7 +47,12 @@ const { badge, heading, subhead, brands, trust, hubCta } = content;
             aria-hidden="true"
             tabindex="-1"
           >
-            <img src={brand.logo} alt="" />
+            <img
+              src={brand.logo}
+              width={brand.logoWidth}
+              height={brand.logoHeight}
+              alt=""
+            />
           </a>
         ))
       }

@@ -1,8 +1,8 @@
 # CLOSING_SPECIFICATION.md
 
-> Ana sayfanın son bölümü, Footer'dan hemen önce — altı bölümün kurduğu her şeyin doğal son cümlesi (`HOMEPAGE_CREATIVE_DIRECTION.md` Bölüm 9 "Dönüşüm" ile aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
+> Ana sayfanın son bölümü, Footer'dan hemen önce — önceki bölümlerin kurduğu her şeyin doğal son cümlesi (`docs/HOMEPAGE_SPECIFICATION.md`'deki "Closing" ile aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
 >
-> **Kanonik kaynaklar:** amaç/hikâye → `HOMEPAGE_CREATIVE_DIRECTION.md` (Bölüm 9) · CTA sistemi/ton → `PRINCIPLES.md §8/§9/§4` · gerçek iletişim bilgisi → `COMPANY.md` · görsel dil → `DESIGN_SYSTEM_GUIDE.md §6`. Çelişkide kanonik doküman esastır.
+> **Kanonik kaynaklar:** amaç/hikâye → `docs/HOMEPAGE_SPECIFICATION.md` · CTA sistemi/ton → `PRINCIPLES.md §8/§9/§4` · gerçek iletişim bilgisi ve coğrafi hiyerarşi → `COMPANY.md` · görsel dil → `DESIGN_SYSTEM_GUIDE.md §6` · yayın kriterleri → `QUALITY_GATES.md`. Çelişkide kanonik doküman esastır.
 >
 > **Mimari karar (kilitli):** Closing, ana sayfanın **tek** kapanış/CTA bölümüdür. `FooterCta` (Footer'ın bağımsız promosyon paneli) kaldırılır; Footer yalnızca navigasyon + şirket bilgisine döner. Sıcak glow/grain reçetesi `FooterCta`'dan buraya taşınır — yeni görsel dil icat edilmez, mevcut biri yer değiştirir.
 >

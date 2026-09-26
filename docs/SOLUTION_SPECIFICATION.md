@@ -1,8 +1,8 @@
 # SOLUTION_SPECIFICATION.md
 
-> Ana sayfanın üçüncü bölümü — Sound Room'un deneyimini anlamlandıran, sakin bir "rest" durağı (`HOMEPAGE_CREATIVE_DIRECTION.md` Bölüm 3 "Bilgilendir" ile aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
+> Ana sayfanın dördüncü bölümü (Hero, Empathy, Sound Room'dan sonra) — Sound Room'un deneyimini anlamlandıran, sakin bir "rest" durağı (`docs/HOMEPAGE_SPECIFICATION.md`'deki "Solution" ile aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
 >
-> **Kanonik kaynaklar:** amaç/hikâye → `HOMEPAGE_CREATIVE_DIRECTION.md` (Bölüm 3) · sayfa ritmi → `HOMEPAGE_MOODBOARD.md` · ton/etik sınırlar → `PRINCIPLES.md §5/§6` · görsel dil → `DESIGN_SYSTEM_GUIDE.md §6` · Hero/Empati/Sound Room'un kurduğu değişmez gramer → ilgili spesifikasyon dosyaları. Çelişkide kanonik doküman esastır.
+> **Kanonik kaynaklar:** amaç/hikâye ve sayfa ritmi → `docs/HOMEPAGE_SPECIFICATION.md` · ton/etik sınırlar → `PRINCIPLES.md §5/§6` · görsel dil → `DESIGN_SYSTEM_GUIDE.md §6` · Hero/Empati/Sound Room'un kurduğu değişmez gramer → ilgili spesifikasyon dosyaları. Çelişkide kanonik doküman esastır.
 >
 > **Sabit çerçeve:** Amaç = "Bilgilendirir, yetkinlikle güven kurar" · Lider katman = hikâye + bilgi · Kompozisyon = giriş cümlesi + 3 sakin gerçek kartı · Işık/Gölge = ○–◐ hafif · Noise→Signal = ◐ okunabilir, işlevsel çizgiler · CTA = **yok** (dönüşüm bu bölüme ait değil, bkz. §1).
 

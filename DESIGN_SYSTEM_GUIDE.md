@@ -246,6 +246,8 @@ Sistem beş net katmandan oluşur ve her katmanın rolü birbirine karışmaz:
 
 ## Mevcut Durum
 
+> Durum notu — 2026-09: Bu bölüm, dokümanın ilk yazıldığı tarihteki kod tabanı anlık görüntüsünü yansıtır; "bu dokümanın yazıldığı tarih" ifadesi zamanla belirsizleşir. Atom katmanının (`src/ds/`) gerçek kapsamı yalnızca `/ds/` demo kataloğudur (bkz. `src/ds/README.md`); canlı sitedeki (`src/pages`, `src/components`) Molecule/Organism/Template/Page üretimi bu dokümanın kurallarına göre, ayrı ve doğrudan hedef sayfa/komponent brief'leriyle ilerler. Bu paragraf gelecekte tekrar güncellenmelidir; sabit bir tarih yerine bir durumun anlık görüntüsü olduğu unutulmamalıdır.
+
 Atom katmanı, bu dokümanın yazıldığı tarihte, kendi Pattern Library'siyle birlikte tamamlanmış durumdadır. Molecule, Organism, Template ve Page katmanları bu doküman esas alınarak inşa edilecektir.
 
 ---
@@ -656,6 +658,6 @@ yeni bir component oluşturamaz.
 
 # 27. Doküman Otoritesi
 
-Bu doküman, COMPANY.md ve PRINCIPLES.md ile eşdeğer bağlayıcılığa sahiptir. Üçü birlikte projenin tam referans katmanını oluşturur: COMPANY.md gerçekleri, PRINCIPLES.md davranışı, bu doküman ise yapıyı ve görsel sistemi yönetir.
+Bu doküman, COMPANY.md, PRINCIPLES.md, SEARCH_STRATEGY.md, IMPLEMENTATION_STANDARD.md ve QUALITY_GATES.md ile eşdeğer bağlayıcılığa sahiptir. Altısı birlikte projenin tam referans katmanını oluşturur: COMPANY.md gerçekleri, PRINCIPLES.md davranışı, bu doküman yapıyı ve görsel sistemi, SEARCH_STRATEGY.md keşfedilebilirliği, IMPLEMENTATION_STANDARD.md implementasyon kalitesini, QUALITY_GATES.md ise sayfa/release seviyesi yayın kapılarını yönetir.
 
 Bu doküman, projede zaten inşa edilmiş olan mimariyi (Astro, Atomic Design, kendi klasöründe her component, Pattern Library yaklaşımı) doğrular ve ileriye taşır — geriye dönük olarak var olan Atom katmanını geçersiz kılmaz. Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan kurallar bağlayıcıdır.

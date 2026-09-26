@@ -2,9 +2,11 @@
 
 > Ana sayfa Hero bölümünün referans standardı. Bu Hero, tüm ana sayfa görsel dilinin *referans bileşenidir* — diğer bölümler bu spesifikasyonun kurduğu dile uyar. Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
 >
-> **Kanonik kaynaklar:** hikâye/amaç → `HOMEPAGE_CREATIVE_DIRECTION.md` · ton/içerik/güven → `PRINCIPLES.md §1/§4/§5/§7` · token & görsel sistem → `DESIGN_SYSTEM_GUIDE.md` + `src/ds/styles/base/variables.css` · gerçekler → `COMPANY.md` · implementasyon kalitesi → `IMPLEMENTATION_STANDARD.md`. Çelişkide kanonik doküman esastır.
+> **Kanonik kaynaklar:** hikâye/amaç → `docs/HOMEPAGE_SPECIFICATION.md` · ton/içerik/güven → `PRINCIPLES.md §1/§4/§5/§7` · token & görsel sistem → `DESIGN_SYSTEM_GUIDE.md` + `src/ds/styles/base/variables.css` · gerçekler ve coğrafi hiyerarşi → `COMPANY.md` (özellikle §17) · implementasyon kalitesi → `IMPLEMENTATION_STANDARD.md` · yayın kriterleri → `QUALITY_GATES.md`. Çelişkide kanonik doküman esastır.
 >
-> **Kilitli kopya:** Eyebrow `2009'DAN BERİ · SGK ANLAŞMALI` · Headline **"Duymak, anlamaktır."** · Alt metin "Mesele sesin ne kadar yüksek olduğu değil, ne kadar anlaşılıyor olduğu." · CTA **"Ücretsiz İşitme Testi"** · Tagline *"Daha net duyun, hayata daha yakın olun."*
+> **Kilitli kopya (2026-09 itibarıyla gerçek üretimle senkronize edildi):** Badge/Eyebrow `"Darıca, Kocaeli · SGK Anlaşmalı İşitme Merkezi"` (coğrafi kısım COMPANY.md §17'nin ana merkez kademesine dayanır — sabit metin olarak değil, COMPANY.md §17 değiştiğinde güncellenmesi gereken bir alan olarak okunmalıdır) · Headline (iki satır) **"Duymak," / "anlamaktır."** · Bağlam cümlesi (entity-tanım, `/iletisim` ile birebir aynı, GEO non-contradiction) *"Avrasya İşitme Cihazları, Darıca, Kocaeli'de bulunan SGK anlaşmalı bir işitme cihazı satış ve uygulama merkezidir."* · Alt metin *"İşitme kaybı yalnızca duymamak değildir. Anlamak, iletişim kurmak ve sevdiklerinizle bağ kurmaktır."* · CTA (üç katman) **"Ücretsiz İşitme Testi"** (birincil) / "Bizi Arayın" (telefon) / "WhatsApp'tan Yaz" · Trust Row: "2009'dan beri", "SGK Anlaşmalı", "Kişiye Özel Yaklaşım", "18+ Marka".
+>
+> **Üretim notu — bu spesifikasyondan sapma ve nedeni:** İlk yazılan "2009'DAN BERİ · SGK ANLAŞMALI" eyebrow'u ve orijinal alt metin, gerçek üretimde bilinçli olarak değiştirildi (kod yorumu: eski `badge` metni "İşitme Sağlığınız İçin En Doğru Adrestesiniz" idi — PRINCIPLES §5'in yasakladığı bir üstünlük iddiasıydı — yerine coğrafi/gerçek bir ifade konuldu). Üretim ayrıca bu spesifikasyonda tanımlanmamış 3 görsel kart (`cards`) ekledi — bu kartların görselleri kod yorumuna göre henüz gerçek fotoğraf değil, yer tutucu (placeholder) olabilir; gerçek fotoğraf temin edildiğinde ayrı bir görev olarak güncellenmelidir. Ayrı bir "Tagline" alanı (`"Daha net duyun, hayata daha yakın olun."`) artık `HeroContent` veri sözleşmesinde **yer almıyor** — bu doküman onun hâlâ üretimde olduğunu iddia etmez.
 
 ---
 
@@ -138,4 +140,4 @@ Bu doküman, Hero'nun referans standardıdır. Astro geliştirmesi başladığı
 - Erişilebilirlik §7: tek `<h1>`, `aria-hidden` sinyal, AA+ kontrast, focus ring, ≥44–48px dokunmatik.
 - Mevcut token sistemi kullanıldı; hiçbir ham "magic" değer yok (DESIGN_SYSTEM §5).
 
-Bu Hero onaylandıktan sonra, kurduğu görsel dil diğer 9 bölüme taşınır.
+Bu Hero onaylandıktan sonra, kurduğu görsel dil ana sayfanın diğer bölümlerine taşınır (güncel bölüm listesi için bkz. `docs/HOMEPAGE_SPECIFICATION.md`).

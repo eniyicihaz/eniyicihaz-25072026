@@ -1,10 +1,12 @@
 # TRUST_SPECIFICATION.md
 
-> Ana sayfanın beşinci bölümü — Guide'ın verdiği süreç güveninden sonra, sağlayıcının kendisine dair son soruyu cevaplayan sessiz durak (`HOMEPAGE_CREATIVE_DIRECTION.md` Bölüm 5 "Güven" ile aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
+> Ana sayfanın Güven bölümü — Guide'ın verdiği süreç güveninden sonra, sağlayıcının kendisine dair son soruyu cevaplayan sessiz durak (`docs/HOMEPAGE_SPECIFICATION.md` "Güven" bölümüyle aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
 >
-> **Kanonik kaynaklar:** amaç/hikâye → `HOMEPAGE_CREATIVE_DIRECTION.md` (Bölüm 5) · gerçekler → `COMPANY.md` · içerik/iddia disiplini → `PRINCIPLES.md §5/§7` · görsel dil → `DESIGN_SYSTEM_GUIDE.md §6`. Çelişkide kanonik doküman esastır.
+> **Kanonik kaynaklar:** amaç/hikâye → `docs/HOMEPAGE_SPECIFICATION.md` · gerçekler ve coğrafi hiyerarşi → `COMPANY.md` (özellikle §17) · içerik/iddia disiplini → `PRINCIPLES.md §5/§7` · görsel dil → `DESIGN_SYSTEM_GUIDE.md §6` · yayın kriterleri → `QUALITY_GATES.md`. Çelişkide kanonik doküman esastır.
 >
-> **Sabit çerçeve:** Amaç = "Doğru ellerdeyim dedirtir" · Lider katman = hikâye · Kompozisyon = giriş cümlesi + 3 doğrulanabilir gerçek + kapanış · Işık/Gölge = ○ neredeyse düz · Noise→Signal = ○ fısıltı · CTA = **yok** (Guide zaten verdi; burada tekrar CTA yorgunluğu yaratılmaz).
+> **Sabit çerçeve:** Amaç = "Doğru ellerdeyim dedirtir" · Lider katman = hikâye · Kompozisyon = giriş cümlesi + 3 doğrulanabilir gerçek + (üretimde eklenen) hizmet bölgesi cümlesi + kapanış · Işık/Gölge = ○ neredeyse düz · Noise→Signal = ○ fısıltı · CTA = **yok** (Guide zaten verdi; burada tekrar CTA yorgunluğu yaratılmaz).
+>
+> **Üretim notu — bu spesifikasyondan sapma ve nedeni (2026-09 itibarıyla senkronize edildi):** Gerçek üretim (`trust.data.ts`), bu spesifikasyonun ilk hâlinde olmayan bir `serviceAreaSentence` alanı ekledi: *"Darıca merkezli; Gebze ve Çayırova'dan da kolayca ulaşabilirsiniz."* (kısa, yalnızca COMPANY.md §17'nin ana merkez + öncelikli kademesini kullanan bir form; §17'nin tam 4 kademeli dökümü tekrarlanmaz, ayrıntı `/iletisim` sayfasına linklenir). Gerçek 1'in açıklaması da coğrafi bağlam kazandı: *"...aynı ekiple, Darıca, Kocaeli'deki merkezimizde yıllardır hizmet veriyor."* (bu spesifikasyonun ilk hâli yalnızca "aynı adreste" diyordu, yer adı vermiyordu). Bu ekleme, kod yorumuna göre `HOMEPAGE_CREATIVE_DIRECTION.md`'nin (bkz. `docs/HOMEPAGE_SPECIFICATION.md`) Güven bölümü için başta istenen ama ilk turda uygulanmayan coğrafi bağlamı tamamlar; yeni bir iddia eklemez, yalnızca COMPANY.md §17'ye izlenebilir bir gerçeği ifade eder.
 
 ---
 
@@ -22,12 +24,13 @@
 **Üç gerçek (doğrulanabilir, COMPANY.md), sırası kilitli:** kıdem/süreklilik → resmî ilişki (SGK) → yetkinlik (uzman kadro). **Süreklilik her zaman ilk gerçektir** — diğer kanıtlardan önce gelir, çünkü güvenin zemini önce zamanla kurulur (refinement 1).
 **Kapanış:** İlk ziyaretle sınırlı olmayan bir ilişki hissini kurar — ama **yeni bir kanıt/iddia eklemez**, yalnızca yukarıdaki üç gerçeği (özellikle süreklilik gerçeğini) yeniden çerçeveler (refinement 2).
 
-**Kilitli kopya:**
+**Kilitli kopya (2026-09 itibarıyla gerçek üretimle senkronize edildi):**
 - Sr-only başlık: *"Neden burası?"*
 - Bağlam cümlesi: *"Kararınızı vermeden önce, bilmeniz gereken birkaç gerçek."*
-- Gerçek 1 (her zaman ilk) — Başlık: *"2009'dan beri"* · Açıklama: *"Avrasya İşitme, aynı ekiple, aynı adreste yıllardır hizmet veriyor."*
-- Gerçek 2 — Başlık: *"SGK anlaşmalı"* · Açıklama: *"Resmî olarak SGK ile anlaşmalı bir işitme merkeziyiz."*
+- Gerçek 1 (her zaman ilk) — Başlık: *"2009'dan beri"* · Açıklama: *"Avrasya İşitme, aynı ekiple, Darıca, Kocaeli'deki merkezimizde yıllardır hizmet veriyor."* (coğrafi kısım COMPANY.md §17'nin ana merkez kademesine dayanır)
+- Gerçek 2 — Başlık: *"SGK anlaşmalı"* · Açıklama: *"Resmî olarak SGK ile anlaşmalı bir işitme merkeziyiz."* (üretimde `/sgk-isitme-cihazi-odemesi` sayfasına bağlantı eklendi)
 - Gerçek 3 — Başlık: *"Uzman kadro"* · Açıklama: *"Odyolog ve odyometristlerden oluşan, alanında yetkin bir ekip."*
+- **Hizmet bölgesi cümlesi (üretimde eklendi):** *"Darıca merkezli; Gebze ve Çayırova'dan da kolayca ulaşabilirsiniz."* → `/iletisim` sayfasına link (COMPANY.md §17'nin ana merkez + öncelikli kademesinin kısa formu; tam 4 kademeli döküm burada tekrarlanmaz)
 - Kapanış cümlesi: *"Bu ilişki, ilk ziyaretle sınırlı değil — 2009'dan beri süregelen aynı güvenle devam ediyor."*
 
 **Kırmızı çizgi kontrolü:** Hiçbir sayı/unvan COMPANY.md dışında üretilmedi; "en iyi/bir numara/lider" ya da ölçülemez üstünlük ifadesi yok (PRINCIPLES §5).
@@ -55,7 +58,7 @@ Sayfanın en alçak sesli anlarından biri — moodboard "○ fısıltı". Solut
 # 5. Composition
 
 ### Desktop (≥1024px)
-`--container-lg`, ortalı. Üstte bağlam cümlesi; altında 3 gerçek yatay sırada, aralarında ince dikey ayraç (Guide'ın yatay bağlayıcı çizgisinden farklı — burada ayırıcı, birleştirici değil); en altta kapanış cümlesi.
+`--container-lg`, ortalı. Üstte bağlam cümlesi; altında 3 gerçek yatay sırada, aralarında ince dikey ayraç (Guide'ın yatay bağlayıcı çizgisinden farklı — burada ayırıcı, birleştirici değil); ardından (üretimde eklenen) hizmet bölgesi cümlesi, `/iletisim` linkiyle; en altta kapanış cümlesi.
 
 ### Tablet (768–1023px)
 3 gerçek tek sütuna döner, dikey ayraç yatay kısa çizgiye döner (Solution'daki tablet esnekliğiyle tutarlı).
@@ -84,7 +87,7 @@ Guide'dan bile daha durgun. Tek seferlik `data-rise` girişi (kurulu desen), haf
 - **Atoms:** `TrustFact.astro` — başlık + açıklama, kart zemini yok; `title`, `description` prop'ları.
 - **Molecules:** Yok — 3 gerçeğin dizilimi + ayraç organism seviyesinde ele alınır (Solution/Guide'daki YAGNI kararıyla tutarlı).
 - **Organism:** `Trust.astro` — bağlam cümlesi + 3 `TrustFact` + ayraçlar + kapanış cümlesini kurar, tek giriş animasyonunu yönetir. **CTA içermez.**
-- **Data/type sözleşmesi:** `trust.data.ts` (`heading`, `contextSentence`, `facts: {title, description}[3]`, `closingSentence`), `trust.types.ts`.
+- **Data/type sözleşmesi:** `trust.data.ts` (`heading`, `contextSentence`, `facts: {title, description, href?, linkLabel?}[3]`, `serviceAreaSentence`, `serviceAreaHref`, `closingSentence`), `trust.types.ts`.
 
 ---
 

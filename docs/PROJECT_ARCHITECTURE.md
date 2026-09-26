@@ -70,19 +70,19 @@ Doğru:
 
 ## 5. Component Yapısı
 
-Her component kendi klasöründe bulunur.
+Her component kendi klasöründe bulunur. Gerçek uygulamadaki örnek (bkz. §6 için isimlendirme detayı):
 
-Örnek:
+Hero/
 
-Hero001/
-
-- Hero001.astro
-- Hero001.css
-- preview.webp
+- Hero.astro (yapı + stil birlikte, Astro'nun scoped `<style>` bloğuyla)
+- hero.data.ts (içerik)
+- hero.types.ts (tip tanımı)
 
 ---
 
 ## 6. İsimlendirme Standardı
+
+> **Durum notu (2026-09):** Aşağıdaki numaralı isimlendirme (`Hero001`, `CTA001`) örneği, projenin ilk tasarım niyetini yansıtıyordu ama gerçek uygulamada hiç kullanılmadı — gerçek kod tabanı numarasız, betimleyici isimler kullanır (aşağıda güncellendi). Bu, PROJECT_ARCHITECTURE.md'nin kod ile senkronize hale getirilen ilk maddesidir.
 
 Kategori klasörleri küçük harf kullanır.
 
@@ -103,20 +103,21 @@ shared/
 ui/
 ```
 
-Component isimleri PascalCase ve numaralıdır.
+Component isimleri PascalCase'dir ve **numaralandırılmaz**; component'in ne olduğunu doğrudan anlatır. Her component kendi klasöründe, aynı adı taşıyan `.astro` dosyasıyla birlikte yaşar; ilişkili statik içerik `.data.ts`, tip tanımları `.types.ts` dosyasında tutulur.
 
 ```
-Hero001
-Hero002
+Hero/
+  Hero.astro
+  hero.data.ts
+  hero.types.ts
 
-CTA001
-CTA002
-
-Footer001
-Header001
+Closing/
+  Closing.astro
+  closing.data.ts
+  closing.types.ts
 ```
 
-Her component, `COMPONENT_LIBRARY.md` içerisinde açıklanır.
+Ayrı bir `COMPONENT_LIBRARY.md` dosyası tutulmaz — her component'in amacı/kullanımı kendi klasöründeki dosyalardan ve (varsa) ilgili `*_SPECIFICATION.md`'den okunur.
 
 ---
 
@@ -174,17 +175,7 @@ Tüm componentler aşağıdaki kurallara uygun olmalıdır.
 
 ## 10. SEO Standartları
 
-Her sayfa aşağıdaki yapı ile hazırlanır.
-
-- Title
-- Meta Description
-- Canonical
-- Open Graph
-- Twitter Card
-- Breadcrumb
-- Schema.org
-
-SEO bilgileri component içerisine yazılmaz.
+SEO bilgileri component içerisine yazılmaz; sayfa/layout seviyesinde props/data'dan gelir. Her sayfanın karşılaması gereken somut, kontrol edilebilir SEO/Schema/Canonical kriterleri burada tekrar edilmez — Canonical Source: QUALITY_GATES.md §1 SEO Gate, §4 Schema Gate, §5 Canonical Gate. Arama/AI görünürlük felsefesi için Canonical Source: SEARCH_STRATEGY.md.
 
 ---
 
@@ -247,8 +238,6 @@ Bir component aşağıdaki şartlar sağlandığında tamamlanmış kabul edilir
 - [ ] Props kullanıyor.
 - [ ] İçerik component içerisine gömülü değil.
 - [ ] CSS yalnızca kendi dosyasında.
-- [ ] preview.webp oluşturuldu.
-- [ ] COMPONENT_LIBRARY.md dosyasına eklendi.
 
 ---
 

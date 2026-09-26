@@ -1,5 +1,7 @@
 # Design Languages
 
+> **Kapsam:** Bu belge yalnızca `/ds/` demo/katalog sistemini (Pattern Library) tanımlar — canlı site (`src/pages`, `src/components`, `src/layouts`) bu belgeyi kullanmaz ve bu 5 temadan hiçbiri canlı sitede aktif değildir. Canlı sitenin tek, gerçek tasarım kuralı için Canonical Source: `docs/DESIGN_SYSTEM.md`. Bu ayrım hakkında bkz. `src/ds/README.md`.
+
 Bu Design System, her component için birden fazla tasarım dili (Design
 Language) destekler. Component ile görünüm ayrıştırılmıştır:
 

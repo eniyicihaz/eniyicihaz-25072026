@@ -1,6 +1,12 @@
 # En İyi Cihaz - Design System
 
-> Son Güncelleme: 16 Temmuz 2026
+> Son Güncelleme: 2026-09 (kapsam notu ve token değerleri gerçek koda göre senkronize edildi)
+
+---
+
+# Kapsam
+
+> **Bu belge yalnızca canlı sitenin** (`src/pages`, `src/components`, `src/layouts`) tasarım kurallarını tanımlar. `/ds/` demo/katalog sistemi (çoklu tasarım dili: Corporate/Soft/Premium/Glass/Dark) bu belgenin kapsamı **dışındadır** ve canlı sitede kullanılmaz — Canonical Source: `src/ds/DESIGN_LANGUAGES.md`, `src/ds/README.md`.
 
 ---
 
@@ -8,7 +14,7 @@
 
 Bu belge, En İyi Cihaz projesinin görsel tasarım kurallarını tanımlar.
 
-Gerçek tasarım değerleri (`renk`, `spacing`, `font`, `shadow`, `animation` vb.) **`src/styles/base/variables.css`** dosyasında tutulur.
+Gerçek tasarım değerleri (`renk`, `spacing`, `font`, `shadow`, `animation` vb.) **`src/ds/styles/base/variables.css`** dosyasında tutulur.
 
 Bu belge kuralları tanımlar.
 
@@ -138,22 +144,27 @@ Maksimum satır uzunluğu
 
 # Spacing Sistemi
 
-Tek spacing ölçeği kullanılır.
+Tek spacing ölçeği kullanılır. Gerçek token adları ve px karşılıkları (`src/ds/styles/base/variables.css`):
 
 ```
-4
-8
-12
-16
-24
-32
-48
-64
-96
-128
+--space-0   0px
+--space-1   4px
+--space-2   8px
+--space-3   12px
+--space-4   16px
+--space-5   20px
+--space-6   24px
+--space-8   32px
+--space-10  40px
+--space-12  48px
+--space-16  64px
+--space-20  80px
+--space-24  96px
 ```
 
-Margin ve padding rastgele verilmez.
+Margin ve padding rastgele verilmez; yalnızca yukarıdaki token adlarıyla (`var(--space-N)`) tanımlanır, ham px değeri yazılmaz.
+
+> **Bilinen teknik borç (bu tur kapsamında düzeltilmedi — yalnızca dokümantasyon güncellendi, koda dokunulmadı):** Kod tabanında `--space-7` ve `--space-14` adında, yukarıdaki listede **tanımlı olmayan** iki değişkene birden fazla component'te referans verilmiştir. Bunlar geçerli token değildir; yeni geliştirmede kullanılmamalıdır. Mevcut kullanımlarının temizlenmesi, ayrı bir kod (CSS) görevi olarak ele alınmalıdır — bu doküman değişikliği bunu kapsamaz.
 
 ---
 
@@ -171,15 +182,17 @@ tamamı `variables.css` üzerinden yönetilir.
 
 # Border Radius
 
-Tek radius ölçeği kullanılır.
+Tek radius ölçeği kullanılır. Gerçek token adları (`src/ds/styles/base/variables.css`):
 
 ```
-4
-8
-12
-16
-24
-9999
+--radius-none  0px
+--radius-xs    2px
+--radius-sm    4px
+--radius-md    8px
+--radius-lg    12px
+--radius-xl    16px
+--radius-2xl   24px
+--radius-full  9999px
 ```
 
 ---
@@ -365,9 +378,9 @@ Minimum kurallar
 
 # Dark Mode
 
-Bu proje şu an yalnızca Light Theme desteklemektedir.
+Bu proje (canlı site — bkz. Kapsam) şu an yalnızca Light Theme desteklemektedir.
 
-Dark Mode geliştirilecekse mevcut Design Token sistemi genişletilmelidir.
+Dark Mode geliştirilecekse mevcut Design Token sistemi genişletilmelidir. (Not: `/ds/` demo kataloğunun kendi, canlı siteden bağımsız bir Dark teması zaten mevcuttur — bkz. Kapsam notu; bu, canlı sitenin Light-only durumuyla çelişmez çünkü ikisi farklı, birbirinden ayrı sistemlerdir.)
 
 ---
 
@@ -400,7 +413,7 @@ Her component
 Bu belgede açıklanan tüm tasarım kuralları aşağıdaki dosya tarafından uygulanır.
 
 ```
-src/styles/base/variables.css
+src/ds/styles/base/variables.css
 ```
 
 Tasarımsal bir değişiklik yapılacaksa önce bu dosya güncellenmelidir.

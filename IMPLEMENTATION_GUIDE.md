@@ -1,5 +1,7 @@
 # HEADER IMPLEMENTATION
 
+> **Durum notu (2026-09-26 — TAMAMLANMIŞ GÖREV / TARİHSEL REFERANS):** Bu doküman, Header component'i için hazırlanmış tek seferlik, tek component'e özel bir uygulama brifidir — dosya adı genel görünse de kapsamı yalnızca Header'dır. Header component'i üretime alınmış olduğundan, bu doküman artık **aktif, bağlayıcı bir kural kaynağı değildir**; yeni geliştirme kararları için Canonical Source: DESIGN_SYSTEM_GUIDE.md (görsel/yapı), IMPLEMENTATION_STANDARD.md (implementasyon kalitesi), QUALITY_GATES.md (yayın kriterleri). Bu dosya, o dönemki uygulama kararlarının tarihsel kaydı olarak silinmeden korunmaktadır.
+
 ## Amaç
 
 Bu doküman Header component'inin birebir implementasyonu içindir.

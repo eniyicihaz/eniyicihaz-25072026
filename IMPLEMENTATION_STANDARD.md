@@ -195,6 +195,8 @@ Bir implementasyon, tamamlandığı iddia edilmeden önce doğrulanır. Doğrula
 
 Bu doğrulamalar tamamlanmadan hiçbir implementasyon bitmiş kabul edilmez.
 
+Bu bölüm, component/build seviyesindeki doğrulama **ilkelerini** tanımlar. Bir sayfanın veya release'in yayına hazır olup olmadığını gösteren somut, kontrol edilebilir ve adım adım işletilen operasyonel kontrol listesi burada tekrar edilmez — Canonical Source: QUALITY_GATES.md.
+
 ---
 
 # 16. Acceptance Criteria (Definition of Done)
@@ -216,8 +218,8 @@ Bu kriterlerden herhangi biri karşılanmıyorsa, implementasyon eksiktir — ç
 
 # 17. Doküman Otoritesi
 
-Bu doküman, projenin diğer temel referanslarıyla eşdeğer bağlayıcılığa sahiptir ve onlarla birlikte projenin referans katmanını oluşturur. Her doküman farklı bir soruyu yanıtlar: kimiz, nasıl davranırız, nasıl inşa ederiz, nasıl bulunuruz ve — bu doküman — iyi bir implementasyonun standardı nedir.
+Bu doküman, projenin diğer temel referanslarıyla eşdeğer bağlayıcılığa sahiptir ve onlarla birlikte projenin referans katmanını oluşturur. Her doküman farklı bir soruyu yanıtlar: kimiz, nasıl davranırız, nasıl inşa ederiz, nasıl bulunuruz, iyi bir implementasyonun standardı nedir ve — QUALITY_GATES.md — bir sayfa/release ne zaman yayına hazırdır.
 
-Bir çelişki durumunda her doküman kendi yetki alanında esas alınır: gerçek bilgi COMPANY.md'ye, marka davranışı ve ton PRINCIPLES.md'ye, görsel ve mimari yapı DESIGN_SYSTEM_GUIDE.md'ye, arama ve AI görünürlüğü SEARCH_STRATEGY.md'ye, implementasyon kalitesi ise bu dokümana aittir.
+Bir çelişki durumunda her doküman kendi yetki alanında esas alınır: gerçek bilgi ve coğrafi hiyerarşi COMPANY.md'ye, marka davranışı ve ton PRINCIPLES.md'ye, görsel ve mimari yapı DESIGN_SYSTEM_GUIDE.md'ye, arama ve AI görünürlüğü SEARCH_STRATEGY.md'ye, implementasyon kalitesi bu dokümana, sayfa/release seviyesi operasyonel yayın kriterleri QUALITY_GATES.md'ye aittir.
 
 Bu doküman uzun ömürlü olacak şekilde, belirli teknolojilerden ve geçici tercihlerden arındırılarak hazırlanmıştır. Bu sayede, projenin kullandığı teknolojiler zamanla değişse bile burada tanımlanan kalite standardı geçerliliğini korur. Güncelleme yapılmadığı sürece burada yazılan standartlar bağlayıcıdır.

@@ -1,8 +1,12 @@
 # Component Theming
 
+> **Kapsam:** Bu belge yalnızca `/ds/` demo/katalog sistemini tanımlar — canlı site bu belgeyi ve buradaki 5 temayı kullanmaz. Canlı sitenin tasarım kuralları için Canonical Source: `docs/DESIGN_SYSTEM.md`. Bkz. `src/ds/README.md`.
+
 Bu belge, her component'in beş tasarım dilindeki (Design Language) tema
 notlarını tutar. Component'in yapısı ve API'si sabittir; yalnızca görünüm,
 tema token'ları ve override'ları ile değişir.
+
+> **Durum notu (2026-09):** Aşağıdaki component başlıkları büyük ölçüde boş şablon hâlindedir — henüz gerçek tema notu girilmemiştir. Bu doküman şu an bir referans değil, doldurulmayı bekleyen bir iskelettir; boş başlıkların varlığı bir hata değil, bilinen ve kayıtlı bir eksikliktir.
 
 ## Katmanlar
 

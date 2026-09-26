@@ -3,6 +3,12 @@ export interface BrandItem {
   slug: string;
   /** Path under /public — placeholder filenames until real logo files exist. */
   logo: string;
+  /** Real intrinsic pixel dimensions of `logo` (via sharp) — set as the
+   *  <img> width/height attributes so the browser reserves the correct
+   *  aspect ratio before the file loads, preventing layout shift. Display
+   *  size is still governed entirely by .brands__logo's CSS box. */
+  logoWidth: number;
+  logoHeight: number;
 }
 
 export interface BrandsTrust {

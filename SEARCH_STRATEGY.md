@@ -1,8 +1,8 @@
 # SEARCH_STRATEGY.md
 
-> Proje dört temel referans doküman üzerine kuruludur:
+> Proje altı temel referans doküman üzerine kuruludur:
 >
-> **COMPANY.md** — *Kimiz?* Şirketi ve markayı tanımlar.
+> **COMPANY.md** — *Kimiz?* Şirketi, markayı ve coğrafi hizmet hiyerarşisini (§17) tanımlar.
 >
 > **PRINCIPLES.md** — *Nasıl konuşuruz ve nasıl davranırız?* Marka dilini, UX felsefesini, içerik ve güven kurallarını tanımlar.
 >
@@ -10,7 +10,11 @@
 >
 > **SEARCH_STRATEGY.md** (bu doküman) — *Nasıl bulunuruz ve nasıl güvenilir kaynak gösteriliriz?* Arama motorları, cevap motorları (AI Overview, AI Mode) ve üretken yapay zekâ sistemleri (ChatGPT, Gemini, Claude, Copilot, Perplexity) tarafından nasıl keşfedildiğimizi, anlaşıldığımızı ve kaynak gösterildiğimizi yönetir.
 >
-> Bu doküman kod içermez, schema kodu içermez, HTML içermez, CSS içermez. Yalnızca strateji ve ilkeleri tanımlar. İleride üretilecek her sayfa, her landing page, her blog yazısı, her marka sayfası, her şehir sayfası ve yapay zekâ tarafından üretilecek her içerik bu dokümana uymak zorundadır.
+> **IMPLEMENTATION_STANDARD.md** — *İyi bir implementasyon nedir?* Component/build seviyesi kalite standardını (Definition of Done) tanımlar.
+>
+> **QUALITY_GATES.md** — *Bir sayfa ne zaman yayına hazırdır?* SEO/Local SEO/GEO/Schema/Canonical/Sitemap/Link/Responsive/Release seviyesinde, bu dokümanın felsefesini operasyonel ve kontrol edilebilir kriterlere çeviren yayın kapılarını tanımlar.
+>
+> Bu doküman kod içermez, schema kodu içermez, HTML içermez, CSS içermez. Yalnızca strateji ve ilkeleri tanımlar. Somut, kontrol edilebilir yayın kriterleri için Canonical Source: QUALITY_GATES.md. İleride üretilecek her sayfa, her landing page, her blog yazısı, her marka sayfası, her şehir sayfası ve yapay zekâ tarafından üretilecek her içerik bu dokümana uymak zorundadır.
 
 ---
 
@@ -24,10 +28,12 @@ Bu doküman, Eniyicihaz.com'un yalnızca arama motorlarında değil; Google AI O
 
 | Doküman | Soru | Yetki Alanı |
 |---|---|---|
-| COMPANY.md | Kimiz? | Şirket ve marka gerçekleri |
+| COMPANY.md | Kimiz? | Şirket ve marka gerçekleri, coğrafi hizmet hiyerarşisi (§17) |
 | PRINCIPLES.md | Neden + nasıl davranırız? | Brand DNA, ton, UX felsefesi, içerik, güven, CTA |
 | DESIGN_SYSTEM_GUIDE.md | Nasıl inşa ederiz? | Görsel sistem, marka görsel dili, component mimarisi |
 | SEARCH_STRATEGY.md | Nasıl bulunuruz? | Arama, cevap motoru ve AI görünürlüğü |
+| IMPLEMENTATION_STANDARD.md | İyi implementasyon nedir? | Component/build seviyesi kalite standardı |
+| QUALITY_GATES.md | Ne zaman yayına hazır? | Sayfa/release seviyesi operasyonel yayın kapıları |
 
 Bu doküman, PRINCIPLES.md'nin içerik ve ton kurallarını, DESIGN_SYSTEM_GUIDE.md'nin yapı kurallarını çiğnemez — onların üzerine, "bu doğru şekilde üretilen içerik nasıl keşfedilir ve kaynak gösterilir" katmanını ekler.
 
@@ -179,6 +185,15 @@ Bir kalıp, yalnızca gerçekten o soruyu cevaplıyorsa kullanılır. Cevap moto
 
 Bir yapay zekâ sistemi bir sayfayı, "bu bilgi açık, doğrulanabilir, çelişkisiz ve konunun gerçek bir uzmanından geliyor" sinyalini aldığında kaynak gösterir. Strateji budur — belirli bir aracı "kandırmak" değil, her sistemin aradığı bu temel güven sinyalini gerçekten karşılamaktır.
 
+## AI-Crawler Erişimi ve `llms.txt` — Açık Strateji Kararı
+
+Bu, henüz karara bağlanmamış, **açık bir strateji konusudur** — otomatik olarak "uygulanması gereken bir teknik zorunluluk" varsayılmaz:
+
+- **AI-crawler erişim politikası** — `robots.txt` üzerinden GPTBot, ClaudeBot, PerplexityBot gibi AI-crawler'lara hangi erişim izninin verileceği, sitenin görünürlük hedefleriyle (kaynak gösterilme isteği) ve içerik kontrolü tercihleri arasındaki dengeye bağlı ayrı bir karardır.
+- **`llms.txt`** — Bu dosyanın oluşturulup oluşturulmayacağı, oluşturulacaksa hangi içeriği (site özeti, temel sayfalar, gerçekler) kapsayacağı henüz değerlendirilmemiştir. Bu doküman, `llms.txt`'nin varlığını zorunlu koşmaz; yalnızca ileride bir karar verildiğinde bu bölümün güncelleneceğini ve QUALITY_GATES.md §3 GEO/AI Search Gate'in o karara göre bir tutarlılık kontrolü ekleyeceğini not eder.
+
+Bir karar verildiğinde, karar burada (madde olarak) belgelenir; teknik uygulama detayı bu dokümana değil, ilgili yapılandırma dosyasına ve QUALITY_GATES.md'nin kontrol listesine yansır.
+
 ---
 
 # 10. Local SEO Strategy
@@ -187,11 +202,11 @@ Bu, işletmenin fiziksel hizmet bölgesi olan bir yerel işletme için **en krit
 
 ## Hizmet Bölgesi
 
-Merkez ve öncelikli hizmet bölgeleri, çalışılan iller ve ilçeler için COMPANY.md tek doğruluk kaynağıdır. Bu doküman kendi şehir listesini üretmez veya tekrar etmez — hangi bölgenin resmi hizmet alanı olduğu her zaman COMPANY.md'den okunur; bu, iki dokümanın zamanla birbirinden farklılaşmasını (drift) engeller.
+Merkez ve öncelikli hizmet bölgeleri, çalışılan iller ve ilçeler için COMPANY.md §17 tek doğruluk kaynağıdır. Bu doküman kendi şehir listesini üretmez veya tekrar etmez — hangi bölgenin resmi hizmet alanı olduğu her zaman COMPANY.md §17'den okunur; bu, iki dokümanın zamanla birbirinden farklılaşmasını (drift) engeller.
 
-## Hub-Şehir Modeli
+## Hub-Şehir Modeli (COMPANY.md §17'nin uygulanışı)
 
-Merkez konum (COMPANY.md'de tanımlı) bir "hub" olarak ele alınır; çevresindeki öncelikli hizmet bölgeleri bu hub'a bağlı, ona atıfta bulunan destekleyici içerikler olarak kurulur. Her bölge sayfası, o bölgeye özgü gerçek bilgi taşır — aynı içeriğin yalnızca şehir adı değiştirilerek çoğaltılması (bkz. Bölüm 16, Duplicate Content) kesinlikle yapılmaz.
+Merkez konum (COMPANY.md §17'de tanımlı — ana merkez) bir "hub" olarak ele alınır; hemen ardından gelen öncelikli hizmet bölgesi bu hub'a bağlı, ona atıfta bulunan destekleyici içerik olarak kurulur; üst bölgesel otorite kademesi il-düzeyi bağlam (NAP, adres) için kullanılır; ikincil/çevre bölgeler yalnızca doğrudan sorulduğunda anılır. Bu dört kademenin isimleri burada tekrar edilmez — Canonical Source: COMPANY.md §17. Her bölge sayfası, o bölgeye özgü gerçek bilgi taşır — aynı içeriğin yalnızca şehir adı değiştirilerek çoğaltılması (bkz. Bölüm 16, Duplicate Content; ayrıca QUALITY_GATES.md §2 Local SEO Gate, doorway/scaled page yasağı) kesinlikle yapılmaz.
 
 ## NAP Tutarlılığı
 
@@ -345,6 +360,6 @@ Her konu, sitede yalnızca **bir** kanonik sayfa tarafından sahiplenilir. Aynı
 
 # 20. Doküman Otoritesi
 
-Bu doküman, COMPANY.md, PRINCIPLES.md ve DESIGN_SYSTEM_GUIDE.md ile eşdeğer bağlayıcılığa sahiptir. Dördü birlikte projenin tam referans katmanını oluşturur: COMPANY.md gerçekleri, PRINCIPLES.md davranışı, DESIGN_SYSTEM_GUIDE.md yapıyı, bu doküman ise keşfedilebilirlik ve güvenilirlik stratejisini yönetir.
+Bu doküman, COMPANY.md, PRINCIPLES.md, DESIGN_SYSTEM_GUIDE.md, IMPLEMENTATION_STANDARD.md ve QUALITY_GATES.md ile eşdeğer bağlayıcılığa sahiptir. Altısı birlikte projenin tam referans katmanını oluşturur: COMPANY.md gerçekleri (coğrafi hiyerarşi dahil), PRINCIPLES.md davranışı, DESIGN_SYSTEM_GUIDE.md yapıyı, bu doküman keşfedilebilirlik ve güvenilirlik stratejisini, IMPLEMENTATION_STANDARD.md component/build kalitesini, QUALITY_GATES.md ise sayfa/release seviyesi operasyonel yayın kapılarını yönetir.
 
-Bir çelişki ortaya çıkarsa: gerçek bilgi konusunda COMPANY.md, ton ve CTA konusunda PRINCIPLES.md, görsel/mimari yapı konusunda DESIGN_SYSTEM_GUIDE.md, arama ve AI görünürlük stratejisi konusunda bu doküman esas alınır. Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan ilkeler bağlayıcıdır.
+Bir çelişki ortaya çıkarsa: gerçek bilgi ve coğrafi hiyerarşi konusunda COMPANY.md, ton ve CTA konusunda PRINCIPLES.md, görsel/mimari yapı konusunda DESIGN_SYSTEM_GUIDE.md, arama ve AI görünürlük stratejisi konusunda bu doküman, somut/kontrol edilebilir yayın kriterleri konusunda QUALITY_GATES.md esas alınır. Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan ilkeler bağlayıcıdır.

@@ -1,8 +1,8 @@
 # SOUND_ROOM_SPECIFICATION.md
 
-> Ana sayfanın etkileşimli merkezi — akustik yoğunluk yayının zirvesi ("● ZİRVE, kullanıcı çözer" — `HOMEPAGE_MOODBOARD.md`). Hero'nun ve Empati'nin kurduğu görsel dile ve motion diline sadıktır; buradaki fark yoğunluk ve etkileşimdir, dilbilgisi değil. Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
+> Ana sayfanın etkileşimli merkezi — akustik yoğunluk yayının zirvesi ("● ZİRVE, kullanıcı çözer" — `docs/HOMEPAGE_SPECIFICATION.md`). Hero'nun ve Empati'nin kurduğu görsel dile ve motion diline sadıktır; buradaki fark yoğunluk ve etkileşimdir, dilbilgisi değil. Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.
 >
-> **Kanonik kaynaklar:** amaç/hikâye → `HOMEPAGE_CREATIVE_DIRECTION.md` (Bölüm 2 · Sound Room) · sayfa ritmi → `HOMEPAGE_MOODBOARD.md` · ton/etik sınırlar → `PRINCIPLES.md §5/§11` · görsel dil/yoğunluk yayı → `DESIGN_SYSTEM_GUIDE.md §6` · Hero'nun/Empati'nin kurduğu değişmez gramer → `docs/HERO_SPECIFICATION.md` / `docs/EMPATHY_SPECIFICATION.md`. Çelişkide kanonik doküman esastır.
+> **Kanonik kaynaklar:** amaç/hikâye ve sayfa ritmi → `docs/HOMEPAGE_SPECIFICATION.md` (Sound Room bölümü) · ton/etik sınırlar → `PRINCIPLES.md §5/§11` · görsel dil/yoğunluk yayı → `DESIGN_SYSTEM_GUIDE.md §6` · Hero'nun/Empati'nin kurduğu değişmez gramer → `docs/HERO_SPECIFICATION.md` / `docs/EMPATHY_SPECIFICATION.md`. Çelişkide kanonik doküman esastır.
 >
 > **Sabit çerçeve (moodboard):** Amaç = "Büyük fikri deneyimletmek" · Lider katman = akustik · Kompozisyon = geniş interaktif sahne + kaydırıcı · Tipografi hissi = minimal, destekleyici · Işık/Gölge = ◐ cam panel çerçeve · Noise→Signal = ● ZİRVE · CTA = yok (etkileşimin kendisi davettir).
 
@@ -12,7 +12,7 @@
 
 **Kullanıcının zihninde ne değişmeli?** Hero'da marka güven verdi; Empati'de kullanıcı kendini tanıdı. Sound Room'da bu ikisi *kanıta* dönüşür: kullanıcı markanın büyük fikrini ("netlik") pasif okumaz, kendi eliyle üretir. Psikolojik yolculuktaki karşılığı: **"Aa, gerçekten böyle."** — soyut bir vaat, elle tutulur bir deneyime dönüşür.
 
-**Neden tam interaktif?** Bu, sitenin *"işitme sektörünün yapabileceği tek görsel-duyusal an"* olarak tasarlandığı yer (`HOMEPAGE_CREATIVE_DIRECTION.md`, Kesişen İlkeler). Pasif bir animasyon aynı fikri anlatabilirdi, ama kullanıcının kendi hareketiyle "gürültü"yü "sinyal"e çevirmesi, markanın vaadini (yeniden duymak, yeniden bağlanmak) kelimelerle değil, bir eylemle hissettirir. Bu, Core Emotion **Güven**'e giden en kısa yoldur: kullanıcı kendi kontrolündedir, hiçbir şey ona *anlatılmaz*.
+**Neden tam interaktif?** Bu, sitenin *"işitme sektörünün yapabileceği tek görsel-duyusal an"* olarak tasarlandığı yer (`docs/HOMEPAGE_SPECIFICATION.md`, Kesişen İlkeler). Pasif bir animasyon aynı fikri anlatabilirdi, ama kullanıcının kendi hareketiyle "gürültü"yü "sinyal"e çevirmesi, markanın vaadini (yeniden duymak, yeniden bağlanmak) kelimelerle değil, bir eylemle hissettirir. Bu, Core Emotion **Güven**'e giden en kısa yoldur: kullanıcı kendi kontrolündedir, hiçbir şey ona *anlatılmaz*.
 
 **Neden Empati'den hemen sonra?** Empati "bunu ben de yaşıyorum" dedirtti ama çözümsüz bıraktı — bilinçli bir gerilim. Sound Room bu gerilimi çözer: "işte tam olarak bahsettiğim şey." Kullanıcı duygusal olarak yatırım yapmış durumda geliyor; deneyim ona soyut değil kişisel gelir.
 
@@ -24,7 +24,7 @@
 
 Bu bölüm, sağlıkla ilgili bir markanın en hassas noktasıdır ve doğrudan bağlayıcıdır — `PRINCIPLES.md §5` (İçerik Bütünlüğü) ve `§11` (Yasal ve Etik Sınırlar) buraya birebir uygulanır.
 
-- **Gerçek ses simülasyonu YOK.** Bu, tasarım sürecinin başında bilinçli olarak reddedildi (bkz. `HOMEPAGE_CREATIVE_DIRECTION.md`): işitme kaybını, kaybı olan bir kişiye gerçek sesle göstermek hem hedef kitlede deneyimi çökertir (zaten duymadığı bir farkı duyamaz) hem de cihaz/dereceye göre yanıltıcıdır. Deneyim tamamen **görseldir** — kullanıcı duymaz, **görür**.
+- **Gerçek ses simülasyonu YOK.** Bu, tasarım sürecinin başında bilinçli olarak reddedildi (bkz. `docs/HOMEPAGE_SPECIFICATION.md`): işitme kaybını, kaybı olan bir kişiye gerçek sesle göstermek hem hedef kitlede deneyimi çökertir (zaten duymadığı bir farkı duyamaz) hem de cihaz/dereceye göre yanıltıcıdır. Deneyim tamamen **görseldir** — kullanıcı duymaz, **görür**.
 - **Teşhis değil, örnekleme.** Kaydırıcı bir tanı aracı değildir ve hiçbir noktada kullanıcının kendi işitme durumu hakkında sonuç çıkarmaz. Ekranda her zaman görünür, kalıcı bir açıklama bulunur (bkz. §4 Kopya) — bir defalık tooltip değil, sabit bir alt metin.
 - **Cihazdan bağımsız.** Hiçbir marka, model veya "bizim cihazımız böyle düzeltir" iması yapılmaz — bu genel bir netlik kavramının görselleştirilmesidir, ürün karşılaştırması değildir.
 - **Garanti/kesinlik dili yok.** "Cihazınız tam olarak bunu yapar" gibi ima edilebilecek hiçbir cümle kullanılmaz (`PRINCIPLES §5/§11` — kesin tedavi/iyileşme vaadi yasağı). Kopya her zaman "örnektir", "bir fikir verir" gibi çerçeveler.
@@ -64,7 +64,7 @@ Bu metin, deneyimin hemen altında/yanında, her zaman görünür (gizli tooltip
 
 **Genel atmosfer:** Empati'nin sessizliğinden sonra sahneye çıkış — ama gösteriş değil, bir *enstrümana* yaklaşmak gibi. Sakin bir laboratuvar/stüdyo hissi: odaklı, davetkâr, ölçülü.
 
-**Cam panel — bilinçli tek istisna:** `DESIGN_SYSTEM_GUIDE`'ın genel uyarısı camın aşırı kullanımının "generic ve soğuk/klinik" hissettirdiğidir (`HOMEPAGE_CREATIVE_DIRECTION.md`, Premium/glass uyarısı). Sound Room, sayfada camın kullanıldığı **tek yer** olarak tasarlanır — deneyimi bir "sahne/enstrüman" çerçevesine oturtan ince bir cam panel kenarlığı (çok düşük opaklıkta yüzey + ince kenarlık + hafif iç gölge). İstisna kasıtlıdır: cam burada dekor değil, "bu özel bir an" sinyalidir — sayfanın başka hiçbir yerinde tekrarlanmaz.
+**Cam panel — bilinçli tek istisna:** `DESIGN_SYSTEM_GUIDE`'ın genel uyarısı camın aşırı kullanımının "generic ve soğuk/klinik" hissettirdiğidir (`docs/HOMEPAGE_SPECIFICATION.md`, Premium/glass uyarısı). Sound Room, sayfada camın kullanıldığı **tek yer** olarak tasarlanır — deneyimi bir "sahne/enstrüman" çerçevesine oturtan ince bir cam panel kenarlığı (çok düşük opaklıkta yüzey + ince kenarlık + hafif iç gölge). İstisna kasıtlıdır: cam burada dekor değil, "bu özel bir an" sinyalidir — sayfanın başka hiçbir yerinde tekrarlanmaz.
 
 **Minimalizm seviyesi:** Çerçevenin dışında hiçbir şey yok — istatistik yok, ikon yığını yok, kart yok. Yalnızca: kısa bir bağlam cümlesi, deneyim sahnesi, kaydırıcı, sabit etik uyarı metni.
 

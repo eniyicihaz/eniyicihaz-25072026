@@ -21,12 +21,27 @@ import KnowledgeGate from "../components/knowledge-gate/KnowledgeGate/KnowledgeG
 import Closing from "../components/closing/Closing/Closing.astro";
 
 import { homeServices } from "../data/home/services";
+import { hero } from "../components/hero/Hero/hero.data";
+import { buildMedicalBusinessSchema } from "../lib/schema";
+
+// Extends the sitewide Organization node (MainLayout.astro) via the same
+// `@id` rather than redeclaring it — same real business, described more
+// fully here, not a second entity (see src/lib/schema.ts). `description`
+// reuses Hero's own contextSentence verbatim so visible copy and structured
+// data never say two different things (GEO non-contradiction,
+// SEARCH_STRATEGY.md §9) — the same discipline already used on /iletisim.
+const medicalBusinessSchema = buildMedicalBusinessSchema(
+  "https://www.eniyicihaz.com/",
+  hero.contextSentence,
+);
 ---
 
 <MainLayout
   title="Avrasya İşitme Cihazları | Darıca, Kocaeli SGK Anlaşmalı İşitme Merkezi | EniyiCihaz"
   description="Avrasya İşitme Cihazları; Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi. Ücretsiz işitme testi, cihaz uygulaması ve SGK danışmanlığı sunuyoruz."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
   <Hero />
   <Empathy />
   <SoundRoom />

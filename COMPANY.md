@@ -292,23 +292,26 @@ Türkiye'nin en güvenilir işitme cihazı bilgi platformunu ve danışmanlık m
 
 # 17. Hizmet Bölgeleri
 
-## Merkez
+> Bu bölüm, sitenin Local SEO / GEO coğrafi önceliklendirmesinin **tek** kaynağıdır (Single Source of Truth). Diğer tüm dokümanlar (SEARCH_STRATEGY.md, QUALITY_GATES.md, sayfa/spesifikasyon dosyaları) bu hiyerarşiye yalnızca referans verir; isim veya sırayı kendi içinde tekrar üretmez. Amaç: coğrafi bilginin iki dokümanda birbirinden farklılaşması (drift) hiçbir zaman oluşmasın.
 
-- Darıca/Kocaeli
+## Coğrafi Öncelik Hiyerarşisi
 
-## Öncelikli Hizmet Bölgeleri
+1. **Darıca — Ana Merkez / Birincil Yerel Odak.** Fiziksel merkezin bulunduğu ilçe (bkz. §1 Merkez Adresi). Sitedeki her "merkez" ifadesi buraya işaret eder.
+2. **Gebze, Çayırova — Öncelikli Hizmet Bölgesi.** Darıca'ya bitişik, en yüksek doğal erişim potansiyeline sahip ilçeler; içerikte doğal cümle içinde (zorlama olmadan) öne çıkarılır.
+3. **Kocaeli — Üst Bölgesel Otorite.** İl düzeyinde referans; Darıca/Gebze/Çayırova'yı kapsayan üst kimlik. NAP, adres biçimi ve "X, Kocaeli" türü il-ilçe eşleşmesi için kullanılır.
+4. **Dilovası, Tuzla, Pendik — İkincil / Çevre Bölgeler.** Öncelikli değildir ama hizmet reddedilmez; yalnızca doğrudan sorulduğunda (SSS, iletişim sayfası) doğal dille anılır.
 
-- Darıca
-- Gebze
-- Çayırova
+## Bilinçli Olarak Kapsam Dışı
 
-## Şehirler
+İzmit, Körfez, Derince, Başiskele ve yukarıda sayılmayan diğer Kocaeli ilçeleri bu hiyerarşiye **dahil edilmemiştir** — bu bir eksiklik değil, bilinçli bir sınırdır. Dış bir kaynak bu ilçeleri önerse bile, coğrafi kapsam yalnızca bu bölümün güncellenmesiyle genişler.
 
-Başta Kocaeli, İstanbul ve Türkiye geneli
+## Kullanım Kuralı
 
-## İlçeler
+Bu hiyerarşi, doğal bir Local SEO/GEO sinyali olarak kullanılır: gerçek bağlamla, doğal cümle içinde (ör. "Darıca merkezli; Gebze ve Çayırova'dan da kolayca ulaşabilirsiniz."). Her sayfaya zorla ilçe/il adı eklenmesi ve aynı içeriğin yalnızca şehir adı değiştirilerek çoğaltılması (doorway/scaled local page) kesinlikle yasaktır. Ayrıntılı, kontrol edilebilir kural: Canonical Source: QUALITY_GATES.md §2 Local SEO Gate.
 
-Başta Darıca, Gebze, Çayırova, Dilovası, Tuzla ve Pendik olmak üzere çevre bölgeler.
+## Şehir/Ülke Düzeyi Bilgi Hizmeti (yukarıdaki yerel hiyerarşiden ayrı)
+
+Kocaeli ve İstanbul'un yanı sıra, Türkiye'nin tüm illerine bilgi ve danışmanlık hizmeti sunulur (bkz. §1 Hizmet Verilen Şehirler). Bu, fiziksel/yerel hizmet önceliğini değil, dijital bilgi platformunun ulusal kapsamını ifade eder ve yukarıdaki 4 kademeli coğrafi öncelik hiyerarşisiyle karıştırılmaz.
 
 ---
 
