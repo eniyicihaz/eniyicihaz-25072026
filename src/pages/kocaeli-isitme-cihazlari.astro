@@ -1,0 +1,540 @@
+---
+// Kocaeli İşitme Cihazları — /kocaeli-isitme-cihazlari.
+// Sıfırdan inşa: Kocaeli'ye ait hiçbir sayfa/route/component daha önce
+// mevcut değildi.
+//
+// FARKLILAŞMA (bilinçli tasarım kararı): Bu sayfa Darıca/Gebze/Çayırova'nın
+// şehir-adı-değiştirilmiş bir kopyası DEĞİL — hem tasarım dili hem içerik
+// mimarisi kasıtlı olarak farklı:
+// - Hero, CorporateHero (Darıca/Gebze/Çayırova'nın kullandığı, fotoğraf +
+//   alt-bantta stats kartı düzeni) DEĞİL — bu sayfaya özel, page-scoped bir
+//   Hero markup'ı. Kullanıcının sağladığı gerçek panoramik görsel (Kocaeli
+//   körfezi + Darıca/Gebze/Çayırova/Kocaeli konum işaretleri + işitme
+//   cihazı ürünleri) üstte tam-genişlik banner olarak, metin İSE görselin
+//   ALTINDA, ayrı bir açık-zemin bölümde veriliyor — bu sayede görselin
+//   üzerindeki konum işaretleri hiçbir metinle örtüşmüyor/kaybolmuyor.
+// - İçerik mimarisi 16 bölüm (Darıca/Gebze/Çayırova'nın 8-11 bölümünden
+//   belirgin şekilde daha kapsamlı) — şehir/bölge seviyesinde bir topical
+//   SEO giriş sayfası gibi çalışıyor: "işitme cihazı nedir", "nasıl
+//   seçilir", "fiyatı ne etkiler" gibi genel bilgilendirme soruları da
+//   cevaplanıyor (tanı koymadan, genel bilgi seviyesinde).
+// - Kocaeli, Darıca/Gebze/Çayırova'nın "fiziksel merkez yok" kısıtından
+//   FARKLI bir çerçevede ele alınıyor: bu sayfa şehir/bölge seviyesinde bir
+//   giriş sayfası, Darıca'daki gerçek merkez buranın gerçek hizmet noktası
+//   olarak doğal biçimde ve gerektiği yerlerde (ilk bölümlerde de dahil,
+//   çünkü "Ana Merkez" kavramı bu sayfanın konusuna bizzat dahil) anılıyor
+//   — ama "Kocaeli'de şubemiz/merkezimiz var" gibi YANLIŞ bir iddia asla
+//   kurulmuyor; her zaman "Darıca'daki merkezimiz" doğru bağlamıyla
+//   kullanılıyor. Kocaeli için uydurma adres/telefon/harita YOK.
+import MainLayout from "../layouts/MainLayout.astro";
+import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
+import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
+import Brands from "../components/brands/Brands/Brands.astro";
+import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
+import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import CtaButton from "../components/shared/CtaButton/CtaButton.astro";
+import { MapPin, Phone } from "lucide-astro";
+
+import { kocaeliHero } from "../data/kocaeli/hero";
+import {
+  kocaeliIntro,
+  kocaeliWhatIsHearingAid,
+  kocaeliUnderstanding,
+  kocaeliSelectionGuide,
+  kocaeliPricing,
+  kocaeliBuyingTips,
+  kocaeliRegionalService,
+} from "../data/kocaeli/copy-blocks";
+import { kocaeliProcess } from "../data/kocaeli/process";
+import { kocaeliDeviceTypes } from "../data/kocaeli/device-types";
+import { kocaeliSgk } from "../data/kocaeli/sgk";
+import { kocaeliServices } from "../data/kocaeli/services";
+import { kocaeliLocation } from "../data/kocaeli/location";
+import { kocaeliFaq } from "../data/kocaeli/faq";
+import { kocaeliFinalCta } from "../data/kocaeli/final-cta";
+
+import { buildMedicalBusinessSchema } from "../lib/schema";
+import { contactHero } from "../data/contact/hero";
+
+const PAGE_URL = "https://www.eniyicihaz.com/kocaeli-isitme-cihazlari/";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Kocaeli İşitme Cihazları", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+
+// Aynı kanonik tanım cümlesi + aynı gerçek MedicalBusiness kaydı (aynı
+// @id, aynı gerçek Darıca adresi) — Kocaeli için AYRI bir işletme/adres
+// ASLA oluşturulmadı. Kocaeli zaten `areaServed`'de "Kocaeli" olarak değil,
+// COMPANY.md §17'nin gerçek ilçe hiyerarşisi (Darıca/Gebze/Çayırova/
+// Dilovası/Tuzla/Pendik) olarak listeleniyor — bu, "Kocaeli" ilin kendisini
+// bir areaServed girdisi gibi icat etmek yerine, iş bu ilin gerçek
+// ilçelerini listeleyerek daha doğru temsil ediliyor; schema.ts'e
+// dokunulmadı.
+const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.definitionSentence);
+---
+
+<MainLayout
+  title="Kocaeli İşitme Cihazları | Avrasya İşitme"
+  description="Kocaeli'de işitme cihazı arayanlar için kapsamlı rehber: cihaz türleri, marka seçenekleri, SGK desteği ve fiyat faktörleri hakkında bilgi alın."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="kocaeli-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <section class="kocaeli-hero" aria-labelledby="kocaeli-hero-title">
+    <div class="kocaeli-hero__frame">
+      <img
+        class="kocaeli-hero__image"
+        src={kocaeliHero.image}
+        alt={kocaeliHero.imageAlt}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="kocaeli-hero__scrim" aria-hidden="true" />
+      <div class="kocaeli-hero__overlay">
+        <span class="kocaeli-hero__badge">
+          <MapPin size={14} stroke-width={2.5} aria-hidden="true" />
+          <span>{kocaeliHero.badge}</span>
+        </span>
+        <h1 class="kocaeli-hero__heading" id="kocaeli-hero-title">{kocaeliHero.heading}</h1>
+      </div>
+    </div>
+
+    <div class="kocaeli-hero__body">
+      <p class="kocaeli-hero__subheading">{kocaeliHero.subheading}</p>
+      <div class="kocaeli-hero__actions">
+        {kocaeliHero.ctas.map((cta) => (
+          <CtaButton label={cta.label} href={cta.href} variant={cta.variant ?? "solid"} iconLeft={cta.variant === "outline" ? Phone : undefined} />
+        ))}
+      </div>
+      <ul class="kocaeli-hero__stats">
+        {kocaeliHero.stats.map((stat) => (
+          <li class="kocaeli-hero__stat">
+            <span class="kocaeli-hero__stat-value">{stat.value}</span>
+            <span class="kocaeli-hero__stat-label">{stat.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="kocaeli-copy-block" aria-labelledby="kocaeli-intro-title">
+    <div class="kocaeli-copy-block__inner">
+      <p class="kocaeli-copy-block__badge">{kocaeliIntro.badge}</p>
+      <h2 class="kocaeli-copy-block__heading" id="kocaeli-intro-title">{kocaeliIntro.heading}</h2>
+      {kocaeliIntro.paragraphs.map((p) => <p class="kocaeli-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <section class="kocaeli-copy-block kocaeli-copy-block--alt" aria-labelledby="kocaeli-what-is-title">
+    <div class="kocaeli-copy-block__inner">
+      <p class="kocaeli-copy-block__badge">{kocaeliWhatIsHearingAid.badge}</p>
+      <h2 class="kocaeli-copy-block__heading" id="kocaeli-what-is-title">{kocaeliWhatIsHearingAid.heading}</h2>
+      {kocaeliWhatIsHearingAid.paragraphs.map((p) => <p class="kocaeli-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <section class="kocaeli-copy-block" aria-labelledby="kocaeli-understanding-title">
+    <div class="kocaeli-copy-block__inner">
+      <p class="kocaeli-copy-block__badge">{kocaeliUnderstanding.badge}</p>
+      <h2 class="kocaeli-copy-block__heading" id="kocaeli-understanding-title">{kocaeliUnderstanding.heading}</h2>
+      {kocaeliUnderstanding.paragraphs.map((p) => <p class="kocaeli-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <ProcessTimeline data={kocaeliProcess} />
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/degerlendirme/ucretsiz-isitme-testi">Ücretsiz değerlendirme hakkında daha fazla bilgi alın →</a>
+  </p>
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/degerlendirme/online-isitme-testi">Evden çıkmadan online işitme taramasını deneyin →</a>
+  </p>
+
+  <section class="kocaeli-copy-block kocaeli-copy-block--alt" aria-labelledby="kocaeli-selection-title">
+    <div class="kocaeli-copy-block__inner">
+      <p class="kocaeli-copy-block__badge">{kocaeliSelectionGuide.badge}</p>
+      <h2 class="kocaeli-copy-block__heading" id="kocaeli-selection-title">{kocaeliSelectionGuide.heading}</h2>
+      {kocaeliSelectionGuide.paragraphs.map((p) => <p class="kocaeli-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <ValueGrid data={kocaeliDeviceTypes} />
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/isitme-cihazlari">Tüm seçenekleri işitme cihazları sayfamızda inceleyin →</a>
+  </p>
+
+  <p class="kocaeli-plain-note">Tek bir markaya bağlı kalmadan, 18'den fazla dünya markası ve farklı teknoloji seviyeleri arasından ihtiyacınıza uygun olanı karşılaştırabilirsiniz.</p>
+  <Brands />
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/markalar">Tüm markaları inceleyin →</a>
+  </p>
+
+  <section class="kocaeli-copy-block" aria-labelledby="kocaeli-pricing-title">
+    <div class="kocaeli-copy-block__inner">
+      <p class="kocaeli-copy-block__badge">{kocaeliPricing.badge}</p>
+      <h2 class="kocaeli-copy-block__heading" id="kocaeli-pricing-title">{kocaeliPricing.heading}</h2>
+      {kocaeliPricing.paragraphs.map((p) => <p class="kocaeli-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <ValueGrid data={kocaeliSgk} />
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/sgk-isitme-cihazi-odemesi">SGK desteği hakkında detaylı bilgi →</a>
+  </p>
+
+  <BrandCriteria data={kocaeliServices} />
+
+  <section class="kocaeli-copy-block kocaeli-copy-block--alt" aria-labelledby="kocaeli-buying-tips-title">
+    <div class="kocaeli-copy-block__inner">
+      <p class="kocaeli-copy-block__badge">{kocaeliBuyingTips.badge}</p>
+      <h2 class="kocaeli-copy-block__heading" id="kocaeli-buying-tips-title">{kocaeliBuyingTips.heading}</h2>
+      {kocaeliBuyingTips.paragraphs.map((p) => <p class="kocaeli-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <section class="kocaeli-copy-block" aria-labelledby="kocaeli-regional-title">
+    <div class="kocaeli-copy-block__inner">
+      <p class="kocaeli-copy-block__badge">{kocaeliRegionalService.badge}</p>
+      <h2 class="kocaeli-copy-block__heading" id="kocaeli-regional-title">{kocaeliRegionalService.heading}</h2>
+      {kocaeliRegionalService.paragraphs.map((p) => <p class="kocaeli-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/darica-isitme-cihazlari/">Darıca'daki merkezimizin sayfasını inceleyin →</a>
+  </p>
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/gebze-isitme-cihazlari/">Gebze'den hizmet sayfamızı inceleyin →</a>
+  </p>
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/cayirova-isitme-cihazlari/">Çayırova'dan hizmet sayfamızı inceleyin →</a>
+  </p>
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/uygulama-ayar/evde-isitme-cihazi-hizmeti">Evinize gelen işitme cihazı hizmetimiz hakkında bilgi alın →</a>
+  </p>
+
+  <BrandPageFaq data={kocaeliFaq} />
+
+  <ContactLocationCard data={kocaeliLocation} />
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/iletisim">Tüm iletişim bilgilerimiz için tıklayın →</a>
+  </p>
+
+  <BrandPageFinalCta data={kocaeliFinalCta} />
+</MainLayout>
+
+<style>
+  .kocaeli-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  /* --- Bespoke Hero ---------------------------------------------------
+     Darıca/Gebze/Çayırova'nın hepsi CorporateHero'yu (fotoğraf + alt
+     bantta stats) kullanıyor. Kocaeli'nin görseli çok daha panoramik
+     (2087:753 ≈ 2.77:1) ve üzerinde 4 ayrı konum işareti taşıyor — bu
+     yüzden metni fotoğrafın ÜZERİNE bindirmek yerine (işaretleri
+     kapatma riski), yalnızca kısa bir rozet+H1 görselin üst/sol
+     köşesinde (işaretlerin başladığı bölgeden önce) veriliyor; alt
+     metin/CTA/istatistikler ise görselin ALTINDA, ayrı bir açık-zemin
+     bölümde — görselin hiçbir konum işareti metinle örtüşmüyor. */
+  .kocaeli-hero {
+    background: var(--color-background);
+  }
+
+  .kocaeli-hero__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .kocaeli-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 46% 42%;
+  }
+
+  /* Yalnızca üst ~55%'i karartıyor (gökyüzü/dağ silueti bölgesi) —
+     işaretlerin ve cihazların bulunduğu alt/orta bölge neredeyse hiç
+     kararmıyor, böylece işaretler tam okunabilir kalıyor. */
+  .kocaeli-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(15 23 42 / 0.72) 0%, rgb(15 23 42 / 0.32) 34%, transparent 56%);
+  }
+
+  .kocaeli-hero__overlay {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+    color: var(--color-text-inverse);
+  }
+
+  .kocaeli-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgb(255 255 255 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.12);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .kocaeli-hero__heading {
+    margin: var(--space-4) 0 0;
+    max-width: 22rem;
+    font-size: clamp(1.75rem, 1.3rem + 2vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-text-inverse);
+    text-shadow: 0 2px 12px rgb(0 0 0 / 0.35);
+  }
+
+  .kocaeli-hero__body {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-8) var(--space-6) var(--space-10);
+  }
+
+  .kocaeli-hero__subheading {
+    margin: 0;
+    max-width: 46rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .kocaeli-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .kocaeli-hero__stats {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: var(--space-5) var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    max-width: 48rem;
+  }
+
+  .kocaeli-hero__stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    text-align: center;
+  }
+
+  .kocaeli-hero__stat:not(:last-child) {
+    border-right: 1px solid var(--color-border);
+  }
+
+  .kocaeli-hero__stat-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .kocaeli-hero__stat-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-soft);
+  }
+
+  @media (min-width: 640px) {
+    .kocaeli-hero__image {
+      object-position: center 40%;
+    }
+
+    .kocaeli-hero__heading {
+      max-width: 26rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .kocaeli-hero__frame {
+      aspect-ratio: 2087 / 753;
+    }
+
+    .kocaeli-hero__image {
+      object-position: center 50%;
+    }
+
+    .kocaeli-hero__overlay {
+      padding-top: var(--space-10);
+    }
+
+    .kocaeli-hero__heading {
+      max-width: 30rem;
+    }
+  }
+
+  /* --- Copy blocks ------------------------------------------------------
+     Darıca/Gebze/Çayırova'nın page-scoped "copy block" deseniyle aynı
+     temel yapı, ama Kocaeli sayfasının çok sayıda ardışık copy-block
+     içermesi nedeniyle iki farklı zemin tonuyla (--alt modifier)
+     görsel ritim/bölüm ayrımı sağlanıyor — arka arkaya 7 blok aynı
+     tonda olsaydı sayfa monoton görünürdü. */
+  .kocaeli-copy-block {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .kocaeli-copy-block--alt {
+    background: var(--color-surface);
+  }
+
+  .kocaeli-copy-block__inner {
+    max-width: 46rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .kocaeli-copy-block__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .kocaeli-copy-block--alt .kocaeli-copy-block__badge {
+    background: var(--color-white);
+  }
+
+  .kocaeli-copy-block__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .kocaeli-copy-block__paragraph {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .kocaeli-inline-link-wrap {
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-4);
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    text-align: center;
+    background: var(--color-surface);
+  }
+
+  .kocaeli-inline-link-wrap:last-of-type {
+    padding-bottom: var(--space-16);
+  }
+
+  .kocaeli-inline-link {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .kocaeli-inline-link:hover {
+    text-decoration: underline;
+  }
+
+  .kocaeli-inline-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .kocaeli-plain-note {
+    margin: 0;
+    padding: var(--space-16) var(--space-6) var(--space-6);
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    text-align: center;
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .kocaeli-copy-block {
+      padding-block: var(--space-10);
+    }
+
+    .kocaeli-inline-link-wrap:last-of-type {
+      padding-bottom: var(--space-10);
+    }
+
+    .kocaeli-plain-note {
+      padding-top: var(--space-10);
+    }
+
+    .kocaeli-hero__stats {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: none;
+    }
+
+    .kocaeli-hero__stat {
+      border-right: none !important;
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .kocaeli-hero__stat:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .kocaeli-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>

@@ -27,12 +27,14 @@ import { buildMedicalBusinessSchema } from "../lib/schema";
 // Extends the sitewide Organization node (MainLayout.astro) via the same
 // `@id` rather than redeclaring it — same real business, described more
 // fully here, not a second entity (see src/lib/schema.ts). `description`
-// reuses Hero's own contextSentence verbatim so visible copy and structured
-// data never say two different things (GEO non-contradiction,
-// SEARCH_STRATEGY.md §9) — the same discipline already used on /iletisim.
+// reuses Hero slide 1's own entity-definition sentence verbatim (now
+// hero.slides[0].body[0] under the 6-slide carousel data shape) so visible
+// copy and structured data never say two different things (GEO
+// non-contradiction, SEARCH_STRATEGY.md §9) — the same discipline already
+// used on /iletisim.
 const medicalBusinessSchema = buildMedicalBusinessSchema(
   "https://www.eniyicihaz.com/",
-  hero.contextSentence,
+  hero.slides[0].body?.[0] ?? "",
 );
 ---
 

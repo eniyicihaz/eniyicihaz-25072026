@@ -4,11 +4,11 @@
 // deliberately excluded (not in COMPANY.md, regardless of what any
 // outside source suggests; a finalized decision, not an oversight).
 //
-// `href` stays undefined for every item today (no dedicated region
-// landing pages exist yet) — ContactServiceArea renders these as plain
-// text, never as a link to a page that doesn't exist. The day a real
-// Darıca/Gebze/Çayırova page ships, wiring it up here is a one-line data
-// edit, not a component change (see the plan's §6).
+// `href` is wired up for Darıca, Gebze and Çayırova now that their real
+// landing pages exist (ContactServiceArea already renders `item.href` as
+// a real link when present, plain text otherwise — no component change
+// needed, exactly as anticipated). Dilovası/Tuzla/Pendik stay text-only:
+// no dedicated page exists for them and none is planned.
 
 export type ServiceAreaTier = "merkez" | "oncelikli" | "cevre";
 
@@ -43,16 +43,19 @@ export const contactServiceArea: ContactServiceAreaContent = {
       name: "Darıca",
       tier: "merkez",
       description: "Merkezimiz Darıca'da bulunur; adres ve yol tarifi için yukarıdaki konum kartını inceleyebilirsiniz.",
+      href: "/darica-isitme-cihazlari/",
     },
     {
       name: "Gebze",
       tier: "oncelikli",
       description: "Gebze'den merkezimize kolayca ulaşabilirsiniz.",
+      href: "/gebze-isitme-cihazlari/",
     },
     {
       name: "Çayırova",
       tier: "oncelikli",
       description: "Çayırova'dan merkezimize kolayca ulaşabilirsiniz.",
+      href: "/cayirova-isitme-cihazlari/",
     },
     {
       name: "Dilovası",

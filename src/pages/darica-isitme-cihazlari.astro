@@ -1,0 +1,219 @@
+---
+// Darıca İşitme Cihazları — /darica-isitme-cihazlari.
+// Sıfırdan inşa: bu route eski/canlı sitede vardı ama bu repoda hiç
+// mevcut değildi (araştırma turu doğrulandı — dosya, veri, sitemap kaydı
+// yok). URL bilinçli olarak DEĞİŞTİRİLMEDİ (mevcut SEO/index geçmişini
+// korumak için); içerik/yapı ise onaylanan analiz+plan raporuna göre
+// sıfırdan, mevcut Design System/component mimarisiyle kuruldu.
+//
+// Mimari: Hero carousel YOK — tek, sabit, lokal odaklı bir Hero
+// (CorporateHero, /hakkimizda'nın component'i, farklı gerçek fotoğrafla
+// yeniden kullanıldı). H1 buradadır ve sitede TEK H1'dir — homepage'in
+// "Duymak, anlamaktır." H1'i burada KULLANILMADI (onaylanan karar #4).
+// "18'den Fazla Dünya Markasıyla Çalışıyoruz" bölümü homepage'in kendi
+// <Brands /> component'i AYNEN import edilerek kullanıldı (onaylanan
+// karar #5) — yeniden tasarlanmadı, kopyalanmadı.
+//
+// Sıra (onaylanan karar #10): Hero -> Doğru Değerlendirme Doğru Cihaz ->
+// Ücretsiz İşitme Değerlendirmesi -> İşitme Cihazı Türleri -> Markalar ->
+// SGK -> [Cihaz Deneme + Kişiye Özel Ayar & Programlama, tek
+// BrandCriteria bölümünde 3 linkli kart] -> Neden Avrasya İşitme? ->
+// Darıca'daki Gerçek Merkezimiz -> SSS -> Final CTA.
+//
+// SGK ve Cihaz Deneme/Ayar/Programlama bölümleri kısa/teaser + link
+// (plan §K) — sayfa reklam sayfasına dönüşmesin diye orta bölümlerde ayrı
+// CTA butonu yok, yalnızca metin-içi link.
+import MainLayout from "../layouts/MainLayout.astro";
+import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
+import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
+import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
+import Brands from "../components/brands/Brands/Brands.astro";
+import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
+import CenterGallery from "../components/shared/CenterGallery/CenterGallery.astro";
+import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { daricaHero } from "../data/darica/hero";
+import { daricaNeedIntro } from "../data/darica/copy-blocks";
+import { daricaProcess } from "../data/darica/process";
+import { daricaDeviceTypes } from "../data/darica/device-types";
+import { daricaSgk } from "../data/darica/sgk";
+import { daricaServices } from "../data/darica/services";
+import { daricaWhyUs } from "../data/darica/why-us";
+import { daricaCenterGallery } from "../data/darica/center-gallery";
+import { daricaLocation } from "../data/darica/location";
+import { daricaFaq } from "../data/darica/faq";
+import { daricaFinalCta } from "../data/darica/final-cta";
+
+import { buildMedicalBusinessSchema } from "../lib/schema";
+import { contactHero } from "../data/contact/hero";
+
+const PAGE_URL = "https://www.eniyicihaz.com/darica-isitme-cihazlari/";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Darıca İşitme Cihazları", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+
+// Aynı kanonik tanım cümlesi homepage ve /iletisim'de kullanılıyor —
+// GEO non-contradiction (SEARCH_STRATEGY.md §9), burada yeni bir cümle
+// icat edilmedi.
+const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.definitionSentence);
+---
+
+<MainLayout
+  title="Darıca İşitme Cihazları | Avrasya İşitme"
+  description="Darıca, Kocaeli'de SGK anlaşmalı Avrasya İşitme Cihazları merkezi. Ücretsiz işitme değerlendirmesi, 18+ marka seçeneği ve kişiye özel uygulama. Randevu alın."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="darica-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <CorporateHero data={daricaHero} />
+
+  <section class="darica-copy-block" aria-labelledby="darica-need-title">
+    <div class="darica-copy-block__inner">
+      <p class="darica-copy-block__badge">{daricaNeedIntro.badge}</p>
+      <h2 class="darica-copy-block__heading" id="darica-need-title">{daricaNeedIntro.heading}</h2>
+      {daricaNeedIntro.paragraphs.map((p) => <p class="darica-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <ProcessTimeline data={daricaProcess} />
+  <p class="darica-inline-link-wrap">
+    <a class="darica-inline-link" href="/degerlendirme/ucretsiz-isitme-testi">Detaylı süreç ve sıkça sorulan sorular için Ücretsiz İşitme Testi sayfamızı inceleyin →</a>
+  </p>
+
+  <ValueGrid data={daricaDeviceTypes} />
+  <p class="darica-inline-link-wrap">
+    <a class="darica-inline-link" href="/isitme-cihazlari">Tüm seçenekleri İşitme Cihazları sayfamızda inceleyin →</a>
+  </p>
+
+  <Brands />
+
+  <ValueGrid data={daricaSgk} />
+  <p class="darica-inline-link-wrap">
+    <a class="darica-inline-link" href="/sgk-isitme-cihazi-odemesi">SGK ile işitme cihazı desteği hakkında detaylı bilgi →</a>
+  </p>
+
+  <BrandCriteria data={daricaServices} />
+  <ValueGrid data={daricaWhyUs} />
+
+  <CenterGallery data={daricaCenterGallery} />
+  <ContactLocationCard data={daricaLocation} />
+
+  <BrandPageFaq data={daricaFaq} />
+  <BrandPageFinalCta data={daricaFinalCta} />
+</MainLayout>
+
+<style>
+  .darica-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  /* Compact, card/stat-free copy block — reused for the single remaining
+     short, single-topic section (İhtiyaç/Yaklaşım köprüsü) that doesn't
+     fit any existing stats/steps/card component without inventing fake
+     data. SGK now uses ValueGrid (3 real cards) instead of this pattern.
+     Visual language matches every other section's badge/heading/
+     paragraph tokens exactly (same as BrandPageIntro/ContactServiceArea),
+     just without their mandatory stats/card grid. */
+  .darica-copy-block {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .darica-copy-block__inner {
+    max-width: 42rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .darica-copy-block__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .darica-copy-block__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .darica-copy-block__paragraph {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* Small text-only links under ProcessTimeline/ValueGrid sections —
+     deliberately not a button, so these stay teasers rather than repeated
+     CTAs (plan §K: "orta bölümlerde CTA yok, yalnızca metin-içi link"). */
+  .darica-inline-link-wrap {
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-16);
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    text-align: center;
+    background: var(--color-surface);
+  }
+
+  .darica-inline-link {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .darica-inline-link:hover {
+    text-decoration: underline;
+  }
+
+  .darica-inline-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 640px) {
+    .darica-copy-block {
+      padding-block: var(--space-10);
+    }
+
+    .darica-inline-link-wrap {
+      padding-bottom: var(--space-10);
+    }
+  }
+</style>

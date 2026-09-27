@@ -1,0 +1,7 @@
+# Darıca landing page — eski URL, canlıdaki mevcut SEO/indeks geçmişini
+# korumak için yeni canonical URL'ye 301 ile yönlendiriliyor. Hem trailing
+# slash'lı hem slash'sız varyant kapsanıyor. Gebze için redirect eklenmedi —
+# eski Gebze URL'si hiçbir zaman commit/push/deploy edilmedi (git geçmişinde
+# yok), bu yüzden dışarıda korunacak bir indeks/backlink geçmişi de yok.
+/darica-isitme-cihazlari-avrasya-isitme    /darica-isitme-cihazlari/   301
+/darica-isitme-cihazlari-avrasya-isitme/   /darica-isitme-cihazlari/   301

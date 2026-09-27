@@ -108,6 +108,9 @@ const medicalBusinessSchema = {
   <ContactLocationCard data={contactLocationCard} />
   <BrandCriteria data={contactServices} />
   <ContactServiceArea data={contactServiceArea} />
+  <p class="contact-inline-link-wrap">
+    <a class="contact-inline-link" href="/kocaeli-isitme-cihazlari/">Kocaeli genelindeki hizmetlerimiz hakkında detaylı bilgi alın →</a>
+  </p>
   <BrandBuyingGuide data={contactProcess} />
   <BrandFaq data={contactFaq} />
   <BrandExpertSupport data={contactFinalCta} />
@@ -118,5 +121,42 @@ const medicalBusinessSchema = {
     max-width: var(--container-2xl);
     margin-inline: auto;
     padding: var(--space-6) var(--space-6) 0;
+  }
+
+  /* Darıca/Gebze/Çayırova/Kocaeli landing page'lerinin kendi "inline-link"
+     deseniyle birebir aynı — Kocaeli sayfası bu ilçe-seviyeli
+     ServiceArea listesine (madde bazlı, tier'lı) uymadığı için (o bir il,
+     bunlar ilçe) ayrı, tek satırlık bir bağlantı olarak ekleniyor.
+     ContactServiceArea component'i değiştirilmedi. */
+  .contact-inline-link-wrap {
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-16);
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    text-align: center;
+    background: var(--color-background);
+  }
+
+  .contact-inline-link {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .contact-inline-link:hover {
+    text-decoration: underline;
+  }
+
+  .contact-inline-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 640px) {
+    .contact-inline-link-wrap {
+      padding-bottom: var(--space-10);
+    }
   }
 </style>

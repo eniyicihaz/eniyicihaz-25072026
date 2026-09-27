@@ -1,0 +1,252 @@
+---
+// Çayırova İşitme Cihazı Hizmeti — /cayirova-isitme-cihazlari.
+// Sıfırdan inşa: Çayırova'ya ait hiçbir sayfa/route/component daha önce
+// mevcut değildi.
+//
+// KRİTİK ÇERÇEVE (COMPANY.md §17'ye dayanır): Çayırova'da (Gebze gibi)
+// GERÇEK bir fiziksel şube/merkez YOK. Darıca "Ana Merkez", Çayırova
+// "Öncelikli Hizmet Bölgesi". Bu sayfa Darıca veya Gebze sayfasının
+// şehir-adı-değiştirilmiş kopyası DEĞİL — kendi açısı (somut belirtilerle
+// açılan "doğru başlangıç" bölümü, farklı görsel, farklı SSS soruları,
+// farklı karar-faktörleri vurgusu) ile özgün biçimde yazıldı. Cihaz
+// türleri/SGK/deneme-ayar metinleri Darıca ve Gebze'ninkiyle KELİME KELİME
+// AYNI DEĞİL — aynı gerçek süreç/kategoriler üçüncü kez özgün biçimde
+// yeniden yazıldı.
+//
+// Darıca, Hero ve "Doğru Adım" bölümünde HİÇ GEÇMİYOR. Gerçek NAP/konum
+// bilgisi yalnızca sayfanın sonundaki "Merkezimize Nasıl Ulaşabilirsiniz?"
+// bölümünde veriliyor — CenterGallery KULLANILMADI (Çayırova'da gerçek
+// merkez fotoğrafı yok, bu component'i kullanmak yanlış fiziksel-konum
+// iddiası olurdu). Hero'nun görseli ne Darıca'nın gerçek fotoğrafı ne de
+// Gebze'nin ürün görseli — üçüncü, kendine özgü bir AI-konsept hizmet-
+// bölgesi haritası (isitme-testi/merkez fotoğrafı DEĞİL, homepage Hero
+// slayt 5'te de kullanılan gerçek proje varlığı).
+//
+// "Çayırova'da şubeniz var mı?" sorusu SSS'e bilinçli olarak eklenmedi
+// (Gebze revizyonunda benimsenen yaklaşımla aynı — bu konu kullanıcıya
+// gereksiz şekilde öne çıkarılmıyor); ama sayfanın hiçbir yerinde gerçek
+// olmayan bir fiziksel Çayırova şubesi/adresi iddiası da yok.
+import MainLayout from "../layouts/MainLayout.astro";
+import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
+import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
+import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
+import Brands from "../components/brands/Brands/Brands.astro";
+import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
+import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+
+import { cayirovaHero } from "../data/cayirova/hero";
+import { cayirovaIntro, cayirovaDecisionFactors } from "../data/cayirova/copy-blocks";
+import { cayirovaProcess } from "../data/cayirova/process";
+import { cayirovaDeviceTypes } from "../data/cayirova/device-types";
+import { cayirovaSgk } from "../data/cayirova/sgk";
+import { cayirovaServices } from "../data/cayirova/services";
+import { cayirovaLocation } from "../data/cayirova/location";
+import { cayirovaFaq } from "../data/cayirova/faq";
+import { cayirovaFinalCta } from "../data/cayirova/final-cta";
+
+import { buildMedicalBusinessSchema } from "../lib/schema";
+import { contactHero } from "../data/contact/hero";
+
+const PAGE_URL = "https://www.eniyicihaz.com/cayirova-isitme-cihazlari/";
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Çayırova İşitme Cihazları", current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+
+// Aynı kanonik tanım cümlesi + aynı gerçek MedicalBusiness kaydı (aynı
+// @id, aynı gerçek Darıca adresi) — Çayırova için AYRI bir işletme/adres
+// ASLA oluşturulmadı. Çayırova zaten `areaServed` dizisinde var (bkz.
+// src/lib/schema.ts + src/data/contact/serviceArea.ts) — burada hiçbir
+// değişiklik gerekmedi.
+const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.definitionSentence);
+---
+
+<MainLayout
+  title="Çayırova İşitme Cihazları | Avrasya İşitme"
+  description="Çayırova'dan işitme cihazı ihtiyacınız için bize ulaşın. SGK destekli süreç, marka seçenekleri, cihaz deneme ve kişiye özel ayar hakkında bilgi alın."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="cayirova-breadcrumb-wrap">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <CorporateHero data={cayirovaHero} />
+
+  <section class="cayirova-copy-block" aria-labelledby="cayirova-intro-title">
+    <div class="cayirova-copy-block__inner">
+      <p class="cayirova-copy-block__badge">{cayirovaIntro.badge}</p>
+      <h2 class="cayirova-copy-block__heading" id="cayirova-intro-title">{cayirovaIntro.heading}</h2>
+      {cayirovaIntro.paragraphs.map((p) => <p class="cayirova-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <ProcessTimeline data={cayirovaProcess} />
+  <p class="cayirova-inline-link-wrap">
+    <a class="cayirova-inline-link" href="/degerlendirme/ucretsiz-isitme-testi">Ücretsiz değerlendirme hakkında daha fazla bilgi alın →</a>
+  </p>
+
+  <ValueGrid data={cayirovaDeviceTypes} />
+  <p class="cayirova-inline-link-wrap">
+    <a class="cayirova-inline-link" href="/isitme-cihazlari">Tüm seçenekleri işitme cihazları sayfamızda inceleyin →</a>
+  </p>
+
+  <p class="cayirova-plain-note cayirova-plain-note--lead">Tek bir markaya bağlı kalmadan, ihtiyacınıza göre farklı marka ve teknoloji seçeneklerini karşılaştırabilirsiniz.</p>
+  <Brands />
+
+  <ValueGrid data={cayirovaSgk} />
+  <p class="cayirova-inline-link-wrap">
+    <a class="cayirova-inline-link" href="/sgk-isitme-cihazi-odemesi">SGK desteği hakkında detaylı bilgi →</a>
+  </p>
+
+  <BrandCriteria data={cayirovaServices} />
+
+  <section class="cayirova-copy-block" aria-labelledby="cayirova-decision-title">
+    <div class="cayirova-copy-block__inner">
+      <p class="cayirova-copy-block__badge">{cayirovaDecisionFactors.badge}</p>
+      <h2 class="cayirova-copy-block__heading" id="cayirova-decision-title">{cayirovaDecisionFactors.heading}</h2>
+      {cayirovaDecisionFactors.paragraphs.map((p) => <p class="cayirova-copy-block__paragraph">{p}</p>)}
+    </div>
+  </section>
+
+  <BrandPageFaq data={cayirovaFaq} />
+
+  <ContactLocationCard data={cayirovaLocation} />
+  <p class="cayirova-inline-link-wrap">
+    <a class="cayirova-inline-link" href="/darica-isitme-cihazlari/">Darıca'daki merkezimizin sayfasını inceleyin →</a>
+  </p>
+
+  <BrandPageFinalCta data={cayirovaFinalCta} />
+</MainLayout>
+
+<style>
+  .cayirova-breadcrumb-wrap {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  /* Darıca/Gebze sayfalarının page-scoped "copy block" deseniyle birebir
+     aynı — yeni bir shared component icat edilmedi, aynı DS token'ları
+     kullanılıyor. */
+  .cayirova-copy-block {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .cayirova-copy-block__inner {
+    max-width: 42rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .cayirova-copy-block__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .cayirova-copy-block__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .cayirova-copy-block__paragraph {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .cayirova-inline-link-wrap {
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-4);
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    text-align: center;
+    background: var(--color-surface);
+  }
+
+  .cayirova-inline-link-wrap:last-of-type {
+    padding-bottom: var(--space-16);
+  }
+
+  .cayirova-inline-link {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .cayirova-inline-link:hover {
+    text-decoration: underline;
+  }
+
+  .cayirova-inline-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Marka bölümünden önceki kısa, link içermeyen doğal not — Gebze'den
+     farklı olarak burada Brands'tan ÖNCE kullanılıyor (yapısal çeşitlilik
+     için), ayrı bir bölüm/component değil. */
+  .cayirova-plain-note {
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-4);
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    text-align: center;
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .cayirova-plain-note--lead {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-6);
+  }
+
+  @media (max-width: 640px) {
+    .cayirova-copy-block {
+      padding-block: var(--space-10);
+    }
+
+    .cayirova-inline-link-wrap:last-of-type {
+      padding-bottom: var(--space-10);
+    }
+
+    .cayirova-plain-note--lead {
+      padding-top: var(--space-10);
+    }
+  }
+</style>

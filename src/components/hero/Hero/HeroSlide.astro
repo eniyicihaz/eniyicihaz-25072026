@@ -1,0 +1,487 @@
+---
+// HeroSlide — shared presentation template for one Hero carousel slide.
+// Generic on purpose: slide 1 (real photo, 3 CTAs, brandLock) and slides
+// 2–6 (single CTA, abstract placeholder or the real brand-logo mosaic) all
+// render through this one component, driven entirely by hero.data.ts
+// content — no per-slide markup forking outside this file.
+//
+// `headingLevel` renders a real dynamic HTML tag (Astro supports this for
+// plain elements via a capitalized variable) — exactly one slide in
+// hero.data.ts is "h1" (the page's only H1), the rest are "h2" (HERO
+// carousel rule: never a second H1).
+import { Ear, Phone, ArrowRight, Headphones, Stethoscope, MapPin, Battery } from "lucide-astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import type { HeroSlideContent } from "./hero.types";
+
+interface Props {
+  slide: HeroSlideContent;
+  index: number;
+  total: number;
+  isActive: boolean;
+}
+
+const { slide, index, total, isActive } = Astro.props;
+
+const placeholderIcons = {
+  headphones: Headphones,
+  stethoscope: Stethoscope,
+  "map-pin": MapPin,
+  battery: Battery,
+} as const;
+
+const HeadingTag = slide.headingLevel;
+const headingLines = slide.heading.split("\n");
+const isFirstSlide = index === 0;
+---
+
+<div
+  class="hero-slide"
+  id={`hero-slide-${index}`}
+  role="group"
+  aria-roledescription="slide"
+  aria-label={`${index + 1} / ${total}`}
+  aria-hidden={isActive ? "false" : "true"}
+  tabindex="-1"
+  data-hero-slide
+  data-index={index}
+  data-heading={slide.headingLevel}
+>
+  <div class="hero-slide__copy">
+    {slide.eyebrow && <p class="hero-slide__eyebrow">{slide.eyebrow}</p>}
+
+    <HeadingTag class="hero-slide__heading" id={isFirstSlide ? "hero-title" : undefined}>
+      {headingLines.map((line, i) => (
+        i === headingLines.length - 1 && headingLines.length > 1 ? (
+          <span class="hero-slide__heading-accent">{line}</span>
+        ) : (
+          <>
+            {line}
+            {i < headingLines.length - 1 && <br />}
+          </>
+        )
+      ))}
+    </HeadingTag>
+
+    {slide.body?.map((paragraph) => <p class="hero-slide__body">{paragraph}</p>)}
+
+    {
+      slide.priceHighlight && (
+        <p class="hero-slide__price">
+          <span class="hero-slide__price-amount">{slide.priceHighlight.amount}</span>
+          <span class="hero-slide__price-suffix">{slide.priceHighlight.suffix}</span>
+        </p>
+      )
+    }
+
+    <div class="hero-slide__actions">
+      <CtaButton
+        label={slide.cta.label}
+        href={slide.cta.href}
+        iconLeft={isFirstSlide ? Ear : undefined}
+        iconRight={ArrowRight}
+      />
+      {
+        slide.secondaryCtas?.map((secondary) =>
+          secondary.href.startsWith("https://wa.me/") ? (
+            <a class="hero-slide__whatsapp-btn" href={secondary.href}>
+              <WhatsAppIcon />
+              <span>{secondary.label}</span>
+            </a>
+          ) : (
+            <CtaButton
+              label={secondary.label}
+              href={secondary.href}
+              variant="outline"
+              iconLeft={Phone}
+            />
+          )
+        )
+      }
+    </div>
+
+    {slide.brandLock && <p class="hero-slide__brand-lock">{slide.brandLock}</p>}
+  </div>
+
+  <div class="hero-slide__visual">
+    {
+      slide.visual.kind === "photo" && (
+        <div class="hero-slide__visual-frame">
+          <img
+            class={`hero-slide__visual-image${slide.visual.image.fit === "contain" ? " hero-slide__visual-image--contain" : ""}`}
+            src={slide.visual.image.src}
+            alt={slide.visual.image.alt}
+            width={slide.visual.image.width}
+            height={slide.visual.image.height}
+            loading={isFirstSlide ? "eager" : "lazy"}
+            fetchpriority={isFirstSlide ? "high" : undefined}
+            decoding="async"
+          />
+        </div>
+      )
+    }
+
+    {
+      slide.visual.kind === "brand-mosaic" && (
+        <div class="hero-slide__visual-frame hero-slide__visual-frame--mosaic">
+          <div class="hero-slide__logo-grid">
+            {slide.visual.logos.map((brand) => (
+              <div class="hero-slide__logo-tile">
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  width={brand.logoWidth}
+                  height={brand.logoHeight}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    {
+      slide.visual.kind === "placeholder" && (
+        <div class="hero-slide__visual-frame hero-slide__visual-frame--placeholder" aria-hidden="true">
+          {(() => {
+            const Icon = placeholderIcons[slide.visual.icon];
+            return <Icon class="hero-slide__placeholder-icon" size={56} stroke-width={1.5} />;
+          })()}
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .hero-slide {
+    display: grid;
+    grid-template-columns: 45fr 55fr;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  /* --- Copy column ------------------------------------------------- */
+
+  .hero-slide__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .hero-slide__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(2rem, 1.5rem + 2.2vw, 3.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  /* Slide 1's headline is larger — it is the page's single H1 and the
+     primary entity statement; h2 slides read as strong but secondary. */
+  .hero-slide__heading:is(h1) {
+    font-size: clamp(2.6rem, 1.9rem + 3vw, 4.875rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+  }
+
+  .hero-slide__heading-accent {
+    color: var(--color-primary-hover);
+  }
+
+  .hero-slide__body {
+    margin: var(--space-2) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .hero-slide__heading + .hero-slide__body {
+    margin-top: var(--space-3);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  /* Split so the amount reads as a real, immediate emphasis (large,
+     primary blue) while the suffix stays a quiet caption beside it — a
+     single uniformly-styled string made the price look like a small
+     aside instead of the "gözü hemen yakalayan" callout it needs to be,
+     without going so large it competes with the heading above it. */
+  .hero-slide__price {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    column-gap: var(--space-2);
+    row-gap: 0;
+    margin: var(--space-3) 0 0;
+  }
+
+  .hero-slide__price-amount {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    color: var(--color-primary);
+  }
+
+  .hero-slide__price-suffix {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .hero-slide__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .hero-slide__whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 56px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+  }
+
+  .hero-slide__whatsapp-btn:hover {
+    background: var(--color-surface);
+    border-color: var(--color-border-hover);
+  }
+
+  .hero-slide__whatsapp-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hero-slide__brand-lock {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-soft);
+  }
+
+  /* Desktop-only fix for a real rendering bug, not a stylistic choice:
+     on the ≥1024px 2-column layout, slide 1's copy stack is the tallest
+     content in the carousel, so its natural height equals (or nearly
+     equals) the shared track height — leaving brandLock, the last line in
+     that stack, sitting flush against `.hero__clip`'s bottom-left corner
+     (measured: 0px from both edges). `.hero__clip`'s border-radius (24px,
+     --radius-2xl) then clips a quarter-circle out of exactly that corner,
+     cutting into the "E" of "Eniyicihaz.com". Confirmed via runtime
+     testing: setting border-radius to 0 fixes it outright, and so does
+     clearing the corner by this same 24px — this padding is that fix,
+     sized to exactly match the radius so it's geometrically guaranteed to
+     clear the curve regardless of sub-pixel text position. Scoped to
+     ≥1024px only because below that the layout stacks copy above the
+     visual and centers everything (`text-align: center`), so brandLock
+     sits nowhere near the bottom-left corner and never exhibits this —
+     applying the padding there would only misalign already-correct
+     centered text. */
+  @media (min-width: 1024px) {
+    .hero-slide__brand-lock {
+      padding-left: var(--radius-2xl);
+    }
+  }
+
+  /* h2 slides (2–6) carry far less content than slide 1's dense composition
+     (one short heading, one paragraph, one CTA) — without a normalizing
+     width their text simply fills whatever the flexible 45% column happens
+     to be, which reads as randomly hugging the left edge on wide screens.
+     Capping width + centering with auto margins balances that shorter
+     block within its own column — still left-aligned copy, still on the
+     left side of the layout, just not glued to its outer edge — without
+     touching slide 1's already-dense, unconstrained composition.
+     Scoped to ≥1280px: at 1024–1279px the 45% column is already narrow
+     enough that a cap would force extra line-wraps and grow slide height
+     right where it's tightest (measured: 1024px is the single worst case
+     for the Hero-height/peek balance below), so full column width is kept
+     there instead. */
+  @media (min-width: 1280px) {
+    .hero-slide[data-heading="h2"] .hero-slide__copy {
+      max-width: 30rem;
+      margin-inline: auto;
+    }
+  }
+
+  /* --- Visual column -------------------------------------------------
+     Every slide's visual sits inside the SAME aspect-ratio frame
+     (photo's own real 1672:941 ratio) regardless of visual.kind — this is
+     what keeps the carousel's height stable across slides without any
+     JS-measured min-height trick. */
+  .hero-slide__visual {
+    display: block;
+    width: 100%;
+  }
+
+  .hero-slide__visual-frame {
+    width: 100%;
+    aspect-ratio: 1672 / 941;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    background: var(--color-border);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-slide__visual-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Used when the image's own ratio is wider than the shared 1672:941
+     frame (e.g. slide 2's device row, 1811:868) — "cover" would crop the
+     outer subjects, which isn't allowed here. Letterboxes instead, with a
+     background matching the image's own light tone so the gap reads as
+     intentional breathing room, not an error. */
+  .hero-slide__visual-image--contain {
+    object-fit: contain;
+    background: var(--color-surface);
+  }
+
+  /* Deliberately abstract: dot-grid + soft brand glow + one neutral icon —
+     unmistakably not a photo, so it never reads as a fake "real center"
+     shot (PRINCIPLES §7). Replaced with a real photo per-slide once one
+     is supplied. */
+  .hero-slide__visual-frame--placeholder {
+    /* Taller than the photo's native 1672:941 ratio on purpose — a
+       placeholder has no real content to justify a wide, short banner
+       shape, and at the photo's ratio it read as a small, sparse box
+       floating in a lot of empty space. A closer-to-square panel actually
+       fills the visual column's share of Hero's height, matching the
+       other slides' visual weight instead of just matching their frame's
+       outer footprint. */
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    background-color: var(--color-surface);
+    background-image:
+      radial-gradient(circle at 70% 30%, rgb(37 99 235 / 0.1) 0%, transparent 55%),
+      radial-gradient(circle, rgb(37 99 235 / 0.08) 1px, transparent 1px);
+    background-size: auto, 22px 22px;
+  }
+
+  .hero-slide__placeholder-icon {
+    color: var(--color-primary);
+    opacity: 0.55;
+  }
+
+  /* Real 18-brand logo grid — same neutral tile recipe as Brands.astro's
+     marquee logos (fixed box, object-fit: contain), just arranged as a
+     static grid instead of a scrolling track. */
+  .hero-slide__visual-frame--mosaic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    padding: var(--space-6);
+  }
+
+  .hero-slide__logo-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-3);
+    width: 100%;
+  }
+
+  .hero-slide__logo-tile {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 3 / 2;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
+
+  .hero-slide__logo-tile img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* --- Responsive -------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    /* Switched from `display: grid` to a centered flex column. Every
+       slide's stacked box (copy + visual) is still forced to a uniform
+       height by the carousel track (flex-stretch, same mechanism that
+       keeps Hero's total height constant across slides) — but a 2-row
+       CSS Grid distributes any leftover stretch height as an internal gap
+       between those rows, which is what made short slides (2, 3, 5, 6)
+       read as randomly empty in the middle. `justify-content: center` on
+       a flex column instead centers copy+visual as ONE block, pushing the
+       leftover space to a symmetric margin above/below — the same
+       "centered as a whole" composition already used for the desktop
+       2-column layout, just stacked instead of side-by-side. */
+    .hero-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-8);
+      text-align: center;
+    }
+
+    .hero-slide__body {
+      margin-inline: auto;
+    }
+
+    .hero-slide__actions {
+      justify-content: center;
+    }
+
+    .hero-slide__logo-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    /* The mosaic panel's real content (18 logo tiles) needs more height
+       than the photo's 1672:941 ratio allows at a single-column mobile/
+       tablet width — locked to that ratio, `overflow: hidden` was
+       clipping the bottom two rows of logos. Sizing to its own content
+       here (desktop keeps the fixed ratio, already correct per visual
+       QA) guarantees every logo stays visible. */
+    .hero-slide__visual-frame--mosaic {
+      aspect-ratio: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-slide__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-slide__whatsapp-btn {
+      width: 100%;
+    }
+
+    .hero-slide__logo-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

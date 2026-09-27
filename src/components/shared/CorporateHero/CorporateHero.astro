@@ -15,6 +15,17 @@ export interface CorporateHeroStat {
   label: string;
 }
 
+export interface CorporateHeroCta {
+  label: string;
+  href: string;
+  // "solid" (default) = primary blue button; "outline" = white-on-dark
+  // ghost button, styled for this component's own dark photo scrim (not
+  // the sitewide CtaButton, whose outline variant assumes a light
+  // background). Optional — every page that predates this field (just
+  // Hakkımızda today) omits `ctas` entirely and renders exactly as before.
+  variant?: "solid" | "outline";
+}
+
 export interface CorporateHeroContent {
   locationLabel: string;
   heading: string;
@@ -22,6 +33,7 @@ export interface CorporateHeroContent {
   image: string;
   imageAlt: string;
   stats: CorporateHeroStat[];
+  ctas?: CorporateHeroCta[];
 }
 
 interface Props {
@@ -43,6 +55,19 @@ const { data } = Astro.props;
       </span>
       <h1 class="corporate-hero__heading" id="corporate-hero-title">{data.heading}</h1>
       <p class="corporate-hero__subheading">{data.subheading}</p>
+
+      {data.ctas && data.ctas.length > 0 && (
+        <div class="corporate-hero__actions">
+          {data.ctas.map((cta) => (
+            <a
+              class={`corporate-hero__cta${cta.variant === "outline" ? " corporate-hero__cta--outline" : ""}`}
+              href={cta.href}
+            >
+              {cta.label}
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   </div>
 
@@ -166,6 +191,59 @@ const { data } = Astro.props;
     color: rgb(255 255 255 / 0.85);
   }
 
+  /* Optional CTA row — only rendered when `data.ctas` is supplied. Not the
+     sitewide CtaButton: that component's "outline" variant assumes a
+     light page background (dark text, light border), which would be
+     unreadable against this hero's own dark photo scrim. Same solid/
+     outline visual split, just themed for dark-on-photo instead. */
+  .corporate-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .corporate-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+  }
+
+  .corporate-hero__cta:not(.corporate-hero__cta--outline) {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    box-shadow: 0 10px 24px -10px rgb(37 99 235 / 0.55);
+  }
+
+  .corporate-hero__cta:not(.corporate-hero__cta--outline):hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-2px);
+  }
+
+  .corporate-hero__cta--outline {
+    background: rgb(255 255 255 / 0.1);
+    border: 1px solid rgb(255 255 255 / 0.3);
+    color: var(--color-text-inverse);
+  }
+
+  .corporate-hero__cta--outline:hover {
+    background: rgb(255 255 255 / 0.16);
+    border-color: rgb(255 255 255 / 0.5);
+  }
+
+  .corporate-hero__cta:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
   /* Overlaps the photo's bottom edge via a plain negative margin — no
      absolute positioning needed, so it stays in normal flow and never
      collides with whatever section follows. */
@@ -279,11 +357,24 @@ const { data } = Astro.props;
     .corporate-hero__stats {
       padding: var(--space-4);
     }
+
+    .corporate-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .corporate-hero__cta {
+      width: 100%;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .corporate-hero[data-anim="in"] [data-rise] {
       animation: none;
+    }
+
+    .corporate-hero__cta {
+      transition: none;
     }
   }
 </style>
