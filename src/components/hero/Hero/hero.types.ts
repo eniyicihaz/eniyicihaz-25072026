@@ -28,6 +28,8 @@ export interface HeroImageData {
    *  subjects cropped by "cover" — the frame keeps its shared size, the
    *  image just letterboxes inside it instead. */
   fit?: "cover" | "contain";
+  /** CSS object-position for a `cover` crop (e.g. "50% 45%"). Only needed when the image's own ratio differs enough from the frame's that the default centered crop would trim something that matters. */
+  objectPosition?: string;
 }
 
 /** One real brand logo, reused verbatim from Brands.astro's own data

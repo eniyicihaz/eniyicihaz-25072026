@@ -113,6 +113,7 @@ const isFirstSlide = index === 0;
             alt={slide.visual.image.alt}
             width={slide.visual.image.width}
             height={slide.visual.image.height}
+            style={slide.visual.image.objectPosition ? `object-position:${slide.visual.image.objectPosition};` : undefined}
             loading={isFirstSlide ? "eager" : "lazy"}
             fetchpriority={isFirstSlide ? "high" : undefined}
             decoding="async"

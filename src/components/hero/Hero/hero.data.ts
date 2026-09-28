@@ -144,7 +144,6 @@ export const hero: HeroContent = {
           alt: "Kulak arkası, kulak içi, şarjlı ve Bluetooth özellikli işitme cihazı türlerini gösteren kavramsal görsel",
           width: 1811,
           height: 868,
-          fit: "contain",
         },
       },
       infoCards: [
@@ -170,7 +169,6 @@ export const hero: HeroContent = {
           alt: "Bir işitme testi sürecini betimleyen kavramsal görsel",
           width: 1814,
           height: 867,
-          fit: "contain",
         },
       },
       infoCards: [
@@ -196,7 +194,7 @@ export const hero: HeroContent = {
           alt: "İşitme cihazlarını ve farklı işitme cihazı markalarını temsil eden kavramsal görsel",
           width: 1536,
           height: 1024,
-          fit: "contain",
+          objectPosition: "50% 45%",
         },
       },
       infoCards: [

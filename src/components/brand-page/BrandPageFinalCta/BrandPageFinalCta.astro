@@ -38,6 +38,7 @@ export interface BrandPageFinalCtaContent {
   badgeBorder?: string; // default: rgb(255 255 255 / 0.2)
   badgeText?: string; // default: rgb(255 255 255 / 0.85)
   headingColor?: string; // default: #ffffff
+  headingMobileFontSize?: string; // heading font-size at 640px and below. Default: same clamp as above 640px (unchanged). Opt-in for headings with a long unbreakable word.
   descColor?: string; // default: rgb(255 255 255 / 0.5)
   outlineText?: string; // secondary button text — default: rgb(255 255 255 / 0.9)
   outlineBorder?: string; // secondary button border — default: rgb(255 255 255 / 0.28)
@@ -75,6 +76,7 @@ const finalCtaStyleOverrides = [
   data.badgeBorder ? `--bpfc-badge-border:${data.badgeBorder};` : "",
   data.badgeText ? `--bpfc-badge-text:${data.badgeText};` : "",
   data.headingColor ? `--bpfc-heading:${data.headingColor};` : "",
+  data.headingMobileFontSize ? `--bpfc-heading-size-mobile:${data.headingMobileFontSize};` : "",
   data.descColor ? `--bpfc-desc:${data.descColor};` : "",
   data.outlineText ? `--bpfc-outline-text:${data.outlineText};` : "",
   data.outlineBorder ? `--bpfc-outline-border:${data.outlineBorder};` : "",
@@ -368,6 +370,12 @@ const finalCtaStyleOverrides = [
 
     .brand-page-final-cta__card {
       padding: var(--space-12) var(--space-6);
+    }
+
+    /* Falls back to the exact same clamp() as the base rule, so every page
+       that does not set headingMobileFontSize renders identically. */
+    .brand-page-final-cta__heading {
+      font-size: var(--bpfc-heading-size-mobile, clamp(2.75rem, 2.1rem + 3vw, 4.25rem));
     }
 
     .brand-page-final-cta__actions {
