@@ -1,0 +1,235 @@
+---
+// HomeKnowledge — homepage block 9: KnowledgeGate + Homepage FAQ merged into
+// ONE section. Top: the Bilgi Merkezi entry (real guide links + the hub).
+// Below: six real questions as native <details> (free keyboard + screen-
+// reader support), split into two columns on desktop so the block stays
+// short. Same locked data as before (knowledge-gate.data.ts,
+// homepage-faq.data.ts); the "cihaz arızalanırsa" question is dropped
+// because the journey block already links Teknik Servis.
+import { ChevronDown } from "lucide-astro";
+import HomeBlockHeader from "./HomeBlockHeader.astro";
+import { knowledgeGate } from "../../data/knowledge-gate/knowledge-gate.data";
+import { homepageFaq } from "../homepage-faq/HomepageFaq/homepage-faq.data";
+
+const items = homepageFaq.items.filter((item) => item.href !== "/servis-bakim/teknik-servis");
+const half = Math.ceil(items.length / 2);
+const columns = [items.slice(0, half), items.slice(half)];
+---
+
+<section class="home-knowledge" aria-labelledby="home-knowledge-title">
+  <div class="home-knowledge__inner">
+    <div class="home-knowledge__top">
+      <HomeBlockHeader
+        id="home-knowledge-title"
+        eyebrow={knowledgeGate.eyebrow}
+        heading="Merak Ettikleriniz ve Bilgi Merkezi"
+        intro={knowledgeGate.intro}
+      />
+
+      <div class="home-knowledge__gate">
+        <ul class="home-knowledge__topics">
+          {
+            knowledgeGate.topics.map((topic) => (
+              <li>
+                <a class="home-knowledge__topic" href={topic.href}>{topic.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+        <a class="home-knowledge__hub" href={knowledgeGate.hubCta.href}>{knowledgeGate.hubCta.label} →</a>
+      </div>
+    </div>
+
+    <div class="home-knowledge__faq">
+      {
+        columns.map((column) => (
+          <div class="home-knowledge__column">
+            {column.map((item) => (
+              <details class="home-knowledge__item">
+                <summary class="home-knowledge__question">
+                  <span>{item.question}</span>
+                  <ChevronDown size={18} stroke-width={2} aria-hidden="true" class="home-knowledge__chevron" />
+                </summary>
+                <div class="home-knowledge__answer">
+                  <p>{item.answer}</p>
+                  {item.href && item.linkLabel && (
+                    <a class="home-knowledge__link" href={item.href}>{item.linkLabel} →</a>
+                  )}
+                </div>
+              </details>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-knowledge {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-14);
+  }
+
+  .home-knowledge__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .home-knowledge__top {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-10);
+    align-items: end;
+  }
+
+  .home-knowledge__gate {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .home-knowledge__topics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .home-knowledge__topic {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color var(--transition-base), color var(--transition-base);
+  }
+
+  .home-knowledge__topic:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .home-knowledge__hub,
+  .home-knowledge__link {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .home-knowledge__hub:hover,
+  .home-knowledge__link:hover {
+    text-decoration: underline;
+  }
+
+  .home-knowledge__topic:focus-visible,
+  .home-knowledge__hub:focus-visible,
+  .home-knowledge__link:focus-visible,
+  .home-knowledge__question:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .home-knowledge__faq {
+    margin-top: var(--space-8);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3) var(--space-4);
+    align-items: start;
+  }
+
+  .home-knowledge__column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .home-knowledge__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+  }
+
+  .home-knowledge__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .home-knowledge__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .home-knowledge__chevron {
+    flex: none;
+    color: var(--color-text-soft);
+    transition: transform var(--transition-base);
+  }
+
+  .home-knowledge__item[open] .home-knowledge__chevron {
+    transform: rotate(180deg);
+  }
+
+  .home-knowledge__answer {
+    padding: 0 var(--space-5) var(--space-4);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .home-knowledge__answer p {
+    margin: 0 0 var(--space-2);
+  }
+
+  @media (max-width: 1023px) {
+    .home-knowledge__top {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+      align-items: start;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .home-knowledge__faq {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-knowledge {
+      padding-block: var(--space-12);
+    }
+
+    .home-knowledge__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .home-knowledge__question {
+      padding: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-knowledge__chevron {
+      transition: none;
+    }
+  }
+</style>

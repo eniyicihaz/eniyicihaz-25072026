@@ -1,0 +1,262 @@
+---
+// HomepageFaq — "Merak Edilenler" (own spec:
+// docs/HOMEPAGE_FAQ_SPECIFICATION.md). No shared FAQ accordion exists yet
+// (only page-specific BrandPageFaq/SgkFaq/BrandFaq — spec §7); rather than
+// hand-roll JS open/close state, this uses native <details>/<summary> —
+// free keyboard + screen-reader support, same "use the platform before
+// reinventing it" discipline SoundRoom applied to its native range input.
+import { ChevronDown } from "lucide-astro";
+import { homepageFaq } from "./homepage-faq.data";
+---
+
+<section class="homepage-faq" aria-labelledby="homepage-faq-title">
+ <div class="homepage-faq__split">
+  <div class="homepage-faq__header">
+    <p class="homepage-faq__eyebrow" data-rise>{homepageFaq.eyebrow}</p>
+    <h2 class="homepage-faq__heading" id="homepage-faq-title" data-rise>{homepageFaq.heading}</h2>
+  </div>
+
+  <div class="homepage-faq__list" data-rise>
+    {homepageFaq.items.map((item) => (
+      <details class="homepage-faq__item">
+        <summary class="homepage-faq__question">
+          <span>{item.question}</span>
+          <ChevronDown size={18} stroke-width={2} aria-hidden="true" class="homepage-faq__chevron" />
+        </summary>
+        <div class="homepage-faq__answer">
+          <p>{item.answer}</p>
+          {item.href && item.linkLabel && (
+            <a class="homepage-faq__link" href={item.href}>{item.linkLabel} →</a>
+          )}
+        </div>
+      </details>
+    ))}
+  </div>
+ </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".homepage-faq");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .homepage-faq {
+    position: relative;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    --faq-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .homepage-faq__header {
+    position: sticky;
+    top: calc(var(--space-24) + var(--space-4));
+    text-align: left;
+  }
+
+  .homepage-faq__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .homepage-faq__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  /* Split editorial layout on desktop: left-aligned sticky heading, the
+     accordion on the right — stacked below 1024px. */
+  .homepage-faq__split {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .homepage-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .homepage-faq__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    overflow: hidden;
+  }
+
+  .homepage-faq__item[open] {
+    border-color: var(--color-border-hover);
+  }
+
+  .homepage-faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .homepage-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .homepage-faq__question:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .homepage-faq__chevron {
+    flex: none;
+    color: var(--color-text-soft);
+    transition: transform var(--transition-base);
+  }
+
+  .homepage-faq__item[open] .homepage-faq__chevron {
+    transform: rotate(180deg);
+    color: var(--color-primary);
+  }
+
+  .homepage-faq__answer {
+    padding: 0 var(--space-5) var(--space-5);
+  }
+
+  .homepage-faq__answer p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .homepage-faq__link {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .homepage-faq__link:hover {
+    text-decoration: underline;
+  }
+
+  .homepage-faq__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* --- Entrance --- */
+
+  .homepage-faq[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .homepage-faq[data-anim="in"] [data-rise] {
+    animation: homepage-faq-rise 600ms var(--faq-ease) both;
+  }
+
+  .homepage-faq[data-anim="in"] .homepage-faq__list {
+    animation-delay: 100ms;
+  }
+
+  @keyframes homepage-faq-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 1023px) {
+    .homepage-faq__split {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+
+    .homepage-faq__header {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .homepage-faq {
+      padding-block: var(--space-12);
+    }
+
+    .homepage-faq__split {
+      padding-inline: var(--space-4);
+    }
+
+    .homepage-faq__question {
+      padding: var(--space-4);
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .homepage-faq[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

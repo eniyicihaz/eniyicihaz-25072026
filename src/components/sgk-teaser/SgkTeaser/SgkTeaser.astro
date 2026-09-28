@@ -1,0 +1,188 @@
+---
+// SgkTeaser — "SGK Süreciyle İlgili Yanınızdayız" (own spec:
+// docs/archive/SGK_TEASER_SPECIFICATION.md). Reuses Trust's own TrustFact atom
+// verbatim (no card chrome, same quiet register) — the one deliberate
+// difference from Trust is a single CTA, since this section's whole job is
+// a strong, focused link to /sgk-isitme-cihazi-odemesi (Trust already
+// carries a passing SGK mention; this is its own dedicated stage).
+import TrustFact from "../../trust/Trust/atoms/TrustFact/TrustFact.astro";
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { sgkTeaser } from "./sgk-teaser.data";
+---
+
+<section class="sgk-teaser" aria-labelledby="sgk-teaser-title">
+  <div class="sgk-teaser__inner">
+    <p class="sgk-teaser__eyebrow" data-rise>{sgkTeaser.eyebrow}</p>
+    <h2 class="sgk-teaser__heading" id="sgk-teaser-title" data-rise>{sgkTeaser.heading}</h2>
+    <p class="sgk-teaser__context" data-rise>{sgkTeaser.contextSentence}</p>
+
+    <div class="sgk-teaser__facts">
+      {sgkTeaser.facts.map((fact) => (
+        <TrustFact title={fact.title} description={fact.description} />
+      ))}
+    </div>
+
+    <div class="sgk-teaser__cta" data-rise>
+      <CtaButton label={sgkTeaser.cta.label} href={sgkTeaser.cta.href} variant="outline" />
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".sgk-teaser");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .sgk-teaser {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    --sgk-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sgk-teaser__inner {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    text-align: center;
+  }
+
+  .sgk-teaser__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sgk-teaser__heading {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  .sgk-teaser__context {
+    margin: 0;
+    max-width: 36rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-teaser__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    width: 100%;
+    margin-top: var(--space-4);
+  }
+
+  :global(.sgk-teaser .trust-fact):not(:first-child) {
+    border-left: 1px solid var(--color-border);
+    padding-left: var(--space-6);
+  }
+
+  .sgk-teaser__cta {
+    margin-top: var(--space-2);
+  }
+
+  /* --- Entrance --- */
+
+  .sgk-teaser[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .sgk-teaser[data-anim="in"] [data-rise] {
+    animation: sgk-teaser-rise 600ms var(--sgk-ease) both;
+  }
+
+  .sgk-teaser[data-anim="in"] .sgk-teaser__facts :global(.trust-fact):nth-child(1) { animation-delay: 0ms; }
+  .sgk-teaser[data-anim="in"] .sgk-teaser__facts :global(.trust-fact):nth-child(2) { animation-delay: 100ms; }
+  .sgk-teaser[data-anim="in"] .sgk-teaser__facts :global(.trust-fact):nth-child(3) { animation-delay: 200ms; }
+  .sgk-teaser[data-anim="in"] .sgk-teaser__cta { animation-delay: 260ms; }
+
+  @keyframes sgk-teaser-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 1023px) {
+    .sgk-teaser__facts {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    :global(.sgk-teaser .trust-fact):not(:first-child) {
+      border-left: none;
+      border-top: 1px solid var(--color-border);
+      padding-left: 0;
+      padding-top: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-teaser {
+      padding-block: var(--space-12);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sgk-teaser[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

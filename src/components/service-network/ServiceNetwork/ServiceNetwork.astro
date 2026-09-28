@@ -1,0 +1,431 @@
+---
+// ServiceNetwork — "Nereden Ulaşabilirsiniz?" (own spec:
+// docs/CENTER_NETWORK_SPECIFICATION.md — renders directly after
+// homeCenterGallery/CenterGallery as this section's second half; kept as
+// its own component/section rather than one forced wrapper so each half
+// keeps CenterGallery's own proven layout instead of fighting it into a
+// custom split — see spec's "Neden birleşik" note). A tier "ladder", not a
+// map graphic (kullanıcı onayı: no map image) and not ContactServiceArea's
+// 3-column card grid (/iletisim) — Darıca reads visually largest/first,
+// Gebze+Çayırova next, Kocaeli its own province-level line,
+// Dilovası/Tuzla/Pendik plain text — COMPANY.md §17's hierarchy, not
+// reinvented, not flattened into one uniform list.
+import { MapPin, Navigation, ArrowRight } from "lucide-astro";
+import { serviceNetwork } from "./service-network.data";
+---
+
+<section class="service-network" aria-labelledby="service-network-title">
+ <div class="service-network__split">
+  <div class="service-network__header">
+    <p class="service-network__eyebrow" data-rise>{serviceNetwork.eyebrow}</p>
+    <h2 class="service-network__heading" id="service-network-title" data-rise>
+      {serviceNetwork.heading}
+    </h2>
+    <p class="service-network__intro" data-rise>{serviceNetwork.intro}</p>
+  </div>
+
+  <div class="service-network__body" data-rise>
+    <a class="service-network__primary" href={serviceNetwork.primary.href}>
+      <span class="service-network__primary-icon" aria-hidden="true">
+        <MapPin size={24} stroke-width={1.75} />
+      </span>
+      <span class="service-network__primary-body">
+        <span class="service-network__primary-name">{serviceNetwork.primary.name}</span>
+        <span class="service-network__primary-desc">{serviceNetwork.primary.description}</span>
+      </span>
+      <span class="service-network__arrow service-network__arrow--primary" aria-hidden="true">
+        <ArrowRight size={20} stroke-width={2} />
+      </span>
+    </a>
+
+    <div class="service-network__priority">
+      <p class="service-network__priority-label">{serviceNetwork.priorityLabel}</p>
+      <div class="service-network__priority-grid">
+        {serviceNetwork.priority.map((region) => (
+          <a class="service-network__priority-item" href={region.href}>
+            <Navigation size={16} stroke-width={2} aria-hidden="true" />
+            <span>
+              <span class="service-network__priority-name">{region.name}</span>
+              <span class="service-network__priority-desc">{region.description}</span>
+            </span>
+            <span class="service-network__arrow" aria-hidden="true">
+              <ArrowRight size={16} stroke-width={2} />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <a class="service-network__regional" href={serviceNetwork.regional.href}>
+      <span class="service-network__regional-name">{serviceNetwork.regional.name}</span>
+      <span class="service-network__regional-desc">{serviceNetwork.regional.description}</span>
+      <span class="service-network__arrow" aria-hidden="true">
+        <ArrowRight size={16} stroke-width={2} />
+      </span>
+    </a>
+
+    <p class="service-network__secondary">
+      <span class="service-network__secondary-label">{serviceNetwork.secondaryLabel}:</span>{" "}
+      {serviceNetwork.secondarySentence}
+    </p>
+  </div>
+ </div>
+
+  <p class="service-network__closing" data-rise>{serviceNetwork.closing}</p>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".service-network");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .service-network {
+    position: relative;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    --sn-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Split editorial layout (desktop): left-aligned header on the left,
+     the Darıca-first ladder on the right — breaks the eyebrow + centered
+     H2 rhythm the surrounding sections share. Stacked on tablet/mobile. */
+  .service-network__split {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .service-network__header {
+    text-align: left;
+  }
+
+  .service-network__arrow {
+    display: inline-flex;
+    flex: none;
+    align-self: center;
+    margin-left: auto;
+    color: var(--color-primary);
+    transition: transform var(--transition-base);
+  }
+
+  .service-network__arrow--primary {
+    color: var(--color-text-inverse);
+  }
+
+  a:hover > .service-network__arrow,
+  a:focus-visible > .service-network__arrow {
+    transform: translateX(4px);
+  }
+
+  .service-network__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .service-network__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .service-network__intro {
+    margin: var(--space-4) 0 0;
+    max-width: 28rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .service-network__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  /* --- Darıca: primary, largest, most visually weighted --- */
+
+  .service-network__primary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-6);
+    border-radius: var(--radius-2xl);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    text-decoration: none;
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .service-network__primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl, var(--shadow-lg));
+  }
+
+  .service-network__primary:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .service-network__primary-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 0.15);
+  }
+
+  .service-network__primary-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .service-network__primary-name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .service-network__primary-desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  /* --- Gebze/Çayırova: priority, second weight --- */
+
+  .service-network__priority-label {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-soft);
+  }
+
+  .service-network__priority-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .service-network__priority-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .service-network__priority-item:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .service-network__priority-item:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .service-network__priority-name {
+    display: block;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .service-network__priority-desc {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Kocaeli: regional frame, its own line, not a peer district --- */
+
+  .service-network__regional {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    text-decoration: none;
+    transition: border-color var(--transition-base);
+  }
+
+  .service-network__regional:hover {
+    border-color: var(--color-primary);
+  }
+
+  .service-network__regional:hover .service-network__regional-name {
+    text-decoration: underline;
+  }
+
+  .service-network__regional:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .service-network__regional-name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+
+  .service-network__regional-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Dilovası/Tuzla/Pendik: plain text, lowest weight --- */
+
+  .service-network__secondary {
+    margin: 0;
+    padding-inline: var(--space-1);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .service-network__secondary-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-soft);
+  }
+
+  .service-network__closing {
+    max-width: var(--container-2xl);
+    margin: var(--space-8) auto 0;
+    padding-inline: var(--space-6);
+    text-align: left;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Entrance --- */
+
+  .service-network[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .service-network[data-anim="in"] [data-rise] {
+    animation: service-network-rise 600ms var(--sn-ease) both;
+  }
+
+  .service-network[data-anim="in"] .service-network__body {
+    animation-delay: 100ms;
+  }
+
+  .service-network[data-anim="in"] .service-network__closing {
+    animation-delay: 180ms;
+  }
+
+  @keyframes service-network-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 1023px) {
+    .service-network__split {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .service-network {
+      padding-block: var(--space-12);
+    }
+
+    .service-network__split {
+      padding-inline: var(--space-4);
+    }
+
+    .service-network__primary {
+      padding: var(--space-5);
+      gap: var(--space-4);
+    }
+
+    .service-network__priority-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-network[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .service-network__primary:hover,
+    a:hover > .service-network__arrow {
+      transform: none;
+    }
+  }
+</style>

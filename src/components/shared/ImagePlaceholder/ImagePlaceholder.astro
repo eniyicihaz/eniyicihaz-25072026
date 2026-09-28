@@ -1,0 +1,52 @@
+---
+// ImagePlaceholder — shared, temporary stand-in for a real image that has
+// not been produced yet. TEMPORARY, never a permanent design: it renders a
+// neutral, text-free surface (soft gradient + faint icon) so no internal
+// production note ever reaches a visitor. `alt` (the intended image's
+// description) stays in the markup as a `data-alt` spec for whoever
+// produces the asset, but is not shown and not announced.
+// Used only by the new homepage sections that need
+// custom, non-stock photography the team has not supplied yet (Buying
+// Criteria, Device Comparison, Daily Life — see their own
+// docs/*_SPECIFICATION.md "Gerekli Görseller" sections). Renders a neutral
+// box so the page never ships a broken <img> or a silent empty gap.
+//
+// Swap-out contract: once a real asset exists at the data's intended `src`,
+// replace the call site's <ImagePlaceholder alt={...} /> with a real
+// <img src={...} alt={...} loading="lazy" /> — this component is deleted
+// from that call site, not extended with a "real image" mode.
+import { ImageOff } from "lucide-astro";
+
+interface Props {
+  /** Describes the final image's content — kept as `data-alt` (a spec for whoever produces the asset); never rendered visibly. */
+  alt: string;
+  /** CSS aspect-ratio value, e.g. "16/9", "4/3", "1/1". Default: "4/3". */
+  ratio?: string;
+}
+
+const { alt, ratio = "4/3" } = Astro.props;
+---
+
+<div class="image-placeholder" style={`aspect-ratio:${ratio};`} data-placeholder="true" data-alt={alt} aria-hidden="true">
+  <ImageOff size={28} stroke-width={1.25} class="image-placeholder__icon" />
+</div>
+
+<style>
+  .image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: var(--radius-xl);
+    background:
+      radial-gradient(120% 90% at 20% 10%, rgb(37 99 235 / 0.07), transparent 60%),
+      linear-gradient(160deg, var(--color-surface), var(--color-background-alt, var(--color-surface)));
+    border: 1px solid var(--color-border);
+    color: var(--color-text-soft);
+  }
+
+  .image-placeholder__icon {
+    flex: none;
+    opacity: 0.35;
+  }
+</style>

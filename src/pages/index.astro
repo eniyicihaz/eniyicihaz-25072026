@@ -1,26 +1,26 @@
 ---
-// Ana Sayfa — Local Entity Hub + Discovery + CRO mimarisi (homepage plan,
-// üçüncü aşama). Bölüm sırası ve rolü plan §B/§C'de belgelenmiş; kısaca:
-// Hero (kim/ne/nerede) → Empathy (farkındalık) → Sound Room (deneyim) →
-// Solution (anlama) → Kategori Keşfi (cihazları keşfetme) → Hizmetlerimiz
-// Özeti (hizmetleri anlama) → Brands (marka bağımsızlığı) → Guide (süreci
-// anlama) → Trust (yerel güven) → Bilgi Merkezi Girişi (bilgiye devam
-// etme) → Closing (iletişime geçme). Title/description artık sayfaya özel
-// — önceden MainLayout'un jenerik varsayılanına düşüyordu.
+// Ana Sayfa — 10 ana bölümlü vitrin (2026-09 mimari karar: 20 bölümlü uzun
+// sayfa yerine daha kısa, öz ve güçlü bir sayfa; detaylar alt sayfalara
+// bırakıldı, içerik kaybı yok — tekrarlar ve bölüm ek yükü azaltıldı).
+// Sıra: 1 Hero (dokunulmadı) → 2 HomeStory (Empathy + SoundRoom + Solution)
+// → 3 BuyingCriteria → 4 HomeExplore (CategoryExplorer + DeviceComparison)
+// → 5 Chooser → 6 HomeShowroom (Brands + Model Showcase) → 7 HomeJourney
+// (Hizmetler + Guide + Service Journey) → 8 HomeLocal (Trust + CenterGallery
+// + ServiceNetwork + SGK) → 9 HomeKnowledge (KnowledgeGate + FAQ) →
+// 10 Closing. DailyLife artık render edilmiyor (component/data dosyaları
+// ileride kullanım için duruyor). Title/description sayfaya özel.
 import MainLayout from "../layouts/MainLayout.astro";
 import Hero from "../components/hero/Hero/Hero.astro";
-import Empathy from "../components/empathy/Empathy/Empathy.astro";
-import SoundRoom from "../components/sound-room/SoundRoom/SoundRoom.astro";
-import Solution from "../components/solution/Solution/Solution.astro";
-import CategoryExplorer from "../components/category-explorer/CategoryExplorer/CategoryExplorer.astro";
-import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
-import Brands from "../components/brands/Brands/Brands.astro";
-import Guide from "../components/guide/Guide/Guide.astro";
-import Trust from "../components/trust/Trust/Trust.astro";
-import KnowledgeGate from "../components/knowledge-gate/KnowledgeGate/KnowledgeGate.astro";
+import HomeStory from "../components/home/HomeStory.astro";
+import BuyingCriteria from "../components/buying-criteria/BuyingCriteria/BuyingCriteria.astro";
+import HomeExplore from "../components/home/HomeExplore.astro";
+import Chooser from "../components/chooser/Chooser/Chooser.astro";
+import HomeShowroom from "../components/home/HomeShowroom.astro";
+import HomeJourney from "../components/home/HomeJourney.astro";
+import HomeLocal from "../components/home/HomeLocal.astro";
+import HomeKnowledge from "../components/home/HomeKnowledge.astro";
 import Closing from "../components/closing/Closing/Closing.astro";
 
-import { homeServices } from "../data/home/services";
 import { hero } from "../components/hero/Hero/hero.data";
 import { buildMedicalBusinessSchema } from "../lib/schema";
 
@@ -45,14 +45,13 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
 
   <Hero />
-  <Empathy />
-  <SoundRoom />
-  <Solution />
-  <CategoryExplorer />
-  <BrandCriteria data={homeServices} />
-  <Brands />
-  <Guide />
-  <Trust />
-  <KnowledgeGate />
+  <HomeStory />
+  <BuyingCriteria />
+  <HomeExplore />
+  <Chooser />
+  <HomeShowroom />
+  <HomeJourney />
+  <HomeLocal />
+  <HomeKnowledge />
   <Closing />
 </MainLayout>

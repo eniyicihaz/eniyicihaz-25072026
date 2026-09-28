@@ -1,0 +1,548 @@
+---
+// Chooser — "Size Hangi Çözüm Uygun?" The homepage's second real
+// interactive section (own spec: docs/CHOOSER_SPECIFICATION.md). Unlike
+// DecisionCockpit (deliberately decorative/CSS-only, not reused here — see
+// spec §2), this carries genuine client-side logic: 3 native radio
+// questions, tallied in the browser, resolving to 1-2 real
+// /isitme-cihazlari/* recommendations pulled from CategoryExplorer's own
+// data (no duplicated copy) plus an always-present, non-diagnostic exit to
+// /iletisim. Architecture mirrors SoundRoom's `is:inline` + state pattern —
+// no new frontend approach invented.
+import { categoryExplorer } from "../../../data/category-explorer/category-explorer.data";
+import { chooser } from "./chooser.data";
+
+// Every real device-type href the questions can point to, deduped, in
+// CategoryExplorer's own item order — each gets one pre-rendered (hidden by
+// default) result card so the client script only ever shows/hides real,
+// build-time-authored content; it never assembles copy at runtime.
+const resultHrefs = Array.from(
+  new Set(chooser.questions.flatMap((q) => q.options.flatMap((o) => Object.keys(o.weights))))
+);
+const resultItems = categoryExplorer.items.filter((item) => resultHrefs.includes(item.href));
+---
+
+<section class="chooser" aria-labelledby="chooser-title">
+  <div class="chooser__header">
+    <p class="chooser__eyebrow" data-rise>{chooser.eyebrow}</p>
+    <h2 class="chooser__heading" id="chooser-title" data-rise>{chooser.heading}</h2>
+    <p class="chooser__intro" data-rise>{chooser.intro}</p>
+  </div>
+
+  <div class="chooser__panel" data-rise>
+    <p class="chooser__progress" aria-live="polite" data-chooser-progress>
+      Soru 1 / {chooser.questions.length}
+    </p>
+
+    <form data-chooser-form>
+      {chooser.questions.map((q, qi) => (
+        <fieldset class="chooser__step" data-chooser-step={qi + 1} hidden={qi !== 0}>
+          <legend class="chooser__question">{q.question}</legend>
+          <div class="chooser__options" role="radiogroup">
+            {q.options.map((opt) => (
+              <label class="chooser__option">
+                <input
+                  type="radio"
+                  name={q.id}
+                  value={String(qi) + "-" + String(q.options.indexOf(opt))}
+                  data-weights={JSON.stringify(opt.weights)}
+                  class="chooser__radio"
+                  required
+                  data-chooser-input
+                />
+                <span class="chooser__option-label">{opt.label}</span>
+              </label>
+            ))}
+          </div>
+          <div class="chooser__step-actions">
+            {qi > 0 && (
+              <button type="button" class="chooser__btn chooser__btn--ghost" data-chooser-back>Geri</button>
+            )}
+            <button type="button" class="chooser__btn chooser__btn--primary" data-chooser-next>
+              {qi === chooser.questions.length - 1 ? "Sonucu Gör" : "Devam Et"}
+            </button>
+          </div>
+        </fieldset>
+      ))}
+    </form>
+
+    <div class="chooser__result" data-chooser-result hidden tabindex="-1">
+      <h3 class="chooser__result-title">Tercihlerinize Yakın Cihaz Tipleri</h3>
+      <p class="chooser__result-note">Cevaplarınıza göre sıraladık; bu bir tercih rehberidir, bir teşhis ya da kesin öneri değildir.</p>
+
+      {resultItems.map((item) => (
+        <a class="chooser__result-card" href={item.href} data-chooser-result-card={item.href} hidden>
+          <span class="chooser__result-name">{item.name}</span>
+          <span class="chooser__result-desc">{item.description}</span>
+          <span class="chooser__result-link">İncele →</span>
+        </a>
+      ))}
+
+      <a class="chooser__result-card chooser__result-card--fallback" href={chooser.fallback.href}>
+        <span class="chooser__result-name">{chooser.fallback.label}</span>
+        <span class="chooser__result-desc">{chooser.fallback.sentence}</span>
+        <span class="chooser__result-link">{chooser.fallback.cta} →</span>
+      </a>
+
+      <button type="button" class="chooser__btn chooser__btn--ghost chooser__restart" data-chooser-restart>
+        {chooser.restartLabel}
+      </button>
+    </div>
+
+    <p class="chooser__disclaimer">{chooser.disclaimer}</p>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".chooser");
+    if (!section) return;
+
+    var form = section.querySelector("[data-chooser-form]");
+    var steps = Array.from(section.querySelectorAll("[data-chooser-step]"));
+    var progress = section.querySelector("[data-chooser-progress]");
+    var resultEl = section.querySelector("[data-chooser-result]");
+    var total = steps.length;
+    var current = 0;
+
+    if (!form || !steps.length || !resultEl) return;
+
+    function showStep(index) {
+      steps.forEach(function (step, i) {
+        step.hidden = i !== index;
+      });
+      if (progress) progress.textContent = "Soru " + (index + 1) + " / " + total;
+    }
+
+    function currentStepValid(index) {
+      var step = steps[index];
+      var checked = step.querySelector("input[type=radio]:checked");
+      return !!checked;
+    }
+
+    function computeResult() {
+      var tally = {};
+      Array.from(form.querySelectorAll("input[type=radio]:checked")).forEach(function (input) {
+        var weights = {};
+        try { weights = JSON.parse(input.getAttribute("data-weights") || "{}"); } catch (e) {}
+        Object.keys(weights).forEach(function (href) {
+          tally[href] = (tally[href] || 0) + weights[href];
+        });
+      });
+
+      var cards = Array.from(resultEl.querySelectorAll("[data-chooser-result-card]"));
+      var scored = cards.map(function (card, i) {
+        var href = card.getAttribute("data-chooser-result-card");
+        return { card: card, score: tally[href] || 0, order: i };
+      });
+      scored.sort(function (a, b) {
+        return b.score - a.score || a.order - b.order;
+      });
+
+      var top = scored.length ? scored[0].score : 0;
+      var fallback = resultEl.querySelector(".chooser__result-card--fallback");
+      var shown = 0;
+      scored.forEach(function (entry) {
+        // Up to 3 types, each at least half as strong as the leader;
+        // neutral-only answers (top = 0) show none, only the exit card.
+        var visible = top > 0 && entry.score > 0 && entry.score * 2 >= top && shown < 3;
+        entry.card.hidden = !visible;
+        if (visible) shown += 1;
+        resultEl.insertBefore(entry.card, fallback);
+      });
+    }
+
+    function showResult() {
+      steps.forEach(function (step) {
+        step.hidden = true;
+      });
+      computeResult();
+      resultEl.hidden = false;
+      if (progress) progress.textContent = "Sonuç";
+      resultEl.focus({ preventScroll: false });
+    }
+
+    function reset() {
+      form.reset();
+      resultEl.hidden = true;
+      current = 0;
+      showStep(current);
+    }
+
+    section.addEventListener("click", function (event) {
+      var target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      if (target.matches("[data-chooser-next]")) {
+        if (!currentStepValid(current)) {
+          var step = steps[current];
+          var firstInput = step.querySelector("input[type=radio]");
+          if (firstInput) firstInput.focus();
+          return;
+        }
+        if (current < total - 1) {
+          current += 1;
+          showStep(current);
+        } else {
+          showResult();
+        }
+      }
+
+      if (target.matches("[data-chooser-back]")) {
+        if (current > 0) {
+          current -= 1;
+          showStep(current);
+        }
+      }
+
+      if (target.matches("[data-chooser-restart]")) {
+        reset();
+      }
+    });
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+    });
+
+    showStep(current);
+
+    // --- Entrance (same IntersectionObserver + failsafe pattern as every
+    // other homepage section) — independent of the interactive logic above. ---
+    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      section.dataset.anim = "pending";
+
+      var revealed = false;
+      var ioAlive = false;
+      var io;
+
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        section.dataset.anim = "in";
+        if (io) io.disconnect();
+      }
+
+      var failsafe = setTimeout(function () {
+        if (!ioAlive) reveal();
+      }, 1500);
+
+      io = new IntersectionObserver(
+        function (entries) {
+          ioAlive = true;
+          clearTimeout(failsafe);
+          if (entries[0].isIntersecting) reveal();
+        },
+        { threshold: 0.15 }
+      );
+
+      io.observe(section);
+    }
+  })();
+</script>
+
+<style>
+  .chooser {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    --ch-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .chooser__header {
+    max-width: var(--container-lg);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .chooser__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .chooser__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .chooser__intro {
+    margin: var(--space-4) auto 0;
+    max-width: 32rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .chooser__panel {
+    max-width: var(--container-md);
+    margin: var(--space-12) auto 0;
+    padding: var(--space-8);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: var(--color-surface);
+  }
+
+  .chooser__progress {
+    margin: 0 0 var(--space-6);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-soft);
+    text-align: center;
+  }
+
+  .chooser__question {
+    padding: 0;
+    margin: 0 0 var(--space-5);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .chooser__options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .chooser__option {
+    display: block;
+    position: relative;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    cursor: pointer;
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .chooser__option:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .chooser__radio {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  .chooser__option-label {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .chooser__radio:checked ~ .chooser__option-label {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .chooser__option:has(.chooser__radio:checked) {
+    border-color: var(--color-primary);
+    background: rgb(37 99 235 / 0.05);
+  }
+
+  .chooser__radio:focus-visible ~ .chooser__option-label {
+    outline: none;
+  }
+
+  .chooser__option:has(.chooser__radio:focus-visible) {
+    box-shadow: var(--focus-ring);
+  }
+
+  .chooser__step-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .chooser__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding-inline: var(--space-5);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .chooser__btn--primary {
+    border: 1px solid var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .chooser__btn--primary:hover {
+    background: var(--color-primary-hover);
+  }
+
+  .chooser__btn--ghost {
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-muted);
+  }
+
+  .chooser__btn--ghost:hover {
+    background: var(--color-background);
+    border-color: var(--color-border-hover);
+  }
+
+  .chooser__btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Result --- */
+
+  .chooser__result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .chooser__result:focus {
+    outline: none;
+  }
+
+  .chooser__result-title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .chooser__result-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    text-decoration: none;
+    transition: border-color var(--transition-base);
+  }
+
+  .chooser__result-card:hover {
+    border-color: var(--color-primary);
+  }
+
+  .chooser__result-card:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .chooser__result-name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .chooser__result-desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .chooser__result-link {
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+
+  .chooser__result-note {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .chooser__result-card--fallback {
+    background: rgb(37 99 235 / 0.05);
+    border-color: rgb(37 99 235 / 0.35);
+  }
+
+  .chooser__result-card--fallback:hover .chooser__result-link,
+  .chooser__result-card:hover .chooser__result-link {
+    text-decoration: underline;
+  }
+
+  .chooser__restart {
+    align-self: center;
+    margin-top: var(--space-3);
+  }
+
+  .chooser__disclaimer {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-soft);
+    text-align: center;
+  }
+
+  /* --- Entrance --- */
+
+  .chooser[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .chooser[data-anim="in"] [data-rise] {
+    animation: chooser-rise 600ms var(--ch-ease) both;
+  }
+
+  @keyframes chooser-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 640px) {
+    .chooser {
+      padding-block: var(--space-12);
+    }
+
+    .chooser__panel {
+      padding: var(--space-5);
+    }
+
+    .chooser__step-actions {
+      flex-direction: column-reverse;
+    }
+
+    .chooser__btn {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chooser[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

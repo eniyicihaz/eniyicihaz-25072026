@@ -7,14 +7,22 @@ import { ShieldCheck } from "lucide-astro";
 import { brands as content } from "./brands.data";
 
 const { badge, heading, subhead, brands, trust, hubCta } = content;
+
+// `embedded`: rendered inside the merged homepage showroom block — a <div>
+// (no own <section>/heading/trust pill/hub link, no vertical padding), just
+// the logo marquee. Default false: brand/landing pages are unchanged.
+const { embedded = false } = Astro.props as { embedded?: boolean };
+const Tag = embedded ? "div" : "section";
 ---
 
-<section class="brands" aria-labelledby="brands-title">
-  <div class="brands__header">
-    <p class="brands__badge" data-rise>{badge}</p>
-    <h2 class="brands__heading" id="brands-title" data-rise>{heading}</h2>
-    <p class="brands__subhead" data-rise>{subhead}</p>
-  </div>
+<Tag class:list={["brands", { "brands--embedded": embedded }]} aria-labelledby={embedded ? undefined : "brands-title"}>
+  {!embedded && (
+    <div class="brands__header">
+      <p class="brands__badge" data-rise>{badge}</p>
+      <h2 class="brands__heading" id="brands-title" data-rise>{heading}</h2>
+      <p class="brands__subhead" data-rise>{subhead}</p>
+    </div>
+  )}
 
   <div class="brands__marquee" data-rise>
     <div class="brands__track">
@@ -59,19 +67,21 @@ const { badge, heading, subhead, brands, trust, hubCta } = content;
     </div>
   </div>
 
-  <a class="brands__trust" href={trust.href} data-rise>
+  {!embedded && <a class="brands__trust" href={trust.href} data-rise>
     <span class="brands__trust-icon" aria-hidden="true">
       <ShieldCheck size={18} stroke-width={2} />
     </span>
     <span class="brands__trust-label">{trust.label}</span>
     <span class="brands__trust-divider" aria-hidden="true"></span>
     <span class="brands__trust-desc">{trust.description}</span>
-  </a>
+  </a>}
 
-  <p class="brands__hub-link-wrap" data-rise>
-    <a class="brands__hub-link" href={hubCta.href}>{hubCta.label} →</a>
-  </p>
-</section>
+  {!embedded && (
+    <p class="brands__hub-link-wrap" data-rise>
+      <a class="brands__hub-link" href={hubCta.href}>{hubCta.label} →</a>
+    </p>
+  )}
+</Tag>
 
 <script is:inline>
   (function () {
@@ -396,5 +406,14 @@ const { badge, heading, subhead, brands, trust, hubCta } = content;
     .brands__track > :nth-child(n + 19) {
       display: none;
     }
+  }
+
+  .brands--embedded {
+    padding-block: 0;
+    background: transparent;
+  }
+
+  .brands--embedded .brands__marquee {
+    margin-top: 0;
   }
 </style>

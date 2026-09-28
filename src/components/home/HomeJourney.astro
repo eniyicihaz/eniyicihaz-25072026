@@ -1,0 +1,299 @@
+---
+// HomeJourney — homepage block 7: BrandCriteria (services) + Guide (3-step
+// reassurance) + Service Journey merged into ONE section. The three said
+// the same thing three ways (what we do, in what order); this states it
+// once, as the single path Değerlendir → Seç → Dene → Ayarla → Servis,
+// every step a real link (data/home/service-journey.ts — same real
+// hrefs), plus a short "ayrıca" row for the services that sit beside the
+// path (online test, home service, ear-mould, the full hub). SGK lives in
+// the local block, not here.
+import HomeBlockHeader from "./HomeBlockHeader.astro";
+import { ArrowRight } from "lucide-astro";
+import { homeServiceJourney } from "../../data/home/service-journey";
+
+const VERBS = ["Değerlendir", "Seç", "Dene", "Ayarla", "Servis"];
+
+const alsoLinks = [
+  { label: "Online işitme testi", href: "/degerlendirme/online-isitme-testi" },
+  { label: "Evde işitme cihazı hizmeti", href: "/uygulama-ayar/evde-isitme-cihazi-hizmeti" },
+  { label: "Kulak kalıbı", href: "/uygulama-ayar/kalip-alimi" },
+  { label: "Tüm hizmetlerimiz", href: "/hizmetlerimiz" },
+];
+---
+
+<section class="home-journey" aria-labelledby="home-journey-title">
+  <div class="home-journey__inner">
+    <HomeBlockHeader
+      id="home-journey-title"
+      eyebrow="Hizmetlerimiz"
+      heading="Değerlendirmeden Servise, Tek Yolculuk"
+      intro="Darıca'daki merkezimizde, işitme sağlığınızın her aşamasında yanınızdayız."
+    />
+
+    <ol class="home-journey__steps">
+      {
+        homeServiceJourney.steps.map((step, i) => {
+          const Icon = step.icon;
+          return (
+            <li class="home-journey__step">
+              <a class="home-journey__card" href={step.href}>
+                <span class="home-journey__top">
+                  <span class="home-journey__icon" aria-hidden="true">
+                    <Icon size={20} stroke-width={1.75} />
+                  </span>
+                  <span class="home-journey__verb">
+                    <span class="home-journey__num">{i + 1}</span>
+                    {VERBS[i]}
+                  </span>
+                </span>
+                <span class="home-journey__title">{step.title}</span>
+                <span class="home-journey__desc">{step.description}</span>
+                <span class="home-journey__go" aria-hidden="true">
+                  <ArrowRight size={16} stroke-width={2} />
+                </span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ol>
+
+    <div class="home-journey__also">
+      <span class="home-journey__also-label">Ayrıca</span>
+      <ul class="home-journey__also-list">
+        {
+          alsoLinks.map((link) => (
+            <li>
+              <a class="home-journey__chip" href={link.href}>{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-journey {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-14);
+  }
+
+  .home-journey__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .home-journey__steps {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+    counter-reset: none;
+  }
+
+  .home-journey__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    height: 100%;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    text-decoration: none;
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .home-journey__card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .home-journey__card:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .home-journey__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .home-journey__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+  }
+
+  .home-journey__verb {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .home-journey__num {
+    display: inline-grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-size: 0.6875rem;
+  }
+
+  .home-journey__title {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .home-journey__desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .home-journey__go {
+    margin-top: auto;
+    padding-top: var(--space-2);
+    color: var(--color-primary);
+    transition: transform var(--transition-base);
+  }
+
+  .home-journey__card:hover .home-journey__go {
+    transform: translateX(4px);
+  }
+
+  .home-journey__also {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-4);
+  }
+
+  .home-journey__also-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-soft);
+  }
+
+  .home-journey__also-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .home-journey__chip {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color var(--transition-base), color var(--transition-base);
+  }
+
+  .home-journey__chip:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .home-journey__chip:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  @media (max-width: 1279px) {
+    .home-journey__steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .home-journey__steps {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+
+    /* Mobile: compact horizontal rows, arrow on the right, no dead space. */
+    .home-journey__card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        "top go"
+        "title go"
+        "desc go";
+      align-items: center;
+      column-gap: var(--space-4);
+      row-gap: 2px;
+      padding: var(--space-3) var(--space-4);
+    }
+
+    .home-journey__top {
+      grid-area: top;
+      justify-content: flex-start;
+      gap: var(--space-3);
+    }
+
+    .home-journey__title {
+      grid-area: title;
+      margin-top: 0;
+    }
+
+    .home-journey__desc {
+      grid-area: desc;
+    }
+
+    .home-journey__go {
+      grid-area: go;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-journey {
+      padding-block: var(--space-12);
+    }
+
+    .home-journey__inner {
+      padding-inline: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-journey__card:hover,
+    .home-journey__card:hover .home-journey__go {
+      transform: none;
+    }
+  }
+</style>

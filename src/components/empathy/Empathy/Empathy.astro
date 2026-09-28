@@ -8,10 +8,14 @@ import EmpathySignalThread from "./atoms/EmpathySignalThread/EmpathySignalThread
 import { empathy } from "./empathy.data";
 
 const [opening, development, peak, transition] = empathy.lines;
+
+// `embedded`: rendered inside a merged homepage block (HomeStory/HomeShowroom) — a <div> instead of a <section>, no own vertical padding. Default false: every existing use is unchanged.
+const { embedded = false } = Astro.props as { embedded?: boolean };
+const Tag = embedded ? "div" : "section";
 ---
 
-<section class="empathy" aria-labelledby="empathy-title">
-  <h2 class="empathy__heading" id="empathy-title">{empathy.heading}</h2>
+<Tag class:list={["empathy", { "empathy--embedded": embedded }]} aria-labelledby="empathy-title">
+  {embedded ? <h3 class="empathy__heading" id="empathy-title">{empathy.heading}</h3> : <h2 class="empathy__heading" id="empathy-title">{empathy.heading}</h2>}
 
   <div class="empathy__inner">
     <EmpathyLine text={opening.text} />
@@ -20,7 +24,7 @@ const [opening, development, peak, transition] = empathy.lines;
     <EmpathyLine text={peak.text} emphasis={peak.emphasis} />
     <EmpathyLine text={transition.text} />
   </div>
-</section>
+</Tag>
 
 <script is:inline>
   (function () {
@@ -171,5 +175,11 @@ const [opening, development, peak, transition] = empathy.lines;
     .empathy__inner {
       padding-inline: var(--space-4);
     }
+  }
+
+  .empathy--embedded {
+    padding-block: 0;
+    background: transparent;
+    --empathy-line-gap: var(--space-8);
   }
 </style>

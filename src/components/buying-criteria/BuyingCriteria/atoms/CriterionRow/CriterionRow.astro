@@ -1,0 +1,62 @@
+---
+// CriterionRow — single icon + title + one-sentence criterion row for
+// BuyingCriteria's info panel. No card chrome (border/shadow) — the panel
+// itself is the container; a bordered card-within-a-card would compete
+// with the section's calm, editorial register.
+interface Props {
+  icon: any;
+  title: string;
+  description: string;
+}
+
+const { icon: Icon, title, description } = Astro.props;
+---
+
+<li class="criterion-row">
+  <span class="criterion-row__icon" aria-hidden="true">
+    <Icon size={18} stroke-width={1.75} />
+  </span>
+  <span class="criterion-row__body">
+    <span class="criterion-row__title">{title}</span>
+    <span class="criterion-row__desc">{description}</span>
+  </span>
+</li>
+
+<style>
+  .criterion-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .criterion-row__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    margin-top: 1px;
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+    color: var(--color-primary);
+  }
+
+  .criterion-row__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+  }
+
+  .criterion-row__title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .criterion-row__desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+</style>

@@ -11,6 +11,8 @@ export interface ClosingSecondaryContact {
   /** WhatsApp alternative, plain text link — same weight as the phone
    *  link, never styled as a competing button (plan §F). */
   whatsapp: { label: string; href: string };
+  /** Darıca center directions (real Google Business Profile link, footer company data). */
+  directions: { label: string; href: string };
 }
 
 export interface ClosingContent {

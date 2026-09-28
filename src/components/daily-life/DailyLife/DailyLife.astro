@@ -1,0 +1,272 @@
+---
+// DailyLife — "Günlük Yaşamda Netlik" (own spec:
+// docs/archive/DAILY_LIFE_SPECIFICATION.md). Deliberately NOT a reuse of
+// ScenarioRail.astro — that component is icon-based and intentionally
+// href-less ("scenarios don't link anywhere", see its own header comment).
+// This section's whole purpose is the opposite: real/custom photography,
+// each card carrying a genuine link to a different real page. New sibling
+// organism, not a ScenarioRail edit.
+import ImagePlaceholder from "../../shared/ImagePlaceholder/ImagePlaceholder.astro";
+import { dailyLife } from "./daily-life.data";
+---
+
+<section class="daily-life" aria-labelledby="daily-life-title">
+  <div class="daily-life__inner">
+  <div class="daily-life__header">
+    <p class="daily-life__eyebrow" data-rise>{dailyLife.eyebrow}</p>
+    <h2 class="daily-life__heading" id="daily-life-title" data-rise>{dailyLife.heading}</h2>
+    <p class="daily-life__intro" data-rise>{dailyLife.intro}</p>
+  </div>
+
+  <div class="daily-life__grid" data-rise>
+    {dailyLife.scenarios.map((scenario) => (
+      <a class="daily-life__card" href={scenario.href} aria-label={`${scenario.title} — ${scenario.linkLabel}`}>
+        <div class="daily-life__visual">
+          {/* TODO: gerçek/özel üretim görsel eklendiğinde ImagePlaceholder yerine
+              <img src={scenario.image?.src} alt={scenario.imageAlt} loading="lazy" /> */}
+          <ImagePlaceholder alt={scenario.imageAlt} ratio="1/1" />
+        </div>
+        <div class="daily-life__body">
+          <h3 class="daily-life__card-title">{scenario.title}</h3>
+          <p class="daily-life__card-desc">{scenario.description}</p>
+          <span class="daily-life__card-link">{scenario.linkLabel} →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".daily-life");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .daily-life {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-14);
+    --dl-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Split editorial layout: left-aligned sticky header, compact horizontal
+     scenario rows on the right (visual left, copy right). Each row's visual
+     keeps a fixed square crop, so a real photo can drop in without moving
+     anything. Stacked on tablet/mobile with a small thumbnail. */
+  .daily-life__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .daily-life__header {
+    position: sticky;
+    top: calc(var(--space-24) + var(--space-4));
+    text-align: left;
+  }
+
+  .daily-life__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .daily-life__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .daily-life__intro {
+    margin: var(--space-4) 0 0;
+    max-width: 26rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .daily-life__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .daily-life__card {
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: var(--color-background);
+    text-decoration: none;
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .daily-life__card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-md);
+  }
+
+  .daily-life__card:hover .daily-life__card-link {
+    text-decoration: underline;
+  }
+
+  .daily-life__card:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .daily-life__visual {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .daily-life__body {
+    padding-right: var(--space-3);
+  }
+
+  .daily-life__card-title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .daily-life__card-desc {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .daily-life__card-link {
+    display: inline-block;
+    margin-top: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+
+  /* --- Entrance --- */
+
+  .daily-life[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .daily-life[data-anim="in"] [data-rise] {
+    animation: daily-life-rise 600ms var(--dl-ease) both;
+  }
+
+  .daily-life[data-anim="in"] .daily-life__grid {
+    animation-delay: 100ms;
+  }
+
+  @keyframes daily-life-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 1023px) {
+    .daily-life__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+
+    .daily-life__header {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .daily-life {
+      padding-block: var(--space-12);
+    }
+
+    .daily-life__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .daily-life__card {
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: var(--space-4);
+      padding: var(--space-3);
+    }
+
+    .daily-life__card-title {
+      font-size: var(--font-size-md);
+    }
+
+    .daily-life__body {
+      padding-right: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .daily-life[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+
+    .daily-life__card:hover {
+      transform: none;
+    }
+  }
+</style>

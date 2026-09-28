@@ -68,9 +68,14 @@ export interface BrandPageModelsContent {
 
 interface Props {
   data: BrandPageModelsContent;
+  /** Denser layout for the homepage showcase (shorter cards, tighter padding, centered flex rows so an odd item count leaves no orphan-left card). Default false — brand pages render exactly as before. */
+  compact?: boolean;
+  /** Rendered inside a merged homepage block: a <div> with no own header and no vertical padding (the parent block supplies the heading). Default false. */
+  embedded?: boolean;
 }
 
-const { data } = Astro.props;
+const { data, compact = false, embedded = false } = Astro.props;
+const Tag = embedded ? "div" : "section";
 
 // Plain server-side hex→rgba conversion (runs once at build time, output is
 // a literal rgba() string in the static HTML) — not a browser-side CSS
@@ -84,19 +89,21 @@ function hexToRgba(hex: string, alpha: number) {
 }
 ---
 
-<section
-  class="brand-page-models"
-  aria-labelledby="brand-page-models-title"
+<Tag
+  class:list={["brand-page-models", { "brand-page-models--compact": compact, "brand-page-models--embedded": embedded }]}
+  aria-labelledby={embedded ? undefined : "brand-page-models-title"}
   style={`--bpm-accent:${data.accentColor}; --bpm-badge-bg:${data.accentColorBadgeBg}; --bpm-badge-border:${data.accentColorBadgeBorder}; --bpm-badge-text:${data.accentColorBadgeText}; --bpm-hover-border:${data.accentColorHoverBorder}; --bpm-glow:${data.accentColorGlow}; --bpm-focus:${data.accentColorFocus};`}
 >
   <div class="brand-page-models__inner">
-    <div class="brand-page-models__header">
-      <p class="brand-page-models__badge" data-rise>{data.badge}</p>
-      <h2 class="brand-page-models__heading" id="brand-page-models-title" data-rise>
-        {data.heading}
-      </h2>
-      <p class="brand-page-models__intro" data-rise>{data.intro}</p>
-    </div>
+    {!embedded && (
+      <div class="brand-page-models__header">
+        <p class="brand-page-models__badge" data-rise>{data.badge}</p>
+        <h2 class="brand-page-models__heading" id="brand-page-models-title" data-rise>
+          {data.heading}
+        </h2>
+        <p class="brand-page-models__intro" data-rise>{data.intro}</p>
+      </div>
+    )}
 
     <div class="brand-page-models__grid">
       {
@@ -150,7 +157,7 @@ function hexToRgba(hex: string, alpha: number) {
       }
     </div>
   </div>
-</section>
+</Tag>
 
 <script is:inline>
   (function () {
@@ -435,6 +442,45 @@ function hexToRgba(hex: string, alpha: number) {
     }
   }
 
+  /* --- Compact (homepage showcase only) ---------------------------------
+     Flex rows centered so 5 cards read 5-across (desktop), 3+2 (tablet),
+     2+2+1 (small tablet) — never a lone left-aligned orphan. */
+  .brand-page-models--compact {
+    padding-block: var(--space-16);
+  }
+
+  .brand-page-models--compact .brand-page-models__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-5);
+    margin-top: var(--space-10);
+  }
+
+  .brand-page-models--compact .brand-page-models__card {
+    flex: 0 0 calc((100% - 4 * var(--space-5)) / 5);
+    height: auto;
+    min-height: 430px;
+    padding: var(--space-5) var(--space-4) var(--space-4);
+  }
+
+  .brand-page-models--compact .brand-page-models__media {
+    height: 190px;
+    margin-top: var(--space-3);
+  }
+
+  @media (max-width: 1279px) {
+    .brand-page-models--compact .brand-page-models__card {
+      flex-basis: calc((100% - 2 * var(--space-5)) / 3);
+    }
+  }
+
+  @media (max-width: 699px) {
+    .brand-page-models--compact .brand-page-models__card {
+      flex-basis: calc((100% - var(--space-5)) / 2);
+    }
+  }
+
   @media (max-width: 640px) {
     .brand-page-models {
       padding-block: var(--space-16);
@@ -454,6 +500,43 @@ function hexToRgba(hex: string, alpha: number) {
     .brand-page-models__media {
       height: 220px;
     }
+
+    .brand-page-models--compact {
+      padding-block: var(--space-12);
+    }
+
+    /* Mobile: one horizontal, scroll-snapped row (next card peeks in) instead
+       of five full-width stacked cards. */
+    .brand-page-models--compact .brand-page-models__grid {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      gap: var(--space-4);
+      margin-inline: calc(-1 * var(--space-6));
+      padding: var(--space-1) var(--space-6) var(--space-3);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--space-6);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .brand-page-models--compact .brand-page-models__card {
+      flex: 0 0 76%;
+      scroll-snap-align: start;
+      height: auto;
+      min-height: 0;
+      padding: var(--space-4);
+    }
+
+    .brand-page-models--compact .brand-page-models__media {
+      height: 180px;
+    }
+
+    /* Embedded in a merged block whose own gutter is space-4 (not space-6). */
+    .brand-page-models--embedded.brand-page-models--compact .brand-page-models__grid {
+      margin-inline: calc(-1 * var(--space-4));
+      padding-inline: var(--space-4);
+      scroll-padding-inline: var(--space-4);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -468,5 +551,18 @@ function hexToRgba(hex: string, alpha: number) {
     .brand-page-models__link svg {
       transition: none;
     }
+  }
+
+  .brand-page-models--embedded {
+    padding-block: 0;
+    background: transparent;
+  }
+
+  .brand-page-models--embedded .brand-page-models__inner {
+    padding-inline: 0;
+  }
+
+  .brand-page-models--embedded .brand-page-models__grid {
+    margin-top: 0;
   }
 </style>

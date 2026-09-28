@@ -1,0 +1,241 @@
+---
+// BuyingCriteria — "İşitme Cihazı Seçerken Nelere Bakılır?" New homepage
+// section between Solution and CategoryExplorer (docs/HOMEPAGE_SPECIFICATION.md
+// position pending integration; own spec: docs/BUYING_CRITERIA_SPECIFICATION.md).
+// Full-width image + info panel — the page's first "editorial photo" pattern,
+// distinct from CategoryExplorer's rail and Solution's plain-card layout.
+import CriterionRow from "./atoms/CriterionRow/CriterionRow.astro";
+import { buyingCriteria } from "./buying-criteria.data";
+---
+
+<section class="buying-criteria" aria-labelledby="buying-criteria-title">
+  <div class="buying-criteria__inner">
+    <div class="buying-criteria__visual" data-rise>
+      <img
+        class="buying-criteria__image"
+        src={buyingCriteria.image.src}
+        alt={buyingCriteria.image.alt}
+        width={buyingCriteria.image.width}
+        height={buyingCriteria.image.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <div class="buying-criteria__panel" data-rise>
+      <p class="buying-criteria__eyebrow">{buyingCriteria.eyebrow}</p>
+      <h2 class="buying-criteria__heading" id="buying-criteria-title">{buyingCriteria.heading}</h2>
+      <p class="buying-criteria__intro">{buyingCriteria.intro}</p>
+
+      <ul class="buying-criteria__list">
+        {buyingCriteria.criteria.map((item) => (
+          <CriterionRow icon={item.icon} title={item.title} description={item.description} />
+        ))}
+      </ul>
+
+      <p class="buying-criteria__closing">
+        {buyingCriteria.closing}
+        {" "}
+        <a class="buying-criteria__link" href={buyingCriteria.hubCta.href}>{buyingCriteria.hubCta.label} →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector(".buying-criteria");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    section.dataset.anim = "pending";
+
+    var revealed = false;
+    var ioAlive = false;
+    var io;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      section.dataset.anim = "in";
+      if (io) io.disconnect();
+    }
+
+    var failsafe = setTimeout(function () {
+      if (!ioAlive) reveal();
+    }, 1500);
+
+    io = new IntersectionObserver(
+      function (entries) {
+        ioAlive = true;
+        clearTimeout(failsafe);
+        if (entries[0].isIntersecting) reveal();
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+  })();
+</script>
+
+<style>
+  .buying-criteria {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    --bc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .buying-criteria__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .buying-criteria__visual {
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Desktop: the column is portrait (4/5) but the 16:9 source is
+     landscape, so it is cropped. object-position ~58% keeps the advisor,
+     the aid she holds and the device tray in frame (the man on the far
+     left is what gets trimmed). */
+  .buying-criteria__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 58% 50%;
+  }
+
+  .buying-criteria__panel {
+    min-width: 0;
+  }
+
+  .buying-criteria__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .buying-criteria__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .buying-criteria__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .buying-criteria__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .buying-criteria__closing {
+    margin: var(--space-8) 0 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .buying-criteria__link {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .buying-criteria__link:hover {
+    text-decoration: underline;
+  }
+
+  .buying-criteria__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* --- Entrance --- */
+
+  .buying-criteria[data-anim="pending"] [data-rise] {
+    opacity: 0;
+  }
+
+  .buying-criteria[data-anim="in"] [data-rise] {
+    animation: buying-criteria-rise 600ms var(--bc-ease) both;
+  }
+
+  .buying-criteria[data-anim="in"] .buying-criteria__panel {
+    animation-delay: 120ms;
+  }
+
+  @keyframes buying-criteria-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 1023px) {
+    .buying-criteria__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    /* Stacked layout: the source is 16:9, so it shows uncropped — the
+       advisor, the hearing aid in her hand and the device tray all stay
+       fully in frame. */
+    .buying-criteria__image {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .buying-criteria {
+      padding-block: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .buying-criteria[data-anim="in"] [data-rise] {
+      animation: none;
+    }
+  }
+</style>

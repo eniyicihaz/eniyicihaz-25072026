@@ -1,0 +1,258 @@
+---
+// HomeExplore — homepage block 4: CategoryExplorer + DeviceComparison merged
+// into ONE "keşfedin ve karşılaştırın" section. One table does both jobs:
+// each column header is the device type (image slot + name, linking to its
+// real /isitme-cihazlari/* page), and the last row repeats the link as an
+// explicit "İnceleyin" so the detail pages stay obvious. Trimmed to the 5
+// criteria that matter (was 7 rows + a separate 7-card rail). Same locked
+// data as DeviceComparison (device-comparison.data.ts) — never a new claim.
+// Real <table>; the horizontal scroll container sits OUTSIDE it so the
+// criterion column can stay sticky on small screens.
+import ImagePlaceholder from "../shared/ImagePlaceholder/ImagePlaceholder.astro";
+import HomeBlockHeader from "./HomeBlockHeader.astro";
+import { deviceComparison } from "../device-comparison/DeviceComparison/device-comparison.data";
+import { categoryExplorer } from "../../data/category-explorer/category-explorer.data";
+
+const KEEP = ["Öne çıkan yön", "Görünürlük", "Güç aralığı", "Şarj / pil", "Kablosuz bağlantı"];
+const rows = deviceComparison.rows.filter((row) => KEEP.includes(row.criterion));
+---
+
+<section class="home-explore" aria-labelledby="home-explore-title">
+  <div class="home-explore__inner">
+    <HomeBlockHeader
+      id="home-explore-title"
+      eyebrow="İşitme Cihazı Çeşitleri"
+      heading="İşitme Cihazlarını Keşfedin ve Karşılaştırın"
+      intro={categoryExplorer.intro}
+    />
+
+    <div class="home-explore__scroll" tabindex="0" role="region" aria-label="İşitme cihazı tipleri karşılaştırma tablosu — yatay kaydırılabilir">
+      <table class="home-explore__table">
+        <caption class="sr-only">İşitme cihazı tiplerinin özellik karşılaştırması</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="home-explore__corner"><span class="sr-only">Özellik</span></th>
+            {deviceComparison.columns.map((col) => (
+              <th scope="col" class="home-explore__col-head">
+                <a href={col.href} class="home-explore__col-link">
+                  {col.image ? (
+                    <img
+                      class="home-explore__col-image"
+                      src={col.image.src}
+                      width={col.image.width}
+                      height={col.image.height}
+                      alt={col.imageAlt}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <ImagePlaceholder alt={col.imageAlt} ratio="1/1" />
+                  )}
+                  <span class="home-explore__col-name">{col.name}</span>
+                </a>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr>
+              <th scope="row" class="home-explore__row-head">{row.criterion}</th>
+              {row.values.map((value) => (
+                <td class="home-explore__cell">{value}</td>
+              ))}
+            </tr>
+          ))}
+          <tr>
+            <th scope="row" class="home-explore__row-head">Detay</th>
+            {deviceComparison.columns.map((col) => (
+              <td class="home-explore__cell">
+                <a class="home-explore__more" href={col.href}>İnceleyin →</a>
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="home-explore__footer">
+      <span>{deviceComparison.closing}</span>
+      <a class="home-explore__hub" href={categoryExplorer.hubCta.href}>{categoryExplorer.hubCta.label} →</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .home-explore {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-14);
+  }
+
+  .home-explore__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* The scroll container (border + radius) is the ONLY overflow ancestor of
+     the table — the <table> itself never sets overflow, or the sticky first
+     column would pin to the table instead of the scroller. */
+  .home-explore__scroll {
+    margin-top: var(--space-8);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .home-explore__scroll:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .home-explore__table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .home-explore__corner,
+  .home-explore__row-head {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--color-background);
+    border-right: 1px solid var(--color-border);
+  }
+
+  .home-explore__corner {
+    z-index: 2;
+  }
+
+  .home-explore__col-head {
+    min-width: 128px;
+    padding: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+
+  .home-explore__col-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+  }
+
+  .home-explore__col-image,
+  .home-explore__col-link :global(.image-placeholder) {
+    display: block;
+    width: 76px;
+    height: 76px;
+    padding: 0;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    background: #fff;
+  }
+
+  .home-explore__col-name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    text-align: center;
+  }
+
+  .home-explore__col-link:hover .home-explore__col-name {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .home-explore__col-link:focus-visible,
+  .home-explore__more:focus-visible,
+  .home-explore__hub:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .home-explore__row-head {
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .home-explore__cell {
+    padding: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .home-explore__more {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .home-explore__more:hover {
+    text-decoration: underline;
+  }
+
+  .home-explore__footer {
+    margin: var(--space-5) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-6);
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .home-explore__hub {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .home-explore__hub:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .home-explore {
+      padding-block: var(--space-12);
+    }
+
+    .home-explore__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .home-explore__table {
+      min-width: 760px;
+    }
+  }
+</style>

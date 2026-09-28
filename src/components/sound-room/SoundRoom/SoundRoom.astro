@@ -7,10 +7,14 @@
 import SoundRoomStage from "./molecules/SoundRoomStage/SoundRoomStage.astro";
 import SoundRoomControls from "./molecules/SoundRoomControls/SoundRoomControls.astro";
 import { soundRoom } from "./sound-room.data";
+
+// `embedded`: rendered inside a merged homepage block (HomeStory/HomeShowroom) — a <div> instead of a <section>, no own vertical padding. Default false: every existing use is unchanged.
+const { embedded = false } = Astro.props as { embedded?: boolean };
+const Tag = embedded ? "div" : "section";
 ---
 
-<section class="sound-room" aria-labelledby="sound-room-title">
-  <h2 class="sound-room__heading" id="sound-room-title">{soundRoom.heading}</h2>
+<Tag class:list={["sound-room", { "sound-room--embedded": embedded }]} aria-labelledby="sound-room-title">
+  {embedded ? <h3 class="sound-room__heading" id="sound-room-title">{soundRoom.heading}</h3> : <h2 class="sound-room__heading" id="sound-room-title">{soundRoom.heading}</h2>}
 
   <div class="sound-room__panel" data-rise>
     <p class="sound-room__context">{soundRoom.contextSentence}</p>
@@ -24,7 +28,7 @@ import { soundRoom } from "./sound-room.data";
       disclaimer={soundRoom.disclaimer}
     />
   </div>
-</section>
+</Tag>
 
 <script is:inline>
   (function () {
@@ -229,5 +233,10 @@ import { soundRoom } from "./sound-room.data";
     .sound-room__panel[data-anim="in"] {
       animation: none;
     }
+  }
+
+  .sound-room--embedded {
+    padding-block: 0;
+    background: transparent;
   }
 </style>

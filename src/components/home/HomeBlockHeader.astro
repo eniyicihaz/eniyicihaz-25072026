@@ -1,0 +1,68 @@
+---
+// HomeBlockHeader — the one header shared by the merged homepage blocks
+// (HomeExplore/HomeShowroom/HomeJourney/HomeLocal/HomeKnowledge): eyebrow
+// chip + H2 + optional intro. Left-aligned by default (editorial register —
+// the merged blocks deliberately avoid the centered eyebrow + H2 pattern the
+// earlier 20-section page repeated); `center` opts back into a centered
+// header where a block genuinely wants it.
+interface Props {
+  id: string;
+  eyebrow: string;
+  heading: string;
+  intro?: string;
+  center?: boolean;
+}
+
+const { id, eyebrow, heading, intro, center = false } = Astro.props;
+---
+
+<header class:list={["home-block-header", { "home-block-header--center": center }]}>
+  <p class="home-block-header__eyebrow">{eyebrow}</p>
+  <h2 class="home-block-header__heading" id={id}>{heading}</h2>
+  {intro && <p class="home-block-header__intro">{intro}</p>}
+</header>
+
+<style>
+  .home-block-header {
+    text-align: left;
+  }
+
+  .home-block-header--center {
+    text-align: center;
+  }
+
+  .home-block-header__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .home-block-header__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .home-block-header__intro {
+    margin: var(--space-4) 0 0;
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .home-block-header--center .home-block-header__intro {
+    margin-inline: auto;
+  }
+</style>

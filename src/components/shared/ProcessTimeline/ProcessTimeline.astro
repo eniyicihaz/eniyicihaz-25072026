@@ -18,6 +18,8 @@ export interface ProcessTimelineStep {
   icon: any;
   title: string;
   description: string;
+  /** Optional — when present, the step's title/description link to a real page. Existing callers that omit it render exactly as before (plain text step). */
+  href?: string;
 }
 
 export interface ProcessTimelineContent {
@@ -62,7 +64,13 @@ const { data } = Astro.props;
                 <span class="process-timeline__number">{i + 1}</span>
               </div>
               <div class="process-timeline__body">
-                <h3 class="process-timeline__title">{step.title}</h3>
+                <h3 class="process-timeline__title">
+                  {step.href ? (
+                    <a class="process-timeline__title-link" href={step.href}>{step.title}</a>
+                  ) : (
+                    step.title
+                  )}
+                </h3>
                 <p class="process-timeline__desc">{step.description}</p>
               </div>
             </div>
@@ -246,6 +254,22 @@ const { data } = Astro.props;
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
+  }
+
+  .process-timeline__title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .process-timeline__title-link:hover {
+    color: var(--pt-accent);
+    text-decoration: underline;
+  }
+
+  .process-timeline__title-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
   }
 
   .process-timeline__closing {

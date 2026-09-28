@@ -1,0 +1,189 @@
+---
+// HomeStory — homepage block 2: Empathy + SoundRoom + Solution merged into
+// ONE story section (was three, ~1,960px). Nothing is rewritten — the
+// existing Empathy (4 scroll-revealed lines) and SoundRoom (the interactive
+// clarity slider, with its own script) render embedded; Solution's three
+// facts become a compact row (same locked copy, solution.data.ts). The
+// single H2 carries the brand line; the embedded parts use sr-only H3s.
+import Empathy from "../empathy/Empathy/Empathy.astro";
+import SoundRoom from "../sound-room/SoundRoom/SoundRoom.astro";
+import { solution } from "../solution/Solution/solution.data";
+---
+
+<section class="home-story" aria-labelledby="home-story-title">
+  <div class="home-story__inner">
+    <div class="home-story__top">
+      <div class="home-story__lead">
+        <p class="home-story__eyebrow">Günlük hayattaki işitme anları</p>
+        <h2 class="home-story__heading" id="home-story-title">
+          Bazen mesele yalnızca sesi duymak değildir.
+        </h2>
+        <Empathy embedded />
+      </div>
+
+      <div class="home-story__experience">
+        <SoundRoom embedded />
+      </div>
+    </div>
+
+    <div class="home-story__facts">
+      <p class="home-story__facts-lead">{solution.contextSentence}</p>
+      <ul class="home-story__list">
+        {
+          solution.facts.map((fact) => (
+            <li class="home-story__fact">
+              <h3 class="home-story__fact-title">{fact.title}</h3>
+              <p class="home-story__fact-body">{fact.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="home-story__facts-close">{solution.closingSentence}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-story {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+  }
+
+  .home-story__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .home-story__top {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .home-story__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .home-story__heading {
+    margin: var(--space-4) 0 var(--space-8);
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  /* Empathy's lines are centered by default; in the left column they read
+     as a quiet, left-aligned editorial run. */
+  .home-story__lead :global(.empathy__inner) {
+    align-items: flex-start;
+    padding-inline: 0;
+    max-width: none;
+    text-align: left;
+  }
+
+  .home-story__lead :global(.empathy-line) {
+    text-align: left;
+    font-size: var(--font-size-xl);
+  }
+
+  .home-story__experience {
+    min-width: 0;
+  }
+
+  .home-story__facts {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .home-story__facts-lead {
+    margin: 0;
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .home-story__list {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .home-story__fact {
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--color-primary);
+  }
+
+  .home-story__fact-title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .home-story__fact-body {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .home-story__facts-close {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  @media (max-width: 1023px) {
+    .home-story__top {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+
+    .home-story__list {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-4);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-story {
+      padding-block: var(--space-12);
+    }
+
+    .home-story__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .home-story__facts {
+      margin-top: var(--space-8);
+    }
+
+    .home-story__lead :global(.empathy--embedded) {
+      --empathy-line-gap: var(--space-4);
+    }
+
+    .home-story__lead :global(.empathy-line) {
+      font-size: var(--font-size-lg);
+    }
+
+    .home-story__heading {
+      margin-bottom: var(--space-5);
+    }
+  }
+</style>
