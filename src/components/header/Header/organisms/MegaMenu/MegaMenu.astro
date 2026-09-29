@@ -1350,6 +1350,32 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     }
   }
 
+  /* Narrowest desktop range (1280–1439px): the İşitme Cihazları promo is only
+     ~340–360px wide, so the badge, wrapped text and the 218px CTA all reached
+     into the photo's fade/device zone. Compact the badge, title, text and CTA
+     so every element stays within the light left half of the card. */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+    #hd-mega-cihazlar .hd-mega__promo-badge {
+      max-width: 50%;
+      padding-inline: var(--space-2);
+      border-radius: var(--radius-lg);
+      font-size: 0.6875rem;
+      line-height: 1.35;
+    }
+    #hd-mega-cihazlar .hd-mega__promo-title {
+      font-size: var(--font-size-2xl);
+    }
+    #hd-mega-cihazlar .hd-mega__promo-text {
+      font-size: var(--font-size-sm);
+    }
+    #hd-mega-cihazlar .hd-mega__promo-cta {
+      height: 40px;
+      gap: var(--space-1);
+      padding-inline: var(--space-3);
+      font-size: var(--font-size-sm);
+    }
+  }
+
   /* Below the nav breakpoint the mobile menu takes over. */
   @media (max-width: 1023px) {
     .hd-mega {
