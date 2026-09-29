@@ -179,6 +179,15 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     }
   }
 
+  /* Tightest desktop range: the nav's own width (~673px incl. chevrons) leaves
+     no room at the default 32px bar gap, so the chevrons spilled out of their
+     triggers. Halve the gap here; from 1440px up the default fits. */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+    .hd-bar__inner {
+      gap: var(--space-4);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hd-bar,
     .hd-bar__inner {
