@@ -8,10 +8,12 @@ import type { GuideCtaContent } from "../../data/isitme-cihazi-fiyatlari/related
 
 interface Props {
   data: GuideCtaContent;
+  /** Optional per-action icons (defaults to the price guide's three). */
+  icons?: any[];
 }
 
-const { data } = Astro.props;
-const icons = [Stethoscope, MessageCircle, MapPin];
+const { data, icons: iconsProp } = Astro.props;
+const icons = iconsProp ?? [Stethoscope, MessageCircle, MapPin];
 ---
 
 <section class="guide-cta" aria-labelledby="guide-cta-title">

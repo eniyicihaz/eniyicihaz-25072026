@@ -1,49 +1,369 @@
 ---
-// "İşitme Cihazları" — the page Header ▸ İşitme Cihazları (top-level
-// nav item) links to, mirroring /markalar's role for the Markalar item.
-// Built up modularly using the same M1-M8 hub-page system /markalar
-// pioneered (see src/components/brands/) — those 8 components are now
-// generic (data prop instead of a fixed import), so this page supplies
-// its own data/devices/* content while sharing the exact markup/CSS.
+// /isitme-cihazlari/ — "İşitme cihazları" KONU MERKEZİ (topic hub): cihazı
+// tanıma, türleri, özellikleri ve seçim. Header ▸ İşitme Cihazları (üst menü)
+// bu sayfaya bağlanır. Fiyat sayfasının (/isitme-cihazi-fiyatlari/) kopyası
+// DEĞİLDİR: fiyat ve SGK burada yalnızca kısa yönlendirmedir.
 //
-// M1 (Hero), M2 (Device-Type Showcase: the 7 devicesMega "İşitme Cihazı
-// Çeşitleri" pages, 6 shown), M3 (Criteria: device-type decision axes),
-// M4 (Decision: scenario-matching to a device type), M5 (Buying Guide:
-// self-assessment questions, distinct framing from /markalar's M5), M6
-// (Extended: the remaining 15 devicesMega pages — Suya Dayanıklı +
-// Teknolojilere Göre + İhtiyacınıza Göre), M7 (Expert Support) and M8
-// (FAQ) — M8 is the page's final section. Do not add later modules
-// until they're specifically requested.
+//   ARAMA NİYETİ → ANA SORGU → İLİŞKİLİ SORGULAR → KULLANICI SORULARI →
+//   LOKAL BAĞLAM → KAPSAMLI VE ÖZGÜN CEVAP → İÇ BAĞLANTILAR → DÖNÜŞÜM
+//
+// Politika: site fiyat yayımlamaz/tahmin etmez (COMPANY.md §23, PRINCIPLES.md
+// §5); Product/Offer şemasına fiyat girmez (QUALITY_GATES.md §4). Gebze ve
+// Çayırova'da şube iddiası yoktur (COMPANY.md §17). Video yok. Yeni görsel
+// üretilmedi — eksik alanlar nötr yer tutucudur (bkz. types.ts / anatomy.ts
+// `imageNeeded`).
+//
+// Görünüm mevcut componentlerin yeniden kullanımıdır (price-guide/*, Brands,
+// BrandPageModels, BrandPageFaq, ContactLocationCard, BrandExtended…); yalnızca
+// TypeProfiles, AnatomyMap ve FocusBlock bu sayfa için yenidir
+// (components/device-guide/*). İçerik data/isitme-cihazlari/* altındadır.
+// Eski M1–M8 modüler içeriği (data/devices/*) bu sayfayla değiştirildi;
+// yalnızca 21 alt sayfaya iç bağlantı sağlayan `devices/extended.ts` korunur.
+import { Compass, Stethoscope, Tag } from "lucide-astro";
+import { MessageCircle, MapPin } from "lucide-astro";
 import MainLayout from "../../layouts/MainLayout.astro";
-import BrandHero from "../../components/brands/BrandHero/BrandHero.astro";
-import BrandShowcase from "../../components/brands/BrandShowcase/BrandShowcase.astro";
-import BrandCriteria from "../../components/brands/BrandCriteria/BrandCriteria.astro";
-import BrandDecision from "../../components/brands/BrandDecision/BrandDecision.astro";
-import BrandBuyingGuide from "../../components/brands/BrandBuyingGuide/BrandBuyingGuide.astro";
+import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import Brands from "../../components/brands/Brands/Brands.astro";
 import BrandExtended from "../../components/brands/BrandExtended/BrandExtended.astro";
-import BrandExpertSupport from "../../components/brands/BrandExpertSupport/BrandExpertSupport.astro";
-import BrandFaq from "../../components/brands/BrandFaq/BrandFaq.astro";
+import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
 
-import { devicesHero } from "../../data/devices/hero";
-import { devicesShowcase } from "../../data/devices/showcase";
-import { devicesCriteria } from "../../data/devices/criteria";
-import { devicesDecision } from "../../data/devices/decision";
-import { devicesBuyingGuide } from "../../data/devices/buying-guide";
+import GuideHero from "../../components/price-guide/GuideHero.astro";
+import GuideToc from "../../components/price-guide/GuideToc.astro";
+import DirectAnswer from "../../components/price-guide/DirectAnswer.astro";
+import GuideSection from "../../components/price-guide/GuideSection.astro";
+import InfoGrid from "../../components/price-guide/InfoGrid.astro";
+import GuideTable from "../../components/price-guide/GuideTable.astro";
+import GuideNotice from "../../components/price-guide/GuideNotice.astro";
+import LocalBlocks from "../../components/price-guide/LocalBlocks.astro";
+import GuideCta from "../../components/price-guide/GuideCta.astro";
+
+import TypeProfiles from "../../components/device-guide/TypeProfiles.astro";
+import AnatomyMap from "../../components/device-guide/AnatomyMap.astro";
+import FocusBlock from "../../components/device-guide/FocusBlock.astro";
+
+import { buildMedicalBusinessSchema } from "../../lib/schema";
+import { daricaLocation } from "../../data/darica/location";
 import { devicesExtended } from "../../data/devices/extended";
-import { devicesExpertSupport } from "../../data/devices/expert-support";
-import { devicesFaq } from "../../data/devices/faq";
+import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../../data/isitme-cihazlari/page";
+import { devicesGuideHero } from "../../data/isitme-cihazlari/hero";
+import { devicesQuickAnswer } from "../../data/isitme-cihazlari/quick-answer";
+import { typesSection, typeProfiles } from "../../data/isitme-cihazlari/types";
+import { typesTable, inVsBehindTable, chargeVsBatteryTable, featuresTable, scenariosTable } from "../../data/isitme-cihazlari/comparisons";
+import { anatomySection, anatomy } from "../../data/isitme-cihazlari/anatomy";
+import { choosingSection, choosingGroups, scenariosSection, scenarios } from "../../data/isitme-cihazlari/choosing";
+import { featuresSection, features } from "../../data/isitme-cihazlari/features";
+import { ricSection, ric, invisibleSection, invisible, childrenSection, children } from "../../data/isitme-cihazlari/focus";
+import { brandsSection, brandCards, brandsNote, modelsShowcase, modelPickSection, modelPickCards } from "../../data/isitme-cihazlari/brands";
+import { trialSection, trialSteps, afterSalesSection, afterSales, priceSgkSection, priceSgkCards } from "../../data/isitme-cihazlari/process";
+import { localSection, localBlocks } from "../../data/isitme-cihazlari/local";
+import { devicesFaq } from "../../data/isitme-cihazlari/faq";
+import { devicesRelated, devicesCta } from "../../data/isitme-cihazlari/related-cta";
+
+// Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması, görünür
+// SSS verisinden BrandPageFaq içinde üretilir. Product/Offer/fiyat yok.
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : { item: PAGE_URL }),
+  })),
+};
+const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
+
+// Sayfada görünen 8 cihaz türü profili — her öğe kendi bölüm çapasına işaret eder.
+const typesListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "İşitme cihazı türleri",
+  itemListElement: typeProfiles.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    url: `${PAGE_URL}#${item.id}`,
+  })),
+};
+
+// Darıca konum kartı — aynı gerçek veri, bu sayfaya uygun başlık.
+const locationCard = {
+  ...daricaLocation,
+  eyebrow: "DARICA'DAKİ MERKEZİMİZ",
+  heading: "İşitme Cihazlarını Merkezimizde Yakından Görün",
+  intro:
+    "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir. Önceden randevu almanızı tavsiye ederiz.",
+};
 ---
 
-<MainLayout
-  title="İşitme Cihazı Çeşitleri | Tüm Modeller ve Teknolojiler | EniyiCihaz"
-  description="Kulak arkası, kulak içi, görünmez ve şarj edilebilir işitme cihazı çeşitlerini; yapay zeka destekli ve bağlantılı teknolojileri tek sayfada keşfedin."
->
-  <BrandHero data={devicesHero} />
-  <BrandShowcase data={devicesShowcase} />
-  <BrandCriteria data={devicesCriteria} />
-  <BrandDecision data={devicesDecision} />
-  <BrandBuyingGuide data={devicesBuyingGuide} />
-  <BrandExtended data={devicesExtended} />
-  <BrandExpertSupport data={devicesExpertSupport} />
-  <BrandFaq data={devicesFaq} />
+<MainLayout title={pageMeta.title} description={pageMeta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(typesListSchema)} />
+
+  <div class="dg-breadcrumb">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <GuideHero data={devicesGuideHero} icons={{ primary: Compass, secondary: Stethoscope }} />
+  <GuideToc links={toc} />
+
+  <!-- B. Doğrudan cevap -->
+  <DirectAnswer data={devicesQuickAnswer} />
+
+  <!-- C. Cihaz türleri -->
+  <GuideSection {...typesSection} tone="alt">
+    <TypeProfiles items={typeProfiles} />
+  </GuideSection>
+
+  <!-- D. Tür karşılaştırma tablosu -->
+  <GuideSection id="tur-karsilastirmasi" eyebrow={typesTable.eyebrow} heading={typesTable.heading} intro={typesTable.intro}>
+    <GuideTable data={typesTable} bare />
+  </GuideSection>
+
+  <!-- E. Nasıl çalışır -->
+  <GuideSection {...anatomySection} tone="alt">
+    <AnatomyMap data={anatomy} />
+  </GuideSection>
+
+  <!-- F. Seçerken nelere bakılır -->
+  <GuideSection {...choosingSection}>
+    {
+      choosingGroups.map((group) => (
+        <div class="dg-group" id={group.id}>
+          <h3 class="dg-group__title">{group.title}</h3>
+          <p class="dg-group__intro">{group.intro}</p>
+          <InfoGrid cards={group.cards} columns={3} headingLevel="h4" />
+        </div>
+      ))
+    }
+  </GuideSection>
+
+  <!-- G. Hangi cihaz bana uygun + senaryo tablosu -->
+  <GuideSection {...scenariosSection} tone="alt">
+    <InfoGrid cards={scenarios} columns={4} />
+    <div class="dg-spaced">
+      <GuideTable data={scenariosTable} />
+    </div>
+  </GuideSection>
+
+  <!-- H. Özellikler + özellik tablosu -->
+  <GuideSection {...featuresSection}>
+    <InfoGrid cards={features} columns={3} />
+    <div class="dg-spaced">
+      <GuideTable data={featuresTable} />
+    </div>
+  </GuideSection>
+
+  <!-- I. Şarjlı mı pilli mi -->
+  <GuideSection
+    id="sarjli-pilli"
+    eyebrow="Şarjlı mı Pilli mi?"
+    heading="Şarjlı mı Pilli mi? İşitme Cihazı Enerji Seçenekleri"
+    intro="Şarjlı cihaz ile pilli cihaz arasındaki fark, günlük rutininizde ve el becerinizde ortaya çıkar. Aşağıdaki tablo iki seçeneği avantaj ve dikkat edilecekler üzerinden karşılaştırır."
+    tone="alt"
+  >
+    <GuideTable data={chargeVsBatteryTable} bare />
+  </GuideSection>
+
+  <!-- J. Kulak içi mi kulak arkası mı -->
+  <GuideSection
+    id="kulak-ici-mi-arkasi-mi"
+    eyebrow="Kulak İçi mi Arkası mı?"
+    heading="Kulak İçi mi, Kulak Arkası mı? RIC mi?"
+    intro="Bu üç yerleşim arasında 'daha iyi' olan yoktur; farklı önceliklere daha uygun olan vardır. Görünüşlerini ve günlük kullanımdaki farklarını yan yana görün."
+  >
+    <div class="dg-trio" aria-label="Kulak arkası, RIC ve kulak içi cihaz görselleri">
+      <figure class="dg-trio__item">
+        <img src="/images/homepage/device-comparison/device-comparison-kulak-arkasi-bte.webp" alt="Kulak arkası (BTE) tipi işitme cihazı — temsili görsel" width="1254" height="1254" loading="lazy" decoding="async" />
+        <figcaption>Kulak arkası</figcaption>
+      </figure>
+      <figure class="dg-trio__item">
+        <img src="/images/price-guide/device-type-ric-rite.webp" alt="RIC/RITE tipi işitme cihazı — temsili görsel" width="1254" height="1254" loading="lazy" decoding="async" />
+        <figcaption>RIC / RITE</figcaption>
+      </figure>
+      <figure class="dg-trio__item">
+        <img src="/images/homepage/device-comparison/device-comparison-kulak-ici-ite.webp" alt="Kulak içi (ITE) tipi işitme cihazı — temsili görsel" width="1254" height="1254" loading="lazy" decoding="async" />
+        <figcaption>Kulak içi</figcaption>
+      </figure>
+    </div>
+    <GuideTable data={inVsBehindTable} bare />
+  </GuideSection>
+
+  <!-- K. RIC / RITE -->
+  <GuideSection {...ricSection} tone="alt">
+    <FocusBlock data={ric} />
+  </GuideSection>
+
+  <!-- L. Görünmez cihazlar -->
+  <GuideSection {...invisibleSection}>
+    <FocusBlock data={invisible} flip />
+  </GuideSection>
+
+  <!-- M. Çocuklar -->
+  <GuideSection {...childrenSection} tone="alt">
+    <FocusBlock data={children} />
+  </GuideSection>
+
+  <!-- N. Markalar -->
+  <GuideSection {...brandsSection}>
+    <div class="dg-brands">
+      <Brands embedded />
+    </div>
+    <InfoGrid cards={brandCards} columns={3} />
+    <GuideNotice text={brandsNote} links={[{ label: "Tüm markalar", href: "/markalar/" }]} />
+  </GuideSection>
+
+  <!-- O. Gerçek modeller -->
+  <div class="dg-models" id="modeller">
+    <BrandPageModels data={modelsShowcase} compact />
+  </div>
+
+  <!-- P. Marka / model nasıl seçilir -->
+  <GuideSection {...modelPickSection}>
+    <InfoGrid cards={modelPickCards} columns={4} />
+  </GuideSection>
+
+  <!-- Q. Deneme ve uygulama -->
+  <GuideSection {...trialSection} tone="alt">
+    <InfoGrid cards={trialSteps} columns={3} />
+  </GuideSection>
+
+  <!-- R. Satış sonrası -->
+  <GuideSection {...afterSalesSection}>
+    <InfoGrid cards={afterSales} columns={4} />
+  </GuideSection>
+
+  <!-- S + T. Fiyat ve SGK (kısa yönlendirme) -->
+  <GuideSection {...priceSgkSection} tone="alt">
+    <InfoGrid cards={priceSgkCards} columns={2} />
+  </GuideSection>
+
+  <!-- Diğer cihaz ve teknoloji sayfaları (21 alt sayfaya iç bağlantı) -->
+  <div class="dg-extended" id="tum-sayfalar">
+    <BrandExtended data={devicesExtended} />
+  </div>
+
+  <!-- U. Lokal bölümler -->
+  <GuideSection {...localSection}>
+    <LocalBlocks blocks={localBlocks} />
+  </GuideSection>
+
+  <ContactLocationCard data={locationCard} />
+
+  <!-- W. SSS -->
+  <div id="sss" class="dg-anchor">
+    <BrandPageFaq data={devicesFaq} />
+  </div>
+
+  <BrandPageRelatedContent data={devicesRelated} />
+
+  <!-- X. Final CTA -->
+  <GuideCta data={devicesCta} icons={[Stethoscope, Tag, MessageCircle, MapPin]} />
 </MainLayout>
+
+<style>
+  .dg-breadcrumb {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-6) 0;
+  }
+
+  .dg-group + .dg-group {
+    margin-top: var(--space-10);
+  }
+
+  .dg-group__title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+  }
+
+  .dg-group__intro {
+    margin: var(--space-1) 0 var(--space-4);
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .dg-spaced {
+    margin-top: var(--space-8);
+  }
+
+  .dg-trio {
+    margin-bottom: var(--space-8);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .dg-trio__item {
+    margin: 0;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: #fff;
+    text-align: center;
+  }
+
+  .dg-trio__item img {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    margin-inline: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
+
+  .dg-trio__item figcaption {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .dg-brands {
+    margin-bottom: var(--space-8);
+    padding-block: var(--space-4);
+    border-block: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .dg-brands + :global(.info-grid) {
+    margin-top: 0;
+  }
+
+  .dg-models {
+    background: var(--color-surface);
+  }
+
+  .dg-anchor {
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .dg-extended {
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  @media (max-width: 640px) {
+    .dg-breadcrumb {
+      padding-inline: var(--space-4);
+    }
+
+    .dg-trio {
+      gap: var(--space-2);
+    }
+
+    .dg-trio__item {
+      padding: var(--space-2);
+    }
+
+    .dg-trio__item figcaption {
+      font-size: var(--font-size-xs);
+    }
+  }
+</style>

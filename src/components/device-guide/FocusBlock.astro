@@ -1,0 +1,227 @@
+---
+// FocusBlock — body of a single-topic explainer section (RIC/RITE, görünmez
+// cihazlar, çocuklar): photo (real, or a neutral placeholder documenting the
+// image still to be produced), a quotable lead, supporting paragraphs, titled
+// lists and links. The section's H2 belongs to GuideSection.
+import { ArrowRight, Info } from "lucide-astro";
+import ImagePlaceholder from "../shared/ImagePlaceholder/ImagePlaceholder.astro";
+import type { FocusBlockContent } from "./device-guide.types";
+
+interface Props {
+  data: FocusBlockContent;
+  /** Put the image on the right on desktop (alternates consecutive blocks). */
+  flip?: boolean;
+}
+
+const { data, flip = false } = Astro.props;
+---
+
+<div class:list={["focus-block", { "focus-block--flip": flip }]}>
+  <div class="focus-block__media" data-image-slot={data.image ? undefined : "focus"}>
+    {
+      data.image ? (
+        <img
+          class="focus-block__image"
+          src={data.image.src}
+          alt={data.image.alt}
+          width={data.image.width}
+          height={data.image.height}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <ImagePlaceholder alt={data.imageNeeded ?? "Görsel alanı"} ratio="1/1" />
+      )
+    }
+  </div>
+
+  <div class="focus-block__body">
+    <p class="focus-block__lead">{data.lead}</p>
+    {data.paragraphs.map((p) => <p class="focus-block__text">{p}</p>)}
+
+    <div class="focus-block__cols">
+      {
+        data.columns.map((col) => (
+          <div class="focus-block__col">
+            <h3>{col.title}</h3>
+            <ul>{col.items.map((x) => <li>{x}</li>)}</ul>
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      data.note && (
+        <p class="focus-block__note">
+          <Info size={18} stroke-width={2} aria-hidden="true" />
+          <span>{data.note}</span>
+        </p>
+      )
+    }
+
+    <div class="focus-block__links">
+      {
+        data.links.map((link) => (
+          <a href={link.href}>
+            {link.label}
+            <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .focus-block {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .focus-block--flip {
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
+
+  .focus-block--flip .focus-block__media {
+    order: 2;
+  }
+
+  .focus-block__media {
+    min-width: 0;
+  }
+
+  .focus-block__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: var(--radius-2xl);
+    background: #fff;
+    border: 1px solid var(--color-border);
+  }
+
+  .focus-block__body {
+    min-width: 0;
+  }
+
+  .focus-block__lead {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.45;
+    color: var(--color-text);
+  }
+
+  .focus-block__text {
+    margin: var(--space-4) 0 0;
+    max-width: 46rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .focus-block__cols {
+    margin-top: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .focus-block__col {
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+  }
+
+  .focus-block__col h3 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .focus-block__col ul {
+    margin: 0;
+    padding-left: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .focus-block__note {
+    margin: var(--space-5) 0 0;
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.05);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .focus-block__note :global(svg) {
+    flex: none;
+    margin-top: 2px;
+    color: var(--color-primary);
+  }
+
+  .focus-block__links {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .focus-block__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .focus-block__links a:hover {
+    text-decoration: underline;
+  }
+
+  .focus-block__links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 1023px) {
+    .focus-block,
+    .focus-block--flip {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+
+    .focus-block--flip .focus-block__media {
+      order: 0;
+    }
+
+    .focus-block__media {
+      max-width: 220px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .focus-block__lead {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>

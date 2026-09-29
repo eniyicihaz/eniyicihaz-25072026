@@ -1,0 +1,212 @@
+---
+// AnatomyMap — "İşitme cihazı nasıl çalışır?" A three-step signal path
+// (ses alınır → işlenir → iletilir), the diagram slot, and the parts of a
+// device explained one by one. The diagram is a NEUTRAL PLACEHOLDER until the
+// illustration is produced (`imageNeeded` documents it; the placeholder
+// renders no text, so it never reads as a finished design). When `image` is
+// supplied the same slot renders the real <img>.
+import ImagePlaceholder from "../shared/ImagePlaceholder/ImagePlaceholder.astro";
+import type { AnatomyMapContent } from "./device-guide.types";
+
+interface Props {
+  data: AnatomyMapContent;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="anatomy">
+  <div class="anatomy__top">
+    <ol class="anatomy__steps">
+      {
+        data.steps.map((step, index) => (
+          <li class="anatomy__step">
+            <span class="anatomy__step-num" aria-hidden="true">{index + 1}</span>
+            <div>
+              <h3 class="anatomy__step-title">{step.title}</h3>
+              <p class="anatomy__step-text">{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="anatomy__visual" data-image-slot="anatomy">
+      {
+        data.image ? (
+          <img
+            class="anatomy__image"
+            src={data.image.src}
+            alt={data.image.alt}
+            width={data.image.width}
+            height={data.image.height}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <ImagePlaceholder alt={data.imageNeeded ?? "Görsel alanı"} ratio="4/3" />
+        )
+      }
+    </div>
+  </div>
+
+  <ul class="anatomy__parts">
+    {
+      data.parts.map((part) => {
+        const Icon = part.icon;
+        return (
+          <li class="anatomy__part">
+            {Icon && (
+              <span class="anatomy__part-icon" aria-hidden="true">
+                <Icon size={20} stroke-width={1.75} />
+              </span>
+            )}
+            <h3 class="anatomy__part-title">{part.title}</h3>
+            <p class="anatomy__part-text">{part.text}</p>
+          </li>
+        );
+      })
+    }
+  </ul>
+</div>
+
+<style>
+  .anatomy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .anatomy__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .anatomy__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .anatomy__step {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+  }
+
+  .anatomy__step-num {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .anatomy__step-title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .anatomy__step-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .anatomy__visual {
+    min-width: 0;
+  }
+
+  .anatomy__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+  }
+
+  .anatomy__parts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .anatomy__part {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    min-width: 0;
+  }
+
+  .anatomy__part-icon {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+  }
+
+  .anatomy__part-title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .anatomy__part-text {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 1279px) {
+    .anatomy__parts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .anatomy__top {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .anatomy__parts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 480px) {
+    .anatomy__parts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .anatomy__step {
+      padding: var(--space-4);
+    }
+  }
+</style>

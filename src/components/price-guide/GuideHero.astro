@@ -11,9 +11,11 @@ import type { PriceGuideHeroContent } from "../../data/isitme-cihazi-fiyatlari/h
 
 interface Props {
   data: PriceGuideHeroContent;
+  /** Optional CTA icon overrides (defaults suit the price guide's phone/WhatsApp CTAs). */
+  icons?: { primary?: any; secondary?: any };
 }
 
-const { data } = Astro.props;
+const { data, icons } = Astro.props;
 ---
 
 <section class="guide-hero" aria-labelledby="guide-hero-title">
@@ -25,8 +27,8 @@ const { data } = Astro.props;
       <p class="guide-hero__supporting">{data.supporting}</p>
 
       <div class="guide-hero__actions">
-        <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} iconLeft={Phone} />
-        <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} variant="outline" iconLeft={MessageCircle} />
+        <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} iconLeft={icons?.primary ?? Phone} />
+        <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} variant="outline" iconLeft={icons?.secondary ?? MessageCircle} />
       </div>
 
       <ul class="guide-hero__chips">
