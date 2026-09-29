@@ -17,7 +17,7 @@ const CtaIcon = icons[cta.icon] as any;
     <Search size={20} aria-hidden="true" />
   </button>
 
-  <a class="hd-actions__phone" href={phone.href}>
+  <a class="hd-actions__phone" href={phone.href} aria-label={`${phone.label}: ${phone.number}`}>
     <span class="hd-actions__phone-icon" aria-hidden="true">
       <Phone size={18} />
     </span>
@@ -198,9 +198,27 @@ const CtaIcon = icons[cta.icon] as any;
 
   /* Below the desktop nav breakpoint, only search + CTA remain in the bar;
      the phone block folds into the mobile menu. */
-  @media (max-width: 1023px) {
+  @media (max-width: 1279px) {
     .hd-actions__phone {
       display: none;
+    }
+  }
+
+  /* 1280–1499px: the full cluster (~485px) does not fit beside the nav, so the
+     phone number text is dropped (the icon stays, it is still a tel: link)
+     and the CTA gets tighter padding. */
+  @media (min-width: 1280px) and (max-width: 1499px) {
+    .hd-actions {
+      gap: var(--space-2);
+    }
+    .hd-actions__phone-text {
+      display: none;
+    }
+    .hd-actions__phone {
+      padding-inline: 0;
+    }
+    .hd-actions__cta {
+      padding-inline: 20px;
     }
   }
 

@@ -158,6 +158,13 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
       --hd-bar-h: 68px;
       --hd-bar-h-stuck: 60px;
     }
+  }
+
+  /* The 6-item nav (641px at its compact size) plus logo (196px) and the
+     actions cluster needs ~1280px at the very least; below that it overlapped
+     the logo and the actions (measured 1024–1700px). So the burger menu takes
+     over up to 1279px instead of 1023px. */
+  @media (max-width: 1279px) {
     .hd-bar :global(.hd-nav) {
       display: none;
     }

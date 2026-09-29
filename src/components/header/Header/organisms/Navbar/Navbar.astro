@@ -51,7 +51,7 @@ const { items, currentPath } = Astro.props;
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 36px;
+    gap: var(--space-1);
     margin: 0;
     padding: 0;
   }
@@ -67,12 +67,12 @@ const { items, currentPath } = Astro.props;
     align-items: center;
     gap: var(--space-1);
     height: 44px;
-    padding-inline: var(--space-3);
+    padding-inline: var(--space-2);
     border: none;
     background: transparent;
     border-radius: var(--radius-md);
     font-family: inherit;
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-medium);
     letter-spacing: -0.01em;
     color: var(--color-text-muted);
@@ -132,15 +132,17 @@ const { items, currentPath } = Astro.props;
     transform: rotate(180deg);
   }
 
-  /* Narrow desktop — step back to md so 6 items never overflow the bar. */
-  @media (max-width: 1279px) {
+  /* Compact sizing is the default: the 6 items are 641px wide, which is what
+     fits beside the logo and the full actions cluster from 1500px up. The
+     roomy sizing (912px wide) only fits from 1780px, so it is opt-in there. */
+  @media (min-width: 1780px) {
     .hd-nav__link,
     .hd-nav__trigger {
-      font-size: var(--font-size-md);
-      padding-inline: var(--space-2);
+      font-size: var(--font-size-lg);
+      padding-inline: var(--space-3);
     }
     .hd-nav__list {
-      gap: var(--space-1);
+      gap: 36px;
     }
   }
 </style>
