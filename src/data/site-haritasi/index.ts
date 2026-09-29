@@ -150,6 +150,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     columns: 2,
     links: [
       { label: "Tüm Markalar", href: "/markalar" },
+      { label: "İşitme Cihazı Markaları Rehberi", href: "/isitme-cihazi-markalari/" },
       { label: "Oticon", href: "/markalar/oticon", logo: "/images/brands/oticon-logo-seffaf.webp" },
       { label: "Phonak", href: "/markalar/phonak", logo: "/images/brands/phonak-logo-seffaf.webp" },
       { label: "Signia", href: "/markalar/signia", logo: "/images/brands/signia-logo-seffaf.webp" },

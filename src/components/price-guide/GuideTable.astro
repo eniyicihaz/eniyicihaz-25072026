@@ -47,7 +47,7 @@ const { data, bare = false } = Astro.props;
         {
           data.rows.map((row) => (
             <tr>
-              <th scope="row" class="guide-table__row-head">{row.label}</th>
+              <th scope="row" class="guide-table__row-head">{row.href ? <a href={row.href}>{row.label}</a> : row.label}</th>
               {row.cells.map((cell) => <td class="guide-table__cell">{cell}</td>)}
             </tr>
           ))
@@ -170,16 +170,19 @@ const { data, bare = false } = Astro.props;
     vertical-align: bottom;
   }
 
-  .guide-table__col-head a {
+  .guide-table__col-head a,
+  .guide-table__row-head a {
     color: var(--color-primary);
     text-decoration: none;
   }
 
-  .guide-table__col-head a:hover {
+  .guide-table__col-head a:hover,
+  .guide-table__row-head a:hover {
     text-decoration: underline;
   }
 
-  .guide-table__col-head a:focus-visible {
+  .guide-table__col-head a:focus-visible,
+  .guide-table__row-head a:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
     border-radius: var(--radius-sm);

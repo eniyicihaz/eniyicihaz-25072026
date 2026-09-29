@@ -43,6 +43,8 @@ export interface GuideImage {
 
 export interface GuideTableRow {
   label: string;
+  /** Optional: turns the row header into a link (e.g. a brand row linking to its brand page). */
+  href?: string;
   cells: string[];
 }
 

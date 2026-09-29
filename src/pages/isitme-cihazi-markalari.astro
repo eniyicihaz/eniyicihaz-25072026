@@ -1,0 +1,233 @@
+---
+// /isitme-cihazi-markalari/ — "İşitme cihazı markaları" KONU MERKEZİ (topic hub):
+// marka, model, marka karşılaştırması, marka + cihaz türü, marka + kullanım
+// senaryosu. Bir logo duvarı DEĞİL; bir marka sıralaması da DEĞİL.
+//
+//   ARAMA NİYETİ → ANA SORGU → İLİŞKİLİ SORGULAR → KULLANICI SORULARI →
+//   LOKAL BAĞLAM → MARKA → MODEL → ÖZELLİK → KULLANIM SENARYOSU → İÇ BAĞLANTI → DÖNÜŞÜM
+//
+// Üç sayfa ayrımı: /isitme-cihazlari/ (cihaz türleri, özellikler, seçim),
+// /isitme-cihazi-markalari/ (bu sayfa: marka, model, karşılaştırma),
+// /isitme-cihazi-fiyatlari/ (fiyat ve SGK). Fiyat ve SGK burada yalnızca kısa yönlendirmedir.
+//
+// Politika: "en iyi marka X'tir" veya herhangi bir marka sıralaması YOKTUR
+// (PRINCIPLES.md §5). Site fiyat yayımlamaz (COMPANY.md §23); Product/Offer şemasına
+// fiyat girmez (QUALITY_GATES.md §4). Gebze ve Çayırova'da şube iddiası yoktur
+// (COMPANY.md §17). Video yok. Yeni görsel üretilmedi — hero alanı nötr yer tutucudur
+// (bkz. hero.ts `imageNeeded`).
+//
+// Marka ve model bilgisi sitedeki doğrulanmış marka verisinden (src/data/{marka}/*)
+// okunur; karşılaştırma tabloları model etiketlerinden HESAPLANIR. Model sayfası
+// olmadığından tüm bağlantılar gerçek marka sayfalarına gider (sahte URL yok).
+//
+// Görünüm mevcut componentlerin (price-guide/*, Brands, BrandPageModels, BrandPageFaq,
+// BrandExtended, ContactLocationCard) yeniden kullanımıdır; yalnızca BrandProfile
+// (components/brand-guide/) bu sayfa için yenidir. İçerik data/isitme-cihazi-markalari/*.
+import { LayoutGrid, Stethoscope, Compass, Tag, MessageCircle, MapPin } from "lucide-astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import Brands from "../components/brands/Brands/Brands.astro";
+import BrandExtended from "../components/brands/BrandExtended/BrandExtended.astro";
+import BrandPageModels from "../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
+
+import GuideHero from "../components/price-guide/GuideHero.astro";
+import GuideToc from "../components/price-guide/GuideToc.astro";
+import DirectAnswer from "../components/price-guide/DirectAnswer.astro";
+import GuideSection from "../components/price-guide/GuideSection.astro";
+import InfoGrid from "../components/price-guide/InfoGrid.astro";
+import GuideTable from "../components/price-guide/GuideTable.astro";
+import GuideNotice from "../components/price-guide/GuideNotice.astro";
+import QaStack from "../components/price-guide/QaStack.astro";
+import LocalBlocks from "../components/price-guide/LocalBlocks.astro";
+import GuideCta from "../components/price-guide/GuideCta.astro";
+import BrandProfile from "../components/brand-guide/BrandProfile.astro";
+
+import { buildMedicalBusinessSchema } from "../lib/schema";
+import { daricaLocation } from "../data/darica/location";
+import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../data/isitme-cihazi-markalari/page";
+import { brandsHero, brandsHeroExtra } from "../data/isitme-cihazi-markalari/hero";
+import { brandsQuickAnswer } from "../data/isitme-cihazi-markalari/quick-answer";
+import { profilesIntro, brandSections, brandProfiles } from "../data/isitme-cihazi-markalari/profiles";
+import { comparisonSection, brandTable, matrixSection, matrixTable, matrixAnswers } from "../data/isitme-cihazi-markalari/comparison";
+import { modelsShowcase } from "../data/isitme-cihazi-markalari/showcase";
+import {
+  scenarioSection, scenarioCards, brandVsModelSection, brandVsModel, askSection, askCards,
+} from "../data/isitme-cihazi-markalari/selection";
+import { otherBrands, priceSgkSection, priceSgkCards } from "../data/isitme-cihazi-markalari/others";
+import { localSection, localBlocks } from "../data/isitme-cihazi-markalari/local";
+import { brandsFaq } from "../data/isitme-cihazi-markalari/faq";
+import { brandsRelated, brandsCta } from "../data/isitme-cihazi-markalari/related-cta";
+
+// Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması, görünür SSS
+// verisinden BrandPageFaq içinde üretilir. Marka/model için Product/Offer/Brand
+// şeması KASITLI olarak yok: ürün sayfası değil, fiyatsız bir rehber; yalnızca
+// görünür 6 ana markanın gerçek sayfalarına işaret eden ItemList var.
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : { item: PAGE_URL }),
+  })),
+};
+const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
+
+const brandsListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "İşitme cihazı markaları",
+  itemListElement: brandProfiles.map((brand, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: brand.name,
+    url: new URL(brand.brandHref, "https://www.eniyicihaz.com").toString(),
+  })),
+};
+
+// Darıca konum kartı — aynı gerçek veri, bu sayfaya uygun başlık.
+const locationCard = {
+  ...daricaLocation,
+  eyebrow: "DARICA'DAKİ MERKEZİMİZ",
+  heading: "Markaları ve Modelleri Merkezimizde Değerlendirelim",
+  intro:
+    "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir. Önceden randevu almanızı tavsiye ederiz.",
+};
+---
+
+<MainLayout title={pageMeta.title} description={pageMeta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(brandsListSchema)} />
+
+  <div class="bg-breadcrumb">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <GuideHero data={brandsHero} icons={{ primary: LayoutGrid, secondary: Stethoscope }} extraCta={brandsHeroExtra} />
+  <GuideToc links={toc} />
+
+  <!-- B. Kısa doğrudan cevap -->
+  <DirectAnswer data={brandsQuickAnswer} />
+
+  <!-- C. Marka karşılaştırma tablosu -->
+  <GuideSection {...comparisonSection} tone="alt">
+    <GuideTable data={brandTable} />
+  </GuideSection>
+
+  <!-- Ana markalar: giriş + logo şeridi -->
+  <GuideSection {...profilesIntro}>
+    <div class="bg-logos">
+      <Brands embedded />
+    </div>
+    <GuideNotice
+      text="Bu rehber markaları karşılaştırma ve seçim açısından ele alır; aşağıdaki profiller her markanın kendi sayfasındaki doğrulanmış bilgilerden derlendi. Tüm markaların dizinine ve marka sayfalarına ise Tüm Markalar sayfasından ulaşabilirsiniz. Marka logoları ilgili üreticilere aittir."
+      links={[{ label: "Tüm Markaları Görüntüleyin", href: "/markalar/" }]}
+    />
+  </GuideSection>
+
+  <!-- D–I. Marka profilleri -->
+  {
+    brandProfiles.map((brand, index) => {
+      const key = brand.id;
+      return (
+        <GuideSection {...brandSections[key]} tone={index % 2 === 0 ? "alt" : "plain"}>
+          <BrandProfile data={brand} />
+        </GuideSection>
+      );
+    })
+  }
+
+  <!-- J. Gerçek model keşfi -->
+  <div class="bg-models" id="modeller">
+    <BrandPageModels data={modelsShowcase} compact />
+  </div>
+
+  <!-- K. Marka × cihaz türü / özellik -->
+  <GuideSection {...matrixSection}>
+    <GuideTable data={matrixTable} bare />
+    <div class="bg-spaced">
+      <QaStack items={matrixAnswers} />
+    </div>
+  </GuideSection>
+
+  <!-- L. Marka × kullanım senaryosu -->
+  <GuideSection {...scenarioSection} tone="alt">
+    <InfoGrid cards={scenarioCards} columns={4} />
+  </GuideSection>
+
+  <!-- M. Marka mı model mi -->
+  <GuideSection {...brandVsModelSection}>
+    <QaStack items={brandVsModel} />
+  </GuideSection>
+
+  <!-- N. Karşılaştırırken sorulacaklar -->
+  <GuideSection {...askSection} tone="alt">
+    <InfoGrid cards={askCards} columns={3} />
+  </GuideSection>
+
+  <!-- Diğer 12 marka -->
+  <div class="bg-others" id="diger-markalar">
+    <BrandExtended data={otherBrands} />
+  </div>
+
+  <!-- O + P. Fiyat ve SGK (kısa yönlendirme) -->
+  <GuideSection {...priceSgkSection} tone="alt">
+    <InfoGrid cards={priceSgkCards} columns={2} />
+  </GuideSection>
+
+  <!-- Q. Lokal bölümler -->
+  <GuideSection {...localSection}>
+    <LocalBlocks blocks={localBlocks} />
+  </GuideSection>
+
+  <ContactLocationCard data={locationCard} />
+
+  <!-- R. SSS -->
+  <div id="sss" class="bg-anchor">
+    <BrandPageFaq data={brandsFaq} />
+  </div>
+
+  <BrandPageRelatedContent data={brandsRelated} />
+
+  <!-- S. Final CTA -->
+  <GuideCta data={brandsCta} icons={[Stethoscope, Compass, Tag, MessageCircle, MapPin]} />
+</MainLayout>
+
+<style>
+  .bg-breadcrumb {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-6) 0;
+  }
+
+  .bg-logos {
+    margin-bottom: var(--space-6);
+    padding-block: var(--space-4);
+    border-block: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .bg-spaced {
+    margin-top: var(--space-8);
+  }
+
+  .bg-models {
+    background: var(--color-surface);
+  }
+
+  .bg-anchor,
+  .bg-others {
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  @media (max-width: 640px) {
+    .bg-breadcrumb {
+      padding-inline: var(--space-4);
+    }
+  }
+</style>

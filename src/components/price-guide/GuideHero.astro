@@ -13,9 +13,11 @@ interface Props {
   data: PriceGuideHeroContent;
   /** Optional CTA icon overrides (defaults suit the price guide's phone/WhatsApp CTAs). */
   icons?: { primary?: any; secondary?: any };
+  /** Optional third, quieter action rendered as a text link after the two buttons. */
+  extraCta?: { label: string; href: string };
 }
 
-const { data, icons } = Astro.props;
+const { data, icons, extraCta } = Astro.props;
 ---
 
 <section class="guide-hero" aria-labelledby="guide-hero-title">
@@ -30,6 +32,7 @@ const { data, icons } = Astro.props;
         <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} iconLeft={icons?.primary ?? Phone} />
         <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} variant="outline" iconLeft={icons?.secondary ?? MessageCircle} />
       </div>
+      {extraCta && <a class="guide-hero__extra" href={extraCta.href}>{extraCta.label} →</a>}
 
       <ul class="guide-hero__chips">
         {
@@ -124,6 +127,27 @@ const { data, icons } = Astro.props;
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
+  }
+
+  .guide-hero__extra {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: var(--space-3);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .guide-hero__extra:hover {
+    text-decoration: underline;
+  }
+
+  .guide-hero__extra:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
   }
 
   .guide-hero__chips {

@@ -1,0 +1,353 @@
+---
+// BrandProfile — body of one brand section on the İşitme Cihazı Markaları hub
+// (the section's H2 belongs to GuideSection). Logo + quick facts on the left;
+// the brand's approach, device types, model families with real product photos,
+// fitting scenarios and the link to its own brand page on the right.
+// Descriptive, never ranked: no "best", no score, no price.
+import { ArrowRight } from "lucide-astro";
+import type { BrandProfileContent } from "./brand-guide.types";
+
+interface Props {
+  data: BrandProfileContent;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="brand-profile">
+  <aside class="brand-profile__side">
+    <div class="brand-profile__logo">
+      <img src={data.logo} alt={data.logoAlt} width="240" height="120" loading="lazy" decoding="async" />
+    </div>
+    <dl class="brand-profile__facts">
+      {
+        data.facts.map((fact) => (
+          <div>
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </aside>
+
+  <div class="brand-profile__main">
+    <p class="brand-profile__lead">{data.lead}</p>
+    {data.paragraphs.map((p) => <p class="brand-profile__text">{p}</p>)}
+
+    <h3 class="brand-profile__sub">Model aileleri ve cihaz türleri</h3>
+    <ul class="brand-profile__chips" aria-label={`${data.name} cihaz türleri ve özellik etiketleri`}>
+      {data.types.map((t) => <li>{t}</li>)}
+    </ul>
+    <p class="brand-profile__families">
+      <strong>Sitemizde yer alan aileler:</strong> {data.families.join(", ")}.
+    </p>
+
+    <ul class="brand-profile__models">
+      {
+        data.models.map((m) => (
+          <li class="brand-profile__model">
+            <img src={m.image} alt={`${m.name} işitme cihazı`} width="160" height="160" loading="lazy" decoding="async" />
+            <div>
+              <p class="brand-profile__model-cat">{m.category}</p>
+              <p class="brand-profile__model-name">{m.name}</p>
+              <p class="brand-profile__model-desc">{m.description}</p>
+              <p class="brand-profile__model-tags">{m.tags.join(" · ")}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h3 class="brand-profile__sub">Hangi kullanım senaryolarında değerlendirilir?</h3>
+    <ul class="brand-profile__scenarios">
+      {
+        data.scenarios.map((s) => (
+          <li>
+            <strong>{s.title}</strong>
+            <span>{s.text}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    {data.note && <p class="brand-profile__note">{data.note}</p>}
+
+    <a class="brand-profile__link" href={data.brandHref}>
+      {data.brandLinkLabel}
+      <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+    </a>
+  </div>
+</div>
+
+<style>
+  .brand-profile {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .brand-profile__side {
+    min-width: 0;
+    position: sticky;
+    top: calc(var(--space-16) + var(--space-8));
+  }
+
+  .brand-profile__logo {
+    display: grid;
+    place-items: center;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: #fff;
+  }
+
+  .brand-profile__logo img {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    max-height: 100px;
+    object-fit: contain;
+  }
+
+  .brand-profile__facts {
+    margin: var(--space-4) 0 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    overflow: hidden;
+  }
+
+  .brand-profile__facts div {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .brand-profile__facts div + div {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .brand-profile__facts dt {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brand-profile__facts dd {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .brand-profile__main {
+    min-width: 0;
+  }
+
+  .brand-profile__lead {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.45;
+    color: var(--color-text);
+  }
+
+  .brand-profile__text {
+    margin: var(--space-4) 0 0;
+    max-width: 46rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-profile__sub {
+    margin: var(--space-8) 0 var(--space-3);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+  }
+
+  .brand-profile__chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .brand-profile__chips li {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    border: 1px solid rgb(37 99 235 / 0.25);
+    background: rgb(37 99 235 / 0.06);
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .brand-profile__families {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-profile__models {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .brand-profile__model {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+  }
+
+  .brand-profile__model img {
+    display: block;
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    background: #fff;
+  }
+
+  .brand-profile__model-cat {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+  }
+
+  .brand-profile__model-name {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .brand-profile__model-desc {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-profile__model-tags {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+  }
+
+  .brand-profile__scenarios {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .brand-profile__scenarios li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brand-profile__scenarios strong {
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+  }
+
+  .brand-profile__note {
+    margin: var(--space-5) 0 0;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.05);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .brand-profile__link {
+    margin-top: var(--space-5);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .brand-profile__link:hover {
+    text-decoration: underline;
+  }
+
+  .brand-profile__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 1023px) {
+    .brand-profile {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+
+    .brand-profile__side {
+      position: static;
+      display: grid;
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: var(--space-4);
+      align-items: start;
+    }
+
+    .brand-profile__facts {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-profile__side {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .brand-profile__lead {
+      font-size: var(--font-size-lg);
+    }
+
+    .brand-profile__model {
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+
+    .brand-profile__model img {
+      width: 72px;
+      height: 72px;
+    }
+  }
+</style>

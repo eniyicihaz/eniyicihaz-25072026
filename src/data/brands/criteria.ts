@@ -59,4 +59,8 @@ export const brandCriteria: BrandCriteriaContent = {
   ],
   closing:
     "Size en uygun markayı belirlemenin en güvenilir yolu, uzman işitme testi sonrasında farklı seçenekleri birlikte değerlendirmektir.",
+  // Marka dizini (/markalar/) ile marka karşılaştırma rehberi (/isitme-cihazi-markalari/)
+  // arasındaki görev ayrımı: bu sayfa markaları keşfettirir; ayrıntılı karşılaştırma ve seçim
+  // rehberi diğer sayfadadır. Bu, o sayfaya doğal bağlamsal bir iç bağlantıdır.
+  closingCta: { label: "İşitme Cihazı Markalarını Karşılaştırın", href: "/isitme-cihazi-markalari/" },
 };
