@@ -3,6 +3,7 @@
 // uydurulmaz; her model kendi marka sayfasına bağlanır. MODEL FİYATI YOK:
 // doğrulanmış fiyat verisi olmadığı gibi, site fiyat yayımlamaz.
 import { homeModels } from "../home/models";
+import { nuearModels } from "../nuear/models";
 import type { BrandPageModelsContent } from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
 import type { GuideCard, GuideSectionMeta } from "../../components/price-guide/price-guide.types";
 
@@ -27,6 +28,24 @@ export const brandLinks: GuideCard[] = [
 export const brandNote =
   "Marka sırası bir fiyat ya da kalite sıralaması değildir. Bir markanın hangi serisinin sizin işitme kaybınıza ve yaşam tarzınıza uygun olduğu, işitme değerlendirmesi sonrasında belirlenir.";
 
+// Model listesi bu sayfaya özeldir — ana sayfanın `homeModels` verisi DEĞİŞMEZ.
+// Ana sayfadaki iki Phonak modelinden (Audéo, Naída) Audéo çıkarıldı (Widex
+// SmartRIC ile aynı RIC/Bluetooth/şarjlı profili); yerine repodaki GERÇEK
+// NuEar Circa görseli (public/images/nuear/models/circa.webp) ve NuEar'ın
+// kendi doğrulanmış model verisi (src/data/nuear/models.ts) kullanıldı.
+// Yeni görsel üretilmedi. Phonak Naída, "güçlü kayıp" ihtiyacını temsil ettiği
+// için kalır. Circa'nın etiketleri/açıklaması NuEar veri dosyasından gelir.
+const nuearCirca = nuearModels.items.find((item) => item.slug === "circa");
+if (!nuearCirca) throw new Error("NuEar Circa model verisi bulunamadı (src/data/nuear/models.ts)");
+
+const priceGuideModelItems = homeModels.items
+  .filter((item) => item.slug !== "phonak-audeo")
+  .flatMap((item) =>
+    item.slug === "oticon-intent"
+      ? [item, { ...nuearCirca, category: "NuEar", href: "/markalar/nuear" }]
+      : [item],
+  );
+
 export const modelsShowcase: BrandPageModelsContent = {
   ...homeModels,
   badge: "GERÇEK MODELLER",
@@ -34,4 +53,5 @@ export const modelsShowcase: BrandPageModelsContent = {
   intro:
     "Aşağıdaki modeller farklı ihtiyaçlara örnek olarak seçildi. Model fiyatı yazmıyoruz; hangisinin sizin için uygun olduğu ve güncel bilgi, işitme testi sonrasında netleşir.",
   ctaLabel: "Marka sayfası",
+  items: priceGuideModelItems,
 };

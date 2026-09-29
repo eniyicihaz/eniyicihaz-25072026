@@ -54,7 +54,7 @@ const { data } = Astro.props;
             decoding="async"
           />
         ) : (
-          <ImagePlaceholder alt={data.imageNeeded} ratio="4/3" />
+          <ImagePlaceholder alt={data.imageNeeded} ratio="16/9" />
         )
       }
     </div>
@@ -167,10 +167,6 @@ const { data } = Astro.props;
     .guide-hero__inner {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--space-8);
-    }
-
-    .guide-hero__visual :global(.image-placeholder) {
-      aspect-ratio: 16 / 9 !important;
     }
   }
 
