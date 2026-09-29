@@ -1,0 +1,222 @@
+---
+// DirectAnswer — the "kısa cevap" block: the page's core question as an H2,
+// answered in the first two sentences (GEO: directly quotable), the five
+// main price drivers, and the transparency note that explains — honestly —
+// why the site never lists a figure (PRINCIPLES.md §5 "Şeffaflık").
+import { Info } from "lucide-astro";
+import type { QuickAnswerContent } from "../../data/isitme-cihazi-fiyatlari/quick-answer";
+
+interface Props {
+  data: QuickAnswerContent;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="direct-answer" id={data.id} aria-labelledby={`${data.id}-title`}>
+  <div class="direct-answer__inner">
+    <div class="direct-answer__main">
+      <p class="direct-answer__eyebrow">{data.eyebrow}</p>
+      <h2 class="direct-answer__question" id={`${data.id}-title`}>{data.question}</h2>
+      <p class="direct-answer__answer">{data.answer}</p>
+
+      <div class="direct-answer__links">
+        {data.links.map((link) => <a href={link.href}>{link.label} →</a>)}
+      </div>
+    </div>
+
+    <aside class="direct-answer__side">
+      <div class="direct-answer__factors">
+        <h3>{data.factorsHeading}</h3>
+        <ol>
+          {data.factors.map((factor) => <li>{factor}</li>)}
+        </ol>
+      </div>
+
+      <div class="direct-answer__note">
+        <p class="direct-answer__note-title">
+          <Info size={16} stroke-width={2} aria-hidden="true" />
+          <span>{data.transparency.title}</span>
+        </p>
+        {data.transparency.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .direct-answer {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .direct-answer__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .direct-answer__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .direct-answer__question {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+
+  .direct-answer__answer {
+    margin: var(--space-5) 0 0;
+    padding-left: var(--space-5);
+    border-left: 3px solid var(--color-primary);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .direct-answer__links {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+  }
+
+  .direct-answer__links a {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .direct-answer__links a:hover {
+    text-decoration: underline;
+  }
+
+  .direct-answer__links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .direct-answer__side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+  }
+
+  .direct-answer__factors {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: var(--color-surface);
+  }
+
+  .direct-answer__factors h3 {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .direct-answer__factors ol {
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: factor;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .direct-answer__factors li {
+    counter-increment: factor;
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .direct-answer__factors li::before {
+    content: counter(factor);
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .direct-answer__note {
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid rgb(37 99 235 / 0.3);
+    border-radius: var(--radius-xl);
+    background: rgb(37 99 235 / 0.05);
+  }
+
+  .direct-answer__note p {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .direct-answer__note .direct-answer__note-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .direct-answer__note-title :global(svg) {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 1023px) {
+    .direct-answer__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .direct-answer {
+      padding-block: var(--space-12);
+    }
+
+    .direct-answer__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .direct-answer__answer {
+      font-size: var(--font-size-md);
+    }
+  }
+</style>

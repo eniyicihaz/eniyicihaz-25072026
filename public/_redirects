@@ -5,3 +5,10 @@
 # yok), bu yüzden dışarıda korunacak bir indeks/backlink geçmişi de yok.
 /darica-isitme-cihazlari-avrasya-isitme    /darica-isitme-cihazlari/   301
 /darica-isitme-cihazlari-avrasya-isitme/   /darica-isitme-cihazlari/   301
+
+# /size-ozel-avantajlar — hiç içerik yazılmamış (0 bayt) yer tutucu sayfaydı;
+# turuncu duyuru bandı buraya bağlıydı ve boş beyaz sayfa açıyordu. Sayfa
+# kaldırıldı, band artık /isitme-cihazi-fiyatlari/ adresine gidiyor; eski URL
+# (önbellek/dış bağlantı olasılığına karşı) aynı hedefe 301 ile yönlendirilir.
+/size-ozel-avantajlar    /isitme-cihazi-fiyatlari/   301
+/size-ozel-avantajlar/   /isitme-cihazi-fiyatlari/   301

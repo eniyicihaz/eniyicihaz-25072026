@@ -1,0 +1,111 @@
+---
+// GuideToc — anchor navigation under the hero. Not sticky on purpose (a
+// second sticky bar under the sticky header is a documented overlap risk,
+// QUALITY_GATES.md §7); on small screens it is one horizontally scrollable
+// row instead of a wrapped wall of chips. Every href points at a real
+// section id on the page.
+import type { GuideLink } from "./price-guide.types";
+
+interface Props {
+  links: GuideLink[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav class="guide-toc" aria-label="Sayfa içi bağlantılar">
+  <div class="guide-toc__inner">
+    <p class="guide-toc__label">Bu sayfada</p>
+    <ul class="guide-toc__list">
+      {
+        links.map((link) => (
+          <li>
+            <a class="guide-toc__link" href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .guide-toc {
+    background: var(--color-background);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .guide-toc__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .guide-toc__label {
+    margin: 0;
+    flex: none;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-soft);
+  }
+
+  .guide-toc__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .guide-toc__link {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color var(--transition-base), color var(--transition-base);
+  }
+
+  .guide-toc__link:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .guide-toc__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  @media (max-width: 1023px) {
+    .guide-toc__inner {
+      padding-inline: var(--space-4);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .guide-toc__list {
+      flex-wrap: nowrap;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: var(--space-2);
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .guide-toc__list li {
+      flex: none;
+      scroll-snap-align: start;
+    }
+  }
+</style>

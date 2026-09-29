@@ -1,0 +1,220 @@
+---
+// DeviceTypeCards — one editorial block per device type: image (real
+// representative photo, or a neutral placeholder that documents the image
+// still to be produced), what it is, who it suits, highlights, what moves
+// its price, and the link to the type's own page. Alternating image side
+// on desktop; stacked on mobile with the image kept compact.
+import { ArrowRight } from "lucide-astro";
+import ImagePlaceholder from "../shared/ImagePlaceholder/ImagePlaceholder.astro";
+import type { DeviceTypeBlock } from "./price-guide.types";
+
+interface Props {
+  items: DeviceTypeBlock[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="device-types">
+  {
+    items.map((item, index) => (
+      <article class:list={["device-type", { "device-type--flip": index % 2 === 1 }]} id={item.id}>
+        <div class="device-type__media" data-image-slot={item.image ? undefined : item.id}>
+          {
+            item.image ? (
+              <img
+                class="device-type__image"
+                src={item.image.src}
+                alt={item.image.alt}
+                width={item.image.width}
+                height={item.image.height}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <ImagePlaceholder alt={item.imageNeeded ?? item.name} ratio="1/1" />
+            )
+          }
+        </div>
+
+        <div class="device-type__body">
+          <h3 class="device-type__title">{item.name}</h3>
+          {item.alias && <p class="device-type__alias">{item.alias}</p>}
+          <p class="device-type__what">{item.whatIs}</p>
+
+          <div class="device-type__cols">
+            <div>
+              <h4>Kimler için?</h4>
+              <ul>{item.whoFor.map((x) => <li>{x}</li>)}</ul>
+            </div>
+            <div>
+              <h4>Öne çıkanlar</h4>
+              <ul>{item.highlights.map((x) => <li>{x}</li>)}</ul>
+            </div>
+            <div class="device-type__price">
+              <h4>Fiyatı etkileyenler</h4>
+              <ul>{item.priceFactors.map((x) => <li>{x}</li>)}</ul>
+            </div>
+          </div>
+
+          <a class="device-type__link" href={item.href}>
+            {item.linkLabel}
+            <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+          </a>
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .device-types {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .device-type {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: center;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: var(--color-background);
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .device-type--flip {
+    grid-template-columns: minmax(0, 1fr) 220px;
+  }
+
+  .device-type--flip .device-type__media {
+    order: 2;
+  }
+
+  .device-type__media {
+    min-width: 0;
+  }
+
+  .device-type__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: var(--radius-xl);
+    background: #fff;
+    border: 1px solid var(--color-border);
+  }
+
+  .device-type__title {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .device-type__alias {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-soft);
+  }
+
+  .device-type__what {
+    margin: var(--space-3) 0 0;
+    max-width: 44rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .device-type__cols {
+    margin-top: var(--space-5);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .device-type__cols h4 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .device-type__cols ul {
+    margin: 0;
+    padding-left: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .device-type__price {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.05);
+  }
+
+  .device-type__link {
+    margin-top: var(--space-5);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .device-type__link:hover {
+    text-decoration: underline;
+  }
+
+  .device-type__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 1023px) {
+    .device-type,
+    .device-type--flip {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+
+    .device-type--flip .device-type__media {
+      order: 0;
+    }
+
+    /* Compact media on stacked layouts — a full-width square would push the
+       copy far down the screen. */
+    .device-type__media {
+      max-width: 200px;
+    }
+
+    .device-type__cols {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-4);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .device-type {
+      padding: var(--space-4);
+    }
+
+    .device-type__title {
+      font-size: var(--font-size-xl);
+    }
+  }
+</style>

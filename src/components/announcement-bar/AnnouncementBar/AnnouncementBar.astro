@@ -5,12 +5,12 @@
 // inviting action, not a passive notice with a link tacked on.
 import { MapPin, ArrowRight } from "lucide-astro";
 
-const message =
-  "Size yakın bir işitme merkezimiz varsa, sunulan avantajları keşfedin";
-// Dedicated lead-gen landing page (not /iletisim) — content to be built
-// separately (Hero, bölgesel/SGK avantajları, demo cihaz, teknik servis,
-// iletişim formu, CTA, SSS). Only this link target is wired up for now.
-const linkHref = "/size-ozel-avantajlar";
+const message = "İşitme cihazı fiyatlarını ve SGK desteğini öğrenin";
+// Opens the price/SGK topic hub. It is also that page's link from the
+// homepage/every page (MainLayout renders this bar sitewide), which is what
+// keeps /isitme-cihazi-fiyatlari/ from being an orphan (QUALITY_GATES.md).
+// The trailing "→" is the ArrowRight icon below, not part of the text.
+const linkHref = "/isitme-cihazi-fiyatlari/";
 ---
 
 <div class="announcement-bar">

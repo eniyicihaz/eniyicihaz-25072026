@@ -1,0 +1,250 @@
+---
+// GuideTable — real, semantic <table> for the price guide's comparisons.
+// The horizontal scroll container sits OUTSIDE the table (border + radius
+// on the scroller) so the first (criterion) column can stay `position:
+// sticky` while the data columns scroll on small screens — the same proven
+// structure as the homepage's HomeExplore table (the <table> itself must
+// never set overflow, or sticky would pin to the table instead of the
+// scroller). Column headers may link to a real page.
+import type { GuideTableContent } from "./price-guide.types";
+
+interface Props {
+  data: GuideTableContent;
+  /** When the parent section already renders the H2/intro, skip this block's own header. */
+  bare?: boolean;
+}
+
+const { data, bare = false } = Astro.props;
+---
+
+<div class="guide-table" id={data.id}>
+  {
+    !bare && (
+      <div class="guide-table__header">
+        <p class="guide-table__eyebrow">{data.eyebrow}</p>
+        <h3 class="guide-table__heading">{data.heading}</h3>
+        {data.intro && <p class="guide-table__intro">{data.intro}</p>}
+      </div>
+    )
+  }
+
+  <div class="guide-table__scroll" tabindex="0" role="region" aria-label={`${data.caption} — yatay kaydırılabilir tablo`}>
+    <table class="guide-table__table">
+      <caption class="guide-table__caption">{data.caption}</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="guide-table__corner">{data.criterionLabel}</th>
+          {
+            data.columns.map((col) => (
+              <th scope="col" class="guide-table__col-head">
+                {col.href ? <a href={col.href}>{col.name}</a> : col.name}
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          data.rows.map((row) => (
+            <tr>
+              <th scope="row" class="guide-table__row-head">{row.label}</th>
+              {row.cells.map((cell) => <td class="guide-table__cell">{cell}</td>)}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  {data.note && <p class="guide-table__note">{data.note}</p>}
+  {
+    data.links && data.links.length > 0 && (
+      <p class="guide-table__links">
+        {data.links.map((link) => <a href={link.href}>{link.label} →</a>)}
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .guide-table + .guide-table {
+    margin-top: var(--space-12);
+  }
+
+  .guide-table {
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .guide-table__header {
+    max-width: 44rem;
+    margin-bottom: var(--space-5);
+  }
+
+  .guide-table__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .guide-table__heading {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .guide-table__intro {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .guide-table__scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .guide-table__scroll:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .guide-table__table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .guide-table__caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .guide-table__corner,
+  .guide-table__row-head {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--color-background);
+    border-right: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  .guide-table__corner {
+    z-index: 2;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-soft);
+  }
+
+  .guide-table__col-head {
+    min-width: 150px;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: left;
+    vertical-align: bottom;
+  }
+
+  .guide-table__col-head a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .guide-table__col-head a:hover {
+    text-decoration: underline;
+  }
+
+  .guide-table__col-head a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .guide-table__row-head {
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    min-width: 132px;
+  }
+
+  .guide-table__cell {
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    vertical-align: top;
+  }
+
+  .guide-table__note {
+    margin: var(--space-4) 0 0;
+    max-width: 52rem;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .guide-table__links {
+    margin: var(--space-3) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .guide-table__links a {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .guide-table__links a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .guide-table + .guide-table {
+      margin-top: var(--space-10);
+    }
+
+    .guide-table__heading {
+      font-size: var(--font-size-xl);
+    }
+
+    .guide-table__col-head {
+      min-width: 132px;
+    }
+
+    .guide-table__row-head {
+      min-width: 104px;
+      padding-inline: var(--space-3);
+    }
+  }
+</style>

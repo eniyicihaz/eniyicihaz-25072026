@@ -1,0 +1,136 @@
+---
+// GuideNotice — a calm call-out for a short, important note (the SGK
+// "amounts change yearly" note, the "what's included" reminder, the
+// low-price-product warning points). Optional titled points grid and links.
+import { Info } from "lucide-astro";
+import type { GuideLink } from "./price-guide.types";
+
+interface Props {
+  text?: string;
+  points?: { title: string; text: string }[];
+  links?: GuideLink[];
+}
+
+const { text, points, links } = Astro.props;
+---
+
+<div class="guide-notice">
+  {
+    text && (
+      <p class="guide-notice__text">
+        <Info size={18} stroke-width={2} aria-hidden="true" />
+        <span>{text}</span>
+      </p>
+    )
+  }
+
+  {
+    points && points.length > 0 && (
+      <ul class="guide-notice__points">
+        {
+          points.map((point) => (
+            <li>
+              <h3>{point.title}</h3>
+              <p>{point.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    )
+  }
+
+  {
+    links && links.length > 0 && (
+      <p class="guide-notice__links">
+        {links.map((link) => <a href={link.href}>{link.label} →</a>)}
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .guide-notice {
+    margin-top: var(--space-6);
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid rgb(37 99 235 / 0.3);
+    border-radius: var(--radius-xl);
+    background: rgb(37 99 235 / 0.05);
+  }
+
+  .guide-notice__text {
+    margin: 0;
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    max-width: 56rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .guide-notice__text :global(svg) {
+    flex: none;
+    margin-top: 3px;
+    color: var(--color-primary);
+  }
+
+  .guide-notice__points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4) var(--space-6);
+  }
+
+  .guide-notice__text + .guide-notice__points {
+    margin-top: var(--space-5);
+  }
+
+  .guide-notice__points h3 {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .guide-notice__points p {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .guide-notice__links {
+    margin: var(--space-4) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .guide-notice__links a {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .guide-notice__links a:hover {
+    text-decoration: underline;
+  }
+
+  .guide-notice__links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 767px) {
+    .guide-notice {
+      padding: var(--space-4);
+    }
+
+    .guide-notice__points {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

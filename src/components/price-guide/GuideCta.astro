@@ -1,0 +1,207 @@
+---
+// GuideCta — the page's final conversion block: three real actions
+// (free hearing test, WhatsApp, visit the Darıca center) and the same three
+// reassurance facts used site-wide. Own compact markup rather than
+// BrandPageFinalCta, which supports only two actions.
+import { Stethoscope, MessageCircle, MapPin, Check } from "lucide-astro";
+import type { GuideCtaContent } from "../../data/isitme-cihazi-fiyatlari/related-cta";
+
+interface Props {
+  data: GuideCtaContent;
+}
+
+const { data } = Astro.props;
+const icons = [Stethoscope, MessageCircle, MapPin];
+---
+
+<section class="guide-cta" aria-labelledby="guide-cta-title">
+  <div class="guide-cta__frame">
+    <div class="guide-cta__card">
+      <p class="guide-cta__eyebrow">{data.eyebrow}</p>
+      <h2 class="guide-cta__heading" id="guide-cta-title">{data.heading}</h2>
+      <p class="guide-cta__text">{data.text}</p>
+
+      <div class="guide-cta__actions">
+        {
+          data.actions.map((action, i) => {
+            const Icon = icons[i];
+            return (
+              <a
+                class:list={["guide-cta__btn", `guide-cta__btn--${action.variant}`]}
+                href={action.href}
+                target={action.external ? "_blank" : undefined}
+                rel={action.external ? "noopener" : undefined}
+              >
+                {Icon && <Icon size={18} stroke-width={2} aria-hidden="true" />}
+                <span>{action.label}</span>
+              </a>
+            );
+          })
+        }
+      </div>
+
+      <ul class="guide-cta__reassurance">
+        {
+          data.reassurance.map((item) => (
+            <li>
+              <Check size={14} stroke-width={2.5} aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .guide-cta {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .guide-cta__frame {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .guide-cta__card {
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-16) var(--space-10);
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(160deg, #123063 0%, #0f2547 60%);
+    color: #fff;
+    text-align: center;
+  }
+
+  .guide-cta__card::before {
+    content: "";
+    position: absolute;
+    inset: -30% 20% auto;
+    height: 70%;
+    background: radial-gradient(50% 50% at 50% 50%, rgb(37 99 235 / 0.35), transparent 70%);
+    pointer-events: none;
+  }
+
+  .guide-cta__card > * {
+    position: relative;
+  }
+
+  .guide-cta__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(255 255 255 / 0.25);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .guide-cta__heading {
+    margin: var(--space-5) auto 0;
+    max-width: 40rem;
+    font-size: clamp(1.75rem, 1.3rem + 2vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .guide-cta__text {
+    margin: var(--space-4) auto 0;
+    max-width: 36rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.78);
+  }
+
+  .guide-cta__actions {
+    margin-top: var(--space-8);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .guide-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 52px;
+    padding-inline: var(--space-6);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .guide-cta__btn--primary {
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: #fff;
+  }
+
+  .guide-cta__btn--primary:hover {
+    background: var(--color-primary-hover);
+  }
+
+  .guide-cta__btn--outline {
+    border: 1px solid rgb(255 255 255 / 0.4);
+    color: #fff;
+    background: transparent;
+  }
+
+  .guide-cta__btn--outline:hover {
+    background: rgb(255 255 255 / 0.1);
+    border-color: rgb(255 255 255 / 0.7);
+  }
+
+  .guide-cta__btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  .guide-cta__reassurance {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .guide-cta__reassurance li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  @media (max-width: 640px) {
+    .guide-cta {
+      padding-block: var(--space-12);
+    }
+
+    .guide-cta__frame {
+      padding-inline: var(--space-4);
+    }
+
+    .guide-cta__card {
+      padding: var(--space-10) var(--space-5);
+    }
+
+    .guide-cta__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>

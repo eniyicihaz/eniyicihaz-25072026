@@ -1,0 +1,100 @@
+---
+// GuideSection — the one section shell shared by every block of the
+// /isitme-cihazi-fiyatlari/ topic hub: anchor id, eyebrow chip, H2, optional
+// intro, then the section's own content in the default slot. Left-aligned
+// editorial header (same register as the homepage's merged blocks), an
+// alternating background so a long page keeps a visible rhythm, and a
+// scroll-margin so anchor jumps clear the sticky header.
+interface Props {
+  id: string;
+  eyebrow: string;
+  heading: string;
+  intro?: string;
+  /** "alt" tints the background to separate consecutive sections. */
+  tone?: "plain" | "alt";
+}
+
+const { id, eyebrow, heading, intro, tone = "plain" } = Astro.props;
+---
+
+<section class:list={["guide-section", { "guide-section--alt": tone === "alt" }]} id={id} aria-labelledby={`${id}-title`}>
+  <div class="guide-section__inner">
+    <header class="guide-section__header">
+      <p class="guide-section__eyebrow">{eyebrow}</p>
+      <h2 class="guide-section__heading" id={`${id}-title`}>{heading}</h2>
+      {intro && <p class="guide-section__intro">{intro}</p>}
+    </header>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .guide-section {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .guide-section--alt {
+    background: var(--color-surface);
+  }
+
+  .guide-section__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .guide-section__header {
+    max-width: 46rem;
+    margin-bottom: var(--space-8);
+  }
+
+  .guide-section__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .guide-section__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.375rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .guide-section__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .guide-section {
+      padding-block: var(--space-12);
+    }
+
+    .guide-section__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .guide-section__header {
+      margin-bottom: var(--space-6);
+    }
+
+    .guide-section__intro {
+      font-size: var(--font-size-md);
+    }
+  }
+</style>

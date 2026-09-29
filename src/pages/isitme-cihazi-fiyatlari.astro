@@ -1,0 +1,206 @@
+---
+// /isitme-cihazi-fiyatlari/ — "İşitme cihazı fiyatları" KONU MERKEZİ (topic
+// hub), bir fiyat listesi değil. Bu sayfada uygulanan iskelet, sonraki tüm
+// konu merkezi sayfalarının da şablonudur:
+//
+//   ARAMA NİYETİ → ANA SORGU → İLİŞKİLİ SORGULAR → KULLANICI SORULARI →
+//   LOKAL BAĞLAM → KAPSAMLI VE ÖZGÜN CEVAP → İÇ BAĞLANTILAR → DÖNÜŞÜM
+//
+// Politika: site fiyat yayımlamaz/tahmin etmez (COMPANY.md §23, PRINCIPLES.md
+// §5) ve Product/Offer şemasına fiyat girmez (QUALITY_GATES.md §4); bu yüzden
+// sayfa RAKAMSIZ ve bunu kullanıcıya açıkça söyler. Video yok. Yeni görsel
+// üretilmedi — eksik görsel alanları nötr yer tutucudur (bkz. hero.ts /
+// device-types.ts `imageNeeded`).
+//
+// İçerik data/isitme-cihazi-fiyatlari/* altındadır; görünüm mevcut
+// componentlerin (MainLayout, Breadcrumb, BrandPageFaq, BrandPageModels,
+// BrandPageRelatedContent, Brands, ContactLocationCard, CtaButton,
+// ImagePlaceholder) yeniden kullanımı + components/price-guide/* ile kurulur.
+import MainLayout from "../layouts/MainLayout.astro";
+import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import Brands from "../components/brands/Brands/Brands.astro";
+import BrandPageModels from "../components/brand-page/BrandPageModels/BrandPageModels.astro";
+import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
+
+import GuideHero from "../components/price-guide/GuideHero.astro";
+import GuideToc from "../components/price-guide/GuideToc.astro";
+import DirectAnswer from "../components/price-guide/DirectAnswer.astro";
+import GuideSection from "../components/price-guide/GuideSection.astro";
+import InfoGrid from "../components/price-guide/InfoGrid.astro";
+import GuideTable from "../components/price-guide/GuideTable.astro";
+import DeviceTypeCards from "../components/price-guide/DeviceTypeCards.astro";
+import QaStack from "../components/price-guide/QaStack.astro";
+import GuideNotice from "../components/price-guide/GuideNotice.astro";
+import LocalBlocks from "../components/price-guide/LocalBlocks.astro";
+import GuideCta from "../components/price-guide/GuideCta.astro";
+
+import { buildMedicalBusinessSchema } from "../lib/schema";
+import { daricaLocation } from "../data/darica/location";
+import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../data/isitme-cihazi-fiyatlari/page";
+import { priceGuideHero } from "../data/isitme-cihazi-fiyatlari/hero";
+import { quickAnswer } from "../data/isitme-cihazi-fiyatlari/quick-answer";
+import {
+  factorsSection, factors, totalCostSection, totalCost, totalCostInsight, techLevelsTable,
+} from "../data/isitme-cihazi-fiyatlari/factors";
+import { deviceTypesSection, deviceTypes } from "../data/isitme-cihazi-fiyatlari/device-types";
+import {
+  comparisonsSection, deviceTypesTable, priorityTable, chargingTable, featuresTable,
+} from "../data/isitme-cihazi-fiyatlari/comparisons";
+import { featuresSection, features, scenariosSection, scenarios } from "../data/isitme-cihazi-fiyatlari/features";
+import { brandModelSection, brandLinks, brandNote, modelsShowcase } from "../data/isitme-cihazi-fiyatlari/brand-model";
+import {
+  buyingSection, buyingQuestions, lowPriceSection, lowPricePoints, lowPriceLinks,
+} from "../data/isitme-cihazi-fiyatlari/buying-questions";
+import {
+  sgkSection, sgkBlocks, sgkLinks, sgkNote, includedSection, includedServices, includedNote,
+} from "../data/isitme-cihazi-fiyatlari/sgk-included";
+import { localSection, localBlocks } from "../data/isitme-cihazi-fiyatlari/local";
+import { priceGuideFaq } from "../data/isitme-cihazi-fiyatlari/faq";
+import { priceGuideRelated, priceGuideCta } from "../data/isitme-cihazi-fiyatlari/related-cta";
+
+// Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması,
+// görünür SSS verisinden BrandPageFaq içinde üretilir. Product/Offer/fiyat yok.
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : { item: PAGE_URL }),
+  })),
+};
+const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
+
+// Darıca konum kartı — aynı gerçek veri, bu sayfaya uygun başlık.
+const locationCard = {
+  ...daricaLocation,
+  eyebrow: "DARICA'DAKİ MERKEZİMİZ",
+  heading: "Fiyat Bilgisi İçin Merkezimizi Ziyaret Edin",
+  intro: "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir. Önceden randevu almanızı tavsiye ederiz.",
+};
+---
+
+<MainLayout title={pageMeta.title} description={pageMeta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+
+  <div class="pg-breadcrumb">
+    <Breadcrumb items={breadcrumbItems} />
+  </div>
+
+  <GuideHero data={priceGuideHero} />
+  <GuideToc links={toc} />
+
+  <DirectAnswer data={quickAnswer} />
+
+  <GuideSection {...factorsSection} tone="alt">
+    <InfoGrid cards={factors} columns={3} />
+  </GuideSection>
+
+  <GuideSection {...totalCostSection}>
+    <InfoGrid cards={totalCost} columns={4} />
+    <GuideNotice text={totalCostInsight} />
+  </GuideSection>
+
+  <GuideSection id={techLevelsTable.id} eyebrow={techLevelsTable.eyebrow} heading={techLevelsTable.heading} intro={techLevelsTable.intro} tone="alt">
+    <GuideTable data={techLevelsTable} bare />
+  </GuideSection>
+
+  <GuideSection {...deviceTypesSection}>
+    <DeviceTypeCards items={deviceTypes} />
+  </GuideSection>
+
+  <GuideSection {...comparisonsSection} tone="alt">
+    <GuideTable data={deviceTypesTable} />
+    <GuideTable data={priorityTable} />
+    <GuideTable data={chargingTable} />
+    <GuideTable data={featuresTable} />
+  </GuideSection>
+
+  <GuideSection {...featuresSection}>
+    <InfoGrid cards={features} columns={4} />
+  </GuideSection>
+
+  <GuideSection {...scenariosSection} tone="alt">
+    <InfoGrid cards={scenarios} columns={3} />
+  </GuideSection>
+
+  <GuideSection {...brandModelSection}>
+    <div class="pg-brands">
+      <Brands embedded />
+    </div>
+    <InfoGrid cards={brandLinks} columns={3} />
+    <GuideNotice text={brandNote} links={[{ label: "Tüm markalar", href: "/markalar/" }]} />
+  </GuideSection>
+  <div class="pg-models">
+    <BrandPageModels data={modelsShowcase} compact />
+  </div>
+
+  <GuideSection {...buyingSection} tone="alt">
+    <QaStack items={buyingQuestions} />
+  </GuideSection>
+
+  <GuideSection {...lowPriceSection}>
+    <GuideNotice points={lowPricePoints} links={lowPriceLinks} />
+  </GuideSection>
+
+  <GuideSection {...sgkSection} tone="alt">
+    <InfoGrid cards={sgkBlocks} columns={3} />
+    <GuideNotice text={sgkNote} links={sgkLinks} />
+  </GuideSection>
+
+  <GuideSection {...includedSection}>
+    <InfoGrid cards={includedServices} columns={4} />
+    <GuideNotice text={includedNote} />
+  </GuideSection>
+
+  <GuideSection {...localSection} tone="alt">
+    <LocalBlocks blocks={localBlocks} />
+  </GuideSection>
+
+  <ContactLocationCard data={locationCard} />
+
+  <div id="sss" class="pg-anchor">
+    <BrandPageFaq data={priceGuideFaq} />
+  </div>
+
+  <BrandPageRelatedContent data={priceGuideRelated} />
+
+  <GuideCta data={priceGuideCta} />
+</MainLayout>
+
+<style>
+  .pg-breadcrumb {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-6) 0;
+  }
+
+  .pg-brands {
+    margin-bottom: var(--space-8);
+    padding-block: var(--space-4);
+    border-block: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .pg-brands + :global(.info-grid) {
+    margin-top: 0;
+  }
+
+  .pg-models {
+    background: var(--color-surface);
+  }
+
+  .pg-anchor {
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  @media (max-width: 640px) {
+    .pg-breadcrumb {
+      padding-inline: var(--space-4);
+    }
+  }
+</style>

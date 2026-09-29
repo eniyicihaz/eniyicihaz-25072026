@@ -1,0 +1,130 @@
+---
+// QaStack — long-form buying questions. Unlike an accordion, every answer is
+// fully visible: the first sentence is the directly quotable answer (GEO),
+// the rest gives the reasoning, then the relevant internal links. Each item
+// has its own anchor id so the table of contents and other pages can deep-link.
+import type { QaItem } from "./price-guide.types";
+
+interface Props {
+  items: QaItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="qa-stack">
+  {
+    items.map((item, index) => (
+      <article class="qa-item" id={item.id}>
+        <span class="qa-item__num" aria-hidden="true">{index + 1}</span>
+        <div class="qa-item__body">
+          <h3 class="qa-item__question">{item.question}</h3>
+          <p class="qa-item__answer">{item.answer}</p>
+          {item.more?.map((p) => <p class="qa-item__more">{p}</p>)}
+          {
+            item.links && item.links.length > 0 && (
+              <p class="qa-item__links">
+                {item.links.map((link) => <a href={link.href}>{link.label} →</a>)}
+              </p>
+            )
+          }
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .qa-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .qa-item {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .qa-item__num {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .qa-item__body {
+    min-width: 0;
+    max-width: 52rem;
+  }
+
+  .qa-item__question {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .qa-item__answer {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .qa-item__more {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .qa-item__links {
+    margin: var(--space-4) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .qa-item__links a {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .qa-item__links a:hover {
+    text-decoration: underline;
+  }
+
+  .qa-item__links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 640px) {
+    .qa-item {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+      padding: var(--space-4);
+    }
+
+    .qa-item__question {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>

@@ -1,0 +1,386 @@
+---
+// LocalBlocks — the four regional sections (Darıca / Gebze / Çayırova /
+// Kocaeli). Deliberately FOUR DIFFERENT layouts, not one template with the
+// city name swapped (COMPANY.md §17 doorway ban):
+//   center   → real Darıca photo + the real center facts (company.ts)
+//   steps    → numbered preparation steps
+//   hours    → real opening hours (company.ts) as a small table
+//   channels → contact/service channels
+// Address, phones and hours are rendered from company.ts (COMPANY.md's single
+// source of truth) — never typed into the data.
+import { MapPin, Phone, ArrowRight, Clock, MessageCircle } from "lucide-astro";
+import { company } from "../footer/Footer/data/company";
+import type { LocalBlock } from "./price-guide.types";
+
+interface Props {
+  blocks: LocalBlock[];
+}
+
+const { blocks } = Astro.props;
+---
+
+<div class="local-blocks">
+  {
+    blocks.map((block) => (
+      <article class:list={["local-block", `local-block--${block.variant}`]} id={block.id}>
+        {
+          block.variant === "center" && block.photo && (
+            <div class="local-block__media">
+              <img
+                src={block.photo.src}
+                alt={block.photo.alt}
+                width={block.photo.width}
+                height={block.photo.height}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="local-block__facts">
+                <p><MapPin size={16} stroke-width={2} aria-hidden="true" /><span>{company.address}</span></p>
+                <p><Phone size={16} stroke-width={2} aria-hidden="true" /><span>{company.phones.map((ph) => ph.number).join(" · ")}</span></p>
+                <a href={company.directionsHref} target="_blank" rel="noopener">Yol tarifi al <ArrowRight size={14} stroke-width={2} aria-hidden="true" /></a>
+              </div>
+            </div>
+          )
+        }
+
+        <div class="local-block__body">
+          <p class="local-block__eyebrow">{block.eyebrow}</p>
+          <h3 class="local-block__heading">{block.heading}</h3>
+          <p class="local-block__lead">{block.lead}</p>
+          {block.paragraphs.map((p) => <p class="local-block__p">{p}</p>)}
+
+          {
+            block.variant === "hours" && (
+              <div class="local-block__hours">
+                <p class="local-block__hours-title"><Clock size={16} stroke-width={2} aria-hidden="true" /> Çalışma saatlerimiz</p>
+                <dl>
+                  {company.hours.map((entry) => (
+                    <div>
+                      <dt>{entry.days}</dt>
+                      <dd>{entry.time}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )
+          }
+
+          {
+            block.items && block.variant === "center" && (
+              <ul class="local-block__checklist">
+                {block.items.map((item) => (
+                  <li>
+                    <strong>{item.title}</strong>
+                    <span>{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+
+          {
+            block.items && block.variant === "steps" && (
+              <ol class="local-block__steps">
+                {block.items.map((item) => (
+                  <li>
+                    <strong>{item.title}</strong>
+                    <span>{item.text}</span>
+                  </li>
+                ))}
+              </ol>
+            )
+          }
+
+          {
+            block.items && block.variant === "channels" && (
+              <ul class="local-block__channels">
+                {block.items.map((item) => (
+                  <li>
+                    <MessageCircle size={16} stroke-width={2} aria-hidden="true" />
+                    <span>
+                      <strong>{item.title}</strong>
+                      {item.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+
+          <p class="local-block__links">
+            {block.links.map((link) => <a href={link.href}>{link.label} →</a>)}
+          </p>
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .local-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .local-block {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: var(--color-background);
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .local-block--center {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-8);
+    align-items: start;
+    border-color: rgb(37 99 235 / 0.35);
+    box-shadow: var(--shadow-md);
+  }
+
+  .local-block__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+  }
+
+  .local-block__facts {
+    margin-top: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .local-block__facts p {
+    margin: 0;
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .local-block__facts p :global(svg) {
+    flex: none;
+    margin-top: 3px;
+    color: var(--color-primary);
+  }
+
+  .local-block__facts a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .local-block__facts a:hover {
+    text-decoration: underline;
+  }
+
+  .local-block__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .local-block__heading {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .local-block__lead {
+    margin: var(--space-3) 0 0;
+    max-width: 48rem;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .local-block__p {
+    margin: var(--space-3) 0 0;
+    max-width: 48rem;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .local-block__checklist,
+  .local-block__steps,
+  .local-block__channels {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .local-block__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .local-block__channels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .local-block__checklist li,
+  .local-block__steps li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .local-block__checklist strong,
+  .local-block__steps strong {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .local-block__steps li {
+    border-left: 3px solid var(--color-primary);
+  }
+
+  .local-block__channels li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .local-block__channels li :global(svg) {
+    flex: none;
+    margin-top: 3px;
+    color: var(--color-primary);
+  }
+
+  .local-block__channels strong {
+    display: block;
+    color: var(--color-text);
+  }
+
+  .local-block__hours {
+    margin-top: var(--space-5);
+    max-width: 28rem;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .local-block__hours-title {
+    margin: 0 0 var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .local-block__hours-title :global(svg) {
+    color: var(--color-primary);
+  }
+
+  .local-block__hours dl {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .local-block__hours dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .local-block__hours dt {
+    color: var(--color-text-muted);
+  }
+
+  .local-block__hours dd {
+    margin: 0;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .local-block__links {
+    margin: var(--space-5) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .local-block__links a {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .local-block__links a:hover {
+    text-decoration: underline;
+  }
+
+  .local-block__links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 1023px) {
+    .local-block--center {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+
+    .local-block__media img {
+      max-height: 280px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .local-block {
+      padding: var(--space-4);
+    }
+
+    .local-block__heading {
+      font-size: var(--font-size-xl);
+    }
+
+    .local-block__steps,
+    .local-block__channels {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
