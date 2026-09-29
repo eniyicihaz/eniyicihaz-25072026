@@ -371,6 +371,17 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     max-width: 50%;
   }
 
+  /* The description was only capped at 32ch, which at ≥1440px is wider than
+     the text-safe left half of the panel — its last words ran onto the photo.
+     Cap it to the same panel share as the title. */
+  #hd-mega-cihazlar .hd-mega__promo-text {
+    max-width: min(32ch, 50%);
+  }
+
+  #hd-mega-markalar .hd-mega__promo-text {
+    max-width: min(32ch, 46%);
+  }
+
   /* İşitme Cihazları / Markalar / Bilgi Merkezi — premium light-theme promo
      panel, mirroring the recipe already proven on #hd-mega-hizmetler below
      (duplicated per-ID rather than generalized into a shared rule, since
