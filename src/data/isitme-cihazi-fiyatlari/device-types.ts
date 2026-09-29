@@ -43,13 +43,13 @@ export const deviceTypes: DeviceTypeBlock[] = [
     id: "ric-rite",
     name: "RIC / RITE",
     alias: "Alıcısı kulak kanalında olan ince kulak arkası cihaz",
-    // HEDEF DOSYA : public/images/price-guide/device-type-ric-rite.webp
-    // ÖLÇÜ/ORAN   : 1254 × 1254 (1:1), WebP — diğer cihaz görselleriyle aynı boyut.
-    // ALT METİN   : "RIC/RITE tipi işitme cihazı — temsili görsel"
-    // Hazır olunca: image: img'ye benzer şekilde
-    //   { src: "/images/price-guide/device-type-ric-rite.webp", alt, width: 1254, height: 1254 }
-    imageNeeded:
-      "RIC/RITE işitme cihazı ürün görseli (1:1, 1254x1254): gerçek ürün fotoğrafı hissi, açık/nötr zemin, ince kulak arkası gövde ve kulak kanalına giden ince kablo ile alıcı (receiver) görünür. Metin/logo/rakam YOK. Mevcut cihaz görsellerinden (BTE, ITE, CIC, şarjlı, Bluetooth, çocuk) farklı bir cihaz; aynı ışık, zemin ve kamera açısı.",
+    // Ürün görseli, olduğu gibi (yeniden boyutlandırma/encode yok): 1254 × 1254 (1:1), WebP.
+    image: {
+      src: "/images/price-guide/device-type-ric-rite.webp",
+      alt: "RIC/RITE tipi işitme cihazı — temsili görsel",
+      width: 1254,
+      height: 1254,
+    },
     whatIs:
       "Gövdesi kulak arkasında, hoparlörü (alıcı) ise kulak kanalında bulunan, ince ve göze az çarpan bir kulak arkası cihaz türüdür.",
     whoFor: [
@@ -96,11 +96,14 @@ export const deviceTypes: DeviceTypeBlock[] = [
     id: "gorunmez-cok-kucuk",
     name: "Görünmez / Çok Küçük Çözümler",
     alias: "CIC ve daha derin yerleşen tipler",
-    // HEDEF DOSYA : public/images/price-guide/device-type-gorunmez-cok-kucuk.webp
-    // ÖLÇÜ/ORAN   : 1254 × 1254 (1:1), WebP — diğer cihaz görselleriyle aynı boyut.
-    // ALT METİN   : "Kulak kanalının derinine yerleşen çok küçük (IIC/CIC benzeri) işitme cihazı — temsili görsel"
-    imageNeeded:
-      "Çok küçük, kulak kanalının derinine yerleşen (IIC/CIC benzeri) işitme cihazı temiz ürün görseli (1:1, 1254x1254): açık/nötr zemin; cihazın ne kadar küçük olduğunu açıkça gösteren, tek başına ve yakın plan kadraj. Metin/logo/rakam YOK. 'Kanal İçi (CIC)' bloğundaki mevcut görselden farklı bir çekim/model olmalı.",
+    // Ürün görseli (parmak üstünde ölçek gösteren yakın çekim), olduğu gibi:
+    // 1254 × 1254 (1:1), WebP.
+    image: {
+      src: "/images/price-guide/device-type-gorunmez-cok-kucuk.webp",
+      alt: "Kulak kanalının derinine yerleşen çok küçük (IIC/CIC benzeri) işitme cihazı — temsili görsel",
+      width: 1254,
+      height: 1254,
+    },
     whatIs:
       "Kulak kanalının daha derinine yerleşen, tasarımı 'fark edilmemek' üzerine kurulu en küçük çözümlerdir. Her kulak yapısı bunlara uygun olmayabilir.",
     whoFor: ["Görünmezliğin en yüksek öncelik olduğu kullanıcılar", "Kulak kanalı yapısı uygun bulunanlar", "Kullanım için ince el becerisi bulunanlar"],

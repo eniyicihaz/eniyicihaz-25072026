@@ -54,7 +54,7 @@ const { data } = Astro.props;
             decoding="async"
           />
         ) : (
-          <ImagePlaceholder alt={data.imageNeeded} ratio="16/9" />
+          <ImagePlaceholder alt={data.imageNeeded ?? "Görsel alanı"} ratio="16/9" />
         )
       }
     </div>
