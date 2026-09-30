@@ -31,7 +31,7 @@ export const ileriDereceIsitmeKaybiHero: BrandPageHeroContent = {
   badge: "İHTİYACINIZA GÖRE · İLERİ DERECE İŞİTME KAYBI",
   headingLines: ["İleri Derece İşitme Kaybı", "İçin Cihaz Rehberi"],
   paragraphs: [
-    "İleri derece işitme kaybı (56-70 dB), yüksek sesle konuşulsa bile konuşmaları anlamakta zorluk yaşanabildiği, güçlü amplifikasyon gerektiren bir işitme kaybı derecesidir.",
+    "İleri derece işitme kaybı (71-90 dB), yüksek sesle konuşulsa bile konuşmaları anlamakta zorluk yaşanabildiği, güçlü amplifikasyon gerektiren bir işitme kaybı derecesidir.",
     "Bu derecede işitme kaybı yaşayan kullanıcılar için, güçlü ses gücü sunan modellerden gelişmiş gürültü ve konuşma desteğine kadar Avrasya İşitme'de sıkça değerlendirdiğimiz cihaz seçeneklerini bir araya getirdik.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -40,8 +40,8 @@ export const ileriDereceIsitmeKaybiHero: BrandPageHeroContent = {
     {
       label: "DERECE ARALIĞI",
       accent: "#57534e",
-      title: "56-70 dB İşitme Eşiği",
-      description: "İleri derece işitme kaybı, uluslararası sınıflandırmaya göre 56-70 desibel işitme eşiği aralığını ifade eder.",
+      title: "71-90 dB İşitme Eşiği",
+      description: "İleri derece işitme kaybı, uluslararası sınıflandırmaya göre 71-90 desibel işitme eşiği aralığını ifade eder.",
     },
     {
       label: "GÜÇLÜ AMPLİFİKASYON",

@@ -26,7 +26,8 @@ export interface BrandPageFaqContent {
   badge: string;
   heading: string;
   intro: string;
-  decisionCard: BrandPageFaqDecisionCard;
+  /** Optional: pages that keep a single closing CTA elsewhere omit the sticky decision card. */
+  decisionCard?: BrandPageFaqDecisionCard;
   categories: BrandPageFaqCategory[];
   accentColor: string;
   accentColorBadgeBg: string;
@@ -69,23 +70,27 @@ let runningIndex = 0;
       <h2 class="brand-page-faq__heading" id="brand-page-faq-title">{data.heading}</h2>
       <p class="brand-page-faq__lead">{data.intro}</p>
 
-      <div class="brand-page-faq__decision">
-        <p class="brand-page-faq__decision-title">{data.decisionCard.title}</p>
-        <ul class="brand-page-faq__decision-list">
-          {
-            data.decisionCard.points.map((point) => (
-              <li>
-                <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
-                <span>{point}</span>
-              </li>
-            ))
-          }
-        </ul>
-        <a class="brand-page-faq__decision-cta" href={data.decisionCard.ctaHref}>
-          <span>{data.decisionCard.ctaLabel}</span>
-          <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
-        </a>
-      </div>
+      {
+        data.decisionCard && (
+        <div class="brand-page-faq__decision">
+          <p class="brand-page-faq__decision-title">{data.decisionCard.title}</p>
+          <ul class="brand-page-faq__decision-list">
+            {
+              data.decisionCard.points.map((point) => (
+                <li>
+                  <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
+                  <span>{point}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <a class="brand-page-faq__decision-cta" href={data.decisionCard.ctaHref}>
+            <span>{data.decisionCard.ctaLabel}</span>
+            <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+          </a>
+        </div>
+        )
+      }
     </div>
 
     <div class="brand-page-faq__list" data-rise>

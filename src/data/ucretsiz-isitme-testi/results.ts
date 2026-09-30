@@ -1,14 +1,16 @@
 // "İşitme testi sonucu nasıl okunur?" — odyogramın genel mantığı.
 //
 // Bu bölüm bir tanı aracı DEĞİL, okuma rehberidir: gerçek/sahte hiçbir hasta verisi
-// gösterilmez (şema boş bir odyogramdır: eksenler, dereceler, semboller). Dereceler,
-// sitenin mevcut derece sayfalarındaki sınıflandırmayla tutarlıdır (hafif 26-40,
-// orta 41-55, ileri 56-70, çok ileri 71 dB ve üzeri; bkz. /ihtiyaciniza-gore/*).
-// "0-25 dB" satırı aynı uluslararası sınıflandırmanın alt sınırıdır ve "genellikle normal
-// kabul edilir" diye temkinli yazıldı; farklı kaynakların sınırları biraz farklı
-// adlandırabileceği açıkça belirtilir. Kesin tanı, hastalık çıkarımı veya "cihaz kesin
-// gerekir" ifadesi yoktur.
-import { LineChart, Ear, ArrowLeftRight, Waves, Gauge, Layers } from "lucide-astro";
+// gösterilmez (şema boş bir odyogramdır: eksenler, dereceler, semboller). Tedavi veya
+// cihaz/implant önerisi içermez.
+//
+// SINIFLANDIRMA (şema ve tablo BİREBİR aynıdır; sayfa sahibinin belirlediği kullanım):
+//   0–25 normal sınırlar · 26–40 hafif · 41–55 orta · 56–70 orta-ileri · 71–90 ileri ·
+//   91 dB ve üzeri çok ileri.
+// Site geneli hizalandı: /ihtiyaciniza-gore/{hafif,orta,ileri,cok-ileri}-*-isitme-kaybi/ sayfaları
+// ve derece merdiveni (evolution.ts) aynı aralıkları kullanır; hafif, orta, ileri ve çok ileri
+// satırları kendi sayfalarına bağlanır. 'Orta-ileri' için ayrı bir sayfa yoktur.
+import { Ear, ArrowLeftRight, Waves, Gauge } from "lucide-astro";
 import type { AudiogramContent } from "../../components/hearing-test/AudiogramDiagram.astro";
 import type { GuideCard, GuideSectionMeta, GuideTableContent } from "../../components/price-guide/price-guide.types";
 
@@ -17,13 +19,13 @@ export const resultsSection: GuideSectionMeta = {
   eyebrow: "Sonuç Nasıl Okunur?",
   heading: "İşitme Testi Sonucu Nasıl Okunur? Odyogram Rehberi",
   intro:
-    "İşitme testi sonucu odyogram adı verilen bir grafikte gösterilir: yatay eksen sesin frekansını (Hz), dikey eksen işitme seviyesini (dB) gösterir ve sağ ile sol kulak ayrı işaretlerle çizilir. İşaretler grafikte ne kadar yukarıdaysa, o frekansta o kadar hafif ses duyulduğu anlamına gelir. Aşağıda grafiğin her bölümünü sade bir dille açıklıyoruz.",
+    "İşitme testi sonucu odyogram adı verilen bir grafikte gösterilir: yatay eksen sesin frekansını (Hz), dikey eksen işitme seviyesini (dB) gösterir ve sağ ile sol kulak ayrı işaretlerle çizilir. İşaretler grafikte ne kadar yukarıdaysa, o frekansta o kadar hafif ses duyulduğu anlamına gelir. Grafiğin hemen altındaki tablo derece aralıklarını, ardından gelen kartlar grafiğin her bölümünü sade bir dille açıklar.",
 };
 
 export const audiogram: AudiogramContent = {
   title: "Boş odyogram şeması: frekans, işitme seviyesi ve derece bantları",
   description:
-    "Yatay eksende 250 ile 8000 Hz arasındaki frekanslar, dikey eksende 0 dB en üstte olacak şekilde işitme seviyesi gösterilir. Arka plandaki bantlar normal sınırlar, hafif, orta, ileri ve çok ileri işitme kaybı aralıklarını gösterir. Sağ kulak kırmızı daire, sol kulak mavi çarpı ile işaretlenir. Şemada hiçbir kişiye ait sonuç yoktur.",
+    "Yatay eksende 250 ile 8000 Hz arasındaki frekanslar, dikey eksende 0 dB en üstte olacak şekilde işitme seviyesi gösterilir. Arka plandaki bantlar normal sınırlar (0-25 dB), hafif (26-40), orta (41-55), orta-ileri (56-70), ileri (71-90) ve çok ileri (91 dB ve üzeri) işitme kaybı aralıklarını gösterir. Sağ kulak kırmızı daire, sol kulak mavi çarpı ile işaretlenir. Şemada hiçbir kişiye ait sonuç yoktur.",
   caption:
     "Şematik bir örnektir; bir kişinin test sonucunu göstermez. Gerçek odyogramda ölçülen eşikler sağ kulak için daire, sol kulak için çarpı işaretiyle bu ızgaraya yerleştirilir.",
   freqs: [250, 500, 1000, 2000, 4000, 8000],
@@ -38,22 +40,17 @@ export const audiogram: AudiogramContent = {
     { label: "Normal sınırlar", range: "0–25 dB", from: -10, to: 25, tone: 0 },
     { label: "Hafif", range: "26–40 dB", from: 25, to: 40, tone: 1 },
     { label: "Orta", range: "41–55 dB", from: 40, to: 55, tone: 2 },
-    { label: "İleri", range: "56–70 dB", from: 55, to: 70, tone: 3 },
-    { label: "Çok ileri", range: "71 dB ve üzeri", from: 70, to: 120, tone: 4 },
+    { label: "Orta-ileri", range: "56–70 dB", from: 55, to: 70, tone: 3 },
+    { label: "İleri", range: "71–90 dB", from: 70, to: 90, tone: 4 },
+    { label: "Çok ileri", range: "91 dB ve üzeri", from: 90, to: 120, tone: 5 },
   ],
   legend: { right: "Sağ kulak", left: "Sol kulak" },
   topNote: "Yukarı: daha hafif ses duyulur",
   bottomNote: "Aşağı: daha yüksek ses gerekir",
-  scrollHint: "Grafiğin tamamını görmek için yana kaydırın →",
 };
 
-/** H3 açıklamaları (grafiğin yanında/altında). */
+/** H3 açıklamaları — grafik ve derece tablosundan SONRA. "Odyogram nedir?" (bölüm girişinde) ve "Konuşma testi sonucu" (Değerlendirmeler bölümünde) tekrar oldukları için kaldırıldı. */
 export const resultsCards: GuideCard[] = [
-  {
-    icon: LineChart,
-    title: "Odyogram nedir?",
-    text: "Odyogram, işitme testinde ölçülen işitme eşiklerinin frekansa göre gösterildiği grafiktir. Eşik, bir sesi duyabildiğiniz en düşük şiddet demektir. Grafik, hangi seslerde ve hangi kulakta fark olduğunu tek bakışta görmeyi sağlar.",
-  },
   {
     icon: Waves,
     title: "Frekans neyi gösterir?",
@@ -67,7 +64,7 @@ export const resultsCards: GuideCard[] = [
   {
     icon: Ear,
     title: "Sağ ve sol kulak",
-    text: "Her kulak ayrı ölçülür. Yaygın kullanımda sağ kulak kırmızı daire (○), sol kulak mavi çarpı (×) ile gösterilir. İki kulak arasında fark olması sık görülebilir; ancak iki kulak arasında aniden ortaya çıkan bir fark acil tıbbi değerlendirme gerektirebilir.",
+    text: "Her kulak ayrı ölçülür. Yaygın kullanımda sağ kulak kırmızı daire (○), sol kulak mavi çarpı (×) ile gösterilir. İki kulak arasında fark olması sık görülebilir; ani ortaya çıkan bir fark için yukarıdaki KBB bölümüne bakın.",
   },
   {
     icon: ArrowLeftRight,
@@ -76,11 +73,6 @@ export const resultsCards: GuideCard[] = [
     href: "/degerlendirme/odyometri/",
     linkLabel: "Odyometri sayfası",
   },
-  {
-    icon: Layers,
-    title: "Konuşma testi sonucu",
-    text: "Odyogramın yanı sıra konuşmayı anlama düzeyi de değerlendirilir. Sesleri duymakla kelimeleri anlamak aynı şey olmadığından, kişi 'duyuyorum ama anlamıyorum' diyebilir; bu iki sonuç birlikte yorumlanır.",
-  },
 ];
 
 export const degreeTable: GuideTableContent = {
@@ -88,7 +80,7 @@ export const degreeTable: GuideTableContent = {
   eyebrow: "Tablo 2",
   heading: "İşitme Kaybı Dereceleri",
   intro:
-    "Odyogramdaki eşik değerleri, uluslararası sınıflandırmaya göre derecelere ayrılır. Bu tablo genel bir kılavuzdur; kişisel sonucunuz bir uzman tarafından diğer bulgularla birlikte yorumlanır.",
+    "Odyogramdaki eşik değerleri derecelere ayrılır; grafikteki renkli bantlar bu aralıkları gösterir. Bu tablo genel bir kılavuzdur; kişisel sonucunuz bir uzman tarafından diğer bulgularla birlikte yorumlanır.",
   caption: "İşitme kaybı derecelerinin dB HL aralığı ve günlük yaşamdaki genel anlamı",
   criterionLabel: "Derece",
   columns: [{ name: "Aralık (dB HL)" }, { name: "Genel anlamı" }],
@@ -96,12 +88,13 @@ export const degreeTable: GuideTableContent = {
     { label: "Normal sınırlar", cells: ["0–25 dB", "Genellikle normal işitme sınırları içinde kabul edilir; yine de şikayet varsa uzmanla değerlendirilebilir."] },
     { label: "Hafif", href: "/ihtiyaciniza-gore/hafif-isitme-kaybi/", cells: ["26–40 dB", "Fısıltı veya uzak sesleri duymakta güçlük olabilir; günlük konuşmaların çoğu etkilenmeyebilir."] },
     { label: "Orta", href: "/ihtiyaciniza-gore/orta-derece-isitme-kaybi/", cells: ["41–55 dB", "Normal ses tonundaki günlük konuşmaları takip etmekte belirgin zorluk yaşanmaya başlayabilir."] },
-    { label: "İleri", href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/", cells: ["56–70 dB", "Yüksek sesle konuşulsa bile konuşmaları anlamakta zorluk yaşanabilir."] },
-    { label: "Çok ileri", href: "/ihtiyaciniza-gore/cok-ileri-derece-isitme-kaybi/", cells: ["71 dB ve üzeri", "Çok yüksek sesler dışında konuşmaları duymak güçleşebilir; uzman değerlendirmesi özellikle önemlidir."] },
+    { label: "Orta-ileri", cells: ["56–70 dB", "Yüksek sesle konuşulsa bile konuşmaları anlamakta zorluk yaşanabilir."] },
+    { label: "İleri", href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/", cells: ["71–90 dB", "Yüksek sesli konuşmaların büyük bölümünü duymak güçleşebilir; günlük iletişim belirgin biçimde etkilenebilir."] },
+    { label: "Çok ileri", href: "/ihtiyaciniza-gore/cok-ileri-derece-isitme-kaybi/", cells: ["91 dB ve üzeri", "Çok yüksek sesler bile zor duyulabilir; uzman değerlendirmesi özellikle önemlidir."] },
   ],
   note:
     "Kaynaklara göre sınırlar ve adlandırmalar küçük farklar gösterebilir. Aynı kişide farklı frekanslar farklı dereceye denk gelebilir ve iki kulak farklı olabilir; bu yüzden tek bir sayıdan sonuç çıkarılmaz.",
 };
 
 export const resultsNotice =
-  "Odyogram tek başına kesin tanı koymaz. Sonuç; kulak muayenesi, şikayetleriniz, sağlık geçmişiniz ve gerekirse ek testlerle birlikte bir uzman tarafından yorumlanır. Sonucunuza dayanarak kendi kendinize hastalık çıkarımı yapmamanızı, endişe duyduğunuz durumlarda bir sağlık profesyoneline başvurmanızı öneririz.";
+  "Odyogram tek başına kesin tanı koymaz. Sonuç; şikayetleriniz, sağlık geçmişiniz, kulak yolunun görsel kontrolü ve gerekirse ek testlerle birlikte bir uzman tarafından yorumlanır. Sonucunuza dayanarak kendi kendinize hastalık çıkarımı yapmamanızı, endişe duyduğunuz durumlarda bir sağlık profesyoneline başvurmanızı öneririz.";

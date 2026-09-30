@@ -9,9 +9,9 @@ import { contactConfig } from "../../config";
 
 export const ucretsizIsitmeTestiLocation: ContactLocationCardContent = {
   eyebrow: "DARICA'DAKİ MERKEZİMİZ",
-  heading: "Merkezimize Ulaşın",
+  heading: "Randevu ve İletişim",
   intro:
-    "İşitme testi için randevu almak veya sorularınızı iletmek için aşağıdaki kanallardan bize ulaşabilirsiniz. Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir.",
+    "İşitme testi için randevu almak veya sorularınızı iletmek için aşağıdaki kanallardan bize ulaşabilirsiniz.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",

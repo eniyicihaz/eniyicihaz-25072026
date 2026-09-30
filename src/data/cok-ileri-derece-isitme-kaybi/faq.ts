@@ -27,7 +27,7 @@ export const cokIleriDereceIsitmeKaybiFaq: BrandPageFaqContent = {
         {
           question: "Çok ileri derece işitme kaybı nedir?",
           answer:
-            "Çok ileri derece işitme kaybı, uluslararası sınıflandırmaya göre 71 dB ve üzeri işitme eşiğini ifade eder; konuşmaların büyük bölümünün güçlü amplifikasyon olmadan duyulamaması olarak fark edilir.",
+            "Çok ileri derece işitme kaybı, uluslararası sınıflandırmaya göre 91 dB ve üzeri işitme eşiğini ifade eder; konuşmaların büyük bölümünün güçlü amplifikasyon olmadan duyulamaması olarak fark edilir.",
         },
         {
           question: "İşitme cihazı bu derecede yeterli olur mu?",

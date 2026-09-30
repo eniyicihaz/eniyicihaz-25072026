@@ -7,6 +7,12 @@
 // visible figcaption) and its labels are real, crawlable text. It never
 // represents a person's test result (PRINCIPLES.md §5: no fabricated medical data).
 //
+// Two layouts of the SAME data are rendered and CSS shows one of them:
+//   desktop (≥641px) → wide 720×490 drawing;
+//   mobile  (≤640px) → narrower 400×560 drawing with larger relative type, so band labels,
+//                      axis titles and BOTH ear symbols are readable without any sideways scrolling.
+// The hidden one is display:none, so assistive tech only ever sees one graphic.
+//
 // All copy and the degree bands come from data (src/data/ucretsiz-isitme-testi/
 // results.ts) so the component holds no content of its own.
 export interface AudiogramBand {
@@ -15,8 +21,8 @@ export interface AudiogramBand {
   range: string;
   from: number;
   to: number;
-  /** 0 = lightest … 4 = strongest tint. */
-  tone: 0 | 1 | 2 | 3 | 4;
+  /** 0 = lightest … 5 = strongest tint. */
+  tone: 0 | 1 | 2 | 3 | 4 | 5;
 }
 
 export interface AudiogramContent {
@@ -35,8 +41,6 @@ export interface AudiogramContent {
   legend: { right: string; left: string };
   topNote: string;
   bottomNote: string;
-  /** Shown only on narrow screens, where the schematic scrolls inside its own box. */
-  scrollHint?: string;
 }
 
 interface Props {
@@ -45,82 +49,114 @@ interface Props {
 
 const { data } = Astro.props;
 
-const W = 720;
-const H = 490;
-const L = 84; // plot left
-const R = 700; // plot right
-const T = 88; // plot top
-const B = 418; // plot bottom
-const x = (i: number) => L + ((R - L) / (data.freqs.length - 1)) * i;
-const y = (db: number) => T + ((db - data.dbMin) / (data.dbMax - data.dbMin)) * (B - T);
-const tint = ["#ffffff", "#eaf1ff", "#d7e5ff", "#c0d5fb", "#a9c3f3"];
+const span = data.dbMax - data.dbMin;
+const tint = ["#ffffff", "#eef4ff", "#dce8ff", "#c8dbfd", "#b3cbf8", "#9dbcf1"];
+
+// One layout = plot box + a few positions. Everything else derives from it.
+const makeLayout = (key: "desktop" | "mobile") => {
+  const m = key === "mobile";
+  const L = m ? 58 : 84;
+  const R = m ? 388 : 700;
+  const T = m ? 84 : 88;
+  const B = m ? T + span * 3 : 418;
+  const W = m ? 400 : 720;
+  const H = B + (m ? 96 : 72);
+  return {
+    key,
+    W,
+    H,
+    L,
+    R,
+    T,
+    B,
+    x: (i: number) => L + ((R - L) / (data.freqs.length - 1)) * i,
+    y: (db: number) => T + ((db - data.dbMin) / span) * (B - T),
+    freqTitleY: m ? 20 : 24,
+    hintY: m ? 42 : 52,
+    freqTickY: T - (m ? 10 : 12),
+    dbTitleX: m ? 14 : 20,
+    tickDy: m ? 5 : 6,
+    labelDy: m ? 5 : 6,
+    labelInset: m ? 6 : 8,
+  };
+};
+const layouts = [makeLayout("desktop"), makeLayout("mobile")];
 ---
 
 <figure class="audiogram">
-  {data.scrollHint && <p class="audiogram__scroll-hint">{data.scrollHint}</p>}
-  <svg
-    class="audiogram__svg"
-    viewBox={`0 0 ${W} ${H}`}
-    role="img"
-    aria-labelledby="audiogram-title audiogram-desc"
-    preserveAspectRatio="xMidYMid meet"
-  >
-    <title id="audiogram-title">{data.title}</title>
-    <desc id="audiogram-desc">{data.description}</desc>
+  {
+    layouts.map((g) => (
+      <svg
+        class={`audiogram__svg audiogram__svg--${g.key}`}
+        viewBox={`0 0 ${g.W} ${g.H}`}
+        role="img"
+        aria-labelledby={`audiogram-title-${g.key} audiogram-desc-${g.key}`}
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <title id={`audiogram-title-${g.key}`}>{data.title}</title>
+        <desc id={`audiogram-desc-${g.key}`}>{data.description}</desc>
 
-    <!-- degree bands -->
-    {
-      data.bands.map((b) => (
-        <g>
-          <rect x={L} y={y(b.from)} width={R - L} height={y(b.to) - y(b.from)} fill={tint[b.tone]} />
-          <text x={R - 8} y={(y(b.from) + y(b.to)) / 2 + 6} text-anchor="end" class="audiogram__band-label">
-            {b.label} · {b.range}
-          </text>
+        {/* degree bands (fills only; labels are drawn after the grid so grid lines never strike through them) */}
+        {data.bands.map((b) => <rect x={g.L} y={g.y(b.from)} width={g.R - g.L} height={g.y(b.to) - g.y(b.from)} fill={tint[b.tone]} />)}
+
+        {/* grid: dB lines */}
+        {
+          data.dbTicks.map((t) => (
+            <g>
+              <line x1={g.L} x2={g.R} y1={g.y(t)} y2={g.y(t)} class="audiogram__grid" />
+              <text x={g.L - 8} y={g.y(t) + g.tickDy} text-anchor="end" class="audiogram__tick">{t}</text>
+            </g>
+          ))
+        }
+
+        {/* grid: frequency lines */}
+        {
+          data.freqs.map((f, i) => (
+            <g>
+              <line x1={g.x(i)} x2={g.x(i)} y1={g.T} y2={g.B} class="audiogram__grid audiogram__grid--v" />
+              <text x={g.x(i)} y={g.freqTickY} text-anchor="middle" class="audiogram__tick">{f}</text>
+            </g>
+          ))
+        }
+
+        <rect x={g.L} y={g.T} width={g.R - g.L} height={g.B - g.T} fill="none" class="audiogram__frame" />
+
+        {/* degree labels */}
+        {
+          data.bands.map((b) => (
+            <text
+              x={g.R - g.labelInset}
+              y={(g.y(b.from) + g.y(b.to)) / 2 + g.labelDy}
+              text-anchor="end"
+              class="audiogram__band-label"
+              style={`stroke:${tint[b.tone]}`}
+            >
+              {b.label} · {b.range}
+            </text>
+          ))
+        }
+
+        {/* axis labels */}
+        <text x={(g.L + g.R) / 2} y={g.freqTitleY} text-anchor="middle" class="audiogram__axis">{data.freqAxisLabel}</text>
+        <text x={g.L} y={g.hintY} text-anchor="start" class="audiogram__hint">← {data.lowLabel}</text>
+        <text x={g.R} y={g.hintY} text-anchor="end" class="audiogram__hint">{data.highLabel} →</text>
+        <text transform={`translate(${g.dbTitleX} ${(g.T + g.B) / 2}) rotate(-90)`} text-anchor="middle" class="audiogram__axis">{data.dbAxisLabel}</text>
+        <text x={g.L} y={g.B + 28} text-anchor="start" class="audiogram__hint">↑ {data.topNote}</text>
+        <text x={g.L} y={g.B + 50} text-anchor="start" class="audiogram__hint">↓ {data.bottomNote}</text>
+
+        {/* legend: symbols only (no plotted result). Desktop: to the right of the notes; mobile: own row below them. */}
+        <g transform={g.key === "mobile" ? `translate(${g.L} ${g.B + 80})` : `translate(${g.L + 300} ${g.B + 40})`}>
+          <circle cx="10" cy="0" r="9" fill="none" class="audiogram__sym audiogram__sym--right" />
+          <text x="28" y="6" class="audiogram__legend">{data.legend.right}</text>
+          <g transform={g.key === "mobile" ? "translate(150 0)" : "translate(200 0)"}>
+            <line x1="1" y1="-9" x2="19" y2="9" class="audiogram__sym audiogram__sym--left" />
+            <line x1="19" y1="-9" x2="1" y2="9" class="audiogram__sym audiogram__sym--left" />
+            <text x="28" y="6" class="audiogram__legend">{data.legend.left}</text>
+          </g>
         </g>
-      ))
-    }
-
-    <!-- grid: dB lines -->
-    {
-      data.dbTicks.map((t) => (
-        <g>
-          <line x1={L} x2={R} y1={y(t)} y2={y(t)} class="audiogram__grid" />
-          <text x={L - 10} y={y(t) + 6} text-anchor="end" class="audiogram__tick">{t}</text>
-        </g>
-      ))
-    }
-
-    <!-- grid: frequency lines -->
-    {
-      data.freqs.map((f, i) => (
-        <g>
-          <line x1={x(i)} x2={x(i)} y1={T} y2={B} class="audiogram__grid audiogram__grid--v" />
-          <text x={x(i)} y={T - 12} text-anchor="middle" class="audiogram__tick">{f}</text>
-        </g>
-      ))
-    }
-
-    <rect x={L} y={T} width={R - L} height={B - T} fill="none" class="audiogram__frame" />
-
-    <!-- axis labels -->
-    <text x={(L + R) / 2} y={24} text-anchor="middle" class="audiogram__axis">{data.freqAxisLabel}</text>
-    <text x={L} y={52} text-anchor="start" class="audiogram__hint">← {data.lowLabel}</text>
-    <text x={R} y={52} text-anchor="end" class="audiogram__hint">{data.highLabel} →</text>
-    <text transform={`translate(20 ${(T + B) / 2}) rotate(-90)`} text-anchor="middle" class="audiogram__axis">{data.dbAxisLabel}</text>
-    <text x={L} y={B + 30} text-anchor="start" class="audiogram__hint">↑ {data.topNote}</text>
-    <text x={L} y={B + 52} text-anchor="start" class="audiogram__hint">↓ {data.bottomNote}</text>
-
-    <!-- legend: symbols only (no plotted result) -->
-    <g transform={`translate(${L + 300} ${B + 40})`}>
-      <circle cx="10" cy="0" r="9" fill="none" class="audiogram__sym audiogram__sym--right" />
-      <text x="28" y="6" class="audiogram__legend">{data.legend.right}</text>
-      <g transform="translate(200 0)">
-        <line x1="1" y1="-9" x2="19" y2="9" class="audiogram__sym audiogram__sym--left" />
-        <line x1="19" y1="-9" x2="1" y2="9" class="audiogram__sym audiogram__sym--left" />
-        <text x="28" y="6" class="audiogram__legend">{data.legend.left}</text>
-      </g>
-    </g>
-  </svg>
+      </svg>
+    ))
+  }
   <figcaption class="audiogram__caption">{data.caption}</figcaption>
 </figure>
 
@@ -137,6 +173,10 @@ const tint = ["#ffffff", "#eaf1ff", "#d7e5ff", "#c0d5fb", "#a9c3f3"];
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .audiogram__svg--mobile {
+    display: none;
   }
 
   .audiogram__grid {
@@ -173,6 +213,9 @@ const tint = ["#ffffff", "#eaf1ff", "#d7e5ff", "#c0d5fb", "#a9c3f3"];
   }
 
   .audiogram__band-label {
+    paint-order: stroke;
+    stroke-width: 5px;
+    stroke-linejoin: round;
     font-size: 15px;
     font-weight: 600;
     fill: #1e3a8a;
@@ -198,13 +241,6 @@ const tint = ["#ffffff", "#eaf1ff", "#d7e5ff", "#c0d5fb", "#a9c3f3"];
     stroke: #2563eb;
   }
 
-  .audiogram__scroll-hint {
-    display: none;
-    margin: 0 0 var(--space-2);
-    font-size: var(--font-size-xs);
-    color: var(--color-text-soft);
-  }
-
   .audiogram__caption {
     margin: var(--space-3) 0 0;
     font-size: var(--font-size-sm);
@@ -212,22 +248,39 @@ const tint = ["#ffffff", "#eaf1ff", "#d7e5ff", "#c0d5fb", "#a9c3f3"];
     color: var(--color-text-muted);
   }
 
+  /* Mobile drawing: 400-unit wide viewBox shown at ~340px, so ~0.85 scale; sizes below are in viewBox units. */
   @media (max-width: 640px) {
     .audiogram {
       padding: var(--space-2);
     }
 
-    .audiogram__scroll-hint {
+    .audiogram__svg--desktop {
+      display: none;
+    }
+
+    .audiogram__svg--mobile {
       display: block;
     }
 
-    /* Keep the schematic legible: on narrow phones it is scrollable inside its own box instead of shrinking the text below ~9px. */
-    .audiogram__svg {
-      min-width: 500px;
+    .audiogram__svg--mobile .audiogram__tick {
+      font-size: 13px;
     }
 
-    .audiogram {
-      overflow-x: auto;
+    .audiogram__svg--mobile .audiogram__axis {
+      font-size: 14px;
+    }
+
+    .audiogram__svg--mobile .audiogram__hint {
+      font-size: 12px;
+    }
+
+    .audiogram__svg--mobile .audiogram__band-label {
+      font-size: 13px;
+      stroke-width: 4px;
+    }
+
+    .audiogram__svg--mobile .audiogram__legend {
+      font-size: 14px;
     }
   }
 </style>

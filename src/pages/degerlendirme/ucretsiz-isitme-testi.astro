@@ -1,28 +1,28 @@
 ---
 // Ücretsiz İşitme Testi — /degerlendirme/ucretsiz-isitme-testi/ (URL DEĞİŞMEDİ).
-// "İşitme testi" KONU MERKEZİ: test nedir, neden ve kimler için, nasıl yapılır, hangi
-// ölçümler, ne kadar sürer, sonuç nasıl okunur (odyogram), test sonrası, online test
-// farkı, çocuk/yaşlı ve Darıca / Gebze / Çayırova / Kocaeli'de işitme testi. Eski
-// "Darıca'da Ücretsiz İşitme Testi" hizmet sayfası, aynı hub iskeletiyle
-// (/isitme-cihazlari/, /isitme-cihazi-fiyatlari/, /isitme-cihazi-markalari/) yeniden
-// yapılandırıldı; doğrulanmış içerik (5 aşamalı süreç, güvenlik uyarıları, online/merkez
-// karşılaştırması, test sonrası, "Neden Avrasya İşitme", ContactLocationCard, doğru SSS
-// cevapları) korunarak birleştirildi.
+// "İşitme testi" KONU MERKEZİ: test nedir, ne için ve ne zaman, KBB uyarısı, nasıl yapılır
+// (hazırlık + süre dahil), hangi değerlendirmeler, ücretsiz test, sonuç nasıl okunur (odyogram),
+// test sonrası (cihaz dahil), evde/online test, çocuk ve yaşlı, Darıca merkezi ve ulaşım.
 //
-//   ARAMA SORGUSU → DOĞRUDAN CEVAP → AYRINTILI AÇIKLAMA → İLGİLİ SORULAR →
-//   TABLO / GÖRSEL → YEREL BAĞLAM → İÇ BAĞLANTI → CTA
+// EDİTORYAL SADELEŞTİRME (kapsam korunarak): aynı bilgiyi farklı başlıklarla yeniden anlatan
+// bölümler birleştirildi — neden+ne zaman tek bölüm; 5 adım + detay kartları tek zaman çizelgesi;
+// hazırlık ve süre "nasıl yapılır" altında H3; ücretsiz tablosu + ölçüm tabloları tek tablo;
+// test sonrası + cihaz tek bölüm; çocuk + yaşlı tek bölüm; Darıca/Gebze/Çayırova/Kocaeli/ulaşım
+// tek yerel bölüm; SSS yalnızca sayfada cevaplanmamış sorular; tek kapanış CTA (iletişim kartı).
+//
+//   ARAMA SORGUSU → DOĞRUDAN CEVAP → AYRINTILI AÇIKLAMA → TABLO / GÖRSEL → YEREL BAĞLAM →
+//   İÇ BAĞLANTI → CTA
 //
 // Politika: tıbbi kesinlik / teşhis yok; ani kayıp, ağrı, akıntıda KBB uyarısı görünür
 // (PRINCIPLES.md §5, §11). Fiyat yok; Product/Offer/HowTo/MedicalTest şeması yok.
 // Gebze/Çayırova'da şube iddiası yok (COMPANY.md §17). Doğrulanmamış vaatler ("aynı gün
-// sonuç", kesin süre, ücretsiz kapsamın ek testleri, çocuk/yaş sınırı) YAZILMADI.
+// sonuç", kesin süre, ücretsiz kapsamın ek testleri, ses yalıtımı, kalibre cihaz) YAZILMADI.
 // Video yok. Marka tanıtımı yok (→ /isitme-cihazi-markalari/). Odyogram, gerçek sonuç
 // içermeyen, erişilebilir bir SVG şemasıdır (components/hearing-test/).
 // Görünüm mevcut componentlerin yeniden kullanımıdır (price-guide/*, ProcessTimeline,
 // ContactLocationCard, BrandPageFaq, BrandPageRelatedContent); yeni yalnızca
 // AudiogramDiagram. İçerik data/ucretsiz-isitme-testi/* altındadır.
 import { TriangleAlert } from "lucide-astro";
-import { Phone, MessageCircle, Headphones, UserCheck } from "lucide-astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import ProcessTimeline from "../../components/shared/ProcessTimeline/ProcessTimeline.astro";
@@ -38,7 +38,6 @@ import InfoGrid from "../../components/price-guide/InfoGrid.astro";
 import GuideTable from "../../components/price-guide/GuideTable.astro";
 import GuideNotice from "../../components/price-guide/GuideNotice.astro";
 import LocalBlocks from "../../components/price-guide/LocalBlocks.astro";
-import GuideCta from "../../components/price-guide/GuideCta.astro";
 import AudiogramDiagram from "../../components/hearing-test/AudiogramDiagram.astro";
 
 import { buildMedicalBusinessSchema } from "../../lib/schema";
@@ -46,22 +45,23 @@ import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../../data/ucretsiz-is
 import { testHero, testHeroExtra } from "../../data/ucretsiz-isitme-testi/hero";
 import { testQuickAnswer, basicsCards } from "../../data/ucretsiz-isitme-testi/answer";
 import {
-  whySection, whyCards, whenSection, signsCards, noiseCard, contextCards, entSection, entPoints, entNote,
+  whenSection, purposeText, signsCards, contextCards, entSection, entPoints, entNote,
 } from "../../data/ucretsiz-isitme-testi/reasons";
-import { freeTestSection, freeTestTable, trustCards } from "../../data/ucretsiz-isitme-testi/free-test";
-import { howProcess, howDetails } from "../../data/ucretsiz-isitme-testi/how";
+import { freeTestSection, freeTestCards } from "../../data/ucretsiz-isitme-testi/free-test";
+import { howProcess } from "../../data/ucretsiz-isitme-testi/how";
 import {
-  measureSection, measureCards, measureTable, prepareSection, prepareCards, durationSection, durationPoints,
+  measureSection, measureCards, measureTable, prepareHeading, prepareIntro, prepareCards,
+  durationHeading, durationIntro, durationPoints,
 } from "../../data/ucretsiz-isitme-testi/measurements";
 import { resultsSection, audiogram, resultsCards, degreeTable, resultsNotice } from "../../data/ucretsiz-isitme-testi/results";
 import {
-  afterSection, afterCards, afterLinks, deviceTestSection, deviceTestPoints, deviceTestLinks,
-  onlineSection, onlineTable, childrenSection, childrenCards, elderlySection, elderlyCards,
+  afterSection, afterCards, afterLinks, onlineSection, onlineTable,
+  ageSection, childrenText, childrenLinks, elderlyText, elderlyLinks,
 } from "../../data/ucretsiz-isitme-testi/after";
-import { localBlocks } from "../../data/ucretsiz-isitme-testi/local";
+import { localSection, localBlocks } from "../../data/ucretsiz-isitme-testi/local";
 import { ucretsizIsitmeTestiLocation } from "../../data/ucretsiz-isitme-testi/location";
 import { testFaq } from "../../data/ucretsiz-isitme-testi/faq";
-import { testCta, testRelated } from "../../data/ucretsiz-isitme-testi/cta-related";
+import { testRelated } from "../../data/ucretsiz-isitme-testi/cta-related";
 
 // Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması, görünür SSS
 // verisinden BrandPageFaq içinde üretilir. Ortak MedicalBusiness builder'ı, sitenin
@@ -77,12 +77,10 @@ const breadcrumbSchema = {
   })),
 };
 const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
-
-const noticeLinks = (cards: { href?: string; linkLabel?: string }[]) =>
-  cards.filter((c) => c.href).map((c) => ({ label: c.linkLabel ?? "Devamı", href: c.href as string }));
 ---
 
 <MainLayout title={pageMeta.title} description={pageMeta.description}>
+  <div class="uit-page">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
 
@@ -99,21 +97,34 @@ const noticeLinks = (cards: { href?: string; linkLabel?: string }[]) =>
     <InfoGrid cards={basicsCards} columns={2} headingLevel="h3" />
   </div>
 
-  <!-- 2. Neden yapılır? -->
-  <GuideSection {...whySection} tone="alt">
-    <InfoGrid cards={whyCards} columns={4} />
-  </GuideSection>
+  <!-- 2. Ne için ve ne zaman? (eski "neden" + "ne zaman") — bu bölümün sonunda tek CTA -->
+  <GuideSection {...whenSection} tone="alt">
+    <p class="uit-p uit-p--wide">{purposeText}</p>
 
-  <!-- 3. Ne zaman yaptırmalısınız? -->
-  <GuideSection {...whenSection}>
-    <h3 class="uit-h3">İşitme kaybı düşündürebilecek belirtiler</h3>
-    <InfoGrid cards={signsCards} columns={3} headingLevel="h4" />
+    <h3 class="uit-h3 uit-h3--after">İşitme kaybı düşündürebilecek belirtiler</h3>
+    <ul class="uit-facts">
+      {
+        signsCards.map((c) => (
+          <li>
+            <strong>{c.title}</strong>
+            <span>{c.text}</span>
+          </li>
+        ))
+      }
+    </ul>
 
-    <h3 class="uit-h3">Gürültüye maruz kalma</h3>
-    <p class="uit-p">{noiseCard.text}</p>
-
-    <h3 class="uit-h3">Yaş, aile öyküsü ve diğer durumlar</h3>
-    <InfoGrid cards={contextCards} columns={3} headingLevel="h4" />
+    <h3 class="uit-h3 uit-h3--after">Gürültü, yaş ve aile öyküsü</h3>
+    <ul class="uit-facts">
+      {
+        contextCards.map((c) => (
+          <li>
+            <strong>{c.title}</strong>
+            <span>{c.text}</span>
+            {c.href && <a href={c.href}>{c.linkLabel} →</a>}
+          </li>
+        ))
+      }
+    </ul>
 
     <GuideNotice
       text="İşitmenizi merak ediyorsanız test için beklemeyin; bir randevuyla işitme durumunuzu birlikte değerlendirebiliriz."
@@ -121,8 +132,8 @@ const noticeLinks = (cards: { href?: string; linkLabel?: string }[]) =>
     />
   </GuideSection>
 
-  <!-- 4. KBB uyarısı (görünür güvenlik bölümü) -->
-  <GuideSection {...entSection} tone="alt">
+  <!-- 3. KBB uyarısı (sayfadaki tek tam güvenlik bölümü) -->
+  <GuideSection {...entSection}>
     <div class="uit-alert" role="note" aria-label="Tıbbi uyarı">
       <div class="uit-alert__head">
         <TriangleAlert size={22} stroke-width={2} aria-hidden="true" />
@@ -142,99 +153,119 @@ const noticeLinks = (cards: { href?: string; linkLabel?: string }[]) =>
     </div>
   </GuideSection>
 
-  <!-- 5. Ücretsiz işitme testi nedir, neleri kapsar? -->
-  <GuideSection {...freeTestSection}>
-    <GuideTable data={freeTestTable} />
-    <div class="uit-spaced">
-      <InfoGrid cards={trustCards} columns={3} />
-    </div>
-  </GuideSection>
-
-  <!-- 6. İşitme testi nasıl yapılır? -->
+  <!-- 4. İşitme testi nasıl yapılır? (tek zaman çizelgesi + hazırlık + süre H3'leri) -->
   <div id="nasil-yapilir" class="uit-anchor">
     <ProcessTimeline data={howProcess} />
   </div>
   <div class="uit-cont">
-    <InfoGrid cards={howDetails} columns={4} headingLevel="h3" />
+    <h3 class="uit-h3" id="hazirlik">{prepareHeading}</h3>
+    <p class="uit-p uit-p--lead">{prepareIntro}</p>
+    <div class="uit-spaced">
+      <InfoGrid cards={prepareCards} columns={3} headingLevel="h4" />
+    </div>
+
+    <h3 class="uit-h3 uit-h3--after" id="sure">{durationHeading}</h3>
+    <p class="uit-p">{durationIntro}</p>
+    <ul class="uit-list">
+      {
+        durationPoints.map((p) => (
+          <li>
+            <strong>{p.title}</strong>
+            <span>{p.text}</span>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 
-  <!-- 7. Hangi ölçümler yapılır? -->
+  <!-- 5. Hangi değerlendirmeler yer alabilir? (3 ölçüm + tek birleşik tablo) -->
   <GuideSection {...measureSection} tone="alt">
-    <InfoGrid cards={measureCards} columns={4} />
+    <InfoGrid cards={measureCards} columns={3} />
     <div class="uit-spaced">
-      <GuideTable data={measureTable} />
+      <GuideTable data={measureTable} mobile="stack" />
     </div>
   </GuideSection>
 
-  <!-- 8. Hazırlık -->
-  <GuideSection {...prepareSection}>
-    <InfoGrid cards={prepareCards} columns={3} />
+  <!-- 6. Ücretsiz işitme testi: neleri kapsar? (tabloyu tekrarlamaz) -->
+  <GuideSection {...freeTestSection}>
+    <InfoGrid cards={freeTestCards} columns={3} />
   </GuideSection>
 
-  <!-- 9. Ne kadar sürer? -->
-  <GuideSection {...durationSection} tone="alt">
-    <GuideNotice points={durationPoints} />
-  </GuideSection>
-
-  <!-- 10. Sonuç nasıl okunur? (odyogram) -->
-  <GuideSection {...resultsSection}>
+  <!-- 7. Sonuç nasıl okunur? Sıra: grafik → derece tablosu → 4 açıklama kartı -->
+  <GuideSection {...resultsSection} tone="alt">
     <div class="uit-audiogram">
       <AudiogramDiagram data={audiogram} />
     </div>
     <div class="uit-spaced">
-      <InfoGrid cards={resultsCards} columns={3} />
+      <GuideTable data={degreeTable} mobile="fit" />
     </div>
     <div class="uit-spaced">
-      <GuideTable data={degreeTable} />
+      <InfoGrid cards={resultsCards} columns={2} />
     </div>
-    <GuideNotice text={resultsNotice} links={[{ label: "Odyometri", href: "/degerlendirme/odyometri/" }, { label: "İşitme kaybı nedir?", href: "/rehberler/isitme-kaybi-nedir/" }]} />
+    <div class="uit-spaced">
+      <GuideNotice text={resultsNotice} links={[{ label: "Odyometri", href: "/degerlendirme/odyometri/" }, { label: "İşitme kaybı nedir?", href: "/rehberler/isitme-kaybi-nedir/" }]} />
+    </div>
   </GuideSection>
 
-  <!-- 11. Test sonrası -->
-  <GuideSection {...afterSection} tone="alt">
-    <InfoGrid cards={afterCards} columns={4} />
-    <GuideNotice text="Cihaz gündeme gelirse şu rehberlerden ayrıntı bulabilirsiniz." links={afterLinks} />
+  <!-- 8. Test sonrası (KBB · takip · cihaz gündeme gelirse) -->
+  <GuideSection {...afterSection}>
+    <InfoGrid cards={afterCards} columns={3} />
+    <div class="uit-spaced">
+      <GuideNotice text="Cihaz gündeme gelirse şu rehberlerden ayrıntı bulabilirsiniz." links={afterLinks} />
+    </div>
   </GuideSection>
 
-  <!-- 12. İşitme cihazı için test gerekli mi? -->
-  <GuideSection {...deviceTestSection}>
-    <GuideNotice points={deviceTestPoints} links={deviceTestLinks} />
-  </GuideSection>
-
-  <!-- 13. Online test farkı -->
+  <!-- 9. Evde / online test -->
   <GuideSection {...onlineSection} tone="alt">
-    <GuideTable data={onlineTable} bare />
+    <GuideTable data={onlineTable} bare mobile="stack" />
   </GuideSection>
 
-  <!-- 14. Çocuklarda -->
-  <GuideSection {...childrenSection}>
-    <GuideNotice text={childrenCards[0].text} links={noticeLinks(childrenCards)} />
+  <!-- 10. Çocuklarda ve yaşlılarda -->
+  <GuideSection {...ageSection}>
+    <h3 class="uit-h3">Çocuklarda</h3>
+    <GuideNotice text={childrenText} links={childrenLinks} />
+    <h3 class="uit-h3 uit-h3--after">Yaşa bağlı işitme kaybında</h3>
+    <GuideNotice text={elderlyText} links={elderlyLinks} />
   </GuideSection>
 
-  <!-- 15. Yaşlılarda -->
-  <GuideSection {...elderlySection} tone="alt">
-    <GuideNotice text={elderlyCards[0].text} links={noticeLinks(elderlyCards)} />
+  <!-- 11. Darıca'daki merkezimiz ve ulaşım (tek yerel bölüm: Darıca · Gebze/Çayırova · Kocaeli) -->
+  <GuideSection {...localSection} tone="alt">
+    <LocalBlocks blocks={localBlocks} headingLevel="h3" />
   </GuideSection>
 
-  <!-- 16–19. Yerel bölümler: Darıca (ana merkez) → Gebze → Çayırova → Kocaeli -->
-  <div class="uit-local">
-    <LocalBlocks blocks={localBlocks} headingLevel="h2" />
-  </div>
-
-  <!-- 20. Merkezimize ulaşın -->
-  <ContactLocationCard data={ucretsizIsitmeTestiLocation} />
-
-  <!-- 21. SSS -->
+  <!-- 12. SSS (yalnızca sayfada cevaplanmamış sorular) -->
   <div id="sss" class="uit-anchor">
     <BrandPageFaq data={testFaq} />
   </div>
 
-  <!-- 22. Final CTA + ilgili içerikler -->
-  <GuideCta data={testCta} icons={[Phone, MessageCircle, Headphones, UserCheck]} />
+  <!-- 13. Randevu ve iletişim (tek kapanış CTA'sı) + ilgili içerikler -->
+  <div id="merkez-ulasim" class="uit-anchor">
+    <ContactLocationCard data={ucretsizIsitmeTestiLocation} />
+  </div>
   <BrandPageRelatedContent data={testRelated} />
+  </div>
 </MainLayout>
 
 <style>
+  /* WCAG AA: the shared price-guide components render the TOC label and the table corner
+     header in --color-text-soft (#94a3b8, 2.56:1 on white). Scoped to this page only; the
+     same defect exists on the other hubs' shared components and is reported separately. */
+  .uit-page :global(.guide-toc__label),
+  .uit-page :global(.guide-table__corner) {
+    color: var(--color-text-muted);
+  }
+
+  /* Darıca block has no checklist any more; keep the text column centred next to the photo instead of top-aligned with empty space below. */
+  .uit-page :global(.local-block--center .local-block__body) {
+    align-self: center;
+  }
+
+  /* Shared ContactLocationCard sets the grid's top margin to var(--space-14), a token that is not defined
+     (resolves to 0), so the heading block touches the card. Fixed here for this page only (/iletisim/ untouched). */
+  .uit-page :global(.contact-location__grid) {
+    margin-top: var(--space-12);
+  }
+
   .uit-breadcrumb {
     max-width: var(--container-2xl);
     margin-inline: auto;
@@ -267,6 +298,82 @@ const noticeLinks = (cards: { href?: string; linkLabel?: string }[]) =>
     font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
+  }
+
+  .uit-p--wide {
+    max-width: 52rem;
+  }
+
+  .uit-facts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3) var(--space-8);
+  }
+
+  .uit-facts li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-3) 0 var(--space-3) var(--space-4);
+    border-left: 3px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .uit-facts strong {
+    font-size: var(--font-size-md);
+    color: var(--color-text);
+  }
+
+  .uit-facts a {
+    margin-top: 2px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .uit-facts a:hover {
+    text-decoration: underline;
+  }
+
+  .uit-p--wide + .uit-h3 {
+    margin-top: var(--space-10);
+  }
+
+  .uit-p--lead {
+    margin-bottom: 0;
+  }
+
+  .uit-h3--after {
+    margin-top: var(--space-12);
+  }
+
+  .uit-list {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    max-width: 46rem;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .uit-list li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-left: var(--space-4);
+    border-left: 3px solid var(--color-border);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .uit-list strong {
+    color: var(--color-text);
   }
 
   .uit-spaced {
@@ -355,6 +462,14 @@ const noticeLinks = (cards: { href?: string; linkLabel?: string }[]) =>
 
     .uit-alert {
       padding: var(--space-4);
+    }
+
+    .uit-facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .uit-page :global(.contact-location__grid) {
+      margin-top: var(--space-8);
     }
   }
 </style>

@@ -1,24 +1,8 @@
-// Final CTA (4 aksiyon; Darıca öncelikli) ve "İlgili içerikler" (iç bağlantı merkezi).
+// "İlgili içerikler" (iç bağlantı merkezi). Sayfanın kapanış CTA'sı artık "Randevu ve İletişim"
+// kartıdır (location.ts); ayrı bir final CTA bloğu yoktur.
 // Tüm bağlantılar gerçek route'lara gider ve sitenin standart trailing-slash biçimini
 // kullanır (eski sayfada slash'sızdı). Yeni URL uydurulmamıştır.
-import { contactConfig } from "../../config/contact";
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
-import type { GuideCtaContent } from "../isitme-cihazi-fiyatlari/related-cta";
-
-const whatsappText = encodeURIComponent("Merhaba, ücretsiz işitme testi için randevu almak istiyorum.");
-
-export const testCta: GuideCtaContent = {
-  eyebrow: "Sıradaki Adım",
-  heading: "Darıca'da ücretsiz işitme testi için bizimle iletişime geçin.",
-  text: "Randevu almanızı öneririz. İşitme durumunuzu bir odyometrist eşliğinde birlikte değerlendirelim; sonuçları görüşmede birlikte yorumlayalım.",
-  actions: [
-    { label: "Randevu İçin Ara", href: contactConfig.phone.href, variant: "primary" },
-    { label: "WhatsApp'tan Yazın", href: `${contactConfig.whatsapp.href}?text=${whatsappText}`, variant: "outline", external: true },
-    { label: "Online İşitme Taraması", href: "/degerlendirme/online-isitme-testi/", variant: "outline" },
-    { label: "Ücretsiz Danışmanlık", href: "/neden-orijinal/ucretsiz-danismanlik/", variant: "outline" },
-  ],
-  reassurance: ["Satın alma taahhüdü yok", "Uzman odyometrist eşliğinde", "SGK anlaşmalı merkez"],
-};
 
 export const testRelated: BrandPageRelatedContentContent = {
   badge: "İLGİLİ İÇERİKLER",

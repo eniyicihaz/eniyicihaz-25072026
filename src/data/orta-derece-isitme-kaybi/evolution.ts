@@ -25,14 +25,20 @@ export const ortaDereceIsitmeKaybiEvolution: BrandPageTechEvolutionContent = {
       families: ["Standart RIC / BTE Modelleri"],
     },
     {
-      era: "İleri Derece (56-70 dB)",
+      era: "Orta-İleri Derece (56-70 dB)",
       whatItBrought: "Yüksek sesle konuşulsa bile anlamakta zorluk yaşanabilir, daha güçlü amplifikasyon gerekir.",
-      bestFor: "İleri dereceli kayıp yaşayanlar",
+      bestFor: "Orta-ileri dereceli kayıp yaşayanlar",
       families: ["Güçlü RIC / BTE Modelleri"],
     },
     {
-      era: "Çok İleri Derece (71 dB ve Üzeri)",
+      era: "İleri Derece (71-90 dB)",
       whatItBrought: "Konuşmaların çoğu, güçlü amplifikasyon olmadan duyulamayabilir.",
+      bestFor: "İleri dereceli kayıp yaşayanlar",
+      families: ["Power BTE Modelleri"],
+    },
+    {
+      era: "Çok İleri Derece (91 dB ve Üzeri)",
+      whatItBrought: "Çok yüksek ses düzeyleri dışında konuşmaları duymak güçleşebilir; en yüksek düzeyde amplifikasyon ve kapsamlı uzman değerlendirmesi önem kazanır.",
       bestFor: "Çok ileri dereceli kayıp yaşayanlar",
       families: ["Power BTE Modelleri"],
     },

@@ -26,7 +26,7 @@ export const ileriDereceIsitmeKaybiFaq: BrandPageFaqContent = {
         {
           question: "İleri derece işitme kaybı nedir?",
           answer:
-            "İleri derece işitme kaybı, uluslararası sınıflandırmaya göre 56-70 dB işitme eşiği aralığını ifade eder; yüksek sesle konuşulsa bile anlamakta zorluk olarak fark edilir.",
+            "İleri derece işitme kaybı, uluslararası sınıflandırmaya göre 71-90 dB işitme eşiği aralığını ifade eder; yüksek sesle konuşulsa bile anlamakta zorluk olarak fark edilir.",
         },
         {
           question: "İleri derece işitme kaybında kulak içi (ITE) cihaz kullanılabilir mi?",

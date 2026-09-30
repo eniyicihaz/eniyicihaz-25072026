@@ -25,13 +25,13 @@ export const kulakArkasiHearingLossLevels: BrandPageTechEvolutionContent = {
       families: ["Standart RIC / BTE"],
     },
     {
-      era: "İleri Derece (56–70 dB)",
+      era: "Orta-İleri Derece (56–70 dB)",
       whatItBrought: "Bu seviyede daha güçlü amplifikasyon gerektiğinden BTE, diğer cihaz tiplerine kıyasla daha sık tercih edilir.",
-      bestFor: "Yüksek sesle konuşulsa bile anlamakta zorlanan kullanıcılar",
+      bestFor: "Yüksek sesle konuşulsa bile anlamakta zorlanan kullanıcılar (orta-ileri düzey)",
       families: ["Power BTE"],
     },
     {
-      era: "Çok İleri Derece (71 dB ve üzeri)",
+      era: "İleri ve Çok İleri Derece (71 dB ve üzeri)",
       whatItBrought: "Çok ileri derece kayıplarda güçlü amplifikasyon ve geri besleme (ıslık) kontrolü gerektiğinden BTE, sıklıkla tercih edilen cihaz tipidir.",
       bestFor: "Yüksek sesle bağırarak konuşulsa bile duymakta zorlanan kullanıcılar",
       families: ["Süper Power BTE"],

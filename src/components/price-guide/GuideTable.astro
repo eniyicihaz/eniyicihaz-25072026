@@ -12,12 +12,16 @@ interface Props {
   data: GuideTableContent;
   /** When the parent section already renders the H2/intro, skip this block's own header. */
   bare?: boolean;
+  /** Opt-in small-screen behaviour (default: horizontal scroll with a sticky first column).
+   *  "stack" → each row becomes a labelled card at ≤640px, so no column is hidden behind a sideways scroll.
+   *  "fit"   → the table shrinks to the screen width and cells wrap (for 3 short columns). */
+  mobile?: "stack" | "fit";
 }
 
-const { data, bare = false } = Astro.props;
+const { data, bare = false, mobile } = Astro.props;
 ---
 
-<div class="guide-table" id={data.id}>
+<div class:list={["guide-table", { "guide-table--stack": mobile === "stack", "guide-table--fit": mobile === "fit" }]} id={data.id}>
   {
     !bare && (
       <div class="guide-table__header">
@@ -48,7 +52,13 @@ const { data, bare = false } = Astro.props;
           data.rows.map((row) => (
             <tr>
               <th scope="row" class="guide-table__row-head">{row.href ? <a href={row.href}>{row.label}</a> : row.label}</th>
-              {row.cells.map((cell) => <td class="guide-table__cell">{cell}</td>)}
+              {
+                row.cells.map((cell, ci) => (
+                  <td class:list={["guide-table__cell", { "guide-table__cell--stack-hidden": data.columns[ci]?.stackHidden }]} data-label={data.columns[ci]?.name}>
+                    {cell}
+                  </td>
+                ))
+              }
             </tr>
           ))
         }
@@ -248,6 +258,94 @@ const { data, bare = false } = Astro.props;
     .guide-table__row-head {
       min-width: 104px;
       padding-inline: var(--space-3);
+    }
+
+    /* mobile="fit": no sideways scroll, cells wrap. */
+    .guide-table--fit .guide-table__table {
+      min-width: 0;
+    }
+
+    .guide-table--fit .guide-table__col-head,
+    .guide-table--fit .guide-table__row-head {
+      min-width: 0;
+    }
+
+    .guide-table--fit .guide-table__row-head,
+    .guide-table--fit .guide-table__cell,
+    .guide-table--fit .guide-table__col-head,
+    .guide-table--fit .guide-table__corner {
+      padding-inline: var(--space-2);
+    }
+
+    .guide-table--fit .guide-table__cell:first-of-type {
+      white-space: nowrap;
+    }
+
+    /* mobile="stack": every row is a card — title = row header, then "column name → value" lines. */
+    .guide-table--stack .guide-table__scroll {
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .guide-table--stack .guide-table__table,
+    .guide-table--stack tbody,
+    .guide-table--stack tr,
+    .guide-table--stack th,
+    .guide-table--stack td {
+      display: block;
+      min-width: 0;
+      width: auto;
+    }
+
+    /* Header row stays in the DOM for assistive tech but is visually hidden (each cell carries its own label). */
+    .guide-table--stack thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .guide-table--stack tbody {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .guide-table--stack tr {
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      background: var(--color-background);
+    }
+
+    .guide-table--stack .guide-table__row-head {
+      position: static;
+      padding: 0 0 var(--space-2);
+      border: 0;
+      font-size: var(--font-size-md);
+    }
+
+    .guide-table--stack .guide-table__cell {
+      padding: var(--space-2) 0 0;
+      border: 0;
+    }
+
+    .guide-table--stack .guide-table__cell::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 2px;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+    }
+
+    .guide-table--stack .guide-table__cell--stack-hidden {
+      display: none;
     }
   }
 </style>

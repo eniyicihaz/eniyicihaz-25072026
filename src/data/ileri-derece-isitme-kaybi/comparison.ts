@@ -19,8 +19,8 @@ export const ileriDereceIsitmeKaybiComparison: KulakArkasiComparisonContent = {
   rows: [
     {
       feature: "İşitme Eşiği Aralığı",
-      primary: "56-70 dB aralığındadır.",
-      secondary: "71 dB ve üzerindedir.",
+      primary: "71-90 dB aralığındadır.",
+      secondary: "91 dB ve üzerindedir.",
     },
     {
       feature: "Günlük Yaşama Etkisi",

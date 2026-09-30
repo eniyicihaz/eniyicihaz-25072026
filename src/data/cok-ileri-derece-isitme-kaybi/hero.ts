@@ -34,7 +34,7 @@ export const cokIleriDereceIsitmeKaybiHero: BrandPageHeroContent = {
   badge: "İHTİYACINIZA GÖRE · ÇOK İLERİ DERECE İŞİTME KAYBI",
   headingLines: ["Çok İleri Derece İşitme Kaybı", "İçin Cihaz Rehberi"],
   paragraphs: [
-    "Çok ileri derece işitme kaybı (71 dB ve üzeri), konuşmaların büyük bölümünün güçlü amplifikasyon olmadan duyulamadığı, en yüksek düzeyde ses gücü gerektiren bir işitme kaybı derecesidir.",
+    "Çok ileri derece işitme kaybı (91 dB ve üzeri), konuşmaların büyük bölümünün güçlü amplifikasyon olmadan duyulamadığı, en yüksek düzeyde ses gücü gerektiren bir işitme kaybı derecesidir.",
     "Bu derecede işitme kaybı yaşayan kullanıcılar için, en yüksek kapasiteli power BTE modellerden kapsamlı destek özelliklerine kadar Avrasya İşitme'de sıkça değerlendirdiğimiz cihaz seçeneklerini bir araya getirdik.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -43,8 +43,8 @@ export const cokIleriDereceIsitmeKaybiHero: BrandPageHeroContent = {
     {
       label: "DERECE ARALIĞI",
       accent: "#92400e",
-      title: "71 dB ve Üzeri İşitme Eşiği",
-      description: "Çok ileri derece işitme kaybı, uluslararası sınıflandırmaya göre 71 desibel ve üzeri işitme eşiğini ifade eder.",
+      title: "91 dB ve Üzeri İşitme Eşiği",
+      description: "Çok ileri derece işitme kaybı, uluslararası sınıflandırmaya göre 91 desibel ve üzeri işitme eşiğini ifade eder.",
     },
     {
       label: "EN YÜKSEK AMPLİFİKASYON",

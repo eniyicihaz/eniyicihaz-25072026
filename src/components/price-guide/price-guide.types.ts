@@ -52,7 +52,7 @@ export interface GuideTableContent extends GuideSectionMeta {
   caption: string;
   /** Header of the first (criterion) column, then one header per data column. */
   criterionLabel: string;
-  columns: { name: string; href?: string }[];
+  columns: { name: string; href?: string; /** Only with `mobile="stack"`: hide this column's cell in the stacked card (e.g. a redundant "Detail" link column). */ stackHidden?: boolean }[];
   rows: GuideTableRow[];
   note?: string;
   links?: GuideLink[];
@@ -95,5 +95,7 @@ export interface LocalBlock {
   items?: { title: string; text: string }[];
   /** `center` variant: real facts (address etc.) — sourced from company.ts, never typed here. */
   photo?: GuideImage;
+  /** Opt-in wide layout for the `hours` variant: text left, hours card right (no empty right half). Omitted = unchanged single-column layout. */
+  layout?: "split";
   links: GuideLink[];
 }

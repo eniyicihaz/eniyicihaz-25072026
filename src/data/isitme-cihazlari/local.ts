@@ -75,6 +75,7 @@ export const localBlocks: LocalBlock[] = [
   {
     id: "cayirova",
     variant: "hours",
+    layout: "split",
     eyebrow: "Çayırova",
     heading: "Çayırova'dan Geliyorsanız: Deneme ve Kontrol Randevunuzu Planlayın",
     lead:

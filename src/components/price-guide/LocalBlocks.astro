@@ -25,7 +25,7 @@ const Heading = headingLevel;
 <div class="local-blocks">
   {
     blocks.map((block) => (
-      <article class:list={["local-block", `local-block--${block.variant}`]} id={block.id}>
+      <article class:list={["local-block", `local-block--${block.variant}`, { "local-block--split": block.layout === "split" }]} id={block.id}>
         {
           block.variant === "center" && block.photo && (
             <div class="local-block__media">
@@ -359,6 +359,38 @@ const Heading = headingLevel;
     outline: none;
     box-shadow: var(--focus-ring);
     border-radius: var(--radius-sm);
+  }
+
+  /* Opt-in `layout: "split"` (used by the hours variant on /degerlendirme/ucretsiz-isitme-testi/):
+     the text stack sits in the left column and the opening-hours card fills the right one,
+     instead of a narrow left column beside an empty right half. Blocks without the flag are unchanged. */
+  .local-block--split .local-block__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    column-gap: var(--space-8);
+    align-items: start;
+  }
+
+  .local-block--split .local-block__body > * {
+    grid-column: 1;
+  }
+
+  .local-block--split .local-block__body > .local-block__hours {
+    grid-column: 2;
+    grid-row: 1 / span 6;
+    margin-top: 0;
+    max-width: none;
+  }
+
+  @media (max-width: 1023px) {
+    .local-block--split .local-block__body {
+      display: block;
+    }
+
+    .local-block--split .local-block__body > .local-block__hours {
+      max-width: 28rem;
+      margin-top: var(--space-5);
+    }
   }
 
   @media (max-width: 1023px) {

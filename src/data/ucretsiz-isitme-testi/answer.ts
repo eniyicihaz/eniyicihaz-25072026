@@ -1,7 +1,8 @@
 // "İşitme testi nedir?" — kısa doğrudan cevap (H2) + devamı (H3'ler).
-// Sayfadaki en sık aranan soruların ilk cevapları yan listede kısaca verilir;
-// her biri ilgili bölümde ayrıntılandırılır. Süre ve KBB gibi doğrulanmamış
-// konularda kesin vaat yoktur (genel, temkinli ifade).
+// Hero'daki tanım cümlesi burada BİREBİR tekrarlanmaz: hero "tanım"ı verir, bu bölüm testin
+// ne işe yaradığını ve merkezdeki uygulamayı anlatır. Sık sorulan sorulara verilen kısa
+// cevaplar ilgili bölümlerde ayrıntılandırılır. Süre ve KBB gibi doğrulanmamış konularda
+// kesin vaat yoktur (genel, temkinli ifade).
 import { Ear, ShieldAlert } from "lucide-astro";
 import type { QuickAnswerContent } from "../isitme-cihazi-fiyatlari/quick-answer";
 import type { GuideCard } from "../../components/price-guide/price-guide.types";
@@ -11,20 +12,19 @@ export const testQuickAnswer: QuickAnswerContent = {
   eyebrow: "Kısa Cevap",
   question: "İşitme Testi Nedir?",
   answer:
-    "İşitme testi, farklı frekans ve şiddetteki seslere verdiğiniz tepkilerin ölçülerek işitme durumunuzun değerlendirildiği bir muayenedir; sonuçlar odyogram adı verilen bir grafikte kaydedilir. Darıca'daki merkezimizde bu test bir odyometrist eşliğinde, herhangi bir ücret talep edilmeden ve satın alma taahhüdü olmadan yapılır. Sonuç tek başına kesin tanı koymaz; bir uzman tarafından diğer bulgularla birlikte yorumlanır.",
+    "İşitme testi, işitme durumunuzun hangi seslerde, hangi kulakta ve ne düzeyde farklılık gösterdiğini ölçülebilir bir kayda dönüştüren değerlendirmedir; sonuçlar odyogramda gösterilir. Darıca'daki merkezimizde bir odyometrist eşliğinde yapılır. Sonuç tek başına kesin tanı koymaz; bir uzman tarafından diğer bulgularla birlikte yorumlanır.",
   factorsHeading: "Sık sorulan sorulara kısa cevaplar",
   factors: [
     "Nasıl yapılır? Kulaklıkla verilen seslerin ne zaman duyulduğu ölçülür; adım adım anlatım aşağıda.",
     "Ne kadar sürer? Süre, uygulanacak değerlendirmelere göre değişir; genellikle kısa sürede tamamlanır.",
     "Sonuç nasıl okunur? Odyogramda frekans (Hz) ve işitme seviyesi (dB) sağ ve sol kulak için ayrı gösterilir.",
     "KBB gerekir mi? İşitme testi ihtiyacınıza göre doğrudan planlanabilir; ancak bazı durumlarda KBB değerlendirmesi gerekebilir. Ani kayıp, ağrı veya akıntıda önce KBB'ye başvurun.",
-    "Ücretsiz mi? Evet; merkezimizde herhangi bir ücret talep edilmeden ve satın alma taahhüdü olmadan yapılır.",
+    "Ücretsiz mi? Evet, Darıca'daki merkezimizde; kapsamı aşağıdaki ücretsiz test bölümünde.",
   ],
   transparency: {
     title: "Bu sayfa nasıl kullanılmalı?",
     paragraphs: [
       "Bu sayfa genel bir bilgilendirme amacı taşır; kendi kendine tanı koymak için kullanılmamalıdır. İşitme durumunuzu öğrenmenin güvenilir yolu, bir odyometrist tarafından yapılan değerlendirmedir ve kesin tanı ile tedavi yönlendirmesi için sonuçların bir uzman tarafından yorumlanması gerekir.",
-      "Ani başlayan işitme kaybı, kulak ağrısı veya akıntı gibi durumlarda önceliğiniz işitme testi değil, vakit kaybetmeden tıbbi değerlendirmedir (aşağıdaki KBB bölümüne bakın).",
     ],
   },
   links: [
@@ -38,7 +38,7 @@ export const basicsCards: GuideCard[] = [
   {
     icon: Ear,
     title: "İşitme testi ile odyometri arasındaki fark",
-    text: "Gündelik dilde 'işitme testi' işitme durumunun değerlendirildiği sürecin tamamını, 'odyometri' ise bu sürecin çekirdeğindeki ölçümü (kulaklıkla verilen seslerin duyulma eşiklerinin ölçülmesi) anlatır. İşitme testi; ön görüşme, kulak muayenesi ve sonuçların açıklanmasını da içerebilir. Odyometrinin teknik ayrıntıları için odyometri sayfamıza bakabilirsiniz.",
+    text: "Gündelik dilde 'işitme testi' işitme durumunun değerlendirildiği sürecin tamamını, 'odyometri' ise bu sürecin çekirdeğindeki ölçümü (kulaklıkla verilen seslerin duyulma eşiklerinin ölçülmesi) anlatır. İşitme testi; ön görüşme, kulak yolunun görsel kontrolü ve sonuçların açıklanmasını da içerebilir. Odyometrinin teknik ayrıntıları için odyometri sayfamıza bakabilirsiniz.",
     href: "/degerlendirme/odyometri/",
     linkLabel: "Odyometri nedir?",
   },

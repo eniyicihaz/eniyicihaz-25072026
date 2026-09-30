@@ -11,10 +11,10 @@ import type { KulakArkasiComparisonContent } from "../../components/kulak-arkasi
 
 export const ortaDereceIsitmeKaybiComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
-  heading: "Orta Derece İşitme Kaybı ile İleri Derece İşitme Kaybı Karşılaştırması",
+  heading: "Orta Derece İşitme Kaybı ile Orta-İleri Derece İşitme Kaybı Karşılaştırması",
   intro: "İki derece arasındaki genel eğilim farklarını aşağıdaki tabloda özetledik. Sizin durumunuz, yalnızca bir odyometri testiyle netleşir.",
   primaryLabel: "Orta Derece İşitme Kaybı",
-  secondaryLabel: "İleri Derece İşitme Kaybı",
+  secondaryLabel: "Orta-İleri Derece İşitme Kaybı",
   rows: [
     {
       feature: "İşitme Eşiği Aralığı",
