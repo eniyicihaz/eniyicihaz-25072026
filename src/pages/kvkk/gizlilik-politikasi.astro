@@ -1,0 +1,12 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import LegalDocument from "../../components/legal/LegalDocument/LegalDocument.astro";
+import { gizlilikPolitikasi } from "../../data/kvkk/gizlilik-politikasi";
+---
+
+<MainLayout
+  title="Gizlilik ve Kişisel Verilerin Korunması Politikası | EniyiCihaz"
+  description="Avrasya İşitme Cihazları'nın gizlilik ve kişisel verilerin korunması politikası: veri güvenliği, üçüncü taraf hizmetler, pazarlama izinleri ve ilgili kişi hakları."
+>
+  <LegalDocument doc={gizlilikPolitikasi} />
+</MainLayout>

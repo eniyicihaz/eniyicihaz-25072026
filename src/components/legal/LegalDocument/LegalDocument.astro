@@ -1,0 +1,360 @@
+---
+// LegalDocument — KVKK / hukuki metin sayfaları için ortak iskelet
+// (/kvkk/*). Sitenin mevcut yardımcı sayfa düzenini (Breadcrumb + sade H1 +
+// 2xl konteyner, bkz. /site-haritasi/) izler; ağır hero veya satış CTA'sı
+// yok. Metin `src/data/kvkk/*` içindeki kaynak belgelerden gelir ve burada
+// hiçbir şekilde değiştirilmez — bu bileşen yalnızca sunumdur.
+import Breadcrumb from "../../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import type { LegalDocumentData } from "../../../data/kvkk/types";
+
+interface Props {
+  doc: LegalDocumentData;
+}
+
+const { doc } = Astro.props;
+
+const breadcrumbItems = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: doc.title, current: true },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+<div class="legal-breadcrumb">
+  <Breadcrumb items={breadcrumbItems} />
+</div>
+
+<article class="legal-doc">
+  <header class="legal-doc__header">
+    <h1 class="legal-doc__title">{doc.title}</h1>
+    <dl class="legal-doc__meta">
+      {
+        doc.meta.map((item) => (
+          <div class="legal-doc__meta-row">
+            <dt>{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </header>
+
+  <div class="legal-doc__body">
+    {
+      doc.sections.map((section) => {
+        const Heading = section.level === 3 ? "h3" : "h2";
+        return (
+          <section class="legal-doc__section">
+            {section.heading && <Heading class={`legal-doc__heading legal-doc__heading--h${section.level ?? 2}`}>{section.heading}</Heading>}
+            {section.blocks.map((block) => {
+              if (block.type === "p") return <p class="legal-doc__p">{block.text}</p>;
+              if (block.type === "quote") return <blockquote class="legal-doc__quote">{block.text}</blockquote>;
+              if (block.type === "ul")
+                return (
+                  <ul class="legal-doc__list">
+                    {block.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                );
+              if (block.type === "table")
+                return (
+                  <div class="legal-doc__table-wrap" role="region" aria-label={`${section.heading ?? doc.title} tablosu`} tabindex="0">
+                    <table class:list={["legal-doc__table", { "legal-doc__table--fill": block.fillable }]}>
+                      <thead>
+                        <tr>
+                          {block.head.map((h) => (
+                            <th scope="col">{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {block.rows.map((row) => (
+                          <tr>
+                            {row.map((cell, i) => (i === 0 ? <th scope="row">{cell}</th> : <td>{cell}</td>))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              if (block.type === "checks")
+                return (
+                  <ul class="legal-doc__checks">
+                    {block.items.map((item) => (
+                      <li>
+                        <span class="legal-doc__box" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              if (block.type === "fill")
+                return (
+                  <div class="legal-doc__fill" aria-hidden="true">
+                    {Array.from({ length: block.lines }).map(() => (
+                      <span class="legal-doc__fill-line" />
+                    ))}
+                  </div>
+                );
+              if (block.type === "fields")
+                return (
+                  <ul class="legal-doc__fields">
+                    {block.items.map((item) => (
+                      <li>
+                        <span>{item}:</span>
+                        <span class="legal-doc__field-line" aria-hidden="true" />
+                      </li>
+                    ))}
+                  </ul>
+                );
+              return null;
+            })}
+          </section>
+        );
+      })
+    }
+  </div>
+</article>
+
+<style>
+  .legal-breadcrumb {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  .legal-doc {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding: var(--space-8) var(--space-6) var(--space-16);
+  }
+
+  .legal-doc__title {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .legal-doc__meta {
+    margin: var(--space-6) 0 0;
+    padding: var(--space-4) var(--space-5);
+    display: grid;
+    gap: var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 12px);
+    font-size: var(--font-size-sm);
+  }
+
+  .legal-doc__meta-row {
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .legal-doc__meta dt {
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--color-text-muted);
+  }
+
+  .legal-doc__meta dd {
+    margin: 0;
+    color: var(--color-text);
+    overflow-wrap: anywhere;
+  }
+
+  .legal-doc__body {
+    margin-top: var(--space-10);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .legal-doc__heading {
+    margin: 0 0 var(--space-3);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .legal-doc__heading--h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .legal-doc__heading--h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  .legal-doc__p,
+  .legal-doc__list,
+  .legal-doc__quote {
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-md);
+    line-height: 1.7;
+    color: var(--color-text);
+    overflow-wrap: anywhere;
+  }
+
+  .legal-doc__section > :last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-doc__list {
+    padding-left: var(--space-6);
+  }
+
+  .legal-doc__list li + li {
+    margin-top: var(--space-2);
+  }
+
+  .legal-doc__quote {
+    padding: var(--space-4) var(--space-5);
+    border-left: 3px solid var(--color-primary);
+    background: var(--color-surface);
+    border-radius: 0 var(--radius-md, 8px) var(--radius-md, 8px) 0;
+  }
+
+  .legal-doc__table-wrap {
+    margin: 0 0 var(--space-4);
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 8px);
+  }
+
+  .legal-doc__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+  }
+
+  .legal-doc__table th,
+  .legal-doc__table td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .legal-doc__table tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  .legal-doc__table thead th {
+    background: var(--color-surface);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--color-text-muted);
+  }
+
+  .legal-doc__table tbody th {
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--color-text);
+  }
+
+  /* Basılı form: boş alanlar yazı için yer bırakır. */
+  .legal-doc__table--fill tbody th {
+    width: 45%;
+  }
+
+  .legal-doc__table--fill tbody td {
+    height: 2.75rem;
+  }
+
+  .legal-doc__checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    margin: 0 0 var(--space-4);
+    padding: 0;
+    list-style: none;
+    font-size: var(--font-size-md);
+    color: var(--color-text);
+  }
+
+  .legal-doc__checks li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .legal-doc__box {
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1.5px solid var(--color-text-muted);
+    border-radius: 3px;
+  }
+
+  .legal-doc__fill {
+    display: grid;
+    gap: var(--space-6);
+    margin: var(--space-6) 0 var(--space-4);
+  }
+
+  .legal-doc__fill-line {
+    display: block;
+    border-bottom: 1px solid var(--color-border-hover);
+  }
+
+  .legal-doc__fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-8);
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--font-size-md);
+    color: var(--color-text);
+  }
+
+  .legal-doc__fields li {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-2);
+    flex: 1 1 14rem;
+  }
+
+  .legal-doc__field-line {
+    flex: 1;
+    min-width: 6rem;
+    border-bottom: 1px solid var(--color-border-hover);
+  }
+
+  @media (max-width: 640px) {
+    .legal-doc {
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-10);
+    }
+
+    .legal-doc__meta-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .legal-doc__body {
+      margin-top: var(--space-8);
+    }
+  }
+
+  @media print {
+    .legal-breadcrumb {
+      display: none;
+    }
+  }
+</style>

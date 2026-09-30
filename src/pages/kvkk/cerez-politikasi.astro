@@ -1,0 +1,12 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import LegalDocument from "../../components/legal/LegalDocument/LegalDocument.astro";
+import { cerezPolitikasi } from "../../data/kvkk/cerez-politikasi";
+---
+
+<MainLayout
+  title="Çerez Politikası | EniyiCihaz"
+  description="eniyicihaz.com çerez politikası: zorunlu, analitik, reklam ve üçüncü taraf içerik çerez kategorileri, tercih yönetimi ve çerezleri silme."
+>
+  <LegalDocument doc={cerezPolitikasi} />
+</MainLayout>

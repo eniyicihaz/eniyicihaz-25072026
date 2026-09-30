@@ -1,0 +1,97 @@
+---
+// ConsentEmbed — üçüncü taraf gömme içeriği (Google Maps / YouTube) için
+// sarmalayıcı. Slot içindeki <iframe>, <template> içinde durur ve "üçüncü
+// taraf içerik" izni verilene kadar tarayıcı onu YÜKLEMEZ (ağ isteği yok).
+// Bunun yerine bilgilendirme + doğrudan dış bağlantı gösterilir — Çerez
+// Politikası §6 (“Kullanıcı tarafından seçilen tercih doğrultusunda
+// yüklenebilir… doğrudan dış bağlantı tercih edilebilir”) ile uyumludur.
+// İzin ConsentManager tarafından yönetilir; bu bileşen yalnızca yer tutucudur.
+import "../../../ds/components/ui/atoms/Button/Button.css";
+
+interface Props {
+  /** Gösterilen sağlayıcı adı, örn. "Google Maps", "YouTube". */
+  provider: string;
+  /** İzin vermeden açılabilecek doğrudan dış bağlantı. */
+  directHref: string;
+  directLabel: string;
+  /** "Haritayı yükle" / "Videoyu yükle" */
+  loadLabel: string;
+  /** Yer tutucunun erişilebilir adı (içeriğin başlığı). */
+  title: string;
+}
+
+const { provider, directHref, directLabel, loadLabel, title } = Astro.props;
+---
+
+<div class="consent-embed" data-consent-embed>
+  <div class="consent-embed__placeholder" role="group" aria-label={title}>
+    <p class="consent-embed__title">{title}</p>
+    <p class="consent-embed__text">
+      Bu içerik {provider} tarafından sunulur. Yüklendiğinde üçüncü taraf çerez veya benzeri teknolojiler kullanılabilir.
+      “{loadLabel}” düğmesi “Üçüncü taraf içerik” tercihinizi açar; dilediğiniz zaman sayfa altındaki “Çerez
+      Tercihleri” bağlantısından değiştirebilirsiniz.
+    </p>
+    <div class="consent-embed__actions">
+      <button type="button" class="btn btn--primary btn--md" data-consent-enable-embed><span>{loadLabel}</span></button>
+      <a class="btn btn--outline btn--md" href={directHref} target="_blank" rel="noopener noreferrer"><span>{directLabel}</span></a>
+    </div>
+  </div>
+  <template><slot /></template>
+</div>
+
+<style>
+  .consent-embed {
+    width: 100%;
+    height: 100%;
+  }
+
+  .consent-embed[data-consent-embed-state="loaded"] {
+    display: contents;
+  }
+
+  .consent-embed__placeholder {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-3);
+    width: 100%;
+    height: 100%;
+    min-height: 16rem;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .consent-embed__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+  }
+
+  .consent-embed__text {
+    margin: 0;
+    max-width: 38rem;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .consent-embed__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  @media (max-width: 520px) {
+    .consent-embed__placeholder {
+      padding: var(--space-4);
+    }
+
+    .consent-embed__actions :global(.btn) {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

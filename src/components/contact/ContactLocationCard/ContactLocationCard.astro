@@ -11,6 +11,7 @@
 // On desktop a two-column grid places them side by side in that same
 // document order.
 import { MapPin, Phone, Clock, Navigation } from "lucide-astro";
+import ConsentEmbed from "../../consent/ConsentEmbed/ConsentEmbed.astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import type { CompanyInfo } from "../../footer/Footer/footer.types";
 
@@ -101,13 +102,21 @@ const { data } = Astro.props;
     </div>
 
     <div class="contact-location__map-wrap" data-rise>
-      <iframe
-        class="contact-location__map"
-        src={data.company.mapEmbedSrc}
-        title={data.mapTitle}
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+      <ConsentEmbed
+        provider="Google Maps"
+        title="Darıca merkezimizin konum haritası"
+        loadLabel="Haritayı yükle"
+        directLabel="Google Haritalar’da aç"
+        directHref={data.company.directionsHref}
+      >
+        <iframe
+          class="contact-location__map"
+          src={data.company.mapEmbedSrc}
+          title={data.mapTitle}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </ConsentEmbed>
     </div>
   </div>
 </section>

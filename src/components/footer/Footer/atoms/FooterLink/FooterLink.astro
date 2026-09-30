@@ -4,14 +4,24 @@ interface Props {
   href: string;
   /** onDark = column link (colour + slide), legal = small bottom link. */
   variant?: "onDark" | "legal";
+  /** "consent": renders a <button> that opens the cookie preferences panel. */
+  action?: "consent";
 }
 
-const { label, href, variant = "onDark" } = Astro.props;
+const { label, href, variant = "onDark", action } = Astro.props;
 ---
 
-<a class:list={["footer-link", `footer-link--${variant}`]} href={href}>
-  <span class="footer-link__label">{label}</span>
-</a>
+{
+  action === "consent" ? (
+    <button type="button" class:list={["footer-link", `footer-link--${variant}`, "footer-link--button"]} data-consent-open>
+      <span class="footer-link__label">{label}</span>
+    </button>
+  ) : (
+    <a class:list={["footer-link", `footer-link--${variant}`]} href={href}>
+      <span class="footer-link__label">{label}</span>
+    </a>
+  )
+}
 
 <style>
   .footer-link {
@@ -25,6 +35,15 @@ const { label, href, variant = "onDark" } = Astro.props;
   .footer-link__label {
     display: inline-block;
     transition: transform var(--transition-base);
+  }
+
+  /* Button variant: strip native button chrome so it reads as a link. */
+  .footer-link--button {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
   }
 
   .footer-link:focus-visible {

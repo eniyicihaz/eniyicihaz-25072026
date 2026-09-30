@@ -15,7 +15,7 @@
 //
 // Yeni bir gerçek sayfa eklendiğinde buraya da bir satır eklenmesi
 // gerekir (search index'e eklenirken zaten yapılan aynı bakım adımı).
-import { Home, Headset, Building2, Layers, BookOpen, Wrench, Shield, Stethoscope, Cpu, Target, ShieldCheck, Newspaper, Award, Ear, SlidersHorizontal } from "lucide-astro";
+import { Home, Headset, Building2, Layers, BookOpen, Wrench, Shield, Stethoscope, Cpu, Target, ShieldCheck, FileText, Newspaper, Award, Ear, SlidersHorizontal } from "lucide-astro";
 import type { SitemapSectionContent } from "../../components/shared/SitemapSection/SitemapSection.astro";
 
 export const sitemapCategories: SitemapSectionContent[] = [
@@ -44,6 +44,16 @@ export const sitemapCategories: SitemapSectionContent[] = [
       { label: "Premium Seri", href: "/segmentler/premium-seri/" },
       { label: "Standart Seri", href: "/segmentler/standart-seri/" },
       { label: "Ekonomik Seri", href: "/segmentler/ekonomik-seri/" },
+    ],
+  },
+  {
+    icon: FileText,
+    title: "KVKK ve Gizlilik",
+    links: [
+      { label: "KVKK Aydınlatma Metni", href: "/kvkk/aydinlatma-metni/" },
+      { label: "Gizlilik Politikası", href: "/kvkk/gizlilik-politikasi/" },
+      { label: "Çerez Politikası", href: "/kvkk/cerez-politikasi/" },
+      { label: "İlgili Kişi Başvuru Formu", href: "/kvkk/ilgili-kisi-basvuru-formu/" },
     ],
   },
   {

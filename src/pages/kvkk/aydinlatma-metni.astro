@@ -1,0 +1,12 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import LegalDocument from "../../components/legal/LegalDocument/LegalDocument.astro";
+import { aydinlatmaMetni } from "../../data/kvkk/aydinlatma-metni";
+---
+
+<MainLayout
+  title="İnternet Sitesi Kullanıcısı Aydınlatma Metni | EniyiCihaz"
+  description="Avrasya İşitme Cihazları'nın eniyicihaz.com ziyaretçileri için KVKK aydınlatma metni: toplanan teknik veriler, Google Analytics/Ads, Google Maps ve YouTube, yurt dışı aktarım ve başvuru yolları."
+>
+  <LegalDocument doc={aydinlatmaMetni} />
+</MainLayout>

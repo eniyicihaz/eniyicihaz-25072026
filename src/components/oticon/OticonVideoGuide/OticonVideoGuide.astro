@@ -15,6 +15,7 @@
 // white (unlike the Hero, no dark-theme override is needed for the
 // outline variant).
 import { CheckCircle2, ArrowRight, Phone, MessageCircle } from "lucide-astro";
+import ConsentEmbed from "../../consent/ConsentEmbed/ConsentEmbed.astro";
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
 import { oticonHero } from "../../../data/oticon/hero";
 import { oticonVideoGuide } from "../../../data/oticon/video-guide";
@@ -37,13 +38,21 @@ import { oticonVideoGuide } from "../../../data/oticon/video-guide";
     <div class="oticon-video__grid">
       <div class="oticon-video__media" data-rise>
         <div class="oticon-video__frame">
-          <iframe
-            src={`https://www.youtube.com/embed/${oticonVideoGuide.youtubeId}`}
+          <ConsentEmbed
+            provider="YouTube"
             title={oticonVideoGuide.videoTitle}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          />
+            loadLabel="Videoyu yükle"
+            directLabel="YouTube’da izle"
+            directHref={`https://www.youtube.com/watch?v=${oticonVideoGuide.youtubeId}`}
+          >
+            <iframe
+              src={`https://www.youtube.com/embed/${oticonVideoGuide.youtubeId}`}
+              title={oticonVideoGuide.videoTitle}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
+          </ConsentEmbed>
         </div>
       </div>
 
@@ -211,6 +220,11 @@ import { oticonVideoGuide } from "../../../data/oticon/video-guide";
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-lg);
     transition: transform 350ms var(--ov-ease), box-shadow 350ms var(--ov-ease);
+  }
+
+  /* Yer tutucu gösterilirken 16:9 sabit oranı bırakılır: içerik sığsın. */
+  :global(.oticon-video__frame:has([data-consent-embed]:not([data-consent-embed-state="loaded"]))) {
+    aspect-ratio: auto;
   }
 
   .oticon-video__frame:hover {

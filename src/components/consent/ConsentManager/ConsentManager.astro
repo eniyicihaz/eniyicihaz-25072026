@@ -1,0 +1,519 @@
+---
+// ConsentManager — çerez banner'ı + tercih paneli + izin mantığı.
+// Tüm sayfalarda MainLayout üzerinden bir kez yüklenir. Kütüphane yok:
+// yerel <dialog>, Design System Button sınıfları ve küçük bir modül script'i.
+//
+// Metinler Çerez Politikası (WEB-CRZ-06 §2, §3, §8) ile birebir örtüşür:
+//   • banner metni ve üç buton etiketi §8'den alınmıştır,
+//   • kategori açıklamaları §2 tablosunun "Amaç" sütunundandır,
+//   • kategori sayısı §2 ile aynıdır (Gerekli + Analitik + Reklam/Pazarlama
+//     + Üçüncü taraf içerik). Hiçbir hukuki metin burada değiştirilmemiştir.
+import "../../../ds/components/ui/atoms/Button/Button.css";
+
+const categories = [
+  {
+    key: "necessary",
+    label: "Gerekli",
+    text: "Güvenlik, oturum, tercihlerin teknik olarak uygulanması, sitenin çalışması",
+    locked: true,
+  },
+  {
+    key: "analytics",
+    label: "Analitik",
+    text: "Google Analytics ile ziyaret ve kullanım istatistikleri, dönüşüm ölçümü",
+    locked: false,
+  },
+  {
+    key: "marketing",
+    label: "Reklam / Pazarlama",
+    text: "Google Ads dönüşüm, remarketing ve reklam ölçümü",
+    locked: false,
+  },
+  {
+    key: "thirdParty",
+    label: "Üçüncü taraf içerik",
+    text: "Google Maps, YouTube ve benzeri içerik/harita hizmetleri",
+    locked: false,
+  },
+] as const;
+---
+
+<div
+  class="consent-banner"
+  data-consent-banner
+  role="region"
+  aria-labelledby="consent-banner-title"
+  hidden
+>
+  <div class="consent-banner__inner">
+    <div class="consent-banner__text">
+      <h2 class="consent-banner__title" id="consent-banner-title">Çerez tercihleri</h2>
+      <p class="consent-banner__copy">
+        Sitemizin çalışması için zorunlu çerezleri kullanıyoruz. Analitik ve reklam/pazarlama çerezleri ile zorunlu
+        olmayan üçüncü taraf içerikleri yalnızca tercihinize göre etkinleştiriyoruz. Tercihlerinizi dilediğiniz zaman
+        değiştirebilirsiniz.{" "}
+        <a class="consent-banner__link" href="/kvkk/cerez-politikasi/">Çerez Politikası</a>
+      </p>
+    </div>
+    <div class="consent-banner__actions">
+      <button type="button" class="btn btn--primary btn--md" data-consent-action="accept-all"><span>Tümünü Kabul Et</span></button>
+      <button type="button" class="btn btn--outline btn--md" data-consent-action="necessary-only"><span>Sadece Gerekli</span></button>
+      <button type="button" class="btn btn--ghost btn--md" data-consent-open><span>Tercihler</span></button>
+    </div>
+  </div>
+</div>
+
+<dialog class="consent-dialog" data-consent-dialog aria-labelledby="consent-dialog-title">
+  <form method="dialog" class="consent-dialog__form" data-consent-form>
+    <div class="consent-dialog__head">
+      <h2 class="consent-dialog__title" id="consent-dialog-title">Çerez Tercihleri</h2>
+      <button type="button" class="consent-dialog__close" data-consent-close aria-label="Kapat">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      </button>
+    </div>
+    <p class="consent-dialog__intro">
+      Kategorilere göre tercih yapabilirsiniz. Gerekli çerezler sitenin çalışması için her zaman açıktır. Tercihinizi daha
+      sonra sayfa altındaki “Çerez Tercihleri” bağlantısından değiştirebilirsiniz.
+    </p>
+    <ul class="consent-dialog__list">
+      {
+        categories.map((c) => (
+          <li class="consent-cat">
+            <div class="consent-cat__body">
+              <label class="consent-cat__label" for={`consent-${c.key}`}>{c.label}</label>
+              <p class="consent-cat__text" id={`consent-${c.key}-desc`}>{c.text}</p>
+            </div>
+            <div class="consent-cat__control">
+              {c.locked ? (
+                <span class="consent-cat__locked" id={`consent-${c.key}`}>Her zaman açık</span>
+              ) : (
+                <input
+                  class="consent-switch"
+                  type="checkbox"
+                  role="switch"
+                  id={`consent-${c.key}`}
+                  name={c.key}
+                  aria-describedby={`consent-${c.key}-desc`}
+                  data-consent-toggle={c.key}
+                />
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="consent-dialog__actions">
+      <button type="button" class="btn btn--primary btn--md" data-consent-action="save"><span>Tercihlerimi Kaydet</span></button>
+      <button type="button" class="btn btn--outline btn--md" data-consent-action="accept-all"><span>Tümünü Kabul Et</span></button>
+      <button type="button" class="btn btn--outline btn--md" data-consent-action="necessary-only"><span>Sadece Gerekli</span></button>
+    </div>
+  </form>
+</dialog>
+
+<p class="consent-live" data-consent-live aria-live="polite" role="status"></p>
+
+<script>
+  import { DEFAULT_CHOICES, OPTIONAL_CATEGORIES, type ConsentChoices } from "../../../lib/consent/config";
+  import { readConsent, writeConsent } from "../../../lib/consent/store";
+  import { applyGoogleConsent, setConsentDefault } from "../../../lib/consent/google";
+
+  const banner = document.querySelector<HTMLElement>("[data-consent-banner]");
+  const dialog = document.querySelector<HTMLDialogElement>("[data-consent-dialog]");
+  const live = document.querySelector<HTMLElement>("[data-consent-live]");
+  const toggles = Array.from(document.querySelectorAll<HTMLInputElement>("[data-consent-toggle]"));
+
+  let current: ConsentChoices = { ...DEFAULT_CHOICES };
+  let lastOpener: HTMLElement | null = null;
+
+  function announce(msg: string): void {
+    if (!live) return;
+    live.textContent = "";
+    window.setTimeout(() => (live.textContent = msg), 30);
+  }
+
+  function syncToggles(): void {
+    for (const t of toggles) {
+      const k = t.dataset.consentToggle as keyof ConsentChoices;
+      t.checked = current[k] === true;
+    }
+  }
+
+  // --- Üçüncü taraf içerik (Maps / YouTube) --------------------------------
+  function activateEmbeds(): void {
+    document.querySelectorAll<HTMLElement>("[data-consent-embed]").forEach((host) => {
+      const tpl = host.querySelector<HTMLTemplateElement>("template");
+      if (!tpl) return;
+      const frag = tpl.content.cloneNode(true) as DocumentFragment;
+      host.replaceChildren(frag);
+      host.setAttribute("data-consent-embed-state", "loaded");
+    });
+  }
+
+  function apply(choices: ConsentChoices, source: "load" | "user"): void {
+    current = { ...choices };
+    applyGoogleConsent(current);
+    if (current.thirdParty) activateEmbeds();
+    window.dispatchEvent(new CustomEvent("consent:change", { detail: { choices: { ...current }, source } }));
+  }
+
+  function hideBanner(): void {
+    if (banner) banner.hidden = true;
+  }
+
+  function save(choices: ConsentChoices, message: string): void {
+    writeConsent(choices);
+    apply(choices, "user");
+    hideBanner();
+    if (dialog?.open) dialog.close();
+    announce(message);
+  }
+
+  function openPreferences(opener: HTMLElement | null): void {
+    if (!dialog) return;
+    lastOpener = opener;
+    syncToggles();
+    if (!dialog.open) dialog.showModal();
+    dialog.querySelector<HTMLElement>("[data-consent-toggle], button")?.focus();
+  }
+
+  // --- Başlangıç -------------------------------------------------------------
+  setConsentDefault();
+  const stored = readConsent();
+  if (stored) {
+    apply(stored.choices, "load");
+  } else {
+    apply({ ...DEFAULT_CHOICES }, "load");
+    if (banner) banner.hidden = false;
+  }
+
+  // --- Olaylar ---------------------------------------------------------------
+  document.addEventListener("click", (e) => {
+    const t = (e.target as Element | null)?.closest<HTMLElement>("[data-consent-action], [data-consent-open], [data-consent-close], [data-consent-enable-embed]");
+    if (!t) return;
+
+    if (t.hasAttribute("data-consent-open")) {
+      e.preventDefault();
+      openPreferences(t);
+      return;
+    }
+    if (t.hasAttribute("data-consent-close")) {
+      dialog?.close();
+      return;
+    }
+    if (t.hasAttribute("data-consent-enable-embed")) {
+      const host = t.closest<HTMLElement>("[data-consent-embed]");
+      save({ ...current, thirdParty: true }, "Üçüncü taraf içerik tercihiniz açıldı.");
+      host?.querySelector<HTMLElement>("iframe")?.focus();
+      return;
+    }
+    const action = t.getAttribute("data-consent-action");
+    if (action === "accept-all") {
+      const all = { ...DEFAULT_CHOICES };
+      for (const k of OPTIONAL_CATEGORIES) all[k] = true;
+      save(all, "Tüm çerez tercihleri kabul edildi.");
+    } else if (action === "necessary-only") {
+      save({ ...DEFAULT_CHOICES }, "Yalnızca gerekli çerezler etkin.");
+    } else if (action === "save") {
+      const next = { ...DEFAULT_CHOICES };
+      for (const tg of toggles) next[tg.dataset.consentToggle as keyof ConsentChoices] = tg.checked;
+      save(next, "Çerez tercihleriniz kaydedildi.");
+    }
+  });
+
+  // Panel kapandığında odak, açan öğeye (yoksa ana içeriğe) döner.
+  dialog?.addEventListener("close", () => {
+    const visible = lastOpener && document.contains(lastOpener) && (lastOpener as HTMLElement).offsetParent !== null;
+    const target = visible ? lastOpener : document.getElementById("main");
+    if (target) {
+      if (!target.hasAttribute("tabindex") && target.id === "main") target.setAttribute("tabindex", "-1");
+      target.focus();
+    }
+    lastOpener = null;
+  });
+
+  // Panelin dışına (arka plana) tıklamak kapatır.
+  dialog?.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  // Başka sekmede yapılan tercih bu sekmeye de yansır.
+  window.addEventListener("storage", (e) => {
+    if (e.key !== null && !e.key.startsWith("eniyicihaz:consent")) return;
+    const s = readConsent();
+    if (s) {
+      apply(s.choices, "load");
+      hideBanner();
+    }
+  });
+</script>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: var(--z-modal);
+    padding: var(--space-3);
+    pointer-events: none;
+  }
+
+  .consent-banner[hidden] {
+    display: none;
+  }
+
+  .consent-banner__inner {
+    pointer-events: auto;
+    max-width: 62rem;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-4) var(--space-6);
+    align-items: center;
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-white);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .consent-banner__title {
+    margin: 0 0 var(--space-1);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+  }
+
+  .consent-banner__copy {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .consent-banner__link {
+    color: var(--color-primary-active);
+    font-weight: var(--font-weight-semibold, 600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    white-space: nowrap;
+  }
+
+  .consent-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: flex-end;
+  }
+
+  .consent-banner__actions :global(.btn) {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 820px) {
+    .consent-banner__inner {
+      grid-template-columns: minmax(0, 1fr);
+      padding: var(--space-4);
+      gap: var(--space-3);
+    }
+
+    .consent-banner__actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .consent-banner__actions :global(.btn--ghost) {
+      grid-column: 1 / -1;
+    }
+
+    .consent-banner__actions :global(.btn) {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* --- Tercih paneli ------------------------------------------------------ */
+  .consent-dialog {
+    width: min(36rem, calc(100vw - var(--space-6)));
+    max-height: calc(100dvh - var(--space-6));
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    color: var(--color-text);
+    box-shadow: var(--shadow-xl);
+    overflow: auto;
+  }
+
+  .consent-dialog::backdrop {
+    background: rgba(15, 23, 42, 0.55);
+  }
+
+  .consent-dialog__form {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-6);
+  }
+
+  .consent-dialog__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .consent-dialog__title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+  }
+
+  .consent-dialog__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    border-radius: var(--radius-lg);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .consent-dialog__close:hover {
+    background: var(--color-surface-hover);
+  }
+
+  .consent-dialog__intro {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .consent-dialog__list {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .consent-cat {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .consent-cat__label {
+    font-weight: var(--font-weight-semibold, 600);
+    font-size: var(--font-size-md);
+  }
+
+  .consent-cat__text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .consent-cat__locked {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  /* Anahtar (switch): yerel checkbox + CSS — ek kütüphane yok. */
+  .consent-switch {
+    appearance: none;
+    position: relative;
+    width: 3rem;
+    height: 1.75rem;
+    margin: 0;
+    border-radius: 999px;
+    background: #64748b;
+    cursor: pointer;
+    transition: background 160ms ease;
+  }
+
+  .consent-switch::after {
+    content: "";
+    position: absolute;
+    top: 0.1875rem;
+    left: 0.1875rem;
+    width: 1.375rem;
+    height: 1.375rem;
+    border-radius: 50%;
+    background: var(--color-white);
+    transition: transform 160ms ease;
+  }
+
+  .consent-switch:checked {
+    background: var(--color-primary-hover);
+  }
+
+  .consent-switch:checked::after {
+    transform: translateX(1.25rem);
+  }
+
+  .consent-switch:focus-visible,
+  .consent-dialog__close:focus-visible,
+  .consent-banner__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .consent-dialog__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  @media (max-width: 520px) {
+    .consent-dialog__form {
+      padding: var(--space-4);
+    }
+
+    .consent-dialog__actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .consent-dialog__actions :global(.btn) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .consent-dialog__actions :global(.btn--primary) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .consent-live {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .consent-switch,
+    .consent-switch::after {
+      transition: none;
+    }
+  }
+</style>

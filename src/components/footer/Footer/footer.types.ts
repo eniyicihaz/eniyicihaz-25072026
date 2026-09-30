@@ -8,6 +8,8 @@
 export interface LinkItem {
   label: string;
   href: string;
+  /** "consent": link değil, çerez tercih panelini açan düğme olarak çizilir. */
+  action?: "consent";
 }
 
 /** A phone number. */

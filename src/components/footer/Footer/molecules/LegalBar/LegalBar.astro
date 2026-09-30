@@ -16,7 +16,7 @@ const { copyright, links } = Astro.props;
     {
       links.map((link) => (
         <li class="legal-bar__item">
-          <FooterLink label={link.label} href={link.href} variant="legal" />
+          <FooterLink label={link.label} href={link.href} variant="legal" action={link.action} />
         </li>
       ))
     }
