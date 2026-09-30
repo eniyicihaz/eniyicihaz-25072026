@@ -14,9 +14,12 @@ import type { LocalBlock } from "./price-guide.types";
 
 interface Props {
   blocks: LocalBlock[];
+  /** Heading level of each block's title (default h3: the parent section owns the H2). Pass "h2" when the blocks are themselves top-level sections. */
+  headingLevel?: "h2" | "h3";
 }
 
-const { blocks } = Astro.props;
+const { blocks, headingLevel = "h3" } = Astro.props;
+const Heading = headingLevel;
 ---
 
 <div class="local-blocks">
@@ -45,7 +48,7 @@ const { blocks } = Astro.props;
 
         <div class="local-block__body">
           <p class="local-block__eyebrow">{block.eyebrow}</p>
-          <h3 class="local-block__heading">{block.heading}</h3>
+          <Heading class="local-block__heading">{block.heading}</Heading>
           <p class="local-block__lead">{block.lead}</p>
           {block.paragraphs.map((p) => <p class="local-block__p">{p}</p>)}
 

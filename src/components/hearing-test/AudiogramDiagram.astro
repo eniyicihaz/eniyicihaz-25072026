@@ -1,0 +1,233 @@
+---
+// AudiogramDiagram — SCHEMATIC, EMPTY audiogram that explains how to read one.
+// It plots NO result: no curve, no measured points — only the axes (frequency in
+// Hz across, hearing level in dB HL down, 0 dB at the top), the standard
+// degree bands and the symbol legend (right ear ○, left ear ×). Drawn as inline
+// SVG so it is crisp at any width, accessible (role="img" + title/desc + a
+// visible figcaption) and its labels are real, crawlable text. It never
+// represents a person's test result (PRINCIPLES.md §5: no fabricated medical data).
+//
+// All copy and the degree bands come from data (src/data/ucretsiz-isitme-testi/
+// results.ts) so the component holds no content of its own.
+export interface AudiogramBand {
+  label: string;
+  /** dB HL range shown in the label, e.g. "26–40 dB". */
+  range: string;
+  from: number;
+  to: number;
+  /** 0 = lightest … 4 = strongest tint. */
+  tone: 0 | 1 | 2 | 3 | 4;
+}
+
+export interface AudiogramContent {
+  title: string;
+  description: string;
+  caption: string;
+  freqs: number[];
+  freqAxisLabel: string;
+  lowLabel: string;
+  highLabel: string;
+  dbAxisLabel: string;
+  dbTicks: number[];
+  dbMin: number;
+  dbMax: number;
+  bands: AudiogramBand[];
+  legend: { right: string; left: string };
+  topNote: string;
+  bottomNote: string;
+  /** Shown only on narrow screens, where the schematic scrolls inside its own box. */
+  scrollHint?: string;
+}
+
+interface Props {
+  data: AudiogramContent;
+}
+
+const { data } = Astro.props;
+
+const W = 720;
+const H = 490;
+const L = 84; // plot left
+const R = 700; // plot right
+const T = 88; // plot top
+const B = 418; // plot bottom
+const x = (i: number) => L + ((R - L) / (data.freqs.length - 1)) * i;
+const y = (db: number) => T + ((db - data.dbMin) / (data.dbMax - data.dbMin)) * (B - T);
+const tint = ["#ffffff", "#eaf1ff", "#d7e5ff", "#c0d5fb", "#a9c3f3"];
+---
+
+<figure class="audiogram">
+  {data.scrollHint && <p class="audiogram__scroll-hint">{data.scrollHint}</p>}
+  <svg
+    class="audiogram__svg"
+    viewBox={`0 0 ${W} ${H}`}
+    role="img"
+    aria-labelledby="audiogram-title audiogram-desc"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <title id="audiogram-title">{data.title}</title>
+    <desc id="audiogram-desc">{data.description}</desc>
+
+    <!-- degree bands -->
+    {
+      data.bands.map((b) => (
+        <g>
+          <rect x={L} y={y(b.from)} width={R - L} height={y(b.to) - y(b.from)} fill={tint[b.tone]} />
+          <text x={R - 8} y={(y(b.from) + y(b.to)) / 2 + 6} text-anchor="end" class="audiogram__band-label">
+            {b.label} · {b.range}
+          </text>
+        </g>
+      ))
+    }
+
+    <!-- grid: dB lines -->
+    {
+      data.dbTicks.map((t) => (
+        <g>
+          <line x1={L} x2={R} y1={y(t)} y2={y(t)} class="audiogram__grid" />
+          <text x={L - 10} y={y(t) + 6} text-anchor="end" class="audiogram__tick">{t}</text>
+        </g>
+      ))
+    }
+
+    <!-- grid: frequency lines -->
+    {
+      data.freqs.map((f, i) => (
+        <g>
+          <line x1={x(i)} x2={x(i)} y1={T} y2={B} class="audiogram__grid audiogram__grid--v" />
+          <text x={x(i)} y={T - 12} text-anchor="middle" class="audiogram__tick">{f}</text>
+        </g>
+      ))
+    }
+
+    <rect x={L} y={T} width={R - L} height={B - T} fill="none" class="audiogram__frame" />
+
+    <!-- axis labels -->
+    <text x={(L + R) / 2} y={24} text-anchor="middle" class="audiogram__axis">{data.freqAxisLabel}</text>
+    <text x={L} y={52} text-anchor="start" class="audiogram__hint">← {data.lowLabel}</text>
+    <text x={R} y={52} text-anchor="end" class="audiogram__hint">{data.highLabel} →</text>
+    <text transform={`translate(20 ${(T + B) / 2}) rotate(-90)`} text-anchor="middle" class="audiogram__axis">{data.dbAxisLabel}</text>
+    <text x={L} y={B + 30} text-anchor="start" class="audiogram__hint">↑ {data.topNote}</text>
+    <text x={L} y={B + 52} text-anchor="start" class="audiogram__hint">↓ {data.bottomNote}</text>
+
+    <!-- legend: symbols only (no plotted result) -->
+    <g transform={`translate(${L + 300} ${B + 40})`}>
+      <circle cx="10" cy="0" r="9" fill="none" class="audiogram__sym audiogram__sym--right" />
+      <text x="28" y="6" class="audiogram__legend">{data.legend.right}</text>
+      <g transform="translate(200 0)">
+        <line x1="1" y1="-9" x2="19" y2="9" class="audiogram__sym audiogram__sym--left" />
+        <line x1="19" y1="-9" x2="1" y2="9" class="audiogram__sym audiogram__sym--left" />
+        <text x="28" y="6" class="audiogram__legend">{data.legend.left}</text>
+      </g>
+    </g>
+  </svg>
+  <figcaption class="audiogram__caption">{data.caption}</figcaption>
+</figure>
+
+<style>
+  .audiogram {
+    margin: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: var(--color-background);
+  }
+
+  .audiogram__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .audiogram__grid {
+    stroke: #c7d2e6;
+    stroke-width: 1;
+  }
+
+  .audiogram__grid--v {
+    stroke-dasharray: 3 4;
+  }
+
+  .audiogram__frame {
+    stroke: #64748b;
+    stroke-width: 1.5;
+  }
+
+  .audiogram__tick {
+    font-size: 17px;
+    fill: #475569;
+    font-family: inherit;
+  }
+
+  .audiogram__axis {
+    font-size: 18px;
+    font-weight: 600;
+    fill: #0f172a;
+    font-family: inherit;
+  }
+
+  .audiogram__hint {
+    font-size: 15px;
+    fill: #64748b;
+    font-family: inherit;
+  }
+
+  .audiogram__band-label {
+    font-size: 15px;
+    font-weight: 600;
+    fill: #1e3a8a;
+    font-family: inherit;
+  }
+
+  .audiogram__legend {
+    font-size: 17px;
+    fill: #0f172a;
+    font-family: inherit;
+  }
+
+  .audiogram__sym {
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
+
+  .audiogram__sym--right {
+    stroke: #dc2626;
+  }
+
+  .audiogram__sym--left {
+    stroke: #2563eb;
+  }
+
+  .audiogram__scroll-hint {
+    display: none;
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+  }
+
+  .audiogram__caption {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .audiogram {
+      padding: var(--space-2);
+    }
+
+    .audiogram__scroll-hint {
+      display: block;
+    }
+
+    /* Keep the schematic legible: on narrow phones it is scrollable inside its own box instead of shrinking the text below ~9px. */
+    .audiogram__svg {
+      min-width: 500px;
+    }
+
+    .audiogram {
+      overflow-x: auto;
+    }
+  }
+</style>

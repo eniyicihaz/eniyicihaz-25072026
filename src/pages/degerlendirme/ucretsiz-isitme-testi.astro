@@ -1,69 +1,71 @@
 ---
-// Ücretsiz İşitme Testi — /degerlendirme/ucretsiz-isitme-testi. Darıca
-// odaklı premium redesign (bkz. implementasyon planı). Ana hedef bölge
-// Darıca; Gebze ve Çayırova doğal destekleyici bölgeler olarak sayfa
-// boyunca birkaç yerde (Hero, Bölüm 5, Bölüm 11, SSS) geçer — her
-// paragrafta tekrar edilmez. URL, mevcut SEO değerini korumak için
-// değiştirilmedi.
+// Ücretsiz İşitme Testi — /degerlendirme/ucretsiz-isitme-testi/ (URL DEĞİŞMEDİ).
+// "İşitme testi" KONU MERKEZİ: test nedir, neden ve kimler için, nasıl yapılır, hangi
+// ölçümler, ne kadar sürer, sonuç nasıl okunur (odyogram), test sonrası, online test
+// farkı, çocuk/yaşlı ve Darıca / Gebze / Çayırova / Kocaeli'de işitme testi. Eski
+// "Darıca'da Ücretsiz İşitme Testi" hizmet sayfası, aynı hub iskeletiyle
+// (/isitme-cihazlari/, /isitme-cihazi-fiyatlari/, /isitme-cihazi-markalari/) yeniden
+// yapılandırıldı; doğrulanmış içerik (5 aşamalı süreç, güvenlik uyarıları, online/merkez
+// karşılaştırması, test sonrası, "Neden Avrasya İşitme", ContactLocationCard, doğru SSS
+// cevapları) korunarak birleştirildi.
 //
-// 24 bölümlük akış (sırasıyla): Breadcrumb -> Hero -> İşitmenizi
-// Ertelemeyin (awareness) -> Nedir/Nasıl İşler (intro) -> Test Süreci
-// (process, 5 adım) -> Baskısız Profesyonel Değerlendirme (expert
-// opinion, eski Bölüm 3+7 birleşik) -> Kimler Yaptırmalı (ideal-user, 7
-// profil) + kapanış CTA satırı -> Testte Neler Değerlendirilir
-// (use-cases) -> Neden Avrasya İşitme (local-trust) -> Test Sonrası Ne
-// Olur (aftercare, 7 adım) -> SGK -> Cihaz Deneme -> İlişkili Testler
-// (technology) -> Klinik vs Online (comparison) -> Online Taramayı
-// Deneyin (callout) -> Markalara Göre (recommended-brands) -> Bize
-// Ulaşın (location) -> Gebze/Çayırova (service-area) -> SSS (faq) ->
-// Son CTA (final-cta) -> İlgili İçerikler (related-content).
+//   ARAMA SORGUSU → DOĞRUDAN CEVAP → AYRINTILI AÇIKLAMA → İLGİLİ SORULAR →
+//   TABLO / GÖRSEL → YEREL BAĞLAM → İÇ BAĞLANTI → CTA
+//
+// Politika: tıbbi kesinlik / teşhis yok; ani kayıp, ağrı, akıntıda KBB uyarısı görünür
+// (PRINCIPLES.md §5, §11). Fiyat yok; Product/Offer/HowTo/MedicalTest şeması yok.
+// Gebze/Çayırova'da şube iddiası yok (COMPANY.md §17). Doğrulanmamış vaatler ("aynı gün
+// sonuç", kesin süre, ücretsiz kapsamın ek testleri, çocuk/yaş sınırı) YAZILMADI.
+// Video yok. Marka tanıtımı yok (→ /isitme-cihazi-markalari/). Odyogram, gerçek sonuç
+// içermeyen, erişilebilir bir SVG şemasıdır (components/hearing-test/).
+// Görünüm mevcut componentlerin yeniden kullanımıdır (price-guide/*, ProcessTimeline,
+// ContactLocationCard, BrandPageFaq, BrandPageRelatedContent); yeni yalnızca
+// AudiogramDiagram. İçerik data/ucretsiz-isitme-testi/* altındadır.
+import { TriangleAlert } from "lucide-astro";
+import { Phone, MessageCircle, Headphones, UserCheck } from "lucide-astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
-import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
-import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
-import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
 import ProcessTimeline from "../../components/shared/ProcessTimeline/ProcessTimeline.astro";
-import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
-import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
-import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
-import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
-import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
-import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
-import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
-import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
-import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
-import CtaButton from "../../components/shared/CtaButton/CtaButton.astro";
-import { ShieldCheck, Headphones, CheckCircle2, ArrowRight } from "lucide-astro";
+import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
-import { ucretsizIsitmeTestiHero } from "../../data/ucretsiz-isitme-testi/hero";
-import { ucretsizIsitmeTestiAwareness } from "../../data/ucretsiz-isitme-testi/awareness";
-import { ucretsizIsitmeTestiIntro } from "../../data/ucretsiz-isitme-testi/intro";
-import { ucretsizIsitmeTestiProcess } from "../../data/ucretsiz-isitme-testi/process";
-import { ucretsizIsitmeTestiExpertOpinion } from "../../data/ucretsiz-isitme-testi/expert-opinion";
-import { ucretsizIsitmeTestiIdealUser } from "../../data/ucretsiz-isitme-testi/ideal-user";
-import { ucretsizIsitmeTestiUseCases } from "../../data/ucretsiz-isitme-testi/use-cases";
-import { ucretsizIsitmeTestiLocalTrust } from "../../data/ucretsiz-isitme-testi/local-trust";
-import { ucretsizIsitmeTestiAftercare } from "../../data/ucretsiz-isitme-testi/aftercare";
-import { ucretsizIsitmeTestiTechnology } from "../../data/ucretsiz-isitme-testi/technology";
-import { ucretsizIsitmeTestiComparison } from "../../data/ucretsiz-isitme-testi/comparison";
-import { ucretsizIsitmeTestiRecommendedBrands } from "../../data/ucretsiz-isitme-testi/recommended-brands";
+import GuideHero from "../../components/price-guide/GuideHero.astro";
+import GuideToc from "../../components/price-guide/GuideToc.astro";
+import DirectAnswer from "../../components/price-guide/DirectAnswer.astro";
+import GuideSection from "../../components/price-guide/GuideSection.astro";
+import InfoGrid from "../../components/price-guide/InfoGrid.astro";
+import GuideTable from "../../components/price-guide/GuideTable.astro";
+import GuideNotice from "../../components/price-guide/GuideNotice.astro";
+import LocalBlocks from "../../components/price-guide/LocalBlocks.astro";
+import GuideCta from "../../components/price-guide/GuideCta.astro";
+import AudiogramDiagram from "../../components/hearing-test/AudiogramDiagram.astro";
+
+import { buildMedicalBusinessSchema } from "../../lib/schema";
+import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../../data/ucretsiz-isitme-testi/page";
+import { testHero, testHeroExtra } from "../../data/ucretsiz-isitme-testi/hero";
+import { testQuickAnswer, basicsCards } from "../../data/ucretsiz-isitme-testi/answer";
+import {
+  whySection, whyCards, whenSection, signsCards, noiseCard, contextCards, entSection, entPoints, entNote,
+} from "../../data/ucretsiz-isitme-testi/reasons";
+import { freeTestSection, freeTestTable, trustCards } from "../../data/ucretsiz-isitme-testi/free-test";
+import { howProcess, howDetails } from "../../data/ucretsiz-isitme-testi/how";
+import {
+  measureSection, measureCards, measureTable, prepareSection, prepareCards, durationSection, durationPoints,
+} from "../../data/ucretsiz-isitme-testi/measurements";
+import { resultsSection, audiogram, resultsCards, degreeTable, resultsNotice } from "../../data/ucretsiz-isitme-testi/results";
+import {
+  afterSection, afterCards, afterLinks, deviceTestSection, deviceTestPoints, deviceTestLinks,
+  onlineSection, onlineTable, childrenSection, childrenCards, elderlySection, elderlyCards,
+} from "../../data/ucretsiz-isitme-testi/after";
+import { localBlocks } from "../../data/ucretsiz-isitme-testi/local";
 import { ucretsizIsitmeTestiLocation } from "../../data/ucretsiz-isitme-testi/location";
-import { ucretsizIsitmeTestiServiceArea } from "../../data/ucretsiz-isitme-testi/service-area";
-import { ucretsizIsitmeTestiFaq } from "../../data/ucretsiz-isitme-testi/faq";
-import { ucretsizIsitmeTestiFinalCta } from "../../data/ucretsiz-isitme-testi/final-cta";
-import { ucretsizIsitmeTestiRelatedContent } from "../../data/ucretsiz-isitme-testi/related-content";
-import { idealUserClosing, sgkSection, trialSection, onlineScreeningSection } from "../../data/ucretsiz-isitme-testi/inline-sections";
+import { testFaq } from "../../data/ucretsiz-isitme-testi/faq";
+import { testCta, testRelated } from "../../data/ucretsiz-isitme-testi/cta-related";
 
-import { company } from "../../components/footer/Footer/data/company";
-
-const PAGE_URL = "https://www.eniyicihaz.com/degerlendirme/ucretsiz-isitme-testi";
-
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Ücretsiz İşitme Testi", current: true },
-];
-
+// Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması, görünür SSS
+// verisinden BrandPageFaq içinde üretilir. Ortak MedicalBusiness builder'ı, sitenin
+// tek gerçek işletme varlığını (@id ortak) tanımlar; doktor/hastane/klinik/ürün/fiyat yok.
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -71,273 +73,288 @@ const breadcrumbSchema = {
     "@type": "ListItem",
     position: index + 1,
     name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
+    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : { item: PAGE_URL }),
   })),
 };
+const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
 
-// Extends the sitewide Organization node (MainLayout.astro) via the same
-// `@id` used by /iletisim's own MedicalBusiness node — one real business
-// described on two pages, not two competing entities (SEARCH_STRATEGY §5
-// Entity Tutarlılığı). Same NAP data source (company.ts) as everywhere
-// else on the site; priceRange stays omitted (price is never published).
-const medicalBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  "@id": "https://www.eniyicihaz.com/#organization",
-  name: company.legalName,
-  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; ücretsiz işitme testi ve işitme cihazı danışmanlığı hizmeti sunar.",
-  url: PAGE_URL,
-  telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
-  email: company.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat",
-    addressLocality: "Darıca",
-    addressRegion: "Kocaeli",
-    addressCountry: "TR",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 40.772815433889605,
-    longitude: 29.4047968764159,
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:45",
-      closes: "19:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "09:00",
-      closes: "19:00",
-    },
-  ],
-  areaServed: ucretsizIsitmeTestiServiceArea.items.map((item) => item.name),
-};
+const noticeLinks = (cards: { href?: string; linkLabel?: string }[]) =>
+  cards.filter((c) => c.href).map((c) => ({ label: c.linkLabel ?? "Devamı", href: c.href as string }));
 ---
 
-<MainLayout
-  title="Darıca'da Ücretsiz İşitme Testi | Avrasya İşitme Cihazları | EniyiCihaz"
-  description="Darıca'da SGK anlaşmalı Avrasya İşitme'de ücretsiz işitme testi yaptırın. Profesyonel odyometrist eşliğinde değerlendirme, aynı gün sonuç. Gebze ve Çayırova'dan da ulaşabilirsiniz."
->
+<MainLayout title={pageMeta.title} description={pageMeta.description}>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
 
-  <div class="uit-breadcrumb-wrap">
+  <div class="uit-breadcrumb">
     <Breadcrumb items={breadcrumbItems} />
   </div>
 
-  <BrandPageHero data={ucretsizIsitmeTestiHero} />
-  <BrandPageSignalList data={ucretsizIsitmeTestiAwareness} />
-  <BrandPageIntro data={ucretsizIsitmeTestiIntro} />
-  <ProcessTimeline data={ucretsizIsitmeTestiProcess} />
-  <BrandPageExpertOpinion data={ucretsizIsitmeTestiExpertOpinion} />
+  <GuideHero data={testHero} extraCta={testHeroExtra} />
+  <GuideToc links={toc} />
 
-  <BrandPageIdealUser data={ucretsizIsitmeTestiIdealUser} />
-  <div class="uit-inline-cta">
-    <p class="uit-inline-cta__text">{idealUserClosing.text}</p>
-    <CtaButton label={idealUserClosing.ctaLabel} href={idealUserClosing.href} />
+  <!-- 1. İşitme testi nedir? (kısa cevap + devamı) -->
+  <DirectAnswer data={testQuickAnswer} />
+  <div class="uit-cont">
+    <InfoGrid cards={basicsCards} columns={2} headingLevel="h3" />
   </div>
 
-  <BrandPageTechnology data={ucretsizIsitmeTestiUseCases} />
-  <BrandPageSignalList data={ucretsizIsitmeTestiLocalTrust} />
-  <ProcessTimeline data={ucretsizIsitmeTestiAftercare} />
+  <!-- 2. Neden yapılır? -->
+  <GuideSection {...whySection} tone="alt">
+    <InfoGrid cards={whyCards} columns={4} />
+  </GuideSection>
 
-  <section class="uit-simple-section" aria-labelledby="uit-sgk-title">
-    <div class="uit-simple-section__inner">
-      <p class="uit-simple-section__eyebrow">{sgkSection.eyebrow}</p>
-      <h2 class="uit-simple-section__heading" id="uit-sgk-title">{sgkSection.heading}</h2>
-      <p class="uit-simple-section__body">{sgkSection.body}</p>
-      <a class="uit-simple-section__link" href={sgkSection.href}>
-        <ShieldCheck size={16} stroke-width={2} aria-hidden="true" />
-        <span>{sgkSection.linkLabel}</span>
-        <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
-      </a>
-    </div>
-  </section>
+  <!-- 3. Ne zaman yaptırmalısınız? -->
+  <GuideSection {...whenSection}>
+    <h3 class="uit-h3">İşitme kaybı düşündürebilecek belirtiler</h3>
+    <InfoGrid cards={signsCards} columns={3} headingLevel="h4" />
 
-  <section class="uit-simple-section uit-simple-section--alt" aria-labelledby="uit-trial-title">
-    <div class="uit-simple-section__inner">
-      <p class="uit-simple-section__eyebrow">{trialSection.eyebrow}</p>
-      <h2 class="uit-simple-section__heading" id="uit-trial-title">{trialSection.heading}</h2>
-      <p class="uit-simple-section__body">{trialSection.body}</p>
-      <ul class="uit-simple-section__bullets">
-        {trialSection.bullets.map((bullet) => (
-          <li>
-            <CheckCircle2 size={16} stroke-width={2} aria-hidden="true" />
-            <span>{bullet}</span>
-          </li>
-        ))}
+    <h3 class="uit-h3">Gürültüye maruz kalma</h3>
+    <p class="uit-p">{noiseCard.text}</p>
+
+    <h3 class="uit-h3">Yaş, aile öyküsü ve diğer durumlar</h3>
+    <InfoGrid cards={contextCards} columns={3} headingLevel="h4" />
+
+    <GuideNotice
+      text="İşitmenizi merak ediyorsanız test için beklemeyin; bir randevuyla işitme durumunuzu birlikte değerlendirebiliriz."
+      links={[{ label: "Randevu ve iletişim", href: "/iletisim/" }, { label: "İşitme kaybı nedir?", href: "/rehberler/isitme-kaybi-nedir/" }]}
+    />
+  </GuideSection>
+
+  <!-- 4. KBB uyarısı (görünür güvenlik bölümü) -->
+  <GuideSection {...entSection} tone="alt">
+    <div class="uit-alert" role="note" aria-label="Tıbbi uyarı">
+      <div class="uit-alert__head">
+        <TriangleAlert size={22} stroke-width={2} aria-hidden="true" />
+        <p>Aşağıdaki durumlarda önce bir KBB uzmanına veya sağlık kuruluşuna başvurun.</p>
+      </div>
+      <ul class="uit-alert__list">
+        {
+          entPoints.map((p) => (
+            <li>
+              <strong>{p.title}</strong>
+              <span>{p.text}</span>
+            </li>
+          ))
+        }
       </ul>
+      <p class="uit-alert__note">{entNote}</p>
     </div>
-  </section>
+  </GuideSection>
 
-  <BrandPageEcosystem data={ucretsizIsitmeTestiTechnology} />
-  <KulakArkasiComparison data={ucretsizIsitmeTestiComparison} />
-
-  <section class="uit-simple-section" aria-labelledby="uit-online-title">
-    <div class="uit-simple-section__inner uit-simple-section__inner--center">
-      <p class="uit-simple-section__eyebrow">{onlineScreeningSection.eyebrow}</p>
-      <h2 class="uit-simple-section__heading" id="uit-online-title">{onlineScreeningSection.heading}</h2>
-      <p class="uit-simple-section__body">{onlineScreeningSection.body}</p>
-      <CtaButton
-        label={onlineScreeningSection.ctaLabel}
-        href={onlineScreeningSection.href}
-        variant="outline"
-        iconRight={Headphones}
-      />
-      <p class="uit-simple-section__note">{onlineScreeningSection.note}</p>
+  <!-- 5. Ücretsiz işitme testi nedir, neleri kapsar? -->
+  <GuideSection {...freeTestSection}>
+    <GuideTable data={freeTestTable} />
+    <div class="uit-spaced">
+      <InfoGrid cards={trustCards} columns={3} />
     </div>
-  </section>
+  </GuideSection>
 
-  <BrandPageRelatedContent data={ucretsizIsitmeTestiRecommendedBrands} />
+  <!-- 6. İşitme testi nasıl yapılır? -->
+  <div id="nasil-yapilir" class="uit-anchor">
+    <ProcessTimeline data={howProcess} />
+  </div>
+  <div class="uit-cont">
+    <InfoGrid cards={howDetails} columns={4} headingLevel="h3" />
+  </div>
 
+  <!-- 7. Hangi ölçümler yapılır? -->
+  <GuideSection {...measureSection} tone="alt">
+    <InfoGrid cards={measureCards} columns={4} />
+    <div class="uit-spaced">
+      <GuideTable data={measureTable} />
+    </div>
+  </GuideSection>
+
+  <!-- 8. Hazırlık -->
+  <GuideSection {...prepareSection}>
+    <InfoGrid cards={prepareCards} columns={3} />
+  </GuideSection>
+
+  <!-- 9. Ne kadar sürer? -->
+  <GuideSection {...durationSection} tone="alt">
+    <GuideNotice points={durationPoints} />
+  </GuideSection>
+
+  <!-- 10. Sonuç nasıl okunur? (odyogram) -->
+  <GuideSection {...resultsSection}>
+    <div class="uit-audiogram">
+      <AudiogramDiagram data={audiogram} />
+    </div>
+    <div class="uit-spaced">
+      <InfoGrid cards={resultsCards} columns={3} />
+    </div>
+    <div class="uit-spaced">
+      <GuideTable data={degreeTable} />
+    </div>
+    <GuideNotice text={resultsNotice} links={[{ label: "Odyometri", href: "/degerlendirme/odyometri/" }, { label: "İşitme kaybı nedir?", href: "/rehberler/isitme-kaybi-nedir/" }]} />
+  </GuideSection>
+
+  <!-- 11. Test sonrası -->
+  <GuideSection {...afterSection} tone="alt">
+    <InfoGrid cards={afterCards} columns={4} />
+    <GuideNotice text="Cihaz gündeme gelirse şu rehberlerden ayrıntı bulabilirsiniz." links={afterLinks} />
+  </GuideSection>
+
+  <!-- 12. İşitme cihazı için test gerekli mi? -->
+  <GuideSection {...deviceTestSection}>
+    <GuideNotice points={deviceTestPoints} links={deviceTestLinks} />
+  </GuideSection>
+
+  <!-- 13. Online test farkı -->
+  <GuideSection {...onlineSection} tone="alt">
+    <GuideTable data={onlineTable} bare />
+  </GuideSection>
+
+  <!-- 14. Çocuklarda -->
+  <GuideSection {...childrenSection}>
+    <GuideNotice text={childrenCards[0].text} links={noticeLinks(childrenCards)} />
+  </GuideSection>
+
+  <!-- 15. Yaşlılarda -->
+  <GuideSection {...elderlySection} tone="alt">
+    <GuideNotice text={elderlyCards[0].text} links={noticeLinks(elderlyCards)} />
+  </GuideSection>
+
+  <!-- 16–19. Yerel bölümler: Darıca (ana merkez) → Gebze → Çayırova → Kocaeli -->
+  <div class="uit-local">
+    <LocalBlocks blocks={localBlocks} headingLevel="h2" />
+  </div>
+
+  <!-- 20. Merkezimize ulaşın -->
   <ContactLocationCard data={ucretsizIsitmeTestiLocation} />
-  <ContactServiceArea data={ucretsizIsitmeTestiServiceArea} />
 
-  <BrandPageFaq data={ucretsizIsitmeTestiFaq} />
-  <BrandPageFinalCta data={ucretsizIsitmeTestiFinalCta} />
-  <BrandPageRelatedContent data={ucretsizIsitmeTestiRelatedContent} />
+  <!-- 21. SSS -->
+  <div id="sss" class="uit-anchor">
+    <BrandPageFaq data={testFaq} />
+  </div>
+
+  <!-- 22. Final CTA + ilgili içerikler -->
+  <GuideCta data={testCta} icons={[Phone, MessageCircle, Headphones, UserCheck]} />
+  <BrandPageRelatedContent data={testRelated} />
 </MainLayout>
 
 <style>
-  .uit-breadcrumb-wrap {
+  .uit-breadcrumb {
     max-width: var(--container-2xl);
     margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
+    padding: var(--space-4) var(--space-6) 0;
   }
 
-  /* Small closing CTA line directly under "Kimler İşitme Testi
-     Yaptırmalı?" — BrandPageIdealUser has no per-section CTA slot, so
-     this is composed here rather than forcing a new prop into a shared
-     component 100+ pages already use. */
-  .uit-inline-cta {
-    max-width: var(--container-lg);
-    margin: calc(-1 * var(--space-12)) auto var(--space-4);
-    padding: 0 var(--space-6) var(--space-16);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-5);
-    text-align: center;
-  }
-
-  .uit-inline-cta__text {
-    margin: 0;
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
-  }
-
-  /* Shared shell for the three lightweight, component-free sections
-     (SGK / Cihaz Deneme / Online Tarama callout) — quiet, no card
-     fatigue, consistent with plan §2's "component yok, inline" rows. */
-  .uit-simple-section {
-    background: var(--color-background);
-    padding-block: var(--space-16);
-  }
-
-  .uit-simple-section--alt {
-    background: var(--color-surface);
-  }
-
-  .uit-simple-section__inner {
-    max-width: 42rem;
+  /* Continuation of the "İşitme testi nedir?" / "nasıl yapılır?" sections: H3 cards
+     that live directly under the section's own H2 block. */
+  .uit-cont {
+    max-width: var(--container-2xl);
     margin-inline: auto;
-    padding-inline: var(--space-6);
+    padding: var(--space-8) var(--space-6) var(--space-16);
   }
 
-  .uit-simple-section__inner--center {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-4);
-  }
-
-  .uit-simple-section__eyebrow {
-    margin: 0;
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-primary);
-  }
-
-  .uit-simple-section__heading {
-    margin: var(--space-3) 0 0;
-    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  .uit-h3 {
+    margin: var(--space-10) 0 var(--space-4);
+    font-size: var(--font-size-xl);
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.01em;
     color: var(--color-text);
   }
 
-  .uit-simple-section__body {
-    margin: var(--space-4) 0 0;
+  .uit-h3:first-of-type {
+    margin-top: 0;
+  }
+
+  .uit-p {
+    margin: 0;
+    max-width: 46rem;
     font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
   }
 
-  .uit-simple-section__note {
+  .uit-spaced {
+    margin-top: var(--space-8);
+  }
+
+  .uit-audiogram {
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .uit-anchor {
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  /* Medical safety block — deliberately more visible than the calm GuideNotice. */
+  .uit-alert {
+    border: 1px solid #f5c26b;
+    border-left-width: 6px;
+    border-radius: var(--radius-xl);
+    background: #fff8ea;
+    padding: var(--space-6);
+    color: #4a3200;
+  }
+
+  .uit-alert__head {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    color: #8a5a00;
+  }
+
+  .uit-alert__head :global(svg) {
+    flex: none;
+    margin-top: 2px;
+  }
+
+  .uit-alert__head p {
     margin: 0;
-    font-size: var(--font-size-xs);
-    color: var(--color-text-soft);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: #6b4300;
   }
 
-  .uit-simple-section__link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-top: var(--space-5);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-primary);
-    text-decoration: none;
-  }
-
-  .uit-simple-section__link:hover {
-    text-decoration: underline;
-  }
-
-  .uit-simple-section__link:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-    border-radius: var(--radius-sm);
-  }
-
-  .uit-simple-section__bullets {
+  .uit-alert__list {
     list-style: none;
     margin: var(--space-5) 0 0;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .uit-alert__list li {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .uit-simple-section__bullets li {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
+    gap: var(--space-1);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    border: 1px solid #f0d9a8;
     font-size: var(--font-size-sm);
-    color: var(--color-text);
+    line-height: var(--line-height-relaxed);
+    color: #4a3200;
   }
 
-  .uit-simple-section__bullets svg {
-    flex: none;
-    color: var(--color-primary);
+  .uit-alert__list strong {
+    font-size: var(--font-size-md);
+    color: #3b2700;
+  }
+
+  .uit-alert__note {
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
   }
 
   @media (max-width: 640px) {
-    .uit-inline-cta {
-      margin-top: calc(-1 * var(--space-8));
-      padding-bottom: var(--space-10);
+    .uit-breadcrumb {
+      padding-inline: var(--space-4);
     }
-    .uit-simple-section {
-      padding-block: var(--space-10);
+
+    .uit-cont {
+      padding: var(--space-6) var(--space-4) var(--space-10);
+    }
+
+    .uit-alert {
+      padding: var(--space-4);
     }
   }
 </style>
