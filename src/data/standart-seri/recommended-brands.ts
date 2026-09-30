@@ -19,32 +19,32 @@ export const standartSeriRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un Zeal serisi, günlük kullanım için pratik ve dengeli bir alternatif model sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Audéo serisi, en yaygın tercih edilen genel kullanım ailesidir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Pure serisi, markanın en yaygın tercih edilen genel kullanım ailesidir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in SmartRIC serisi, günlük kullanım için ince ve pratik bir tasarım sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Omnia serisi, kanıtlanmış performansıyla günlük kullanım için değerlendirilebilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın NOW iQ serisi, dengeli bir bağlantı ve ses deneyimi sunan uygun bir model ailesidir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#0284c7",

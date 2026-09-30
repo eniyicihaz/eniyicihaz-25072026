@@ -16,27 +16,27 @@ export const konusmaOdakliRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Yönlü mikrofon teknolojisinin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "Konuşma odaklı teknolojinin sunulduğu, daha az fark edilen kulak içi aileyi keşfedin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Gürültü Engelleme Teknolojisi",
       description: "Yönlü mikrofonla birlikte çalışan, sabit ve ani gürültüleri azaltan teknolojileri inceleyin.",
-      href: "/teknolojiler/gurultu-engelleme",
+      href: "/teknolojiler/gurultu-engelleme/",
     },
     {
       label: "Kablosuz Bağlantı Özellikleri",
       description: "Telefon, TV ve diğer cihazlarla kablosuz bağlantı kuran teknolojileri yakından tanıyın.",
-      href: "/teknolojiler/kablosuz-baglanti",
+      href: "/teknolojiler/kablosuz-baglanti/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#ea580c",

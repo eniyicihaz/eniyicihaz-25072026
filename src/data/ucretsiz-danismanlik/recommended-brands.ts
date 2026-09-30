@@ -14,32 +14,32 @@ export const ucretsizDanismanlikRecommendedBrands: BrandPageRelatedContentConten
     {
       label: "Oticon",
       description: "Oticon modelleri, danışmanlık sürecimizde ihtiyacınıza göre değerlendirilen seçenekler arasında yer alır.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak modelleri, farklı bütçe ve ihtiyaç profillerine uygun seçenekler sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia modelleri, danışmanlık sürecinde sıkça önerilen genel kullanım seçenekleri arasındadır.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex modelleri, doğal ses tercih eden kullanıcılar için danışmanlık sürecinde değerlendirilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound modelleri, bağlantı özelliklerini önceliklendiren kullanıcılar için önerilebilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar modelleri, uygun bütçeli seçenekler arayan kullanıcılar için danışmanlık sürecinde değerlendirilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#0d9488",

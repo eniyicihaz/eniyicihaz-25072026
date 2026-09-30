@@ -16,27 +16,27 @@ export const garantiIslemleriRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kolay Değişim",
       description: "Memnuniyet veya ihtiyaç değişikliği kaynaklı değişim güvencemiz hakkında bilgi edinin.",
-      href: "/neden-orijinal/kolay-degisim",
+      href: "/neden-orijinal/kolay-degisim/",
     },
     {
       label: "Teknik Servis",
       description: "Bir arıza fark ederseniz, yerinde teşhis ve onarım sürecini keşfedin.",
-      href: "/servis-bakim/teknik-servis",
+      href: "/servis-bakim/teknik-servis/",
     },
     {
       label: "Pil & Aksesuar",
       description: "Pil, şarj ve aksesuar seçenekleri hakkında bilgi edinin.",
-      href: "/servis-bakim/pil-aksesuar",
+      href: "/servis-bakim/pil-aksesuar/",
     },
     {
       label: "Onarım Takibi",
       description: "Onarıma gönderilen cihazınızın sürecini nasıl takip edeceğinizi öğrenin.",
-      href: "/servis-bakim/onarim-takibi",
+      href: "/servis-bakim/onarim-takibi/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#4f46e5",

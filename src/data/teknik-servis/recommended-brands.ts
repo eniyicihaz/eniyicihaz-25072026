@@ -14,32 +14,32 @@ export const teknikServisRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri de yetkili teknik servis kapsamında değerlendirilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#dc2626",

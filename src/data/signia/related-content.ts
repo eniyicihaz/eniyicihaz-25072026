@@ -12,17 +12,17 @@ export const signiaRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Phonak İşitme Cihazları",
       description: "Bağlantı ve ekosistem odaklı bir yaklaşımı karşılaştırmak isterseniz Phonak'ı inceleyin.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
   ],
   // Signia brand theme revision (2026-07): bordo (#B21F4B).

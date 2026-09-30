@@ -31,7 +31,7 @@ export const kisiyeOzelAyarIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: Factory,
-      title: "Dilovası'nda Çalışma Ortamı",
+      title: "Gürültülü Çalışma Ortamı",
       description: "Çalışma ortamınız sürekli arka plan sesi içeriyorsa, gündelik dış ortam kullanımıyla birlikte bu ortama uygun bir denge aranır.",
       suggestedFamilies: ["Çalışma Ortamı", "Dış Ortam"],
     },

@@ -19,7 +19,7 @@ export const sikSorulanSorularTechnology: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Hizmet Bölgesi",
       title: "Hangi Bölgelere Hizmet Veriyoruz?",
-      lead: "Merkezimiz Darıca, Gebze, Çayırova, Dilovası, Tuzla ve Pendik bölgelerinde hizmet vermektedir.",
+      lead: "Merkezimiz Darıca'dadır; Gebze ve Çayırova'dan gelen danışanlarımızı da merkezimizde ağırlıyoruz.",
       howItWorks: "Bu bölgelerden randevu alarak merkezimizi ziyaret edebilir, işitme testinizden cihaz uygulamanıza kadar tüm süreci bizimle yürütebilirsiniz.",
       advantages: [
         "Bölgenizdeki güvenilir bir merkeze kolayca ulaşabilirsiniz",

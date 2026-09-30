@@ -16,27 +16,27 @@ export const orijinalAksesuarRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Güvenilir Teknoloji",
       description: "Orijinal ürünlerin neden güvenilir bir teknoloji sunduğunu keşfedin.",
-      href: "/neden-orijinal/guvenilir-teknoloji",
+      href: "/neden-orijinal/guvenilir-teknoloji/",
     },
     {
       label: "Uzun Ömürlü Cihazlar",
       description: "Orijinal cihazların uzun ömürlü olmasını sağlayan faktörleri yakından tanıyın.",
-      href: "/neden-orijinal/uzun-omurlu-cihazlar",
+      href: "/neden-orijinal/uzun-omurlu-cihazlar/",
     },
     {
       label: "Yaygın Servis Ağı",
       description: "Yetkili teknik servis ağımız hakkında detaylı bilgi edinin.",
-      href: "/neden-orijinal/yaygin-servis-agi",
+      href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {
       label: "Kolay Değişim",
       description: "Sorunlu ürünlerde değişim ve iade sürecimiz hakkında bilgi edinin.",
-      href: "/neden-orijinal/kolay-degisim",
+      href: "/neden-orijinal/kolay-degisim/",
     },
     {
       label: "Bize Ulaşın",
       description: "Aksesuar ihtiyaçlarınız için bizimle iletişime geçin.",
-      href: "/iletisim",
+      href: "/iletisim/",
     },
   ],
   accentColor: "#7c3aed",

@@ -14,27 +14,27 @@ export const etkinliklerRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kampanyalar",
       description: "Güncel kampanya kategorilerimiz hakkında bilgi edinin.",
-      href: "/blog/kampanyalar",
+      href: "/blog/kampanyalar/",
     },
     {
       label: "Ücretsiz İşitme Testi",
       description: "Etkinlik dışında da ücretsiz işitme testinden faydalanabilirsiniz.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Çocuk İşitme Testi",
       description: "Okul taramaları hakkında merak ettiklerinizi öğrenin.",
-      href: "/degerlendirme/cocuk-isitme-testi",
+      href: "/degerlendirme/cocuk-isitme-testi/",
     },
     {
       label: "Uzman Görüşleri",
       description: "İşitme sağlığı hakkında doğru bilgilere ulaşın.",
-      href: "/blog/uzman-gorusleri",
+      href: "/blog/uzman-gorusleri/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "Güncel SGK destek tutarlarını ve ödeme tablosunu inceleyin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#059669",

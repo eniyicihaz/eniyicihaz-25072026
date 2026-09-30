@@ -11,32 +11,32 @@ export const hakkimizdaRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Ücretsiz İşitme Testi",
       description: "Merkezimizde ücretsiz işitme değerlendirmesi yaptırabilirsiniz.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Cihaz Deneme",
       description: "Karar vermeden önce cihazı merkezimizde deneyebilirsiniz.",
-      href: "/uygulama-ayar/cihaz-deneme",
+      href: "/uygulama-ayar/cihaz-deneme/",
     },
     {
       label: "Kişiye Özel Ayar",
       description: "Cihazınızın kişiye özel ayarı hakkında detaylı bilgi.",
-      href: "/uygulama-ayar/kisiye-ozel-ayar",
+      href: "/uygulama-ayar/kisiye-ozel-ayar/",
     },
     {
       label: "Teknik Servis",
       description: "Cihazınızda teknik bir sorun varsa servis sürecini inceleyin.",
-      href: "/servis-bakim/teknik-servis",
+      href: "/servis-bakim/teknik-servis/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi",
       description: "SGK katkı payı ve rapor süreci hakkında bilgi alın.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "İletişim",
       description: "Merkezimizin adresi, telefonu ve çalışma saatleri.",
-      href: "/iletisim",
+      href: "/iletisim/",
     },
   ],
   accentColor: "#2563eb",

@@ -14,32 +14,32 @@ export const timpanometriRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Timpanometri ve odyometri sonuçlarınıza göre, Oticon'un farklı modelleri değerlendirilebilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın geniş ürün yelpazesi, kapsamlı değerlendirme sonrası farklı ihtiyaçlara uygun seçenekler sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın model çeşitliliği, değerlendirme sonucunuza uygun bir seçenek bulmanıza yardımcı olabilir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in doğal ses felsefesi, bazı değerlendirme profilleri için önerilebilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un modelleri, kapsamlı değerlendirme sonrası farklı seçenekler sunar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri, değerlendirme sonrası bütçe dostu bir alternatif olabilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#9333ea",

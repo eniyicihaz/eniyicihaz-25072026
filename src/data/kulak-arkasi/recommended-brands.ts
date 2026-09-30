@@ -15,32 +15,32 @@ export const kulakArkasiRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "BrainHearing® teknolojisiyle geliştirilen güçlü BTE ve RIC modelleri.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Roger ekosistemi ve evrensel Bluetooth bağlantılı BTE modelleri.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Yapay zekâ destekli kişiselleştirme sunan BTE ve RIC aileleri.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Doğal ses felsefesiyle geliştirilen ince RIC ve güçlü BTE seçenekleri.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "Geniş güç aralığı sunan BTE modelleriyle ileri derece kayıplarda sıkça değerlendirilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve güvenilir BTE çözümleri arayanlar için değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#2563eb",

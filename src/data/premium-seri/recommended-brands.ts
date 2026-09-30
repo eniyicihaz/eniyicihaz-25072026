@@ -18,32 +18,32 @@ export const premiumSeriRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un Intent ve Real serisi, markanın en gelişmiş BrainHearing® teknolojisini taşıyan premium modellerdir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Audéo serisi, markanın güncel teknolojilerini taşıyan genel kullanım ailesidir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Styletto serisi, modern tasarımı ve güncel özellikleriyle öne çıkar.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in Moment Sheer serisi, markanın en güncel nesil teknolojisini taşır.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Vivia serisi, derin öğrenme destekli ses işleme sunan en güncel model ailesidir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın NXG AI serisi, Hear Circle uygulamasıyla güncellenmiş ses işleme yaklaşımını uygun bir fiyat seviyesinde sunar.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#eab308",

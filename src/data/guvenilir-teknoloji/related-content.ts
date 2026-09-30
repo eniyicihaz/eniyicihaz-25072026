@@ -15,27 +15,27 @@ export const guvenilirTeknolojiRelatedContent: BrandPageRelatedContentContent = 
     {
       label: "Uzun Ömürlü Cihazlar",
       description: "Orijinal cihazların uzun ömürlü olmasını sağlayan faktörleri yakından tanıyın.",
-      href: "/neden-orijinal/uzun-omurlu-cihazlar",
+      href: "/neden-orijinal/uzun-omurlu-cihazlar/",
     },
     {
       label: "Yaygın Servis Ağı",
       description: "Yetkili teknik servis ağımız hakkında detaylı bilgi edinin.",
-      href: "/neden-orijinal/yaygin-servis-agi",
+      href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {
       label: "Orijinal Aksesuar",
       description: "Cihazınız için orijinal aksesuar ve yedek parça seçeneklerini keşfedin.",
-      href: "/neden-orijinal/orijinal-aksesuar",
+      href: "/neden-orijinal/orijinal-aksesuar/",
     },
     {
       label: "Tüm Markalarımız",
       description: "Yetkili satıcısı olduğumuz tüm markaları ve ürün ailelerini inceleyin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "Bize Ulaşın",
       description: "Orijinallik doğrulama veya sorularınız için bizimle iletişime geçin.",
-      href: "/iletisim",
+      href: "/iletisim/",
     },
   ],
   accentColor: "#1d4ed8",

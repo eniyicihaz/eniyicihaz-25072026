@@ -13,27 +13,32 @@ export const sgkRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "SGK Katkı Payı",
       description: "Katkı payının yaş grubu ve sigortalılık durumuna göre nasıl oluştuğunu öğrenin.",
-      href: "/sgk/katki-payi",
+      href: "/sgk/katki-payi/",
     },
     {
       label: "Rapor Süreci",
       description: "Sağlık kurulu (heyet) raporunun KBB muayenesinden reçeteye nasıl alındığını öğrenin.",
-      href: "/sgk/rapor-sureci",
+      href: "/sgk/rapor-sureci/",
     },
     {
       label: "Gerekli Belgeler",
       description: "SGK başvurusu için hangi belgelerin gerektiğini tek tek inceleyin.",
-      href: "/sgk/gerekli-belgeler",
+      href: "/sgk/gerekli-belgeler/",
     },
     {
       label: "Çocuklarda SGK",
       description: "Çocuklarda SGK işitme cihazı desteğinin nasıl işlediğini öğrenin.",
-      href: "/sgk/cocuklarda-sgk",
+      href: "/sgk/cocuklarda-sgk/",
     },
     {
       label: "Yenileme Hakkı",
       description: "İşitme cihazınızı ne zaman ve nasıl yenileyebileceğinizi öğrenin.",
-      href: "/sgk/yenileme-hakki",
+      href: "/sgk/yenileme-hakki/",
+    },
+    {
+      label: "İşitme Cihazı Fiyatları",
+      description: "Fiyatı neyin belirlediğini ve toplam maliyet kalemlerini okuyun.",
+      href: "/isitme-cihazi-fiyatlari/",
     },
   ],
   accentColor: "#2563eb",

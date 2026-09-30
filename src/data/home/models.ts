@@ -25,7 +25,7 @@ export const homeModels: BrandPageModelsContent = {
       description: "Yapay zekâ destekli, gelişmiş teknoloji beklentisi olan kullanıcılar için.",
       tags: ["AI", "Bluetooth"],
       image: "/images/oticon/models/intent.webp",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       slug: "phonak-audeo",
@@ -34,7 +34,7 @@ export const homeModels: BrandPageModelsContent = {
       description: "Phonak'ın en yaygın tercih edilen, kulak arkası yerleşimli genel kullanım ailesi.",
       tags: ["RIC", "Bluetooth", "Şarjlı"],
       image: "/images/phonak/models/audeo.webp",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       slug: "signia-styletto",
@@ -43,7 +43,7 @@ export const homeModels: BrandPageModelsContent = {
       description: "İnce, göze çarpmayan tasarımıyla şarjlı bir seçenek.",
       tags: ["Şarjlı", "Kulak İçi"],
       image: "/images/signia/models/styletto.webp",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       slug: "widex-smartric",
@@ -52,7 +52,7 @@ export const homeModels: BrandPageModelsContent = {
       description: "Bluetooth bağlantılı, doğal ses odaklı bir model.",
       tags: ["Bluetooth", "Şarjlı"],
       image: "/images/widex/models/smartric.webp",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       slug: "phonak-naida",
@@ -61,7 +61,7 @@ export const homeModels: BrandPageModelsContent = {
       description: "İleri ve çok ileri derece işitme kayıpları için güçlendirilmiş model ailesi.",
       tags: ["Power", "Bluetooth", "Şarjlı"],
       image: "/images/phonak/models/naida.webp",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
   ],
   accentColor: "#2563eb",

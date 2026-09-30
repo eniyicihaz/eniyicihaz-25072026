@@ -242,7 +242,7 @@ const iconMap = {
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--bpe-badge-text);
+    color: color-mix(in srgb, var(--bpe-badge-text) 84%, #000);
   }
 
   .brand-page-eco__heading {
@@ -306,7 +306,7 @@ const iconMap = {
 
   .brand-page-eco__nav-link[aria-current="true"] {
     background: var(--bpe-nav-active-bg);
-    color: var(--bpe-accent);
+    color: color-mix(in srgb, var(--bpe-accent) 56%, #000);
     font-weight: var(--font-weight-bold);
   }
 
@@ -385,7 +385,7 @@ const iconMap = {
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--color-text-soft);
+    color: var(--color-text-muted);
   }
 
   .brand-page-eco__block-text {
@@ -450,7 +450,7 @@ const iconMap = {
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--bpe-callout-label);
+    color: color-mix(in srgb, var(--bpe-callout-label) 68%, #000);
   }
 
   .brand-page-eco__callout-text {

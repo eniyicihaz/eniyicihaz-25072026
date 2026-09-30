@@ -16,27 +16,27 @@ export const kolayDegisimRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Güvenilir Teknoloji",
       description: "Orijinal ürünlerin neden güvenilir bir teknoloji sunduğunu keşfedin.",
-      href: "/neden-orijinal/guvenilir-teknoloji",
+      href: "/neden-orijinal/guvenilir-teknoloji/",
     },
     {
       label: "Uzun Ömürlü Cihazlar",
       description: "Orijinal cihazların uzun ömürlü olmasını sağlayan faktörleri yakından tanıyın.",
-      href: "/neden-orijinal/uzun-omurlu-cihazlar",
+      href: "/neden-orijinal/uzun-omurlu-cihazlar/",
     },
     {
       label: "Yaygın Servis Ağı",
       description: "Yetkili teknik servis ağımız hakkında detaylı bilgi edinin.",
-      href: "/neden-orijinal/yaygin-servis-agi",
+      href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {
       label: "Orijinal Aksesuar",
       description: "Cihazınız için orijinal aksesuar ve yedek parça seçeneklerini keşfedin.",
-      href: "/neden-orijinal/orijinal-aksesuar",
+      href: "/neden-orijinal/orijinal-aksesuar/",
     },
     {
       label: "Ücretsiz Danışmanlık",
       description: "Ücretsiz işitme testi ve uzman danışmanlığımız hakkında bilgi edinin.",
-      href: "/neden-orijinal/ucretsiz-danismanlik",
+      href: "/neden-orijinal/ucretsiz-danismanlik/",
     },
   ],
   accentColor: "#e11d48",

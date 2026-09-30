@@ -11,10 +11,10 @@ export const gebzeServices: BrandCriteriaContent = {
   heading: "İşitme Cihazını Satın Almadan Önce Deneyin",
   intro: "Cihaz seçimi bir başlangıçtır; deneme, kişiye özel ayar ve programlama süreciyle devam eder.",
   criteria: [
-    { icon: PlayCircle, title: "Cihaz Deneme", description: "Seçtiğiniz cihazı günlük yaşamınızda deneyerek size uygunluğunu değerlendirebilirsiniz.", href: "/uygulama-ayar/cihaz-deneme" },
-    { icon: SlidersHorizontal, title: "Kişiye Özel Ayar", description: "İlk uygulama ve temel ayarlar, işitme ihtiyacınıza göre yapılır.", href: "/uygulama-ayar/kisiye-ozel-ayar" },
-    { icon: Settings2, title: "Programlama ve Takip", description: "Kullanım deneyiminize göre cihaz ayarları zaman içinde yeniden değerlendirilir.", href: "/uygulama-ayar/kisiye-ozel-programlama" },
+    { icon: PlayCircle, title: "Cihaz Deneme", description: "Seçtiğiniz cihazı günlük yaşamınızda deneyerek size uygunluğunu değerlendirebilirsiniz.", href: "/uygulama-ayar/cihaz-deneme/" },
+    { icon: SlidersHorizontal, title: "Kişiye Özel Ayar", description: "İlk uygulama ve temel ayarlar, işitme ihtiyacınıza göre yapılır.", href: "/uygulama-ayar/kisiye-ozel-ayar/" },
+    { icon: Settings2, title: "Programlama ve Takip", description: "Kullanım deneyiminize göre cihaz ayarları zaman içinde yeniden değerlendirilir.", href: "/uygulama-ayar/kisiye-ozel-programlama/" },
   ],
   closing: "Teknik servis ve satış sonrası destek ihtiyaçlarınızda da yanınızdayız.",
-  closingCta: { label: "Teknik Servis", href: "/servis-bakim/teknik-servis" },
+  closingCta: { label: "Teknik Servis", href: "/servis-bakim/teknik-servis/" },
 };

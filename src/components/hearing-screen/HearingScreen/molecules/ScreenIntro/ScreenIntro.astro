@@ -69,7 +69,7 @@ const { eyebrow, heading, bullets, notice, startLabel, disclaimer } = Astro.prop
     font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--hs-accent, var(--color-primary));
+    color: color-mix(in srgb, var(--hs-accent, var(--color-primary)) 82%, #000);
   }
 
   .screen-intro__heading {
@@ -170,7 +170,7 @@ const { eyebrow, heading, bullets, notice, startLabel, disclaimer } = Astro.prop
   .screen-intro__disclaimer {
     margin: 0;
     font-size: var(--font-size-xs);
-    color: var(--color-text-soft);
+    color: var(--color-text-muted);
     line-height: var(--line-height-relaxed);
   }
 

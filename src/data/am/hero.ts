@@ -49,7 +49,7 @@ export const amHero: BrandPageHeroContent = {
     },
     {
       label: "IN",
-      accent: "#C25710",
+      accent: "#A34A0C",
       title: "Bengaluru Üretimi",
       description: "Sivantos India Private Limited tarafından, grup standartlarında üretilir.",
     },
@@ -63,7 +63,7 @@ export const amHero: BrandPageHeroContent = {
     description: "Erişilebilir fiyatta, güvenilir grup teknolojisi.",
   },
   accentColor: "#F3701A",
-  accentColorHover: "#C25710",
+  accentColorHover: "#A34A0C",
   accentColorSoft: "rgb(243 112 26 / 0.12)",
   accentColorBorder: "rgb(243 112 26 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
@@ -72,6 +72,6 @@ export const amHero: BrandPageHeroContent = {
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(243,112,26,0.35) 0%, rgba(243,112,26,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #1D0F05 60%, #2E1808 100%)",
   heroBaseBg: "#050505",
-  heroWaveColor: "#C25710",
+  heroWaveColor: "#A34A0C",
   heroWaveOpacity: "0.18",
 };

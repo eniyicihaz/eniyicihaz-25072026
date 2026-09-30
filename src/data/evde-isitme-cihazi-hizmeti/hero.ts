@@ -16,6 +16,6 @@ export const evdeHizmetHero: HomeVisitHeroContent = {
   routeFromLabel: "Merkezimiz",
   routeToLabel: "Eviniz",
   routeCaption: "Darıca'daki merkezimizden bölgenize randevulu ev ziyareti.",
-  areaTags: ["Darıca", "Gebze", "Çayırova", "Dilovası"],
+  areaTags: ["Darıca", "Gebze", "Çayırova"],
   accentColor: "#0d9488",
 };

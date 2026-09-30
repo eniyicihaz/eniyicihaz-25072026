@@ -66,10 +66,10 @@ export const sgkSupport: SgkSupportContent = {
   ],
   relatedLabel: "Bu konuyla ilgili devamı",
   relatedLinks: [
-    { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi" },
-    { label: "İşitme Cihazı Markaları", href: "/markalar" },
-    { label: "Teknik Servis", href: "/servis-bakim/teknik-servis" },
-    { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi" },
+    { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi/" },
+    { label: "İşitme Cihazı Markaları", href: "/markalar/" },
+    { label: "Teknik Servis", href: "/servis-bakim/teknik-servis/" },
+    { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
   ],
   cta: {
     heading: "SGK süreciniz hakkında ücretsiz destek almak ister misiniz?",

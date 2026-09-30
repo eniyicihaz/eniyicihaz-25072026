@@ -19,17 +19,17 @@ export const kontrolRandevusuRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kişiye Özel Programlama",
       description: "Kontrolde tespit edilen bir ince ayar ihtiyacı için programlama sürecini keşfedin.",
-      href: "/uygulama-ayar/kisiye-ozel-programlama",
+      href: "/uygulama-ayar/kisiye-ozel-programlama/",
     },
     {
       label: "Kalıp Alımı",
       description: "Kontrolde kalıbınızın yenilenmesi gerektiği belirlenirse süreci tanıyın.",
-      href: "/uygulama-ayar/kalip-alimi",
+      href: "/uygulama-ayar/kalip-alimi/",
     },
     {
       label: "Uzaktan Ayar",
       description: "Küçük bir güncelleme için kliniğe gelmeden uzaktan destek imkânını keşfedin.",
-      href: "/uygulama-ayar/uzaktan-ayar",
+      href: "/uygulama-ayar/uzaktan-ayar/",
     },
     {
       label: "Periyodik Bakım",
@@ -39,7 +39,7 @@ export const kontrolRandevusuRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#475569",

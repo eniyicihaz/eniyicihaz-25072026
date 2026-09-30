@@ -39,7 +39,7 @@ export const oticonWhyOticon: OticonWhyOticonContent = {
   accentColor: "#5fb85a",
   accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
   accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
-  accentColorBadgeText: "#4a9a45",
+  accentColorBadgeText: "#36792f",
   accentColorIconBg: "rgb(95 184 90 / 0.1)",
   accentColorHoverBorder: "rgb(95 184 90 / 0.45)",
   badge: "NEDEN OTİCON?",

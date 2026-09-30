@@ -11,32 +11,32 @@ export const cihazDenemeRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Ücretsiz İşitme Testi",
       description: "Cihaz denemeden önce Darıca'daki merkezimizde ücretsiz işitme testinizi yaptırın.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Cihaz Uygulama",
       description: "Deneme sonrası kalıcı uygulama randevusunun nasıl işlediğini tanıyın.",
-      href: "/uygulama-ayar/cihaz-uygulama",
+      href: "/uygulama-ayar/cihaz-uygulama/",
     },
     {
       label: "Kişiye Özel Programlama",
       description: "Cihazınızın kişiye özel programlanma sürecini yakından tanıyın.",
-      href: "/uygulama-ayar/kisiye-ozel-programlama",
+      href: "/uygulama-ayar/kisiye-ozel-programlama/",
     },
     {
       label: "Kolay Değişim",
       description: "Satın alma sonrası değişim ve iade güvencemiz hakkında bilgi edinin.",
-      href: "/neden-orijinal/kolay-degisim",
+      href: "/neden-orijinal/kolay-degisim/",
     },
     {
       label: "Kalıp Alımı",
       description: "Kulak kalıbı ölçümü ve üretim süreci hakkında bilgi edinin.",
-      href: "/uygulama-ayar/kalip-alimi",
+      href: "/uygulama-ayar/kalip-alimi/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#0d9488",

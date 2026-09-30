@@ -14,32 +14,32 @@ export const guvenilirTeknolojiRecommendedBrands: BrandPageRelatedContentContent
     {
       label: "Oticon",
       description: "Oticon'un tüm ürün ailesini yetkili distribütör güvencesiyle orijinal olarak sunuyoruz.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın orijinal ürünlerini, üretici garantisi ve resmi teknik servis desteğiyle sunuyoruz.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın tüm modellerini yetkili satış kanalından, faturalı ve garantili olarak sunuyoruz.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in orijinal ürünlerini resmi distribütörlük anlaşmamız kapsamında sunuyoruz.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un tüm ürün ailesini üretici garantisi ve orijinallik güvencesiyle sunuyoruz.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modellerini de aynı orijinallik standartlarıyla sunuyoruz.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#1d4ed8",

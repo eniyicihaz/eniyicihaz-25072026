@@ -14,32 +14,32 @@ export const yaslilarIcinCihazlarRecommendedBrands: BrandPageRelatedContentConte
     {
       label: "Oticon",
       description: "Oticon'un Real ve Intent gibi modelleri, BrainHearing® teknolojisiyle doğal ve az çaba gerektiren bir dinleme deneyimi sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Audeo serisi, kolay kullanım ve güvenilir bağlantı seçenekleriyle sıkça tercih edilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Styletto ve Pure serisi, şarj kolaylığı ve sade tasarımıyla öne çıkar.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in SmartRIC serisi, doğal ses felsefesini kolay kullanımla birleştirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Key serisi, temel ihtiyaçlar için sade ve uygun fiyatlı bir yaklaşım sunar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve kolay kullanımlı seçenekler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#ca8a04",

@@ -16,32 +16,32 @@ export const cihazUygulamaRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon cihazları, Genie 2 yazılımıyla odyogramınıza göre programlanır.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak cihazları, Target yazılımıyla odyogramınıza göre programlanır.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia cihazları, Connexx yazılımıyla odyogramınıza göre programlanır.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex cihazları, Compass GPS yazılımıyla odyogramınıza göre programlanır.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound cihazları, Smart Fit yazılımıyla odyogramınıza göre programlanır.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri de aynı özenle odyogramınıza göre programlanır.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#2563eb",

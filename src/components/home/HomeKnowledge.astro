@@ -11,7 +11,7 @@ import HomeBlockHeader from "./HomeBlockHeader.astro";
 import { knowledgeGate } from "../../data/knowledge-gate/knowledge-gate.data";
 import { homepageFaq } from "../homepage-faq/HomepageFaq/homepage-faq.data";
 
-const items = homepageFaq.items.filter((item) => item.href !== "/servis-bakim/teknik-servis");
+const items = homepageFaq.items.filter((item) => item.href !== "/servis-bakim/teknik-servis/");
 const half = Math.ceil(items.length / 2);
 const columns = [items.slice(0, half), items.slice(half)];
 ---

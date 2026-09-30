@@ -13,32 +13,32 @@ export const bluetoothRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un Bluetooth özellikli modelleri, BrainHearing® felsefesini kesintisiz kablosuz bağlantıyla bir araya getirir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Bluetooth destekli aileleri, Roger ekosistemi ve TV Connector gibi aksesuarlarla geniş bir bağlantı deneyimi sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Bluetooth özellikli modelleri, doğrudan telefon ve TV bağlantısını ince tasarımla bir araya getirir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in Bluetooth destekli modelleri, markanın doğal ses felsefesini kablosuz bağlantı kolaylığıyla sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un doğrudan telefon bağlantısına öncülük eden aileleri, kablosuz bağlantı arayan kullanıcılar için sıkça değerlendirilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve güvenilir Bluetooth özellikli çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#0891b2",

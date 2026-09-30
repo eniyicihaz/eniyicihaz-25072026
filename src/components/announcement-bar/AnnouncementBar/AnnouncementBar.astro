@@ -5,15 +5,35 @@
 // inviting action, not a passive notice with a link tacked on.
 import { MapPin, ArrowRight } from "lucide-astro";
 
-const message = "İşitme cihazı fiyatlarını ve SGK desteğini öğrenin";
+interface Props {
+  /** Current URL path (from MainLayout) — picks the message that fits the page. */
+  pathname?: string;
+}
+
+const { pathname = "/" } = Astro.props;
+
+// One bar, three messages — never an unrelated one:
+//   • default (home, devices, brands, prices, SGK, guides …): price + SGK — also the site-wide link that keeps
+//     /isitme-cihazi-fiyatlari/ from being an orphan (QUALITY_GATES.md), so it stays the default;
+//   • /degerlendirme/* (hearing test, audiometry, children, …): the free hearing test appointment;
+//   • blog / contact / about / info / sitemap: one neutral site message.
+const priceMessage = { message: "İşitme cihazı fiyatlarını ve SGK desteğini öğrenin", href: "/isitme-cihazi-fiyatlari/" };
+const testMessage = { message: "Ücretsiz işitme testi için randevu alın", href: "/iletisim/" };
+const neutralMessage = { message: "Darıca'daki SGK anlaşmalı işitme merkezimizle iletişime geçin", href: "/iletisim/" };
+const neutralPrefixes = ["/blog/", "/iletisim/", "/hakkimizda/", "/bilgi-merkezi/", "/site-haritasi/"];
+
+const { message, href: linkHref } = pathname.startsWith("/degerlendirme/")
+  ? testMessage
+  : neutralPrefixes.some((p) => pathname.startsWith(p))
+    ? neutralMessage
+    : priceMessage;
 // Opens the price/SGK topic hub. It is also that page's link from the
 // homepage/every page (MainLayout renders this bar sitewide), which is what
 // keeps /isitme-cihazi-fiyatlari/ from being an orphan (QUALITY_GATES.md).
 // The trailing "→" is the ArrowRight icon below, not part of the text.
-const linkHref = "/isitme-cihazi-fiyatlari/";
 ---
 
-<div class="announcement-bar">
+<div class="announcement-bar" role="region" aria-label="Duyuru">
   <a class="announcement-bar__inner" href={linkHref}>
     <MapPin size={16} stroke-width={2} aria-hidden="true" class="announcement-bar__icon" />
     <span class="announcement-bar__message">{message}</span>

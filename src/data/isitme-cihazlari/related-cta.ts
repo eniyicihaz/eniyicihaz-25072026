@@ -13,6 +13,7 @@ export const devicesRelated: BrandPageRelatedContentContent = {
     { label: "Ücretsiz İşitme Testi", description: "Doğru cihaz kararının ilk adımı: ücretsiz işitme değerlendirmesi.", href: "/degerlendirme/ucretsiz-isitme-testi/" },
     { label: "Cihaz Seçim Rehberi", description: "İhtiyaca göre cihaz seçmenin adımlarını adım adım okuyun.", href: "/rehberler/cihaz-secim-rehberi/" },
     { label: "İşitme Cihazı Markaları", description: "18'den fazla markayı ve modellerini marka sayfalarında inceleyin.", href: "/markalar/" },
+    { label: "İşitme Cihazı Markalarını Karşılaştırın", description: "Markaları ve modelleri kullanım ihtiyacına göre karşılaştıran rehber.", href: "/isitme-cihazi-markalari/" },
     { label: "Cihaz Deneme", description: "Karar vermeden önce cihazı deneme sürecini öğrenin.", href: "/uygulama-ayar/cihaz-deneme/" },
     { label: "Darıca İşitme Cihazları", description: "Gerçek merkezimizi, hizmetlerimizi ve Darıca'daki sürecimizi görün.", href: "/darica-isitme-cihazlari/" },
     { label: "Gebze İşitme Cihazları", description: "Gebze'den gelen danışanlarımız için Darıca merkezimizdeki süreç.", href: "/gebze-isitme-cihazlari/" },

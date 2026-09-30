@@ -16,32 +16,32 @@ export const suyaDayankliRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un dayanıklı modelleri, BrainHearing® felsefesini yüksek IP koruma sınıfıyla bir araya getirir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın dayanıklı aileleri, aktif yaşam tarzına uygun yüksek IP koruma sınıfı sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Active ailesi, spor ve aktif kullanım için özel olarak tasarlanmış, tere ve neme dayanıklı modellerdir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in dayanıklı modelleri, markanın doğal ses felsefesini yüksek IP koruma sınıfıyla sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un dayanıklı aileleri, aktif kullanıcılar için sıkça değerlendirilen bir seçenektir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve dayanıklı çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#0d9488",

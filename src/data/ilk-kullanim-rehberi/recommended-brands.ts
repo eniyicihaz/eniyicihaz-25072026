@@ -17,32 +17,32 @@ export const ilkKullanimRehberiRecommendedBrands: BrandPageRelatedContentContent
     {
       label: "Oticon",
       description: "Oticon cihazları, Oticon ON uygulaması üzerinden telefonunuzla eşleştirilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak cihazları, myPhonak uygulaması üzerinden telefonunuzla eşleştirilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia cihazları, Signia App uygulaması üzerinden telefonunuzla eşleştirilir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex cihazları, Widex Moment uygulaması üzerinden telefonunuzla eşleştirilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound cihazları, ReSound Smart 3D uygulaması üzerinden telefonunuzla eşleştirilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri de teslim sırasında size gösterilen adımlarla eşleştirilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#059669",

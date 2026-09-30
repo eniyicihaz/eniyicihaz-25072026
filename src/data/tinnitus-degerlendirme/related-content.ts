@@ -21,27 +21,27 @@ export const tinnitusDegerlendirmeRelatedContent: BrandPageRelatedContentContent
     {
       label: "Ücretsiz İşitme Testi",
       description: "Ücretsiz işitme testi süreci ve randevu hakkında detaylı bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Odyometri",
       description: "Odyometrinin nasıl çalıştığını ve neler ölçtüğünü daha yakından tanıyın.",
-      href: "/degerlendirme/odyometri",
+      href: "/degerlendirme/odyometri/",
     },
     {
       label: "Tinnitus (Kulak Çınlaması) Çözümleri",
       description: "Değerlendirme sonrası önerilebilecek cihaz tabanlı destek teknolojilerini keşfedin.",
-      href: "/teknolojiler/tinnitus-cozumleri",
+      href: "/teknolojiler/tinnitus-cozumleri/",
     },
     {
       label: "İşitme Danışmanlığı",
       description: "İşitme sağlığınızla ilgili tüm sorularınız için danışmanlık hizmetimizi keşfedin.",
-      href: "/neden-orijinal/ucretsiz-danismanlik",
+      href: "/neden-orijinal/ucretsiz-danismanlik/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#059669",

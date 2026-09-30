@@ -24,9 +24,9 @@ export const amComparison: BrandPageComparisonContent = {
   accentColor: "#F3701A",
   accentColorBadgeBg: "rgb(243 112 26 / 0.08)",
   accentColorBadgeBorder: "rgb(243 112 26 / 0.35)",
-  accentColorBadgeText: "#C25710",
+  accentColorBadgeText: "#A34A0C",
   accentColorNewTagBg: "rgb(243 112 26 / 0.14)",
   accentColorIconBg: "rgb(243 112 26 / 0.1)",
   accentColorLevelTagBg: "rgb(243 112 26 / 0.12)",
-  accentColorDark: "#C25710",
+  accentColorDark: "#A34A0C",
 };

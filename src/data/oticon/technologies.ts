@@ -36,7 +36,7 @@ export const oticonTechnologies: OticonTechnologiesContent = {
   accentColor: "#5fb85a",
   accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
   accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
-  accentColorBadgeText: "#4a9a45",
+  accentColorBadgeText: "#36792f",
   accentColorHoverBorder: "rgb(95 184 90 / 0.5)",
   items: [
     {

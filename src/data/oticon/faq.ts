@@ -46,7 +46,7 @@ export const oticonFaq: OticonFaqContent = {
   accentColor: "#5fb85a",
   accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
   accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
-  accentColorBadgeText: "#4a9a45",
+  accentColorBadgeText: "#36792f",
   badge: "SIK SORULAN SORULAR",
   heading: "Oticon Hakkında Merak Edilenler",
   intro: "Oticon modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
@@ -54,7 +54,7 @@ export const oticonFaq: OticonFaqContent = {
     title: "Hâlâ karar veremediniz mi?",
     points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
-    ctaHref: "/iletisim",
+    ctaHref: "/iletisim/",
   },
   categories: [
     {

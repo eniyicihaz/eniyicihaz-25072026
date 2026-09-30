@@ -17,27 +17,37 @@ export const cihazSecimRehberiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "İşitme Kaybı Nedir?",
       description: "İşitme kaybının türlerini ve nedenlerini yakından tanıyın.",
-      href: "/rehberler/isitme-kaybi-nedir",
+      href: "/rehberler/isitme-kaybi-nedir/",
     },
     {
       label: "Ücretsiz İşitme Testi",
       description: "Seçim sürecinin ilk adımı olan ücretsiz işitme testi hakkında bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Cihaz Deneme",
       description: "Karar vermeden önce cihazınızı gerçek yaşam koşullarında deneyin.",
-      href: "/uygulama-ayar/cihaz-deneme",
+      href: "/uygulama-ayar/cihaz-deneme/",
     },
     {
       label: "İlk Kullanım Rehberi",
       description: "Cihazınızı seçtikten sonraki ilk kullanım sürecini keşfedin.",
-      href: "/rehberler/ilk-kullanim-rehberi",
+      href: "/rehberler/ilk-kullanim-rehberi/",
     },
     {
       label: "Premium Seri",
       description: "Üst segment işitme cihazlarının sunduğu gelişmiş özellikleri keşfedin.",
-      href: "/segmentler/premium-seri",
+      href: "/segmentler/premium-seri/",
+    },
+    {
+      label: "İşitme Cihazı Markalarını Karşılaştırın",
+      description: "Markaları ve modelleri kullanım ihtiyacına göre karşılaştıran rehber.",
+      href: "/isitme-cihazi-markalari/",
+    },
+    {
+      label: "İşitme Cihazı Fiyatları",
+      description: "Fiyatı neyin belirlediğini ve toplam maliyet kalemlerini okuyun.",
+      href: "/isitme-cihazi-fiyatlari/",
     },
   ],
   accentColor: "#ea580c",

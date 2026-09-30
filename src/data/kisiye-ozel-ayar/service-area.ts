@@ -29,21 +29,6 @@ export const kisiyeOzelAyarServiceArea: ContactServiceAreaContent = {
       tier: "oncelikli",
       description: "Çayırova'dan da randevu alarak merkezimize ulaşabilir, ayar sürecine başlayabilirsiniz.",
     },
-    {
-      name: "Dilovası",
-      tier: "cevre",
-      description: "Dilovası çevresinden de kişiye özel ayar için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Tuzla",
-      tier: "cevre",
-      description: "Tuzla çevresinden de kişiye özel ayar için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Pendik",
-      tier: "cevre",
-      description: "Pendik çevresinden de kişiye özel ayar için bizi arayabilirsiniz.",
-    },
   ],
   closing: "Listede yer almayan bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",
 };

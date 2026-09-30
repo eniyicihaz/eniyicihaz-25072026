@@ -77,7 +77,7 @@ export const sikSorulanSorularFaq: BrandPageFaqContent = {
         {
           question: "Hangi bölgelerde hizmet veriyorsunuz?",
           answer:
-            "Merkezimiz Darıca, Gebze, Çayırova, Dilovası, Tuzla ve Pendik bölgelerinde hizmet vermektedir.",
+            "Merkezimiz Darıca'dadır; Gebze ve Çayırova'dan gelen danışanlarımızı da merkezimizde ağırlıyoruz.",
         },
       ],
     },

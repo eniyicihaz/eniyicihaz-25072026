@@ -12,21 +12,22 @@ export const maicoRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Bernafon İşitme Cihazları",
       description: "Aynı Demant Grubu çatısı altındaki farklı bir marka felsefesini karşılaştırmak isterseniz Bernafon'u inceleyin.",
-      href: "/markalar/bernafon",
+      href: "/markalar/bernafon/",
     },
   ],
   // Precomputed rgb() decomposition of #10233F.
   accentColor: "#10233F",
   accentColorBadgeBg: "rgb(16 35 63 / 0.08)",
   accentColorBadgeBorder: "rgb(16 35 63 / 0.35)",
+  accentColorBadgeText: "#0b182b",
 };

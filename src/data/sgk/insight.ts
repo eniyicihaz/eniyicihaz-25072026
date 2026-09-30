@@ -82,8 +82,8 @@ export const sgkInsight: SgkInsightContent = {
   },
   relatedLabel: "Bu konuyla ilgili devamı",
   relatedLinks: [
-    { label: "SGK Katkı Payı", href: "/sgk/katki-payi" },
-    { label: "İşitme Cihazı Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi" },
+    { label: "SGK Katkı Payı", href: "/sgk/katki-payi/" },
+    { label: "İşitme Cihazı Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi/" },
     { label: "Güncel SGK Ödeme Tutarları", href: "#sgk-payments-title" },
   ],
 };

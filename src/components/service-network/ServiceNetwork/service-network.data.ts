@@ -29,6 +29,6 @@ export const serviceNetwork: ServiceNetworkContent = {
     href: "/kocaeli-isitme-cihazlari/",
   },
   secondaryLabel: "Ayrıca",
-  secondarySentence: "Dilovası, Tuzla ve Pendik'ten de bizi arayarak ulaşabilirsiniz.",
+  secondarySentence: "Kocaeli'nin diğer ilçelerinden de bizi arayarak ulaşabilirsiniz.",
   closing: "Listede yer almayan bir bölgeden ulaşmak istiyorsanız, bizi aramanız yeterli.",
 };

@@ -112,7 +112,7 @@ export const hero: HeroContent = {
         "Avrasya İşitme Cihazları, Darıca, Kocaeli'de bulunan SGK anlaşmalı bir işitme cihazı satış ve uygulama merkezidir.",
         "İşitme kaybı yalnızca duymamak değildir. Anlamak, iletişim kurmak ve sevdiklerinizle bağ kurmaktır.",
       ],
-      cta: { label: "Ücretsiz İşitme Testi", href: "/iletisim" },
+      cta: { label: "Ücretsiz İşitme Testi", href: "/iletisim/" },
       secondaryCtas: [
         { label: "Bizi Arayın", href: "tel:+905337733199" },
         { label: "WhatsApp'tan Yaz", href: "https://wa.me/905337733199" },
@@ -136,7 +136,7 @@ export const hero: HeroContent = {
       body: [
         "Kulak arkası, kulak içi, şarjlı ve Bluetooth özellikli seçeneklerden ihtiyacınıza en uygun olanı birlikte belirleriz.",
       ],
-      cta: { label: "İşitme Cihazlarını Keşfet", href: "/isitme-cihazlari" },
+      cta: { label: "İşitme Cihazlarını Keşfet", href: "/isitme-cihazlari/" },
       visual: {
         kind: "photo",
         image: {
@@ -161,7 +161,7 @@ export const hero: HeroContent = {
       body: [
         "Uzman bir odyolog eşliğinde, baskısız ve ücretsiz bir işitme değerlendirmesiyle başlayın.",
       ],
-      cta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi" },
+      cta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
       visual: {
         kind: "photo",
         image: {
@@ -186,7 +186,7 @@ export const hero: HeroContent = {
       body: [
         "Tek bir markaya bağlı değiliz; 18'den fazla dünya markası arasından size en uygun olanı öneriyoruz.",
       ],
-      cta: { label: "Markaları Keşfet", href: "/markalar" },
+      cta: { label: "Markaları Keşfet", href: "/markalar/" },
       visual: {
         kind: "photo",
         image: {
@@ -235,7 +235,7 @@ export const hero: HeroContent = {
       heading: "İşitme Cihazı Pilleri",
       headingLevel: "h2",
       body: ["Cihazınıza uygun pil ve aksesuar seçeneklerini birlikte belirliyoruz."],
-      cta: { label: "Pilleri İncele", href: "/servis-bakim/pil-aksesuar" },
+      cta: { label: "Pilleri İncele", href: "/servis-bakim/pil-aksesuar/" },
       visual: {
         kind: "photo",
         image: {

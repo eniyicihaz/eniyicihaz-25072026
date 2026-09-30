@@ -12,32 +12,32 @@ export const kampanyalarRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Kampanya döneminde Oticon modellerini değerlendirebilirsiniz.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Kampanya döneminde Phonak modellerini değerlendirebilirsiniz.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Kampanya döneminde Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "ReSound",
       description: "Kampanya döneminde ReSound modellerini değerlendirebilirsiniz.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "Audio Service",
       description: "Kampanya döneminde Audio Service modellerini değerlendirebilirsiniz.",
-      href: "/markalar/audio-service",
+      href: "/markalar/audio-service/",
     },
     {
       label: "Tüm Markalar",
       description: "İşitme cihazı markalarının tamamını tek sayfada inceleyebilirsiniz.",
-      href: "/markalar",
+      href: "/markalar/",
     },
   ],
   accentColor: "#c026d3",

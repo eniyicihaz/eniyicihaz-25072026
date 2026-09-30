@@ -13,32 +13,32 @@ export const cihazSecimRehberiRecommendedBrands: BrandPageRelatedContentContent 
     {
       label: "Oticon",
       description: "Seçim sürecinde Oticon'un geniş model yelpazesini inceleyebilirsiniz.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Seçim sürecinde Phonak'ın geniş model yelpazesini inceleyebilirsiniz.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Seçim sürecinde Signia'nın geniş model yelpazesini inceleyebilirsiniz.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Seçim sürecinde Widex'in geniş model yelpazesini inceleyebilirsiniz.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "Seçim sürecinde ReSound'un geniş model yelpazesini inceleyebilirsiniz.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Bütçe dostu bir seçenek arıyorsanız, NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#ea580c",

@@ -18,27 +18,27 @@ export const raporSureciRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "Güncel SGK destek tutarlarını ve ödeme tablosunu inceleyin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "SGK Katkı Payı",
       description: "Katkı payının nasıl hesaplandığını genel hatlarıyla öğrenin.",
-      href: "/sgk/katki-payi",
+      href: "/sgk/katki-payi/",
     },
     {
       label: "Ücretsiz İşitme Testi",
       description: "Rapor sürecinin temelini oluşturan işitme testleri hakkında bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Gerekli Belgeler",
       description: "SGK başvurusu için gereken tüm belgeleri öğrenin.",
-      href: "/sgk/gerekli-belgeler",
+      href: "/sgk/gerekli-belgeler/",
     },
     {
       label: "Odyometri",
       description: "Raporunuzun temelini oluşturan işitme testini yakından tanıyın.",
-      href: "/degerlendirme/odyometri",
+      href: "/degerlendirme/odyometri/",
     },
   ],
   accentColor: "#0891b2",

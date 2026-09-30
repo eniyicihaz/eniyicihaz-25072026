@@ -18,27 +18,27 @@ export const yapayZekaDestekliRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Yapay zeka destekli teknolojinin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "Yapay zeka destekli işlemcinin sunulduğu, daha az fark edilen kulak içi aileyi keşfedin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Bluetooth Özellikli İşitme Cihazları",
       description: "Yapay zeka ile birlikte sıkça tercih edilen, telefon ve TV ile doğrudan bağlantı kuran modelleri inceleyin.",
-      href: "/isitme-cihazlari/bluetooth-ozellikli",
+      href: "/isitme-cihazlari/bluetooth-ozellikli/",
     },
     {
       label: "Gürültü Engelleme Teknolojisi",
       description: "Gürültülü ortamlarda konuşmayı öne çıkaran teknolojileri yakından tanıyın.",
-      href: "/teknolojiler/gurultu-engelleme",
+      href: "/teknolojiler/gurultu-engelleme/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#4f46e5",

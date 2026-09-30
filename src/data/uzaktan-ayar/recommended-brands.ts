@@ -16,32 +16,32 @@ export const uzaktanAyarRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un RemoteCare özelliği, uygun modellerde uzaktan ayar oturumlarını destekler.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Remote Support özelliği, myPhonak uygulaması üzerinden uzaktan destek sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın TeleCare özelliği, uzun süredir bilinen bir uzaktan destek yaklaşımıdır.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in Remote Care özelliği, uygun modellerde uzaktan ayar imkânı sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Assist özelliği, canlı uzaktan programlama desteği sunar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun modelleri de uzaktan ayar açısından değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#16a34a",

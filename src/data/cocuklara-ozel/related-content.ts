@@ -16,27 +16,27 @@ export const cocuklaraOzelRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Çocuklarda en sık tercih edilen, büyüyen kulağa kolayca uyarlanabilen cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Şarj Edilebilir İşitme Cihazları",
       description: "Küçük pillerle uğraşmadan, tek dokunuşla dolan şarjlı modelleri keşfedin.",
-      href: "/isitme-cihazlari/sarj-edilebilir",
+      href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
       label: "Bluetooth Özellikli İşitme Cihazları",
       description: "Okulda eğitim materyalleriyle veya evde tabletle kablosuz bağlantı kuran modelleri inceleyin.",
-      href: "/isitme-cihazlari/bluetooth-ozellikli",
+      href: "/isitme-cihazlari/bluetooth-ozellikli/",
     },
     {
       label: "Suya Dayanıklı İşitme Cihazları",
       description: "Aktif ve hareketli çocuklar için suya ve neme dayanıklı modelleri yakından tanıyın.",
-      href: "/isitme-cihazlari/suya-dayanikli",
+      href: "/isitme-cihazlari/suya-dayanikli/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#e11d48",

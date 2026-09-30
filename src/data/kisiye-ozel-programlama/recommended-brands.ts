@@ -15,32 +15,32 @@ export const kisiyeOzelProgramlamaRecommendedBrands: BrandPageRelatedContentCont
     {
       label: "Oticon",
       description: "Oticon'un Genie 2 yazılımı, kullanım verilerine dayalı ince ayar seçenekleri sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Target yazılımı, çoklu ortam programları oluşturmaya imkân tanır.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Connexx yazılımı, kişiye özel ince ayar seçenekleriyle bilinir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in Compass GPS yazılımı, hassas kazanç ve sıkıştırma ayarları sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Smart Fit yazılımı, uzaktan ince ayar desteğiyle de değerlendirilebilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri de aynı özenle kişiye özel ince ayarlanır.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#7c3aed",

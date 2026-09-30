@@ -17,32 +17,32 @@ export const yapayZekaDestekliRecommendedBrands: BrandPageRelatedContentContent 
     {
       label: "Oticon",
       description: "Oticon'un Intent ailesi, derin sinir ağı (DNN) teknolojisiyle BrainHearing® felsefesini bir araya getirir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın yapay zeka destekli aileleri, gelişmiş ses sınıflandırma teknolojisiyle ortama otomatik uyum sağlar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın yapay zeka destekli modelleri, gerçek zamanlı ses işleme teknolojisiyle doğal bir dinleme deneyimi sunar.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in yapay zeka destekli modelleri, markanın doğal ses felsefesini akıllı ortam optimizasyonuyla birleştirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Nexia ailesi, yapay zeka destekli ses işleme teknolojisiyle öne çıkan bir seçenektir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve akıllı çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#4f46e5",

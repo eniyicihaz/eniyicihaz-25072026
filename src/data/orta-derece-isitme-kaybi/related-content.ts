@@ -16,27 +16,27 @@ export const ortaDereceIsitmeKaybiRelatedContent: BrandPageRelatedContentContent
     {
       label: "Hafif İşitme Kaybı",
       description: "Bir önceki dereceyi ve bu derecede sıkça tercih edilen cihazları yakından tanıyın.",
-      href: "/ihtiyaciniza-gore/hafif-isitme-kaybi",
+      href: "/ihtiyaciniza-gore/hafif-isitme-kaybi/",
     },
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Orta dereceli kayıplarda sıkça tercih edilen, geniş kayıp aralığına uygun cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "Orta dereceli kayıplarda bazı modelleri uygun olabilecek kulak içi aileyi keşfedin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "İleri Derece İşitme Kaybı",
       description: "Bir sonraki dereceyi ve bu derecede sıkça tercih edilen cihazları yakından tanıyın.",
-      href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi",
+      href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#16a34a",

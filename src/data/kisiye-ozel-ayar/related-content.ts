@@ -11,32 +11,32 @@ export const kisiyeOzelAyarRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kişiye Özel Programlama",
       description: "Cihazınız zaten var ve geri bildirime dayalı ince ayar mı istiyorsunuz? Devam eden programlama sürecini inceleyin.",
-      href: "/uygulama-ayar/kisiye-ozel-programlama",
+      href: "/uygulama-ayar/kisiye-ozel-programlama/",
     },
     {
       label: "Ücretsiz İşitme Testi",
       description: "Ayar sürecinden önce Darıca'daki merkezimizde ücretsiz işitme testinizi yaptırın.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Cihaz Deneme",
       description: "Cihazı satın almadan önce günlük yaşamınızda deneme imkanını tanıyın.",
-      href: "/uygulama-ayar/cihaz-deneme",
+      href: "/uygulama-ayar/cihaz-deneme/",
     },
     {
       label: "İşitme Cihazları",
       description: "Sunduğumuz işitme cihazı kategorilerine ve çözümlere genel bir bakış.",
-      href: "/isitme-cihazlari",
+      href: "/isitme-cihazlari/",
     },
     {
       label: "Markalar",
       description: "Çalıştığımız markaları ve modelleri inceleyin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "İletişim",
       description: "Sorularınız için bize ulaşın veya randevu talebinde bulunun.",
-      href: "/iletisim",
+      href: "/iletisim/",
     },
   ],
   accentColor: "#4f46e5",

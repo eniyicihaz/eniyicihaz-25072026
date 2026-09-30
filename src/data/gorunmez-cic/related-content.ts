@@ -16,27 +16,27 @@ export const gorunmezCicRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "CIC/IIC'nin de içinde yer aldığı kulak içi ailesinin tüm alt tiplerini inceleyin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Daha geniş kayıp aralığı ve ek özellik desteği sunan alternatif cihaz ailesini keşfedin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Bluetooth Özellikli İşitme Cihazları",
       description: "Telefon ve TV ile doğrudan kablosuz bağlantı kuran modelleri inceleyin.",
-      href: "/isitme-cihazlari/bluetooth-ozellikli",
+      href: "/isitme-cihazlari/bluetooth-ozellikli/",
     },
     {
       label: "Suya Dayanıklı İşitme Cihazları",
       description: "Nem ve suya karşı ek koruma sunan modelleri yakından tanıyın.",
-      href: "/isitme-cihazlari/suya-dayanikli",
+      href: "/isitme-cihazlari/suya-dayanikli/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#475569",

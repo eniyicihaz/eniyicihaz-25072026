@@ -16,32 +16,32 @@ export const kablosuzBaglantiRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "Oticon'un kablosuz bağlantı özellikleri, telesarmal ve uzaktan mikrofon uyumluluğuyla geniş bir aksesuar desteği sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Roger ekosistemi ve CROS/BiCROS sistemleri, kablosuz bağlantı konusunda öne çıkan çözümler sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın kablosuz bağlantı özellikleri, telesarmal ve uzaktan mikrofon aksesuarlarıyla uyumlu çalışır.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in kablosuz bağlantı desteği, markanın doğal ses felsefesini geniş aksesuar uyumluluğuyla birleştirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un kablosuz bağlantı özellikleri, telesarmal ve uzaktan mikrofon sistemleriyle sıkça değerlendirilen bir seçenektir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve geniş uyumluluk arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#65a30d",

@@ -16,32 +16,32 @@ export const tekTarafliIsitmeKaybiRecommendedBrands: BrandPageRelatedContentCont
     {
       label: "Oticon",
       description: "Oticon'un CROS uyumlu modelleri, tek taraflı işitme kaybında kablosuz aktarım seçenekleri sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın CROS/BiCROS sistemleri, tek taraflı işitme kaybında en sık tercih edilen, köklü bir çözüm ailesidir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın kablosuz aktarım sistemleri, tek taraflı kayıplarda sıkça değerlendirilen bir seçenektir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in tek taraflı çözümleri, markanın doğal ses felsefesini kablosuz aktarımla birleştirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un tek taraflı sistemleri, iyi duyan kulağa kablosuz aktarım sağlayan modellerdir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı tek taraflı çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#52525b",

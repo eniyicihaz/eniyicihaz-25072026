@@ -15,32 +15,32 @@ export const garantiIslemleriRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "Oticon cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri de yetkili kanaldan alındığında garanti kapsamındadır.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#4f46e5",

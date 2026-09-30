@@ -14,22 +14,22 @@ export const onlineIsitmeTestiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Ücretsiz İşitme Testi",
       description: "Darıca'daki merkezimizde odyometrist eşliğinde yapılan klinik testle farkını görün.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Odyometri",
       description: "Klinik ortamda işitme eşiğinin nasıl ölçüldüğünü daha yakından tanıyın.",
-      href: "/degerlendirme/odyometri",
+      href: "/degerlendirme/odyometri/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "İşitme Cihazları",
       description: "Farklı ihtiyaçlara uygun işitme cihazı tiplerini keşfedin.",
-      href: "/isitme-cihazlari",
+      href: "/isitme-cihazlari/",
     },
   ],
   accentColor: "#e11d48",

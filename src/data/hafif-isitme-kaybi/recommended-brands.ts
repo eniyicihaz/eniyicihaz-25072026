@@ -16,32 +16,32 @@ export const hafifIsitmeKaybiRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "Oticon'un Ruby ailesi, hafif ve orta dereceli kayıplar için sıkça değerlendirilen, uygun fiyatlı ve etkili bir seçenektir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın ince RIC modelleri, hafif kayıplarda görünürlüğü önceliklendiren kullanıcılar için sıkça tercih edilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın açık kalıplı modelleri, hafif kayıplarda doğal ses algısını korumayı hedefler.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in Allure ailesi, hafif kayıplarda görünürlüğü öncelikleyen kullanıcılar için özel üretilen kulak içi seçenekler sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Key ailesi, hafif ve orta dereceli kayıplar için uygun fiyatlı bir seçenektir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve güvenilir çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#db2777",

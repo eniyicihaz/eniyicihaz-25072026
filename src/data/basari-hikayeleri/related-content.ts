@@ -13,27 +13,27 @@ export const basariHikayeleriRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Ücretsiz İşitme Testi",
       description: "Kendi durumunuzu netleştirmek için ücretsiz işitme testi hakkında bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Uyum Süreci",
       description: "Yeni bir cihaza alışma sürecinin nasıl işlediğini öğrenin.",
-      href: "/rehberler/uyum-sureci",
+      href: "/rehberler/uyum-sureci/",
     },
     {
       label: "Cihaz Deneme",
       description: "İlgilendiğiniz modelleri satın almadan önce deneyebilirsiniz.",
-      href: "/uygulama-ayar/cihaz-deneme",
+      href: "/uygulama-ayar/cihaz-deneme/",
     },
     {
       label: "Cihaz Seçim Rehberi",
       description: "Size uygun cihazı seçerken nelere dikkat etmeniz gerektiğini öğrenin.",
-      href: "/rehberler/cihaz-secim-rehberi",
+      href: "/rehberler/cihaz-secim-rehberi/",
     },
     {
       label: "İşitme Cihazı Markaları",
       description: "Farklı marka ve modelleri tek sayfada inceleyin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
   ],
   accentColor: "#ea580c",

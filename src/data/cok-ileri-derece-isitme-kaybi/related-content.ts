@@ -18,17 +18,17 @@ export const cokIleriDereceIsitmeKaybiRelatedContent: BrandPageRelatedContentCon
     {
       label: "İleri Derece İşitme Kaybı",
       description: "Bir önceki dereceyi ve bu derecede sıkça tercih edilen cihazları yakından tanıyın.",
-      href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi",
+      href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/",
     },
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Çok ileri dereceli kayıplarda birincil seçenek olan power BTE ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Şarj Edilebilir İşitme Cihazları",
       description: "Güçlü modellerde sıkça bir arada sunulan, pil değiştirmeden gün boyu kullanım sağlayan şarjlı seçenekleri keşfedin.",
-      href: "/isitme-cihazlari/sarj-edilebilir",
+      href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
       label: "Tek Taraflı İşitme Kaybı",
@@ -38,7 +38,7 @@ export const cokIleriDereceIsitmeKaybiRelatedContent: BrandPageRelatedContentCon
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#92400e",

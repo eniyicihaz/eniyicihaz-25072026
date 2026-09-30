@@ -17,27 +17,27 @@ export const uyumSureciRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "İlk Kullanım Rehberi",
       description: "Cihazınızla geçireceğiniz ilk günler için pratik bir başlangıç noktası edinin.",
-      href: "/rehberler/ilk-kullanim-rehberi",
+      href: "/rehberler/ilk-kullanim-rehberi/",
     },
     {
       label: "Kişiye Özel Programlama",
       description: "Sürekli bir rahatsızlık yaşıyorsanız, kişiye özel ince ayar sürecini keşfedin.",
-      href: "/uygulama-ayar/kisiye-ozel-programlama",
+      href: "/uygulama-ayar/kisiye-ozel-programlama/",
     },
     {
       label: "Kontrol Randevusu",
       description: "Düzenli kontrol randevularının uyum sürecinizi nasıl desteklediğini öğrenin.",
-      href: "/uygulama-ayar/kontrol-randevusu",
+      href: "/uygulama-ayar/kontrol-randevusu/",
     },
     {
       label: "Cihaz Seçim Rehberi",
       description: "İhtiyacınıza uygun işitme cihazını nasıl seçeceğinizi öğrenin.",
-      href: "/rehberler/cihaz-secim-rehberi",
+      href: "/rehberler/cihaz-secim-rehberi/",
     },
     {
       label: "İşitme Kaybı Nedir?",
       description: "İşitme kaybının türlerini ve nedenlerini yakından tanıyın.",
-      href: "/rehberler/isitme-kaybi-nedir",
+      href: "/rehberler/isitme-kaybi-nedir/",
     },
   ],
   accentColor: "#7c3aed",

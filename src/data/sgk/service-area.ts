@@ -31,21 +31,6 @@ export const sgkServiceArea: ContactServiceAreaContent = {
       tier: "oncelikli",
       description: "Çayırova'dan da randevu alarak merkezimize ulaşabilir, aynı süreçten faydalanabilirsiniz.",
     },
-    {
-      name: "Dilovası",
-      tier: "cevre",
-      description: "Dilovası çevresinden de SGK işitme cihazı süreci için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Tuzla",
-      tier: "cevre",
-      description: "Tuzla çevresinden de SGK işitme cihazı süreci için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Pendik",
-      tier: "cevre",
-      description: "Pendik çevresinden de SGK işitme cihazı süreci için bizi arayabilirsiniz.",
-    },
   ],
   closing: "Listede yer almayan bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",
 };

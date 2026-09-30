@@ -15,27 +15,27 @@ export const gerekliBelgelerRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Rapor Süreci",
       description: "Başvurunuzun temelini oluşturan sağlık kurulu raporu ve reçete sürecini öğrenin.",
-      href: "/sgk/rapor-sureci",
+      href: "/sgk/rapor-sureci/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "Güncel SGK destek tutarlarını ve ödeme tablosunu inceleyin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Çocuklarda SGK",
       description: "Çocuk başvurularında istenen ek belgeleri ve süreci öğrenin.",
-      href: "/sgk/cocuklarda-sgk",
+      href: "/sgk/cocuklarda-sgk/",
     },
     {
       label: "Yenileme Hakkı",
       description: "Cihaz yenileme başvurusunda istenen belgeleri öğrenin.",
-      href: "/sgk/yenileme-hakki",
+      href: "/sgk/yenileme-hakki/",
     },
     {
       label: "Ücretsiz İşitme Testi",
       description: "SGK sürecinin ilk adımı olan ücretsiz işitme testi hakkında bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
   ],
   accentColor: "#4f46e5",

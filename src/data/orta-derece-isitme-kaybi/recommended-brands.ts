@@ -15,32 +15,32 @@ export const ortaDereceIsitmeKaybiRecommendedBrands: BrandPageRelatedContentCont
     {
       label: "Oticon",
       description: "Oticon'un Real ailesi, orta dereceli kayıplarda dengeli ses gücü ve BrainHearing® felsefesini bir araya getirir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın standart RIC modelleri, orta dereceli kayıplarda sıkça tercih edilen güçlü ve güvenilir seçeneklerdir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın orta segment modelleri, orta dereceli kayıplarda dengeli bir ses gücü sunar.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in orta dereceye uygun modelleri, markanın doğal ses felsefesini yeterli amplifikasyonla birleştirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un orta dereceye uygun aileleri, gürültü azaltma özellikleriyle sıkça değerlendirilen bir seçenektir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve etkili çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#16a34a",

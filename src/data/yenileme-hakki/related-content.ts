@@ -15,27 +15,32 @@ export const yenilemeHakkiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "Güncel SGK destek tutarlarını ve yenileme süresini inceleyin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "SGK Katkı Payı",
       description: "Yeni cihazınız için katkı payının nasıl hesaplandığını öğrenin.",
-      href: "/sgk/katki-payi",
+      href: "/sgk/katki-payi/",
     },
     {
       label: "Rapor Süreci",
       description: "Yenileme başvurunuz için güncel rapor sürecini öğrenin.",
-      href: "/sgk/rapor-sureci",
+      href: "/sgk/rapor-sureci/",
     },
     {
       label: "Gerekli Belgeler",
       description: "Yenileme başvurusu için gereken belgeleri öğrenin.",
-      href: "/sgk/gerekli-belgeler",
+      href: "/sgk/gerekli-belgeler/",
     },
     {
       label: "Çocuklarda SGK",
       description: "Çocuklarda yenileme sürecinin farklarını öğrenin.",
-      href: "/sgk/cocuklarda-sgk",
+      href: "/sgk/cocuklarda-sgk/",
+    },
+    {
+      label: "İşitme Cihazı Fiyatları",
+      description: "Fiyatı neyin belirlediğini ve toplam maliyet kalemlerini okuyun.",
+      href: "/isitme-cihazi-fiyatlari/",
     },
   ],
   accentColor: "#0d9488",

@@ -17,32 +17,32 @@ export const gorunmezCicRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un kulak içi aileleri, BrainHearing® felsefesini kulak kanalınıza özel üretilen bir kabukla bir araya getirir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Virto ailesi, kulak kanalınıza özel üretilen, görünürlüğü önceliklendiren kulak içi modellerdir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Insio ailesi, kulak izinize özel üretilen, görünürlüğü öne çıkaran kulak içi seçeneklerdir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in kulak içi modelleri, markanın doğal ses felsefesini kulak kanalınıza özel bir kabukla sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un kulak içi aileleri, görünürlüğü öncelikleyen kullanıcılar için sıkça değerlendirilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve güvenilir kulak içi çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#475569",

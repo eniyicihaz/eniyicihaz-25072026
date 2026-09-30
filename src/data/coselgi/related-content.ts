@@ -12,21 +12,22 @@ export const coselgiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Widex İşitme Cihazları",
       description: "Coselgi'nin bağlı olduğu ana markanın kendi teknolojisini incelemek isterseniz Widex'i keşfedin.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
   ],
   // Precomputed rgb() decomposition of #1595D8.
   accentColor: "#1595D8",
   accentColorBadgeBg: "rgb(21 149 216 / 0.08)",
   accentColorBadgeBorder: "rgb(21 149 216 / 0.35)",
+  accentColorBadgeText: "#0e6593",
 };

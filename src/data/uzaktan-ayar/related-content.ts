@@ -16,27 +16,27 @@ export const uzaktanAyarRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Uzaktan Kontrol Özellikleri",
       description: "Uzaktan ayarın dayandığı teknolojiyi ve tüm özelliklerini yakından tanıyın.",
-      href: "/teknolojiler/uzaktan-kontrol",
+      href: "/teknolojiler/uzaktan-kontrol/",
     },
     {
       label: "Kişiye Özel Programlama",
       description: "Kapsamlı ince ayar ihtiyaçları için yüz yüze programlama sürecini keşfedin.",
-      href: "/uygulama-ayar/kisiye-ozel-programlama",
+      href: "/uygulama-ayar/kisiye-ozel-programlama/",
     },
     {
       label: "Cihaz Uygulama",
       description: "İlk uygulama randevusunun nasıl işlediğini yakından tanıyın.",
-      href: "/uygulama-ayar/cihaz-uygulama",
+      href: "/uygulama-ayar/cihaz-uygulama/",
     },
     {
       label: "Kontrol Randevusu",
       description: "Düzenli kontrol randevularının kapsamı hakkında bilgi edinin.",
-      href: "/uygulama-ayar/kontrol-randevusu",
+      href: "/uygulama-ayar/kontrol-randevusu/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#16a34a",

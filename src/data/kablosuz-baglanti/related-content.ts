@@ -16,27 +16,27 @@ export const kablosuzBaglantiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Bluetooth Özellikli İşitme Cihazları",
       description: "Telefon ve TV ile doğrudan kablosuz bağlantı kuran modelleri inceleyin.",
-      href: "/isitme-cihazlari/bluetooth-ozellikli",
+      href: "/isitme-cihazlari/bluetooth-ozellikli/",
     },
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Kablosuz bağlantı protokollerinin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Konuşma Odaklı Teknolojiler",
       description: "Kulaktan kulağa bağlantıyla birlikte çalışan yönlü mikrofon teknolojilerini keşfedin.",
-      href: "/teknolojiler/konusma-odakli",
+      href: "/teknolojiler/konusma-odakli/",
     },
     {
       label: "Şarjlı Teknolojiler",
       description: "Kablosuz bağlantı özellikleriyle sıkça bir arada sunulan şarjlı modelleri yakından tanıyın.",
-      href: "/teknolojiler/sarjli-teknolojiler",
+      href: "/teknolojiler/sarjli-teknolojiler/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#65a30d",

@@ -50,11 +50,11 @@ export const oticonComparison: OticonComparisonContent = {
   accentColor: "#5fb85a",
   accentColorBadgeBg: "rgb(95 184 90 / 0.08)",
   accentColorBadgeBorder: "rgb(95 184 90 / 0.35)",
-  accentColorBadgeText: "#4a9a45",
+  accentColorBadgeText: "#36792f",
   accentColorNewTagBg: "rgb(95 184 90 / 0.14)",
   accentColorIconBg: "rgb(95 184 90 / 0.1)",
   accentColorLevelTagBg: "rgb(95 184 90 / 0.12)",
-  accentColorDark: "#3f8a3a",
+  accentColorDark: "#2f7a2b",
   rows: [
     { series: "Zeal", isNew: true, technology: "Yeni Nesil", profile: "Premium Kullanıcılar", profileIcon: Sparkles, levelLabel: "Yeni Seri" },
     { series: "Intent", technology: "4D Sensör", profile: "Premium", profileIcon: Sparkles, levelCount: 4 },

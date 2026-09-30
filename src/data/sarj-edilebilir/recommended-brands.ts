@@ -15,32 +15,32 @@ export const sarjEdilebilirRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un şarj edilebilir modelleri, BrainHearing® felsefesini gün boyu kesintisiz kullanımla bir araya getirir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın şarj edilebilir RIC aileleri, Roger ekosistemiyle uyumlu, uzun pil ömrü sunan modellerdir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Styletto ve Pure gibi şarjlı aileleri, ince tasarımı gün boyu kullanımla bir araya getirir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in şarj edilebilir modelleri, markanın doğal ses felsefesini pil değiştirme derdi olmadan sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un şarj edilebilir aileleri, günlük kullanım kolaylığı arayan kullanıcılar için sıkça değerlendirilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve güvenilir şarjlı çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#059669",

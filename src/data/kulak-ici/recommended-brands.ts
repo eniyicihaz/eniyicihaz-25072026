@@ -15,32 +15,32 @@ export const kulakIciRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un kişiye özel üretilen kulak içi modelleri, BrainHearing® felsefesini kompakt bir kabukta sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Virto ailesi, kulak içi kategorisinde uzun süredir bilinen, farklı boyut seçenekleri sunan bir model hattıdır.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Insio ailesi, yapay zekâ destekli işitme teknolojisini kişiye özel kulak içi kabuklarla bir araya getirir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in kişiye özel kulak içi modelleri, markanın doğal ses felsefesini kompakt bir gövdede sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un kişiye özel kulak içi aileleri, hafif ile orta-ileri derece kayıplarda sıkça değerlendirilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve güvenilir kulak içi çözümler arayanlar için NuEar'ın kişiye özel modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#7c3aed",

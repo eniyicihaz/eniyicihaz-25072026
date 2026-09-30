@@ -17,27 +17,27 @@ export const sarjliTeknolojilerRelatedContent: BrandPageRelatedContentContent = 
     {
       label: "Şarj Edilebilir İşitme Cihazları",
       description: "Şarjlı seçeneğin hangi cihaz tiplerinde bulunduğunu ve şarj yöntemlerini keşfedin.",
-      href: "/isitme-cihazlari/sarj-edilebilir",
+      href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Şarjlı teknolojinin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kablosuz Bağlantı Özellikleri",
       description: "Şarjlı modellerle sıkça bir arada sunulan telesarmal ve uzaktan mikrofon teknolojilerini inceleyin.",
-      href: "/teknolojiler/kablosuz-baglanti",
+      href: "/teknolojiler/kablosuz-baglanti/",
     },
     {
       label: "Uzaktan Kontrol Özellikleri",
       description: "Cihazınızı uzaktan yönetmenizi sağlayan uygulama ve aksesuar teknolojilerini yakından tanıyın.",
-      href: "/teknolojiler/uzaktan-kontrol",
+      href: "/teknolojiler/uzaktan-kontrol/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#dc2626",

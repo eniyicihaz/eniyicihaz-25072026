@@ -14,32 +14,32 @@ export const kalipAlimiRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un kulak arkası modelleri, kişiye özel kulak kalıbıyla birlikte kullanılabilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın kulak arkası modelleri, özel kalıp seçeneğiyle birlikte değerlendirilebilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın kulak içi modelleri, kulak kalıbınıza özel olarak üretilir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in kulak arkası modelleri, kişiye özel kulak kalıbıyla birlikte kullanılabilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un kulak içi modelleri, kulak kalıbınıza özel olarak üretilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı kulak arkası modelleri de özel kalıp seçeneğiyle kullanılabilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#db2777",

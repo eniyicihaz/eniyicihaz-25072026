@@ -64,10 +64,10 @@ const breadcrumbSchema = {
 const medicalBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
-  "@id": "https://www.eniyicihaz.com/#organization",
+  "@id": BUSINESS_ID,
   name: company.legalName,
   description: company.about,
-  url: PAGE_URL,
+  url: BUSINESS_URL,
   telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
   email: company.email,
   address: {
@@ -96,13 +96,14 @@ const medicalBusinessSchema = {
       closes: "19:00",
     },
   ],
-  areaServed: ["Darıca", "Gebze", "Çayırova", "Kocaeli"],
+  areaServed: SERVICE_AREA_NAMES,
 };
+import { BUSINESS_ID, BUSINESS_URL, SERVICE_AREA_NAMES } from "../lib/schema";
 ---
 
 <MainLayout
   title="Avrasya İşitme Cihazları Hakkında | Darıca İşitme Merkezi | EniyiCihaz"
-  description="Avrasya İşitme Cihazları, 2009'dan beri Darıca'da SGK anlaşmalı bir işitme merkezidir. Değerlendirme, cihaz uygulaması ve satış sonrası destekle Gebze ve Çayırova'dan gelenlere de hizmet veriyoruz."
+  description="Avrasya İşitme Cihazları, 2009'dan beri Darıca'da SGK anlaşmalı işitme merkezidir; Gebze ve Çayırova'dan gelenlere de değerlendirme, cihaz uygulaması ve destek sunar."
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />

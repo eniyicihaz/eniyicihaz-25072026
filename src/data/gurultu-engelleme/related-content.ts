@@ -16,27 +16,27 @@ export const gurultuEngellemeRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Gürültü engelleme teknolojisinin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "Gürültü engelleme özelliğinin sunulduğu, daha az fark edilen kulak içi aileyi keşfedin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Yapay Zeka Destekli Cihazlar",
       description: "Gürültü sınıflandırmasını bir üst seviyeye taşıyan yapay zeka destekli işlemcileri inceleyin.",
-      href: "/teknolojiler/yapay-zeka-destekli",
+      href: "/teknolojiler/yapay-zeka-destekli/",
     },
     {
       label: "Konuşma Odaklı Teknolojiler",
       description: "Konuşmayı öne çıkaran yönlü mikrofon ve odaklanma teknolojilerini yakından tanıyın.",
-      href: "/teknolojiler/konusma-odakli",
+      href: "/teknolojiler/konusma-odakli/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#c026d3",

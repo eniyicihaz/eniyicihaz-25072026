@@ -14,32 +14,32 @@ export const uyumSureciRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un fitting yazılımı, kademeli bir uyum yaklaşımını desteklemek üzere ayarlanabilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın fitting yazılımı, kademeli bir uyum yaklaşımını desteklemek üzere ayarlanabilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın fitting yazılımı, kademeli bir uyum yaklaşımını desteklemek üzere ayarlanabilir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in fitting yazılımı, kademeli bir uyum yaklaşımını desteklemek üzere ayarlanabilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un fitting yazılımı, kademeli bir uyum yaklaşımını desteklemek üzere ayarlanabilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri için de kademeli bir uyum yaklaşımı değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#7c3aed",

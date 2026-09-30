@@ -11,32 +11,32 @@ export const etkinliklerRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Etkinliklerimizde Oticon modelleri hakkında bilgi alabilirsiniz.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Etkinliklerimizde Phonak modelleri hakkında bilgi alabilirsiniz.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Etkinliklerimizde Signia modelleri hakkında bilgi alabilirsiniz.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "ReSound",
       description: "Etkinliklerimizde ReSound modelleri hakkında bilgi alabilirsiniz.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "Vista",
       description: "Etkinliklerimizde Vista modelleri hakkında bilgi alabilirsiniz.",
-      href: "/markalar/vista",
+      href: "/markalar/vista/",
     },
     {
       label: "Tüm Markalar",
       description: "İşitme cihazı markalarının tamamını tek sayfada inceleyebilirsiniz.",
-      href: "/markalar",
+      href: "/markalar/",
     },
   ],
   accentColor: "#059669",

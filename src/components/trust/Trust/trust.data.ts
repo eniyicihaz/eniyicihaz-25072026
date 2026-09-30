@@ -22,7 +22,7 @@ export const trust: TrustContent = {
     {
       title: "SGK anlaşmalı",
       description: "Resmî olarak SGK ile anlaşmalı bir işitme merkeziyiz.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
       linkLabel: "SGK süreci hakkında bilgi alın",
     },
     {
@@ -32,7 +32,7 @@ export const trust: TrustContent = {
     },
   ],
   serviceAreaSentence: "Darıca merkezli; Gebze ve Çayırova'dan da kolayca ulaşabilirsiniz.",
-  serviceAreaHref: "/iletisim",
+  serviceAreaHref: "/iletisim/",
   closingSentence:
     "Bu ilişki, ilk ziyaretle sınırlı değil — 2009'dan beri süregelen aynı güvenle devam ediyor.",
 };

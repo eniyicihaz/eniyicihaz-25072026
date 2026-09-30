@@ -123,7 +123,7 @@ const { data } = Astro.props;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--bpt-badge-text);
+    color: color-mix(in srgb, var(--bpt-badge-text) 84%, #000);
   }
 
   .brand-page-tech__heading {
@@ -172,7 +172,7 @@ const { data } = Astro.props;
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--bpt-accent);
+    color: color-mix(in srgb, var(--bpt-accent) 58%, #000);
   }
 
   .brand-page-tech__title {

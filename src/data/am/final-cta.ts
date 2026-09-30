@@ -21,7 +21,7 @@ export const amFinalCta: BrandPageFinalCtaContent = {
   ],
   // Precomputed rgb() decomposition of #F3701A.
   accentColor: "#F3701A",
-  accentColorHover: "#C25710",
+  accentColorHover: "#A34A0C",
   accentColorGlow: "rgb(243 112 26 / 0.22)",
   accentColorShadow: "rgb(243 112 26 / 0.55)",
   accentColorShadowHover: "rgb(243 112 26 / 0.65)",

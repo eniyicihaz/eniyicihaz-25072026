@@ -13,32 +13,32 @@ export const periyodikBakimRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri için de uyumlu bakım parçaları mevcuttur.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#65a30d",

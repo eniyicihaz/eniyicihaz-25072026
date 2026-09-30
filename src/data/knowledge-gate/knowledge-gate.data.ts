@@ -23,9 +23,9 @@ export const knowledgeGate: KnowledgeGateContent = {
   heading: "Henüz Karar Vermediyseniz, Öğrenmeye Devam Edin",
   intro: "İşitme sağlığı hakkında merak ettikleriniz için hazırladığımız rehberlere göz atabilirsiniz.",
   topics: [
-    { label: "İşitme Kaybı Nedir?", href: "/rehberler/isitme-kaybi-nedir" },
-    { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi" },
-    { label: "İlk Kullanım Rehberi", href: "/rehberler/ilk-kullanim-rehberi" },
+    { label: "İşitme Kaybı Nedir?", href: "/rehberler/isitme-kaybi-nedir/" },
+    { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi/" },
+    { label: "İlk Kullanım Rehberi", href: "/rehberler/ilk-kullanim-rehberi/" },
   ],
-  hubCta: { label: "Bilgi Merkezi'ni Keşfedin", href: "/bilgi-merkezi" },
+  hubCta: { label: "Bilgi Merkezi'ni Keşfedin", href: "/bilgi-merkezi/" },
 };

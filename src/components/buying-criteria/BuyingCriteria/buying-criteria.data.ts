@@ -46,5 +46,5 @@ export const buyingCriteria: BuyingCriteriaContent = {
     },
   ],
   closing: "Bu kriterleri birlikte netleştirmek isterseniz, ücretsiz değerlendirmemizde konuşabiliriz.",
-  hubCta: { label: "Cihaz tiplerini keşfedin", href: "/isitme-cihazlari" },
+  hubCta: { label: "Cihaz tiplerini keşfedin", href: "/isitme-cihazlari/" },
 };

@@ -152,7 +152,7 @@ const { data } = Astro.props;
     font-weight: var(--font-weight-bold);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--hvh-accent);
+    color: color-mix(in srgb, var(--hvh-accent) 74%, #000);
   }
 
   .home-visit-hero__heading {
@@ -206,7 +206,7 @@ const { data } = Astro.props;
   }
 
   .home-visit-hero__cta--primary {
-    background: var(--hvh-accent);
+    background: color-mix(in srgb, var(--hvh-accent) 78%, #000);
     color: var(--color-text-inverse);
   }
 
@@ -280,7 +280,7 @@ const { data } = Astro.props;
   .home-visit-hero__route-label {
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text-soft);
+    color: var(--color-text-muted);
   }
 
   .home-visit-hero__route-line {

@@ -12,32 +12,32 @@ export const yeniTeknolojilerRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "Yapay zeka destekli ses işleme teknolojileriyle öne çıkan modeller sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Geniş kablosuz bağlantı ve uzaktan kontrol seçenekleri sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Akıllı telefon entegrasyonu güçlü modelleriyle bilinir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "ReSound",
       description: "Bağlantılı ve akıllı işitme cihazı çözümleriyle öne çıkar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "Widex",
       description: "Doğal ses deneyimi odaklı teknolojileriyle bilinir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "Unitron",
       description: "Şarj edilebilir ve bağlantılı modelleriyle pratik bir kullanım sunar.",
-      href: "/markalar/unitron",
+      href: "/markalar/unitron/",
     },
   ],
   accentColor: "#2563eb",

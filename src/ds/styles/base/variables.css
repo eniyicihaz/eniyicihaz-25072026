@@ -59,6 +59,7 @@
 
     --font-family-base:
         Inter,
+        "Inter Fallback",
         system-ui,
         -apple-system,
         BlinkMacSystemFont,

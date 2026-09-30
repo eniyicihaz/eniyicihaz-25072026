@@ -17,32 +17,32 @@ export const konusmaOdakliRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un BrainHearing® felsefesi, beynin doğal yön belirleme yeteneğini destekleyen bir yaklaşım sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın StereoZoom gibi yönlü mikrofon teknolojileri, gürültülü ortamlarda konuşmayı öne çıkarmayı hedefler.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın yönlü mikrofon sistemleri, gerçek zamanlı sinyal işlemeyle konuşma netliğini artırmayı hedefler.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in yönlü odaklanma teknolojisi, markanın doğal ses felsefesini konuşma netliğiyle bir araya getirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Nexia ailesi, kulağın doğal yön belirleme özelliğinden faydalanan M&RIE tasarımıyla öne çıkar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve etkili yönlü mikrofon çözümleri arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#ea580c",

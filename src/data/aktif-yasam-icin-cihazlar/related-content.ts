@@ -19,27 +19,27 @@ export const aktifYasamIcinCihazlarRelatedContent: BrandPageRelatedContentConten
     {
       label: "Suya Dayanıklı Cihazlar",
       description: "Yüksek IP koruma sınıfına sahip ter ve neme dayanıklı sistemleri inceleyin.",
-      href: "/isitme-cihazlari/suya-dayanikli",
+      href: "/isitme-cihazlari/suya-dayanikli/",
     },
     {
       label: "Şarj Edilebilir Cihazlar",
       description: "Hızlı şarj ve uzun pil ömrü sunan sistemleri keşfedin.",
-      href: "/isitme-cihazlari/sarj-edilebilir",
+      href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
       label: "Bluetooth Özellikli Cihazlar",
       description: "Egzersiz sırasında telefon ve müzik bağlantısı sağlayan modelleri inceleyin.",
-      href: "/isitme-cihazlari/bluetooth-ozellikli",
+      href: "/isitme-cihazlari/bluetooth-ozellikli/",
     },
     {
       label: "Yaşlılar İçin Cihazlar",
       description: "Farklı bir ihtiyaç grubu için sıkça değerlendirilen cihaz özelliklerini tanıyın.",
-      href: "/ihtiyaciniza-gore/yaslilar-icin-cihazlar",
+      href: "/ihtiyaciniza-gore/yaslilar-icin-cihazlar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#4b5563",

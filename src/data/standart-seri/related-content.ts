@@ -16,27 +16,32 @@ export const standartSeriRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Premium Seri",
       description: "En gelişmiş teknolojiyi taşıyan premium seriyi keşfedin.",
-      href: "/segmentler/premium-seri",
+      href: "/segmentler/premium-seri/",
     },
     {
       label: "Ekonomik Seri",
       description: "Temel işitme ihtiyaçları için uygun fiyatlı seçenekleri keşfedin.",
-      href: "/segmentler/ekonomik-seri",
+      href: "/segmentler/ekonomik-seri/",
     },
     {
       label: "Şarj Edilebilir Cihazlar",
       description: "Şarj edilebilir seri modelleri detaylı inceleyin.",
-      href: "/isitme-cihazlari/sarj-edilebilir",
+      href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
       label: "Görünmez (CIC) Cihazlar",
       description: "Görünmez seri modelleri keşfedin.",
-      href: "/isitme-cihazlari/gorunmez-cic",
+      href: "/isitme-cihazlari/gorunmez-cic/",
     },
     {
       label: "Çocuklara Özel Cihazlar",
       description: "Çocuk serisi modelleri inceleyin.",
-      href: "/isitme-cihazlari/cocuklara-ozel",
+      href: "/isitme-cihazlari/cocuklara-ozel/",
+    },
+    {
+      label: "İşitme Cihazı Fiyatları",
+      description: "Fiyatı neyin belirlediğini ve toplam maliyet kalemlerini okuyun.",
+      href: "/isitme-cihazi-fiyatlari/",
     },
   ],
   accentColor: "#0284c7",

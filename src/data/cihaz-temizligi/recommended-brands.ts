@@ -13,32 +13,32 @@ export const cihazTemizligiRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon cihazları için uyumlu temizlik kiti ve saklama aksesuarları mevcuttur.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak cihazları için uyumlu temizlik kiti ve saklama aksesuarları mevcuttur.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia cihazları için uyumlu temizlik kiti ve saklama aksesuarları mevcuttur.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex cihazları için uyumlu temizlik kiti ve saklama aksesuarları mevcuttur.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound cihazları için uyumlu temizlik kiti ve saklama aksesuarları mevcuttur.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri için de uyumlu temizlik aksesuarları mevcuttur.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#0ea5e9",

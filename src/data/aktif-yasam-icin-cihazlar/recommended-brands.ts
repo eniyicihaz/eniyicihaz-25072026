@@ -15,32 +15,32 @@ export const aktifYasamIcinCihazlarRecommendedBrands: BrandPageRelatedContentCon
     {
       label: "Oticon",
       description: "Oticon'un Real ve Xceed gibi modelleri, sağlam yapısı ve güvenilir bağlantı seçenekleriyle aktif kullanıcılar için değerlendirilebilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Audeo ve Virto serisi, güvenli oturma ve dayanıklılık arayan aktif kullanıcılar arasında sıkça tercih edilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın Styletto serisi, hafif ve hızlı şarj edilebilir tasarımıyla aktif bir yaşam tarzına uygun bir seçenektir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in SmartRIC serisi, doğal ses felsefesini hafif ve dayanıklı bir tasarımla birleştirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Vivia ve Omnia serisi, aktif kullanım için değerlendirilebilecek bağlantı ve dayanıklılık özellikleri sunar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve dayanıklı seçenekler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#4b5563",

@@ -1,4 +1,5 @@
 ---
+import { domId } from "../../../lib/dom-id";
 // ValueGrid — shared, count-agnostic value/pillar card grid built for
 // Hakkımızda's "Değerlerimiz". BrandPageAdvantages was considered first
 // but its bento layout requires exactly 6 items (1 hero + 5 fixed
@@ -31,17 +32,18 @@ interface Props {
 }
 
 const { data } = Astro.props;
+const titleId = domId("value-grid", data.heading);
 ---
 
 <section
   class="value-grid"
-  aria-labelledby="value-grid-title"
+  aria-labelledby={titleId}
   style={`--vg-accent:${data.accentColor}; --vg-badge-bg:${data.accentColorBadgeBg}; --vg-badge-border:${data.accentColorBadgeBorder}; --vg-badge-text:${data.accentColorBadgeText}; --vg-icon-bg:${data.accentColorIconBg};`}
 >
   <div class="value-grid__inner">
     <div class="value-grid__header">
       <p class="value-grid__badge">{data.badge}</p>
-      <h2 class="value-grid__heading" id="value-grid-title">{data.heading}</h2>
+      <h2 class="value-grid__heading" id={titleId}>{data.heading}</h2>
       {data.intro && <p class="value-grid__intro">{data.intro}</p>}
     </div>
 
@@ -88,7 +90,7 @@ const { data } = Astro.props;
     border: 1px solid var(--vg-badge-border);
     border-radius: var(--radius-full);
     background: var(--vg-badge-bg);
-    color: var(--vg-badge-text);
+    color: color-mix(in srgb, var(--vg-badge-text) 84%, #000);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     text-transform: uppercase;

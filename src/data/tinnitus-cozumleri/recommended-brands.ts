@@ -18,32 +18,32 @@ export const tinnitusCozumleriRecommendedBrands: BrandPageRelatedContentContent 
     {
       label: "Oticon",
       description: "Oticon'un Tinnitus SoundSupport özelliği, kişiye özel ayarlanabilen geniş bir ses kütüphanesi sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Tinnitus Balance uygulaması, rahatlatıcı sesleri telefonunuzdan yönetmenize imkân tanır.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın tinnitus destek özelliği, işitme desteğiyle birlikte kişiye özel rahatlatıcı sesler sunar.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in Zen Therapy teknolojisi, fraktal tonlarla tanınan, uzun süredir kullanılan bir tinnitus destek yaklaşımıdır.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Relief uygulaması, rahatlatıcı ses kütüphanesini telefonunuz üzerinden sunar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı tinnitus destek özellikli çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#9333ea",

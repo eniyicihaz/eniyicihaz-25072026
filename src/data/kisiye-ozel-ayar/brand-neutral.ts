@@ -8,5 +8,5 @@ export const kisiyeOzelAyarBrandNeutral = {
   heading: "Doğru Cihaz, Doğru Uygulama, Kişiye Uygun Ayar",
   body: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar gibi farklı markalardan cihazlarla çalışıyoruz. Hiçbir markayı diğerine üstün göstermiyoruz; asıl belirleyici olan, doğru cihazın doğru şekilde uygulanması ve kişiye uygun ayarlanmasıdır.",
   linkLabel: "Markaları İnceleyin",
-  href: "/markalar",
+  href: "/markalar/",
 };

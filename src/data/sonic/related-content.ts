@@ -12,21 +12,22 @@ export const sonicRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Bernafon İşitme Cihazları",
       description: "Aynı Demant Grubu çatısı altındaki farklı bir marka felsefesini karşılaştırmak isterseniz Bernafon'u inceleyin.",
-      href: "/markalar/bernafon",
+      href: "/markalar/bernafon/",
     },
   ],
   // Precomputed rgb() decomposition of #3D4C59.
   accentColor: "#3D4C59",
   accentColorBadgeBg: "rgb(61 76 89 / 0.08)",
   accentColorBadgeBorder: "rgb(61 76 89 / 0.35)",
+  accentColorBadgeText: "#29343d",
 };

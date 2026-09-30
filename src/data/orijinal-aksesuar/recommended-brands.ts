@@ -14,32 +14,32 @@ export const orijinalAksesuarRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "Oticon'un orijinal kulak ucu ve aksesuar çeşitleri, tüm model aileleri için temin edilebilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın geniş aksesuar yelpazesi, farklı ihtiyaçlara uygun orijinal seçenekler sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın orijinal şarj ve temizlik aksesuarları, cihazlarınızla tam uyumlu çalışır.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in orijinal aksesuarları, cihazlarının performansını korumak için özel olarak tasarlanır.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un orijinal pil ve streaming aksesuarları, günlük kullanımı kolaylaştırır.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri için de orijinal aksesuar desteği sunuyoruz.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#7c3aed",

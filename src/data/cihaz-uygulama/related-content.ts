@@ -15,27 +15,27 @@ export const cihazUygulamaRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Ücretsiz İşitme Testi",
       description: "Ücretsiz işitme testi süreci ve randevu hakkında detaylı bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Odyometri",
       description: "Uygulama randevusunun temelini oluşturan odyometrik değerlendirmeyi tanıyın.",
-      href: "/degerlendirme/odyometri",
+      href: "/degerlendirme/odyometri/",
     },
     {
       label: "Kişiye Özel Programlama",
       description: "Cihazınızın kişiye özel programlanma sürecini yakından tanıyın.",
-      href: "/uygulama-ayar/kisiye-ozel-programlama",
+      href: "/uygulama-ayar/kisiye-ozel-programlama/",
     },
     {
       label: "Cihaz Deneme",
       description: "Cihazınızı satın almadan önce deneme süreci hakkında bilgi edinin.",
-      href: "/uygulama-ayar/cihaz-deneme",
+      href: "/uygulama-ayar/cihaz-deneme/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#2563eb",

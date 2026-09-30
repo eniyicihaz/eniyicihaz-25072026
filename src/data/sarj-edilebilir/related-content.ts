@@ -16,27 +16,27 @@ export const sarjEdilebilirRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Şarjlı seçeneğin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "Şarjlı seçeneğin sınırlı sayıda modelde sunulduğu kulak içi aileyi keşfedin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Bluetooth Özellikli İşitme Cihazları",
       description: "Telefon ve TV ile doğrudan kablosuz bağlantı kuran modelleri inceleyin.",
-      href: "/isitme-cihazlari/bluetooth-ozellikli",
+      href: "/isitme-cihazlari/bluetooth-ozellikli/",
     },
     {
       label: "Görünmez (CIC / IIC) İşitme Cihazları",
       description: "Kulak içi ailesinin en küçük ve en az fark edilen alt tiplerini yakından tanıyın.",
-      href: "/isitme-cihazlari/gorunmez-cic",
+      href: "/isitme-cihazlari/gorunmez-cic/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#059669",

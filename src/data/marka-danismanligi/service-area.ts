@@ -28,21 +28,6 @@ export const markaDanismanligiServiceArea: ContactServiceAreaContent = {
       tier: "oncelikli",
       description: "Çayırova'dan da randevu alarak merkezimize ulaşabilir, aynı danışmanlık sürecinden faydalanabilirsiniz.",
     },
-    {
-      name: "Dilovası",
-      tier: "cevre",
-      description: "Dilovası çevresinden de marka danışmanlığı için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Tuzla",
-      tier: "cevre",
-      description: "Tuzla çevresinden de marka danışmanlığı için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Pendik",
-      tier: "cevre",
-      description: "Pendik çevresinden de marka danışmanlığı için bizi arayabilirsiniz.",
-    },
   ],
   closing: "Listede yer almayan bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",
 };

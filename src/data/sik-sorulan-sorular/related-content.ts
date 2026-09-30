@@ -14,27 +14,27 @@ export const sikSorulanSorularRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "SGK Sık Sorulan Sorular",
       description: "SGK katkı payı, rapor süreci ve destek tutarları hakkındaki soruları inceleyin.",
-      href: "/sgk-isitme-cihazi-odemesi#sgk-faq-title",
+      href: "/sgk-isitme-cihazi-odemesi/#sgk-faq-title",
     },
     {
       label: "Ücretsiz İşitme Testi",
       description: "Ücretsiz işitme testi süreci hakkında bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Cihaz Seçim Rehberi",
       description: "Size uygun cihazı seçerken nelere dikkat etmeniz gerektiğini öğrenin.",
-      href: "/rehberler/cihaz-secim-rehberi",
+      href: "/rehberler/cihaz-secim-rehberi/",
     },
     {
       label: "Rapor Süreci",
       description: "SGK sağlık kurulu raporu sürecini yakından tanıyın.",
-      href: "/sgk/rapor-sureci",
+      href: "/sgk/rapor-sureci/",
     },
     {
       label: "İletişim",
       description: "Bizimle iletişime geçmenin diğer yollarını görün.",
-      href: "/iletisim",
+      href: "/iletisim/",
     },
   ],
   accentColor: "#0284c7",

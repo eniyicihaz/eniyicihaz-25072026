@@ -53,7 +53,7 @@ export const brands: BrandsContent = {
     label: "SGK Anlaşmalı İşitme Cihazları",
     description:
       "Tüm SGK kapsamındaki işlemleriniz için uzman desteği sağlıyoruz.",
-    href: "/sgk-isitme-cihazi-odemesi",
+    href: "/sgk-isitme-cihazi-odemesi/",
   },
-  hubCta: { label: "Tüm markaları inceleyin", href: "/markalar" },
+  hubCta: { label: "Tüm markaları inceleyin", href: "/markalar/" },
 };

@@ -12,21 +12,22 @@ export const unitronRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Phonak İşitme Cihazları",
       description: "Aynı Sonova Grubu çatısı altındaki farklı bir marka felsefesini karşılaştırmak isterseniz Phonak'ı inceleyin.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
   ],
   // Precomputed rgb() decomposition of #1C4C87.
   accentColor: "#1C4C87",
   accentColorBadgeBg: "rgb(28 76 135 / 0.08)",
   accentColorBadgeBorder: "rgb(28 76 135 / 0.35)",
+  accentColorBadgeText: "#13345c",
 };

@@ -15,27 +15,27 @@ export const kalipAlimiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Özel kulak kalıbının en yaygın kullanıldığı cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "Kulak kalıbının cihazın kendisi olduğu kulak içi aileyi keşfedin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Cihaz Uygulama",
       description: "Kalıbınız hazır olduktan sonraki uygulama randevusunu tanıyın.",
-      href: "/uygulama-ayar/cihaz-uygulama",
+      href: "/uygulama-ayar/cihaz-uygulama/",
     },
     {
       label: "Kontrol Randevusu",
       description: "Kalıbınızın uzun vadeli uyumunu takip eden kontrol randevuları hakkında bilgi edinin.",
-      href: "/uygulama-ayar/kontrol-randevusu",
+      href: "/uygulama-ayar/kontrol-randevusu/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#db2777",

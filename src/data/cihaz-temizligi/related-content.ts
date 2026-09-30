@@ -14,27 +14,27 @@ export const cihazTemizligiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Periyodik Bakım",
       description: "Aşınan parçaların profesyonelce yenilendiği bakım randevusunu keşfedin.",
-      href: "/servis-bakim/periyodik-bakim",
+      href: "/servis-bakim/periyodik-bakim/",
     },
     {
       label: "Teknik Servis",
       description: "Bir arıza fark ederseniz, yerinde teşhis ve onarım sürecini keşfedin.",
-      href: "/servis-bakim/teknik-servis",
+      href: "/servis-bakim/teknik-servis/",
     },
     {
       label: "Pil & Aksesuar",
       description: "Pil, şarj ve saklama aksesuarları hakkında bilgi edinin.",
-      href: "/servis-bakim/pil-aksesuar",
+      href: "/servis-bakim/pil-aksesuar/",
     },
     {
       label: "Kontrol Randevusu",
       description: "İşitme durumunuzu da kapsayan düzenli kontrol randevusunu keşfedin.",
-      href: "/uygulama-ayar/kontrol-randevusu",
+      href: "/uygulama-ayar/kontrol-randevusu/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#0ea5e9",

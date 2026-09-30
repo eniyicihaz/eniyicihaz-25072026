@@ -31,21 +31,6 @@ export const cihazDenemeServiceArea: ContactServiceAreaContent = {
       tier: "oncelikli",
       description: "Çayırova'dan da randevu alarak merkezimize ulaşabilir, cihaz denemeye başlayabilirsiniz.",
     },
-    {
-      name: "Dilovası",
-      tier: "cevre",
-      description: "Dilovası çevresinden de cihaz denemek için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Tuzla",
-      tier: "cevre",
-      description: "Tuzla çevresinden de cihaz denemek için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Pendik",
-      tier: "cevre",
-      description: "Pendik çevresinden de cihaz denemek için bizi arayabilirsiniz.",
-    },
   ],
   closing: "Listede yer almayan bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",
 };

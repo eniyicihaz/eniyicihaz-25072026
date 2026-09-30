@@ -16,32 +16,32 @@ export const cokIleriDereceIsitmeKaybiRecommendedBrands: BrandPageRelatedContent
     {
       label: "Oticon",
       description: "Oticon'un Xceed ailesi, çok ileri dereceli kayıplar için tasarlanmış en güçlü amplifikasyon seçeneklerinden biridir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Naida ailesi, çok ileri dereceli kayıplarda da sıkça değerlendirilen güçlü bir power BTE seçeneğidir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın en güçlü BTE modelleri, çok ileri dereceli kayıplarda yüksek amplifikasyon kapasitesi sunar.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in en güçlü modelleri, markanın doğal ses felsefesini en yüksek amplifikasyon kapasitesiyle birleştirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un en güçlü aileleri, çok ileri dereceli kayıplarda sıkça değerlendirilen bir seçenektir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve güçlü çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#92400e",

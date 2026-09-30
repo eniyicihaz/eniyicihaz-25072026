@@ -80,10 +80,10 @@ const breadcrumbSchema = {
 const medicalBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
-  "@id": "https://www.eniyicihaz.com/#organization",
+  "@id": BUSINESS_ID,
   name: company.legalName,
   description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; satın almadan önce işitme cihazı deneme imkânı sunar.",
-  url: PAGE_URL,
+  url: BUSINESS_URL,
   telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
   email: company.email,
   address: {
@@ -112,13 +112,14 @@ const medicalBusinessSchema = {
       closes: "19:00",
     },
   ],
-  areaServed: cihazDenemeServiceArea.items.map((item) => item.name),
+  areaServed: SERVICE_AREA_NAMES,
 };
+import { BUSINESS_ID, BUSINESS_URL, SERVICE_AREA_NAMES } from "../../lib/schema";
 ---
 
 <MainLayout
   title="Darıca'da İşitme Cihazı Deneme | Avrasya İşitme Cihazları | EniyiCihaz"
-  description="Darıca'da Avrasya İşitme'de işitme cihazınızı satın almadan önce ücretsiz deneyin. Gerçek yaşam koşullarında test edin, karşılaştırın, karar verin. Gebze ve Çayırova'dan da ulaşabilirsiniz."
+  description="Darıca'da işitme cihazını satın almadan önce ücretsiz deneyin; gerçek yaşam koşullarında test edip karar verin. Gebze ve Çayırova'dan da ulaşabilirsiniz."
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
@@ -246,7 +247,7 @@ const medicalBusinessSchema = {
 
   .cd-reasons__list svg {
     flex: none;
-    color: #0d9488;
+    color: #0f766e;
   }
 
   /* Shared shell for the lightweight, component-free sections (Ücretli
@@ -280,7 +281,7 @@ const medicalBusinessSchema = {
     font-weight: var(--font-weight-bold);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #0d9488;
+    color: #0f766e;
   }
 
   .cd-simple-section__heading {
@@ -326,7 +327,7 @@ const medicalBusinessSchema = {
   .cd-simple-section__bullets svg {
     flex: none;
     margin-top: 2px;
-    color: #0d9488;
+    color: #0f766e;
   }
 
   .cd-simple-section__inner > :global(.cta-button) {
@@ -340,7 +341,7 @@ const medicalBusinessSchema = {
     margin-top: var(--space-2);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
-    color: #0d9488;
+    color: #0f766e;
     text-decoration: none;
   }
 

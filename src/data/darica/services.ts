@@ -16,10 +16,10 @@ export const daricaServices: BrandCriteriaContent = {
   heading: "Deneme, Ayar ve Takip Süreciniz",
   intro: "Darıca'daki merkezimizde cihazınızı deneyebilir, kişiye özel ayarlarınızı yaptırabilir ve kullanım sürecinde destek alabilirsiniz.",
   criteria: [
-    { icon: PlayCircle, title: "Cihaz Deneme", description: "Cihazı günlük yaşamınızda deneyerek size uygunluğunu değerlendirin.", href: "/uygulama-ayar/cihaz-deneme" },
-    { icon: SlidersHorizontal, title: "İlk Kurulum ve Kişiye Özel Ayar", description: "Cihazın ilk uygulamasını ve temel ayarlarını işitme ihtiyacınıza göre yapıyoruz.", href: "/uygulama-ayar/kisiye-ozel-ayar" },
-    { icon: Settings2, title: "Takip ve İnce Ayar", description: "Kullanım deneyiminize göre cihaz ayarlarını zaman içinde yeniden değerlendiriyoruz.", href: "/uygulama-ayar/kisiye-ozel-programlama" },
+    { icon: PlayCircle, title: "Cihaz Deneme", description: "Cihazı günlük yaşamınızda deneyerek size uygunluğunu değerlendirin.", href: "/uygulama-ayar/cihaz-deneme/" },
+    { icon: SlidersHorizontal, title: "İlk Kurulum ve Kişiye Özel Ayar", description: "Cihazın ilk uygulamasını ve temel ayarlarını işitme ihtiyacınıza göre yapıyoruz.", href: "/uygulama-ayar/kisiye-ozel-ayar/" },
+    { icon: Settings2, title: "Takip ve İnce Ayar", description: "Kullanım deneyiminize göre cihaz ayarlarını zaman içinde yeniden değerlendiriyoruz.", href: "/uygulama-ayar/kisiye-ozel-programlama/" },
   ],
   closing: "Teknik servis ve bakım ihtiyaçlarınız için de yanınızdayız.",
-  closingCta: { label: "Teknik Servis", href: "/servis-bakim/teknik-servis" },
+  closingCta: { label: "Teknik Servis", href: "/servis-bakim/teknik-servis/" },
 };

@@ -10,10 +10,10 @@ export const cayirovaServices: BrandCriteriaContent = {
   heading: "Cihaz Deneme, Ayar ve Programlama Süreci",
   intro: "Doğru cihaza karar vermek, deneme ve kişiye özel ayar sürecinden geçtikten sonra netleşir.",
   criteria: [
-    { icon: PlayCircle, title: "Cihaz Deneme", description: "Beğendiğiniz cihazı günlük hayatınızda deneyerek karar verebilirsiniz.", href: "/uygulama-ayar/cihaz-deneme" },
-    { icon: SlidersHorizontal, title: "Kişiye Özel Ayar", description: "Cihazınız, işitme profilinize göre özel olarak ayarlanır.", href: "/uygulama-ayar/kisiye-ozel-ayar" },
-    { icon: Settings2, title: "Takip ve Programlama", description: "Kullanım süreniz arttıkça ayarlar yeniden gözden geçirilir.", href: "/uygulama-ayar/kisiye-ozel-programlama" },
+    { icon: PlayCircle, title: "Cihaz Deneme", description: "Beğendiğiniz cihazı günlük hayatınızda deneyerek karar verebilirsiniz.", href: "/uygulama-ayar/cihaz-deneme/" },
+    { icon: SlidersHorizontal, title: "Kişiye Özel Ayar", description: "Cihazınız, işitme profilinize göre özel olarak ayarlanır.", href: "/uygulama-ayar/kisiye-ozel-ayar/" },
+    { icon: Settings2, title: "Takip ve Programlama", description: "Kullanım süreniz arttıkça ayarlar yeniden gözden geçirilir.", href: "/uygulama-ayar/kisiye-ozel-programlama/" },
   ],
   closing: "Cihazınızla ilgili teknik servis ihtiyaçlarınızda da destek sağlıyoruz.",
-  closingCta: { label: "Teknik Servis", href: "/servis-bakim/teknik-servis" },
+  closingCta: { label: "Teknik Servis", href: "/servis-bakim/teknik-servis/" },
 };

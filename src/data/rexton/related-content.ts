@@ -12,21 +12,22 @@ export const rextonRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Signia İşitme Cihazları",
       description: "Aynı grup çatısı altındaki farklı bir marka felsefesini karşılaştırmak isterseniz Signia'yı inceleyin.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
   ],
   // Precomputed rgb() decomposition of #C79712.
   accentColor: "#C79712",
   accentColorBadgeBg: "rgb(199 151 18 / 0.08)",
   accentColorBadgeBorder: "rgb(199 151 18 / 0.35)",
+  accentColorBadgeText: "#87670c",
 };

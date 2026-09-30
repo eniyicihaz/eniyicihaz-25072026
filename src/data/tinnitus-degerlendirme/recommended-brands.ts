@@ -16,32 +16,32 @@ export const tinnitusDegerlendirmeRecommendedBrands: BrandPageRelatedContentCont
     {
       label: "Oticon",
       description: "Değerlendirme sonucunuza göre, Oticon'un Tinnitus SoundSupport özellikli modelleri önerilebilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Tinnitus Balance uygulamalı modelleri, değerlendirme sonrası değerlendirilebilecek seçenekler arasındadır.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın tinnitus destek özellikli modelleri, odyometrist eşliğinde değerlendirilebilir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in Zen Therapy teknolojisi, uzun süredir bilinen bir tinnitus destek yaklaşımı olarak değerlendirilebilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Relief uygulamalı modelleri, değerlendirme sonrası bir seçenek olarak sunulabilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı tinnitus destek özellikli çözümler arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#059669",

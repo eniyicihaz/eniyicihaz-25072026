@@ -18,27 +18,27 @@ export const isitmeKaybiNedirRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Ücretsiz İşitme Testi",
       description: "İşitme durumunuzu netleştirmek için ücretsiz işitme testi hakkında bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Hafif Derece İşitme Kaybı",
       description: "26-40 dB aralığındaki hafif derece işitme kaybını yakından tanıyın.",
-      href: "/ihtiyaciniza-gore/hafif-isitme-kaybi",
+      href: "/ihtiyaciniza-gore/hafif-isitme-kaybi/",
     },
     {
       label: "İleri Derece İşitme Kaybı",
       description: "71-90 dB aralığındaki ileri derece işitme kaybını yakından tanıyın.",
-      href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi",
+      href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/",
     },
     {
       label: "Cihaz Seçim Rehberi",
       description: "İhtiyacınıza uygun işitme cihazını nasıl seçeceğinizi öğrenin.",
-      href: "/rehberler/cihaz-secim-rehberi",
+      href: "/rehberler/cihaz-secim-rehberi/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#2563eb",

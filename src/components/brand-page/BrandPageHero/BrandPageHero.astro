@@ -1,4 +1,5 @@
 ---
+import { readableTextOn } from "../../../lib/contrast";
 // BrandPageHero — generic, data-driven Hero for every brand page
 // (/markalar/{slug}). First component of the Brand Component Architecture
 // refactor: previously OticonHero.astro (marka-özel, oticonHero'yu
@@ -114,7 +115,7 @@ const { data } = Astro.props;
 const heroStyleOverrides = [
   data.heroBackground ? `--bph-bg-image:${data.heroBackground};` : "",
   data.heroBaseBg ? `--bph-base-bg:${data.heroBaseBg};` : "",
-  data.ctaTextColor ? `--bph-cta-text:${data.ctaTextColor};` : "",
+  `--bph-cta-text:${readableTextOn(data.heroAccent || data.accentColor, data.ctaTextColor)};`,
   data.floatingCardBg ? `--bph-floating-bg:${data.floatingCardBg};` : "",
   data.heroTextColor ? `--bph-text:${data.heroTextColor};` : "",
   data.heroTextMuted ? `--bph-text-muted:${data.heroTextMuted};` : "",
@@ -321,7 +322,9 @@ const heroStyleOverrides = [
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--bph-accent);
+    /* The hero is near-black: the raw brand accent (often a dark blue/grey/brown) was 1.7–4.4:1 there on 44 of 79 brand pages.
+       Keep the hue, lift the lightness. */
+    color: color-mix(in srgb, var(--bph-accent) 42%, #ffffff);
   }
 
   .brand-page-hero__heading {

@@ -13,27 +13,27 @@ export const uzmanGorusleriRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "İşitme Kaybı Nedir?",
       description: "İşitme kaybının türlerini ve nedenlerini daha ayrıntılı öğrenin.",
-      href: "/rehberler/isitme-kaybi-nedir",
+      href: "/rehberler/isitme-kaybi-nedir/",
     },
     {
       label: "Uyum Süreci",
       description: "Yeni bir cihaza alışma sürecinin nasıl işlediğini öğrenin.",
-      href: "/rehberler/uyum-sureci",
+      href: "/rehberler/uyum-sureci/",
     },
     {
       label: "Cihaz Seçim Rehberi",
       description: "Size uygun cihazı seçerken nelere dikkat etmeniz gerektiğini öğrenin.",
-      href: "/rehberler/cihaz-secim-rehberi",
+      href: "/rehberler/cihaz-secim-rehberi/",
     },
     {
       label: "Ücretsiz İşitme Testi",
       description: "Kendi durumunuzu netleştirmek için ücretsiz işitme testi hakkında bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "İşitme Cihazı Markaları",
       description: "Farklı teknoloji seviyelerindeki markaları tek sayfada inceleyin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
   ],
   accentColor: "#7c3aed",

@@ -8,7 +8,7 @@ export const cayirovaFinalCta: BrandPageFinalCtaContent = {
   badge: "HEMEN BAŞLAYALIM",
   heading: "Çayırova'da İşitme Cihazı Arıyorsanız Bugün Başlayın",
   description: "İhtiyacınızı dinleyelim, size uygun işitme cihazı seçeneklerini ve SGK sürecini birlikte değerlendirelim.",
-  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi" },
+  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: [
     "SGK Anlaşmalı Hizmet",

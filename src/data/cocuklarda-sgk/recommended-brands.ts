@@ -14,32 +14,32 @@ export const cocuklardaSgkRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un Play serisi, çocuklara özel olarak geliştirilmiş modelleri kapsar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Sky serisi, çocuklara özel olarak geliştirilmiş modelleri kapsar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "ReSound",
       description: "SGK desteği, anlaşmalı merkezimizden alınan ReSound modellerinde de geçerlidir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "Signia",
       description: "SGK desteği, anlaşmalı merkezimizden alınan Signia modellerinde de geçerlidir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "SGK desteği, anlaşmalı merkezimizden alınan Widex modellerinde de geçerlidir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "Vista",
       description: "Bütçe dostu bir seçenek arıyorsanız, SGK destekli Vista modelleri değerlendirilebilir.",
-      href: "/markalar/vista",
+      href: "/markalar/vista/",
     },
   ],
   accentColor: "#db2777",

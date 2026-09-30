@@ -13,17 +13,17 @@ export const phonakRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Oticon İşitme Cihazları",
       description: "Farklı bir marka felsefesini karşılaştırmak isterseniz Oticon'u inceleyin.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
   ],
   // Precomputed rgb() decomposition of #0ea5e9 — kept distinct from

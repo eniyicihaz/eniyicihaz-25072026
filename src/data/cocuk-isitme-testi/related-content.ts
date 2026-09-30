@@ -19,27 +19,27 @@ export const cocukIsitmeTestiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Ücretsiz İşitme Testi",
       description: "Ücretsiz işitme testi süreci ve randevu hakkında detaylı bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Odyometri",
       description: "Odyometrinin nasıl çalıştığını ve neler ölçtüğünü daha yakından tanıyın.",
-      href: "/degerlendirme/odyometri",
+      href: "/degerlendirme/odyometri/",
     },
     {
       label: "Timpanometri",
       description: "Orta kulak değerlendirmesi hakkında detaylı bilgi edinin.",
-      href: "/degerlendirme/timpanometri",
+      href: "/degerlendirme/timpanometri/",
     },
     {
       label: "Tinnitus Değerlendirme",
       description: "Kulak çınlaması değerlendirmesi hakkında detaylı bilgi edinin.",
-      href: "/degerlendirme/tinnitus-degerlendirme",
+      href: "/degerlendirme/tinnitus-degerlendirme/",
     },
     {
       label: "Çocuklara Özel Cihazlar",
       description: "Çocuk kullanıcılar için geliştirilmiş işitme cihazı modellerini keşfedin.",
-      href: "/isitme-cihazlari/cocuklara-ozel",
+      href: "/isitme-cihazlari/cocuklara-ozel/",
     },
   ],
   accentColor: "#f97316",

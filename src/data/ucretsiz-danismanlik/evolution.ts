@@ -38,6 +38,7 @@ export const ucretsizDanismanlikEvolution: BrandPageTechEvolutionContent = {
       families: ["SGK ve Fiyat Bilgisi"],
     },
   ],
+  ariaLabel: "Ücretsiz danışmanlık adımları",
   accentColor: "#0d9488",
   accentColorBadgeBg: "rgb(13 148 136 / 0.08)",
   accentColorBadgeBorder: "rgb(13 148 136 / 0.35)",

@@ -15,11 +15,11 @@ export const servicesShowcase: BrandShowcaseContent = {
     "İşitme sağlığınızı doğru değerlendirmek, doğru hizmete yönlenmenin ilk adımıdır.",
   ctaLabel: "İncele",
   brands: [
-    { name: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi", icon: Stethoscope },
-    { name: "Odyometri", href: "/degerlendirme/odyometri", icon: AudioWaveform },
-    { name: "Timpanometri", href: "/degerlendirme/timpanometri", icon: Gauge },
-    { name: "Çocuk İşitme Testi", href: "/degerlendirme/cocuk-isitme-testi", icon: Baby },
-    { name: "Tinnitus Değerlendirme", href: "/degerlendirme/tinnitus-degerlendirme", icon: Waves },
-    { name: "İşitme Danışmanlığı", href: "/neden-orijinal/ucretsiz-danismanlik", icon: MessageCircle },
+    { name: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/", icon: Stethoscope },
+    { name: "Odyometri", href: "/degerlendirme/odyometri/", icon: AudioWaveform },
+    { name: "Timpanometri", href: "/degerlendirme/timpanometri/", icon: Gauge },
+    { name: "Çocuk İşitme Testi", href: "/degerlendirme/cocuk-isitme-testi/", icon: Baby },
+    { name: "Tinnitus Değerlendirme", href: "/degerlendirme/tinnitus-degerlendirme/", icon: Waves },
+    { name: "İşitme Danışmanlığı", href: "/neden-orijinal/ucretsiz-danismanlik/", icon: MessageCircle },
   ],
 };

@@ -52,7 +52,7 @@ const { data } = Astro.props;
       <p class="ka-comparison__intro" data-rise>{data.intro}</p>
     </div>
 
-    <div class="ka-comparison__table-wrap" data-rise>
+    <div class="ka-comparison__table-wrap" data-rise tabindex="0" role="region" aria-label={`${data.heading} — yatay kaydırılabilir tablo`}>
       <table class="ka-comparison__table">
         <thead>
           <tr>
@@ -146,7 +146,7 @@ const { data } = Astro.props;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--kac-badge-text);
+    color: color-mix(in srgb, var(--kac-badge-text) 85%, #000);
   }
 
   .ka-comparison__heading {
@@ -172,6 +172,11 @@ const { data } = Astro.props;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-xs);
+  }
+
+  .ka-comparison__table-wrap:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
   }
 
   .ka-comparison__table {
@@ -247,7 +252,7 @@ const { data } = Astro.props;
     max-width: 60ch;
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
-    color: var(--color-text-soft);
+    color: var(--color-text-muted);
   }
 
   .ka-comparison[data-anim="pending"] [data-rise] {

@@ -26,7 +26,7 @@ import { contactConfig } from "../../../config";
     <div class="sgk-brands__grid sgk-brands__grid--featured" data-rise>
       {
         sgkBrands.featuredBrands.map((brand) => (
-          <a class="sgk-brands__card sgk-brands__card--featured" href={`/markalar/${brand.slug}`}>
+          <a class="sgk-brands__card sgk-brands__card--featured" href={`/markalar/${brand.slug}/`}>
             <span class="sgk-brands__logo-wrap">
               <img
                 class="sgk-brands__logo"
@@ -56,7 +56,7 @@ import { contactConfig } from "../../../config";
     <div class="sgk-brands__grid sgk-brands__grid--other" data-rise>
       {
         sgkBrands.otherBrands.map((brand) => (
-          <a class="sgk-brands__card sgk-brands__card--compact" href={`/markalar/${brand.slug}`}>
+          <a class="sgk-brands__card sgk-brands__card--compact" href={`/markalar/${brand.slug}/`}>
             <span class="sgk-brands__logo-wrap sgk-brands__logo-wrap--compact">
               <img
                 class="sgk-brands__logo"
@@ -220,7 +220,7 @@ import { contactConfig } from "../../../config";
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.06em;
-    color: var(--color-primary);
+    color: color-mix(in srgb, var(--color-primary) 86%, #000);
   }
 
   .sgk-brands__heading {
@@ -259,7 +259,7 @@ import { contactConfig } from "../../../config";
 
   .sgk-brands__group-label--other {
     margin-top: var(--space-24);
-    color: var(--color-text-soft);
+    color: var(--color-text-muted);
   }
 
   /* --- Cards: shared flex-column skeleton. The CTA link always carries

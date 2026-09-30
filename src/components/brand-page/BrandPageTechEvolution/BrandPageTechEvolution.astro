@@ -23,6 +23,8 @@ export interface BrandPageTechEvolutionContent {
   accentColorBadgeBg: string;
   accentColorBadgeBorder: string;
   accentColorBadgeText: string;
+  /** Optional: accessible name for the section when its heading text is not unique on the page (landmark-unique). */
+  ariaLabel?: string;
 }
 
 interface Props {
@@ -34,7 +36,8 @@ const { data } = Astro.props;
 
 <section
   class="brand-page-techevo"
-  aria-labelledby="brand-page-techevo-title"
+  aria-labelledby={data.ariaLabel ? undefined : "brand-page-techevo-title"}
+  aria-label={data.ariaLabel}
   style={`--bpte-accent:${data.accentColor}; --bpte-badge-bg:${data.accentColorBadgeBg}; --bpte-badge-border:${data.accentColorBadgeBorder}; --bpte-badge-text:${data.accentColorBadgeText};`}
 >
   <div class="brand-page-techevo__inner">
@@ -142,7 +145,7 @@ const { data } = Astro.props;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--bpte-badge-text);
+    color: color-mix(in srgb, var(--bpte-badge-text) 85%, #000);
   }
 
   .brand-page-techevo__heading {
@@ -247,7 +250,7 @@ const { data } = Astro.props;
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--color-text-soft);
+    color: var(--color-text-muted);
   }
 
   .brand-page-techevo__families {

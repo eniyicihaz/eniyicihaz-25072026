@@ -6,7 +6,7 @@ export const kocaeliFinalCta: BrandPageFinalCtaContent = {
   badge: "HEMEN BAŞLAYALIM",
   heading: "Kocaeli'de İşitme Cihazı İhtiyacınız İçin Bize Ulaşın",
   description: "İhtiyacınızı dinleyelim, size uygun işitme cihazını, marka seçeneklerini ve SGK sürecini birlikte değerlendirelim.",
-  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi" },
+  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: [
     "SGK Anlaşmalı Hizmet",

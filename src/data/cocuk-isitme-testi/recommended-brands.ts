@@ -16,32 +16,32 @@ export const cocukIsitmeTestiRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "Oticon'un Play PX ve Xceed Play serisi, çocukların günlük işitme ihtiyaçlarına özel olarak geliştirilmiştir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın Sky serisi, çocuk kullanıcıların ihtiyaçlarına göre geliştirilmiş pediatrik bir model ailesidir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın modelleri, çocuk kullanıcılar için de odyometrist eşliğinde değerlendirilebilir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in modelleri, çocuk kullanıcılar için de odyometrist eşliğinde değerlendirilebilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un modelleri, çocuk kullanıcılar için de odyometrist eşliğinde değerlendirilebilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri, çocuk kullanıcılar için de değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#f97316",

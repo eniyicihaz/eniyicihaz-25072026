@@ -36,7 +36,7 @@ const { data } = Astro.props;
     <p class="scenario-rail__intro" data-rise>{data.intro}</p>
   </div>
 
-  <ul class="scenario-rail__track" data-rise>
+  <ul class="scenario-rail__track" data-rise tabindex="0" aria-label="Kullanım senaryoları (yatay kaydırılabilir liste)">
     {
       data.items.map((item) => {
         const Icon = item.icon;
@@ -115,7 +115,7 @@ const { data } = Astro.props;
     font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--sr-accent);
+    color: color-mix(in srgb, var(--sr-accent) 76%, #000);
   }
 
   .scenario-rail__heading {
@@ -138,6 +138,11 @@ const { data } = Astro.props;
   /* Horizontal scroll, not a static grid — the scroll itself is the
      "one scenario at a time" pacing, and it keeps this section visually
      distinct from every bordered-card grid elsewhere on the page. */
+  .scenario-rail__track:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
   .scenario-rail__track {
     list-style: none;
     margin: var(--space-12) 0 0;

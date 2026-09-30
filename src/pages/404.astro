@@ -1,0 +1,114 @@
+---
+// 404 — Cloudflare Pages serves dist/404.html with a real 404 status for any unknown URL, but ONLY when this file
+// exists (without it Pages falls back to SPA mode and answers unknown URLs with the homepage HTML and 200 = soft 404).
+// noindex, no canonical. Plain, static: a way back home plus the site's main entry points.
+import MainLayout from "../layouts/MainLayout.astro";
+import { contactConfig } from "../config/contact";
+
+const links = [
+  { label: "Ana sayfa", href: "/" },
+  { label: "İşitme cihazları", href: "/isitme-cihazlari/" },
+  { label: "Ücretsiz işitme testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
+  { label: "SGK işitme cihazı desteği", href: "/sgk-isitme-cihazi-odemesi/" },
+  { label: "Bilgi merkezi", href: "/bilgi-merkezi/" },
+  { label: "İletişim", href: "/iletisim/" },
+];
+---
+
+<MainLayout title="Sayfa bulunamadı | EniyiCihaz" description="Aradığınız sayfa bulunamadı." noindex>
+  <section class="nf" aria-labelledby="nf-title">
+    <div class="nf__inner">
+      <p class="nf__code">404</p>
+      <h1 class="nf__title" id="nf-title">Aradığınız sayfa bulunamadı</h1>
+      <p class="nf__text">Adres değişmiş ya da yanlış yazılmış olabilir. Aşağıdaki bağlantılardan devam edebilirsiniz.</p>
+      <h2 class="nf__sub">Devam edebileceğiniz sayfalar</h2>
+      <ul class="nf__links">
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href}>{l.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="nf__text">
+        Yardım için <a href={contactConfig.phone.href}>bizi arayabilirsiniz</a>.
+      </p>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .nf {
+    background: var(--color-background);
+    padding-block: var(--space-20);
+  }
+
+  .nf__inner {
+    max-width: 40rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .nf__code {
+    margin: 0;
+    font-size: clamp(3rem, 2rem + 5vw, 5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    color: var(--color-primary);
+  }
+
+  .nf__title {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+  }
+
+  .nf__text {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .nf__text a,
+  .nf__links a {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+  }
+
+  .nf__text a:hover,
+  .nf__links a:hover {
+    text-decoration: underline;
+  }
+
+  .nf__sub {
+    margin: var(--space-8) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  .nf__links {
+    list-style: none;
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3) var(--space-6);
+  }
+
+  @media (max-width: 640px) {
+    .nf {
+      padding-block: var(--space-12);
+    }
+
+    .nf__inner {
+      padding-inline: var(--space-4);
+    }
+  }
+</style>

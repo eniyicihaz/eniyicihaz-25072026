@@ -12,21 +12,22 @@ export const audioServiceRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Signia İşitme Cihazları",
       description: "Aynı grup çatısı altındaki farklı bir marka felsefesini karşılaştırmak isterseniz Signia'yı inceleyin.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
   ],
   // Precomputed rgb() decomposition of #1240A0.
   accentColor: "#1240A0",
   accentColorBadgeBg: "rgb(18 64 160 / 0.08)",
   accentColorBadgeBorder: "rgb(18 64 160 / 0.35)",
+  accentColorBadgeText: "#0c2c6d",
 };

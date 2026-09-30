@@ -17,32 +17,32 @@ export const ekonomikSeriRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un Ruby serisi, temel işitme ihtiyaçları için daha uygun fiyatlı bir seçenek sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın uygun fiyatlı seçenekleri, temel işitme ihtiyaçları için değerlendirilebilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın giriş seviyesi seçenekleri, temel kullanım ihtiyaçları için uygun bir başlangıç sunar.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in uygun fiyatlı seçenekleri, temel işitme ihtiyaçları için değerlendirilebilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un Key serisi, giriş seviyesinde sade ve uygun fiyatlı bir seçenek sunar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri, ekonomik seri kapsamında sıkça değerlendirilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#16a34a",

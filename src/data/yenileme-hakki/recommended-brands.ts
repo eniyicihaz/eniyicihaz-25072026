@@ -13,32 +13,32 @@ export const yenilemeHakkiRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Yenileme hakkınızla SGK destekli Oticon modellerini değerlendirebilirsiniz.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Yenileme hakkınızla SGK destekli Phonak modellerini değerlendirebilirsiniz.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Widex",
       description: "Yenileme hakkınızla SGK destekli Widex modellerini değerlendirebilirsiniz.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "Yenileme hakkınızla SGK destekli ReSound modellerini değerlendirebilirsiniz.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "Signia",
       description: "Yenileme hakkınızla SGK destekli Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "MAICO",
       description: "Bütçe dostu bir seçenek arıyorsanız, SGK destekli MAICO modelleri değerlendirilebilir.",
-      href: "/markalar/maico",
+      href: "/markalar/maico/",
     },
   ],
   accentColor: "#0d9488",

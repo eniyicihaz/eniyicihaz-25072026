@@ -17,27 +17,27 @@ export const teknikServisRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kontrol Randevusu",
       description: "Fiziksel bir arıza değilse, önce düzenli kontrol randevusunu değerlendirin.",
-      href: "/uygulama-ayar/kontrol-randevusu",
+      href: "/uygulama-ayar/kontrol-randevusu/",
     },
     {
       label: "Periyodik Bakım",
       description: "Cihazınızın rutin fiziksel bakımı ve temizliği hakkında bilgi edinin.",
-      href: "/servis-bakim/periyodik-bakim",
+      href: "/servis-bakim/periyodik-bakim/",
     },
     {
       label: "Garanti İşlemleri",
       description: "Cihazınızın garanti kapsamı ve süreci hakkında detaylı bilgi edinin.",
-      href: "/servis-bakim/garanti-islemleri",
+      href: "/servis-bakim/garanti-islemleri/",
     },
     {
       label: "Onarım Takibi",
       description: "Onarıma gönderilen cihazınızın sürecini nasıl takip edeceğinizi öğrenin.",
-      href: "/servis-bakim/onarim-takibi",
+      href: "/servis-bakim/onarim-takibi/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#dc2626",

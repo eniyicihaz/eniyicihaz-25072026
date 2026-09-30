@@ -95,7 +95,7 @@ const { data } = Astro.props;
                   {row.levelLabel ? (
                     <span class="brand-page-comparison__level-tag">{row.levelLabel}</span>
                   ) : (
-                    <span class="brand-page-comparison__dots" aria-label={`${row.levelCount} seviye`}>
+                    <span class="brand-page-comparison__dots" role="img" aria-label={`${row.levelCount} seviye`}>
                       {Array.from({ length: data.maxLevels }).map((_, i) => (
                         <span
                           class="brand-page-comparison__dot"
@@ -186,7 +186,7 @@ const { data } = Astro.props;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--bpcmp-badge-text);
+    color: color-mix(in srgb, var(--bpcmp-badge-text) 84%, #000);
   }
 
   .brand-page-comparison__heading {
@@ -326,7 +326,7 @@ const { data } = Astro.props;
     background: var(--bpcmp-level-tag-bg);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
-    color: var(--bpcmp-dark);
+    color: color-mix(in srgb, var(--bpcmp-dark) 78%, #000);
   }
 
   .brand-page-comparison[data-anim="pending"] [data-rise] {
@@ -390,7 +390,7 @@ const { data } = Astro.props;
       font-weight: var(--font-weight-bold);
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--color-text-soft);
+      color: var(--color-text-muted);
     }
 
     .brand-page-comparison__cell--series {

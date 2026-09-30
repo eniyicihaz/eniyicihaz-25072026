@@ -143,7 +143,7 @@ const { data } = Astro.props;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--scl-badge-text);
+    color: color-mix(in srgb, var(--scl-badge-text) 84%, #000);
   }
 
   .sound-concern-list__heading {
@@ -212,7 +212,7 @@ const { data } = Astro.props;
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--color-text-soft);
+    color: var(--color-text-muted);
   }
 
   .sound-concern-list__answer-label--accent {

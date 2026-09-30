@@ -16,27 +16,27 @@ export const timpanometriRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Ücretsiz İşitme Testi",
       description: "Ücretsiz işitme testi süreci ve randevu hakkında detaylı bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Odyometri",
       description: "Odyometrinin nasıl çalıştığını ve neler ölçtüğünü daha yakından tanıyın.",
-      href: "/degerlendirme/odyometri",
+      href: "/degerlendirme/odyometri/",
     },
     {
       label: "Çocuk İşitme Testi",
       description: "Çocuklar için işitme testi sürecini yakından tanıyın.",
-      href: "/degerlendirme/cocuk-isitme-testi",
+      href: "/degerlendirme/cocuk-isitme-testi/",
     },
     {
       label: "Tinnitus (Kulak Çınlaması) Çözümleri",
       description: "Kulak çınlaması şikayetiniz varsa değerlendirilebilecek çözümleri keşfedin.",
-      href: "/teknolojiler/tinnitus-cozumleri",
+      href: "/teknolojiler/tinnitus-cozumleri/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#9333ea",

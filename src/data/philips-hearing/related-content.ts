@@ -12,21 +12,22 @@ export const philipsHearingRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Oticon İşitme Cihazları",
       description: "Aynı Demant Grubu mühendisliğinden farklı bir marka felsefesini karşılaştırmak isterseniz Oticon'u inceleyin.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
   ],
   // Precomputed rgb() decomposition of #0B5FCE.
   accentColor: "#0B5FCE",
   accentColorBadgeBg: "rgb(11 95 206 / 0.08)",
   accentColorBadgeBorder: "rgb(11 95 206 / 0.35)",
+  accentColorBadgeText: "#07418c",
 };

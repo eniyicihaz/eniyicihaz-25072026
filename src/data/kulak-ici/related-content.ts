@@ -17,27 +17,27 @@ export const kulakIciRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "ITE'ye alternatif, kulak kepçesinin arkasına yerleşen cihaz tipini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Görünmez (CIC / IIC) İşitme Cihazları",
       description: "Kulak içi ailesinin en küçük ve en az fark edilen alt tiplerini yakından tanıyın.",
-      href: "/isitme-cihazlari/gorunmez-cic",
+      href: "/isitme-cihazlari/gorunmez-cic/",
     },
     {
       label: "Şarj Edilebilir İşitme Cihazları",
       description: "Pil değiştirmeden gün boyu kullanım sunan şarjlı modelleri keşfedin.",
-      href: "/isitme-cihazlari/sarj-edilebilir",
+      href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
       label: "Bluetooth Özellikli İşitme Cihazları",
       description: "Telefon ve TV ile doğrudan kablosuz bağlantı kuran modelleri inceleyin.",
-      href: "/isitme-cihazlari/bluetooth-ozellikli",
+      href: "/isitme-cihazlari/bluetooth-ozellikli/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#7c3aed",

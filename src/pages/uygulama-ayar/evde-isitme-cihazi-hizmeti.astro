@@ -62,10 +62,10 @@ const breadcrumbSchema = {
 const medicalBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
-  "@id": "https://www.eniyicihaz.com/#organization",
+  "@id": BUSINESS_ID,
   name: company.legalName,
   description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; Darıca, Gebze ve Çayırova'da evde işitme testi, cihaz denemesi, uygulama ve kişiye özel ayar hizmeti sunar.",
-  url: PAGE_URL,
+  url: BUSINESS_URL,
   telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
   email: company.email,
   address: {
@@ -94,8 +94,9 @@ const medicalBusinessSchema = {
       closes: "19:00",
     },
   ],
-  areaServed: evdeHizmetServiceArea.items.map((item) => item.name),
+  areaServed: SERVICE_AREA_NAMES,
 };
+import { BUSINESS_ID, BUSINESS_URL, SERVICE_AREA_NAMES } from "../../lib/schema";
 ---
 
 <MainLayout

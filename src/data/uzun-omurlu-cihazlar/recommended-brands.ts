@@ -14,32 +14,32 @@ export const uzunOmurluCihazlarRecommendedBrands: BrandPageRelatedContentContent
     {
       label: "Oticon",
       description: "Oticon'un kaliteli bileşenleri ve uzun vadeli yazılım desteği, cihazların uzun yıllar güvenilir çalışmasına katkı sağlar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın dayanıklı yapısı ve geniş yedek parça ağı, uzun ömürlü kullanım için tercih edilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın kaliteli üretim standartları, cihazların uzun süre performansını korumasına yardımcı olur.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in sağlam yapısı ve düzenli yazılım güncellemeleri, uzun ömürlü bir kullanım deneyimi sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un orijinal yedek parça desteği, cihazların uzun yıllar bakımlı kalmasına imkan tanır.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri de aynı kalite standartlarıyla üretilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#059669",

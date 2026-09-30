@@ -16,27 +16,27 @@ export const cocuklardaSgkRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Çocuk İşitme Testi",
       description: "Çocuğunuz için pediatrik işitme testi süreci hakkında bilgi edinin.",
-      href: "/degerlendirme/cocuk-isitme-testi",
+      href: "/degerlendirme/cocuk-isitme-testi/",
     },
     {
       label: "Gerekli Belgeler",
       description: "Çocuk başvurusu için gereken belgeleri öğrenin.",
-      href: "/sgk/gerekli-belgeler",
+      href: "/sgk/gerekli-belgeler/",
     },
     {
       label: "Rapor Süreci",
       description: "Sağlık kurulu raporu ve reçete sürecini yakından tanıyın.",
-      href: "/sgk/rapor-sureci",
+      href: "/sgk/rapor-sureci/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "Güncel SGK destek tutarlarını ve ödeme tablosunu inceleyin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Yenileme Hakkı",
       description: "Çocuğunuzun cihazını yenileme hakkı hakkında bilgi edinin.",
-      href: "/sgk/yenileme-hakki",
+      href: "/sgk/yenileme-hakki/",
     },
   ],
   accentColor: "#db2777",

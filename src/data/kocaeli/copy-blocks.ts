@@ -74,7 +74,7 @@ export const kocaeliRegionalService: KocaeliCopyBlock = {
   heading: "Darıca, Gebze, Çayırova ve Kocaeli Genelinde Hizmet",
   paragraphs: [
     "Avrasya İşitme Cihazları, Darıca'daki merkezinden Kocaeli genelindeki danışanlarına hizmet veren SGK anlaşmalı bir işitme merkezidir.",
-    "Gebze ve Çayırova'dan gelen danışanlarımızın yanı sıra, Dilovası, İzmit, Körfez, Tuzla ve Pendik çevresinden ulaşmak isteyenlere de yardımcı olmaktan memnuniyet duyarız.",
+    "Gebze ve Çayırova'dan gelen danışanlarımızın yanı sıra, Kocaeli'nin diğer ilçelerinden ulaşmak isteyenlere de yardımcı olmaktan memnuniyet duyarız.",
     "Hangi bölgeden ulaşırsanız ulaşın, değerlendirme ve cihaz seçim süreci aynı özenle ilerler.",
   ],
 };

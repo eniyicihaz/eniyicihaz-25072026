@@ -41,13 +41,13 @@ const breadcrumbSchema = {
     <p class="site-map-intro__text">Sitemizdeki tüm sayfalara buradan ulaşabilirsiniz.</p>
   </header>
 
-  <main class="site-map">
+  <div class="site-map">
     <div class="site-map__grid">
       {sitemapCategories.map((category) => (
         <SitemapSection data={category} />
       ))}
     </div>
-  </main>
+  </div>
 </MainLayout>
 
 <style>

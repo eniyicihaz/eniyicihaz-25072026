@@ -12,21 +12,22 @@ export const audifonRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız diğer markaları ve ürün ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Audio Service İşitme Cihazları",
       description: "Aynı Alman mühendisliği kökeninden farklı bir uzmanlık alanını karşılaştırmak isterseniz Audio Service'i inceleyin.",
-      href: "/markalar/audio-service",
+      href: "/markalar/audio-service/",
     },
   ],
   // Precomputed rgb() decomposition of #E2001A.
   accentColor: "#E2001A",
   accentColorBadgeBg: "rgb(226 0 26 / 0.08)",
   accentColorBadgeBorder: "rgb(226 0 26 / 0.35)",
+  accentColorBadgeText: "#9a0012",
 };

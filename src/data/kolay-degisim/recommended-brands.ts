@@ -14,32 +14,32 @@ export const kolayDegisimRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un geniş ürün ailesi, ihtiyaç değişikliğinde farklı seviyeler arasında geçiş imkânı sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın model çeşitliliği, değişim sürecinde ihtiyacınıza uygun alternatifler sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın ürün ailesi, farklı bütçe ve ihtiyaç seviyeleri arasında geçiş imkânı sağlar.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in model seçenekleri, değişim sürecinde değerlendirilebilecek alternatifler arasındadır.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un ürün ailesi, ihtiyaç değişikliğinde uygun bir model geçişi sunabilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar modelleri, uygun bütçeli alternatif arayışında değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#e11d48",

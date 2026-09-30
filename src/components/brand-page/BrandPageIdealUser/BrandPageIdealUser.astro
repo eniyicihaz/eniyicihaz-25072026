@@ -1,4 +1,5 @@
 ---
+import { domId } from "../../../lib/dom-id";
 // BrandPageIdealUser — shared, cross-brand "who is this for" profile grid.
 // New component, not a migration: Oticon has no direct equivalent (its
 // closest sections, Segments/DeviceTypes, are technical form-factor
@@ -39,6 +40,7 @@ interface Props {
 }
 
 const { data } = Astro.props;
+const titleId = domId("brand-page-idealuser", data.heading);
 const extraVars = [
   data.accentColorBorder ? `--bpiu-accent-border:${data.accentColorBorder};` : "",
   data.accentColorIconBgHover ? `--bpiu-icon-bg-hover:${data.accentColorIconBgHover};` : "",
@@ -47,13 +49,13 @@ const extraVars = [
 
 <section
   class:list={["brand-page-idealuser", { "brand-page-idealuser--premium": data.premium }]}
-  aria-labelledby="brand-page-idealuser-title"
+  aria-labelledby={titleId}
   style={`--bpiu-accent:${data.accentColor}; --bpiu-badge-bg:${data.accentColorBadgeBg}; --bpiu-badge-border:${data.accentColorBadgeBorder}; --bpiu-badge-text:${data.accentColorBadgeText}; --bpiu-icon-bg:${data.accentColorIconBg}; ${extraVars}`}
 >
   <div class="brand-page-idealuser__inner">
     <div class="brand-page-idealuser__header">
       <p class="brand-page-idealuser__badge" data-rise>{data.badge}</p>
-      <h2 class="brand-page-idealuser__heading" id="brand-page-idealuser-title" data-rise>
+      <h2 class="brand-page-idealuser__heading" id={titleId} data-rise>
         {data.heading}
       </h2>
       <p class="brand-page-idealuser__intro" data-rise>{data.intro}</p>
@@ -150,7 +152,7 @@ const extraVars = [
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--bpiu-badge-text);
+    color: color-mix(in srgb, var(--bpiu-badge-text) 84%, #000);
   }
 
   .brand-page-idealuser__heading {

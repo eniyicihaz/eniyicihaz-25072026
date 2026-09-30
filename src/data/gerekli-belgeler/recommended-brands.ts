@@ -13,32 +13,32 @@ export const gerekliBelgelerRecommendedBrands: BrandPageRelatedContentContent = 
     {
       label: "Oticon",
       description: "Belgeleriniz tamamlandıktan sonra SGK destekli Oticon modellerini değerlendirebilirsiniz.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Belgeleriniz tamamlandıktan sonra SGK destekli Phonak modellerini değerlendirebilirsiniz.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Belgeleriniz tamamlandıktan sonra SGK destekli Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Belgeleriniz tamamlandıktan sonra SGK destekli Widex modellerini değerlendirebilirsiniz.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "Belgeleriniz tamamlandıktan sonra SGK destekli ReSound modellerini değerlendirebilirsiniz.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "Audio Service",
       description: "Bütçe dostu bir seçenek arıyorsanız, SGK destekli Audio Service modelleri değerlendirilebilir.",
-      href: "/markalar/audio-service",
+      href: "/markalar/audio-service/",
     },
   ],
   accentColor: "#4f46e5",

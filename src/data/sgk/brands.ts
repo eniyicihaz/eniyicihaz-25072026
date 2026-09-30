@@ -67,7 +67,7 @@ export const sgkBrands: SgkBrandsContent = {
   otherLabel: "Diğer İşitme Cihazı Markaları",
   cardLinkLabel: "Markayı İncele",
   featuredBrands: brandShowcase.brands.map((brand) => {
-    const slug = brand.href.replace(/^\/markalar\//, "");
+    const slug = brand.href.replace(/^\/markalar\//, "").replace(/\/$/, "");
     return {
       name: brand.name,
       slug,
@@ -77,7 +77,7 @@ export const sgkBrands: SgkBrandsContent = {
   }),
   otherBrands: brandExtended.brands.map((brand) => ({
     name: brand.name,
-    slug: brand.href.replace(/^\/markalar\//, ""),
+    slug: brand.href.replace(/^\/markalar\//, "").replace(/\/$/, ""),
     logo: brand.logo ?? "",
   })),
   notice: {

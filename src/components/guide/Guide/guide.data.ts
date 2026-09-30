@@ -20,5 +20,5 @@ export const guide: GuideContent = {
       description: "İsterseniz, karar vermeden önce cihazı deneyin.",
     },
   ],
-  cta: { label: "Ücretsiz İşitme Testi", href: "/iletisim" },
+  cta: { label: "Ücretsiz İşitme Testi", href: "/iletisim/" },
 };

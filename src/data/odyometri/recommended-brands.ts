@@ -14,32 +14,32 @@ export const odyometriRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Odyogramınıza göre, Oticon'un farklı güç seviyelerindeki modelleri değerlendirilebilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın geniş ürün yelpazesi, farklı derecelerdeki işitme kayıpları için seçenekler sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın model çeşitliliği, odyogram sonucunuza uygun bir seçenek bulmanıza yardımcı olabilir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in doğal ses felsefesi, bazı odyogram profilleri için değerlendirilebilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un modelleri, farklı işitme kaybı dereceleri için seçenekler sunar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri, odyogram sonucunuza göre bütçe dostu bir alternatif olabilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#4f46e5",

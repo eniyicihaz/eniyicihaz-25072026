@@ -25,6 +25,7 @@ import SgkBrands from "../components/sgk/SgkBrands/SgkBrands.astro";
 import SgkTrustBar from "../components/sgk/SgkTrustBar/SgkTrustBar.astro";
 
 import { sgkIdealUser } from "../data/sgk/ideal-user";
+import { domId } from "../lib/dom-id";
 import { sgkRelatedContent } from "../data/sgk/related-content";
 import { sgkLocation } from "../data/sgk/location";
 import { sgkServiceArea } from "../data/sgk/service-area";
@@ -54,10 +55,10 @@ const breadcrumbSchema = {
 const medicalBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
-  "@id": "https://www.eniyicihaz.com/#organization",
+  "@id": BUSINESS_ID,
   name: company.legalName,
   description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; SGK işitme cihazı ödemesi, katkı payı ve başvuru süreci hakkında rehberlik eder.",
-  url: PAGE_URL,
+  url: BUSINESS_URL,
   telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
   email: company.email,
   address: {
@@ -86,17 +87,18 @@ const medicalBusinessSchema = {
       closes: "19:00",
     },
   ],
-  areaServed: sgkServiceArea.items.map((item) => item.name),
+  areaServed: SERVICE_AREA_NAMES,
 };
 
 const quickLinks = [
   { label: "2026 SGK Desteği", href: "#sgk-payments-title" },
   { label: "Çalışan / Emekli", href: "#sgk-eligibility-title" },
-  { label: "Çocuk / Yetişkin", href: "#brand-page-idealuser-title" },
-  { label: "Rapor Süreci", href: "/sgk/rapor-sureci" },
-  { label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler" },
-  { label: "Yenileme", href: "/sgk/yenileme-hakki" },
+  { label: "Çocuk / Yetişkin", href: `#${domId("brand-page-idealuser", sgkIdealUser.heading)}` },
+  { label: "Rapor Süreci", href: "/sgk/rapor-sureci/" },
+  { label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler/" },
+  { label: "Yenileme", href: "/sgk/yenileme-hakki/" },
 ];
+import { BUSINESS_ID, BUSINESS_URL, SERVICE_AREA_NAMES } from "../lib/schema";
 ---
 
 <MainLayout

@@ -14,32 +14,32 @@ export const yayginServisAgiRecommendedBrands: BrandPageRelatedContentContent = 
     {
       label: "Oticon",
       description: "Oticon'un yaygın yetkili servis ağı, hızlı ve güvenilir destek sunar.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın geniş servis ağı, sertifikalı teknisyenlerle kesintisiz destek sağlar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın yetkili servis noktaları, orijinal yedek parça garantisiyle hizmet verir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in servis ağı, düzenli eğitimli teknisyenlerle tutarlı bir hizmet kalitesi sunar.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un yetkili servis desteği, garantinizi koruyarak hızlı çözümler sunar.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri de aynı yetkili servis güvencesiyle desteklenir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#ea580c",

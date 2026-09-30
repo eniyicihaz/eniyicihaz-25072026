@@ -1,6 +1,7 @@
 ---
 import "../ds/styles/base/variables.css";
 import "../ds/styles/base/reset.css";
+import "../ds/styles/base/fonts.css";
 // Typography baseline: reset.css deliberately sets no font-family, so without
 // this the page falls back to the UA serif. Imported instead of global.css to
 // avoid its universal `*` transition rule, which would alter every hover.
@@ -12,11 +13,14 @@ import AnnouncementBar from "../components/announcement-bar/AnnouncementBar/Anno
 interface Props {
   title?: string;
   description?: string;
+  /** Utility pages (404): emit robots noindex and no canonical/og:url. */
+  noindex?: boolean;
 }
 
 const {
   title = "EniyiCihaz — İşitme Cihazları",
   description = "İşitme sağlığınız için en iyi çözümler.",
+  noindex = false,
 } = Astro.props;
 
 // Canonical/OG URL — requires `site` in astro.config.mjs (set to the real
@@ -26,8 +30,12 @@ const {
 // §7). Add one real asset and this can be wired in with a single prop.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
+// One default share image for every page (real storefront photo, cropped to 1200×630 — public/images/og/og-default.jpg).
+const ogImageURL = new URL("/images/og/og-default.jpg", Astro.site).toString();
+const ogImageAlt = "Avrasya İşitme Cihazları, Darıca — cadde cephesi ve tabelalar";
+
 // Site-wide Organization identity — the brand-level half of the two-part
-// entity described in SEARCH_STRATEGY.md §11. The `/iletisim` page adds a
+// entity described in SEARCH_STRATEGY.md §11. The `/iletisim/` page adds a
 // second JSON-LD block (MedicalBusiness) sharing this exact same `@id`, so
 // search engines and AI systems resolve both as one real business, not two.
 const organizationSchema = {
@@ -36,7 +44,7 @@ const organizationSchema = {
   "@id": "https://www.eniyicihaz.com/#organization",
   name: "Eniyicihaz.com",
   alternateName: "Avrasya İşitme Cihazları",
-  url: "https://www.eniyicihaz.com",
+  url: "https://www.eniyicihaz.com/",
   telephone: "+905337733199",
 };
 ---
@@ -48,24 +56,32 @@ const organizationSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonicalURL} />}
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Eniyicihaz.com" />
     <meta property="og:locale" content="tr_TR" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta name="twitter:card" content="summary" />
+    {!noindex && <meta property="og:url" content={canonicalURL} />}
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImageURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Self-hosted Inter (see ds/styles/base/fonts.css): preload both subsets Turkish text needs, no third-party stylesheet. -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
 
     <script
       type="application/ld+json"
@@ -76,7 +92,7 @@ const organizationSchema = {
   <body>
     <a href="#main" class="skip-link">İçeriğe geç</a>
 
-    <AnnouncementBar />
+    <AnnouncementBar pathname={Astro.url.pathname} />
     <Header />
 
     <main id="main">

@@ -9,7 +9,7 @@ export const gebzeFinalCta: BrandPageFinalCtaContent = {
   badge: "HEMEN BAŞLAYALIM",
   heading: "Gebze'de İşitme Cihazı Arıyorsanız İlk Adımı Atın",
   description: "İhtiyacınızı konuşalım, size uygun işitme cihazı seçeneklerini birlikte değerlendirelim.",
-  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi" },
+  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: [
     "SGK Anlaşmalı Hizmet",

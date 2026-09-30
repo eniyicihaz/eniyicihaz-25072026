@@ -11,32 +11,32 @@ export const sikSorulanSorularRecommendedBrands: BrandPageRelatedContentContent 
     {
       label: "Oticon",
       description: "Oticon markası hakkında sıkça sorulan sorulara kendi sayfasında ulaşabilirsiniz.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak markası hakkında sıkça sorulan sorulara kendi sayfasında ulaşabilirsiniz.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia markası hakkında sıkça sorulan sorulara kendi sayfasında ulaşabilirsiniz.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex markası hakkında sıkça sorulan sorulara kendi sayfasında ulaşabilirsiniz.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound markası hakkında sıkça sorulan sorulara kendi sayfasında ulaşabilirsiniz.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "Tüm Markalar",
       description: "İşitme cihazı markalarının tamamını tek sayfada inceleyebilirsiniz.",
-      href: "/markalar",
+      href: "/markalar/",
     },
   ],
   accentColor: "#0284c7",

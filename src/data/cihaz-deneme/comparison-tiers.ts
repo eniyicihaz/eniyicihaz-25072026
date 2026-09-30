@@ -47,7 +47,7 @@ export const cihazDenemeComparisonTiers: BrandPageComparisonContent = {
   accentColorBadgeBg: "rgb(13 148 136 / 0.08)",
   accentColorBadgeBorder: "rgb(13 148 136 / 0.35)",
   accentColorBadgeText: "#0f766e",
-  accentColorNewTagBg: "#0d9488",
+  accentColorNewTagBg: "#99f6e4",
   accentColorIconBg: "rgb(13 148 136 / 0.12)",
   accentColorLevelTagBg: "rgb(13 148 136 / 0.12)",
   accentColorDark: "#134e4a",

@@ -57,21 +57,6 @@ export const contactServiceArea: ContactServiceAreaContent = {
       description: "Çayırova'dan merkezimize kolayca ulaşabilirsiniz.",
       href: "/cayirova-isitme-cihazlari/",
     },
-    {
-      name: "Dilovası",
-      tier: "cevre",
-      description: "Dilovası çevresinden de hizmet almak için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Tuzla",
-      tier: "cevre",
-      description: "Tuzla çevresinden de hizmet almak için bizi arayabilirsiniz.",
-    },
-    {
-      name: "Pendik",
-      tier: "cevre",
-      description: "Pendik çevresinden de hizmet almak için bizi arayabilirsiniz.",
-    },
   ],
   closing:
     "Listede yer almayan bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",

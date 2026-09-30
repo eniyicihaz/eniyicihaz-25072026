@@ -17,27 +17,27 @@ export const hafifIsitmeKaybiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Hafif kayıplarda da sıkça tercih edilen, geniş kayıp aralığına uygun cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "Hafif kayıplarda görünürlüğü önceliklendiren kullanıcılar için kulak içi aileyi keşfedin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Orta Derece İşitme Kaybı",
       description: "Bir sonraki dereceyi ve bu derecede sıkça tercih edilen cihazları yakından tanıyın.",
-      href: "/ihtiyaciniza-gore/orta-derece-isitme-kaybi",
+      href: "/ihtiyaciniza-gore/orta-derece-isitme-kaybi/",
     },
     {
       label: "Görünmez (CIC) İşitme Cihazları",
       description: "Hafif kayıplarda sıkça değerlendirilen, en az fark edilen kulak içi alt tiplerini inceleyin.",
-      href: "/isitme-cihazlari/gorunmez-cic",
+      href: "/isitme-cihazlari/gorunmez-cic/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#db2777",

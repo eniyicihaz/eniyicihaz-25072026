@@ -36,19 +36,19 @@ export const sgkFaq: SgkFaqContent = {
       question: "SGK işitme cihazı için ne kadar ödeme yapıyor?",
       answer:
         "SGK işitme cihazı ödemesi yaş grubuna ve sigortalılık durumuna göre değişir; çalışan ve emekli bireyler için farklı tutarlar uygulanır. Güncel 2026 SGK işitme cihazı ödeme tutarlarını bu sayfadaki tabloda inceleyebilirsiniz.",
-      relatedLinks: [{ label: "SGK Katkı Payı", href: "/sgk/katki-payi" }],
+      relatedLinks: [{ label: "SGK Katkı Payı", href: "/sgk/katki-payi/" }],
     },
     {
       question: "Emekliler daha fazla destek alıyor mu?",
       answer:
         "Evet, SGK emekli vatandaşlara çalışanlara kıyasla daha yüksek destek tutarları sunmaktadır. Bu fark tüm yaş gruplarında geçerlidir.",
-      relatedLinks: [{ label: "SGK Katkı Payı", href: "/sgk/katki-payi" }],
+      relatedLinks: [{ label: "SGK Katkı Payı", href: "/sgk/katki-payi/" }],
     },
     {
       question: "Çocuklarda SGK ödemesi neden farklıdır?",
       answer:
         "Çocuklarda işitme kaybının erken yaşta desteklenmesi önemli olduğu için SGK, çocuk yaş gruplarında daha yüksek destek tutarları belirlemiştir. Bu sayede erken rehabilitasyon süreci desteklenmektedir.",
-      relatedLinks: [{ label: "Çocuklarda SGK", href: "/sgk/cocuklarda-sgk" }],
+      relatedLinks: [{ label: "Çocuklarda SGK", href: "/sgk/cocuklarda-sgk/" }],
     },
     {
       question: "İşitme cihazı pil desteği var mı?",
@@ -59,19 +59,19 @@ export const sgkFaq: SgkFaqContent = {
       question: "Kaç yılda bir SGK'dan yeni işitme cihazı alınabilir?",
       answer:
         "İşitme cihazı yenileme hakkı SGK mevzuatında belirlenen sürelere göre değişir. Güncel yenileme süresi ve şartları hakkında merkezimizden veya SGK'dan detaylı bilgi alabilirsiniz.",
-      relatedLinks: [{ label: "Yenileme Hakkı", href: "/sgk/yenileme-hakki" }],
+      relatedLinks: [{ label: "Yenileme Hakkı", href: "/sgk/yenileme-hakki/" }],
     },
     {
       question: "Heyet raporu (sağlık kurulu raporu) gerekli mi?",
       answer:
         "Evet, SGK desteğinden yararlanabilmek için işitme kaybını gösteren bir sağlık kurulu raporuna sahip olmak gerekir. Bu rapor ilgili hastane veya sağlık kuruluşundan alınır.",
-      relatedLinks: [{ label: "Rapor Süreci", href: "/sgk/rapor-sureci" }],
+      relatedLinks: [{ label: "Rapor Süreci", href: "/sgk/rapor-sureci/" }],
     },
     {
       question: "İşitme cihazı reçetesi zorunlu mu?",
       answer:
         "Evet, sağlık kurulu raporunun yanı sıra uzman hekim tarafından düzenlenmiş bir işitme cihazı reçetesi de başvuru için gereklidir.",
-      relatedLinks: [{ label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler" }],
+      relatedLinks: [{ label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler/" }],
     },
     {
       question: "Fark ücreti ödemem gerekir mi?",
@@ -82,7 +82,7 @@ export const sgkFaq: SgkFaqContent = {
       question: "SGK desteği tüm işitme cihazı markalarında geçerli mi?",
       answer:
         "SGK desteği, SGK'nın belirlediği teknik kriterleri karşılayan işitme cihazı modellerinde geçerlidir. Anlaşmalı merkezimizde sunduğumuz markalar hakkında detaylı bilgi alabilirsiniz.",
-      relatedLinks: [{ label: "İşitme Cihazı Markaları", href: "/markalar" }],
+      relatedLinks: [{ label: "İşitme Cihazı Markaları", href: "/markalar/" }],
     },
     {
       question: "SGK başvuru sürecinde destek alabilir miyim?",
@@ -93,7 +93,7 @@ export const sgkFaq: SgkFaqContent = {
       question: "SGK anlaşmalı işitme merkezine nasıl başvurulur?",
       answer:
         "Öncelikle işitme değerlendirmesi için merkezimize başvurabilir, ardından gerekli sağlık kurulu raporu ve reçete sürecini birlikte takip edebilirsiniz. Darıca'daki merkezimize telefon veya WhatsApp üzerinden ulaşarak randevu talep edebilirsiniz.",
-      relatedLinks: [{ label: "İletişim", href: "/iletisim" }],
+      relatedLinks: [{ label: "İletişim", href: "/iletisim/" }],
     },
   ],
   help: {

@@ -14,32 +14,32 @@ export const isitmeKaybiNedirRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "İşitme değerlendirmeniz sonrasında Oticon'un geniş model yelpazesi incelenebilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "İşitme değerlendirmeniz sonrasında Phonak'ın geniş model yelpazesi incelenebilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "İşitme değerlendirmeniz sonrasında Signia'nın geniş model yelpazesi incelenebilir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "İşitme değerlendirmeniz sonrasında Widex'in geniş model yelpazesi incelenebilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "İşitme değerlendirmeniz sonrasında ReSound'un geniş model yelpazesi incelenebilir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Bütçe dostu bir seçenek arıyorsanız, NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#2563eb",

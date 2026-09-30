@@ -36,7 +36,7 @@ export const brandsTeaser = {
   heading: "Farklı Markaların Teknoloji Yaklaşımlarını Deneyimleyin",
   body: "Çalıştığımız markaların her biri işitmeye farklı bir yaklaşımla çözüm sunar; deneme sürecinde size uygun olanı birlikte belirleyebiliriz.",
   linkLabel: "İşitme Cihazı Markaları",
-  href: "/markalar",
+  href: "/markalar/",
 };
 
 export const sgkSection = {
@@ -44,5 +44,5 @@ export const sgkSection = {
   heading: "Cihaz Seçiminizi Yapmadan Önce SGK Desteğinizi de Öğrenin",
   body: "İşitme cihazı alımında SGK desteğinden yararlanıp yararlanamayacağınızı, deneme sürecine başlamadan önce öğrenebilirsiniz.",
   linkLabel: "SGK İşitme Cihazı Desteği",
-  href: "/sgk-isitme-cihazi-odemesi",
+  href: "/sgk-isitme-cihazi-odemesi/",
 };

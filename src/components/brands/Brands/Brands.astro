@@ -34,7 +34,7 @@ const Tag = embedded ? "div" : "section";
            indefinitely. The full set is only ~18 small webp files, cheap
            enough to load eagerly and sidestep the bug entirely. */
         brands.map((brand) => (
-          <a class="brands__logo" href={`/markalar/${brand.slug}`} aria-label={brand.name}>
+          <a class="brands__logo" href={`/markalar/${brand.slug}/`} aria-label={brand.name}>
             <img
               src={brand.logo}
               width={brand.logoWidth}
@@ -51,7 +51,7 @@ const Tag = embedded ? "div" : "section";
         brands.map((brand) => (
           <a
             class="brands__logo"
-            href={`/markalar/${brand.slug}`}
+            href={`/markalar/${brand.slug}/`}
             aria-hidden="true"
             tabindex="-1"
           >

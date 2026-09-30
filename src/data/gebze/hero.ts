@@ -32,7 +32,7 @@ export const gebzeHero: CorporateHeroContent = {
     { value: "18+ Marka", label: "Seçenek Sunuyoruz" },
   ],
   ctas: [
-    { label: "Ücretsiz Değerlendirme Al", href: "/degerlendirme/ucretsiz-isitme-testi" },
+    { label: "Ücretsiz Değerlendirme Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },
     { label: "Bizi Arayın", href: contactConfig.phone.href, variant: "outline" },
   ],
 };

@@ -21,27 +21,27 @@ export const kulakArkasiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Tüm İşitme Cihazı Markaları",
       description: "Çalıştığımız markaları ve BTE model ailelerini keşfedin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "BTE'ye alternatif, kulak kanalı içine yerleşen cihaz tipini inceleyin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Şarj Edilebilir İşitme Cihazları",
       description: "Pil değiştirmeden gün boyu kullanım sunan şarjlı modelleri keşfedin.",
-      href: "/isitme-cihazlari/sarj-edilebilir",
+      href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
       label: "Darıca, Gebze ve Çayırova'da Hizmetinizdeyiz",
       description: "Merkezimize ulaşım bilgileri ve randevu için bizimle iletişime geçin.",
-      href: "/iletisim",
+      href: "/iletisim/",
     },
   ],
   accentColor: "#2563eb",

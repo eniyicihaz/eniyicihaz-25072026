@@ -35,28 +35,28 @@ export const sgkProcess: SgkProcessContent = {
       title: "Muayene ve İşitme Testi",
       description:
         "KBB uzmanı veya ilgili hekim tarafından muayene olunur, gerekli işitme testleri tamamlanır ve işitme kaybı değerlendirilir.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       number: "02",
       title: "Rapor ve Reçete",
       description:
         "İşitme cihazı kullanımı uygun görüldüğünde işitme cihazı raporu ve reçete düzenlenir.",
-      href: "/sgk/rapor-sureci",
+      href: "/sgk/rapor-sureci/",
     },
     {
       number: "03",
       title: "SGK Başvurusu",
       description:
         "Gerekli belgeler hazırlanır ve SGK başvuru süreci tamamlanır. İşlemler SGK mevzuatına uygun şekilde yürütülür.",
-      href: "/sgk/gerekli-belgeler",
+      href: "/sgk/gerekli-belgeler/",
     },
     {
       number: "04",
       title: "Cihaz Uygulaması ve Teslim",
       description:
         "Size en uygun işitme cihazı seçilir, kişiye özel ayarlanır, kullanım eğitimi verilir ve takip süreci başlatılır.",
-      href: "/uygulama-ayar/cihaz-uygulama",
+      href: "/uygulama-ayar/cihaz-uygulama/",
     },
   ],
   stepLinkLabel: "Detaylı Bilgi",

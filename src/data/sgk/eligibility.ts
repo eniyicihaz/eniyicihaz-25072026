@@ -77,10 +77,10 @@ export const sgkEligibility: SgkEligibilityContent = {
   },
   relatedLabel: "Bu konuyla ilgili devamı",
   relatedLinks: [
-    { label: "SGK Katkı Payı", href: "/sgk/katki-payi" },
-    { label: "Rapor Süreci", href: "/sgk/rapor-sureci" },
-    { label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler" },
-    { label: "Çocuklarda SGK", href: "/sgk/cocuklarda-sgk" },
+    { label: "SGK Katkı Payı", href: "/sgk/katki-payi/" },
+    { label: "Rapor Süreci", href: "/sgk/rapor-sureci/" },
+    { label: "Gerekli Belgeler", href: "/sgk/gerekli-belgeler/" },
+    { label: "Çocuklarda SGK", href: "/sgk/cocuklarda-sgk/" },
     { label: "Güncel SGK Ödeme Tutarları", href: "#sgk-payments-title" },
   ],
   action: {

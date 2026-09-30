@@ -37,19 +37,19 @@ export const sgkKnowledge: SgkKnowledgeContent = {
       title: "Destek Tutarları Nasıl Belirlenir?",
       description:
         "SGK katkı payı; yaş grubuna, cihaz tipine ve güncel SGK mevzuatına göre değişiklik gösterebilir.",
-      href: "/sgk/katki-payi",
+      href: "/sgk/katki-payi/",
     },
     {
       title: "Hangi Belgeler Gereklidir?",
       description:
         "Başvuru için işitme cihazı raporu, uzman hekim reçetesi ve SGK'nın istediği diğer evrakların eksiksiz tamamlanması gerekir.",
-      href: "/sgk/gerekli-belgeler",
+      href: "/sgk/gerekli-belgeler/",
     },
     {
       title: "SGK Başvurusu Nasıl Yapılır?",
       description:
         "Rapor ve reçete tamamlandıktan sonra belgeler SGK'ya iletilir; başvuru süreci mevzuata uygun şekilde takip edilir.",
-      href: "/sgk/rapor-sureci",
+      href: "/sgk/rapor-sureci/",
     },
     {
       title: "Güncel SGK Mevzuatı",

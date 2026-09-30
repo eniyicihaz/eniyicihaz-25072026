@@ -11,32 +11,32 @@ export const uzmanGorusleriRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Doğru bilgiyle karar verdikten sonra Oticon modellerini değerlendirebilirsiniz.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Doğru bilgiyle karar verdikten sonra Phonak modellerini değerlendirebilirsiniz.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Bernafon",
       description: "Doğru bilgiyle karar verdikten sonra Bernafon modellerini değerlendirebilirsiniz.",
-      href: "/markalar/bernafon",
+      href: "/markalar/bernafon/",
     },
     {
       label: "Signia",
       description: "Doğru bilgiyle karar verdikten sonra Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "ReSound",
       description: "Doğru bilgiyle karar verdikten sonra ReSound modellerini değerlendirebilirsiniz.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "Beltone",
       description: "Bütçe dostu bir seçenek arıyorsanız, Beltone modelleri değerlendirilebilir.",
-      href: "/markalar/beltone",
+      href: "/markalar/beltone/",
     },
   ],
   accentColor: "#7c3aed",

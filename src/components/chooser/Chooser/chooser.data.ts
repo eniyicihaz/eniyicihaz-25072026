@@ -22,24 +22,24 @@ export const chooser: ChooserContent = {
       id: "q1",
       question: "Hangi ortamda daha çok zorlanıyorsunuz?",
       options: [
-        { label: "Sessiz ortamda bile bazı sesleri kaçırıyorum", weights: { "/isitme-cihazlari/kulak-arkasi-bte": 2, "/isitme-cihazlari/kulak-ici-ite": 1 } },
-        { label: "Kalabalık / gürültülü ortamlarda zorlanıyorum", weights: { "/isitme-cihazlari/bluetooth-ozellikli": 2, "/isitme-cihazlari/kulak-arkasi-bte": 1 } },
-        { label: "Telefon veya TV'de netlik istiyorum", weights: { "/isitme-cihazlari/bluetooth-ozellikli": 3 } },
+        { label: "Sessiz ortamda bile bazı sesleri kaçırıyorum", weights: { "/isitme-cihazlari/kulak-arkasi-bte/": 2, "/isitme-cihazlari/kulak-ici-ite/": 1 } },
+        { label: "Kalabalık / gürültülü ortamlarda zorlanıyorum", weights: { "/isitme-cihazlari/bluetooth-ozellikli/": 2, "/isitme-cihazlari/kulak-arkasi-bte/": 1 } },
+        { label: "Telefon veya TV'de netlik istiyorum", weights: { "/isitme-cihazlari/bluetooth-ozellikli/": 3 } },
       ],
     },
     {
       id: "q2",
       question: "Görünürlük sizin için ne kadar önemli?",
       options: [
-        { label: "Fark edilmesin isterim", weights: { "/isitme-cihazlari/gorunmez-cic": 3, "/isitme-cihazlari/kulak-ici-ite": 2 } },
-        { label: "Önemli değil, kullanım kolaylığı önceliğim", weights: { "/isitme-cihazlari/kulak-arkasi-bte": 3, "/isitme-cihazlari/kulak-ici-ite": 1 } },
+        { label: "Fark edilmesin isterim", weights: { "/isitme-cihazlari/gorunmez-cic/": 3, "/isitme-cihazlari/kulak-ici-ite/": 2 } },
+        { label: "Önemli değil, kullanım kolaylığı önceliğim", weights: { "/isitme-cihazlari/kulak-arkasi-bte/": 3, "/isitme-cihazlari/kulak-ici-ite/": 1 } },
       ],
     },
     {
       id: "q3",
       question: "Şarj mı, pil mi tercih edersiniz?",
       options: [
-        { label: "Her gün şarj etmek sorun değil", weights: { "/isitme-cihazlari/sarj-edilebilir": 3 } },
+        { label: "Her gün şarj etmek sorun değil", weights: { "/isitme-cihazlari/sarj-edilebilir/": 3 } },
         { label: "Pil değiştirmek daha pratik geliyor / fark etmez", weights: {} },
       ],
     },
@@ -48,7 +48,7 @@ export const chooser: ChooserContent = {
     label: "Kararsız mı kaldınız?",
     sentence: "Kesin öneri için ücretsiz işitme testimizde birlikte netleştirebiliriz.",
     cta: "Bizimle iletişime geçin",
-    href: "/iletisim",
+    href: "/iletisim/",
   },
   restartLabel: "Soruları tekrar yanıtlayın",
 };

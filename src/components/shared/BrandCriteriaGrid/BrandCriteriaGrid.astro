@@ -136,7 +136,7 @@ const { data } = Astro.props;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--bcg-badge-text);
+    color: color-mix(in srgb, var(--bcg-badge-text) 84%, #000);
   }
 
   .brand-criteria-grid__heading {
@@ -210,7 +210,7 @@ const { data } = Astro.props;
     text-align: center;
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
-    color: var(--color-text-soft);
+    color: var(--color-text-muted);
   }
 
   .brand-criteria-grid[data-anim="pending"] [data-rise] {

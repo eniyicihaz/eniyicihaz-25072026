@@ -18,9 +18,16 @@
 // natural next step for a future, separately-approved site-wide pass, not
 // part of this homepage-scoped task.
 import { company } from "../components/footer/Footer/data/company";
-import { contactServiceArea } from "../data/contact/serviceArea";
 
-const ORGANIZATION_ID = "https://www.eniyicihaz.com/#organization";
+/** Brand/site Organization node (declared once in MainLayout). */
+export const ORGANIZATION_ID = "https://www.eniyicihaz.com/#organization";
+/** The real local business — its OWN @id (must not equal the Organization's), described on every page that includes it. */
+export const BUSINESS_ID = "https://www.eniyicihaz.com/#business";
+/** The business's canonical URL (never the URL of the page that happens to embed the node). */
+export const BUSINESS_URL = "https://www.eniyicihaz.com/";
+/** Service area limited to what the business has confirmed: the Darıca center, Gebze/Çayırova and Kocaeli overall.
+ *  Dilovası / Tuzla / Pendik are intentionally NOT listed here (unconfirmed; see COMPANY.md review). */
+export const SERVICE_AREA_NAMES = ["Darıca", "Gebze", "Çayırova", "Kocaeli"];
 
 // Real coordinates behind company.directionsHref/mapEmbedSrc — a verified
 // Google Business Profile embed, not a re-geocoded guess. Same numbers
@@ -67,12 +74,8 @@ export interface MedicalBusinessSchema {
  * should be the page's own AI-quotable entity-definition sentence (e.g.
  * Hero's `contextSentence` on the homepage, `contactHero.definitionSentence`
  * on /iletisim) so visible copy and structured data never drift apart.
- * `areaServed` reads the full, real COMPANY.md §17 hierarchy from
- * `contactServiceArea` (Darıca, Gebze, Çayırova, Dilovası, Tuzla, Pendik) —
- * structured data is not visible on-page copy, so listing the complete real
- * service area here is not "keyword stuffing"; that rule applies to natural-
- * language content, not machine-readable fields meant to enumerate exactly
- * this.
+ * `areaServed` is limited to the confirmed hierarchy (SERVICE_AREA_NAMES); the node has its own @id and always
+ * points at the business's canonical URL, never at the page that embeds it.
  */
 export function buildMedicalBusinessSchema(
   pageUrl: string,
@@ -81,10 +84,10 @@ export function buildMedicalBusinessSchema(
   return {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": ORGANIZATION_ID,
+    "@id": BUSINESS_ID,
     name: company.legalName,
     description,
-    url: pageUrl,
+    url: BUSINESS_URL,
     telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
     email: company.email,
     // Mirrors company.address's real value (kept as structured fields here
@@ -115,6 +118,6 @@ export function buildMedicalBusinessSchema(
         closes: "19:00",
       },
     ],
-    areaServed: contactServiceArea.items.map((item) => item.name),
+    areaServed: SERVICE_AREA_NAMES,
   };
 }

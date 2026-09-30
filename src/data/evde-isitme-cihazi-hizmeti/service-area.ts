@@ -28,11 +28,6 @@ export const evdeHizmetServiceArea: ContactServiceAreaContent = {
       tier: "oncelikli",
       description: "Çayırova'dan da randevu alarak ekibimizi evinize davet edebilirsiniz.",
     },
-    {
-      name: "Dilovası",
-      tier: "cevre",
-      description: "Dilovası çevresinden de evde hizmet için bizi arayabilirsiniz.",
-    },
   ],
   closing: "Kocaeli genelinde listede yer almayan bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",
 };

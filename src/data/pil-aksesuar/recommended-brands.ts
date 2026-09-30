@@ -13,32 +13,32 @@ export const pilAksesuarRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "Oticon'un çinko-hava ve şarjlı model seçenekleri için uyumlu pil ve aksesuarlar mevcuttur.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın çinko-hava ve şarjlı model seçenekleri için uyumlu pil ve aksesuarlar mevcuttur.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın çinko-hava ve şarjlı model seçenekleri için uyumlu pil ve aksesuarlar mevcuttur.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in çinko-hava ve şarjlı model seçenekleri için uyumlu pil ve aksesuarlar mevcuttur.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un çinko-hava ve şarjlı model seçenekleri için uyumlu pil ve aksesuarlar mevcuttur.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri için de uyumlu pil ve aksesuarlar mevcuttur.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#ca8a04",

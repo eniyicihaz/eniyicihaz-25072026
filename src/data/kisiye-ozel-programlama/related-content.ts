@@ -14,27 +14,27 @@ export const kisiyeOzelProgramlamaRelatedContent: BrandPageRelatedContentContent
     {
       label: "Cihaz Uygulama",
       description: "İlk uygulama randevusunun nasıl işlediğini yakından tanıyın.",
-      href: "/uygulama-ayar/cihaz-uygulama",
+      href: "/uygulama-ayar/cihaz-uygulama/",
     },
     {
       label: "Odyometri",
       description: "İnce ayarların temelini oluşturan odyometrik değerlendirmeyi tanıyın.",
-      href: "/degerlendirme/odyometri",
+      href: "/degerlendirme/odyometri/",
     },
     {
       label: "Uzaktan Ayar",
       description: "Kliniğe gelmeden uzaktan ince ayar imkânı hakkında bilgi edinin.",
-      href: "/uygulama-ayar/uzaktan-ayar",
+      href: "/uygulama-ayar/uzaktan-ayar/",
     },
     {
       label: "Cihaz Deneme",
       description: "Cihazınızı satın almadan önce deneme süreci hakkında bilgi edinin.",
-      href: "/uygulama-ayar/cihaz-deneme",
+      href: "/uygulama-ayar/cihaz-deneme/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#7c3aed",

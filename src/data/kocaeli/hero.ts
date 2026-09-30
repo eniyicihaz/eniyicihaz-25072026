@@ -50,7 +50,7 @@ export const kocaeliHero: KocaeliHeroContent = {
     { value: "2009'dan Beri", label: "Kocaeli'de Hizmet" },
   ],
   ctas: [
-    { label: "Ücretsiz Değerlendirme Al", href: "/degerlendirme/ucretsiz-isitme-testi" },
+    { label: "Ücretsiz Değerlendirme Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },
     { label: "Bizi Arayın", href: contactConfig.phone.href, variant: "outline" },
   ],
 };

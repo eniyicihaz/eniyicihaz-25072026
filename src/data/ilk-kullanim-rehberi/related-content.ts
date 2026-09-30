@@ -17,27 +17,27 @@ export const ilkKullanimRehberiRelatedContent: BrandPageRelatedContentContent = 
     {
       label: "Cihaz Uygulama",
       description: "Cihazınızın profesyonel olarak nasıl uygulandığını yakından tanıyın.",
-      href: "/uygulama-ayar/cihaz-uygulama",
+      href: "/uygulama-ayar/cihaz-uygulama/",
     },
     {
       label: "Uyum Süreci",
       description: "Cihazınıza uzun vadede nasıl alışacağınızı öğrenin.",
-      href: "/rehberler/uyum-sureci",
+      href: "/rehberler/uyum-sureci/",
     },
     {
       label: "Cihaz Bakımı",
       description: "Cihazınızın günlük bakımı ve temizliği hakkında bilgi edinin.",
-      href: "/servis-bakim/periyodik-bakim",
+      href: "/servis-bakim/periyodik-bakim/",
     },
     {
       label: "Pil Kullanımı",
       description: "Pil ve şarj seçenekleri hakkında bilgi edinin.",
-      href: "/servis-bakim/pil-aksesuar",
+      href: "/servis-bakim/pil-aksesuar/",
     },
     {
       label: "Cihaz Seçim Rehberi",
       description: "İhtiyacınıza uygun işitme cihazını nasıl seçeceğinizi öğrenin.",
-      href: "/rehberler/cihaz-secim-rehberi",
+      href: "/rehberler/cihaz-secim-rehberi/",
     },
   ],
   accentColor: "#059669",

@@ -13,32 +13,32 @@ export const gurultuEngellemeRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "Oticon'un gürültü azaltma teknolojisi, BrainHearing® felsefesiyle gürültülü ortamlarda dinleme çabasını azaltmayı hedefler.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak'ın gelişmiş gürültü engelleme aileleri, rüzgar ve sabit gürültüye karşı güçlü bir koruma sunar.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia'nın gürültü azaltma teknolojisi, gerçek zamanlı sinyal işlemeyle dinleme konforunu artırmayı hedefler.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex'in gürültü azaltma modelleri, markanın doğal ses felsefesini rahatsız edici seslerin azaltılmasıyla bir araya getirir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound'un gürültü azaltma aileleri, gürültülü ortamlarda sıkça değerlendirilen bir seçenektir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Uygun fiyatlı ve etkili gürültü azaltma çözümleri arayanlar için NuEar'ın modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#c026d3",

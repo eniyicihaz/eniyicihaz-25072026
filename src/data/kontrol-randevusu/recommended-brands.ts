@@ -14,32 +14,32 @@ export const kontrolRandevusuRecommendedBrands: BrandPageRelatedContentContent =
     {
       label: "Oticon",
       description: "Oticon cihazları, Genie 2 yazılımı üzerinden kontrol randevusunda performans açısından gözden geçirilir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "Phonak cihazları, Target yazılımı üzerinden kontrol randevusunda değerlendirilir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "Signia cihazları, Connexx yazılımı üzerinden kontrol randevusunda incelenir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "Widex cihazları, Compass GPS yazılımı üzerinden kontrol randevusunda değerlendirilir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "ReSound cihazları, Smart Fit yazılımı üzerinden kontrol randevusunda incelenir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "NuEar'ın uygun fiyatlı modelleri de aynı özenle kontrol randevusunda değerlendirilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#475569",

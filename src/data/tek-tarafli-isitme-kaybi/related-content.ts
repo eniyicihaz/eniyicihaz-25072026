@@ -16,27 +16,27 @@ export const tekTarafliIsitmeKaybiRelatedContent: BrandPageRelatedContentContent
     {
       label: "Kablosuz Bağlantı Özellikleri",
       description: "CROS/BiCROS sistemlerinin dayandığı kablosuz aktarım teknolojisini daha yakından tanıyın.",
-      href: "/teknolojiler/kablosuz-baglanti",
+      href: "/teknolojiler/kablosuz-baglanti/",
     },
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "CROS/BiCROS sistemlerinin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Çok İleri Derece İşitme Kaybı",
       description: "Kötü duyan kulakta çok ileri derece kayıp olduğunda değerlendirilen yaklaşımları keşfedin.",
-      href: "/ihtiyaciniza-gore/cok-ileri-derece-isitme-kaybi",
+      href: "/ihtiyaciniza-gore/cok-ileri-derece-isitme-kaybi/",
     },
     {
       label: "Yaşlılar İçin Cihazlar",
       description: "Yaşlı kullanıcılar için sıkça değerlendirilen cihaz özelliklerini yakından tanıyın.",
-      href: "/ihtiyaciniza-gore/yaslilar-icin-cihazlar",
+      href: "/ihtiyaciniza-gore/yaslilar-icin-cihazlar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#52525b",

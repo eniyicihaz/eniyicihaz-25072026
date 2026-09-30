@@ -18,27 +18,27 @@ export const pilAksesuarRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Cihaz Temizliği",
       description: "Günlük temizlik ve doğru saklama önerileri hakkında bilgi edinin.",
-      href: "/servis-bakim/cihaz-temizligi",
+      href: "/servis-bakim/cihaz-temizligi/",
     },
     {
       label: "Periyodik Bakım",
       description: "Aşınan parçaların profesyonelce yenilendiği bakım randevusunu keşfedin.",
-      href: "/servis-bakim/periyodik-bakim",
+      href: "/servis-bakim/periyodik-bakim/",
     },
     {
       label: "Teknik Servis",
       description: "Şarjlı pilinizde bir sorun fark ederseniz, teşhis ve onarım sürecini keşfedin.",
-      href: "/servis-bakim/teknik-servis",
+      href: "/servis-bakim/teknik-servis/",
     },
     {
       label: "Garanti İşlemleri",
       description: "Cihazınızın garanti kapsamı ve süreci hakkında detaylı bilgi edinin.",
-      href: "/servis-bakim/garanti-islemleri",
+      href: "/servis-bakim/garanti-islemleri/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#ca8a04",

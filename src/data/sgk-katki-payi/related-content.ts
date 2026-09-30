@@ -19,27 +19,32 @@ export const sgkKatkiPayiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "Güncel SGK destek tutarlarını ve ödeme tablosunu inceleyin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
     {
       label: "Ücretsiz İşitme Testi",
       description: "SGK sürecinin ilk adımı olan ücretsiz işitme testi hakkında bilgi edinin.",
-      href: "/degerlendirme/ucretsiz-isitme-testi",
+      href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
       label: "Rapor Süreci",
       description: "Sağlık kurulu raporu ve reçete sürecini yakından tanıyın.",
-      href: "/sgk/rapor-sureci",
+      href: "/sgk/rapor-sureci/",
     },
     {
       label: "Gerekli Belgeler",
       description: "SGK başvurusu için gereken belgeleri öğrenin.",
-      href: "/sgk/gerekli-belgeler",
+      href: "/sgk/gerekli-belgeler/",
     },
     {
       label: "Cihaz Seçim Rehberi",
       description: "Bütçenize ve SGK desteğinize uygun cihazı nasıl seçeceğinizi öğrenin.",
-      href: "/rehberler/cihaz-secim-rehberi",
+      href: "/rehberler/cihaz-secim-rehberi/",
+    },
+    {
+      label: "İşitme Cihazı Fiyatları",
+      description: "Fiyatı neyin belirlediğini ve toplam maliyet kalemlerini okuyun.",
+      href: "/isitme-cihazi-fiyatlari/",
     },
   ],
   accentColor: "#16a34a",

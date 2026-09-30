@@ -15,27 +15,27 @@ export const tinnitusCozumleriRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Tinnitus destek özelliğinin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Kulak İçi (ITE) İşitme Cihazları",
       description: "Tinnitus destek özelliğinin sunulduğu, daha az fark edilen kulak içi aileyi keşfedin.",
-      href: "/isitme-cihazlari/kulak-ici-ite",
+      href: "/isitme-cihazlari/kulak-ici-ite/",
     },
     {
       label: "Uzaktan Kontrol Özellikleri",
       description: "Tinnitus destek sesini uygulama üzerinden yönetmenizi sağlayan teknolojileri inceleyin.",
-      href: "/teknolojiler/uzaktan-kontrol",
+      href: "/teknolojiler/uzaktan-kontrol/",
     },
     {
       label: "Yapay Zeka Destekli Cihazlar",
       description: "Ortam analiziyle çalışan yapay zeka destekli işlemcileri keşfedin.",
-      href: "/teknolojiler/yapay-zeka-destekli",
+      href: "/teknolojiler/yapay-zeka-destekli/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#9333ea",

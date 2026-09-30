@@ -21,7 +21,7 @@ export const cihazDenemeModels: BrandPageModelsContent = {
       description: "İnce, göze çarpmayan tasarımıyla şarjlı bir seçenek.",
       tags: ["Şarjlı", "Kulak İçi"],
       image: "/images/signia/models/styletto.webp",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       slug: "widex-smartric",
@@ -30,7 +30,7 @@ export const cihazDenemeModels: BrandPageModelsContent = {
       description: "Bluetooth bağlantılı, doğal ses odaklı bir model.",
       tags: ["Bluetooth", "Şarjlı"],
       image: "/images/widex/models/smartric.webp",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       slug: "resound-vivia",
@@ -39,7 +39,7 @@ export const cihazDenemeModels: BrandPageModelsContent = {
       description: "Bluetooth bağlantı özellikleriyle öne çıkan bir seçenek.",
       tags: ["Bluetooth"],
       image: "/images/resound/models/vivia.webp",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       slug: "oticon-intent",
@@ -48,7 +48,7 @@ export const cihazDenemeModels: BrandPageModelsContent = {
       description: "Yapay zekâ destekli, gelişmiş teknoloji beklentisi olan kullanıcılar için.",
       tags: ["AI", "Bluetooth"],
       image: "/images/oticon/models/intent.webp",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
   ],
   accentColor: "#0d9488",

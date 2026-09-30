@@ -27,7 +27,7 @@ const CtaIcon = icons[cta.icon] as any;
     </span>
   </a>
 
-  <a class="hd-actions__cta" href={cta.href}>
+  <a class="hd-actions__cta" href={cta.href} aria-label={cta.label}>
     <CtaIcon size={20} stroke-width={2} aria-hidden="true" class="hd-actions__cta-icon" />
     <span>{cta.label}</span>
   </a>

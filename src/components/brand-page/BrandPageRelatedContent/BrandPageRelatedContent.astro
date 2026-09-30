@@ -1,4 +1,5 @@
 ---
+import { domId } from "../../../lib/dom-id";
 // BrandPageRelatedContent — shared, cross-brand internal-linking section
 // (Hub-and-Spoke, see SEARCH_STRATEGY.md). New component, not a
 // migration: no Oticon equivalent (see PHONAK MASTER BLUEPRINT §6.13).
@@ -25,17 +26,18 @@ interface Props {
 }
 
 const { data } = Astro.props;
+const titleId = domId("brand-page-related", data.heading);
 ---
 
 <section
   class="brand-page-related"
-  aria-labelledby="brand-page-related-title"
+  aria-labelledby={titleId}
   style={`--bprc-accent:${data.accentColor}; --bprc-badge-bg:${data.accentColorBadgeBg}; --bprc-badge-border:${data.accentColorBadgeBorder}; --bprc-badge-text:${data.accentColorBadgeText};`}
 >
   <div class="brand-page-related__inner">
     <div class="brand-page-related__header">
       <p class="brand-page-related__badge" data-rise>{data.badge}</p>
-      <h2 class="brand-page-related__heading" id="brand-page-related-title" data-rise>
+      <h2 class="brand-page-related__heading" id={titleId} data-rise>
         {data.heading}
       </h2>
     </div>
@@ -123,7 +125,7 @@ const { data } = Astro.props;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
-    color: var(--bprc-badge-text);
+    color: color-mix(in srgb, var(--bprc-badge-text) 82%, #000);
   }
 
   .brand-page-related__heading {

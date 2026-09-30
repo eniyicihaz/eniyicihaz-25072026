@@ -24,5 +24,5 @@ export const sgkTeaser: SgkTeaserContent = {
       description: "Katkı payı ve kapsam soruları için detaylı bilgiyi ilgili sayfamızda bulabilirsiniz.",
     },
   ],
-  cta: { label: "SGK Sürecini İnceleyin", href: "/sgk-isitme-cihazi-odemesi" },
+  cta: { label: "SGK Sürecini İnceleyin", href: "/sgk-isitme-cihazi-odemesi/" },
 };

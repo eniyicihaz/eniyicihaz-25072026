@@ -1,4 +1,5 @@
 ---
+import { readableTextOn } from "../../../lib/contrast";
 // BrandPageFinalCta — shared, cross-brand closing CTA section. Generic
 // counterpart of Oticon's original OticonFinalCta; data-driven so every
 // brand page can reuse it.
@@ -71,7 +72,7 @@ const { data } = Astro.props;
 const finalCtaStyleOverrides = [
   data.cardBg ? `--bpfc-card-bg:${data.cardBg};` : "",
   data.cardBorder ? `--bpfc-card-border:${data.cardBorder};` : "",
-  data.ctaTextColor ? `--bpfc-cta-text:${data.ctaTextColor};` : "",
+  `--bpfc-cta-text:${readableTextOn(data.ctaAccent || data.accentColor, data.ctaTextColor)};`,
   data.badgeBg ? `--bpfc-badge-bg:${data.badgeBg};` : "",
   data.badgeBorder ? `--bpfc-badge-border:${data.badgeBorder};` : "",
   data.badgeText ? `--bpfc-badge-text:${data.badgeText};` : "",
@@ -404,6 +405,18 @@ const finalCtaStyleOverrides = [
 
     .brand-page-final-cta__button {
       transition: none;
+    }
+  }
+
+  /* Long labels ("Cihaz Denemesi İçin Randevu Al", "Ücretsiz İşitme Değerlendirmesi") were clipped at 390–430px by nowrap; wrap instead. */
+  @media (max-width: 640px) {
+    .brand-page-final-cta__button {
+      height: auto;
+      min-height: 72px;
+      padding-block: var(--space-3);
+      white-space: normal;
+      text-align: center;
+      line-height: 1.25;
     }
   }
 </style>

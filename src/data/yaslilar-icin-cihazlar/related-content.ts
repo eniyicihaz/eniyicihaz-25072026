@@ -16,27 +16,27 @@ export const yaslilarIcinCihazlarRelatedContent: BrandPageRelatedContentContent 
     {
       label: "Şarj Edilebilir Cihazlar",
       description: "Küçük pil değiştirme zorluğunu ortadan kaldıran şarj edilebilir sistemleri inceleyin.",
-      href: "/isitme-cihazlari/sarj-edilebilir",
+      href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
       label: "Uzaktan Kontrol Özellikleri",
       description: "Aile destekli uzaktan ayar sistemlerinin dayandığı teknolojiyi daha yakından tanıyın.",
-      href: "/teknolojiler/uzaktan-kontrol",
+      href: "/teknolojiler/uzaktan-kontrol/",
     },
     {
       label: "Yapay Zeka Destekli Cihazlar",
       description: "Otomatik ortam algılama teknolojisinin nasıl çalıştığını keşfedin.",
-      href: "/teknolojiler/yapay-zeka-destekli",
+      href: "/teknolojiler/yapay-zeka-destekli/",
     },
     {
       label: "Aktif Yaşam İçin Cihazlar",
       description: "Aktif bir yaşam süren kullanıcılar için sıkça değerlendirilen cihaz özelliklerini yakından tanıyın.",
-      href: "/ihtiyaciniza-gore/aktif-yasam-icin-cihazlar",
+      href: "/ihtiyaciniza-gore/aktif-yasam-icin-cihazlar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#ca8a04",

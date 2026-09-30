@@ -16,27 +16,27 @@ export const ucretsizDanismanlikRelatedContent: BrandPageRelatedContentContent =
     {
       label: "Güvenilir Teknoloji",
       description: "Orijinal ürünlerin neden güvenilir bir teknoloji sunduğunu keşfedin.",
-      href: "/neden-orijinal/guvenilir-teknoloji",
+      href: "/neden-orijinal/guvenilir-teknoloji/",
     },
     {
       label: "Yaygın Servis Ağı",
       description: "Yetkili teknik servis ağımız hakkında detaylı bilgi edinin.",
-      href: "/neden-orijinal/yaygin-servis-agi",
+      href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {
       label: "Kolay Değişim",
       description: "Sorunlu ürünlerde değişim ve iade sürecimiz hakkında bilgi edinin.",
-      href: "/neden-orijinal/kolay-degisim",
+      href: "/neden-orijinal/kolay-degisim/",
     },
     {
       label: "Tüm Markalarımız",
       description: "Yetkili satıcısı olduğumuz tüm markaları ve ürün ailelerini inceleyin.",
-      href: "/markalar",
+      href: "/markalar/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#0d9488",

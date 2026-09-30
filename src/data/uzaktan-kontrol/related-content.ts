@@ -16,27 +16,27 @@ export const uzaktanKontrolRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Kulak Arkası (BTE) İşitme Cihazları",
       description: "Uzaktan kontrol özelliklerinin en yaygın bulunduğu cihaz ailesini inceleyin.",
-      href: "/isitme-cihazlari/kulak-arkasi-bte",
+      href: "/isitme-cihazlari/kulak-arkasi-bte/",
     },
     {
       label: "Yapay Zeka Destekli Cihazlar",
       description: "Uzaktan destek önerilerini bir üst seviyeye taşıyan yapay zeka destekli işlemcileri inceleyin.",
-      href: "/teknolojiler/yapay-zeka-destekli",
+      href: "/teknolojiler/yapay-zeka-destekli/",
     },
     {
       label: "Kablosuz Bağlantı Özellikleri",
       description: "Uygulama ve uzaktan destek ile birlikte çalışan diğer kablosuz protokolleri keşfedin.",
-      href: "/teknolojiler/kablosuz-baglanti",
+      href: "/teknolojiler/kablosuz-baglanti/",
     },
     {
       label: "Tinnitus (Kulak Çınlaması) Çözümleri",
       description: "Uygulama üzerinden yönetilebilen tinnitus rahatlatma özelliklerini yakından tanıyın.",
-      href: "/teknolojiler/tinnitus-cozumleri",
+      href: "/teknolojiler/tinnitus-cozumleri/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#0284c7",

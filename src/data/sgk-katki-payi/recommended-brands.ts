@@ -13,32 +13,32 @@ export const sgkKatkiPayiRecommendedBrands: BrandPageRelatedContentContent = {
     {
       label: "Oticon",
       description: "SGK desteği, anlaşmalı merkezimizden alınan Oticon modellerinde de geçerlidir.",
-      href: "/markalar/oticon",
+      href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
       description: "SGK desteği, anlaşmalı merkezimizden alınan Phonak modellerinde de geçerlidir.",
-      href: "/markalar/phonak",
+      href: "/markalar/phonak/",
     },
     {
       label: "Signia",
       description: "SGK desteği, anlaşmalı merkezimizden alınan Signia modellerinde de geçerlidir.",
-      href: "/markalar/signia",
+      href: "/markalar/signia/",
     },
     {
       label: "Widex",
       description: "SGK desteği, anlaşmalı merkezimizden alınan Widex modellerinde de geçerlidir.",
-      href: "/markalar/widex",
+      href: "/markalar/widex/",
     },
     {
       label: "ReSound",
       description: "SGK desteği, anlaşmalı merkezimizden alınan ReSound modellerinde de geçerlidir.",
-      href: "/markalar/resound",
+      href: "/markalar/resound/",
     },
     {
       label: "NuEar",
       description: "Bütçe dostu bir seçenek arıyorsanız, SGK destekli NuEar modelleri değerlendirilebilir.",
-      href: "/markalar/nuear",
+      href: "/markalar/nuear/",
     },
   ],
   accentColor: "#16a34a",

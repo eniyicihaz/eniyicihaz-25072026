@@ -106,7 +106,7 @@ const locationCard = {
   </GuideSection>
 
   <GuideSection id={techLevelsTable.id} eyebrow={techLevelsTable.eyebrow} heading={techLevelsTable.heading} intro={techLevelsTable.intro} tone="alt">
-    <GuideTable data={techLevelsTable} bare />
+    <GuideTable data={{ ...techLevelsTable, id: `${techLevelsTable.id}-tablo` }} bare />
   </GuideSection>
 
   <GuideSection {...deviceTypesSection}>

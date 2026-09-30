@@ -17,27 +17,27 @@ export const onarimTakibiRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Teknik Servis",
       description: "Bir arıza fark ederseniz, yerinde teşhis ve onarım sürecini keşfedin.",
-      href: "/servis-bakim/teknik-servis",
+      href: "/servis-bakim/teknik-servis/",
     },
     {
       label: "Garanti İşlemleri",
       description: "Cihazınızın garanti kapsamı ve süreci hakkında detaylı bilgi edinin.",
-      href: "/servis-bakim/garanti-islemleri",
+      href: "/servis-bakim/garanti-islemleri/",
     },
     {
       label: "Pil & Aksesuar",
       description: "Pil, şarj ve aksesuar seçenekleri hakkında bilgi edinin.",
-      href: "/servis-bakim/pil-aksesuar",
+      href: "/servis-bakim/pil-aksesuar/",
     },
     {
       label: "Kontrol Randevusu",
       description: "İşitme durumunuzu da kapsayan düzenli kontrol randevusunu keşfedin.",
-      href: "/uygulama-ayar/kontrol-randevusu",
+      href: "/uygulama-ayar/kontrol-randevusu/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
       description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
-      href: "/sgk-isitme-cihazi-odemesi",
+      href: "/sgk-isitme-cihazi-odemesi/",
     },
   ],
   accentColor: "#c026d3",
