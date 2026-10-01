@@ -35,12 +35,14 @@ export const DEFAULT_CHOICES: ConsentChoices = {
   thirdParty: false,
 };
 
-// Ölçüm kimlikleri yalnızca build-time env'den gelir. Boşsa veya biçim
-// geçersizse ilgili etiket hiçbir koşulda yüklenmez (placeholder durum).
-//   PUBLIC_GA4_ID=G-XXXXXXXXXX      PUBLIC_ADS_ID=AW-XXXXXXXXX
+// Google Tag Manager container kimliği (herkese açık, gizli değil).
+// GA4 (Measurement ID G-9PC230DJCE) ve ileride Google Ads etiketleri
+// doğrudan sitede DEĞİL, bu container üzerinden GTM panelinden yönetilir.
+// Eski container (GTM-NRWFGX8D) bu projede kullanılmaz.
+// Build-time env ile geçersiz kılınabilir: PUBLIC_GTM_ID=GTM-XXXXXXX
+// (boş/geçersiz değer = GTM hiç yüklenmez).
+const DEFAULT_GTM_ID = "GTM-N8H82DDL";
 const env = (import.meta as unknown as { env?: Record<string, string | undefined> }).env ?? {};
-const ga = (env.PUBLIC_GA4_ID ?? "").trim();
-const ads = (env.PUBLIC_ADS_ID ?? "").trim();
+const gtm = (env.PUBLIC_GTM_ID ?? DEFAULT_GTM_ID).trim();
 
-export const GA4_ID: string = /^G-[A-Z0-9]{6,}$/.test(ga) ? ga : "";
-export const ADS_ID: string = /^AW-\d{6,}$/.test(ads) ? ads : "";
+export const GTM_ID: string = /^GTM-[A-Z0-9]{4,}$/.test(gtm) ? gtm : "";

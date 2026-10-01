@@ -1,12 +1,16 @@
-// Analytics event gönderimi için TEK geçit.
+// Analytics/GTM event gönderimi için TEK geçit.
 //
-// Kural (KVK-AYD-04 §3, WEB-CRZ-06 §4): sağlık bilgisi, online işitme testi
-// sonucu, dB/eşik değeri veya odyogram hiçbir Analytics/Ads event'ine
-// gönderilmez. Bunu "yasak listesi" ile değil, tersine **izin listesi**
-// ile sağlıyoruz: burada tanımlı olmayan hiçbir parametre adı ağa çıkmaz.
-// Yeni bir parametre gerekirse, sağlıkla ilgisi olmadığı doğrulanarak
-// ALLOWED_PARAMS'a bilinçli olarak eklenmelidir.
-import { analyticsIsActive, sendGtagEvent } from "./google";
+// Kural (KVK-AYD-04 §1, §3 ve WEB-CRZ-06 §4): sağlık bilgisi, online
+// işitme testi sonucu, dB/eşik değeri veya odyogram hiçbir Analytics/Ads/
+// GTM event'ine gönderilmez. Bunu "yasak listesi" ile değil, tersine
+// **izin listesi** ile sağlıyoruz: burada tanımlı olmayan hiçbir parametre
+// adı dataLayer'a yazılmaz. Yeni bir parametre gerekirse, sağlıkla ilgisi
+// olmadığı doğrulanarak ALLOWED_PARAMS'a bilinçli olarak eklenmelidir.
+//
+// Not: Event adı ve parametreler dataLayer'a yalnızca GTM yüklendiyse
+// (yani Analitik veya Reklam/Pazarlama izni varsa) yazılır; hangi etiketin
+// çalışacağına GTM, consent durumuna göre karar verir.
+import { gtmIsActive, pushDataLayerEvent } from "./google";
 
 const ALLOWED_PARAMS = new Set([
   "link_location", // header / footer / mobil menü / CTA gibi tıklama yeri
@@ -29,8 +33,8 @@ export function sanitizeParams(params: Record<string, unknown> = {}): Record<str
   return out;
 }
 
-/** İzin yoksa veya ölçüm kimliği tanımsızsa sessizce hiçbir şey yapmaz. */
+/** GTM yüklü değilse (izin yok / ID yok) sessizce hiçbir şey yapmaz. */
 export function trackEvent(name: string, params: Record<string, unknown> = {}): void {
-  if (!analyticsIsActive()) return;
-  sendGtagEvent(name, sanitizeParams(params));
+  if (!gtmIsActive()) return;
+  pushDataLayerEvent(name, sanitizeParams(params));
 }
