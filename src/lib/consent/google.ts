@@ -27,6 +27,7 @@ interface GoogleWindow extends Window {
 const w = globalThis as unknown as GoogleWindow;
 let defaultSet = false;
 let gtmRequested = false;
+let analyticsGranted = false;
 
 function ensureDataLayer(): unknown[] {
   w.dataLayer = w.dataLayer || [];
@@ -85,6 +86,7 @@ function clearGoogleCookies(): void {
 /** Kullanıcı tercihini Consent Mode'a ve GTM yüklemeye yansıtır. */
 export function applyGoogleConsent(choices: ConsentChoices): void {
   setConsentDefault();
+  analyticsGranted = choices.analytics;
   ensureGtag()("consent", "update", {
     analytics_storage: choices.analytics ? "granted" : "denied",
     ad_storage: choices.marketing ? "granted" : "denied",
@@ -102,6 +104,11 @@ export function applyGoogleConsent(choices: ConsentChoices): void {
 /** GTM bu sayfada yüklendi mi? (event push'larının anlamlı olduğu durum) */
 export function gtmIsActive(): boolean {
   return gtmRequested;
+}
+
+/** Kullanıcı şu an Analitik iznini vermiş durumda mı? */
+export function analyticsConsentGranted(): boolean {
+  return analyticsGranted;
 }
 
 /** dataLayer'a bir event yazar. Çağıran yalnızca analytics.ts olmalıdır. */

@@ -1,0 +1,12 @@
+---
+// ConversionTracking — iş aksiyonu (telefon, WhatsApp, yol tarifi, ücretsiz
+// işitme testi CTA'sı) ölçümü için tek belge düzeyi click dinleyicisi.
+// Görünür bir çıktısı yoktur. Event'ler mevcut consent geçidinden
+// (src/lib/consent/analytics.ts → trackEvent) geçer; Analitik izni yoksa
+// hiçbir şey gönderilmez. Ayrıntı: src/lib/consent/events.ts
+---
+
+<script>
+  import { initConversionTracking } from "../../../lib/consent/events";
+  initConversionTracking();
+</script>
