@@ -27,6 +27,10 @@ export const BUSINESS_ID = "https://www.eniyicihaz.com/#business";
 export const BUSINESS_URL = "https://www.eniyicihaz.com/";
 /** Service area limited to what the business has confirmed: the Darıca center, Gebze/Çayırova and Kocaeli overall.
  *  Dilovası / Tuzla / Pendik are intentionally NOT listed here (unconfirmed; see COMPANY.md review). */
+/** Postal code of the Darıca center (confirmed by the business owner). Single source for every MedicalBusiness node. */
+export const BUSINESS_POSTAL_CODE = "41700";
+/** Real storefront photo (Darıca street frontage, 1200×630) already served as the sitewide OG image. */
+export const BUSINESS_IMAGE = "https://www.eniyicihaz.com/images/og/og-default.jpg";
 export const SERVICE_AREA_NAMES = ["Darıca", "Gebze", "Çayırova", "Kocaeli"];
 
 // Real coordinates behind company.directionsHref/mapEmbedSrc — a verified
@@ -46,6 +50,7 @@ export interface MedicalBusinessSchema {
   name: string;
   description: string;
   url: string;
+  image: string;
   telephone: string[];
   email: string;
   address: {
@@ -53,6 +58,7 @@ export interface MedicalBusinessSchema {
     streetAddress: string;
     addressLocality: string;
     addressRegion: string;
+    postalCode: string;
     addressCountry: string;
   };
   geo: {
@@ -88,6 +94,7 @@ export function buildMedicalBusinessSchema(
     name: company.legalName,
     description,
     url: BUSINESS_URL,
+    image: BUSINESS_IMAGE,
     telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
     email: company.email,
     // Mirrors company.address's real value (kept as structured fields here
@@ -98,6 +105,7 @@ export function buildMedicalBusinessSchema(
       streetAddress: "Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat",
       addressLocality: "Darıca",
       addressRegion: "Kocaeli",
+      postalCode: BUSINESS_POSTAL_CODE,
       addressCountry: "TR",
     },
     geo: {
