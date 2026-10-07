@@ -16,7 +16,7 @@ export const gebzeFaq: BrandPageFaqContent = {
       "SGK anlaşmalı hizmet",
       "Ücretsiz ilk değerlendirme",
       "18+ marka seçeneği",
-      "Satın almadan önce deneme imkânı",
+      "Merkezde ücretsiz demo, satın alarak 7 güne kadar deneme",
     ],
     ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
@@ -57,7 +57,7 @@ export const gebzeFaq: BrandPageFaqContent = {
       items: [
         {
           question: "İşitme cihazını satın almadan önce deneyebilir miyim?",
-          answer: "Evet; önerilen cihazı satın almadan önce günlük yaşamınızda deneyebilirsiniz.",
+          answer: "Önerilen cihazı merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Günlük hayatınızda denemek isterseniz cihazı satın alarak 7 güne kadar deneyebilir, uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
         },
         {
           question: "İşitme cihazının ayarı sonradan değiştirilebilir mi?",

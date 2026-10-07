@@ -82,7 +82,7 @@ const medicalBusinessSchema = {
   "@type": "MedicalBusiness",
   "@id": BUSINESS_ID,
   name: company.legalName,
-  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; satın almadan önce işitme cihazı deneme imkânı sunar.",
+  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; merkezde ücretsiz cihaz demosu ve cihazı satın alarak 7 güne kadar deneme imkânı sunar.",
   url: BUSINESS_URL,
   telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
   email: company.email,
@@ -121,7 +121,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
 
 <MainLayout
   title="Darıca'da İşitme Cihazı Deneme | Avrasya İşitme Cihazları | EniyiCihaz"
-  description="Darıca'da işitme cihazını satın almadan önce ücretsiz deneyin; gerçek yaşam koşullarında test edip karar verin. Gebze ve Çayırova'dan da ulaşabilirsiniz."
+  description="Darıca'daki merkezimizde ücretsiz, yaklaşık 20 dakikalık cihaz demosu; cihazı satın alarak 7 güne kadar deneme ve uygun bulunmazsa kesintisiz ücret iadesi."
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />

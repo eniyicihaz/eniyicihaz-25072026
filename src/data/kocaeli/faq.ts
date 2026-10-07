@@ -78,7 +78,7 @@ export const kocaeliFaq: BrandPageFaqContent = {
         },
         {
           question: "Cihazı satın almadan önce deneyebilir miyim?",
-          answer: "Evet; önerilen cihazı satın almadan önce günlük yaşamınızda deneyebilirsiniz.",
+          answer: "Önerilen cihazı merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Günlük hayatınızda denemek isterseniz cihazı satın alarak 7 güne kadar deneyebilir, uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
         },
         {
           question: "İşitme cihazına alışma süreci ne kadar sürer?",

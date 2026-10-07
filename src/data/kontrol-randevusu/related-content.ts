@@ -34,7 +34,7 @@ export const kontrolRandevusuRelatedContent: BrandPageRelatedContentContent = {
     {
       label: "Periyodik Bakım",
       description: "Cihazınızın fiziksel bakımı ve temizliği hakkında bilgi edinin.",
-      href: "#",
+      href: "/servis-bakim/periyodik-bakim/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",

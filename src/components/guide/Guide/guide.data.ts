@@ -16,9 +16,9 @@ export const guide: GuideContent = {
       description: "Uzman bir odyolog işitmenizi birlikte netleştirir.",
     },
     {
-      title: "Ücretsiz deneme",
-      description: "İsterseniz, karar vermeden önce cihazı deneyin.",
+      title: "Merkezde ücretsiz demo",
+      description: "Önerilen cihazı merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyin; isterseniz satın alarak 7 güne kadar deneyebilirsiniz.",
     },
   ],
-  cta: { label: "Ücretsiz İşitme Testi", href: "/iletisim/" },
+  cta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
 };

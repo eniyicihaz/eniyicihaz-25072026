@@ -33,7 +33,7 @@ export const buyingQuestions: QaItem[] = [
     id: "deneme-yapilabilir-mi",
     question: "İşitme cihazı deneme yapılabilir mi?",
     answer:
-      "Evet. Merkezimizde cihaz deneme süreci, herhangi bir ücret talep edilmeden ve satın alma yükümlülüğü getirmeden sunulur.",
+      "Evet. Merkezimizde önerilen cihazı yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Cihazı satın alarak 7 güne kadar da deneyebilir, uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
     more: [
       "Denemek, cihazın gerçek hayatınızdaki konforunu ve size uygunluğunu görmenin en doğru yoludur. Stok durumuna bağlı olarak karşılaştırmalı bir deneme süreci de değerlendirilebilir.",
     ],

@@ -11,7 +11,7 @@ export const kocaeliServices: BrandCriteriaContent = {
   heading: "Cihaz Deneme, Ayar, Programlama ve Teknik Servis",
   intro: "Doğru cihaza karar vermek; deneme, kişiye özel ayar, programlama ve gerektiğinde teknik servis destekli bir süreçtir.",
   criteria: [
-    { icon: PlayCircle, title: "Cihaz Deneme", description: "Seçtiğiniz cihazı günlük yaşamınızda deneyerek karar verebilirsiniz.", href: "/uygulama-ayar/cihaz-deneme/" },
+    { icon: PlayCircle, title: "Cihaz Deneme", description: "Merkezde ücretsiz demo yapılır; cihazı satın alarak 7 güne kadar deneyebilir, uygun bulmazsanız kesintisiz ücret iadesiyle iade edebilirsiniz.", href: "/uygulama-ayar/cihaz-deneme/" },
     { icon: SlidersHorizontal, title: "Kişiye Özel Ayar", description: "İlk uygulama ve ayarlar işitme profilinize göre yapılır.", href: "/uygulama-ayar/kisiye-ozel-ayar/" },
     { icon: Settings2, title: "Takip ve Programlama", description: "Kullanım deneyiminize göre ayarlar zamanla yeniden gözden geçirilir.", href: "/uygulama-ayar/kisiye-ozel-programlama/" },
     { icon: Wrench, title: "Teknik Servis ve Bakım", description: "Arıza, bakım ve garanti süreçlerinde yanınızdayız.", href: "/servis-bakim/teknik-servis/" },

@@ -7,7 +7,7 @@ export const hakkimizdaIntro: BrandPageIntroContent = {
   badge: "Kurumsal",
   heading: "Avrasya İşitme Cihazları Kimdir?",
   paragraphs: [
-    "Avrasya İşitme Cihazları, Darıca'da hizmet veren, SGK anlaşmalı bir işitme merkezidir. 2009'dan bu yana işitme değerlendirmesi, cihaz uygulaması ve teknik servis hizmetleri sunuyoruz.",
+    "Avrasya İşitme Cihazları 2009 yılında kurulmuş, SGK anlaşmalı bir işitme merkezidir. Ağustos 2024'te açılan Darıca merkezimizde işitme değerlendirmesi, cihaz uygulaması ve teknik servis hizmetleri sunuyoruz.",
     "Merkezimiz Darıca'da yer alıyor; Gebze ve Çayırova'dan gelen danışanlarımıza da aynı süreç ve aynı özenle hizmet veriyoruz.",
   ],
   stats: [

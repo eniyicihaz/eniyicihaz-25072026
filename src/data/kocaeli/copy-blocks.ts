@@ -64,7 +64,7 @@ export const kocaeliBuyingTips: KocaeliCopyBlock = {
   heading: "Kocaeli'de İşitme Cihazı Alırken Dikkat Edilmesi Gerekenler",
   paragraphs: [
     "Yalnızca fiyata bakarak karar vermek uzun vadede memnuniyetsizliğe yol açabilir — cihazın işitme kaybınıza uygunluğu, deneme imkânı ve satış sonrası destek en az fiyat kadar önemlidir.",
-    "Cihazı satın almadan önce deneyebiliyor olmanız, günlük hayatta gerçekten fayda görüp görmeyeceğinizi anlamanızı sağlar.",
+    "Merkezde ücretsiz demo ve cihazı satın alarak 7 güne kadar deneme imkânı, günlük hayatta gerçekten fayda görüp görmeyeceğinizi anlamanızı sağlar; uygun bulunmazsa ödediğiniz tutar kesintisiz iade edilir.",
     "SGK anlaşması, teknik servis desteği ve garanti süreçleri gibi konuları da satın alma kararınıza dahil etmenizi öneririz.",
   ],
 };

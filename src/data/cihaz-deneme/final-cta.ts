@@ -11,7 +11,7 @@ export const cihazDenemeFinalCta: BrandPageFinalCtaContent = {
   description: "Size uygun seçenekleri birlikte değerlendirelim.",
   ctaPrimary: { label: "Cihaz Denemesi İçin Randevu Al", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Deneme İmkânı", "Satın Alma Yükümlülüğü Yok", "Gerçek Yaşam Koşulları", "Darıca'da Uzman Destek"],
+  trustItems: ["Merkezde Ücretsiz Demo", "Satın Alarak 7 Güne Kadar Deneme", "Kesintisiz Ücret İadesi", "Darıca'da Uzman Destek"],
   accentColor: "#0d9488",
   accentColorHover: "#0f766e",
   accentColorGlow: "rgb(13 148 136 / 0.22)",

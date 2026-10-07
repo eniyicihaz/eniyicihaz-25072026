@@ -32,7 +32,7 @@ export const cocukIsitmeTestiHero: BrandPageHeroContent = {
   headingLines: ["Çocuk İşitme Testi", "Nasıl Yapılır?"],
   paragraphs: [
     "Çocuklarda işitme testi, yaşa uygun yöntemlerle uygulanan ve erken tespitin dil ile konuşma gelişimini desteklemeye yardımcı olabileceği önemli bir değerlendirmedir.",
-    "Avrasya İşitme'de, yenidoğan taramasından okul öncesi döneme kadar farklı yaş gruplarına uygun test yöntemleriyle çocuğunuzun işitme durumunu değerlendiriyoruz.",
+    "Avrasya İşitme'de çocuk işitme testi (oyun odyometrisi) 3 yaş ve üzeri çocuklara, yaşa uygun yöntemlerle uygulanır.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
@@ -40,8 +40,8 @@ export const cocukIsitmeTestiHero: BrandPageHeroContent = {
     {
       label: "YAŞA UYGUN YÖNTEM",
       accent: "#f97316",
-      title: "Her Yaş Grubuna Özel Test Yöntemi",
-      description: "Bebeklerden okul çağı çocuklara kadar her yaş grubu için farklı test yöntemleri uygulanır.",
+      title: "Yaşa Uygun Test Yöntemi",
+      description: "Merkezimizde çocuk işitme testi 3 yaş ve üzeri çocuklara, yaşa uygun yöntemlerle uygulanır.",
     },
     {
       label: "ERKEN TESPİT",

@@ -8,7 +8,7 @@ export const evdeHizmetIntro: BrandPageIntroContent = {
     "Özellikle Darıca'da merkezimize gelmekte zorlanan yaşlı bireyler, hareket kısıtlılığı olan kişiler veya ailesi adına süreci evde takip etmek isteyen yakınları için tercih edilen bir seçenektir. Gebze ve Çayırova'dan da randevu alarak bu hizmetten faydalanabilirsiniz.",
   ],
   stats: [
-    { value: "2009'dan Beri", label: "Darıca'da Hizmet" },
+    { value: "2009", label: "Kuruluş Yılı" },
     { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },
     { value: "3 İlçe", label: "Evde Hizmet Kapsamında" },
     { value: "Randevulu", label: "Ev Ziyareti" },

@@ -11,7 +11,7 @@ import type { BrandPageModelsContent } from "../../components/brand-page/BrandPa
 export const cihazDenemeModels: BrandPageModelsContent = {
   badge: "DENEYEBİLECEĞİNİZ CİHAZ ÖRNEKLERİ",
   heading: "Deneme Sürecinde Değerlendirilebilecek Modeller",
-  intro: "Farklı teknoloji ve tasarım seçeneklerine sahip modellerden birkaç örnek.",
+  intro: "Farklı teknoloji ve tasarım seçeneklerine sahip modellerden birkaç örnek. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; bu cihazlar merkezimizde demo olarak denenebilir.",
   ctaLabel: "Markayı İncele",
   items: [
     {

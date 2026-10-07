@@ -34,8 +34,8 @@ export const kampanyalarUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "DENEME",
-      title: "Ücretsiz Deneme Fırsatları",
-      description: "Cihazı satın almadan önce deneme imkânı sunan fırsatlar.",
+      title: "Merkezde Ücretsiz Demo ve 7 Güne Kadar Deneme",
+      description: "Merkezimizde ücretsiz, yaklaşık 20 dakikalık cihaz demosu; cihazı satın alarak 7 güne kadar deneme ve uygun bulunmazsa kesintisiz ücret iadesi.",
     },
     {
       label: "SGK EK AVANTAJ",

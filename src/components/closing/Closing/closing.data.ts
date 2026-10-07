@@ -7,7 +7,7 @@ import { company } from "../../footer/Footer/data/company";
 export const closing: ClosingContent = {
   message: "Bir konuşmayla başlayalım.",
   supportingSentence: "Darıca'daki merkezimizde, hazır olduğunuzda sizi bekliyoruz.",
-  cta: { label: "Ücretsiz İşitme Testi", href: "/iletisim/" },
+  cta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
   secondaryContact: {
     lead: "Randevu için bizi arayın:",
     label: "0533 773 31 99",

@@ -13,7 +13,7 @@ export const cocukIsitmeTestiFinalCta: BrandPageFinalCtaContent = {
     "Yaşa uygun test yöntemleri ve aile katılımlı yaklaşımımızla, çocuğunuzun işitme durumunu güvenle değerlendiriyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Çocuk İşitme Testi", "Yaşa Uygun Yöntemler", "Aile Katılımlı Süreç", "Uzman Odyometrist"],
+  trustItems: ["3 Yaş ve Üzeri Çocuklar İçin", "Yaşa Uygun Yöntemler", "Aile Katılımlı Süreç", "Uzman Odyometrist"],
   accentColor: "#f97316",
   accentColorHover: "#ea580c",
   accentColorGlow: "rgb(249 115 22 / 0.22)",

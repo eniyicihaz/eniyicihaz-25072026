@@ -45,9 +45,9 @@ export const teknikServisAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Sparkles,
-      category: "Ücretsiz Teşhis",
-      title: "İlk Teşhis Herhangi Bir Ücret Talep Etmez",
-      description: "Kliniğimizdeki ilk teşhis değerlendirmesi, herhangi bir ücret talep edilmeden sunulur.",
+      category: "Ücret Bilgisi",
+      title: "Ücret Duruma Göre Belirlenir",
+      description: "Teknik servis ücreti, cihazınızın durumuna göre değişir.",
     },
   ],
   accentColor: "#dc2626",

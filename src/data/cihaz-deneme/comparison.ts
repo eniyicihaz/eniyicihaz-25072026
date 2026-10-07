@@ -11,15 +11,15 @@ import type { KulakArkasiComparisonContent } from "../../components/kulak-arkasi
 
 export const cihazDenemeComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
-  heading: "Klinik İçi Kısa Deneme ile Günlük Yaşamda Uzun Süreli Deneme Karşılaştırması",
+  heading: "Merkezde Ücretsiz Demo ile Satın Alarak 7 Güne Kadar Deneme Karşılaştırması",
   intro: "İki yaklaşım arasındaki temel farkları aşağıdaki tabloda özetledik. İki deneyim genellikle birbirini tamamlayacak şekilde kullanılır.",
-  primaryLabel: "Günlük Yaşamda Uzun Süreli Deneme",
-  secondaryLabel: "Klinik İçi Kısa Deneme",
+  primaryLabel: "Satın Alarak 7 Güne Kadar Deneme",
+  secondaryLabel: "Merkezde Ücretsiz Demo",
   rows: [
     {
       feature: "Süre",
-      primary: "Günler veya haftalar sürebilir.",
-      secondary: "Randevu sırasında birkaç dakika sürer.",
+      primary: "7 güne kadar sürer.",
+      secondary: "Merkezde yaklaşık 20 dakika sürer.",
     },
     {
       feature: "Test Ortamı",
@@ -28,8 +28,8 @@ export const cihazDenemeComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Amaç",
-      primary: "Satın alma kararınıza destek olacak kapsamlı bir deneyim sunar.",
-      secondary: "İlk ayarların genel uygunluğunu hızlıca kontrol eder.",
+      primary: "Cihazın günlük hayatınıza uygun olup olmadığını görmenizi sağlar.",
+      secondary: "Önerilen cihazın ilk izlenimini ve genel uygunluğunu hızlıca gösterir.",
     },
     {
       feature: "Geri Bildirim Derinliği",
@@ -37,17 +37,17 @@ export const cihazDenemeComparison: KulakArkasiComparisonContent = {
       secondary: "Anlık, sınırlı bir izlenime dayanır.",
     },
     {
-      feature: "Satın Alma Yükümlülüğü",
-      primary: "Süre boyunca satın alma yükümlülüğü bulunmaz.",
-      secondary: "Zaten uygulama randevusunun bir parçasıdır.",
+      feature: "Ücret",
+      primary: "Cihaz bedeli ödenir; uygun bulunmazsa 7 gün içinde iade edilir ve ödenen tutar kesintisiz iade edilir.",
+      secondary: "Ücretsizdir.",
     },
     {
       feature: "Kullanım Zamanı",
-      primary: "Genellikle satın alma kararından önce yapılır.",
-      secondary: "Genellikle cihaz uygulama randevusu sırasında yapılır.",
+      primary: "Cihaz satın alındıktan sonra, 7 gün içinde yapılır.",
+      secondary: "Cihaz seçimi sırasında, merkezimizde yapılır.",
     },
   ],
-  note: "Bu karşılaştırma genel eğilimleri özetler; iki deneyim birbirini tamamlar ve doğru karar için genellikle birlikte değerlendirilir.",
+  note: "Bu karşılaştırma genel eğilimleri özetler; iki deneyim birbirini tamamlar ve doğru karar için genellikle birlikte değerlendirilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; bu cihazlar merkezimizde demo olarak denenebilir.",
   accentColor: "#0d9488",
   accentColorBadgeBg: "rgb(13 148 136 / 0.08)",
   accentColorBadgeBorder: "rgb(13 148 136 / 0.35)",

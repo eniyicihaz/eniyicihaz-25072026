@@ -14,7 +14,7 @@ export const homeCenterGallery: CenterGalleryContent = {
   heading: "Darıca'daki Gerçek Merkezimiz",
   paragraphs: [
     "Darıca'daki merkezimiz; karşılama, işitme değerlendirmesi, cihaz uygulaması ve kişiye özel ayarın yapıldığı fiziksel bir mekandır.",
-    "2009'dan beri aynı ekiple, aynı adreste hizmet veriyoruz.",
+    "Avrasya İşitme Cihazları 2009 yılında kuruldu; Darıca merkezimiz Ağustos 2024'te açıldı.",
   ],
   featureImage: {
     src: "/images/pages/hakkimizda-danisma-odasi.webp",

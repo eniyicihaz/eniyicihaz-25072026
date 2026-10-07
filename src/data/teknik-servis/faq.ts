@@ -12,7 +12,7 @@ export const teknikServisFaq: BrandPageFaqContent = {
   intro: "Süreç, süre ve maliyet konusunda en çok sorulan sorular.",
   decisionCard: {
     title: "Teknik Servis Desteği Almak İster misiniz?",
-    points: ["Ücretsiz yerinde teşhis", "Orijinal yedek parça", "Yetkili servis ağı", "Takip edilebilir süreç"],
+    points: ["Ücret duruma göre belirlenir", "Orijinal yedek parça", "Yetkili servis ağı", "Takip edilebilir süreç"],
     ctaLabel: "Hemen Bilgi Alın",
     ctaHref: contactConfig.phone.href,
   },
@@ -28,7 +28,7 @@ export const teknikServisFaq: BrandPageFaqContent = {
         {
           question: "Yerinde teşhis ücretli midir?",
           answer:
-            "Hayır; kliniğimizdeki ilk teşhis değerlendirmesi herhangi bir ücret talep edilmeden yapılır.",
+            "Teknik servis ücreti, cihazınızın durumuna göre değişir.",
         },
       ],
     },

@@ -10,9 +10,9 @@ import { contactConfig } from "../../config";
 export const cihazDenemeHero: ExperienceHeroContent = {
   eyebrow: "UYGULAMA & AYAR · CİHAZ DENEME",
   headingLines: ["Darıca'da İşitme", "Cihazını Deneyin"],
-  lead: "Satın almadan önce deneyin.",
+  lead: "Önce merkezde deneyin.",
   paragraph:
-    "Size önerilen işitme cihazını satın almadan önce günlük hayatınızda gerçek koşullarda test edin; karar tamamen size ait.",
+    "Size önerilen işitme cihazını merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Cihazı satın alarak 7 güne kadar günlük hayatınızda da deneyebilir, uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
   ctaPrimary: { label: "Cihaz Denemesi İçin Randevu Al", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href },
   steps: ["Test Edin", "Karşılaştırın", "Karar Verin"],

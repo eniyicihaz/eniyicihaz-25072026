@@ -112,7 +112,7 @@ export const hero: HeroContent = {
         "Avrasya İşitme Cihazları, Darıca, Kocaeli'de bulunan SGK anlaşmalı bir işitme cihazı satış ve uygulama merkezidir.",
         "İşitme kaybı yalnızca duymamak değildir. Anlamak, iletişim kurmak ve sevdiklerinizle bağ kurmaktır.",
       ],
-      cta: { label: "Ücretsiz İşitme Testi", href: "/iletisim/" },
+      cta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
       secondaryCtas: [
         { label: "Bizi Arayın", href: "tel:+905337733199" },
         { label: "WhatsApp'tan Yaz", href: "https://wa.me/905337733199" },

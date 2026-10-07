@@ -18,11 +18,11 @@ export const possibleReasons = {
 export const pricingSection = {
   eyebrow: "CİHAZ DENEMEK ÜCRETLİ Mİ?",
   heading: "Cihaz Denemek Ücretli mi?",
-  body: "Hayır. Cihaz deneme süreci herhangi bir ücret talep edilmeden sunulur ve satın alma yükümlülüğü getirmez. Deneme süresi; önerilen model ve stok durumuna göre değişir, net süre randevunuz sırasında sizinle netleştirilir.",
+  body: "Merkezimizdeki yaklaşık 20 dakikalık cihaz demosu ücretsizdir. 7 güne kadar deneme ise cihaz satın alınarak yapılır: cihaz bedelini ödersiniz; uygun bulmazsanız 7 gün içinde iade edebilirsiniz ve ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; bu cihazlar merkezimizde demo olarak denenebilir.",
   termsIntro: "Deneme süresince dikkat edilmesi gereken birkaç nokta:",
   terms: [
-    "Deneme süresinin bir sınırı vardır; net süre randevuda paylaşılır.",
-    "Cihaz henüz satın alınmamış olsa da, deneme süresince özenle kullanılması önerilir.",
+    "Satın alarak deneme süresi en fazla 7 gündür.",
+    "Deneme süresince cihazın özenle kullanılması önerilir.",
     "Yeni bir cihaza alışmak zaman alabilir; ilk izlenim süreç boyunca değişebilir.",
     "Deneyiminizi ara kontrol seansında paylaşmanız karar sürecinize yardımcı olur.",
     "Model bulunabilirliği stok durumuna göre değişebilir.",

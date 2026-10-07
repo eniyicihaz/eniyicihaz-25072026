@@ -20,7 +20,7 @@ export const kisiyeOzelAyarRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Cihaz Deneme",
-      description: "Cihazı satın almadan önce günlük yaşamınızda deneme imkanını tanıyın.",
+      description: "Merkezde ücretsiz demo ile cihazı satın alarak 7 güne kadar deneme sürecini tanıyın.",
       href: "/uygulama-ayar/cihaz-deneme/",
     },
     {

@@ -31,6 +31,6 @@ export const cayirovaDecisionFactors: CayirovaCopyBlock = {
   paragraphs: [
     "En gelişmiş özelliklere sahip cihaz, her zaman sizin için en doğru seçim olmayabilir — belirleyici olan işitme kaybınızın derecesi, günlük yaşam ortamınız ve beklentilerinizdir.",
     "Fiyat; teknoloji seviyesi, özellikler ve markaya göre değişir. Sabit bir rakam yerine, ihtiyacınıza göre gerçekçi seçenekleri birlikte karşılaştırmanızı öneririz.",
-    "Karar vermeden önce cihazı deneme imkânından yararlanmanız, günlük kullanımda gerçekten memnun kalıp kalmayacağınızı görmenizi sağlar.",
+    "Merkezdeki ücretsiz demo ve cihazı satın alarak 7 güne kadar deneme imkânı, günlük kullanımda memnun kalıp kalmayacağınızı görmenizi sağlar; uygun bulunmazsa ödediğiniz tutar kesintisiz iade edilir.",
   ],
 };

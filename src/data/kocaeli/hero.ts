@@ -47,7 +47,7 @@ export const kocaeliHero: KocaeliHeroContent = {
   stats: [
     { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },
     { value: "18+ Marka", label: "Seçenek Sunuyoruz" },
-    { value: "2009'dan Beri", label: "Kocaeli'de Hizmet" },
+    { value: "Ağustos 2024", label: "Darıca Merkezi Açılışı" },
   ],
   ctas: [
     { label: "Ücretsiz Değerlendirme Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },

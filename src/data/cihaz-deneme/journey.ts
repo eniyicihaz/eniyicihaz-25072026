@@ -21,7 +21,7 @@ export const cihazDenemeJourney: BrandBuyingGuideContent = {
     },
     {
       title: "Cihazı Uyguluyoruz",
-      description: "Cihazı belirlenen süre boyunca ev, iş ve sosyal ortamlarınızda kullanmaya başlarsınız.",
+      description: "Merkezdeki demonun ardından cihazı satın alarak 7 güne kadar ev, iş ve sosyal ortamlarınızda kullanabilirsiniz.",
     },
     {
       title: "Kişisel Ayarları Yapıyoruz",
@@ -33,8 +33,8 @@ export const cihazDenemeJourney: BrandBuyingGuideContent = {
     },
     {
       title: "Geri Bildirimlerinize Göre Yeniden Ayarlıyoruz",
-      description: "Deneme süresi sonunda, deneyiminize göre satın alma kararınızı birlikte değerlendirirsiniz.",
+      description: "Cihazı 7 gün içinde uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir.",
     },
   ],
-  closing: "Süreç boyunca hiçbir aşamada satın alma yükümlülüğünüz bulunmaz.",
+  closing: "Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; bu cihazlar merkezimizde demo olarak denenebilir.",
 };
