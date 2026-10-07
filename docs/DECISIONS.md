@@ -78,3 +78,14 @@
   - Schema tip kararları kilitlenmez.
   - "18 marka" bilgisi title ve meta'ya mekanik olarak eklenmez.
 - `MASTER_PLAN.md` kilitli ana plan olarak oluşturuldu; plan dosyasındaki strateji sürümlerinin yerine geçer.
+
+## 2026-10-07 (Faz 1 kapanışı: Faz 2 temel audit kapısı)
+
+- Faz 1 kapanış audit'i yapıldı; Faz 1 geçti. Yeni plan katmanı gerekmiyor.
+- **Faz 2 temel audit kapısı (kilitli):** Faz 2'de her indekslenebilir sayfa için iki ayrı karar zorunludur.
+  - **Sayfa:** KORU / YENİDEN YAZ / BİRLEŞTİR / YÖNLENDİR / KALDIR
+  - **Hero:** DOĞRU / DEĞİŞMELİ / BAŞKA SAYFADAN KOPYA / İLGİSİZ
+- Audit yapılmadan mevcut sayfa içeriği ve mevcut hero otomatik olarak korunmuş kabul edilmez.
+- Özellikle incelenecekler: duplicate / near-copy sayfalar; şehir adı değiştirilmiş sayfalar; ilgisiz hero; başka sayfadan kopyalanmış hero; search intent ile uyuşmayan hero veya metin; eski veya yanlış işletme bilgisi; thin content; cannibalization; yanlış CTA / yanlış hedef.
+- Audit önce rapor olarak sunulur; uygulama ayrı onayla yapılır. Ayrıntı: `MASTER_PLAN.md` §7.1, `docs/tech/TEMPLATES.md` §6.
+- Belge tutarlılık düzeltmeleri: oluşturulmuş Faz 1 belgelerindeki "planlandı" işaretleri güncellendi; QUALITY_GATES §1 niyet sınıflarına "Local" eklendi; DESIGN_SYSTEM_GUIDE ve IMPLEMENTATION_STANDARD'daki otorite cümleleri SoT hiyerarşisine göre düzeltildi (işletme gerçeklerinin kanonik kaynağı SoT; COMPANY.md kısa kanonik özet).

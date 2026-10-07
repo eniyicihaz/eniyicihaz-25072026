@@ -64,21 +64,21 @@ Bilgi veya kural çelişirse öncelik sırası:
 | SGK güncel tutarları ve prosedürleri | [TIME-SENSITIVE] [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ] | SERVICE_SOT §3 |
 | Cihaz fiyatlarının sitede yayınlanması | Karar verilmedi | PRODUCT_SOT §4 |
 | Maps'te görünen "Avrasia" adı | [MEVCUT — AUDIT GEREKLİ]; değiştirme kararı yok | LOCAL_SOT §1, GOOGLE_SOT §1 |
-| Schema varlık ve tip modeli (tek düğüm mü, Organization ve LocalBusiness alt tipi ayrımı, yerel sayfalarda kullanım) | Teknik doğrulama gerekli. Faz 3 uygulamasından önce şunlar birlikte değerlendirilerek kesinleşir: Schema.org yapısı, Google structured data uygunluğu, gerçek işletme modeli | `docs/tech/SCHEMA_GRAPH.md` (Faz 1 Commit 3) |
-| Consent ve event davranışı | Yeniden audit edilecek; mevcut davranış hata olarak kabul edilmez | `docs/tech/MEASUREMENT_PLAN.md` (Faz 1 Commit 3) |
+| Schema varlık ve tip modeli (tek düğüm mü, Organization ve LocalBusiness alt tipi ayrımı, yerel sayfalarda kullanım) | Teknik doğrulama gerekli. Faz 3 uygulamasından önce şunlar birlikte değerlendirilerek kesinleşir: Schema.org yapısı, Google structured data uygunluğu, gerçek işletme modeli | `docs/tech/SCHEMA_GRAPH.md` |
+| Consent ve event davranışı | Yeniden audit edilecek; mevcut davranış hata olarak kabul edilmez | `docs/tech/MEASUREMENT_PLAN.md` |
 
 ## 5. Stratejik Sütunlar
 
 | Sütun | İlke | Ayrıntılı belge |
 |---|---|---|
-| Search intent | Mimari niyete göre kurulur; keyword başına sayfa açılmaz (K6) | `SEARCH_STRATEGY.md` §7, `docs/strategy/INTENT_MAP.md` (planlandı) |
-| Yerel SEO | Darıca hub'ı önce. Gebze ve Çayırova yalnızca gerçek veriyle, kopya olmadan. Kocaeli yönlendirici sayfa | `SEARCH_STRATEGY.md` §10, `docs/strategy/LOCAL_SEO_PLAYBOOK.md` (planlandı) |
-| Topical authority | Pillar → cluster → SSS → yerel bağlam → iç link. Thin content yok | `docs/strategy/CONTENT_ARCHITECTURE.md` (planlandı) |
+| Search intent | Mimari niyete göre kurulur; keyword başına sayfa açılmaz (K6) | `SEARCH_STRATEGY.md` §7, `docs/strategy/INTENT_MAP.md` |
+| Yerel SEO | Darıca hub'ı önce. Gebze ve Çayırova yalnızca gerçek veriyle, kopya olmadan. Kocaeli yönlendirici sayfa | `SEARCH_STRATEGY.md` §10, `docs/strategy/LOCAL_SEO_PLAYBOOK.md` |
+| Topical authority | Pillar → cluster → SSS → yerel bağlam → iç link. Thin content yok | `docs/strategy/CONTENT_ARCHITECTURE.md` |
 | GEO / AI arama | Answer-first, varlık tutarlılığı, kaynak gösterme, güncellik | `SEARCH_STRATEGY.md` §9 |
-| E-E-A-T | Yalnızca SoT'taki ekip ve işletme olguları kullanılır; uydurma yok | `docs/strategy/EEAT_AND_EDITORIAL.md` (planlandı) |
-| Görsel | Gerçek fotoğraflar niyete göre dağıtılır; "kullanılmayacak foto" listesi yoktur; teknik ve SEO uygunluğu audit edilir | `docs/strategy/IMAGE_GUIDELINES.md` (planlandı) |
+| E-E-A-T | Yalnızca SoT'taki ekip ve işletme olguları kullanılır; uydurma yok | `docs/strategy/EEAT_AND_EDITORIAL.md` |
+| Görsel | Gerçek fotoğraflar niyete göre dağıtılır; "kullanılmayacak foto" listesi yoktur; teknik ve SEO uygunluğu audit edilir | `docs/strategy/IMAGE_GUIDELINES.md` |
 | UX ve dönüşüm | Mobil öncelikli CTA'lar, telefon rolleri, walk-in + hizmet bazında randevu, deneme dili | `PRINCIPLES.md` §9, CONVERSION_SOT |
-| Teknik SEO ve ölçüm | Mevcut altyapı korunur; değişiklikten önce audit | `QUALITY_GATES.md`, `docs/tech/*` (planlandı) |
+| Teknik SEO ve ölçüm | Mevcut altyapı korunur; değişiklikten önce audit | `QUALITY_GATES.md`, `docs/tech/*` |
 
 ## 6. Belge Mimarisi
 
@@ -97,7 +97,7 @@ docs/strategy/              INTENT_MAP, LOCAL_SEO_PLAYBOOK, CONTENT_ARCHITECTURE
 docs/tech/                  DOC_MIGRATION_MAP (Commit 1), BRAND_MIGRATION, SCHEMA_GRAPH,
                             MEASUREMENT_PLAN, TEMPLATES                   (Faz 1 Commit 3)
 docs/DECISIONS.md           tarihli karar günlüğü
-docs/*_SPECIFICATION.md     bileşen spec'leri (Commit 3'te durum bandı)
+docs/*_SPECIFICATION.md     bileşen spec'leri (durum bandı eklendi; Commit 3)
 ```
 
 ## 7. Fazlar ve Sınırlar
@@ -110,13 +110,39 @@ docs/*_SPECIFICATION.md     bileşen spec'leri (Commit 3'te durum bandı)
 |---|---|---|---|
 | **Faz 0** Business & Governance Foundation | İşletme gerçekleri SoT'a işlendi | Kod yok | **Tamamlandı** (`f02b7c4`) |
 | **Faz 1** Belge ve strateji mimarisi | Commit 1: anayasa belgeleri + DOC_MIGRATION_MAP + bu plan. Commit 2: strategy belgeleri. Commit 3: tech belgeleri + DSG/IMPL güncellemeleri + eski spec bantları | Yalnızca `.md`. Kod, içerik, asset, schema ve tracking yok. Belge silme/taşıma yok. Plan dosyası temizliği yok (ayrı onay) | **Sürüyor** |
-| **Faz 2** Hızlı ve güvenli düzeltmeler | Önce **yeniden kod taraması**, sonra: 2009/Darıca/"aynı ekip" ifadeleri durumlarına göre (kesin hatalı / dolaylı sorunlu / doğrulama bekleyen); "18+" metinleri bağlama göre; kırık linkler; test CTA hedefi; consent/event audit'i ve gerekiyorsa düzeltme; Gebze ve Çayırova sadeleştirmesi; KVKK e-postası (onaylı); zaman duyarlı pil kampanyasının görselden metne alınması | Yeni sayfa yok; tasarım geçişi yok | Planlı |
+| **Faz 2** Hızlı ve güvenli düzeltmeler | **Temel audit kapısı:** her indekslenebilir sayfa için sayfa kararı + hero kararı (§7.1). Önce **yeniden kod taraması**, sonra: 2009/Darıca/"aynı ekip" ifadeleri durumlarına göre (kesin hatalı / dolaylı sorunlu / doğrulama bekleyen); "18+" metinleri bağlama göre; kırık linkler; test CTA hedefi; consent/event audit'i ve gerekiyorsa düzeltme; Gebze ve Çayırova sadeleştirmesi; KVKK e-postası (onaylı); zaman duyarlı pil kampanyasının görselden metne alınması | Yeni sayfa yok; tasarım geçişi yok | Planlı |
 | **Faz 3** Altyapı | Marka geçişi ve logo/favicon; NAP ve GBP audit; schema varlık modelinin kesinleşmesi ve uygulanması; breadcrumb; navigasyon; mobil sabit çubuk; 48/17 token'ları; görsel teknik işleri | Schema, doğrulama tamamlanmadan uygulanmaz | Planlı |
 | **Faz 4** Darıca otoritesi | Darıca hub'ı, merkez hizmetleri, ekip ve editoryal politika (rıza ile), gerçek fotoğraf dağıtımı | Doğrulanmamış yerel bilgi yok | Planlı |
 | **Faz 5** Bilgi Merkezi ve şablon sadeleştirme | Pillar'lar, konsolidasyon, yeni rehberler, form (KVKK planıyla) | Thin content yok; SGK rakamları yalnızca resmî doğrulamadan sonra | Planlı |
 | **Faz 6–8** Gebze → Çayırova → Kocaeli | Gerçek yerel veriyle genişleme | Kopya ve şehir adı değiştirilmiş sayfa yok | Planlı |
 | **Faz 9** Sürekli iyileştirme | Ölçüm, freshness kontrolleri, AI görünürlük testi | — | Planlı |
 | Ayrı faz: Governance Hardening | CLAUDE.md ve benzeri çalışma kuralları | Faz 1'e dahil değil | Planlı |
+
+### 7.1 Faz 2 Temel Audit Kapısı: Sayfa + Hero (kilitli, 2026-10-07)
+
+Faz 2'de mevcut site audit'i yalnızca teknik ve SEO hatalarını değil, **her sayfanın içeriğini ve hero'sunu** kapsar. Her indekslenebilir sayfa için **iki ayrı karar** zorunludur:
+
+| Karar türü | Seçenekler |
+|---|---|
+| **Sayfa** | KORU / YENİDEN YAZ / BİRLEŞTİR / YÖNLENDİR / KALDIR |
+| **Hero** | DOĞRU / DEĞİŞMELİ / BAŞKA SAYFADAN KOPYA / İLGİSİZ |
+
+Audit yapılmadan:
+- mevcut sayfa içeriği otomatik olarak **korunmuş kabul edilmez**;
+- mevcut hero otomatik olarak **korunmuş kabul edilmez**.
+
+Özellikle incelenecekler:
+- duplicate / near-copy sayfalar
+- şehir adı değiştirilmiş sayfalar
+- ilgisiz hero
+- başka sayfadan kopyalanmış hero
+- search intent ile uyuşmayan hero veya metin
+- eski veya yanlış işletme bilgisi
+- thin content
+- cannibalization
+- yanlış CTA / yanlış hedef
+
+Karar tanımları, audit tablosu ve kurallar: `docs/tech/TEMPLATES.md` §6. Audit önce rapor olarak sunulur; hiçbir sayfa onaysız değiştirilmez, birleştirilmez, yönlendirilmez veya kaldırılmaz. Karar kaydı: `docs/DECISIONS.md` (2026-10-07, Faz 1 kapanışı).
 
 ## 8. Kalite ve Süreç
 - Yayın kapıları: `QUALITY_GATES.md` (Faz 1'de eklenen §12 kapıları dahil).

@@ -2,7 +2,7 @@
 
 > Bu proje üç temel referans doküman üzerine kuruludur, her biri farklı bir soruyu cevaplar:
 >
-> **COMPANY.md** — *Kimiz?* Şirketi ve markayı tanımlar.
+> **COMPANY.md** — *Kimiz?* Şirketin ve markanın kısa kanonik özetidir. İşletme gerçeklerinin kanonik kaynağı `docs/source-of-truth/*` (SoT) dosyalarıdır; COMPANY.md onlara referans verir.
 >
 > **PRINCIPLES.md** — *Nasıl konuşuruz ve nasıl davranırız?* Marka dilini, UX felsefesini, içerik ve güven kurallarını tanımlar.
 >
@@ -30,11 +30,12 @@ Bu doküman, sitede üretilen her Astro component'inin, her Pattern Library sayf
 
 ## Diğer Dokümanlarla İlişki
 
-Üç doküman birbirini geçersiz kılmaz, tamamlar:
+Bu belgeler birbirini geçersiz kılmaz, tamamlar (işletme gerçeklerinde SoT önceliklidir):
 
 | Doküman | Soru | Yetki Alanı |
 |---|---|---|
-| COMPANY.md | Kimiz? | Şirket ve marka gerçekleri |
+| `docs/source-of-truth/*` (SoT) | Gerçekler neler? | İşletme gerçeklerinin kanonik kaynağı |
+| COMPANY.md | Kimiz? | SoT'un kısa kanonik özeti |
 | PRINCIPLES.md | Nasıl davranırız? | Ton, UX felsefesi, içerik, güven, CTA |
 | DESIGN_SYSTEM_GUIDE.md | Nasıl inşa ederiz? | Görsel sistem, component mimarisi, kod standartları |
 
@@ -660,7 +661,7 @@ yeni bir component oluşturamaz.
 
 # 27. Doküman Otoritesi
 
-Bu doküman, COMPANY.md, PRINCIPLES.md, SEARCH_STRATEGY.md, IMPLEMENTATION_STANDARD.md ve QUALITY_GATES.md ile eşdeğer bağlayıcılığa sahiptir. Altısı birlikte projenin tam referans katmanını oluşturur: COMPANY.md gerçekleri, PRINCIPLES.md davranışı, bu doküman yapıyı ve görsel sistemi, SEARCH_STRATEGY.md keşfedilebilirliği, IMPLEMENTATION_STANDARD.md implementasyon kalitesini, QUALITY_GATES.md ise sayfa/release seviyesi yayın kapılarını yönetir.
+Bu doküman, COMPANY.md, PRINCIPLES.md, SEARCH_STRATEGY.md, IMPLEMENTATION_STANDARD.md ve QUALITY_GATES.md ile eşdeğer bağlayıcılığa sahiptir. Bunlar, işletme gerçeklerinin kanonik kaynağı olan `docs/source-of-truth/*` (SoT) ve `MASTER_PLAN.md` ile birlikte projenin referans katmanını oluşturur: SoT gerçekleri (COMPANY.md onların kısa kanonik özetidir), PRINCIPLES.md davranışı, bu doküman yapıyı ve görsel sistemi, SEARCH_STRATEGY.md keşfedilebilirliği, IMPLEMENTATION_STANDARD.md implementasyon kalitesini, QUALITY_GATES.md ise sayfa/release seviyesi yayın kapılarını yönetir.
 
 Bu doküman, projede zaten inşa edilmiş olan mimariyi (Astro, Atomic Design, kendi klasöründe her component, Pattern Library yaklaşımı) doğrular ve ileriye taşır — geriye dönük olarak var olan Atom katmanını geçersiz kılmaz. Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan kurallar bağlayıcıdır.
 
@@ -673,7 +674,7 @@ Bu doküman, projede zaten inşa edilmiş olan mimariyi (Astro, Atomic Design, k
 ## 28.1 Belge Haritası ve Otorite
 
 - Kaynak önceliği: kullanıcının güncel teyidi > SoT [DOĞRULANDI] > MASTER_PLAN > DECISIONS > strateji ve teknik belgeler > eski belgeler > koddan çıkarılan varsayım (MASTER_PLAN §1).
-- Bu doküman yapı ve görsel sistemden sorumludur; işletme gerçekleri SoT'tadır. §1 ve §27'deki "COMPANY.md gerçekleri yönetir" ifadeleri bu sıra içinde okunur: COMPANY.md, SoT'un kanonik özetidir.
+- Bu doküman yapı ve görsel sistemden sorumludur; işletme gerçekleri SoT'tadır; COMPANY.md SoT'un kısa kanonik özetidir (§1 ve §27 buna göre güncellendi).
 - Sayfa tipleri, CTA mimarisi ve kanonik bileşen hedefleri: `docs/tech/TEMPLATES.md`. Görsel kuralları: `docs/strategy/IMAGE_GUIDELINES.md`.
 
 ## 28.2 Mobile-First

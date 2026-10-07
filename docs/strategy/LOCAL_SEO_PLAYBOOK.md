@@ -170,7 +170,7 @@ URL'ler korunur; yerel sayfa taşıma veya yeniden adlandırma önerilmez.
 - Maps'te görünen ad farkı audit kapsamındadır; bu belge değişiklik kararı vermez (LOCAL_SOT §1).
 - NAP tek kaynaktan gelir; üç telefonun rolleri CONVERSION_SOT §1'e göre gösterilir.
 - Yorumlar: yalnızca gerçek GBP yorumları, değiştirilmeden ve kaynağına bağlanarak (EEAT_AND_EDITORIAL.md §7).
-- Yerel schema tipi ve yerel sayfalarda kullanımı **karara bağlanmadı**; `docs/tech/SCHEMA_GRAPH.md` (planlandı) beklenir.
+- Yerel schema tipi ve yerel sayfalarda kullanımı **karara bağlanmadı**; karar `docs/tech/SCHEMA_GRAPH.md` §1'deki yöntemle verilir.
 
 ## 11. İlgili Belgeler
 - INTENT_MAP.md: yerel sorgu kümeleri ve kanonik sayfalar.

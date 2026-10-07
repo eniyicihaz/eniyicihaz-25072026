@@ -27,7 +27,7 @@ Bir gate'in bir kriteri bu projede henüz otomatikleştirilmemiş olabilir (ör.
 
 Bir sayfa, aşağıdakilerin **tamamı** doğrulanmadan yayınlanmaz:
 
-- [ ] **Search Intent** — Sayfanın hizmet ettiği tek arama niyeti (Informational / Commercial Investigation / Navigational / Transactional — bkz. SEARCH_STRATEGY.md §7) açıkça belirlenebiliyor; sayfa birden fazla niyete aynı ağırlıkla hizmet etmeye çalışmıyor.
+- [ ] **Search Intent** — Sayfanın hizmet ettiği tek arama niyeti (Informational / Commercial Investigation / Transactional / Local / Navigational — bkz. SEARCH_STRATEGY.md §7, `docs/strategy/INTENT_MAP.md` §2) açıkça belirlenebiliyor; sayfa birden fazla niyete aynı ağırlıkla hizmet etmeye çalışmıyor.
 - [ ] **Title** — Her sayfanın kendine özgü, jenerik olmayan bir `<title>`'ı var (MainLayout'un varsayılanına düşmüyor) ve sayfanın konusunu içeriyor.
   - Marka eki ("| Avrasya İşitme Cihazları") yalnızca gerektiğinde eklenir.
   - Marka sayısı gibi işletme bilgileri title/meta'ya **mekanik olarak eklenmez**; yalnızca sayfanın search intent'i ve içerik amacı için gerçekten anlamlıysa kullanılır.
@@ -81,7 +81,7 @@ Bir sayfa, aşağıdakilerin **tamamı** doğrulanmadan yayınlanmaz:
 
 > Sayfa tipi↔şema eşleştirmesinin kavramsal çerçevesi SEARCH_STRATEGY.md §11'dedir; bu gate onu operasyonel bir kontrol listesine çevirir.
 
-- [ ] **Şema Tipi Kararı Var mı?** — Varlık ve tip modeli (tek düğüm / Organization + yerel işletme; MedicalBusiness veya başka bir LocalBusiness alt tipi; yerel sayfalarda kullanım) **henüz kilitlenmedi**. Bir şema uygulanmadan önce `docs/tech/SCHEMA_GRAPH.md`'deki (planlandı; henüz oluşturulmadı) karar ve doğrulama kriterleri tamamlanmış olmalı: Schema.org yapısı, Google structured data uygunluğu ve gerçek işletme modeli birlikte değerlendirilir. Karar yoksa şema uygulanmaz.
+- [ ] **Şema Tipi Kararı Var mı?** — Varlık ve tip modeli (tek düğüm / Organization + yerel işletme; MedicalBusiness veya başka bir LocalBusiness alt tipi; yerel sayfalarda kullanım) **henüz kilitlenmedi**. Bir şema uygulanmadan önce `docs/tech/SCHEMA_GRAPH.md`'deki karar ve doğrulama kriterleri tamamlanmış olmalı: Schema.org yapısı, Google structured data uygunluğu ve gerçek işletme modeli birlikte değerlendirilir. Karar yoksa şema uygulanmaz.
 - [ ] **BreadcrumbList** — Her sayfada, gerçek site hiyerarşisiyle birebir örtüşen bir BreadcrumbList şeması var.
 - [ ] **Kurumsal Kimlik Verisi** — İşletme kimliği şeması yalnızca SoT'taki [DOĞRULANDI] verilerle dolduruluyor (ad, adres, telefon, çalışma saatleri). Uydurma alan yok; [DOĞRULAMA GEREKLİ] veya [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ] etiketli bilgi şemaya girmiyor.
 - [ ] **FAQPage — Yalnızca Gerçek FAQ Varsa** — FAQPage şeması, yalnızca sayfada kullanıcının **görebileceği** gerçek soru-cevap bloğu varsa eklenir; görünmeyen/gizli soru-cevap için şema üretilmez.

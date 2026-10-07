@@ -14,7 +14,7 @@
 | **SoT'A TAŞINDI** | İşletme gerçeğidir. Kanonik kaynağı artık `docs/source-of-truth/*`. Eski belge yalnızca kısa özet veya referans tutar. |
 | **ARŞİVLENECEK** | Tarihsel değeri var; ileride `docs/archive/` altına alınacak. Faz 1'de dosyaya yalnızca durum bandı eklenir (Commit 3). Taşıma ayrı onaylı. |
 | **GEÇERSİZ** | Faz 0 SoT veya kilitli kararla çelişiyor. Hiçbir yerde kullanılmaz; gerekçesi yazılır. |
-| **PLANLANDI** | Hedef belge Faz 1'in sonraki commit'lerinde oluşturulacak. Eşleme hazır, içerik henüz yazılmadı. |
+| **PLANLANDI** | Hedef belge Faz 1'in sonraki commit'lerinde oluşturulacaktı. **Güncelleme (Faz 1 kapanışı):** Bu durumla işaretlenen belgelerin tamamı oluşturuldu (Commit 2: `docs/strategy/*`; Commit 3: `docs/tech/*`, DSG ve IMPLEMENTATION_STANDARD güncellemeleri). Aşağıdaki tablolarda "OLUŞTURULDU" olarak gösterilir. |
 
 ### 0.2 Kaynak önceliği
 1. Faz 0 Source of Truth (`docs/source-of-truth/*`, commit `f02b7c4`)
@@ -88,14 +88,14 @@ Geçersiz ifadelerin tam listesi tek yerde tutulur: `BUSINESS_SOURCE_OF_TRUTH.md
 | §2–§3 Arama ve SEO felsefesi | KORUNDU | — |
 | §4 Entity stratejisi | GÜNCELLENDİ | Tek marka entity'si; "Eniyicihaz.com birincil marka" **GEÇERSİZ** |
 | §5 Bilgi grafiği | GÜNCELLENDİ | İlişki cümleleri K1'e göre |
-| §6 Topical authority | GÜNCELLENDİ | Kaynak gösterme YMYL içerikte zorunlu; ayrıntı → CONTENT_ARCHITECTURE (PLANLANDI) |
-| §7 Search intent | GÜNCELLENDİ | Keyword başına sayfa reddedildi (K6); INTENT_MAP (PLANLANDI) |
+| §6 Topical authority | GÜNCELLENDİ | Kaynak gösterme YMYL içerikte zorunlu; ayrıntı → CONTENT_ARCHITECTURE (OLUŞTURULDU) |
+| §7 Search intent | GÜNCELLENDİ | Keyword başına sayfa reddedildi (K6); INTENT_MAP (OLUŞTURULDU) |
 | §8 AEO | KORUNDU | — |
 | §9 GEO | GÜNCELLENDİ | Kanonik tanım SoT'tan; AI-crawler yönü |
-| §10 Local SEO | GÜNCELLENDİ | Öncelik, evde hizmet ayrımı, Gebze/Çayırova kopya yasağı; ayrıntı → LOCAL_SEO_PLAYBOOK (PLANLANDI) |
-| §11 Yapısal veri | GÜNCELLENDİ | Tip eşlemesi **karar bekleyen** hâle getirildi (Faz 3 öncesi doğrulama); SCHEMA_GRAPH (PLANLANDI) |
-| §12 Medya SEO | KORUNDU | Ayrıntı → IMAGE_GUIDELINES (PLANLANDI) |
-| §13 E-E-A-T | GÜNCELLENDİ | Ekip ve inceleyen SoT'tan; EEAT_AND_EDITORIAL (PLANLANDI) |
+| §10 Local SEO | GÜNCELLENDİ | Öncelik, evde hizmet ayrımı, Gebze/Çayırova kopya yasağı; ayrıntı → LOCAL_SEO_PLAYBOOK (OLUŞTURULDU) |
+| §11 Yapısal veri | GÜNCELLENDİ | Tip eşlemesi **karar bekleyen** hâle getirildi (Faz 3 öncesi doğrulama); SCHEMA_GRAPH (OLUŞTURULDU) |
+| §12 Medya SEO | KORUNDU | Ayrıntı → IMAGE_GUIDELINES (OLUŞTURULDU) |
+| §13 E-E-A-T | GÜNCELLENDİ | Ekip ve inceleyen SoT'tan; EEAT_AND_EDITORIAL (OLUŞTURULDU) |
 | §14–§19 | KORUNDU | — |
 | §20 Doküman otoritesi | GÜNCELLENDİ | Kaynak önceliği |
 
@@ -118,19 +118,19 @@ Geçersiz ifadelerin tam listesi tek yerde tutulur: `BUSINESS_SOURCE_OF_TRUTH.md
 
 | Belge | Durum | Plan |
 |---|---|---|
-| DESIGN_SYSTEM_GUIDE.md | PLANLANDI (Commit 3) | Belge haritası, canlı durum, kanonik bileşenler, K5 |
-| IMPLEMENTATION_STANDARD.md | PLANLANDI (Commit 3) | Yalnızca belge haritası satırı |
-| IMPLEMENTATION_GUIDE.md | ARŞİVLENECEK | Header brifi (tarihsel). Commit 3'te durum bandı |
+| DESIGN_SYSTEM_GUIDE.md | GÜNCELLENDİ (Commit 3) | Belge haritası, canlı durum, kanonik bileşenler, K5 |
+| IMPLEMENTATION_STANDARD.md | GÜNCELLENDİ (Commit 3) | Yalnızca belge haritası satırı |
+| IMPLEMENTATION_GUIDE.md | ARŞİVLENECEK | Header brifi (tarihsel). Durum bandı eklendi (Commit 3) |
 
 ## 6. docs/ belgeleri
 
 | Belge | Durum | Not |
 |---|---|---|
 | `docs/DECISIONS.md` | GÜNCELLENDİ (Faz 1 Commit 1) | Faz 0 ve Faz 1 kararları eklendi; eski kayıtlar silinmedi |
-| `docs/PROJECT_ARCHITECTURE.md` | ARŞİVLENECEK / GÜNCELLENECEK | Commit 3'te durum bandı; içerik ileride `docs/tech/` mimarisine eşlenecek |
-| `docs/DESIGN_SYSTEM.md` | ARŞİVLENECEK / GÜNCELLENECEK | Commit 3'te durum bandı; token gerçekliği TEMPLATES ve DSG ile |
-| `docs/HOMEPAGE_SPECIFICATION.md`, `HERO_`, `CLOSING_`, `TRUST_`, `CENTER_NETWORK_`, `BUYING_CRITERIA_`, `HOMEPAGE_FAQ_` | ARŞİVLENECEK / GÜNCELLENECEK | Commit 3'te "güncelleme bekliyor" bandı; içerik ilgili kod fazında güncellenir |
-| `docs/GUIDE_`, `SOLUTION_`, `KNOWLEDGE_GATE_`, `CATEGORY_EXPLORER_`, `BRAND_CRITERIA_SPECIFICATION.md` | ARŞİVLENECEK | Render edilmeyen veya birleştirilmiş bileşenler; Commit 3'te bant |
+| `docs/PROJECT_ARCHITECTURE.md` | ARŞİVLENECEK / GÜNCELLENECEK | Durum bandı eklendi (Commit 3); içerik ileride `docs/tech/` mimarisine eşlenecek |
+| `docs/DESIGN_SYSTEM.md` | ARŞİVLENECEK / GÜNCELLENECEK | Durum bandı eklendi (Commit 3); token gerçekliği TEMPLATES ve DSG ile |
+| `docs/HOMEPAGE_SPECIFICATION.md`, `HERO_`, `CLOSING_`, `TRUST_`, `CENTER_NETWORK_`, `BUYING_CRITERIA_`, `HOMEPAGE_FAQ_` | ARŞİVLENECEK / GÜNCELLENECEK | "Güncelleme bekliyor" bandı eklendi (Commit 3); içerik ilgili kod fazında güncellenir |
+| `docs/GUIDE_`, `SOLUTION_`, `KNOWLEDGE_GATE_`, `CATEGORY_EXPLORER_`, `BRAND_CRITERIA_SPECIFICATION.md` | ARŞİVLENECEK | Render edilmeyen veya birleştirilmiş bileşenler; durum bandı eklendi (Commit 3) |
 | Diğer `docs/*_SPECIFICATION.md` (SOUND_ROOM, EMPATHY, CHOOSER, MODEL_SHOWCASE, BRANDS, SERVICE_JOURNEY, DEVICE_COMPARISON) | KORUNDU | Kodla uyumlu (Faz 0 öncesi audit) |
 | `docs/HOMEPAGE_CREATIVE_DIRECTION.md`, `HOMEPAGE_MOODBOARD.md`, `docs/archive/*` | ARŞİVLENECEK / KORUNDU | Zaten arşiv kökçüğü veya arşiv |
 
