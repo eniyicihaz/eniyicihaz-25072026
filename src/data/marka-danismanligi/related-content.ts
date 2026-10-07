@@ -14,7 +14,7 @@ export const markaDanismanligiRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Yetkili Servis",
-      description: "Markaların yetkili servis ağının nasıl bir güvence sağladığını tanıyın.",
+      description: "18 markada verdiğimiz teknik servis desteği hakkında bilgi edinin.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {

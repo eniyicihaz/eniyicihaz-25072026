@@ -58,7 +58,7 @@ export const audifonEcosystem: BrandPageEcosystemContent = {
         "Geniş bir uluslararası dağıtım ağına ulaşır",
       ],
       models: ["rega", "sino", "Sueno Pro"],
-      expertNote: "Audifon, Almanya'nın işitme akustiği alanındaki en büyük aile işletmesi KIND-Grubu'na bağlıdır.",
+      expertNote: "Audifon, Alman KIND-Grubu'na bağlı bir markadır.",
     },
   ],
   // Precomputed rgb() decomposition of #E2001A.

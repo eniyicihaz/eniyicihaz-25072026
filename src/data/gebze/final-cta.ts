@@ -14,7 +14,7 @@ export const gebzeFinalCta: BrandPageFinalCtaContent = {
   trustItems: [
     "SGK Anlaşmalı Hizmet",
     "Ücretsiz İlk Değerlendirme",
-    "18+ Marka Seçeneği",
+    "18 Marka Seçeneği",
     "Cihazı Deneme İmkânı",
   ],
   accentColor: "#2563eb",

@@ -28,7 +28,7 @@ export const priceGuideHero: PriceGuideHeroContent = {
     "Darıca'daki gerçek merkezimizin deneyimiyle hazırlanan bu rehber, bir fiyat listesi değil; kendi ihtiyacınız için doğru soruları sormanıza yarayan bir yol haritasıdır.",
   ctaPrimary: { label: "Güncel Fiyat Bilgisi Al", href: "/iletisim/" },
   ctaSecondary: { label: "WhatsApp'tan Sor", href: `${contactConfig.whatsapp.href}?text=${whatsappText}` },
-  chips: ["2009'dan beri işitme alanında", "SGK anlaşmalı merkez", "Ücretsiz işitme testi", "18+ marka"],
+  chips: ["2009'dan beri işitme alanında", "SGK anlaşmalı merkez", "Ücretsiz işitme testi", "18 marka"],
   // Kavramsal danışmanlık sahnesi — gerçek Avrasya merkezi fotoğrafı DEĞİL.
   // Ölçü: 1672 × 941 (16:9), WebP, olduğu gibi kullanılır
   // (yeniden boyutlandırma/encode yok). Görselde yazı/logo/rakam yoktur.

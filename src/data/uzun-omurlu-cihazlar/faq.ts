@@ -53,7 +53,7 @@ export const uzunOmurluCihazlarFaq: BrandPageFaqContent = {
         {
           question: "Yedek parça ihtiyacında ne kadar sürede temin edebiliyorsunuz?",
           answer:
-            "Temin süresi marka ve parçaya göre değişir; yetkili distribütörlük sayesinde çoğu parçayı makul sürede temin edebiliyoruz.",
+            "Temin süresi marka ve parçaya göre değişir; ihtiyaç halinde size net bir süre bilgisi veririz.",
         },
         {
           question: "Orijinal olmayan yedek parça kullanmanın sakıncası var mı?",
@@ -73,7 +73,7 @@ export const uzunOmurluCihazlarFaq: BrandPageFaqContent = {
         {
           question: "Cihazım garanti süresi dışına çıkarsa ne olur?",
           answer:
-            "Garanti süresi sona erse dahi, orijinal yedek parça ve yetkili teknik servis desteği almaya devam edebilirsiniz.",
+            "Garanti süresi sona erse dahi teknik servis desteği almaya devam edebilirsiniz; ücret cihazın durumuna göre belirlenir.",
         },
       ],
     },

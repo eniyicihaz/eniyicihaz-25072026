@@ -38,7 +38,7 @@ export const vistaTechnology: BrandPageTechnologyContent = {
     {
       label: "VALUE",
       title: "Sonova Güvencesi, Erişilebilir Fiyat",
-      description: "Dünyanın en büyük işitme cihazı üreticisinin teknolojisini daha uygun bir fiyat noktasında sunar.",
+      description: "Sonova teknolojisini daha uygun bir fiyat noktasında sunar.",
     },
   ],
   // Precomputed rgb() decomposition of #E85D0A.

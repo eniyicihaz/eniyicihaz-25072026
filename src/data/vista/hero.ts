@@ -26,7 +26,7 @@ export const vistaHero: BrandPageHeroContent = {
   badge: "VISTA · SONOVA DEĞER MARKASI",
   headingLines: ["Vista ile Sonova Teknolojisine", "Erişilebilir Bir Fiyat Noktası"],
   paragraphs: [
-    "Vista, dünyanın en büyük işitme cihazı üreticisi Sonova'nın (Phonak ve Unitron ile aynı çatı) Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunan bir markadır.",
+    "Vista, Sonova'nın (Phonak ve Unitron ile aynı çatı) Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunan bir markadır.",
     "Vista V, Vista B ve diğer Vista modellerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },

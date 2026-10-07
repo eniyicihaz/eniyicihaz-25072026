@@ -83,7 +83,7 @@ export const afterSales: GuideCard[] = [
   {
     icon: Wrench,
     title: "Teknik servis",
-    text: "Arıza ve onarım gerektiren durumlarda yetkili servis süreçleri işletilir; bu süreçte yedek işitme cihazı imkânımız da bulunur.",
+    text: "Arıza ve onarım gerektiren durumlarda teknik servis desteği veriyoruz; bu süreçte ücretsiz yedek işitme cihazı desteği de sağlıyoruz.",
     href: "/servis-bakim/teknik-servis/",
     linkLabel: "Teknik servis",
   },

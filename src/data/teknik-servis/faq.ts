@@ -12,7 +12,7 @@ export const teknikServisFaq: BrandPageFaqContent = {
   intro: "Süreç, süre ve maliyet konusunda en çok sorulan sorular.",
   decisionCard: {
     title: "Teknik Servis Desteği Almak İster misiniz?",
-    points: ["Ücret duruma göre belirlenir", "Orijinal yedek parça", "Yetkili servis ağı", "Takip edilebilir süreç"],
+    points: ["Ücret duruma göre belirlenir", "18 markada teknik servis", "3 gün içinde teslim", "Takip edilebilir süreç"],
     ctaLabel: "Hemen Bilgi Alın",
     ctaHref: contactConfig.phone.href,
   },

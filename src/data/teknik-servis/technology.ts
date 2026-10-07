@@ -34,16 +34,16 @@ export const teknikServisTechnology: BrandPageEcosystemContent = {
     {
       id: "uretici-servis-agi",
       icon: "globe",
-      navLabel: "Üretici Servis Ağı",
-      title: "Yetkili Üretici Servis Ağı",
-      lead: "Yerinde çözülemeyen sorunlar için cihazınız, üreticinin yetkili servis ağına gönderilir.",
-      howItWorks: "Cihazınız, ilgili markanın yetkili servis merkezine iletilir; burada uzman teknisyenler tarafından detaylı incelenir.",
+      navLabel: "Dış Servis Süreci",
+      title: "Gerektiğinde Dış Servis",
+      lead: "Garanti kapsamındaki cihazlar, gerektiğinde dış servise gönderilir.",
+      howItWorks: "Cihazınız merkezimizde kayda alınır ve dış servise iletilir; süreç hakkında size bilgi verilir.",
       advantages: [
         "Üreticinin kendi uzmanlığından faydalanmanızı sağlar",
         "Karmaşık teknik sorunların doğru şekilde ele alınmasına yardımcı olur",
         "Garanti kapsamındaki onarımlar için gerekli resmi süreçtir",
       ],
-      models: ["Yetkili Servis Ağı"],
+      models: ["Garanti Kapsamındaki Cihazlar"],
       expertNote: "Üretici servisine gönderim süresi, marka ve modele göre değişebilir.",
     },
     {

@@ -15,7 +15,7 @@ export const maicoTechnology: BrandPageTechnologyContent = {
     {
       label: "1937",
       title: "Odyometre Mirası",
-      description: "\"Audiometer\" terimini literatüre kazandıran, ölçüm biliminde öncü bir geçmiş.",
+      description: "\"Audiometer\" terimini literatüre kazandıran, ölçüm alanında uzun bir geçmiş.",
     },
     {
       label: "DEMANT",

@@ -25,9 +25,9 @@ export interface OticonHeritageContent {
 
 export const oticonHeritage: OticonHeritageContent = {
   badge: "OTICON HAKKINDA",
-  heading: "100 Yılı Aşkın İşitme Teknolojisi Deneyimi",
+  heading: "1904'ten Bu Yana İşitme Teknolojisi",
   paragraphs: [
-    "Oticon, Danimarka merkezli, dünyanın en köklü işitme cihazı üreticilerinden biridir. 1904 yılında kurulan marka, bugün pek çok ülkede milyonlarca kullanıcı tarafından tercih edilmektedir.",
+    "Oticon, Danimarka merkezli bir işitme cihazı üreticisidir. 1904 yılında kurulan marka, bugün pek çok ülkede kullanılmaktadır.",
     "Marka, yaklaşık yüz yıllık deneyimini, sesi yalnızca yükseltmek yerine beynin sesi doğal şekilde işleme sürecini destekleyen BrainHearing® yaklaşımıyla birleştirir.",
   ],
   stats: [

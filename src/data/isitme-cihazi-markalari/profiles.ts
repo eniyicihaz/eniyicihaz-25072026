@@ -1,4 +1,4 @@
-// Altı ana marka profili (Oticon, Phonak, Signia, Widex, ReSound, Starkey NuEar).
+// Altı ana marka profili (Oticon, Phonak, Signia, Widex, ReSound, NuEar).
 //
 // Her profil, sitenin DOĞRULANMIŞ marka verisinden türetilir (src/data/{marka}/
 // overview, intro, models, ideal-user, why-oticon): menşei, kuruluş, felsefe,
@@ -101,10 +101,10 @@ export const brandSections: Record<string, GuideSectionMeta> = {
     intro: "Kablosuz bağlantı teknolojilerinde erken adım atmasıyla tanınan Danimarka merkezli marka.",
   },
   nuear: {
-    id: "starkey-nuear",
-    eyebrow: "Starkey NuEar",
-    heading: "Starkey NuEar İşitme Cihazları ve NuEar Modelleri",
-    intro: "Amerikan menşeli Starkey grubuna bağlı NuEar: bağlantılı ve sağlık odaklı işitme deneyimi.",
+    id: "nuear-profili",
+    eyebrow: "NuEar",
+    heading: "NuEar İşitme Cihazları ve NuEar Modelleri",
+    intro: "Amerikan kökenli NuEar: bağlantılı ve sağlık odaklı işitme deneyimi.",
   },
 };
 
@@ -251,17 +251,17 @@ export const brandProfiles: BrandProfileContent[] = [
   },
   {
     id: "nuear",
-    name: "Starkey NuEar",
+    name: "NuEar",
     logo: "/images/brands/nuear-logo-seffaf.webp",
     logoAlt: "NuEar logosu",
     lead:
-      "NuEar, 1976'da San Diego'da kurulan ve bugün Amerikan menşeli Starkey grubuna bağlı olan, bu nedenle \"Starkey NuEar\" olarak da anılan bir işitme cihazı markasıdır.",
+      "NuEar, 1976'da San Diego'da kurulan Amerikan kökenli bir işitme cihazı markasıdır.",
     paragraphs: [
       "Marka, işitme cihazını yalnızca bir ses yükseltme aracı değil, günlük aktivite ve sağlık takibini de içeren bağlantılı bir deneyim olarak konumlandırır; bu deneyimin uygulaması Hear Circle'dır.",
       "NXG AI, NE Series, Circa, Savant AI, NOW iQ ve Miniscopic Synergy iQ ailelerinde yaklaşım, kullanıcının işitme ihtiyacına ve yaşam tarzına göre şekillenir. Sitemizde yer alan NuEar ailelerinin tamamında Bluetooth etiketi bulunur.",
     ],
     facts: [
-      { label: "Menşei", value: "ABD (Starkey Grubu)" },
+      { label: "Menşei", value: "ABD" },
       { label: "Kuruluş", value: "1976" },
       { label: "Marka yaklaşımı", value: "Bağlantılı ve sağlık odaklı işitme deneyimi" },
       { label: "Teknoloji", value: "NXG AI ses işleme" },

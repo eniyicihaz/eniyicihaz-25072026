@@ -11,7 +11,7 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const teknikServisAdvantages: BrandPageAdvantagesContent = {
   badge: "AVANTAJLARI",
   heading: "Teknik Servisimizin Sunduğu Avantajlar",
-  intro: "Yetkili bir teknik servis sürecini tercih etmenin nedenleri.",
+  intro: "Belgeli ve düzenli bir teknik servis sürecini tercih etmenin nedenleri.",
   hero: {
     icon: Wrench,
     category: "Yerinde İlk Değerlendirme",
@@ -29,13 +29,13 @@ export const teknikServisAdvantages: BrandPageAdvantagesContent = {
       icon: ShieldCheck,
       category: "Orijinal Parça",
       title: "Onarımlarda Orijinal Yedek Parça Kullanılır",
-      description: "Kapsamlı onarımlar, yetkili servis ağı üzerinden orijinal yedek parçalarla yapılır.",
+      description: "Onarımlarda cihaza uygun orijinal yedek parça kullanılmasına özen gösterilir.",
     },
     {
       icon: Truck,
-      category: "Yetkili Servis Ağı",
+      category: "Gerektiğinde Dış Servis",
       title: "Gerektiğinde Üretici Servisine Yönlendirme",
-      description: "Yerinde çözülemeyen sorunlar için cihazınız güvenilir bir yetkili servis ağına yönlendirilir.",
+      description: "Garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir.",
     },
     {
       icon: Send,

@@ -17,19 +17,19 @@ export const guvenilirTeknolojiTechnology: BrandPageEcosystemContent = {
   intro: "Her bileşeni seçerek nasıl çalıştığını ve size sağladığı avantajları inceleyebilirsiniz. Kapsam, marka ve modele göre değişebilir.",
   items: [
     {
-      id: "yetkili-distributorluk",
+      id: "satis-kanali-kontrolu",
       icon: "globe",
-      navLabel: "Yetkili Distribütörlük",
-      title: "Resmi Yetkili Distribütörlük Anlaşmaları",
-      lead: "Sunduğumuz markaların resmi yetkili distribütörlük anlaşmalarına sahibiz; bu sayede ürünler doğrudan üreticinin onayladığı kanaldan temin edilir.",
-      howItWorks: "Marka üreticileriyle yapılan resmi distribütörlük anlaşmaları kapsamında, ürünler doğrudan yetkili ithalat zinciri üzerinden temin edilir ve stoklara bu şekilde girer.",
+      navLabel: "Satış Kanalı Kontrolü",
+      title: "Satış Kanalının Kontrol Edilmesi",
+      lead: "Bir işitme cihazının üreticinin onayladığı kanaldan satışa sunulmuş olması, orijinalliğin temel göstergelerinden biridir.",
+      howItWorks: "Satın alma öncesinde satıcıdan cihazın faturasını, garanti belgesini ve seri numarasını isteyebilir; seri numarasını üretici üzerinden doğrulatabilirsiniz.",
       advantages: [
         "Ürünün kaynağı baştan sona izlenebilir olur",
-        "Kaçak veya paralel ithal ürün riski ortadan kalkar",
-        "Üretici ile doğrudan iletişim imkânı sağlar",
+        "Kaçak veya paralel ithal ürün riskini azaltır",
+        "Garanti sürecinin net olmasına yardımcı olur",
       ],
-      models: ["Yetkili Distribütörlük Kapsamındaki Markalar"],
-      expertNote: "Yetkili olduğumuz markaların güncel listesini Markalarımız sayfamızdan inceleyebilirsiniz.",
+      models: ["Satış Kanalı Kontrolü"],
+      expertNote: "Sattığımız 18 markanın listesini Markalar sayfamızdan inceleyebilirsiniz.",
     },
     {
       id: "uretici-garantisi",

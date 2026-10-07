@@ -17,7 +17,7 @@ export const brandsSection: GuideSectionMeta = {
   eyebrow: "Markalar",
   heading: "İşitme Cihazı Markaları: Hangi Markalarla Çalışıyoruz?",
   intro:
-    "18'den fazla üreticiyle çalışıyoruz ve hiçbirine bağlı değiliz. Aşağıda en çok sorulan altı markanın işitme cihazı yaklaşımını kısaca tanıtıyoruz; her birinin kendi sayfasında modeller ve özellikler ayrıntılıdır. Sıra bir kalite ya da tercih sıralaması değildir.",
+    "18 işitme cihazı markasıyla çalışıyoruz ve hiçbirine bağlı değiliz. Aşağıda en çok sorulan altı markanın işitme cihazı yaklaşımını kısaca tanıtıyoruz; her birinin kendi sayfasında modeller ve özellikler ayrıntılıdır. Sıra bir kalite ya da tercih sıralaması değildir.",
 };
 
 /** 6 marka — hepsinin gerçek /markalar/{slug}/ sayfası var. */
@@ -27,7 +27,7 @@ export const brandCards: GuideCard[] = [
   { tag: "Signia", title: "Signia işitme cihazları", text: "Kulak arkasından kulak içine, spor ve aktif kullanıma yönelik modellere uzanan bir yelpaze sunar; Signia Styletto ince tasarımıyla tanınır.", href: "/markalar/signia/", linkLabel: "Signia markası ve modelleri" },
   { tag: "Widex", title: "Widex işitme cihazları", text: "Doğal ses odaklı yaklaşımı ve Bluetooth bağlantılı RIC modelleriyle öne çıkar; Widex SmartRIC bir örnektir.", href: "/markalar/widex/", linkLabel: "Widex markası ve modelleri" },
   { tag: "ReSound", title: "ReSound işitme cihazları", text: "Premium modellerden temel ihtiyaçlara yönelik giriş seviyesine kadar farklı aileler sunar; ReSound Vivia güncel premium ailelerden biridir.", href: "/markalar/resound/", linkLabel: "ReSound markası ve modelleri" },
-  { tag: "NuEar", title: "NuEar (Starkey) işitme cihazları", text: "Günlük kullanıma uygun şarjlı RIC ve minyatür kulak içi seçenekleri içerir; NuEar Circa şarjlı seri için bir örnektir.", href: "/markalar/nuear/", linkLabel: "NuEar markası ve modelleri" },
+  { tag: "NuEar", title: "NuEar işitme cihazları", text: "Günlük kullanıma uygun şarjlı RIC ve minyatür kulak içi seçenekleri içerir; NuEar Circa şarjlı seri için bir örnektir.", href: "/markalar/nuear/", linkLabel: "NuEar markası ve modelleri" },
 ];
 
 export const brandsNote =
@@ -37,7 +37,7 @@ export const brandsNote =
 // Kullanıcının belirttiği gerçek modeller: Oticon Intent, NuEar Circa (repodaki
 // gerçek görsel + NuEar'ın doğrulanmış verisi), Signia Styletto, Widex SmartRIC,
 // Phonak Naída. Phonak Audéo çıkarıldı (Widex SmartRIC ile aynı RIC/Bluetooth
-// profili). Kartın marka rozeti "Starkey NuEar", bağlantısı /markalar/nuear/.
+// profili). Kartın marka rozeti "NuEar", bağlantısı /markalar/nuear/.
 const nuearCirca = nuearModels.items.find((item) => item.slug === "circa");
 if (!nuearCirca) throw new Error("NuEar Circa model verisi bulunamadı (src/data/nuear/models.ts)");
 
@@ -45,7 +45,7 @@ const modelItems = homeModels.items
   .filter((item) => item.slug !== "phonak-audeo")
   .flatMap((item) =>
     item.slug === "oticon-intent"
-      ? [item, { ...nuearCirca, category: "Starkey NuEar", href: "/markalar/nuear/" }]
+      ? [item, { ...nuearCirca, category: "NuEar", href: "/markalar/nuear/" }]
       : [item],
   );
 

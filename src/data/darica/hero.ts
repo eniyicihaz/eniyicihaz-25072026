@@ -18,7 +18,7 @@ export const daricaHero: CorporateHeroContent = {
   stats: [
     { value: "Ağustos 2024", label: "Darıca Merkezi Açılışı" },
     { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },
-    { value: "18+ Marka", label: "Seçenek Sunuyoruz" },
+    { value: "18 Marka", label: "Seçenek Sunuyoruz" },
   ],
   ctas: [
     { label: "Ücretsiz Değerlendirme Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },

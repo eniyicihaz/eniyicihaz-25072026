@@ -111,7 +111,7 @@ const brandsMega: MegaMenuData = {
       links: [
         { label: "Güvenilir Teknoloji", href: "/neden-orijinal/guvenilir-teknoloji/" },
         { label: "Uzun Ömürlü Cihazlar", href: "/neden-orijinal/uzun-omurlu-cihazlar/" },
-        { label: "Yaygın Servis Ağı", href: "/neden-orijinal/yaygin-servis-agi/" },
+        { label: "Servis Desteği", href: "/neden-orijinal/yaygin-servis-agi/" },
         { label: "Orijinal Aksesuar", href: "/neden-orijinal/orijinal-aksesuar/" },
         { label: "Ücretsiz Danışmanlık", href: "/neden-orijinal/ucretsiz-danismanlik/" },
         { label: "Kolay Değişim", href: "/neden-orijinal/kolay-degisim/" },
@@ -137,8 +137,8 @@ const brandsMega: MegaMenuData = {
     icon: "headset",
     title: "Marka Desteği",
     items: [
-      { icon: "shield", title: "Orijinallik Garantisi", desc: "Yetkili satıcı güvencesi", href: "/neden-orijinal/guvenilir-teknoloji/" },
-      { icon: "wrench", title: "Yetkili Servis", desc: "Tüm markalar için", href: "/neden-orijinal/yaygin-servis-agi/" },
+      { icon: "shield", title: "Orijinallik Garantisi", desc: "Orijinal ürün nasıl doğrulanır", href: "/neden-orijinal/guvenilir-teknoloji/" },
+      { icon: "wrench", title: "Teknik Servis", desc: "Sattığımız 18 marka için", href: "/neden-orijinal/yaygin-servis-agi/" },
       { icon: "battery", title: "Aksesuar & Yedek", desc: "Orijinal parçalar", href: "/neden-orijinal/orijinal-aksesuar/" },
       { icon: "headphones", title: "Marka Danışmanlığı", desc: "Size uygun markayı seçin", href: "/neden-orijinal/marka-danismanligi/" },
     ],

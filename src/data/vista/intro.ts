@@ -9,7 +9,7 @@ export const vistaIntro: BrandPageIntroContent = {
   badge: "VISTA MARKASI",
   heading: "Vista Hakkında",
   paragraphs: [
-    "Vista, dünyanın en büyük işitme cihazı üreticisi olan İsviçre merkezli Sonova Grubu'na (Phonak ve Unitron ile aynı çatı) bağlı bir markadır.",
+    "Vista, İsviçre merkezli Sonova Grubu'na (Phonak ve Unitron ile aynı çatı) bağlı bir markadır.",
     "Marka, Sonova'nın Soundsuite OS teknolojisini, Vista V ve Vista B gibi kademelerle daha erişilebilir bir fiyat noktasında sunmayı hedefler.",
     "Vista, Bluetooth'lu, kulak arkası ve kulak içi (görünmez) gibi farklı yerleşim seçenekleriyle geniş bir kullanıcı kitlesine hitap eder.",
   ],

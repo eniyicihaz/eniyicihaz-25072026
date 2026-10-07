@@ -17,7 +17,7 @@ export const audioServiceAdvantages: BrandPageAdvantagesContent = {
     category: "Marka Felsefesi",
     title: "Kulak İçinde Neredeyse Görünmez",
     description:
-      "40 yılı aşkın süredir kulak içi (ITE) işitme sistemleri konusunda uzmanlaşmış, kişiye özel üretim sunar.",
+      "1977'den bu yana kulak içi (ITE) işitme sistemlerine odaklanan, kişiye özel üretim sunan bir markadır.",
   },
   items: [
     {

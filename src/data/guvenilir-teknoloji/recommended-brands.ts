@@ -9,36 +9,36 @@ import type { BrandPageRelatedContentContent } from "../../components/brand-page
 
 export const guvenilirTeknolojiRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Yetkili Olduğumuz Markalar",
+  heading: "Sattığımız Markalardan Bazıları",
   links: [
     {
       label: "Oticon",
-      description: "Oticon'un tüm ürün ailesini yetkili distribütör güvencesiyle orijinal olarak sunuyoruz.",
+      description: "Oticon işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
       href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
-      description: "Phonak'ın orijinal ürünlerini, üretici garantisi ve resmi teknik servis desteğiyle sunuyoruz.",
+      description: "Phonak işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
       href: "/markalar/phonak/",
     },
     {
       label: "Signia",
-      description: "Signia'nın tüm modellerini yetkili satış kanalından, faturalı ve garantili olarak sunuyoruz.",
+      description: "Signia işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
       href: "/markalar/signia/",
     },
     {
       label: "Widex",
-      description: "Widex'in orijinal ürünlerini resmi distribütörlük anlaşmamız kapsamında sunuyoruz.",
+      description: "Widex işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
       href: "/markalar/widex/",
     },
     {
       label: "ReSound",
-      description: "ReSound'un tüm ürün ailesini üretici garantisi ve orijinallik güvencesiyle sunuyoruz.",
+      description: "ReSound işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
       href: "/markalar/resound/",
     },
     {
       label: "NuEar",
-      description: "NuEar'ın uygun fiyatlı modellerini de aynı orijinallik standartlarıyla sunuyoruz.",
+      description: "NuEar işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
       href: "/markalar/nuear/",
     },
   ],

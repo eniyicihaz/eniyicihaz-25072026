@@ -33,7 +33,7 @@ export const vistaEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Sonova Grubu",
       title: "Sonova Grubu Güvencesi",
-      lead: "Vista, dünyanın en büyük işitme cihazı üreticisi olan İsviçre merkezli Sonova Grubu'na bağlıdır.",
+      lead: "Vista, İsviçre merkezli Sonova Grubu'na bağlıdır.",
       howItWorks:
         "Ürünler, Sonova'nın Phonak ve Unitron ile paylaştığı geniş mühendislik ve üretim altyapısından yararlanılarak geliştirilir.",
       advantages: [

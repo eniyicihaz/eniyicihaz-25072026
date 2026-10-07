@@ -12,7 +12,7 @@ export const priceGuideRelated: BrandPageRelatedContentContent = {
   heading: "Kararınızı Netleştirmek İçin",
   links: [
     { label: "İşitme Cihazı Çeşitleri", description: "Kulak arkası, kulak içi, şarjlı, Bluetooth ve diğer cihaz türlerini yakından tanıyın.", href: "/isitme-cihazlari/" },
-    { label: "İşitme Cihazı Markaları", description: "18'den fazla markayı ve modellerini marka sayfalarında inceleyin.", href: "/markalar/" },
+    { label: "İşitme Cihazı Markaları", description: "18 markayı ve modellerini marka sayfalarında inceleyin.", href: "/markalar/" },
     { label: "İşitme Cihazı Markalarını Karşılaştırın", description: "Markaları ve modelleri kullanım ihtiyacına göre karşılaştıran rehber.", href: "/isitme-cihazi-markalari/" },
     { label: "SGK İşitme Cihazı Ödemesi", description: "Güncel SGK tutarları, katkı payı ve başvuru sürecini öğrenin.", href: "/sgk-isitme-cihazi-odemesi/" },
     { label: "Ücretsiz İşitme Testi", description: "Doğru cihaz kararının ilk adımı: ücretsiz işitme değerlendirmesi.", href: "/degerlendirme/ucretsiz-isitme-testi/" },

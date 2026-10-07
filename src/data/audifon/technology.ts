@@ -38,7 +38,7 @@ export const audifonTechnology: BrandPageTechnologyContent = {
     {
       label: "FAMILY",
       title: "Aile Şirketi Güvencesi",
-      description: "Almanya'nın en büyük işitme akustiği aile işletmesi KIND-Grubu'na bağlıdır.",
+      description: "Alman KIND-Grubu'na bağlıdır.",
     },
   ],
   // Precomputed rgb() decomposition of #E2001A.

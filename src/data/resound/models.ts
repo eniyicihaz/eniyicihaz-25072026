@@ -26,7 +26,7 @@ export const resoundModels: BrandPageModelsContent = {
     },
     {
       slug: "nexia",
-      category: "Auracast Öncüsü",
+      category: "Auracast Desteği",
       name: "ReSound Nexia",
       description: "Auracast yayın sesi desteğini sektöre erken tanıtan, RIC/BTE/ITE seçenekleriyle sunulan model ailesi.",
       tags: ["RIC", "Bluetooth", "Şarjlı"],

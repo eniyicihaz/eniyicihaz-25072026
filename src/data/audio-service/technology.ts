@@ -12,7 +12,7 @@ export const audioServiceTechnology: BrandPageTechnologyContent = {
     {
       label: "ITE",
       title: "Kulak İçi Uzmanlığı",
-      description: "40 yılı aşkın süredir kulak içi (ITE) işitme sistemleri konusunda uzmanlaşmıştır.",
+      description: "1977'den bu yana kulak içi (ITE) işitme sistemlerine odaklanır.",
     },
     {
       label: "CUSTOM",

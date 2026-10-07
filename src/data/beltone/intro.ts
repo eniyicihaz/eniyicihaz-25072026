@@ -9,7 +9,7 @@ export const beltoneIntro: BrandPageIntroContent = {
   badge: "BELTONE MARKASI",
   heading: "Beltone Hakkında",
   paragraphs: [
-    "Beltone, 1940 yılında Sam ve Faye Posen tarafından Chicago, Illinois'te kurulan, sektörün en köklü Amerikan işitme cihazı markalarından biridir.",
+    "Beltone, 1940 yılında Sam ve Faye Posen tarafından Chicago, Illinois'te kurulan bir Amerikan işitme cihazı markasıdır.",
     "Marka, ilk yılında Beltone Model H'yi tanıttı ve 2025 yılında 85. kuruluş yıl dönümünü kutladı.",
     "2000 yılından bu yana GN Grubu'na (ReSound ve Jabra ile aynı çatı) bağlı olan Beltone, Şubat 2025'te tanıttığı Envision ailesiyle yapay zekâ destekli DNN ses işlemeyi sunar.",
   ],

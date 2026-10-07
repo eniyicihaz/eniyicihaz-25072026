@@ -38,7 +38,7 @@ const brands: BrandSource[] = [
   { key: "signia", label: "Signia", prefix: "Signia", href: "/markalar/signia/", items: signiaModels.items as RawModel[] },
   { key: "widex", label: "Widex", prefix: "Widex", href: "/markalar/widex/", items: widexModels.items as RawModel[] },
   { key: "resound", label: "ReSound", prefix: "ReSound", href: "/markalar/resound/", items: resoundModels.items as RawModel[] },
-  { key: "nuear", label: "Starkey NuEar", prefix: "NuEar", href: "/markalar/nuear/", items: nuearModels.items as RawModel[] },
+  { key: "nuear", label: "NuEar", prefix: "NuEar", href: "/markalar/nuear/", items: nuearModels.items as RawModel[] },
 ];
 
 const short = (b: BrandSource, name: string) => name.replace(new RegExp(`^${b.prefix}\\s+`), "");
@@ -125,7 +125,7 @@ export const brandTable: GuideTableContent = {
   id: "marka-karsilastirma-tablosu",
   eyebrow: "Tablo 1",
   heading: "Altı Ana Marka: Cihaz Türü, Bağlantı, Şarj ve Kullanım",
-  caption: "Oticon, Phonak, Signia, Widex, ReSound ve Starkey NuEar markalarının cihaz türleri, bağlantı, şarj ve kullanım senaryoları karşılaştırması",
+  caption: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar markalarının cihaz türleri, bağlantı, şarj ve kullanım senaryoları karşılaştırması",
   criterionLabel: "Marka (marka sayfası)",
   columns: [
     { name: "Öne çıkan cihaz türleri" },
@@ -190,14 +190,14 @@ export const matrixAnswers = [
     id: "ric-hangi-markalarda",
     question: "RIC hangi markalarda var?",
     answer:
-      "Sitemizde RIC etiketli model aileleri Phonak, Signia, Widex, ReSound ve Starkey NuEar markalarında yer alıyor. Oticon'un model verisinde yerleşim etiketi bulunmadığı için Oticon'un RIC seçeneklerini marka sayfasında inceleyin.",
+      "Sitemizde RIC etiketli model aileleri Phonak, Signia, Widex, ReSound ve NuEar markalarında yer alıyor. Oticon'un model verisinde yerleşim etiketi bulunmadığı için Oticon'un RIC seçeneklerini marka sayfasında inceleyin.",
     links: [{ label: "RIC nedir?", href: "/isitme-cihazlari/#ric-rite" }],
   },
   {
     id: "kulak-ici-hangi-markalarda",
     question: "Kulak içi hangi markalarda var?",
     answer:
-      "Sitemizde kulak içi seçeneği anılan aileler Oticon (Own SI), Phonak (Virto), Signia (Insio, Silk), Starkey NuEar (Miniscopic Synergy iQ, Savant AI) ve açıklamasında ITE seçeneği geçen Widex Allure ile ReSound Nexia'dır. Ayrıntı ve güncel seçenekler için marka sayfalarına bakın.",
+      "Sitemizde kulak içi seçeneği anılan aileler Oticon (Own SI), Phonak (Virto), Signia (Insio, Silk), NuEar (Miniscopic Synergy iQ, Savant AI) ve açıklamasında ITE seçeneği geçen Widex Allure ile ReSound Nexia'dır. Ayrıntı ve güncel seçenekler için marka sayfalarına bakın.",
     links: [{ label: "Kulak içi cihazlar", href: "/isitme-cihazlari/kulak-ici-ite/" }],
   },
   {

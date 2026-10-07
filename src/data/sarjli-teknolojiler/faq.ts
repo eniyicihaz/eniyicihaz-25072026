@@ -59,7 +59,7 @@ export const sarjliTeknolojilerFaq: BrandPageFaqContent = {
         {
           question: "Pil değişimi nasıl yapılır?",
           answer:
-            "Dahili pilin değişimi kullanıcı tarafından yapılamaz; yetkili teknik servisimiz tarafından gerçekleştirilir.",
+            "Dahili pilin değişimi kullanıcı tarafından yapılamaz; teknik servis tarafından gerçekleştirilir.",
         },
         {
           question: "Şarj kutusunu her yere taşımam gerekir mi?",

@@ -47,7 +47,7 @@ export const audifonAdvantages: BrandPageAdvantagesContent = {
       icon: HeartPulse,
       category: "Miras",
       title: "KIND-Grubu Güvencesi",
-      description: "Almanya'nın işitme akustiği alanındaki en büyük aile işletmesine bağlıdır.",
+      description: "Alman KIND-Grubu'na bağlı bir markadır.",
     },
   ],
   // Precomputed rgb() decomposition of #E2001A.

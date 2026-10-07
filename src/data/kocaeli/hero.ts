@@ -46,7 +46,7 @@ export const kocaeliHero: KocaeliHeroContent = {
     "Kocaeli körfezini, Darıca, Gebze ve Çayırova konum işaretlerini ve işitme cihazı modellerini gösteren panoramik kavramsal görsel",
   stats: [
     { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },
-    { value: "18+ Marka", label: "Seçenek Sunuyoruz" },
+    { value: "18 Marka", label: "Seçenek Sunuyoruz" },
     { value: "Ağustos 2024", label: "Darıca Merkezi Açılışı" },
   ],
   ctas: [

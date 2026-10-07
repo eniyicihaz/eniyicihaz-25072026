@@ -55,7 +55,7 @@ export const nuearHero: BrandPageHeroContent = {
       label: "USA",
       accent: "#B7001F",
       title: "Amerikan Mühendisliği",
-      description: "1976'dan bu yana San Diego kökenli, bugün Starkey ile aynı çatı altında geliştirilen bir miras.",
+      description: "1976'da San Diego'da kurulan Amerikan kökenli bir marka.",
     },
   ],
   image: {

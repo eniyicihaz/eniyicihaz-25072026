@@ -10,7 +10,7 @@ export const servicesExpertSupport: BrandExpertSupportContent = {
   eyebrow: "Son Adım",
   heading: "İhtiyacınız Olan Hizmeti Sizinle Birlikte Belirliyoruz.",
   paragraph:
-    "18+ hizmeti, sürecin hangi aşamasında hangisine ihtiyaç duyacağınızı incelediniz. Şimdi geriye tek bir adım kalıyor: ücretsiz bir görüşmeyle, size özel hizmeti birlikte belirlemek.",
+    "Hizmetlerimizi ve sürecin hangi aşamasında hangisine ihtiyaç duyacağınızı incelediniz. Şimdi geriye tek bir adım kalıyor: ücretsiz bir görüşmeyle, size özel hizmeti birlikte belirlemek.",
   trustPoints: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı Hizmet",

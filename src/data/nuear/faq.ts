@@ -21,7 +21,7 @@ export const nuearFaq: BrandPageFaqContent = {
       items: [
         {
           question: "NuEar hangi ülkenin markası?",
-          answer: "NuEar, 1976 yılında San Diego, Kaliforniya'da kurulan, bugün Amerikan menşeli Starkey grubuna bağlı bir işitme cihazı markasıdır.",
+          answer: "NuEar, 1976 yılında San Diego, Kaliforniya'da kurulan Amerikan kökenli bir işitme cihazı markasıdır.",
         },
         {
           question: "NuEar hangi konuda öne çıkar?",

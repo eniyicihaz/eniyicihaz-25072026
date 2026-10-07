@@ -70,13 +70,13 @@ export const ekonomikSeriTechnology: BrandPageEcosystemContent = {
     {
       id: "orijinal-garanti-servisi",
       icon: "globe",
-      navLabel: "Orijinal Garanti ve Servis Ağı",
-      title: "Orijinal Garanti ve Yetkili Servis Ağı",
-      lead: "Ekonomik seri modeller de diğer seriler gibi orijinal ürün güvencesi ve yetkili servis ağı desteğiyle sunulur.",
-      howItWorks: "Cihaz, yetkili distribütörlük kanalından temin edilir ve üretici garantisi kapsamında satışa sunulur.",
+      navLabel: "Garanti ve Teknik Servis",
+      title: "Üretici Garantisi ve Teknik Servis",
+      lead: "Ekonomik seri modellerde de üretici garanti koşulları geçerlidir ve teknik servis desteği verilir.",
+      howItWorks: "Sattığımız 18 markanın tamamında, ekonomik seri modeller dahil, teknik servis veriyoruz.",
       advantages: [
         "Fiyatı uygun olsa da orijinallik ve garanti güvencesinden ödün verilmez",
-        "Yetkili teknik servis desteğine erişim sağlar",
+        "Teknik servis desteğine erişim sağlar",
         "Orijinal yedek parça kullanımı garanti edilir",
       ],
       models: ["Orijinal Garantili Ekonomik Modeller"],

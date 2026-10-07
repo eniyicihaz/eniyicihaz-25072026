@@ -10,7 +10,7 @@ export const kocaeliFinalCta: BrandPageFinalCtaContent = {
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: [
     "SGK Anlaşmalı Hizmet",
-    "18+ Marka Seçeneği",
+    "18 Marka Seçeneği",
     "Ücretsiz İlk Değerlendirme",
     "Cihaz Deneme İmkânı",
   ],

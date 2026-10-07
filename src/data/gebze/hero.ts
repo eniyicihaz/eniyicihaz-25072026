@@ -29,7 +29,7 @@ export const gebzeHero: CorporateHeroContent = {
   stats: [
     { value: "Ücretsiz", label: "İlk Değerlendirme" },
     { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },
-    { value: "18+ Marka", label: "Seçenek Sunuyoruz" },
+    { value: "18 Marka", label: "Seçenek Sunuyoruz" },
   ],
   ctas: [
     { label: "Ücretsiz Değerlendirme Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },

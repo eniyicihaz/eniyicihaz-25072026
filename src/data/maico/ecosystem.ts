@@ -17,7 +17,7 @@ export const maicoEcosystem: BrandPageEcosystemContent = {
       icon: "radar",
       navLabel: "Ölçüm Mirası",
       title: "Odyolojik Ölçüm Bilimi Mirası",
-      lead: "MAICO, 1937'de \"audiometer\" (odyometre) terimini literatüre kazandıran, ölçüm biliminde öncü bir markadır.",
+      lead: "MAICO, 1937'de \"audiometer\" (odyometre) terimini literatüre kazandıran, ölçüm alanında uzun bir geçmişe sahip bir markadır.",
       howItWorks:
         "Marka, kuruluşundan bu yana işitme testi ve ölçüm cihazları konusundaki uzmanlığını sürdürür; bu birikim, bugünkü işitme cihazı sunumunun da temelini oluşturur.",
       advantages: [

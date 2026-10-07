@@ -24,7 +24,7 @@ export const brandsFaq: BrandPageFaqContent = {
         {
           question: "İşitme cihazı markaları nelerdir?",
           answer:
-            "Merkezimizde 18 markayla çalışıyoruz. En çok sorulan altı ana marka Oticon, Phonak, Signia, Widex, ReSound ve Starkey NuEar'dır; ayrıca Unitron, Bernafon, Audio Service, Rexton, Sonic, Philips Hearing, A&M, Audifon, Beltone, Coselgi, Maico ve Vista ile de çalışıyoruz. Her markanın kendi sayfası vardır.",
+            "Merkezimizde 18 markayla çalışıyoruz. En çok sorulan altı ana marka Oticon, Phonak, Signia, Widex, ReSound ve NuEar'dır; ayrıca Unitron, Bernafon, Audio Service, Rexton, Sonic, Philips Hearing, A&M, Audifon, Beltone, Coselgi, Maico ve Vista ile de çalışıyoruz. Her markanın kendi sayfası vardır.",
         },
         {
           question: "En iyi işitme cihazı markası hangisi?",
@@ -34,10 +34,10 @@ export const brandsFaq: BrandPageFaqContent = {
         {
           question: "NuEar nedir?",
           answer:
-            "NuEar, 1976'da San Diego'da kurulan ve bugün Amerikan menşeli Starkey grubuna bağlı bir işitme cihazı markasıdır; bu nedenle 'Starkey NuEar' olarak da anılır. Marka, bağlantılı ve sağlık odaklı bir işitme deneyimi sunar; bu deneyimin uygulaması Hear Circle'dır.",
+            "NuEar, 1976'da San Diego'da kurulan Amerikan kökenli bir işitme cihazı markasıdır. Marka, bağlantılı ve sağlık odaklı bir işitme deneyimi sunar; bu deneyimin uygulaması Hear Circle'dır.",
         },
         {
-          question: "Starkey NuEar hangi modelleri sunuyor?",
+          question: "NuEar hangi modelleri sunuyor?",
           answer:
             "Sitemizdeki NuEar sayfasında NXG AI, NE Series, Circa, Savant AI, NOW iQ ve Miniscopic Synergy iQ model aileleri yer alıyor. Circa günlük kullanım için şarjlı bir RIC ailesi, Miniscopic Synergy iQ ise kişiye özel üretilen kulak içi bir ailedir.",
         },
@@ -79,7 +79,7 @@ export const brandsFaq: BrandPageFaqContent = {
         {
           question: "RIC cihazlarda hangi markalar var?",
           answer:
-            "Sitemizde RIC etiketli aileler Phonak, Signia, Widex, ReSound ve Starkey NuEar markalarında yer alıyor. Oticon'un yerleşim bilgisi model listemizde etiketli olmadığı için Oticon'un RIC seçeneklerini marka sayfasında inceleyin.",
+            "Sitemizde RIC etiketli aileler Phonak, Signia, Widex, ReSound ve NuEar markalarında yer alıyor. Oticon'un yerleşim bilgisi model listemizde etiketli olmadığı için Oticon'un RIC seçeneklerini marka sayfasında inceleyin.",
         },
         {
           question: "Şarjlı işitme cihazlarında hangi markalar var?",
@@ -89,7 +89,7 @@ export const brandsFaq: BrandPageFaqContent = {
         {
           question: "Kulak içi ve küçük cihazlar hangi markalarda var?",
           answer:
-            "Sitemizde kulak içi seçeneği anılan aileler arasında Oticon Own SI, Phonak Virto, Signia Insio ve Silk ile Starkey NuEar Miniscopic Synergy iQ yer alıyor. Küçük cihaz kulak yapısına bağlı olduğu için uygunluk ayrıca değerlendirilir.",
+            "Sitemizde kulak içi seçeneği anılan aileler arasında Oticon Own SI, Phonak Virto, Signia Insio ve Silk ile NuEar Miniscopic Synergy iQ yer alıyor. Küçük cihaz kulak yapısına bağlı olduğu için uygunluk ayrıca değerlendirilir.",
         },
         {
           question: "Çocuklar için hangi markalarda cihaz var?",

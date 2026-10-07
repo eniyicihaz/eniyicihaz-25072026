@@ -31,16 +31,16 @@ export const guvenilirTeknolojiHero: BrandPageHeroContent = {
   headingLines: ["Güvenilir Teknoloji", "Neden Önemlidir?"],
   paragraphs: [
     "Orijinal ve yetkili distribütör güvencesiyle satılan işitme cihazları; üretici tarafından test edilmiş, sertifikalı ve güncel yazılıma sahip güvenilir bir teknoloji sunar.",
-    "Avrasya İşitme olarak, dünyaca tanınan markaların yalnızca orijinal ve yetkili kanaldan gelen ürünlerini sunuyor; her cihazın güvenilirliğini garanti belgesi ve seri numarasıyla doğruluyoruz.",
+    "Avrasya İşitme olarak 18 işitme cihazı markası satıyoruz; satın alma öncesinde cihazın garanti ve seri numarası bilgilerini sormanızı öneriyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
   features: [
     {
-      label: "YETKİLİ DİSTRİBÜTÖRLÜK",
+      label: "18 MARKA",
       accent: "#1d4ed8",
-      title: "Dünyaca Tanınan Markaların Yetkili Satıcısıyız",
-      description: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar gibi markaların orijinal ürünlerini yetkili kanaldan sunuyoruz.",
+      title: "18 İşitme Cihazı Markası Satıyoruz",
+      description: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar sattığımız markalardan bazılarıdır.",
     },
     {
       label: "ÜRETİCİ GARANTİSİ",

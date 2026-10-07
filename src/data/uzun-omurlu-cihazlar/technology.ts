@@ -52,8 +52,8 @@ export const uzunOmurluCihazlarTechnology: BrandPageEcosystemContent = {
       id: "orijinal-yedek-parca",
       icon: "globe",
       navLabel: "Orijinal Yedek Parça Tedariki",
-      title: "Yetkili Kanaldan Yedek Parça Tedariki",
-      lead: "Yetkili distribütörlük anlaşmalarımız sayesinde, ihtiyaç duyulan orijinal yedek parçalara uzun yıllar erişim sağlayabiliyoruz.",
+      title: "Orijinal Yedek Parça Tedariki",
+      lead: "İhtiyaç duyulan orijinal yedek parçalar, parçanın türüne göre temin edilir; temin süresi marka ve modele göre değişebilir.",
       howItWorks: "Aşınan veya arızalanan parçalar, üreticinin resmi tedarik zinciri üzerinden temin edilerek orijinal parçalarla değiştirilir.",
       advantages: [
         "Cihazın performansını orijinal seviyede korumaya yardımcı olur",

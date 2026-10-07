@@ -12,7 +12,7 @@ export const brandModelSection: GuideSectionMeta = {
   eyebrow: "Marka ve Model",
   heading: "İşitme Cihazı Markaları ve Modelleri: Fiyatı Marka Değil, Seçim Belirler",
   intro:
-    "18'den fazla markayla çalışıyoruz; hiçbirine bağlı değiliz. Aynı marka içinde bile seri, teknoloji seviyesi ve özellikler bedeli değiştirir. Bu yüzden 'hangi marka daha ucuz?' sorusu yerine 'hangi model benim ihtiyacıma uygun?' sorusu sorulmalıdır.",
+    "18 markayla çalışıyoruz; hiçbirine bağlı değiliz. Aynı marka içinde bile seri, teknoloji seviyesi ve özellikler bedeli değiştirir. Bu yüzden 'hangi marka daha ucuz?' sorusu yerine 'hangi model benim ihtiyacıma uygun?' sorusu sorulmalıdır.",
 };
 
 /** Sayfada öne çıkarılan 6 marka — hepsinin gerçek /markalar/{slug}/ sayfası var. */
@@ -35,7 +35,7 @@ export const brandNote =
 // kendi doğrulanmış model verisi (src/data/nuear/models.ts) kullanıldı.
 // Yeni görsel üretilmedi. Phonak Naída, "güçlü kayıp" ihtiyacını temsil ettiği
 // için kalır. Circa'nın etiketleri/açıklaması NuEar veri dosyasından gelir.
-// Kartın görünen marka rozeti "Starkey NuEar", model adı "NuEar Circa",
+// Kartın görünen marka rozeti "NuEar", model adı "NuEar Circa",
 // bağlantısı /markalar/nuear/ (kesin metin — kullanıcı kararı).
 const nuearCirca = nuearModels.items.find((item) => item.slug === "circa");
 if (!nuearCirca) throw new Error("NuEar Circa model verisi bulunamadı (src/data/nuear/models.ts)");
@@ -44,7 +44,7 @@ const priceGuideModelItems = homeModels.items
   .filter((item) => item.slug !== "phonak-audeo")
   .flatMap((item) =>
     item.slug === "oticon-intent"
-      ? [item, { ...nuearCirca, category: "Starkey NuEar", href: "/markalar/nuear/" }]
+      ? [item, { ...nuearCirca, category: "NuEar", href: "/markalar/nuear/" }]
       : [item],
   );
 

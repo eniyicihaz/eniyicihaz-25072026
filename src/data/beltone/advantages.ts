@@ -10,7 +10,7 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const beltoneAdvantages: BrandPageAdvantagesContent = {
   badge: "NEDEN BELTONE?",
   heading: "Kullanıcılar Neden Beltone Tercih Ediyor?",
-  intro: "Beltone'u farklı kılan, 85 yılı aşkın Amerikan mirasını ve güncel yapay zekâ teknolojisini bir arada sunuyoruz.",
+  intro: "Beltone'u farklı kılan, 1940'tan bu yana süren Amerikan mirasını ve güncel yapay zekâ teknolojisini bir arada sunuyoruz.",
   hero: {
     icon: Brain,
     category: "Marka Felsefesi",
@@ -41,7 +41,7 @@ export const beltoneAdvantages: BrandPageAdvantagesContent = {
       icon: Landmark,
       category: "Miras",
       title: "1940'tan Bu Yana Amerikan Mirası",
-      description: "Sektörün en köklü Amerikan işitme cihazı markalarından biridir.",
+      description: "1940'ta Chicago'da kurulan bir Amerikan işitme cihazı markasıdır.",
     },
     {
       icon: Brain,

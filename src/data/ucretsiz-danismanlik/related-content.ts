@@ -19,8 +19,8 @@ export const ucretsizDanismanlikRelatedContent: BrandPageRelatedContentContent =
       href: "/neden-orijinal/guvenilir-teknoloji/",
     },
     {
-      label: "Yaygın Servis Ağı",
-      description: "Yetkili teknik servis ağımız hakkında detaylı bilgi edinin.",
+      label: "Servis Desteği",
+      description: "18 markada verdiğimiz teknik servis desteği hakkında bilgi edinin.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {
@@ -30,7 +30,7 @@ export const ucretsizDanismanlikRelatedContent: BrandPageRelatedContentContent =
     },
     {
       label: "Tüm Markalarımız",
-      description: "Yetkili satıcısı olduğumuz tüm markaları ve ürün ailelerini inceleyin.",
+      description: "Sattığımız 18 markayı ve ürün ailelerini inceleyin.",
       href: "/markalar/",
     },
     {

@@ -24,8 +24,8 @@ export const uzunOmurluCihazlarUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "TEKNİK SERVİS",
-      title: "Yetkili Teknik Servis Desteği",
-      description: "Arıza durumunda yetkili teknik servis desteği sağlıyoruz.",
+      title: "Teknik Servis Desteği",
+      description: "Arıza durumunda Darıca'daki merkezimizde teknik servis desteği veriyoruz.",
     },
     {
       label: "YAZILIM GÜNCELLEMESİ",

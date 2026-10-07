@@ -24,8 +24,8 @@ export const orijinalAksesuarRelatedContent: BrandPageRelatedContentContent = {
       href: "/neden-orijinal/uzun-omurlu-cihazlar/",
     },
     {
-      label: "Yaygın Servis Ağı",
-      description: "Yetkili teknik servis ağımız hakkında detaylı bilgi edinin.",
+      label: "Servis Desteği",
+      description: "18 markada verdiğimiz teknik servis desteği hakkında bilgi edinin.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {

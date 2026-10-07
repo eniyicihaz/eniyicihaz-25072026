@@ -3,7 +3,7 @@
 // Slide 1 is the existing, already-approved "Darıca / Yerel Güven +
 // Premium" slide, carried over unchanged in substance: real Darıca photo,
 // badge/context/subhead, 3 CTAs (test/ara/whatsapp), brandLock. Source of
-// truth for its facts: COMPANY.md (2009, SGK anlaşmalı, 18+ marka, Darıca
+// truth for its facts: COMPANY.md (2009, SGK anlaşmalı, 18 marka, Darıca
 // §17 ana merkez). `contextSentence`-equivalent body[0] is the same
 // canonical entity-definition sentence used verbatim in
 // src/data/contact/hero.ts's `definitionSentence` — do not reword without
@@ -184,7 +184,7 @@ export const hero: HeroContent = {
       heading: "Dünya Markaları, Size Uygun Çözümler",
       headingLevel: "h2",
       body: [
-        "Tek bir markaya bağlı değiliz; 18'den fazla dünya markası arasından size en uygun olanı öneriyoruz.",
+        "Tek bir markaya bağlı değiliz; 18 marka arasından size en uygun olanı öneriyoruz.",
       ],
       cta: { label: "Markaları Keşfet", href: "/markalar/" },
       visual: {
@@ -198,7 +198,7 @@ export const hero: HeroContent = {
         },
       },
       infoCards: [
-        { icon: "layout-grid", title: "18+ Marka", description: "Farklı seçenekleri değerlendirin" },
+        { icon: "layout-grid", title: "18 Marka", description: "Farklı seçenekleri değerlendirin" },
         { icon: "cpu", title: "Farklı Teknolojiler", description: "İhtiyacınıza uygun çözümler" },
         { icon: "shapes", title: "Farklı Tasarımlar", description: "Kulak arkası ve kulak içi seçenekler" },
         { icon: "user-check", title: "Uzman Desteği", description: "Seçenekleri birlikte değerlendirelim" },
@@ -257,6 +257,6 @@ export const hero: HeroContent = {
     { icon: "award", value: "2009'dan beri", label: "Güvenle yanınızdayız" },
     { icon: "shield", value: "SGK Anlaşmalı", label: "Merkez" },
     { icon: "users", value: "Kişiye Özel", label: "Yaklaşım" },
-    { icon: "gem", value: "18+ Marka", label: "Konusunda Uzman" },
+    { icon: "gem", value: "18 Marka", label: "Konusunda Uzman" },
   ],
 };

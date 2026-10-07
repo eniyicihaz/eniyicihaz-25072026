@@ -9,7 +9,7 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const resoundAdvantages: BrandPageAdvantagesContent = {
   badge: "NEDEN RESOUND?",
   heading: "Kullanıcılar Neden ReSound Tercih Ediyor?",
-  intro: "ReSound'u farklı kılan bağlantı öncüsü yaklaşımını ve ürün çeşitliliğini bir arada sunuyoruz.",
+  intro: "ReSound'u farklı kılan bağlantı odaklı yaklaşımını ve ürün çeşitliliğini bir arada sunuyoruz.",
   hero: {
     icon: Waves,
     category: "Marka Felsefesi",

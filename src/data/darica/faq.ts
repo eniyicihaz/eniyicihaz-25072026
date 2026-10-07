@@ -14,7 +14,7 @@ export const daricaFaq: BrandPageFaqContent = {
     points: [
       "Darıca'da SGK anlaşmalı merkez",
       "Ücretsiz işitme değerlendirmesi",
-      "18+ marka seçeneği",
+      "18 marka seçeneği",
       "Gebze, Çayırova'dan kolay ulaşım",
     ],
     ctaLabel: "Bizi Arayın",

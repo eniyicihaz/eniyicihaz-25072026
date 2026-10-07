@@ -10,7 +10,7 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const rextonAdvantages: BrandPageAdvantagesContent = {
   badge: "NEDEN REXTON?",
   heading: "Kullanıcılar Neden Rexton Tercih Ediyor?",
-  intro: "Rexton'ı farklı kılan, 70 yılı aşkın Alman mühendisliğini ve Reach ailesinin güncel bağlantı teknolojisini bir arada sunuyoruz.",
+  intro: "Rexton'ı farklı kılan, 1955'ten bu yana süren Alman mühendisliğini ve Reach ailesinin güncel bağlantı teknolojisini bir arada sunuyoruz.",
   hero: {
     icon: Bluetooth,
     category: "Marka Felsefesi",
@@ -41,7 +41,7 @@ export const rextonAdvantages: BrandPageAdvantagesContent = {
       icon: Landmark,
       category: "Miras",
       title: "1955'ten Bu Yana Alman Mühendisliği",
-      description: "70 yılı aşkın bir işitme cihazı mühendisliği geleneğine sahiptir.",
+      description: "1955'ten bu yana süren bir işitme cihazı mühendisliği geleneğine sahiptir.",
     },
     {
       icon: Bluetooth,

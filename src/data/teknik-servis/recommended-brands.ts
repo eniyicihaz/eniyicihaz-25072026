@@ -9,36 +9,36 @@ import type { BrandPageRelatedContentContent } from "../../components/brand-page
 
 export const teknikServisRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Yetkili Teknik Servis Sunduğumuz Markalar",
+  heading: "Teknik Servis Sunduğumuz Markalardan Bazıları",
   links: [
     {
       label: "Oticon",
-      description: "Oticon cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
+      description: "Oticon cihazları için teknik servis desteği veriyoruz.",
       href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
-      description: "Phonak cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
+      description: "Phonak cihazları için teknik servis desteği veriyoruz.",
       href: "/markalar/phonak/",
     },
     {
       label: "Signia",
-      description: "Signia cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
+      description: "Signia cihazları için teknik servis desteği veriyoruz.",
       href: "/markalar/signia/",
     },
     {
       label: "Widex",
-      description: "Widex cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
+      description: "Widex cihazları için teknik servis desteği veriyoruz.",
       href: "/markalar/widex/",
     },
     {
       label: "ReSound",
-      description: "ReSound cihazları için yetkili teknik servis ve orijinal yedek parça desteği sunulur.",
+      description: "ReSound cihazları için teknik servis desteği veriyoruz.",
       href: "/markalar/resound/",
     },
     {
       label: "NuEar",
-      description: "NuEar'ın uygun fiyatlı modelleri de yetkili teknik servis kapsamında değerlendirilir.",
+      description: "NuEar cihazları için teknik servis desteği veriyoruz.",
       href: "/markalar/nuear/",
     },
   ],

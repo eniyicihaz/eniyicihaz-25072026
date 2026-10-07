@@ -32,7 +32,7 @@ export const bluetoothRecommendedBrands: BrandPageRelatedContentContent = {
     },
     {
       label: "ReSound",
-      description: "ReSound'un doğrudan telefon bağlantısına öncülük eden aileleri, kablosuz bağlantı arayan kullanıcılar için sıkça değerlendirilir.",
+      description: "ReSound'un doğrudan telefon bağlantısı sunan aileleri, kablosuz bağlantı arayan kullanıcılar için sıkça değerlendirilir.",
       href: "/markalar/resound/",
     },
     {

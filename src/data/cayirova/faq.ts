@@ -17,7 +17,7 @@ export const cayirovaFaq: BrandPageFaqContent = {
     points: [
       "SGK anlaşmalı hizmet",
       "Ücretsiz ilk değerlendirme",
-      "18+ marka seçeneği",
+      "18 marka seçeneği",
       "Merkezde ücretsiz demo, satın alarak 7 güne kadar deneme",
     ],
     ctaLabel: "Bizi Arayın",

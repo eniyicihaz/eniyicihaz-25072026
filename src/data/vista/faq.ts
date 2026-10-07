@@ -21,7 +21,7 @@ export const vistaFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Vista hangi gruba bağlı?",
-          answer: "Vista, dünyanın en büyük işitme cihazı üreticisi olan İsviçre merkezli Sonova Grubu'na (Phonak ve Unitron ile aynı çatı) bağlı bir markadır.",
+          answer: "Vista, İsviçre merkezli Sonova Grubu'na (Phonak ve Unitron ile aynı çatı) bağlı bir markadır.",
         },
         {
           question: "Vista hangi konuda öne çıkar?",

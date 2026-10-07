@@ -27,7 +27,7 @@ export const nuearOverview: NuEarOverviewContent = {
   intro: "NuEar hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1976" },
-    { icon: "map-pin", label: "Menşei", value: "ABD (Starkey Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "ABD" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Bağlantılı ve sağlık odaklı işitme deneyimi" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "NXG AI ses işleme" },
     { icon: "bluetooth", label: "Bağlantı Özellikleri", value: "Hear Circle uygulaması + Bluetooth" },

@@ -53,7 +53,7 @@ export const unitronEcosystem: BrandPageEcosystemContent = {
       howItWorks:
         "Marka, güçlü bir Alman topluluğuna sahip Waterloo bölgesindeki köklerini sürdürürken, bugün Phonak ile aynı çatı olan Sonova Grubu'nun mühendislik altyapısından yararlanır.",
       advantages: [
-        "60 yılı aşkın bir mühendislik geleneğine sahiptir",
+        "Uzun bir mühendislik geleneğine sahiptir",
         "Sonova Grubu'nun (Phonak ile aynı çatı) altyapısından yararlanır",
         "Kitchener, Ontario'da 300'ü aşkın çalışanla faaliyet gösterir",
       ],

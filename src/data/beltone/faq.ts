@@ -26,7 +26,7 @@ export const beltoneFaq: BrandPageFaqContent = {
         },
         {
           question: "Beltone hangi konuda öne çıkar?",
-          answer: "Beltone, 85 yılı aşkın Amerikan mirası ve Envision ailesinin yapay zekâ destekli DNN ses işlemesiyle tanınır.",
+          answer: "Beltone, 1940'tan bu yana süren Amerikan mirası ve Envision ailesinin yapay zekâ destekli DNN ses işlemesiyle tanınır.",
         },
       ],
     },

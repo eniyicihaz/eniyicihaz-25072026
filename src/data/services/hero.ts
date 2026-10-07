@@ -15,7 +15,7 @@
 import type { BrandHeroContent } from "../../components/brands/BrandHero/BrandHero.astro";
 
 export const servicesHero: BrandHeroContent = {
-  badge: "18+ Hizmet",
+  badge: "Testten Servise Hizmetlerimiz",
   headingLines: ["Uçtan Uca", "İşitme Sağlığı", "Hizmeti."],
   description: [
     "Değerlendirmeden cihaz uygulamasına, ayardan servis ve bakıma kadar tüm süreçte uzman kadromuz yanınızda.",
@@ -34,8 +34,8 @@ export const servicesHero: BrandHeroContent = {
     alt: "Uçtan uca işitme sağlığı hizmetleri kapsamında değerlendirilebilecek Beltone Commence işitme cihazı görseli",
   },
   floatingCard: {
-    value: "18+",
-    label: "Hizmet",
+    value: "Darıca",
+    label: "Tek Merkezde",
     description: "Testten Servise, Tüm Süreçte Yanınızdayız.",
   },
 };

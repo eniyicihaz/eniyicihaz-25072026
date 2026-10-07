@@ -53,12 +53,12 @@ export const beltoneEcosystem: BrandPageEcosystemContent = {
       howItWorks:
         "Marka, kuruluşundan bu yana Amerika'da işitme cihazı geliştirme ve müşteri deneyimi konusundaki geleneğini sürdürür; bugün GN Grubu'na bağlıdır.",
       advantages: [
-        "85 yılı aşkın bir marka mirasına sahiptir",
+        "1940'tan bu yana süren bir marka mirasına sahiptir",
         "GN Grubu'nun mühendislik altyapısından yararlanır",
         "ABD, Kanada ve 40'tan fazla ülkede dağıtım ağına sahiptir",
       ],
       models: ["Envision", "Serene", "Commence"],
-      expertNote: "Beltone, sektörün en köklü Amerikan işitme cihazı markalarından biridir.",
+      expertNote: "Beltone, 1940'ta Chicago'da kurulan bir Amerikan işitme cihazı markasıdır.",
     },
   ],
   // Precomputed rgb() decomposition of #1B3864.

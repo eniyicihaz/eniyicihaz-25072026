@@ -14,7 +14,7 @@ export const uzunOmurluCihazlarFinalCta: BrandPageFinalCtaContent = {
     "Düzenli bakım, orijinal yedek parça desteği ve uzman danışmanlığıyla cihazınızın uzun yıllar güvenilir çalışmasına yardımcı oluyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Periyodik Bakım Desteği", "Orijinal Yedek Parça", "Yetkili Teknik Servis", "Ücretsiz Danışmanlık"],
+  trustItems: ["Periyodik Bakım Desteği", "Orijinal Yedek Parça", "Teknik Servis Desteği", "Ücretsiz Danışmanlık"],
   accentColor: "#059669",
   accentColorHover: "#047857",
   accentColorGlow: "rgb(5 150 105 / 0.22)",

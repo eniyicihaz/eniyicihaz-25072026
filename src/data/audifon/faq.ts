@@ -21,7 +21,7 @@ export const audifonFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Audifon hangi ülkenin markası?",
-          answer: "Audifon, Almanya'nın işitme akustiği alanındaki en büyük aile işletmesi KIND-Grubu'na bağlı, Kölleda/Thüringen'de üretilen Alman bir markadır.",
+          answer: "Audifon, KIND-Grubu'na bağlı, Kölleda/Thüringen'de üretilen Alman bir markadır.",
         },
         {
           question: "Audifon hangi konuda öne çıkar?",

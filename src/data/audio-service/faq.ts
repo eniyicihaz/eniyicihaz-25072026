@@ -26,7 +26,7 @@ export const audioServiceFaq: BrandPageFaqContent = {
         },
         {
           question: "Audio Service hangi konuda öne çıkar?",
-          answer: "Audio Service, kulak içi (ITE) işitme sistemleri konusundaki 40 yılı aşkın uzmanlığıyla tanınır.",
+          answer: "Audio Service, 1977'den bu yana kulak içi (ITE) işitme sistemlerine odaklanan bir markadır.",
         },
       ],
     },

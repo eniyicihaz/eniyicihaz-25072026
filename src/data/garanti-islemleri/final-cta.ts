@@ -13,7 +13,7 @@ export const garantiIslemleriFinalCta: BrandPageFinalCtaContent = {
     "Fatura ve garanti belgenizle birlikte, cihazınızın garanti kapsamını netleştirip gerekli süreci başlatalım.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Kapsam Değerlendirmesi", "Belgeli Süreç", "Yetkili Servis Ağı", "Şeffaf Yönlendirme"],
+  trustItems: ["Ücretsiz Kapsam Değerlendirmesi", "Belgeli Süreç", "Ücretsiz Garanti İşlemleri", "Şeffaf Yönlendirme"],
   accentColor: "#4f46e5",
   accentColorHover: "#4338ca",
   accentColorGlow: "rgb(79 70 229 / 0.22)",

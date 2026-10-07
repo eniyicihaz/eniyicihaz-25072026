@@ -33,8 +33,8 @@ export const ekonomikSeriUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "TEKNİK SERVİS",
-      title: "Yetkili Teknik Servis Desteği",
-      description: "Ekonomik seri modeller de yetkili teknik servis desteğinden faydalanabilir.",
+      title: "Teknik Servis Desteği",
+      description: "Ekonomik seri modeller için de teknik servis desteği veriyoruz.",
     },
     {
       label: "GİRİŞ SEVİYESİ",

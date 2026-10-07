@@ -37,7 +37,7 @@ export const maicoHero: BrandPageHeroContent = {
       label: "1937",
       accent: "#10233F",
       title: "Odyometre Mirası",
-      description: "\"Audiometer\" terimini literatüre kazandıran, ölçüm biliminde öncü bir marka.",
+      description: "\"Audiometer\" terimini literatüre kazandıran, ölçüm alanında uzun bir geçmişe sahip bir marka.",
     },
     {
       label: "DEMANT",
@@ -58,7 +58,7 @@ export const maicoHero: BrandPageHeroContent = {
   },
   floatingCard: {
     title: "Ölçüm Bilimi Mirası",
-    description: "1937'den bu yana odyolojik ölçümde öncü bir geleneğe sahiptir.",
+    description: "1937'den bu yana odyolojik ölçüm alanında çalışan bir markadır.",
   },
   accentColor: "#10233F",
   accentColorHover: "#0A1830",

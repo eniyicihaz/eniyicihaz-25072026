@@ -23,7 +23,7 @@ export const cayirovaHero: CorporateHeroContent = {
   imageAlt: "Darıca, Gebze, Çayırova ve Kocaeli'yi işaretleyen, hizmet bölgesini temsil eden kavramsal harita görseli",
   stats: [
     { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },
-    { value: "18+ Marka", label: "Seçenek Sunuyoruz" },
+    { value: "18 Marka", label: "Seçenek Sunuyoruz" },
     { value: "2009'dan Beri", label: "Güvenilir Hizmet" },
   ],
   ctas: [

@@ -13,9 +13,9 @@ export const guvenilirTeknolojiUseCases: BrandPageTechnologyContent = {
   intro: "Her satışta sunduğumuz somut güvencelere daha yakından bakalım.",
   items: [
     {
-      label: "YETKİLİ SATIŞ",
-      title: "Yetkili Distribütörlük Güvencesi",
-      description: "Sunduğumuz tüm markalar için resmi yetkili satış yetkisine sahibiz.",
+      label: "18 MARKA",
+      title: "18 İşitme Cihazı Markası",
+      description: "18 işitme cihazı markası satıyor ve bu markaların tamamında teknik servis veriyoruz.",
     },
     {
       label: "FATURALI SATIŞ",
@@ -34,8 +34,8 @@ export const guvenilirTeknolojiUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "TEKNİK SERVİS",
-      title: "Yetkili Teknik Servis Desteği",
-      description: "Arıza durumunda orijinal yedek parça ve yetkili servis desteği sunulur.",
+      title: "Teknik Servis Desteği",
+      description: "Arıza durumunda Darıca'daki merkezimizde teknik servis desteği veriyoruz.",
     },
     {
       label: "DEĞİŞİM & İADE",

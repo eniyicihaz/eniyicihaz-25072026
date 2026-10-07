@@ -16,7 +16,7 @@ export const maicoAdvantages: BrandPageAdvantagesContent = {
     category: "Marka Felsefesi",
     title: "1937'den Bu Yana Ölçüm Bilimi Mirası",
     description:
-      "\"Audiometer\" terimini literatüre kazandıran, odyolojik ölçüm biliminde öncü bir geleneğe sahiptir.",
+      "\"Audiometer\" terimini literatüre kazandıran, odyolojik ölçüm alanında uzun bir geçmişe sahiptir.",
   },
   items: [
     {

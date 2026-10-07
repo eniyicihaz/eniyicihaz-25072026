@@ -17,7 +17,7 @@ export const audioServiceEcosystem: BrandPageEcosystemContent = {
       icon: "dna",
       navLabel: "Kulak İçi Uzmanlığı",
       title: "Kulak İçi (ITE) Uzmanlığı Nedir?",
-      lead: "Audio Service'in 40 yılı aşkın süredir odaklandığı, kulak kanalına özel üretilen işitme sistemleri uzmanlığı.",
+      lead: "Audio Service'in 1977'den bu yana odaklandığı, kulak kanalına özel üretilen işitme sistemleri.",
       howItWorks:
         "Kulak kalıbınızın ölçüsü alınarak, kulak kanalınıza özel üretilen bir cihaz hazırlanır; bu sayede kulak arkası parçası olmadan, sade bir görünüm elde edilir.",
       advantages: [
@@ -53,7 +53,7 @@ export const audioServiceEcosystem: BrandPageEcosystemContent = {
       howItWorks:
         "Marka, kuruluşundan bu yana kulak içi işitme sistemleri konusundaki uzmanlığını sürdürür ve bugün Signia, Widex ve Rexton ile aynı global grubun bir parçasıdır.",
       advantages: [
-        "40 yılı aşkın bir üretim ve uzmanlık geleneğine sahiptir",
+        "1977'den bu yana süren bir üretim geleneğine sahiptir",
         "WS Audiology grubunun mühendislik altyapısından yararlanır",
         "30'dan fazla ülkede dağıtım ağına sahiptir",
       ],

@@ -16,7 +16,7 @@ export const kocaeliFaq: BrandPageFaqContent = {
     points: [
       "SGK anlaşmalı hizmet",
       "Ücretsiz ilk değerlendirme",
-      "18+ marka seçeneği",
+      "18 marka seçeneği",
       "Cihaz deneme imkânı",
     ],
     ctaLabel: "Bizi Arayın",
@@ -40,7 +40,7 @@ export const kocaeliFaq: BrandPageFaqContent = {
         },
         {
           question: "İşitme cihazı markası seçerken nelere dikkat etmeliyim?",
-          answer: "Marka kadar; cihazın ihtiyacınıza uygunluğu, garanti kapsamı ve yerel teknik servis desteği de önemlidir. 18'den fazla dünya markası arasından size uygun olanı birlikte değerlendiriyoruz.",
+          answer: "Marka kadar; cihazın ihtiyacınıza uygunluğu, garanti kapsamı ve yerel teknik servis desteği de önemlidir. 18 marka arasından size uygun olanı birlikte değerlendiriyoruz.",
         },
       ],
     },

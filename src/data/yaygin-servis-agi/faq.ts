@@ -8,11 +8,11 @@ import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageF
 
 export const yayginServisAgiFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
-  heading: "Yaygın Servis Ağı Hakkında Merak Edilenler",
+  heading: "Servis Desteği Hakkında Merak Edilenler",
   intro: "Servis süreci, yedek parça ve garanti hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Cihazınız İçin Servis Desteği İster misiniz?",
-    points: ["Ücretsiz ön değerlendirme", "Yetkili teknisyen desteği", "Orijinal yedek parça garantisi", "Şeffaf süreç takibi"],
+    points: ["18 markada teknik servis", "Ücret duruma göre belirlenir", "Ücretsiz garanti işlemleri", "Şeffaf süreç takibi"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,14 +21,14 @@ export const yayginServisAgiFaq: BrandPageFaqContent = {
       label: "Genel",
       items: [
         {
-          question: "Yaygın servis ağı ne anlama gelir?",
+          question: "Hangi markalar için teknik servis veriyorsunuz?",
           answer:
-            "Bir markanın yetkili teknik servis noktalarının geniş bir coğrafyaya yayılmış olması ve kullanıcıların ihtiyaç duydukları desteğe kolayca ulaşabilmesi anlamına gelir.",
+            "Sattığımız 18 markanın tamamında Darıca'daki merkezimizde teknik servis veriyoruz.",
         },
         {
-          question: "Cihazımı her yerde servise götürebilir miyim?",
+          question: "Servis için randevu gerekli mi?",
           answer:
-            "Cihazınızı, satın aldığınız markanın yetkili servis noktalarından herhangi birine götürebilirsiniz; kapsam ve konum bilgisi için bizimle iletişime geçebilirsiniz.",
+            "Evet; teknik servis, onarım ve garanti işlemleri için randevu almanız gerekir. Randevu için bizi arayabilir veya WhatsApp'tan yazabilirsiniz.",
         },
       ],
     },
@@ -38,12 +38,12 @@ export const yayginServisAgiFaq: BrandPageFaqContent = {
         {
           question: "Onarım süreci ne kadar sürer?",
           answer:
-            "Süre, arızanın türüne ve parça temin durumuna göre değişir; ön değerlendirme sonrasında size net bir süre bilgisi verilir.",
+            "Teknik serviste cihaz 3 gün içinde, onarımda 1–3 gün içinde teslim edilir. Garanti işlemleri cihaza göre 1–5 gün sürebilir.",
         },
         {
           question: "Servis sırasında cihazım garantili kalır mı?",
           answer:
-            "Evet; yetkili serviste yapılan işlemler üretici garantinizi etkilemez, aksine garanti kapsamının korunmasına yardımcı olur.",
+            "Garanti kapsamındaki işlemler üreticinin garanti koşullarına göre yürütülür; garanti işlemleri ücretsizdir ve gerektiğinde cihaz dış servise gönderilir.",
         },
       ],
     },
@@ -68,7 +68,7 @@ export const yayginServisAgiFaq: BrandPageFaqContent = {
         {
           question: "Servis ücreti neye göre belirlenir?",
           answer:
-            "Ücret; garanti durumuna, yapılan işlemin kapsamına ve gerekli yedek parçaya göre belirlenir.",
+            "Teknik servis ve onarım ücreti cihazın durumuna göre belirlenir; garanti işlemleri ücretsizdir.",
         },
       ],
     },

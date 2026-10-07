@@ -53,7 +53,7 @@ export const rextonEcosystem: BrandPageEcosystemContent = {
       howItWorks:
         "Marka, 1994'te Siemens Hearing Instruments'a, 2015'te ise Sivantos'a (bugünkü WS Audiology) bağlanarak, köklü bir mühendislik geleneğini sürdürür.",
       advantages: [
-        "70 yılı aşkın bir mühendislik geleneğine sahiptir",
+        "1955'ten bu yana süren bir mühendislik geleneğine sahiptir",
         "WS Audiology grubunun (Signia ile aynı çatı) altyapısından yararlanır",
         "Kanıtlanmış bir markanın güvencesini taşır",
       ],

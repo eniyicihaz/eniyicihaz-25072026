@@ -8,28 +8,28 @@ import type { BrandPageTechnologyContent } from "../../components/brand-page/Bra
 
 export const yayginServisAgiUseCases: BrandPageTechnologyContent = {
   badge: "ÖNE ÇIKAN GÜVENCELER",
-  heading: "Yaygın Servis Ağımızda Sunduğumuz Güvenceler",
+  heading: "Servis Sürecinde Sunduğumuz Güvenceler",
   intro: "Servis sürecinde sunduğumuz somut güvencelere daha yakından bakalım.",
   items: [
     {
-      label: "SERTİFİKALI TEKNİSYEN",
-      title: "Marka Sertifikalı Teknisyen Desteği",
-      description: "Yetkili servis teknisyenlerimiz, ilgili markalar tarafından eğitilmiş ve sertifikalandırılmıştır.",
+      label: "EĞİTİMLİ EKİP",
+      title: "Üretici Eğitimi Almış Ekip",
+      description: "Servis işlemlerini yürüten ekibimiz üretici eğitimlerine katılmıştır.",
     },
     {
       label: "ORİJİNAL PARÇA",
-      title: "Her Onarımda Orijinal Yedek Parça",
-      description: "Tüm onarım süreçlerinde yalnızca orijinal yedek parçalar kullanılır.",
+      title: "Orijinal Yedek Parça Tercihi",
+      description: "Onarımlarda cihaza uygun orijinal yedek parça kullanılmasına özen gösterilir.",
     },
     {
       label: "HIZLI SÜREÇ",
-      title: "Hızlı Değerlendirme ve Geri Dönüş",
-      description: "Cihazınız kısa sürede değerlendirilir ve size bilgi verilir.",
+      title: "Belirli Teslim Süreleri",
+      description: "Teknik serviste teslim 3 gün, onarımda 1–3 gün içindedir.",
     },
     {
       label: "GARANTİ KORUMASI",
       title: "Garantinizi Koruyan Servis Süreci",
-      description: "Yetkili serviste yapılan işlemler garantinizi geçersiz kılmaz.",
+      description: "Garanti işlemleri ücretsizdir; garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir.",
     },
     {
       label: "ŞEFFAF SÜREÇ",

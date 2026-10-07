@@ -47,7 +47,7 @@ export interface BrandPageProduct {
   description: string;
   tags: string[];
   image: string;
-  /** Optional destination — items without one render as inert "#" cards (unchanged legacy behavior). */
+  /** Optional real destination. Items without one render as a non-interactive <article> card (no link, no CTA row). */
   href?: string;
 }
 
@@ -107,8 +107,11 @@ function hexToRgba(hex: string, alpha: number) {
 
     <div class="brand-page-models__grid">
       {
-        data.items.map((item) => (
-          <a class="brand-page-models__card" href={item.href ?? "#"} data-rise>
+        data.items.map((item) => {
+          // No real destination → a non-interactive <article>, never a dead "#" link.
+          const Card = item.href ? "a" : "article";
+          return (
+          <Card class="brand-page-models__card" href={item.href} data-rise>
             <span class="brand-page-models__category">{item.category}</span>
 
             <span class="brand-page-models__media">
@@ -148,12 +151,15 @@ function hexToRgba(hex: string, alpha: number) {
               })}
             </span>
 
-            <span class="brand-page-models__link">
-              <span>{data.ctaLabel}</span>
-              <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
-            </span>
-          </a>
-        ))
+            {item.href && (
+              <span class="brand-page-models__link">
+                <span>{data.ctaLabel}</span>
+                <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+              </span>
+            )}
+          </Card>
+          );
+        })
       }
     </div>
   </div>
@@ -284,7 +290,8 @@ function hexToRgba(hex: string, alpha: number) {
     transition: transform 300ms var(--bpm-ease), border-color 300ms var(--bpm-ease), box-shadow 300ms var(--bpm-ease);
   }
 
-  .brand-page-models__card:hover {
+  /* Hover lift only on cards that actually link somewhere. */
+  .brand-page-models__card[href]:hover {
     transform: translateY(-6px);
     border-color: var(--bpm-hover-border);
     box-shadow: var(--shadow-md);
@@ -334,7 +341,7 @@ function hexToRgba(hex: string, alpha: number) {
     transition: transform 400ms var(--bpm-ease);
   }
 
-  .brand-page-models__card:hover .brand-page-models__image {
+  .brand-page-models__card[href]:hover .brand-page-models__image {
     transform: scale(1.05);
   }
 

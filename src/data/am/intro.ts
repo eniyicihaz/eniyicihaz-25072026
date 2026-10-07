@@ -9,7 +9,7 @@ export const amIntro: BrandPageIntroContent = {
   badge: "A&M MARKASI",
   heading: "A&M Hearing Hakkında",
   paragraphs: [
-    "A&M Hearing, dünyanın en büyük işitme teknolojisi gruplarından biri olan WS Audiology'nin (Signia, Widex ve Rexton'ın da içinde bulunduğu grup) bir markasıdır.",
+    "A&M Hearing, WS Audiology grubunun (Signia, Widex ve Rexton'ın da içinde bulunduğu grup) bir markasıdır.",
     "Ürünler, Sivantos India Private Limited'e bağlı Bengaluru, Hindistan'daki üretim merkezinde geliştirilir ve üretilir.",
     "A&M'in XTM serisi, farklı güç seviyelerinde (P4'ten P12'ye) ve kulak içi (A4) seçeneklerinde sunularak, grup teknolojisini daha erişilebilir bir fiyat noktasında sunmayı hedefler.",
   ],

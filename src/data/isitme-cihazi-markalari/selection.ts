@@ -58,7 +58,7 @@ export const scenarioCards: GuideCard[] = [
     icon: EarOff,
     tag: "Küçük cihaz isteyenler",
     title: "Cihazın küçük olmasını istiyorsanız",
-    text: "Kriter: kulak yapınızın kulak içi cihaza uygunluğu. Sitemizde kulak içi seçeneği anılan aileler Oticon Own SI, Phonak Virto, Signia Insio ve Silk, Starkey NuEar Miniscopic Synergy iQ'dur. Küçük boyut bazı özellikleri sınırlayabilir.",
+    text: "Kriter: kulak yapınızın kulak içi cihaza uygunluğu. Sitemizde kulak içi seçeneği anılan aileler Oticon Own SI, Phonak Virto, Signia Insio ve Silk, NuEar Miniscopic Synergy iQ'dur. Küçük boyut bazı özellikleri sınırlayabilir.",
     href: "/isitme-cihazlari/gorunmez-cic/",
     linkLabel: "Görünmez cihazlar",
   },

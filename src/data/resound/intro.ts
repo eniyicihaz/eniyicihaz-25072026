@@ -19,7 +19,7 @@ export const resoundIntro: BrandPageIntroContent = {
     { value: "1943", label: "Kuruluş Yılı (Danavox)" },
     { value: "Danimarka", label: "Kökeni" },
     { value: "GN Grubu", label: "Bağlı Olduğu Grup" },
-    { value: "Auracast", label: "Öncü Olduğu Teknoloji" },
+    { value: "Auracast", label: "Öne Çıkan Teknoloji" },
   ],
   // Precomputed rgb() decomposition of #AA1835 — kept distinct from
   // Oticon's green, Phonak's blue, Signia's purple and Widex's teal.

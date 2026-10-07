@@ -16,7 +16,7 @@ export const vistaAdvantages: BrandPageAdvantagesContent = {
     category: "Marka Felsefesi",
     title: "Sonova Teknolojisi, Erişilebilir Fiyat",
     description:
-      "Dünyanın en büyük işitme cihazı üreticisinin Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunar.",
+      "Sonova'nın Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunar.",
   },
   items: [
     {

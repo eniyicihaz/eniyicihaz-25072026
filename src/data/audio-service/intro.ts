@@ -10,7 +10,7 @@ export const audioServiceIntro: BrandPageIntroContent = {
   heading: "Audio Service Hakkında",
   paragraphs: [
     "Audio Service, 1977 yılında Horst Peter Hühne tarafından, Amerika'da gördüğü kulak içi (ITE) işitme sistemlerinin faydalarını Almanya'ya taşımak amacıyla, Löhne'de kuruldu.",
-    "Marka, 40 yılı aşkın süredir kulak içi (ITE) işitme cihazları konusunda uzmanlaşmış, Herford merkezli bir üretici olarak bilinir.",
+    "Marka, kuruluşundan bu yana kulak içi (ITE) işitme cihazlarına odaklanan, Herford merkezli bir üretici olarak bilinir.",
     "Bugün Signia, Widex ve Rexton'ın da içinde bulunduğu WS Audiology grubuna bağlı olan Audio Service, Mood, Quix ve Stiline gibi ürün ailelerinde bu uzmanlığını sürdürür.",
   ],
   stats: [

@@ -8,19 +8,19 @@
 import type { BrandPageIntroContent } from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 
 export const yayginServisAgiIntro: BrandPageIntroContent = {
-  badge: "YAYGIN SERVİS AĞI NEDİR?",
-  heading: "Yaygın Servis Ağı Nedir ve Neden Önemlidir?",
+  badge: "SERVİS DESTEĞİ NEDİR?",
+  heading: "Servis Desteği Nedir ve Neden Önemlidir?",
   paragraphs: [
-    "Yaygın servis ağı, bir markanın yetkili teknik servis noktalarının geniş bir coğrafyaya yayılmış olması ve kullanıcıların ihtiyaç duydukları desteğe kolayca ulaşabilmesi anlamına gelir.",
-    "Orijinal ürünler, üreticinin belirlediği yetkili servis ağı tarafından desteklenir; bu ağ, sertifikalı teknisyenler ve orijinal yedek parçalarla hizmet verir.",
-    "Orijinal olmayan veya paralel ithal ürünler genellikle bu servis ağının kapsamı dışında kalır; bu durum, arıza anında destek bulmayı zorlaştırabilir.",
-    "Yetkili bir servis ağına erişim, özellikle seyahat eden veya farklı şehirlerde yaşayan kullanıcılar için önemli bir avantaj sağlar.",
+    "Servis desteği; cihazınızın bakım, temizlik, onarım ve garanti işlemleri için ulaşabileceğiniz teknik destektir.",
+    "Orijinal ürünlerde garanti kapsamındaki işlemler üreticinin garanti koşullarına göre yürütülür.",
+    "Orijinal olmayan veya paralel ithal ürünler genellikle üretici garantisi kapsamı dışında kalır; bu durum, arıza anında destek bulmayı zorlaştırabilir.",
+    "Avrasya İşitme'de sattığımız 18 markanın tamamında Darıca'daki merkezimizde teknik servis veriyoruz.",
   ],
   stats: [
-    { value: "Yetkili Teknisyenler", label: "Servis Kalitesi" },
-    { value: "Orijinal Yedek Parça", label: "Onarım Standardı" },
-    { value: "Hızlı Yanıt Süresi", label: "Arıza Desteği" },
-    { value: "Geniş Kapsama Alanı", label: "Erişim Kolaylığı" },
+    { value: "18 Marka", label: "Teknik Servis Kapsamı" },
+    { value: "3 Gün İçinde", label: "Teknik Servis Teslimi" },
+    { value: "1–3 Gün", label: "Onarım Teslimi" },
+    { value: "Ücretsiz", label: "Garanti İşlemleri" },
   ],
   accentColor: "#ea580c",
   accentColorBadgeBg: "rgb(234 88 12 / 0.08)",

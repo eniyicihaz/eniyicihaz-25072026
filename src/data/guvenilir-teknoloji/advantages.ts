@@ -47,8 +47,8 @@ export const guvenilirTeknolojiAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Users,
       category: "Uzman Desteği",
-      title: "Marka Yetkilisi Danışmanlığı",
-      description: "Orijinal ürün satın alırken marka yetkilisi danışmanlığından da faydalanabilirsiniz.",
+      title: "Ücretsiz Cihaz Seçimi Desteği",
+      description: "Cihaz seçiminde merkezimizde ücretsiz destek alabilirsiniz.",
     },
   ],
   accentColor: "#1d4ed8",

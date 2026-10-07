@@ -8,13 +8,13 @@ import { contactConfig } from "../../config";
 import type { BrandPageFinalCtaContent } from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 export const yayginServisAgiFinalCta: BrandPageFinalCtaContent = {
-  badge: "YAYGIN SERVİS DESTEĞİ",
-  heading: "Cihazınız İçin Yetkili Servis Desteği Alın",
+  badge: "SERVİS DESTEĞİ",
+  heading: "Cihazınız İçin Servis Desteği Alın",
   description:
-    "Geniş yetkili servis ağımız ve sertifikalı teknisyenlerimizle cihazınızın bakım ve onarım ihtiyaçlarına hızlı ve güvenilir bir şekilde yanıt veriyoruz.",
+    "Sattığımız 18 markanın tamamında Darıca'daki merkezimizde teknik servis veriyoruz. Randevu için bizi arayın veya WhatsApp'tan yazın.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Yetkili Teknisyen Desteği", "Orijinal Yedek Parça", "Hızlı Değerlendirme", "Garanti Koruması"],
+  trustItems: ["18 Markada Teknik Servis", "3 Gün İçinde Teslim", "Ücretsiz Garanti İşlemleri", "Randevu ile Servis"],
   accentColor: "#ea580c",
   accentColorHover: "#c2410c",
   accentColorGlow: "rgb(234 88 12 / 0.22)",
