@@ -4,7 +4,14 @@
 >
 > Bu doküman **prensip değil, kontrol edilebilir ve test edilebilir kriter** içerir. "Neden" sorusunun cevabı (SEO/Local SEO/GEO felsefesi) SEARCH_STRATEGY.md'de, "nasıl inşa ederiz" DESIGN_SYSTEM_GUIDE.md'de, "component kalitesi" IMPLEMENTATION_STANDARD.md'de yaşar — bu doküman onları tekrar etmez, yalnızca yayın öncesi somut kontrol listesini tutar.
 >
-> **Diğer dokümanlarla ilişki:** Coğrafi öncelik listesi burada tekrarlanmaz — Canonical Source: COMPANY.md §17. SEO/GEO felsefesi burada tekrarlanmaz — Canonical Source: SEARCH_STRATEGY.md. Component build kalitesi burada tekrarlanmaz — Canonical Source: IMPLEMENTATION_STANDARD.md.
+> **Diğer dokümanlarla ilişki:**
+> - İşletme gerçekleri burada tekrarlanmaz. Canonical Source: `docs/source-of-truth/*` (SoT).
+> - Coğrafi öncelik ve evde hizmet alanı burada tekrarlanmaz. Canonical Source: LOCAL_SOT §3; özeti COMPANY.md §5–§6.
+> - SEO/GEO felsefesi burada tekrarlanmaz. Canonical Source: SEARCH_STRATEGY.md.
+> - Component build kalitesi burada tekrarlanmaz. Canonical Source: IMPLEMENTATION_STANDARD.md.
+> - Kilitli strateji: MASTER_PLAN.md.
+>
+> **Güncelleme:** 2026-10-07 (Faz 1). §12'de yeni kapılar eklendi. Eski bölümlerin durumu için bkz. `docs/tech/DOC_MIGRATION_MAP.md` §4.
 
 ---
 
@@ -21,7 +28,9 @@ Bir gate'in bir kriteri bu projede henüz otomatikleştirilmemiş olabilir (ör.
 Bir sayfa, aşağıdakilerin **tamamı** doğrulanmadan yayınlanmaz:
 
 - [ ] **Search Intent** — Sayfanın hizmet ettiği tek arama niyeti (Informational / Commercial Investigation / Navigational / Transactional — bkz. SEARCH_STRATEGY.md §7) açıkça belirlenebiliyor; sayfa birden fazla niyete aynı ağırlıkla hizmet etmeye çalışmıyor.
-- [ ] **Title** — Her sayfanın kendine özgü, jenerik olmayan bir `<title>`'ı var (MainLayout'un varsayılanına düşmüyor); sayfanın konusunu ve (uygunsa) marka adını içeriyor.
+- [ ] **Title** — Her sayfanın kendine özgü, jenerik olmayan bir `<title>`'ı var (MainLayout'un varsayılanına düşmüyor) ve sayfanın konusunu içeriyor.
+  - Marka eki ("| Avrasya İşitme Cihazları") yalnızca gerektiğinde eklenir.
+  - Marka sayısı gibi işletme bilgileri title/meta'ya **mekanik olarak eklenmez**; yalnızca sayfanın search intent'i ve içerik amacı için gerçekten anlamlıysa kullanılır.
 - [ ] **Meta Description** — Her sayfanın kendine özgü bir meta description'ı var; boş veya kopyalanmış değil.
 - [ ] **H1/H2 Hiyerarşisi** — Sayfada tam olarak **bir** `<h1>` var; alt başlıklar mantıksal sırayla ilerliyor (bir `<h3>`, kendinden önce bir `<h2>` olmadan görünmüyor).
 - [ ] **Canonical** — Bkz. Bölüm 5 Canonical Gate (bağımsız gate, burada tekrar edilmez).
@@ -36,14 +45,14 @@ Bir sayfa, aşağıdakilerin **tamamı** doğrulanmadan yayınlanmaz:
 
 # 2. Local SEO Gate
 
-> Coğrafi hiyerarşinin kendisi burada **tekrar edilmez** — Canonical Source: COMPANY.md §17 (Darıca → Gebze/Çayırova → Kocaeli → Dilovası/Tuzla/Pendik).
+> Coğrafi öncelik burada **tekrar edilmez**. Canonical Source: LOCAL_SOT §3; özeti COMPANY.md §5. Yerel SEO önceliği (Darıca > Gebze > Çayırova > Kocaeli > diğer) ile evde hizmet alanı **ayrı bilgilerdir** (COMPANY.md §6).
 
-- [ ] **Hiyerarşiye Uyum** — Sayfada geçen her ilçe/il adı, COMPANY.md §17'de tanımlı hiyerarşiyle tutarlı; dokümanda tanımlı olmayan bir ilçe/il "hizmet bölgesi" gibi sunulmuyor.
+- [ ] **Hiyerarşiye Uyum** — Sayfada geçen her ilçe/il adı yerel SEO kapsamıyla (LOCAL_SOT §3) tutarlı. Evde hizmet verilen bir ilçe şube ya da fiziksel merkez gibi sunulmuyor; kapsamda tanımlı olmayan bir ilçe/il "hizmet bölgesi" gibi gösterilmiyor.
 - [ ] **Doğal Kullanım (Keyword Stuffing Yasağı)** — Konum adı, doğal bir cümle içinde en fazla anlamlı sıklıkta geçiyor; başlıkta/metinde yapay şekilde tekrarlanmıyor (somut eşik: aynı ilçe adının bir sayfada mekanik olarak >3-4 kez, bağlamsız biçimde tekrarlanması bu gate'i geçemez — sayı bir "limit" değil, "doğal mı yoksa zorlama mı" sorusunun somutlaştırılmış hâlidir).
 - [ ] **Zorla Ekleme Yasağı** — Konum adı, konuyla ilgisi olmayan bir sayfaya (ör. genel bir bilgi/rehber sayfasına) yalnızca "Local SEO için" eklenmiş değil; yalnızca gerçekten yerel bağlamı olan sayfalarda (ana sayfa, iletişim, hizmet sayfaları) kullanılıyor.
-- [ ] **NAP Tutarlılığı** — İsim/Adres/Telefon, sayfa içinde COMPANY.md'deki biçimle birebir aynı; kısaltma veya farklı format yok.
+- [ ] **NAP Tutarlılığı** — İsim/Adres/Telefon ve telefon rolleri, sayfa içinde SoT'taki (LOCAL_SOT §1, CONVERSION_SOT §1) biçimle birebir aynı; kısaltma veya farklı format yok.
 - [ ] **Google Business Profile Hizalaması** — Sayfada verilen kategori/hizmet alanı/çalışma saatleri, GBP profiliyle çelişmiyor (manuel çapraz kontrol — bu proje kapsamında GBP'ye programatik erişim yok).
-- [ ] **Local Entity Tutarlılığı** — "Avrasya İşitme", "Eniyicihaz.com" gibi entity isimleri, coğrafi bağlamda da her zaman aynı biçimde anılıyor (SEARCH_STRATEGY.md §4).
+- [ ] **Local Entity Tutarlılığı** — İşletme, coğrafi bağlamda da her zaman tek marka olarak anılıyor: ilk ve resmî kullanımda "Avrasya İşitme Cihazları", doğal sonraki kullanımlarda "Avrasya İşitme" (BRAND_SOT §1, SEARCH_STRATEGY.md §4). eniyicihaz.com yalnızca alan adıdır; marka/entity adı olarak kullanılmaz.
 - [ ] **Doorway/Scaled Local Page Yasağı** — Aynı hizmet/içerik sayfasının, yalnızca ilçe adı değiştirilerek çoğaltılmış bir kopyası (ör. "/darica-isitme-cihazi", "/gebze-isitme-cihazi" gibi neredeyse özdeş içerikli sayfalar seti) oluşturulmuyor. Her bölgesel içerik, o bölgeye özgü gerçek bir farkla var olmalı; farkı yoksa sayfa açılmaz.
 
 ---
@@ -56,7 +65,7 @@ Bir sayfa, aşağıdakilerin **tamamı** doğrulanmadan yayınlanmaz:
 - [ ] **Atıf-Hazır (Citation-Ready) Yazım** — En az bir paragraf/bölüm, sayfanın geri kalanına ihtiyaç duymadan tek başına doğru ve eksiksiz bir cevap sunuyor (SEARCH_STRATEGY.md §9 "Kendi Başına Yeterli Cevap Birimleri").
 - [ ] **Direkt-Cevap Yapıları** — Definition/Comparison/FAQ/HowTo/Checklist kalıplarından **gerçekten uygun olan** en az biri kullanılmış; sayfa buna uygun değilse bir kalıp zorla eklenmemiş (SEARCH_STRATEGY.md §8 kuralı: "mevcut olmayan bir soruyu icat etmek değil").
 - [ ] **Yapısal Çıkarılabilirlik** — Bilgi net başlıklar, kısa paragraflar, listeler ve (uygunsa) tablolarla sunuluyor; bir makine tarafından kolayca ayrıştırılabilir.
-- [ ] **E-E-A-T Sinyalleri** — Deneyim/Uzmanlık/Yetkinlik/Güven sinyallerinden (SEARCH_STRATEGY.md §13) en az ilgili olanları sayfada somut biçimde mevcut (ör. SGK anlaşmalı statü, 2009'dan beri, uzman kadro — hepsi COMPANY.md'ye izlenebilir).
+- [ ] **E-E-A-T Sinyalleri** — Deneyim/Uzmanlık/Yetkinlik/Güven sinyallerinden (SEARCH_STRATEGY.md §13) en az ilgili olanları sayfada somut biçimde mevcut. Hepsi SoT'taki [DOĞRULANDI] kayıtlara izlenebilir olmalı (BUSINESS_SOT §1–§4). Kuruluş (2009) ile Darıca merkezinin açılışı (Ağustos 2024) ayrı yazılır.
 - [ ] **Çelişkisizlik** — Sayfadaki hiçbir gerçek (adres, hizmet, marka ilişkisi, coğrafi kapsam), sitenin başka bir yerindeki aynı gerçekle çelişmiyor.
 - [ ] **AI-Üretimli İçerik İçin İnsan Onayı** — Sayfanın herhangi bir kısmı yapay zekâ yardımıyla üretildiyse, yayın öncesi bir insan tarafından fiilen okunup onaylandı (PRINCIPLES.md §12).
 - [ ] **AI-Crawler Erişim Tutarlılığı** — `robots.txt`'te tanımlı AI-crawler kuralları (varsa) ile sayfanın gerçek indexlenebilirlik durumu çelişmiyor.
@@ -72,14 +81,14 @@ Bir sayfa, aşağıdakilerin **tamamı** doğrulanmadan yayınlanmaz:
 
 > Sayfa tipi↔şema eşleştirmesinin kavramsal çerçevesi SEARCH_STRATEGY.md §11'dedir; bu gate onu operasyonel bir kontrol listesine çevirir.
 
-- [ ] **Sayfa Tipine Uygun Şema** — Kurumsal/ana sayfa → Organization; hizmet/bölge içeriği → LocalBusiness/MedicalBusiness türü; ürün/cihaz sayfası → Product (fiyat/Offer **eklenmeden**); bilgi/rehber → Article; adım adım içerik → HowTo/ItemList; navigasyon → BreadcrumbList.
+- [ ] **Şema Tipi Kararı Var mı?** — Varlık ve tip modeli (tek düğüm / Organization + yerel işletme; MedicalBusiness veya başka bir LocalBusiness alt tipi; yerel sayfalarda kullanım) **henüz kilitlenmedi**. Bir şema uygulanmadan önce `docs/tech/SCHEMA_GRAPH.md`'deki (planlandı; henüz oluşturulmadı) karar ve doğrulama kriterleri tamamlanmış olmalı: Schema.org yapısı, Google structured data uygunluğu ve gerçek işletme modeli birlikte değerlendirilir. Karar yoksa şema uygulanmaz.
 - [ ] **BreadcrumbList** — Her sayfada, gerçek site hiyerarşisiyle birebir örtüşen bir BreadcrumbList şeması var.
-- [ ] **MedicalBusiness/Organization** — Kurumsal kimlik şeması, yalnızca COMPANY.md'deki gerçek verilerle (ad, adres, telefon, çalışma saatleri) dolduruluyor; uydurma alan yok.
+- [ ] **Kurumsal Kimlik Verisi** — İşletme kimliği şeması yalnızca SoT'taki [DOĞRULANDI] verilerle dolduruluyor (ad, adres, telefon, çalışma saatleri). Uydurma alan yok; [DOĞRULAMA GEREKLİ] veya [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ] etiketli bilgi şemaya girmiyor.
 - [ ] **FAQPage — Yalnızca Gerçek FAQ Varsa** — FAQPage şeması, yalnızca sayfada kullanıcının **görebileceği** gerçek soru-cevap bloğu varsa eklenir; görünmeyen/gizli soru-cevap için şema üretilmez.
 - [ ] **Article vb. — Yalnızca Uygun Sayfalarda** — Article şeması yalnızca gerçekten makale/rehber niteliğindeki sayfalarda kullanılır; ürün veya hizmet sayfasına Article şeması eklenmez.
 - [ ] **Görünür İçerik/Şema Tutarlılığı** — Şemada beyan edilen her bilgi, sayfada kullanıcının gerçekten gördüğü içerikle birebir örtüşüyor; kullanıcının görmediği bir bilgi şemaya yazılmıyor.
 - [ ] **Sahte Şema Yasağı** — Uydurma rating, review, award, sertifika şeması yok.
-- [ ] **Fiyat/Offer Yasağı** — Fiyat bilgisi yayımlanmadığından (COMPANY.md §23, PRINCIPLES.md §5), hiçbir sayfada `Product`/`Offer` şemasına fiyat, para birimi veya "başlangıç fiyatı" alanı eklenmiyor.
+- [ ] **Fiyat/Offer Yasağı** — Sitede cihaz fiyatı yayınlanmasına dair karar verilmediği için (PRODUCT_SOT §4, PRINCIPLES.md §5) hiçbir şemaya fiyat, para birimi veya "başlangıç fiyatı" alanı eklenmiyor.
 
 ---
 
@@ -130,7 +139,7 @@ Her yeni veya önemli ölçüde değiştirilen sayfada, mümkün olduğunca **ge
 - [ ] **Navigation/Mega Menu** — Header, mega menü ve mobil menü her viewport'ta doğru açılıyor/kapanıyor, taşmıyor.
 - [ ] **Modal/Overlay** — Modal/overlay bileşenleri (ör. arama overlay'i) her viewport'ta ekrana sığıyor, arka planı doğru kilitliyor.
 - [ ] **Footer** — Footer sütunları her viewport'ta düzgün kırılıyor, taşmıyor.
-- [ ] **Touch Target** — Dokunulabilir öğeler (buton, link, form kontrolü) 390–430px'te minimum 44–48px yükseklikte.
+- [ ] **Touch Target** — Dokunulabilir öğeler (buton, link, form kontrolü) her viewport'ta **en az 48×48 px** (MASTER_PLAN K5).
 - [ ] **Uzun Metin** — Gerçek (ideal olmayan, uzun) içerikle test edilmiş; kısa placeholder metinle değil.
 - [ ] **CLS/Layout Shift Riski** — Görsel/font/reklam yükleme kaynaklı beklenmeyen bir layout shift yok (boyutları önceden tanımlı `width`/`height` veya `aspect-ratio`).
 
@@ -163,6 +172,89 @@ Sıra bağlayıcıdır; bir adım geçmeden bir sonrakine geçilmez:
 
 # 11. Doküman Otoritesi
 
-Bu doküman, projenin diğer temel referanslarıyla (COMPANY.md, PRINCIPLES.md, DESIGN_SYSTEM_GUIDE.md, SEARCH_STRATEGY.md, IMPLEMENTATION_STANDARD.md) eşdeğer bağlayıcılığa sahiptir. Altısı birlikte projenin tam referans katmanını oluşturur: COMPANY.md gerçekleri (coğrafi hiyerarşi dahil), PRINCIPLES.md davranışı, DESIGN_SYSTEM_GUIDE.md yapıyı, SEARCH_STRATEGY.md keşfedilebilirlik felsefesini, IMPLEMENTATION_STANDARD.md component/build kalitesini, bu doküman ise **sayfa/release seviyesi operasyonel yayın kapısını** yönetir.
+Bu doküman; SoT, MASTER_PLAN.md ve projenin diğer temel referanslarıyla (COMPANY.md, PRINCIPLES.md, DESIGN_SYSTEM_GUIDE.md, SEARCH_STRATEGY.md, IMPLEMENTATION_STANDARD.md) birlikte referans katmanını oluşturur. Yetki alanları:
+- **SoT:** işletme gerçekleri (birinci kaynak)
+- **MASTER_PLAN.md:** kilitli strateji
+- **COMPANY.md:** SoT'un özeti
+- **PRINCIPLES.md:** davranış
+- **DESIGN_SYSTEM_GUIDE.md:** yapı
+- **SEARCH_STRATEGY.md:** keşfedilebilirlik felsefesi
+- **IMPLEMENTATION_STANDARD.md:** component/build kalitesi
+- **Bu doküman:** **sayfa/release seviyesi operasyonel yayın kapısı**
 
-Bir çelişki ortaya çıkarsa: coğrafi/olgusal bilgi COMPANY.md, felsefe/strateji SEARCH_STRATEGY.md, operasyonel kontrol listesi bu doküman esas alınır. Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan gate'ler bağlayıcıdır.
+Bir çelişki ortaya çıkarsa:
+- Olgusal bilgi, coğrafi öncelik ve hizmet alanı: SoT
+- Strateji: MASTER_PLAN.md ve SEARCH_STRATEGY.md
+- Operasyonel kontrol listesi: bu doküman
+
+Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan kapılar bağlayıcıdır.
+
+---
+
+# 12. Faz 1 Ek Kapıları (2026-10-07)
+
+> Bu bölüm Faz 1'de eklendi (MASTER_PLAN.md §8). Önceki bölümleri geçersiz kılmaz; onlara ek olarak uygulanır. Yeni sayfa, önemli içerik değişikliği ve her production release öncesinde geçerlidir. İşletme bilgisi burada tekrarlanmaz; kaynak her zaman SoT'tur (`docs/source-of-truth/*`).
+
+## 12.1 Business Truth Check
+- [ ] Sayfadaki her işletme gerçeği (kimlik, kuruluş, Darıca merkezinin açılışı, ekip, hizmet, deneme, servis, marka, telefon, adres, saat, hizmet alanı) SoT'ta **[DOĞRULANDI]** olarak kayıtlı.
+- [ ] [DOĞRULAMA GEREKLİ], [KULLANICIDAN BİLGİ GEREKLİ], [VERİ BEKLENİYOR] veya [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ] etiketli bilgi, kesin bilgi gibi yayınlanmıyor.
+- [ ] [TIME-SENSITIVE] bilgi (ör. SGK tutarları, kampanya ve fiyat bilgisi) yalnızca kaynağı ve son kontrol tarihiyle, yayın kararı verilmişse kullanılıyor.
+- [ ] Kod veya eski metin, SoT'taki doğrulanmış bilgiyle çelişiyorsa SoT esas alınıyor (MASTER_PLAN.md §1).
+
+## 12.2 Forbidden Claim Check
+- [ ] BUSINESS_SOT §12 ve BRAND_SOT §3'teki geçersiz/yasak ifadeler sayfada yok. Özellikle:
+  - Kuruluş (2009) ile Darıca merkezinin açılışını (Ağustos 2024) birleştiren ifadeler ("2009'dan beri Darıca'da" ve benzerleri).
+  - "2009'dan beri aynı ekip", "2009'dan beri işitme sektöründe".
+  - Kanıtsız üstünlük ifadeleri ("en iyi", "en güvenilir", "Türkiye'nin en …", "1 numara").
+  - "ENİYİCİHAZ" / "EniyiCihaz" / "Eniyicihaz.com"un marka adı olarak kullanımı.
+- [ ] "Ücretsiz deneme" ifadesi kullanılmıyor. Deneme dili SERVICE_SOT §1.5'e uyuyor (merkezde deneme ile satın alarak deneme ayrı; kulak içi cihaz istisnası).
+- [ ] "Yetkili bayi" veya benzeri yetki iddiası, ilgili marka için SoT'ta doğrulanmadan kullanılmıyor.
+- [ ] Tıbbi teşhis/tedavi vaadi yok; tıbbi bilgi kaynaklı ve insan onaylı (PRINCIPLES.md §5, §12).
+
+## 12.3 Duplicate / Local Doorway Check
+- [ ] Sayfa, aynı niyete hizmet eden mevcut bir sayfanın kopyası değil; yeni sayfa açma gerekçesi MASTER_PLAN K6'ya uyuyor (farklı niyet, ihtiyaç, konu, yerel ihtiyaç veya güçlü mimari gerekçe).
+- [ ] Yerel sayfalarda yalnızca ilçe adı değiştirilmiş blok, şablon cümle veya tekrar eden SSS yok.
+- [ ] Gebze ve Çayırova içerikleri birbirinin kopyası değil; birinin verisi diğerine taşınmıyor.
+- [ ] Hiçbir ilçe şube veya fiziksel merkez gibi gösterilmiyor; tek fiziksel merkez Darıca (LOCAL_SOT §1).
+- [ ] Yerel SEO kapsamı ile evde hizmet alanı karıştırılmıyor (COMPANY.md §5–§6).
+
+## 12.4 SEO Intent Check
+- [ ] Sayfanın tek bir birincil niyeti ve buna uygun birincil CTA'sı tanımlı (SEARCH_STRATEGY.md §7).
+- [ ] Aynı niyete hizmet eden başka bir kanonik sayfa yok; varsa kanibalizasyon çözülmeden yayınlanmıyor.
+- [ ] Title, H1 ve ilk paragraf aynı niyete hizmet ediyor; marka eki ve işletme bilgileri mekanik olarak eklenmemiş (Bölüm 1, Title).
+
+## 12.5 E-E-A-T Check
+- [ ] Deneyim, uzmanlık ve güven sinyalleri yalnızca SoT'taki doğrulanmış kayıtlara dayanıyor (BUSINESS_SOT §4: ekip ve uzmanlık).
+- [ ] Kişilerin eğitim ve deneyim bilgileri birbirine karıştırılmıyor; organizasyondaki süre ile sektör deneyimi ayrı tutuluyor.
+- [ ] Kişi adı, fotoğrafı veya unvanı yalnızca paylaşım izni olan bilgiyle kullanılıyor.
+- [ ] YMYL içerikte kaynak gösteriliyor ve içerik insan tarafından onaylanmış.
+
+## 12.6 Technical Safety Check
+- [ ] Değişiklik yalnızca onaylanan kapsamdaki dosyalara dokunuyor; istenmeyen refactor, bağımlılık veya mimari değişiklik yok (IMPLEMENTATION_STANDARD.md).
+- [ ] URL, canonical, sitemap, yönlendirme ve index durumu bilinçli olarak korunuyor ya da değiştiriliyor (Bölüm 5–7).
+- [ ] Build hatasız tamamlanıyor (Bölüm 9).
+- [ ] Repoda veya dokümanlarda şifre, API key, token, secret ya da kişisel giriş bilgisi yok.
+
+## 12.7 Consent / PII Check
+- [ ] Analytics ve pazarlama etiketleri yalnızca ilgili onay kategorisi verildikten sonra çalışıyor; mevcut consent altyapısının davranışı varsayımla değil, test edilerek değerlendiriliyor.
+- [ ] Event parametrelerinde kişisel veri (ad, telefon, e-posta, sağlık bilgisi) yok.
+- [ ] Form eklenirse (MASTER_PLAN K4): sağlık verisi toplanmıyor, alanlar asgari, KVKK aydınlatması ve onayı ayrı plan ve onayla tamamlanmış.
+- [ ] Mevcut event adları onaysız değiştirilmiyor.
+
+## 12.8 Schema Validation Before Implementation
+- [ ] Şema tipi ve varlık modeli kararı alınmadan şema kodu yazılmıyor (Bölüm 4).
+- [ ] Uygulamadan önce önerilen yapı Schema.org tanımlarıyla ve Google structured data yönergeleriyle karşılaştırılıyor; gerçek işletme modeliyle (tek fiziksel merkez) tutarlı.
+- [ ] Uygulama sonrası Rich Results Test / Schema Markup Validator ile doğrulama yapılıyor; hatalar giderilmeden release yapılmıyor.
+- [ ] Şemada fiyat, sahte puan/yorum veya doğrulanmamış bilgi yok.
+
+## 12.9 Mobile / Accessibility / Conversion Check
+- [ ] Dokunma hedefleri en az 48×48 px; gövde metni temel değeri 17 px (MASTER_PLAN K5).
+- [ ] 7 viewport testi (Bölüm 8), klavye erişimi ve görünür odak sağlanıyor.
+- [ ] CTA etiketi gittiği yeri doğru anlatıyor; telefon ve WhatsApp CTA'ları ana numarayı kullanıyor, diğer numaralar rolleriyle gösteriliyor (CONVERSION_SOT §1).
+- [ ] Randevu ve ziyaret dili SoT'a uyuyor: randevusuz gelinebilir; bazı hizmetler randevu gerektirir (SERVICE_SOT §2.16).
+- [ ] Baskı ve aciliyet dili yok (PRINCIPLES.md §9).
+
+## 12.10 Production Approval Gate
+- [ ] Çalışma sırası izlendi: ANALİZ → PLAN → ONAY → UYGULAMA → TEST/QA → ONAY → PRODUCTION.
+- [ ] Commit, push ve deploy her biri kullanıcının **ayrı ve açık** onayıyla yapılıyor; bir adım için verilen onay sonrakini kapsamıyor (Bölüm 10).
+- [ ] Release öncesi bu bölümdeki ve Bölüm 1–9'daki kapıların sonucu kullanıcıya raporlandı.

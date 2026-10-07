@@ -22,3 +22,59 @@
 - `HERO_SPECIFICATION.md` ve `TRUST_SPECIFICATION.md`'nin "kilitli kopya" bölümleri, gerçek üretim koduyla (`hero.data.ts`, `trust.data.ts`) senkronize edildi.
 - `IMPLEMENTATION_GUIDE.md` (Header brifi) tamamlanmış/tarihsel olarak işaretlendi.
 - Bu tur yalnızca dokümantasyon değişikliğidir; hiçbir `.astro`/`.ts`/`.css`/production kodu değiştirilmedi.
+> **Durum notu (2026-10-07):** 2026-09-26 tarihli "4 kademeli coğrafi hiyerarşi" kararındaki sıra (Gebze/Çayırova aynı kademe) **AŞILDI**. Güncel sıra K7'dedir: Darıca > Gebze > Çayırova > Kocaeli > diğer hizmet alanları. Eski kayıt silinmedi.
+
+## 2026-10-06 (Strateji kilitleme)
+
+> Kaynak: kullanıcı onayları. Gerekçe ve ayrıntı: `MASTER_PLAN.md` §3. İşletme verisi: `docs/source-of-truth/*`.
+
+- **K1 Marka:** Tek ve resmî marka "Avrasya İşitme Cihazları"; eniyicihaz.com yalnızca alan adı. Title eki "| Avrasya İşitme Cihazları" yalnızca gerektiğinde, mekanik olmadan.
+- **K2 Telefon:** Ana numara (telefon + WhatsApp) header ve birincil CTA'larda; diğer iki numara footer ve İletişim'de rol etiketiyle.
+- **K3 Fiyat / kampanya:** Zaman duyarlı bilgiler tarih ve kaynakla tutulur, görsele gömülmez. (Pil kampanyasının güncelliği 2026-10-07'de doğrulandı; aşağıya bkz.)
+- **K4 Form:** İleride kısa randevu / ücretsiz test talebi formu; sağlık verisi yok; ayrı KVKK ve altyapı planı.
+- **K5 UX:** Mobile-first; dokunma hedefi en az 48×48 px; gövde metni temel değeri 17 px.
+- **K6 Sayfa açma:** Keyword başına sayfa yok; aynı niyet tek kanonik sayfada; doorway yok.
+- **K7 Yerel model:** Tek fiziksel merkez Darıca; Gebze ve Çayırova şube değil; yerel SEO önceliği Darıca > Gebze > Çayırova > Kocaeli.
+- **A1 Logo:** Gerçek logo dosyaları kullanılır; logo yeniden çizilmez; erişilebilir ad marka adı; tagline site metnine kopyalanmaz.
+- **A2 Marka kullanımı:** İlk ve resmî kullanımda tam ad; sonraki doğal kullanımda kısa ad.
+- **A3 GBP:** Mevcut GBP vardır; sıfırdan kurulmaz; audit ileride yapılır.
+- **B1 Belge mimarisi:** `MASTER_PLAN.md` + `docs/strategy/` + `docs/tech/`. Belgeler silinmez veya hemen taşınmaz; önce eşleme (DOC_MIGRATION_MAP).
+- **B2 Kuruluş / Darıca ayrımı:** Kuruluş bilgisi ile Darıca merkezinin açılışı ayrı tutulur. "2009'dan beri Darıca'da" ifadesi yasak. (Darıca açılış tarihi 2026-10-07'de netleşti; aşağıya bkz.)
+- **B3 Marka gösterimi:** "ENİYİCİHAZ" ve "En İyi" içeren tagline kullanılmaz; yeni slogan üretilmez.
+- **D1:** Sitedeki gerçek merkez fotoğrafları işletmeye aittir ve gerçektir.
+- **D2:** Üç gerçek işletme telefonu vardır; rolleri K2'de.
+
+## 2026-10-07 (Faz 0: Business & Governance Foundation tamamlandı)
+
+- `docs/source-of-truth/` altında 8 SoT dosyası ve `FAZ0_QUESTIONNAIRE.md` oluşturuldu (commit `f02b7c4`). **İşletme gerçeklerinin birinci kaynağı SoT'tur.**
+- SoT çatışma hiyerarşisi kabul edildi: kullanıcının güncel doğrulaması > SoT [DOĞRULANDI] > MASTER_PLAN > DECISIONS > strateji/teknik belgeler > eski belgeler > koddan çıkarılan varsayım.
+- SoT güvenlik kuralı: şifre, API key, token, secret, OAuth bilgisi ve özel kurum numarası yazılmaz.
+- Faz 0'da işletme sahibinin doğruladığı ve önceki kayıtların yerine geçen bilgiler (ayrıntı SoT'ta):
+  - Darıca merkezinin açılışı Ağustos 2024; önceki "yaklaşık 3 yıl" kaydı geçersiz (BUSINESS_SOT §2).
+  - Ekip 2009'dan beri aynı değil. Erdinç Kılıç'ın organizasyondaki süresi ile sektör deneyimi farklı kavramlar (BUSINESS_SOT §4).
+  - Birincil ve form e-postası aynı adres (BUSINESS_SOT §3).
+  - 18 marka satılıyor; başka satılan marka yok (PRODUCT_SOT §1).
+  - 7 güne kadar deneme "satın alarak deneme; uygun bulunmazsa ücret iadesi" olarak anlatılır; merkezdeki demo ayrı; kulak içi cihazlar 7 günlük eve deneme kapsamı dışında (SERVICE_SOT §1.5).
+  - Walk-in kabul edilir; hizmet bazında randevu gerekliliği devam eder (SERVICE_SOT T5).
+  - Kullanıcı kaynaklı bir "kullanılmayacak fotoğraf" listesi yok (ASSET_SOT §2).
+- **Karar verilmemiş konular** (karar gibi yazılmaz):
+  - Yetkili bayi iddiası: [DOĞRULAMA GEREKLİ]
+  - NuEar–Starkey ilişkisi ve adlandırması: [DOĞRULAMA GEREKLİ]
+  - SGK güncel tutar ve prosedürleri: [TIME-SENSITIVE], [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ]
+  - Cihaz fiyatlarının sitede yayınlanması: henüz kararlaştırılmadı
+  - Maps'te görünen "Avrasia" adı: audit'te incelenecek; değiştirme kararı yok
+  - Schema varlık/tip modeli: teknik doğrulama sonrası, Faz 3 uygulamasından önce kesinleşecek
+
+## 2026-10-07 (Faz 1 planı onaylandı)
+
+- **F1-1:** `OWNER_INPUTS.md` oluşturulmayacak. Görevini SoT ve `FAZ0_QUESTIONNAIRE.md` üstlenir; plan dosyasındaki 158 soruluk güvenlik kopyası `docs/tech/DOC_MIGRATION_MAP.md` §7'de eşlendi.
+- **F1-2:** `COMPANY.md` kısa kanonik özet olur ve ayrıntılar için SoT'a referans verir.
+- **F1-3:** COMPANY'deki yerel SEO kapsam listesi korunur; evde hizmet alanı ayrı başlıkta yazılır.
+- **F1-4:** Faz 1 ayrı dalda (`docs/phase-1-strategy-architecture`) 3 commit ile yürür: (1) anayasa belgeleri, (2) strategy, (3) tech + bantlar. Her commit kullanıcı onayıyla atılır.
+- **F1-5:** Plan dosyasındaki eski sürümlerin temizliği Faz 1'de yapılmaz; ayrı onayla yapılır.
+- Faz 1 düzeltmeleri:
+  - Eski audit sayıları sabit gerçek olarak kullanılmaz.
+  - Consent davranışı bug olarak varsayılmaz, yeniden audit edilir.
+  - Schema tip kararları kilitlenmez.
+  - "18 marka" bilgisi title ve meta'ya mekanik olarak eklenmez.
+- `MASTER_PLAN.md` kilitli ana plan olarak oluşturuldu; plan dosyasındaki strateji sürümlerinin yerine geçer.
