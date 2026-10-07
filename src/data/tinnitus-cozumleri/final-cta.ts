@@ -13,7 +13,7 @@ export const tinnitusCozumleriFinalCta: BrandPageFinalCtaContent = {
     "İşitme kaybınızın derecesine, tinnitus deneyiminize ve önceliklerinize uygun destek seçeneğini ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#9333ea",
   accentColorHover: "#7e22ce",
   accentColorGlow: "rgb(147 51 234 / 0.22)",

@@ -23,7 +23,7 @@ export const brandHero: BrandHeroContent = {
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı",
     "18 Marka",
-    "Uzman Odyolog Desteği",
+    "Odyolog Desteği",
   ],
   // The image itself is already a fully composed illustration (devices on a
   // podium, all 10 brand logos in a ring, connector lines, glow) — the Hero

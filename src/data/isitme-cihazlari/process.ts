@@ -97,7 +97,7 @@ export const afterSales: GuideCard[] = [
   {
     icon: ShieldCheck,
     title: "Garanti ve pil/aksesuar",
-    text: "Üretici garanti koşulları geçerlidir. Pil ve aksesuar gereksinimleriniz için de danışabilirsiniz.",
+    text: "Garanti kapsamı marka ve modele göre değişir; garanti işlemlerinde ücretsiz destek veriyoruz. Pil ve aksesuar gereksinimleriniz için de danışabilirsiniz.",
     href: "/servis-bakim/garanti-islemleri/",
     linkLabel: "Garanti işlemleri",
   },

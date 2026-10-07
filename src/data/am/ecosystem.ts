@@ -45,20 +45,20 @@ export const amEcosystem: BrandPageEcosystemContent = {
       expertNote: "Kulak içi modeller, kulak kanalı yapısına bağlı olarak her kullanıcıya uygun olmayabilir; değerlendirme gereklidir.",
     },
     {
-      id: "group-infra",
+      id: "teknik-servis",
       icon: "globe",
-      navLabel: "Grup Altyapısı",
-      title: "WS Audiology Grup Altyapısı",
-      lead: "A&M, Signia, Widex ve Rexton ile aynı global grubun (WS Audiology) üretim ve mühendislik altyapısından yararlanır.",
+      navLabel: "Teknik Servis",
+      title: "Merkezimizde A&M Teknik Servisi",
+      lead: "Sattığımız 18 markanın tamamında olduğu gibi A&M cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
       howItWorks:
-        "Ürünler, WS Audiology'nin Bengaluru, Hindistan'daki üretim merkezinde, grup standartlarına uygun olarak geliştirilir ve üretilir.",
+        "Cihazınız merkezimizde incelenir; teknik serviste teslim 3 gün içindedir ve ücret cihazın durumuna göre belirlenir.",
       advantages: [
-        "Büyük bir global grubun mühendislik deneyiminden yararlanır",
+        "A&M cihazları için merkezimizde teknik servis",
         "Erişilebilir bir fiyat noktasında sunulmayı hedefler",
-        "Geniş bir uluslararası dağıtım ağına sahiptir",
+        "Garanti işlemleri ücretsizdir",
       ],
       models: ["XTM Serisi"],
-      expertNote: "A&M, WS Audiology grubunun daha erişilebilir fiyat segmentine yönelik markalarından biridir.",
+      expertNote: "Servis randevusu için bizi arayabilirsiniz.",
     },
   ],
   // Precomputed rgb() decomposition of #F3701A.

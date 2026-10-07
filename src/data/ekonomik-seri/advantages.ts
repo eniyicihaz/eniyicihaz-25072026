@@ -35,8 +35,8 @@ export const ekonomikSeriAdvantages: BrandPageAdvantagesContent = {
     {
       icon: ShieldCheck,
       category: "Orijinal Güvence",
-      title: "Orijinal Ürün ve Garanti Güvencesi",
-      description: "Ekonomik seri modeller de diğer seriler gibi orijinal ürün ve üretici garantisiyle sunulur.",
+      title: "Garanti İşlemlerinde Destek",
+      description: "Garanti kapsamı marka ve modele göre değişir; garanti işlemlerinde merkezimizde ücretsiz destek veriyoruz.",
     },
     {
       icon: Users,

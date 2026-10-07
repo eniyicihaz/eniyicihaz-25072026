@@ -14,7 +14,7 @@ export const brandsRelated: BrandPageRelatedContentContent = {
     { label: "Tüm Markalar", description: "18 markanın dizinine ve marka sayfalarına tek yerden ulaşın.", href: "/markalar/" },
     { label: "Ücretsiz İşitme Testi", description: "Doğru cihaz ve marka kararının ilk adımı.", href: "/degerlendirme/ucretsiz-isitme-testi/" },
     { label: "Marka Danışmanlığı", description: "Marka ve model seçiminde tarafsız destek.", href: "/neden-orijinal/marka-danismanligi/" },
-    { label: "Cihaz Deneme", description: "Karar vermeden önce cihazı deneme sürecini öğrenin.", href: "/uygulama-ayar/cihaz-deneme/" },
+    { label: "Cihaz Deneme", description: "Merkezde ücretsiz demo ve satın alarak 7 güne kadar deneme sürecini öğrenin.", href: "/uygulama-ayar/cihaz-deneme/" },
     { label: "Darıca İşitme Cihazları", description: "Gerçek merkezimizi ve Darıca'daki sürecimizi görün.", href: "/darica-isitme-cihazlari/" },
     { label: "Gebze İşitme Cihazları", description: "Gebze'den gelen danışanlarımız için Darıca merkezimizdeki süreç.", href: "/gebze-isitme-cihazlari/" },
     { label: "Çayırova İşitme Cihazları", description: "Çayırova'dan gelen danışanlarımız için Darıca merkezimizdeki süreç.", href: "/cayirova-isitme-cihazlari/" },

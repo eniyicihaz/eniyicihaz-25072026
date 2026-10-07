@@ -26,10 +26,10 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const philipsHearingHero: BrandPageHeroContent = {
-  badge: "PHILIPS HEARLINK · DEMANT LİSANSIYLA",
+  badge: "PHILIPS HEARLINK · VELOX-S PLATFORMU",
   headingLines: ["Philips HearLink ile Tanıdık", "Bir Markadan İşitme Çözümü"],
   paragraphs: [
-    "Philips HearLink, dünyaca tanınan Philips markası altında, Demant ile yapılan lisans anlaşması kapsamında Velox-S platformu üzerinde geliştirilen bir işitme cihazı hattıdır.",
+    "Philips HearLink, dünyaca tanınan Philips markası altında, Velox-S platformu üzerinde geliştirilen bir işitme cihazı hattıdır.",
     "HearLink 50, 40, 30 ve diğer Philips modellerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -45,7 +45,7 @@ export const philipsHearingHero: BrandPageHeroContent = {
       label: "VELOX",
       accent: "#4A8CE0",
       title: "Velox-S Platformu",
-      description: "Demant'ın Velox-S platformu üzerinde geliştirilen ses işleme teknolojisi.",
+      description: "Velox-S platformu üzerinde geliştirilen ses işleme teknolojisi.",
     },
     {
       label: "TRUST",

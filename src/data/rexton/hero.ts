@@ -26,7 +26,7 @@ export const rextonHero: BrandPageHeroContent = {
   badge: "REXTON · 1955'TEN BU YANA",
   headingLines: ["Rexton ile Güvenilir", "Alman Mühendisliği"],
   paragraphs: [
-    "Rexton, 1955'ten bu yana süregelen bir Alman mühendislik mirasına ve BiCore, MCore işlemci ailelerine sahip, bugün WS Audiology grubuna (Signia ile aynı çatı) bağlı bir markadır.",
+    "Rexton, 1955'ten bu yana süregelen bir Alman mühendislik mirasına ve BiCore, MCore işlemci ailelerine sahip bir markadır.",
     "Reach, BiCore, MCore ve diğer Rexton modellerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },

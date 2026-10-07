@@ -26,7 +26,7 @@ export const unitronIdealUser: BrandPageIdealUserContent = {
     {
       icon: Bluetooth,
       title: "Bağlantı Özelliklerini Önceliklendirenler",
-      description: "Sonova PRISM çipinin sunduğu geniş bağlantı özellikleri için sıkça önerilir.",
+      description: "PRISM çipinin sunduğu geniş bağlantı özellikleri için sıkça önerilir.",
       suggestedFamilies: ["Blu"],
     },
     {

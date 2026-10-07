@@ -45,9 +45,9 @@ export const rextonAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Bluetooth,
-      category: "Grup",
-      title: "WS Audiology Güvencesi",
-      description: "Signia ile aynı global grubun mühendislik altyapısından yararlanır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "Rexton cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #C79712.

@@ -26,7 +26,7 @@ export const localBlocks: LocalBlock[] = [
     eyebrow: "Darıca",
     heading: "Adres ve Merkezi Bulma",
     lead:
-      "Darıca'da işitme testi, Avrasya İşitme'nin Darıca'daki merkezinde, uzman odyometrist eşliğinde yapılır.",
+      "Darıca'da işitme testi, Avrasya İşitme'nin Darıca'daki merkezinde, odyometrist eşliğinde yapılır.",
     paragraphs: [
       "Merkezimiz Palandöken Eczanesi'nin üst katındadır; Farabi Ağız ve Diş Sağlığı Merkezi girişinin tam karşısında yer alır ve asansörle 1. kata çıkılır. Adres, telefon ve yol tarifi fotoğrafın altında.",
       "Avrasya İşitme Cihazları 2009 yılında kuruldu; Darıca merkezimiz Ağustos 2024'te açıldı ve resmî olarak SGK ile anlaşmalıdır. Önceden randevu almanızı tavsiye ederiz.",

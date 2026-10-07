@@ -25,7 +25,7 @@ export const sonicOverview: SonicOverviewContent = {
   intro: "Sonic hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1998" },
-    { icon: "map-pin", label: "Menşei", value: "Salt Lake City, ABD (Demant Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "Salt Lake City, ABD" },
     { icon: "sparkles", label: "Marka Sloganı", value: "\"Everyday Sounds Better\"" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "SoundDNA Platformu" },
     { icon: "users", label: "Hedef Kullanıcı", value: "Amerikan mühendisliğinden güvenilir teknoloji arayanlar" },

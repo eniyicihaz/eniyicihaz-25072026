@@ -12,7 +12,7 @@ export const uzunOmurluCihazlarFaq: BrandPageFaqContent = {
   intro: "Kullanım ömrü, bakım ve yedek parça hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Cihazınızın Ömrünü Uzatmak İster misiniz?",
-    points: ["Ücretsiz cihaz kontrolü", "Periyodik bakım planı", "Orijinal yedek parça desteği", "Uzman danışmanlığı"],
+    points: ["Ücretsiz cihaz kontrolü", "Periyodik bakım planı", "Teknik servis desteği", "Ücretsiz danışmanlık"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },

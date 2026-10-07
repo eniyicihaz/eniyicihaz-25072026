@@ -35,8 +35,8 @@ export const evdeHizmetIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: PackageSearch,
-      title: "Yeni Cihaz Almadan Önce Evde Denemek İsteyenler",
-      description: "Karar vermeden önce cihazı kendi ev ortamında, günlük rutininde denemek isteyenler.",
+      title: "Cihaz Seçimini Evde Konuşmak İsteyenler",
+      description: "Karar sürecini merkeze gelmeden, kendi ev ortamında başlatmak isteyenler.",
       suggestedFamilies: ["Cihaz Denemesi", "Karar Öncesi"],
     },
     {

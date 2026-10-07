@@ -67,7 +67,7 @@ export const sikSorulanSorularFaq: BrandPageFaqContent = {
         {
           question: "Cihazı satın almadan önce deneyebilir miyim?",
           answer:
-            "Evet; ilgilendiğiniz modelleri satın almadan önce deneyebilirsiniz. Detaylı bilgi için Cihaz Deneme sayfamızı inceleyebilirsiniz.",
+            "Merkezimizde cihazı yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Günlük hayatta denemek isterseniz cihazı satın alarak 7 güne kadar kullanabilir, uygun bulmazsanız ödediğiniz tutarı kesintisiz geri alabilirsiniz. Kulak içi cihazlar 7 günlük denemeye dahil değildir.",
         },
       ],
     },

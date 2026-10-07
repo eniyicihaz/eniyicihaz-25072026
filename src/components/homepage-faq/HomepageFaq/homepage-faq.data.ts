@@ -23,7 +23,7 @@ export const homepageFaq: HomepageFaqContent = {
     },
     {
       question: "Cihazı satın almadan önce deneyebilir miyim?",
-      answer: "Evet, karar vermeden önce cihazı deneme imkânı sunuyoruz.",
+      answer: "Merkezimizde yaklaşık 20 dakikalık ücretsiz demoyla deneyebilirsiniz; günlük hayatta denemek için cihazı satın alarak 7 güne kadar kullanabilir, uygun bulmazsanız kesintisiz ücret iadesi alabilirsiniz. Kulak içi cihazlar 7 günlük denemeye dahil değildir.",
       href: "/uygulama-ayar/cihaz-deneme/",
       linkLabel: "Cihaz deneme hakkında",
     },

@@ -29,7 +29,7 @@ export const signiaOverview: SignaOverviewContent = {
   intro: "Signia hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "2015-2016 (Signia markası olarak)" },
-    { icon: "map-pin", label: "Menşei", value: "Almanya (WS Audiology Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "Almanya" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "\"Life sounds brilliant.\" — yapay zekâ destekli, doğal konuşma deneyimi" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "Own Voice Processing (OVP)" },
     { icon: "bluetooth", label: "Bağlantı Özellikleri", value: "Entegre yapay zekâ çipi + Bluetooth" },

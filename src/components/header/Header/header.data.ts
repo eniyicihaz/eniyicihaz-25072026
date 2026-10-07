@@ -70,7 +70,7 @@ const devicesMega: MegaMenuData = {
     title: "Size Özel Destek",
     items: [
       { icon: "stethoscope", title: "Ücretsiz İşitme Testi", desc: "Uzman ekibimizle", href: "/degerlendirme/ucretsiz-isitme-testi/" },
-      { icon: "headphones", title: "Cihaz Deneme", desc: "Cihazları ücretsiz deneyin", href: "/uygulama-ayar/cihaz-deneme/" },
+      { icon: "headphones", title: "Cihaz Deneme", desc: "Merkezde ücretsiz demo", href: "/uygulama-ayar/cihaz-deneme/" },
       { icon: "sliders", title: "Kişiye Özel Ayar", desc: "Size özel programlama", href: "/uygulama-ayar/kisiye-ozel-ayar/" },
       { icon: "wrench", title: "Teknik Servis", desc: "Hızlı ve güvenilir destek", href: "/servis-bakim/teknik-servis/" },
     ],

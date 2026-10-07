@@ -26,7 +26,7 @@ export const yayginServisAgiEvolution: BrandPageTechEvolutionContent = {
     },
     {
       era: "Orijinal Parça ile Onarım",
-      whatItBrought: "Gerekli onarım, orijinal yedek parçalar kullanılarak gerçekleştirilir.",
+      whatItBrought: "Gerekli onarım yapılır; parça temin süresi marka ve modele göre değişebilir.",
       bestFor: "Kalite standardının korunması",
       families: ["Orijinal Parça Onarımı"],
     },

@@ -12,7 +12,7 @@ export const audioServiceFaq: BrandPageFaqContent = {
   intro: "Audio Service modelleri, uzmanlık alanı ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -22,7 +22,7 @@ export const audioServiceFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Audio Service hangi ülkenin markası?",
-          answer: "Audio Service, 1977'de Löhne, Almanya'da kurulan, bugün WS Audiology grubuna (Signia, Widex, Rexton) bağlı bir markadır.",
+          answer: "Audio Service, 1977'de Löhne, Almanya'da kurulan bir işitme cihazı markasıdır.",
         },
         {
           question: "Audio Service hangi konuda öne çıkar?",

@@ -10,13 +10,13 @@ export const unitronIntro: BrandPageIntroContent = {
   heading: "Unitron Hakkında",
   paragraphs: [
     "Unitron'un hikâyesi, 1960'ların başında Newfoundland, Kanada'da, Alman kökenli Fred Stork, Rolf Strothmann ve Rolf Dohmer tarafından kurulan Universal Electronics ile başladı.",
-    "1964'te Unitron Industries adıyla, güçlü bir Alman topluluğuna sahip Kitchener, Ontario'ya (Waterloo bölgesi) taşınan marka, bugün Phonak ile aynı çatı olan Sonova Grubu'na bağlıdır.",
-    "Unitron, AutoFocus 360'ın dört mikrofonlu binaural ağı ve Sonova PRISM çipi tabanlı Blu platformuyla, konuşmanın geldiği yönü belirlemeye yardımcı olan bir yaklaşım sunar.",
+    "Marka, 1964'te Unitron Industries adıyla güçlü bir Alman topluluğuna sahip Kitchener, Ontario'ya (Waterloo bölgesi) taşındı.",
+    "Unitron, AutoFocus 360'ın dört mikrofonlu binaural ağı ve PRISM çipi tabanlı Blu platformuyla, konuşmanın geldiği yönü belirlemeye yardımcı olan bir yaklaşım sunar.",
   ],
   stats: [
     { value: "1964", label: "Kitchener, Ontario'ya Taşınma Yılı" },
     { value: "Kanada", label: "Kökeni" },
-    { value: "Sonova Grubu", label: "Bağlı Olduğu Grup" },
+    { value: "Merkezimizde", label: "Teknik Servis" },
     { value: "AutoFocus 360", label: "Öne Çıkan Teknoloji" },
   ],
   // Precomputed rgb() decomposition of #1C4C87.

@@ -38,7 +38,7 @@ export const sgkHero: SgkHeroContent = {
   badge: "SGK Anlaşmalı İşitme Merkezi",
   heading: "2026 SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
   intro:
-    "İşitme cihazı raporu sürecinden gerekli belgelere, çocuklarda SGK hakkından cihaz yenileme sürecine kadar merak ettiğiniz her şeyi bu rehberde bulabilirsiniz. Uzman odyometristlerimizle işitme cihazı SGK desteğinden en doğru şekilde faydalanmanız için yanınızdayız.",
+    "İşitme cihazı raporu sürecinden gerekli belgelere, çocuklarda SGK hakkından cihaz yenileme sürecine kadar merak ettiğiniz her şeyi bu rehberde bulabilirsiniz. Odyolog ve odyometristimizle işitme cihazı SGK desteğinden en doğru şekilde faydalanmanız için yanınızdayız.",
   trustItems: [
     {
       title: "SGK Katkı Payı",
@@ -46,7 +46,7 @@ export const sgkHero: SgkHeroContent = {
     },
     {
       title: "Ücretsiz İşitme Testi",
-      description: "Uzman odyometristlerle değerlendirme yapılır.",
+      description: "Değerlendirme odyolog ve odyometristimizle yapılır.",
     },
     {
       title: "Aynı Gün Başvuru",

@@ -8,7 +8,7 @@ import { Tv, Phone, MessageCircle, Users, Car, HeartHandshake } from "lucide-ast
 
 export const cihazDenemeScenarios: ScenarioRailContent = {
   eyebrow: "BİR GÜNÜNÜZÜN SES HARİTASI",
-  heading: "Cihazı Gerçek Hayatta Deneyin",
+  heading: "7 Günlük Denemede Gerçek Hayat Ortamları",
   intro:
     "İşitme cihazını yalnızca vitrinde görmek yerine, size gerçekte nasıl bir deneyim sunduğunu bu ortamlarda değerlendirin.",
   items: [

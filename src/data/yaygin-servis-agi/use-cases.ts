@@ -17,9 +17,9 @@ export const yayginServisAgiUseCases: BrandPageTechnologyContent = {
       description: "Servis işlemlerini yürüten ekibimiz üretici eğitimlerine katılmıştır.",
     },
     {
-      label: "ORİJİNAL PARÇA",
-      title: "Orijinal Yedek Parça Tercihi",
-      description: "Onarımlarda cihaza uygun orijinal yedek parça kullanılmasına özen gösterilir.",
+      label: "ÜCRET",
+      title: "Ücret Duruma Göre Belirlenir",
+      description: "Teknik servis ve onarım ücreti cihazın durumuna göre belirlenir.",
     },
     {
       label: "HIZLI SÜREÇ",

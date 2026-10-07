@@ -50,16 +50,16 @@ export const ucretsizDanismanlikTechnology: BrandPageEcosystemContent = {
     {
       id: "demo-cihaz-deneyimi",
       icon: "smartphone",
-      navLabel: "Demo Cihaz Deneyimi",
-      title: "Karar Öncesi Demo Cihaz Deneyimi",
-      lead: "Karar vermeden önce, önerilen cihazı günlük yaşamınızda deneme imkânı sunuyoruz.",
-      howItWorks: "Size uygun görülen cihaz, belirli bir süreliğine denemeniz için sağlanır; bu süre boyunca deneyiminizi bizimle paylaşabilirsiniz.",
+      navLabel: "Merkezde Ücretsiz Demo",
+      title: "Karar Öncesi Merkezde Ücretsiz Demo",
+      lead: "Karar vermeden önce önerilen cihazı merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz.",
+      howItWorks: "Günlük hayatta denemek isterseniz cihazı satın alarak 7 güne kadar kullanabilir, uygun bulmazsanız iade edip ödediğiniz tutarı kesintisiz geri alabilirsiniz. Kulak içi cihazlar 7 günlük denemeye dahil değildir.",
       advantages: [
-        "Kararınızı gerçek kullanım deneyimine dayandırmanızı sağlar",
-        "Cihazın günlük yaşamınıza uygunluğunu test etme imkânı verir",
+        "Kararınızı gerçek bir dinleme deneyimine dayandırmanızı sağlar",
+        "Satın alma sonrası 7 güne kadar deneme ve kesintisiz iade imkânı vardır",
         "Satın alma öncesi ek bir güvence sunar",
       ],
-      models: ["Demo Deneme Kapsamındaki Modeller"],
+      models: ["Demo Kapsamındaki Modeller"],
       expertNote: "Demo süresi ve kapsamı, cihaz modeline göre değişebilir.",
     },
     {

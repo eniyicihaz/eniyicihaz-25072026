@@ -17,14 +17,14 @@ export const philipsHearingAdvantages: BrandPageAdvantagesContent = {
     category: "Marka Felsefesi",
     title: "Tanıdık Markadan Güvenilir Teknoloji",
     description:
-      "Dünyaca tanınan Philips markasının güvenilirliğini, Demant'ın işitme teknolojisi mühendisliğiyle bir araya getirir.",
+      "Dünyaca tanınan Philips markası altında sunulan HearLink işitme cihazı hattıdır.",
   },
   items: [
     {
       icon: Cpu,
       category: "Teknoloji",
       title: "Velox-S Platformu",
-      description: "Demant'ın güncel nesil ses işleme platformu üzerinde geliştirilir.",
+      description: "Velox-S ses işleme platformu üzerinde geliştirilir.",
     },
     {
       icon: Layers,
@@ -46,9 +46,9 @@ export const philipsHearingAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: ShieldCheck,
-      category: "Miras",
-      title: "Demant Lisans Güvencesi",
-      description: "Demant ile yapılan lisans anlaşması sayesinde köklü bir mühendislik altyapısından yararlanır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "Philips HearLink cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #0B5FCE.

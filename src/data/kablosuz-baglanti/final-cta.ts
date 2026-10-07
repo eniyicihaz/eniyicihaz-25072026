@@ -13,7 +13,7 @@ export const kablosuzBaglantiFinalCta: BrandPageFinalCtaContent = {
     "Günlük yaşadığınız ortamlara, cihaz tipi tercihinize ve işitme kaybınızın derecesine uygun kablosuz protokolü ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#65a30d",
   accentColorHover: "#4d7c0f",
   accentColorGlow: "rgb(101 163 13 / 0.22)",

@@ -13,7 +13,7 @@ export const hafifIsitmeKaybiFinalCta: BrandPageFinalCtaContent = {
     "Belirtilerinizi paylaşın, ücretsiz işitme testi sonrasında size uygun cihazı ve çözümü uzman ekibimizle birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#db2777",
   accentColorHover: "#be185d",
   accentColorGlow: "rgb(219 39 119 / 0.22)",

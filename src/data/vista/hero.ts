@@ -23,10 +23,10 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const vistaHero: BrandPageHeroContent = {
-  badge: "VISTA · SONOVA DEĞER MARKASI",
-  headingLines: ["Vista ile Sonova Teknolojisine", "Erişilebilir Bir Fiyat Noktası"],
+  badge: "VISTA · ERİŞİLEBİLİR FİYAT",
+  headingLines: ["Vista ile Güncel Ses İşlemeye", "Erişilebilir Bir Fiyat Noktası"],
   paragraphs: [
-    "Vista, Sonova'nın (Phonak ve Unitron ile aynı çatı) Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunan bir markadır.",
+    "Vista, Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunan bir işitme cihazı markasıdır.",
     "Vista V, Vista B ve diğer Vista modellerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -36,19 +36,19 @@ export const vistaHero: BrandPageHeroContent = {
       label: "OS",
       accent: "#E85D0A",
       title: "Soundsuite OS Teknolojisi",
-      description: "Sonova'nın güncel nesil ses işleme teknolojisini taşır.",
+      description: "Soundsuite OS ses işleme teknolojisini taşır.",
     },
     {
-      label: "SONOVA",
+      label: "SERVİS",
       accent: "#F08745",
-      title: "Sonova Güvencesi",
-      description: "Phonak ve Unitron ile aynı global grubun mühendislik altyapısından yararlanır.",
+      title: "Merkezimizde Teknik Servis",
+      description: "Vista cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
     {
       label: "VALUE",
       accent: "#B94708",
       title: "Erişilebilir Fiyat Noktası",
-      description: "Sonova teknolojisini daha uygun bir fiyat seviyesinde sunmayı hedefler.",
+      description: "Güncel ses işleme teknolojisini daha uygun bir fiyat seviyesinde sunmayı hedefler.",
     },
   ],
   image: {
@@ -57,7 +57,7 @@ export const vistaHero: BrandPageHeroContent = {
   },
   floatingCard: {
     title: "Soundsuite OS",
-    description: "Sonova teknolojisini erişilebilir bir fiyat noktasında sunar.",
+    description: "Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunar.",
   },
   accentColor: "#E85D0A",
   accentColorHover: "#B94708",

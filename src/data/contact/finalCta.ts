@@ -15,7 +15,7 @@ export const contactFinalCta: BrandExpertSupportContent = {
   trustPoints: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı Hizmet",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
     "Cihaz Deneme İmkânı",
     "Satış Sonrası Destek",
   ],
@@ -26,7 +26,7 @@ export const contactFinalCta: BrandExpertSupportContent = {
   panelBody:
     "İşitme kaybınızın derecesi, yaşam tarzınız ve beklentileriniz doğrultusunda, size özel çözümü birlikte belirliyoruz.",
   band: [
-    { icon: UserCheck, label: "Uzman Odyometrist Desteği" },
+    { icon: UserCheck, label: "Odyometrist Desteği" },
     { icon: ShieldCheck, label: "SGK Anlaşmalı Merkez" },
     { icon: CalendarCheck, label: "Ücretsiz Test ve Değerlendirme" },
     { icon: Headphones, label: "Teknik Servis Desteği" },

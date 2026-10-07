@@ -24,7 +24,7 @@ export const audifonOverview: AudifonOverviewContent = {
   heading: "Audifon'u 30 Saniyede Tanıyın",
   intro: "Audifon hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
-    { icon: "map-pin", label: "Menşei", value: "Kölleda, Almanya (KIND-Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "Kölleda, Almanya" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Aile şirketi mirası + tinnitus'a özel teknoloji" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "Cosma Chip Technology" },
     { icon: "users", label: "Uzmanlık Alanı", value: "Tinnitus çözümleri (Sueno Pro)" },

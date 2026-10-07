@@ -13,7 +13,7 @@ export const cocukIsitmeTestiFaq: BrandPageFaqContent = {
   intro: "Test zamanlaması, yöntemler ve gelişim hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Çocuğunuz İçin İşitme Testi Randevusu Almak İster misiniz?",
-    points: ["Yaşa uygun test yöntemleri", "Aile katılımlı süreç", "Uzman odyometrist eşliğinde", "3 yaş ve üzeri"],
+    points: ["Yaşa uygun test yöntemleri", "Aile katılımlı süreç", "Odyometrist eşliğinde", "3 yaş ve üzeri"],
     ctaLabel: "Hemen Randevu Alın",
     ctaHref: contactConfig.phone.href,
   },

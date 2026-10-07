@@ -1,5 +1,5 @@
 // Ecosystem deep-dive for the Unitron brand page (/markalar/unitron) —
-// AutoFocus 360, the Sonova PRISM chip, and the Canadian-German heritage.
+// AutoFocus 360, the PRISM chip, and the Canadian-German heritage.
 // Renders through the shared BrandPageEcosystem component (Technology
 // Explorer pattern). Icon values are restricted to the component's fixed
 // set: brain | dna | globe | radar | bluetooth | smartphone | radio |
@@ -31,8 +31,8 @@ export const unitronEcosystem: BrandPageEcosystemContent = {
     {
       id: "prism-chip",
       icon: "bluetooth",
-      navLabel: "Sonova PRISM",
-      title: "Sonova PRISM Çipi",
+      navLabel: "PRISM",
+      title: "PRISM Çipi",
       lead: "Blu platformunun temelini oluşturan, iki aktif bağlantıyı ve sekiz cihaza kadar eşleştirmeyi destekleyen çip teknolojisi.",
       howItWorks:
         "Çip, geniş belleği sayesinde birden fazla kablosuz bağlantıyı aynı anda yönetebilir ve farklı cihazlar arasında hızlı geçiş sağlar.",
@@ -42,7 +42,7 @@ export const unitronEcosystem: BrandPageEcosystemContent = {
         "Blu platformunun bağlantı altyapısını oluşturur",
       ],
       models: ["Blu"],
-      expertNote: "Sonova PRISM, Blu platformunun temel çip teknolojisidir.",
+      expertNote: "PRISM, Blu platformunun temel çip teknolojisidir.",
     },
     {
       id: "canadian-german-heritage",
@@ -51,14 +51,14 @@ export const unitronEcosystem: BrandPageEcosystemContent = {
       title: "1964'ten Bu Yana Kanada-Alman Mühendisliği",
       lead: "Unitron, Alman kökenli kurucular tarafından kurulan ve 1964'te Kitchener, Ontario'ya taşınan bir markadır.",
       howItWorks:
-        "Marka, güçlü bir Alman topluluğuna sahip Waterloo bölgesindeki köklerini sürdürürken, bugün Phonak ile aynı çatı olan Sonova Grubu'nun mühendislik altyapısından yararlanır.",
+        "Marka, güçlü bir Alman topluluğuna sahip Waterloo bölgesindeki köklerini sürdürür.",
       advantages: [
         "Uzun bir mühendislik geleneğine sahiptir",
-        "Sonova Grubu'nun (Phonak ile aynı çatı) altyapısından yararlanır",
+        "AutoFocus 360 ile konuşmanın yönüne odaklanmaya yardımcı olur",
         "Kitchener, Ontario'da 300'ü aşkın çalışanla faaliyet gösterir",
       ],
       models: ["Blu", "Smile"],
-      expertNote: "Unitron, Sonova Grubu'nun Kanada kökenli markasıdır.",
+      expertNote: "Unitron, Kanada kökenli bir işitme cihazı markasıdır.",
     },
   ],
   // Precomputed rgb() decomposition of #1C4C87.

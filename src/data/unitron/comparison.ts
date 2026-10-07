@@ -15,7 +15,7 @@ export const unitronComparison: BrandPageComparisonContent = {
   maxLevels: 4,
   rows: [
     { series: "Smile", technology: "En Güncel Platform (2025)", profile: "Güncel Teknoloji Arayanlar", profileIcon: Sparkles, levelLabel: "RIC" },
-    { series: "Blu", technology: "Sonova PRISM + AutoFocus 360", profile: "Bağlantı Önceliği Olanlar", profileIcon: Bluetooth, levelLabel: "RIC" },
+    { series: "Blu", technology: "PRISM + AutoFocus 360", profile: "Bağlantı Önceliği Olanlar", profileIcon: Bluetooth, levelLabel: "RIC" },
     { series: "Moxi Vivante", technology: "Kanıtlanmış Önceki Nesil", profile: "Dengeli Kullanıcılar", profileIcon: Layers, levelLabel: "RIC" },
     { series: "Stride", technology: "Geniş Güç Aralığı", profile: "İleri Derece Kayıplar", profileIcon: Volume2, levelLabel: "BTE" },
     { series: "Insera", technology: "Temel İşleme", profile: "Giriş Seviyesi Arayanlar", profileIcon: Wallet, levelLabel: "RIC/BTE" },

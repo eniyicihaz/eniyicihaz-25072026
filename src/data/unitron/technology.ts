@@ -1,6 +1,6 @@
 // Technology teaser grid for the Unitron brand page (/markalar/unitron).
 // Renders through the shared BrandPageTechnology component. "AutoFocus
-// 360", "Sonova PRISM", "Blu", "Moxi Vivante", "Stride" and "Smile" are
+// 360", "PRISM", "Blu", "Moxi Vivante", "Stride" and "Smile" are
 // real, documented Unitron technology/product names — verified via
 // unitron.com and independent hearing-aid review sources.
 
@@ -18,7 +18,7 @@ export const unitronTechnology: BrandPageTechnologyContent = {
     },
     {
       label: "PRISM",
-      title: "Sonova PRISM Çipi",
+      title: "PRISM Çipi",
       description: "İki aktif bağlantı ve sekiz cihaza kadar eşleştirmeyi destekleyen, geniş bellekli çip teknolojisi.",
     },
     {

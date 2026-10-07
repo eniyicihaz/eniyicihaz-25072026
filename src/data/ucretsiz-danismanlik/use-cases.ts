@@ -29,8 +29,8 @@ export const ucretsizDanismanlikUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "DEMO DENEME",
-      title: "Karar Öncesi Demo Cihaz Deneyimi",
-      description: "Karar vermeden önce cihazı günlük yaşamınızda deneyebilirsiniz.",
+      title: "Karar Öncesi Merkezde Ücretsiz Demo",
+      description: "Karar vermeden önce cihazı merkezimizde yaklaşık 20 dakika ücretsiz deneyebilirsiniz.",
     },
     {
       label: "SGK DESTEĞİ",

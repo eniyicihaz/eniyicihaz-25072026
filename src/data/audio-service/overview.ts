@@ -26,7 +26,7 @@ export const audioServiceOverview: AudioServiceOverviewContent = {
   intro: "Audio Service hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1977" },
-    { icon: "map-pin", label: "Menşei", value: "Löhne, Almanya (WS Audiology)" },
+    { icon: "map-pin", label: "Menşei", value: "Löhne, Almanya" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Kulak içi (ITE) uzmanlığı" },
     { icon: "cpu", label: "Öne Çıkan Seri", value: "Mood, Quix, Stiline" },
     { icon: "users", label: "Hedef Kullanıcı", value: "Kulak içi estetiği önceliklendirenler" },

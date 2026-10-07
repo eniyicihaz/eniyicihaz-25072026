@@ -27,9 +27,9 @@ export const teknikServisAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: ShieldCheck,
-      category: "Orijinal Parça",
-      title: "Onarımlarda Orijinal Yedek Parça Kullanılır",
-      description: "Onarımlarda cihaza uygun orijinal yedek parça kullanılmasına özen gösterilir.",
+      category: "Teslim Süresi",
+      title: "Teknik Serviste 3 Gün İçinde Teslim",
+      description: "Teknik servis işlemlerinde cihaz 3 gün, onarımlarda 1–3 gün içinde teslim edilir.",
     },
     {
       icon: Truck,

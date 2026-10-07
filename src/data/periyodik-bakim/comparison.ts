@@ -33,7 +33,7 @@ export const periyodikBakimComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Gereken Ekipman",
-      primary: "Profesyonel bakım araçları ve orijinal yedek parçalar kullanılır.",
+      primary: "Profesyonel bakım araçları kullanılır.",
       secondary: "Basit bir temizlik bezi ve kurutma kutusu genellikle yeterlidir.",
     },
     {

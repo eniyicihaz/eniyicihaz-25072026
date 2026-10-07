@@ -27,7 +27,7 @@ export const resoundOverview: ResoundOverviewContent = {
   intro: "ReSound hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1943 (Danavox olarak)" },
-    { icon: "map-pin", label: "Menşei", value: "Danimarka (GN Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "Danimarka" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Akıllı bağlantı ve doğal mekansal işitme" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "M&RIE (kulak kanalı mikrofonu)" },
     { icon: "bluetooth", label: "Bağlantı Özellikleri", value: "Auracast (Bluetooth LE Audio) + Smart 3D uygulaması" },

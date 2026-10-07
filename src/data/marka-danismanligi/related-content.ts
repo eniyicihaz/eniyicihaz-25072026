@@ -34,7 +34,7 @@ export const markaDanismanligiRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Cihaz Deneme",
-      description: "Değerlendirdiğiniz markayı satın almadan önce deneyin.",
+      description: "Değerlendirdiğiniz markayı merkezde ücretsiz demoyla deneyin; isterseniz satın alarak 7 güne kadar kullanın.",
       href: "/uygulama-ayar/cihaz-deneme/",
     },
     {

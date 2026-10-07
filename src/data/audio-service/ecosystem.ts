@@ -49,16 +49,16 @@ export const audioServiceEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Alman Mirası",
       title: "1977'den Bu Yana Alman Zanaatkârlığı",
-      lead: "Löhne, Almanya'da 1977'de kurulan Audio Service, bugün WS Audiology grubuna bağlıdır.",
+      lead: "Audio Service, 1977'de Löhne, Almanya'da kurulmuştur.",
       howItWorks:
-        "Marka, kuruluşundan bu yana kulak içi işitme sistemleri konusundaki uzmanlığını sürdürür ve bugün Signia, Widex ve Rexton ile aynı global grubun bir parçasıdır.",
+        "Marka, kuruluşundan bu yana kulak içi işitme sistemlerine odaklanır.",
       advantages: [
         "1977'den bu yana süren bir üretim geleneğine sahiptir",
-        "WS Audiology grubunun mühendislik altyapısından yararlanır",
+        "Kulak içi (ITE) sistemlere odaklanır",
         "30'dan fazla ülkede dağıtım ağına sahiptir",
       ],
       models: ["Mood", "Quix", "Stiline"],
-      expertNote: "Audio Service, WS Audiology grubunun kulak içi uzmanlığıyla öne çıkan Alman markasıdır.",
+      expertNote: "Audio Service, kulak içi sistemleriyle öne çıkan bir Alman markasıdır.",
     },
   ],
   // Precomputed rgb() decomposition of #1240A0.

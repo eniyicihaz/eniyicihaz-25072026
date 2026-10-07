@@ -49,7 +49,7 @@ export const basariHikayeleriFaq: BrandPageFaqContent = {
         {
           question: "Değişimi kendim deneyerek görebilir miyim?",
           answer:
-            "Evet; ilgilendiğiniz modelleri satın almadan önce deneyebilirsiniz. Detaylı bilgi için Cihaz Deneme sayfamızı inceleyebilirsiniz.",
+            "Merkezimizde ilgilendiğiniz cihazı yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz; günlük hayatta denemek için cihazı satın alarak 7 güne kadar kullanabilir, uygun bulmazsanız kesintisiz ücret iadesiyle iade edebilirsiniz. Ayrıntılar Cihaz Deneme sayfamızda.",
         },
       ],
     },

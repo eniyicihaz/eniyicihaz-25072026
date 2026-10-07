@@ -51,14 +51,14 @@ export const audifonEcosystem: BrandPageEcosystemContent = {
       title: "%100 Almanya Üretimi",
       lead: "Audifon ürünleri, Ar-Ge'den seri üretime kadar Kölleda/Thüringen'deki tesiste geliştirilir ve üretilir.",
       howItWorks:
-        "KIND-Grubu'na bağlı Audifon, tüm geliştirme ve üretim süreçlerini kendi Alman tesisinde yürütür ve 65'ten fazla ülkeye dağıtım yapar.",
+        "Audifon, geliştirme ve üretim süreçlerini Almanya'daki tesisinde yürütür ve 65'ten fazla ülkeye dağıtım yapar.",
       advantages: [
         "Alman mühendislik standartlarında geliştirilir",
         "Aile şirketi güvencesiyle uzun soluklu bir üretim geleneğine sahiptir",
         "Geniş bir uluslararası dağıtım ağına ulaşır",
       ],
       models: ["rega", "sino", "Sueno Pro"],
-      expertNote: "Audifon, Alman KIND-Grubu'na bağlı bir markadır.",
+      expertNote: "Audifon, Kölleda/Thüringen'de üretilen bir Alman markasıdır.",
     },
   ],
   // Precomputed rgb() decomposition of #E2001A.

@@ -18,7 +18,7 @@ export const widexIntro: BrandPageIntroContent = {
   stats: [
     { value: "1956", label: "Kuruluş Yılı" },
     { value: "Danimarka", label: "Kökeni" },
-    { value: "WS Audiology", label: "Bağlı Olduğu Grup" },
+    { value: "Merkezimizde", label: "Teknik Servis" },
     { value: "\"Less is more\"", label: "Ses Felsefesi" },
   ],
   // Precomputed rgb() decomposition of #14b8a6 — kept distinct from

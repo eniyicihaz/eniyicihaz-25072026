@@ -11,14 +11,14 @@ export const resoundIntro: BrandPageIntroContent = {
   badge: "RESOUND MARKASI",
   heading: "ReSound İşitme Cihazları Hakkında",
   paragraphs: [
-    "ReSound, kökleri 1943 yılında Danavox adıyla kurulan, bugün Danimarka merkezli GN Grubu'na bağlı bir işitme cihazı markasıdır.",
+    "ReSound, kökleri 1943 yılında Danavox adıyla kurulan, Danimarka kökenli bir işitme cihazı markasıdır.",
     "Marka, kablosuz bağlantı teknolojilerinde erken adım atan yaklaşımıyla tanınır; ReSound Nexia, Auracast (Bluetooth LE Audio) yayın sesi desteğini sunan ilk işitme cihazı ailelerinden biri olmuştur.",
     "Vivia, Nexia, Omnia, Savi, ENZO Q ve Key gibi ürün ailelerinde bu yaklaşım, kullanıcının işitme ihtiyacına ve bağlantı beklentisine göre şekillenir.",
   ],
   stats: [
     { value: "1943", label: "Kuruluş Yılı (Danavox)" },
     { value: "Danimarka", label: "Kökeni" },
-    { value: "GN Grubu", label: "Bağlı Olduğu Grup" },
+    { value: "Merkezimizde", label: "Teknik Servis" },
     { value: "Auracast", label: "Öne Çıkan Teknoloji" },
   ],
   // Precomputed rgb() decomposition of #AA1835 — kept distinct from

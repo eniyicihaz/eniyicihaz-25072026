@@ -38,8 +38,8 @@ export const standartSeriUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "GARANTİ",
-      title: "Standart Garanti Kapsamı",
-      description: "Standart seri modeller, üretici garantisi ile sunulur.",
+      title: "Garanti İşlemlerinde Destek",
+      description: "Garanti kapsamı marka ve modele göre değişir; garanti işlemlerinde ücretsiz destek veriyoruz.",
     },
   ],
   accentColor: "#0284c7",

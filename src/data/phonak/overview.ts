@@ -30,7 +30,7 @@ export const phonakOverview: PhonakOverviewContent = {
   intro: "Phonak hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1947" },
-    { icon: "map-pin", label: "Menşei", value: "İsviçre (Sonova Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "İsviçre" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "\"Life is on.\" — kesintisiz bağlantı ve aktif yaşam" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "Konuşma odaklı ses işleme" },
     { icon: "bluetooth", label: "Bağlantı Özellikleri", value: "Evrensel Bluetooth (iPhone + Android)" },

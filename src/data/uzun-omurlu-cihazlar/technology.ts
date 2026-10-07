@@ -60,7 +60,7 @@ export const uzunOmurluCihazlarTechnology: BrandPageEcosystemContent = {
         "Uyumsuz parça kullanımı riskini ortadan kaldırır",
         "Uzun vadeli kullanım için güvence sağlar",
       ],
-      models: ["Orijinal Yedek Parça Desteği Olan Modeller"],
+      models: ["Marka ve Modele Göre"],
       expertNote: "Yedek parça temin süresi, marka ve modele göre değişebilir.",
     },
     {

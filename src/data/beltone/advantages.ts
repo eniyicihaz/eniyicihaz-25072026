@@ -45,9 +45,9 @@ export const beltoneAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Brain,
-      category: "Grup",
-      title: "GN Grubu Güvencesi",
-      description: "2000 yılından bu yana ReSound ile aynı global grubun bir parçasıdır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "Beltone cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #1B3864.

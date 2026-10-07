@@ -28,8 +28,8 @@ export const ekonomikSeriUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "ORİJİNAL GARANTİ",
-      title: "Üretici Garantisi ile Sunulur",
-      description: "Ekonomik seri modeller de orijinal ürün ve üretici garantisiyle sunulur.",
+      title: "Garanti İşlemlerinde Ücretsiz Destek",
+      description: "Garanti kapsamı marka ve modele göre değişir; garanti işlemlerinde merkezimizde ücretsiz destek veriyoruz.",
     },
     {
       label: "TEKNİK SERVİS",

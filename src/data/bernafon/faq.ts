@@ -12,7 +12,7 @@ export const bernafonFaq: BrandPageFaqContent = {
   intro: "Bernafon modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -22,7 +22,7 @@ export const bernafonFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Bernafon hangi ülkenin markası?",
-          answer: "Bernafon, 1946 yılında Bern, İsviçre'de kurulan, bugün Danimarka merkezli Demant Grubu'na bağlı bir işitme cihazı markasıdır.",
+          answer: "Bernafon, 1946 yılında Bern, İsviçre'de kurulan bir işitme cihazı markasıdır.",
         },
         {
           question: "Bernafon hangi konuda öne çıkar?",

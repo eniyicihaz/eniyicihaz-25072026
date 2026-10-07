@@ -22,7 +22,7 @@ export const unitronAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Bluetooth,
       category: "Bağlantı",
-      title: "Sonova PRISM Çipi",
+      title: "PRISM Çipi",
       description: "İki aktif bağlantı ve sekiz cihaza kadar eşleştirmeyi destekler.",
     },
     {
@@ -45,9 +45,9 @@ export const unitronAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Radar,
-      category: "Grup",
-      title: "Sonova Grubu Güvencesi",
-      description: "Phonak ile aynı global grubun mühendislik altyapısından yararlanır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "Unitron cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #1C4C87.

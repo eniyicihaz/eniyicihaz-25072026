@@ -28,7 +28,7 @@ export const kampanyalarRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Cihaz Deneme",
-      description: "İlgilendiğiniz modelleri satın almadan önce deneyebilirsiniz.",
+      description: "Merkezde ücretsiz demo ve satın alarak 7 güne kadar deneme sürecini inceleyin.",
       href: "/uygulama-ayar/cihaz-deneme/",
     },
     {

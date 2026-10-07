@@ -46,9 +46,9 @@ export const audioServiceAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Palette,
-      category: "Grup",
-      title: "WS Audiology Güvencesi",
-      description: "Signia, Widex ve Rexton ile aynı global grubun bir parçasıdır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "Audio Service cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #1240A0.

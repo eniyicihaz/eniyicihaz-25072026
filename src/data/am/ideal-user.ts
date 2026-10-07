@@ -14,7 +14,7 @@ export const amIdealUser: BrandPageIdealUserContent = {
     {
       icon: Wallet,
       title: "Erişilebilir Fiyat Arayanlar",
-      description: "Güvenilir bir grubun teknolojisini daha uygun bir fiyat noktasında deneyimlemek isteyenler için sıkça önerilir.",
+      description: "Erişilebilir bir fiyat noktasında işitme cihazı arayanlar için sıkça önerilir.",
       suggestedFamilies: ["XTM P4", "XTM P6"],
     },
     {

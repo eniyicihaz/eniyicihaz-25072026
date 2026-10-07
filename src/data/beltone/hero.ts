@@ -46,10 +46,10 @@ export const beltoneHero: BrandPageHeroContent = {
       description: "1940'ta Chicago'da Sam Posen tarafından kurulan bir işitme cihazı geleneği.",
     },
     {
-      label: "GN",
+      label: "SERVİS",
       accent: "#12274A",
-      title: "GN Grubu Güvencesi",
-      description: "2000 yılından bu yana ReSound ile aynı global grubun bir parçasıdır.",
+      title: "Merkezimizde Teknik Servis",
+      description: "Beltone cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   image: {

@@ -10,12 +10,12 @@ export const philipsHearingIntro: BrandPageIntroContent = {
   badge: "PHILIPS HEARLINK MARKASI",
   heading: "Philips HearLink Hakkında",
   paragraphs: [
-    "Philips HearLink, dünyaca tanınan tüketici elektroniği markası Philips ile işitme teknolojisi grubu Demant arasında yapılan bir lisans anlaşması kapsamında geliştirilir.",
-    "Ürünler, Demant'ın Velox-S ve Velox platformları üzerinde üretilir; RIC, BTE, ITC, CIC ve IIC gibi geniş bir yerleşim yelpazesinde sunulur.",
+    "Philips HearLink, dünyaca tanınan Philips markası altında sunulan bir işitme cihazı hattıdır.",
+    "Ürünler Velox-S ve Velox platformları üzerinde geliştirilir; RIC, BTE, ITC, CIC ve IIC gibi geniş bir yerleşim yelpazesinde sunulur.",
     "HearLink ailesi, 50, 40 ve 30 olmak üzere anlaşılır bir kademelendirme ile, özellikle ilk kez işitme cihazı alacak kullanıcılar için net bir seçim sunmayı hedefler.",
   ],
   stats: [
-    { value: "Demant", label: "Lisans Anlaşması Yapılan Grup" },
+    { value: "Merkezimizde", label: "Teknik Servis" },
     { value: "Velox-S", label: "Öne Çıkan Platform" },
     { value: "50 / 40 / 30", label: "HearLink Kademeleri" },
     { value: "RIC / BTE / ITC / CIC / IIC", label: "Yerleşim Seçenekleri" },

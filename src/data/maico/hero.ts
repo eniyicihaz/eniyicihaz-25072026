@@ -27,23 +27,23 @@ export const maicoHero: BrandPageHeroContent = {
   badge: "MAICO · ÖLÇÜM BİLİMİ MİRASI",
   headingLines: ["MAICO ile Ölçüm Bilimine", "Dayalı Bir İşitme Deneyimi"],
   paragraphs: [
-    "MAICO, 1937'de \"audiometer\" (odyometre) terimini literatüre kazandıran köklü bir markadır; bugün Oticon ve Bernafon ile aynı çatı olan Demant Grubu'na bağlıdır.",
+    "MAICO; Bluetooth'lu, kulak arkası ve kulak içi seçenekleri bulunan işitme cihazı serileri sunan bir işitme teknolojisi markasıdır.",
     "MAICO'nun Bluetooth'lu, kulak arkası ve kulak içi işitme cihazı seçeneklerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
   features: [
     {
-      label: "1937",
+      label: "SERİLER",
       accent: "#10233F",
-      title: "Odyometre Mirası",
-      description: "\"Audiometer\" terimini literatüre kazandıran, ölçüm alanında uzun bir geçmişe sahip bir marka.",
+      title: "Farklı Yerleşim Seçenekleri",
+      description: "Bluetooth'lu, kulak arkası ve kulak içi seçenekleri bulunan seriler.",
     },
     {
-      label: "DEMANT",
+      label: "SERVİS",
       accent: "#2A4A78",
-      title: "Demant Grubu Mühendisliği",
-      description: "1995'ten bu yana Oticon ve Bernafon ile aynı global grubun bir parçasıdır.",
+      title: "Merkezimizde Teknik Servis",
+      description: "MAICO cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
     {
       label: "DE",

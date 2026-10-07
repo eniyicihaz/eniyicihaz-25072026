@@ -10,13 +10,13 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const amAdvantages: BrandPageAdvantagesContent = {
   badge: "NEDEN A&M?",
   heading: "Kullanıcılar Neden A&M Tercih Ediyor?",
-  intro: "A&M'i farklı kılan, WS Audiology grubunun altyapısını erişilebilir bir fiyat noktasında sunmasıdır.",
+  intro: "A&M'i farklı kılan, XTM serisini erişilebilir bir fiyat noktasında sunmasıdır.",
   hero: {
     icon: Globe2,
     category: "Marka Felsefesi",
     title: "Grup Teknolojisi, Erişilebilir Fiyat",
     description:
-      "WS Audiology grubunun (Signia, Widex, Rexton) global üretim altyapısından beslenen, erişilebilir fiyat noktasında bir işitme çözümü sunar.",
+      "XTM serisiyle erişilebilir fiyat noktasında bir işitme çözümü sunar.",
   },
   items: [
     {
@@ -41,13 +41,13 @@ export const amAdvantages: BrandPageAdvantagesContent = {
       icon: Factory,
       category: "Üretim",
       title: "Bengaluru Üretim Merkezi",
-      description: "Sivantos India Private Limited tarafından, grup standartlarında üretilir.",
+      description: "XTM serisi Bengaluru, Hindistan'da üretilir.",
     },
     {
       icon: Globe2,
-      category: "Grup",
-      title: "WS Audiology Güvencesi",
-      description: "Signia, Widex ve Rexton ile aynı global grubun bir parçasıdır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "A&M cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #F3701A.

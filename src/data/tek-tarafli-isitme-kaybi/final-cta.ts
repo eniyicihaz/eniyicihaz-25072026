@@ -13,7 +13,7 @@ export const tekTarafliIsitmeKaybiFinalCta: BrandPageFinalCtaContent = {
     "Kötü duyan kulağınızın durumuna, günlük ihtiyaçlarınıza ve önceliklerinize uygun sistemi ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#52525b",
   accentColorHover: "#3f3f46",
   accentColorGlow: "rgb(82 82 91 / 0.22)",

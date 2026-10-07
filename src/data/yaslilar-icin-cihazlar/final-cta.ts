@@ -13,7 +13,7 @@ export const yaslilarIcinCihazlarFinalCta: BrandPageFinalCtaContent = {
     "Kullanım kolaylığı, aile desteği ve günlük ihtiyaçlarınızı göz önünde bulundurarak size uygun cihazı ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#ca8a04",
   accentColorHover: "#a16207",
   accentColorGlow: "rgb(202 138 4 / 0.22)",

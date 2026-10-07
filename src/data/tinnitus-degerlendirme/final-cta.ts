@@ -13,7 +13,7 @@ export const tinnitusDegerlendirmeFinalCta: BrandPageFinalCtaContent = {
     "Kapsamlı öykü, odyometri ve tinnitus eşleştirme yöntemleriyle, çınlama şikayetinizin olası nedenlerini birlikte değerlendiriyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Değerlendirme", "Kapsamlı Öykü ve Test", "THI Anket Değerlendirmesi", "Uzman Odyometrist"],
+  trustItems: ["Ücretsiz Değerlendirme", "Kapsamlı Öykü ve Test", "THI Anket Değerlendirmesi", "Odyometrist Desteği"],
   accentColor: "#059669",
   accentColorHover: "#047857",
   accentColorGlow: "rgb(5 150 105 / 0.22)",

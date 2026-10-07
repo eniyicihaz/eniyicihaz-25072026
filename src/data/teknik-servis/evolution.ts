@@ -31,7 +31,7 @@ export const teknikServisEvolution: BrandPageTechEvolutionContent = {
     },
     {
       era: "Onarım Süreci",
-      whatItBrought: "Onarım, yerinde veya üretici servisinde orijinal yedek parçalarla gerçekleştirilir.",
+      whatItBrought: "Onarım merkezimizde yapılır; garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir.",
       bestFor: "Onarımın uygulanması",
       families: ["Onarım Uygulaması"],
     },

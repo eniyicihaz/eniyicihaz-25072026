@@ -25,7 +25,7 @@ export const sonicHero: BrandPageHeroContent = {
   badge: "SONIC · EVERYDAY SOUNDS BETTER",
   headingLines: ["Sonic ile Günlük Sesler", "Daha İyi Duyulsun"],
   paragraphs: [
-    "Sonic, 1998'de Salt Lake City, Utah'ta kurulan ve bugün Oticon ile Bernafon'un da içinde bulunduğu Demant Grubu'na bağlı bir markadır.",
+    "Sonic, 1998'de Salt Lake City, Utah'ta kurulan bir işitme cihazı markasıdır.",
     "SoundDNA platformu üzerine kurulu Enchant, Radiant ve diğer Sonic modellerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },

@@ -13,7 +13,7 @@ export const bluetoothFinalCta: BrandPageFinalCtaContent = {
     "Günlük teknoloji kullanımınıza, cihaz tipi tercihinize ve işitme kaybınızın derecesine uygun Bluetooth özellikli modeli ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#0891b2",
   accentColorHover: "#0e7490",
   accentColorGlow: "rgb(8 145 178 / 0.22)",

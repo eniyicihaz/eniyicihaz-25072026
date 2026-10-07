@@ -51,10 +51,10 @@ export const beltoneEcosystem: BrandPageEcosystemContent = {
       title: "1940'tan Bu Yana Amerikan Mirası",
       lead: "Chicago'da Sam Posen tarafından kurulan Beltone, 2025'te 85. kuruluş yıl dönümünü kutladı.",
       howItWorks:
-        "Marka, kuruluşundan bu yana Amerika'da işitme cihazı geliştirme ve müşteri deneyimi konusundaki geleneğini sürdürür; bugün GN Grubu'na bağlıdır.",
+        "Marka, kuruluşundan bu yana Amerika'da işitme cihazı geliştirme ve müşteri deneyimi konusundaki geleneğini sürdürür.",
       advantages: [
         "1940'tan bu yana süren bir marka mirasına sahiptir",
-        "GN Grubu'nun mühendislik altyapısından yararlanır",
+        "Envision ailesiyle yapay zekâ destekli ses işleme sunar",
         "ABD, Kanada ve 40'tan fazla ülkede dağıtım ağına sahiptir",
       ],
       models: ["Envision", "Serene", "Commence"],

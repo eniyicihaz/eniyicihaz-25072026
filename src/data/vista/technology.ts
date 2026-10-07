@@ -13,7 +13,7 @@ export const vistaTechnology: BrandPageTechnologyContent = {
     {
       label: "OS",
       title: "Soundsuite OS Teknolojisi",
-      description: "Sonova'nın güncel nesil ses işleme teknolojisini erişilebilir bir fiyat noktasında taşır.",
+      description: "Güncel nesil ses işleme teknolojisini erişilebilir bir fiyat noktasında taşır.",
     },
     {
       label: "TIER",
@@ -37,8 +37,8 @@ export const vistaTechnology: BrandPageTechnologyContent = {
     },
     {
       label: "VALUE",
-      title: "Sonova Güvencesi, Erişilebilir Fiyat",
-      description: "Sonova teknolojisini daha uygun bir fiyat noktasında sunar.",
+      title: "Erişilebilir Fiyat Noktası",
+      description: "Güncel ses işleme teknolojisini daha uygun bir fiyat noktasında sunar.",
     },
   ],
   // Precomputed rgb() decomposition of #E85D0A.

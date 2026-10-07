@@ -12,7 +12,7 @@ export const philipsHearingFaq: BrandPageFaqContent = {
   intro: "Philips HearLink kademeleri, teknolojisi ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,8 +21,8 @@ export const philipsHearingFaq: BrandPageFaqContent = {
       label: "Genel",
       items: [
         {
-          question: "Philips HearLink işitme cihazlarını kim üretiyor?",
-          answer: "Philips HearLink, Philips ile Demant arasında yapılan bir lisans anlaşması kapsamında, Demant'ın Velox-S platformu üzerinde üretilir.",
+          question: "Philips HearLink hangi platform üzerinde geliştirilir?",
+          answer: "Philips HearLink, Velox-S platformu üzerinde geliştirilir.",
         },
         {
           question: "Philips HearLink hangi konuda öne çıkar?",

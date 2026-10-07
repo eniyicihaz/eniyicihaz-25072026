@@ -45,8 +45,8 @@ export const guvenilirTeknolojiHero: BrandPageHeroContent = {
     {
       label: "ÜRETİCİ GARANTİSİ",
       accent: "#1e40af",
-      title: "Her Cihaz Üretici Garantisiyle Gelir",
-      description: "Orijinal ürünler, üretici garantisi ve resmi kayıt sistemiyle güvence altındadır.",
+      title: "Orijinal Üründe Üretici Garantisi",
+      description: "Orijinal ürünler genellikle üretici garantisi ve resmi kayıt sistemiyle birlikte sunulur; kapsam marka ve modele göre değişir.",
     },
     {
       label: "SERİ NUMARASI DOĞRULAMA",

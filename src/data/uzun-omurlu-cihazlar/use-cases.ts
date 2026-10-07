@@ -19,8 +19,8 @@ export const uzunOmurluCihazlarUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "YEDEK PARÇA",
-      title: "Orijinal Yedek Parça Temini",
-      description: "İhtiyaç halinde orijinal yedek parçaları hızlı bir şekilde temin edebiliyoruz.",
+      title: "Yedek Parça Temini",
+      description: "Parça değişimi gerektiğinde temin süresi marka ve modele göre değişebilir.",
     },
     {
       label: "TEKNİK SERVİS",

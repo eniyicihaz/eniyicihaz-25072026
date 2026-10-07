@@ -11,7 +11,7 @@ export const sonicFaq: BrandPageFaqContent = {
   intro: "Sonic modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,7 +21,7 @@ export const sonicFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Sonic hangi ülkenin markası?",
-          answer: "Sonic, 1998'de Salt Lake City, Utah'ta kurulan, bugün Oticon ve Bernafon ile aynı çatı olan Demant Grubu'na bağlı bir markadır.",
+          answer: "Sonic, 1998'de Salt Lake City, Utah'ta kurulan bir işitme cihazı markasıdır.",
         },
         {
           question: "Sonic hangi konuda öne çıkar?",

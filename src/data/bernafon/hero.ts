@@ -58,7 +58,7 @@ export const bernafonHero: BrandPageHeroContent = {
       label: "1946",
       accent: "#B01E15",
       title: "İsviçre Mirası",
-      description: "1946'dan bu yana Bern, İsviçre kökenli, bugün Demant Grubu'na bağlı bir işitme teknolojisi geleneği.",
+      description: "1946'dan bu yana Bern, İsviçre kökenli bir işitme teknolojisi geleneği.",
     },
   ],
   image: {

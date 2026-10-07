@@ -42,7 +42,7 @@ export const brandFaq: BrandFaqContent = {
     {
       question: "İşitme cihazını satın almadan önce deneyebilir miyim?",
       answer:
-        "Evet. İşitme cihazı seçimi öncesinde deneme süreci, doğru karara ulaşmanın önemli bir parçasıdır. Cihazı gerçek yaşam ortamınızda test ederek satın alma kararını daha bilinçli verebilirsiniz.",
+        "Merkezimizde cihazı yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Günlük yaşamınızda denemek isterseniz cihazı satın alarak 7 güne kadar kullanabilir, uygun bulmazsanız iade edip ödediğiniz tutarı kesintisiz geri alabilirsiniz. Kulak içi cihazlar 7 günlük denemeye dahil değildir.",
     },
     {
       question: "Tüm markalarda Bluetooth özelliği bulunuyor mu?",

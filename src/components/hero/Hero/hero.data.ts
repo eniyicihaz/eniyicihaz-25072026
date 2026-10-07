@@ -257,6 +257,6 @@ export const hero: HeroContent = {
     { icon: "award", value: "2009'dan beri", label: "Güvenle yanınızdayız" },
     { icon: "shield", value: "SGK Anlaşmalı", label: "Merkez" },
     { icon: "users", value: "Kişiye Özel", label: "Yaklaşım" },
-    { icon: "gem", value: "18 Marka", label: "Konusunda Uzman" },
+    { icon: "gem", value: "18 Marka", label: "Satış ve Teknik Servis" },
   ],
 };

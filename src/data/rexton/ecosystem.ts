@@ -49,16 +49,16 @@ export const rextonEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Alman Mirası",
       title: "1955'ten Bu Yana Alman Mühendisliği",
-      lead: "Rexton, 1955'te Almanya'da kurulan, bugün WS Audiology grubuna bağlı bir markadır.",
+      lead: "Rexton, 1955'te Almanya'da kurulan bir markadır.",
       howItWorks:
-        "Marka, 1994'te Siemens Hearing Instruments'a, 2015'te ise Sivantos'a (bugünkü WS Audiology) bağlanarak, köklü bir mühendislik geleneğini sürdürür.",
+        "Marka, 1955'ten bu yana süren bir mühendislik geleneğini sürdürür.",
       advantages: [
         "1955'ten bu yana süren bir mühendislik geleneğine sahiptir",
-        "WS Audiology grubunun (Signia ile aynı çatı) altyapısından yararlanır",
+        "BiCore ve MCore işlemci ailelerine sahiptir",
         "Kanıtlanmış bir markanın güvencesini taşır",
       ],
       models: ["Reach", "BiCore", "MCore"],
-      expertNote: "Rexton, WS Audiology grubunun köklü Alman mühendislik mirasına sahip markalarından biridir.",
+      expertNote: "Rexton, Alman kökenli bir işitme cihazı markasıdır.",
     },
   ],
   // Precomputed rgb() decomposition of #C79712.

@@ -27,7 +27,7 @@ export const widexOverview: WidexOverviewContent = {
   intro: "Widex hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1956" },
-    { icon: "map-pin", label: "Menşei", value: "Danimarka (WS Audiology Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "Danimarka" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "\"Less is more in natural hearing\" — doğal ses deneyimi" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "PureSound™ (ZeroDelay ses işleme)" },
     { icon: "bluetooth", label: "Bağlantı Özellikleri", value: "Bluetooth + Widex Moment Uygulaması" },

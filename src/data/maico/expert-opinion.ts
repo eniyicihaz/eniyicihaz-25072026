@@ -9,7 +9,7 @@ export const maicoExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "MAICO'nun odyolojik ölçüm bilimindeki köklü mirası ve Demant Grubu'na bağlılığı, güvenilir bir mühendislik geçmişine dayanan bir işitme cihazı arayan kullanıcılar için değerlendirilmeye değer bir seçenektir.",
+    "MAICO'nun farklı yerleşim seçenekleri sunan serileri, ihtiyacına uygun bir yapı arayan kullanıcılar için değerlendirilmeye değer bir seçenektir.",
   note: "Ancak marka seçimi tek başına yeterli değildir; işitme kaybınızın derecesi ve beklentileriniz birlikte değerlendirilmelidir.",
   // Precomputed rgb() decomposition of #10233F.
   accentColor: "#10233F",

@@ -5,7 +5,7 @@
 // kaldırıldı (içindekiler zaten bunu söylüyor). 3 chip. Telefon ana CTA, WhatsApp ikinci CTA,
 // "Sonucun nasıl okunduğunu görün" içerik yönlendirmesi olarak kalır.
 //
-// Doğrulanmış mevcut bilgiler korundu: uzman odyometrist eşliğinde, herhangi bir
+// Doğrulanmış mevcut bilgiler korundu: odyometrist eşliğinde, herhangi bir
 // ücret / satın alma taahhüdü olmadan, randevulu süreç, SGK anlaşmalı merkez.
 // Doğrulanmamış vaatler ("aynı gün sonuç", "aynı gün test") YAZILMAZ.
 //
@@ -23,7 +23,7 @@ export const testHero: PriceGuideHeroContent = {
     "Darıca'daki SGK anlaşmalı merkezimizde randevuyla yapılır.",
   ctaPrimary: { label: "Ücretsiz İşitme Testi İçin Randevu Al", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href },
-  chips: ["Uzman odyometrist eşliğinde", "Ücretsiz değerlendirme", "Satın alma taahhüdü olmadan"],
+  chips: ["Odyometrist eşliğinde", "Ücretsiz değerlendirme", "Satın alma taahhüdü olmadan"],
   image: {
     src: "/images/pages/isitme-testi-odyometri-odasi.webp",
     alt: "İşitme testi sırasında odyometrist ve test odası",

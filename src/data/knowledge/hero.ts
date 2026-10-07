@@ -15,7 +15,7 @@
 import type { BrandHeroContent } from "../../components/brands/BrandHero/BrandHero.astro";
 
 export const knowledgeHero: BrandHeroContent = {
-  badge: "20+ İçerik",
+  badge: "Rehberler ve SSS",
   headingLines: ["İşitme Sağlığı", "Hakkında", "Her Şey."],
   description: [
     "İşitme kaybından cihaz bakımına, SGK sürecinden güncel teknolojilere kadar merak ettiğiniz tüm konularda güvenilir bilgi kaynağınız.",
@@ -24,7 +24,7 @@ export const knowledgeHero: BrandHeroContent = {
   ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
   ctaSecondary: { label: "WhatsApp", href: "https://wa.me/905337733199" },
   trustPills: [
-    "Uzman Kaynaklı İçerik",
+    "Rehber İçerikleri",
     "SGK Rehberleri",
     "Güncel Bilgilendirme",
     "Ücretsiz Danışmanlık",
@@ -34,8 +34,8 @@ export const knowledgeHero: BrandHeroContent = {
     alt: "Bilgi Merkezi içeriklerinde örnek olarak yer alan Coselgi Mojo işitme cihazı görseli",
   },
   floatingCard: {
-    value: "20+",
-    label: "İçerik",
+    value: "Ücretsiz",
+    label: "İşitme Testi",
     description: "Doğru Bilgi, Doğru Kararın Temelidir.",
   },
 };

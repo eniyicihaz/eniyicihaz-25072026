@@ -26,7 +26,7 @@ export const servicesHero: BrandHeroContent = {
   trustPills: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
     "Satış Sonrası Destek",
   ],
   image: {

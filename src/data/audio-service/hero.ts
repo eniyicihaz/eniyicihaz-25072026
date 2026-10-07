@@ -47,10 +47,10 @@ export const audioServiceHero: BrandPageHeroContent = {
       description: "1977'den bu yana Löhne, Almanya'da süregelen bir üretim geleneği.",
     },
     {
-      label: "WSA",
+      label: "SERVİS",
       accent: "#0C2E7A",
-      title: "WS Audiology Grubu",
-      description: "Signia, Widex ve Rexton ile aynı global grubun bir parçasıdır.",
+      title: "Merkezimizde Teknik Servis",
+      description: "Audio Service cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   image: {

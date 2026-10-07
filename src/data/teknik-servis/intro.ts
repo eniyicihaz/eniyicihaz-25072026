@@ -18,7 +18,7 @@ export const teknikServisIntro: BrandPageIntroContent = {
   ],
   stats: [
     { value: "Yerinde Teşhis", label: "İlk Adım" },
-    { value: "Orijinal Yedek Parça", label: "Onarım Standardı" },
+    { value: "1–3 Gün", label: "Onarım Teslimi" },
     { value: "Gerektiğinde Dış Servis", label: "Garanti Kapsamındaki Cihazlar" },
     { value: "Takip Edilebilir Süreç", label: "Şeffaflık" },
   ],

@@ -13,8 +13,8 @@ export const vistaIdealUser: BrandPageIdealUserContent = {
   profiles: [
     {
       icon: Wallet,
-      title: "Sonova Teknolojisini Erişilebilir Fiyata Arayanlar",
-      description: "Büyük bir grubun teknolojisini daha uygun bir fiyat noktasında deneyimlemek isteyenler için sıkça önerilir.",
+      title: "Güncel Teknolojiyi Erişilebilir Fiyata Arayanlar",
+      description: "Güncel ses işleme teknolojisini daha uygun bir fiyat noktasında deneyimlemek isteyenler için sıkça önerilir.",
       suggestedFamilies: ["Vista B"],
     },
     {

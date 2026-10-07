@@ -15,7 +15,7 @@ export const phonakFaq: BrandPageFaqContent = {
   intro: "Phonak modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -25,7 +25,7 @@ export const phonakFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Phonak hangi ülkenin markası?",
-          answer: "Phonak, İsviçre merkezli Sonova Grubu'na bağlı bir işitme cihazı üreticisidir.",
+          answer: "Phonak, İsviçre kökenli bir işitme cihazı üreticisidir.",
         },
         {
           question: "Phonak'ın sloganı olan \"Life is on.\" ne anlama gelir?",

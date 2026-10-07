@@ -11,7 +11,7 @@ export const maicoFaq: BrandPageFaqContent = {
   intro: "MAICO serileri, mirası ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,11 +21,11 @@ export const maicoFaq: BrandPageFaqContent = {
       items: [
         {
           question: "MAICO hangi konuda öne çıkar?",
-          answer: "MAICO, 1937'de \"audiometer\" (odyometre) terimini literatüre kazandıran, odyolojik ölçüm biliminde köklü bir mirasa sahip bir markadır.",
+          answer: "MAICO; Bluetooth'lu, kulak arkası ve kulak içi seçenekleri bulunan işitme cihazı serileriyle öne çıkar. Size uygun seri, işitme testi sonrasında belirlenir.",
         },
         {
-          question: "MAICO hangi gruba bağlı?",
-          answer: "MAICO, 1995 yılından bu yana Oticon ve Bernafon ile aynı çatı olan Demant Grubu'na bağlıdır.",
+          question: "MAICO cihazları için servis veriyor musunuz?",
+          answer: "Evet; sattığımız 18 markanın tamamında olduğu gibi MAICO cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
         },
       ],
     },

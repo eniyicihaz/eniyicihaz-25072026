@@ -31,7 +31,7 @@ export const sgkTrustBar: SgkTrustBarContent = {
       text: "SGK süreçlerinde deneyimli ekip.",
     },
     {
-      title: "Uzman Odyometrist Desteği",
+      title: "Odyometrist Desteği",
       text: "İhtiyacınıza uygun yönlendirme.",
     },
     {

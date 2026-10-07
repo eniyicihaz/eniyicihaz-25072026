@@ -27,7 +27,7 @@ export const ucretsizDanismanlikEvolution: BrandPageTechEvolutionContent = {
     },
     {
       era: "Cihaz Önerisi ve Demo Deneyimi",
-      whatItBrought: "Size uygun cihaz seçenekleri sunulur ve karar öncesinde deneme imkânı sağlanır.",
+      whatItBrought: "Size uygun cihaz seçenekleri sunulur ve karar öncesinde merkezde ücretsiz demo yapılır.",
       bestFor: "Bilinçli karar verme",
       families: ["Demo Deneyimi"],
     },

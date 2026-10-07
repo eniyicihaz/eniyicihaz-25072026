@@ -38,9 +38,9 @@ export const rextonTechnology: BrandPageTechnologyContent = {
       description: "1955'ten bu yana süregelen bir Alman işitme cihazı mühendisliği geleneği.",
     },
     {
-      label: "WSA",
-      title: "WS Audiology Altyapısı",
-      description: "Signia ile aynı global grubun mühendislik altyapısından yararlanır.",
+      label: "SERVİS",
+      title: "Merkezimizde Teknik Servis",
+      description: "Rexton cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #C79712.

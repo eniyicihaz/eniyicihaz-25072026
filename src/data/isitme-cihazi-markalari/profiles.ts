@@ -152,13 +152,13 @@ export const brandProfiles: BrandProfileContent[] = [
     logo: "/images/brands/phonak-logo-seffaf.webp",
     logoAlt: "Phonak logosu",
     lead:
-      "Phonak, İsviçre merkezli Sonova Grubu'na bağlı ve 1947'den beri işitme cihazı üreten, \"Life is on.\" felsefesiyle bilinen bir markadır.",
+      "Phonak, 1947'den beri işitme cihazı üreten, \"Life is on.\" felsefesiyle bilinen İsviçre kökenli bir markadır.",
     paragraphs: [
       "Marka, işitme cihazını yalnızca bir tıbbi cihaz değil, kullanıcının aktif yaşamına kesintisiz bağlı kalmasını sağlayan bir bağlantı aracı olarak konumlandırır. Sitedeki marka verisine göre evrensel Bluetooth desteği (iPhone ve Android) ve konuşma odaklı ses işleme öne çıkan yönleridir.",
       "Ürün yelpazesi Audéo (RIC), Naída (güçlü kayıplar), Sky (çocuk), Bolero (BTE), Virto (kulak içi) ve CROS (tek taraflı işitme kaybı) ailelerinden oluşur.",
     ],
     facts: [
-      { label: "Menşei", value: "İsviçre (Sonova Grubu)" },
+      { label: "Menşei", value: "İsviçre" },
       { label: "Kuruluş", value: "1947" },
       { label: "Marka yaklaşımı", value: "\"Life is on.\" — kesintisiz bağlantı ve aktif yaşam" },
       { label: "Bağlantı", value: "Evrensel Bluetooth (iPhone + Android)" },
@@ -178,13 +178,13 @@ export const brandProfiles: BrandProfileContent[] = [
     logo: "/images/brands/signia-logo-seffaf.webp",
     logoAlt: "Signia logosu",
     lead:
-      "Signia, Almanya kökenli WS Audiology grubuna bağlı; \"Life sounds brilliant.\" felsefesiyle yapay zekâ destekli, kişiye özel konuşma deneyimi sunan bir işitme cihazı markasıdır.",
+      "Signia, \"Life sounds brilliant.\" felsefesiyle yapay zekâ destekli, kişiye özel konuşma deneyimi sunan Almanya kökenli bir işitme cihazı markasıdır.",
     paragraphs: [
       "Marka verisine göre Own Voice Processing (OVP) teknolojisi ve entegre yapay zekâ çipiyle bilinir. Yelpaze, modern RIC tasarımlardan kulak içi ve spor/aktif kullanıma yönelik ailelere kadar uzanır.",
       "Styletto, Pure, Insio, Silk, Active ve Motion ailelerinde bu yaklaşım, kullanıcının yaşam tarzına ve tasarım tercihine göre şekillenir.",
     ],
     facts: [
-      { label: "Menşei", value: "Almanya (WS Audiology Grubu)" },
+      { label: "Menşei", value: "Almanya" },
       { label: "Marka yaklaşımı", value: "\"Life sounds brilliant.\" — yapay zekâ destekli konuşma deneyimi" },
       { label: "Teknoloji", value: "Own Voice Processing (OVP)" },
       { label: "Bağlantı", value: "Entegre yapay zekâ çipi + Bluetooth" },
@@ -209,7 +209,7 @@ export const brandProfiles: BrandProfileContent[] = [
       "Allure, SmartRIC, Moment Sheer, Beyond, Evoke ve Unique ailelerinde yaklaşım, kullanıcının işitme ihtiyacına ve yaşam tarzına göre şekillenir.",
     ],
     facts: [
-      { label: "Menşei", value: "Danimarka (WS Audiology Grubu)" },
+      { label: "Menşei", value: "Danimarka" },
       { label: "Kuruluş", value: "1956" },
       { label: "Marka yaklaşımı", value: "\"Less is more in natural hearing\" — doğal ses deneyimi" },
       { label: "Teknoloji", value: "PureSound™ (ZeroDelay ses işleme)" },
@@ -229,13 +229,13 @@ export const brandProfiles: BrandProfileContent[] = [
     logo: "/images/brands/resound-logo-seffaf.webp",
     logoAlt: "ReSound logosu",
     lead:
-      "ReSound, kökleri 1943'te Danavox adıyla kurulan, bugün Danimarka merkezli GN Grubu'na bağlı ve kablosuz bağlantı teknolojilerinde erken adım atmasıyla tanınan bir işitme cihazı markasıdır.",
+      "ReSound, kökleri 1943'te Danavox adıyla kurulan, Danimarka kökenli ve kablosuz bağlantı teknolojileriyle tanınan bir işitme cihazı markasıdır.",
     paragraphs: [
       "Marka verisine göre kulak kanalı mikrofonu M&RIE ve Auracast (Bluetooth LE Audio) desteği öne çıkar; ReSound Nexia, Auracast yayın sesi desteğini sunan ilk işitme cihazı ailelerinden biri olmuştur. Bağlantı tarafında Smart 3D uygulaması yer alır.",
       "Vivia, Nexia, Omnia, Savi, ENZO Q ve Key ailelerinde yaklaşım, kullanıcının işitme ihtiyacına ve bağlantı beklentisine göre şekillenir.",
     ],
     facts: [
-      { label: "Menşei", value: "Danimarka (GN Grubu)" },
+      { label: "Menşei", value: "Danimarka" },
       { label: "Kuruluş", value: "1943 (Danavox olarak)" },
       { label: "Marka yaklaşımı", value: "Akıllı bağlantı ve doğal mekansal işitme" },
       { label: "Teknoloji", value: "M&RIE (kulak kanalı mikrofonu)" },

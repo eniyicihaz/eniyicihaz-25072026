@@ -13,7 +13,7 @@ export const kontrolRandevusuFinalCta: BrandPageFinalCtaContent = {
     "İşitme durumunuzu ve cihazınızın performansını düzenli aralıklarla birlikte gözden geçirerek, her zaman en iyi durumda kalmanızı sağlıyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Kontrol Randevusu", "İşitme + Cihaz Kontrolü", "Erken Tespit", "Uzman Odyometrist"],
+  trustItems: ["Ücretsiz Kontrol Randevusu", "İşitme + Cihaz Kontrolü", "Erken Tespit", "Odyometrist Desteği"],
   accentColor: "#475569",
   accentColorHover: "#334155",
   accentColorGlow: "rgb(71 85 105 / 0.22)",

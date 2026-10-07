@@ -25,7 +25,7 @@ export const amOverview: AmOverviewContent = {
   intro: "A&M hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "map-pin", label: "Üretim Merkezi", value: "Bengaluru, Hindistan" },
-    { icon: "sparkles", label: "Bağlı Olduğu Grup", value: "WS Audiology (Signia, Widex, Rexton)" },
+    { icon: "sparkles", label: "Teknik Servis", value: "Darıca merkezimizde" },
     { icon: "cpu", label: "Öne Çıkan Seri", value: "XTM (P4 / P6 / P8 / P12 / A4)" },
     { icon: "users", label: "Hedef Kullanıcı", value: "Erişilebilir fiyatta güvenilir teknoloji arayanlar" },
     { icon: "calendar", label: "Konum", value: "Global grup üretim ağının bir parçası" },

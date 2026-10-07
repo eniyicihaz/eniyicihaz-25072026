@@ -44,8 +44,8 @@ export const uzunOmurluCihazlarHero: BrandPageHeroContent = {
     {
       label: "YEDEK PARÇA DESTEĞİ",
       accent: "#065f46",
-      title: "Orijinal Yedek Parça Her Zaman Temin Edilebilir",
-      description: "Yetkili kanaldan alınan cihazlarda orijinal yedek parçalara uzun yıllar erişim sağlanabilir.",
+      title: "Yedek Parça Bulunabilirliği Önemlidir",
+      description: "Yedek parça bulunabilirliği marka, model ve cihazın yaşına göre değişebilir.",
     },
   ],
   image: {
