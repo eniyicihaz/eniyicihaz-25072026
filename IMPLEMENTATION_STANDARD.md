@@ -5,6 +5,8 @@
 > Doküman bilinçli olarak teknoloji bağımsızdır. Hiçbir framework, kütüphane, dil, klasör yapısı, dosya organizasyonu, isimlendirme kuralı veya kod örneği içermez. Bu detaylar başka referanslarda ve projenin mevcut yapısında yaşar; bu doküman yalnızca kalite standardını tanımlar.
 >
 > Bu standart; bir Header, Footer, Hero, Mega Menu, Accordion, Card, Form, Modal, sayfa veya layout — ne üretilirse üretilsin — fark etmeksizin her implementasyona uygulanır.
+>
+> **Belge haritası (2026-10-07, Faz 1):** Kaynak önceliği ve belge mimarisi `MASTER_PLAN.md` §1 ve §6'dadır. İşletme gerçekleri ve coğrafi öncelik `docs/source-of-truth/*` (SoT) dosyalarındadır; COMPANY.md bunların özetidir (§17'deki otorite cümlesi bu sırayla okunur). Strateji belgeleri `docs/strategy/`, teknik belgeler `docs/tech/` altındadır. Bu standardın içeriği değişmedi.
 
 ---
 

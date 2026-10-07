@@ -1,3 +1,5 @@
+> **DURUM: ARŞİVLENECEK** (Faz 1 durum bandı, 2026-10-07). Bu spesifikasyon render edilmeyen veya başka bölümle birleştirilmiş bir bileşeni tarif eder; yeni işler için kaynak olarak kullanılmaz. Bu belgenin aşağıdaki içeriği Faz 1'de **değiştirilmedi**. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
+
 # CATEGORY_EXPLORER_SPECIFICATION.md
 
 > Ana sayfanın "Discovery" (keşif) bölümü — Solution'ın verdiği bilgiden sonra, kullanıcıyı somut cihaz tiplerine yönlendiren durak (`docs/HOMEPAGE_SPECIFICATION.md`'deki "CategoryExplorer" ile aynı yer, index.astro'nun kendi mimari yorumunda "cihazları keşfetme" rolü). **Bu dosya, zaten üretimde olan gerçek içeriği belgeler — yeni kopya/tasarım icat etmez.** Kod içermez.

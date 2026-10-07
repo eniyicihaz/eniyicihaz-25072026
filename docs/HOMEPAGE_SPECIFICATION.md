@@ -1,3 +1,5 @@
+> **DURUM: GÜNCELLEME BEKLİYOR** (Faz 1 durum bandı, 2026-10-07). Bu spesifikasyon, ilgili bölüm uygulama fazında Faz 2 sayfa ve hero audit'inden (`docs/tech/TEMPLATES.md` §6) geçtikten sonra güncellenecektir. İçindeki işletme bilgileri, marka ifadeleri ve iddialar SoT ile doğrulanmadan kullanılmaz. Bu belgenin aşağıdaki içeriği Faz 1'de **değiştirilmedi**. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
+
 # HOMEPAGE_SPECIFICATION.md
 
 > Ana sayfanın hikâyesi, psikolojik yolculuğu ve bölüm mimarisi. Bu belge sayfaya özel bir **uygulama spesifikasyonudur** — anayasal referansların (COMPANY, PRINCIPLES, DESIGN_SYSTEM_GUIDE, SEARCH_STRATEGY, IMPLEMENTATION_STANDARD, QUALITY_GATES) yerine geçmez, onları ana sayfaya uygular.

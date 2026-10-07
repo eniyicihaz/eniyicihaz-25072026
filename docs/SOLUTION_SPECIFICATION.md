@@ -1,3 +1,5 @@
+> **DURUM: ARŞİVLENECEK** (Faz 1 durum bandı, 2026-10-07). Bu spesifikasyon render edilmeyen veya başka bölümle birleştirilmiş bir bileşeni tarif eder; yeni işler için kaynak olarak kullanılmaz. Bu belgenin aşağıdaki içeriği Faz 1'de **değiştirilmedi**. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
+
 # SOLUTION_SPECIFICATION.md
 
 > Ana sayfanın dördüncü bölümü (Hero, Empathy, Sound Room'dan sonra) — Sound Room'un deneyimini anlamlandıran, sakin bir "rest" durağı (`docs/HOMEPAGE_SPECIFICATION.md`'deki "Solution" ile aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.

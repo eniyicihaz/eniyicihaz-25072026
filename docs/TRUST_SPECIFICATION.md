@@ -1,3 +1,5 @@
+> **DURUM: GÜNCELLEME BEKLİYOR** (Faz 1 durum bandı, 2026-10-07). Bu spesifikasyon, ilgili bölüm uygulama fazında Faz 2 sayfa ve hero audit'inden (`docs/tech/TEMPLATES.md` §6) geçtikten sonra güncellenecektir. İçindeki işletme bilgileri, marka ifadeleri ve iddialar SoT ile doğrulanmadan kullanılmaz. Bu belgenin aşağıdaki içeriği Faz 1'de **değiştirilmedi**. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
+
 # TRUST_SPECIFICATION.md
 
 > Ana sayfanın Güven bölümü — Guide'ın verdiği süreç güveninden sonra, sağlayıcının kendisine dair son soruyu cevaplayan sessiz durak (`docs/HOMEPAGE_SPECIFICATION.md` "Güven" bölümüyle aynı yer). Doküman Astro geliştirmesinde doğrudan kullanılacak; kod içermez, yalnızca Art Direction ve spesifikasyon tanımlar.

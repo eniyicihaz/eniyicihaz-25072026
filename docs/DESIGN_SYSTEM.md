@@ -1,3 +1,5 @@
+> **DURUM: ARŞİVLENECEK / GÜNCELLEME BEKLİYOR** (Faz 1 durum bandı, 2026-10-07). Başlıktaki eski proje adı marka adı olarak kullanılmaz; tek marka Avrasya İşitme Cihazları'dır (BRAND_SOT §1). Teknik içerik ileride `docs/tech/` mimarisine eşlenecektir. Bu belgenin aşağıdaki içeriği Faz 1'de **değiştirilmedi**. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
+
 # En İyi Cihaz - Design System
 
 > Son Güncelleme: 2026-09 (kapsam notu ve token değerleri gerçek koda göre senkronize edildi)

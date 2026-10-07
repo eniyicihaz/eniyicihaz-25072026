@@ -1,3 +1,5 @@
+> **DURUM: ARŞİVLENECEK — TARİHSEL REFERANS** (Faz 1 durum bandı, 2026-10-07). Tamamlanmış tek seferlik bir uygulama brifidir; yeni işler için kaynak olarak kullanılmaz. Bu belgenin aşağıdaki içeriği Faz 1'de **değiştirilmedi**. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
+
 # HEADER IMPLEMENTATION
 
 > **Durum notu (2026-09-26 — TAMAMLANMIŞ GÖREV / TARİHSEL REFERANS):** Bu doküman, Header component'i için hazırlanmış tek seferlik, tek component'e özel bir uygulama brifidir — dosya adı genel görünse de kapsamı yalnızca Header'dır. Header component'i üretime alınmış olduğundan, bu doküman artık **aktif, bağlayıcı bir kural kaynağı değildir**; yeni geliştirme kararları için Canonical Source: DESIGN_SYSTEM_GUIDE.md (görsel/yapı), IMPLEMENTATION_STANDARD.md (implementasyon kalitesi), QUALITY_GATES.md (yayın kriterleri). Bu dosya, o dönemki uygulama kararlarının tarihsel kaydı olarak silinmeden korunmaktadır.
