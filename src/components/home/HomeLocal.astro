@@ -1,110 +1,136 @@
 ---
-// HomeLocal — homepage block 8: Trust + CenterGallery + ServiceNetwork +
-// SGK teaser merged into ONE local/entity section, Darıca first. Left: the
-// real center photos (same four /images/pages/hakkimizda-*.webp used on
-// /hakkimizda and /darica-isitme-cihazlari — no new image). Right: who we
-// are (Trust's three verified facts as a compact strip), then COMPANY.md
-// §17's hierarchy as a ladder — Darıca (primary) → Gebze + Çayırova →
-// Kocaeli (regional) → Dilovası/Tuzla/Pendik as plain helper text — and a
-// compact SGK info box (not a separate section). The four landing pages
-// each get a visible, arrowed link.
-import { MapPin, Navigation, ArrowRight, ShieldCheck } from "lucide-astro";
+// HomeLocal — ana sayfanın 2. bölümü: "Merkezimiz ve Ulaşım" (Faz 2 P2,
+// onay V1). Önceki sürümdeki güven pill'leri ("Uzman kadro" vb.), bölge
+// merdiveni ve SGK kutusu buradan çıkarıldı; güven bilgileri HomeTrust'ta,
+// SGK hizmet akışında. Bu bölüm yalnızca ziyareti planlamak için gereken
+// doğrulanmış bilgiyi verir: gerçek fotoğraflar, adres, tarif, erişim,
+// randevusuz ziyaret, çalışma saatleri, otopark, harita ve yol tarifi.
+// Gebze ve Çayırova yalnızca kısa destek satırı.
+import { MapPin, Navigation, Clock, Car, ArrowRight } from "lucide-astro";
 import HomeBlockHeader from "./HomeBlockHeader.astro";
-import { homeCenterGallery } from "../../data/home/center-gallery";
-import { serviceNetwork } from "../service-network/ServiceNetwork/service-network.data";
-import { trust } from "../trust/Trust/trust.data";
-
-const gallery = homeCenterGallery;
+import ConsentEmbed from "../consent/ConsentEmbed/ConsentEmbed.astro";
+import { homeCenterGallery as data } from "../../data/home/center-gallery";
+import { company } from "../footer/Footer/data/company";
 ---
 
-<section class="home-local" aria-labelledby="home-local-title">
+<section class="home-local" aria-labelledby="home-local-title" data-track-location="home_local">
   <div class="home-local__inner">
     <div class="home-local__photos">
       <div class="home-local__feature">
         <img
           class="home-local__feature-img"
-          src={gallery.featureImage.src}
-          alt={gallery.featureImage.alt}
+          src={data.featureImage.src}
+          alt={data.featureImage.alt}
+          width={data.featureImage.width}
+          height={data.featureImage.height}
           loading="lazy"
+          decoding="async"
         />
         <div class="home-local__location">
           <img
             class="home-local__location-img"
-            src={gallery.locationImage.src}
-            alt={gallery.locationImage.alt}
+            src={data.locationImage.src}
+            alt={data.locationImage.alt}
+            width={data.locationImage.width}
+            height={data.locationImage.height}
             loading="lazy"
+            decoding="async"
           />
-          <p class="home-local__location-caption">{gallery.locationCaption}</p>
+          <p class="home-local__location-caption">{data.locationCaption}</p>
         </div>
       </div>
       <div class="home-local__support">
-        <img class="home-local__support-img" src={gallery.supportImages[0].src} alt={gallery.supportImages[0].alt} loading="lazy" />
-        <img class="home-local__support-img" src={gallery.supportImages[1].src} alt={gallery.supportImages[1].alt} loading="lazy" />
+        {data.supportImages.map((image) => (
+          <img
+            class="home-local__support-img"
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
       </div>
     </div>
 
     <div class="home-local__content">
-      <HomeBlockHeader
-        id="home-local-title"
-        eyebrow="Merkezimiz"
-        heading="Darıca'daki Gerçek Merkezimiz"
-        intro={gallery.paragraphs[0]}
-      />
+      <HomeBlockHeader id="home-local-title" eyebrow={data.eyebrow} heading={data.heading} intro={data.intro} />
 
-      <ul class="home-local__facts">
-        {trust.facts.map((fact) => <li>{fact.title}</li>)}
-      </ul>
+      <div class="home-local__address">
+        <MapPin size={20} stroke-width={1.75} aria-hidden="true" class="home-local__icon" />
+        <address>{company.address}</address>
+      </div>
 
-      <div class="home-local__ladder">
-        <a class="home-local__primary" href={serviceNetwork.primary.href}>
-          <span class="home-local__primary-icon" aria-hidden="true">
-            <MapPin size={22} stroke-width={1.75} />
-          </span>
-          <span class="home-local__primary-body">
-            <span class="home-local__primary-name">{serviceNetwork.primary.name}</span>
-            <span class="home-local__primary-desc">{serviceNetwork.primary.description}</span>
-          </span>
-          <span class="home-local__arrow home-local__arrow--light" aria-hidden="true">
-            <ArrowRight size={20} stroke-width={2} />
-          </span>
-        </a>
+      <dl class="home-local__facts">
+        {data.facts.map((fact) => (
+          <div class="home-local__fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.text}</dd>
+          </div>
+        ))}
+      </dl>
 
-        <div class="home-local__row">
-          {
-            serviceNetwork.priority.map((region) => (
-              <a class="home-local__region" href={region.href}>
-                <Navigation size={16} stroke-width={2} aria-hidden="true" />
-                <span class="home-local__region-name">{region.name}</span>
-                <span class="home-local__arrow" aria-hidden="true">
-                  <ArrowRight size={16} stroke-width={2} />
-                </span>
-              </a>
-            ))
-          }
-          <a class="home-local__region" href={serviceNetwork.regional.href}>
-            <span class="home-local__region-name">{serviceNetwork.regional.name}</span>
-            <span class="home-local__region-note">bölge geneli</span>
-            <span class="home-local__arrow" aria-hidden="true">
-              <ArrowRight size={16} stroke-width={2} />
-            </span>
-          </a>
+      <div class="home-local__meta">
+        <div class="home-local__hours">
+          <p class="home-local__meta-title">
+            <Clock size={18} stroke-width={1.75} aria-hidden="true" class="home-local__icon" />
+            Çalışma Saatleri
+          </p>
+          <dl>
+            {company.hours.map((entry) => (
+              <div class="home-local__hours-row">
+                <dt>{entry.days}</dt>
+                <dd>{entry.time}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
-
-        <p class="home-local__helper">
-          {serviceNetwork.secondarySentence}
+        <p class="home-local__parking">
+          <Car size={18} stroke-width={1.75} aria-hidden="true" class="home-local__icon" />
+          {data.parking}
         </p>
       </div>
 
-      <a class="home-local__sgk" href="/sgk-isitme-cihazi-odemesi/">
-        <span class="home-local__sgk-icon" aria-hidden="true">
-          <ShieldCheck size={20} stroke-width={1.75} />
-        </span>
-        <span class="home-local__sgk-body">
-          <span class="home-local__sgk-title">SGK anlaşmalı merkez</span>
-          <span class="home-local__sgk-link">SGK işitme cihazı desteği hakkında bilgi alın →</span>
-        </span>
-      </a>
+      <div class="home-local__actions">
+        <a class="home-local__btn" href={company.directionsHref}>
+          <Navigation size={20} stroke-width={2} aria-hidden="true" />
+          <span>Yol Tarifi Al</span>
+        </a>
+        <a class="home-local__hub" href={data.hubLink.href}>
+          <span>{data.hubLink.label}</span>
+          <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+        </a>
+      </div>
+
+      <p class="home-local__regions">
+        {data.regions.text}{" "}
+        {data.regions.links.map((link, i) => (
+          <>
+            {i > 0 && " · "}
+            <a href={link.href}>{link.label}</a>
+          </>
+        ))}
+      </p>
     </div>
+  </div>
+
+  <div class="home-local__map">
+    <ConsentEmbed
+      provider="Google Maps"
+      title="Darıca merkezimizin konum haritası"
+      loadLabel="Haritayı yükle"
+      directLabel="Google Haritalar’da aç"
+      directHref={company.directionsHref}
+    >
+      <iframe
+        class="home-local__map-frame"
+        src={company.mapEmbedSrc}
+        title="Avrasya İşitme Cihazları — Darıca konum haritası"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </ConsentEmbed>
   </div>
 </section>
 
@@ -112,21 +138,24 @@ const gallery = homeCenterGallery;
   .home-local {
     background: var(--color-background);
     color: var(--color-text);
-    padding-block: var(--space-12);
+    padding-block: var(--space-16);
   }
 
-  .home-local__inner {
+  .home-local__inner,
+  .home-local__map {
     max-width: var(--container-2xl);
     margin-inline: auto;
     padding-inline: var(--space-6);
-    display: grid;
-    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
-    gap: var(--space-12);
-    align-items: center;
   }
 
-  /* --- Real photos: one feature + two support + a floating location card --- */
+  .home-local__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
 
+  /* --- Real photos --- */
   .home-local__photos {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
@@ -148,7 +177,7 @@ const gallery = homeCenterGallery;
   }
 
   .home-local__feature-img {
-    min-height: 420px;
+    aspect-ratio: 1214 / 1295;
   }
 
   .home-local__support {
@@ -181,206 +210,173 @@ const gallery = homeCenterGallery;
 
   .home-local__location-caption {
     margin: 0;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
     line-height: 1.35;
-    color: var(--color-text);
   }
 
   /* --- Content --- */
-
   .home-local__content {
     min-width: 0;
   }
 
-  .home-local__facts {
-    list-style: none;
-    margin: var(--space-5) 0 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .home-local__facts li {
-    padding: var(--space-1) var(--space-3);
-    border-radius: var(--radius-full);
-    background: rgb(37 99 235 / 0.08);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-primary);
-  }
-
-  .home-local__ladder {
-    margin-top: var(--space-6);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .home-local__primary {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    padding: var(--space-5);
-    border-radius: var(--radius-2xl);
-    background: var(--color-primary);
-    color: var(--color-text-inverse);
-    text-decoration: none;
-    box-shadow: var(--shadow-lg);
-    transition: transform var(--transition-base);
-  }
-
-  .home-local__primary:hover {
-    transform: translateY(-2px);
-  }
-
-  .home-local__primary-icon {
-    display: grid;
-    place-items: center;
+  .home-local__icon {
     flex: none;
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius-lg);
-    background: rgb(255 255 255 / 0.15);
-  }
-
-  .home-local__primary-body {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .home-local__primary-name {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
-  }
-
-  .home-local__primary-desc {
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-relaxed);
-    color: #ffffff;
-  }
-
-  .home-local__row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-3);
-  }
-
-  .home-local__region {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-4);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-background);
     color: var(--color-primary);
-    text-decoration: none;
-    transition: border-color var(--transition-base), box-shadow var(--transition-base);
   }
 
-  .home-local__region:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .home-local__region-name {
+  .home-local__address {
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+    margin-top: var(--space-6);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
+    line-height: var(--line-height-relaxed);
   }
 
-  .home-local__region-note {
-    font-size: var(--font-size-xs);
+  .home-local__address address {
+    font-style: normal;
+  }
+
+  .home-local__facts {
+    margin: var(--space-4) 0 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .home-local__fact {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .home-local__fact dt {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
     color: var(--color-text-muted);
   }
 
-  .home-local__arrow {
+  .home-local__fact dd {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .home-local__meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .home-local__meta-title,
+  .home-local__parking {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .home-local__hours dl {
+    margin: var(--space-2) 0 0;
+  }
+
+  .home-local__hours-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .home-local__hours-row dd {
+    margin: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .home-local__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .home-local__btn {
     display: inline-flex;
-    margin-left: auto;
-    transition: transform var(--transition-base);
-  }
-
-  .home-local__arrow--light {
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 56px;
+    padding-inline: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: var(--color-primary);
     color: var(--color-text-inverse);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
   }
 
-  a:hover > .home-local__arrow,
-  a:focus-visible > .home-local__arrow {
-    transform: translateX(4px);
+  .home-local__btn:hover {
+    background: var(--color-primary-hover);
   }
 
-  .home-local__primary:focus-visible,
-  .home-local__region:focus-visible,
-  .home-local__sgk:focus-visible {
+  .home-local__hub {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .home-local__btn:focus-visible,
+  .home-local__hub:focus-visible,
+  .home-local__regions a:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
   }
 
-  .home-local__helper {
-    margin: 0;
-    padding-inline: var(--space-1);
+  .home-local__regions {
+    margin: var(--space-5) 0 0;
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
   }
 
-  /* SGK: a compact info box, not a section. */
-  .home-local__sgk {
-    margin-top: var(--space-5);
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-4);
-    border: 1px solid rgb(37 99 235 / 0.3);
-    border-radius: var(--radius-lg);
-    background: rgb(37 99 235 / 0.05);
-    text-decoration: none;
-  }
-
-  .home-local__sgk-icon {
-    display: grid;
-    place-items: center;
-    flex: none;
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-md);
-    background: rgb(37 99 235 / 0.12);
+  .home-local__regions a {
+    display: inline-block;
+    padding-block: var(--space-2);
     color: var(--color-primary);
-  }
-
-  .home-local__sgk-body {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .home-local__sgk-title {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text);
-  }
-
-  .home-local__sgk-link {
-    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-primary);
   }
 
-  .home-local__sgk:hover .home-local__sgk-link {
-    text-decoration: underline;
+  .home-local__map {
+    margin-top: var(--space-10);
+  }
+
+  .home-local__map-frame {
+    display: block;
+    width: 100%;
+    height: 360px;
+    border: 0;
+    border-radius: var(--radius-2xl);
   }
 
   @media (max-width: 1023px) {
     .home-local__inner {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--space-8);
-    }
-
-    .home-local__feature-img {
-      min-height: 320px;
     }
   }
 
@@ -389,27 +385,26 @@ const gallery = homeCenterGallery;
       padding-block: var(--space-12);
     }
 
-    .home-local__inner {
+    .home-local__inner,
+    .home-local__map {
       padding-inline: var(--space-4);
     }
 
-    .home-local__feature-img {
-      min-height: 240px;
-    }
-
-    .home-local__row {
+    .home-local__meta {
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .home-local__primary {
-      padding: var(--space-4);
+    .home-local__fact {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-1);
     }
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-    .home-local__primary:hover,
-    a:hover > .home-local__arrow {
-      transform: none;
+    .home-local__btn {
+      width: 100%;
+    }
+
+    .home-local__map-frame {
+      height: 280px;
     }
   }
 </style>

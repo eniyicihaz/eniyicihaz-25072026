@@ -12,38 +12,28 @@ export const homepageFaq: HomepageFaqContent = {
     {
       question: "İşitme testi gerçekten ücretsiz mi?",
       answer: "Evet, ilk değerlendirme herhangi bir ücret veya taahhüt içermez.",
-      href: "/degerlendirme/ucretsiz-isitme-testi/",
-      linkLabel: "Ücretsiz işitme testi hakkında",
     },
     {
       question: "SGK işitme cihazı masraflarını karşılıyor mu?",
       answer: "SGK anlaşmalı bir merkez olarak, kapsam ve katkı payı sürecinde size rehberlik ediyoruz; detaylar kişiye göre değişir.",
-      href: "/sgk-isitme-cihazi-odemesi/",
-      linkLabel: "SGK süreci hakkında",
     },
     {
       question: "Cihazı satın almadan önce deneyebilir miyim?",
-      answer: "Merkezimizde yaklaşık 20 dakikalık ücretsiz demoyla deneyebilirsiniz; günlük hayatta denemek için cihazı satın alarak 7 güne kadar kullanabilir, uygun bulmazsanız kesintisiz ücret iadesi alabilirsiniz. Kulak içi cihazlar 7 günlük denemeye dahil değildir.",
-      href: "/uygulama-ayar/cihaz-deneme/",
-      linkLabel: "Cihaz deneme hakkında",
+      answer: "Merkezimizde yaklaşık 20 dakikalık ücretsiz demoyla deneyebilirsiniz; günlük hayatta denemek için cihazı satın alarak 7 güne kadar kullanabilirsiniz; uygun bulmazsanız ödediğiniz tutarın tamamı iade edilir. Kulak içi cihazlar 7 günlük denemeye dahil değildir.",
     },
     {
       question: "Randevu almak için ne yapmalıyım?",
-      answer: "Telefon, WhatsApp veya iletişim formuyla bizimle iletişime geçmeniz yeterli.",
+      answer: "Bizi telefonla arayabilir veya WhatsApp'tan yazabilirsiniz. Randevusuz da gelebilirsiniz; işitme testi ve cihaz ayarı gibi hizmetler randevuyla verildiği için önceden aramanızı öneririz.",
       href: "/iletisim/",
       linkLabel: "İletişim bilgilerimiz",
     },
     {
       question: "Gebze veya Çayırova'dan merkeze nasıl ulaşırım?",
-      answer: "Merkezimiz Darıca'da; Gebze ve Çayırova'dan kolayca ulaşabilirsiniz.",
-      href: "/iletisim/",
-      linkLabel: "Konum ve yol tarifi",
+      answer: "Merkezimiz Darıca'dadır. Gebze'den 502, 440, 510 ve 515; Çayırova'dan 550 numaralı otobüs hatlarıyla gelebilirsiniz. Hat bilgileri değişebilir.",
     },
     {
       question: "Çocuklar için de işitme cihazı seçeneğiniz var mı?",
       answer: "Evet, çocuklara özel tasarlanmış cihaz seçenekleri sunuyoruz.",
-      href: "/isitme-cihazlari/cocuklara-ozel/",
-      linkLabel: "Çocuklara özel cihazlar",
     },
     {
       question: "Cihazım arızalanırsa ne yapmalıyım?",

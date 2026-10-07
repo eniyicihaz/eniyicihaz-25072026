@@ -1,92 +1,70 @@
 ---
-// HomeExplore — homepage block 4: CategoryExplorer + DeviceComparison merged
-// into ONE "keşfedin ve karşılaştırın" section. One table does both jobs:
-// each column header is the device type (image slot + name, linking to its
-// real /isitme-cihazlari/* page), and the last row repeats the link as an
-// explicit "İnceleyin" so the detail pages stay obvious. Trimmed to the 5
-// criteria that matter (was 7 rows + a separate 7-card rail). Same locked
-// data as DeviceComparison (device-comparison.data.ts) — never a new claim.
-// Real <table>; the horizontal scroll container sits OUTSIDE it so the
-// criterion column can stay sticky on small screens.
-import ImagePlaceholder from "../shared/ImagePlaceholder/ImagePlaceholder.astro";
+// HomeExplore — ana sayfanın 5. bölümü: "İşitme Cihazları ve Markalar" kısa
+// özeti (Faz 2 P2, onay V1). Önceki sürümdeki karşılaştırma tablosu ve
+// ayrı HomeShowroom model vitrini ana sayfadan kaldırıldı; ayrıntılı
+// karşılaştırma ve seçim kriterleri kendi pillar sayfalarında kalır.
+// Burada: cihaz türü başına tek kart (tek link) + 18 markanın logo şeridi
+// (Brands, embedded) + iki hub linki. Kart metinleri mevcut kilitli
+// category-explorer verisinden; yeni iddia yok.
+import { ArrowRight } from "lucide-astro";
 import HomeBlockHeader from "./HomeBlockHeader.astro";
-import { deviceComparison } from "../device-comparison/DeviceComparison/device-comparison.data";
+import Brands from "../brands/Brands/Brands.astro";
 import { categoryExplorer } from "../../data/category-explorer/category-explorer.data";
-
-const KEEP = ["Öne çıkan yön", "Görünürlük", "Güç aralığı", "Şarj / pil", "Kablosuz bağlantı"];
-const rows = deviceComparison.rows.filter((row) => KEEP.includes(row.criterion));
 ---
 
 <section class="home-explore" aria-labelledby="home-explore-title">
   <div class="home-explore__inner">
     <HomeBlockHeader
       id="home-explore-title"
-      eyebrow="İşitme Cihazı Çeşitleri"
-      heading="İşitme Cihazlarını Keşfedin ve Karşılaştırın"
+      eyebrow="İşitme Cihazları ve Markalar"
+      heading="İşitme Cihazı Türleri ve 18 Marka"
       intro={categoryExplorer.intro}
     />
 
-    <div class="home-explore__scroll" tabindex="0" role="region" aria-label="İşitme cihazı tipleri karşılaştırma tablosu — yatay kaydırılabilir">
-      <table class="home-explore__table">
-        <caption class="sr-only">İşitme cihazı tiplerinin özellik karşılaştırması</caption>
-        <thead>
-          <tr>
-            <th scope="col" class="home-explore__corner"><span class="sr-only">Özellik</span></th>
-            {deviceComparison.columns.map((col) => (
-              <th scope="col" class="home-explore__col-head">
-                <a href={col.href} class="home-explore__col-link">
-                  {col.image ? (
-                    <img
-                      class="home-explore__col-image"
-                      src={col.image.src}
-                      width={col.image.width}
-                      height={col.image.height}
-                      alt={col.imageAlt}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <ImagePlaceholder alt={col.imageAlt} ratio="1/1" />
-                  )}
-                  <span class="home-explore__col-name">{col.name}</span>
-                </a>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr>
-              <th scope="row" class="home-explore__row-head">{row.criterion}</th>
-              {row.values.map((value) => (
-                <td class="home-explore__cell">{value}</td>
-              ))}
-            </tr>
-          ))}
-          <tr>
-            <th scope="row" class="home-explore__row-head">Detay</th>
-            {deviceComparison.columns.map((col) => (
-              <td class="home-explore__cell">
-                <a class="home-explore__more" href={col.href}>İnceleyin →</a>
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+    <ul class="home-explore__grid">
+      {
+        categoryExplorer.items.map((item) => {
+          const Icon = item.icon;
+          return (
+            <li>
+              <a class="home-explore__card" href={item.href}>
+                <span class="home-explore__icon" aria-hidden="true">
+                  <Icon size={20} stroke-width={1.75} />
+                </span>
+                <span class="home-explore__name">{item.name}</span>
+                <span class="home-explore__desc">{item.description}</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <p class="home-explore__brands-lead">
+      Tek bir markaya bağlı değiliz; 18 marka satıyor ve tamamında teknik servis veriyoruz.
+    </p>
+    <div class="home-explore__brands">
+      <Brands embedded />
     </div>
 
     <p class="home-explore__footer">
-      <span>{deviceComparison.closing}</span>
-      <a class="home-explore__hub" href={categoryExplorer.hubCta.href}>{categoryExplorer.hubCta.label} →</a>
+      <a class="home-explore__hub" href={categoryExplorer.hubCta.href}>
+        <span>{categoryExplorer.hubCta.label}</span>
+        <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+      </a>
+      <a class="home-explore__hub" href="/markalar/">
+        <span>Tüm markaları inceleyin</span>
+        <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+      </a>
     </p>
   </div>
 </section>
 
 <style>
   .home-explore {
-    background: var(--color-surface);
+    background: var(--color-background);
     color: var(--color-text);
-    padding-block: var(--space-12);
+    padding-block: var(--space-16);
   }
 
   .home-explore__inner {
@@ -95,151 +73,95 @@ const rows = deviceComparison.rows.filter((row) => KEEP.includes(row.criterion))
     padding-inline: var(--space-6);
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
+  .home-explore__grid {
+    list-style: none;
+    margin: var(--space-8) 0 0;
     padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
   }
 
-  /* The scroll container (border + radius) is the ONLY overflow ancestor of
-     the table — the <table> itself never sets overflow, or the sticky first
-     column would pin to the table instead of the scroller. */
-  .home-explore__scroll {
-    margin-top: var(--space-8);
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    background: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-  }
-
-  .home-explore__scroll:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-  }
-
-  .home-explore__table {
-    width: 100%;
-    min-width: 900px;
-    border-collapse: separate;
-    border-spacing: 0;
-  }
-
-  .home-explore__corner,
-  .home-explore__row-head {
-    position: sticky;
-    left: 0;
-    z-index: 1;
-    background: var(--color-background);
-    border-right: 1px solid var(--color-border);
-  }
-
-  .home-explore__corner {
-    z-index: 2;
-  }
-
-  .home-explore__col-head {
-    min-width: 128px;
-    padding: var(--space-3);
-    border-bottom: 1px solid var(--color-border);
-    border-left: 1px solid var(--color-border);
-    vertical-align: top;
-  }
-
-  .home-explore__col-link {
+  .home-explore__card {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: var(--space-2);
-    text-decoration: none;
-  }
-
-  .home-explore__col-image,
-  .home-explore__col-link :global(.image-placeholder) {
-    display: block;
-    width: 76px;
-    height: 76px;
-    padding: 0;
-    object-fit: contain;
-    border-radius: var(--radius-lg);
-    background: #fff;
-  }
-
-  .home-explore__col-name {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
+    height: 100%;
+    min-height: 48px;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
     color: var(--color-text);
-    text-align: center;
+    text-decoration: none;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
   }
 
-  .home-explore__col-link:hover .home-explore__col-name {
-    color: var(--color-primary);
-    text-decoration: underline;
+  .home-explore__card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
   }
 
-  .home-explore__col-link:focus-visible,
-  .home-explore__more:focus-visible,
+  .home-explore__card:focus-visible,
   .home-explore__hub:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
-    border-radius: var(--radius-sm);
   }
 
-  .home-explore__row-head {
-    padding: var(--space-3) var(--space-4);
-    border-top: 1px solid var(--color-border);
-    font-size: var(--font-size-sm);
+  .home-explore__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.08);
+    color: var(--color-primary);
+  }
+
+  .home-explore__name {
+    font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
-    text-align: left;
-    white-space: nowrap;
   }
 
-  .home-explore__cell {
-    padding: var(--space-3);
-    border-top: 1px solid var(--color-border);
-    border-left: 1px solid var(--color-border);
-    font-size: var(--font-size-sm);
+  .home-explore__desc {
+    font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
-    text-align: center;
   }
 
-  .home-explore__more {
+  .home-explore__brands-lead {
+    margin: var(--space-10) 0 0;
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-primary);
-    text-decoration: none;
-    white-space: nowrap;
   }
 
-  .home-explore__more:hover {
-    text-decoration: underline;
+  .home-explore__brands {
+    margin-top: var(--space-4);
   }
 
   .home-explore__footer {
-    margin: var(--space-5) 0 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: var(--space-3) var(--space-6);
-    font-size: var(--font-size-md);
-    color: var(--color-text-muted);
+    gap: var(--space-6);
+    margin: var(--space-6) 0 0;
   }
 
   .home-explore__hub {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
-  .home-explore__hub:hover {
-    text-decoration: underline;
+  @media (max-width: 1023px) {
+    .home-explore__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 640px) {
@@ -251,8 +173,13 @@ const rows = deviceComparison.rows.filter((row) => KEEP.includes(row.criterion))
       padding-inline: var(--space-4);
     }
 
-    .home-explore__table {
-      min-width: 760px;
+    .home-explore__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+
+    .home-explore__card {
+      padding: var(--space-4);
     }
   }
 </style>
