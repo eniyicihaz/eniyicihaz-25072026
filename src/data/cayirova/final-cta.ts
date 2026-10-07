@@ -6,15 +6,15 @@ import type { BrandPageFinalCtaContent } from "../../components/brand-page/Brand
 
 export const cayirovaFinalCta: BrandPageFinalCtaContent = {
   badge: "HEMEN BAŞLAYALIM",
-  heading: "Çayırova'da İşitme Cihazı Arıyorsanız Bugün Başlayın",
-  description: "İhtiyacınızı dinleyelim, size uygun işitme cihazı seçeneklerini ve SGK sürecini birlikte değerlendirelim.",
-  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },
+  heading: "Çayırova'dan Randevunuzu Planlayalım",
+  description: "Darıca'daki merkezimize gelmek ya da evde hizmet almak için bizi arayın veya WhatsApp'tan yazın.",
+  ctaPrimary: { label: "Arayıp Randevu Alın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: [
-    "SGK Anlaşmalı Hizmet",
-    "18 Marka Seçeneği",
-    "Ücretsiz İlk Değerlendirme",
-    "Cihaz Deneme İmkânı",
+    "Merkezimiz Darıca'da",
+    "Çayırova'dan Hat 550",
+    "Evde Hizmet Çayırova'yı Kapsar",
+    "Ücretsiz İşitme Testi",
   ],
   accentColor: "#2563eb",
   accentColorHover: "#1d4ed8",

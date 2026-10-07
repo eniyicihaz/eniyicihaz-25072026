@@ -1,34 +1,35 @@
-// Hizmet Bölgemiz — ContactServiceArea üzerinden render edilir. Kocaeli,
-// ayrı bir tier item olarak değil (Darıca zaten Kocaeli içinde, peer
-// göstermek yanıltıcı olurdu), kapanış cümlesinde geniş bölgesel bağlam
-// olarak geçiyor.
+// Hizmet Bölgemiz — ContactServiceArea üzerinden render edilir (P1-B).
+// Kurumsal bakış: tek fiziksel merkez + evde hizmet alanı. İletişim
+// sayfasındaki hat bazlı ulaşım listesi burada tekrarlanmıyor. Kaynak:
+// BUSINESS_SOT (Darıca merkezi Ağustos 2024), LOCAL_SOURCE_OF_TRUTH §3.
 import type { ContactServiceAreaContent } from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
 
 export const hakkimizdaServiceArea: ContactServiceAreaContent = {
   eyebrow: "HİZMET BÖLGEMİZ",
-  heading: "Darıca Merkezli, Çevresine Yakın Hizmet",
-  intro: "Merkezimiz Darıca'da; Gebze ve Çayırova'dan gelen danışanlarımıza da hizmet veriyoruz.",
+  heading: "Bir Merkez, Daha Geniş Bir Hizmet Alanı",
+  intro: "Ağustos 2024'ten bu yana tek fiziksel merkezimiz Darıca'da. Merkeze gelemeyen danışanlarımız için evde hizmet alanımız ise daha geniş.",
   tierLabels: {
-    merkez: "Merkez",
-    oncelikli: "Öncelikli Hizmet Bölgeleri",
+    merkez: "Fiziksel Merkez",
+    oncelikli: "Evde Hizmet Bölgesi",
     cevre: "Çevre İlçeler",
   },
   items: [
     {
       name: "Darıca",
       tier: "merkez",
-      description: "Merkezimiz Darıca'dadır; adres ve yol tarifi için yukarıdaki konum kartını inceleyebilirsiniz.",
+      description: "Testten teknik servise kadar tüm hizmetlerimizi verdiğimiz merkezimiz.",
+      href: "/darica-isitme-cihazlari/",
     },
     {
-      name: "Gebze",
+      name: "Kocaeli'nin tüm ilçeleri",
       tier: "oncelikli",
-      description: "Gebze'den randevu alarak merkezimize kolayca ulaşabilirsiniz.",
+      description: "Evde işitme cihazı hizmeti veriyoruz.",
     },
     {
-      name: "Çayırova",
+      name: "İstanbul Anadolu Yakası",
       tier: "oncelikli",
-      description: "Çayırova'dan da randevu alarak merkezimize ulaşabilirsiniz.",
+      description: "Tüm ilçelerde evde işitme cihazı hizmeti veriyoruz.",
     },
   ],
-  closing: "Kocaeli genelinde farklı bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",
+  closing: "Bölgelere göre toplu taşıma hatlarını İletişim sayfamızda bulabilirsiniz.",
 };

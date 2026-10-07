@@ -13,7 +13,7 @@ export const cayirovaLocation: ContactLocationCardContent = {
   eyebrow: "ÇAYIROVA'DAN ULAŞIM",
   heading: "Merkezimize Nasıl Ulaşabilirsiniz?",
   intro:
-    "Çayırova'dan gelen danışanlarımızı Darıca'daki merkezimizde ağırlıyor, değerlendirmeden cihaz uygulamasına kadar tüm süreçte yanlarında oluyoruz. Adres ve yol tarifi aşağıdadır.",
+    "Çayırova'dan gelirken adresimizi ve yol tarifini buradan alabilirsiniz; merkezimiz Darıca'dadır.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",

@@ -15,7 +15,7 @@ export const daricaFaq: BrandPageFaqContent = {
       "Darıca'da SGK anlaşmalı merkez",
       "Ücretsiz işitme değerlendirmesi",
       "18 marka seçeneği",
-      "Gebze, Çayırova'dan kolay ulaşım",
+      "Randevusuz ziyaret kabul edilir",
     ],
     ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
@@ -47,15 +47,23 @@ export const daricaFaq: BrandPageFaqContent = {
       ],
     },
     {
-      label: "Bölgemizden Ulaşım",
+      label: "Merkeze Ulaşım",
       items: [
         {
-          question: "Gebze'den Darıca'daki merkezinize nasıl ulaşabilirim?",
-          answer: "Gebze'den randevu alarak Darıca'daki merkezimize kolayca ulaşabilirsiniz.",
+          question: "Merkeziniz Darıca'da tam olarak nerede?",
+          answer: "Fevziçakmak Mahallesi'nde, Palandöken Eczanesi'nin üst katındayız; Farabi Devlet Hastanesi durağının tam karşısındayız. 1. kata asansörle çıkılır.",
         },
         {
-          question: "Çayırova'dan Darıca'daki merkezinize gelebilir miyim?",
-          answer: "Evet; Çayırova'dan da randevu alarak Darıca'daki merkezimize ulaşabilirsiniz.",
+          question: "Randevusuz gelebilir miyim?",
+          answer: "Evet, randevusuz ziyaretleri kabul ediyoruz. İşitme testi, cihaz ayarı ve teknik servis gibi hizmetler ise randevuyla verilir; bu yüzden önceden aramanızı öneririz.",
+        },
+        {
+          question: "Otopark ve erişilebilirlik durumu nasıl?",
+          answer: "Merkezimiz için otopark imkânı bulunuyor. Binada asansör var ve merkez tekerlekli sandalye ile ulaşıma uygundur.",
+        },
+        {
+          question: "Gebze ve Çayırova'dan toplu taşımayla gelinebilir mi?",
+          answer: "Evet. Gebze'den 502, 440, 510 ve 515; Çayırova'dan 550 numaralı otobüs hatları merkezimize ulaşımda kullanılabilir. Hat bilgileri değişebilir.",
         },
       ],
     },

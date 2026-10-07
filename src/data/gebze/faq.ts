@@ -1,71 +1,56 @@
-// Gebze landing page — SSS. Sorular gerçek Gebze arama niyetlerine
-// (cihaz seçimi, fiyat, SGK, deneme, ayar, servis) cevap veriyor. "Gebze'de
-// şubeniz var mı?" sorusu bu revizyonda BİLİNÇLİ OLARAK eklenmedi (plan
-// onayı §9 — bu konu kullanıcıya gereksiz şekilde öne çıkarılmasın); ancak
-// hiçbir soruda/cevapta gerçek olmayan bir fiziksel şube iddiası da yok.
+// Gebze landing page — SSS (P1-B). Sorular Gebze'den gelen kullanıcının
+// gerçek karar sorularına odaklanıyor: şube var mı, nasıl gelinir,
+// randevusuz gelinir mi, evde hizmet kapsıyor mu, deneme nasıl. Genel
+// cihaz/fiyat soruları Darıca ve pillar sayfalarda kaldı; burada
+// tekrarlanmıyor. Deneme cevabı SERVICE_SOT §1.5 kanonik modelini
+// (merkezde ~20 dk ücretsiz demo; satın alarak 7 güne kadar deneme,
+// kesintisiz iade; kulak içi hariç) kendi cümleleriyle veriyor.
 import { contactConfig } from "../../config/contact";
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 
 export const gebzeFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
-  heading: "Gebze'de İşitme Cihazı Hakkında Merak Edilenler",
-  intro: "Cihaz seçimi, fiyat, SGK ve süreçlerimiz hakkında en çok sorulan sorular.",
+  heading: "Gebze'den Gelenlerin Sık Sorduğu Sorular",
+  intro: "Ulaşım, randevu ve merkezimizdeki süreç hakkında Gebze'den en çok sorulanlar.",
   decisionCard: {
-    title: "İhtiyacınızı Konuşmak İster misiniz?",
+    title: "Gelmeden Önce Arayın",
     points: [
-      "SGK anlaşmalı hizmet",
-      "Ücretsiz ilk değerlendirme",
-      "18 marka seçeneği",
-      "Merkezde ücretsiz demo, satın alarak 7 güne kadar deneme",
+      "Fiziksel merkezimiz Darıca'da",
+      "Gebze'den 502, 440, 510, 515 hatları",
+      "Randevusuz ziyaret kabul edilir",
+      "Gebze evde hizmet bölgemizde",
     ],
     ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
   categories: [
     {
-      label: "Cihaz ve Seçim",
+      label: "Ulaşım ve Ziyaret",
       items: [
         {
-          question: "Gebze'de işitme cihazı nasıl seçilir?",
-          answer: "Öncelikle ücretsiz bir işitme değerlendirmesi yapıyoruz; işitme kaybınızın derecesine ve yaşam tarzınıza göre size uygun cihaz seçeneklerini birlikte belirliyoruz.",
+          question: "Gebze'de şubeniz var mı?",
+          answer: "Hayır. Tek fiziksel merkezimiz Darıca'dadır; Gebze'den gelen danışanlarımıza burada hizmet veriyoruz.",
         },
         {
-          question: "Hangi işitme cihazı türü bana uygun?",
-          answer: "Kulak arkası, kulak içi, görünmez, şarjlı ve Bluetooth özellikli seçenekler arasından, değerlendirme sonucuna göre size en uygun türü öneriyoruz.",
+          question: "Gebze'den merkezinize toplu taşımayla nasıl gelirim?",
+          answer: "502, 440, 510 ve 515 numaralı otobüs hatlarıyla gelebilirsiniz. Merkezimiz Farabi Devlet Hastanesi durağının karşısındadır. Hat bilgileri değişebileceği için yola çıkmadan önce kontrol etmenizi öneririz.",
         },
         {
-          question: "Şarjlı işitme cihazları nasıl çalışır?",
-          answer: "Pil değiştirmeye gerek kalmadan, gece şarj edip gün boyu kullanabileceğiniz bir sistemle çalışır.",
+          question: "Randevu almadan gelebilir miyim?",
+          answer: "Randevusuz gelebilirsiniz. Ancak işitme testi ve cihaz ayarı gibi hizmetler randevuyla verildiği için gelmeden önce aramanızı öneririz.",
         },
       ],
     },
     {
-      label: "Fiyat ve SGK",
+      label: "Hizmet ve Süreç",
       items: [
         {
-          question: "Gebze'de işitme cihazı fiyatları neye göre değişir?",
-          answer: "Fiyatlar; teknoloji seviyesi, özellikler, marka ve modele göre değişir. Sabit bir rakam vermek yerine, ihtiyacınıza göre gerçekçi seçenekleri birlikte değerlendiriyoruz.",
+          question: "Evde hizmet Gebze'yi kapsıyor mu?",
+          answer: "Evet. Evde işitme cihazı hizmetimiz Gebze dahil Kocaeli'nin tüm ilçelerini kapsar; hizmet ücretsizdir ve randevuyla planlanır.",
         },
         {
-          question: "Gebze işitme cihazlarında SGK desteği var mı?",
-          answer: "Evet; SGK anlaşmalı bir merkezden hizmet alarak, rapor ve reçete süreciyle SGK desteğinden yararlanabilirsiniz.",
-        },
-      ],
-    },
-    {
-      label: "Deneme ve Sonrası",
-      items: [
-        {
-          question: "İşitme cihazını satın almadan önce deneyebilir miyim?",
-          answer: "Önerilen cihazı merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Günlük hayatınızda denemek isterseniz cihazı satın alarak 7 güne kadar deneyebilir, uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
-        },
-        {
-          question: "İşitme cihazının ayarı sonradan değiştirilebilir mi?",
-          answer: "Evet; ilk ayarın ardından kullanım deneyiminize göre ince ayar ve takip desteği sağlıyoruz.",
-        },
-        {
-          question: "Teknik servis ve bakım hizmeti sunuyor musunuz?",
-          answer: "Evet; cihazınızdaki arıza ve bakım ihtiyaçlarında teknik servis desteği sunuyoruz.",
+          question: "Gebze'den gelip cihazı deneyebilir miyim?",
+          answer: "Merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla cihazı deneyebilirsiniz. Günlük hayatınızda da kullanmak isterseniz cihazı satın alıp 7 güne kadar deneyebilirsiniz; uygun bulmazsanız cihazı iade eder, ödediğiniz tutarı kesintisiz geri alırsınız. Kulak içi cihazlar bu 7 günlük denemeye dahil değildir.",
         },
       ],
     },

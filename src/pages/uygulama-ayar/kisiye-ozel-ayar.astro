@@ -22,7 +22,6 @@ import TuningProcess from "../../components/shared/TuningProcess/TuningProcess.a
 import SoundConcernList from "../../components/shared/SoundConcernList/SoundConcernList.astro";
 import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
 import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
-import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
@@ -37,7 +36,6 @@ import { kisiyeOzelAyarConcerns } from "../../data/kisiye-ozel-ayar/concerns";
 import { kisiyeOzelAyarSignalQuestions } from "../../data/kisiye-ozel-ayar/signal-questions";
 import { kisiyeOzelAyarBrandNeutral } from "../../data/kisiye-ozel-ayar/brand-neutral";
 import { kisiyeOzelAyarLocation } from "../../data/kisiye-ozel-ayar/location";
-import { kisiyeOzelAyarServiceArea } from "../../data/kisiye-ozel-ayar/service-area";
 import { kisiyeOzelAyarFaq } from "../../data/kisiye-ozel-ayar/faq";
 import { kisiyeOzelAyarFinalCta } from "../../data/kisiye-ozel-ayar/final-cta";
 import { kisiyeOzelAyarRelatedContent } from "../../data/kisiye-ozel-ayar/related-content";
@@ -142,7 +140,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
   </section>
 
   <ContactLocationCard data={kisiyeOzelAyarLocation} />
-  <ContactServiceArea data={kisiyeOzelAyarServiceArea} />
 
   <BrandPageFaq data={kisiyeOzelAyarFaq} />
   <BrandPageFinalCta data={kisiyeOzelAyarFinalCta} />

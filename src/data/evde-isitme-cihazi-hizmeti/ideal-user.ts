@@ -23,9 +23,9 @@ export const evdeHizmetIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: MapPin,
-      title: "Darıca, Gebze, Çayırova'da Merkeze Gelmeden Hizmet İsteyenler",
+      title: "Kocaeli ve Anadolu Yakası'nda Merkeze Gelmeden Hizmet İsteyenler",
       description: "Bölgemizde yaşayıp merkezimize gelmeden aynı hizmeti evinde almak isteyenler.",
-      suggestedFamilies: ["Darıca", "Gebze", "Çayırova"],
+      suggestedFamilies: ["Kocaeli", "İstanbul Anadolu Yakası"],
     },
     {
       icon: RefreshCcw,

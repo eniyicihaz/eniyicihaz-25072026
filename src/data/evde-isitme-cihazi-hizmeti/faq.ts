@@ -10,7 +10,7 @@ export const evdeHizmetFaq: BrandPageFaqContent = {
   intro: "Evde hizmetin kapsamı, süreci ve bölgeden ulaşım hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Evde Hizmet Hakkında Bilgi Almak İster misiniz?",
-    points: ["Marka bağımsız değerlendirme", "Darıca, Gebze, Çayırova'da randevulu ziyaret", "Mevcut cihazınızla ilgilenebiliriz", "Gerektiğinde merkeze/KBB'ye yönlendirme"],
+    points: ["Marka bağımsız değerlendirme", "Kocaeli ve Anadolu Yakası'nda randevulu ziyaret", "Mevcut cihazınızla ilgilenebiliriz", "Gerektiğinde merkeze/KBB'ye yönlendirme"],
     ctaLabel: "Evde Hizmet Talep Et",
     ctaHref: contactConfig.phone.href,
   },
@@ -54,19 +54,15 @@ export const evdeHizmetFaq: BrandPageFaqContent = {
       ],
     },
     {
-      label: "Bölgemizden Ulaşım",
+      label: "Hizmet Bölgesi",
       items: [
         {
-          question: "Darıca'da evde işitme cihazı hizmeti var mı?",
-          answer: "Evet; merkezimiz Darıca'dadır ve ilçe genelinde evde hizmet sunuyoruz.",
+          question: "Evde hizmeti hangi bölgelerde veriyorsunuz?",
+          answer: "Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nın tüm ilçelerinde evde hizmet veriyoruz. Fiziksel merkezimiz ise yalnızca Darıca'dadır.",
         },
         {
-          question: "Gebze'den evde hizmet talep edebilir miyim?",
-          answer: "Evet; Gebze'den randevu alarak evde işitme cihazı hizmetinden faydalanabilirsiniz.",
-        },
-        {
-          question: "Çayırova'da evde cihaz ayarı yapılıyor mu?",
-          answer: "Evet; Çayırova'dan da randevu alarak ekibimizi evinize davet edebilirsiniz.",
+          question: "Evde hizmet ücretli mi, randevu gerekiyor mu?",
+          answer: "Evde hizmet ücretsizdir ve randevuyla planlanır. Uygun gün ve saati belirlemek için bizi arayabilir veya WhatsApp'tan yazabilirsiniz.",
         },
       ],
     },

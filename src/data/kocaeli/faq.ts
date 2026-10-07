@@ -14,15 +14,28 @@ export const kocaeliFaq: BrandPageFaqContent = {
   decisionCard: {
     title: "İhtiyacınızı Konuşalım mı?",
     points: [
-      "SGK anlaşmalı hizmet",
-      "Ücretsiz ilk değerlendirme",
-      "18 marka seçeneği",
-      "Cihaz deneme imkânı",
+      "Tek fiziksel merkez: Darıca",
+      "Kocaeli'nin tamamında evde hizmet",
+      "SGK anlaşmalı merkez",
+      "Ücretsiz işitme testi",
     ],
     ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
   categories: [
+    {
+      label: "Hizmet Bölgesi",
+      items: [
+        {
+          question: "Kocaeli'nin farklı ilçelerinde şubeniz var mı?",
+          answer: "Hayır. Tek fiziksel merkezimiz Darıca'dadır; Kocaeli'nin diğer ilçelerinden gelen danışanlarımıza burada hizmet veriyoruz.",
+        },
+        {
+          question: "Evde hizmeti hangi bölgelerde veriyorsunuz?",
+          answer: "Evde işitme cihazı hizmetini Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nın tüm ilçelerinde veriyoruz. Hizmet ücretsizdir ve randevuyla planlanır.",
+        },
+      ],
+    },
     {
       label: "Cihaz Seçimi",
       items: [
@@ -77,8 +90,8 @@ export const kocaeliFaq: BrandPageFaqContent = {
           answer: "Telefon görüşmelerini, TV sesini ve diğer uyumlu cihazları doğrudan işitme cihazınıza kablosuz olarak aktarmanızı sağlar.",
         },
         {
-          question: "Cihazı satın almadan önce deneyebilir miyim?",
-          answer: "Önerilen cihazı merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Günlük hayatınızda denemek isterseniz cihazı satın alarak 7 güne kadar deneyebilir, uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
+          question: "Kocaeli'den gelip cihazı denemek mümkün mü?",
+          answer: "İki aşama var: Önce Darıca'daki merkezimizde yaklaşık 20 dakikalık ücretsiz bir demo yapılır. Ardından isterseniz cihazı satın alıp 7 güne kadar günlük hayatınızda kullanabilirsiniz; uygun bulmazsanız cihazı iade eder, ödediğiniz tutarı kesintisiz geri alırsınız. Kulak içi cihazlar 7 günlük denemeye dahil değildir.",
         },
         {
           question: "İşitme cihazına alışma süreci ne kadar sürer?",
@@ -90,7 +103,7 @@ export const kocaeliFaq: BrandPageFaqContent = {
         },
         {
           question: "Teknik servis ve bakım hizmeti sunuyor musunuz?",
-          answer: "Evet; cihazınızdaki arıza ve bakım ihtiyaçlarında teknik servis desteği sunuyoruz.",
+          answer: "Evet. Sattığımız 18 markanın tamamında Darıca'daki merkezimizde teknik servis veriyoruz; ücret cihazın durumuna göre belirlenir.",
         },
       ],
     },

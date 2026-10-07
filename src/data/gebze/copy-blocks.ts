@@ -1,39 +1,30 @@
-// Gebze landing page — kısa, kart/istatistik gerektirmeyen metin blokları.
-// Darıca sayfasının page-scoped "copy block" deseni (bkz.
-// src/data/darica/copy-blocks.ts) burada da aynen kullanılıyor — yeni bir
-// shared component icat edilmedi.
+// Gebze landing page — page-scoped metin blokları (P1-B). Darıca/Çayırova
+// sayfalarıyla aynı genel cihaz/fiyat/SGK metinleri burada tekrar
+// edilmiyor; bu konular pillar sayfalarda anlatılıyor. Buradaki bilgiler
+// yalnızca LOCAL_SOURCE_OF_TRUTH (§2, §3, §5) ve SERVICE_SOURCE_OF_TRUTH
+// H16'dan geliyor. Hat numaraları [TIME-SENSITIVE].
 export interface GebzeCopyBlock {
   badge: string;
   heading: string;
   paragraphs: string[];
 }
 
-// `gebzeIntro`: Hero'dan hemen sonraki bu bölüm KASITLI OLARAK konum/Darıca
-// içermiyor. "Gebze'de işitme cihazı merkezi" ifadesi burada doğal biçimde
-// geçiyor (plan onayı §4) — ama "Gebze'deki merkezimiz/şubemiz" gibi
-// fiziksel iddia yok, "kim arasa/ihtiyaç duysa ilk ne yapmalı" anlatılıyor.
-// 2009/SGK/uzman kadro gerçekleri burada tek seferlik, düz yazı içinde
-// veriliyor — ayrı bir "Neden Avrasya İşitme?" kart bloğu olarak TEKRAR
-// EDİLMİYOR (Darıca sayfasının kopyası izlenimini azaltmak için).
 export const gebzeIntro: GebzeCopyBlock = {
-  badge: "DOĞRU BAŞLANGIÇ",
-  heading: "Gebze'de İşitme Cihazı Arayanlar İçin Doğru Başlangıç",
+  badge: "GEBZE'DEN ULAŞIM",
+  heading: "Gebze'den Darıca'daki Merkezimize Nasıl Gelinir?",
   paragraphs: [
-    "İşitme kaybı yaşayan pek çok kişi, hangi cihazın kendisine uygun olduğuna karar vermeden önce doğru bir değerlendirme yaptırmak ister.",
-    "Gebze'de işitme cihazı merkezi arayan kişiler için ilk adım, yalnızca cihaz markasına bakmak değil; işitme değerlendirmesi, cihaz seçimi, uygulama ve satış sonrası desteğin birlikte ele alınmasıdır.",
-    "2009'dan beri SGK anlaşmalı, odyolog ve odyometristlerden oluşan bir ekiple, Gebze'den gelen danışanlarımıza da aynı özenle yaklaşıyoruz.",
+    "Gebze'de ayrı bir şubemiz bulunmuyor. Testten cihaz seçimine, ayardan teknik servise kadar tüm hizmetlerimizi Darıca'daki merkezimizde veriyoruz.",
+    "Gebze'den gelen danışanlarımız genellikle özel araçla ya da otobüsle geliyor. Gebze'den merkezimize 502, 440, 510 ve 515 numaralı otobüs hatlarıyla ulaşabilirsiniz; hat bilgileri değişebileceği için yola çıkmadan önce güncel durumu kontrol etmenizi öneririz.",
+    "Merkezimiz Farabi Devlet Hastanesi durağının karşısında, Palandöken Eczanesi'nin üst katındadır; 1. kata asansörle çıkılır. Otopark imkânı da bulunuyor.",
+    "Randevusuz da gelebilirsiniz; ancak işitme testi, cihaz ayarı gibi hizmetler randevuyla verildiği için gelmeden önce bizi aramanızı öneririz.",
   ],
 };
 
-// Yeni bölüm: "İşitme Cihazı Seçerken Nelere Dikkat Edilmeli?" — fiyatı
-// sabit/uydurma bir rakamla değil, gerçekçi/kullanıcı-faydalı bir açıklamayla
-// ele alıyor (plan onayı §7 — "sabit fiyat verme").
-export const gebzeDecisionFactors: GebzeCopyBlock = {
-  badge: "DOĞRU KARARI VERMEK",
-  heading: "İşitme Cihazı Seçerken Nelere Dikkat Edilmeli?",
+export const gebzeHomeService: GebzeCopyBlock = {
+  badge: "EVDE HİZMET",
+  heading: "Merkeze Gelemiyorsanız: Gebze'de Evde Hizmet",
   paragraphs: [
-    "İşitme cihazı fiyatları; teknoloji seviyesi, özellikler, marka ve modele göre değişebilir. Bu yüzden karar vermeden önce profesyonel bir değerlendirme yaptırmak önemlidir.",
-    "En pahalı cihaz her zaman en uygun cihaz anlamına gelmez — asıl belirleyici, işitme kaybınızın derecesi ve günlük yaşam ihtiyaçlarınızdır.",
-    "SGK desteği, marka seçenekleri ve deneme süreci hakkında bilgi alarak, aceleye getirmeden doğru kararı birlikte verebiliriz.",
+    "Merkezimize gelmekte zorlanan danışanlarımız için evde işitme cihazı hizmeti veriyoruz. Gebze, bu hizmeti verdiğimiz Kocaeli genelindeki bölgenin içindedir.",
+    "Evde hizmet ücretsizdir ve randevuyla planlanır.",
   ],
 };

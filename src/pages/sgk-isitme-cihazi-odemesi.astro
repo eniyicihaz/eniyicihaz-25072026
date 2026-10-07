@@ -19,7 +19,6 @@ import SgkEligibility from "../components/sgk/SgkEligibility/SgkEligibility.astr
 import SgkSupport from "../components/sgk/SgkSupport/SgkSupport.astro";
 import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
-import ContactServiceArea from "../components/contact/ContactServiceArea/ContactServiceArea.astro";
 import SgkFaq from "../components/sgk/SgkFaq/SgkFaq.astro";
 import SgkBrands from "../components/sgk/SgkBrands/SgkBrands.astro";
 import SgkTrustBar from "../components/sgk/SgkTrustBar/SgkTrustBar.astro";
@@ -28,7 +27,6 @@ import { sgkIdealUser } from "../data/sgk/ideal-user";
 import { domId } from "../lib/dom-id";
 import { sgkRelatedContent } from "../data/sgk/related-content";
 import { sgkLocation } from "../data/sgk/location";
-import { sgkServiceArea } from "../data/sgk/service-area";
 import { company } from "../components/footer/Footer/data/company";
 
 const PAGE_URL = "https://www.eniyicihaz.com/sgk-isitme-cihazi-odemesi";
@@ -135,7 +133,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
   <SgkSupport />
   <BrandPageRelatedContent data={sgkRelatedContent} />
   <ContactLocationCard data={sgkLocation} />
-  <ContactServiceArea data={sgkServiceArea} />
   <SgkFaq />
   <SgkBrands />
   <SgkTrustBar />

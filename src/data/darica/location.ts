@@ -8,7 +8,7 @@ import { contactConfig } from "../../config/contact";
 export const daricaLocation: ContactLocationCardContent = {
   eyebrow: "DARICA'DAKİ MERKEZİMİZ",
   heading: "Merkezimizi Ziyaret Edin",
-  intro: "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir.",
+  intro: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısındayız. Randevusuz gelebilirsiniz; hizmetler için önceden aramanızı öneririz.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",

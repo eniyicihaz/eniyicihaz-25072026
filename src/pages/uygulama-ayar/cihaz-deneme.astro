@@ -31,7 +31,6 @@ import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
-import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
 import CtaButton from "../../components/shared/CtaButton/CtaButton.astro";
 import { ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-astro";
 
@@ -48,7 +47,6 @@ import { cihazDenemeModels } from "../../data/cihaz-deneme/models";
 import { cihazDenemeIdealUser } from "../../data/cihaz-deneme/ideal-user";
 import { cihazDenemeExpertOpinion } from "../../data/cihaz-deneme/expert-opinion";
 import { cihazDenemeLocation } from "../../data/cihaz-deneme/location";
-import { cihazDenemeServiceArea } from "../../data/cihaz-deneme/service-area";
 import { cihazDenemeFaq } from "../../data/cihaz-deneme/faq";
 import { cihazDenemeFinalCta } from "../../data/cihaz-deneme/final-cta";
 import { cihazDenemeRelatedContent } from "../../data/cihaz-deneme/related-content";
@@ -174,7 +172,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
   </section>
 
   <ContactLocationCard data={cihazDenemeLocation} />
-  <ContactServiceArea data={cihazDenemeServiceArea} />
 
   <section class="cd-simple-section cd-simple-section--alt" aria-labelledby="cd-brands-title">
     <div class="cd-simple-section__inner cd-simple-section__inner--center">

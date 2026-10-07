@@ -1,47 +1,25 @@
 ---
 // Gebze İşitme Cihazı Hizmeti — /gebze-isitme-cihazlari.
-// Sıfırdan inşa: Gebze'ye ait hiçbir sayfa/route/component daha önce
-// mevcut değildi (araştırma turu doğrulandı — dosya, veri, sitemap, git
-// geçmişi kaydı yok).
 //
-// KRİTİK ÇERÇEVE (plan onayı — COMPANY.md §17'ye dayanır): Gebze'de
-// GERÇEK bir fiziksel şube/merkez YOK. Darıca "Ana Merkez", Gebze
-// "Öncelikli Hizmet Bölgesi". Bu sayfa Darıca landing page'inin şehir-adı-
-// değiştirilmiş bir kopyası DEĞİL — kapsamlı ama özgün, Gebze'den gerçekten
-// işitme cihazı arayan kişinin ihtiyaç duyacağı bilgiyi (değerlendirme,
-// cihaz türleri, marka, SGK, deneme, ayar, karar faktörleri, SSS) tek
-// sayfada topluyor. Cihaz türleri/SGK/deneme-ayar metinleri Darıca
-// sayfasınınkiyle KELİME KELİME AYNI DEĞİL — aynı gerçek süreç/kategoriler
-// özgün biçimde yeniden yazıldı.
-//
-// Darıca, sayfanın ilk bölümlerinde (Hero, "Doğru Başlangıç") HİÇ
-// GEÇMİYOR. Gerçek NAP/konum bilgisi yalnızca sayfanın sonlarındaki
-// "Merkezimize Nasıl Ulaşırım?" bölümünde veriliyor — CenterGallery
-// KULLANILMADI (Gebze'de gerçek merkez fotoğrafı yok, bu component'i
-// kullanmak yanlış fiziksel-konum iddiası olurdu). Hero'nun görseli Darıca
-// sayfasıyla AYNI DEĞİL — bu proje için üretilmiş, gerçek insan/klinik
-// içermeyen bir AI-konsept ürün görseli (isitme-cihazi-turleri.webp).
-//
-// "Gebze'de şubeniz var mı?" sorusu bu revizyonda BİLİNÇLİ OLARAK SSS'e
-// eklenmedi (plan onayı — bu konu kullanıcıya gereksiz şekilde öne
-// çıkarılmasın); ama sayfanın hiçbir yerinde gerçek olmayan bir fiziksel
-// Gebze şubesi/adresi iddiası da yok.
+// KRİTİK ÇERÇEVE (LOCAL_SOURCE_OF_TRUTH §5): Gebze'de fiziksel şube YOK.
+// Sayfa "Gebze'den Darıca merkezimize" modeliyle yazıldı (P1-B): Gebze'den
+// gelen kullanıcının gerçek soruları — nasıl gelinir (doğrulanmış otobüs
+// hatları), merkez nerede, randevusuz gelinir mi, evde hizmet kapsıyor mu.
+// Darıca sayfasıyla ortak olan genel şablon blokları (değerlendirme süreci,
+// cihaz türleri, marka şeridi, SGK kartları, genel karar faktörleri)
+// P1-B'de kaldırıldı; bu konular inline linklerle pillar sayfalara
+// yönlendiriliyor. Yerel bilgi yoksa sayfa yapay olarak uzatılmıyor.
+// CenterGallery kullanılmıyor (Gebze'de merkez fotoğrafı yok).
 import MainLayout from "../layouts/MainLayout.astro";
 import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
-import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
-import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
-import Brands from "../components/brands/Brands/Brands.astro";
 import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 import { gebzeHero } from "../data/gebze/hero";
-import { gebzeIntro, gebzeDecisionFactors } from "../data/gebze/copy-blocks";
-import { gebzeProcess } from "../data/gebze/process";
-import { gebzeDeviceTypes } from "../data/gebze/device-types";
-import { gebzeSgk } from "../data/gebze/sgk";
+import { gebzeIntro, gebzeHomeService } from "../data/gebze/copy-blocks";
 import { gebzeServices } from "../data/gebze/services";
 import { gebzeLocation } from "../data/gebze/location";
 import { gebzeFaq } from "../data/gebze/faq";
@@ -97,33 +75,25 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     </div>
   </section>
 
-  <ProcessTimeline data={gebzeProcess} />
   <p class="gebze-inline-link-wrap">
-    <a class="gebze-inline-link" href="/degerlendirme/ucretsiz-isitme-testi/">Ücretsiz değerlendirme hakkında daha fazla bilgi alın →</a>
-  </p>
-
-  <ValueGrid data={gebzeDeviceTypes} />
-  <p class="gebze-inline-link-wrap">
-    <a class="gebze-inline-link" href="/isitme-cihazlari/">Tüm seçenekleri işitme cihazları sayfamızda inceleyin →</a>
-  </p>
-
-  <Brands />
-  <p class="gebze-plain-note">Gebze'de işitme cihazı ararken farklı marka ve teknoloji seçeneklerini karşılaştırabilirsiniz.</p>
-
-  <ValueGrid data={gebzeSgk} />
-  <p class="gebze-inline-link-wrap">
-    <a class="gebze-inline-link" href="/sgk-isitme-cihazi-odemesi/">SGK desteği hakkında detaylı bilgi →</a>
+    <a class="gebze-inline-link" href="/degerlendirme/ucretsiz-isitme-testi/">Gelmeden önce ücretsiz işitme testi sürecini inceleyin →</a>
   </p>
 
   <BrandCriteria data={gebzeServices} />
+  <p class="gebze-inline-link-wrap">
+    <a class="gebze-inline-link" href="/sgk-isitme-cihazi-odemesi/">SGK ile işitme cihazı sürecini inceleyin →</a>
+  </p>
 
-  <section class="gebze-copy-block" aria-labelledby="gebze-decision-title">
+  <section class="gebze-copy-block" aria-labelledby="gebze-home-service-title">
     <div class="gebze-copy-block__inner">
-      <p class="gebze-copy-block__badge">{gebzeDecisionFactors.badge}</p>
-      <h2 class="gebze-copy-block__heading" id="gebze-decision-title">{gebzeDecisionFactors.heading}</h2>
-      {gebzeDecisionFactors.paragraphs.map((p) => <p class="gebze-copy-block__paragraph">{p}</p>)}
+      <p class="gebze-copy-block__badge">{gebzeHomeService.badge}</p>
+      <h2 class="gebze-copy-block__heading" id="gebze-home-service-title">{gebzeHomeService.heading}</h2>
+      {gebzeHomeService.paragraphs.map((p) => <p class="gebze-copy-block__paragraph">{p}</p>)}
     </div>
   </section>
+  <p class="gebze-inline-link-wrap">
+    <a class="gebze-inline-link" href="/uygulama-ayar/evde-isitme-cihazi-hizmeti/">Evde işitme cihazı hizmetini inceleyin →</a>
+  </p>
 
   <BrandPageFaq data={gebzeFaq} />
 

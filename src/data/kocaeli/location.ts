@@ -12,7 +12,7 @@ export const kocaeliLocation: ContactLocationCardContent = {
   eyebrow: "KOCAELİ GENELİNDEN ULAŞIM",
   heading: "Merkezimize Nasıl Ulaşabilirsiniz?",
   intro:
-    "Kocaeli genelinden gelen danışanlarımızı Darıca'daki merkezimizde ağırlıyor, değerlendirmeden cihaz uygulamasına kadar tüm süreçte yanlarında oluyoruz. Adres ve yol tarifi aşağıdadır.",
+    "Kocaeli'deki tek fiziksel merkezimiz Darıca'dadır. Randevusuz gelebilirsiniz; işitme testi ve ayar gibi hizmetler için önceden aramanızı öneririz.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",

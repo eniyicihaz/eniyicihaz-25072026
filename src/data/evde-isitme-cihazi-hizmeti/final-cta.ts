@@ -5,11 +5,11 @@ import type { BrandPageFinalCtaContent } from "../../components/brand-page/Brand
 
 export const evdeHizmetFinalCta: BrandPageFinalCtaContent = {
   badge: "İŞİTME DESTEĞİ EVİNİZE GELSİN",
-  heading: "Darıca, Gebze ve Çayırova'da Evde Hizmet İçin Bize Ulaşın",
+  heading: "Kocaeli ve Anadolu Yakası'nda Evde Hizmet İçin Bize Ulaşın",
   description: "İhtiyacınızı bize iletin, size uygun bir ev ziyareti saati belirleyelim.",
   ctaPrimary: { label: "Evde Hizmet Talep Et", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Marka Bağımsız Değerlendirme", "Darıca, Gebze, Çayırova'da Randevulu Ziyaret", "Mevcut Cihazınızla İlgilenebiliriz", "Gerektiğinde Merkeze Yönlendirme"],
+  trustItems: ["Marka Bağımsız Değerlendirme", "Kocaeli ve Anadolu Yakası'nda Randevulu Ziyaret", "Mevcut Cihazınızla İlgilenebiliriz", "Gerektiğinde Merkeze Yönlendirme"],
   accentColor: "#0d9488",
   accentColorHover: "#0f766e",
   accentColorGlow: "rgb(13 148 136 / 0.22)",

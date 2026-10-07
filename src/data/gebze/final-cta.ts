@@ -7,15 +7,15 @@ import type { BrandPageFinalCtaContent } from "../../components/brand-page/Brand
 
 export const gebzeFinalCta: BrandPageFinalCtaContent = {
   badge: "HEMEN BAŞLAYALIM",
-  heading: "Gebze'de İşitme Cihazı Arıyorsanız İlk Adımı Atın",
-  description: "İhtiyacınızı konuşalım, size uygun işitme cihazı seçeneklerini birlikte değerlendirelim.",
-  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },
+  heading: "Gebze'den Gelmeden Önce Bizi Arayın",
+  description: "Darıca'daki merkezimiz için randevunuzu telefonla ya da WhatsApp'tan planlayalım; evde hizmet isterseniz onu da birlikte ayarlayalım.",
+  ctaPrimary: { label: "Arayıp Randevu Alın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: [
-    "SGK Anlaşmalı Hizmet",
-    "Ücretsiz İlk Değerlendirme",
-    "18 Marka Seçeneği",
-    "Cihazı Deneme İmkânı",
+    "Fiziksel Merkez Darıca'da",
+    "Randevusuz Ziyaret Kabul Edilir",
+    "Gebze Evde Hizmet Bölgemizde",
+    "SGK Anlaşmalı Merkez",
   ],
   accentColor: "#2563eb",
   accentColorHover: "#1d4ed8",

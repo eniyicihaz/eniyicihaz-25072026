@@ -12,7 +12,7 @@ export const gebzeLocation: ContactLocationCardContent = {
   eyebrow: "GEBZE'DEN ULAŞIM",
   heading: "Darıca'daki Merkezimize Nasıl Ulaşırım?",
   intro:
-    "Gebze'den gelen danışanlarımızı Darıca'daki merkezimizde ağırlıyor, işitme değerlendirmesi, cihaz seçimi ve uygulama süreçlerinde yanlarında oluyoruz. Adres ve yol tarifi aşağıdadır.",
+    "Merkezimiz Darıca'da, Farabi Devlet Hastanesi durağının karşısında, Palandöken Eczanesi'nin üst katındadır. Gebze'den yola çıkmadan önce yol tarifini buradan alabilirsiniz.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",

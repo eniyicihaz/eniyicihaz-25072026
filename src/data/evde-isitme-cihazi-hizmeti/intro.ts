@@ -5,7 +5,7 @@ export const evdeHizmetIntro: BrandPageIntroContent = {
   heading: "Evde İşitme Cihazı Hizmeti Nedir?",
   paragraphs: [
     "Evde işitme cihazı hizmeti, merkezimizde sunduğumuz işitme değerlendirmesi, cihaz denemesi, cihaz uygulaması ve kişiye özel ayar süreçlerinin, uzman ekibimizin sizin evinize gelmesiyle yürütülmesidir.",
-    "Özellikle Darıca'da merkezimize gelmekte zorlanan yaşlı bireyler, hareket kısıtlılığı olan kişiler veya ailesi adına süreci evde takip etmek isteyen yakınları için tercih edilen bir seçenektir. Gebze ve Çayırova'dan da randevu alarak bu hizmetten faydalanabilirsiniz.",
+    "Özellikle Darıca'da merkezimize gelmekte zorlanan yaşlı bireyler, hareket kısıtlılığı olan kişiler veya ailesi adına süreci evde takip etmek isteyen yakınları için tercih edilen bir seçenektir. Bu hizmeti Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nda veriyoruz.",
   ],
   stats: [
     { value: "2009", label: "Kuruluş Yılı" },
