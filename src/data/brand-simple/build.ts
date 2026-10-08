@@ -23,7 +23,7 @@ import type { BrandPageRelatedContentContent } from "../../components/brand-page
 import type { BrandPageFinalCtaContent } from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 /** Üretici teknolojisi/slogan niteliğindeki etiketler bu sayfalarda gösterilmez. */
-const HIDDEN_TAGS = new Set(["BrainHearing", "AI"]);
+const HIDDEN_TAGS = new Set(["BrainHearing", "AI", "Auracast", "Tinnitus", "Süper Güç"]);
 
 export interface SimpleBrandConfig {
   name: string;
@@ -122,7 +122,7 @@ export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
   if (inEar.length) profiles.push({ icon: EarOff, title: "Daha küçük, kulak içi cihaz arayanlar", description: "Kulak içi etiketli aileler bulunur; uygunluk kulak yapınıza göre değerlendirilir.", suggestedFamilies: list(inEar) });
   const power = withTag("Güçlü Kayıplar", "Power");
   if (power.length) profiles.push({ icon: Volume2, title: "Daha güçlü amplifikasyon gerekenler", description: "Güçlü kayıplar için etiketli aileler bulunur; uygunluk işitme testinizin sonucuna göre belirlenir.", suggestedFamilies: list(power) });
-  const place = withTag("RIC", "BTE");
+  const place = withTag("RIC", "BTE", "RITE", "RIC/BTE", "RITE/ITE");
   if (place.length && profiles.length < 4) profiles.push({ icon: Layers, title: "RIC veya kulak arkası cihaz arayanlar", description: "RIC ve kulak arkası etiketli aileler bulunur; yerleşim tercihi kulak yapınıza ve kullanım beklentinize göre belirlenir.", suggestedFamilies: list(place) });
 
   const idealUser: BrandPageIdealUserContent = {
