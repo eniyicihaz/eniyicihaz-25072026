@@ -1,23 +1,20 @@
 ---
-// Rexton marka sayfası (/markalar/rexton) — Faz 2 P2, 2. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Rexton marka sayfası (/markalar/rexton) — özgün içerik çalışması: içerik src/data/brand-unique/rexton.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { rextonUnique } from "../../data/brand-unique/rexton";
 import { rextonHero } from "../../data/rexton/hero";
 import { rextonModels } from "../../data/rexton/models";
 import { rextonFaq } from "../../data/rexton/faq";
 import { rextonFinalCta } from "../../data/rexton/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Rexton",
-  hero: rextonHero,
-  models: rextonModels,
-  faq: rextonFaq,
-  finalCta: rextonFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: rextonHero, models: rextonModels, faq: rextonFaq, finalCta: rextonFinalCta },
+  rextonUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

@@ -1,23 +1,20 @@
 ---
-// Bernafon marka sayfası (/markalar/bernafon) — Faz 2 P2, 3. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Bernafon marka sayfası (/markalar/bernafon) — özgün içerik çalışması: içerik src/data/brand-unique/bernafon.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { bernafonUnique } from "../../data/brand-unique/bernafon";
 import { bernafonHero } from "../../data/bernafon/hero";
 import { bernafonModels } from "../../data/bernafon/models";
 import { bernafonFaq } from "../../data/bernafon/faq";
 import { bernafonFinalCta } from "../../data/bernafon/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Bernafon",
-  hero: bernafonHero,
-  models: bernafonModels,
-  faq: bernafonFaq,
-  finalCta: bernafonFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: bernafonHero, models: bernafonModels, faq: bernafonFaq, finalCta: bernafonFinalCta },
+  bernafonUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

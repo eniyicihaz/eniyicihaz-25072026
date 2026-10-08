@@ -1,23 +1,20 @@
 ---
-// Vista marka sayfası (/markalar/vista) — Faz 2 P2, 3. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Vista marka sayfası (/markalar/vista) — özgün içerik çalışması: içerik src/data/brand-unique/vista.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { vistaUnique } from "../../data/brand-unique/vista";
 import { vistaHero } from "../../data/vista/hero";
 import { vistaModels } from "../../data/vista/models";
 import { vistaFaq } from "../../data/vista/faq";
 import { vistaFinalCta } from "../../data/vista/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Vista",
-  hero: vistaHero,
-  models: vistaModels,
-  faq: vistaFaq,
-  finalCta: vistaFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: vistaHero, models: vistaModels, faq: vistaFaq, finalCta: vistaFinalCta },
+  vistaUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

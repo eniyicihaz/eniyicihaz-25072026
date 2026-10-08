@@ -1,23 +1,20 @@
 ---
-// Widex marka sayfası (/markalar/widex) — Faz 2 P2, 1. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Widex marka sayfası (/markalar/widex) — özgün içerik çalışması: içerik src/data/brand-unique/widex.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { widexUnique } from "../../data/brand-unique/widex";
 import { widexHero } from "../../data/widex/hero";
 import { widexModels } from "../../data/widex/models";
 import { widexFaq } from "../../data/widex/faq";
 import { widexFinalCta } from "../../data/widex/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Widex",
-  hero: widexHero,
-  models: widexModels,
-  faq: widexFaq,
-  finalCta: widexFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: widexHero, models: widexModels, faq: widexFaq, finalCta: widexFinalCta },
+  widexUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

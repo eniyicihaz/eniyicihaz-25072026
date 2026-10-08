@@ -1,23 +1,20 @@
 ---
-// Maico marka sayfası (/markalar/maico) — Faz 2 P2, 3. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Maico marka sayfası (/markalar/maico) — özgün içerik çalışması: içerik src/data/brand-unique/maico.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { maicoUnique } from "../../data/brand-unique/maico";
 import { maicoHero } from "../../data/maico/hero";
 import { maicoModels } from "../../data/maico/models";
 import { maicoFaq } from "../../data/maico/faq";
 import { maicoFinalCta } from "../../data/maico/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Maico",
-  hero: maicoHero,
-  models: maicoModels,
-  faq: maicoFaq,
-  finalCta: maicoFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: maicoHero, models: maicoModels, faq: maicoFaq, finalCta: maicoFinalCta },
+  maicoUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

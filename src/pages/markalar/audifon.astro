@@ -1,23 +1,20 @@
 ---
-// Audifon marka sayfası (/markalar/audifon) — Faz 2 P2, 2. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Audifon marka sayfası (/markalar/audifon) — özgün içerik çalışması: içerik src/data/brand-unique/audifon.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { audifonUnique } from "../../data/brand-unique/audifon";
 import { audifonHero } from "../../data/audifon/hero";
 import { audifonModels } from "../../data/audifon/models";
 import { audifonFaq } from "../../data/audifon/faq";
 import { audifonFinalCta } from "../../data/audifon/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Audifon",
-  hero: audifonHero,
-  models: audifonModels,
-  faq: audifonFaq,
-  finalCta: audifonFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: audifonHero, models: audifonModels, faq: audifonFaq, finalCta: audifonFinalCta },
+  audifonUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

@@ -1,23 +1,20 @@
 ---
-// Coselgi marka sayfası (/markalar/coselgi) — Faz 2 P2, 2. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Coselgi marka sayfası (/markalar/coselgi) — özgün içerik çalışması: içerik src/data/brand-unique/coselgi.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { coselgiUnique } from "../../data/brand-unique/coselgi";
 import { coselgiHero } from "../../data/coselgi/hero";
 import { coselgiModels } from "../../data/coselgi/models";
 import { coselgiFaq } from "../../data/coselgi/faq";
 import { coselgiFinalCta } from "../../data/coselgi/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Coselgi",
-  hero: coselgiHero,
-  models: coselgiModels,
-  faq: coselgiFaq,
-  finalCta: coselgiFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: coselgiHero, models: coselgiModels, faq: coselgiFaq, finalCta: coselgiFinalCta },
+  coselgiUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

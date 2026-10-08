@@ -1,52 +1,22 @@
 ---
-// Signia marka sayfası (/markalar/signia) — Faz 2 P2, 1. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Signia'nın açık tema sarmalayıcısı (.signia-premium-theme) korunur.
-// Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Signia marka sayfası (/markalar/signia) — özgün içerik çalışması: içerik src/data/brand-unique/signia.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { signiaUnique } from "../../data/brand-unique/signia";
 import { signiaHero } from "../../data/signia/hero";
 import { signiaModels } from "../../data/signia/models";
 import { signiaFaq } from "../../data/signia/faq";
 import { signiaFinalCta } from "../../data/signia/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Signia",
-  hero: signiaHero,
-  models: signiaModels,
-  faq: signiaFaq,
-  finalCta: signiaFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: signiaHero, models: signiaModels, faq: signiaFaq, finalCta: signiaFinalCta },
+  signiaUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>
-  <div class="signia-premium-theme">
-    <BrandSimplePage page={page} />
-  </div>
+  <BrandSimplePage page={page} />
 </MainLayout>
-
-<style>
-  /* Signia brand theme revision (2026-07, v2) — scoped token override,
-     see the frontmatter comment above for the full rationale. Every
-     value here is only ever read by the BrandPage* components already
-     rendered inside this wrapper; nothing outside .signia-premium-theme
-     (header, footer, every other page) is affected. Light palette per
-     the v2 brief's exact spec — only --color-primary (drives badge
-     text/icons/link colors across every section) is the brand accent;
-     everything else is the site's own light design system, restated
-     here with this page's own precise values instead of relying on the
-     global defaults (which are close, but not byte-identical). */
-  .signia-premium-theme {
-    --color-primary: #b21f4b;
-    --color-white: #ffffff;
-    --color-background: #ffffff;
-    --color-surface: #f8f8f8;
-    --color-border: #e9e9e9;
-    --color-border-hover: #d9d9d9;
-    --color-text: #1b1b1b;
-    --color-text-muted: #666666;
-    --color-text-soft: #8e8e8e;
-  }
-</style>

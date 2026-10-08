@@ -1,23 +1,20 @@
 ---
-// A&M marka sayfası (/markalar/am) — Faz 2 P2, 3. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// A&M marka sayfası (/markalar/am) — özgün içerik çalışması: içerik src/data/brand-unique/am.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { amUnique } from "../../data/brand-unique/am";
 import { amHero } from "../../data/am/hero";
 import { amModels } from "../../data/am/models";
 import { amFaq } from "../../data/am/faq";
 import { amFinalCta } from "../../data/am/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "A&M",
-  hero: amHero,
-  models: amModels,
-  faq: amFaq,
-  finalCta: amFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: amHero, models: amModels, faq: amFaq, finalCta: amFinalCta },
+  amUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

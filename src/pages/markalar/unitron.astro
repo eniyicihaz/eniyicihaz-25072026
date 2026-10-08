@@ -1,23 +1,20 @@
 ---
-// Unitron marka sayfası (/markalar/unitron) — Faz 2 P2, 3. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Unitron marka sayfası (/markalar/unitron) — özgün içerik çalışması: içerik src/data/brand-unique/unitron.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { unitronUnique } from "../../data/brand-unique/unitron";
 import { unitronHero } from "../../data/unitron/hero";
 import { unitronModels } from "../../data/unitron/models";
 import { unitronFaq } from "../../data/unitron/faq";
 import { unitronFinalCta } from "../../data/unitron/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Unitron",
-  hero: unitronHero,
-  models: unitronModels,
-  faq: unitronFaq,
-  finalCta: unitronFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: unitronHero, models: unitronModels, faq: unitronFaq, finalCta: unitronFinalCta },
+  unitronUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

@@ -1,23 +1,20 @@
 ---
-// Audio Service marka sayfası (/markalar/audio-service) — Faz 2 P2, 2. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Audio Service marka sayfası (/markalar/audio-service) — özgün içerik çalışması: içerik src/data/brand-unique/audio-service.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { audioServiceUnique } from "../../data/brand-unique/audio-service";
 import { audioServiceHero } from "../../data/audio-service/hero";
 import { audioServiceModels } from "../../data/audio-service/models";
 import { audioServiceFaq } from "../../data/audio-service/faq";
 import { audioServiceFinalCta } from "../../data/audio-service/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Audio Service",
-  hero: audioServiceHero,
-  models: audioServiceModels,
-  faq: audioServiceFaq,
-  finalCta: audioServiceFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: audioServiceHero, models: audioServiceModels, faq: audioServiceFaq, finalCta: audioServiceFinalCta },
+  audioServiceUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

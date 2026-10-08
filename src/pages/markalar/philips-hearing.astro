@@ -1,23 +1,20 @@
 ---
-// Philips Hearing marka sayfası (/markalar/philips-hearing) — Faz 2 P2, 3. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Philips Hearing marka sayfası (/markalar/philips-hearing) — özgün içerik çalışması: içerik src/data/brand-unique/philips-hearing.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { philipsHearingUnique } from "../../data/brand-unique/philips-hearing";
 import { philipsHearingHero } from "../../data/philips-hearing/hero";
 import { philipsHearingModels } from "../../data/philips-hearing/models";
 import { philipsHearingFaq } from "../../data/philips-hearing/faq";
 import { philipsHearingFinalCta } from "../../data/philips-hearing/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Philips Hearing",
-  hero: philipsHearingHero,
-  models: philipsHearingModels,
-  faq: philipsHearingFaq,
-  finalCta: philipsHearingFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: philipsHearingHero, models: philipsHearingModels, faq: philipsHearingFaq, finalCta: philipsHearingFinalCta },
+  philipsHearingUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

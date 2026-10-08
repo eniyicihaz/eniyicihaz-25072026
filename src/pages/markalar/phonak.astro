@@ -1,23 +1,20 @@
 ---
-// Phonak marka sayfası (/markalar/phonak) — Faz 2 P2, 1. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Phonak marka sayfası (/markalar/phonak) — özgün içerik çalışması: içerik src/data/brand-unique/phonak.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { phonakUnique } from "../../data/brand-unique/phonak";
 import { phonakHero } from "../../data/phonak/hero";
 import { phonakModels } from "../../data/phonak/models";
 import { phonakFaq } from "../../data/phonak/faq";
 import { phonakFinalCta } from "../../data/phonak/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Phonak",
-  hero: phonakHero,
-  models: phonakModels,
-  faq: phonakFaq,
-  finalCta: phonakFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: phonakHero, models: phonakModels, faq: phonakFaq, finalCta: phonakFinalCta },
+  phonakUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

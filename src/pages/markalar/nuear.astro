@@ -1,23 +1,20 @@
 ---
-// NuEar marka sayfası (/markalar/nuear) — Faz 2 P2, 1. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// NuEar marka sayfası (/markalar/nuear) — özgün içerik çalışması: içerik src/data/brand-unique/nuear.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { nuearUnique } from "../../data/brand-unique/nuear";
 import { nuearHero } from "../../data/nuear/hero";
 import { nuearModels } from "../../data/nuear/models";
 import { nuearFaq } from "../../data/nuear/faq";
 import { nuearFinalCta } from "../../data/nuear/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "NuEar",
-  hero: nuearHero,
-  models: nuearModels,
-  faq: nuearFaq,
-  finalCta: nuearFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: nuearHero, models: nuearModels, faq: nuearFaq, finalCta: nuearFinalCta },
+  nuearUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

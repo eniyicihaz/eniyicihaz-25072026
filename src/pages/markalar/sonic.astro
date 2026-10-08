@@ -1,23 +1,20 @@
 ---
-// Sonic marka sayfası (/markalar/sonic) — Faz 2 P2, 3. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Sonic marka sayfası (/markalar/sonic) — özgün içerik çalışması: içerik src/data/brand-unique/sonic.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { sonicUnique } from "../../data/brand-unique/sonic";
 import { sonicHero } from "../../data/sonic/hero";
 import { sonicModels } from "../../data/sonic/models";
 import { sonicFaq } from "../../data/sonic/faq";
 import { sonicFinalCta } from "../../data/sonic/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Sonic",
-  hero: sonicHero,
-  models: sonicModels,
-  faq: sonicFaq,
-  finalCta: sonicFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: sonicHero, models: sonicModels, faq: sonicFaq, finalCta: sonicFinalCta },
+  sonicUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

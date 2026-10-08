@@ -1,23 +1,20 @@
 ---
-// ReSound marka sayfası (/markalar/resound) — Faz 2 P2, 1. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// ReSound marka sayfası (/markalar/resound) — özgün içerik çalışması: içerik src/data/brand-unique/resound.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { resoundUnique } from "../../data/brand-unique/resound";
 import { resoundHero } from "../../data/resound/hero";
 import { resoundModels } from "../../data/resound/models";
 import { resoundFaq } from "../../data/resound/faq";
 import { resoundFinalCta } from "../../data/resound/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "ReSound",
-  hero: resoundHero,
-  models: resoundModels,
-  faq: resoundFaq,
-  finalCta: resoundFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: resoundHero, models: resoundModels, faq: resoundFaq, finalCta: resoundFinalCta },
+  resoundUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>

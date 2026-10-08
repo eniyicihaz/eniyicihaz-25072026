@@ -1,23 +1,20 @@
 ---
-// Beltone marka sayfası (/markalar/beltone) — Faz 2 P2, 2. dalga: sade şablon.
-// İçerik src/data/brand-simple/build.ts tarafından, yalnızca sitedeki model verisinden ve SoT'ta
-// doğrulanmış olgulardan üretilir (üretici kaynaklı bilgi, uzman yorumu, grup/sahiplik ve doğrulanmamış
-// iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi; kullanım izni açık iştir.
+// Beltone marka sayfası (/markalar/beltone) — özgün içerik çalışması: içerik src/data/brand-unique/beltone.ts'te,
+// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
+// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildSimpleBrandPage } from "../../data/brand-simple/build";
+import { buildUniqueBrandPage } from "../../data/brand-unique/build";
+import { beltoneUnique } from "../../data/brand-unique/beltone";
 import { beltoneHero } from "../../data/beltone/hero";
 import { beltoneModels } from "../../data/beltone/models";
 import { beltoneFaq } from "../../data/beltone/faq";
 import { beltoneFinalCta } from "../../data/beltone/final-cta";
 
-const page = buildSimpleBrandPage({
-  name: "Beltone",
-  hero: beltoneHero,
-  models: beltoneModels,
-  faq: beltoneFaq,
-  finalCta: beltoneFinalCta,
-});
+const page = buildUniqueBrandPage(
+  { hero: beltoneHero, models: beltoneModels, faq: beltoneFaq, finalCta: beltoneFinalCta },
+  beltoneUnique,
+);
 ---
 
 <MainLayout title={page.meta.title} description={page.meta.description}>
