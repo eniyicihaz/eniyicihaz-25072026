@@ -23,9 +23,9 @@ export const PAGE_PATH = "/degerlendirme/ucretsiz-isitme-testi/";
 export const PAGE_URL = "https://www.eniyicihaz.com/degerlendirme/ucretsiz-isitme-testi/";
 
 export const pageMeta = {
-  title: "İşitme Testi Nasıl Yapılır? Ücretsiz İşitme Testi | Darıca | EniyiCihaz",
+  title: "İşitme Testi Nasıl Yapılır? Ücretsiz İşitme Testi | Darıca",
   description:
-    "İşitme testi nasıl yapılır, ne kadar sürer, sonuç nasıl okunur? Odyogram rehberi ve Darıca'da odyometrist eşliğinde ücretsiz işitme testi; Gebze ve Çayırova'dan ulaşım.",
+    "İşitme testi nasıl yapılır, sonuç nasıl okunur? Odyogram rehberi; Darıca'da odyometrist eşliğinde ücretsiz test, Gebze ve Çayırova'dan ulaşım.",
   schemaDescription:
     "İşitme testinin nasıl yapıldığını, hangi ölçümleri içerdiğini, sonucun nasıl okunduğunu anlatan ve Darıca'daki merkezde odyometrist eşliğinde ücretsiz işitme testi sunulan rehber sayfası.",
 };

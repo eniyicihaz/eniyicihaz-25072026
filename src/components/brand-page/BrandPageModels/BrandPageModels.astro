@@ -127,8 +127,8 @@ function hexToRgba(hex: string, alpha: number) {
                 alt={item.imageKind === "logo" ? `${item.category} logosu` : item.name}
                 loading="lazy"
                 decoding="async"
-                width={(item.imageKind === "logo" ? undefined : imageDims(item.image)?.width) ?? 500}
-                height={(item.imageKind === "logo" ? undefined : imageDims(item.image)?.height) ?? 500}
+                width={imageDims(item.image)?.width ?? 500}
+                height={imageDims(item.image)?.height ?? 500}
               />
             </span>
 

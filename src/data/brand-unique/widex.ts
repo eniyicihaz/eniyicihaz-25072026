@@ -10,8 +10,8 @@ const noCharge = f.all.filter((n) => !f.charge.includes(n));
 export const widexUnique: UniqueBrandContent = {
   name: "Widex",
   meta: {
-    title: "Widex İşitme Cihazları: Allure, SmartRIC, Beyond | EniyiCihaz",
-    description: `Sitemizde Widex için ${f.n} model ailesi var: dört RIC, iki kulak arkası (BTE); şarjlı ve pilli seçenekler, ayrıca Bluetooth etiketi olmayan bir aile. Darıca'daki merkezimizde bilgi alın.`,
+    title: "Widex İşitme Cihazları: Allure, SmartRIC, Beyond",
+    description: `Sitemizde Widex için ${f.n} model ailesi var: dört RIC, iki kulak arkası (BTE); şarjlı ve pilli seçenekler, Bluetooth etiketsiz bir aile. Darıca'da bilgi alın.`,
   },
   heroSrc: "/images/widex/models/allure.webp",
   heroParagraphs: [

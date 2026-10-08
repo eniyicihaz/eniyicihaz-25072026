@@ -9,8 +9,8 @@ const enchant = f.all.filter((n) => n.startsWith("Enchant"));
 export const sonicUnique: UniqueBrandContent = {
   name: "Sonic",
   meta: {
-    title: "Sonic İşitme Cihazları: Enchant ve Radiant | EniyiCihaz",
-    description: `Sitemizde Sonic için ${f.n} model ailesi var: dördü Enchant adını taşıyor (RIC, BTE, kulak içi ve şarjlı), ayrıca Radiant. Darıca'daki merkezimizde bilgi alın.`,
+    title: "Sonic İşitme Cihazları: Enchant ve Radiant",
+    description: `Sitemizde Sonic için ${f.n} model ailesi var: dördü Enchant adını taşıyor (RIC, BTE, kulak içi ve şarjlı), ayrıca Radiant. Darıca'da bilgi alın.`,
   },
   heroSrc: "/images/sonic/models/enchant.webp",
   heroParagraphs: [

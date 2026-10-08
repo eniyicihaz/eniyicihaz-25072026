@@ -5,7 +5,7 @@
 // fitting scenarios and the link to its own brand page on the right.
 // Descriptive, never ranked: no "best", no score, no price.
 import { ArrowRight } from "lucide-astro";
-import { imageSrcset } from "../../lib/responsive-images";
+import { imageDims, imageSrcset } from "../../lib/responsive-images";
 import type { BrandProfileContent } from "./brand-guide.types";
 
 interface Props {
@@ -18,7 +18,7 @@ const { data } = Astro.props;
 <div class="brand-profile">
   <aside class="brand-profile__side">
     <div class="brand-profile__logo">
-      <img src={data.logo} alt={data.logoAlt} width="240" height="120" loading="lazy" decoding="async" />
+      <img src={data.logo} alt={data.logoAlt} width={imageDims(data.logo)?.width ?? 240} height={imageDims(data.logo)?.height ?? 120} loading="lazy" decoding="async" />
     </div>
     <dl class="brand-profile__facts">
       {

@@ -12,6 +12,7 @@
 // Markalar, Farklı Yaklaşımlar -> Karşılaştırırken Bakılacak Kriterler ->
 // Darıca'da Marka Danışmanlığı -> SSS -> Son CTA -> İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
+import { imageDims } from "../../lib/responsive-images";
 import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import DecisionCockpit from "../../components/shared/DecisionCockpit/DecisionCockpit.astro";
 import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
@@ -102,7 +103,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
 ---
 
 <MainLayout
-  title="Marka Danışmanlığı | Size Uygun İşitme Cihazı Markası | EniyiCihaz"
+  title="Marka Danışmanlığı | Size Uygun İşitme Cihazı Markası"
   description="Darıca'daki merkezimizde 18 marka arasından ihtiyacınıza uygun işitme cihazı marka ve model ailesini birlikte değerlendiriyoruz. Marka değil, size uyan çözüm."
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -126,7 +127,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
     <div class="md-brand-grid__grid">
       {allBrands.map((brand) => (
         <a class="md-brand-grid__logo" href={brand.href} aria-label={brand.name}>
-          <img src={brand.logo} alt={brand.name} loading="lazy" />
+          <img src={brand.logo} alt={brand.name} width={imageDims(brand.logo ?? "")?.width} height={imageDims(brand.logo ?? "")?.height} loading="lazy" />
         </a>
       ))}
     </div>

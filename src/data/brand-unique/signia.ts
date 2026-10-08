@@ -8,8 +8,8 @@ const f = facts("Signia", signiaModels.items);
 export const signiaUnique: UniqueBrandContent = {
   name: "Signia",
   meta: {
-    title: "Signia İşitme Cihazları: Styletto, Pure, Insio | EniyiCihaz",
-    description: `Sitemizde Signia için ${f.n} model ailesi var: iki RIC, iki kulak içi (Insio, Silk), Active ve pilli kulak arkası Motion. Darıca'daki merkezimizde bilgi alın.`,
+    title: "Signia İşitme Cihazları: Styletto, Pure, Insio",
+    description: `Sitemizde Signia için ${f.n} model ailesi var: iki RIC, iki kulak içi (Insio, Silk), Active ve pilli kulak arkası Motion. Darıca'da bilgi alın.`,
   },
   heroAlt: "Signia işitme cihazı çifti",
   heroParagraphs: [

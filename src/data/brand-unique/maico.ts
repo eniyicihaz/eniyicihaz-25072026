@@ -9,8 +9,8 @@ const f = facts("Maico", maicoModels.items);
 export const maicoUnique: UniqueBrandContent = {
   name: "Maico",
   meta: {
-    title: "Maico İşitme Cihazları: RIC, BTE ve Kulak İçi | EniyiCihaz",
-    description: `Sitemizde Maico için üç seri var: Bluetooth Serisi (RIC), Kulak Arkası Serisi (BTE) ve Kulak İçi Serisi. Darıca'daki merkezimizde bilgi alın, işitme testinizi ücretsiz yaptırın.`,
+    title: "Maico İşitme Cihazları: RIC, BTE ve Kulak İçi",
+    description: `Sitemizde Maico için üç seri var: Bluetooth Serisi (RIC), Kulak Arkası Serisi (BTE) ve Kulak İçi Serisi. Darıca'da bilgi alın; işitme testi ücretsiz.`,
   },
   heroSrc: "/images/maico/models/kulak-arkasi-serisi.webp",
   heroParagraphs: [

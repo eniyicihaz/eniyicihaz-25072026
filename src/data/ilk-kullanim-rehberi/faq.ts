@@ -13,7 +13,7 @@ export const ilkKullanimRehberiFaq: BrandPageFaqContent = {
   decisionCard: {
     title: "İlk Kullanımınızla İlgili Yardım İster misiniz?",
     points: ["Temel kontroller eğitimi", "Kullanım süresi önerisi", "Basit sorun giderme desteği", "Ücretsiz"],
-    ctaLabel: "Bize Ulaşın",
+    ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
   categories: [

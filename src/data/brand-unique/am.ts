@@ -8,8 +8,8 @@ const f = facts("A&M", amModels.items);
 export const amUnique: UniqueBrandContent = {
   name: "A&M",
   meta: {
-    title: "A&M İşitme Cihazları: XTM P12, P8, P6, P4, A4 | EniyiCihaz",
-    description: `Sitemizde A&M için ${f.n} model ailesi var: P12, P8, P6 ve P4 numaralı dört kulak arkası (BTE) model ile kişiye özel A4 kulak içi. A&M'de uzaktan ayar yapılmıyor. Darıca'da bilgi alın.`,
+    title: "A&M İşitme Cihazları: XTM P12, P8, P6, P4, A4",
+    description: `Sitemizde A&M için ${f.n} model ailesi var: P12, P8, P6, P4 kulak arkası (BTE) ve kişiye özel A4 kulak içi. Uzaktan ayar yapılmıyor. Darıca'da bilgi alın.`,
   },
   heroAlt: "A&M XTM P12 işitme cihazı",
   heroSrc: "/images/am/models/xtm-p12.webp",

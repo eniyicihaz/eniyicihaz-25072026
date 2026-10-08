@@ -23,7 +23,7 @@ export const testHero: PriceGuideHeroContent = {
   supporting:
     "Darıca'daki SGK anlaşmalı merkezimizde yapılır. Randevusuz gelebilirsiniz; test randevuyla verildiği için önce aramanız iyi olur.",
   ctaPrimary: { label: "Ücretsiz İşitme Testi İçin Arayın", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   chips: ["Odyometrist eşliğinde", "Ücretsiz değerlendirme", "Darıca'daki merkezde"],
   image: {
     src: "/images/pages/isitme-testi-odyometri-odasi.webp",

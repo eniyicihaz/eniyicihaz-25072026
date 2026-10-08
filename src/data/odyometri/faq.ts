@@ -12,7 +12,7 @@ export const odyometriFaq: BrandPageFaqContent = {
   intro: "Test süreci, sonuçların yorumlanması ve sıklığı hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Odyometri Randevusu Almak İster misiniz?",
-    points: ["Kalibre edilmiş profesyonel ekipman", "Odyometrist eşliğinde test", "Aynı gün odyogram sonucu", "Ücretsiz"],
+    points: ["Kalibre edilmiş profesyonel ekipman", "Odyometrist eşliğinde test", "Sonuçlar odyogramda gösterilir", "Ücretsiz"],
     ctaLabel: "Hemen Randevu Alın",
     ctaHref: contactConfig.phone.href,
   },

@@ -7,6 +7,7 @@
 // prefix + slug) and its CTA label is configurable, so the same card
 // markup fits "Markayı Gör", "İncele", etc. across hub pages.
 import { ArrowRight } from "lucide-astro";
+import { imageDims } from "../../../lib/responsive-images";
 
 export interface BrandShowcaseItem {
   name: string;
@@ -48,7 +49,7 @@ const { data: brandShowcase } = Astro.props;
         <a class="brand-showcase__card" href={item.href} data-rise>
           {item.logo && (
             <span class="brand-showcase__logo-wrap">
-              <img src={item.logo} alt={item.name} loading="lazy" />
+              <img src={item.logo} alt={item.name} width={imageDims(item.logo)?.width} height={imageDims(item.logo)?.height} loading="lazy" />
             </span>
           )}
           {!item.logo && item.icon && (

@@ -143,6 +143,96 @@
 },
 "w": 1024
 },
+"/images/brands/am-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/audifon-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/audio-service-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/beltone-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/bernafon-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/coselgi-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/maico-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/nuear-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/oticon-logo-seffaf.webp": {
+"h": 887,
+"v": {},
+"w": 1774
+},
+"/images/brands/philips-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/phonak-logo-seffaf.webp": {
+"h": 353,
+"v": {},
+"w": 707
+},
+"/images/brands/resound-logo-seffaf.webp": {
+"h": 353,
+"v": {},
+"w": 707
+},
+"/images/brands/rexton-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/signia-logo-seffaf.webp": {
+"h": 353,
+"v": {},
+"w": 707
+},
+"/images/brands/sonic-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/unitron-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/vista-logo-seffaf.webp": {
+"h": 408,
+"v": {},
+"w": 612
+},
+"/images/brands/widex-logo-seffaf.webp": {
+"h": 353,
+"v": {},
+"w": 707
+},
 "/images/coselgi/models/effect-ite.webp": {
 "h": 1024,
 "v": {
@@ -594,6 +684,21 @@
 "640": "/images/sonic/models/radiant-640.webp"
 },
 "w": 1024
+},
+"/images/ui/mega-menu-bilgi-merkezi.webp": {
+"h": 800,
+"v": {},
+"w": 1200
+},
+"/images/ui/mega-menu-isitme-cihazlari.webp": {
+"h": 772,
+"v": {},
+"w": 1200
+},
+"/images/ui/mega-menu-markalar.webp": {
+"h": 784,
+"v": {},
+"w": 1200
 },
 "/images/unitron/models/blu.webp": {
 "h": 1024,

@@ -2,7 +2,7 @@
 import type { CompanyInfo } from "../footer.types";
 
 export const company: CompanyInfo = {
-  brand: "Eniyicihaz.com",
+  brand: "Avrasya İşitme Cihazları",
   legalName: "Avrasya İşitme Cihazları",
   tagline: "Avrasya İşitme Cihazları, 2009'da kuruldu",
   about:

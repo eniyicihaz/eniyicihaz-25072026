@@ -21,9 +21,9 @@ export const PAGE_PATH = "/isitme-cihazi-markalari/";
 export const PAGE_URL = "https://www.eniyicihaz.com/isitme-cihazi-markalari/";
 
 export const pageMeta = {
-  title: "İşitme Cihazı Markaları ve Modelleri: Nasıl Seçilir? | Darıca | EniyiCihaz",
+  title: "İşitme Cihazı Markaları ve Modelleri: Nasıl Seçilir? | Darıca",
   description:
-    "Oticon, Phonak, Signia, Widex, ReSound ve NuEar işitme cihazı marka profillerini ve model ailelerini karşılaştırın; marka nasıl seçilir? Merkezimiz Darıca'dadır.",
+    "Oticon, Phonak, Signia, Widex, ReSound ve NuEar marka profillerini ve model ailelerini karşılaştırın; marka nasıl seçilir? Merkezimiz Darıca'dadır.",
   schemaDescription:
     "İşitme cihazı markalarını, model ailelerini, cihaz türü ve kullanım senaryolarına göre karşılaştıran ve marka seçiminde sorulacak soruları anlatan rehber sayfası.",
 };

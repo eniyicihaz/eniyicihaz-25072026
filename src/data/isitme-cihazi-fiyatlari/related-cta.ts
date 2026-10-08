@@ -44,7 +44,7 @@ export const priceGuideCta: GuideCtaContent = {
   actions: [
     { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/", variant: "primary" },
     { label: "Bizi Arayın", href: contactConfig.phone.href, variant: "outline" },
-    { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href, variant: "outline", external: true },
+    { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href, variant: "outline", external: true },
     { label: "Darıca Merkezimize Gelin", href: "/darica-isitme-cihazlari/", variant: "outline" },
   ],
   reassurance: ["Merkezde ücretsiz demo", "Satın alarak 7 güne kadar deneme", "SGK anlaşmalı merkez"],

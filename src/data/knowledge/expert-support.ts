@@ -19,7 +19,7 @@ export const knowledgeExpertSupport: BrandExpertSupportContent = {
     "Odyometrist Desteği",
   ],
   ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp ile Yazış", href: "https://wa.me/905337733199" },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
   reassurance: "Randevunuz ücretsizdir, satın alma zorunluluğu yoktur.",
   panelHeading: "Sizi Dinliyoruz, Sizinle Karar Veriyoruz.",
   panelBody:

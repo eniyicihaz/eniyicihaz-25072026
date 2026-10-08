@@ -8,8 +8,8 @@ const f = facts("Phonak", phonakModels.items);
 export const phonakUnique: UniqueBrandContent = {
   name: "Phonak",
   meta: {
-    title: "Phonak İşitme Cihazları: Audéo, Naída, CROS | EniyiCihaz",
-    description: `Sitemizde Phonak için ${f.n} model ailesi var: RIC ve kulak arkası, kulak içi, çocuk, güçlü kayıplar ve tek taraflı kayıp için CROS. Darıca'daki merkezimizde bilgi alın.`,
+    title: "Phonak İşitme Cihazları: Audéo, Naída, CROS",
+    description: `Sitemizde Phonak için ${f.n} model ailesi var: RIC ve kulak arkası, kulak içi, çocuk, güçlü kayıplar ve tek taraflı kayıp için CROS. Darıca'da bilgi alın.`,
   },
   heroAlt: "Phonak Audéo işitme cihazı",
   heroParagraphs: [

@@ -9,6 +9,7 @@
 // aren't reusable on a plain page, so this is a small, real, generic
 // sibling instead of forcing that reuse.
 import { ChevronRight } from "lucide-astro";
+import { imageDims } from "../../../lib/responsive-images";
 
 export interface SitemapSectionLink {
   label: string;
@@ -47,7 +48,7 @@ const Icon = data.icon;
       data.links.map((link) => (
         <li>
           <a class="sitemap-section__link" href={link.href}>
-            {link.logo && <img class="sitemap-section__logo" src={link.logo} alt="" loading="lazy" />}
+            {link.logo && <img class="sitemap-section__logo" src={link.logo} alt="" width={imageDims(link.logo)?.width} height={imageDims(link.logo)?.height} loading="lazy" />}
             <span class="sitemap-section__label">{link.label}</span>
             <ChevronRight class="sitemap-section__chevron" size={14} stroke-width={2} aria-hidden="true" />
           </a>

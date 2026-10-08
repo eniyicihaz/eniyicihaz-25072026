@@ -28,7 +28,7 @@ export const ekonomikSeriComparison: KulakArkasiComparisonContent = {
   rows: [
     {
       feature: "Kaynak",
-      primary: "Yetkili distribütör ve resmi ithalat kanalından temin edilir.",
+      primary: "Kaynağı ve seri numarası belli ürünlerdir; üretici garanti koşulları geçerlidir.",
       secondary: "Kaynağı belirsiz veya kayıt dışı kanallardan temin edilebilir.",
     },
     {

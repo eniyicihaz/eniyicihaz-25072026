@@ -9,8 +9,8 @@ const noBt = f.all.filter((n) => !f.bt.includes(n));
 export const unitronUnique: UniqueBrandContent = {
   name: "Unitron",
   meta: {
-    title: "Unitron İşitme Cihazları: Smile, Blu, Stride | EniyiCihaz",
-    description: `Sitemizde Unitron için ${f.n} model ailesi var: Smile, Blu, Moxi Vivante, Stride ve Insera. Stride şarjlı kulak arkası; kulak içi aile yok. Darıca'daki merkezimizde bilgi alın.`,
+    title: "Unitron İşitme Cihazları: Smile, Blu, Stride",
+    description: `Sitemizde Unitron için ${f.n} model ailesi var: Smile, Blu, Moxi Vivante, Stride ve Insera. Stride şarjlı kulak arkası; kulak içi aile yok. Darıca'da bilgi alın.`,
   },
   heroSrc: "/images/unitron/models/blu.webp",
   heroParagraphs: [

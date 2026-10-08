@@ -8,8 +8,8 @@ const f = facts("ReSound", resoundModels.items);
 export const resoundUnique: UniqueBrandContent = {
   name: "ReSound",
   meta: {
-    title: "ReSound İşitme Cihazları: Vivia, Nexia, ENZO Q | EniyiCihaz",
-    description: `Sitemizde ReSound için ${f.n} model ailesi var: dört RIC ve iki kulak arkası (BTE); altısında Bluetooth, beşinde şarjlı etiketi. Darıca'daki merkezimizde bilgi alın.`,
+    title: "ReSound İşitme Cihazları: Vivia, Nexia, ENZO Q",
+    description: `Sitemizde ReSound için ${f.n} model ailesi var: dört RIC ve iki kulak arkası (BTE); altısında Bluetooth, beşinde şarjlı etiketi. Darıca'da bilgi alın.`,
   },
   heroSrc: "/images/resound/models/vivia.webp",
   heroParagraphs: [

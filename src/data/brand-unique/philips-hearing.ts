@@ -8,8 +8,8 @@ const f = facts("Philips Hearing", philipsHearingModels.items);
 export const philipsHearingUnique: UniqueBrandContent = {
   name: "Philips Hearing",
   meta: {
-    title: "Philips Hearing HearLink İşitme Cihazları | EniyiCihaz",
-    description: `Sitemizde Philips Hearing için ${f.n} model ailesi var: numaralı HearLink 50, 40 ve 30, kulak içi HearLink ve şarjlı HearLink. Darıca'daki merkezimizde bilgi alın.`,
+    title: "Philips Hearing HearLink İşitme Cihazları",
+    description: `Sitemizde Philips Hearing için ${f.n} model ailesi var: numaralı HearLink 50, 40 ve 30, kulak içi HearLink ve şarjlı HearLink. Darıca'da bilgi alın.`,
   },
   heroSrc: "/images/philips-hearing/models/hearlink-50.webp",
   heroParagraphs: [

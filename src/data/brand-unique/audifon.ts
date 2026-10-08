@@ -8,8 +8,8 @@ const f = facts("Audifon", audifonModels.items);
 export const audifonUnique: UniqueBrandContent = {
   name: "Audifon",
   meta: {
-    title: "Audifon İşitme Cihazları: rega R ve sino | EniyiCihaz",
-    description: `Sitemizde Audifon için ${f.n} model ailesi var: rega R, üç sino varyantı (S, P, R) ve Sueno Pro. Audifon'da uzaktan ayar yapılmıyor; ayar merkezimizde. Darıca'da bilgi alın.`,
+    title: "Audifon İşitme Cihazları: rega R ve sino",
+    description: `Sitemizde Audifon için ${f.n} model ailesi var: rega R, üç sino varyantı (S, P, R) ve Sueno Pro. Uzaktan ayar yapılmıyor; ayar merkezimizde. Darıca'da bilgi alın.`,
   },
   heroAlt: "Audifon rega R işitme cihazı",
   heroSrc: "/images/audifon/models/rega-r.webp",

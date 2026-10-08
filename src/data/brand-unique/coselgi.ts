@@ -9,8 +9,8 @@ const f = facts("Coselgi", coselgiModels.items);
 export const coselgiUnique: UniqueBrandContent = {
   name: "Coselgi",
   meta: {
-    title: "Coselgi İşitme Cihazları: Effect ve Mojo | EniyiCihaz",
-    description: `Sitemizde Coselgi için ${f.n} model ailesi var: Effect, onun kulak içi varyantı Effect ITE ve şarjlı Mojo. Darıca'daki merkezimizde bilgi alın.`,
+    title: "Coselgi İşitme Cihazları: Effect ve Mojo",
+    description: `Sitemizde Coselgi için ${f.n} model ailesi var: Effect, onun kulak içi varyantı Effect ITE ve şarjlı Mojo. Darıca'da bilgi alın.`,
   },
   heroAlt: "Coselgi Effect işitme cihazı",
   heroSrc: "/images/coselgi/models/effect.webp",

@@ -13,12 +13,12 @@ export const guvenilirTeknolojiComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
   heading: "Orijinal Ürün ile Paralel İthal / Sahte Ürün Karşılaştırması",
   intro: "İki kanal arasındaki temel farkları aşağıdaki tabloda özetledik. Orijinalliğinden emin olmak için satın alma öncesinde bu noktaları kontrol etmenizi öneririz.",
-  primaryLabel: "Orijinal ve Yetkili Kanaldan Alınan Ürün",
+  primaryLabel: "Orijinal Ürün",
   secondaryLabel: "Paralel İthal veya Sahte Ürün",
   rows: [
     {
       feature: "Kaynak",
-      primary: "Yetkili distribütör ve resmi ithalat kanalından temin edilir.",
+      primary: "Kaynağı ve seri numarası belli ürünlerdir; üretici garanti koşulları geçerlidir.",
       secondary: "Kaynağı belirsiz veya kayıt dışı kanallardan temin edilebilir.",
     },
     {

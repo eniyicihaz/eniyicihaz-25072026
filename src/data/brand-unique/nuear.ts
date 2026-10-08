@@ -9,8 +9,8 @@ const f = facts("NuEar", nuearModels.items);
 export const nuearUnique: UniqueBrandContent = {
   name: "NuEar",
   meta: {
-    title: "NuEar İşitme Cihazları: NXG AI, Circa, NOW iQ | EniyiCihaz",
-    description: `Sitemizde NuEar için ${f.n} model ailesi var: RIC, BTE ve kulak içi etiketli seçenekler. Darıca'daki merkezimizde bilgi alın, işitme testinizi ücretsiz yaptırın.`,
+    title: "NuEar İşitme Cihazları: NXG AI, Circa, NOW iQ",
+    description: `Sitemizde NuEar için ${f.n} model ailesi var: RIC, BTE ve kulak içi etiketli seçenekler. Darıca'da bilgi alın, işitme testinizi ücretsiz yaptırın.`,
   },
   heroAlt: "NuEar işitme cihazı",
   heroParagraphs: [

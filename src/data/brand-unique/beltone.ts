@@ -8,8 +8,8 @@ const f = facts("Beltone", beltoneModels.items);
 export const beltoneUnique: UniqueBrandContent = {
   name: "Beltone",
   meta: {
-    title: "Beltone İşitme Cihazları: Envision, Serene | EniyiCihaz",
-    description: `Sitemizde Beltone için ${f.n} model ailesi var: Envision, Commence, Serene ve onun kulak içi varyantı Serene ITE, ayrıca kulak arkası Boost Max S. Darıca'daki merkezimizde bilgi alın.`,
+    title: "Beltone İşitme Cihazları: Envision, Serene",
+    description: `Sitemizde Beltone için ${f.n} model ailesi var: Envision, Commence, Serene, Serene ITE ve kulak arkası Boost Max S. Darıca'da bilgi alın.`,
   },
   heroAlt: "Beltone Envision işitme cihazı",
   heroSrc: "/images/beltone/models/envision.webp",

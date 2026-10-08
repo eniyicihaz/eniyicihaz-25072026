@@ -36,7 +36,7 @@ export const premiumSeriHero: BrandPageHeroContent = {
   headingLines: ["Premium Seri", "İşitme Cihazları"],
   paragraphs: [
     "Premium seri işitme cihazları; en gelişmiş yapay zeka destekli ses işleme, tam kablosuz bağlantı ve en yüksek performans seviyesini bir arada sunar.",
-    "Avrasya İşitme'de, dünyaca tanınan markaların premium seri modellerini; en güncel teknolojiyle ve tam garanti güvencesiyle sunuyoruz.",
+    "Avrasya İşitme'de, dünyaca tanınan markaların premium seri modellerini en güncel teknolojiyle sunuyoruz; üretici garanti koşulları geçerlidir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

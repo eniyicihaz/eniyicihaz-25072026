@@ -19,9 +19,9 @@ export const PAGE_PATH = "/isitme-cihazi-fiyatlari/";
 export const PAGE_URL = "https://www.eniyicihaz.com/isitme-cihazi-fiyatlari/";
 
 export const pageMeta = {
-  title: "İşitme Cihazı Fiyatları: Fiyatı Ne Belirler? | Darıca | EniyiCihaz",
+  title: "İşitme Cihazı Fiyatları: Fiyatı Ne Belirler? | Darıca",
   description:
-    "İşitme cihazı fiyatları neye göre değişir? Cihaz türü, teknoloji, şarjlı ve Bluetooth özellikler, SGK desteği ve fiyat bilgisinin Darıca'daki merkezde nasıl alınacağı.",
+    "İşitme cihazı fiyatları neye göre değişir? Cihaz türü, teknoloji, şarjlı ve Bluetooth özellikler, SGK desteği ve fiyat bilgisinin Darıca'da nasıl alınacağı.",
   schemaDescription:
     "İşitme cihazı fiyatlarını belirleyen faktörleri, cihaz türlerini, SGK desteğini ve Darıca merkezli süreci anlatan rehber sayfası.",
 };

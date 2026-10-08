@@ -58,7 +58,7 @@ export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
   const whatsapp = contactConfig.whatsapp.href;
 
   const meta = {
-    title: `${name} İşitme Cihazları | EniyiCihaz`,
+    title: `${name} İşitme Cihazları`,
     description: `${name} işitme cihazı model aileleri ve cihaz türü etiketleri; merkezimizde ${name} hakkında bilgi, ücretsiz işitme testi ve teknik servis.`,
   };
 
