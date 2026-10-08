@@ -1,53 +1,28 @@
-// Çayırova landing page — SSS (P1-B). Kısa ve yalnızca doğrulanmış
-// bilgiye dayalı: şube durumu, 550 hattı, randevusuz ziyaret, evde hizmet,
-// deneme. Gebze SSS'inin soru/cevapları burada kopyalanmıyor. Deneme
-// cevabı SERVICE_SOT §1.5 kanonik modelini kendi cümleleriyle veriyor.
-import { contactConfig } from "../../config/contact";
+// Çayırova landing page — SSS (Faz 2 P2, Çayırova V1). Yalnızca Çayırova
+// kullanıcısına özgü, doğrulanmış 3 soru. Randevusuz ziyaret bilgisi
+// "gelmeden önce" notuna, deneme bilgisi ilgili hizmet sayfasına bırakıldı;
+// Gebze SSS'inin soru/cevapları kopyalanmıyor.
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 
 export const cayirovaFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
-  heading: "Çayırova'dan Gelecekler İçin Kısa Cevaplar",
-  intro: "Merkezimize gelmeden önce en çok merak edilenler.",
-  decisionCard: {
-    title: "Çayırova'dan Randevu",
-    points: [
-      "Merkezimiz Darıca'da",
-      "Çayırova'dan 550 numaralı hat",
-      "Evde hizmet Çayırova'yı kapsar",
-      "Ücretsiz işitme testi",
-    ],
-    ctaLabel: "Bizi Arayın",
-    ctaHref: contactConfig.phone.href,
-  },
+  heading: "Çayırova'dan Gelecekler İçin",
+  intro: "Merkez, ulaşım ve evde hizmet hakkında kısa cevaplar.",
   categories: [
     {
-      label: "Ulaşım",
+      label: "Merkez ve Ulaşım",
       items: [
         {
           question: "Çayırova'da merkeziniz var mı?",
-          answer: "Hayır, Çayırova'da şubemiz bulunmuyor. Tüm hizmetlerimizi Darıca'daki merkezimizde veriyoruz.",
+          answer: "Hayır, Çayırova'da şubemiz bulunmuyor. Tek fiziksel merkezimiz Darıca'dadır; tüm hizmetlerimizi orada veriyoruz.",
         },
         {
-          question: "Çayırova'dan hangi otobüsle gelebilirim?",
-          answer: "550 numaralı hat Çayırova'dan merkezimize ulaşımda kullanılabilir. Merkez, Farabi Devlet Hastanesi durağının karşısındadır.",
+          question: "Çayırova'dan hangi hatla gelebilirim?",
+          answer: "Çayırova'dan merkezimize 550 numaralı hatla ulaşabilirsiniz. Hat bilgileri değişebileceği için yola çıkmadan önce kontrol etmenizi öneririz.",
         },
-        {
-          question: "Önceden haber vermeden gelebilir miyim?",
-          answer: "Randevusuz ziyaretleri kabul ediyoruz; işitme testi ve ayar gibi hizmetler randevuyla verildiğinden gelmeden önce aramanız en iyisidir.",
-        },
-      ],
-    },
-    {
-      label: "Hizmet",
-      items: [
         {
           question: "Evime gelerek hizmet veriyor musunuz?",
-          answer: "Evet. Çayırova, Kocaeli genelinde verdiğimiz evde hizmetin kapsamındadır. Evde hizmet ücretsizdir ve randevu gerektirir.",
-        },
-        {
-          question: "Cihazı almadan önce deneme imkânı var mı?",
-          answer: "Merkezimizde cihazı yaklaşık 20 dakika ücretsiz deneyebilirsiniz. Daha uzun denemek isterseniz cihazı satın alarak 7 güne kadar kullanabilir, memnun kalmazsanız iade edip ödediğiniz tutarı kesintisiz geri alabilirsiniz. Bu 7 günlük deneme kulak içi cihazları kapsamaz.",
+          answer: "Evet. Evde hizmetimiz Kocaeli genelini kapsar; Çayırova da bu alandadır. Hizmet ücretsizdir ve randevuyla planlanır.",
         },
       ],
     },

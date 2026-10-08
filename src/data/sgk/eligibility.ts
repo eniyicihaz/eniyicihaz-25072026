@@ -94,7 +94,7 @@ export const sgkEligibility: SgkEligibilityContent = {
     closing:
       "Bu soruların çoğuna \"Evet\" cevabı veriyorsanız büyük olasılıkla SGK desteğinden yararlanabilirsiniz.",
     ctaHeading: "Durumunuzu ücretsiz değerlendirelim.",
-    ctaPrimaryLabel: "Hemen Ara",
-    ctaSecondaryLabel: "WhatsApp'tan Yaz",
+    ctaPrimaryLabel: "Bizi Arayın",
+    ctaSecondaryLabel: "WhatsApp'tan Yazın",
   },
 };

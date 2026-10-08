@@ -31,6 +31,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const isitmeKaybiNedirHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BİLGİ MERKEZİ · REHBERLER · İŞİTME KAYBI NEDİR?",
   headingLines: ["İşitme Kaybı Nedir?", "Nedenleri ve Belirtileri"],
   paragraphs: [

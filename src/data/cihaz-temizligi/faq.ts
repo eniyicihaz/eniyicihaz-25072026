@@ -13,7 +13,7 @@ export const cihazTemizligiFaq: BrandPageFaqContent = {
   decisionCard: {
     title: "Doğru Temizlik Yöntemini Öğrenmek İster misiniz?",
     points: ["Ücretsiz temizlik kiti tanıtımı", "Kişiye özel gösterim", "Doğru saklama önerileri", "Basit ve hızlı"],
-    ctaLabel: "Bize Ulaşın",
+    ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
   categories: [

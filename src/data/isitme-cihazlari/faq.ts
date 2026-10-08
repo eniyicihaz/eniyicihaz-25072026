@@ -13,7 +13,7 @@ export const devicesFaq: BrandPageFaqContent = {
   intro: "Cihaz türleri, özellikler, seçim ve süreç hakkında en çok sorulan soruların kısa ve net cevapları.",
   decisionCard: {
     title: "Hangi cihazın uygun olduğunu birlikte belirleyelim",
-    points: ["Ücretsiz işitme testi", "Cihaz deneme", "Türleri yakından karşılaştırma", "Darıca'daki merkezimizde yüz yüze görüşme"],
+    points: ["Ücretsiz işitme testi", "Cihaz deneme", "Cihaz türleri hakkında bilgi", "Darıca'daki merkezimizde yüz yüze görüşme"],
     ctaLabel: "Hemen Ara",
     ctaHref: contactConfig.phone.href,
   },
@@ -64,7 +64,7 @@ export const devicesFaq: BrandPageFaqContent = {
         {
           question: "İşitme cihazı deneme yapılabilir mi?",
           answer:
-            "Evet, merkezimizde uygun bulunan cihazlar stok ve değerlendirmeye bağlı olarak denenebilir. Denemenin kapsamı ve koşulları cihaza göre değişebilir; ayrıntıları cihaz deneme sayfamızda ve görüşme sırasında paylaşıyoruz.",
+            "Evet. Merkezimizde yaklaşık 20 dakikalık ücretsiz bir demo yapılır; cihazı satın alarak 7 güne kadar da deneyebilir, uygun bulmazsanız iade edebilirsiniz. Ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; ayrıntılar cihaz deneme sayfamızda.",
         },
       ],
     },
@@ -104,7 +104,7 @@ export const devicesFaq: BrandPageFaqContent = {
         {
           question: "Darıca, Gebze veya Çayırova'dan nasıl hizmet alabilirim?",
           answer:
-            "Merkezimiz Darıca'dadır. Gebze ve Çayırova'da şubemiz yoktur; bu ilçelerden gelen danışanlarımız Darıca'daki merkezimize gelerek hizmet alır. Önceden randevu almanızı tavsiye ederiz; telefon veya WhatsApp ile ön bilgi de alabilirsiniz.",
+            "Merkezimiz Darıca'dadır. Gebze ve Çayırova'da şubemiz yoktur; bu ilçelerden gelen danışanlarımız Darıca'daki merkezimize gelerek hizmet alır. Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur. Telefon veya WhatsApp ile ön bilgi de alabilirsiniz.",
         },
       ],
     },

@@ -47,7 +47,7 @@ export const testFaq: BrandPageFaqContent = {
         {
           question: "Darıca'da işitme testi nerede yapılır?",
           answer:
-            "Avrasya İşitme'nin Darıca'daki merkezinde yapılır: Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7, Palandöken Eczanesi'nin üst katında, Farabi Ağız ve Diş Sağlığı Merkezi girişinin tam karşısında. Randevu için telefon veya WhatsApp'tan ulaşabilirsiniz.",
+            "Avrasya İşitme'nin Darıca'daki merkezinde yapılır: Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7, Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısındadır. Randevusuz gelebilirsiniz; işitme testi randevuyla verildiği için önce telefon veya WhatsApp'tan ulaşmanız iyi olur.",
         },
         {
           question: "Gebze veya Çayırova'dan işitme testi için gelebilir miyim?",

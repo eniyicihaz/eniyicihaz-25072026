@@ -1,15 +1,16 @@
-// Son CTA — Evde İşitme Cihazı Hizmeti. Renders through the existing
-// BrandPageFinalCta (unchanged).
+// Evde İşitme Cihazı Hizmeti — Final CTA (Faz 2 P2). "Marka bağımsız
+// değerlendirme" ve "mevcut cihazınızla ilgilenebiliriz" gibi doğrulanmamış
+// maddeler çıkarıldı.
 import { contactConfig } from "../../config";
 import type { BrandPageFinalCtaContent } from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 export const evdeHizmetFinalCta: BrandPageFinalCtaContent = {
-  badge: "İŞİTME DESTEĞİ EVİNİZE GELSİN",
-  heading: "Kocaeli ve Anadolu Yakası'nda Evde Hizmet İçin Bize Ulaşın",
-  description: "İhtiyacınızı bize iletin, size uygun bir ev ziyareti saati belirleyelim.",
+  badge: "EVDE HİZMET",
+  heading: "Evde Hizmet İçin Bize Ulaşın",
+  description: "Adresinizi ve ihtiyacınızı iletin, size uygun bir randevu günü belirleyelim.",
   ctaPrimary: { label: "Evde Hizmet Talep Et", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Marka Bağımsız Değerlendirme", "Kocaeli ve Anadolu Yakası'nda Randevulu Ziyaret", "Mevcut Cihazınızla İlgilenebiliriz", "Gerektiğinde Merkeze Yönlendirme"],
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
+  trustItems: ["Kocaeli ve Anadolu Yakası", "Ücretsiz Evde Hizmet", "Randevulu Ziyaret"],
   accentColor: "#0d9488",
   accentColorHover: "#0f766e",
   accentColorGlow: "rgb(13 148 136 / 0.22)",

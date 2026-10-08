@@ -69,7 +69,7 @@ export const invisibleSection: GuideSectionMeta = {
 export const invisible: FocusBlockContent = {
   image: {
     src: "/images/price-guide/device-type-gorunmez-cok-kucuk.webp",
-    alt: "Kulak kanalının derinine yerleşen çok küçük (IIC/CIC benzeri) işitme cihazı — temsili görsel",
+    alt: "Parmak ucunda duran çok küçük kulak içi işitme cihazları — temsili görsel",
     width: 1254,
     height: 1254,
   },
@@ -123,8 +123,8 @@ export const children: FocusBlockContent = {
   lead:
     "Çocuklarda işitme cihazı, önce çocuğun işitme değerlendirmesinin yapılmasıyla; ardından büyüyen kulağa uygun cihaz ve ayarın seçilip düzenli takiple sürdürülmesiyle gündeme gelir.",
   paragraphs: [
-    "Çocuk kulağı büyüdüğü için kulak kalıbı ve ayarlar zaman içinde yenilenir. Bu nedenle çocuklara yönelik çözümlerde cihazın kendisi kadar, düzenli kontrol randevuları ve aile ile uzman arasındaki iletişim de önemlidir.",
-    "Cihazın uygun olup olmadığına, çocuğun değerlendirme sonuçlarına bakılarak uzman ekip birlikte karar verir; bu sayfa tıbbi bir karar önermez.",
+    "Çocuk kulağı büyüdüğü için kulak kalıbı ve ayarlar zaman içinde yenilenir. Bu nedenle çocuklara yönelik çözümlerde cihazın kendisi kadar, düzenli kontrol randevuları ve aile ile ekip arasındaki iletişim de önemlidir.",
+    "Cihazın uygun olup olmadığına, çocuğun değerlendirme sonuçlarına bakılarak aile ve ekip birlikte karar verir; bu sayfa tıbbi bir karar önermez.",
   ],
   columns: [
     {
@@ -140,7 +140,7 @@ export const children: FocusBlockContent = {
       title: "Ailenin rolü",
       items: [
         "Cihazın günlük takıp çıkarma ve bakımı",
-        "Kullanım süresi ve tepkilerin uzmana iletilmesi",
+        "Kullanım süresi ve tepkilerin ekibe iletilmesi",
         "Randevuların düzenli sürdürülmesi",
       ],
     },

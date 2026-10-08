@@ -39,8 +39,8 @@ export const kulakArkasiRelatedContent: BrandPageRelatedContentContent = {
       href: "/isitme-cihazlari/sarj-edilebilir/",
     },
     {
-      label: "Darıca, Gebze ve Çayırova'da Hizmetinizdeyiz",
-      description: "Merkezimize ulaşım bilgileri ve randevu için bizimle iletişime geçin.",
+      label: "Merkezimiz Darıca'da",
+      description: "Adres, yol tarifi ve çalışma saatleri için iletişim sayfamızı inceleyin.",
       href: "/iletisim/",
     },
   ],

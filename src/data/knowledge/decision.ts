@@ -47,7 +47,7 @@ export const knowledgeDecision: BrandDecisionContent = {
     title: "Aradığınızı Bulamadıysanız",
     description:
       "Uzman ekibimiz, merak ettiğiniz her konuda size doğrudan yardımcı olur.",
-    ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
+    ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
     ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
   },
 };

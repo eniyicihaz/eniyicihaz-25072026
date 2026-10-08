@@ -27,7 +27,7 @@ export const priceGuideFaq: BrandPageFaqContent = {
         {
           question: "İşitme cihazı ne kadar?",
           answer:
-            "Tek bir fiyat yoktur; bedel kişiye ve seçilen cihaza göre geniş bir aralıkta değişir. Avrasya İşitme fiyat listesi yayımlamaz; işitme değerlendirmesinden sonra, ihtiyacınıza uygun seçenekler ve bunların fiyat bilgisi birlikte netleşir.",
+            "Tek bir fiyat yoktur; bedel kişiye ve seçilen cihaza göre geniş bir aralıkta değişir. Şu an bu sayfada fiyat rakamı paylaşmıyoruz; işitme değerlendirmesinden sonra, ihtiyacınıza uygun seçenekler ve bunların fiyat bilgisi birlikte netleşir.",
         },
         {
           question: "Şarjlı işitme cihazları daha mı pahalı?",
@@ -81,7 +81,7 @@ export const priceGuideFaq: BrandPageFaqContent = {
         {
           question: "İşitme cihazı deneme yapılabilir mi?",
           answer:
-            "Evet. Merkezimizde yaklaşık 20 dakikalık ücretsiz cihaz demosu yapılır; cihazı satın alarak 7 güne kadar deneyip uygun bulmazsanız iade edebilirsiniz ve ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; stok durumuna bağlı olarak karşılaştırmalı demo da değerlendirilebilir.",
+            "Evet. Merkezimizde yaklaşık 20 dakikalık ücretsiz cihaz demosu yapılır; cihazı satın alarak 7 güne kadar deneyip uygun bulmazsanız iade edebilirsiniz ve ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; bu cihazlar merkezimizde demo olarak denenebilir.",
         },
         {
           question: "İşitme cihazı kaç yıl kullanılır?",

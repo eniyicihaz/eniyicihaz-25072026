@@ -10,7 +10,7 @@ export const hakkimizdaFaq: BrandPageFaqContent = {
   intro: "Merkezimiz, hizmet bölgemiz ve çalışma şeklimiz hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Merkezimiz Hakkında Bilgi Almak İster misiniz?",
-    points: ["Darıca'da SGK anlaşmalı merkez", "Marka bağımsız değerlendirme", "Satış sonrası destek", "Gebze, Çayırova'dan kolay ulaşım"],
+    points: ["Darıca'da SGK anlaşmalı merkez", "18 marka", "18 markada teknik servis", "Ücretsiz işitme testi"],
     ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
@@ -18,18 +18,16 @@ export const hakkimizdaFaq: BrandPageFaqContent = {
     {
       label: "Genel",
       items: [
-        { question: "Avrasya İşitme Cihazları nerede hizmet veriyor?", answer: "Merkezimiz Darıca'dadır; Gebze ve Çayırova'dan gelen danışanlarımıza da hizmet veriyoruz." },
-        { question: "Hangi işitme cihazı markalarıyla çalışıyorsunuz?", answer: "Farklı üreticilerin işitme cihazı çözümlerini değerlendirebiliyoruz; güncel marka listemizi Markalar sayfamızdan inceleyebilirsiniz." },
+        { question: "Avrasya İşitme Cihazları nerede hizmet veriyor?", answer: "Tek fiziksel merkezimiz Darıca'dadır; Gebze ve Çayırova'dan gelen danışanlarımız da bu merkeze gelir. Merkeze gelemeyenler için Kocaeli geneli ve İstanbul Anadolu Yakası'nda evde hizmet veriyoruz." },
+        { question: "Hangi işitme cihazı markalarıyla çalışıyorsunuz?", answer: "18 işitme cihazı markasıyla çalışıyoruz; marka listesini Markalar sayfamızdan inceleyebilirsiniz. 18 markanın tamamında merkezimizde teknik servis veriyoruz." },
         { question: "İşitme cihazı aldıktan sonra ayar desteği veriyor musunuz?", answer: "Evet; cihaz tesliminden sonra da kontrol ve ayar desteği sağlıyoruz." },
-        { question: "Merkeze gelmeden önce randevu almam gerekir mi?", answer: "Randevu almanızı öneririz; telefon veya WhatsApp'tan bize ulaşabilirsiniz." },
+        { question: "Merkeze gelmeden önce randevu almam gerekir mi?", answer: "Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur. Telefon veya WhatsApp'tan bize ulaşabilirsiniz." },
       ],
     },
     {
-      label: "Bölgemizden Ulaşım",
+      label: "Ulaşım",
       items: [
-        { question: "Darıca'da mı hizmet veriyorsunuz?", answer: "Evet; merkezimiz Darıca'dadır." },
-        { question: "Gebze'den gelip hizmet alabilir miyim?", answer: "Evet; Gebze'den randevu alarak merkezimize ulaşabilirsiniz." },
-        { question: "Çayırova'dan gelip hizmet alabilir miyim?", answer: "Evet; Çayırova'dan da randevu alarak merkezimize ulaşabilirsiniz." },
+        { question: "Gebze veya Çayırova'dan gelip hizmet alabilir miyim?", answer: "Evet. Gebze ve Çayırova'da şubemiz yok; bu ilçelerden gelen danışanlarımız Darıca'daki merkezimize gelir. Ulaşım bilgileri Gebze ve Çayırova sayfalarımızda." },
       ],
     },
   ],

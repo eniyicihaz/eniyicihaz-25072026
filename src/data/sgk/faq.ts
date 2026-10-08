@@ -99,7 +99,7 @@ export const sgkFaq: SgkFaqContent = {
   help: {
     title: "Aradığınız sorunun cevabını bulamadınız mı?",
     subtext: "Uzman ekibimiz SGK süreciyle ilgili tüm sorularınızı memnuniyetle yanıtlar.",
-    primaryLabel: "Hemen Ara",
-    secondaryLabel: "WhatsApp'tan Yaz",
+    primaryLabel: "Bizi Arayın",
+    secondaryLabel: "WhatsApp'tan Yazın",
   },
 };

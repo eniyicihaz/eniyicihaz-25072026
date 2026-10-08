@@ -25,11 +25,12 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const ekonomikSeriHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · SEGMENTLER · EKONOMİK SERİ",
   headingLines: ["Ekonomik Seri", "İşitme Cihazları"],
   paragraphs: [
     "Ekonomik seri işitme cihazları; temel işitme ihtiyaçlarını karşılayan, sade ve uygun fiyatlı bir teknoloji seviyesi sunar.",
-    "Avrasya İşitme'de, dünyaca tanınan markaların ekonomik seri modellerini; orijinal ürün güvencesi ve tam garanti ile sunuyoruz.",
+    "Avrasya İşitme'de, dünyaca tanınan markaların ekonomik seri modellerini sunuyoruz; üretici garanti koşulları geçerlidir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

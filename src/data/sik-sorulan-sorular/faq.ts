@@ -77,7 +77,7 @@ export const sikSorulanSorularFaq: BrandPageFaqContent = {
         {
           question: "Hangi bölgelerde hizmet veriyorsunuz?",
           answer:
-            "Merkezimiz Darıca'dadır; Gebze ve Çayırova'dan gelen danışanlarımızı da merkezimizde ağırlıyoruz.",
+            "Tek fiziksel merkezimiz Darıca'dadır; Gebze ve Çayırova'dan gelen danışanlarımızı da bu merkezde ağırlıyoruz. Merkeze gelmekte zorlananlar için evde hizmet; Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nın tüm ilçelerinde, randevu ile ücretsiz sunulur.",
         },
       ],
     },

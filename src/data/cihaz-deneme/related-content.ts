@@ -1,42 +1,31 @@
-// "İlgili İçerikler" internal-linking section for /uygulama-ayar/
-// cihaz-deneme (Hub-and-Spoke) — redesign plan §1. Renders through the
-// existing BrandPageRelatedContent component. Ücretsiz İşitme Testi link
-// added at the top — the natural prior step before a device trial.
+// "İlgili İçerikler" — /uygulama-ayar/cihaz-deneme (Faz 2 P2): 6 linkten 4'e.
+// "Kolay Değişim" (güvence iddiası taşıyan ayrı sayfa), "Kalıp Alımı",
+// "Kişiye Özel Programlama" ve "Cihaz Uygulama" linkleri çıkarıldı.
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
 export const cihazDenemeRelatedContent: BrandPageRelatedContentContent = {
   badge: "İLGİLİ İÇERİKLER",
-  heading: "Devam Etmek İçin",
+  heading: "İlgili Sayfalar",
   links: [
     {
       label: "Ücretsiz İşitme Testi",
-      description: "Cihaz denemeden önce Darıca'daki merkezimizde ücretsiz işitme testinizi yaptırın.",
+      description: "Deneme öncesi işitme değerlendirmesi hakkında bilgi alın.",
       href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {
-      label: "Cihaz Uygulama",
-      description: "Deneme sonrası kalıcı uygulama randevusunun nasıl işlediğini tanıyın.",
-      href: "/uygulama-ayar/cihaz-uygulama/",
-    },
-    {
-      label: "Kişiye Özel Programlama",
-      description: "Cihazınızın kişiye özel programlanma sürecini yakından tanıyın.",
-      href: "/uygulama-ayar/kisiye-ozel-programlama/",
-    },
-    {
-      label: "Kolay Değişim",
-      description: "Satın alma sonrası değişim ve iade güvencemiz hakkında bilgi edinin.",
-      href: "/neden-orijinal/kolay-degisim/",
-    },
-    {
-      label: "Kalıp Alımı",
-      description: "Kulak kalıbı ölçümü ve üretim süreci hakkında bilgi edinin.",
-      href: "/uygulama-ayar/kalip-alimi/",
-    },
-    {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
-      description: "SGK'nın işitme cihazı desteğini ve uygunluk kriterlerini öğrenin.",
+      description: "SGK desteği ve rapor süreci hakkında bilgi alın.",
       href: "/sgk-isitme-cihazi-odemesi/",
+    },
+    {
+      label: "Darıca Merkezimizin Sayfası",
+      description: "Merkezimiz, adres ve ziyaret bilgileri.",
+      href: "/darica-isitme-cihazlari/",
+    },
+    {
+      label: "İletişim",
+      description: "Telefon, WhatsApp, adres ve çalışma saatleri.",
+      href: "/iletisim/",
     },
   ],
   accentColor: "#0d9488",

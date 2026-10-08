@@ -29,10 +29,10 @@ const items: BrandPageProduct[] = [
 
 export const modelsShowcase: BrandPageModelsContent = {
   ...homeModels,
-  badge: "GERÇEK MODELLER",
-  heading: "Farklı İhtiyaçlara Örnek Modeller",
+  badge: "MODEL ÖRNEKLERİ",
+  heading: "Farklı Markalardan Örnek Model Aileleri",
   intro:
-    "Aşağıdaki beş model, farklı markaların farklı yaklaşımlarını gerçek ürünler üzerinden göstermek için seçildi: yapay zekâ destekli, şarjlı RIC, ince tasarımlı, gürültü azaltmaya yönelik ve güçlü kayıplara yönelik. Model fiyatı yazmıyoruz; fiyat için fiyat rehberimize bakabilirsiniz.",
+    "Aşağıdaki beş model ailesi, sitemizdeki marka sayfalarından örnek olarak seçildi. Model fiyatı yazmıyoruz; fiyat için fiyat rehberimize bakabilirsiniz.",
   ctaLabel: "Marka sayfası",
-  items,
+  items: items.map((item) => ({ ...item, description: `${item.name.startsWith(item.category + " ") ? item.name.slice(item.category.length + 1) : item.name} model ailesi; ayrıntılar marka sayfasında.`, tags: item.tags.filter((t) => t !== "BrainHearing" && t !== "AI") })),
 };

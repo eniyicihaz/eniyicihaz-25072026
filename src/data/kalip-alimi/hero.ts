@@ -25,6 +25,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const kalipAlimiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · UYGULAMA & AYAR · KALIP ALIMI",
   headingLines: ["Kulak Kalıbı Alımı", "Süreci Nasıl İşler?"],
   paragraphs: [

@@ -21,6 +21,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const orijinalAksesuarHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · NEDEN ORİJİNAL · ORİJİNAL AKSESUAR",
   headingLines: ["Orijinal Aksesuar", "Neden Önemlidir?"],
   paragraphs: [

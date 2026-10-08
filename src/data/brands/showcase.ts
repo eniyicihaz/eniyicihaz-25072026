@@ -17,9 +17,9 @@ export const brandShowcase: BrandShowcaseContent = {
   // Matches header.data.ts's brandsMega column title exactly, for
   // consistency across the site.
   eyebrow: "Öne Çıkan Markalar",
-  heading: "Dünyanın Önde Gelen İşitme Cihazı Markaları",
+  heading: "Öne Çıkan İşitme Cihazı Markaları",
   subhead:
-    "Güvenilir global üreticilerin orijinal ürünlerini bünyemizde sunuyoruz.",
+    "Darıca'daki merkezimizde 18 marka ile çalışıyoruz; aşağıda bunlardan altısı yer alıyor.",
   ctaLabel: "Markayı Gör",
   brands: [
     { name: "Oticon", href: "/markalar/oticon/", logo: "/images/brands/oticon-logo-seffaf.webp" },

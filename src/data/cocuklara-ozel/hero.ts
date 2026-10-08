@@ -16,6 +16,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const cocuklaraOzelHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: marka/model görseli cihaz türünü doğru temsil etmiyor → görselsiz kısa hero
   badge: "İŞİTME CİHAZI ÇEŞİTLERİ · ÇOCUKLARA ÖZEL",
   headingLines: ["Çocuklara Özel", "İşitme Cihazları"],
   paragraphs: [

@@ -13,7 +13,7 @@ export const ekonomikSeriFinalCta: BrandPageFinalCtaContent = {
     "Ücretsiz işitme testi ve uzman danışmanlığımızla, ekonomik serinin ihtiyaçlarınıza uygun olup olmadığını birlikte değerlendirelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Orijinal Ürün Güvencesi", "Demo Cihaz Deneme", "Uzman Danışmanlığı"],
+  trustItems: ["Ücretsiz İşitme Testi", "Üretici Garantisi", "Demo Cihaz Deneme", "Uzman Danışmanlığı"],
   accentColor: "#16a34a",
   accentColorHover: "#15803d",
   accentColorGlow: "rgb(22 163 74 / 0.22)",

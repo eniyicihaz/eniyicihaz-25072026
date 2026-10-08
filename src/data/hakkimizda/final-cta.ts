@@ -7,10 +7,10 @@ import type { BrandPageFinalCtaContent } from "../../components/brand-page/Brand
 export const hakkimizdaFinalCta: BrandPageFinalCtaContent = {
   badge: "BİZİ TANIYIN",
   heading: "Darıca'daki Merkezimizde Sizi Ağırlamak İsteriz",
-  description: "Marka bağımsız değerlendirme ve satış sonrası destek anlayışımızla, Darıca'daki merkezimizde sizi ağırlamak isteriz. Gebze ve Çayırova'dan da randevu alabilirsiniz.",
-  ctaPrimary: { label: "Randevu Al", href: contactConfig.phone.href },
+  description: "Darıca'daki merkezimizde sizi ağırlamak isteriz. Gebze ve Çayırova'dan da merkezimize gelebilirsiniz.",
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
-  trustItems: ["Darıca'da SGK Anlaşmalı Merkez", "Marka Bağımsız Değerlendirme", "Satış Sonrası Destek", "Gebze, Çayırova'ya Yakın"],
+  trustItems: ["Darıca'da SGK Anlaşmalı Merkez", "18 Marka", "18 Markada Teknik Servis", "Ücretsiz İşitme Testi"],
   accentColor: "#2563eb",
   accentColorHover: "#1d4ed8",
   accentColorGlow: "rgb(37 99 235 / 0.22)",

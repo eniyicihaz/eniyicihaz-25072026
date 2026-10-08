@@ -21,6 +21,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const yeniTeknolojilerHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BLOG & HABERLER · YENİ TEKNOLOJİLER",
   headingLines: ["İşitme Cihazlarında", "Yeni Teknolojiler"],
   paragraphs: [

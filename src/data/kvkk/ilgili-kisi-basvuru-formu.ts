@@ -91,7 +91,7 @@ export const ilgiliKisiBasvuruFormu: LegalDocumentData = {
         },
         {
           type: "p",
-          text: "Başvuru adresi: Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7, Asansör 1. Kat, Darıca/Kocaeli | KEP: erdinc.kilic.3@hs01.kep.tr | E-posta: avrasyaisitme@gmail.com",
+          text: "Başvuru adresi: Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7, Asansör 1. Kat, Darıca/Kocaeli | KEP: erdinc.kilic.3@hs01.kep.tr | E-posta: eniyicihaz@gmail.com",
         },
       ],
     },

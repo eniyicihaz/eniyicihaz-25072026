@@ -1,18 +1,18 @@
-// Kocaeli landing page — Final CTA. Kocaeli geneli odaklı.
+// Kocaeli landing page — Final CTA (Faz 2 P2, Kocaeli V1). Yol tarifi hero
+// ve konum kartında zaten var; component yalnızca 2 CTA destekler.
 import { contactConfig } from "../../config/contact";
 import type { BrandPageFinalCtaContent } from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 export const kocaeliFinalCta: BrandPageFinalCtaContent = {
-  badge: "HEMEN BAŞLAYALIM",
-  heading: "Kocaeli'de İşitme Cihazı İhtiyacınız İçin Bize Ulaşın",
-  description: "Darıca'daki merkezimiz için randevu alın ya da Kocaeli'nin herhangi bir ilçesinden evde hizmet talep edin.",
-  ctaPrimary: { label: "Arayıp Randevu Alın", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
+  badge: "BİZE ULAŞIN",
+  heading: "Yola Çıkmadan Önce Bize Danışın",
+  description: "Darıca'daki merkezimize gelmek ya da evde hizmet için bizi arayın veya WhatsApp'tan yazın.",
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   trustItems: [
-    "SGK Anlaşmalı Hizmet",
-    "18 Marka Seçeneği",
-    "Ücretsiz İlk Değerlendirme",
-    "Cihaz Deneme İmkânı",
+    "Tek Merkez: Darıca",
+    "Evde Hizmet Kocaeli Geneli",
+    "Ücretsiz İşitme Testi",
   ],
   accentColor: "#2563eb",
   accentColorHover: "#1d4ed8",

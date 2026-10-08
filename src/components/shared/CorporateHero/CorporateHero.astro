@@ -27,6 +27,8 @@ export interface CorporateHeroCta {
 }
 
 export interface CorporateHeroContent {
+  /** Uzun H1'ler için mobilde (≤640 px) bir kademe küçük başlık; metin değişmez. */
+  compactHeading?: boolean;
   locationLabel: string;
   heading: string;
   subheading: string;
@@ -44,6 +46,8 @@ export interface CorporateHeroContent {
   // Optional responsive candidates for the hero photo.
   imageSrcset?: string;
   imageSizes?: string;
+  // Opsiyonel: dar ekranlar için farklı kırpılmış (portre) varyant — <picture><source media>.
+  imageMobile?: { src: string; media: string };
   // Optional stronger dark overlay for bright photos (text contrast).
   scrimStrong?: boolean;
   stats: CorporateHeroStat[];
@@ -57,9 +61,11 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<section class="corporate-hero" aria-labelledby="corporate-hero-title">
+<section class:list={["corporate-hero", { "corporate-hero--compact-h1": data.compactHeading }]} aria-labelledby="corporate-hero-title">
   <div class:list={["corporate-hero__photo", { "corporate-hero__photo--no-image": !data.image }]}>
     {data.image && (
+      <picture>
+        {data.imageMobile && <source media={data.imageMobile.media} srcset={data.imageMobile.src} />}
       <img
         class="corporate-hero__image"
         src={data.image}
@@ -71,6 +77,7 @@ const { data } = Astro.props;
         loading="eager"
         fetchpriority={data.imagePriority ? "high" : undefined}
       />
+      </picture>
     )}
     <div class:list={["corporate-hero__scrim", { "corporate-hero__scrim--strong": data.scrimStrong }]} aria-hidden="true" />
 
@@ -377,6 +384,11 @@ const { data } = Astro.props;
   }
 
   @media (max-width: 640px) {
+    .corporate-hero--compact-h1 .corporate-hero__heading {
+      font-size: clamp(1.625rem, 1.2rem + 2.2vw, 2rem);
+      line-height: 1.15;
+    }
+
     .corporate-hero__photo {
       min-height: 420px;
     }

@@ -27,6 +27,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const cocuklardaSgkHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BİLGİ MERKEZİ · SGK & HAKLAR · ÇOCUKLARDA SGK",
   headingLines: ["Çocuklarda SGK", "İşitme Cihazı Desteği"],
   paragraphs: [

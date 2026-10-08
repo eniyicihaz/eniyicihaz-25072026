@@ -68,6 +68,6 @@ export const sgkKnowledge: SgkKnowledgeContent = {
   notice: {
     label: "Güncel Bilgilendirme",
     text: "SGK ödeme tutarları ve katkı payları belirli dönemlerde güncellenebilir. En güncel bilgiler için SGK mevzuatını takip edebilir veya SGK anlaşmalı merkezimizden bilgi alabilirsiniz.",
-    contactLabel: "Hemen Arayın",
+    contactLabel: "Bizi Arayın",
   },
 };

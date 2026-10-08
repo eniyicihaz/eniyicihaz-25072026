@@ -34,6 +34,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const tekTarafliIsitmeKaybiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "İHTİYACINIZA GÖRE · TEK TARAFLI İŞİTME KAYBI",
   headingLines: ["Tek Taraflı İşitme Kaybı", "İçin Cihaz Rehberi"],
   paragraphs: [

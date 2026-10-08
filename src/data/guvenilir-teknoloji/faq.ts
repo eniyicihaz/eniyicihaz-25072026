@@ -26,12 +26,12 @@ export const guvenilirTeknolojiFaq: BrandPageFaqContent = {
         {
           question: "Orijinal işitme cihazı ne anlama gelir?",
           answer:
-            "Üretici tarafından resmi olarak test edilmiş, sertifikalandırılmış ve yetkili distribütör kanalıyla satışa sunulmuş; üretici garantisi ve resmi seri numarası bulunan bir cihazı ifade eder.",
+            "Üretici tarafından resmi olarak test edilmiş ve sertifikalandırılmış; üretici garantisi ve resmi seri numarası bulunan bir cihazı ifade eder. Üretici garanti koşulları geçerlidir.",
         },
         {
           question: "Paralel ithal ürün nedir?",
           answer:
-            "Üreticinin resmi distribütörlük anlaşması dışında, farklı ülkelerden kayıt dışı yollarla getirilen ürünlerdir; bu ürünler genellikle üretici garantisi ve resmi destekten yoksundur.",
+            "Üreticinin resmi satış kanalları dışında, farklı ülkelerden kayıt dışı yollarla getirilen ürünlerdir; bu ürünler genellikle üretici garantisi ve resmi destekten yoksundur.",
         },
       ],
     },

@@ -56,7 +56,7 @@ export const brandDecision: BrandDecisionContent = {
     title: "Hangi Tanım Size Uygun Olursa Olsun",
     description:
       "Uzman odyoloğumuz, ücretsiz işitme testi sonrasında size en uygun markayı birlikte belirler.",
-    ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
+    ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
     ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
   },
 };

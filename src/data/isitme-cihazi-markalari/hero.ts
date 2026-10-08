@@ -1,24 +1,22 @@
-// Hero — H1 "İşitme Cihazı Markaları". Görsel: bu sayfa için sağlanan gerçek,
-// logosuz temsili sahne. Mevcut `isitme-cihazi-markalari.webp` 10 logolu, kalabalık bir
-// kompozisyon olup /markalar/ hero'sunda ve ana sayfa slayt 4'te kullanıldığından bu
-// sayfada bilinçli olarak kullanılmadı.
+// Marka pillar hero — Faz 2 P2: "bağlı değiliz / tarafsız" ifadeleri çıkarıldı (marka ilişki
+// türü SoT'ta doğrulanmadı), üretici kaynaklı bilgi yok. Telefon/WhatsApp için sayfa içi iletişim
+// şeridi kullanılır (GuideHero paylaşılan bileşen, değiştirilmez).
 import { contactConfig } from "../../config/contact";
 import type { PriceGuideHeroContent } from "../isitme-cihazi-fiyatlari/hero";
 
 const whatsappText = encodeURIComponent("Merhaba, işitme cihazı markaları hakkında bilgi almak istiyorum.");
 
 export const brandsHero: PriceGuideHeroContent = {
+  textOnly: true, // Görsel/Performance paketi: AI podyum sahnesi kaldırıldı (görsel dosyası silinmedi)
   eyebrow: "Marka ve Model Rehberi",
   heading: "İşitme Cihazı Markaları",
   lead:
-    "Her işitme cihazı markası farklı bir teknoloji yaklaşımı, farklı model aileleri ve farklı kullanım senaryoları sunar. Oticon, Phonak, Signia, Widex, ReSound ve NuEar markalarını tarafsız biçimde, kriter bazlı tanıyın.",
+    "Her işitme cihazı markası farklı model aileleri ve cihaz türleri sunar. Oticon, Phonak, Signia, Widex, ReSound ve NuEar marka profillerini kriter bazlı tanıyın.",
   supporting:
-    "Darıca'daki gerçek merkezimizin deneyimiyle hazırlanan bu rehber bir 'en iyi marka' sıralaması yapmaz: marka seçiminde hangi soruların sorulacağını ve hangi markanın hangi ihtiyaca yaklaşabileceğini gösterir.",
+    "Bu rehber bir 'en iyi marka' sıralaması yapmaz: marka seçiminde hangi soruların sorulacağını ve model ailelerinin hangi kriterlerle karşılaştırılabileceğini gösterir.",
   ctaPrimary: { label: "Markaları Keşfet", href: "#markalar" },
   ctaSecondary: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
-  chips: ["18 marka", "Hiçbir markaya bağlı değiliz", "SGK anlaşmalı merkez", "Ücretsiz işitme testi"],
-  // Gerçek görsel, olduğu gibi: 1672 × 941 (16:9), WebP. Logo/marka/yazı içermeyen
-  // temsili sahne (birkaç farklı cihaz biçimi) — belirli bir marka veya model iddiası taşımaz.
+  chips: ["18 marka", "SGK anlaşmalı merkez", "Ücretsiz işitme testi"],
   image: {
     src: "/images/brand-guide/isitme-cihazi-markalari-hero.webp",
     alt: "Farklı işitme cihazlarının birlikte sergilendiği temsili marka ve model sahnesi",
@@ -29,6 +27,8 @@ export const brandsHero: PriceGuideHeroContent = {
 
 export const brandsHeroExtra = { label: "İşitme cihazlarını incele", href: "/isitme-cihazlari/" };
 
+/** Sayfa içi iletişim şeridi için gerçek iletişim bağlantıları (elle yazılmaz). */
 export const contactLinks = {
+  phone: contactConfig.phone.href,
   whatsapp: `${contactConfig.whatsapp.href}?text=${whatsappText}`,
 };

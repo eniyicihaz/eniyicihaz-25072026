@@ -1,17 +1,20 @@
-// Hero content for the /iletisim page. Renders through the new
-// ContactHero component (location-forward, not product-forward — see the
-// plan's §11 for why this isn't a BrandHero reuse).
+// Hero content for the /iletisim page. Renders through the ContactHero
+// component (location-forward, not product-forward).
 //
 // `definitionSentence` is the AI-quotable, self-contained entity
 // definition (SEARCH_STRATEGY.md §8 "Definition" AEO pattern) — reused
 // verbatim as the `description` field of the MedicalBusiness JSON-LD on
-// this same page, so visible text and structured data never drift apart
-// (same discipline as the FAQPage pattern used site-wide).
+// this page AND on the Gebze/Çayırova/Kocaeli pages, so visible text and
+// structured data never drift apart. Do not edit it casually.
 //
-// "Randevu Al" routes to tel:, framed as "call to book" — the same
-// pattern every BrandExpertSupport "Ücretsiz Randevu Al" CTA already uses
-// site-wide; there is no online booking form, so this isn't a new
-// convention, just this page's application of the existing one.
+// CTA'lar (Faz 2 P2): Bizi Arayın / Yol Tarifi Al / WhatsApp'tan Yazın —
+// mobil öncelik sırası CONVERSION_SOT §5. Ayrı bir "Randevu Al" butonu yok
+// (Bizi Arayın ile aynı tel: hedefine gittiği için kaldırıldı); sitede
+// online randevu formu yok.
+//
+// Trust pill'leri: kuruluş yılı (2009) iddiası bilinçli olarak kaldırıldı —
+// Darıca merkezi Ağustos 2024'te açıldı (BUSINESS_SOT). SGK bilgisi
+// hero panelinde zaten var, pill olarak tekrarlanmaz.
 
 import { contactConfig } from "../../config";
 import { company } from "../../components/footer/Footer/data/company";
@@ -29,7 +32,6 @@ export interface ContactHeroContent {
   ctaCall: ContactHeroCta;
   ctaWhatsapp: ContactHeroCta;
   ctaDirections: ContactHeroCta;
-  ctaAppointment: ContactHeroCta;
   trustPills: string[];
 }
 
@@ -39,14 +41,13 @@ export const contactHero: ContactHeroContent = {
   definitionSentence:
     "Avrasya İşitme Cihazları, Darıca, Kocaeli'de bulunan SGK anlaşmalı bir işitme cihazı satış ve uygulama merkezidir.",
   paragraph:
-    "Ücretsiz işitme testinden cihaz uygulamasına, teknik servisten SGK danışmanlığına kadar tüm süreçte yanınızdayız.",
-  ctaCall: { label: "Hemen Ara", href: contactConfig.phone.href },
-  ctaWhatsapp: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
+    "Tek fiziksel merkezimiz Darıca'dadır; başka ilçede şubemiz yok. Adres, çalışma saatleri ve yol tarifi aşağıda.",
+  ctaCall: { label: "Bizi Arayın", href: contactConfig.phone.href },
   ctaDirections: { label: "Yol Tarifi Al", href: company.directionsHref },
-  ctaAppointment: { label: "Randevu Al", href: contactConfig.phone.href },
+  ctaWhatsapp: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   trustPills: [
-    "SGK Anlaşmalı İşitme Merkezi",
-    "2009'dan Beri Hizmetinizdeyiz",
-    "Odyometrist Desteği",
+    "Ücretsiz İşitme Testi",
+    "Evde Hizmet: Kocaeli Geneli",
+    "Pazar ve Resmî Tatillerde Kapalı",
   ],
 };

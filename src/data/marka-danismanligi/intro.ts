@@ -8,12 +8,12 @@ export const markaDanismanligiIntro: BrandPageIntroContent = {
   badge: "MARKA SEÇMEDEN ÖNCE İHTİYACINIZI TANIYIN",
   heading: "Doğru Marka, Doğru İhtiyaçla Başlar",
   paragraphs: [
-    "Darıca'daki merkezimize başvuran, Gebze ve Çayırova'dan gelen danışanlarımızın işitme kaybı düzeyi, günlük yaşamı ve teknolojiden beklentisi birbirinden farklı olabilir. Bu farklar, hangi markanın hangi kullanıcıya daha uygun olabileceğini şekillendirir.",
-    "Bir markayı diğerinden üstün göstermek yerine, farklı markaların farklı teknoloji yaklaşımlarını sizin ihtiyacınıza göre birlikte değerlendiriyoruz. Amaç \"en iyi marka\" değil, size uyan çözümdür.",
+    "İşitme kaybı düzeyi, günlük yaşam ve teknolojiden beklenti kişiden kişiye farklıdır. Bu farklar, hangi markanın veya model ailesinin hangi kullanıcıya daha uygun olabileceğini şekillendirir.",
+    "Bir markayı diğerinden üstün göstermek yerine, marka ve model ailelerini sizin ihtiyacınıza göre birlikte değerlendiriyoruz. Amaç \"en iyi marka\" değil, size uyan çözümdür.",
   ],
   stats: [
     { value: "18", label: "Marka Seçeneği" },
-    { value: "Marka Bağımsız", label: "Yaklaşım" },
+    { value: "Ücretsiz", label: "İşitme Testi" },
     { value: "İhtiyaç Odaklı", label: "Değerlendirme" },
   ],
   accentColor: "#b45309",

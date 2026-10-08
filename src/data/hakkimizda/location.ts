@@ -7,14 +7,16 @@ import { contactConfig } from "../../config";
 export const hakkimizdaLocation: ContactLocationCardContent = {
   eyebrow: "DARICA'DAKİ MERKEZİMİZ",
   heading: "Merkezimizi Ziyaret Edin",
-  intro: "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir.",
+  intro: "Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur.",
+  addressNote: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısında.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",
-  whatsappLabel: "WhatsApp'tan Yaz",
+  whatsappLabel: "WhatsApp'tan Yazın",
   whatsappHref: contactConfig.whatsapp.href,
   emailLabel: "E-posta",
   hoursLabel: "Çalışma Saatleri",
   mapTitle: "Avrasya İşitme Cihazları — Darıca Konum Haritası",
   company,
+  largeTargets: true,
 };

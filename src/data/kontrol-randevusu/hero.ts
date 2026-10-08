@@ -32,6 +32,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const kontrolRandevusuHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · UYGULAMA & AYAR · KONTROL RANDEVUSU",
   headingLines: ["Kontrol Randevusu", "Ne Zaman ve Neden Gereklidir?"],
   paragraphs: [

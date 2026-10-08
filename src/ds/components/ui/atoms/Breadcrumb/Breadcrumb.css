@@ -22,6 +22,9 @@
 }
 
 .ds-breadcrumb__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
   color: var(--ds-text-secondary, #475569);
   text-decoration: none;
   transition: color .2s ease;

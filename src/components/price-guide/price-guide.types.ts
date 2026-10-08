@@ -39,6 +39,11 @@ export interface GuideImage {
   alt: string;
   width: number;
   height: number;
+  /** Opsiyonel responsive srcset/sizes. */
+  srcset?: string;
+  sizes?: string;
+  /** true → fetchpriority="high" (yalnızca ilk viewport'ta gerçekten görünen hero). */
+  priority?: boolean;
 }
 
 export interface GuideTableRow {

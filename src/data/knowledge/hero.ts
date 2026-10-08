@@ -8,7 +8,8 @@
 // Sağlığı Hakkında Her Şey") for consistency with the mega menu it's
 // reached from.
 //
-// Hero image: Coselgi Mojo, a fresh model not yet used by any prior
+// (Hero Visual Paketi: görsel ve floating card kaldırıldı — hero artık görselsiz/kısa.
+// Eski görsel notu:  Coselgi Mojo, a fresh model not yet used by any prior
 // page this session (verified in public/images/coselgi/models/
 // mojo.webp).
 
@@ -21,7 +22,7 @@ export const knowledgeHero: BrandHeroContent = {
     "İşitme kaybından cihaz bakımına, SGK sürecinden güncel teknolojilere kadar merak ettiğiniz tüm konularda güvenilir bilgi kaynağınız.",
     "Genel bilgiler kişisel değerlendirmenin yerini tutmaz; kendi durumunuz için ücretsiz işitme testimizden faydalanabilirsiniz.",
   ],
-  ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
   ctaSecondary: { label: "WhatsApp", href: "https://wa.me/905337733199" },
   trustPills: [
     "Rehber İçerikleri",
@@ -29,13 +30,4 @@ export const knowledgeHero: BrandHeroContent = {
     "Güncel Bilgilendirme",
     "Ücretsiz Danışmanlık",
   ],
-  image: {
-    src: "/images/coselgi/models/mojo.webp",
-    alt: "Bilgi Merkezi içeriklerinde örnek olarak yer alan Coselgi Mojo işitme cihazı görseli",
-  },
-  floatingCard: {
-    value: "Ücretsiz",
-    label: "İşitme Testi",
-    description: "Doğru Bilgi, Doğru Kararın Temelidir.",
-  },
 };

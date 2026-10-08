@@ -41,14 +41,13 @@ import InfoGrid from "../components/price-guide/InfoGrid.astro";
 import GuideTable from "../components/price-guide/GuideTable.astro";
 import GuideNotice from "../components/price-guide/GuideNotice.astro";
 import QaStack from "../components/price-guide/QaStack.astro";
-import LocalBlocks from "../components/price-guide/LocalBlocks.astro";
 import GuideCta from "../components/price-guide/GuideCta.astro";
 import BrandProfile from "../components/brand-guide/BrandProfile.astro";
 
 import { buildMedicalBusinessSchema } from "../lib/schema";
 import { daricaLocation } from "../data/darica/location";
 import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../data/isitme-cihazi-markalari/page";
-import { brandsHero, brandsHeroExtra } from "../data/isitme-cihazi-markalari/hero";
+import { brandsHero, brandsHeroExtra, contactLinks } from "../data/isitme-cihazi-markalari/hero";
 import { brandsQuickAnswer } from "../data/isitme-cihazi-markalari/quick-answer";
 import { profilesIntro, brandSections, brandProfiles } from "../data/isitme-cihazi-markalari/profiles";
 import { comparisonSection, brandTable, matrixSection, matrixTable, matrixAnswers } from "../data/isitme-cihazi-markalari/comparison";
@@ -57,14 +56,14 @@ import {
   scenarioSection, scenarioCards, brandVsModelSection, brandVsModel, askSection, askCards,
 } from "../data/isitme-cihazi-markalari/selection";
 import { otherBrands, priceSgkSection, priceSgkCards } from "../data/isitme-cihazi-markalari/others";
-import { localSection, localBlocks } from "../data/isitme-cihazi-markalari/local";
+import { localSection, localContent } from "../data/isitme-cihazi-markalari/local";
 import { brandsFaq } from "../data/isitme-cihazi-markalari/faq";
 import { brandsRelated, brandsCta } from "../data/isitme-cihazi-markalari/related-cta";
 
 // Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması, görünür SSS
 // verisinden BrandPageFaq içinde üretilir. Marka/model için Product/Offer/Brand
 // şeması KASITLI olarak yok: ürün sayfası değil, fiyatsız bir rehber; yalnızca
-// görünür 6 ana markanın gerçek sayfalarına işaret eden ItemList var.
+// görünür 6 marka profilinin gerçek sayfalarına işaret eden ItemList var.
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -93,9 +92,11 @@ const brandsListSchema = {
 const locationCard = {
   ...daricaLocation,
   eyebrow: "DARICA'DAKİ MERKEZİMİZ",
-  heading: "Markaları ve Modelleri Merkezimizde Değerlendirelim",
+  heading: "Merkezimizin Adresi ve Çalışma Saatleri",
   intro:
-    "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir. Önceden randevu almanızı tavsiye ederiz.",
+    "Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur.",
+  addressNote: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısında.",
+  largeTargets: true,
 };
 ---
 
@@ -109,6 +110,11 @@ const locationCard = {
   </div>
 
   <GuideHero data={brandsHero} icons={{ primary: LayoutGrid, secondary: Stethoscope }} extraCta={brandsHeroExtra} />
+
+  <div class="bg-contact-strip" role="group" aria-label="Hızlı iletişim">
+    <a class="bg-contact-strip__btn bg-contact-strip__btn--solid" href={contactLinks.phone}>Bizi Arayın</a>
+    <a class="bg-contact-strip__btn" href={contactLinks.whatsapp}>WhatsApp'tan Yazın</a>
+  </div>
   <GuideToc links={toc} />
 
   <!-- B. Kısa doğrudan cevap -->
@@ -182,7 +188,12 @@ const locationCard = {
 
   <!-- Q. Lokal bölümler -->
   <GuideSection {...localSection}>
-    <LocalBlocks blocks={localBlocks} />
+    <div class="bg-local">
+      {localContent.paragraphs.map((t) => <p class="bg-local__p">{t}</p>)}
+      <ul class="bg-local__links">
+        {localContent.links.map((l) => <li><a class="bg-local__link" href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
   </GuideSection>
 
   <ContactLocationCard data={locationCard} />
@@ -199,6 +210,85 @@ const locationCard = {
 </MainLayout>
 
 <style>
+  .bg-contact-strip {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .bg-contact-strip__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .bg-contact-strip__btn--solid {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+
+  .bg-contact-strip__btn:hover,
+  .bg-local__link:hover {
+    text-decoration: underline;
+  }
+
+  .bg-contact-strip__btn:focus-visible,
+  .bg-local__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .bg-local {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .bg-local__p {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .bg-local__links {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .bg-local__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
   .bg-breadcrumb {
     max-width: var(--container-2xl);
     margin-inline: auto;

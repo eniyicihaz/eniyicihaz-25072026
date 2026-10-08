@@ -8,7 +8,8 @@
 // ("Uçtan Uca İşitme Sağlığı Hizmeti") for consistency with the mega
 // menu it's reached from.
 //
-// Hero image: Beltone Commence, a fresh model not yet used by any prior
+// (Hero Visual Paketi: görsel ve floating card kaldırıldı — hero artık görselsiz/kısa.
+// Eski görsel notu:  Beltone Commence, a fresh model not yet used by any prior
 // page this session (verified in public/images/beltone/models/
 // commence.webp).
 
@@ -21,7 +22,7 @@ export const servicesHero: BrandHeroContent = {
     "Değerlendirmeden cihaz uygulamasına, ayardan servis ve bakıma kadar tüm süreçte uzman kadromuz yanınızda.",
     "İhtiyacınıza uygun hizmeti, ücretsiz işitme testi sonrasında uzman desteğiyle birlikte belirleyin.",
   ],
-  ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
   ctaSecondary: { label: "WhatsApp", href: "https://wa.me/905337733199" },
   trustPills: [
     "Ücretsiz İşitme Testi",
@@ -29,13 +30,4 @@ export const servicesHero: BrandHeroContent = {
     "Odyometrist Desteği",
     "Satış Sonrası Destek",
   ],
-  image: {
-    src: "/images/beltone/models/commence.webp",
-    alt: "Uçtan uca işitme sağlığı hizmetleri kapsamında değerlendirilebilecek Beltone Commence işitme cihazı görseli",
-  },
-  floatingCard: {
-    value: "Darıca",
-    label: "Tek Merkezde",
-    description: "Testten Servise, Tüm Süreçte Yanınızdayız.",
-  },
 };

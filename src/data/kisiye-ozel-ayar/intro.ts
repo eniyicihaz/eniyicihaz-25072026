@@ -10,12 +10,12 @@ export const kisiyeOzelAyarIntro: BrandPageIntroContent = {
   badge: "NEDEN KİŞİYE ÖZEL AYAR?",
   heading: "Aynı Kayıp, Aynı İhtiyaç Değildir",
   paragraphs: [
-    "Darıca'da işitme cihazı kullanan kişilerin cihazlarından beklediği verimi alabilmesi için yalnızca doğru cihazı seçmek yeterli değildir. Cihazın kişinin işitme kaybına, günlük yaşamına ve dinleme ihtiyaçlarına uygun şekilde ayarlanması gerekir.",
+    "İşitme cihazından beklenen verimi alabilmek için yalnızca doğru cihazı seçmek yeterli değildir. Cihazın kişinin işitme kaybına, günlük yaşamına ve dinleme ihtiyaçlarına uygun şekilde ayarlanması gerekir.",
     "Aynı işitme kaybına sahip iki kişinin ihtiyaçları aynı olmayabilir. Biri sessiz bir evde televizyon izlerken rahat duymak ister, diğeri kalabalık bir ortamda konuşmaları ayırt etmekte zorlanır. Ayarlar; işitme ölçüm sonuçları, kullanılan cihaz, günlük yaşam, konuşma ortamları, gürültülü ortamlar, telefon kullanımı ve kişinin sesle ilgili geri bildirimi gibi faktörlere göre değerlendirilir.",
   ],
   stats: [
     { value: "6", label: "Adımlı Süreç" },
-    { value: "Marka Bağımsız", label: "Uygulama" },
+    { value: "Randevuyla", label: "Ayar" },
     { value: "Geri Bildirime Dayalı", label: "Yöntem" },
   ],
   accentColor: "#4f46e5",

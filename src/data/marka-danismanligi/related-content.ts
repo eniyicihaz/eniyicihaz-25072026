@@ -8,23 +8,23 @@ export const markaDanismanligiRelatedContent: BrandPageRelatedContentContent = {
   heading: "Devam Etmek İçin",
   links: [
     {
-      label: "Orijinallik Garantisi",
-      description: "İşitme cihazınızın orijinal olduğunu nasıl anlayabileceğinizi öğrenin.",
+      label: "Cihaz Doğrulama",
+      description: "İşitme cihazınızı satın alırken nelere dikkat edileceğini öğrenin.",
       href: "/neden-orijinal/guvenilir-teknoloji/",
     },
     {
-      label: "Yetkili Servis",
-      description: "18 markada verdiğimiz teknik servis desteği hakkında bilgi edinin.",
+      label: "Teknik Servis Desteği",
+      description: "Sattığımız 18 markanın tamamında merkezimizde teknik servis veriyoruz.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {
       label: "Aksesuar & Yedek",
-      description: "Cihazınızı tamamlayan orijinal aksesuar ve yedek parçaları inceleyin.",
+      description: "Cihazınızı tamamlayan aksesuar ve yedek parçaları inceleyin.",
       href: "/neden-orijinal/orijinal-aksesuar/",
     },
     {
       label: "Teknik Servis",
-      description: "Kendi teknik servisimizin yerinde teşhis ve onarım sürecini tanıyın.",
+      description: "Teknik servis ve onarım sürecini tanıyın.",
       href: "/servis-bakim/teknik-servis/",
     },
     {

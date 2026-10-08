@@ -3,6 +3,7 @@ import { ChevronRight, ArrowRight, Check } from "lucide-astro";
 import { icons } from "../../icons";
 import type { MegaMenuData } from "../../header.types";
 import { isActive } from "../../isActive";
+import { imageDims } from "../../../../../lib/responsive-images";
 
 interface Props {
   data: MegaMenuData;
@@ -60,7 +61,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
       {
         data.promo.image ? (
           <div class="hd-mega__promo-image" aria-hidden="true">
-            <img src={data.promo.image} alt="" loading="lazy" />
+            <img src={data.promo.image} alt="" width={imageDims(data.promo.image)?.width} height={imageDims(data.promo.image)?.height} loading="lazy" />
           </div>
         ) : data.promo.badge ? (
           <div class="hd-mega__promo-illustration" aria-hidden="true">
@@ -111,7 +112,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
                     aria-current={isActive(link.href, currentPath) ? "page" : undefined}
                   >
                     <span class="hd-mega__link-label">
-                      {link.logo && <img class="hd-mega__link-logo" src={link.logo} alt="" loading="lazy" />}
+                      {link.logo && <img class="hd-mega__link-logo" src={link.logo} alt="" width={imageDims(link.logo)?.width} height={imageDims(link.logo)?.height} loading="lazy" />}
                       <span>{link.label}</span>
                     </span>
                     <ChevronRight class="hd-mega__link-chev" size={16} aria-hidden="true" />

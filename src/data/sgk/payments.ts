@@ -38,7 +38,7 @@ export const sgkPayments: SgkPaymentsContent = {
     "Çocuk, yetişkin, çalışan ve emekli grupları için geçerli güncel SGK işitme cihazı destek tutarlarını aşağıda inceleyebilirsiniz.",
   infographic: {
     src: "/images/pages/sgk-2026-odeme-tablosu.webp",
-    alt: "2026 yılı SGK işitme cihazı ödeme tutarları tablosu — yaş gruplarına göre çalışan ve emekli destek tutarları",
+    alt: "SGK işitme cihazı ödeme tutarları tablosu: yaş gruplarına göre çalışan ve emekli tutarları",
     width: 1402,
     height: 1122,
   },
@@ -75,7 +75,7 @@ export const sgkPayments: SgkPaymentsContent = {
   },
   cta: {
     heading: "Size uygun SGK desteğini öğrenmek ister misiniz?",
-    primaryLabel: "Hemen Ara",
-    secondaryLabel: "WhatsApp'tan Yaz",
+    primaryLabel: "Bizi Arayın",
+    secondaryLabel: "WhatsApp'tan Yazın",
   },
 };

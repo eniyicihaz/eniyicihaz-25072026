@@ -29,6 +29,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const pilAksesuarHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · SERVİS & BAKIM · PİL & AKSESUAR",
   headingLines: ["Pil & Aksesuar", "Seçenekleri Nelerdir?"],
   paragraphs: [

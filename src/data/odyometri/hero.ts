@@ -18,6 +18,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const odyometriHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · DEĞERLENDİRME · ODYOMETRİ",
   headingLines: ["Odyometri", "Nedir ve Nasıl Yapılır?"],
   paragraphs: [

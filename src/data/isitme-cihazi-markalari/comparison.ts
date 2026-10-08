@@ -69,25 +69,7 @@ export const comparisonSection: GuideSectionMeta = {
   eyebrow: "Marka Karşılaştırması",
   heading: "İşitme Cihazı Markaları Karşılaştırma Tablosu",
   intro:
-    "Tablo, altı ana markayı öne çıkan cihaz türleri, bağlantı, şarj ve kullanım senaryoları üzerinden yan yana koyar. Hiçbir sütun sıralama ya da puan içermez; hücreler sitemizdeki marka sayfalarının verisinden derlenmiştir ve model ailesine göre değişebilir.",
-};
-
-const senaryo: Record<string, string> = {
-  oticon: "Güncel teknoloji arayanlar, çocuklar, ileri derece kayıplar",
-  phonak: "Aktif ve bağlantıda kalmak isteyenler, güçlü kayıplar, çocuk, tek taraflı kayıp",
-  signia: "Teknoloji ve tasarıma önem verenler, aktif kullanıcılar, kulak içi tercihi",
-  widex: "Doğal ses ve gürültülü ortamlarda zorlananlar, kulak çınlaması",
-  resound: "Bağlantı ve mekansal işitmeye önem verenler, uzaktan destek isteyenler",
-  nuear: "Sağlık ve aktivite takibi isteyenler, uzaktan destek, kulak içi tercihi",
-};
-
-const baglantiEk: Record<string, string> = {
-  oticon: "Bluetooth",
-  phonak: "Evrensel Bluetooth (iPhone + Android)",
-  signia: "Entegre yapay zekâ çipi + Bluetooth",
-  widex: "Bluetooth + Widex Moment uygulaması",
-  resound: "Auracast (Bluetooth LE Audio) + Smart 3D uygulaması",
-  nuear: "Hear Circle uygulaması + Bluetooth",
+    "Tablo, profili yer alan markaları cihaz türleri, Bluetooth ve şarj etiketleri üzerinden yan yana koyar. Hiçbir sütun sıralama ya da puan içermez; hücreler sitemizdeki model listelerinden derlenmiştir ve model ailesine göre değişebilir.",
 };
 
 function typesCell(b: BrandSource): string {
@@ -115,27 +97,25 @@ const mainRows: GuideTableRow[] = brands.map((b) => ({
   href: b.href,
   cells: [
     typesCell(b),
-    `${baglantiEk[b.key]} (Bluetooth etiketli aile: ${withTag(b, "Bluetooth").length}/${b.items.length})`,
+    `Bluetooth etiketli aile: ${withTag(b, "Bluetooth").length}/${b.items.length}`,
     chargeCell(b),
-    senaryo[b.key],
   ],
 }));
 
 export const brandTable: GuideTableContent = {
   id: "marka-karsilastirma-tablosu",
   eyebrow: "Tablo 1",
-  heading: "Altı Ana Marka: Cihaz Türü, Bağlantı, Şarj ve Kullanım",
-  caption: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar markalarının cihaz türleri, bağlantı, şarj ve kullanım senaryoları karşılaştırması",
+  heading: "Marka Profilleri: Cihaz Türü, Bağlantı ve Şarj",
+  caption: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar markalarının cihaz türü, Bluetooth ve şarj etiketleri karşılaştırması",
   criterionLabel: "Marka (marka sayfası)",
   columns: [
     { name: "Öne çıkan cihaz türleri" },
     { name: "Bağlantı" },
     { name: "Şarj" },
-    { name: "Kullanım senaryoları" },
   ],
   rows: mainRows,
   note:
-    "Satır başlıkları marka sayfalarına bağlanır. Bağlantı ve şarj özellikleri model ailesine göre değişir; tabloda geçen sayılar, sitemizdeki model ailesi etiketlerine göredir.",
+    "Satır başlıkları marka sayfalarına bağlanır. Bluetooth ve şarj özellikleri model ailesine göre değişir; tabloda geçen sayılar, sitemizdeki model ailesi etiketlerine göredir.",
   links: [{ label: "Tüm Markalar", href: "/markalar/" }],
 };
 
@@ -204,14 +184,14 @@ export const matrixAnswers = [
     id: "sarjli-hangi-markalarda",
     question: "Şarjlı hangi markalarda bulunuyor?",
     answer:
-      "Şarjlı etiketli aileler altı ana markanın hepsinde var; ancak sayıları ve hangi ailelerde olduğu markaya göre değişir. Bir ailenin şarjlı olup olmadığını, marka sayfasında ve değerlendirme sırasında modele göre doğrulayın.",
+      "Şarjlı etiketli aileler profili yer alan markaların hepsinde var; ancak sayıları ve hangi ailelerde olduğu markaya göre değişir. Bir ailenin şarjlı olup olmadığını, marka sayfasında ve değerlendirme sırasında modele göre doğrulayın.",
     links: [{ label: "Şarjlı cihazlar", href: "/isitme-cihazlari/sarj-edilebilir/" }],
   },
   {
     id: "bluetooth-hangi-markalarda",
     question: "Bluetooth hangi markalarda bulunuyor?",
     answer:
-      "Altı ana markanın model ailelerinin büyük çoğunluğunda Bluetooth etiketi var; ama telefon uyumluluğu ve bağlantı türü (evrensel Bluetooth, Auracast, marka uygulaması) markaya ve modele göre farklıdır. Satın almadan önce kendi telefonunuzla uyumu doğrulayın.",
+      "Profili yer alan markaların model ailelerinin büyük çoğunluğunda Bluetooth etiketi var; ama telefon uyumluluğu ve bağlantı türü markaya ve modele göre farklıdır. Satın almadan önce kendi telefonunuzla uyumu doğrulayın.",
     links: [{ label: "Bluetooth özellikli cihazlar", href: "/isitme-cihazlari/bluetooth-ozellikli/" }],
   },
 ];

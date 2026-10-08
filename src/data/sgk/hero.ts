@@ -13,9 +13,10 @@
 // (free hearing test, SGK-affiliated status, expert audiometrist
 // support — see COMPANY.md).
 //
-// dateBadge: small "current year" chip on the hero visual, tying it to
-// the real 2026 figures in the payments section below — not a repeat of
-// any amount, just a currency signal.
+// Görselsiz hero (Faz 2 Hero Visual Audit, P0): önceki AI/kompozit görsel
+// (pages/sgk-isitme-cihazi.webp — görsele işlenmiş "uzman kadro" metni, SGK
+// logosu ve sahte personel) ve ona bağlı floating card + yıl chip'i kaldırıldı.
+// Dosya silinmedi.
 
 export interface SgkHeroTrustItem {
   title: string;
@@ -29,9 +30,6 @@ export interface SgkHeroContent {
   trustItems: SgkHeroTrustItem[];
   ctaPrimaryLabel: string;
   ctaSecondaryLabel: string;
-  image: { src: string; alt: string; width: number; height: number };
-  floatingCard: { title: string; description: string };
-  dateBadge: string;
 }
 
 export const sgkHero: SgkHeroContent = {
@@ -53,17 +51,6 @@ export const sgkHero: SgkHeroContent = {
       description: "Hızlı ve kolay bir süreçle yanınızdayız.",
     },
   ],
-  ctaPrimaryLabel: "Hemen Ara",
-  ctaSecondaryLabel: "WhatsApp'tan Yaz",
-  image: {
-    src: "/images/pages/sgk-isitme-cihazi.webp",
-    alt: "SGK anlaşmalı işitme merkezinde odyometrist eşliğinde işitme cihazı değerlendirmesi",
-    width: 1414,
-    height: 1113,
-  },
-  floatingCard: {
-    title: "SGK Anlaşmalı Merkez",
-    description: "İşitme cihazı devlet desteğinden faydalanın.",
-  },
-  dateBadge: "2026 Güncel",
+  ctaPrimaryLabel: "Bizi Arayın",
+  ctaSecondaryLabel: "WhatsApp'tan Yazın",
 };

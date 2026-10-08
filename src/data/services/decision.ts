@@ -48,7 +48,7 @@ export const servicesDecision: BrandDecisionContent = {
     title: "Hangi Aşamada Olursanız Olun",
     description:
       "Uzman ekibimiz, ücretsiz bir görüşme sonrasında size en uygun hizmeti birlikte belirler.",
-    ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
+    ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
     ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
   },
 };

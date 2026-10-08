@@ -32,6 +32,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const teknikServisHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · SERVİS & BAKIM · TEKNİK SERVİS",
   headingLines: ["Teknik Servis", "Hizmetimiz Nasıl İşler?"],
   paragraphs: [

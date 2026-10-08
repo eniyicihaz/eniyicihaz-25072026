@@ -1,5 +1,6 @@
 ---
 import { readableTextOn } from "../../../lib/contrast";
+import { standardCtaLabel } from "../../../lib/cta-labels";
 // BrandPageFinalCta — shared, cross-brand closing CTA section. Generic
 // counterpart of Oticon's original OticonFinalCta; data-driven so every
 // brand page can reuse it.
@@ -115,11 +116,11 @@ const finalCtaStyleOverrides = [
       <div class="brand-page-final-cta__actions">
         <a class="brand-page-final-cta__button brand-page-final-cta__button--solid" href={data.ctaPrimary.href}>
           <Phone size={22} stroke-width={2} aria-hidden="true" />
-          <span>{data.ctaPrimary.label}</span>
+          <span>{standardCtaLabel(data.ctaPrimary.label, data.ctaPrimary.href)}</span>
         </a>
         <a class="brand-page-final-cta__button brand-page-final-cta__button--outline" href={data.ctaSecondary.href}>
           <MessageCircle size={22} stroke-width={2} aria-hidden="true" />
-          <span>{data.ctaSecondary.label}</span>
+          <span>{standardCtaLabel(data.ctaSecondary.label, data.ctaSecondary.href)}</span>
         </a>
         {data.ctaTertiary && (
           <a class="brand-page-final-cta__button brand-page-final-cta__button--outline" href={data.ctaTertiary.href}>

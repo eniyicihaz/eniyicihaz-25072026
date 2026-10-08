@@ -29,6 +29,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const sgkKatkiPayiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BİLGİ MERKEZİ · SGK & HAKLAR · SGK KATKI PAYI",
   headingLines: ["SGK Katkı Payı", "Nasıl Hesaplanır?"],
   paragraphs: [

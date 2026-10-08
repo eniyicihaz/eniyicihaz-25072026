@@ -31,11 +31,12 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const standartSeriHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · SEGMENTLER · STANDART SERİ",
   headingLines: ["Standart Seri", "İşitme Cihazları"],
   paragraphs: [
     "Standart seri işitme cihazları; günlük kullanım ihtiyaçlarını karşılayan dengeli bir teknoloji seviyesini, uygun bir fiyat-performans oranıyla bir araya getirir.",
-    "Avrasya İşitme'de, dünyaca tanınan markaların standart seri modellerini; güvenilir performans ve tam garanti güvencesiyle sunuyoruz.",
+    "Avrasya İşitme'de, dünyaca tanınan markaların standart seri modellerini güvenilir performansla sunuyoruz; üretici garanti koşulları geçerlidir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

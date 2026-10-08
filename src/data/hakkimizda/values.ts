@@ -10,11 +10,11 @@ export const hakkimizdaValues: ValueGridContent = {
   heading: "Değerlerimiz",
   intro: "Merkezimizde çalışma şeklimizi tarif eden ilkeler.",
   items: [
-    { icon: Users, title: "Uzman Kadro", description: "Değerlendirme, uygulama ve ayar süreçleri uzman ekibimiz tarafından yürütülür." },
+    { icon: Users, title: "Ekibimiz", description: "Değerlendirme, uygulama ve ayar süreçleri merkezimizdeki ekip tarafından yürütülür." },
     { icon: Cpu, title: "Gelişmiş Teknoloji", description: "Farklı markaların güncel işitme cihazı teknolojilerini takip ediyoruz." },
     { icon: SlidersHorizontal, title: "Kişiye Özel Çözümler", description: "Her cihaz, kullanıcının işitme kaybına ve günlük yaşamına göre ayarlanır." },
     { icon: HeartHandshake, title: "Satış Sonrası Destek", description: "Cihaz tesliminden sonra da kontrol ve destek sağlıyoruz." },
-    { icon: MapPin, title: "Yerel Hizmet", description: "Darıca'daki merkezimizden Gebze ve Çayırova'ya kadar yakın çevreye hizmet veriyoruz." },
+    { icon: MapPin, title: "Evde Hizmet", description: "Merkeze gelemeyenler için Kocaeli geneli ve İstanbul Anadolu Yakası'nda randevulu, ücretsiz evde hizmet veriyoruz." },
   ],
   accentColor: "#2563eb",
   accentColorBadgeBg: "rgb(37 99 235 / 0.08)",

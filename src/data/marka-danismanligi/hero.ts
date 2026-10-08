@@ -9,11 +9,11 @@ import type { DecisionCockpitContent } from "../../components/shared/DecisionCoc
 export const markaDanismanligiHero: DecisionCockpitContent = {
   eyebrow: "MARKA DANIŞMANLIĞI",
   heading: "Marka Değil, Size Uyan Çözüm.",
-  subheading: "Farklı markaların farklı teknoloji yaklaşımlarını, ihtiyacınıza göre birlikte değerlendirelim.",
+  subheading: "Marka ve model ailelerini, ihtiyacınıza göre birlikte değerlendirelim.",
   paragraph:
-    "Darıca, Gebze ve Çayırova'dan gelen danışanlarımızın işitme ihtiyacı, günlük yaşamı ve beklentisi birbirinden farklı olabilir. Bu farkı tanımak, hangi markanın size daha uygun olduğuna karar vermenin ilk adımıdır.",
-  ctaPrimary: { label: "Ücretsiz Değerlendirme", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href },
+    "İşitme ihtiyacı, günlük yaşam ve beklenti kişiden kişiye farklıdır. Bu farkı tanımak, hangi marka ve model ailesinin size uygun olabileceğine karar vermenin ilk adımıdır.",
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   panelLabel: "Karar Masası",
   panelCaption: "Bu kriterler, danışmanlık sırasında ihtiyacınızı birlikte tanımlamak için bir başlangıç noktasıdır.",
   criteria: [

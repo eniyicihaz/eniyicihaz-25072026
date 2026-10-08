@@ -33,7 +33,6 @@ import GuideTable from "../components/price-guide/GuideTable.astro";
 import DeviceTypeCards from "../components/price-guide/DeviceTypeCards.astro";
 import QaStack from "../components/price-guide/QaStack.astro";
 import GuideNotice from "../components/price-guide/GuideNotice.astro";
-import LocalBlocks from "../components/price-guide/LocalBlocks.astro";
 import GuideCta from "../components/price-guide/GuideCta.astro";
 
 import { buildMedicalBusinessSchema } from "../lib/schema";
@@ -56,7 +55,7 @@ import {
 import {
   sgkSection, sgkBlocks, sgkLinks, sgkNote, includedSection, includedServices, includedNote,
 } from "../data/isitme-cihazi-fiyatlari/sgk-included";
-import { localSection, localBlocks } from "../data/isitme-cihazi-fiyatlari/local";
+import { localSection, localContent } from "../data/isitme-cihazi-fiyatlari/local";
 import { priceGuideFaq } from "../data/isitme-cihazi-fiyatlari/faq";
 import { priceGuideRelated, priceGuideCta } from "../data/isitme-cihazi-fiyatlari/related-cta";
 
@@ -78,8 +77,10 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.sche
 const locationCard = {
   ...daricaLocation,
   eyebrow: "DARICA'DAKİ MERKEZİMİZ",
-  heading: "Fiyat Bilgisi İçin Merkezimizi Ziyaret Edin",
-  intro: "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir. Önceden randevu almanızı tavsiye ederiz.",
+  heading: "Merkezimizin Adresi ve Çalışma Saatleri",
+  intro: "Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur.",
+  addressNote: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısında.",
+  largeTargets: true,
 };
 ---
 
@@ -158,7 +159,16 @@ const locationCard = {
   </GuideSection>
 
   <GuideSection {...localSection} tone="alt">
-    <LocalBlocks blocks={localBlocks} />
+    <div class="pg-local">
+      {localContent.paragraphs.map((t) => <p class="pg-local__p">{t}</p>)}
+      <ul class="pg-local__items">
+        {localContent.items.map((it) => <li><strong>{it.title}.</strong> {it.text}</li>)}
+      </ul>
+      <p class="pg-local__p">{localContent.otherAreas}</p>
+      <ul class="pg-local__links">
+        {localContent.links.map((l) => <li><a class="pg-local__link" href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
   </GuideSection>
 
   <ContactLocationCard data={locationCard} />
@@ -173,6 +183,63 @@ const locationCard = {
 </MainLayout>
 
 <style>
+  .pg-local {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .pg-local__p {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .pg-local__items {
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .pg-local__links {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .pg-local__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .pg-local__link:hover {
+    text-decoration: underline;
+  }
+
+  .pg-local__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
   .pg-breadcrumb {
     max-width: var(--container-2xl);
     margin-inline: auto;

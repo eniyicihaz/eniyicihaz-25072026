@@ -45,7 +45,7 @@ export const buyingQuestions: QaItem[] = [
     answer:
       "Önce işitme değerlendirmesi, sonra ihtiyaca göre cihaz seçimi, deneme, uygulama ve satış sonrası desteğin birlikte ele alındığı bir süreç izlenmelidir; yalnızca marka veya rakama bakmak yetersizdir.",
     more: [
-      "Ürünün orijinal olup olmadığını, garanti ve yetkili teknik servis desteğini, ayar ve kontrol randevularının nasıl işlediğini ve hangi hizmetlerin bedele dahil olduğunu sorun.",
+      "Garanti koşullarını, teknik servis desteğini, ayar ve kontrol randevularının nasıl işlediğini ve hangi hizmetlerin bedele dahil olduğunu sorun.",
       "Teklifleri aynı kalemler üzerinden karşılaştırın: aynı cihaz, aynı hizmet kapsamı, aynı garanti. Karar için acele etmeyin.",
     ],
     links: [
@@ -124,7 +124,7 @@ export const lowPricePoints = [
   },
   {
     title: "Orijinal ürün, garanti ve servis",
-    text: "Ürünün orijinal olup olmadığını, garanti belgesini ve yetkili teknik servisi sorun. Orijinal ürünlerde garanti, resmi teknik servis ve yasal güvenceler fiyata dahildir.",
+    text: "Garanti koşullarını ve teknik servis desteğini sorun; hangi hizmetlerin bedele dahil olduğunu yazılı olarak netleştirin.",
   },
   {
     title: "Deneme ve takip var mı?",

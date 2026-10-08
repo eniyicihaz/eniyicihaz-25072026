@@ -1,4 +1,5 @@
 ---
+import { imageDims } from "../../../lib/responsive-images";
 // BrandExtended — M6 of the modular hub-page system (originally built for
 // /markalar; now also reused by /isitme-cihazlari, /hizmetlerimiz and
 // /bilgi-merkezi), directly under M5 (BuyingGuide). Always M6 of its
@@ -48,7 +49,7 @@ const { data: brandExtended } = Astro.props;
         <a class="brand-extended__card" href={item.href} data-rise>
           {item.logo && (
             <span class="brand-extended__logo-wrap">
-              <img src={item.logo} alt={item.name} loading="lazy" />
+              <img src={item.logo} alt={item.name} width={imageDims(item.logo)?.width} height={imageDims(item.logo)?.height} loading="lazy" />
             </span>
           )}
           {!item.logo && item.icon && (

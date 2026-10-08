@@ -19,6 +19,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const yapayZekaDestekliHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "TEKNOLOJİLERE GÖRE · YAPAY ZEKA DESTEKLİ",
   headingLines: ["Yapay Zeka Destekli", "İşitme Cihazları"],
   paragraphs: [

@@ -21,7 +21,7 @@ const { data, icons, extraCta } = Astro.props;
 ---
 
 <section class="guide-hero" aria-labelledby="guide-hero-title">
-  <div class="guide-hero__inner">
+  <div class:list={["guide-hero__inner", { "guide-hero__inner--text-only": data.textOnly }]}>
     <div class="guide-hero__copy">
       <p class="guide-hero__eyebrow">{data.eyebrow}</p>
       <h1 class="guide-hero__heading" id="guide-hero-title">{data.heading}</h1>
@@ -46,16 +46,19 @@ const { data, icons, extraCta } = Astro.props;
       </ul>
     </div>
 
+    {!data.textOnly && (
     <div class="guide-hero__visual" data-image-slot="hero">
       {
         data.image ? (
           <img
             class="guide-hero__image"
             src={data.image.src}
+            srcset={data.image.srcset}
+            sizes={data.image.sizes}
             alt={data.image.alt}
             width={data.image.width}
             height={data.image.height}
-            fetchpriority="high"
+            fetchpriority={data.image.priority ? "high" : undefined}
             decoding="async"
           />
         ) : (
@@ -63,6 +66,7 @@ const { data, icons, extraCta } = Astro.props;
         )
       }
     </div>
+    )}
   </div>
 </section>
 
@@ -81,6 +85,11 @@ const { data, icons, extraCta } = Astro.props;
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     gap: var(--space-12);
     align-items: center;
+  }
+
+  /* Görselsiz kısa mod: tek kolon. */
+  .guide-hero__inner--text-only {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .guide-hero__eyebrow {

@@ -6,7 +6,7 @@
 // directs readers to call for the current schedule. See hero.ts for
 // the full rationale.
 
-import { AlertTriangle, CalendarDays, MapPin, Building2, Phone } from "lucide-astro";
+import { AlertTriangle, CalendarDays, Building2, Phone } from "lucide-astro";
 import type { BrandPageIdealUserContent } from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 
 export const etkinliklerConsiderations: BrandPageIdealUserContent = {
@@ -25,12 +25,6 @@ export const etkinliklerConsiderations: BrandPageIdealUserContent = {
       title: "Etkinlikler Belirli Bir Tarihte Gerçekleşir",
       description: "Etkinliklerin tarihi, yeri ve kapsamı önceden planlanır ve dönemsel olarak değişebilir.",
       suggestedFamilies: ["Tarih ve Yer"],
-    },
-    {
-      icon: MapPin,
-      title: "Etkinlikler Belirli Bölgelerde Düzenlenebilir",
-      description: "Etkinliklerimiz genellikle hizmet bölgemiz olan Darıca, Gebze ve Çayırova çevresinde planlanır.",
-      suggestedFamilies: ["Bölge"],
     },
     {
       icon: Building2,

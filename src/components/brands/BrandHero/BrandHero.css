@@ -34,6 +34,15 @@
   gap: 28px;
 }
 
+/* Text-only variant (no image): single column, readable measure. */
+.brand-hero__inner--text-only {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.brand-hero__inner--text-only .brand-hero__copy {
+  max-width: 760px;
+}
+
 /* --- Left column ------------------------------------------------------- */
 
 /* shadow-xs — the same faint "lifted off the page" quality every other

@@ -1,0 +1,58 @@
+/* Dokunma hedefi standardı (Phase 2 UX paketi): etkileşimli blok/çip/ok linkleri en az 48 px yüksek.
+   Yalnızca min-height ve hizalama uygulanır; renk/tipografi bileşenlerinde kalır.
+   İstisna: paragraf içi satır-içi (inline) metin linkleri (WCAG 2.5.8 inline istisnası). */
+
+/* Zaten blok/flex olan linkler: yalnızca yükseklik */
+:root :is(
+  .sitemap-section__link,
+  .type-profile__link,
+  .focus-block__links a,
+  .brand-profile__link,
+  .guide-hero__extra,
+  .sgk-eligibility__related-link,
+  .sgk-support__related-link,
+  .sgk-insight__related-link,
+  .sgk-knowledge__notice-cta,
+  .sgk-knowledge__card-link,
+  .sgk-process__link,
+  .device-type__link,
+  .koa-simple-section__link
+) {
+  min-height: 48px !important;
+  align-items: center !important;
+}
+
+/* Blok olarak akan linkler (liste/ok linkleri/şehir adları) */
+:root :is(
+  .qa-item__links a,
+  .guide-table__links a,
+  .guide-notice__links a,
+  .direct-answer__links a,
+  .sgk-faq__answer-links a,
+  .contact-service-area__item-name,
+  .kocaeli-districts__name,
+  .home-knowledge__hub
+) {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 48px !important;
+}
+
+/* Satır içi çip/rozet linkleri */
+:root :is(
+  .guide-toc__link,
+  .sgk-quicknav__pill,
+  .home-knowledge__topic,
+  .home-local__regions a,
+  .guide-table__col-head a,
+  .guide-table__row-head a,
+  .brand-criteria__closing-cta a,
+  .uit-facts a,
+  .closing__phone,
+  .home-knowledge__link,
+  .sound-profile-hero__tertiary
+) {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 48px !important;
+}

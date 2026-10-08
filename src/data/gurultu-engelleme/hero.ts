@@ -18,6 +18,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const gurultuEngellemeHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "TEKNOLOJİLERE GÖRE · GÜRÜLTÜ ENGELLEME",
   headingLines: ["Gürültü Engelleme", "Teknolojisi"],
   paragraphs: [

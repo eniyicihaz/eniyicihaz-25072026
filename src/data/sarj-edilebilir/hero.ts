@@ -45,7 +45,7 @@ export const sarjEdilebilirHero: BrandPageHeroContent = {
   ],
   image: {
     src: "/images/signia/models/pure.webp",
-    alt: "Şarj kutusunda duran, şarj edilebilir kulak arkası işitme cihazı çifti görseli",
+    alt: "Şarj kutusunda duran işitme cihazı çifti",
   },
   floatingCard: {
     title: "Gece Şarj, Gündüz Kullanım",

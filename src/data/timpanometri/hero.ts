@@ -18,6 +18,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const timpanometriHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · DEĞERLENDİRME · TİMPANOMETRİ",
   headingLines: ["Timpanometri", "Nedir ve Ne İçin Yapılır?"],
   paragraphs: [

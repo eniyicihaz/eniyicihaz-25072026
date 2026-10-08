@@ -19,9 +19,9 @@ export const PAGE_PATH = "/isitme-cihazi-fiyatlari/";
 export const PAGE_URL = "https://www.eniyicihaz.com/isitme-cihazi-fiyatlari/";
 
 export const pageMeta = {
-  title: "İşitme Cihazı Fiyatları 2026: Fiyatı Ne Belirler? | Darıca, Kocaeli | EniyiCihaz",
+  title: "İşitme Cihazı Fiyatları: Fiyatı Ne Belirler? | Darıca",
   description:
-    "İşitme cihazı fiyatları neye göre değişir? Cihaz türü, teknoloji, şarjlı ve Bluetooth özellikler, SGK desteği; Darıca, Gebze, Çayırova ve Kocaeli rehberi.",
+    "İşitme cihazı fiyatları neye göre değişir? Cihaz türü, teknoloji, şarjlı ve Bluetooth özellikler, SGK desteği ve fiyat bilgisinin Darıca'da nasıl alınacağı.",
   schemaDescription:
     "İşitme cihazı fiyatlarını belirleyen faktörleri, cihaz türlerini, SGK desteğini ve Darıca merkezli süreci anlatan rehber sayfası.",
 };
@@ -52,7 +52,7 @@ export const toc: GuideLink[] = [
 
 /** İçerik planlama kaydı — sayfa metninde doğal biçimde karşılanan sorgu kümeleri. */
 export const queries = {
-  primary: ["işitme cihazı fiyatları", "işitme cihazı ne kadar", "işitme cihazı fiyat listesi", "2026 işitme cihazı fiyatları"],
+  primary: ["işitme cihazı fiyatları", "işitme cihazı ne kadar", "işitme cihazı fiyat listesi", "güncel işitme cihazı fiyatları"],
   local: [
     "Darıca işitme cihazı fiyatları",
     "Gebze işitme cihazı fiyatları",

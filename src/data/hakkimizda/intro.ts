@@ -8,10 +8,10 @@ export const hakkimizdaIntro: BrandPageIntroContent = {
   heading: "Avrasya İşitme Cihazları Kimdir?",
   paragraphs: [
     "Avrasya İşitme Cihazları 2009 yılında kurulmuş, SGK anlaşmalı bir işitme merkezidir. Ağustos 2024'te açılan Darıca merkezimizde işitme değerlendirmesi, cihaz uygulaması ve teknik servis hizmetleri sunuyoruz.",
-    "Merkezimiz Darıca'da yer alıyor; Gebze ve Çayırova'dan gelen danışanlarımıza da aynı süreç ve aynı özenle hizmet veriyoruz.",
+    "Merkezimiz Darıca'da yer alıyor; Gebze ve Çayırova'dan gelen danışanlarımız da bu merkeze gelerek hizmet alıyor.",
   ],
   stats: [
-    { value: "2009", label: "Hizmet Başlangıcı" },
+    { value: "2009", label: "Kuruluş Yılı" },
     { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },
     { value: "Darıca", label: "Merkez Konumu" },
     { value: "Satış ve Uygulama", label: "Merkezi" },

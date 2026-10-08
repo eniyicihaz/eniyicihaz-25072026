@@ -10,6 +10,8 @@ import { readableTextOn } from "../../../lib/contrast";
 // CSS sınıfları/animasyon script'i marka-agnostik isimlere yeniden
 // adlandırıldı (görsel/davranışsal fark yok).
 import { Phone, MessageCircle, BrainCircuit } from "lucide-astro";
+import { standardCtaLabel } from "../../../lib/cta-labels";
+import { imageDims, imageSrcset } from "../../../lib/responsive-images";
 
 export interface BrandPageHeroFeature {
   label: string;
@@ -27,6 +29,9 @@ export interface BrandPageHeroContent {
   features: BrandPageHeroFeature[];
   image: { src: string; alt: string };
   floatingCard: { title: string; description: string };
+  // Kısa, görselsiz mod: özellik kartları, görsel ve floating card render edilmez.
+  // `image` / `floatingCard` / `features` yine verilebilir ama kullanılmaz.
+  textOnly?: boolean;
   accentColor: string;
   accentColorHover: string;
   // Pre-computed translucent variants of accentColor (e.g.
@@ -112,6 +117,10 @@ interface Props {
 
 const { data } = Astro.props;
 
+// Gerçek görsel oranı ve 400/640/1024 w srcset (manifestten); yoksa eski davranış (900×900).
+const heroImgDims = imageDims(data.image.src);
+const heroImgSrcset = imageSrcset(data.image.src);
+
 const heroStyleOverrides = [
   data.heroBackground ? `--bph-bg-image:${data.heroBackground};` : "",
   data.heroBaseBg ? `--bph-base-bg:${data.heroBaseBg};` : "",
@@ -142,7 +151,7 @@ const heroStyleOverrides = [
 ---
 
 <section
-  class="brand-page-hero"
+  class:list={["brand-page-hero", { "brand-page-hero--text-only": data.textOnly }]}
   aria-labelledby="brand-page-hero-title"
   style={`--bph-accent:${data.heroAccent || data.accentColor}; --bph-accent-hover:${data.heroAccentHover || data.accentColorHover}; --bph-accent-soft:${data.accentColorSoft}; --bph-accent-border:${data.accentColorBorder}; ${heroStyleOverrides}`}
 >
@@ -168,14 +177,15 @@ const heroStyleOverrides = [
       <div class="brand-page-hero__actions" data-rise>
         <a class="brand-page-hero__cta brand-page-hero__cta--solid" href={data.ctaPrimary.href}>
           <Phone size={18} stroke-width={2} aria-hidden="true" />
-          <span>{data.ctaPrimary.label}</span>
+          <span>{standardCtaLabel(data.ctaPrimary.label, data.ctaPrimary.href)}</span>
         </a>
         <a class="brand-page-hero__cta brand-page-hero__cta--outline" href={data.ctaSecondary.href}>
           <MessageCircle size={18} stroke-width={2} aria-hidden="true" />
-          <span>{data.ctaSecondary.label}</span>
+          <span>{standardCtaLabel(data.ctaSecondary.label, data.ctaSecondary.href)}</span>
         </a>
       </div>
 
+      {!data.textOnly && (
       <div class="brand-page-hero__features" data-rise>
         {
           data.features.map((feature) => (
@@ -187,15 +197,20 @@ const heroStyleOverrides = [
           ))
         }
       </div>
+      )}
     </div>
 
+    {!data.textOnly && (
     <div class="brand-page-hero__visual" data-rise>
       <img
         class="brand-page-hero__image"
         src={data.image.src}
+        srcset={heroImgSrcset}
+        sizes={heroImgSrcset ? "(max-width: 1023px) 200px, 498px" : undefined}
         alt={data.image.alt}
-        width="900"
-        height="900"
+        width={heroImgDims?.width ?? 900}
+        height={heroImgDims?.height ?? 900}
+        decoding="async"
       />
 
       <div class="brand-page-hero__floating-card">
@@ -208,6 +223,7 @@ const heroStyleOverrides = [
         </span>
       </div>
     </div>
+    )}
   </div>
 </section>
 
@@ -308,6 +324,34 @@ const heroStyleOverrides = [
     align-items: center;
     gap: var(--space-10);
     width: 100%;
+  }
+
+  /* --- Text-only (görselsiz, kısa) mod ----------------------------------------
+     Özellik kartları, görsel ve floating card yok; H1 + açıklama + CTA ana odak.
+     Görselli sayfalar bu kurallardan etkilenmez. */
+  .brand-page-hero--text-only {
+    min-height: 0;
+    padding-block: var(--space-16);
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__content {
+    max-width: 52rem;
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__heading {
+    font-size: clamp(2rem, 1.5rem + 2.4vw, 3.5rem);
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__paragraph {
+    max-width: 44rem;
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__actions {
+    margin-top: var(--space-6);
   }
 
   /* --- Left: content --------------------------------------------------------- */
@@ -575,19 +619,35 @@ const heroStyleOverrides = [
 
     .brand-page-hero__inner {
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--space-12);
+      gap: var(--space-8);
     }
 
+    /* Mobil/tablet: ana odak H1 + açıklama + CTA. Özellik kartları ve floating card gizlenir
+       (içerikleri sayfanın devamındaki bölümlerde ve istatistiklerde yer alır); ürün görseli
+       CTA'lardan sonra, kompakt (~200 px) gösterilir. Masaüstü düzeni değişmez. */
     .brand-page-hero__visual {
-      order: -1;
+      order: 0;
       flex-direction: column;
+      align-items: center;
     }
 
+    .brand-page-hero__features,
     .brand-page-hero__floating-card {
-      position: static;
-      width: 100%;
+      display: none;
+    }
+
+    .brand-page-hero__image {
+      width: auto;
       max-width: 100%;
-      margin-top: var(--space-6);
+      max-height: 180px;
+    }
+
+    .brand-page-hero:not(.brand-page-hero--text-only) {
+      padding-block: var(--space-12);
+    }
+
+    .brand-page-hero--text-only .brand-page-hero__heading {
+      line-height: 1.15;
     }
   }
 
@@ -602,7 +662,16 @@ const heroStyleOverrides = [
     }
 
     .brand-page-hero__image {
-      max-width: 340px;
+      max-width: 100%;
+    }
+
+    .brand-page-hero--text-only .brand-page-hero__inner {
+      padding-inline: var(--space-5);
+    }
+
+    /* Metin-odaklı (text-only) hero: uzun H1'ler 360 px'te 4 satıra çıkmasın. */
+    .brand-page-hero--text-only .brand-page-hero__heading {
+      font-size: clamp(1.625rem, 1.2rem + 2.2vw, 2rem);
     }
   }
 

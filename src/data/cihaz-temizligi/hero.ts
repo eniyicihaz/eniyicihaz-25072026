@@ -27,6 +27,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const cihazTemizligiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · SERVİS & BAKIM · CİHAZ TEMİZLİĞİ",
   headingLines: ["Cihaz Temizliği", "Günlük Bakım Rehberi"],
   paragraphs: [

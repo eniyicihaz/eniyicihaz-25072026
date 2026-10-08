@@ -1,18 +1,21 @@
-// Evde İşitme Cihazı Hizmeti — Hero verisi, HomeVisitHero component'i
-// üzerinden render edilir. accentColor: teal — kisiye-ozel-ayar'ın indigo
-// (#4f46e5) ve sitenin marka mavisinin (#2563eb) yanında taze ve bu
-// sayfaya özel bir ton.
+// Evde İşitme Cihazı Hizmeti — HomeVisitHero verisi (Faz 2 P2).
+// Kaynak: LOCAL_SOURCE_OF_TRUTH §3, SERVICE_SOURCE_OF_TRUTH H16: evde hizmet
+// ücretsiz, randevulu; alan Kocaeli'nin tamamı + İstanbul Anadolu Yakası'nın
+// tüm ilçeleri; "merkezde verilen hizmetlerin kapsamı doğrultusunda"
+// sunulur. Evde HANGİ işlemlerin yapıldığı doğrulanmadığı için burada tek
+// tek işlem sayılmaz (işletme sahibinden teyit bekliyor).
 import type { HomeVisitHeroContent } from "../../components/shared/HomeVisitHero/HomeVisitHero.astro";
 import { contactConfig } from "../../config";
 
 export const evdeHizmetHero: HomeVisitHeroContent = {
-  eyebrow: "Evde İşitme Cihazı Hizmeti",
-  heading: "İşitme Desteği Evinize Geliyor.",
-  subheading: "Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nda, merkezimize gelmeden ihtiyaç duyduğunuz işitme cihazı desteğini evinizde alabilirsiniz.",
+  eyebrow: "Ücretsiz ve Randevulu",
+  heading: "Evde İşitme Cihazı Hizmeti",
+  subheading:
+    "Merkezimize gelemiyorsanız evde hizmetimiz Kocaeli'nin tamamını ve İstanbul Anadolu Yakası'nın tüm ilçelerini kapsar. Hizmet ücretsizdir ve randevuyla planlanır.",
   paragraph:
-    "İşitme testinden cihaz denemesine, uygulamadan kişiye özel ayara kadar süreci evinizde, sizin için uygun bir zamanda yürütüyoruz. Merkeze gelmekte zorlanan yaşlı bireyler ve hareket kısıtlılığı olan kişiler için özellikle tercih edilen bir hizmet.",
+    "Fiziksel merkezimiz Darıca'dadır; ekibimiz randevu gününde adresinize gelir. Evde yapılacak işlemler randevuda netleştirilir.",
   ctaPrimary: { label: "Evde Hizmet Talep Et", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   routeFromLabel: "Merkezimiz",
   routeToLabel: "Eviniz",
   routeCaption: "Darıca'daki merkezimizden bölgenize randevulu ev ziyareti.",

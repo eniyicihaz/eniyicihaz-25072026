@@ -25,6 +25,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const cihazSecimRehberiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BİLGİ MERKEZİ · REHBERLER · CİHAZ SEÇİM REHBERİ",
   headingLines: ["Cihaz Seçim Rehberi", "Size Uygun Modeli Nasıl Seçersiniz?"],
   paragraphs: [

@@ -1,16 +1,9 @@
 ---
-// Çayırova İşitme Cihazı Hizmeti — /cayirova-isitme-cihazlari.
-//
-// KRİTİK ÇERÇEVE (LOCAL_SOURCE_OF_TRUTH §6): Çayırova'da fiziksel şube YOK;
-// merkez Darıca'da. Çayırova için doğrulanmış yerel bilgi sınırlı (550
-// otobüs hattı, evde hizmet alanı) — sayfa P1-B'de bilinçli olarak
-// kısaltıldı. Darıca/Gebze ile ortak şablon blokları (değerlendirme süreci,
-// cihaz türleri, marka şeridi, SGK kartları, hizmet kartları, genel karar
-// faktörleri) kaldırıldı; bu konular inline linklerle ilgili sayfalara
-// yönlendiriliyor. Yapı Gebze'den farklı: konum kartı ulaşım bloğunun
-// hemen ardından geliyor. Müşteri payı, mahalle, mesafe gibi doğrulanmamış
-// bilgiler kullanılmıyor. CenterGallery kullanılmıyor (Çayırova'da merkez
-// fotoğrafı yok).
+// Çayırova — "Çayırova'dan Darıca'daki merkezimize ulaşım" (Faz 2 P2, V1).
+// Çayırova'da fiziksel şube YOK; merkez Darıca'da (LOCAL_SOURCE_OF_TRUTH §6).
+// Doğrulanmış yerel bilgi sınırlı (550 hattı, evde hizmet alanı); bu yüzden
+// sayfa bilinçli olarak kısa: hero (görselsiz) → ulaşım → konum kartı →
+// gelmeden önce → SSS → final CTA. Gebze'nin bölüm yapısı kopyalanmıyor.
 import MainLayout from "../layouts/MainLayout.astro";
 import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
@@ -19,7 +12,7 @@ import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.ast
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 import { cayirovaHero } from "../data/cayirova/hero";
-import { cayirovaIntro, cayirovaCenterServices } from "../data/cayirova/copy-blocks";
+import { cayirovaRoute, cayirovaBeforeVisit } from "../data/cayirova/copy-blocks";
 import { cayirovaLocation } from "../data/cayirova/location";
 import { cayirovaFaq } from "../data/cayirova/faq";
 import { cayirovaFinalCta } from "../data/cayirova/final-cta";
@@ -54,8 +47,8 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 ---
 
 <MainLayout
-  title="Çayırova İşitme Cihazları | Avrasya İşitme"
-  description="Çayırova'dan işitme cihazı ihtiyacınız için bize ulaşın. SGK destekli süreç, marka seçenekleri, cihaz deneme ve kişiye özel ayar hakkında bilgi alın."
+  title="Çayırova'dan Darıca İşitme Merkezine Ulaşım | Avrasya İşitme"
+  description="Merkezimiz Darıca'da. Çayırova'dan 550 numaralı hatla ulaşım, adres, çalışma saatleri, yol tarifi ve evde hizmet bilgisi."
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
@@ -66,36 +59,35 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 
   <CorporateHero data={cayirovaHero} />
 
-  <section class="cayirova-copy-block" aria-labelledby="cayirova-intro-title">
-    <div class="cayirova-copy-block__inner">
-      <p class="cayirova-copy-block__badge">{cayirovaIntro.badge}</p>
-      <h2 class="cayirova-copy-block__heading" id="cayirova-intro-title">{cayirovaIntro.heading}</h2>
-      {cayirovaIntro.paragraphs.map((p) => <p class="cayirova-copy-block__paragraph">{p}</p>)}
+  <section class="cayirova-block" aria-labelledby="cayirova-route-title">
+    <div class="cayirova-block__inner">
+      <p class="cayirova-block__badge">{cayirovaRoute.eyebrow}</p>
+      <h2 class="cayirova-block__heading" id="cayirova-route-title">{cayirovaRoute.heading}</h2>
+      {cayirovaRoute.paragraphs.map((p) => <p class="cayirova-block__text">{p}</p>)}
+      <p class="cayirova-block__text">
+        <a class="cayirova-link" href={cayirovaRoute.testLink.href}>{cayirovaRoute.testLink.label} →</a>
+      </p>
     </div>
   </section>
 
   <ContactLocationCard data={cayirovaLocation} />
 
-  <section class="cayirova-copy-block" aria-labelledby="cayirova-center-services-title">
-    <div class="cayirova-copy-block__inner">
-      <p class="cayirova-copy-block__badge">{cayirovaCenterServices.badge}</p>
-      <h2 class="cayirova-copy-block__heading" id="cayirova-center-services-title">{cayirovaCenterServices.heading}</h2>
-      {cayirovaCenterServices.paragraphs.map((p) => <p class="cayirova-copy-block__paragraph">{p}</p>)}
+  <section class="cayirova-block cayirova-block--note" aria-label="Gelmeden önce">
+    <div class="cayirova-block__inner">
+      {cayirovaBeforeVisit.paragraphs.map((p) => <p class="cayirova-block__text">{p}</p>)}
+      <p class="cayirova-block__text">
+        {cayirovaBeforeVisit.homeService.text}
+        <a class="cayirova-link" href={cayirovaBeforeVisit.homeService.href}>{cayirovaBeforeVisit.homeService.linkLabel} →</a>
+      </p>
     </div>
   </section>
-  <p class="cayirova-inline-link-wrap">
-    <a class="cayirova-inline-link" href="/hizmetlerimiz/">Tüm hizmetlerimizi inceleyin →</a>
-  </p>
-  <p class="cayirova-inline-link-wrap">
-    <a class="cayirova-inline-link" href="/uygulama-ayar/evde-isitme-cihazi-hizmeti/">Evde işitme cihazı hizmeti hakkında bilgi alın →</a>
-  </p>
 
   <BrandPageFaq data={cayirovaFaq} />
-  <p class="cayirova-inline-link-wrap">
-    <a class="cayirova-inline-link" href="/darica-isitme-cihazlari/">Darıca'daki merkezimizin sayfasını inceleyin →</a>
-  </p>
 
   <BrandPageFinalCta data={cayirovaFinalCta} />
+  <p class="cayirova-links-row">
+    <a class="cayirova-link" href="/darica-isitme-cihazlari/">Darıca merkezimizin sayfası →</a>
+  </p>
 </MainLayout>
 
 <style>
@@ -105,22 +97,24 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     padding: var(--space-6) var(--space-6) 0;
   }
 
-  /* Darıca/Gebze sayfalarının page-scoped "copy block" deseniyle birebir
-     aynı — yeni bir shared component icat edilmedi, aynı DS token'ları
-     kullanılıyor. */
-  .cayirova-copy-block {
+  .cayirova-block {
     background: var(--color-background);
     padding-block: var(--space-16);
   }
 
-  .cayirova-copy-block__inner {
+  .cayirova-block--note {
+    padding-block: var(--space-10);
+    background: var(--color-surface);
+  }
+
+  .cayirova-block__inner {
     max-width: 42rem;
     margin-inline: auto;
     padding-inline: var(--space-6);
     text-align: center;
   }
 
-  .cayirova-copy-block__badge {
+  .cayirova-block__badge {
     display: inline-block;
     margin: 0;
     padding: var(--space-2) var(--space-4);
@@ -134,7 +128,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     color: var(--color-primary);
   }
 
-  .cayirova-copy-block__heading {
+  .cayirova-block__heading {
     margin: var(--space-4) 0 0;
     font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
     font-weight: var(--font-weight-bold);
@@ -143,73 +137,42 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     color: var(--color-text);
   }
 
-  .cayirova-copy-block__paragraph {
+  .cayirova-block__text {
     margin: var(--space-4) 0 0;
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
   }
 
-  .cayirova-inline-link-wrap {
+  .cayirova-links-row {
     margin: 0;
-    padding: 0 var(--space-6) var(--space-4);
-    max-width: var(--container-2xl);
-    margin-inline: auto;
+    padding: var(--space-6);
     text-align: center;
     background: var(--color-surface);
   }
 
-  .cayirova-inline-link-wrap:last-of-type {
-    padding-bottom: var(--space-16);
-  }
-
-  .cayirova-inline-link {
+  .cayirova-link {
+    display: inline-block;
+    padding-block: var(--space-3);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
     text-decoration: none;
   }
 
-  .cayirova-inline-link:hover {
+  .cayirova-link:hover {
     text-decoration: underline;
   }
 
-  .cayirova-inline-link:focus-visible {
+  .cayirova-link:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
     border-radius: var(--radius-sm);
   }
 
-  /* Marka bölümünden önceki kısa, link içermeyen doğal not — Gebze'den
-     farklı olarak burada Brands'tan ÖNCE kullanılıyor (yapısal çeşitlilik
-     için), ayrı bir bölüm/component değil. */
-  .cayirova-plain-note {
-    margin: 0;
-    padding: 0 var(--space-6) var(--space-4);
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    text-align: center;
-    background: var(--color-surface);
-    font-size: var(--font-size-md);
-    color: var(--color-text-muted);
-  }
-
-  .cayirova-plain-note--lead {
-    padding-top: var(--space-16);
-    padding-bottom: var(--space-6);
-  }
-
   @media (max-width: 640px) {
-    .cayirova-copy-block {
+    .cayirova-block {
       padding-block: var(--space-10);
-    }
-
-    .cayirova-inline-link-wrap:last-of-type {
-      padding-bottom: var(--space-10);
-    }
-
-    .cayirova-plain-note--lead {
-      padding-top: var(--space-10);
     }
   }
 </style>

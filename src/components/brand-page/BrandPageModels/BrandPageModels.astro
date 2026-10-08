@@ -24,6 +24,7 @@ import {
   Brain,
   Volume2,
 } from "lucide-astro";
+import { imageDims, imageSrcset } from "../../../lib/responsive-images";
 
 const badgeMap: Record<string, { icon: any; color: string }> = {
   "bluetooth": { icon: Bluetooth, color: "#2563eb" },
@@ -47,6 +48,8 @@ export interface BrandPageProduct {
   description: string;
   tags: string[];
   image: string;
+  /** "logo": görsel bir ürün fotoğrafı değil, marka logosudur — nötr kutuda gösterilir, alt metin "X logosu" olur. */
+  imageKind?: "logo";
   /** Optional real destination. Items without one render as a non-interactive <article> card (no link, no CTA row). */
   href?: string;
 }
@@ -114,15 +117,18 @@ function hexToRgba(hex: string, alpha: number) {
           <Card class="brand-page-models__card" href={item.href} data-rise>
             <span class="brand-page-models__category">{item.category}</span>
 
-            <span class="brand-page-models__media">
-              <span class="brand-page-models__glow" aria-hidden="true" />
+            <span class:list={["brand-page-models__media", { "brand-page-models__media--logo": item.imageKind === "logo" }]}>
+              {item.imageKind !== "logo" && <span class="brand-page-models__glow" aria-hidden="true" />}
               <img
-                class="brand-page-models__image"
+                class:list={["brand-page-models__image", { "brand-page-models__image--logo": item.imageKind === "logo" }]}
                 src={item.image}
-                alt={item.name}
+                srcset={item.imageKind === "logo" ? undefined : imageSrcset(item.image)}
+                sizes={item.imageKind === "logo" || !imageSrcset(item.image) ? undefined : "(max-width: 640px) 220px, 300px"}
+                alt={item.imageKind === "logo" ? `${item.category} logosu` : item.name}
                 loading="lazy"
-                width="500"
-                height="500"
+                decoding="async"
+                width={imageDims(item.image)?.width ?? 500}
+                height={imageDims(item.image)?.height ?? 500}
               />
             </span>
 
@@ -323,6 +329,25 @@ function hexToRgba(hex: string, alpha: number) {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  /* Logo-placeholder: ürün fotoğrafı değil marka logosu — nötr kutu, küçük logo. */
+  .brand-page-models__media--logo {
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--color-border);
+    background: rgb(15 23 42 / 0.025);
+  }
+
+  .brand-page-models__image--logo {
+    height: auto;
+    width: auto;
+    max-width: 46%;
+    max-height: 34%;
+    opacity: 0.85;
+  }
+
+  .brand-page-models__card[href]:hover .brand-page-models__image--logo {
+    transform: none;
   }
 
   .brand-page-models__glow {

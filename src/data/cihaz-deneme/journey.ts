@@ -1,39 +1,28 @@
-// "Deneyim Yolculuğu" — redesign plan §1, Bölüm 3. Renders through
-// BrandBuyingGuide (numbered 01-06 editorial list, no icons/cards/track
-// line), used on this page for the first time — deliberately does NOT
-// repeat ProcessTimeline's node+track visual from the Ücretsiz İşitme
-// Testi redesign. Replaces the retired evolution.ts/BrandPageTechEvolution
-// section (which also carried a known 3-column/4-item grid bug).
+// Cihaz Deneme — Süreç (Faz 2 P2): 6 adımdan 4'e. "Ara kontrol", "birden
+// fazla model karşılaştırma" ve "deneme ortasında ayar" gibi doğrulanmamış
+// adımlar çıkarıldı. Kaynak: SERVICE_SOT P6, P8, H7, H28.
 import type { BrandBuyingGuideContent } from "../../components/brands/BrandBuyingGuide/BrandBuyingGuide.astro";
 
 export const cihazDenemeJourney: BrandBuyingGuideContent = {
-  eyebrow: "DENEYİM YOLCULUĞU",
-  heading: "Cihaz Deneme Sürecinde Neler Yaşanır?",
-  intro: "İhtiyaç görüşmesinden karar anına kadar izlenen altı adım.",
+  eyebrow: "SÜREÇ",
+  heading: "Cihaz Deneme Süreci Nasıl İşler?",
+  intro: "Randevudan karara kadar süreç dört adımda ilerler.",
   criteria: [
     {
-      title: "İhtiyacınızı Konuşuyoruz",
-      description: "İhtiyaçlarınız ve bütçeniz doğrultusunda deneme için uygun model veya modeller birlikte belirlenir.",
+      title: "Randevu ve İşitme Değerlendirmesi",
+      description: "Telefon veya WhatsApp'tan randevu alırsınız; size uygun cihazın belirlenebilmesi için önce işitme değerlendirmesi yapılır.",
     },
     {
-      title: "Uygun Seçenekleri Belirliyoruz",
-      description: "Seçilen cihaz, odyogramınıza göre deneme sürecine uygun şekilde programlanır.",
+      title: "Merkezde Demo",
+      description: "Değerlendirme sonucuna göre uygun görülen cihaz, merkezde yaklaşık 20 dakikalık ücretsiz bir demoyla denenir.",
     },
     {
-      title: "Cihazı Uyguluyoruz",
-      description: "Merkezdeki demonun ardından cihazı satın alarak 7 güne kadar ev, iş ve sosyal ortamlarınızda kullanabilirsiniz.",
+      title: "Satın Alarak Deneme",
+      description: "Günlük hayatınızda denemek isterseniz cihazı satın alarak en fazla 7 gün ev, iş ve sosyal ortamlarınızda kullanırsınız.",
     },
     {
-      title: "Kişisel Ayarları Yapıyoruz",
-      description: "Deneme süresinin ortasında, deneyiminiz değerlendirilir ve gerekirse küçük ayarlar yapılır.",
-    },
-    {
-      title: "Günlük Kullanım Deneyiminizi Değerlendiriyoruz",
-      description: "Farklı ortamlardaki deneyiminizi birlikte gözden geçiririz.",
-    },
-    {
-      title: "Geri Bildirimlerinize Göre Yeniden Ayarlıyoruz",
-      description: "Cihazı 7 gün içinde uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir.",
+      title: "Karar ve İade",
+      description: "Cihazı uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir.",
     },
   ],
   closing: "Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; bu cihazlar merkezimizde demo olarak denenebilir.",

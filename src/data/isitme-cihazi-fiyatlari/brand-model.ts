@@ -12,7 +12,7 @@ export const brandModelSection: GuideSectionMeta = {
   eyebrow: "Marka ve Model",
   heading: "İşitme Cihazı Markaları ve Modelleri: Fiyatı Marka Değil, Seçim Belirler",
   intro:
-    "18 markayla çalışıyoruz; hiçbirine bağlı değiliz. Aynı marka içinde bile seri, teknoloji seviyesi ve özellikler bedeli değiştirir. Bu yüzden 'hangi marka daha ucuz?' sorusu yerine 'hangi model benim ihtiyacıma uygun?' sorusu sorulmalıdır.",
+    "18 markayla çalışıyoruz. Aynı marka içinde bile seri, teknoloji seviyesi ve özellikler bedeli değiştirir. Bu yüzden 'hangi marka daha ucuz?' sorusu yerine 'hangi model benim ihtiyacıma uygun?' sorusu sorulmalıdır.",
 };
 
 /** Sayfada öne çıkarılan 6 marka — hepsinin gerçek /markalar/{slug}/ sayfası var. */

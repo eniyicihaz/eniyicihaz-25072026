@@ -27,7 +27,7 @@ export const pricingSection = {
     "Deneyiminizi ara kontrol seansında paylaşmanız karar sürecinize yardımcı olur.",
     "Model bulunabilirliği stok durumuna göre değişebilir.",
   ],
-  ctaLabel: "Hemen Bilgi Alın",
+  ctaLabel: "Bizi Arayın",
   ctaHref: contactConfig.phone.href,
 };
 

@@ -28,6 +28,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const uzmanGorusleriHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BLOG & HABERLER · UZMAN GÖRÜŞLERİ",
   headingLines: ["Uzman Görüşleri:", "Doğrular ve Yanlışlar"],
   paragraphs: [

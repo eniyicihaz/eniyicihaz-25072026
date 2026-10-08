@@ -9,12 +9,12 @@ import type { BrandPageFinalCtaContent } from "../../components/brand-page/Brand
 
 export const onlineIsitmeTestiFinalCta: BrandPageFinalCtaContent = {
   badge: "SONRAKİ ADIM",
-  heading: "Darıca'da Profesyonel İşitme Testi",
+  heading: "Darıca'daki Merkezimizde İşitme Testi",
   description:
-    "Online tarama yalnızca ön değerlendirme amaçlıdır. Kesin değerlendirme için profesyonel odyolojik test gereklidir.",
-  ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Profesyonel Test", "Odyometrist Desteği", "Aynı Gün Sonuç", "SGK Danışmanlığı"],
+    "Online tarama yalnızca ön değerlendirme amaçlıdır. Kesin değerlendirme için merkezimizde işitme testi yaptırabilirsiniz.",
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
+  trustItems: ["Ücretsiz İşitme Testi", "Odyometrist Eşliğinde", "SGK Anlaşmalı Merkez"],
   accentColor: "#e11d48",
   accentColorHover: "#be123c",
   accentColorGlow: "rgb(225 29 72 / 0.22)",

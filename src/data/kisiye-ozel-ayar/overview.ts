@@ -10,7 +10,7 @@ export const kisiyeOzelAyarOverview: BrandPageOverviewContent = {
   cards: [
     { icon: "map-pin", label: "Merkez Konum", value: "Darıca" },
     { icon: "calendar", label: "Süre", value: "Randevuda Netleşir" },
-    { icon: "cpu", label: "Kapsam", value: "Marka Bağımsız" },
+    { icon: "cpu", label: "Markalar", value: "18 Marka" },
     { icon: "users", label: "Yöntem", value: "Geri Bildirime Dayalı" },
   ],
 };

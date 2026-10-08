@@ -13,7 +13,7 @@
 // — its own heading and body, not a repeat of the left's. A thin trust band
 // closes the section. Every fact is traceable to COMPANY.md; both CTAs
 // resolve to the same real phone/WhatsApp contact used everywhere else on
-// this page — there is no online booking form yet, so "Ücretsiz Randevu Al"
+// this page — there is no online booking form yet, so "Bizi Arayın"
 // still routes to a real phone call.
 
 import { UserCheck, ShieldCheck, CalendarCheck, Headphones } from "lucide-astro";
@@ -31,8 +31,8 @@ export const brandExpertSupport: BrandExpertSupportContent = {
     "Farklı Markaları Karşılaştırma İmkânı",
     "Odyometrist Desteği",
   ],
-  ctaPrimary: { label: "Ücretsiz Randevu Al", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp ile Yazış", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
   reassurance: "Randevunuz ücretsizdir, satın alma zorunluluğu yoktur.",
   panelHeading: "Sizi Dinliyoruz, Sizinle Karar Veriyoruz.",
   panelBody:

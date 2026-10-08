@@ -8,6 +8,7 @@
 import { ArrowRight, Star, LayoutGrid, Lightbulb, Check, Phone, MessageCircle } from "lucide-astro";
 import { sgkBrands } from "../../../data/sgk/brands";
 import { contactConfig } from "../../../config";
+import { imageDims } from "../../../lib/responsive-images";
 ---
 
 <section class="sgk-brands" aria-labelledby="sgk-brands-title">
@@ -34,8 +35,8 @@ import { contactConfig } from "../../../config";
                 alt={`${brand.name} logo`}
                 loading="lazy"
                 decoding="async"
-                width="200"
-                height="100"
+                width={imageDims(brand.logo)?.width ?? 200}
+                height={imageDims(brand.logo)?.height ?? 100}
               />
             </span>
             <p class="sgk-brands__card-text">{brand.text}</p>
@@ -64,8 +65,8 @@ import { contactConfig } from "../../../config";
                 alt={`${brand.name} logo`}
                 loading="lazy"
                 decoding="async"
-                width="140"
-                height="64"
+                width={imageDims(brand.logo)?.width ?? 140}
+                height={imageDims(brand.logo)?.height ?? 64}
               />
             </span>
             <span class="sgk-brands__card-link sgk-brands__card-link--compact">

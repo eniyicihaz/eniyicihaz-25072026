@@ -2,8 +2,14 @@
 // the Footer. Renders through the shared, generic BrandExpertSupport
 // component. Same real contact channels (contactConfig) used everywhere
 // else on the site; no urgency language (PRINCIPLES.md §4, §9).
+//
+// Faz 2 P2: "Randevunuz ücretsizdir, satın alma zorunluluğu yoktur" ifadesi
+// kaldırıldı (işletme sahibi kararı); "Odyometrist Desteği" ve "Satış
+// Sonrası Destek" maddeleri iletişim niyetini aştığı için çıkarıldı.
+// `reassurance` bileşende zorunlu bir alan; yalnızca doğrulanmamış bir
+// taahhüt içermeyen nötr bir cümle taşır.
 
-import { UserCheck, ShieldCheck, CalendarCheck, Headphones } from "lucide-astro";
+import { ShieldCheck, CalendarCheck, Headphones } from "lucide-astro";
 import { contactConfig } from "../../config";
 import type { BrandExpertSupportContent } from "../../components/brands/BrandExpertSupport/BrandExpertSupport.astro";
 
@@ -11,24 +17,21 @@ export const contactFinalCta: BrandExpertSupportContent = {
   eyebrow: "Son Adım",
   heading: "Sizi Darıca'daki Merkezimizde Ağırlamak İsteriz.",
   paragraph:
-    "Adresimizi, hizmetlerimizi ve ziyaret sürecini inceldiniz. Şimdi geriye tek bir adım kalıyor: bize ulaşıp sürecinizi başlatmak.",
+    "Merkezimize gelmek ya da evde hizmet için bizi arayın veya WhatsApp'tan yazın.",
   trustPoints: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı Hizmet",
-    "Odyometrist Desteği",
-    "Cihaz Deneme İmkânı",
-    "Satış Sonrası Destek",
+    "Evde Hizmet: Kocaeli Geneli",
   ],
-  ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
-  reassurance: "Randevunuz ücretsizdir, satın alma zorunluluğu yoktur.",
+  reassurance: "Yola çıkmadan önce aramanız, size en uygun yolu birlikte planlamamızı sağlar.",
   panelHeading: "Sizi Dinliyoruz, Sizinle Karar Veriyoruz.",
   panelBody:
     "İşitme kaybınızın derecesi, yaşam tarzınız ve beklentileriniz doğrultusunda, size özel çözümü birlikte belirliyoruz.",
   band: [
-    { icon: UserCheck, label: "Odyometrist Desteği" },
     { icon: ShieldCheck, label: "SGK Anlaşmalı Merkez" },
-    { icon: CalendarCheck, label: "Ücretsiz Test ve Değerlendirme" },
+    { icon: CalendarCheck, label: "Ücretsiz İşitme Testi" },
     { icon: Headphones, label: "Teknik Servis Desteği" },
   ],
 };

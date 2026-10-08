@@ -27,10 +27,11 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const guvenilirTeknolojiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · NEDEN ORİJİNAL · GÜVENİLİR TEKNOLOJİ",
   headingLines: ["Güvenilir Teknoloji", "Neden Önemlidir?"],
   paragraphs: [
-    "Orijinal ve yetkili distribütör güvencesiyle satılan işitme cihazları; üretici tarafından test edilmiş, sertifikalı ve güncel yazılıma sahip güvenilir bir teknoloji sunar.",
+    "Orijinal işitme cihazları; üretici tarafından test edilmiş, sertifikalı ve güncel yazılıma sahip güvenilir bir teknoloji sunar. Üretici garanti koşulları geçerlidir.",
     "Avrasya İşitme olarak 18 işitme cihazı markası satıyoruz; satın alma öncesinde cihazın garanti ve seri numarası bilgilerini sormanızı öneriyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
