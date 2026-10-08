@@ -11,7 +11,7 @@
 // never stand in for one). This is a real extension point for a future
 // photo once one exists — swapping this panel for an <img> is a small,
 // contained change when that day comes.
-import { MapPin, ShieldCheck, Phone, Navigation, CalendarCheck, Check } from "lucide-astro";
+import { MapPin, ShieldCheck, Phone, Navigation, Check } from "lucide-astro";
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 
@@ -28,7 +28,6 @@ export interface ContactHeroContent {
   ctaCall: ContactHeroCta;
   ctaWhatsapp: ContactHeroCta;
   ctaDirections: ContactHeroCta;
-  ctaAppointment: ContactHeroCta;
   trustPills: string[];
 }
 
@@ -56,22 +55,16 @@ const { data } = Astro.props;
 
       <div class="contact-hero__actions">
         <CtaButton label={data.ctaCall.label} href={data.ctaCall.href} iconLeft={Phone} />
-        <a class="contact-hero__whatsapp-btn" href={data.ctaWhatsapp.href}>
-          <WhatsAppIcon />
-          <span>{data.ctaWhatsapp.label}</span>
-        </a>
         <CtaButton
           label={data.ctaDirections.label}
           href={data.ctaDirections.href}
           iconLeft={Navigation}
           variant="outline"
         />
-        <CtaButton
-          label={data.ctaAppointment.label}
-          href={data.ctaAppointment.href}
-          iconLeft={CalendarCheck}
-          variant="outline"
-        />
+        <a class="contact-hero__whatsapp-btn" href={data.ctaWhatsapp.href}>
+          <WhatsAppIcon />
+          <span>{data.ctaWhatsapp.label}</span>
+        </a>
       </div>
 
       <ul class="contact-hero__pills">

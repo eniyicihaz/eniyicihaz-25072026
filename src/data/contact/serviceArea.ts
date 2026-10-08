@@ -31,7 +31,7 @@ export const contactServiceArea: ContactServiceAreaContent = {
   eyebrow: "Hizmet Bölgeleri",
   heading: "Hangi Bölgelerden Ulaşabilirsiniz?",
   intro:
-    "Tek fiziksel merkezimiz Darıca'dadır; başka ilçede şubemiz yok. Aşağıda, merkezimize toplu taşımayla ulaşımda kullanılan hatları bölge bölge bulabilirsiniz. Hat bilgileri değişebilir.",
+    "Merkezimize toplu taşımayla ulaşımda kullanılan hatları bölge bölge bulabilirsiniz. Hat bilgileri zamanla değişebilir; yola çıkmadan önce güncel durumu kontrol edin.",
   tierLabels: {
     merkez: "Merkez",
     oncelikli: "Gebze ve Çayırova",
@@ -41,7 +41,7 @@ export const contactServiceArea: ContactServiceAreaContent = {
     {
       name: "Darıca",
       tier: "merkez",
-      description: "Merkezimiz Farabi Devlet Hastanesi durağının karşısında, Palandöken Eczanesi'nin üst katındadır.",
+      description: "Tek fiziksel merkezimiz.",
       href: "/darica-isitme-cihazlari/",
     },
     {
@@ -73,5 +73,5 @@ export const contactServiceArea: ContactServiceAreaContent = {
     },
   ],
   closing:
-    "Merkeze gelemiyorsanız: evde işitme cihazı hizmetini Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nın tüm ilçelerinde veriyoruz.",
+    "Bu bölgelerin hiçbirinde şubemiz yok; hizmetin tamamı Darıca'daki merkezimizde verilir.",
 };

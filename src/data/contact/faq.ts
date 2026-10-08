@@ -1,58 +1,37 @@
-// "Yerel SSS" section for the /iletisim page — local-search-intent FAQ
-// (SEARCH_STRATEGY.md §8 FAQ AEO pattern), distinct from the general
-// /blog/sik-sorulan-sorular hub and from every topic page's own FAQ.
-// Renders through the shared, generic BrandFaq component, which already
-// generates FAQPage JSON-LD directly from these visible items — schema
-// can never drift from what's on the page.
-//
-// The address-description answer reuses COMPANY.md §1's real landmark
-// directions (Palandöken Eczanesi's üst katı, Farabi Ağız ve Diş Sağlığı
-// Merkezi girişinin karşısı) — not surfaced anywhere else in the
-// codebase before this page.
-
+// "Yerel SSS" — /iletisim (Faz 2 P2): yalnızca konum, randevu, test ve
+// hizmet bölgesi soruları. Marka, genel cihaz ve SGK/deneme soruları
+// kendi sayfalarına ait. Landmark tarifi yalnızca doğrulanmış ifade
+// (LOCAL_SOURCE_OF_TRUTH §1). BrandFaq bu öğelerden FAQPage JSON-LD üretir.
 import type { BrandFaqContent } from "../../components/brands/BrandFaq/BrandFaq.astro";
 
 export const contactFaq: BrandFaqContent = {
   eyebrow: "Sık Sorulan Sorular",
   heading: "Merkezimiz Hakkında Merak Edilenler",
-  intro: "Konumumuz, randevu süreci ve hizmet bölgemizle ilgili en çok sorulan sorular.",
+  intro: "Konum, randevu ve hizmet bölgesiyle ilgili kısa cevaplar.",
   items: [
     {
       question: "Avrasya İşitme Cihazları nerede bulunuyor?",
       answer:
-        "Merkezimiz Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7, Darıca/Kocaeli adresinde, Palandöken Eczanesi'nin üst katında, Farabi Ağız ve Diş Sağlığı Merkezi girişinin tam karşısında yer alır; asansörle 1. kata çıkarak ulaşabilirsiniz.",
-    },
-    {
-      question: "Darıca'da işitme testi nerede yapılır?",
-      answer:
-        "Darıca'daki merkezimizde, odyolog ve odyometristimizle ücretsiz işitme testi yaptırabilirsiniz.",
-    },
-    {
-      question: "İşitme testi ücretli mi?",
-      answer: "Hayır; işitme testimiz ücretsizdir.",
+        "Merkezimiz Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7, Darıca/Kocaeli adresinde, Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısındadır. Asansörle 1. kata çıkabilirsiniz.",
     },
     {
       question: "Randevu almam gerekir mi?",
       answer:
-        "Önceden randevu alınması tavsiye edilir; bu sayede sizi daha hızlı ve kesintisiz karşılayabiliriz.",
+        "Randevusuz gelebilirsiniz. Yine de işitme testi, cihaz ayarı ve teknik servis gibi hizmetler randevuyla verildiği için bu hizmetlerden biri için geliyorsanız önceden aramanız iyi olur.",
     },
     {
-      question: "İşitme cihazı denemesi yapılabilir mi?",
-      answer: "Evet; ilgilendiğiniz modelleri satın almadan önce merkezimizde deneyebilirsiniz.",
+      question: "Darıca'da işitme testi nerede yapılır, ücretli mi?",
+      answer: "İşitme testini Darıca'daki merkezimizde yapıyoruz ve test ücretsizdir.",
     },
     {
-      question: "Gebze'den veya Çayırova'dan merkeze ulaşabilir miyim?",
-      answer: "Evet; Gebze ve Çayırova, öncelikli hizmet bölgelerimiz arasındadır.",
-    },
-    {
-      question: "Hangi işitme cihazı markalarıyla çalışıyorsunuz?",
+      question: "Gebze veya Çayırova'da şubeniz var mı?",
       answer:
-        "Oticon, Phonak, Signia, Widex, ReSound ve daha birçok dünya markasıyla çalışıyoruz; tüm markaları Markalar sayfamızda inceleyebilirsiniz.",
+        "Hayır. Tek fiziksel merkezimiz Darıca'dadır. Gebze, Çayırova ve diğer bölgelerden merkeze hangi hatlarla ulaşılabileceği bu sayfadaki hizmet bölgeleri bölümünde yer alıyor.",
     },
     {
-      question: "SGK desteği için nasıl başvurabilirim?",
+      question: "Merkeze gelemezsem evde hizmet alabilir miyim?",
       answer:
-        "SGK katkı payı, rapor süreci ve gerekli belgeler hakkında SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi sayfamızdan bilgi alabilir, süreci merkezimizde birlikte başlatabiliriz.",
+        "Evet. Evde hizmetimiz Kocaeli'nin tamamını ve İstanbul Anadolu Yakası'nın tüm ilçelerini kapsar. Hizmet ücretsizdir ve randevuyla planlanır.",
     },
   ],
 };
