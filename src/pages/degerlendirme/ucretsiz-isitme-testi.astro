@@ -37,7 +37,6 @@ import GuideSection from "../../components/price-guide/GuideSection.astro";
 import InfoGrid from "../../components/price-guide/InfoGrid.astro";
 import GuideTable from "../../components/price-guide/GuideTable.astro";
 import GuideNotice from "../../components/price-guide/GuideNotice.astro";
-import LocalBlocks from "../../components/price-guide/LocalBlocks.astro";
 import AudiogramDiagram from "../../components/hearing-test/AudiogramDiagram.astro";
 
 import { buildMedicalBusinessSchema } from "../../lib/schema";
@@ -58,7 +57,7 @@ import {
   afterSection, afterCards, afterLinks, onlineSection, onlineTable,
   ageSection, childrenText, childrenLinks, elderlyText, elderlyLinks,
 } from "../../data/ucretsiz-isitme-testi/after";
-import { localSection, localBlocks } from "../../data/ucretsiz-isitme-testi/local";
+import { localSection, localContent } from "../../data/ucretsiz-isitme-testi/local";
 import { ucretsizIsitmeTestiLocation } from "../../data/ucretsiz-isitme-testi/location";
 import { testFaq } from "../../data/ucretsiz-isitme-testi/faq";
 import { testRelated } from "../../data/ucretsiz-isitme-testi/cta-related";
@@ -191,8 +190,18 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.sche
     <InfoGrid cards={freeTestCards} columns={3} />
   </GuideSection>
 
+  <!-- Darıca'daki merkezimiz (kısa yerel bölüm; ücretsiz test bölümünün hemen ardından) -->
+  <GuideSection {...localSection} tone="alt">
+    <div class="uit-local">
+      {localContent.paragraphs.map((p) => <p class="uit-local__p">{p}</p>)}
+      <ul class="uit-local__links">
+        {localContent.links.map((l) => <li><a class="uit-local__link" href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+  </GuideSection>
+
   <!-- 7. Sonuç nasıl okunur? Sıra: grafik → derece tablosu → 4 açıklama kartı -->
-  <GuideSection {...resultsSection} tone="alt">
+  <GuideSection {...resultsSection}>
     <div class="uit-audiogram">
       <AudiogramDiagram data={audiogram} />
     </div>
@@ -208,7 +217,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.sche
   </GuideSection>
 
   <!-- 8. Test sonrası (KBB · takip · cihaz gündeme gelirse) -->
-  <GuideSection {...afterSection}>
+  <GuideSection {...afterSection} tone="alt">
     <InfoGrid cards={afterCards} columns={3} />
     <div class="uit-spaced">
       <GuideNotice text="Cihaz gündeme gelirse şu rehberlerden ayrıntı bulabilirsiniz." links={afterLinks} />
@@ -216,21 +225,16 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.sche
   </GuideSection>
 
   <!-- 9. Evde / online test -->
-  <GuideSection {...onlineSection} tone="alt">
+  <GuideSection {...onlineSection}>
     <GuideTable data={onlineTable} bare mobile="stack" />
   </GuideSection>
 
   <!-- 10. Çocuklarda ve yaşlılarda -->
-  <GuideSection {...ageSection}>
+  <GuideSection {...ageSection} tone="alt">
     <h3 class="uit-h3">Çocuklarda</h3>
     <GuideNotice text={childrenText} links={childrenLinks} />
     <h3 class="uit-h3 uit-h3--after">Yaşa bağlı işitme kaybında</h3>
     <GuideNotice text={elderlyText} links={elderlyLinks} />
-  </GuideSection>
-
-  <!-- 11. Darıca'daki merkezimiz ve ulaşım (tek yerel bölüm: Darıca · Gebze/Çayırova · Kocaeli) -->
-  <GuideSection {...localSection} tone="alt">
-    <LocalBlocks blocks={localBlocks} headingLevel="h3" />
   </GuideSection>
 
   <!-- 12. SSS (yalnızca sayfada cevaplanmamış sorular) -->
@@ -247,6 +251,53 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.sche
 </MainLayout>
 
 <style>
+  .uit-local {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .uit-local__p {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .uit-local__links {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .uit-local__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .uit-local__link:hover {
+    text-decoration: underline;
+  }
+
+  .uit-local__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
   /* WCAG AA: the shared price-guide components render the TOC label and the table corner
      header in --color-text-soft (#94a3b8, 2.56:1 on white). Scoped to this page only; the
      same defect exists on the other hubs' shared components and is reported separately. */

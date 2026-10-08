@@ -43,10 +43,10 @@ export const toc: GuideLink[] = [
   { label: "Nasıl yapılır?", href: "#nasil-yapilir" },
   { label: "Değerlendirmeler", href: "#olcumler" },
   { label: "Ücretsiz test", href: "#ucretsiz-test" },
+  { label: "Merkez ve ulaşım", href: "#darica" },
   { label: "Sonuç nasıl okunur?", href: "#sonuc-okuma" },
   { label: "Test sonrası", href: "#sonrasi" },
   { label: "Evde / online test", href: "#online-fark" },
   { label: "Çocuk ve yaşlı", href: "#cocuk-yasli" },
-  { label: "Merkez ve ulaşım", href: "#darica" },
   { label: "Sık sorulanlar", href: "#sss" },
 ];
