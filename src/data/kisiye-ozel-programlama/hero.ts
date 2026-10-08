@@ -29,6 +29,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const kisiyeOzelProgramlamaHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · UYGULAMA & AYAR · KİŞİYE ÖZEL PROGRAMLAMA",
   headingLines: ["Kişiye Özel Programlama", "İle İnce Ayar Nasıl Yapılır?"],
   paragraphs: [

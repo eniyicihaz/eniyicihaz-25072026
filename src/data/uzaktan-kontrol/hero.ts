@@ -21,6 +21,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const uzaktanKontrolHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "TEKNOLOJİLERE GÖRE · UZAKTAN KONTROL",
   headingLines: ["Uzaktan Kontrol", "Özellikleri"],
   paragraphs: [

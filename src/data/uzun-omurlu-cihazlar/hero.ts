@@ -20,6 +20,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const uzunOmurluCihazlarHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · NEDEN ORİJİNAL · UZUN ÖMÜRLÜ CİHAZLAR",
   headingLines: ["Uzun Ömürlü Cihazlar", "Neyle Mümkün Olur?"],
   paragraphs: [

@@ -24,6 +24,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const gerekliBelgelerHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BİLGİ MERKEZİ · SGK & HAKLAR · GEREKLİ BELGELER",
   headingLines: ["SGK Başvurusu İçin", "Gerekli Belgeler"],
   paragraphs: [

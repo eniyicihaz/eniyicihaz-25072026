@@ -31,6 +31,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const premiumSeriHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · SEGMENTLER · PREMIUM SERİ",
   headingLines: ["Premium Seri", "İşitme Cihazları"],
   paragraphs: [

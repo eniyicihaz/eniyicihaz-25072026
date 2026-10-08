@@ -31,6 +31,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const cokIleriDereceIsitmeKaybiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "İHTİYACINIZA GÖRE · ÇOK İLERİ DERECE İŞİTME KAYBI",
   headingLines: ["Çok İleri Derece İşitme Kaybı", "İçin Cihaz Rehberi"],
   paragraphs: [

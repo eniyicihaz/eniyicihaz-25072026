@@ -28,6 +28,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const cocukIsitmeTestiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · DEĞERLENDİRME · ÇOCUK İŞİTME TESTİ",
   headingLines: ["Çocuk İşitme Testi", "Nasıl Yapılır?"],
   paragraphs: [

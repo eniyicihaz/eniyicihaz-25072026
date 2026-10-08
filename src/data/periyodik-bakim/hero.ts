@@ -29,6 +29,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const periyodikBakimHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · SERVİS & BAKIM · PERİYODİK BAKIM",
   headingLines: ["Periyodik Bakım", "Randevusu Ne İçerir?"],
   paragraphs: [

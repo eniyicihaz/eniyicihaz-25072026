@@ -30,6 +30,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const aktifYasamIcinCihazlarHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "İHTİYACINIZA GÖRE · AKTİF YAŞAM İÇİN CİHAZLAR",
   headingLines: ["Aktif Yaşam İçin Cihaz", "Seçim Rehberi"],
   paragraphs: [

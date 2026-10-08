@@ -25,6 +25,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const kablosuzBaglantiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "TEKNOLOJİLERE GÖRE · KABLOSUZ BAĞLANTI",
   headingLines: ["Kablosuz Bağlantı", "Özellikleri"],
   paragraphs: [

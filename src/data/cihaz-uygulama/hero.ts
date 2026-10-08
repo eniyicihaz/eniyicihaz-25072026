@@ -34,6 +34,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const cihazUygulamaHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · UYGULAMA & AYAR · CİHAZ UYGULAMA",
   headingLines: ["İşitme Cihazı Uygulama", "Randevusu Nasıl İşler?"],
   paragraphs: [

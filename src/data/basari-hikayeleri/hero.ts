@@ -29,6 +29,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const basariHikayeleriHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BLOG & HABERLER · BAŞARI HİKAYELERİ",
   headingLines: ["İşitme Cihazının", "Hayata Kattıkları"],
   paragraphs: [

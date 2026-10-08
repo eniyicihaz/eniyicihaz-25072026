@@ -22,6 +22,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const kolayDegisimHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · NEDEN ORİJİNAL · KOLAY DEĞİŞİM",
   headingLines: ["Kolay Değişim", "Nasıl Bir Güven Verir?"],
   paragraphs: [

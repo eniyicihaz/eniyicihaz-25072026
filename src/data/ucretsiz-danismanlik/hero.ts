@@ -21,6 +21,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const ucretsizDanismanlikHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · NEDEN ORİJİNAL · ÜCRETSİZ DANIŞMANLIK",
   headingLines: ["Ücretsiz Danışmanlık", "Nasıl Bir Fark Yaratır?"],
   paragraphs: [

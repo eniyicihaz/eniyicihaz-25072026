@@ -29,6 +29,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const tinnitusDegerlendirmeHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · DEĞERLENDİRME · TİNNİTUS DEĞERLENDİRME",
   headingLines: ["Tinnitus (Kulak Çınlaması)", "Değerlendirmesi Nasıl Yapılır?"],
   paragraphs: [

@@ -24,6 +24,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const raporSureciHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BİLGİ MERKEZİ · SGK & HAKLAR · RAPOR SÜRECİ",
   headingLines: ["SGK İşitme Cihazı", "Rapor Süreci"],
   paragraphs: [

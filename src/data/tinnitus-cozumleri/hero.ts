@@ -27,6 +27,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const tinnitusCozumleriHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "TEKNOLOJİLERE GÖRE · TİNNİTUS ÇÖZÜMLERİ",
   headingLines: ["Tinnitus (Kulak Çınlaması)", "Çözümleri"],
   paragraphs: [

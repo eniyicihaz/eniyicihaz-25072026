@@ -8,7 +8,8 @@
 // ("Uçtan Uca İşitme Sağlığı Hizmeti") for consistency with the mega
 // menu it's reached from.
 //
-// Hero image: Beltone Commence, a fresh model not yet used by any prior
+// (Hero Visual Paketi: görsel ve floating card kaldırıldı — hero artık görselsiz/kısa.
+// Eski görsel notu:  Beltone Commence, a fresh model not yet used by any prior
 // page this session (verified in public/images/beltone/models/
 // commence.webp).
 
@@ -29,13 +30,4 @@ export const servicesHero: BrandHeroContent = {
     "Odyometrist Desteği",
     "Satış Sonrası Destek",
   ],
-  image: {
-    src: "/images/beltone/models/commence.webp",
-    alt: "Uçtan uca işitme sağlığı hizmetleri kapsamında değerlendirilebilecek Beltone Commence işitme cihazı görseli",
-  },
-  floatingCard: {
-    value: "Darıca",
-    label: "Tek Merkezde",
-    description: "Testten Servise, Tüm Süreçte Yanınızdayız.",
-  },
 };

@@ -26,6 +26,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const sikSorulanSorularHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BLOG & HABERLER · SIK SORULAN SORULAR",
   headingLines: ["Sık Sorulan", "Sorular"],
   paragraphs: [

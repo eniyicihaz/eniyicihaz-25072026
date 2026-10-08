@@ -26,6 +26,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const onarimTakibiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · SERVİS & BAKIM · ONARIM TAKİBİ",
   headingLines: ["Onarım Takibi", "Sürecinizi Nasıl İzlersiniz?"],
   paragraphs: [

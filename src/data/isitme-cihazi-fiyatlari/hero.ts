@@ -13,6 +13,8 @@ export interface PriceGuideHeroContent {
   ctaSecondary: GuideLink;
   chips: string[];
   image?: GuideImage;
+  /** Görselsiz kısa hero: görsel/placeholder alanı render edilmez. */
+  textOnly?: boolean;
   /** Only used while `image` is missing: the spec of the image still to be produced (rendered nowhere, kept as the placeholder's data-alt). */
   imageNeeded?: string;
 }
@@ -20,6 +22,7 @@ export interface PriceGuideHeroContent {
 const whatsappText = encodeURIComponent("Merhaba, işitme cihazı fiyatları hakkında bilgi almak istiyorum.");
 
 export const priceGuideHero: PriceGuideHeroContent = {
+  textOnly: true, // Hero Visual Paketi: AI/kavramsal görsel kaldırıldı (dosya silinmedi)
   eyebrow: "Fiyat Rehberi",
   heading: "İşitme Cihazı Fiyatları",
   lead:
@@ -29,13 +32,4 @@ export const priceGuideHero: PriceGuideHeroContent = {
   ctaPrimary: { label: "Fiyat Bilgisi İçin Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Sor", href: `${contactConfig.whatsapp.href}?text=${whatsappText}` },
   chips: ["SGK anlaşmalı merkez", "Ücretsiz işitme testi", "18 marka"],
-  // Kavramsal danışmanlık sahnesi — gerçek Avrasya merkezi fotoğrafı DEĞİL.
-  // Ölçü: 1672 × 941 (16:9), WebP, olduğu gibi kullanılır
-  // (yeniden boyutlandırma/encode yok). Görselde yazı/logo/rakam yoktur.
-  image: {
-    src: "/images/price-guide/isitme-cihazi-fiyatlari-hero.webp",
-    alt: "İşitme cihazı türlerinin incelendiği kavramsal bir danışmanlık sahnesi — temsili görsel",
-    width: 1672,
-    height: 941,
-  },
 };

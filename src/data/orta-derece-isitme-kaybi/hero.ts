@@ -26,6 +26,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const ortaDereceIsitmeKaybiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "İHTİYACINIZA GÖRE · ORTA DERECE İŞİTME KAYBI",
   headingLines: ["Orta Derece İşitme Kaybı", "İçin Cihaz Rehberi"],
   paragraphs: [

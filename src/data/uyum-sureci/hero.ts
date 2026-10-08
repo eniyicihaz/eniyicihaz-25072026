@@ -29,6 +29,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const uyumSureciHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BİLGİ MERKEZİ · REHBERLER · UYUM SÜRECİ",
   headingLines: ["Uyum Süreci", "Cihazınıza Zamanla Nasıl Alışırsınız?"],
   paragraphs: [

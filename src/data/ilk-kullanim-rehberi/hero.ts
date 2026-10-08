@@ -27,6 +27,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const ilkKullanimRehberiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "BİLGİ MERKEZİ · REHBERLER · İLK KULLANIM REHBERİ",
   headingLines: ["İlk Kullanım Rehberi", "Cihazınızla İlk Günler"],
   paragraphs: [

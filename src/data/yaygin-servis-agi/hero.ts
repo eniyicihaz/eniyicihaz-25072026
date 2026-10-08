@@ -18,6 +18,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const yayginServisAgiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · NEDEN ORİJİNAL · SERVİS DESTEĞİ",
   headingLines: ["Servis Desteği", "Nasıl Bir Güven Verir?"],
   paragraphs: [

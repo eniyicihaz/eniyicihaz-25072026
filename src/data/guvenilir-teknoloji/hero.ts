@@ -27,6 +27,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const guvenilirTeknolojiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "MARKALAR · NEDEN ORİJİNAL · GÜVENİLİR TEKNOLOJİ",
   headingLines: ["Güvenilir Teknoloji", "Neden Önemlidir?"],
   paragraphs: [

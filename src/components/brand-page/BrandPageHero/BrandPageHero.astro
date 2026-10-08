@@ -27,6 +27,9 @@ export interface BrandPageHeroContent {
   features: BrandPageHeroFeature[];
   image: { src: string; alt: string };
   floatingCard: { title: string; description: string };
+  // Kısa, görselsiz mod: özellik kartları, görsel ve floating card render edilmez.
+  // `image` / `floatingCard` / `features` yine verilebilir ama kullanılmaz.
+  textOnly?: boolean;
   accentColor: string;
   accentColorHover: string;
   // Pre-computed translucent variants of accentColor (e.g.
@@ -142,7 +145,7 @@ const heroStyleOverrides = [
 ---
 
 <section
-  class="brand-page-hero"
+  class:list={["brand-page-hero", { "brand-page-hero--text-only": data.textOnly }]}
   aria-labelledby="brand-page-hero-title"
   style={`--bph-accent:${data.heroAccent || data.accentColor}; --bph-accent-hover:${data.heroAccentHover || data.accentColorHover}; --bph-accent-soft:${data.accentColorSoft}; --bph-accent-border:${data.accentColorBorder}; ${heroStyleOverrides}`}
 >
@@ -176,6 +179,7 @@ const heroStyleOverrides = [
         </a>
       </div>
 
+      {!data.textOnly && (
       <div class="brand-page-hero__features" data-rise>
         {
           data.features.map((feature) => (
@@ -187,8 +191,10 @@ const heroStyleOverrides = [
           ))
         }
       </div>
+      )}
     </div>
 
+    {!data.textOnly && (
     <div class="brand-page-hero__visual" data-rise>
       <img
         class="brand-page-hero__image"
@@ -208,6 +214,7 @@ const heroStyleOverrides = [
         </span>
       </div>
     </div>
+    )}
   </div>
 </section>
 
@@ -308,6 +315,34 @@ const heroStyleOverrides = [
     align-items: center;
     gap: var(--space-10);
     width: 100%;
+  }
+
+  /* --- Text-only (görselsiz, kısa) mod ----------------------------------------
+     Özellik kartları, görsel ve floating card yok; H1 + açıklama + CTA ana odak.
+     Görselli sayfalar bu kurallardan etkilenmez. */
+  .brand-page-hero--text-only {
+    min-height: 0;
+    padding-block: var(--space-16);
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__content {
+    max-width: 52rem;
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__heading {
+    font-size: clamp(2rem, 1.5rem + 2.4vw, 3.5rem);
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__paragraph {
+    max-width: 44rem;
+  }
+
+  .brand-page-hero--text-only .brand-page-hero__actions {
+    margin-top: var(--space-6);
   }
 
   /* --- Left: content --------------------------------------------------------- */

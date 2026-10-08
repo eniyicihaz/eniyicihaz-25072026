@@ -27,6 +27,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const hafifIsitmeKaybiHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "İHTİYACINIZA GÖRE · HAFİF İŞİTME KAYBI",
   headingLines: ["Hafif İşitme Kaybı", "İçin Cihaz Rehberi"],
   paragraphs: [
