@@ -120,7 +120,7 @@ export const factors: GuideCard[] = [
     tag: "Hizmet",
     impact: "değişken",
     title: "Teknik servis, garanti ve sarf kalemleri",
-    text: "Garanti koşulları, teknik servis, bakım ve pil ya da aksesuar gibi sarf kalemleri cihazın kullanım ömrü boyunca maliyeti etkiler. Orijinal ürünlerde garanti, resmi teknik servis ve yasal güvenceler fiyata dahildir.",
+    text: "Garanti koşulları, teknik servis, bakım ve pil ya da aksesuar gibi sarf kalemleri cihazın kullanım ömrü boyunca maliyeti etkiler.",
     href: "/servis-bakim/teknik-servis/",
     linkLabel: "Teknik servis",
   },
@@ -157,7 +157,7 @@ export const totalCost: GuideCard[] = [
   {
     icon: Repeat,
     title: "Servis ve yenileme",
-    text: "Cihaz zamanla bakım, onarım ve bir noktada yenileme gerektirir. Garanti kapsamı, yetkili servis ve SGK yenileme koşulları uzun vadeli maliyeti şekillendirir.",
+    text: "Cihaz zamanla bakım, onarım ve bir noktada yenileme gerektirir. Garanti kapsamı, teknik servis ve SGK yenileme koşulları uzun vadeli maliyeti şekillendirir.",
     href: "/sgk/yenileme-hakki/",
     linkLabel: "SGK yenileme hakkı",
   },

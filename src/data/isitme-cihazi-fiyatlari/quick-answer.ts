@@ -30,7 +30,7 @@ export const quickAnswer: QuickAnswerContent = {
   transparency: {
     title: "Bu sayfada neden rakam yok?",
     paragraphs: [
-      "Avrasya İşitme fiyat listesi yayımlamaz ve tahmini rakam vermez. Bu bir gizleme değil: işitme cihazı, kişiye özel bir değerlendirmenin sonucunda seçildiği için herkese aynı görünen bir liste sizi yanıltır.",
+      "Bu sayfada fiyat listesi ve tahmini rakam paylaşmıyoruz. Bu bir gizleme değil: işitme cihazı, kişiye özel bir değerlendirmenin sonucunda seçildiği için herkese aynı görünen bir liste sizi yanıltır.",
       "Rakam yerine, fiyatın neye göre oluştuğunu ve sizin için hangi kalemlerin önemli olduğunu eksiksiz anlatıyoruz. SGK tutarları her yıl güncellendiği için güncel tutarları ayrı ve güncel tutulan SGK rehberimizde bulabilirsiniz.",
     ],
   },
