@@ -13,7 +13,7 @@ export const brandsRelated: BrandPageRelatedContentContent = {
     { label: "SGK İşitme Cihazı Ödemesi", description: "Güncel SGK desteği, katkı payı ve başvuru sürecini öğrenin.", href: "/sgk-isitme-cihazi-odemesi/" },
     { label: "Tüm Markalar", description: "18 markanın dizinine ve marka sayfalarına tek yerden ulaşın.", href: "/markalar/" },
     { label: "Ücretsiz İşitme Testi", description: "Doğru cihaz ve marka kararının ilk adımı.", href: "/degerlendirme/ucretsiz-isitme-testi/" },
-    { label: "Marka Danışmanlığı", description: "Marka ve model seçiminde tarafsız destek.", href: "/neden-orijinal/marka-danismanligi/" },
+    { label: "Marka Danışmanlığı", description: "Marka ve model seçimi hakkında bilgi alın.", href: "/neden-orijinal/marka-danismanligi/" },
     { label: "Cihaz Deneme", description: "Merkezde ücretsiz demo ve satın alarak 7 güne kadar deneme sürecini öğrenin.", href: "/uygulama-ayar/cihaz-deneme/" },
     { label: "Darıca İşitme Cihazları", description: "Gerçek merkezimizi ve Darıca'daki sürecimizi görün.", href: "/darica-isitme-cihazlari/" },
     { label: "Gebze İşitme Cihazları", description: "Gebze'den gelen danışanlarımız için Darıca merkezimizdeki süreç.", href: "/gebze-isitme-cihazlari/" },
@@ -31,7 +31,7 @@ const whatsappText = encodeURIComponent("Merhaba, işitme cihazı markaları ve 
 export const brandsCta: GuideCtaContent = {
   eyebrow: "Sıradaki Adım",
   heading: "Size uygun marka ve modeli birlikte değerlendirelim.",
-  text: "Ücretsiz işitme testiyle başlayın; hiçbir markaya bağlı olmadan, ihtiyacınıza uygun model ailelerini kriterlere göre birlikte netleştirelim.",
+  text: "Ücretsiz işitme testiyle başlayın; ihtiyacınıza uygun model ailelerini kriterlere göre birlikte netleştirelim.",
   actions: [
     { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/", variant: "primary" },
     { label: "İşitme Cihazlarını Keşfet", href: "/isitme-cihazlari/", variant: "outline" },
@@ -39,5 +39,5 @@ export const brandsCta: GuideCtaContent = {
     { label: "WhatsApp'tan Yazın", href: `${contactConfig.whatsapp.href}?text=${whatsappText}`, variant: "outline", external: true },
     { label: "Darıca Merkezimiz", href: "/darica-isitme-cihazlari/", variant: "outline" },
   ],
-  reassurance: ["Baskı yok, taahhüt yok", "Hiçbir markaya bağlı değiliz", "SGK anlaşmalı merkez"],
+  reassurance: ["18 marka", "18 markada teknik servis", "SGK anlaşmalı merkez"],
 };

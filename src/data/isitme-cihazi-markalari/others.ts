@@ -17,7 +17,7 @@ export const otherBrands: BrandExtendedContent = {
   eyebrow: "Diğer Markalar",
   heading: "Merkezimizde Çalıştığımız Diğer 12 Marka",
   intro:
-    "Altı ana markanın yanı sıra aşağıdaki markalarla da çalışıyoruz; her birinin kendi marka sayfası vardır. Toplamda 18 marka ile hizmet veriyoruz ve hiçbirine bağlı değiliz.",
+    "Marka profili yer alan altı markanın yanı sıra aşağıdaki markalarla da çalışıyoruz; her birinin kendi marka sayfası vardır. Toplamda 18 marka ile çalışıyoruz ve 18 markanın tamamında merkezimizde teknik servis veriyoruz.",
 };
 
 export const priceSgkSection: GuideSectionMeta = {
@@ -25,7 +25,7 @@ export const priceSgkSection: GuideSectionMeta = {
   eyebrow: "Fiyat ve SGK",
   heading: "Marka Farkı Fiyata ve SGK Desteğine Nasıl Yansır?",
   intro:
-    "Bu iki konu kendi başına ayrıntılı sayfalarda ele alınır; burada yalnızca marka açısından kısaca yönlendiriyoruz. Fiyat listesi yayımlamıyor, tahmini rakam vermiyoruz.",
+    "Bu iki konu kendi başına ayrıntılı sayfalarda ele alınır; burada yalnızca marka açısından kısaca yönlendiriyoruz. Bu sayfada fiyat listesi ve tahmini rakam paylaşmıyoruz.",
 };
 
 export const priceSgkCards: GuideCard[] = [

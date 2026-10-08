@@ -1,15 +1,13 @@
-// Altı ana marka profili (Oticon, Phonak, Signia, Widex, ReSound, NuEar).
+// Marka profilleri (Oticon, Phonak, Signia, Widex, ReSound, NuEar) — Faz 2 P2.
 //
-// Her profil, sitenin DOĞRULANMIŞ marka verisinden türetilir (src/data/{marka}/
-// overview, intro, models, ideal-user, why-oticon): menşei, kuruluş, felsefe,
-// teknoloji, model aileleri, etiketler ve kullanım senaryoları oradan gelir —
-// burada yeni teknik iddia, model veya özellik uydurulmaz. Model aileleri ve
-// etiketler `models.ts` dosyalarından okunur (drift olmasın diye elle
-// kopyalanmaz). Model SAYFASI yoktur: her bağlantı marka sayfasına gider.
-//
-// Editoryal kural (PRINCIPLES.md §5): marka sıralaması, "en iyi" veya puan yok;
-// profiller yaklaşımı, cihaz türlerini ve kullanım senaryolarını anlatır.
-// Fiyat yoktur (COMPANY.md §23).
+// Üretici kaynaklı bilgiler (kuruluş yılı, merkez ülke/şehir, felsefe sloganı, teknoloji ve
+// uygulama adları, "X için geliştirilmiştir" gibi ürün iddiaları) bu sayfadan TAMAMEN çıkarıldı:
+// kaynak ve onay yok (PRODUCT_SOT: marka bilgisi sınırı; "marka sayfalarındaki üretici
+// bilgilerinin kaynağı ve onaylayan kişi: KULLANICIDAN BİLGİ GEREKLİ"). Profil yalnızca sitedeki
+// model verisinden (src/data/{marka}/models.ts: aile adları ve etiketler) ve SoT'ta doğrulanmış
+// olgulardan (18 marka satılıyor; 18 markanın tamamında teknik servis) oluşur.
+// Marka sıralaması, "en iyi" veya puan yoktur; fiyat yoktur (COMPANY.md §23).
+// Model SAYFASI yoktur: her bağlantı marka sayfasına gider.
 import type { GuideSectionMeta } from "../../components/price-guide/price-guide.types";
 import type { BrandProfileContent, BrandProfileModel } from "../../components/brand-guide/brand-guide.types";
 import { oticonModels } from "../oticon/models";
@@ -18,11 +16,6 @@ import { signiaModels } from "../signia/models";
 import { widexModels } from "../widex/models";
 import { resoundModels } from "../resound/models";
 import { nuearModels } from "../nuear/models";
-import { phonakIdealUser } from "../phonak/ideal-user";
-import { signiaIdealUser } from "../signia/ideal-user";
-import { widexIdealUser } from "../widex/ideal-user";
-import { resoundIdealUser } from "../resound/ideal-user";
-import { nuearIdealUser } from "../nuear/ideal-user";
 
 interface RawModel {
   slug: string;
@@ -34,12 +27,15 @@ interface RawModel {
 }
 
 /** Marka model listesinden gerçek fotoğraflı seçilen ailelerin kartları (logo yedeği kullanılmaz). */
-function pick(items: RawModel[], slugs: string[]): BrandProfileModel[] {
+/** Üretici teknolojisi/slogan niteliğindeki etiketler bu sayfada gösterilmez (kaynak ve onay yok). */
+const HIDDEN_TAGS = new Set(["BrainHearing", "AI"]);
+
+function pick(items: RawModel[], slugs: string[], brand: string): BrandProfileModel[] {
   return slugs.map((slug) => {
     const item = items.find((i) => i.slug === slug);
     if (!item) throw new Error(`Model bulunamadı: ${slug}`);
     if (!item.image.includes("/models/")) throw new Error(`Gerçek fotoğraf yok: ${slug}`);
-    return { name: item.name, category: item.category, description: item.description, tags: item.tags, image: item.image };
+    return { name: item.name, category: brand, description: `${item.name.startsWith(brand + " ") ? item.name.slice(brand.length + 1) : item.name} model ailesi; ayrıntılar marka sayfasında.`, tags: item.tags.filter((t) => !HIDDEN_TAGS.has(t)), image: item.image };
   });
 }
 
@@ -50,62 +46,72 @@ function families(items: RawModel[], brand: string): string[] {
 
 /** Etiketlerden benzersiz cihaz türü/özellik listesi (sırayı korur). */
 function tagList(items: RawModel[]): string[] {
-  return [...new Set(items.flatMap((i) => i.tags))];
+  return [...new Set(items.flatMap((i) => i.tags))].filter((t) => !HIDDEN_TAGS.has(t));
 }
 
-/** Marka sayfasındaki "kimler için" profillerinden fiyat içermeyen ilk 3'ü. */
-function scenariosFrom(profiles: { title: string; description: string }[]) {
-  return profiles
-    .filter((p) => !/fiyat/i.test(p.title + p.description))
-    .slice(0, 3)
-    .map((p) => ({ title: p.title, text: p.description }));
+/** Yalnızca sitedeki model etiketlerinden türetilen kısa kullanım notları (üretici iddiası yok). */
+function scenariosFromTags(items: RawModel[], brand: string): { title: string; text: string }[] {
+  const out: { title: string; text: string }[] = [];
+  const has = (...tags: string[]) => items.filter((i) => i.tags.some((t) => tags.includes(t)));
+  const list = (arr: RawModel[]) => families(arr, brand).slice(0, 4).join(", ");
+  const charge = has("Şarjlı");
+  if (charge.length) out.push({ title: "Şarjlı cihaz arayanlar", text: `Model listemizde ${charge.length}/${items.length} ailede şarjlı etiketi var: ${list(charge)}.` });
+  const inEar = has("Kulak İçi");
+  if (inEar.length) out.push({ title: "Daha küçük, kulak içi cihaz arayanlar", text: `Kulak içi etiketli aileler: ${list(inEar)}. Uygunluk kulak yapınıza göre değerlendirilir.` });
+  const power = has("Güçlü Kayıplar", "Power");
+  if (power.length) out.push({ title: "Daha güçlü amplifikasyon gerekenler", text: `Güçlü kayıplar için etiketli aileler: ${list(power)}. Uygunluk işitme testinizin sonucuna göre belirlenir.` });
+  const bt = has("Bluetooth");
+  if (bt.length && out.length < 3) out.push({ title: "Telefon bağlantısı arayanlar", text: `${bt.length}/${items.length} ailede Bluetooth etiketi var; telefon uyumu modele göre değişir.` });
+  return out.slice(0, 3);
+}
+
+/** Profil içeriği: yalnızca doğrulanmış olgular ve site verisi. */
+function buildProfile(opts: {
+  id: string;
+  name: string;
+  logoSlug: string;
+  items: RawModel[];
+  pickSlugs: string[];
+}): BrandProfileContent {
+  const { id, name, logoSlug, items, pickSlugs } = opts;
+  return {
+    id,
+    name,
+    logo: `/images/brands/${logoSlug}-logo-seffaf.webp`,
+    logoAlt: `${name} logosu`,
+    lead: `${name}, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir.`,
+    paragraphs: [
+      `Bu profil, ${name} markasının sitemizdeki model ailelerini ve cihaz türü / özellik etiketlerini gösterir. Ayrıntılar ve tüm modeller marka sayfasındadır.`,
+    ],
+    facts: [
+      { label: "Merkezimizde", value: "Satış ve teknik servis" },
+      { label: "Model ailesi", value: `${items.length} aile` },
+    ],
+    types: tagList(items),
+    families: families(items, name),
+    models: pick(items, pickSlugs, name),
+    scenarios: scenariosFromTags(items, name),
+    note: "Ailelerin özellikleri modele göre değişir; ayrıntılar marka sayfasında ve değerlendirme sırasında netleşir.",
+    brandHref: `/markalar/${logoSlug}/`,
+    brandLinkLabel: `${name} marka sayfası ve tüm modeller`,
+  };
 }
 
 export const profilesIntro: GuideSectionMeta = {
   id: "markalar",
-  eyebrow: "Öne Çıkan Markalar",
-  heading: "Altı Ana Marka: Yaklaşımları, Cihaz Türleri ve Model Aileleri",
+  eyebrow: "Marka Profilleri",
+  heading: "Marka Profilleri: Cihaz Türleri ve Model Aileleri",
   intro:
-    "Aşağıdaki altı marka, merkezimizde en çok sorulan ve marka sayfası bulunan ana markalardır. Her biri farklı bir teknoloji yaklaşımı ve model yelpazesi sunar; sıralama bir tercih ya da kalite sıralaması değildir. Bilgiler, her markanın kendi sayfasındaki doğrulanmış içerikten derlenmiştir.",
+    "Bu bölümde Oticon, Phonak, Signia, Widex, ReSound ve NuEar profilleri yer alıyor; diğer markalar kendi marka sayfalarında. Sıralama bir tercih ya da kalite sıralaması değildir. Bilgiler sitemizdeki model listelerinden derlenmiştir.",
 };
 
 export const brandSections: Record<string, GuideSectionMeta> = {
-  oticon: {
-    id: "oticon",
-    eyebrow: "Oticon",
-    heading: "Oticon İşitme Cihazları ve Modelleri",
-    intro: "BrainHearing® yaklaşımıyla tanınan Danimarka merkezli marka: yaklaşımı, model aileleri ve hangi senaryolarda değerlendirildiği.",
-  },
-  phonak: {
-    id: "phonak",
-    eyebrow: "Phonak",
-    heading: "Phonak İşitme Cihazları ve Modelleri",
-    intro: "Kesintisiz bağlantıyı öne çıkaran İsviçre merkezli marka: yaklaşımı, model aileleri ve hangi senaryolarda değerlendirildiği.",
-  },
-  signia: {
-    id: "signia",
-    eyebrow: "Signia",
-    heading: "Signia İşitme Cihazları ve Modelleri",
-    intro: "Yapay zekâ destekli, kişiselleştirilmiş konuşma deneyimini öne çıkaran Alman kökenli marka.",
-  },
-  widex: {
-    id: "widex",
-    eyebrow: "Widex",
-    heading: "Widex İşitme Cihazları ve Modelleri",
-    intro: "Doğal ses yaklaşımıyla bilinen Danimarka merkezli, aile şirketi geleneğinden gelen marka.",
-  },
-  resound: {
-    id: "resound",
-    eyebrow: "ReSound",
-    heading: "ReSound İşitme Cihazları ve Modelleri",
-    intro: "Kablosuz bağlantı teknolojilerinde erken adım atmasıyla tanınan Danimarka merkezli marka.",
-  },
-  nuear: {
-    id: "nuear-profili",
-    eyebrow: "NuEar",
-    heading: "NuEar İşitme Cihazları ve NuEar Modelleri",
-    intro: "Amerikan kökenli NuEar: bağlantılı ve sağlık odaklı işitme deneyimi.",
-  },
+  oticon: { id: "oticon", eyebrow: "Oticon", heading: "Oticon İşitme Cihazları ve Modelleri", intro: "Oticon model aileleri, cihaz türleri ve özellik etiketleri." },
+  phonak: { id: "phonak", eyebrow: "Phonak", heading: "Phonak İşitme Cihazları ve Modelleri", intro: "Phonak model aileleri, cihaz türleri ve özellik etiketleri." },
+  signia: { id: "signia", eyebrow: "Signia", heading: "Signia İşitme Cihazları ve Modelleri", intro: "Signia model aileleri, cihaz türleri ve özellik etiketleri." },
+  widex: { id: "widex", eyebrow: "Widex", heading: "Widex İşitme Cihazları ve Modelleri", intro: "Widex model aileleri, cihaz türleri ve özellik etiketleri." },
+  resound: { id: "resound", eyebrow: "ReSound", heading: "ReSound İşitme Cihazları ve Modelleri", intro: "ReSound model aileleri, cihaz türleri ve özellik etiketleri." },
+  nuear: { id: "nuear-profili", eyebrow: "NuEar", heading: "NuEar İşitme Cihazları ve NuEar Modelleri", intro: "NuEar model aileleri, cihaz türleri ve özellik etiketleri." },
 };
 
 const oticonItems = oticonModels.items as RawModel[];
@@ -116,163 +122,10 @@ const resoundItems = resoundModels.items as RawModel[];
 const nuearItems = nuearModels.items as RawModel[];
 
 export const brandProfiles: BrandProfileContent[] = [
-  {
-    id: "oticon",
-    name: "Oticon",
-    logo: "/images/brands/oticon-logo-seffaf.webp",
-    logoAlt: "Oticon logosu",
-    lead:
-      "Oticon, 1904'te kurulan, BrainHearing® yaklaşımıyla tanınan Danimarka merkezli bir işitme cihazı markasıdır.",
-    paragraphs: [
-      "Marka, sesi yalnızca yükseltmek yerine beynin sesi doğal şekilde işleme sürecini desteklemeyi amaçlayan bir yaklaşım benimser. Bu yaklaşım Intent, Real, Own SI ve Zeal gibi farklı model ailelerinde kullanıcının yaşam tarzına ve işitme ihtiyacına göre şekillenir.",
-      "Oticon'un yelpazesinde şarjlı ve pilli seçenekler, çocuklara yönelik aileler ve ileri derece kayıplar için güçlendirilmiş modeller bir arada bulunur. Cihaz yerleşimi (RIC, BTE, kulak içi) her ailede farklıdır; ayrıntı marka sayfasındadır.",
-    ],
-    facts: [
-      { label: "Menşei", value: "Danimarka" },
-      { label: "Kuruluş", value: "1904" },
-      { label: "Marka yaklaşımı", value: "BrainHearing® — beynin sesi işlemesini destekleme" },
-      { label: "Teknoloji", value: "Yapay zekâ destekli ses işleme (güncel ailelerde)" },
-      { label: "Model ailesi", value: `${oticonItems.length} aile` },
-    ],
-    types: tagList(oticonItems),
-    families: families(oticonItems, "Oticon"),
-    models: pick(oticonItems, ["intent", "own-si", "xceed"]),
-    scenarios: [
-      { title: "Güncel teknoloji arayanlar", text: "Yapay zekâ destekli ses işlemeyi önceleyen kullanıcılar için Intent gibi güncel aileler değerlendirilir." },
-      { title: "Çocuklar için çözüm arayan aileler", text: "Play PX, Opn Play ve Xceed Play serileri çocuklar için geliştirilmiştir." },
-      { title: "İleri derece kaybı olanlar", text: "Xceed ailesi güçlü amplifikasyon ihtiyacı olan kullanıcılar için geliştirilmiştir." },
-    ],
-    note: "Model fiyatı yazmıyoruz; fiyat farkını nasıl anlayacağınızı fiyat rehberimizde ele alıyoruz.",
-    brandHref: "/markalar/oticon/",
-    brandLinkLabel: "Oticon marka sayfası ve tüm modeller",
-  },
-  {
-    id: "phonak",
-    name: "Phonak",
-    logo: "/images/brands/phonak-logo-seffaf.webp",
-    logoAlt: "Phonak logosu",
-    lead:
-      "Phonak, 1947'den beri işitme cihazı üreten, \"Life is on.\" felsefesiyle bilinen İsviçre kökenli bir markadır.",
-    paragraphs: [
-      "Marka, işitme cihazını yalnızca bir tıbbi cihaz değil, kullanıcının aktif yaşamına kesintisiz bağlı kalmasını sağlayan bir bağlantı aracı olarak konumlandırır. Sitedeki marka verisine göre evrensel Bluetooth desteği (iPhone ve Android) ve konuşma odaklı ses işleme öne çıkan yönleridir.",
-      "Ürün yelpazesi Audéo (RIC), Naída (güçlü kayıplar), Sky (çocuk), Bolero (BTE), Virto (kulak içi) ve CROS (tek taraflı işitme kaybı) ailelerinden oluşur.",
-    ],
-    facts: [
-      { label: "Menşei", value: "İsviçre" },
-      { label: "Kuruluş", value: "1947" },
-      { label: "Marka yaklaşımı", value: "\"Life is on.\" — kesintisiz bağlantı ve aktif yaşam" },
-      { label: "Bağlantı", value: "Evrensel Bluetooth (iPhone + Android)" },
-      { label: "Model ailesi", value: `${phonakItems.length} aile` },
-    ],
-    types: tagList(phonakItems),
-    families: families(phonakItems, "Phonak"),
-    models: pick(phonakItems, ["audeo", "naida", "sky"]),
-    scenarios: scenariosFrom(phonakIdealUser.profiles),
-    note: "Ailelerin hangi telefon ve özelliklerle uyumlu olduğu modele göre değişir; kendi telefonunuzla uyumu değerlendirme sırasında birlikte kontrol edebiliriz.",
-    brandHref: "/markalar/phonak/",
-    brandLinkLabel: "Phonak marka sayfası ve tüm modeller",
-  },
-  {
-    id: "signia",
-    name: "Signia",
-    logo: "/images/brands/signia-logo-seffaf.webp",
-    logoAlt: "Signia logosu",
-    lead:
-      "Signia, \"Life sounds brilliant.\" felsefesiyle yapay zekâ destekli, kişiye özel konuşma deneyimi sunan Almanya kökenli bir işitme cihazı markasıdır.",
-    paragraphs: [
-      "Marka verisine göre Own Voice Processing (OVP) teknolojisi ve entegre yapay zekâ çipiyle bilinir. Yelpaze, modern RIC tasarımlardan kulak içi ve spor/aktif kullanıma yönelik ailelere kadar uzanır.",
-      "Styletto, Pure, Insio, Silk, Active ve Motion ailelerinde bu yaklaşım, kullanıcının yaşam tarzına ve tasarım tercihine göre şekillenir.",
-    ],
-    facts: [
-      { label: "Menşei", value: "Almanya" },
-      { label: "Marka yaklaşımı", value: "\"Life sounds brilliant.\" — yapay zekâ destekli konuşma deneyimi" },
-      { label: "Teknoloji", value: "Own Voice Processing (OVP)" },
-      { label: "Bağlantı", value: "Entegre yapay zekâ çipi + Bluetooth" },
-      { label: "Model ailesi", value: `${signiaItems.length} aile` },
-    ],
-    types: tagList(signiaItems),
-    families: families(signiaItems, "Signia"),
-    models: pick(signiaItems, ["styletto", "insio", "active"]),
-    scenarios: scenariosFrom(signiaIdealUser.profiles),
-    brandHref: "/markalar/signia/",
-    brandLinkLabel: "Signia marka sayfası ve tüm modeller",
-  },
-  {
-    id: "widex",
-    name: "Widex",
-    logo: "/images/brands/widex-logo-seffaf.webp",
-    logoAlt: "Widex logosu",
-    lead:
-      "Widex, 1956'da Danimarka'da kurulan, aile şirketi geleneğini sürdüren ve \"Less is more in natural hearing\" ses felsefesiyle bilinen bir işitme cihazı markasıdır.",
-    paragraphs: [
-      "Marka, sesi olabildiğince az işleyerek beynin sesi daha doğal ve detaylı algılamasını hedefler. Marka verisinde öne çıkan teknoloji PureSound™ (ZeroDelay ses işleme), bağlantı tarafında ise Bluetooth ve Widex Moment uygulamasıdır.",
-      "Allure, SmartRIC, Moment Sheer, Beyond, Evoke ve Unique ailelerinde yaklaşım, kullanıcının işitme ihtiyacına ve yaşam tarzına göre şekillenir.",
-    ],
-    facts: [
-      { label: "Menşei", value: "Danimarka" },
-      { label: "Kuruluş", value: "1956" },
-      { label: "Marka yaklaşımı", value: "\"Less is more in natural hearing\" — doğal ses deneyimi" },
-      { label: "Teknoloji", value: "PureSound™ (ZeroDelay ses işleme)" },
-      { label: "Bağlantı", value: "Bluetooth + Widex Moment uygulaması" },
-      { label: "Model ailesi", value: `${widexItems.length} aile` },
-    ],
-    types: tagList(widexItems),
-    families: families(widexItems, "Widex"),
-    models: pick(widexItems, ["allure", "smartric", "moment-sheer"]),
-    scenarios: scenariosFrom(widexIdealUser.profiles),
-    brandHref: "/markalar/widex/",
-    brandLinkLabel: "Widex marka sayfası ve tüm modeller",
-  },
-  {
-    id: "resound",
-    name: "ReSound",
-    logo: "/images/brands/resound-logo-seffaf.webp",
-    logoAlt: "ReSound logosu",
-    lead:
-      "ReSound, kökleri 1943'te Danavox adıyla kurulan, Danimarka kökenli ve kablosuz bağlantı teknolojileriyle tanınan bir işitme cihazı markasıdır.",
-    paragraphs: [
-      "Marka verisine göre kulak kanalı mikrofonu M&RIE ve Auracast (Bluetooth LE Audio) desteği öne çıkar; ReSound Nexia, Auracast yayın sesi desteğini sunan ilk işitme cihazı ailelerinden biri olmuştur. Bağlantı tarafında Smart 3D uygulaması yer alır.",
-      "Vivia, Nexia, Omnia, Savi, ENZO Q ve Key ailelerinde yaklaşım, kullanıcının işitme ihtiyacına ve bağlantı beklentisine göre şekillenir.",
-    ],
-    facts: [
-      { label: "Menşei", value: "Danimarka" },
-      { label: "Kuruluş", value: "1943 (Danavox olarak)" },
-      { label: "Marka yaklaşımı", value: "Akıllı bağlantı ve doğal mekansal işitme" },
-      { label: "Teknoloji", value: "M&RIE (kulak kanalı mikrofonu)" },
-      { label: "Bağlantı", value: "Auracast (Bluetooth LE Audio) + Smart 3D uygulaması" },
-      { label: "Model ailesi", value: `${resoundItems.length} aile` },
-    ],
-    types: tagList(resoundItems),
-    families: families(resoundItems, "ReSound"),
-    models: pick(resoundItems, ["vivia", "nexia", "key"]),
-    scenarios: scenariosFrom(resoundIdealUser.profiles),
-    brandHref: "/markalar/resound/",
-    brandLinkLabel: "ReSound marka sayfası ve tüm modeller",
-  },
-  {
-    id: "nuear",
-    name: "NuEar",
-    logo: "/images/brands/nuear-logo-seffaf.webp",
-    logoAlt: "NuEar logosu",
-    lead:
-      "NuEar, 1976'da San Diego'da kurulan Amerikan kökenli bir işitme cihazı markasıdır.",
-    paragraphs: [
-      "Marka, işitme cihazını yalnızca bir ses yükseltme aracı değil, günlük aktivite ve sağlık takibini de içeren bağlantılı bir deneyim olarak konumlandırır; bu deneyimin uygulaması Hear Circle'dır.",
-      "NXG AI, NE Series, Circa, Savant AI, NOW iQ ve Miniscopic Synergy iQ ailelerinde yaklaşım, kullanıcının işitme ihtiyacına ve yaşam tarzına göre şekillenir. Sitemizde yer alan NuEar ailelerinin tamamında Bluetooth etiketi bulunur.",
-    ],
-    facts: [
-      { label: "Menşei", value: "ABD" },
-      { label: "Kuruluş", value: "1976" },
-      { label: "Marka yaklaşımı", value: "Bağlantılı ve sağlık odaklı işitme deneyimi" },
-      { label: "Teknoloji", value: "NXG AI ses işleme" },
-      { label: "Bağlantı", value: "Hear Circle uygulaması + Bluetooth" },
-      { label: "Model ailesi", value: `${nuearItems.length} aile` },
-    ],
-    types: tagList(nuearItems),
-    families: families(nuearItems, "NuEar"),
-    models: pick(nuearItems, ["circa", "miniscopic-synergy-iq"]),
-    scenarios: scenariosFrom(nuearIdealUser.profiles),
-    brandHref: "/markalar/nuear/",
-    brandLinkLabel: "NuEar marka sayfası ve tüm modeller",
-  },
+  buildProfile({ id: "oticon", name: "Oticon", logoSlug: "oticon", items: oticonItems, pickSlugs: ["intent", "own-si", "xceed"] }),
+  buildProfile({ id: "phonak", name: "Phonak", logoSlug: "phonak", items: phonakItems, pickSlugs: ["audeo", "naida", "sky"] }),
+  buildProfile({ id: "signia", name: "Signia", logoSlug: "signia", items: signiaItems, pickSlugs: ["styletto", "insio", "active"] }),
+  buildProfile({ id: "widex", name: "Widex", logoSlug: "widex", items: widexItems, pickSlugs: ["allure", "smartric", "moment-sheer"] }),
+  buildProfile({ id: "resound", name: "ReSound", logoSlug: "resound", items: resoundItems, pickSlugs: ["vivia", "nexia", "key"] }),
+  buildProfile({ id: "nuear", name: "NuEar", logoSlug: "nuear", items: nuearItems, pickSlugs: ["circa", "miniscopic-synergy-iq"] }),
 ];
