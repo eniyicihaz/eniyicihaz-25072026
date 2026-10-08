@@ -1,81 +1,46 @@
-// SSS — Evde İşitme Cihazı Hizmeti. Renders through the existing
-// BrandPageFaq (FAQPage schema auto-generated). Fiyat rakamı, garanti
-// dili veya "her yere hizmet veriyoruz" gibi doğrulanmamış ifade yok.
-import { contactConfig } from "../../config";
+// Evde İşitme Cihazı Hizmeti — SSS (Faz 2 P2): 11 sorudan 6'ya. Yalnızca
+// doğrulanmış olgular (bölge, ücretsiz, randevulu, 10–60 dk, merkez
+// kapsamı doğrultusunda). Evde hangi işlemlerin yapıldığına dair soru
+// ("evde deneme", "evde satış", "evde test güvenilir mi") işletme sahibinden
+// teyit gelene kadar çıkarıldı.
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 
 export const evdeHizmetFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
-  heading: "Evde İşitme Cihazı Hizmeti Hakkında Merak Edilenler",
-  intro: "Evde hizmetin kapsamı, süreci ve bölgeden ulaşım hakkında en çok sorulan sorular.",
-  decisionCard: {
-    title: "Evde Hizmet Hakkında Bilgi Almak İster misiniz?",
-    points: ["Marka bağımsız değerlendirme", "Kocaeli ve Anadolu Yakası'nda randevulu ziyaret", "Mevcut cihazınızla ilgilenebiliriz", "Gerektiğinde merkeze/KBB'ye yönlendirme"],
-    ctaLabel: "Evde Hizmet Talep Et",
-    ctaHref: contactConfig.phone.href,
-  },
+  heading: "Evde Hizmet Hakkında Merak Edilenler",
+  intro: "Bölge, randevu ve süreçle ilgili kısa cevaplar.",
   categories: [
     {
-      label: "Genel",
-      items: [
-        {
-          question: "Evde işitme cihazı hizmeti nedir?",
-          answer: "İşitme değerlendirmesi, cihaz denemesi, cihaz uygulaması ve kişiye özel ayar gibi hizmetlerimizin, ekibimizin evinize gelmesiyle yürütülmesidir.",
-        },
-        {
-          question: "Evde yapılan işitme testi güvenilir mi?",
-          answer: "Evde yaptığımız değerlendirme, uzman ekibimiz tarafından yapılan profesyonel bir işitme kontrolüdür. Tıbbi bir bulguya rastlanması durumunda sizi bir KBB uzmanına yönlendiririz.",
-        },
-        {
-          question: "Evde cihaz denemesi mümkün mü?",
-          answer: "Evet; uygun görülen cihazları kendi ev ortamınızda, günlük rutininizde deneyebilirsiniz.",
-        },
-        {
-          question: "Evde işitme cihazı satın alabilir miyim?",
-          answer: "Evet; ihtiyacınız değerlendirilir, uygun cihaz seçenekleri evinizde gösterilir ve karar sürecinde sorularınız cevaplanır.",
-        },
-      ],
-    },
-    {
-      label: "Süreç",
-      items: [
-        {
-          question: "Evde hizmet nasıl talep edilir?",
-          answer: "Telefon veya WhatsApp'tan bize ulaşarak ihtiyacınızı iletebilir, size uygun bir ev ziyareti saati belirleyebilirsiniz.",
-        },
-        {
-          question: "Evde hizmet ne kadar sürer?",
-          answer: "Süre, talep edilen hizmete (değerlendirme, deneme, uygulama veya ayar) göre değişir; randevu sırasında netleşir.",
-        },
-        {
-          question: "Mevcut cihazımı evde kontrol ettirebilir miyim?",
-          answer: "Evet; kullandığınız cihazın performansı evde kontrol edilebilir, gerekiyorsa yeniden ayarlanabilir.",
-        },
-      ],
-    },
-    {
-      label: "Hizmet Bölgesi",
+      label: "Evde Hizmet",
       items: [
         {
           question: "Evde hizmeti hangi bölgelerde veriyorsunuz?",
-          answer: "Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nın tüm ilçelerinde evde hizmet veriyoruz. Fiziksel merkezimiz ise yalnızca Darıca'dadır.",
+          answer: "Kocaeli'nin tamamında ve İstanbul Anadolu Yakası'nın tüm ilçelerinde. Fiziksel merkezimiz yalnızca Darıca'dadır.",
         },
         {
           question: "Evde hizmet ücretli mi, randevu gerekiyor mu?",
-          answer: "Evde hizmet ücretsizdir ve randevuyla planlanır. Uygun gün ve saati belirlemek için bizi arayabilir veya WhatsApp'tan yazabilirsiniz.",
+          answer: "Evde hizmet ücretsizdir ve randevuyla planlanır. Gün ve saati belirlemek için bizi arayabilir veya WhatsApp'tan yazabilirsiniz.",
+        },
+        {
+          question: "Evde hizmeti nasıl talep ederim?",
+          answer: "Telefon veya WhatsApp'tan bize ulaşıp adresinizi ve ihtiyacınızı iletmeniz yeterli; size uygun bir randevu günü birlikte belirlenir.",
+        },
+        {
+          question: "Evde hizmet ne kadar sürer?",
+          answer: "Süre yapılacak işleme göre değişir; yaklaşık 10 ile 60 dakika arasındadır.",
+        },
+        {
+          question: "Evde hangi işlemler yapılabiliyor?",
+          answer: "Evde hizmet, merkezimizde verdiğimiz hizmetlerin kapsamı doğrultusunda sunulur. Hangi işlemin evde yapılabileceğini randevuda birlikte netleştiriyoruz.",
         },
       ],
     },
     {
-      label: "Ne Zaman Merkeze/Doktora Gitmeliyim?",
+      label: "Sağlık",
       items: [
         {
           question: "Ani işitme kaybı yaşarsam ne yapmalıyım?",
-          answer: "Ani gelişen bir işitme kaybı, ağrı veya akıntı fark ederseniz, evde hizmet talep etmeden önce en kısa sürede bir sağlık kuruluşuna başvurmanızı öneririz.",
-        },
-        {
-          question: "Daha fazla cihaz modeli görmek istersem ne yapmalıyım?",
-          answer: "Daha geniş bir marka ve model yelpazesini aynı anda karşılaştırmak isterseniz, Darıca'daki merkezimizi ziyaret edebilirsiniz.",
+          answer: "Ani gelişen bir işitme kaybı, ağrı veya akıntı fark ederseniz evde hizmet talep etmeden önce en kısa sürede bir sağlık kuruluşuna başvurmanızı öneririz.",
         },
       ],
     },

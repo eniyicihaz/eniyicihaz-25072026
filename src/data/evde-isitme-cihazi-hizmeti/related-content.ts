@@ -1,31 +1,16 @@
-// İlgili İçerikler — Evde İşitme Cihazı Hizmeti. Renders through the
-// existing BrandPageRelatedContent. Tüm href'ler projede doğrulanmış
-// gerçek sayfalara ait.
+// Evde İşitme Cihazı Hizmeti — İlgili içerikler (Faz 2 P2): 7 linkten 4'e.
+// Deneme, ayar ve uygulama linkleri evde yapılan işlem kapsamı
+// doğrulanana kadar çıkarıldı.
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
 export const evdeHizmetRelatedContent: BrandPageRelatedContentContent = {
   badge: "İLGİLİ İÇERİKLER",
-  heading: "Sürecin Diğer Aşamaları Hakkında Bilgi Alın",
+  heading: "İlgili Sayfalar",
   links: [
     {
       label: "Ücretsiz İşitme Testi",
-      description: "Merkezimizde de ücretsiz işitme değerlendirmesi yaptırabilirsiniz.",
+      description: "Merkezimizde ücretsiz işitme testi hakkında bilgi alın.",
       href: "/degerlendirme/ucretsiz-isitme-testi/",
-    },
-    {
-      label: "Cihaz Deneme",
-      description: "Merkezimizde daha geniş bir model yelpazesini deneyebilirsiniz.",
-      href: "/uygulama-ayar/cihaz-deneme/",
-    },
-    {
-      label: "Kişiye Özel Ayar",
-      description: "Cihazınızın kişiye özel ayarı hakkında detaylı bilgi.",
-      href: "/uygulama-ayar/kisiye-ozel-ayar/",
-    },
-    {
-      label: "Cihaz Uygulama",
-      description: "Cihaz uygulama sürecinin nasıl işlediğini öğrenin.",
-      href: "/uygulama-ayar/cihaz-uygulama/",
     },
     {
       label: "Teknik Servis",

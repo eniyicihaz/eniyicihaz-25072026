@@ -5,33 +5,28 @@
 // hizmetlerin *teslim kanalını* — evde alınabildiğini — anlatır, bu
 // yüzden hiçbiriyle keyword cannibalization yaratmaz (bkz. plan).
 //
-// Sıra: Breadcrumb -> HomeVisitHero (özgün) -> Ne Sunuyoruz? (Intro) ->
-// Hizmet Kapsamı (ScenarioRail) -> Kimler İçin Uygun? (BrandPageIdealUser)
-// -> Süreç (TuningProcess) -> Merkeze Gelmeniz Gerektiğinde
-// (BrandPageSignalList) -> Merkezimiz + Hizmet Bölgesi (ContactLocationCard
-// + ContactServiceArea) -> SSS -> Son CTA -> İlgili İçerikler.
+// Sıra (Faz 2 P2): Breadcrumb -> HomeVisitHero -> Hizmet bölgesi ->
+// Nasıl talep edilir (3 adım) -> Merkeze/doktora başvurma uyarısı ->
+// Konum kartı -> SSS (6 soru) -> Son CTA -> İlgili içerikler (4 link).
+// Evde hangi işlemlerin yapıldığı SoT'ta doğrulanmadığı için işlem listesi,
+// "kimler için uygun" ve ilgili sayfa linkleri (deneme/ayar/uygulama)
+// kaldırıldı; kapsam yalnızca "merkezde verilen hizmetlerin kapsamı
+// doğrultusunda, randevuda netleştirilir" olarak anlatılır.
 import MainLayout from "../../layouts/MainLayout.astro";
 import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import HomeVisitHero from "../../components/shared/HomeVisitHero/HomeVisitHero.astro";
-import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
-import ScenarioRail from "../../components/shared/ScenarioRail/ScenarioRail.astro";
-import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import TuningProcess from "../../components/shared/TuningProcess/TuningProcess.astro";
 import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
 import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
-import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
 import { evdeHizmetHero } from "../../data/evde-isitme-cihazi-hizmeti/hero";
-import { evdeHizmetIntro } from "../../data/evde-isitme-cihazi-hizmeti/intro";
-import { evdeHizmetScope } from "../../data/evde-isitme-cihazi-hizmeti/scope";
-import { evdeHizmetIdealUser } from "../../data/evde-isitme-cihazi-hizmeti/ideal-user";
+import { evdeHizmetArea } from "../../data/evde-isitme-cihazi-hizmeti/intro";
 import { evdeHizmetProcess } from "../../data/evde-isitme-cihazi-hizmeti/process";
 import { evdeHizmetSignalList } from "../../data/evde-isitme-cihazi-hizmeti/signal-list";
 import { evdeHizmetLocation } from "../../data/evde-isitme-cihazi-hizmeti/location";
-import { evdeHizmetServiceArea } from "../../data/evde-isitme-cihazi-hizmeti/service-area";
 import { evdeHizmetFaq } from "../../data/evde-isitme-cihazi-hizmeti/faq";
 import { evdeHizmetFinalCta } from "../../data/evde-isitme-cihazi-hizmeti/final-cta";
 import { evdeHizmetRelatedContent } from "../../data/evde-isitme-cihazi-hizmeti/related-content";
@@ -64,7 +59,7 @@ const medicalBusinessSchema = {
   "@type": "MedicalBusiness",
   "@id": BUSINESS_ID,
   name: company.legalName,
-  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nda evde işitme testi, cihaz denemesi, uygulama ve kişiye özel ayar hizmeti sunar.",
+  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nın tüm ilçelerinde ücretsiz ve randevulu evde hizmet sunar.",
   url: BUSINESS_URL,
   telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
   email: company.email,
@@ -103,7 +98,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
 
 <MainLayout
   title="Evde İşitme Cihazı Hizmeti | Kocaeli ve Anadolu Yakası | EniyiCihaz"
-  description="Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nda evde işitme testi, cihaz denemesi, uygulama ve kişiye özel ayar desteği. Avrasya İşitme Cihazları ile evinizde işitme hizmeti alın."
+  description="Kocaeli'nin tamamında ve İstanbul Anadolu Yakası'nın tüm ilçelerinde ücretsiz, randevulu evde işitme cihazı hizmeti. Talep için bizi arayın veya WhatsApp'tan yazın."
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
@@ -113,13 +108,18 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
   </div>
 
   <HomeVisitHero data={evdeHizmetHero} />
-  <BrandPageIntro data={evdeHizmetIntro} />
-  <ScenarioRail data={evdeHizmetScope} />
-  <BrandPageIdealUser data={evdeHizmetIdealUser} />
+
+  <section class="evde-block" aria-labelledby="evde-area-title">
+    <div class="evde-block__inner">
+      <p class="evde-block__badge">{evdeHizmetArea.badge}</p>
+      <h2 class="evde-block__heading" id="evde-area-title">{evdeHizmetArea.heading}</h2>
+      {evdeHizmetArea.paragraphs.map((p) => <p class="evde-block__text">{p}</p>)}
+    </div>
+  </section>
+
   <TuningProcess data={evdeHizmetProcess} />
   <BrandPageSignalList data={evdeHizmetSignalList} />
   <ContactLocationCard data={evdeHizmetLocation} />
-  <ContactServiceArea data={evdeHizmetServiceArea} />
   <BrandPageFaq data={evdeHizmetFaq} />
   <BrandPageFinalCta data={evdeHizmetFinalCta} />
   <BrandPageRelatedContent data={evdeHizmetRelatedContent} />
@@ -130,5 +130,53 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
     max-width: var(--container-2xl);
     margin-inline: auto;
     padding: var(--space-6) var(--space-6) 0;
+  }
+
+  .evde-block {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .evde-block__inner {
+    max-width: 42rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    text-align: center;
+  }
+
+  .evde-block__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(13 148 136 / 0.35);
+    border-radius: var(--radius-full);
+    background: rgb(13 148 136 / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #0f766e;
+  }
+
+  .evde-block__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .evde-block__text {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .evde-block {
+      padding-block: var(--space-10);
+    }
   }
 </style>
