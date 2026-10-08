@@ -59,7 +59,7 @@ export const yeniTeknolojilerFaq: BrandPageFaqContent = {
         {
           question: "Yeni bir teknolojiyi satın almadan önce deneyebilir miyim?",
           answer:
-            "Evet; ilgilendiğiniz modelleri satın almadan önce deneyebilirsiniz. Detaylı bilgi için Cihaz Deneme sayfamızı inceleyebilirsiniz.",
+            "Yeni bir modeli merkezimizde yaklaşık 20 dakikalık ücretsiz demoyla deneyebilirsiniz; günlük hayatta denemek için cihazı satın alarak 7 güne kadar kullanabilir, uygun bulmazsanız kesintisiz ücret iadesiyle iade edebilirsiniz. Ayrıntılar Cihaz Deneme sayfamızda.",
         },
       ],
     },

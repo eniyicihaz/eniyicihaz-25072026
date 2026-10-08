@@ -16,7 +16,7 @@ export const knowledgeExpertSupport: BrandExpertSupportContent = {
     "SGK Anlaşmalı Hizmet",
     "Kişiye Özel Değerlendirme",
     "Şeffaf Bilgilendirme",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   ctaPrimary: { label: "Ücretsiz Randevu Al", href: "tel:+905337733199" },
   ctaSecondary: { label: "WhatsApp ile Yazış", href: "https://wa.me/905337733199" },
@@ -25,7 +25,7 @@ export const knowledgeExpertSupport: BrandExpertSupportContent = {
   panelBody:
     "Genel bilgiler faydalı bir başlangıçtır; kendi durumunuz için kişisel bir değerlendirme yapmaktan çekinmeyin.",
   band: [
-    { icon: UserCheck, label: "Uzman Odyometrist Desteği" },
+    { icon: UserCheck, label: "Odyometrist Desteği" },
     { icon: ShieldCheck, label: "SGK Anlaşmalı Merkez" },
     { icon: CalendarCheck, label: "Ücretsiz Test ve Değerlendirme" },
     { icon: Headphones, label: "Teknik Servis Desteği" },

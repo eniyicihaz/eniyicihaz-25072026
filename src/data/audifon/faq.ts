@@ -11,7 +11,7 @@ export const audifonFaq: BrandPageFaqContent = {
   intro: "Audifon modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,7 +21,7 @@ export const audifonFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Audifon hangi ülkenin markası?",
-          answer: "Audifon, Almanya'nın işitme akustiği alanındaki en büyük aile işletmesi KIND-Grubu'na bağlı, Kölleda/Thüringen'de üretilen Alman bir markadır.",
+          answer: "Audifon, Kölleda/Thüringen'de üretilen Alman bir markadır.",
         },
         {
           question: "Audifon hangi konuda öne çıkar?",

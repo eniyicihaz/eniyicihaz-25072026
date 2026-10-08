@@ -9,12 +9,12 @@ import type { BrandPageTechEvolutionContent } from "../../components/brand-page/
 
 export const yayginServisAgiEvolution: BrandPageTechEvolutionContent = {
   badge: "SERVİS SÜRECİ",
-  heading: "Yetkili Serviste Onarım Süreci Nasıl İşler?",
-  intro: "Cihazınız yetkili servise ulaştığında izlenen dört adımlık süreci bir araya getirdik.",
+  heading: "Serviste Onarım Süreci Nasıl İşler?",
+  intro: "Cihazınız servise ulaştığında izlenen dört adımlık süreci bir araya getirdik.",
   stages: [
     {
       era: "Ön Değerlendirme",
-      whatItBrought: "Cihazınız, sorunun kaynağını belirlemek için yetkili teknisyen tarafından incelenir.",
+      whatItBrought: "Cihazınız, sorunun kaynağını belirlemek için teknik servis ekibi tarafından incelenir.",
       bestFor: "Servis sürecinin ilk adımı",
       families: ["Ön Değerlendirme"],
     },
@@ -26,7 +26,7 @@ export const yayginServisAgiEvolution: BrandPageTechEvolutionContent = {
     },
     {
       era: "Orijinal Parça ile Onarım",
-      whatItBrought: "Gerekli onarım, orijinal yedek parçalar kullanılarak gerçekleştirilir.",
+      whatItBrought: "Gerekli onarım yapılır; parça temin süresi marka ve modele göre değişebilir.",
       bestFor: "Kalite standardının korunması",
       families: ["Orijinal Parça Onarımı"],
     },

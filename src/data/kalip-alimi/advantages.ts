@@ -45,9 +45,9 @@ export const kalipAlimiAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Sparkles,
-      category: "Ücretsiz Ölçüm",
-      title: "Kalıp Alımı Herhangi Bir Ücret Talep Etmez",
-      description: "Kalıp alımı randevusu, herhangi bir ücret talep edilmeden sunulur.",
+      category: "Ücret Bilgisi",
+      title: "Cihaz Alımında İlk Kalıp Ücretsizdir",
+      description: "Kulak kalıbı ücretli bir hizmettir; cihaz satın alımlarında ilk kalıplar ücretsiz yapılır.",
     },
   ],
   accentColor: "#db2777",

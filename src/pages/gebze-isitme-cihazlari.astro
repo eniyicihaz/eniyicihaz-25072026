@@ -1,48 +1,24 @@
 ---
-// Gebze İşitme Cihazı Hizmeti — /gebze-isitme-cihazlari.
-// Sıfırdan inşa: Gebze'ye ait hiçbir sayfa/route/component daha önce
-// mevcut değildi (araştırma turu doğrulandı — dosya, veri, sitemap, git
-// geçmişi kaydı yok).
+// Gebze İşitme Cihazları — /gebze-isitme-cihazlari (Faz 2 P2, Gebze V1).
 //
-// KRİTİK ÇERÇEVE (plan onayı — COMPANY.md §17'ye dayanır): Gebze'de
-// GERÇEK bir fiziksel şube/merkez YOK. Darıca "Ana Merkez", Gebze
-// "Öncelikli Hizmet Bölgesi". Bu sayfa Darıca landing page'inin şehir-adı-
-// değiştirilmiş bir kopyası DEĞİL — kapsamlı ama özgün, Gebze'den gerçekten
-// işitme cihazı arayan kişinin ihtiyaç duyacağı bilgiyi (değerlendirme,
-// cihaz türleri, marka, SGK, deneme, ayar, karar faktörleri, SSS) tek
-// sayfada topluyor. Cihaz türleri/SGK/deneme-ayar metinleri Darıca
-// sayfasınınkiyle KELİME KELİME AYNI DEĞİL — aynı gerçek süreç/kategoriler
-// özgün biçimde yeniden yazıldı.
-//
-// Darıca, sayfanın ilk bölümlerinde (Hero, "Doğru Başlangıç") HİÇ
-// GEÇMİYOR. Gerçek NAP/konum bilgisi yalnızca sayfanın sonlarındaki
-// "Merkezimize Nasıl Ulaşırım?" bölümünde veriliyor — CenterGallery
-// KULLANILMADI (Gebze'de gerçek merkez fotoğrafı yok, bu component'i
-// kullanmak yanlış fiziksel-konum iddiası olurdu). Hero'nun görseli Darıca
-// sayfasıyla AYNI DEĞİL — bu proje için üretilmiş, gerçek insan/klinik
-// içermeyen bir AI-konsept ürün görseli (isitme-cihazi-turleri.webp).
-//
-// "Gebze'de şubeniz var mı?" sorusu bu revizyonda BİLİNÇLİ OLARAK SSS'e
-// eklenmedi (plan onayı — bu konu kullanıcıya gereksiz şekilde öne
-// çıkarılmasın); ama sayfanın hiçbir yerinde gerçek olmayan bir fiziksel
-// Gebze şubesi/adresi iddiası da yok.
+// KRİTİK ÇERÇEVE (LOCAL_SOURCE_OF_TRUTH §5): Gebze'de fiziksel şube YOK.
+// Sayfa tek soruya cevap verir: "Gebze'den Darıca'daki merkezinize nasıl
+// gelirim?" Bölüm sırası: Hero → Ulaşım (hat rozetleri) → Konum kartı →
+// Gelmeden önce → Kısa yollar → SSS (3 soru) → Son CTA. Cihaz türü/marka/
+// model/deneme-ayar kartı/SGK anlatımı yok; bunlar pillar sayfalarda ve
+// kısa yollar şeridinde link olarak.
+// Hat numaraları [TIME-SENSITIVE] (LOCAL_SOT §5). Mesafe/süre/ücret/metro
+// uydurulmaz. Gebze için ayrı adres/NAP/schema yok.
+// Meta/schema/OG bu turda DEĞİŞTİRİLMEDİ (Faz 3).
 import MainLayout from "../layouts/MainLayout.astro";
 import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
-import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
-import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
-import Brands from "../components/brands/Brands/Brands.astro";
-import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 import { gebzeHero } from "../data/gebze/hero";
-import { gebzeIntro, gebzeDecisionFactors } from "../data/gebze/copy-blocks";
-import { gebzeProcess } from "../data/gebze/process";
-import { gebzeDeviceTypes } from "../data/gebze/device-types";
-import { gebzeSgk } from "../data/gebze/sgk";
-import { gebzeServices } from "../data/gebze/services";
+import { gebzeRoute, gebzeBeforeVisit, gebzeShortcuts } from "../data/gebze/copy-blocks";
 import { gebzeLocation } from "../data/gebze/location";
 import { gebzeFaq } from "../data/gebze/faq";
 import { gebzeFinalCta } from "../data/gebze/final-cta";
@@ -70,9 +46,7 @@ const breadcrumbSchema = {
 
 // Aynı kanonik tanım cümlesi + aynı gerçek MedicalBusiness kaydı (aynı
 // @id, aynı gerçek Darıca adresi) — Gebze için AYRI bir işletme/adres
-// ASLA oluşturulmadı. Gebze zaten `areaServed` dizisinde var (bkz.
-// src/lib/schema.ts + src/data/contact/serviceArea.ts) — burada hiçbir
-// değişiklik gerekmedi.
+// ASLA oluşturulmadı.
 const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.definitionSentence);
 ---
 
@@ -89,48 +63,56 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 
   <CorporateHero data={gebzeHero} />
 
-  <section class="gebze-copy-block" aria-labelledby="gebze-intro-title">
-    <div class="gebze-copy-block__inner">
-      <p class="gebze-copy-block__badge">{gebzeIntro.badge}</p>
-      <h2 class="gebze-copy-block__heading" id="gebze-intro-title">{gebzeIntro.heading}</h2>
-      {gebzeIntro.paragraphs.map((p) => <p class="gebze-copy-block__paragraph">{p}</p>)}
+  <section class="gebze-block gebze-route" aria-labelledby="gebze-route-title">
+    <div class="gebze-block__inner">
+      <p class="gebze-block__badge">{gebzeRoute.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-route-title">{gebzeRoute.heading}</h2>
+      <p class="gebze-block__text">{gebzeRoute.landmark}</p>
+      <ul class="gebze-route__lines" aria-label={gebzeRoute.linesLabel}>
+        {gebzeRoute.lines.map((line) => (
+          <li class="gebze-route__line">
+            <span class="gebze-route__line-label">Hat</span>
+            <span class="gebze-route__line-number">{line}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="gebze-route__note">{gebzeRoute.timeNote}</p>
     </div>
   </section>
 
-  <ProcessTimeline data={gebzeProcess} />
-  <p class="gebze-inline-link-wrap">
-    <a class="gebze-inline-link" href="/degerlendirme/ucretsiz-isitme-testi/">Ücretsiz değerlendirme hakkında daha fazla bilgi alın →</a>
+  <ContactLocationCard data={gebzeLocation} />
+  <p class="gebze-links-row">
+    <a class="gebze-link" href="/darica-isitme-cihazlari/">Darıca merkezimizin sayfası →</a>
+    <a class="gebze-link" href="/iletisim/">İletişim sayfası →</a>
   </p>
 
-  <ValueGrid data={gebzeDeviceTypes} />
-  <p class="gebze-inline-link-wrap">
-    <a class="gebze-inline-link" href="/isitme-cihazlari/">Tüm seçenekleri işitme cihazları sayfamızda inceleyin →</a>
-  </p>
+  <section class="gebze-block gebze-before" aria-labelledby="gebze-before-title">
+    <div class="gebze-block__inner">
+      <p class="gebze-block__badge">{gebzeBeforeVisit.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-before-title">{gebzeBeforeVisit.heading}</h2>
+      {gebzeBeforeVisit.points.map((p) => <p class="gebze-block__text">{p}</p>)}
+      <p class="gebze-block__text">
+        {gebzeBeforeVisit.homeService.text}
+        <a class="gebze-link gebze-link--inline" href={gebzeBeforeVisit.homeService.href}>{gebzeBeforeVisit.homeService.linkLabel} →</a>
+      </p>
+    </div>
+  </section>
 
-  <Brands />
-  <p class="gebze-plain-note">Gebze'de işitme cihazı ararken farklı marka ve teknoloji seçeneklerini karşılaştırabilirsiniz.</p>
-
-  <ValueGrid data={gebzeSgk} />
-  <p class="gebze-inline-link-wrap">
-    <a class="gebze-inline-link" href="/sgk-isitme-cihazi-odemesi/">SGK desteği hakkında detaylı bilgi →</a>
-  </p>
-
-  <BrandCriteria data={gebzeServices} />
-
-  <section class="gebze-copy-block" aria-labelledby="gebze-decision-title">
-    <div class="gebze-copy-block__inner">
-      <p class="gebze-copy-block__badge">{gebzeDecisionFactors.badge}</p>
-      <h2 class="gebze-copy-block__heading" id="gebze-decision-title">{gebzeDecisionFactors.heading}</h2>
-      {gebzeDecisionFactors.paragraphs.map((p) => <p class="gebze-copy-block__paragraph">{p}</p>)}
+  <section class="gebze-block gebze-shortcuts" aria-labelledby="gebze-shortcuts-title">
+    <div class="gebze-block__inner gebze-block__inner--wide">
+      <p class="gebze-block__badge">{gebzeShortcuts.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-shortcuts-title">{gebzeShortcuts.heading}</h2>
+      <ul class="gebze-shortcuts__list">
+        {gebzeShortcuts.items.map((item) => (
+          <li>
+            <a class="gebze-shortcuts__link" href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
   <BrandPageFaq data={gebzeFaq} />
-
-  <ContactLocationCard data={gebzeLocation} />
-  <p class="gebze-inline-link-wrap">
-    <a class="gebze-inline-link" href="/darica-isitme-cihazlari/">Darıca'daki merkezimizin sayfasını inceleyin →</a>
-  </p>
 
   <BrandPageFinalCta data={gebzeFinalCta} />
 </MainLayout>
@@ -142,22 +124,28 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     padding: var(--space-6) var(--space-6) 0;
   }
 
-  /* Darıca sayfasının page-scoped "copy block" deseniyle birebir aynı
-     (bkz. src/pages/darica-isitme-cihazlari.astro) — yeni
-     bir shared component icat edilmedi, aynı DS token'ları kullanılıyor. */
-  .gebze-copy-block {
+  .gebze-block {
     background: var(--color-background);
     padding-block: var(--space-16);
   }
 
-  .gebze-copy-block__inner {
+  .gebze-before,
+  .gebze-shortcuts {
+    background: var(--color-surface);
+  }
+
+  .gebze-block__inner {
     max-width: 42rem;
     margin-inline: auto;
     padding-inline: var(--space-6);
     text-align: center;
   }
 
-  .gebze-copy-block__badge {
+  .gebze-block__inner--wide {
+    max-width: 52rem;
+  }
+
+  .gebze-block__badge {
     display: inline-block;
     margin: 0;
     padding: var(--space-2) var(--space-4);
@@ -171,7 +159,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     color: var(--color-primary);
   }
 
-  .gebze-copy-block__heading {
+  .gebze-block__heading {
     margin: var(--space-4) 0 0;
     font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
     font-weight: var(--font-weight-bold);
@@ -180,67 +168,136 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     color: var(--color-text);
   }
 
-  .gebze-copy-block__paragraph {
+  .gebze-block__text {
     margin: var(--space-4) 0 0;
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
   }
 
-  .gebze-inline-link-wrap {
-    margin: 0;
-    padding: 0 var(--space-6) var(--space-4);
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    text-align: center;
+  /* --- Hat rozetleri -------------------------------------------------- */
+  .gebze-route__lines {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .gebze-route__line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
     background: var(--color-surface);
   }
 
-  .gebze-inline-link-wrap:last-of-type {
-    padding-bottom: var(--space-16);
+  .gebze-route__line-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
   }
 
-  .gebze-inline-link {
+  .gebze-route__line-number {
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    color: var(--color-primary);
+  }
+
+  .gebze-route__note {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Linkler (>=48px dokunma hedefi) --------------------------------- */
+  .gebze-links-row {
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-12);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2) var(--space-6);
+    background: var(--color-surface);
+  }
+
+  .gebze-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
     text-decoration: none;
   }
 
-  .gebze-inline-link:hover {
+  .gebze-link--inline {
+    display: inline-flex;
+    margin-inline-start: var(--space-2);
+  }
+
+  .gebze-link:hover {
     text-decoration: underline;
   }
 
-  .gebze-inline-link:focus-visible {
+  .gebze-link:focus-visible,
+  .gebze-shortcuts__link:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
     border-radius: var(--radius-sm);
   }
 
-  /* Brands'ın hemen altındaki tek satırlık, link içermeyen doğal not —
-     ayrı bir bölüm/component değil, sadece kısa bir bağlam cümlesi. */
-  .gebze-plain-note {
-    margin: 0;
-    padding: 0 var(--space-6) var(--space-16);
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    text-align: center;
-    background: var(--color-surface);
+  /* --- Kısa yollar ------------------------------------------------------ */
+  .gebze-shortcuts__list {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .gebze-shortcuts__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
     font-size: var(--font-size-md);
-    color: var(--color-text-muted);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .gebze-shortcuts__link:hover {
+    border-color: var(--color-primary);
   }
 
   @media (max-width: 640px) {
-    .gebze-copy-block {
+    .gebze-block {
       padding-block: var(--space-10);
     }
 
-    .gebze-inline-link-wrap:last-of-type {
-      padding-bottom: var(--space-10);
+    .gebze-route__lines {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .gebze-plain-note {
-      padding-bottom: var(--space-10);
+    .gebze-shortcuts__list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .gebze-links-row {
+      padding-bottom: var(--space-8);
     }
   }
 </style>

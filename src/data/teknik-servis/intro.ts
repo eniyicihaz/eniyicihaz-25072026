@@ -13,13 +13,13 @@ export const teknikServisIntro: BrandPageIntroContent = {
   paragraphs: [
     "Teknik servis, işitme cihazınızda ses kesintisi, açılmama sorunu, fiziksel hasar veya su teması gibi bir arıza fark ettiğinizde başvurabileceğiniz teşhis ve onarım hizmetimizdir.",
     "Süreç, sorununuzun kliniğimizde yerinde teşhis edilmesiyle başlar; birçok basit sorun bu aşamada çözülebilir.",
-    "Daha kapsamlı bir onarım gerektiğinde, cihazınız orijinal yedek parça kullanan yetkili üretici servisine gönderilir; bu durumda süreç birkaç iş günü daha uzayabilir.",
+    "Teknik serviste cihazınız 3 gün içinde teslim edilir; garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir ve garanti işlemleri cihaza göre 1–5 gün sürebilir.",
     "Cihazınızda hiçbir fiziksel sorun olmasa da performans veya ayar kaynaklı bir şikayetiniz varsa, teknik servis yerine Kontrol Randevusu veya Uzaktan Ayar hizmetlerimiz daha uygun bir ilk adım olabilir.",
   ],
   stats: [
     { value: "Yerinde Teşhis", label: "İlk Adım" },
-    { value: "Orijinal Yedek Parça", label: "Onarım Standardı" },
-    { value: "Yetkili Servis Ağı", label: "Kapsamlı Onarımlar" },
+    { value: "1–3 Gün", label: "Onarım Teslimi" },
+    { value: "Gerektiğinde Dış Servis", label: "Garanti Kapsamındaki Cihazlar" },
     { value: "Takip Edilebilir Süreç", label: "Şeffaflık" },
   ],
   accentColor: "#dc2626",

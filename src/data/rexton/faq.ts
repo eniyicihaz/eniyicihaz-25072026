@@ -11,7 +11,7 @@ export const rextonFaq: BrandPageFaqContent = {
   intro: "Rexton modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,7 +21,7 @@ export const rextonFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Rexton hangi ülkenin markası?",
-          answer: "Rexton, 1955'te Almanya'da kurulan, bugün WS Audiology grubuna (Signia ile aynı çatı) bağlı bir markadır.",
+          answer: "Rexton, 1955'te Almanya'da kurulan bir işitme cihazı markasıdır.",
         },
         {
           question: "Rexton hangi konuda öne çıkar?",

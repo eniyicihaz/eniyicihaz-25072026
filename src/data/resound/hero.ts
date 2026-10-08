@@ -30,7 +30,7 @@ import { contactConfig } from "../../config";
 
 export const resoundHero: BrandPageHeroContent = {
   badge: "RESOUND · SMART HEARING, NATURALLY",
-  headingLines: ["ReSound ile Akıllı", "Bağlantının Öncüsü"],
+  headingLines: ["ReSound ile Akıllı", "Bağlantı Teknolojisi"],
   paragraphs: [
     "ReSound işitme cihazları, kulak kanalına yerleştirilen ek mikrofonuyla (M&RIE) daha doğal bir mekansal işitme deneyimi ve Auracast yayın sesi desteğiyle yeni nesil kablosuz bağlantı sunar.",
     "Vivia, Nexia, Omnia ve diğer ReSound modellerini Avrasya İşitme'de keşfedin.",

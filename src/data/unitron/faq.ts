@@ -12,7 +12,7 @@ export const unitronFaq: BrandPageFaqContent = {
   intro: "Unitron modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -22,7 +22,7 @@ export const unitronFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Unitron hangi ülkenin markası?",
-          answer: "Unitron, 1964'ten bu yana Kitchener, Ontario'da (Kanada) faaliyet gösteren, bugün Phonak ile aynı çatı olan Sonova Grubu'na bağlı bir markadır.",
+          answer: "Unitron, 1964'ten bu yana Kitchener, Ontario'da (Kanada) faaliyet gösteren bir işitme cihazı markasıdır.",
         },
         {
           question: "Unitron hangi konuda öne çıkar?",
@@ -39,7 +39,7 @@ export const unitronFaq: BrandPageFaqContent = {
         },
         {
           question: "Unitron Blu ve Moxi Vivante arasındaki fark nedir?",
-          answer: "Blu, Sonova PRISM çipi ile daha geniş bağlantı özellikleri sunan güncel nesil aile iken, Moxi Vivante kanıtlanmış bir önceki nesil ailedir.",
+          answer: "Blu, PRISM çipi ile daha geniş bağlantı özellikleri sunan güncel nesil aile iken, Moxi Vivante kanıtlanmış bir önceki nesil ailedir.",
         },
       ],
     },

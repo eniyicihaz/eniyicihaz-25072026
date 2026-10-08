@@ -25,9 +25,9 @@ export const unitronOverview: UnitronOverviewContent = {
   intro: "Unitron hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1964 (Kitchener, Ontario)" },
-    { icon: "map-pin", label: "Menşei", value: "Kanada (Sonova Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "Kanada" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Binaural ağ + Kanada-Alman mühendisliği" },
-    { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "AutoFocus 360 + Sonova PRISM Çipi" },
+    { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "AutoFocus 360 + PRISM Çipi" },
     { icon: "users", label: "Hedef Kullanıcı", value: "Konuşmayı takip etmeyi önemseyen kullanıcılar" },
     { icon: "bluetooth", label: "Öne Çıkan Aile", value: "Blu, Moxi Vivante, Stride" },
   ],

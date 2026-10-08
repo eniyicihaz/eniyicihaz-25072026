@@ -10,9 +10,9 @@ export const cihazDenemeOverview: BrandPageOverviewContent = {
   heading: "Cihaz Deneme Süreci Bir Bakışta",
   intro: "Karar vermeden önce bilmeniz gereken temel bilgiler.",
   cards: [
-    { icon: "calendar", label: "Deneme Süresi", value: "Günler / Haftalar" },
+    { icon: "calendar", label: "Satın Alarak Deneme", value: "7 Güne Kadar" },
     { icon: "map-pin", label: "Deneme Merkezi", value: "Darıca" },
-    { icon: "sparkles", label: "Maliyet", value: "Ücretsiz" },
+    { icon: "sparkles", label: "Merkezde Demo", value: "Ücretsiz, ~20 Dakika" },
     { icon: "users", label: "Model Seçenekleri", value: "Birden Fazla Marka" },
   ],
 };

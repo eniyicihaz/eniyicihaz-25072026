@@ -26,8 +26,8 @@ export const philipsHearingOverview: PhilipsHearingOverviewContent = {
   intro: "Philips HearLink hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "sparkles", label: "Marka Felsefesi", value: "Tanıdık marka + anlaşılır kademelendirme" },
-    { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "Velox-S Platformu (Demant lisansıyla)" },
-    { icon: "map-pin", label: "Üretim İlişkisi", value: "Demant ile lisans anlaşması" },
+    { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "Velox-S Platformu" },
+    { icon: "map-pin", label: "Teknik Servis", value: "Darıca merkezimizde" },
     { icon: "users", label: "Hedef Kullanıcı", value: "İlk kez cihaz alacak veya tanıdık bir marka arayanlar" },
     { icon: "bluetooth", label: "Kademe Sistemi", value: "HearLink 50 / 40 / 30" },
     { icon: "calendar", label: "Yerleşim Seçenekleri", value: "RIC, BTE, ITC, CIC, IIC" },

@@ -17,7 +17,7 @@ export const trust: TrustContent = {
     {
       title: "2009'dan beri",
       description:
-        "Avrasya İşitme, aynı ekiple, Darıca, Kocaeli'deki merkezimizde yıllardır hizmet veriyor.",
+        "Avrasya İşitme Cihazları 2009 yılında kuruldu; Darıca, Kocaeli'deki merkezimiz Ağustos 2024'ten bu yana hizmet veriyor.",
     },
     {
       title: "SGK anlaşmalı",

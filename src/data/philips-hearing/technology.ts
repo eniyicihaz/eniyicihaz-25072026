@@ -20,7 +20,7 @@ export const philipsHearingTechnology: BrandPageTechnologyContent = {
     {
       label: "VELOX",
       title: "Velox-S Platformu",
-      description: "Demant'ın güncel nesil ses işleme platformlarından biri üzerinde geliştirilir.",
+      description: "Velox-S ses işleme platformu üzerinde geliştirilir.",
     },
     {
       label: "FIT",
@@ -38,9 +38,9 @@ export const philipsHearingTechnology: BrandPageTechnologyContent = {
       description: "Dünyaca tanınan Philips markasının güvenilirliğini işitme cihazına taşır.",
     },
     {
-      label: "LICENSE",
-      title: "Demant Mühendisliği",
-      description: "Demant ile yapılan lisans anlaşması sayesinde köklü bir mühendislik altyapısından yararlanır.",
+      label: "SERVİS",
+      title: "Merkezimizde Teknik Servis",
+      description: "Philips HearLink cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #0B5FCE.

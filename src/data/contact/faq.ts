@@ -25,7 +25,7 @@ export const contactFaq: BrandFaqContent = {
     {
       question: "Darıca'da işitme testi nerede yapılır?",
       answer:
-        "Darıca'daki merkezimizde, uzman odyometristlerimizle ücretsiz işitme testi yaptırabilirsiniz.",
+        "Darıca'daki merkezimizde, odyolog ve odyometristimizle ücretsiz işitme testi yaptırabilirsiniz.",
     },
     {
       question: "İşitme testi ücretli mi?",

@@ -20,7 +20,7 @@ export const kolayDegisimIntro: BrandPageIntroContent = {
     { value: "Net Koşullar", label: "Değişim Güvencesi" },
     { value: "Deneme Sonrası Değerlendirme", label: "İlk Fırsat" },
     { value: "İhtiyaç Değişikliği Desteği", label: "Uzun Vadeli Esneklik" },
-    { value: "Yetkili Kanal Güvencesi", label: "Kaynak Güvenilirliği" },
+    { value: "Üretici Garanti Koşulları", label: "Değişim Çerçevesi" },
   ],
   accentColor: "#e11d48",
   accentColorBadgeBg: "rgb(225 29 72 / 0.08)",

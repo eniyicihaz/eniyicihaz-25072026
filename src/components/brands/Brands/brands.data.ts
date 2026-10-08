@@ -8,8 +8,8 @@ import type { BrandsContent } from "./brands.types";
 // section exists to resolve: "kendi markasını değil, bana uygun olanı mı
 // öneriyor?" (homepage plan §G/§4).
 export const brands: BrandsContent = {
-  badge: "18+ Dünya Markası",
-  heading: "18'den Fazla Dünya Markasıyla Çalışıyoruz",
+  badge: "18 Marka",
+  heading: "18 İşitme Cihazı Markasıyla Çalışıyoruz",
   subhead:
     "Tek bir markaya bağlı değiliz; işitme kaybınıza ve yaşam tarzınıza göre, aralarından size en uygun olanı öneriyoruz.",
   // logoWidth/logoHeight are each file's real intrinsic pixel size

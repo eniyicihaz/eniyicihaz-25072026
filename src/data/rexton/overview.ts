@@ -25,7 +25,7 @@ export const rextonOverview: RextonOverviewContent = {
   intro: "Rexton hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1955" },
-    { icon: "map-pin", label: "Menşei", value: "Almanya (WS Audiology)" },
+    { icon: "map-pin", label: "Menşei", value: "Almanya" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Güvenilir mühendislik + erişilebilir bağlantı" },
     { icon: "cpu", label: "Öne Çıkan Seri", value: "Reach, BiCore, MCore" },
     { icon: "users", label: "Hedef Kullanıcı", value: "Kanıtlanmış bir markadan güvenilir teknoloji arayanlar" },

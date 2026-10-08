@@ -84,7 +84,7 @@ export const includedSection: GuideSectionMeta = {
 export const includedServices: GuideCard[] = [
   { icon: Stethoscope, tag: "1", title: "İşitme değerlendirmesi", text: "Ücretsiz işitme testiyle mevcut durumunuzu netleştiririz; cihaz kararı bu sonuca dayanır.", href: "/degerlendirme/ucretsiz-isitme-testi/", linkLabel: "Ücretsiz işitme testi" },
   { icon: Search, tag: "2", title: "Cihaz seçimi", text: "İşitme kaybınıza ve yaşam tarzınıza uygun cihaz tipini ve özellikleri birlikte belirleriz.", href: "/rehberler/cihaz-secim-rehberi/", linkLabel: "Cihaz seçim rehberi" },
-  { icon: PlayCircle, tag: "3", title: "Deneme", text: "Karar vermeden önce cihazı deneyebilirsiniz; deneme ücretsizdir ve satın alma yükümlülüğü getirmez.", href: "/uygulama-ayar/cihaz-deneme/", linkLabel: "Cihaz deneme" },
+  { icon: PlayCircle, tag: "3", title: "Deneme", text: "Merkezimizde yaklaşık 20 dakikalık ücretsiz demo yapılır; cihazı satın alarak 7 güne kadar da deneyebilirsiniz. Uygun bulunmazsa ödediğiniz tutar kesintisiz iade edilir.", href: "/uygulama-ayar/cihaz-deneme/", linkLabel: "Cihaz deneme" },
   { icon: ClipboardCheck, tag: "4", title: "Uygulama", text: "Seçtiğiniz cihazı size özel olarak uygular, kullanımı ve bakımı anlatırız.", href: "/uygulama-ayar/cihaz-uygulama/", linkLabel: "Cihaz uygulaması" },
   { icon: SlidersHorizontal, tag: "5", title: "Ayarlama", text: "Cihazınızı işitme profilinize göre kişiye özel programlar ve ayarlarız.", href: "/uygulama-ayar/kisiye-ozel-ayar/", linkLabel: "Kişiye özel ayar" },
   { icon: HeartHandshake, tag: "6", title: "Kullanım desteği", text: "İlk günlerde ve alışma sürecinde sorularınız için yanınızdayız.", href: "/rehberler/ilk-kullanim-rehberi/", linkLabel: "İlk kullanım rehberi" },

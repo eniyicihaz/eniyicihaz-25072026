@@ -13,7 +13,7 @@ export const uyumSureciFinalCta: BrandPageFinalCtaContent = {
     "Sabırlı ve destekli bir yaklaşımla, cihazınıza uyum sağlama sürecinizin her aşamasında sizinle birlikteyiz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Takip Desteği", "Kademeli Maruziyet Rehberliği", "Düzenli Kontrol", "Uzman Odyometrist"],
+  trustItems: ["Ücretsiz Takip Desteği", "Kademeli Maruziyet Rehberliği", "Düzenli Kontrol", "Odyometrist Desteği"],
   accentColor: "#7c3aed",
   accentColorHover: "#6d28d9",
   accentColorGlow: "rgb(124 58 237 / 0.22)",

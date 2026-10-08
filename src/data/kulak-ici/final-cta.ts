@@ -13,7 +13,7 @@ export const kulakIciFinalCta: BrandPageFinalCtaContent = {
     "İşitme kaybınızın derecesine, kulak kanalı yapınıza ve görünürlük beklentinize uygun kulak içi (ITE) modelini ücretsiz işitme testi ve kulak değerlendirmesi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Kişiye Özel Kalıp Değerlendirmesi", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Kişiye Özel Kalıp Değerlendirmesi", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#7c3aed",
   accentColorHover: "#6d28d9",
   accentColorGlow: "rgb(124 58 237 / 0.22)",

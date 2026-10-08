@@ -21,7 +21,7 @@ export const vistaRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Phonak İşitme Cihazları",
-      description: "Aynı Sonova Grubu çatısı altındaki üst segment marka felsefesini karşılaştırmak isterseniz Phonak'ı inceleyin.",
+      description: "Farklı bir marka felsefesini karşılaştırmak isterseniz Phonak'ı inceleyin.",
       href: "/markalar/phonak/",
     },
   ],

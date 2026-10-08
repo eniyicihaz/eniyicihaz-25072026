@@ -11,12 +11,12 @@ export const brandsHero: PriceGuideHeroContent = {
   eyebrow: "Marka ve Model Rehberi",
   heading: "İşitme Cihazı Markaları",
   lead:
-    "Her işitme cihazı markası farklı bir teknoloji yaklaşımı, farklı model aileleri ve farklı kullanım senaryoları sunar. Oticon, Phonak, Signia, Widex, ReSound ve Starkey NuEar markalarını tarafsız biçimde, kriter bazlı tanıyın.",
+    "Her işitme cihazı markası farklı bir teknoloji yaklaşımı, farklı model aileleri ve farklı kullanım senaryoları sunar. Oticon, Phonak, Signia, Widex, ReSound ve NuEar markalarını tarafsız biçimde, kriter bazlı tanıyın.",
   supporting:
     "Darıca'daki gerçek merkezimizin deneyimiyle hazırlanan bu rehber bir 'en iyi marka' sıralaması yapmaz: marka seçiminde hangi soruların sorulacağını ve hangi markanın hangi ihtiyaca yaklaşabileceğini gösterir.",
   ctaPrimary: { label: "Markaları Keşfet", href: "#markalar" },
   ctaSecondary: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
-  chips: ["18+ marka", "Hiçbir markaya bağlı değiliz", "SGK anlaşmalı merkez", "Ücretsiz işitme testi"],
+  chips: ["18 marka", "Hiçbir markaya bağlı değiliz", "SGK anlaşmalı merkez", "Ücretsiz işitme testi"],
   // Gerçek görsel, olduğu gibi: 1672 × 941 (16:9), WebP. Logo/marka/yazı içermeyen
   // temsili sahne (birkaç farklı cihaz biçimi) — belirli bir marka veya model iddiası taşımaz.
   image: {

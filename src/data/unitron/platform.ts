@@ -20,7 +20,7 @@ export const unitronPlatform: BrandPageTechEvolutionContent = {
     },
     {
       era: "Güncel Nesil (Blu)",
-      whatItBrought: "Sonova PRISM çipi ve AutoFocus 360 ile geniş bağlantı ve yönlülük özellikleri.",
+      whatItBrought: "PRISM çipi ve AutoFocus 360 ile geniş bağlantı ve yönlülük özellikleri.",
       bestFor: "Bağlantı özelliklerini önceliklendiren kullanıcılar",
       families: ["Blu"],
     },

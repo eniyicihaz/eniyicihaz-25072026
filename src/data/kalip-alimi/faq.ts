@@ -12,7 +12,7 @@ export const kalipAlimiFaq: BrandPageFaqContent = {
   intro: "İşlem süreci, üretim süresi ve yenileme konusunda en çok sorulan sorular.",
   decisionCard: {
     title: "Kalıp Alımı Randevusu Almak İster misiniz?",
-    points: ["Kulak muayenesiyle güvenli başlangıç", "Kişiye özel ölçü", "Renk ve malzeme seçeneği", "Ücretsiz"],
+    points: ["Kulak muayenesiyle güvenli başlangıç", "Kişiye özel ölçü", "Renk ve malzeme seçeneği", "Cihaz alımında ilk kalıp ücretsiz"],
     ctaLabel: "Hemen Randevu Alın",
     ctaHref: contactConfig.phone.href,
   },

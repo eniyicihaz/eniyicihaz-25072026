@@ -22,8 +22,8 @@ export const cocukIsitmeTestiAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Baby,
       category: "Yaşa Uygun Yöntem",
-      title: "Her Yaş İçin Farklı Test Yaklaşımı",
-      description: "Bebeklerden okul çağı çocuklara kadar her yaş grubuna uygun test yöntemi uygulanır.",
+      title: "3 Yaş ve Üzeri İçin Uygun Yöntem",
+      description: "Merkezimizde çocuk işitme testi 3 yaş ve üzeri çocuklara, yaşa uygun test yöntemiyle uygulanır.",
     },
     {
       icon: Heart,
@@ -39,9 +39,9 @@ export const cocukIsitmeTestiAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Wallet,
-      category: "Ücretsiz",
-      title: "Herhangi Bir Ücret Talep Edilmez",
-      description: "Çocuk işitme testi, herhangi bir ücret talep edilmeden sunulur.",
+      category: "Ücret Bilgisi",
+      title: "Ücretli Bir Hizmettir",
+      description: "Çocuk işitme testi (oyun odyometrisi) ücretli bir hizmettir; güncel ücret bilgisi için merkezimizi arayabilirsiniz.",
     },
     {
       icon: RefreshCcw,

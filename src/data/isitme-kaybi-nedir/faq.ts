@@ -12,7 +12,7 @@ export const isitmeKaybiNedirFaq: BrandPageFaqContent = {
   intro: "Türler, nedenler ve değerlendirme süreci hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "İşitme Durumunuzu Öğrenmek İster misiniz?",
-    points: ["Ücretsiz işitme testi", "Uzman odyometrist değerlendirmesi", "Kişiye özel yönlendirme", "Baskısız süreç"],
+    points: ["Ücretsiz işitme testi", "Odyometrist değerlendirmesi", "Kişiye özel yönlendirme", "Baskısız süreç"],
     ctaLabel: "Hemen Randevu Alın",
     ctaHref: contactConfig.phone.href,
   },

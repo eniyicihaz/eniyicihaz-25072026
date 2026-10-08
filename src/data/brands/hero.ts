@@ -7,14 +7,14 @@
 import type { BrandHeroContent } from "../../components/brands/BrandHero/BrandHero.astro";
 
 export const brandHero: BrandHeroContent = {
-  badge: "18+ Dünya Markası",
+  badge: "18 Marka",
   headingLines: [
     "İşitme Cihazı",
     "Markalarını",
     "Keşfedin.",
   ],
   description: [
-    "Oticon, Phonak, Signia, Widex, ReSound, NuEar, Vista ve daha birçok dünya markasını tek noktada inceleyin.",
+    "Oticon, Phonak, Signia, Widex, ReSound, NuEar, Vista ve diğer markalarımızı tek noktada inceleyin.",
     "İşitme kaybınıza en uygun teknolojiyi uzman desteğiyle birlikte belirleyin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
@@ -22,8 +22,8 @@ export const brandHero: BrandHeroContent = {
   trustPills: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı",
-    "18+ Dünya Markası",
-    "Uzman Odyolog Desteği",
+    "18 Marka",
+    "Odyolog Desteği",
   ],
   // The image itself is already a fully composed illustration (devices on a
   // podium, all 10 brand logos in a ring, connector lines, glow) — the Hero
@@ -33,8 +33,8 @@ export const brandHero: BrandHeroContent = {
     alt: "Oticon, Phonak, Signia, Widex, ReSound, Beltone, Unitron, Bernafon, Starkey ve NuEar marka logolarıyla çevrili işitme cihazları",
   },
   floatingCard: {
-    value: "18+",
-    label: "Dünya Markası",
+    value: "18",
+    label: "Marka",
     description: "İşitme Cihazı Seçimi, Uzmanlık Gerektirir.",
   },
 };

@@ -16,7 +16,7 @@ export const kocaeliIntro: KocaeliCopyBlock = {
   paragraphs: [
     "Kocaeli'de işitme cihazı ararken karşınıza değerlendirme süreci, cihaz türleri, marka seçenekleri, SGK desteği ve cihaz sonrası destek gibi pek çok başlık çıkar.",
     "Bu sayfada, Kocaeli genelinde işitme cihazı arayan kişilerin en çok merak ettiği konuları — doğru cihaz seçiminden fiyatı etkileyen faktörlere, SGK sürecinden teknik servise kadar — tek bir kaynakta topladık.",
-    "Darıca'daki merkezimizden, Kocaeli genelindeki (Gebze, Çayırova ve çevresi dahil) danışanlarımıza aynı özenle hizmet veriyoruz.",
+    "Fiziksel merkezimiz yalnızca Darıca'dadır; Kocaeli'nin farklı ilçelerinden gelen danışanlarımıza burada hizmet veriyor, merkeze gelemeyenler için evde hizmet sunuyoruz.",
   ],
 };
 
@@ -64,17 +64,17 @@ export const kocaeliBuyingTips: KocaeliCopyBlock = {
   heading: "Kocaeli'de İşitme Cihazı Alırken Dikkat Edilmesi Gerekenler",
   paragraphs: [
     "Yalnızca fiyata bakarak karar vermek uzun vadede memnuniyetsizliğe yol açabilir — cihazın işitme kaybınıza uygunluğu, deneme imkânı ve satış sonrası destek en az fiyat kadar önemlidir.",
-    "Cihazı satın almadan önce deneyebiliyor olmanız, günlük hayatta gerçekten fayda görüp görmeyeceğinizi anlamanızı sağlar.",
+    "Merkezde ücretsiz demo ve cihazı satın alarak 7 güne kadar deneme imkânı, günlük hayatta gerçekten fayda görüp görmeyeceğinizi anlamanızı sağlar; uygun bulunmazsa ödediğiniz tutar kesintisiz iade edilir.",
     "SGK anlaşması, teknik servis desteği ve garanti süreçleri gibi konuları da satın alma kararınıza dahil etmenizi öneririz.",
   ],
 };
 
 export const kocaeliRegionalService: KocaeliCopyBlock = {
   badge: "HİZMET BÖLGEMİZ",
-  heading: "Darıca, Gebze, Çayırova ve Kocaeli Genelinde Hizmet",
+  heading: "Tek Merkez Darıca, Hizmet Alanı Kocaeli Geneli",
   paragraphs: [
-    "Avrasya İşitme Cihazları, Darıca'daki merkezinden Kocaeli genelindeki danışanlarına hizmet veren SGK anlaşmalı bir işitme merkezidir.",
-    "Gebze ve Çayırova'dan gelen danışanlarımızın yanı sıra, Kocaeli'nin diğer ilçelerinden ulaşmak isteyenlere de yardımcı olmaktan memnuniyet duyarız.",
-    "Hangi bölgeden ulaşırsanız ulaşın, değerlendirme ve cihaz seçim süreci aynı özenle ilerler.",
+    "Avrasya İşitme Cihazları'nın Kocaeli'de tek bir fiziksel merkezi vardır: Darıca'da, Farabi Devlet Hastanesi durağının karşısında, Palandöken Eczanesi'nin üst katında. Başka ilçede şubemiz bulunmuyor.",
+    "Merkezimize toplu taşımayla Gebze'den 502, 440, 510 ve 515; Çayırova'dan 550; Beylikbağı'ndan 415 ve 425; Dilovası'ndan 410; Mutlukent'ten 510 numaralı hatlarla ulaşılabiliyor. Hatlar zamanla değişebilir; güncel bilgiyi yolculuk öncesi teyit etmenizi tavsiye ederiz.",
+    "Merkeze gelemeyen danışanlarımız için evde işitme cihazı hizmetini Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nda veriyoruz; evde hizmet ücretsizdir ve randevuyla planlanır.",
   ],
 };

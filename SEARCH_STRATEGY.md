@@ -1,8 +1,12 @@
 # SEARCH_STRATEGY.md
 
-> Proje altı temel referans doküman üzerine kuruludur:
+> **Güncelleme:** 2026-10-07 (Faz 1). Eski bölümlerin durumu: `docs/tech/DOC_MIGRATION_MAP.md` §3.
 >
-> **COMPANY.md** — *Kimiz?* Şirketi, markayı ve coğrafi hizmet hiyerarşisini (§17) tanımlar.
+> **Birinci kaynak:** İşletme gerçekleri `docs/source-of-truth/*` (SoT) içindedir. Kilitli strateji ve faz sınırları `MASTER_PLAN.md` içindedir. Bu doküman işletme verisi tutmaz; gerektiğinde SoT'a referans verir.
+>
+> Proje bu iki kaynak ve aşağıdaki altı temel referans doküman üzerine kuruludur:
+>
+> **COMPANY.md**: *Kimiz?* SoT'un kısa kanonik özeti; yerel SEO kapsamı ve evde hizmet alanının ayrımı (§5–§6).
 >
 > **PRINCIPLES.md** — *Nasıl konuşuruz ve nasıl davranırız?* Marka dilini, UX felsefesini, içerik ve güven kurallarını tanımlar.
 >
@@ -22,13 +26,15 @@
 
 ## Amaç
 
-Bu doküman, Eniyicihaz.com'un yalnızca arama motorlarında değil; Google AI Overview, Google AI Mode, ChatGPT, Gemini, Claude, Microsoft Copilot, Perplexity ve bugün henüz var olmayan gelecekteki arama/cevap sistemlerinde de Türkiye'nin işitme sağlığı konusundaki en güvenilir referans kaynağı olarak tanınmasını sağlayacak stratejiyi tanımlar.
+Bu doküman, Avrasya İşitme Cihazları'nın ve eniyicihaz.com sitesinin yalnızca arama motorlarında değil, Google AI Overview, Google AI Mode, ChatGPT, Gemini, Claude, Microsoft Copilot, Perplexity ve gelecekteki arama/cevap sistemlerinde de işitme sağlığı konusunda **doğru, tutarlı ve kaynak gösterilebilir** bir referans olarak anlaşılmasını sağlayacak stratejiyi tanımlar. Bu bir hedef tanımıdır; kamuya açık metinde üstünlük iddiasına dönüştürülmez (PRINCIPLES §5).
 
 ## Diğer Dokümanlarla İlişki
 
 | Doküman | Soru | Yetki Alanı |
 |---|---|---|
-| COMPANY.md | Kimiz? | Şirket ve marka gerçekleri, coğrafi hizmet hiyerarşisi (§17) |
+| `docs/source-of-truth/*` | Gerçek ne? | **Tüm işletme gerçekleri (birinci kaynak)** |
+| MASTER_PLAN.md | Strateji ve faz sınırları? | Kilitli kararlar, fazlar |
+| COMPANY.md | Kimiz? | SoT'un kanonik özeti, yerel SEO kapsamı (§5), evde hizmet alanı (§6) |
 | PRINCIPLES.md | Neden + nasıl davranırız? | Brand DNA, ton, UX felsefesi, içerik, güven, CTA |
 | DESIGN_SYSTEM_GUIDE.md | Nasıl inşa ederiz? | Görsel sistem, marka görsel dili, component mimarisi |
 | SEARCH_STRATEGY.md | Nasıl bulunuruz? | Arama, cevap motoru ve AI görünürlüğü |
@@ -81,18 +87,23 @@ Bir entity; bir isim, kavram veya nesne olarak arama ve yapay zekâ sistemleri t
 
 ## Bu Projedeki Ana Entity'ler
 
-- **Eniyicihaz.com** — dijital bilgi platformu / birincil marka.
-- **Avrasya İşitme** — gerçek işletme, SGK anlaşmalı işitme merkezi.
+- **Avrasya İşitme Cihazları**: tek marka ve gerçek işletme (BRAND_SOT §1, BUSINESS_SOT §1). Kısa doğal kullanım: "Avrasya İşitme".
+- **eniyicihaz.com**: işletmenin web sitesinin alan adı. **Ayrı bir marka veya entity değildir** (MASTER_PLAN K1). *(Önceki "Eniyicihaz.com birincil marka" tanımı GEÇERSİZ.)*
+- **Darıca merkezi**: işletmenin tek fiziksel merkezi (LOCAL_SOT §1).
 - **İşitme Kaybı** — konu/kavram entity'si.
 - **İşitme Cihazı** — ürün kategorisi entity'si (kulak arkası, kulak içi, şarjlı, Bluetooth gibi alt entity'lerle).
 - **SGK** — kurum entity'si, hizmetle ilişkilendirilir.
 - **Çalışılan markalar** (Signia, Oticon, Phonak, Widex, ReSound vb.) — üretici entity'leri.
-- **Hizmet bölgeleri** (Darıca, Kocaeli ve COMPANY.md'de tanımlı diğer bölgeler) — yer entity'leri.
+- **Hizmet bölgeleri** (yerel SEO kapsamı ve evde hizmet alanı; kanonik kaynak LOCAL_SOT §3, özet COMPANY.md §5–§6): yer entity'leri.
 - **Hizmetler** (işitme testi, cihaz uygulaması, teknik servis, SGK danışmanlığı) — hizmet entity'leri.
 
 ## Entity Tutarlılığı Kuralı
 
-Her entity, sitenin her yerinde **aynı isimle, aynı tanımla ve aynı ilişkiyle** anılır. Bir entity bir sayfada "Avrasya İşitme Cihazları", başka bir sayfada "Avrasya Hearing" gibi farklı biçimlerde geçemez. Tutarsızlık, bir arama veya yapay zekâ sisteminin iki farklı entity'yle karşı karşıya olduğunu sanmasına yol açar — bu, güvenilirliği doğrudan zedeler.
+Her entity, sitenin her yerinde **aynı isimle, aynı tanımla ve aynı ilişkiyle** anılır. Bir entity bir sayfada "Avrasya İşitme Cihazları", başka bir sayfada "Avrasya Hearing" gibi farklı biçimlerde geçemez. Tutarsızlık, bir arama veya yapay zekâ sisteminin iki farklı entity'yle karşı karşıya olduğunu sanmasına yol açar; bu da güvenilirliği doğrudan zedeler.
+
+- **Resmî ad:** Schema, NAP, GBP ve resmî kullanımda her zaman "Avrasya İşitme Cihazları" (A2).
+- **Maps adı:** Maps'te görünen "Darıca Avrasia İşitme Cihazları" adı NAP/GBP audit'inde incelenecek. Değiştirme kararı yoktur (LOCAL_SOT §1).
+- **Kanonik tanım:** BUSINESS_SOT §1'deki tanım kullanılır. Kuruluş (2009) ile Darıca merkezinin açılışı (Ağustos 2024) ayrı tutulur.
 
 ---
 
@@ -104,8 +115,9 @@ Bir bilgi grafiği, entity'lerin birbirine nasıl bağlı olduğunu tanımlar. B
 
 Aşağıdaki ilişkiler, site genelinde tutarlı ve değişmeyen şekilde ifade edilir:
 
-- Eniyicihaz.com, Avrasya İşitme'nin dijital bilgi platformudur.
-- Avrasya İşitme, SGK anlaşmalı bir işitme merkezidir.
+- eniyicihaz.com, Avrasya İşitme Cihazları'nın resmî web sitesidir.
+- Avrasya İşitme Cihazları, SGK anlaşmalı bir işitme cihazı merkezidir; tek fiziksel merkezi Darıca'dadır.
+- Avrasya İşitme Cihazları, Darıca merkezinden ve evde hizmet alanında hizmet verir. Evde hizmet alanındaki ilçeler şube değildir.
 - İşitme cihazı, işitme kaybı yaşayan bireyler için kullanılan bir çözümdür.
 - Her hizmet, belirli bir hizmet bölgesinde sunulur.
 - Her ürün grubu, belirli üretici markalarla ilişkilidir.
@@ -135,7 +147,8 @@ Her içerik parçası, aşağıdaki iskelete uyar:
 - **Karşılaştırmalar ve Tablolar** — Karşılaştırılabilir bilgi (ör. cihaz tipleri), düz metin yerine yapılandırılmış tablo veya liste ile sunulur.
 - **CTA** — Sayfa sonunda, PRINCIPLES.md'nin CTA sisteminde tanımlanan üç katmandan (Bilgi / Uzman / Cihaz-Avrasya) sayfa tipine uygun olanı yer alır.
 - **Internal Link** — İlgili hub ve cluster içeriklere doğal, bağlamsal bağlantılar verilir.
-- **External Reference** — Tıbbi veya teknik bir iddia yapıldığında, mümkünse güvenilir, doğrulanabilir bir dış kaynağa atıf yapılır.
+- **External Reference:** Tıbbi, SGK ile ilgili veya teknik bir iddia yapıldığında güvenilir ve doğrulanabilir bir dış kaynağa atıf yapılır. Bu alan YMYL (sağlık) kapsamında olduğu için **zorunludur**. Aday kaynaklar BUSINESS_SOT §11'dedir. Kaynak yoksa iddia yazılmaz.
+- Pillar–cluster haritası ve konsolidasyon kararları `docs/strategy/CONTENT_ARCHITECTURE.md` belgesinde yer alacak (Faz 1, Commit 2).
 
 ---
 
@@ -147,8 +160,20 @@ Her içerik parçası, aşağıdaki iskelete uyar:
 | **Commercial Investigation** | Seçenekleri karşılaştırıyor | Karşılaştırma, tablo, kriter bazlı rehber içerik, Uzman CTA |
 | **Navigational** | Markayı veya belirli bir sayfayı arıyor | Net, hızlı erişilebilir marka/hizmet sayfaları |
 | **Transactional** | Harekete geçmeye hazır (randevu, iletişim) | Net ve sürtünmesiz iletişim akışı, Uzman ve Cihaz-Avrasya CTA |
+| **Local** | Yakındaki merkezi, ulaşımı, açık olup olmadığını öğrenmek istiyor | Darıca merkezi bilgisi, yol tarifi, iletişim (LOCAL_SOT) |
 
-Her sayfa, hangi niyete hizmet ettiğini bilerek tasarlanır; tek bir sayfa dört niyete birden hizmet etmeye çalışmaz.
+Her sayfa hangi niyete hizmet ettiğini bilerek tasarlanır; tek bir sayfa bütün niyetlere birden hizmet etmeye çalışmaz.
+
+## Niyet Tabanlı Mimari (2026-10-07, MASTER_PLAN K6)
+- **"Keyword başına sayfa" yaklaşımı reddedilir.** Aynı niyete sahip sorgular tek ve güçlü bir kanonik sayfada karşılanır.
+- **Yeni sayfa açılma şartı:** Aşağıdakilerden biri olmalı:
+  - farklı bir search intent
+  - farklı bir kullanıcı ihtiyacı
+  - farklı bir konu
+  - farklı bir yerel ihtiyaç
+  - güçlü bir bilgi mimarisi gerekçesi
+- **Niyet → sayfa eşlemesi:** Her sayfanın niyeti, karar aşaması, kullanıcı tipi, beklenen cevap biçimi, CTA'sı ve linkleri `docs/strategy/INTENT_MAP.md` belgesine kaydedilir (Faz 1, Commit 2).
+- **Kullanıcı dili:** Gerçek kullanıcı dili ve soruları SoT'tan alınır (BUSINESS_SOT §9–§10). Uydurma soru üretilmez.
 
 ---
 
@@ -181,6 +206,12 @@ Bir kalıp, yalnızca gerçekten o soruyu cevaplıyorsa kullanılır. Cevap moto
 - **Çelişkisizlik** — Aynı gerçek (adres, hizmet, marka ilişkisi), sitenin hiçbir yerinde bir diğeriyle çelişmez. Yapay zekâ sistemleri, çelişkili bilgi taşıyan kaynaklara daha az güvenir.
 - **Güncellik ve Doğruluk Sinyali** — İçerik doğru kaldığı sürece değerlidir; yanlış veya eskimiş bilgi fark edildiğinde güncellenir (bkz. Bölüm 19).
 
+## Proje Uygulaması (2026-10-07)
+- **Kanonik işletme tanımı** BUSINESS_SOT §1'dedir ve her yerde aynı kullanılır.
+- **İlk cümle:** İçerik sayfaları ilk 40–60 kelimede soruya doğrudan ve tek başına doğru bir cevap verir (answer-first).
+- **Tutarlılık:** Varlık bilgileri (marka adı, tek merkez, telefon rolleri, kuruluş ile Darıca açılışının ayrımı) SoT'la birebir aynıdır.
+- **Doğrulanmamış bilgi:** AI sistemlerinin alıntılayabileceği metinlerde [DOĞRULAMA GEREKLİ] veya [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ] etiketli bilgi kesin bilgi gibi yer almaz. Örnekler: yetkili bayi iddiası, SGK prosedür ve tutarları.
+
 ## Neden Kaynak Gösterilir
 
 Bir yapay zekâ sistemi bir sayfayı, "bu bilgi açık, doğrulanabilir, çelişkisiz ve konunun gerçek bir uzmanından geliyor" sinyalini aldığında kaynak gösterir. Strateji budur — belirli bir aracı "kandırmak" değil, her sistemin aradığı bu temel güven sinyalini gerçekten karşılamaktır.
@@ -200,17 +231,48 @@ Bir karar verildiğinde, karar burada (madde olarak) belgelenir; teknik uygulama
 
 Bu, işletmenin fiziksel hizmet bölgesi olan bir yerel işletme için **en kritik** stratejidir.
 
-## Hizmet Bölgesi
+## Yerel SEO Önceliği ve Hizmet Alanı (2026-10-07)
 
-Merkez ve öncelikli hizmet bölgeleri, çalışılan iller ve ilçeler için COMPANY.md §17 tek doğruluk kaynağıdır. Bu doküman kendi şehir listesini üretmez veya tekrar etmez — hangi bölgenin resmi hizmet alanı olduğu her zaman COMPANY.md §17'den okunur; bu, iki dokümanın zamanla birbirinden farklılaşmasını (drift) engeller.
+- **Kanonik kaynak:** LOCAL_SOT §3. Özeti COMPANY.md §5–§6'dadır. Bu doküman kendi şehir listesini üretmez.
+- **Yerel SEO öncelik sırası (MASTER_PLAN K7):**
+  1. **Darıca**: tek fiziksel merkez, ana yerel otorite
+  2. **Gebze**
+  3. **Çayırova**
+  4. **Kocaeli**: il düzeyinde yönlendirici
+  5. Diğer hizmet alanları
+- **Yerel SEO ile evde hizmet alanı ayrıdır:**
+  - Yerel SEO öncelik listesi, hangi bölgeler için yerel içerik üretileceğini ve önceliği belirler.
+  - Evde hizmet alanı, işletmenin evde hizmet verdiği yerdir ve fiziksel merkezden geniştir (LOCAL_SOT §3).
+  - Evde hizmet verilen bir ilçe kendiliğinden yerel SEO sayfası hak etmez.
+  - Evde hizmet verilen ilçeler şube gibi gösterilmez.
+- **Aşama kapısı:** Darıca temeli kurulmadan Gebze ve Çayırova içerikleri genişletilmez.
 
-## Hub-Şehir Modeli (COMPANY.md §17'nin uygulanışı)
+## Hub–Bölge Modeli
 
-Merkez konum (COMPANY.md §17'de tanımlı — ana merkez) bir "hub" olarak ele alınır; hemen ardından gelen öncelikli hizmet bölgesi bu hub'a bağlı, ona atıfta bulunan destekleyici içerik olarak kurulur; üst bölgesel otorite kademesi il-düzeyi bağlam (NAP, adres) için kullanılır; ikincil/çevre bölgeler yalnızca doğrudan sorulduğunda anılır. Bu dört kademenin isimleri burada tekrar edilmez — Canonical Source: COMPANY.md §17. Her bölge sayfası, o bölgeye özgü gerçek bilgi taşır — aynı içeriğin yalnızca şehir adı değiştirilerek çoğaltılması (bkz. Bölüm 16, Duplicate Content; ayrıca QUALITY_GATES.md §2 Local SEO Gate, doorway/scaled page yasağı) kesinlikle yapılmaz.
+- **Darıca hub'ı:** Fiziksel merkez bir hub olarak ele alınır. Gerçek ulaşım, erişim, hizmet ve süreç bilgisi taşır (LOCAL_SOT §1–2, §4).
+- **Gebze ve Çayırova:** "Bu bölgeden Darıca merkezimize" modeliyle kurulur. Yalnızca o bölgeye ait **doğrulanmış** veri kullanılır.
+- **Kocaeli:** İl düzeyinde bağlam ve yönlendirme sağlar; Darıca hub'ının ve pillar sayfaların önüne geçmez.
+- Ayrıntılı kurallar `docs/strategy/LOCAL_SEO_PLAYBOOK.md` belgesinde yer alacak (Faz 1, Commit 2).
+
+## Gebze ve Çayırova Kopya Sayfa Yasağı
+
+- Gebze ve Çayırova sayfaları **Darıca sayfasının veya birbirlerinin kopyası olamaz**. Şehir adı değiştirilerek sayfa üretmek **kesinlikle yasaktır**.
+- Her yerel sayfanın kendine ait şunları olur:
+  - search intent
+  - içerik amacı
+  - gerçek yerel bağlam
+  - SSS
+  - gerçek müşteri davranışı
+  - ulaşım ve erişim verisi
+- Bir bölge için yeterli doğrulanmış veri yoksa ilgili bölüm yazılmaz. Başka bir bölgenin verisi kopyalanmaz; örneğin Gebze verisi Çayırova'ya taşınmaz.
+- Kontrol edilebilir kural: `QUALITY_GATES.md` §2 ve §12.
 
 ## NAP Tutarlılığı
 
-İsim (Name), Adres (Address) ve Telefon (Phone) bilgisi; sitenin her sayfasında, Google Business Profile'da ve her dış platformda **birebir aynı biçimde** yer alır. Kısaltma, farklı yazım veya farklı format kullanılmaz.
+İsim (Name), Adres (Address) ve Telefon (Phone) bilgisi sitenin her sayfasında, Google Business Profile'da ve her dış platformda **birebir aynı biçimde** yer alır. Kısaltma, farklı yazım veya farklı format kullanılmaz.
+
+- NAP değerleri, telefonların rolleri ve e-posta LOCAL_SOT §1 ve CONVERSION_SOT §1'dedir.
+- Telefon biçiminin schema, NAP ve GBP'deki son hâli, Maps'te görünen ad ile birlikte NAP/GBP audit'inde kesinleşecek (Faz 3).
 
 ## Google Business Profile Hizalaması
 
@@ -224,17 +286,31 @@ Hizmet bölgesi, yalnızca bir sayfa başlığında değil; içerik içinde doğ
 
 # 11. Structured Data Strategy
 
-Bu bölüm hiçbir şema kodu içermez; yalnızca **hangi sayfa tipinin hangi yapısal veri kavramıyla eşleştiğini** tanımlar.
+Bu bölüm hiçbir şema kodu içermez; yalnızca **yapısal veri yaklaşımını** ve **hangi kararların henüz verilmediğini** tanımlar.
 
-| Sayfa Tipi | Kavramsal Şema Yönü |
-|---|---|
-| Kurumsal / Ana Sayfa | Organizasyon kimliği (marka ilişkisi, iletişim bilgisi) |
-| Şube / Hizmet Bölgesi Sayfası | Yerel işletme kimliği (adres, çalışma saatleri, hizmet alanı) |
-| Ürün / Cihaz Sayfası | Ürün kimliği — **fiyat veya teklif bilgisi asla eklenmez** (bkz. COMPANY.md ve PRINCIPLES.md, fiyat yasağı) |
-| Bilgi / Rehber İçerik | Makale kimliği (yazar, konu, güncellenme bağlamı) |
-| Soru-Cevap Blokları | Soru-cevap kimliği, yalnızca sayfada gerçekten görünen sorular için |
-| Adım Adım İçerik | Süreç/adım kimliği |
-| Site Navigasyonu | Sayfa hiyerarşisi kimliği (breadcrumb) |
+> **Güncelleme (2026-10-07):** Önceki "sayfa tipi → şema tipi" tablosu **kilitli kural değildir**. Özellikle "Şube / Hizmet Bölgesi Sayfası → yerel işletme kimliği" ve "Ürün / Cihaz Sayfası → ürün kimliği" eşlemeleri yürürlükten kaldırıldı. Gerekçe: tek fiziksel merkez gerçeği ile tip kararlarının henüz doğrulanmamış olması (DOC_MIGRATION_MAP §3).
+
+## Karar Bekleyen Konular (teknik doğrulama gerekli)
+Aşağıdakiler **henüz karar verilmemiştir**:
+- Varlık modeli: tek bir yerel işletme düğümü mü olacak, yoksa `@id` ile bağlı Organization ve yerel işletme düğümleri mi?
+- İşletme tipi: MedicalBusiness mi, başka bir LocalBusiness alt tipi mi?
+- Yerel işletme tiplerinin hangi sayfalarda kullanılacağı, yerel bölge sayfalarında kullanılıp kullanılmayacağı.
+- Hizmet, kişi ve makale tiplerinin hangi koşullarda kullanılacağı.
+
+Bu kararlar **Faz 3 uygulamasından önce** şu üçü birlikte değerlendirilerek kesinleşir:
+- Schema.org tip yapısı
+- Google structured data uygunluk yönergeleri
+- Gerçek işletme modeli: tek fiziksel merkez Darıca; evde hizmet alanı daha geniş
+
+Seçenekler ve doğrulama kriterleri `docs/tech/SCHEMA_GRAPH.md` belgesinde yer alacak (Faz 1, Commit 3).
+
+## Değişmeyen İlkeler (tip seçiminden bağımsız)
+- Yalnızca sayfada görünen ve SoT'ta [DOĞRULANDI] olan bilgi yapısal veriye girer.
+- Gebze, Çayırova veya evde hizmet verilen ilçeler **şube gibi gösterilmez**.
+- **Fiyat ve teklif bilgisi yapısal veriye eklenmez.** Sitede fiyat yayınlanmasına dair bir karar da henüz yok (PRODUCT_SOT §4).
+- Sahte puan, yorum, ödül veya sertifika eklenmez.
+- Soru-cevap verisi yalnızca sayfada gerçekten görünen sorular için kullanılır.
+- Breadcrumb, gerçek site hiyerarşisini yansıtır.
 
 ## Kural
 
@@ -262,7 +338,7 @@ Yapısal veri, sayfada zaten görünür olan bilgiyi makinelere açıklar — sa
 
 # 13. E-E-A-T & Trust Signals
 
-COMPANY.md'de tanımlı gerçek kimlik bilgileri, arama ve yapay zekâ sistemlerinin doğrudan algılayabileceği sinyallere çevrilir:
+SoT'ta (`docs/source-of-truth/*`) tanımlı gerçek kimlik bilgileri, arama ve yapay zekâ sistemlerinin doğrudan algılayabileceği sinyallere çevrilir:
 
 - **Experience (Deneyim)** — 2009'dan beri süren gerçek faaliyet, somut ve tutarlı biçimde belirtilir.
 - **Expertise (Uzmanlık)** — Odyometrist/odyolog yetkinliği ve teknik bilgi, içerik kalitesiyle birlikte gösterilir.
@@ -270,7 +346,15 @@ COMPANY.md'de tanımlı gerçek kimlik bilgileri, arama ve yapay zekâ sistemler
 - **Trust (Güven)** — Tutarlı NAP bilgisi, gerçek ekip görselleri, doğrulanabilir iletişim kanalları ve şeffaf içerik politikası.
   > Canonical Source: PRINCIPLES.md §7 Güven Oluşturma Mekanizmaları
 
-Bu dört sinyal, tek bir sayfada değil; sitenin tamamında tutarlı biçimde tekrar eder. E-E-A-T bir "bölüm" değil, her sayfanın arka planında çalışan bir standarttır. Markanın merkez duygusu olan Güven'in kaynağı için: Canonical Source: PRINCIPLES.md §1 Brand DNA.
+**Proje uygulaması (2026-10-07)**
+- Deneyim, uzmanlık ve kurumsal bilgiler yalnızca SoT'tan alınır (BUSINESS_SOT §1–§4, §7).
+- Kişilerin eğitim ve deneyim bilgileri birbirine karıştırılmaz.
+- Bir kişinin organizasyondaki süresi ile işitme sektöründeki deneyimi ayrı kavramlardır; birbirine dönüştürülmez.
+- İçerikte "inceleyen" kişi SoT'taki kayıttan alınır.
+- Kişi bilgisi ve fotoğrafı yalnızca yayın rızası alındıktan sonra kullanılır.
+- Ayrıntılar `docs/strategy/EEAT_AND_EDITORIAL.md` belgesinde yer alacak (Faz 1, Commit 2).
+
+Bu dört sinyal tek bir sayfada değil, sitenin tamamında tutarlı biçimde tekrar eder. E-E-A-T bir "bölüm" değil, her sayfanın arka planında çalışan bir standarttır. Markanın merkez duygusu olan Güven'in kaynağı için: Canonical Source: PRINCIPLES.md §1 Brand DNA.
 
 ---
 
@@ -318,7 +402,7 @@ Bu liste, PRINCIPLES.md'nin yasaklı ifadeler politikasının arama/AI görünü
 Arama ve AI görünürlüğüne yönelik içerik üretiminde, yapay zekâ (veya herhangi bir katkı sağlayan) şu kurallara uyar:
 
 - **Uydurma yasaktır.** İstatistik, oran, ödül, kullanıcı sayısı veya herhangi bir doğrulanmamış veri üretilmez (bkz. PRINCIPLES.md, İçerik Bütünlüğü ve İddia Politikası).
-- **Kaynak zorunludur.** Tıbbi veya teknik bir iddia, doğrulanabilir bir kaynağa veya COMPANY.md'deki bir gerçeğe dayanmıyorsa yazılmaz.
+- **Kaynak zorunludur.** Tıbbi veya teknik bir iddia, doğrulanabilir bir kaynağa veya SoT'taki [DOĞRULANDI] bir kayda dayanmıyorsa yazılmaz.
 - **Karşılaştırma yalnızca tarafsız yapılabilir.** Rakip marka veya ürün küçümsenmez; karşılaştırma, ölçülebilir ve doğrulanabilir kriterlere dayanır.
 - **Entity ve ilişki tutarlılığı korunur.** Bölüm 4 ve 5'te tanımlanan isimlendirme ve ilişkiler hiçbir içerikte bozulmaz.
 - **Şema önerisi kavramsal kalır.** Yapay zekâ, bir sayfa için hangi yapısal veri kavramının uygun olduğunu önerebilir (bkz. Bölüm 11) ama gerçek şema kodu bu doküman kapsamında üretilmez.
@@ -337,7 +421,7 @@ Yeni oluşturulan her sayfa, yayınlanmadan önce aşağıdakilerin tamamını k
 - Görsel ve varsa video, Bölüm 12'deki standarda uyar.
 - Sayfa sonunda PRINCIPLES.md'nin CTA sistemine uygun, doğal bir yönlendirme vardır.
 - Sayfa, ilgili iç bağlantılarla (Bölüm 15) bağlanmıştır.
-- Sayfada hiçbir fiyat, garanti oranı veya uydurma veri yoktur.
+- Sayfada hiçbir uydurma veri ve garanti oranı yoktur. Cihaz fiyatı, yayınlama kararı verilmeden kullanılmaz (PRODUCT_SOT §4). Zaman duyarlı bilgiler kaynak ve tarihle verilir.
 - Sayfa mobil öncelikli ve erişilebilir yapıdadır (bkz. DESIGN_SYSTEM_GUIDE.md).
 
 ---
@@ -360,6 +444,22 @@ Her konu, sitede yalnızca **bir** kanonik sayfa tarafından sahiplenilir. Aynı
 
 # 20. Doküman Otoritesi
 
-Bu doküman, COMPANY.md, PRINCIPLES.md, DESIGN_SYSTEM_GUIDE.md, IMPLEMENTATION_STANDARD.md ve QUALITY_GATES.md ile eşdeğer bağlayıcılığa sahiptir. Altısı birlikte projenin tam referans katmanını oluşturur: COMPANY.md gerçekleri (coğrafi hiyerarşi dahil), PRINCIPLES.md davranışı, DESIGN_SYSTEM_GUIDE.md yapıyı, bu doküman keşfedilebilirlik ve güvenilirlik stratejisini, IMPLEMENTATION_STANDARD.md component/build kalitesini, QUALITY_GATES.md ise sayfa/release seviyesi operasyonel yayın kapılarını yönetir.
+Bu doküman; SoT, MASTER_PLAN.md, COMPANY.md, PRINCIPLES.md, DESIGN_SYSTEM_GUIDE.md, IMPLEMENTATION_STANDARD.md ve QUALITY_GATES.md ile birlikte projenin referans katmanını oluşturur. Yetki alanları:
+- **SoT:** işletme gerçekleri (birinci kaynak)
+- **MASTER_PLAN.md:** kilitli strateji ve fazlar
+- **COMPANY.md:** SoT'un kanonik özeti, yerel SEO kapsamı ve evde hizmet alanı
+- **PRINCIPLES.md:** davranış
+- **DESIGN_SYSTEM_GUIDE.md:** yapı
+- **Bu doküman:** keşfedilebilirlik ve güvenilirlik stratejisi
+- **IMPLEMENTATION_STANDARD.md:** component/build kalitesi
+- **QUALITY_GATES.md:** sayfa/release seviyesi yayın kapıları
 
-Bir çelişki ortaya çıkarsa: gerçek bilgi ve coğrafi hiyerarşi konusunda COMPANY.md, ton ve CTA konusunda PRINCIPLES.md, görsel/mimari yapı konusunda DESIGN_SYSTEM_GUIDE.md, arama ve AI görünürlük stratejisi konusunda bu doküman, somut/kontrol edilebilir yayın kriterleri konusunda QUALITY_GATES.md esas alınır. Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan ilkeler bağlayıcıdır.
+Bir çelişki ortaya çıkarsa:
+- İşletme gerçekleri, coğrafi öncelik ve hizmet alanı: SoT (özeti COMPANY.md)
+- Kilitli strateji: MASTER_PLAN.md
+- Ton ve CTA: PRINCIPLES.md
+- Görsel ve mimari yapı: DESIGN_SYSTEM_GUIDE.md
+- Arama ve AI görünürlük stratejisi: bu doküman
+- Somut ve kontrol edilebilir yayın kriterleri: QUALITY_GATES.md
+
+Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan ilkeler bağlayıcıdır.

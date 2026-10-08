@@ -1,14 +1,13 @@
-// "Hizmet Bölgeleri" section for the /iletisim page. Renders through the
-// new ContactServiceArea component. Hub-city model (SEARCH_STRATEGY.md
-// §10), using only COMPANY.md §17's real tiers — İzmit/Körfez are
-// deliberately excluded (not in COMPANY.md, regardless of what any
-// outside source suggests; a finalized decision, not an oversight).
+// "Hizmet Bölgeleri" section for the /iletisim page — the one canonical,
+// full version of the service-area block (P1-B). Facts come only from
+// LOCAL_SOURCE_OF_TRUTH: single physical center in Darıca (§2), verified
+// bus lines per area [TIME-SENSITIVE] (§2), home-service area = all of
+// Kocaeli + all İstanbul Anadolu Yakası districts (§3). No branch is
+// implied for any listed area. Other pages no longer repeat this block
+// with city names swapped; they link here or state the scope in their own
+// context instead.
 //
-// `href` is wired up for Darıca, Gebze and Çayırova now that their real
-// landing pages exist (ContactServiceArea already renders `item.href` as
-// a real link when present, plain text otherwise — no component change
-// needed, exactly as anticipated). Dilovası/Tuzla/Pendik stay text-only:
-// no dedicated page exists for them and none is planned.
+// `href` is set only where a real landing page exists.
 
 export type ServiceAreaTier = "merkez" | "oncelikli" | "cevre";
 
@@ -32,32 +31,47 @@ export const contactServiceArea: ContactServiceAreaContent = {
   eyebrow: "Hizmet Bölgeleri",
   heading: "Hangi Bölgelerden Ulaşabilirsiniz?",
   intro:
-    "Merkezimiz Darıca'da; çevresindeki bölgelerden de kolayca ulaşabilirsiniz.",
+    "Tek fiziksel merkezimiz Darıca'dadır; başka ilçede şubemiz yok. Aşağıda, merkezimize toplu taşımayla ulaşımda kullanılan hatları bölge bölge bulabilirsiniz. Hat bilgileri değişebilir.",
   tierLabels: {
     merkez: "Merkez",
-    oncelikli: "Öncelikli Hizmet Bölgeleri",
-    cevre: "Çevre İlçeler",
+    oncelikli: "Gebze ve Çayırova",
+    cevre: "Diğer Bağlantılar",
   },
   items: [
     {
       name: "Darıca",
       tier: "merkez",
-      description: "Merkezimiz Darıca'da bulunur; adres ve yol tarifi için yukarıdaki konum kartını inceleyebilirsiniz.",
+      description: "Merkezimiz Farabi Devlet Hastanesi durağının karşısında, Palandöken Eczanesi'nin üst katındadır.",
       href: "/darica-isitme-cihazlari/",
     },
     {
       name: "Gebze",
       tier: "oncelikli",
-      description: "Gebze'den merkezimize kolayca ulaşabilirsiniz.",
+      description: "502, 440, 510 ve 515 numaralı otobüs hatları.",
       href: "/gebze-isitme-cihazlari/",
     },
     {
       name: "Çayırova",
       tier: "oncelikli",
-      description: "Çayırova'dan merkezimize kolayca ulaşabilirsiniz.",
+      description: "550 numaralı otobüs hattı.",
       href: "/cayirova-isitme-cihazlari/",
+    },
+    {
+      name: "Beylikbağı",
+      tier: "cevre",
+      description: "415 ve 425 numaralı otobüs hatları.",
+    },
+    {
+      name: "Dilovası",
+      tier: "cevre",
+      description: "410 numaralı otobüs hattı.",
+    },
+    {
+      name: "Mutlukent",
+      tier: "cevre",
+      description: "510 numaralı otobüs hattı.",
     },
   ],
   closing:
-    "Listede yer almayan bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",
+    "Merkeze gelemiyorsanız: evde işitme cihazı hizmetini Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nın tüm ilçelerinde veriyoruz.",
 };

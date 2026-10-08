@@ -21,7 +21,7 @@ export const philipsHearingRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Oticon İşitme Cihazları",
-      description: "Aynı Demant Grubu mühendisliğinden farklı bir marka felsefesini karşılaştırmak isterseniz Oticon'u inceleyin.",
+      description: "Farklı bir marka felsefesini karşılaştırmak isterseniz Oticon'u inceleyin.",
       href: "/markalar/oticon/",
     },
   ],

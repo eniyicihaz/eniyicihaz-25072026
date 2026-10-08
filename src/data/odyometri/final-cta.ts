@@ -13,7 +13,7 @@ export const odyometriFinalCta: BrandPageFinalCtaContent = {
     "Kalibre edilmiş profesyonel ekipmanlarımız ve deneyimli odyometrist kadromuzla, işitme eşiğinizi netleştirmenize yardımcı oluyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Odyometri", "Kalibre Edilmiş Ekipman", "Uzman Odyometrist", "Aynı Gün Sonuç"],
+  trustItems: ["Ücretsiz Odyometri", "Kalibre Edilmiş Ekipman", "Odyometrist Desteği", "Aynı Gün Sonuç"],
   accentColor: "#4f46e5",
   accentColorHover: "#4338ca",
   accentColorGlow: "rgb(79 70 229 / 0.22)",

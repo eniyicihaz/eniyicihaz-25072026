@@ -15,7 +15,7 @@ export const guvenilirTeknolojiFaq: BrandPageFaqContent = {
   intro: "Orijinallik, doğrulama ve garanti hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Orijinalliğinden Emin Olmak İster misiniz?",
-    points: ["Seri numarası doğrulama", "Yetkili bayi kontrolü", "Ücretsiz danışmanlık", "Garanti sorgulama"],
+    points: ["Seri numarası doğrulama", "Satış kanalı kontrolü", "Ücretsiz danışmanlık", "Garanti sorgulama"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -71,7 +71,7 @@ export const guvenilirTeknolojiFaq: BrandPageFaqContent = {
         {
           question: "Neden sizden almalıyım?",
           answer:
-            "Sunduğumuz tüm markalar için yetkili distribütörlük anlaşmalarımız bulunur; her ürün faturalı, garantili ve seri numarasıyla doğrulanabilir şekilde teslim edilir.",
+            "18 işitme cihazı markası satıyoruz; ücretsiz işitme testi ve cihaz seçimi desteği veriyor, sattığımız markaların tamamında teknik servis sağlıyoruz. Karar vermeden önce cihazın garanti ve seri numarası bilgilerini sormanızı öneririz.",
         },
         {
           question: "Fiyatlar neden bazı yerlerden daha yüksek olabilir?",

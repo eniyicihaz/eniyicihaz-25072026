@@ -30,8 +30,8 @@ export const uzunOmurluCihazlarAdvantages: BrandPageAdvantagesContent = {
     {
       icon: PackageCheck,
       category: "Yedek Parça",
-      title: "Orijinal Yedek Parçaya Uzun Vadeli Erişim",
-      description: "Yetkili kanaldan alınan cihazlarda orijinal yedek parçalara yıllarca erişim sağlanabilir.",
+      title: "Yedek Parça Bulunabilirliği",
+      description: "Yedek parça bulunabilirliği marka, model ve cihazın yaşına göre değişebilir.",
     },
     {
       icon: RefreshCw,

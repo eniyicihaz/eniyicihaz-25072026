@@ -11,7 +11,7 @@ export const resoundFaq: BrandPageFaqContent = {
   intro: "ReSound modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,7 +21,7 @@ export const resoundFaq: BrandPageFaqContent = {
       items: [
         {
           question: "ReSound hangi ülkenin markası?",
-          answer: "ReSound, kökleri 1943'e uzanan, bugün Danimarka merkezli GN Grubu'na bağlı bir işitme cihazı markasıdır.",
+          answer: "ReSound, kökleri 1943'e uzanan, Danimarka kökenli bir işitme cihazı markasıdır.",
         },
         {
           question: "ReSound hangi konuda öne çıkar?",

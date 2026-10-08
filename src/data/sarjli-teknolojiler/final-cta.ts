@@ -13,7 +13,7 @@ export const sarjliTeknolojilerFinalCta: BrandPageFinalCtaContent = {
     "Önceliklerinize, cihaz tipi tercihinize ve işitme kaybınızın derecesine uygun modeli ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#dc2626",
   accentColorHover: "#b91c1c",
   accentColorGlow: "rgb(220 38 38 / 0.22)",

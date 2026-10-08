@@ -17,7 +17,7 @@ export const audifonFinalCta: BrandPageFinalCtaContent = {
     "Ücretsiz İşitme Testi",
     "Demo İşitme Cihazı",
     "SGK Anlaşmalı Merkez",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   // Precomputed rgb() decomposition of #E2001A.
   accentColor: "#E2001A",

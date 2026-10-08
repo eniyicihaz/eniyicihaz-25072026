@@ -26,10 +26,10 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const amHero: BrandPageHeroContent = {
-  badge: "A&M · WS AUDIOLOGY GRUBU",
+  badge: "A&M · XTM SERİSİ",
   headingLines: ["A&M Hearing ile Güvenilir", "Teknolojiye Erişilebilir Fiyat"],
   paragraphs: [
-    "A&M Hearing, dünyanın önde gelen işitme teknolojisi gruplarından WS Audiology'nin (Signia, Widex, Rexton'ın da içinde bulunduğu grup) Hindistan'daki üretim merkezinde geliştirilen XTM serisi işitme cihazlarını sunar.",
+    "A&M Hearing, Hindistan'daki üretim merkezinde geliştirilen XTM serisi işitme cihazlarını erişilebilir bir fiyat noktasında sunar.",
     "XTM P12, XTM A4 ve diğer A&M modellerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -42,16 +42,16 @@ export const amHero: BrandPageHeroContent = {
       description: "Farklı güç seviyelerinde sunulan, geniş bir ihtiyaç yelpazesini kapsayan model ailesi.",
     },
     {
-      label: "WSA",
+      label: "SERVİS",
       accent: "#F08A47",
-      title: "WS Audiology Grubu",
-      description: "Signia, Widex ve Rexton ile aynı global grubun mühendislik altyapısından beslenir.",
+      title: "Merkezimizde Teknik Servis",
+      description: "A&M cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
     {
       label: "IN",
       accent: "#A34A0C",
       title: "Bengaluru Üretimi",
-      description: "Sivantos India Private Limited tarafından, grup standartlarında üretilir.",
+      description: "XTM serisi Bengaluru, Hindistan'da üretilir.",
     },
   ],
   image: {

@@ -17,7 +17,7 @@ export const maicoFinalCta: BrandPageFinalCtaContent = {
     "Ücretsiz İşitme Testi",
     "Demo İşitme Cihazı",
     "SGK Anlaşmalı Merkez",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   // Precomputed rgb() decomposition of #10233F.
   accentColor: "#10233F",

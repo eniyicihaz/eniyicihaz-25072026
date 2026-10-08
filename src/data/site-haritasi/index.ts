@@ -134,7 +134,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     links: [
       { label: "Güvenilir Teknoloji", href: "/neden-orijinal/guvenilir-teknoloji/" },
       { label: "Uzun Ömürlü Cihazlar", href: "/neden-orijinal/uzun-omurlu-cihazlar/" },
-      { label: "Yaygın Servis Ağı", href: "/neden-orijinal/yaygin-servis-agi/" },
+      { label: "Servis Desteği", href: "/neden-orijinal/yaygin-servis-agi/" },
       { label: "Orijinal Aksesuar", href: "/neden-orijinal/orijinal-aksesuar/" },
       { label: "Ücretsiz Danışmanlık", href: "/neden-orijinal/ucretsiz-danismanlik/" },
       { label: "Kolay Değişim", href: "/neden-orijinal/kolay-degisim/" },

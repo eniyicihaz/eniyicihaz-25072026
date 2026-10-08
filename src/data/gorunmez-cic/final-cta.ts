@@ -13,7 +13,7 @@ export const gorunmezCicFinalCta: BrandPageFinalCtaContent = {
     "Kulak kanalı yapınıza, işitme kaybınızın derecesine ve görünürlük önceliğinize uygun modeli ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#475569",
   accentColorHover: "#334155",
   accentColorGlow: "rgb(71 85 105 / 0.22)",

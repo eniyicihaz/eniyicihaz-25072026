@@ -17,7 +17,7 @@ export const vistaFinalCta: BrandPageFinalCtaContent = {
     "Ücretsiz İşitme Testi",
     "Demo İşitme Cihazı",
     "SGK Anlaşmalı Merkez",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   // Precomputed rgb() decomposition of #E85D0A.
   accentColor: "#E85D0A",

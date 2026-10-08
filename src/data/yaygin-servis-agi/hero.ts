@@ -18,41 +18,41 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const yayginServisAgiHero: BrandPageHeroContent = {
-  badge: "MARKALAR · NEDEN ORİJİNAL · YAYGIN SERVİS AĞI",
-  headingLines: ["Yaygın Servis Ağı", "Nasıl Bir Güven Verir?"],
+  badge: "MARKALAR · NEDEN ORİJİNAL · SERVİS DESTEĞİ",
+  headingLines: ["Servis Desteği", "Nasıl Bir Güven Verir?"],
   paragraphs: [
-    "Orijinal ve yetkili kanaldan alınan işitme cihazları, geniş ve yetkili bir teknik servis ağı tarafından desteklenir; bu da uzun vadeli kullanımda önemli bir güvence sağlar.",
-    "Avrasya İşitme olarak, sunduğumuz markaların yetkili servis ağı sayesinde cihazınızın bakım ve onarım ihtiyaçlarına hızlı ve güvenilir bir şekilde yanıt verebiliyoruz.",
+    "Bir işitme cihazının uzun vadeli kullanımında, bakım ve onarım ihtiyacında ulaşabileceğiniz teknik servis desteği önemli bir güvencedir.",
+    "Avrasya İşitme olarak sattığımız 18 markanın tamamında Darıca'daki merkezimizde teknik servis veriyoruz; garanti kapsamındaki cihazları gerektiğinde dış servise gönderiyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
   features: [
     {
-      label: "YETKİLİ SERVİS AĞI",
+      label: "18 MARKADA SERVİS",
       accent: "#ea580c",
-      title: "Geniş Bir Yetkili Servis Ağına Erişim",
-      description: "Sunduğumuz markaların yetkili servis ağı, cihazınızın bakım ve onarım ihtiyaçlarını karşılamaya yardımcı olur.",
+      title: "Sattığımız Tüm Markalarda Teknik Servis",
+      description: "Sattığımız 18 markanın tamamında teknik servis desteği veriyoruz.",
     },
     {
-      label: "HIZLI YANIT SÜRESİ",
+      label: "TESLİM SÜRESİ",
       accent: "#c2410c",
-      title: "Arıza Durumunda Hızlı Destek",
-      description: "Yetkili servis ağı, arıza durumlarında daha hızlı çözüm süreçleri sunabilir.",
+      title: "Teknik Serviste 3 Gün İçinde Teslim",
+      description: "Teknik servis işlemlerinde cihaz 3 gün içinde teslim edilir; ücret cihazın durumuna göre belirlenir.",
     },
     {
-      label: "TUTARLI HİZMET KALİTESİ",
+      label: "GARANTİ İŞLEMLERİ",
       accent: "#9a3412",
-      title: "Her Noktada Aynı Kalite Standardı",
-      description: "Yetkili servis ağındaki her nokta, üreticinin belirlediği aynı kalite standartlarına göre hizmet verir.",
+      title: "Garanti İşlemlerinde Ücretsiz Destek",
+      description: "Garanti işlemleri ücretsizdir; süre cihaza göre 1–5 gün arasında değişebilir.",
     },
   ],
   image: {
     src: "/images/signia/models/silk.webp",
-    alt: "Yaygın yetkili servis ağı desteğiyle sunulan orijinal Signia Silk işitme cihazı görseli",
+    alt: "Signia Silk işitme cihazı",
   },
   floatingCard: {
     title: "Signia Silk",
-    description: "Yaygın yetkili servis ağıyla desteklenir.",
+    description: "Teknik servis desteği sunduğumuz markalardan biri.",
   },
   accentColor: "#ea580c",
   accentColorHover: "#c2410c",

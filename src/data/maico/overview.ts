@@ -27,7 +27,7 @@ export const maicoOverview: MaicoOverviewContent = {
     { icon: "calendar", label: "Kuruluş", value: "1937" },
     { icon: "map-pin", label: "Menşei", value: "Minneapolis, ABD → Berlin, Almanya" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Odyolojik ölçüm bilimi mirası" },
-    { icon: "cpu", label: "Bağlı Olduğu Grup", value: "Demant Grubu (1995'ten bu yana)" },
+    { icon: "cpu", label: "Teknik Servis", value: "Darıca merkezimizde" },
     { icon: "users", label: "Hedef Kullanıcı", value: "Köklü bir markadan güvenilir teknoloji arayanlar" },
     { icon: "bluetooth", label: "Yerleşim Seçenekleri", value: "Bluetooth'lu, kulak arkası ve kulak içi" },
   ],

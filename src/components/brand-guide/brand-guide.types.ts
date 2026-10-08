@@ -23,7 +23,7 @@ export interface BrandProfileModel {
 
 export interface BrandProfileContent {
   id: string;
-  /** Visible brand name (NuEar is shown as "Starkey NuEar"). */
+  /** Visible brand name. */
   name: string;
   logo: string;
   logoAlt: string;

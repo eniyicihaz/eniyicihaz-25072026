@@ -25,7 +25,7 @@ import { contactConfig } from "../../config";
 
 export const beltoneHero: BrandPageHeroContent = {
   badge: "BELTONE · 1940'TAN BU YANA",
-  headingLines: ["Beltone ile 85 Yıllık", "Amerikan İşitme Mirası"],
+  headingLines: ["Beltone ile 1940'tan Beri", "Amerikan İşitme Mirası"],
   paragraphs: [
     "Beltone, 1940'ta Chicago'da kurulan ve bugün Şubat 2025'te tanıtılan Envision ailesinin yapay zekâ destekli DNN ses işlemesini sunan, köklü bir Amerikan markasıdır.",
     "Envision, Serene, Commence ve diğer Beltone modellerini Avrasya İşitme'de keşfedin.",
@@ -43,13 +43,13 @@ export const beltoneHero: BrandPageHeroContent = {
       label: "1940",
       accent: "#3E5A88",
       title: "Amerikan Mirası",
-      description: "Chicago'da Sam Posen tarafından kurulan, 85 yılı aşkın bir işitme cihazı geleneği.",
+      description: "1940'ta Chicago'da Sam Posen tarafından kurulan bir işitme cihazı geleneği.",
     },
     {
-      label: "GN",
+      label: "SERVİS",
       accent: "#12274A",
-      title: "GN Grubu Güvencesi",
-      description: "2000 yılından bu yana ReSound ile aynı global grubun bir parçasıdır.",
+      title: "Merkezimizde Teknik Servis",
+      description: "Beltone cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   image: {

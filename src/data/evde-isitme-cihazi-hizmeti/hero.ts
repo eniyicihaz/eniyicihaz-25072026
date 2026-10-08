@@ -8,7 +8,7 @@ import { contactConfig } from "../../config";
 export const evdeHizmetHero: HomeVisitHeroContent = {
   eyebrow: "Evde İşitme Cihazı Hizmeti",
   heading: "İşitme Desteği Evinize Geliyor.",
-  subheading: "Darıca, Gebze ve Çayırova'da merkezimize gelmeden, ihtiyaç duyduğunuz işitme cihazı desteğini evinizde alabilirsiniz.",
+  subheading: "Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nda, merkezimize gelmeden ihtiyaç duyduğunuz işitme cihazı desteğini evinizde alabilirsiniz.",
   paragraph:
     "İşitme testinden cihaz denemesine, uygulamadan kişiye özel ayara kadar süreci evinizde, sizin için uygun bir zamanda yürütüyoruz. Merkeze gelmekte zorlanan yaşlı bireyler ve hareket kısıtlılığı olan kişiler için özellikle tercih edilen bir hizmet.",
   ctaPrimary: { label: "Evde Hizmet Talep Et", href: contactConfig.phone.href },
@@ -16,6 +16,6 @@ export const evdeHizmetHero: HomeVisitHeroContent = {
   routeFromLabel: "Merkezimiz",
   routeToLabel: "Eviniz",
   routeCaption: "Darıca'daki merkezimizden bölgenize randevulu ev ziyareti.",
-  areaTags: ["Darıca", "Gebze", "Çayırova"],
+  areaTags: ["Kocaeli", "İstanbul Anadolu Yakası"],
   accentColor: "#0d9488",
 };

@@ -13,7 +13,7 @@ export const cocuklaraOzelFinalCta: BrandPageFinalCtaContent = {
     "Çocuğunuzun yaşına, işitme kaybının derecesine ve okul/aile yaşam tarzına uygun modeli ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#e11d48",
   accentColorHover: "#be123c",
   accentColorGlow: "rgb(225 29 72 / 0.22)",

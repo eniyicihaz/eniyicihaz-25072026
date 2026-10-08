@@ -33,7 +33,7 @@ export const cokIleriDereceIsitmeKaybiRelatedContent: BrandPageRelatedContentCon
     {
       label: "Tek Taraflı İşitme Kaybı",
       description: "Yalnızca bir kulağı etkileyen işitme kaybı türünü ve cihaz seçeneklerini yakından tanıyın.",
-      href: "#",
+      href: "/ihtiyaciniza-gore/tek-tarafli-isitme-kaybi/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",

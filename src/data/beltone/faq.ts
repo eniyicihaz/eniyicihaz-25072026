@@ -12,7 +12,7 @@ export const beltoneFaq: BrandPageFaqContent = {
   intro: "Beltone modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -22,11 +22,11 @@ export const beltoneFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Beltone hangi ülkenin markası?",
-          answer: "Beltone, 1940'ta Chicago, ABD'de kurulan, 2000 yılından bu yana GN Grubu'na (ReSound ile aynı çatı) bağlı bir markadır.",
+          answer: "Beltone, 1940'ta Chicago, ABD'de kurulan bir işitme cihazı markasıdır.",
         },
         {
           question: "Beltone hangi konuda öne çıkar?",
-          answer: "Beltone, 85 yılı aşkın Amerikan mirası ve Envision ailesinin yapay zekâ destekli DNN ses işlemesiyle tanınır.",
+          answer: "Beltone, 1940'tan bu yana süren Amerikan mirası ve Envision ailesinin yapay zekâ destekli DNN ses işlemesiyle tanınır.",
         },
       ],
     },

@@ -18,7 +18,7 @@ export const phonakFinalCta: BrandPageFinalCtaContent = {
     "Ücretsiz İşitme Testi",
     "Demo İşitme Cihazı",
     "SGK Anlaşmalı Merkez",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   // Precomputed rgb() decomposition of #0ea5e9 — kept distinct from
   // Oticon's green accent.

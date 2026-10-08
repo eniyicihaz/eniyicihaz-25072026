@@ -12,12 +12,12 @@ export const priceGuideRelated: BrandPageRelatedContentContent = {
   heading: "Kararınızı Netleştirmek İçin",
   links: [
     { label: "İşitme Cihazı Çeşitleri", description: "Kulak arkası, kulak içi, şarjlı, Bluetooth ve diğer cihaz türlerini yakından tanıyın.", href: "/isitme-cihazlari/" },
-    { label: "İşitme Cihazı Markaları", description: "18'den fazla markayı ve modellerini marka sayfalarında inceleyin.", href: "/markalar/" },
+    { label: "İşitme Cihazı Markaları", description: "18 markayı ve modellerini marka sayfalarında inceleyin.", href: "/markalar/" },
     { label: "İşitme Cihazı Markalarını Karşılaştırın", description: "Markaları ve modelleri kullanım ihtiyacına göre karşılaştıran rehber.", href: "/isitme-cihazi-markalari/" },
     { label: "SGK İşitme Cihazı Ödemesi", description: "Güncel SGK tutarları, katkı payı ve başvuru sürecini öğrenin.", href: "/sgk-isitme-cihazi-odemesi/" },
     { label: "Ücretsiz İşitme Testi", description: "Doğru cihaz kararının ilk adımı: ücretsiz işitme değerlendirmesi.", href: "/degerlendirme/ucretsiz-isitme-testi/" },
     { label: "Cihaz Seçim Rehberi", description: "İhtiyaca göre cihaz seçmenin adımlarını adım adım okuyun.", href: "/rehberler/cihaz-secim-rehberi/" },
-    { label: "Cihaz Deneme", description: "Karar vermeden önce cihazı ücretsiz ve yükümlülüksüz deneyin.", href: "/uygulama-ayar/cihaz-deneme/" },
+    { label: "Cihaz Deneme", description: "Merkezde ücretsiz demo; cihazı satın alarak 7 güne kadar deneme ve uygun bulunmazsa kesintisiz ücret iadesi.", href: "/uygulama-ayar/cihaz-deneme/" },
     { label: "Darıca İşitme Cihazları", description: "Gerçek merkezimizi, hizmetlerimizi ve Darıca'daki sürecimizi görün.", href: "/darica-isitme-cihazlari/" },
     { label: "Gebze İşitme Cihazları", description: "Gebze'den gelen danışanlarımız için Darıca merkezimizdeki süreç.", href: "/gebze-isitme-cihazlari/" },
     { label: "Çayırova İşitme Cihazları", description: "Çayırova'dan gelen danışanlarımız için Darıca merkezimizdeki süreç.", href: "/cayirova-isitme-cihazlari/" },
@@ -46,5 +46,5 @@ export const priceGuideCta: GuideCtaContent = {
     { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href, variant: "outline", external: true },
     { label: "Darıca Merkezimize Gelin", href: "/darica-isitme-cihazlari/", variant: "outline" },
   ],
-  reassurance: ["Baskı yok, taahhüt yok", "Deneme ücretsiz", "SGK anlaşmalı merkez"],
+  reassurance: ["Baskı yok, taahhüt yok", "Merkezde ücretsiz demo", "SGK anlaşmalı merkez"],
 };

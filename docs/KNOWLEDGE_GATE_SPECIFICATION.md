@@ -1,3 +1,5 @@
+> **DURUM: ARŞİVLENECEK** (Faz 1 durum bandı, 2026-10-07). Bu spesifikasyon render edilmeyen veya başka bölümle birleştirilmiş bir bileşeni tarif eder; yeni işler için kaynak olarak kullanılmaz. Bu belgenin aşağıdaki içeriği Faz 1'de **değiştirilmedi**. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
+
 # KNOWLEDGE_GATE_SPECIFICATION.md
 
 > Ana sayfanın kapanıştan hemen önceki, "henüz karar vermediyseniz" bölümü (`docs/HOMEPAGE_SPECIFICATION.md`'deki "KnowledgeGate" ile aynı). **Bu dosya, zaten üretimde olan gerçek içeriği belgeler.** Kod içermez.

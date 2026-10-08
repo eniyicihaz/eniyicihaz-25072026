@@ -26,12 +26,13 @@
 //   — ama "Kocaeli'de şubemiz/merkezimiz var" gibi YANLIŞ bir iddia asla
 //   kurulmuyor; her zaman "Darıca'daki merkezimiz" doğru bağlamıyla
 //   kullanılıyor. Kocaeli için uydurma adres/telefon/harita YOK.
+// - P1-B: Darıca sayfasıyla ortak şablon gridleri (değerlendirme süreci,
+//   cihaz türleri, marka şeridi, SGK kartları, hizmet kartları) kaldırıldı;
+//   ilgili inline linkler korundu. Bölgesel hizmet bloğu doğrulanmış
+//   otobüs hatları ve evde hizmet kapsamıyla (LOCAL_SOURCE_OF_TRUTH §3, §7)
+//   yeniden yazıldı. Büyük içerik revizyonu P3'e bırakıldı.
 import MainLayout from "../layouts/MainLayout.astro";
 import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
-import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
-import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
-import Brands from "../components/brands/Brands/Brands.astro";
-import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
@@ -48,10 +49,6 @@ import {
   kocaeliBuyingTips,
   kocaeliRegionalService,
 } from "../data/kocaeli/copy-blocks";
-import { kocaeliProcess } from "../data/kocaeli/process";
-import { kocaeliDeviceTypes } from "../data/kocaeli/device-types";
-import { kocaeliSgk } from "../data/kocaeli/sgk";
-import { kocaeliServices } from "../data/kocaeli/services";
 import { kocaeliLocation } from "../data/kocaeli/location";
 import { kocaeliFaq } from "../data/kocaeli/faq";
 import { kocaeliFinalCta } from "../data/kocaeli/final-cta";
@@ -160,7 +157,6 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     </div>
   </section>
 
-  <ProcessTimeline data={kocaeliProcess} />
   <p class="kocaeli-inline-link-wrap">
     <a class="kocaeli-inline-link" href="/degerlendirme/ucretsiz-isitme-testi/">Ücretsiz değerlendirme hakkında daha fazla bilgi alın →</a>
   </p>
@@ -176,13 +172,11 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     </div>
   </section>
 
-  <ValueGrid data={kocaeliDeviceTypes} />
   <p class="kocaeli-inline-link-wrap">
     <a class="kocaeli-inline-link" href="/isitme-cihazlari/">Tüm seçenekleri işitme cihazları sayfamızda inceleyin →</a>
   </p>
 
-  <p class="kocaeli-plain-note">Tek bir markaya bağlı kalmadan, 18'den fazla dünya markası ve farklı teknoloji seviyeleri arasından ihtiyacınıza uygun olanı karşılaştırabilirsiniz.</p>
-  <Brands />
+  <p class="kocaeli-plain-note">Tek bir markaya bağlı kalmadan, 18 marka ve farklı teknoloji seviyeleri arasından ihtiyacınıza uygun olanı karşılaştırabilirsiniz.</p>
   <p class="kocaeli-inline-link-wrap">
     <a class="kocaeli-inline-link" href="/markalar/">Tüm markaları inceleyin →</a>
   </p>
@@ -195,12 +189,13 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     </div>
   </section>
 
-  <ValueGrid data={kocaeliSgk} />
   <p class="kocaeli-inline-link-wrap">
     <a class="kocaeli-inline-link" href="/sgk-isitme-cihazi-odemesi/">SGK desteği hakkında detaylı bilgi →</a>
   </p>
 
-  <BrandCriteria data={kocaeliServices} />
+  <p class="kocaeli-inline-link-wrap">
+    <a class="kocaeli-inline-link" href="/hizmetlerimiz/">Deneme, ayar ve teknik servis hizmetlerimizi inceleyin →</a>
+  </p>
 
   <section class="kocaeli-copy-block kocaeli-copy-block--alt" aria-labelledby="kocaeli-buying-tips-title">
     <div class="kocaeli-copy-block__inner">

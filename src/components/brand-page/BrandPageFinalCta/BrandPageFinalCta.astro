@@ -3,7 +3,7 @@ import { readableTextOn } from "../../../lib/contrast";
 // BrandPageFinalCta — shared, cross-brand closing CTA section. Generic
 // counterpart of Oticon's original OticonFinalCta; data-driven so every
 // brand page can reuse it.
-import { Phone, MessageCircle, CheckCircle2 } from "lucide-astro";
+import { Phone, MessageCircle, CheckCircle2, Navigation } from "lucide-astro";
 
 export interface BrandPageFinalCtaAction {
   label: string;
@@ -16,6 +16,10 @@ export interface BrandPageFinalCtaContent {
   description: string;
   ctaPrimary: BrandPageFinalCtaAction;
   ctaSecondary: BrandPageFinalCtaAction;
+  // Optional third action (e.g. the Darıca hub's "Yol Tarifi Al"), rendered
+  // in the secondary/outline style. Every page that omits it renders
+  // exactly as before.
+  ctaTertiary?: BrandPageFinalCtaAction;
   trustItems: string[];
   accentColor: string;
   accentColorHover: string;
@@ -117,6 +121,12 @@ const finalCtaStyleOverrides = [
           <MessageCircle size={22} stroke-width={2} aria-hidden="true" />
           <span>{data.ctaSecondary.label}</span>
         </a>
+        {data.ctaTertiary && (
+          <a class="brand-page-final-cta__button brand-page-final-cta__button--outline" href={data.ctaTertiary.href}>
+            <Navigation size={22} stroke-width={2} aria-hidden="true" />
+            <span>{data.ctaTertiary.label}</span>
+          </a>
+        )}
       </div>
 
       <div class="brand-page-final-cta__trust">

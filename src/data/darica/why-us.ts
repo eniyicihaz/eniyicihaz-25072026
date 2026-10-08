@@ -7,7 +7,7 @@ export const daricaWhyUs: ValueGridContent = {
   badge: "NEDEN AVRASYA İŞİTME?",
   heading: "Neden Avrasya İşitme?",
   items: [
-    { icon: Award, title: "2009'dan Beri", description: "Darıca'da yıllardır aynı ekiple hizmet veriyoruz." },
+    { icon: Award, title: "2009'dan Beri", description: "2009'dan bu yana işitme alanındayız; Darıca merkezimiz Ağustos 2024'te açıldı." },
     { icon: ShieldCheck, title: "SGK Anlaşmalı", description: "Resmî olarak SGK ile anlaşmalı bir işitme merkeziyiz." },
     { icon: GraduationCap, title: "Uzman Kadro", description: "Odyolog ve odyometristlerden oluşan yetkin bir ekip." },
   ],

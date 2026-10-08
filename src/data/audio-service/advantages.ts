@@ -17,7 +17,7 @@ export const audioServiceAdvantages: BrandPageAdvantagesContent = {
     category: "Marka Felsefesi",
     title: "Kulak İçinde Neredeyse Görünmez",
     description:
-      "40 yılı aşkın süredir kulak içi (ITE) işitme sistemleri konusunda uzmanlaşmış, kişiye özel üretim sunar.",
+      "1977'den bu yana kulak içi (ITE) işitme sistemlerine odaklanan, kişiye özel üretim sunan bir markadır.",
   },
   items: [
     {
@@ -46,9 +46,9 @@ export const audioServiceAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Palette,
-      category: "Grup",
-      title: "WS Audiology Güvencesi",
-      description: "Signia, Widex ve Rexton ile aynı global grubun bir parçasıdır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "Audio Service cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #1240A0.

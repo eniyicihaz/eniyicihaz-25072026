@@ -40,7 +40,7 @@ export const oticonFinalCta: OticonFinalCtaContent = {
     "Ücretsiz İşitme Testi",
     "Demo İşitme Cihazı",
     "SGK Anlaşmalı Merkez",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   // Precomputed rgb() decomposition of #5fb85a — reproduces the values
   // previously hardcoded directly in OticonFinalCta.astro's CSS.

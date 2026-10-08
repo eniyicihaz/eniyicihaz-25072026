@@ -10,13 +10,13 @@ export const servicesExpertSupport: BrandExpertSupportContent = {
   eyebrow: "Son Adım",
   heading: "İhtiyacınız Olan Hizmeti Sizinle Birlikte Belirliyoruz.",
   paragraph:
-    "18+ hizmeti, sürecin hangi aşamasında hangisine ihtiyaç duyacağınızı incelediniz. Şimdi geriye tek bir adım kalıyor: ücretsiz bir görüşmeyle, size özel hizmeti birlikte belirlemek.",
+    "Hizmetlerimizi ve sürecin hangi aşamasında hangisine ihtiyaç duyacağınızı incelediniz. Şimdi geriye tek bir adım kalıyor: ücretsiz bir görüşmeyle, size özel hizmeti birlikte belirlemek.",
   trustPoints: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı Hizmet",
     "Kişiye Özel Yönlendirme",
     "Uçtan Uca Süreç Desteği",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   ctaPrimary: { label: "Ücretsiz Randevu Al", href: "tel:+905337733199" },
   ctaSecondary: { label: "WhatsApp ile Yazış", href: "https://wa.me/905337733199" },
@@ -25,7 +25,7 @@ export const servicesExpertSupport: BrandExpertSupportContent = {
   panelBody:
     "Sürecin hangi aşamasında olduğunuzu ve neye ihtiyaç duyduğunuzu birlikte netleştiriyoruz.",
   band: [
-    { icon: UserCheck, label: "Uzman Odyometrist Desteği" },
+    { icon: UserCheck, label: "Odyometrist Desteği" },
     { icon: ShieldCheck, label: "SGK Anlaşmalı Merkez" },
     { icon: CalendarCheck, label: "Ücretsiz Test ve Değerlendirme" },
     { icon: Headphones, label: "Teknik Servis Desteği" },

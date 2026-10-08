@@ -11,14 +11,14 @@ export const signiaIntro: BrandPageIntroContent = {
   badge: "SIGNIA MARKASI",
   heading: "Signia İşitme Cihazları Hakkında",
   paragraphs: [
-    "Signia, Almanya kökenli WS Audiology (WSA) grubuna bağlı, global ölçekte tanınan bir işitme cihazı markasıdır.",
+    "Signia, Almanya kökenli, global ölçekte tanınan bir işitme cihazı markasıdır.",
     "Marka, \"Life sounds brilliant.\" felsefesiyle, işitme cihazlarını yapay zekâ destekli, kişiye özel bir konuşma deneyimi sunan bir teknoloji ürünü olarak konumlandırır.",
     "Styletto, Pure, Insio, Silk, Active ve Motion gibi ürün ailelerinde bu yaklaşım, kullanıcının yaşam tarzına ve tasarım tercihine göre şekillenir.",
   ],
   stats: [
     { value: "2015-2016", label: "Signia Markası Olarak Yeniden Doğuş" },
     { value: "Almanya", label: "Kökeni" },
-    { value: "WS Audiology", label: "Bağlı Olduğu Grup" },
+    { value: "Merkezimizde", label: "Teknik Servis" },
     { value: "\"Life sounds brilliant.\"", label: "Marka Felsefesi" },
   ],
   // Signia brand theme revision (2026-07): bordo (#B21F4B), replacing the

@@ -32,7 +32,7 @@ export const contactProcess: BrandBuyingGuideContent = {
     },
     {
       title: "Deneme Süreci",
-      description: "İlgilendiğiniz cihazı satın almadan önce deneyebilirsiniz.",
+      description: "Merkezde yaklaşık 20 dakikalık ücretsiz demo; isterseniz cihazı satın alarak 7 güne kadar deneme ve uygun bulunmazsa kesintisiz ücret iadesi.",
     },
     {
       title: "Satış",

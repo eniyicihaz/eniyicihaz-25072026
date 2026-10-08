@@ -10,20 +10,20 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const vistaAdvantages: BrandPageAdvantagesContent = {
   badge: "NEDEN VISTA?",
   heading: "Kullanıcılar Neden Vista Tercih Ediyor?",
-  intro: "Vista'yı farklı kılan, Sonova'nın Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunmasıdır.",
+  intro: "Vista'yı farklı kılan, Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunmasıdır.",
   hero: {
     icon: Wallet,
     category: "Marka Felsefesi",
-    title: "Sonova Teknolojisi, Erişilebilir Fiyat",
+    title: "Soundsuite OS, Erişilebilir Fiyat",
     description:
-      "Dünyanın en büyük işitme cihazı üreticisinin Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunar.",
+      "Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunar.",
   },
   items: [
     {
       icon: Globe2,
-      category: "Grup",
-      title: "Sonova Güvencesi",
-      description: "Phonak ve Unitron ile aynı global grubun mühendislik altyapısından yararlanır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "Vista cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
     {
       icon: Bluetooth,

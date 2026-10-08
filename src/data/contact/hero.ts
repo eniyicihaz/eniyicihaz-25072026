@@ -47,6 +47,6 @@ export const contactHero: ContactHeroContent = {
   trustPills: [
     "SGK Anlaşmalı İşitme Merkezi",
     "2009'dan Beri Hizmetinizdeyiz",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
 };

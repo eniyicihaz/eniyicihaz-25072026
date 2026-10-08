@@ -13,7 +13,7 @@ export const kalipAlimiFinalCta: BrandPageFinalCtaContent = {
     "Kulak muayenesinden laboratuvar üretimine kadar, size özel bir kulak kalıbı için tüm süreçte yanınızdayız.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Kalıp Alımı", "Kişiye Özel Ölçü", "Renk ve Malzeme Seçeneği", "Uzman Odyometrist"],
+  trustItems: ["Cihaz Alımında İlk Kalıp Ücretsiz", "Kişiye Özel Ölçü", "Renk ve Malzeme Seçeneği", "Odyometrist Desteği"],
   accentColor: "#db2777",
   accentColorHover: "#be185d",
   accentColorGlow: "rgb(219 39 119 / 0.22)",

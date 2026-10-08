@@ -13,7 +13,7 @@ export const uzaktanKontrolFinalCta: BrandPageFinalCtaContent = {
     "Teknoloji kullanım alışkanlığınıza, cihaz tipi tercihinize ve işitme kaybınızın derecesine uygun modeli ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#0284c7",
   accentColorHover: "#0369a1",
   accentColorGlow: "rgb(2 132 199 / 0.22)",

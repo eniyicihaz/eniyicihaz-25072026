@@ -5,6 +5,8 @@
 > Doküman bilinçli olarak teknoloji bağımsızdır. Hiçbir framework, kütüphane, dil, klasör yapısı, dosya organizasyonu, isimlendirme kuralı veya kod örneği içermez. Bu detaylar başka referanslarda ve projenin mevcut yapısında yaşar; bu doküman yalnızca kalite standardını tanımlar.
 >
 > Bu standart; bir Header, Footer, Hero, Mega Menu, Accordion, Card, Form, Modal, sayfa veya layout — ne üretilirse üretilsin — fark etmeksizin her implementasyona uygulanır.
+>
+> **Belge haritası (2026-10-07, Faz 1):** Kaynak önceliği ve belge mimarisi `MASTER_PLAN.md` §1 ve §6'dadır. İşletme gerçekleri ve coğrafi öncelik `docs/source-of-truth/*` (SoT) dosyalarındadır; COMPANY.md bunların kısa kanonik özetidir. Strateji belgeleri `docs/strategy/`, teknik belgeler `docs/tech/` altındadır. Bu standardın içeriği değişmedi.
 
 ---
 
@@ -220,6 +222,6 @@ Bu kriterlerden herhangi biri karşılanmıyorsa, implementasyon eksiktir — ç
 
 Bu doküman, projenin diğer temel referanslarıyla eşdeğer bağlayıcılığa sahiptir ve onlarla birlikte projenin referans katmanını oluşturur. Her doküman farklı bir soruyu yanıtlar: kimiz, nasıl davranırız, nasıl inşa ederiz, nasıl bulunuruz, iyi bir implementasyonun standardı nedir ve — QUALITY_GATES.md — bir sayfa/release ne zaman yayına hazırdır.
 
-Bir çelişki durumunda her doküman kendi yetki alanında esas alınır: gerçek bilgi ve coğrafi hiyerarşi COMPANY.md'ye, marka davranışı ve ton PRINCIPLES.md'ye, görsel ve mimari yapı DESIGN_SYSTEM_GUIDE.md'ye, arama ve AI görünürlüğü SEARCH_STRATEGY.md'ye, implementasyon kalitesi bu dokümana, sayfa/release seviyesi operasyonel yayın kriterleri QUALITY_GATES.md'ye aittir.
+Bir çelişki durumunda her doküman kendi yetki alanında esas alınır: işletme gerçekleri ve coğrafi öncelik `docs/source-of-truth/*` (SoT) dosyalarına (COMPANY.md yalnızca SoT'a referans veren kısa kanonik özettir), marka davranışı ve ton PRINCIPLES.md'ye, görsel ve mimari yapı DESIGN_SYSTEM_GUIDE.md'ye, arama ve AI görünürlüğü SEARCH_STRATEGY.md'ye, implementasyon kalitesi bu dokümana, sayfa/release seviyesi operasyonel yayın kriterleri QUALITY_GATES.md'ye aittir.
 
 Bu doküman uzun ömürlü olacak şekilde, belirli teknolojilerden ve geçici tercihlerden arındırılarak hazırlanmıştır. Bu sayede, projenin kullandığı teknolojiler zamanla değişse bile burada tanımlanan kalite standardı geçerliliğini korur. Güncelleme yapılmadığı sürece burada yazılan standartlar bağlayıcıdır.

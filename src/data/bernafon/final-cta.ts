@@ -17,7 +17,7 @@ export const bernafonFinalCta: BrandPageFinalCtaContent = {
     "Ücretsiz İşitme Testi",
     "Demo İşitme Cihazı",
     "SGK Anlaşmalı Merkez",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   // Precomputed rgb() decomposition of #DA291C.
   accentColor: "#DA291C",

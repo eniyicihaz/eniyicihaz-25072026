@@ -9,7 +9,7 @@ export const amExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "A&M, büyük bir global grubun (WS Audiology) mühendislik altyapısını daha erişilebilir bir fiyat noktasında sunması nedeniyle, bütçe önceliğiyle güvenilir bir çözüm arayan kullanıcılar için değerlendirilmeye değer bir seçenektir.",
+    "A&M, XTM serisini daha erişilebilir bir fiyat noktasında sunması nedeniyle, bütçe önceliğiyle bir çözüm arayan kullanıcılar için değerlendirilmeye değer bir seçenektir.",
   note: "Ancak marka seçimi tek başına yeterli değildir; işitme kaybınızın derecesi ve beklentileriniz birlikte değerlendirilmelidir.",
   // Precomputed rgb() decomposition of #F3701A.
   accentColor: "#F3701A",

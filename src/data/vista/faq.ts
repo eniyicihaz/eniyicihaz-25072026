@@ -11,7 +11,7 @@ export const vistaFaq: BrandPageFaqContent = {
   intro: "Vista kademeleri, teknolojisi ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -20,12 +20,12 @@ export const vistaFaq: BrandPageFaqContent = {
       label: "Genel",
       items: [
         {
-          question: "Vista hangi gruba bağlı?",
-          answer: "Vista, dünyanın en büyük işitme cihazı üreticisi olan İsviçre merkezli Sonova Grubu'na (Phonak ve Unitron ile aynı çatı) bağlı bir markadır.",
+          question: "Vista cihazları için servis veriyor musunuz?",
+          answer: "Evet; sattığımız 18 markanın tamamında olduğu gibi Vista cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
         },
         {
           question: "Vista hangi konuda öne çıkar?",
-          answer: "Vista, Sonova'nın Soundsuite OS teknolojisini Vista V ve Vista B gibi kademelerle erişilebilir bir fiyat noktasında sunmasıyla tanınır.",
+          answer: "Vista, Soundsuite OS teknolojisini Vista V ve Vista B gibi kademelerle erişilebilir bir fiyat noktasında sunmasıyla tanınır.",
         },
       ],
     },

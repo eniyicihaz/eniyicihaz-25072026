@@ -11,7 +11,7 @@ export const amFaq: BrandPageFaqContent = {
   intro: "A&M modelleri, teknolojisi ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,11 +21,11 @@ export const amFaq: BrandPageFaqContent = {
       items: [
         {
           question: "A&M hangi gruba ait?",
-          answer: "A&M Hearing, Signia, Widex ve Rexton'ın da içinde bulunduğu global WS Audiology grubunun bir markasıdır.",
+          answer: "A&M Hearing, XTM serisi işitme cihazlarıyla erişilebilir fiyat segmentine yönelik bir markadır.",
         },
         {
           question: "A&M ürünleri nerede üretiliyor?",
-          answer: "A&M'in XTM serisi, Sivantos India Private Limited'e bağlı Bengaluru, Hindistan'daki üretim merkezinde geliştirilir ve üretilir.",
+          answer: "A&M'in XTM serisi Bengaluru, Hindistan'da geliştirilir ve üretilir.",
         },
       ],
     },

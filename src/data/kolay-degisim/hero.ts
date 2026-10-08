@@ -47,7 +47,7 @@ export const kolayDegisimHero: BrandPageHeroContent = {
       label: "ARIZALI ÜRÜN GÜVENCESİ",
       accent: "#9f1239",
       title: "Üretim Kaynaklı Sorunlarda Hızlı Çözüm",
-      description: "Üretim kaynaklı bir sorun tespit edildiğinde, yetkili kanaldan hızlı bir değişim süreci işletilir.",
+      description: "Üretim kaynaklı bir sorun tespit edildiğinde, değişim üreticinin garanti koşullarına göre değerlendirilir.",
     },
   ],
   image: {

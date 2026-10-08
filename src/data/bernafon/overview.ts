@@ -27,7 +27,7 @@ export const bernafonOverview: BernafonOverviewContent = {
   intro: "Bernafon hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1946" },
-    { icon: "map-pin", label: "Menşei", value: "İsviçre (Demant Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "İsviçre" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Hareketi algılayan, konuşma anlaşılırlığı odaklı işitme" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "Smart Sensor + Machine Learning 2.0" },
     { icon: "bluetooth", label: "Bağlantı Özellikleri", value: "Easy Control-A uygulaması + Bluetooth" },

@@ -45,9 +45,9 @@ export const sonicAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Dna,
-      category: "Grup",
-      title: "Demant Grubu Güvencesi",
-      description: "Oticon ve Bernafon ile aynı global grubun mühendislik altyapısından yararlanır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "Sonic cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
   ],
   // Precomputed rgb() decomposition of #3D4C59.

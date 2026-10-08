@@ -1,73 +1,53 @@
-// Çayırova landing page — SSS. Sorular gerçek Çayırova arama niyetlerine
-// (karar süreci, fiyat, SGK, kullanım, servis) cevap veriyor — Gebze
-// sayfasının sorularının şehir adı değiştirilmiş hâli değil, kısmen farklı
-// sorular (ör. şarjlı cihaz kullanım süresi) içeriyor. "Çayırova'da şubeniz
-// var mı?" gibi bir soru bilinçli olarak eklenmedi — bu konu kullanıcıya
-// gereksiz şekilde öne çıkarılmıyor; ama hiçbir yerde gerçek olmayan bir
-// fiziksel şube iddiası da yok.
+// Çayırova landing page — SSS (P1-B). Kısa ve yalnızca doğrulanmış
+// bilgiye dayalı: şube durumu, 550 hattı, randevusuz ziyaret, evde hizmet,
+// deneme. Gebze SSS'inin soru/cevapları burada kopyalanmıyor. Deneme
+// cevabı SERVICE_SOT §1.5 kanonik modelini kendi cümleleriyle veriyor.
 import { contactConfig } from "../../config/contact";
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 
 export const cayirovaFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
-  heading: "Çayırova'da İşitme Cihazı Hakkında Merak Edilenler",
-  intro: "Cihaz seçimi, fiyat, SGK ve süreçlerimiz hakkında en çok sorulan sorular.",
+  heading: "Çayırova'dan Gelecekler İçin Kısa Cevaplar",
+  intro: "Merkezimize gelmeden önce en çok merak edilenler.",
   decisionCard: {
-    title: "İhtiyacınızı Konuşalım mı?",
+    title: "Çayırova'dan Randevu",
     points: [
-      "SGK anlaşmalı hizmet",
-      "Ücretsiz ilk değerlendirme",
-      "18+ marka seçeneği",
-      "Satın almadan önce deneme imkânı",
+      "Merkezimiz Darıca'da",
+      "Çayırova'dan 550 numaralı hat",
+      "Evde hizmet Çayırova'yı kapsar",
+      "Ücretsiz işitme testi",
     ],
     ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
   categories: [
     {
-      label: "Cihaz ve Karar",
+      label: "Ulaşım",
       items: [
         {
-          question: "Çayırova'da işitme cihazı seçerken nereden başlamalıyım?",
-          answer: "Öncelikle ücretsiz bir işitme değerlendirmesi yaptırmanızı öneririz; sonuçlara göre size uygun cihaz seçeneklerini birlikte belirleriz.",
+          question: "Çayırova'da merkeziniz var mı?",
+          answer: "Hayır, Çayırova'da şubemiz bulunmuyor. Tüm hizmetlerimizi Darıca'daki merkezimizde veriyoruz.",
         },
         {
-          question: "Hangi işitme cihazı türü bana daha uygun olur?",
-          answer: "Kulak arkası, kulak içi, görünmez, şarjlı ve Bluetooth özellikli seçenekler arasından, işitme kaybınızın derecesine göre öneride bulunuyoruz.",
+          question: "Çayırova'dan hangi otobüsle gelebilirim?",
+          answer: "550 numaralı hat Çayırova'dan merkezimize ulaşımda kullanılabilir. Merkez, Farabi Devlet Hastanesi durağının karşısındadır.",
         },
         {
-          question: "Cihazı satın almadan önce deneyebilir miyim?",
-          answer: "Evet; önerilen cihazı satın almadan önce günlük yaşamınızda deneyebilirsiniz.",
+          question: "Önceden haber vermeden gelebilir miyim?",
+          answer: "Randevusuz ziyaretleri kabul ediyoruz; işitme testi ve ayar gibi hizmetler randevuyla verildiğinden gelmeden önce aramanız en iyisidir.",
         },
       ],
     },
     {
-      label: "Fiyat ve SGK",
+      label: "Hizmet",
       items: [
         {
-          question: "Çayırova işitme cihazı fiyatları neye göre belirlenir?",
-          answer: "Fiyatlar teknoloji seviyesi, özellikler ve markaya göre değişir. Sabit bir rakam vermek yerine, ihtiyacınıza uygun gerçekçi seçenekleri birlikte değerlendiriyoruz.",
+          question: "Evime gelerek hizmet veriyor musunuz?",
+          answer: "Evet. Çayırova, Kocaeli genelinde verdiğimiz evde hizmetin kapsamındadır. Evde hizmet ücretsizdir ve randevu gerektirir.",
         },
         {
-          question: "Çayırova SGK işitme cihazı desteğinden nasıl yararlanırım?",
-          answer: "SGK anlaşmalı bir merkezden hizmet alarak, rapor ve reçete süreciyle SGK desteğinden yararlanabilirsiniz.",
-        },
-      ],
-    },
-    {
-      label: "Kullanım ve Destek",
-      items: [
-        {
-          question: "Şarjlı işitme cihazları günde kaç saat kullanılabilir?",
-          answer: "Modern şarjlı işitme cihazları, tam şarjla genellikle gün boyu kullanım sağlar; süre modele göre değişebilir.",
-        },
-        {
-          question: "İşitme cihazımın ayarını sonradan değiştirebilir miyim?",
-          answer: "Evet; ilk ayarın ardından kullanım deneyiminize göre ince ayar ve takip desteği sağlıyoruz.",
-        },
-        {
-          question: "Teknik servis ve bakım hizmeti sunuyor musunuz?",
-          answer: "Evet; cihazınızdaki arıza ve bakım ihtiyaçlarında teknik servis desteği sunuyoruz.",
+          question: "Cihazı almadan önce deneme imkânı var mı?",
+          answer: "Merkezimizde cihazı yaklaşık 20 dakika ücretsiz deneyebilirsiniz. Daha uzun denemek isterseniz cihazı satın alarak 7 güne kadar kullanabilir, memnun kalmazsanız iade edip ödediğiniz tutarı kesintisiz geri alabilirsiniz. Bu 7 günlük deneme kulak içi cihazları kapsamaz.",
         },
       ],
     },

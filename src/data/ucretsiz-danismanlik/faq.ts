@@ -63,7 +63,7 @@ export const ucretsizDanismanlikFaq: BrandPageFaqContent = {
         {
           question: "Cihazı satın almadan deneyebilir miyim?",
           answer:
-            "Evet; karar vermeden önce size uygun görülen cihazı deneyebilirsiniz.",
+            "Merkezimizde yaklaşık 20 dakikalık ücretsiz bir demo yapılır. Günlük hayatta denemek isterseniz cihazı satın alarak 7 güne kadar kullanabilir, uygun bulmazsanız ödediğiniz tutarı kesintisiz geri alabilirsiniz.",
         },
         {
           question: "Birden fazla marka arasında karşılaştırma yapabilir miyim?",

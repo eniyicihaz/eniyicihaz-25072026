@@ -12,14 +12,14 @@ export const phonakIntro: BrandPageIntroContent = {
   badge: "PHONAK MARKASI",
   heading: "Phonak İşitme Cihazları Hakkında",
   paragraphs: [
-    "Phonak, İsviçre merkezli Sonova Grubu'na bağlı, dünya genelinde tercih edilen işitme cihazı üreticilerinden biridir.",
+    "Phonak, İsviçre kökenli bir işitme cihazı üreticisidir.",
     "Marka, \"Life is on.\" felsefesiyle işitme cihazlarını yalnızca bir tıbbi cihaz değil, kullanıcının aktif yaşamına kesintisiz bağlı kalmasını sağlayan bir bağlantı aracı olarak konumlandırır.",
     "Audéo, Naída, Sky, Bolero, Virto ve CROS gibi farklı ürün ailelerinde bu yaklaşım, kullanıcının yaşam tarzına göre şekillenir.",
   ],
   stats: [
     { value: "1947", label: "Kuruluş Yılı" },
     { value: "İsviçre", label: "Global Marka Kökeni" },
-    { value: "Sonova Grubu", label: "Bağlı Olduğu Grup" },
+    { value: "Merkezimizde", label: "Teknik Servis" },
     { value: "\"Life is on.\"", label: "Marka Felsefesi" },
   ],
   // Precomputed rgb() decomposition of #0ea5e9 — kept distinct from

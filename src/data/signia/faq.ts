@@ -12,7 +12,7 @@ export const signiaFaq: BrandPageFaqContent = {
   intro: "Signia modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -22,7 +22,7 @@ export const signiaFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Signia hangi ülkenin markası?",
-          answer: "Signia, Almanya kökenli WS Audiology (WSA) grubuna bağlı bir işitme cihazı markasıdır.",
+          answer: "Signia, Almanya kökenli bir işitme cihazı markasıdır.",
         },
         {
           question: "\"Life sounds brilliant.\" ne anlama gelir?",

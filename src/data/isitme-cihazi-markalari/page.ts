@@ -23,7 +23,7 @@ export const PAGE_URL = "https://www.eniyicihaz.com/isitme-cihazi-markalari/";
 export const pageMeta = {
   title: "İşitme Cihazı Markaları ve Modelleri: Nasıl Seçilir? | Darıca, Kocaeli | EniyiCihaz",
   description:
-    "Oticon, Phonak, Signia, Widex, ReSound ve Starkey NuEar işitme cihazı markalarını ve modellerini tarafsız karşılaştırın; marka nasıl seçilir? Darıca, Kocaeli.",
+    "Oticon, Phonak, Signia, Widex, ReSound ve NuEar işitme cihazı markalarını ve modellerini tarafsız karşılaştırın; marka nasıl seçilir? Darıca, Kocaeli.",
   schemaDescription:
     "İşitme cihazı markalarını, model ailelerini, cihaz türü ve kullanım senaryolarına göre karşılaştıran ve marka seçiminde sorulacak soruları anlatan rehber sayfası.",
 };
@@ -42,7 +42,7 @@ export const toc: GuideLink[] = [
   { label: "Signia", href: "#signia" },
   { label: "Widex", href: "#widex" },
   { label: "ReSound", href: "#resound" },
-  { label: "Starkey NuEar", href: "#starkey-nuear" },
+  { label: "NuEar", href: "#nuear-profili" },
   { label: "Gerçek modeller", href: "#modeller" },
   { label: "Marka ve cihaz türü", href: "#marka-cihaz-turu" },
   { label: "Kullanım senaryoları", href: "#marka-senaryo" },
@@ -61,7 +61,7 @@ export const queries = {
   ],
   brand: [
     "Oticon işitme cihazları", "Phonak işitme cihazları", "Signia işitme cihazları",
-    "Widex işitme cihazları", "ReSound işitme cihazları", "Starkey NuEar işitme cihazları", "NuEar işitme cihazları",
+    "Widex işitme cihazları", "ReSound işitme cihazları", "NuEar işitme cihazları",
   ],
   model: [
     "Oticon modelleri", "Phonak modelleri", "Signia modelleri", "Widex modelleri",

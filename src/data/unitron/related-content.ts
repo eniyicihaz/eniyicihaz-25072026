@@ -21,7 +21,7 @@ export const unitronRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Phonak İşitme Cihazları",
-      description: "Aynı Sonova Grubu çatısı altındaki farklı bir marka felsefesini karşılaştırmak isterseniz Phonak'ı inceleyin.",
+      description: "Farklı bir marka felsefesini karşılaştırmak isterseniz Phonak'ı inceleyin.",
       href: "/markalar/phonak/",
     },
   ],

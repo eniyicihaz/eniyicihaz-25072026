@@ -13,7 +13,7 @@ export const aktifYasamIcinCihazlarFinalCta: BrandPageFinalCtaContent = {
     "Güvenli oturma, dayanıklılık ve pil ömrü önceliklerinizi göz önünde bulundurarak size uygun cihazı ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#4b5563",
   accentColorHover: "#374151",
   accentColorGlow: "rgb(75 85 99 / 0.22)",

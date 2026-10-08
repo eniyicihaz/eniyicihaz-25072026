@@ -14,7 +14,7 @@ export const markaDanismanligiRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Yetkili Servis",
-      description: "Markaların yetkili servis ağının nasıl bir güvence sağladığını tanıyın.",
+      description: "18 markada verdiğimiz teknik servis desteği hakkında bilgi edinin.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {
@@ -34,7 +34,7 @@ export const markaDanismanligiRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Cihaz Deneme",
-      description: "Değerlendirdiğiniz markayı satın almadan önce deneyin.",
+      description: "Değerlendirdiğiniz markayı merkezde ücretsiz demoyla deneyin; isterseniz satın alarak 7 güne kadar kullanın.",
       href: "/uygulama-ayar/cihaz-deneme/",
     },
     {

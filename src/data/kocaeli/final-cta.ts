@@ -5,12 +5,12 @@ import type { BrandPageFinalCtaContent } from "../../components/brand-page/Brand
 export const kocaeliFinalCta: BrandPageFinalCtaContent = {
   badge: "HEMEN BAŞLAYALIM",
   heading: "Kocaeli'de İşitme Cihazı İhtiyacınız İçin Bize Ulaşın",
-  description: "İhtiyacınızı dinleyelim, size uygun işitme cihazını, marka seçeneklerini ve SGK sürecini birlikte değerlendirelim.",
-  ctaPrimary: { label: "Randevu Al", href: "/degerlendirme/ucretsiz-isitme-testi/" },
+  description: "Darıca'daki merkezimiz için randevu alın ya da Kocaeli'nin herhangi bir ilçesinden evde hizmet talep edin.",
+  ctaPrimary: { label: "Arayıp Randevu Alın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: [
     "SGK Anlaşmalı Hizmet",
-    "18+ Marka Seçeneği",
+    "18 Marka Seçeneği",
     "Ücretsiz İlk Değerlendirme",
     "Cihaz Deneme İmkânı",
   ],

@@ -9,10 +9,7 @@
 // reference page (SGK support isn't brand-specific, a medical report is
 // required, current payment criteria apply) — nothing new is claimed.
 //
-// guideHref is a placeholder ("#") because no dedicated SGK guide page
-// exists in this codebase yet — the header nav's own "SGK Rehberi" link
-// (header.data.ts) is the same unresolved placeholder. Update both once
-// the real page/slug exists.
+// guideHref points to the site's SGK pillar page (/sgk-isitme-cihazi-odemesi/).
 
 export interface OticonSgkCtaContent {
   badge: string;
@@ -36,5 +33,5 @@ export const oticonSgkCta: OticonSgkCtaContent = {
   cardTitle: "SGK İşitme Cihazı Rehberi",
   cardItems: ["Başvuru süreci", "Gerekli evraklar", "Güncel ödeme tutarları", "Kimler yararlanabilir", "Sık sorulan sorular"],
   ctaLabel: "SGK Rehberini İncele",
-  guideHref: "#",
+  guideHref: "/sgk-isitme-cihazi-odemesi/",
 };

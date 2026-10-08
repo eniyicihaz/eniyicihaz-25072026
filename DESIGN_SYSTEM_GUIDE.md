@@ -2,13 +2,15 @@
 
 > Bu proje üç temel referans doküman üzerine kuruludur, her biri farklı bir soruyu cevaplar:
 >
-> **COMPANY.md** — *Kimiz?* Şirketi ve markayı tanımlar.
+> **COMPANY.md** — *Kimiz?* Şirketin ve markanın kısa kanonik özetidir. İşletme gerçeklerinin kanonik kaynağı `docs/source-of-truth/*` (SoT) dosyalarıdır; COMPANY.md onlara referans verir.
 >
 > **PRINCIPLES.md** — *Nasıl konuşuruz ve nasıl davranırız?* Marka dilini, UX felsefesini, içerik ve güven kurallarını tanımlar.
 >
 > **DESIGN_SYSTEM_GUIDE.md** (bu doküman) — *Nasıl inşa ederiz?* Tasarım sistemini, component mimarisini, görsel dili ve geliştirme standartlarını tanımlar.
 >
 > Bu doküman kod içermez, CSS içermez, Astro sözdizimi içermez ve bir Figma dosyası değildir. Yalnızca kural ve standartları tanımlar. Bundan sonra üretilecek her Atom, Molecule, Organism, Template ve Page bu dokümana uymak zorundadır.
+>
+> **Belge haritası güncellemesi (2026-10-07, Faz 1):** Yukarıdaki "üç temel referans" anlatımı tarihseldir; geçerli belge mimarisi ve kaynak önceliği için bkz. `MASTER_PLAN.md` §1 ve §6. İşletme gerçekleri yalnızca `docs/source-of-truth/*` (SoT) dosyalarındadır; COMPANY.md bunların özetidir. Faz 1'de eklenen tasarım kuralları **§28**'dedir. Sayfa tipleri ve kanonik bileşen hedefleri: `docs/tech/TEMPLATES.md`. Bu dokümanın mevcut bölümleri değiştirilmedi.
 
 ---
 
@@ -28,11 +30,12 @@ Bu doküman, sitede üretilen her Astro component'inin, her Pattern Library sayf
 
 ## Diğer Dokümanlarla İlişki
 
-Üç doküman birbirini geçersiz kılmaz, tamamlar:
+Bu belgeler birbirini geçersiz kılmaz, tamamlar (işletme gerçeklerinde SoT önceliklidir):
 
 | Doküman | Soru | Yetki Alanı |
 |---|---|---|
-| COMPANY.md | Kimiz? | Şirket ve marka gerçekleri |
+| `docs/source-of-truth/*` (SoT) | Gerçekler neler? | İşletme gerçeklerinin kanonik kaynağı |
+| COMPANY.md | Kimiz? | SoT'un kısa kanonik özeti |
 | PRINCIPLES.md | Nasıl davranırız? | Ton, UX felsefesi, içerik, güven, CTA |
 | DESIGN_SYSTEM_GUIDE.md | Nasıl inşa ederiz? | Görsel sistem, component mimarisi, kod standartları |
 
@@ -658,6 +661,60 @@ yeni bir component oluşturamaz.
 
 # 27. Doküman Otoritesi
 
-Bu doküman, COMPANY.md, PRINCIPLES.md, SEARCH_STRATEGY.md, IMPLEMENTATION_STANDARD.md ve QUALITY_GATES.md ile eşdeğer bağlayıcılığa sahiptir. Altısı birlikte projenin tam referans katmanını oluşturur: COMPANY.md gerçekleri, PRINCIPLES.md davranışı, bu doküman yapıyı ve görsel sistemi, SEARCH_STRATEGY.md keşfedilebilirliği, IMPLEMENTATION_STANDARD.md implementasyon kalitesini, QUALITY_GATES.md ise sayfa/release seviyesi yayın kapılarını yönetir.
+Bu doküman, COMPANY.md, PRINCIPLES.md, SEARCH_STRATEGY.md, IMPLEMENTATION_STANDARD.md ve QUALITY_GATES.md ile eşdeğer bağlayıcılığa sahiptir. Bunlar, işletme gerçeklerinin kanonik kaynağı olan `docs/source-of-truth/*` (SoT) ve `MASTER_PLAN.md` ile birlikte projenin referans katmanını oluşturur: SoT gerçekleri (COMPANY.md onların kısa kanonik özetidir), PRINCIPLES.md davranışı, bu doküman yapıyı ve görsel sistemi, SEARCH_STRATEGY.md keşfedilebilirliği, IMPLEMENTATION_STANDARD.md implementasyon kalitesini, QUALITY_GATES.md ise sayfa/release seviyesi yayın kapılarını yönetir.
 
 Bu doküman, projede zaten inşa edilmiş olan mimariyi (Astro, Atomic Design, kendi klasöründe her component, Pattern Library yaklaşımı) doğrular ve ileriye taşır — geriye dönük olarak var olan Atom katmanını geçersiz kılmaz. Sistem büyüdükçe bu doküman da güncellenir; ancak güncelleme yapılmadığı sürece burada yazılan kurallar bağlayıcıdır.
+
+---
+
+# 28. Faz 1 Ekleri (2026-10-07)
+
+> Bu bölüm, Faz 1'de kilitlenen tasarım kurallarını mevcut Design System mimarisine **ek** olarak kaydeder. Önceki bölümleri geçersiz kılmaz; onları somutlaştırır. Yeni bir görsel sistem tanımlamaz. Kaynaklar: MASTER_PLAN K5, BRAND_SOT §6–§7, CONVERSION_SOT §3 ve §5.
+
+## 28.1 Belge Haritası ve Otorite
+
+- Kaynak önceliği: kullanıcının güncel teyidi > SoT [DOĞRULANDI] > MASTER_PLAN > DECISIONS > strateji ve teknik belgeler > eski belgeler > koddan çıkarılan varsayım (MASTER_PLAN §1).
+- Bu doküman yapı ve görsel sistemden sorumludur; işletme gerçekleri SoT'tadır; COMPANY.md SoT'un kısa kanonik özetidir (§1 ve §27 buna göre güncellendi).
+- Sayfa tipleri, CTA mimarisi ve kanonik bileşen hedefleri: `docs/tech/TEMPLATES.md`. Görsel kuralları: `docs/strategy/IMAGE_GUIDELINES.md`.
+
+## 28.2 Mobile-First
+
+- §11 geçerlidir. Her yeni veya değişen bileşen önce en dar ekranda tasarlanır ve test edilir.
+- Mobilde öncelikli üç eylem: Ara, Yol tarifi, Mesaj (CONVERSION_SOT §5). Mobil eylem çubuğu eklendiğinde consent banner ve diğer sabit öğelerle çakışmaz.
+
+## 28.3 Dokunma Hedefi ve Gövde Metni
+
+- **Dokunma hedefi:** Etkileşimli her öğe (düğme, bağlantı, form kontrolü) her ekran boyutunda **en az 48×48 px**. §11 ve §17'deki "yeterli büyüklük" ifadesinin somut değeri budur.
+- **Gövde metni:** Temel değer **yaklaşık 17 px**; responsive olarak ayarlanabilir. §8'deki okunabilirlik ilkesinin somut hedefidir.
+- Bu değerler token katmanında tanımlanır; bileşenlere sabit değer yazılmaz (§5). Mevcut koddaki farklı değerlerin geçişi ayrı ve onaylı bir iştir (MASTER_PLAN §7, Faz 3); regresyon riski nedeniyle görsel QA ile kademeli yapılır.
+
+## 28.4 Premium
+
+- "Premium", mevcut ilkelerin (§2–§3, §6–§8, §10) tutarlı uygulanmasıyla sağlanır: sadelik, cömert boşluk, net tipografi hiyerarşisi, gerçek fotoğraf, az ve anlamlı vurgu, kontrollü hareket.
+- Referans sitelerin görsel tasarımı kopyalanmaz; yalnızca kalite yaklaşımı referans alınır (BRAND_SOT §7).
+- Yeni renk paleti, yazı tipi veya görsel dil bu bölümle tanımlanmaz. Logo renklerine geçiş kullanıcı kararına bağlıdır ve hex değerleri uydurulmaz (BRAND_SOT §6–§7).
+
+## 28.5 CTA
+
+- CTA etiketi gittiği yeri doğru söyler (etiket = hedef).
+- Header ve birincil CTA'larda yalnızca ana numara; diğer iki numara footer ve İletişim'de rolleriyle (CONVERSION_SOT §1, §3).
+- Transactional ve yerel sayfalarda birincil CTA ilk ekranda; bilgi sayfalarında bağlamsal ve sayfa sonunda (PRINCIPLES.md §9).
+- Aciliyet ve baskı dili kullanılmaz; CTA görsel olarak belirgin ama agresif değildir.
+- CTA durumları §16'daki durum ilkelerine uyar; odak görünür kalır.
+
+## 28.6 Erişilebilirlik
+
+- §17 geçerlidir; WCAG 2.1 AA asgari standarttır.
+- 50+ yaş ana hedef kitle (BUSINESS_SOT §9) nedeniyle okunabilirlik, kontrast ve dokunma hedefi kararlarında daha erişilebilir seçenek tercih edilir.
+- Carousel, menü ve diyalog gibi bileşenlerde klavye erişimi, odak yönetimi ve azaltılmış hareket tercihi zorunludur.
+
+## 28.7 Kontrollü Animasyon
+
+- §12 geçerlidir. Animasyon yalnızca geri bildirim, yön veya durum değişikliğini anlatmak için ve gerektiğinde kullanılır.
+- Otomatik ilerleyen içerik (ör. carousel) kullanıcı tarafından durdurulabilir olmalı ve azaltılmış hareket tercihinde devre dışı kalmalıdır.
+- Animasyon performansı (LCP, CLS) ve okunabilirliği bozamaz.
+
+## 28.8 Kanonik Bileşenler
+
+- Kanonik bileşen hedefleri `docs/tech/TEMPLATES.md` §3'tedir. Bunlar işlevsel hedef adlarıdır; mevcut bileşenlerle eşleme ve konsolidasyon §26 karar ağacı ve IMPLEMENTATION_STANDARD.md §5 gereği her adımda ayrı onayla yapılır.
+- §14 "Mevcut Durum" notu tarihseldir; canlı bileşen envanteri Faz 2 audit'inde çıkarılır.

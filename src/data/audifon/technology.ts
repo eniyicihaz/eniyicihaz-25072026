@@ -36,9 +36,9 @@ export const audifonTechnology: BrandPageTechnologyContent = {
       description: "Ar-Ge'den seri üretime kadar Kölleda/Thüringen'de, Alman mühendisliğiyle geliştirilir.",
     },
     {
-      label: "FAMILY",
-      title: "Aile Şirketi Güvencesi",
-      description: "Almanya'nın en büyük işitme akustiği aile işletmesi KIND-Grubu'na bağlıdır.",
+      label: "ÜRETİM",
+      title: "Alman Üretimi",
+      description: "Kölleda/Thüringen'de üretilir.",
     },
   ],
   // Precomputed rgb() decomposition of #E2001A.

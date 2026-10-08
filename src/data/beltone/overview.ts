@@ -25,7 +25,7 @@ export const beltoneOverview: BeltoneOverviewContent = {
   intro: "Beltone hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
     { icon: "calendar", label: "Kuruluş", value: "1940" },
-    { icon: "map-pin", label: "Menşei", value: "Chicago, ABD (GN Grubu)" },
+    { icon: "map-pin", label: "Menşei", value: "Chicago, ABD" },
     { icon: "sparkles", label: "Marka Felsefesi", value: "Amerikan mirası + yapay zekâ destekli işleme" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "Envision DNN İşleme (2025)" },
     { icon: "bluetooth", label: "Bağlantı", value: "Bluetooth LE Audio / Auracast (Boost Max S)" },

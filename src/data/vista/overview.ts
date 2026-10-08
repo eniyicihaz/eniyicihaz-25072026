@@ -24,8 +24,8 @@ export const vistaOverview: VistaOverviewContent = {
   heading: "Vista'yı 30 Saniyede Tanıyın",
   intro: "Vista hakkında bilmeniz gereken temel bilgileri aşağıda özetledik.",
   cards: [
-    { icon: "map-pin", label: "Bağlı Olduğu Grup", value: "Sonova (İsviçre)" },
-    { icon: "sparkles", label: "Marka Felsefesi", value: "Sonova teknolojisi + erişilebilir fiyat" },
+    { icon: "map-pin", label: "Teknik Servis", value: "Darıca merkezimizde" },
+    { icon: "sparkles", label: "Marka Felsefesi", value: "Soundsuite OS + erişilebilir fiyat" },
     { icon: "cpu", label: "Öne Çıkan Teknoloji", value: "Soundsuite OS" },
     { icon: "users", label: "Hedef Kullanıcı", value: "Bütçe önceliği olan, güvenilir bir grup arayanlar" },
     { icon: "bluetooth", label: "Öne Çıkan Kademeler", value: "Vista V, Vista B" },

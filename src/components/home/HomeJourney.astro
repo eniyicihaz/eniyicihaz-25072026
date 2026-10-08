@@ -1,57 +1,49 @@
 ---
-// HomeJourney — homepage block 7: BrandCriteria (services) + Guide (3-step
-// reassurance) + Service Journey merged into ONE section. The three said
-// the same thing three ways (what we do, in what order); this states it
-// once, as the single path Değerlendir → Seç → Dene → Ayarla → Servis,
-// every step a real link (data/home/service-journey.ts — same real
-// hrefs), plus a short "ayrıca" row for the services that sit beside the
-// path (online test, home service, ear-mould, the full hub). SGK lives in
-// the local block, not here.
+// HomeJourney — ana sayfanın 3. bölümü: "Ana Hizmet Yolları" (Faz 2 P2,
+// onay V1). Tek akış: test → seçim → merkezde demo → satın alma sonrası
+// 7 güne kadar deneme → ayar → teknik servis → SGK. Veri ve kaynak notları:
+// data/home/service-journey.ts. `href`'i olan adım link kartı, olmayan adım
+// (7 günlük deneme) link olmayan bilgi kartı olarak render edilir — aynı
+// hedef sayfaya iki kez link verilmez.
 import HomeBlockHeader from "./HomeBlockHeader.astro";
 import { ArrowRight } from "lucide-astro";
 import { homeServiceJourney } from "../../data/home/service-journey";
-
-const VERBS = ["Değerlendir", "Seç", "Dene", "Ayarla", "Servis"];
-
-const alsoLinks = [
-  { label: "Online işitme testi", href: "/degerlendirme/online-isitme-testi/" },
-  { label: "Evde işitme cihazı hizmeti", href: "/uygulama-ayar/evde-isitme-cihazi-hizmeti/" },
-  { label: "Kulak kalıbı", href: "/uygulama-ayar/kalip-alimi/" },
-  { label: "Tüm hizmetlerimiz", href: "/hizmetlerimiz/" },
-];
 ---
 
 <section class="home-journey" aria-labelledby="home-journey-title">
   <div class="home-journey__inner">
     <HomeBlockHeader
       id="home-journey-title"
-      eyebrow="Hizmetlerimiz"
-      heading="Değerlendirmeden Servise, Tek Yolculuk"
-      intro="Darıca'daki merkezimizde, işitme sağlığınızın her aşamasında yanınızdayız."
+      eyebrow={homeServiceJourney.eyebrow}
+      heading={homeServiceJourney.heading}
+      intro={homeServiceJourney.intro}
     />
 
     <ol class="home-journey__steps">
       {
         homeServiceJourney.steps.map((step, i) => {
           const Icon = step.icon;
+          const Card = step.href ? "a" : "div";
           return (
             <li class="home-journey__step">
-              <a class="home-journey__card" href={step.href}>
+              <Card class:list={["home-journey__card", { "home-journey__card--static": !step.href }]} href={step.href}>
                 <span class="home-journey__top">
                   <span class="home-journey__icon" aria-hidden="true">
                     <Icon size={20} stroke-width={1.75} />
                   </span>
                   <span class="home-journey__verb">
                     <span class="home-journey__num">{i + 1}</span>
-                    {VERBS[i]}
+                    {step.verb}
                   </span>
                 </span>
                 <span class="home-journey__title">{step.title}</span>
                 <span class="home-journey__desc">{step.description}</span>
-                <span class="home-journey__go" aria-hidden="true">
-                  <ArrowRight size={16} stroke-width={2} />
-                </span>
-              </a>
+                {step.href && (
+                  <span class="home-journey__go" aria-hidden="true">
+                    <ArrowRight size={16} stroke-width={2} />
+                  </span>
+                )}
+              </Card>
             </li>
           );
         })
@@ -62,7 +54,7 @@ const alsoLinks = [
       <span class="home-journey__also-label">Ayrıca</span>
       <ul class="home-journey__also-list">
         {
-          alsoLinks.map((link) => (
+          homeServiceJourney.also.map((link) => (
             <li>
               <a class="home-journey__chip" href={link.href}>{link.label}</a>
             </li>
@@ -91,7 +83,7 @@ const alsoLinks = [
     margin: var(--space-8) 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-4);
     counter-reset: none;
   }
@@ -110,7 +102,12 @@ const alsoLinks = [
     transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
   }
 
-  .home-journey__card:hover {
+  /* Link olmayan bilgi kartı (7 günlük deneme): hover/odak efekti yok. */
+  .home-journey__card--static {
+    background: rgb(37 99 235 / 0.04);
+  }
+
+  a.home-journey__card:hover {
     transform: translateY(-3px);
     border-color: var(--color-primary);
     box-shadow: var(--shadow-md);
@@ -210,7 +207,9 @@ const alsoLinks = [
   }
 
   .home-journey__chip {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
     padding: var(--space-2) var(--space-4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
@@ -234,7 +233,7 @@ const alsoLinks = [
 
   @media (max-width: 1279px) {
     .home-journey__steps {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 

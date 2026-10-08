@@ -45,20 +45,20 @@ export const sonicEcosystem: BrandPageEcosystemContent = {
       expertNote: "Dual-Radio Sistemi, Sonic'in güncel nesil bağlantı altyapısının bir parçasıdır.",
     },
     {
-      id: "demant-group",
+      id: "teknik-servis",
       icon: "globe",
-      navLabel: "Demant Grubu",
-      title: "Demant Grubu Mühendisliği",
-      lead: "Sonic, Oticon ve Bernafon'un da içinde bulunduğu Demant Grubu'na bağlı bir markadır.",
+      navLabel: "Teknik Servis",
+      title: "Merkezimizde Sonic Teknik Servisi",
+      lead: "Sattığımız 18 markanın tamamında olduğu gibi Sonic cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
       howItWorks:
-        "Ürünler, Demant Grubu'nun geniş mühendislik ve üretim altyapısından yararlanılarak geliştirilir.",
+        "Cihazınız merkezimizde incelenir; teknik serviste teslim 3 gün içindedir ve ücret cihazın durumuna göre belirlenir.",
       advantages: [
-        "Büyük bir global grubun mühendislik deneyiminden yararlanır",
+        "Sonic cihazları için merkezimizde teknik servis",
         "1998'den bu yana süregelen bir Amerikan mühendislik mirasına sahiptir",
-        "Köklü bir markanın güvencesini taşır",
+        "Garanti işlemleri ücretsizdir",
       ],
       models: ["Enchant", "Radiant"],
-      expertNote: "Sonic, Demant Grubu'nun Amerikan kökenli markasıdır.",
+      expertNote: "Servis randevusu için bizi arayabilirsiniz.",
     },
   ],
   // Precomputed rgb() decomposition of #3D4C59.

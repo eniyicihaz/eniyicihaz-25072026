@@ -9,7 +9,7 @@ export const vistaExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Vista'nın Sonova'ya bağlılığı ve Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunması, büyük bir grubun teknolojisini bütçe önceliğiyle arayan kullanıcılar için değerlendirilmeye değer bir seçenektir.",
+    "Vista'nın Soundsuite OS teknolojisini erişilebilir bir fiyat noktasında sunması, bütçe önceliğiyle işitme cihazı arayan kullanıcılar için değerlendirilmeye değer bir seçenektir.",
   note: "Ancak marka seçimi tek başına yeterli değildir; işitme kaybınızın derecesi ve beklentileriniz birlikte değerlendirilmelidir.",
   // Precomputed rgb() decomposition of #E85D0A.
   accentColor: "#E85D0A",

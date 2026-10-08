@@ -4,7 +4,7 @@ import type { CompanyInfo } from "../footer.types";
 export const company: CompanyInfo = {
   brand: "Eniyicihaz.com",
   legalName: "Avrasya İşitme Cihazları",
-  tagline: "2009'dan beri güvenilir işitme sağlığı hizmeti",
+  tagline: "Avrasya İşitme Cihazları, 2009'da kuruldu",
   about:
     "Avrasya İşitme Cihazları; işitme değerlendirmesi, cihaz uygulaması ve teknik servis hizmetleri sunan SGK anlaşmalı bir işitme merkezidir.",
   address:

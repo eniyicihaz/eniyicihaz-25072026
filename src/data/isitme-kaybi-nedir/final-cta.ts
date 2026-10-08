@@ -13,7 +13,7 @@ export const isitmeKaybiNedirFinalCta: BrandPageFinalCtaContent = {
     "Merak ettiğiniz belirtileri sizinle birlikte değerlendiriyor, ücretsiz işitme testiyle net bir tablo ortaya koyuyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Uzman Odyometrist", "Baskısız Süreç", "Kişiye Özel Yönlendirme"],
+  trustItems: ["Ücretsiz İşitme Testi", "Odyometrist Desteği", "Baskısız Süreç", "Kişiye Özel Yönlendirme"],
   accentColor: "#2563eb",
   accentColorHover: "#1d4ed8",
   accentColorGlow: "rgb(37 99 235 / 0.22)",

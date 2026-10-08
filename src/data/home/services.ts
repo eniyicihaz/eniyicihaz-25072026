@@ -18,7 +18,7 @@ export const homeServices: BrandCriteriaContent = {
     {
       icon: Stethoscope,
       title: "Ücretsiz İşitme Testi",
-      description: "Uzman odyometristlerimizle işitme durumunuzu ücretsiz olarak değerlendiriyoruz.",
+      description: "Odyolog ve odyometristimizle işitme durumunuzu ücretsiz olarak değerlendiriyoruz.",
       href: "/degerlendirme/ucretsiz-isitme-testi/",
     },
     {

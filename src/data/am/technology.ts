@@ -9,7 +9,7 @@ import type { BrandPageTechnologyContent } from "../../components/brand-page/Bra
 export const amTechnology: BrandPageTechnologyContent = {
   badge: "A&M TEKNOLOJİ ALTYAPISI",
   heading: "A&M'i Destekleyen Grup Altyapısı",
-  intro: "A&M'in XTM serisi, WS Audiology grubunun global üretim ve mühendislik altyapısından beslenir.",
+  intro: "A&M'in XTM serisinde öne çıkan özellikler.",
   items: [
     {
       label: "POWER",
@@ -22,9 +22,9 @@ export const amTechnology: BrandPageTechnologyContent = {
       description: "Kulak yapınıza özel üretilen, kulak içi yerleşimli model seçeneği sunar.",
     },
     {
-      label: "GROUP",
-      title: "WS Audiology Altyapısı",
-      description: "Signia, Widex ve Rexton ile aynı global grubun üretim standartlarından yararlanır.",
+      label: "SERVİS",
+      title: "Merkezimizde Teknik Servis",
+      description: "A&M cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
     {
       label: "NOISE",

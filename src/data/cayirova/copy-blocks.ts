@@ -1,36 +1,28 @@
-// Çayırova landing page — kısa, kart/istatistik gerektirmeyen metin
-// blokları. Darıca/Gebze sayfalarının page-scoped "copy block" deseni
-// burada da kullanılıyor — yeni bir shared component icat edilmedi.
+// Çayırova landing page — page-scoped metin blokları (P1-B). Gebze
+// sayfasının yapısı ve cümleleri burada kopyalanmıyor; Çayırova için
+// doğrulanmış bilgi sınırlı olduğu için sayfa bilinçli olarak kısa
+// tutuluyor. Kaynak: LOCAL_SOURCE_OF_TRUTH §2–§3, §6; SERVICE_SOURCE_OF_TRUTH
+// §1 (H1, H6, H7, H16, H17, H24). Hat bilgisi [TIME-SENSITIVE].
 export interface CayirovaCopyBlock {
   badge: string;
   heading: string;
   paragraphs: string[];
 }
 
-// `cayirovaIntro`: Darıca/Gebze'nin "doğru başlangıç" bölümlerinden farklı
-// bir açılış açısı kullanıyor — soyut bir "cihaz seçimi" çerçevesi yerine,
-// somut belirtilerle (TV sesi, kalabalık ortam) başlıyor. Darıca burada da
-// HİÇ geçmiyor.
 export const cayirovaIntro: CayirovaCopyBlock = {
-  badge: "İLK ADIM",
-  heading: "Çayırova'dan İşitme Cihazına Doğru Adım",
+  badge: "ÇAYIROVA'DAN ULAŞIM",
+  heading: "Hat 550 ile Darıca'daki Merkezimize",
   paragraphs: [
-    "İşitme kaybı genellikle yavaş ilerler; televizyonun sesini giderek açmak ya da kalabalık ortamlarda konuşmaları takip etmekte zorlanmak sık karşılaşılan ilk işaretlerdendir.",
-    "Çayırova'dan bize ulaşan danışanlarımız için de ilk adım aynıdır: doğru bir işitme değerlendirmesi ve ihtiyaca göre belirlenen bir cihaz seçimi.",
-    "2009'dan beri SGK anlaşmalı, odyolog ve odyometristlerden oluşan bir ekiple bu süreçte yanınızda oluyoruz.",
+    "Çayırova'dan merkezimize toplu taşımayla gelmek isterseniz 550 numaralı otobüs hattını kullanabilirsiniz. Hat bilgileri değişebilir; yola çıkmadan önce güncel durumu kontrol etmenizi öneririz.",
+    "Merkezimiz Farabi Devlet Hastanesi durağının karşısında, Palandöken Eczanesi'nin üst katındadır. Binada asansör bulunur ve merkez tekerlekli sandalye ile ulaşıma uygundur.",
   ],
 };
 
-// Yeni bölüm: "İşitme Cihazı Seçerken Nelere Dikkat Etmeli?" — Gebze
-// sayfasının karar-faktörleri bölümünden farklı bir vurgu kullanıyor
-// (kayıp derecesi/yaşam ortamı/deneme önemi), fiyatı sabit rakamla değil
-// gerçekçi bir açıklamayla ele alıyor.
-export const cayirovaDecisionFactors: CayirovaCopyBlock = {
-  badge: "DOĞRU SEÇİM",
-  heading: "İşitme Cihazı Seçerken Nelere Dikkat Etmeli?",
+export const cayirovaCenterServices: CayirovaCopyBlock = {
+  badge: "MERKEZİMİZDE",
+  heading: "Çayırova'dan Geldiğinizde Neler Yapabiliriz?",
   paragraphs: [
-    "En gelişmiş özelliklere sahip cihaz, her zaman sizin için en doğru seçim olmayabilir — belirleyici olan işitme kaybınızın derecesi, günlük yaşam ortamınız ve beklentilerinizdir.",
-    "Fiyat; teknoloji seviyesi, özellikler ve markaya göre değişir. Sabit bir rakam yerine, ihtiyacınıza göre gerçekçi seçenekleri birlikte karşılaştırmanızı öneririz.",
-    "Karar vermeden önce cihazı deneme imkânından yararlanmanız, günlük kullanımda gerçekten memnun kalıp kalmayacağınızı görmenizi sağlar.",
+    "Ücretsiz işitme testi, cihaz seçimi, merkezde ücretsiz cihaz demosu, kişiye özel ayar, teknik servis ve SGK işlemlerinde destek hizmetlerinin tamamı Darıca'daki merkezimizde veriliyor.",
+    "Merkeze gelmekte zorlanıyorsanız, Çayırova da Kocaeli genelinde verdiğimiz evde hizmetin kapsamındadır; evde hizmet ücretsizdir ve randevuyla planlanır.",
   ],
 };

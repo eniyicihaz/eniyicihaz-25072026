@@ -9,12 +9,12 @@ export const audifonIntro: BrandPageIntroContent = {
   badge: "AUDIFON MARKASI",
   heading: "Audifon Hakkında",
   paragraphs: [
-    "Audifon, Almanya'nın işitme akustiği alanındaki en büyük aile işletmesi olan KIND-Grubu'na bağlı bir markadır.",
+    "Audifon, Kölleda/Thüringen'de üretim yapan bir Alman markasıdır.",
     "Ürünler, Kölleda/Thüringen'deki üretim merkezinde Ar-Ge'den seri üretime kadar %100 Almanya'da geliştirilir ve üretilir; 65'ten fazla ülkeye ulaştırılır.",
     "Audifon, Cosma Chip Technology üzerine kurulu rega ve sino serisi işitme sistemlerinin yanı sıra, tinnitus'a özel Sueno Pro çözümüyle de bilinir.",
   ],
   stats: [
-    { value: "KIND-Grubu", label: "Bağlı Olduğu Grup" },
+    { value: "Merkezimizde", label: "Teknik Servis" },
     { value: "Kölleda, Almanya", label: "Üretim Merkezi" },
     { value: "65+", label: "Ülkeye Ulaşan Dağıtım Ağı" },
     { value: "Cosma Chip", label: "Öne Çıkan Teknoloji" },

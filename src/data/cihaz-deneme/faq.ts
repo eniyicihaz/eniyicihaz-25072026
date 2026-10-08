@@ -14,7 +14,7 @@ export const cihazDenemeFaq: BrandPageFaqContent = {
   intro: "Deneme süresi, koşullar, bölgeden ulaşım ve karar süreci hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Cihaz Deneme Süreci Hakkında Bilgi Almak İster misiniz?",
-    points: ["Satın alma yükümlülüğü yok", "Gerçek yaşam koşullarında test", "Ara kontrol desteği", "Ücretsiz"],
+    points: ["Merkezde ücretsiz yaklaşık 20 dakikalık demo", "Satın alarak 7 güne kadar deneme", "Uygun bulunmazsa kesintisiz ücret iadesi", "Ara kontrol desteği"],
     ctaLabel: "Hemen Bilgi Alın",
     ctaHref: contactConfig.phone.href,
   },
@@ -24,11 +24,15 @@ export const cihazDenemeFaq: BrandPageFaqContent = {
       items: [
         {
           question: "İşitme cihazını satın almadan önce deneyebilir miyim?",
-          answer: "Evet; size önerilen cihazı satın almadan önce günlük hayatınızda gerçek koşullarda deneyebilirsiniz.",
+          answer: "Size önerilen cihazı merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Günlük hayatınızda denemek isterseniz cihazı satın alarak 7 güne kadar deneyebilir; uygun bulmazsanız iade edebilirsiniz. Ödediğiniz tutar kesintisiz iade edilir.",
         },
         {
           question: "Cihaz denemesi ücretli mi?",
-          answer: "Hayır; cihaz deneme süreci herhangi bir ücret talep edilmeden sunulur ve satın alma yükümlülüğü getirmez.",
+          answer: "Merkezdeki yaklaşık 20 dakikalık demo ücretsizdir. 7 güne kadar deneme ise cihaz satın alınarak yapılır: cihaz bedelini ödersiniz, uygun bulmazsanız 7 gün içinde iade edebilirsiniz ve ödediğiniz tutar kesintisiz iade edilir.",
+        },
+        {
+          question: "Kulak içi cihazları da 7 gün deneyebilir miyim?",
+          answer: "Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır. Bu cihazları merkezimizde demo olarak deneyebilirsiniz.",
         },
         {
           question: "Hangi işitme cihazlarını deneyebilirim?",
@@ -75,7 +79,7 @@ export const cihazDenemeFaq: BrandPageFaqContent = {
       items: [
         {
           question: "Deneme sonrasında hemen cihaz satın almam gerekir mi?",
-          answer: "Hayır; memnun kalmadığınız bir modeli satın almak zorunda değilsiniz, ihtiyacınıza göre farklı bir model değerlendirilebilir.",
+          answer: "Merkezdeki demodan sonra cihaz almak zorunda değilsiniz; ihtiyacınıza göre farklı bir model değerlendirilebilir. Cihazı satın alarak 7 güne kadar denediyseniz ve uygun bulmadıysanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir.",
         },
       ],
     },

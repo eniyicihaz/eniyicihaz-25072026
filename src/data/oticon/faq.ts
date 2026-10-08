@@ -52,7 +52,7 @@ export const oticonFaq: OticonFaqContent = {
   intro: "Oticon modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: "/iletisim/",
   },
@@ -120,7 +120,7 @@ export const oticonFaq: OticonFaqContent = {
         },
         {
           question: "Oticon işitme cihazlarında garanti süresi nedir?",
-          answer: "Oticon işitme cihazlarında üretici garanti koşulları geçerlidir. Garanti kapsamı modele göre değişebilir.",
+          answer: "Garanti kapsamı ve süresi modele göre değişebilir. Garanti işlemlerinde merkezimizde ücretsiz destek veriyoruz.",
         },
       ],
     },

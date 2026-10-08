@@ -19,7 +19,6 @@ import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPage
 import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
 import BrandCriteriaGrid from "../../components/shared/BrandCriteriaGrid/BrandCriteriaGrid.astro";
 import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
-import ContactServiceArea from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
@@ -30,7 +29,6 @@ import { markaDanismanligiIntro } from "../../data/marka-danismanligi/intro";
 import { markaDanismanligiSignalQuestions } from "../../data/marka-danismanligi/signal-questions";
 import { markaDanismanligiCriteria } from "../../data/marka-danismanligi/criteria";
 import { markaDanismanligiLocation } from "../../data/marka-danismanligi/location";
-import { markaDanismanligiServiceArea } from "../../data/marka-danismanligi/service-area";
 import { markaDanismanligiFaq } from "../../data/marka-danismanligi/faq";
 import { markaDanismanligiFinalCta } from "../../data/marka-danismanligi/final-cta";
 import { markaDanismanligiRelatedContent } from "../../data/marka-danismanligi/related-content";
@@ -137,7 +135,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
   <BrandCriteriaGrid data={markaDanismanligiCriteria} />
 
   <ContactLocationCard data={markaDanismanligiLocation} />
-  <ContactServiceArea data={markaDanismanligiServiceArea} />
 
   <BrandPageFaq data={markaDanismanligiFaq} />
   <BrandPageFinalCta data={markaDanismanligiFinalCta} />

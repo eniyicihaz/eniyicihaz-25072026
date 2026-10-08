@@ -1,411 +1,91 @@
 # COMPANY.md
 
-> Bu dosya şirket ve marka hakkında **olgusal** bilgileri içerir: kim olduğumuz, nerede, ne yaptığımız, hangi gerçeklere sahip olduğumuz.
->
-> Bu dosya davranış, ton, tasarım veya kullanıcı deneyimi tarif **etmez**. Marka kişiliği, ses tonu, marka değerleri ve markanın amacı burada değil, davranış anayasasında tanımlanır.
-> Canonical Source: PRINCIPLES.md §1 Brand DNA ve §4 Marka Kişiliği ve Ton.
->
-> Bu dosya proje boyunca şirketle ilgili tek olgusal referans olarak kullanılır.
+> **Durum:** ACTIVE · Kısa kanonik özet · Güncelleme: 2026-10-07 (Faz 1, karar F1-2)
+> **Bu dosya ayrıntılı işletme gerçeği tutmaz.** İşletmenin doğrulanmış bilgileri yalnızca **`docs/source-of-truth/`** altındaki Source of Truth (SoT) dosyalarındadır. Bu dosya yalnızca kanonik özeti ve SoT referanslarını verir.
+> Çelişki olursa **SoT geçerlidir** (bkz. `MASTER_PLAN.md` §1). Eski COMPANY bölümlerinin nereye taşındığı: `docs/tech/DOC_MIGRATION_MAP.md` §1.
+> Davranış, ton ve marka kişiliği burada tanımlanmaz. Bunlar için bkz. `PRINCIPLES.md`.
 
 ---
 
-# 1. Şirket Bilgileri
+## 1. Kimlik
 
-## Resmi Şirket Adı
+| Konu | Kanonik ifade | Ayrıntı (SoT) |
+|---|---|---|
+| Marka | **Avrasya İşitme Cihazları** (tek ve resmî marka). Doğal sonraki kullanımlarda kısa ad: **Avrasya İşitme** | BRAND_SOT §1 |
+| Alan adı | **eniyicihaz.com** yalnızca web sitesinin alan adıdır; marka adı olarak kullanılmaz | BUSINESS_SOT §1 |
+| Kuruluş | Avrasya İşitme Cihazları **2009 yılında Afyon Merkez'de** kurulmuştur | BUSINESS_SOT §2 |
+| Darıca merkezi | Darıca'daki merkez **Ağustos 2024'te** açılmıştır | BUSINESS_SOT §2, LOCAL_SOT §1 |
+| Fiziksel merkez | **Tek fiziksel merkez Darıca'dadır.** Gebze, Çayırova ve diğer ilçelerde şube yoktur | LOCAL_SOT §1 |
+| E-posta | **eniyicihaz@gmail.com** hem birincil e-posta hem form e-postasıdır | BUSINESS_SOT §3 |
+| Adres, telefonlar ve rolleri, çalışma saatleri | Bu dosyada tekrar edilmez | LOCAL_SOT §1, CONVERSION_SOT §1 |
+| Ekip ve uzmanlık | Bu dosyada tekrar edilmez | BUSINESS_SOT §4 |
 
-Avrasya İşitme Cihazları
+**Kanonik tanım** (BUSINESS_SOT §1):
+> "Avrasya İşitme Cihazları 2009 yılında kurulmuştur. Darıca'daki merkezimiz Ağustos 2024'te açılmıştır."
 
-## Ana Marka
+**Kullanılmayacak ifadeler** (tam liste: BUSINESS_SOT §12, BRAND_SOT §3):
+- "2009'dan beri Darıca'da" ve aynı anlama gelen ifadeler
+- "2009'dan beri aynı ekip"
+- "2009'dan beri işitme sektöründe"
+- Kanıtsız üstünlük ifadeleri
 
-Eniyicihaz.com
+## 2. Ne Yapıyoruz
 
-## Destekleyici Marka
+- Avrasya İşitme Cihazları; işitme testi ve değerlendirmesi, işitme cihazı seçimi, deneme, uygulama ve ayar, teknik servis, bakım ve SGK süreç desteği sunan bir işitme cihazı merkezidir.
+- **Doğrulanmış hizmet listesi** (40 hizmet; ücret, randevu, süre ve yaş bilgileriyle): SERVICE_SOT §1
+- **Hasta süreci:** SERVICE_SOT §2
+- **SGK işleyişi:** SERVICE_SOT §3
+  - Tutar ve prosedürler TIME-SENSITIVE'dir ve resmî kaynakla doğrulanmadan kalıcı bilgi gibi yazılmaz.
+- **Markalar ve ürünler:** PRODUCT_SOT (18 marka; başka satılan marka yok)
 
-Avrasya İşitme
+## 3. Misyon
 
-## Resmi Web Sitesi
+İşitme kaybı yaşayan bireylerin doğru bilgiye ulaşmasını sağlamak ve onlara en uygun işitme çözümünü birlikte bulmak.
 
-https://www.eniyicihaz.com
+## 4. Uzun Vadeli Yön
 
-## Marka Önceliği
+- Darıca merkezli olarak Kocaeli'de ve hedeflenen hizmet alanlarında işitme sağlığı konusunda güvenilir bilgi ve hizmet sunmak.
+- Ölçülebilir hedefler: BUSINESS_SOT §8, CONVERSION_SOT §5.
+- Bu bölüm bir hedef tanımıdır, **üstünlük iddiası değildir**. Kamuya açık metinde "Türkiye'nin en …" türü ifadeler kullanılmaz.
 
-Eniyicihaz.com
+## 5. Yerel SEO Kapsamı (F1-3: liste korundu)
 
-## Kuruluş Yılı
+> Coğrafi önceliğin ayrıntılı ve kanonik kaydı: **LOCAL_SOT §3**. Bu bölüm o kaydın özetidir. İkisi çelişirse LOCAL_SOT geçerlidir.
 
-2009
+**Yerel SEO öncelik sırası**
+1. **Darıca:** Fiziksel merkez; birincil yerel odak ve ana yerel otorite.
+2. **Gebze:** İkinci öncelik. Şube değildir; "Gebze'den Darıca merkezimize" modeliyle anlatılır.
+3. **Çayırova:** Üçüncü öncelik. Şube değildir; içerik Gebze'den farklı kurgulanır, Gebze verisi kopyalanmaz.
+4. **Kocaeli:** İl düzeyinde üst bölge; yönlendirici rol.
+5. **Diğer hizmet alanları:** Dilovası, Tuzla ve Pendik ikincil/çevre bölgelerdir. Öncelikli değildirler; yalnızca doğrudan sorulduğunda doğal dille anılırlar.
 
-## Şirket Türü
+**Yerel SEO açısından bilinçli olarak kapsam dışı**
+- İzmit, Körfez, Derince, Başiskele ve yukarıda sayılmayan diğer Kocaeli ilçeleri yerel SEO sayfa önceliği açısından kapsam dışıdır.
+- Bu durum evde hizmet alanını **sınırlamaz** (aşağıya bkz.).
 
-Şahıs Şirketi
+**Kural**
+- Aynı içeriğin yalnızca şehir adı değiştirilerek çoğaltılması (doorway / scaled local page) **kesinlikle yasaktır**.
+- Ayrıntılı kural: `QUALITY_GATES.md` §2.
 
-## Faaliyet Alanı
+## 6. Evde Hizmet Alanı (F1-3: ayrı başlık)
 
-İşitme cihazı satışı, işitme değerlendirmesi, işitme cihazı uygulaması, teknik servis, bakım hizmetleri, SGK anlaşmalı işitme merkezi hizmetleri ve işitme sağlığı danışmanlığı.
+- Evde hizmet alanı **yerel SEO önceliğinden ayrı bir bilgidir** ve fiziksel merkezden daha geniştir.
+- Alan ve kapsam: LOCAL_SOT §3, SERVICE_SOT §1 (H16).
+- Evde hizmet verilen ilçeler **şube gibi gösterilmez**. Fiziksel merkez yalnızca Darıca'dadır.
 
-## Sektör
+## 7. Bilgi Kapsamı
 
-İşitme Sağlığı ve İşitme Cihazları
+Bilgi içerikleri (Bilgi Merkezi) ulusal kapsamlıdır. Bu durum fiziksel hizmet önceliğini veya hizmet alanını değiştirmez.
 
-## Hizmet Verilen Ülke
+## 8. Doküman Otoritesi
 
-Türkiye
+| Konu | Kaynak |
+|---|---|
+| İşletme gerçekleri (kimlik, ekip, hizmet, ürün, yerel, iletişim, Google, asset) | `docs/source-of-truth/*`: **birinci kaynak** |
+| Kilitli strateji ve fazlar | `MASTER_PLAN.md` |
+| Davranış, ton, marka mimarisi, iddia politikası | `PRINCIPLES.md`, BRAND_SOT |
+| Arama ve yerel SEO stratejisi | `SEARCH_STRATEGY.md` |
+| Yayın kapıları | `QUALITY_GATES.md` |
+| Fiyat bilgisi | Fiyat **üretilmez ve tahmin edilmez**. Cihaz fiyatlarının sitede yayınlanıp yayınlanmayacağına **henüz karar verilmedi** (PRODUCT_SOT §4). |
 
-## Hizmet Verilen Şehirler
-
-Başta Kocaeli ve İstanbul olmak üzere Türkiye'nin tüm illerine bilgi ve danışmanlık hizmeti sunmaktadır.
-
-## Merkez Adresi
-
-Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat Darıca / Kocaeli
-
-## Adres Tarifi
-
-- Palandöken Eczanesi'nin üst katında bulunmaktadır.
-- Farabi Ağız ve Diş Sağlığı Merkezi girişinin tam karşısındadır.
-- Asansör ile 1. kata çıkılarak ulaşılabilir.
-
-## Telefon
-
-0533 773 31 99
-
-0262 656 32 77
-
-## E-posta
-
-eniyicihaz@gmail.com
-
-## Web Sitesi
-
-https://www.eniyicihaz.com
-
----
-
-# 2. Marka Bilgileri
-
-> Marka kişiliği, ses tonu ve marka değerleri bu bölümde tanımlanmaz — bunlar davranıştır.
-> Canonical Source: PRINCIPLES.md §1 Brand DNA ve §4 Marka Kişiliği ve Ton.
-
-## Ana Marka
-
-Eniyicihaz.com
-
-## İkincil Markalar
-
-Avrasya İşitme
-
-## Marka Hikayesi
-
-Eniyicihaz.com, kullanıcıların işitme cihazları hakkında tarafsız, güvenilir ve güncel bilgilere ulaşmasını sağlamak amacıyla oluşturulmuş dijital bir bilgi platformudur.
-
-## Marka Konumlandırması
-
-Türkiye'nin en güvenilir işitme cihazı bilgi platformu.
-
-## Marka Vaadi (işlevsel)
-
-Doğru bilgi, doğru cihaz ve doğru yönlendirme.
-
-*(Markanın duygusal vaadi — "yeniden duymak, yeniden bağlanmak" — davranış katmanındadır. Canonical Source: PRINCIPLES.md §1 Brand DNA / Promise.)*
-
----
-
-# 3. Şirket Hakkında
-
-## Kısa Tanıtım
-
-Avrasya İşitme Cihazları, işitme sağlığı alanında faaliyet gösteren, SGK anlaşmalı, satış, uygulama ve teknik servis hizmetleri sunan uzman bir işitme merkezidir.
-
-## Ayrıntılı Tanıtım
-
-Şirket, bireylerin işitme ihtiyaçlarını doğru analiz ederek uygun işitme cihazının seçilmesi, uygulanması, teknik servis hizmetleri ve satış sonrası destek süreçlerini yürütmektedir.
-
-## Şirket Hikayesi
-
-2009 yılında kurulan Avrasya İşitme Cihazları, yıllar içerisinde edindiği deneyimi dijital ortama taşıyarak Eniyicihaz.com platformunu oluşturmuştur.
-
----
-
-# 4. Misyon
-
-İşitme kaybı yaşayan bireylerin doğru bilgiye ulaşmasını sağlamak ve en uygun işitme çözümlerini sunmak.
-
----
-
-# 5. Vizyon
-
-Türkiye'nin en güvenilir işitme cihazı bilgi platformunu ve danışmanlık merkezini oluşturmak.
-
----
-
-# 6. Hizmetler
-
-- Ücretsiz işitme testi
-- İşitme değerlendirmesi
-- İşitme cihazı satışı
-- İşitme cihazı uygulaması
-- Kişiye özel cihaz seçimi
-- Kulak kalıbı uygulamaları
-- Teknik servis
-- Bakım
-- Yazılım güncelleme
-- Cihaz ayarlamaları
-- SGK danışmanlığı
-
----
-
-# 7. Ürün Grupları
-
-- Kulak Arkası İşitme Cihazları
-- Kulak İçi İşitme Cihazları
-- Şarjlı İşitme Cihazları
-- Bluetooth İşitme Cihazları
-- Premium İşitme Cihazları
-- İşitme Cihazı Aksesuarları
-- Pil
-- Uygun Fiyatlı İşitme Cihazları
-
----
-
-# 8. Çalışılan Markalar
-
-- Signia
-- Oticon
-- Phonak
-- Widex
-- ReSound
-- NuEar
-- Unitron
-- Bernafon
-- Audio Service
-- Rexton
-- Sonic
-- Philips
-- A&M
-- Audifon
-- Beltone
-- Coselgi
-- Maico
-- Vista
-
----
-
-# 9. Uzmanlık Alanları
-
-- İşitme cihazı seçimi
-- İşitme kaybı değerlendirmesi
-- Yaşa uygun cihaz önerileri
-- Bluetooth teknolojileri
-- Şarjlı sistemler
-- Çocuk işitme çözümleri
-- Yetişkin işitme çözümleri
-- SGK süreçleri
-- Kulak Çınlaması (tinnitus)
-- Yaşlılar için işitme cihazı
-
----
-
-# 10. Hedef Kitle
-
-## Birincil Hedef Kitle
-
-İşitme kaybı yaşayan yetişkinler.
-
-## İkincil Hedef Kitle
-
-İşitme kaybı yaşayan bireylerin aileleri.
-
-## Karar Vericiler
-
-- Çocuklar
-- Eşler
-- Yakın akrabalar
-- Bakıcılar
-
----
-
-# 11. Hizmet Süreci
-
-1. İletişim
-2. Randevu
-3. İşitme değerlendirmesi
-4. Cihaz önerisi
-5. Deneme süreci
-6. Satış
-7. Uygulama
-8. Satış sonrası destek
-
----
-
-# 12. Rekabet Avantajları
-
-- Uzman danışmanlık
-- Tarafsız yaklaşım
-- Deneyimli ekip
-- Satış sonrası destek
-- SGK danışmanlığı
-- Güvenilir bilgi platformu
-- Yedek işitme cihazı
-- 3d kalıp atölyesi
-
----
-
-# 13. Şirketin Güçlü Yönleri
-
-- Uzun sektör deneyimi
-- Premium hizmet anlayışı
-- Dijital bilgi platformu
-- Güçlü teknik servis
-- Kullanıcı odaklı yaklaşım
-- Türkiye geneli yaygın ağ
-
----
-
-# 14. Kullanılan Teknolojiler
-
-- Dijital işitme cihazları
-- Bluetooth teknolojileri
-- Şarjlı sistemler
-- REM destekli ayarlamalar
-- Modern fitting yazılımları
-
----
-
-# 15. Belgeler / Sertifikalar / Yetkiler
-
-- SGK Anlaşmalı İşitme Merkezi
-- Odyometrist yetkinliği
-- Odyolog yetkinliği
-- Sektörel bilirkişi belgesi
-
----
-
-# 16. İş Ortakları
-
-- SGK
-- İşitme cihazı üreticileri
-- Yetkili distribütörler
-- İşitme Kooperatifi
-- Anlaşmalı İşitme Merkezi Ağı
-
----
-
-# 17. Hizmet Bölgeleri
-
-> Bu bölüm, sitenin Local SEO / GEO coğrafi önceliklendirmesinin **tek** kaynağıdır (Single Source of Truth). Diğer tüm dokümanlar (SEARCH_STRATEGY.md, QUALITY_GATES.md, sayfa/spesifikasyon dosyaları) bu hiyerarşiye yalnızca referans verir; isim veya sırayı kendi içinde tekrar üretmez. Amaç: coğrafi bilginin iki dokümanda birbirinden farklılaşması (drift) hiçbir zaman oluşmasın.
-
-## Coğrafi Öncelik Hiyerarşisi
-
-1. **Darıca — Ana Merkez / Birincil Yerel Odak.** Fiziksel merkezin bulunduğu ilçe (bkz. §1 Merkez Adresi). Sitedeki her "merkez" ifadesi buraya işaret eder.
-2. **Gebze, Çayırova — Öncelikli Hizmet Bölgesi.** Darıca'ya bitişik, en yüksek doğal erişim potansiyeline sahip ilçeler; içerikte doğal cümle içinde (zorlama olmadan) öne çıkarılır.
-3. **Kocaeli — Üst Bölgesel Otorite.** İl düzeyinde referans; Darıca/Gebze/Çayırova'yı kapsayan üst kimlik. NAP, adres biçimi ve "X, Kocaeli" türü il-ilçe eşleşmesi için kullanılır.
-4. **Dilovası, Tuzla, Pendik — İkincil / Çevre Bölgeler.** Öncelikli değildir ama hizmet reddedilmez; yalnızca doğrudan sorulduğunda (SSS, iletişim sayfası) doğal dille anılır.
-
-## Bilinçli Olarak Kapsam Dışı
-
-İzmit, Körfez, Derince, Başiskele ve yukarıda sayılmayan diğer Kocaeli ilçeleri bu hiyerarşiye **dahil edilmemiştir** — bu bir eksiklik değil, bilinçli bir sınırdır. Dış bir kaynak bu ilçeleri önerse bile, coğrafi kapsam yalnızca bu bölümün güncellenmesiyle genişler.
-
-## Kullanım Kuralı
-
-Bu hiyerarşi, doğal bir Local SEO/GEO sinyali olarak kullanılır: gerçek bağlamla, doğal cümle içinde (ör. "Darıca merkezli; Gebze ve Çayırova'dan da kolayca ulaşabilirsiniz."). Her sayfaya zorla ilçe/il adı eklenmesi ve aynı içeriğin yalnızca şehir adı değiştirilerek çoğaltılması (doorway/scaled local page) kesinlikle yasaktır. Ayrıntılı, kontrol edilebilir kural: Canonical Source: QUALITY_GATES.md §2 Local SEO Gate.
-
-## Şehir/Ülke Düzeyi Bilgi Hizmeti (yukarıdaki yerel hiyerarşiden ayrı)
-
-Kocaeli ve İstanbul'un yanı sıra, Türkiye'nin tüm illerine bilgi ve danışmanlık hizmeti sunulur (bkz. §1 Hizmet Verilen Şehirler). Bu, fiziksel/yerel hizmet önceliğini değil, dijital bilgi platformunun ulusal kapsamını ifade eder ve yukarıdaki 4 kademeli coğrafi öncelik hiyerarşisiyle karıştırılmaz.
-
----
-
-# 18. Müşteri Profili
-
-## Yaş Grupları
-
-18+
-
-40+
-
-60+
-
-65+
-
-## Meslek Grupları
-
-Tüm meslek grupları.
-
-## Özel Gruplar
-
-- Emekliler
-- SGK kullanıcıları
-- İlk kez cihaz kullanacak bireyler
-- İleri yaş kullanıcıları
-
----
-
-# 19. Çalışma Saatleri
-
-- Hafta içi: 08:45 - 19:00
-- Cumartesi: 09:00 - 19:00
-- Pazar kapalı
-
----
-
-# 20. Şirket Politikaları
-
-## Ödeme
-
-- Nakit
-- Banka ve kredi kartı
-
-## Garanti
-
-Üretici garanti koşulları geçerlidir.
-
-## Teknik Servis
-
-Yetkili servis süreçleri uygulanır.
-
-## Randevu
-
-Önceden randevu alınması tavsiye edilir.
-
-## Gizlilik
-
-Kişisel veriler KVKK kapsamında korunur.
-
----
-
-# 21. Sık Sorulan Konular
-
-- İşitme cihazı fiyatları
-- SGK desteği
-- En iyi marka hangisi?
-- Bluetooth var mı?
-- Şarjlı mı pilli mi?
-- İşitme testi gerekli mi?
-- Deneme yapılabiliyor mu?
-- Marka ve modellerin fiyat bilgisi
-- Kulak çınlamasına faydası olur mu?
-
----
-
-# 22. Gelecek Hedefleri
-
-## Kısa Vadeli Hedefler
-
-Eniyicihaz.com'u Türkiye'nin en kapsamlı işitme cihazı bilgi platformu haline getirmek.
-
-## Uzun Vadeli Hedefler
-
-Türkiye'de işitme sağlığı alanında referans kabul edilen dijital marka olmak.
-
----
-
-# 23. Doküman Otoritesi ve Kullanım
-
-Bu doküman yalnızca **olgusal** bilgi kaynağıdır. İçerik üretimi sırasında şirket ve marka gerçekleri için temel referans budur.
-
-- **Olgusal bilgi** (şirket adı, adres, telefon, kuruluş yılı, hizmetler, markalar, saatler) için bu dosya esas alınır.
-- **Davranış, ton, marka amacı, içerik kuralları ve yasaklı ifadeler** bu dosyada tanımlanmaz. Canonical Source: PRINCIPLES.md (özellikle §1 Brand DNA, §4 Kişilik ve Ton, §5 İçerik Bütünlüğü, §12 Yapay Zekâ İçerik Üretim Kuralları).
-- **Fiyat bilgisi:** Şirket web sitesinde fiyat listesi yayımlanmaz. Fiyat üretmeme/tahmin etmeme kuralı bir davranış ilkesidir. Canonical Source: PRINCIPLES.md §5 İçerik Bütünlüğü ve İddia Politikası.
-- **Marka mimarisi** (Eniyicihaz.com öncelikli, Avrasya İşitme uzmanlık): Canonical Source: PRINCIPLES.md §2 Marka Mimarisi.
-
-Bu dosya yaşayan bir dokümandır; şirket gerçekleri değiştikçe güncellenir.
+Bu dosya yaşayan bir özettir. İşletme bilgisi değiştiğinde önce SoT güncellenir, sonra gerekiyorsa bu özet.

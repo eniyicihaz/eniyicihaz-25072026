@@ -10,20 +10,20 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const maicoAdvantages: BrandPageAdvantagesContent = {
   badge: "NEDEN MAICO?",
   heading: "Kullanıcılar Neden MAICO Tercih Ediyor?",
-  intro: "MAICO'yu farklı kılan, ölçüm bilimindeki köklü mirasını ve Demant Grubu mühendisliğini bir arada sunuyoruz.",
+  intro: "MAICO'yu farklı kılan özellikleri ve ürün serilerini bir arada sunuyoruz.",
   hero: {
     icon: Landmark,
-    category: "Marka Felsefesi",
-    title: "1937'den Bu Yana Ölçüm Bilimi Mirası",
+    category: "Ürün Serileri",
+    title: "Farklı Yerleşim Seçenekleri",
     description:
-      "\"Audiometer\" terimini literatüre kazandıran, odyolojik ölçüm biliminde öncü bir geleneğe sahiptir.",
+      "Bluetooth'lu, kulak arkası ve kulak içi seçenekleri bulunan serilere sahiptir.",
   },
   items: [
     {
       icon: Globe2,
-      category: "Grup",
-      title: "Demant Grubu Mühendisliği",
-      description: "1995'ten bu yana Oticon ve Bernafon ile aynı global grubun mühendislik altyapısından yararlanır.",
+      category: "Servis",
+      title: "Merkezimizde Teknik Servis",
+      description: "MAICO cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
     {
       icon: Bluetooth,

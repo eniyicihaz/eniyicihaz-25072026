@@ -21,7 +21,7 @@ export const maicoRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Bernafon İşitme Cihazları",
-      description: "Aynı Demant Grubu çatısı altındaki farklı bir marka felsefesini karşılaştırmak isterseniz Bernafon'u inceleyin.",
+      description: "Farklı bir marka felsefesini karşılaştırmak isterseniz Bernafon'u inceleyin.",
       href: "/markalar/bernafon/",
     },
   ],

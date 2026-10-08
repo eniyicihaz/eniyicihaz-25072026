@@ -27,7 +27,7 @@ export const unitronHero: BrandPageHeroContent = {
   badge: "UNITRON · KANADA-ALMAN MİRASI",
   headingLines: ["Unitron ile Dört Mikrofonlu", "Binaural Ağ Teknolojisi"],
   paragraphs: [
-    "Unitron, 1964'ten bu yana Kitchener, Ontario'da (Kanada) faaliyet gösteren, bugün Phonak ile aynı çatı olan Sonova Grubu'na bağlı bir markadır.",
+    "Unitron, 1964'ten bu yana Kitchener, Ontario'da (Kanada) faaliyet gösteren bir işitme cihazı markasıdır.",
     "Blu, Moxi Vivante, Stride ve diğer Unitron modellerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -42,7 +42,7 @@ export const unitronHero: BrandPageHeroContent = {
     {
       label: "PRISM",
       accent: "#4A76AC",
-      title: "Sonova PRISM Çipi",
+      title: "PRISM Çipi",
       description: "Blu platformunun temelini oluşturan, iki aktif bağlantıyı destekleyen çip teknolojisi.",
     },
     {

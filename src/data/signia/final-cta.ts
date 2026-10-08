@@ -30,7 +30,7 @@ export const signiaFinalCta: BrandPageFinalCtaContent = {
     "Ücretsiz İşitme Testi",
     "Demo İşitme Cihazı",
     "SGK Anlaşmalı Merkez",
-    "Uzman Odyometrist Desteği",
+    "Odyometrist Desteği",
   ],
   accentColor: "#B21F4B",
   accentColorHover: "#D63A69",

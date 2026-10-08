@@ -14,7 +14,7 @@ export const onlineIsitmeTestiFinalCta: BrandPageFinalCtaContent = {
     "Online tarama yalnızca ön değerlendirme amaçlıdır. Kesin değerlendirme için profesyonel odyolojik test gereklidir.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Profesyonel Test", "Uzman Odyometrist", "Aynı Gün Sonuç", "SGK Danışmanlığı"],
+  trustItems: ["Ücretsiz Profesyonel Test", "Odyometrist Desteği", "Aynı Gün Sonuç", "SGK Danışmanlığı"],
   accentColor: "#e11d48",
   accentColorHover: "#be123c",
   accentColorGlow: "rgb(225 29 72 / 0.22)",

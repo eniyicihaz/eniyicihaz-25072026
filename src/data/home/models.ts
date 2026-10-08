@@ -15,7 +15,7 @@ import type { BrandPageModelsContent } from "../../components/brand-page/BrandPa
 export const homeModels: BrandPageModelsContent = {
   badge: "GERÇEK ÜRÜNLER",
   heading: "Birkaç Gerçek Modelle Tanışın",
-  intro: "18'den fazla markanın binlerce seçeneğinden, farklı ihtiyaçlara örnek birkaç model.",
+  intro: "18 markanın seçenekleri arasından, farklı ihtiyaçlara örnek birkaç model.",
   ctaLabel: "İncele",
   items: [
     {

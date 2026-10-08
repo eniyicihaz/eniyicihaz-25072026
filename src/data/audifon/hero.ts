@@ -27,7 +27,7 @@ export const audifonHero: BrandPageHeroContent = {
   badge: "AUDIFON · ALMAN AİLE MİRASI",
   headingLines: ["Audifon ile Almanya'da", "Geliştirilen Hassas Teknoloji"],
   paragraphs: [
-    "Audifon, Almanya'nın en büyük aile işletmesi KIND-Grubu'na bağlı, Kölleda/Thüringen'de yüzde yüz Almanya'da geliştirilen ve üretilen bir işitme teknolojisi markasıdır.",
+    "Audifon, Kölleda/Thüringen'de geliştirilen ve üretilen bir Alman işitme teknolojisi markasıdır.",
     "Cosma Chip Technology tabanlı Sueno Pro, rega ve sino serisi Audifon modellerini Avrasya İşitme'de keşfedin.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },

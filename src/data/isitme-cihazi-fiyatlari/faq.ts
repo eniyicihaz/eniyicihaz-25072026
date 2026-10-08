@@ -81,7 +81,7 @@ export const priceGuideFaq: BrandPageFaqContent = {
         {
           question: "İşitme cihazı deneme yapılabilir mi?",
           answer:
-            "Evet. Cihaz deneme süreci ücret talep edilmeden ve satın alma yükümlülüğü getirmeden sunulur; stok durumuna bağlı olarak karşılaştırmalı deneme de değerlendirilebilir.",
+            "Evet. Merkezimizde yaklaşık 20 dakikalık ücretsiz cihaz demosu yapılır; cihazı satın alarak 7 güne kadar deneyip uygun bulmazsanız iade edebilirsiniz ve ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; stok durumuna bağlı olarak karşılaştırmalı demo da değerlendirilebilir.",
         },
         {
           question: "İşitme cihazı kaç yıl kullanılır?",

@@ -32,7 +32,7 @@ export const unitronModels: BrandPageModelsContent = {
       slug: "blu",
       category: "Güncel Nesil",
       name: "Unitron Blu",
-      description: "Sonova PRISM çipi ve AutoFocus 360 ile geniş bağlantı özellikleri sunan model ailesi.",
+      description: "PRISM çipi ve AutoFocus 360 ile geniş bağlantı özellikleri sunan model ailesi.",
       tags: ["RIC", "Bluetooth", "Şarjlı"],
       image: "/images/unitron/models/blu.webp",
     },

@@ -10,7 +10,7 @@ import type { BrandPageRelatedContentContent } from "../../components/brand-page
 
 export const garantiIslemleriRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Yetkili Garanti Sunduğumuz Markalar",
+  heading: "Garanti İşlemlerinde Destek Verdiğimiz Markalardan Bazıları",
   links: [
     {
       label: "Oticon",

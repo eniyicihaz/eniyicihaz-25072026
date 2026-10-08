@@ -11,7 +11,7 @@ export const nuearFaq: BrandPageFaqContent = {
   intro: "NuEar modelleri, teknolojileri ve SGK desteği hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,7 +21,7 @@ export const nuearFaq: BrandPageFaqContent = {
       items: [
         {
           question: "NuEar hangi ülkenin markası?",
-          answer: "NuEar, 1976 yılında San Diego, Kaliforniya'da kurulan, bugün Amerikan menşeli Starkey grubuna bağlı bir işitme cihazı markasıdır.",
+          answer: "NuEar, 1976 yılında San Diego, Kaliforniya'da kurulan Amerikan kökenli bir işitme cihazı markasıdır.",
         },
         {
           question: "NuEar hangi konuda öne çıkar?",

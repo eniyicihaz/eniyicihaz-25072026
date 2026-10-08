@@ -11,7 +11,7 @@ export const cihazDenemeIntro: BrandPageIntroContent = {
     "İşitme profiliniz, günlük yaşam alışkanlıklarınız ve en çok vakit geçirdiğiniz ortamlar, size uygun cihazı belirleyen asıl etkenlerdir.",
     "Konuşma ortamlarında, telefon kullanımında, televizyon izlerken veya kalabalık bir ortamda yaşadığınız deneyim kişiden kişiye farklılık gösterir.",
     "Teknoloji beklentiniz, kullanım alışkanlıklarınız ve cihazın kulağınızdaki fiziksel konforu da doğru seçimin parçasıdır.",
-    "Darıca'daki merkezimizde cihaz deneme süreci tam olarak bu farkı ortaya çıkarmak için var — size uygun olanı, kendi yaşamınızda deneyerek anlarsınız.",
+    "Darıca'daki merkezimizde cihaz deneme süreci tam olarak bu farkı ortaya çıkarmak için var — önce merkezde ücretsiz demoyla, isterseniz cihazı satın alarak 7 güne kadar kendi yaşamınızda deneyerek size uygun olanı anlarsınız.",
   ],
   stats: [
     { value: "İşitme Profili", label: "Kişisel Faktör" },

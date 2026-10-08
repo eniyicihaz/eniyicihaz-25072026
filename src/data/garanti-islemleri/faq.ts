@@ -12,7 +12,7 @@ export const garantiIslemleriFaq: BrandPageFaqContent = {
   intro: "Kapsam, belgeler ve süreç konusunda en çok sorulan sorular.",
   decisionCard: {
     title: "Garanti Kapsamınızı Öğrenmek İster misiniz?",
-    points: ["Net kapsam bilgisi", "Belgeli süreç", "Yetkili servis ağı", "Ücretsiz değerlendirme"],
+    points: ["Net kapsam bilgisi", "Belgeli süreç", "Ücretsiz garanti işlemleri", "Ücretsiz değerlendirme"],
     ctaLabel: "Hemen Bilgi Alın",
     ctaHref: contactConfig.phone.href,
   },

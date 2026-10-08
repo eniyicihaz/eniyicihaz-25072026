@@ -1,0 +1,247 @@
+---
+// HomeHero — ana sayfanın tek, statik hero'su (Faz 2 P2, onay V1). Önceki
+// 6 slaytlı carousel'in yerini alır: tek H1, tek mesaj, ilk ekranda ziyaret
+// bilgisi ve Ara / Yol tarifi / WhatsApp hiyerarşisi.
+//
+// Görsel: `data.image` verildiğinde tek <img> render edilir — width/height
+// (CLS koruması), loading="eager", fetchpriority="high", srcset/sizes.
+// Verilmediğinde hero metin odaklı tek sütun kalır; yer tutucu basılmaz.
+//
+// Ölçüm: CTA'lar mevcut href desenlerini kullanır (tel:, wa.me,
+// maps.app.goo.gl, /degerlendirme/ucretsiz-isitme-testi/); events.ts
+// sınıf adındaki "hero" kalıbından link_location="hero" üretir.
+import { Phone, Navigation, ArrowRight, MapPin } from "lucide-astro";
+import WhatsAppIcon from "../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import type { HomeHeroContent } from "../../data/home/hero";
+
+interface Props {
+  data: HomeHeroContent;
+}
+
+const { data } = Astro.props;
+const [directions, whatsapp] = data.secondaryCtas;
+---
+
+<section class:list={["home-hero", { "home-hero--with-image": !!data.image }]} aria-labelledby="home-hero-title">
+  <div class="home-hero__inner">
+    <div class="home-hero__copy">
+      <p class="home-hero__eyebrow">{data.eyebrow}</p>
+      <h1 class="home-hero__title" id="home-hero-title">{data.heading}</h1>
+      <p class="home-hero__description">{data.description}</p>
+
+      <p class="home-hero__visit">
+        <MapPin size={20} stroke-width={1.75} aria-hidden="true" class="home-hero__visit-icon" />
+        <span>{data.visit}</span>
+      </p>
+
+      <div class="home-hero__actions">
+        <a class="home-hero__btn home-hero__btn--primary" href={data.primaryCta.href}>
+          <Phone size={20} stroke-width={2} aria-hidden="true" />
+          <span>{data.primaryCta.label}</span>
+        </a>
+        {directions && (
+          <a class="home-hero__btn home-hero__btn--secondary" href={directions.href}>
+            <Navigation size={20} stroke-width={2} aria-hidden="true" />
+            <span>{directions.label}</span>
+          </a>
+        )}
+        {whatsapp && (
+          <a class="home-hero__btn home-hero__btn--secondary" href={whatsapp.href}>
+            <WhatsAppIcon size={20} />
+            <span>{whatsapp.label}</span>
+          </a>
+        )}
+      </div>
+
+      <a class="home-hero__text-link" href={data.textLink.href}>
+        <span>{data.textLink.label}</span>
+        <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+      </a>
+    </div>
+
+    {data.image && (
+      <div class="home-hero__media">
+        <img
+          class="home-hero__image"
+          src={data.image.src}
+          srcset={data.image.srcset}
+          sizes={data.image.sizes ?? "(min-width: 1024px) 50vw, 100vw"}
+          alt={data.image.alt}
+          width={data.image.width}
+          height={data.image.height}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .home-hero {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .home-hero__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .home-hero--with-image .home-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .home-hero__copy {
+    max-width: 46rem;
+  }
+
+  .home-hero__eyebrow {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+
+  .home-hero__title {
+    margin: 0;
+    font-size: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.02em;
+  }
+
+  .home-hero__description {
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .home-hero__visit {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin: var(--space-5) 0 0;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .home-hero__visit-icon {
+    flex: none;
+    margin-top: 2px;
+    color: var(--color-primary);
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  /* Minimum 48 px dokunma hedefi (K5); butonlar 56 px. */
+  .home-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 56px;
+    padding-inline: var(--space-6);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
+  }
+
+  .home-hero__btn--primary {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    border: 1px solid var(--color-primary);
+  }
+
+  .home-hero__btn--primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+
+  .home-hero__btn--secondary {
+    background: var(--color-background);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .home-hero__btn--secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .home-hero__btn:focus-visible,
+  .home-hero__text-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .home-hero__text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    margin-top: var(--space-4);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .home-hero__media {
+    min-width: 0;
+  }
+
+  .home-hero__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (max-width: 1023px) {
+    .home-hero--with-image .home-hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-hero {
+      padding-block: var(--space-10);
+    }
+
+    .home-hero__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .home-hero__actions {
+      flex-direction: column;
+    }
+
+    .home-hero__btn {
+      width: 100%;
+    }
+  }
+</style>

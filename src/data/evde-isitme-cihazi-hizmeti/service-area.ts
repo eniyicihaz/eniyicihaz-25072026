@@ -1,33 +1,37 @@
-// Evde Hizmet Bölgesi — ContactServiceArea üzerinden render edilir. Aynı
-// gerçek tier yapısı (COMPANY.md §17), bu sayfanın "biz size geliriz"
-// çerçevesiyle yeniden yazıldı.
+// Evde Hizmet Bölgesi — ContactServiceArea üzerinden render edilir (P1-B).
+// Kapsam yalnızca SoT'tan: Kocaeli'nin tamamı ve İstanbul Anadolu
+// Yakası'nın tüm ilçeleri (LOCAL_SOURCE_OF_TRUTH §3, SERVICE_SOT H16:
+// ücretsiz, randevu gerekli). Önceki "Darıca, Gebze ve Çayırova'da" kapsamı
+// gerçek alanı daraltıyordu; "kısa sürede adresinize ulaşırız" gibi
+// doğrulanmamış süre vaadi kaldırıldı. Evde hizmet verilen bölgeler şube
+// olarak gösterilmez.
 import type { ContactServiceAreaContent } from "../../components/contact/ContactServiceArea/ContactServiceArea.astro";
 
 export const evdeHizmetServiceArea: ContactServiceAreaContent = {
   eyebrow: "EVDE HİZMET BÖLGESİ",
-  heading: "Darıca, Gebze ve Çayırova'da Evde Hizmet",
-  intro: "Evde işitme cihazı hizmetimiz öncelikli olarak Darıca, Gebze ve Çayırova'da sunulmaktadır.",
+  heading: "Kocaeli Genelinde ve İstanbul Anadolu Yakası'nda Evde Hizmet",
+  intro: "Evde işitme cihazı hizmetini Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nın tüm ilçelerinde veriyoruz.",
   tierLabels: {
     merkez: "Merkez",
-    oncelikli: "Öncelikli Hizmet Bölgeleri",
+    oncelikli: "Evde Hizmet Bölgesi",
     cevre: "Çevre İlçeler",
   },
   items: [
     {
       name: "Darıca",
       tier: "merkez",
-      description: "Merkezimiz Darıca'dadır; ilçe genelinde evde hizmet için ekibimiz kısa sürede adresinize ulaşabilir.",
+      description: "Tek fiziksel merkezimiz Darıca'dadır; merkeze gelebilenler hizmetlerimizi burada da alabilir.",
     },
     {
-      name: "Gebze",
+      name: "Kocaeli",
       tier: "oncelikli",
-      description: "Gebze'den randevu alarak evde işitme cihazı hizmetinden faydalanabilirsiniz.",
+      description: "Kocaeli'nin tüm ilçeleri evde hizmet bölgemizdedir.",
     },
     {
-      name: "Çayırova",
+      name: "İstanbul Anadolu Yakası",
       tier: "oncelikli",
-      description: "Çayırova'dan da randevu alarak ekibimizi evinize davet edebilirsiniz.",
+      description: "Anadolu Yakası'nın tüm ilçeleri evde hizmet bölgemizdedir.",
     },
   ],
-  closing: "Kocaeli genelinde listede yer almayan bir bölgeden ulaşmak istiyorsanız, size yardımcı olup olamayacağımızı öğrenmek için bizi aramanız yeterli.",
+  closing: "Evde hizmet ücretsizdir ve randevuyla planlanır; uygun gün ve saati birlikte belirlemek için bizi arayabilirsiniz.",
 };

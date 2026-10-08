@@ -47,7 +47,7 @@ export const orijinalAksesuarAdvantages: BrandPageAdvantagesContent = {
       icon: Truck,
       category: "Kolay Temin",
       title: "Kolay ve Hızlı Temin",
-      description: "İhtiyaç duyduğunuz orijinal aksesuarları hızlı bir şekilde temin edebiliyoruz.",
+      description: "Pil ve aksesuarları randevu gerekmeden merkezimizden temin edebilirsiniz.",
     },
   ],
   accentColor: "#7c3aed",

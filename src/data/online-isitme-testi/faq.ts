@@ -14,7 +14,7 @@ export const onlineIsitmeTestiFaq: BrandPageFaqContent = {
   decisionCard: {
     title: "Darıca'da Profesyonel İşitme Testi Randevusu Alın",
     points: [
-      "Uzman odyometrist eşliğinde test",
+      "Odyometrist eşliğinde test",
       "Kalibre edilmiş profesyonel ekipman",
       "Aynı gün sonuç",
       "SGK danışmanlığı",

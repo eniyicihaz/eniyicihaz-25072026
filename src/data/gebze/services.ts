@@ -8,10 +8,10 @@ import type { BrandCriteriaContent } from "../../components/brands/BrandCriteria
 
 export const gebzeServices: BrandCriteriaContent = {
   eyebrow: "CİHAZINIZI SEÇTİKTEN SONRA",
-  heading: "İşitme Cihazını Satın Almadan Önce Deneyin",
-  intro: "Cihaz seçimi bir başlangıçtır; deneme, kişiye özel ayar ve programlama süreciyle devam eder.",
+  heading: "Darıca Merkezimizde Deneme, Ayar ve Takip",
+  intro: "Cihaz seçiminden sonraki deneme, kişiye özel ayar ve takip adımları da Darıca'daki merkezimizde ilerler.",
   criteria: [
-    { icon: PlayCircle, title: "Cihaz Deneme", description: "Seçtiğiniz cihazı günlük yaşamınızda deneyerek size uygunluğunu değerlendirebilirsiniz.", href: "/uygulama-ayar/cihaz-deneme/" },
+    { icon: PlayCircle, title: "Cihaz Deneme", description: "Seçtiğiniz cihazı merkezde ücretsiz demoyla deneyebilir, satın alarak 7 güne kadar günlük hayatınızda da kullanabilirsiniz; uygun bulunmazsa ödediğiniz tutar kesintisiz iade edilir.", href: "/uygulama-ayar/cihaz-deneme/" },
     { icon: SlidersHorizontal, title: "Kişiye Özel Ayar", description: "İlk uygulama ve temel ayarlar, işitme ihtiyacınıza göre yapılır.", href: "/uygulama-ayar/kisiye-ozel-ayar/" },
     { icon: Settings2, title: "Programlama ve Takip", description: "Kullanım deneyiminize göre cihaz ayarları zaman içinde yeniden değerlendirilir.", href: "/uygulama-ayar/kisiye-ozel-programlama/" },
   ],

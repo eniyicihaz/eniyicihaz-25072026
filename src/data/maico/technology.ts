@@ -13,14 +13,14 @@ export const maicoTechnology: BrandPageTechnologyContent = {
   intro: "MAICO'nun işitme cihazı sunumunun dayandığı temel unsurlar.",
   items: [
     {
-      label: "1937",
-      title: "Odyometre Mirası",
-      description: "\"Audiometer\" terimini literatüre kazandıran, ölçüm biliminde öncü bir geçmiş.",
+      label: "SERİLER",
+      title: "Farklı Yerleşim Seçenekleri",
+      description: "Bluetooth'lu, kulak arkası ve kulak içi seçenekleri bulunan seriler.",
     },
     {
-      label: "DEMANT",
-      title: "Demant Grubu Mühendisliği",
-      description: "Oticon ve Bernafon ile aynı global grubun mühendislik altyapısından yararlanır.",
+      label: "SERVİS",
+      title: "Merkezimizde Teknik Servis",
+      description: "MAICO cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
     },
     {
       label: "BT",

@@ -64,7 +64,7 @@ const medicalBusinessSchema = {
   "@type": "MedicalBusiness",
   "@id": BUSINESS_ID,
   name: company.legalName,
-  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; Darıca, Gebze ve Çayırova'da evde işitme testi, cihaz denemesi, uygulama ve kişiye özel ayar hizmeti sunar.",
+  description: "Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi; Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nda evde işitme testi, cihaz denemesi, uygulama ve kişiye özel ayar hizmeti sunar.",
   url: BUSINESS_URL,
   telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
   email: company.email,
@@ -102,8 +102,8 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
 ---
 
 <MainLayout
-  title="Evde İşitme Cihazı Hizmeti | Darıca, Gebze, Çayırova | EniyiCihaz"
-  description="Darıca, Gebze ve Çayırova'da evde işitme testi, cihaz denemesi, uygulama ve kişiye özel ayar desteği. Avrasya İşitme Cihazları ile evinizde işitme hizmeti alın."
+  title="Evde İşitme Cihazı Hizmeti | Kocaeli ve Anadolu Yakası | EniyiCihaz"
+  description="Kocaeli'nin tüm ilçelerinde ve İstanbul Anadolu Yakası'nda evde işitme testi, cihaz denemesi, uygulama ve kişiye özel ayar desteği. Avrasya İşitme Cihazları ile evinizde işitme hizmeti alın."
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />

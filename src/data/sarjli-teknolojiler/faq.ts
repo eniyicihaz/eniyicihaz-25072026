@@ -13,7 +13,7 @@ export const sarjliTeknolojilerFaq: BrandPageFaqContent = {
   intro: "Şarjlı teknolojiler, çalışma şekli ve uygunluk kriterleri hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Hâlâ karar veremediniz mi?",
-    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Uzman odyometrist desteği", "SGK danışmanlığı"],
+    points: ["Ücretsiz işitme testi", "Demo cihaz denemesi", "Odyometrist desteği", "SGK danışmanlığı"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -59,7 +59,7 @@ export const sarjliTeknolojilerFaq: BrandPageFaqContent = {
         {
           question: "Pil değişimi nasıl yapılır?",
           answer:
-            "Dahili pilin değişimi kullanıcı tarafından yapılamaz; yetkili teknik servisimiz tarafından gerçekleştirilir.",
+            "Dahili pilin değişimi kullanıcı tarafından yapılamaz; teknik servis tarafından gerçekleştirilir.",
         },
         {
           question: "Şarj kutusunu her yere taşımam gerekir mi?",

@@ -47,7 +47,7 @@ export const bernafonAdvantages: BrandPageAdvantagesContent = {
       icon: Radar,
       category: "Miras",
       title: "İsviçre Mühendisliği",
-      description: "1946'dan bu yana süregelen, dijital işitme teknolojisinde öncü bir geçmiş.",
+      description: "1946'dan bu yana süregelen bir işitme teknolojisi geçmişi.",
     },
   ],
   // Precomputed rgb() decomposition of #DA291C.

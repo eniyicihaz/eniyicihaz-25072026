@@ -1,71 +1,35 @@
-// Gebze landing page — SSS. Sorular gerçek Gebze arama niyetlerine
-// (cihaz seçimi, fiyat, SGK, deneme, ayar, servis) cevap veriyor. "Gebze'de
-// şubeniz var mı?" sorusu bu revizyonda BİLİNÇLİ OLARAK eklenmedi (plan
-// onayı §9 — bu konu kullanıcıya gereksiz şekilde öne çıkarılmasın); ancak
-// hiçbir soruda/cevapta gerçek olmayan bir fiziksel şube iddiası da yok.
-import { contactConfig } from "../../config/contact";
+// Gebze landing page — SSS (Faz 2 P2, Gebze V1). 5 soru 3'e indirildi.
+// Ulaşım (hat/tarif) ve deneme soruları çıkarıldı: ulaşım kendi bölümünde,
+// deneme kanonik sayfada (/uygulama-ayar/cihaz-deneme/). Kalan 3 soru:
+// şube durumu, randevu kuralı, evde hizmet kapsamı.
+// Kaynak: LOCAL_SOURCE_OF_TRUTH §1/§2/§3 (tek fiziksel merkez Darıca; walk-in
+// kabul + hizmet bazında randevu birlikte), SERVICE_SOURCE_OF_TRUTH H16
+// (evde hizmet: ücretsiz, randevulu, Kocaeli'nin tamamı ve İstanbul Anadolu
+// Yakası; merkezde verilen hizmetlerin kapsamı doğrultusunda).
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 
 export const gebzeFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
-  heading: "Gebze'de İşitme Cihazı Hakkında Merak Edilenler",
-  intro: "Cihaz seçimi, fiyat, SGK ve süreçlerimiz hakkında en çok sorulan sorular.",
-  decisionCard: {
-    title: "İhtiyacınızı Konuşmak İster misiniz?",
-    points: [
-      "SGK anlaşmalı hizmet",
-      "Ücretsiz ilk değerlendirme",
-      "18+ marka seçeneği",
-      "Satın almadan önce deneme imkânı",
-    ],
-    ctaLabel: "Bizi Arayın",
-    ctaHref: contactConfig.phone.href,
-  },
+  heading: "Gebze'den Gelenlerin Sık Sorduğu Sorular",
+  intro: "Şube, randevu ve evde hizmet hakkında kısa cevaplar.",
   categories: [
     {
-      label: "Cihaz ve Seçim",
+      label: "Merkez ve Hizmet",
       items: [
         {
-          question: "Gebze'de işitme cihazı nasıl seçilir?",
-          answer: "Öncelikle ücretsiz bir işitme değerlendirmesi yapıyoruz; işitme kaybınızın derecesine ve yaşam tarzınıza göre size uygun cihaz seçeneklerini birlikte belirliyoruz.",
+          question: "Gebze'de şubeniz var mı?",
+          answer:
+            "Hayır. Tek fiziksel merkezimiz Darıca'dadır; Gebze'den gelen danışanlarımızı Darıca'daki merkezimizde ağırlıyoruz. Yol tarifi ve hat bilgileri bu sayfadaki ulaşım bölümünde.",
         },
         {
-          question: "Hangi işitme cihazı türü bana uygun?",
-          answer: "Kulak arkası, kulak içi, görünmez, şarjlı ve Bluetooth özellikli seçenekler arasından, değerlendirme sonucuna göre size en uygun türü öneriyoruz.",
+          question: "Gebze'den gelirken randevu gerekir mi?",
+          answer:
+            "Randevusuz gelebilirsiniz. Yine de işitme testi, cihaz ayarı ve teknik servis gibi hizmetler randevuyla verildiği için, bu hizmetlerden biri için geliyorsanız önceden aramanız iyi olur.",
         },
         {
-          question: "Şarjlı işitme cihazları nasıl çalışır?",
-          answer: "Pil değiştirmeye gerek kalmadan, gece şarj edip gün boyu kullanabileceğiniz bir sistemle çalışır.",
-        },
-      ],
-    },
-    {
-      label: "Fiyat ve SGK",
-      items: [
-        {
-          question: "Gebze'de işitme cihazı fiyatları neye göre değişir?",
-          answer: "Fiyatlar; teknoloji seviyesi, özellikler, marka ve modele göre değişir. Sabit bir rakam vermek yerine, ihtiyacınıza göre gerçekçi seçenekleri birlikte değerlendiriyoruz.",
-        },
-        {
-          question: "Gebze işitme cihazlarında SGK desteği var mı?",
-          answer: "Evet; SGK anlaşmalı bir merkezden hizmet alarak, rapor ve reçete süreciyle SGK desteğinden yararlanabilirsiniz.",
-        },
-      ],
-    },
-    {
-      label: "Deneme ve Sonrası",
-      items: [
-        {
-          question: "İşitme cihazını satın almadan önce deneyebilir miyim?",
-          answer: "Evet; önerilen cihazı satın almadan önce günlük yaşamınızda deneyebilirsiniz.",
-        },
-        {
-          question: "İşitme cihazının ayarı sonradan değiştirilebilir mi?",
-          answer: "Evet; ilk ayarın ardından kullanım deneyiminize göre ince ayar ve takip desteği sağlıyoruz.",
-        },
-        {
-          question: "Teknik servis ve bakım hizmeti sunuyor musunuz?",
-          answer: "Evet; cihazınızdaki arıza ve bakım ihtiyaçlarında teknik servis desteği sunuyoruz.",
+          question: "Gebze'de evde hizmet veriyor musunuz?",
+          answer:
+            "Evet. Evde hizmetimiz Kocaeli'nin tamamını kapsar; Gebze de bu alandadır. Hizmet ücretsizdir ve randevuyla planlanır; merkezde verdiğimiz hizmetlerin kapsamı doğrultusunda sunulur.",
         },
       ],
     },

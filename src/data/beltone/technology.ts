@@ -39,7 +39,7 @@ export const beltoneTechnology: BrandPageTechnologyContent = {
     {
       label: "1940",
       title: "Amerikan Mirası",
-      description: "1940'tan bu yana süregelen, sektörün en köklü Amerikan markalarından biri.",
+      description: "1940'tan bu yana süregelen bir Amerikan markası.",
     },
   ],
   // Precomputed rgb() decomposition of #1B3864.

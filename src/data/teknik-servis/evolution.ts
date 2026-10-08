@@ -25,13 +25,13 @@ export const teknikServisEvolution: BrandPageTechEvolutionContent = {
     },
     {
       era: "Onarım Kararı",
-      whatItBrought: "Sorun yerinde çözülebiliyorsa kliniğimizde giderilir; değilse cihaz yetkili üretici servisine yönlendirilir.",
+      whatItBrought: "Sorun yerinde çözülebiliyorsa merkezimizde giderilir; garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir.",
       bestFor: "Yönlendirme kararı",
       families: ["Onarım Kararı"],
     },
     {
       era: "Onarım Süreci",
-      whatItBrought: "Onarım, yerinde veya üretici servisinde orijinal yedek parçalarla gerçekleştirilir.",
+      whatItBrought: "Onarım merkezimizde yapılır; garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir.",
       bestFor: "Onarımın uygulanması",
       families: ["Onarım Uygulaması"],
     },

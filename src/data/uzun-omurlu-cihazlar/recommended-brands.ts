@@ -33,7 +33,7 @@ export const uzunOmurluCihazlarRecommendedBrands: BrandPageRelatedContentContent
     },
     {
       label: "ReSound",
-      description: "ReSound'un orijinal yedek parça desteği, cihazların uzun yıllar bakımlı kalmasına imkan tanır.",
+      description: "ReSound cihazları için merkezimizde bakım ve teknik servis desteği veriyoruz.",
       href: "/markalar/resound/",
     },
     {

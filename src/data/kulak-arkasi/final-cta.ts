@@ -13,7 +13,7 @@ export const kulakArkasiFinalCta: BrandPageFinalCtaContent = {
     "İşitme kaybınızın derecesine, yaşam tarzınıza ve beklentilerinize uygun kulak arkası (BTE) modelini ücretsiz işitme testi sonrasında birlikte belirleyelim.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Uzman Odyometrist Desteği"],
+  trustItems: ["Ücretsiz İşitme Testi", "Demo Cihaz Deneme", "SGK Anlaşmalı Merkez", "Odyometrist Desteği"],
   accentColor: "#2563eb",
   accentColorHover: "#1d4ed8",
   accentColorGlow: "rgb(37 99 235 / 0.22)",
