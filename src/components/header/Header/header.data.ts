@@ -15,7 +15,7 @@ const devicesMega: MegaMenuData = {
   promo: {
     badge: "Modern İşitme Teknolojileri",
     title: "Size Uygun İşitme Cihazını Keşfedin",
-    text: "En yeni teknoloji işitme cihazları ve uzman kadromuzla duyma deneyiminizi yeniden keşfedin.",
+    text: "En yeni teknoloji işitme cihazlarıyla duyma deneyiminizi yeniden keşfedin.",
     cta: { label: "Tüm İşitme Cihazları", href: "/isitme-cihazlari/" },
     image: "/images/ui/mega-menu-isitme-cihazlari.webp",
   },
@@ -69,7 +69,7 @@ const devicesMega: MegaMenuData = {
     icon: "headset",
     title: "Size Özel Destek",
     items: [
-      { icon: "stethoscope", title: "Ücretsiz İşitme Testi", desc: "Uzman ekibimizle", href: "/degerlendirme/ucretsiz-isitme-testi/" },
+      { icon: "stethoscope", title: "Ücretsiz İşitme Testi", desc: "Darıca merkezimizde", href: "/degerlendirme/ucretsiz-isitme-testi/" },
       { icon: "headphones", title: "Cihaz Deneme", desc: "Merkezde ücretsiz demo", href: "/uygulama-ayar/cihaz-deneme/" },
       { icon: "sliders", title: "Kişiye Özel Ayar", desc: "Size özel programlama", href: "/uygulama-ayar/kisiye-ozel-ayar/" },
       { icon: "wrench", title: "Teknik Servis", desc: "Hızlı ve güvenilir destek", href: "/servis-bakim/teknik-servis/" },
@@ -137,7 +137,6 @@ const brandsMega: MegaMenuData = {
     icon: "headset",
     title: "Marka Desteği",
     items: [
-      { icon: "shield", title: "Orijinallik Garantisi", desc: "Orijinal ürün nasıl doğrulanır", href: "/neden-orijinal/guvenilir-teknoloji/" },
       { icon: "wrench", title: "Teknik Servis", desc: "Sattığımız 18 marka için", href: "/neden-orijinal/yaygin-servis-agi/" },
       { icon: "battery", title: "Aksesuar & Yedek", desc: "Orijinal parçalar", href: "/neden-orijinal/orijinal-aksesuar/" },
       { icon: "headphones", title: "Marka Danışmanlığı", desc: "Size uygun markayı seçin", href: "/neden-orijinal/marka-danismanligi/" },
@@ -153,7 +152,7 @@ const servicesMega: MegaMenuData = {
     title: "Profesyonel Hizmetlerimiz",
     text: "Ücretsiz testten cihaz uygulamasına, teknik servisten danışmanlığa kadar tüm süreçte yanınızdayız.",
     cta: { label: "Tüm Hizmetler", href: "/hizmetlerimiz/" },
-    trustItems: ["Uzman ekibimiz", "Kişiye özel çözümler", "Tüm markalarda hizmet", "Darıca'da kolay ulaşım"],
+    trustItems: ["SGK anlaşmalı merkez", "Kişiye özel çözümler", "Tüm markalarda hizmet", "Darıca'da fiziksel merkez"],
     floatingBadge: "Tüm Markalarda Profesyonel Hizmet",
   },
   columns: [
@@ -207,7 +206,7 @@ const servicesMega: MegaMenuData = {
     title: "Hızlı Erişim",
     items: [
       { icon: "calendar", title: "Randevu Al", desc: "Size uygun saatte", href: "tel:+905337733199" },
-      { icon: "phone", title: "Bizi Arayın", desc: "Uzman desteği", href: "tel:+905337733199" },
+      { icon: "phone", title: "Bizi Arayın", desc: "Telefonla randevu", href: "tel:+905337733199" },
       { icon: "building", title: "Merkezimiz", desc: "Darıca'da yanınızdayız", href: "/iletisim/" },
       { icon: "shield", title: "SGK İşlemleri", desc: "Anlaşmalı merkez", href: "/sgk-isitme-cihazi-odemesi/" },
     ],
@@ -274,7 +273,7 @@ const knowledgeMega: MegaMenuData = {
     items: [
       { icon: "learn", title: "Rehberleri Keşfedin", desc: "Adım adım anlatım", href: "/bilgi-merkezi/" },
       { icon: "help", title: "Sık Sorulan Sorular", desc: "Hızlı yanıtlar", href: "/blog/sik-sorulan-sorular/" },
-      { icon: "phone", title: "Uzmana Sorun", desc: "Bize ulaşın", href: "tel:+905337733199" },
+      { icon: "phone", title: "Bizi Arayın", desc: "Bize ulaşın", href: "tel:+905337733199" },
       { icon: "shield", title: "SGK Rehberi", desc: "Katkı payı ve rapor süreci", href: "/sgk-isitme-cihazi-odemesi/" },
     ],
     footer: { label: "İletişime Geç", href: "/iletisim/" },
