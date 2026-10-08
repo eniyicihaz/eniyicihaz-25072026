@@ -9,7 +9,7 @@ const noBt = f.all.filter((n) => !f.bt.includes(n));
 export const unitronUnique: UniqueBrandContent = {
   name: "Unitron",
   meta: {
-    title: `Unitron İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "Unitron İşitme Cihazları: Smile, Blu, Stride | EniyiCihaz",
     description: `Sitemizde Unitron için ${f.n} model ailesi var: Smile, Blu, Moxi Vivante, Stride ve Insera. Stride şarjlı kulak arkası; kulak içi aile yok. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroParagraphs: [
@@ -101,8 +101,9 @@ export const unitronUnique: UniqueBrandContent = {
       { label: "Şarj Edilebilir Cihazlar", description: "Smile, Blu ve Stride gibi şarjlı ailelerin genel özellikleri.", href: "/isitme-cihazlari/sarj-edilebilir/" },
       { label: "Kulak Arkası (BTE) Cihazlar", description: "Stride ve Insera'nın BTE etiketi için genel bilgi.", href: "/isitme-cihazlari/kulak-arkasi-bte/" },
       { label: "Bluetooth Özellikli Cihazlar", description: "Smile, Blu ve Moxi Vivante'deki Bluetooth etiketi için genel bilgi.", href: "/isitme-cihazlari/bluetooth-ozellikli/" },
-      { label: "Tüm Markalar", description: "Kulak içi cihaz için diğer 17 markanın sayfaları.", href: "/markalar/" },
-      { label: "İşitme Cihazı Markaları", description: "Unitron'u diğer markalarla etiketler üzerinden karşılaştırın.", href: "/isitme-cihazi-markalari/" },
+      { label: "Phonak", description: "Virto (kulak içi) ve Sky (çocuk) ailelerinin listelendiği marka sayfası.", href: "/markalar/phonak/" },
+      { label: "Signia", description: "Insio ve Silk kulak içi ailelerinin listelendiği marka sayfası.", href: "/markalar/signia/" },
+      { label: "Oticon", description: "Own SI (kulak içi) ile çocuk ve güçlü kayıplar ailelerinin listelendiği marka sayfası.", href: "/markalar/oticon/" },
     ],
   },
   cta: {

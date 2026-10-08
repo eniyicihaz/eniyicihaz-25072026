@@ -8,7 +8,7 @@ const f = facts("Audio Service", audioServiceModels.items);
 export const audioServiceUnique: UniqueBrandContent = {
   name: "Audio Service",
   meta: {
-    title: `Audio Service İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "Audio Service İşitme Cihazları: Stiline, Mood | EniyiCihaz",
     description: `Sitemizde Audio Service için ${f.n} model ailesi var: Stiline, Mood, Quix, Kulak İçi Serisi ve Şarjlı Serisi. Dördü RIC etiketli. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroParagraphs: [

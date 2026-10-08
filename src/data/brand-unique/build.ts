@@ -69,6 +69,8 @@ export interface UniqueProfile {
 export interface UniqueBrandContent {
   name: string;
   meta: { title: string; description: string };
+  /** Hero görselinin alt metni (verilmezse mevcut hero verisindeki alt kullanılır). Yalnızca görselde doğrulanabilen kimlik/yerleşim bilgisi içerir. */
+  heroAlt?: string;
   heroParagraphs: string[];
   heroFeatures: { label: string; title: string; description: string }[];
   floatingCard: { title: string; description: string };
@@ -101,6 +103,7 @@ export function buildUniqueBrandPage(base: UniqueBrandBase, c: UniqueBrandConten
     paragraphs: c.heroParagraphs,
     ctaPrimary: { label: "Bizi Arayın", href: phone },
     ctaSecondary: { label: "WhatsApp'tan Yazın", href: whatsapp },
+    image: c.heroAlt ? { ...base.hero.image, alt: c.heroAlt } : base.hero.image,
     features: c.heroFeatures.map((f) => ({ ...f, accent: base.hero.accentColor })),
     floatingCard: c.floatingCard,
   };
@@ -125,7 +128,8 @@ export function buildUniqueBrandPage(base: UniqueBrandBase, c: UniqueBrandConten
       const s = shortName(name, i.name);
       const d = c.models.descriptions[s];
       if (!d) throw new Error(`Model açıklaması eksik: ${name} ${s}`);
-      return { ...i, category: name, description: d, tags: i.tags.filter((t) => !HIDDEN_TAGS.has(t)) };
+      const isLogo = i.image.includes("/images/brands/");
+      return { ...i, category: name, description: d, tags: i.tags.filter((t) => !HIDDEN_TAGS.has(t)), ...(isLogo ? { imageKind: "logo" as const } : {}) };
     }),
   };
 

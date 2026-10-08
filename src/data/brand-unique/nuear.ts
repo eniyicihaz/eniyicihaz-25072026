@@ -9,9 +9,10 @@ const f = facts("NuEar", nuearModels.items);
 export const nuearUnique: UniqueBrandContent = {
   name: "NuEar",
   meta: {
-    title: `NuEar İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "NuEar İşitme Cihazları: NXG AI, Circa, NOW iQ | EniyiCihaz",
     description: `Sitemizde NuEar için ${f.n} model ailesi var: RIC, BTE ve kulak içi etiketli seçenekler. Darıca'daki merkezimizde bilgi alın, işitme testinizi ücretsiz yaptırın.`,
   },
+  heroAlt: "NuEar işitme cihazı",
   heroParagraphs: [
     `NuEar, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde ${f.n} NuEar ailesi listeliyoruz: ${join(f.all)}.`,
     `Bluetooth etiketi altı ailenin hepsinde var. Şarjlı etiketi ${f.charge.length} ailede. Kulak içi etiketli aile: ${join(f.inEar)}. Savant AI hem RIC hem BTE etiketli.`,
@@ -112,8 +113,9 @@ export const nuearUnique: UniqueBrandContent = {
       { label: "Şarj Edilebilir Cihazlar", description: "NXG AI, NE Series, Circa ve NOW iQ gibi şarjlı ailelerin genel özellikleri.", href: "/isitme-cihazlari/sarj-edilebilir/" },
       { label: "Kulak İçi (ITE) Cihazlar", description: "Miniscopic Synergy iQ gibi kulak içi cihazların genel özellikleri.", href: "/isitme-cihazlari/kulak-ici-ite/" },
       { label: "Kulak Arkası (BTE) Cihazlar", description: "Savant AI'ın BTE etiketi için kulak arkası cihazlara genel bakış.", href: "/isitme-cihazlari/kulak-arkasi-bte/" },
+      { label: "Oticon", description: "Xceed (güçlü kayıplar) ve üç çocuk ailesinin listelendiği marka sayfası.", href: "/markalar/oticon/" },
+      { label: "Phonak", description: "Sky (çocuk) ve Naída (güçlü kayıplar) ailelerinin listelendiği marka sayfası.", href: "/markalar/phonak/" },
       { label: "Cihaz Deneme", description: "Merkezde ücretsiz demo ve satın alarak 7 güne kadar deneme kuralları.", href: "/uygulama-ayar/cihaz-deneme/" },
-      { label: "Teknik Servis", description: "NuEar dahil 18 markada merkezimizdeki teknik servis.", href: "/servis-bakim/teknik-servis/" },
       { label: "İşitme Cihazı Markaları", description: "NuEar'ı diğer markalarla etiketler üzerinden karşılaştırın.", href: "/isitme-cihazi-markalari/" },
     ],
   },

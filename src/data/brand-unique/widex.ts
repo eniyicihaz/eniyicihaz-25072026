@@ -10,7 +10,7 @@ const noCharge = f.all.filter((n) => !f.charge.includes(n));
 export const widexUnique: UniqueBrandContent = {
   name: "Widex",
   meta: {
-    title: `Widex İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "Widex İşitme Cihazları: Allure, SmartRIC, Beyond | EniyiCihaz",
     description: `Sitemizde Widex için ${f.n} model ailesi var: dört RIC, iki kulak arkası (BTE); şarjlı ve pilli seçenekler, ayrıca Bluetooth etiketi olmayan bir aile. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroParagraphs: [
@@ -112,10 +112,10 @@ export const widexUnique: UniqueBrandContent = {
     links: [
       { label: "Şarj Edilebilir Cihazlar", description: "Allure, SmartRIC ve Moment Sheer gibi şarjlı ailelerin genel özellikleri.", href: "/isitme-cihazlari/sarj-edilebilir/" },
       { label: "Kulak Arkası (BTE) Cihazlar", description: "Beyond ve Unique gibi pilli kulak arkası cihazların genel özellikleri.", href: "/isitme-cihazlari/kulak-arkasi-bte/" },
-      { label: "Bluetooth Özellikli Cihazlar", description: "Bluetooth etiketli Widex ailelerine bakarken genel bilgi.", href: "/isitme-cihazlari/bluetooth-ozellikli/" },
       { label: "Pil ve Aksesuar", description: "Pilli Widex aileleri için pil ve aksesuar bilgisi.", href: "/servis-bakim/pil-aksesuar/" },
-      { label: "İleri Derece İşitme Kaybı", description: "Beyond'un listelendiği güçlü kayıplar kategorisi.", href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/" },
-      { label: "İşitme Cihazı Markaları", description: "Widex'i diğer markalarla etiketler üzerinden karşılaştırın.", href: "/isitme-cihazi-markalari/" },
+      { label: "Phonak", description: "Virto (kulak içi) ve Sky (çocuk) ailelerinin listelendiği marka sayfası.", href: "/markalar/phonak/" },
+      { label: "Signia", description: "Insio ve Silk kulak içi ailelerinin listelendiği marka sayfası.", href: "/markalar/signia/" },
+      { label: "Oticon", description: "Own SI (kulak içi) ile çocuk ve güçlü kayıplar ailelerinin listelendiği marka sayfası.", href: "/markalar/oticon/" },
     ],
   },
   cta: {

@@ -8,9 +8,10 @@ const f = facts("Audifon", audifonModels.items);
 export const audifonUnique: UniqueBrandContent = {
   name: "Audifon",
   meta: {
-    title: `Audifon İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "Audifon İşitme Cihazları: rega R ve sino | EniyiCihaz",
     description: `Sitemizde Audifon için ${f.n} model ailesi var: rega R, üç sino varyantı (S, P, R) ve Sueno Pro. Audifon'da uzaktan ayar yapılmıyor; ayar merkezimizde. Darıca'da bilgi alın.`,
   },
+  heroAlt: "Audifon rega R işitme cihazı",
   heroParagraphs: [
     `Audifon, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Audifon ailesinin üçü "sino" adını taşıyor: sino S kulak içi, sino P kulak arkası (BTE), sino R RITE. Diğerleri rega R ve Sueno Pro.`,
     "Hizmet tarafında bir fark da var: uzaktan ayar hizmetimiz A&M ve Audifon dışındaki cihazlarda yapılabiliyor; bu nedenle Audifon cihazlarının ayarı merkezimizde yapılır.",

@@ -8,9 +8,10 @@ const f = facts("Signia", signiaModels.items);
 export const signiaUnique: UniqueBrandContent = {
   name: "Signia",
   meta: {
-    title: `Signia İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "Signia İşitme Cihazları: Styletto, Pure, Insio | EniyiCihaz",
     description: `Sitemizde Signia için ${f.n} model ailesi var: iki RIC, iki kulak içi (Insio, Silk), Active ve pilli kulak arkası Motion. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroAlt: "Signia işitme cihazı çifti",
   heroParagraphs: [
     `Signia, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde ${f.n} Signia ailesi listeliyoruz: iki RIC (${join(f.ric)}), iki kulak içi (${join(f.inEar)}), bir Active ve bir kulak arkası (Motion).`,
     `Bluetooth etiketi altı ailenin hepsinde var. Şarjlı etiketi ${join(f.charge)} ailelerinde; Motion pilli çalışır.`,

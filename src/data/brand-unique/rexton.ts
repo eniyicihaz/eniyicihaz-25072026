@@ -9,7 +9,7 @@ const f = facts("Rexton", rextonModels.items);
 export const rextonUnique: UniqueBrandContent = {
   name: "Rexton",
   meta: {
-    title: `Rexton İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "Rexton İşitme Cihazları: Reach, BiCore, MCore | EniyiCihaz",
     description: `Sitemizde Rexton için ${f.n} model ailesi var: Reach, BiCore, BiCore ITE ve MCore. Şarjlı etiketi yalnızca Reach'te. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroParagraphs: [

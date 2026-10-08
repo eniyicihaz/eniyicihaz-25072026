@@ -10,7 +10,7 @@ const noBt = f.all.filter((n) => !f.bt.includes(n));
 export const oticonUnique: UniqueBrandContent = {
   name: "Oticon",
   meta: {
-    title: `Oticon İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "Oticon İşitme Cihazları: Intent, Real, Zeal | EniyiCihaz",
     description: `Sitemizde Oticon için ${f.n} model ailesi var: şarjlı, kulak içi, çocuk ve güçlü kayıplar etiketli seçenekler. Darıca'daki merkezimizde bilgi alın, işitme testinizi ücretsiz yaptırın.`,
   },
   heroParagraphs: [

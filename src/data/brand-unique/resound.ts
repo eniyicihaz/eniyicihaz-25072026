@@ -8,7 +8,7 @@ const f = facts("ReSound", resoundModels.items);
 export const resoundUnique: UniqueBrandContent = {
   name: "ReSound",
   meta: {
-    title: `ReSound İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "ReSound İşitme Cihazları: Vivia, Nexia, ENZO Q | EniyiCihaz",
     description: `Sitemizde ReSound için ${f.n} model ailesi var: dört RIC ve iki kulak arkası (BTE); altısında Bluetooth, beşinde şarjlı etiketi. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroParagraphs: [
@@ -108,12 +108,12 @@ export const resoundUnique: UniqueBrandContent = {
   related: {
     heading: "ReSound İçin Bakabileceğiniz Sayfalar",
     links: [
-      { label: "Şarj Edilebilir Cihazlar", description: "Altı ReSound ailesinden beşinin şarjlı olması nedeniyle şarjlı cihazlara genel bakış.", href: "/isitme-cihazlari/sarj-edilebilir/" },
+      { label: "Şarj Edilebilir Cihazlar", description: "Vivia, Nexia, Omnia ve Savi gibi şarjlı ailelerin genel özellikleri.", href: "/isitme-cihazlari/sarj-edilebilir/" },
       { label: "Kulak Arkası (BTE) Cihazlar", description: "ENZO Q ve Key gibi kulak arkası cihazların genel özellikleri.", href: "/isitme-cihazlari/kulak-arkasi-bte/" },
-      { label: "Bluetooth Özellikli Cihazlar", description: "Altı ailenin tamamında Bluetooth etiketi olduğundan telefon bağlantısı hakkında genel bilgi.", href: "/isitme-cihazlari/bluetooth-ozellikli/" },
       { label: "İleri Derece İşitme Kaybı", description: "ENZO Q'nun listelendiği güçlü kayıplar kategorisi.", href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/" },
-      { label: "Cihaz Deneme", description: "Merkezde ücretsiz demo ve satın alarak 7 güne kadar deneme kuralları.", href: "/uygulama-ayar/cihaz-deneme/" },
-      { label: "Tüm Markalar", description: "Kulak içi veya çocuk kategorisi için diğer 17 markanın sayfaları.", href: "/markalar/" },
+      { label: "Phonak", description: "Virto (kulak içi) ve Sky (çocuk) ailelerinin listelendiği marka sayfası.", href: "/markalar/phonak/" },
+      { label: "Signia", description: "Insio ve Silk kulak içi ailelerinin listelendiği marka sayfası.", href: "/markalar/signia/" },
+      { label: "Oticon", description: "Own SI (kulak içi) ile çocuk ve güçlü kayıplar ailelerinin listelendiği marka sayfası.", href: "/markalar/oticon/" },
     ],
   },
   cta: {

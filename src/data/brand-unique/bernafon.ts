@@ -10,7 +10,7 @@ const noCharge = f.all.filter((n) => !f.charge.includes(n));
 export const bernafonUnique: UniqueBrandContent = {
   name: "Bernafon",
   meta: {
-    title: `Bernafon İşitme Cihazları: ${f.n} Model Ailesi | EniyiCihaz`,
+    title: "Bernafon İşitme Cihazları: Encanta ve Juna | EniyiCihaz",
     description: `Sitemizde Bernafon için ${f.n} model ailesi var: dördü Encanta adını taşıyor (RIC, BTE ve kulak içi), ayrıca Juna ve pilli Zerena. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroParagraphs: [
