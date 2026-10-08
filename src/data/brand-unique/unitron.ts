@@ -12,6 +12,7 @@ export const unitronUnique: UniqueBrandContent = {
     title: "Unitron İşitme Cihazları: Smile, Blu, Stride | EniyiCihaz",
     description: `Sitemizde Unitron için ${f.n} model ailesi var: Smile, Blu, Moxi Vivante, Stride ve Insera. Stride şarjlı kulak arkası; kulak içi aile yok. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroSrc: "/images/unitron/models/blu.webp",
   heroParagraphs: [
     `Unitron, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Unitron ailesi: ${join(f.all)}.`,
     `Smile, Blu ve Moxi Vivante RIC etiketli; Smile ve Blu hem Bluetooth hem şarjlı. Stride şarjlı ama kulak arkası (BTE), Insera ise RIC ve BTE etiketli. Sitemizde kulak içi veya çocuk kategorisinde bir Unitron ailesi yok.`,

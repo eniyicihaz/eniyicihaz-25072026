@@ -24,6 +24,7 @@ import {
   Brain,
   Volume2,
 } from "lucide-astro";
+import { imageDims, imageSrcset } from "../../../lib/responsive-images";
 
 const badgeMap: Record<string, { icon: any; color: string }> = {
   "bluetooth": { icon: Bluetooth, color: "#2563eb" },
@@ -121,10 +122,13 @@ function hexToRgba(hex: string, alpha: number) {
               <img
                 class:list={["brand-page-models__image", { "brand-page-models__image--logo": item.imageKind === "logo" }]}
                 src={item.image}
+                srcset={item.imageKind === "logo" ? undefined : imageSrcset(item.image)}
+                sizes={item.imageKind === "logo" || !imageSrcset(item.image) ? undefined : "(max-width: 640px) 220px, 300px"}
                 alt={item.imageKind === "logo" ? `${item.category} logosu` : item.name}
                 loading="lazy"
-                width="500"
-                height="500"
+                decoding="async"
+                width={(item.imageKind === "logo" ? undefined : imageDims(item.image)?.width) ?? 500}
+                height={(item.imageKind === "logo" ? undefined : imageDims(item.image)?.height) ?? 500}
               />
             </span>
 

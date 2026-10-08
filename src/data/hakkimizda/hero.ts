@@ -9,6 +9,12 @@ export const hakkimizdaHero: CorporateHeroContent = {
   subheading: "Avrasya İşitme Cihazları 2009 yılında Afyon Merkez'de kurulmuştur. Ağustos 2024'te açılan Darıca merkezimiz; işitme değerlendirmesi, cihaz uygulaması ve satış sonrası destek sunan SGK anlaşmalı bir merkezdir.",
   image: "/images/pages/hakkimizda-hero-marka-duvari.webp",
   imageAlt: "Darıca Avrasya İşitme Cihazları merkezinin marka duvarı ve karşılama alanı",
+  imageWidth: 1537,
+  imageHeight: 1023,
+  imagePriority: true,
+  imageSrcset:
+    "/images/pages/hakkimizda-hero-marka-duvari-800.webp 800w, /images/pages/hakkimizda-hero-marka-duvari-1200.webp 1200w, /images/pages/hakkimizda-hero-marka-duvari.webp 1537w",
+  imageSizes: "100vw",
   stats: [
     { value: "2009", label: "Kuruluş Yılı" },
     { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },

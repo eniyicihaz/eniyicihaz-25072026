@@ -11,6 +11,7 @@ export const philipsHearingUnique: UniqueBrandContent = {
     title: "Philips Hearing HearLink İşitme Cihazları | EniyiCihaz",
     description: `Sitemizde Philips Hearing için ${f.n} model ailesi var: numaralı HearLink 50, 40 ve 30, kulak içi HearLink ve şarjlı HearLink. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroSrc: "/images/philips-hearing/models/hearlink-50.webp",
   heroParagraphs: [
     `Philips Hearing, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} ailenin üçü numaralı HearLink modeli (50, 40, 30); ikisi ise adlarını özellikten alıyor: HearLink Kulak İçi ve HearLink Şarjlı.`,
     "Numaralı üç modelde etiketler basamak basamak azalıyor: HearLink 50 Bluetooth ve şarjlı, HearLink 40 yalnızca Bluetooth, HearLink 30 yalnızca RIC etiketli.",

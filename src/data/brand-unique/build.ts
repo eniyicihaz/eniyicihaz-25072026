@@ -71,6 +71,8 @@ export interface UniqueBrandContent {
   meta: { title: string; description: string };
   /** Hero görselinin alt metni (verilmezse mevcut hero verisindeki alt kullanılır). Yalnızca görselde doğrulanabilen kimlik/yerleşim bilgisi içerir. */
   heroAlt?: string;
+  /** Hero görselinin kaynağı; verilirse (genelde markanın aynı model fotoğrafı) hero ile model kartı aynı URL'yi kullanır → çift indirme olmaz. */
+  heroSrc?: string;
   heroParagraphs: string[];
   heroFeatures: { label: string; title: string; description: string }[];
   floatingCard: { title: string; description: string };
@@ -103,7 +105,7 @@ export function buildUniqueBrandPage(base: UniqueBrandBase, c: UniqueBrandConten
     paragraphs: c.heroParagraphs,
     ctaPrimary: { label: "Bizi Arayın", href: phone },
     ctaSecondary: { label: "WhatsApp'tan Yazın", href: whatsapp },
-    image: c.heroAlt ? { ...base.hero.image, alt: c.heroAlt } : base.hero.image,
+    image: { ...base.hero.image, ...(c.heroSrc ? { src: c.heroSrc } : {}), ...(c.heroAlt ? { alt: c.heroAlt } : {}) },
     features: c.heroFeatures.map((f) => ({ ...f, accent: base.hero.accentColor })),
     floatingCard: c.floatingCard,
   };

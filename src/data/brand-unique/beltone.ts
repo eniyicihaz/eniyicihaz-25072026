@@ -12,6 +12,7 @@ export const beltoneUnique: UniqueBrandContent = {
     description: `Sitemizde Beltone için ${f.n} model ailesi var: Envision, Commence, Serene ve onun kulak içi varyantı Serene ITE, ayrıca kulak arkası Boost Max S. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroAlt: "Beltone Envision işitme cihazı",
+  heroSrc: "/images/beltone/models/envision.webp",
   heroParagraphs: [
     `Beltone, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Beltone ailesinden ikisi aynı isimde: Serene ve onun kulak içi varyantı Serene ITE.`,
     `Serene sitemizde hem RIC hem BTE etiketli. Şarjlı etiketi ${join(f.charge)} ailelerinde; Boost Max S kulak arkası (BTE) olarak listeleniyor.`,

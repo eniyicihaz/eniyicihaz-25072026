@@ -11,6 +11,7 @@ import { readableTextOn } from "../../../lib/contrast";
 // adlandırıldı (görsel/davranışsal fark yok).
 import { Phone, MessageCircle, BrainCircuit } from "lucide-astro";
 import { standardCtaLabel } from "../../../lib/cta-labels";
+import { imageDims, imageSrcset } from "../../../lib/responsive-images";
 
 export interface BrandPageHeroFeature {
   label: string;
@@ -116,6 +117,10 @@ interface Props {
 
 const { data } = Astro.props;
 
+// Gerçek görsel oranı ve 400/640/1024 w srcset (manifestten); yoksa eski davranış (900×900).
+const heroImgDims = imageDims(data.image.src);
+const heroImgSrcset = imageSrcset(data.image.src);
+
 const heroStyleOverrides = [
   data.heroBackground ? `--bph-bg-image:${data.heroBackground};` : "",
   data.heroBaseBg ? `--bph-base-bg:${data.heroBaseBg};` : "",
@@ -200,9 +205,12 @@ const heroStyleOverrides = [
       <img
         class="brand-page-hero__image"
         src={data.image.src}
+        srcset={heroImgSrcset}
+        sizes={heroImgSrcset ? "(max-width: 1023px) 200px, 498px" : undefined}
         alt={data.image.alt}
-        width="900"
-        height="900"
+        width={heroImgDims?.width ?? 900}
+        height={heroImgDims?.height ?? 900}
+        decoding="async"
       />
 
       <div class="brand-page-hero__floating-card">

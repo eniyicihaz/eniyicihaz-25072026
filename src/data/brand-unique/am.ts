@@ -12,6 +12,7 @@ export const amUnique: UniqueBrandContent = {
     description: `Sitemizde A&M için ${f.n} model ailesi var: P12, P8, P6 ve P4 numaralı dört kulak arkası (BTE) model ile kişiye özel A4 kulak içi. A&M'de uzaktan ayar yapılmıyor. Darıca'da bilgi alın.`,
   },
   heroAlt: "A&M XTM P12 işitme cihazı",
+  heroSrc: "/images/am/models/xtm-p12.webp",
   heroParagraphs: [
     `A&M, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} A&M ailesinin dördü numaralı XTM kulak arkası (BTE) modeli (${join(f.bte)}); beşincisi kulak içi XTM A4.`,
     "Listedeki Bluetooth ve şarjlı etiketli ailelere kıyasla A&M sayfası daha sade: sitemizdeki etiketlerde yalnızca yerleşim ve güç bilgisi var. Uzaktan ayar A&M cihazlarında yapılmaz; ayarlar merkezimizde yapılır.",

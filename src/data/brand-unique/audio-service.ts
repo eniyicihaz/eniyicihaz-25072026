@@ -11,6 +11,7 @@ export const audioServiceUnique: UniqueBrandContent = {
     title: "Audio Service İşitme Cihazları: Stiline, Mood | EniyiCihaz",
     description: `Sitemizde Audio Service için ${f.n} model ailesi var: Stiline, Mood, Quix, Kulak İçi Serisi ve Şarjlı Serisi. Dördü RIC etiketli. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroSrc: "/images/audio-service/models/stiline.webp",
   heroParagraphs: [
     `Audio Service, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} ailenin adları iki türde: Stiline, Mood ve Quix model adları; Kulak İçi Serisi ve Şarjlı Serisi ise özelliği adında taşıyan seriler.`,
     `${join(f.ric)} aileleri RIC etiketli; yani listenin ağırlığı RIC. Kulak içi tarafında tek aile var: Kulak İçi Serisi.`,

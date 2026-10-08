@@ -12,6 +12,7 @@ export const rextonUnique: UniqueBrandContent = {
     title: "Rexton İşitme Cihazları: Reach, BiCore, MCore | EniyiCihaz",
     description: `Sitemizde Rexton için ${f.n} model ailesi var: Reach, BiCore, BiCore ITE ve MCore. Şarjlı etiketi yalnızca Reach'te. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroSrc: "/images/rexton/models/reach.webp",
   heroParagraphs: [
     `Rexton, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde Rexton için ${f.n} aile listeliyoruz: ${join(f.all)}.`,
     "BiCore ve BiCore ITE aynı ismi taşıyan iki yerleşim (RIC ve kulak içi). Reach listedeki tek şarjlı aile, MCore ise tek kulak arkası (BTE) aile.",

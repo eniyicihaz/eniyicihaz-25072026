@@ -13,6 +13,7 @@ export const vistaUnique: UniqueBrandContent = {
     description: `Sitemizde Vista için ${f.n} model ailesi var: V, B, T ve IC. Şarjlı etiketi yalnızca T'de, kulak içi aile IC kişiye özel üretim etiketli. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroAlt: "Vista V işitme cihazı",
+  heroSrc: "/images/vista/models/vista-v.webp",
   heroParagraphs: [
     `Vista, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde Vista için ${f.n} aile listeliyoruz ve adları kısa: ${join(f.all)}.`,
     "Dört aile dört farklı etiket setiyle listeleniyor: V RIC ve Bluetooth, B BTE/RIC, T şarjlı RIC, IC ise kişiye özel kulak içi.",

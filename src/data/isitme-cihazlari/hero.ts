@@ -23,6 +23,9 @@ export const devicesGuideHero: PriceGuideHeroContent = {
     alt: "Kulak arkası, kulak içi ve şarj kutulu işitme cihazlarının yan yana durduğu kavramsal görsel — temsili görsel",
     width: 1811,
     height: 868,
+    srcset:
+      "/images/heroes/isitme-cihazi-turleri-640.webp 640w, /images/heroes/isitme-cihazi-turleri-1024.webp 1024w, /images/heroes/isitme-cihazi-turleri.webp 1811w",
+    sizes: "(max-width: 1023px) 92vw, 420px",
   },
 };
 

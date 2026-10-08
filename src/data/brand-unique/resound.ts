@@ -11,6 +11,7 @@ export const resoundUnique: UniqueBrandContent = {
     title: "ReSound İşitme Cihazları: Vivia, Nexia, ENZO Q | EniyiCihaz",
     description: `Sitemizde ReSound için ${f.n} model ailesi var: dört RIC ve iki kulak arkası (BTE); altısında Bluetooth, beşinde şarjlı etiketi. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroSrc: "/images/resound/models/vivia.webp",
   heroParagraphs: [
     `ReSound, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} ReSound ailesinin dördü RIC (${join(f.ric)}), ikisi kulak arkası (${join(f.bte)}).`,
     `Bluetooth etiketi altı ailenin hepsinde var; şarjlı etiketi ${f.charge.length} ailede. Pilli etiketli tek ReSound ailesi: ${join(f.pilli)}.`,

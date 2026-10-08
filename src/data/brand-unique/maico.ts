@@ -12,6 +12,7 @@ export const maicoUnique: UniqueBrandContent = {
     title: "Maico İşitme Cihazları: RIC, BTE ve Kulak İçi | EniyiCihaz",
     description: `Sitemizde Maico için üç seri var: Bluetooth Serisi (RIC), Kulak Arkası Serisi (BTE) ve Kulak İçi Serisi. Darıca'daki merkezimizde bilgi alın, işitme testinizi ücretsiz yaptırın.`,
   },
+  heroSrc: "/images/maico/models/kulak-arkasi-serisi.webp",
   heroParagraphs: [
     `Maico, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde Maico, tek tek model adlarıyla değil üç seri halinde listeleniyor: Bluetooth Serisi, Kulak Arkası Serisi ve Kulak İçi Serisi.`,
     "Her seri farklı bir yerleşimi gösteriyor; bu yüzden Maico'da önce yerleşime, sonra serinin içindeki seçeneklere bakılır.",

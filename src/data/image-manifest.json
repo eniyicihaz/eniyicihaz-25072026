@@ -1,0 +1,686 @@
+{
+"/images/am/models/xtm-a4.webp": {
+"h": 1024,
+"v": {
+"400": "/images/am/models/xtm-a4-400.webp",
+"640": "/images/am/models/xtm-a4-640.webp"
+},
+"w": 1024
+},
+"/images/am/models/xtm-p12.webp": {
+"h": 1024,
+"v": {
+"400": "/images/am/models/xtm-p12-400.webp",
+"640": "/images/am/models/xtm-p12-640.webp"
+},
+"w": 1024
+},
+"/images/am/models/xtm-p4.webp": {
+"h": 1024,
+"v": {
+"400": "/images/am/models/xtm-p4-400.webp",
+"640": "/images/am/models/xtm-p4-640.webp"
+},
+"w": 1024
+},
+"/images/audifon/models/rega-r.webp": {
+"h": 1024,
+"v": {
+"400": "/images/audifon/models/rega-r-400.webp",
+"640": "/images/audifon/models/rega-r-640.webp"
+},
+"w": 1024
+},
+"/images/audifon/models/sino-s.webp": {
+"h": 1024,
+"v": {
+"400": "/images/audifon/models/sino-s-400.webp",
+"640": "/images/audifon/models/sino-s-640.webp"
+},
+"w": 1024
+},
+"/images/audio-service/models/custom-ite.webp": {
+"h": 1024,
+"v": {
+"400": "/images/audio-service/models/custom-ite-400.webp",
+"640": "/images/audio-service/models/custom-ite-640.webp"
+},
+"w": 1024
+},
+"/images/audio-service/models/mood.webp": {
+"h": 1024,
+"v": {
+"400": "/images/audio-service/models/mood-400.webp",
+"640": "/images/audio-service/models/mood-640.webp"
+},
+"w": 1024
+},
+"/images/audio-service/models/quix.webp": {
+"h": 1254,
+"v": {
+"400": "/images/audio-service/models/quix-400.webp",
+"640": "/images/audio-service/models/quix-640.webp"
+},
+"w": 1254
+},
+"/images/audio-service/models/sarjli.webp": {
+"h": 1024,
+"v": {
+"400": "/images/audio-service/models/sarjli-400.webp",
+"640": "/images/audio-service/models/sarjli-640.webp"
+},
+"w": 1024
+},
+"/images/audio-service/models/stiline.webp": {
+"h": 1024,
+"v": {
+"400": "/images/audio-service/models/stiline-400.webp",
+"640": "/images/audio-service/models/stiline-640.webp"
+},
+"w": 1024
+},
+"/images/beltone/models/commence.webp": {
+"h": 1024,
+"v": {
+"400": "/images/beltone/models/commence-400.webp",
+"640": "/images/beltone/models/commence-640.webp"
+},
+"w": 1024
+},
+"/images/beltone/models/envision.webp": {
+"h": 1024,
+"v": {
+"400": "/images/beltone/models/envision-400.webp",
+"640": "/images/beltone/models/envision-640.webp"
+},
+"w": 1024
+},
+"/images/beltone/models/serene-ite.webp": {
+"h": 1024,
+"v": {
+"400": "/images/beltone/models/serene-ite-400.webp",
+"640": "/images/beltone/models/serene-ite-640.webp"
+},
+"w": 1024
+},
+"/images/beltone/models/serene.webp": {
+"h": 1024,
+"v": {
+"400": "/images/beltone/models/serene-400.webp",
+"640": "/images/beltone/models/serene-640.webp"
+},
+"w": 1024
+},
+"/images/bernafon/models/encanta-alpha-xt.webp": {
+"h": 1024,
+"v": {
+"400": "/images/bernafon/models/encanta-alpha-xt-400.webp",
+"640": "/images/bernafon/models/encanta-alpha-xt-640.webp"
+},
+"w": 1024
+},
+"/images/bernafon/models/encanta-bte.webp": {
+"h": 1024,
+"v": {
+"400": "/images/bernafon/models/encanta-bte-400.webp",
+"640": "/images/bernafon/models/encanta-bte-640.webp"
+},
+"w": 1024
+},
+"/images/bernafon/models/encanta-cic.webp": {
+"h": 1024,
+"v": {
+"400": "/images/bernafon/models/encanta-cic-400.webp",
+"640": "/images/bernafon/models/encanta-cic-640.webp"
+},
+"w": 1024
+},
+"/images/bernafon/models/encanta.webp": {
+"h": 1024,
+"v": {
+"400": "/images/bernafon/models/encanta-400.webp",
+"640": "/images/bernafon/models/encanta-640.webp"
+},
+"w": 1024
+},
+"/images/coselgi/models/effect-ite.webp": {
+"h": 1024,
+"v": {
+"400": "/images/coselgi/models/effect-ite-400.webp",
+"640": "/images/coselgi/models/effect-ite-640.webp"
+},
+"w": 1024
+},
+"/images/coselgi/models/effect.webp": {
+"h": 1024,
+"v": {
+"400": "/images/coselgi/models/effect-400.webp",
+"640": "/images/coselgi/models/effect-640.webp"
+},
+"w": 1024
+},
+"/images/coselgi/models/mojo.webp": {
+"h": 1024,
+"v": {
+"400": "/images/coselgi/models/mojo-400.webp",
+"640": "/images/coselgi/models/mojo-640.webp"
+},
+"w": 1024
+},
+"/images/heroes/avrasya-isitme-cihazlari-ofis.webp": {
+"h": 941,
+"v": {
+"640": "/images/heroes/avrasya-isitme-cihazlari-ofis-640.webp",
+"960": "/images/heroes/avrasya-isitme-cihazlari-ofis-960.webp"
+},
+"w": 1672
+},
+"/images/heroes/darica-dis-cephe.webp": {
+"h": 1500,
+"v": {
+"1000": "/images/heroes/darica-dis-cephe-1000.webp",
+"1600": "/images/heroes/darica-dis-cephe-1600.webp",
+"640": "/images/heroes/darica-dis-cephe-640.webp"
+},
+"w": 2000
+},
+"/images/heroes/isitme-cihazi-turleri.webp": {
+"h": 868,
+"v": {
+"1024": "/images/heroes/isitme-cihazi-turleri-1024.webp",
+"640": "/images/heroes/isitme-cihazi-turleri-640.webp"
+},
+"w": 1811
+},
+"/images/maico/models/bluetooth-serisi.webp": {
+"h": 1024,
+"v": {
+"400": "/images/maico/models/bluetooth-serisi-400.webp",
+"640": "/images/maico/models/bluetooth-serisi-640.webp"
+},
+"w": 1024
+},
+"/images/maico/models/kulak-arkasi-serisi.webp": {
+"h": 1024,
+"v": {
+"400": "/images/maico/models/kulak-arkasi-serisi-400.webp",
+"640": "/images/maico/models/kulak-arkasi-serisi-640.webp"
+},
+"w": 1024
+},
+"/images/maico/models/kulak-ici-serisi.webp": {
+"h": 1024,
+"v": {
+"400": "/images/maico/models/kulak-ici-serisi-400.webp",
+"640": "/images/maico/models/kulak-ici-serisi-640.webp"
+},
+"w": 1024
+},
+"/images/nuear/models/circa.webp": {
+"h": 1024,
+"v": {
+"400": "/images/nuear/models/circa-400.webp",
+"640": "/images/nuear/models/circa-640.webp"
+},
+"w": 1024
+},
+"/images/nuear/models/miniscopic-synergy-iq.webp": {
+"h": 1024,
+"v": {
+"400": "/images/nuear/models/miniscopic-synergy-iq-400.webp",
+"640": "/images/nuear/models/miniscopic-synergy-iq-640.webp"
+},
+"w": 1024
+},
+"/images/oticon/models/intent.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/intent-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/jet-px.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/jet-px-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/opn-play.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/opn-play-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/opn-s.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/opn-s-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/own-si.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/own-si-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/play-px.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/play-px-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/real.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/real-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/ruby.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/ruby-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/xceed-play.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/xceed-play-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/xceed.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/xceed-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/zeal.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/zeal-400.webp"
+},
+"w": 500
+},
+"/images/oticon/models/zircon.webp": {
+"h": 500,
+"v": {
+"400": "/images/oticon/models/zircon-400.webp"
+},
+"w": 500
+},
+"/images/pages/hakkimizda-bekleme-alani-1024.webp": {
+"h": 683,
+"v": {},
+"w": 1024
+},
+"/images/pages/hakkimizda-bekleme-alani-mobil.webp": {
+"h": 1024,
+"v": {},
+"w": 614
+},
+"/images/pages/hakkimizda-bekleme-alani.webp": {
+"h": 1024,
+"v": {},
+"w": 1536
+},
+"/images/pages/hakkimizda-hero-marka-duvari.webp": {
+"h": 1023,
+"v": {
+"1200": "/images/pages/hakkimizda-hero-marka-duvari-1200.webp",
+"800": "/images/pages/hakkimizda-hero-marka-duvari-800.webp"
+},
+"w": 1537
+},
+"/images/pages/isitme-testi-odyometri-odasi.webp": {
+"h": 1024,
+"v": {
+"1024": "/images/pages/isitme-testi-odyometri-odasi-1024.webp",
+"640": "/images/pages/isitme-testi-odyometri-odasi-640.webp"
+},
+"w": 1536
+},
+"/images/pages/nuear-hero.webp": {
+"h": 1024,
+"v": {
+"400": "/images/pages/nuear-hero-400.webp",
+"640": "/images/pages/nuear-hero-640.webp"
+},
+"w": 1024
+},
+"/images/pages/phonak-hero.webp": {
+"h": 1024,
+"v": {
+"400": "/images/pages/phonak-hero-400.webp",
+"640": "/images/pages/phonak-hero-640.webp"
+},
+"w": 1024
+},
+"/images/pages/signia-hero.webp": {
+"h": 1536,
+"v": {
+"400": "/images/pages/signia-hero-400.webp",
+"640": "/images/pages/signia-hero-640.webp"
+},
+"w": 1024
+},
+"/images/philips-hearing/models/hearlink-30.webp": {
+"h": 1024,
+"v": {
+"400": "/images/philips-hearing/models/hearlink-30-400.webp",
+"640": "/images/philips-hearing/models/hearlink-30-640.webp"
+},
+"w": 1024
+},
+"/images/philips-hearing/models/hearlink-40.webp": {
+"h": 1024,
+"v": {
+"400": "/images/philips-hearing/models/hearlink-40-400.webp",
+"640": "/images/philips-hearing/models/hearlink-40-640.webp"
+},
+"w": 1024
+},
+"/images/philips-hearing/models/hearlink-50.webp": {
+"h": 1024,
+"v": {
+"400": "/images/philips-hearing/models/hearlink-50-400.webp",
+"640": "/images/philips-hearing/models/hearlink-50-640.webp"
+},
+"w": 1024
+},
+"/images/philips-hearing/models/hearlink-ite.webp": {
+"h": 1024,
+"v": {
+"400": "/images/philips-hearing/models/hearlink-ite-400.webp",
+"640": "/images/philips-hearing/models/hearlink-ite-640.webp"
+},
+"w": 1024
+},
+"/images/philips-hearing/models/hearlink-sarjli.webp": {
+"h": 1024,
+"v": {
+"400": "/images/philips-hearing/models/hearlink-sarjli-400.webp",
+"640": "/images/philips-hearing/models/hearlink-sarjli-640.webp"
+},
+"w": 1024
+},
+"/images/phonak/models/audeo.webp": {
+"h": 1024,
+"v": {
+"400": "/images/phonak/models/audeo-400.webp",
+"640": "/images/phonak/models/audeo-640.webp"
+},
+"w": 1024
+},
+"/images/phonak/models/cros.webp": {
+"h": 1024,
+"v": {
+"400": "/images/phonak/models/cros-400.webp",
+"640": "/images/phonak/models/cros-640.webp"
+},
+"w": 1024
+},
+"/images/phonak/models/naida.webp": {
+"h": 1024,
+"v": {
+"400": "/images/phonak/models/naida-400.webp",
+"640": "/images/phonak/models/naida-640.webp"
+},
+"w": 1024
+},
+"/images/phonak/models/sky.webp": {
+"h": 1024,
+"v": {
+"400": "/images/phonak/models/sky-400.webp",
+"640": "/images/phonak/models/sky-640.webp"
+},
+"w": 1024
+},
+"/images/phonak/models/virto.webp": {
+"h": 1024,
+"v": {
+"400": "/images/phonak/models/virto-400.webp",
+"640": "/images/phonak/models/virto-640.webp"
+},
+"w": 1024
+},
+"/images/resound/models/key.webp": {
+"h": 1024,
+"v": {
+"400": "/images/resound/models/key-400.webp",
+"640": "/images/resound/models/key-640.webp"
+},
+"w": 1024
+},
+"/images/resound/models/nexia.webp": {
+"h": 1024,
+"v": {
+"400": "/images/resound/models/nexia-400.webp",
+"640": "/images/resound/models/nexia-640.webp"
+},
+"w": 1024
+},
+"/images/resound/models/omnia.webp": {
+"h": 1024,
+"v": {
+"400": "/images/resound/models/omnia-400.webp",
+"640": "/images/resound/models/omnia-640.webp"
+},
+"w": 1024
+},
+"/images/resound/models/vivia.webp": {
+"h": 1024,
+"v": {
+"400": "/images/resound/models/vivia-400.webp",
+"640": "/images/resound/models/vivia-640.webp"
+},
+"w": 1024
+},
+"/images/rexton/models/bicore-ite.webp": {
+"h": 1024,
+"v": {
+"400": "/images/rexton/models/bicore-ite-400.webp",
+"640": "/images/rexton/models/bicore-ite-640.webp"
+},
+"w": 1024
+},
+"/images/rexton/models/bicore.webp": {
+"h": 1024,
+"v": {
+"400": "/images/rexton/models/bicore-400.webp",
+"640": "/images/rexton/models/bicore-640.webp"
+},
+"w": 1024
+},
+"/images/rexton/models/mcore.webp": {
+"h": 1024,
+"v": {
+"400": "/images/rexton/models/mcore-400.webp",
+"640": "/images/rexton/models/mcore-640.webp"
+},
+"w": 1024
+},
+"/images/rexton/models/reach.webp": {
+"h": 1024,
+"v": {
+"400": "/images/rexton/models/reach-400.webp",
+"640": "/images/rexton/models/reach-640.webp"
+},
+"w": 1024
+},
+"/images/signia/models/active.webp": {
+"h": 1024,
+"v": {
+"400": "/images/signia/models/active-400.webp",
+"640": "/images/signia/models/active-640.webp"
+},
+"w": 1024
+},
+"/images/signia/models/insio.webp": {
+"h": 1024,
+"v": {
+"400": "/images/signia/models/insio-400.webp",
+"640": "/images/signia/models/insio-640.webp"
+},
+"w": 1024
+},
+"/images/signia/models/pure.webp": {
+"h": 1024,
+"v": {
+"400": "/images/signia/models/pure-400.webp",
+"640": "/images/signia/models/pure-640.webp"
+},
+"w": 1024
+},
+"/images/signia/models/silk.webp": {
+"h": 1024,
+"v": {
+"400": "/images/signia/models/silk-400.webp",
+"640": "/images/signia/models/silk-640.webp"
+},
+"w": 1024
+},
+"/images/signia/models/styletto.webp": {
+"h": 1024,
+"v": {
+"400": "/images/signia/models/styletto-400.webp",
+"640": "/images/signia/models/styletto-640.webp"
+},
+"w": 1024
+},
+"/images/sonic/models/enchant-bte.webp": {
+"h": 1254,
+"v": {
+"400": "/images/sonic/models/enchant-bte-400.webp",
+"640": "/images/sonic/models/enchant-bte-640.webp"
+},
+"w": 1254
+},
+"/images/sonic/models/enchant-ite.webp": {
+"h": 1024,
+"v": {
+"400": "/images/sonic/models/enchant-ite-400.webp",
+"640": "/images/sonic/models/enchant-ite-640.webp"
+},
+"w": 1536
+},
+"/images/sonic/models/enchant-sarjli.webp": {
+"h": 1024,
+"v": {
+"400": "/images/sonic/models/enchant-sarjli-400.webp",
+"640": "/images/sonic/models/enchant-sarjli-640.webp"
+},
+"w": 1024
+},
+"/images/sonic/models/enchant.webp": {
+"h": 1024,
+"v": {
+"400": "/images/sonic/models/enchant-400.webp",
+"640": "/images/sonic/models/enchant-640.webp"
+},
+"w": 1024
+},
+"/images/sonic/models/radiant.webp": {
+"h": 1024,
+"v": {
+"400": "/images/sonic/models/radiant-400.webp",
+"640": "/images/sonic/models/radiant-640.webp"
+},
+"w": 1024
+},
+"/images/unitron/models/blu.webp": {
+"h": 1024,
+"v": {
+"400": "/images/unitron/models/blu-400.webp",
+"640": "/images/unitron/models/blu-640.webp"
+},
+"w": 1024
+},
+"/images/unitron/models/insera.webp": {
+"h": 1024,
+"v": {
+"400": "/images/unitron/models/insera-400.webp",
+"640": "/images/unitron/models/insera-640.webp"
+},
+"w": 1024
+},
+"/images/unitron/models/moxi-vivante.webp": {
+"h": 1024,
+"v": {
+"400": "/images/unitron/models/moxi-vivante-400.webp",
+"640": "/images/unitron/models/moxi-vivante-640.webp"
+},
+"w": 1024
+},
+"/images/unitron/models/stride.webp": {
+"h": 1024,
+"v": {
+"400": "/images/unitron/models/stride-400.webp",
+"640": "/images/unitron/models/stride-640.webp"
+},
+"w": 1024
+},
+"/images/vista/models/vista-b.webp": {
+"h": 1024,
+"v": {
+"400": "/images/vista/models/vista-b-400.webp",
+"640": "/images/vista/models/vista-b-640.webp"
+},
+"w": 1024
+},
+"/images/vista/models/vista-ic.webp": {
+"h": 1024,
+"v": {
+"400": "/images/vista/models/vista-ic-400.webp",
+"640": "/images/vista/models/vista-ic-640.webp"
+},
+"w": 1024
+},
+"/images/vista/models/vista-t.webp": {
+"h": 1024,
+"v": {
+"400": "/images/vista/models/vista-t-400.webp",
+"640": "/images/vista/models/vista-t-640.webp"
+},
+"w": 1024
+},
+"/images/vista/models/vista-v.webp": {
+"h": 1024,
+"v": {
+"400": "/images/vista/models/vista-v-400.webp",
+"640": "/images/vista/models/vista-v-640.webp"
+},
+"w": 1024
+},
+"/images/widex/models/allure.webp": {
+"h": 1024,
+"v": {
+"400": "/images/widex/models/allure-400.webp",
+"640": "/images/widex/models/allure-640.webp"
+},
+"w": 1024
+},
+"/images/widex/models/moment-sheer.webp": {
+"h": 1024,
+"v": {
+"400": "/images/widex/models/moment-sheer-400.webp",
+"640": "/images/widex/models/moment-sheer-640.webp"
+},
+"w": 1024
+},
+"/images/widex/models/smartric.webp": {
+"h": 1024,
+"v": {
+"400": "/images/widex/models/smartric-400.webp",
+"640": "/images/widex/models/smartric-640.webp"
+},
+"w": 1024
+}
+}

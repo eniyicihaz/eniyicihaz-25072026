@@ -13,6 +13,7 @@ export const bernafonUnique: UniqueBrandContent = {
     title: "Bernafon İşitme Cihazları: Encanta ve Juna | EniyiCihaz",
     description: `Sitemizde Bernafon için ${f.n} model ailesi var: dördü Encanta adını taşıyor (RIC, BTE ve kulak içi), ayrıca Juna ve pilli Zerena. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroSrc: "/images/bernafon/models/encanta.webp",
   heroParagraphs: [
     `Bernafon, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Bernafon ailesinin ${encanta.length}'ü Encanta adını taşıyor (${join(encanta)}); geri kalan ikisi ${join(["Juna", "Zerena"])}.`,
     `Encanta adı altında üç yerleşim var: RIC (Encanta, Alpha XT), BTE (Encanta BTE) ve kulak içi (Encanta CIC). Zerena ise listedeki tek pilli aile.`,

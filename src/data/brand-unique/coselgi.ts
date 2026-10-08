@@ -13,6 +13,7 @@ export const coselgiUnique: UniqueBrandContent = {
     description: `Sitemizde Coselgi için ${f.n} model ailesi var: Effect, onun kulak içi varyantı Effect ITE ve şarjlı Mojo. Darıca'daki merkezimizde bilgi alın.`,
   },
   heroAlt: "Coselgi Effect işitme cihazı",
+  heroSrc: "/images/coselgi/models/effect.webp",
   heroParagraphs: [
     `Coselgi, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde Coselgi için ${f.n} aile listeliyoruz: ${join(f.all)}.`,
     "Effect ve Effect ITE aynı ismi taşıyan iki yerleşim (RIC/BTE ve kulak içi); Mojo ise listedeki şarjlı aile.",

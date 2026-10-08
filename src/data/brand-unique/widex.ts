@@ -13,6 +13,7 @@ export const widexUnique: UniqueBrandContent = {
     title: "Widex İşitme Cihazları: Allure, SmartRIC, Beyond | EniyiCihaz",
     description: `Sitemizde Widex için ${f.n} model ailesi var: dört RIC, iki kulak arkası (BTE); şarjlı ve pilli seçenekler, ayrıca Bluetooth etiketi olmayan bir aile. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroSrc: "/images/widex/models/allure.webp",
   heroParagraphs: [
     `Widex, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Widex ailesinin dördü RIC (${join(f.ric)}), ikisi kulak arkası (${join(f.bte)}).`,
     `Widex listesinde Bluetooth ve şarj etiketleri her ailede aynı değil. Bluetooth etiketi olmayan aile: ${join(noBt)}. Pilli aileler: ${join(f.pilli)}. Şarjlı etiketi bulunmayanlar: ${join(noCharge)}.`,

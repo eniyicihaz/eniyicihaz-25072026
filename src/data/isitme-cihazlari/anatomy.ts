@@ -17,7 +17,7 @@ export const anatomy: AnatomyMapContent = {
   // Gerçek görsel, olduğu gibi: 1448 × 1086 (4:3), WebP.
   image: {
     src: "/images/device-guide/isitme-cihazi-parcalari.webp",
-    alt: "İşitme cihazının iç yapısı: mikrofon girişi, işlemci kartı, pil, ince tüp ve kulak kanalına giden alıcı ucu yakın çekimlerle gösteriliyor — temsili görsel",
+    alt: "İşitme cihazının dış gövdesini ve iç parçalarını yakın çekim kutucuklarla gösteren temsili görsel",
     width: 1448,
     height: 1086,
   },

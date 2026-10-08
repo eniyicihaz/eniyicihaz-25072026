@@ -13,6 +13,7 @@ export const oticonUnique: UniqueBrandContent = {
     title: "Oticon İşitme Cihazları: Intent, Real, Zeal | EniyiCihaz",
     description: `Sitemizde Oticon için ${f.n} model ailesi var: şarjlı, kulak içi, çocuk ve güçlü kayıplar etiketli seçenekler. Darıca'daki merkezimizde bilgi alın, işitme testinizi ücretsiz yaptırın.`,
   },
+  heroSrc: "/images/oticon/models/intent.webp",
   heroParagraphs: [
     `Oticon, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde Oticon için ${f.n} model ailesi listeliyoruz; diğer marka sayfalarımızda bu sayı üç ile altı arasında.`,
     "Listede günlük kullanım ailelerinin yanında çocuk, güçlü kayıplar ve kulak içi etiketli aileler de var. Hangisinin size uygun olduğu işitme değerlendirmesinden sonra belirlenir.",

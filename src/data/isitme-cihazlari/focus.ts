@@ -69,7 +69,7 @@ export const invisibleSection: GuideSectionMeta = {
 export const invisible: FocusBlockContent = {
   image: {
     src: "/images/price-guide/device-type-gorunmez-cok-kucuk.webp",
-    alt: "Kulak kanalının derinine yerleşen çok küçük (IIC/CIC benzeri) işitme cihazı — temsili görsel",
+    alt: "Parmak ucunda duran çok küçük kulak içi işitme cihazları — temsili görsel",
     width: 1254,
     height: 1254,
   },

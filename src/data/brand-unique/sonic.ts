@@ -12,6 +12,7 @@ export const sonicUnique: UniqueBrandContent = {
     title: "Sonic İşitme Cihazları: Enchant ve Radiant | EniyiCihaz",
     description: `Sitemizde Sonic için ${f.n} model ailesi var: dördü Enchant adını taşıyor (RIC, BTE, kulak içi ve şarjlı), ayrıca Radiant. Darıca'daki merkezimizde bilgi alın.`,
   },
+  heroSrc: "/images/sonic/models/enchant.webp",
   heroParagraphs: [
     `Sonic, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Sonic ailesinin ${enchant.length}'ü Enchant adını taşıyor (${join(enchant)}); beşincisi Radiant.`,
     "Enchant adı altında dört ayrı seçenek var: RIC, BTE, kulak içi ve şarjlı. Radiant ise hem RIC hem BTE etiketli ve Bluetooth etiketi taşımıyor.",

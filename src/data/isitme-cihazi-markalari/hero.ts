@@ -7,6 +7,7 @@ import type { PriceGuideHeroContent } from "../isitme-cihazi-fiyatlari/hero";
 const whatsappText = encodeURIComponent("Merhaba, işitme cihazı markaları hakkında bilgi almak istiyorum.");
 
 export const brandsHero: PriceGuideHeroContent = {
+  textOnly: true, // Görsel/Performance paketi: AI podyum sahnesi kaldırıldı (görsel dosyası silinmedi)
   eyebrow: "Marka ve Model Rehberi",
   heading: "İşitme Cihazı Markaları",
   lead:

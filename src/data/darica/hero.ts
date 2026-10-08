@@ -24,6 +24,10 @@ export const daricaHero: CorporateHeroContent = {
   imageWidth: 2000,
   imageHeight: 1500,
   imagePriority: true,
+  // Mobilde 640/1000 w, masaüstünde (~600 px alan, 2x) 1000/1600 w seçilir.
+  imageSrcset:
+    "/images/heroes/darica-dis-cephe-640.webp 640w, /images/heroes/darica-dis-cephe-1000.webp 1000w, /images/heroes/darica-dis-cephe-1600.webp 1600w, /images/heroes/darica-dis-cephe.webp 2000w",
+  imageSizes: "(max-width: 768px) 100vw, 50vw",
   // Ziyaret bilgileri — ana sayfanın güven bölümünü (2009, SGK, 18 marka)
   // tekrar etmek yerine. Saatlerin kendisi konum bölümünde company.hours'tan.
   stats: [

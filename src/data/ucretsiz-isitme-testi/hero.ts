@@ -30,6 +30,9 @@ export const testHero: PriceGuideHeroContent = {
     alt: "İşitme testi sırasında odyometrist ve test odası",
     width: 1536,
     height: 1024,
+    srcset:
+      "/images/pages/isitme-testi-odyometri-odasi-640.webp 640w, /images/pages/isitme-testi-odyometri-odasi-1024.webp 1024w, /images/pages/isitme-testi-odyometri-odasi.webp 1536w",
+    sizes: "(max-width: 1023px) 92vw, 420px",
   },
 };
 

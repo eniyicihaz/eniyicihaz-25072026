@@ -53,10 +53,12 @@ const { data, icons, extraCta } = Astro.props;
           <img
             class="guide-hero__image"
             src={data.image.src}
+            srcset={data.image.srcset}
+            sizes={data.image.sizes}
             alt={data.image.alt}
             width={data.image.width}
             height={data.image.height}
-            fetchpriority="high"
+            fetchpriority={data.image.priority ? "high" : undefined}
             decoding="async"
           />
         ) : (

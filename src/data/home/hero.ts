@@ -63,6 +63,8 @@ export const homeHero: HomeHeroContent = {
   // sütundan biri (~50vw), tablet ve mobilde tam genişlik.
   image: {
     src: "/images/heroes/avrasya-isitme-cihazlari-ofis.webp",
+    srcset:
+      "/images/heroes/avrasya-isitme-cihazlari-ofis-640.webp 640w, /images/heroes/avrasya-isitme-cihazlari-ofis-960.webp 960w, /images/heroes/avrasya-isitme-cihazlari-ofis.webp 1672w",
     sizes: "(min-width: 1024px) 50vw, 100vw",
     alt: "Avrasya İşitme Cihazları'nın Darıca'daki merkezinin resepsiyon ve bekleme alanı",
     width: 1672,

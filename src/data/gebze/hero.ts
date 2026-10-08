@@ -35,6 +35,9 @@ export const gebzeHero: CorporateHeroContent = {
   imageSrcset:
     "/images/pages/hakkimizda-bekleme-alani-1024.webp 1024w, /images/pages/hakkimizda-bekleme-alani.webp 1536w",
   imageSizes: "(max-width: 768px) 1020px, 100vw",
+  // Dar ekran (≤480 px): aynı gerçek fotoğrafın ortadan portre kırpılmış varyantı (hero kutusu uzun/dar olduğu için
+  // yatay görselin yalnızca ~%34'ü görünüyordu; 1,0× dikey çözünürlük 1,5×'e çıkar). Masaüstü ve tablet aynı.
+  imageMobile: { src: "/images/pages/hakkimizda-bekleme-alani-mobil.webp", media: "(max-width: 480px)" },
   stats: [
     { value: "502 · 440 · 510 · 515", label: "Gebze'den merkeze hatlar" },
     { value: "Darıca", label: "Fiziksel Merkezimiz" },
