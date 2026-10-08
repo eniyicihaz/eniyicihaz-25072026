@@ -58,4 +58,14 @@ export const homeHero: HomeHeroContent = {
   textLink: { label: "Ücretsiz işitme testi hakkında bilgi alın", href: "/degerlendirme/ucretsiz-isitme-testi/" },
   definitionSentence:
     "Avrasya İşitme Cihazları, Darıca, Kocaeli'de bulunan SGK anlaşmalı bir işitme cihazı satış ve uygulama merkezidir.",
+  // Gerçek merkez fotoğrafı (D1), değiştirilmeden kullanılır. 1672×941.
+  // Tek dosya olduğu için srcset yok; sizes düzene göre: masaüstünde iki
+  // sütundan biri (~50vw), tablet ve mobilde tam genişlik.
+  image: {
+    src: "/images/heroes/avrasya-isitme-cihazlari-ofis.webp",
+    sizes: "(min-width: 1024px) 50vw, 100vw",
+    alt: "Avrasya İşitme Cihazları'nın Darıca'daki merkezinin resepsiyon ve bekleme alanı",
+    width: 1672,
+    height: 941,
+  },
 };

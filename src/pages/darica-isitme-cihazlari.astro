@@ -116,24 +116,72 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     padding: var(--space-6) var(--space-6) 0;
   }
 
-  /* Hero legibility — this page's hero carries a longer, address-led
-     description and three CTAs, so the text block reaches the photo's
-     brighter areas (window, illuminated sign). A stronger, page-scoped
-     scrim keeps text contrast; the photo crop (object-position) is
-     unchanged and other CorporateHero pages are not affected. */
+  /* Hero layout — the real exterior photo shows the building's actual
+     signs (İşitme Cihazları, SGK, Pil-Tamir, İşitme Testi, Eczane), so the
+     text must never sit on top of it. Page-scoped: instead of the shared
+     full-bleed overlay, the photo and the text are separate blocks on the
+     dark brand surface — side by side on desktop (text left, whole photo
+     right), photo first then text on tablet/mobile. The photo keeps its
+     original framing (object-fit: cover only trims the edges when the
+     column is wider than 4:3 allows at the max height). Other
+     CorporateHero pages are not affected. */
+  .darica-hero :global(.corporate-hero__photo) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    min-height: 0;
+    background: var(--color-text);
+  }
+
   .darica-hero :global(.corporate-hero__scrim) {
-    background:
-      linear-gradient(90deg, rgb(15 23 42 / 0.8) 0%, rgb(15 23 42 / 0.6) 40%, rgb(15 23 42 / 0.15) 70%, transparent 100%),
-      linear-gradient(0deg, var(--color-text) 0%, rgb(15 23 42 / 0.35) 40%, transparent 70%);
+    display: none;
   }
 
-  .darica-hero :global(.corporate-hero__location) {
-    background: rgb(15 23 42 / 0.5);
+  .darica-hero :global(.corporate-hero__image) {
+    position: relative;
+    inset: auto;
+    grid-row: 1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    max-height: 640px;
+    object-fit: cover;
+    object-position: center 40%;
   }
 
-  @media (max-width: 768px) {
-    .darica-hero :global(.corporate-hero__scrim) {
-      background: linear-gradient(0deg, var(--color-text) 0%, rgb(15 23 42 / 0.82) 55%, rgb(15 23 42 / 0.62) 100%);
+  .darica-hero :global(.corporate-hero__content) {
+    grid-row: 2;
+    max-width: none;
+    margin: 0;
+    padding: var(--space-8) var(--space-4) var(--space-16);
+  }
+
+  .darica-hero :global(.corporate-hero__heading),
+  .darica-hero :global(.corporate-hero__subheading) {
+    max-width: 40rem;
+  }
+
+  @media (min-width: 769px) {
+    .darica-hero :global(.corporate-hero__photo) {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    .darica-hero :global(.corporate-hero__image) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .darica-hero :global(.corporate-hero__content) {
+      grid-column: 1;
+      grid-row: 1;
+      padding: var(--space-12) var(--space-8) var(--space-16)
+        max(var(--space-6), calc((100vw - var(--container-2xl)) / 2 + var(--space-6)));
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 768px) {
+    .darica-hero :global(.corporate-hero__content) {
+      padding-inline: var(--space-6);
     }
   }
 

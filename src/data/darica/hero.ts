@@ -6,9 +6,10 @@
 // walk-in + hizmet bazında randevu, ilk ziyaret ~1 saat / 1–2 saat),
 // footer company.ts (saatler, yol tarifi linki).
 //
-// Görsel: işletmenin gerçek resepsiyon/bekleme alanı fotoğrafı (D1). Ana
-// sayfa artık bu fotoğrafı kullanmıyor; bu sayfaya özgü. 1672×941 gerçek
-// ölçü; crop CSS'te değişmedi (object-position center 65%).
+// Görsel: merkezin gerçek dış cephe fotoğrafı (Aralık 2024 çekimi, kadraj
+// korunarak 2000×1500 WebP). Ana sayfa hero'su resepsiyon fotoğrafını
+// kullanır; iki hero aynı görseli tekrar etmez. Kırpma/yerleşim sayfada
+// (darica-isitme-cihazlari.astro) ayarlı.
 import type { CorporateHeroContent } from "../../components/shared/CorporateHero/CorporateHero.astro";
 import { contactConfig } from "../../config/contact";
 import { company } from "../../components/footer/Footer/data/company";
@@ -18,10 +19,10 @@ export const daricaHero: CorporateHeroContent = {
   heading: "Darıca'da İşitme Cihazı Merkezi",
   subheading:
     "Avrasya İşitme Cihazları'nın Darıca merkezi Fevziçakmak'ta, Palandöken Eczanesi'nin üst katında; Farabi Devlet Hastanesi durağının karşısındadır. Randevusuz gelebilirsiniz; ilk ziyaret işlemlere göre yaklaşık 1 saat (1–2 saat) sürer.",
-  image: "/images/heroes/avrasya-isitme-merkezi-darica.webp",
-  imageAlt: "Avrasya İşitme Cihazları'nın Darıca'daki merkezinin resepsiyon ve bekleme alanı",
-  imageWidth: 1672,
-  imageHeight: 941,
+  image: "/images/heroes/darica-dis-cephe.webp",
+  imageAlt: "Darıca'da Palandöken Eczanesi'nin üst katındaki Avrasya İşitme Cihazları merkezinin bina cephesi ve tabelaları",
+  imageWidth: 2000,
+  imageHeight: 1500,
   imagePriority: true,
   // Ziyaret bilgileri — ana sayfanın güven bölümünü (2009, SGK, 18 marka)
   // tekrar etmek yerine. Saatlerin kendisi konum bölümünde company.hours'tan.
