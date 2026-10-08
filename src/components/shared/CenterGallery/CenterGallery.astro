@@ -13,6 +13,10 @@
 export interface CenterGalleryImage {
   src: string;
   alt: string;
+  // Optional intrinsic size (CLS). Pages that omit them render as before;
+  // the displayed size still comes from CSS (aspect-ratio / fixed size).
+  width?: number;
+  height?: number;
 }
 
 export interface CenterGalleryContent {
@@ -52,17 +56,39 @@ const { data } = Astro.props;
 
     <div class="center-gallery__photos" data-rise>
       <div class="center-gallery__feature">
-        <img class="center-gallery__feature-image" src={data.featureImage.src} alt={data.featureImage.alt} loading="lazy" />
+        <img
+          class="center-gallery__feature-image"
+          src={data.featureImage.src}
+          alt={data.featureImage.alt}
+          width={data.featureImage.width}
+          height={data.featureImage.height}
+          loading="lazy"
+        />
 
         <div class="center-gallery__location-card">
-          <img class="center-gallery__location-image" src={data.locationImage.src} alt={data.locationImage.alt} loading="lazy" />
+          <img
+            class="center-gallery__location-image"
+            src={data.locationImage.src}
+            alt={data.locationImage.alt}
+            width={data.locationImage.width}
+            height={data.locationImage.height}
+            loading="lazy"
+          />
           <p class="center-gallery__location-caption">{data.locationCaption}</p>
         </div>
       </div>
 
       <div class="center-gallery__support">
-        <img class="center-gallery__support-image" src={data.supportImages[0].src} alt={data.supportImages[0].alt} loading="lazy" />
-        <img class="center-gallery__support-image" src={data.supportImages[1].src} alt={data.supportImages[1].alt} loading="lazy" />
+        {data.supportImages.map((image) => (
+          <img
+            class="center-gallery__support-image"
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading="lazy"
+          />
+        ))}
       </div>
     </div>
   </div>
@@ -134,9 +160,13 @@ const { data } = Astro.props;
     box-shadow: var(--shadow-lg);
   }
 
+  /* height: auto keeps the CSS aspect-ratio in charge when the optional
+     width/height attributes are present (they would otherwise act as a
+     fixed pixel height). No-op for pages that omit them. */
   .center-gallery__feature-image {
     display: block;
     width: 100%;
+    height: auto;
     aspect-ratio: 4 / 5;
     object-fit: cover;
   }
@@ -150,6 +180,7 @@ const { data } = Astro.props;
   .center-gallery__support-image {
     display: block;
     width: 100%;
+    height: auto;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: var(--radius-xl);

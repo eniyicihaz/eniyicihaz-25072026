@@ -32,6 +32,13 @@ export interface CorporateHeroContent {
   subheading: string;
   image: string;
   imageAlt: string;
+  // Optional intrinsic size + LCP priority for the hero photo. The image is
+  // absolutely positioned and sized by CSS (object-fit: cover), so these
+  // only give the browser the aspect ratio and fetch priority — layout and
+  // crop are unchanged. Pages that omit them render exactly as before.
+  imageWidth?: number;
+  imageHeight?: number;
+  imagePriority?: boolean;
   stats: CorporateHeroStat[];
   ctas?: CorporateHeroCta[];
 }
@@ -45,7 +52,15 @@ const { data } = Astro.props;
 
 <section class="corporate-hero" aria-labelledby="corporate-hero-title">
   <div class="corporate-hero__photo">
-    <img class="corporate-hero__image" src={data.image} alt={data.imageAlt} loading="eager" />
+    <img
+      class="corporate-hero__image"
+      src={data.image}
+      alt={data.imageAlt}
+      width={data.imageWidth}
+      height={data.imageHeight}
+      loading="eager"
+      fetchpriority={data.imagePriority ? "high" : undefined}
+    />
     <div class="corporate-hero__scrim" aria-hidden="true" />
 
     <div class="corporate-hero__content" data-rise>

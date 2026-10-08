@@ -1,69 +1,53 @@
-// Darıca landing page — SSS. Sayfada zaten doğal olarak cevaplanan
-// sorular (marka, cihaz türleri, gerçek merkez, süreç) burada tekrar
-// edilmiyor; yalnızca kısa/direkt "evet/hayır + link" formatındaki, sayfa
-// içinde ayrı bir bölüm hak etmeyen sorular kaldı (plan §6/§J).
-import { contactConfig } from "../../config/contact";
+// Darıca hub — SSS. Eski 9 soru otomatik korunmadı: bölümlerde zaten
+// cevaplanan sorular (tarif, otopark/erişim, ücretsiz değerlendirme, SGK,
+// deneme, ayar) çıkarıldı; Gebze/Çayırova hat listesi kendi sayfalarına
+// bırakıldı. Kalan 5 soru merkeze gelmeden önce sorulan işleyiş soruları;
+// cevaplar bölüm metinlerini tekrar etmek yerine ek bilgi taşır.
+// Darıca'ya özgü gerçek kullanıcı soruları henüz verilmedi
+// (LOCAL_SOURCE_OF_TRUTH: KULLANICIDAN BİLGİ GEREKLİ) — bu sorular
+// işletmenin doğrulanmış işleyişine dayanır, Darıca'ya özgü anket gibi
+// sunulmaz.
+// Kaynak: SERVICE_SOURCE_OF_TRUTH §2.2 (randevu, geç kalma bildirimi,
+// tamir/ayar için cihazın getirilmesi), §2.3, §2.15, §4 (teknik servis
+// teslimi 3 gün, garanti işlemleri ücretsiz, garanti dışı "duruma göre",
+// onarımda ücretsiz yedek cihaz — süreler YENİDEN DOĞRULA kapsamında
+// izlenir), H24; LOCAL_SOURCE_OF_TRUTH (öğle arası yok, resmî tatil kapalı).
+// Saatler elle yazılmıyor — company.hours'tan üretiliyor.
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
+import { company } from "../../components/footer/Footer/data/company";
+
+const openHours = company.hours
+  .filter((entry) => entry.time !== "Kapalı")
+  .map((entry) => `${entry.days} ${entry.time}`)
+  .join(", ");
 
 export const daricaFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
-  heading: "Darıca'da İşitme Cihazı Hakkında Merak Edilenler",
-  intro: "Merkezimiz, hizmet bölgemiz ve süreçlerimiz hakkında en çok sorulan sorular.",
-  decisionCard: {
-    title: "Merkezimiz Hakkında Bilgi Almak İster misiniz?",
-    points: [
-      "Darıca'da SGK anlaşmalı merkez",
-      "Ücretsiz işitme değerlendirmesi",
-      "18 marka seçeneği",
-      "Randevusuz ziyaret kabul edilir",
-    ],
-    ctaLabel: "Bizi Arayın",
-    ctaHref: contactConfig.phone.href,
-  },
+  heading: "Ziyaretinizle İlgili Sorular",
+  intro: "Darıca merkezimize gelmeden önce en çok sorulan sorular.",
   categories: [
     {
-      label: "Genel",
+      label: "Ziyaret ve Randevu",
       items: [
         {
-          question: "Darıca'da ücretsiz işitme değerlendirmesi yapılıyor mu?",
-          answer: "Evet; Darıca'daki merkezimizde ücretsiz işitme değerlendirmesi sunuyoruz.",
+          question: "Merkeze gelirken yanımda ne getirmeliyim?",
+          answer: "İlk ziyarette, varsa işitme testinizi, reçetenizi ve raporunuzu getirmeniz yeterli. Cihaz ayarı veya teknik servis için geliyorsanız işitme cihazınızı da yanınıza alın.",
         },
         {
-          question: "SGK desteği var mı?",
-          answer: "Evet; SGK anlaşmalı bir merkeziz, katkı payı ve rapor süreciyle ilgili size yol gösteriyoruz.",
+          question: "İlk ziyaret ne kadar sürer?",
+          answer: "Genellikle yaklaşık 1 saat sürer; yapılacak işlemlere göre 1–2 saati bulabilir. Merkezdeki süre SGK'lı ve SGK'sız danışanlar için aynıdır.",
         },
         {
-          question: "Cihazı satın almadan önce deneyebilir miyim?",
-          answer: "Önerilen cihazı merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Günlük hayatınızda denemek isterseniz cihazı satın alarak 7 güne kadar deneyebilir, uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
+          question: "Gelmeden önce randevu almam gerekir mi?",
+          answer: "Randevusuz gelebilirsiniz. SGK işlemlerindeki destek dışındaki hizmetler randevuyla verildiği için önceden aramanızı öneririz. Randevunuza geç kalacaksanız en az 1 saat önceden haber vermenizi rica ederiz.",
         },
         {
-          question: "İşitme cihazımın ayarını sonradan değiştirebilir miyim?",
-          answer: "Evet; ilk ayarın ardından geri bildiriminize göre ince ayar ve takip desteği sağlıyoruz.",
+          question: "Cihazım bozulursa teknik servis süreci nasıl işler?",
+          answer: "Cihazınızı randevu alarak merkezimize getirebilirsiniz. Teknik servis teslimi 3 gün içindedir; garanti işlemleri ücretsizdir, garanti dışı işlemlerde ücret duruma göre belirlenir. Onarım sürecinde ücretsiz yedek cihaz sağlıyoruz.",
         },
         {
-          question: "Teknik servis veya bakım hizmeti sunuyor musunuz?",
-          answer: "Evet; cihazınızdaki arıza ve bakım ihtiyaçlarında teknik servis desteği sunuyoruz.",
-        },
-      ],
-    },
-    {
-      label: "Merkeze Ulaşım",
-      items: [
-        {
-          question: "Merkeziniz Darıca'da tam olarak nerede?",
-          answer: "Fevziçakmak Mahallesi'nde, Palandöken Eczanesi'nin üst katındayız; Farabi Devlet Hastanesi durağının tam karşısındayız. 1. kata asansörle çıkılır.",
-        },
-        {
-          question: "Randevusuz gelebilir miyim?",
-          answer: "Evet, randevusuz ziyaretleri kabul ediyoruz. İşitme testi, cihaz ayarı ve teknik servis gibi hizmetler ise randevuyla verilir; bu yüzden önceden aramanızı öneririz.",
-        },
-        {
-          question: "Otopark ve erişilebilirlik durumu nasıl?",
-          answer: "Merkezimiz için otopark imkânı bulunuyor. Binada asansör var ve merkez tekerlekli sandalye ile ulaşıma uygundur.",
-        },
-        {
-          question: "Gebze ve Çayırova'dan toplu taşımayla gelinebilir mi?",
-          answer: "Evet. Gebze'den 502, 440, 510 ve 515; Çayırova'dan 550 numaralı otobüs hatları merkezimize ulaşımda kullanılabilir. Hat bilgileri değişebilir.",
+          question: "Pazar günleri ve resmî tatillerde açık mısınız?",
+          answer: `Pazar günleri ve resmî tatillerde kapalıyız. Açık olduğumuz saatler: ${openHours}; öğle arası vermiyoruz.`,
         },
       ],
     },

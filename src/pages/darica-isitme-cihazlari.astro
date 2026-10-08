@@ -1,49 +1,41 @@
 ---
-// Darıca İşitme Cihazları — /darica-isitme-cihazlari.
-// Sıfırdan inşa: bu route eski/canlı sitede vardı ama bu repoda hiç
-// mevcut değildi (araştırma turu doğrulandı — dosya, veri, sitemap kaydı
-// yok). URL bilinçli olarak DEĞİŞTİRİLMEDİ (mevcut SEO/index geçmişini
-// korumak için); içerik/yapı ise onaylanan analiz+plan raporuna göre
-// sıfırdan, mevcut Design System/component mimarisiyle kuruldu.
+// Darıca İşitme Cihazları — /darica-isitme-cihazlari (Faz 2 P2, Darıca V1).
+// Konumlandırma: "Darıca'daki merkezimize gelmeden önce bilmeniz
+// gerekenler". Ana sayfa marka + genel hizmetleri anlatır; bu sayfa
+// fiziksel merkezi, ziyareti ve yerel niyeti anlatır — ana sayfayla aynı
+// genel blokları (cihaz türleri, marka logo duvarı, "Neden Avrasya")
+// tekrar etmez. URL değişmedi.
 //
-// Mimari: Hero carousel YOK — tek, sabit, lokal odaklı bir Hero
-// (CorporateHero, /hakkimizda'nın component'i, farklı gerçek fotoğrafla
-// yeniden kullanıldı). H1 buradadır ve sitede TEK H1'dir — homepage'in
-// "Duymak, anlamaktır." H1'i burada KULLANILMADI (onaylanan karar #4).
-// "18 İşitme Cihazı Markasıyla Çalışıyoruz" bölümü homepage'in kendi
-// <Brands /> component'i AYNEN import edilerek kullanıldı (onaylanan
-// karar #5) — yeniden tasarlanmadı, kopyalanmadı.
-//
-// Sıra (onaylanan karar #10): Hero -> Doğru Değerlendirme Doğru Cihaz ->
-// Ücretsiz İşitme Değerlendirmesi -> İşitme Cihazı Türleri -> Markalar ->
-// SGK -> [Cihaz Deneme + Kişiye Özel Ayar & Programlama, tek
-// BrandCriteria bölümünde 3 linkli kart] -> Neden Avrasya İşitme? ->
-// Darıca'daki Gerçek Merkezimiz -> SSS -> Final CTA.
-//
-// SGK ve Cihaz Deneme/Ayar/Programlama bölümleri kısa/teaser + link
-// (plan §K) — sayfa reklam sayfasına dönüşmesin diye orta bölümlerde ayrı
-// CTA butonu yok, yalnızca metin-içi link.
+// Sıra (onay V1):
+// 1 Hero (CorporateHero; markasız H1, adres odaklı açıklama, Ara / Yol
+//   tarifi / WhatsApp)
+// 2 Merkezin Konumu, Erişim ve Çalışma Saatleri (ContactLocationCard)
+// 3 İlk Ziyaretinizde Neler Olur? (ProcessTimeline)
+// 4 Merkezimizde Verilen Hizmetler + markalar hub linki (BrandCriteria)
+// 5 SGK İşlemleri Merkezimizde Nasıl Yürür? (ValueGrid) + SGK pillar linki
+// 6 Ekibimiz ve Merkezimiz (CenterGallery) + Hakkımızda linki
+// 7 SSS (BrandPageFaq)
+// 8 Son CTA (BrandPageFinalCta; Ara / WhatsApp / Yol tarifi)
+// Tüm içerik SoT'ta doğrulanmış bilgiye dayanır; kaynak notları her veri
+// dosyasının başında. Title/description ve schema bu adımda değişmedi
+// (Faz 3).
 import MainLayout from "../layouts/MainLayout.astro";
 import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
-import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
-import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
-import Brands from "../components/brands/Brands/Brands.astro";
-import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
-import CenterGallery from "../components/shared/CenterGallery/CenterGallery.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
+import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
+import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
+import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
+import CenterGallery from "../components/shared/CenterGallery/CenterGallery.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 import { daricaHero } from "../data/darica/hero";
-import { daricaNeedIntro } from "../data/darica/copy-blocks";
+import { daricaVisitLocation } from "../data/darica/location";
 import { daricaProcess } from "../data/darica/process";
-import { daricaDeviceTypes } from "../data/darica/device-types";
-import { daricaSgk } from "../data/darica/sgk";
 import { daricaServices } from "../data/darica/services";
-import { daricaWhyUs } from "../data/darica/why-us";
+import { daricaSgk } from "../data/darica/sgk";
 import { daricaCenterGallery } from "../data/darica/center-gallery";
-import { daricaLocation } from "../data/darica/location";
 import { daricaFaq } from "../data/darica/faq";
 import { daricaFinalCta } from "../data/darica/final-cta";
 
@@ -85,38 +77,33 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     <Breadcrumb items={breadcrumbItems} />
   </div>
 
-  <CorporateHero data={daricaHero} />
+  <div class="darica-hero">
+    <CorporateHero data={daricaHero} />
+  </div>
 
-  <section class="darica-copy-block" aria-labelledby="darica-need-title">
-    <div class="darica-copy-block__inner">
-      <p class="darica-copy-block__badge">{daricaNeedIntro.badge}</p>
-      <h2 class="darica-copy-block__heading" id="darica-need-title">{daricaNeedIntro.heading}</h2>
-      {daricaNeedIntro.paragraphs.map((p) => <p class="darica-copy-block__paragraph">{p}</p>)}
-    </div>
-  </section>
+  <ContactLocationCard data={daricaVisitLocation} />
 
-  <ProcessTimeline data={daricaProcess} />
-  <p class="darica-inline-link-wrap">
-    <a class="darica-inline-link" href="/degerlendirme/ucretsiz-isitme-testi/">Detaylı süreç ve sıkça sorulan sorular için Ücretsiz İşitme Testi sayfamızı inceleyin →</a>
-  </p>
+  <div class="darica-band darica-band--plain">
+    <ProcessTimeline data={daricaProcess} />
+  </div>
 
-  <ValueGrid data={daricaDeviceTypes} />
-  <p class="darica-inline-link-wrap">
-    <a class="darica-inline-link" href="/isitme-cihazlari/">Tüm seçenekleri İşitme Cihazları sayfamızda inceleyin →</a>
-  </p>
+  <div class="darica-band darica-band--services">
+    <BrandCriteria data={daricaServices} />
+  </div>
 
-  <Brands />
+  <div class="darica-band darica-band--plain">
+    <ValueGrid data={daricaSgk} />
+    <p class="darica-inline-link-wrap">
+      <a class="darica-inline-link darica-inline-link--button" href="/sgk-isitme-cihazi-odemesi/">SGK ile işitme cihazı ödemesi hakkında ayrıntılı bilgi →</a>
+    </p>
+  </div>
 
-  <ValueGrid data={daricaSgk} />
-  <p class="darica-inline-link-wrap">
-    <a class="darica-inline-link" href="/sgk-isitme-cihazi-odemesi/">SGK ile işitme cihazı desteği hakkında detaylı bilgi →</a>
-  </p>
-
-  <BrandCriteria data={daricaServices} />
-  <ValueGrid data={daricaWhyUs} />
-
-  <CenterGallery data={daricaCenterGallery} />
-  <ContactLocationCard data={daricaLocation} />
+  <div class="darica-band darica-band--tint">
+    <CenterGallery data={daricaCenterGallery} />
+    <p class="darica-inline-link-wrap">
+      <a class="darica-inline-link" href="/hakkimizda/">Avrasya İşitme Cihazları hakkında daha fazla bilgi →</a>
+    </p>
+  </div>
 
   <BrandPageFaq data={daricaFaq} />
   <BrandPageFinalCta data={daricaFinalCta} />
@@ -129,68 +116,71 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     padding: var(--space-6) var(--space-6) 0;
   }
 
-  /* Compact, card/stat-free copy block — reused for the single remaining
-     short, single-topic section (İhtiyaç/Yaklaşım köprüsü) that doesn't
-     fit any existing stats/steps/card component without inventing fake
-     data. SGK now uses ValueGrid (3 real cards) instead of this pattern.
-     Visual language matches every other section's badge/heading/
-     paragraph tokens exactly (same as BrandPageIntro/ContactServiceArea),
-     just without their mandatory stats/card grid. */
-  .darica-copy-block {
+  /* Hero legibility — this page's hero carries a longer, address-led
+     description and three CTAs, so the text block reaches the photo's
+     brighter areas (window, illuminated sign). A stronger, page-scoped
+     scrim keeps text contrast; the photo crop (object-position) is
+     unchanged and other CorporateHero pages are not affected. */
+  .darica-hero :global(.corporate-hero__scrim) {
+    background:
+      linear-gradient(90deg, rgb(15 23 42 / 0.8) 0%, rgb(15 23 42 / 0.6) 40%, rgb(15 23 42 / 0.15) 70%, transparent 100%),
+      linear-gradient(0deg, var(--color-text) 0%, rgb(15 23 42 / 0.35) 40%, transparent 70%);
+  }
+
+  .darica-hero :global(.corporate-hero__location) {
+    background: rgb(15 23 42 / 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .darica-hero :global(.corporate-hero__scrim) {
+      background: linear-gradient(0deg, var(--color-text) 0%, rgb(15 23 42 / 0.82) 55%, rgb(15 23 42 / 0.62) 100%);
+    }
+  }
+
+  /* Section rhythm — page-scoped background overrides so neighbouring
+     shared sections alternate (surface / plain) instead of merging into
+     one block. Only this page is affected; the components' own defaults
+     stay unchanged everywhere else. */
+  .darica-band--plain {
     background: var(--color-background);
-    padding-block: var(--space-16);
   }
 
-  .darica-copy-block__inner {
-    max-width: 42rem;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
-    text-align: center;
+  .darica-band--plain :global(.process-timeline),
+  .darica-band--plain :global(.value-grid) {
+    background: var(--color-background);
   }
 
-  .darica-copy-block__badge {
-    display: inline-block;
-    margin: 0;
-    padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
+  .darica-band--tint {
     background: var(--color-surface);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--color-primary);
   }
 
-  .darica-copy-block__heading {
-    margin: var(--space-4) 0 0;
-    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
-    font-weight: var(--font-weight-bold);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: var(--color-text);
+  .darica-band--tint :global(.center-gallery) {
+    background: var(--color-surface);
   }
 
-  .darica-copy-block__paragraph {
-    margin: var(--space-4) 0 0;
-    font-size: var(--font-size-lg);
-    line-height: var(--line-height-relaxed);
-    color: var(--color-text-muted);
+  /* BrandCriteria's closing link ("Markaları inceleyin →") — 48px tap
+     target on this page only. */
+  .darica-band--services :global(.brand-criteria__closing-cta a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
   }
 
-  /* Small text-only links under ProcessTimeline/ValueGrid sections —
-     deliberately not a button, so these stay teasers rather than repeated
-     CTAs (plan §K: "orta bölümlerde CTA yok, yalnızca metin-içi link"). */
+  /* Text links under a section — deliberately not repeated CTA buttons,
+     except the SGK pillar link, which gets a quiet outline button. Every
+     link keeps a 48px tap target. */
   .darica-inline-link-wrap {
     margin: 0;
     padding: 0 var(--space-6) var(--space-16);
     max-width: var(--container-2xl);
     margin-inline: auto;
     text-align: center;
-    background: var(--color-surface);
   }
 
   .darica-inline-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
@@ -201,6 +191,18 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     text-decoration: underline;
   }
 
+  .darica-inline-link--button {
+    padding: var(--space-2) var(--space-6);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+  }
+
+  .darica-inline-link--button:hover {
+    background: rgb(37 99 235 / 0.06);
+    text-decoration: none;
+  }
+
   .darica-inline-link:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
@@ -208,10 +210,6 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
   }
 
   @media (max-width: 640px) {
-    .darica-copy-block {
-      padding-block: var(--space-10);
-    }
-
     .darica-inline-link-wrap {
       padding-bottom: var(--space-10);
     }
