@@ -1,17 +1,15 @@
-// Final CTA for /uygulama-ayar/cihaz-deneme — redesign plan §1, Son CTA.
-// Renders through BrandPageFinalCta (unchanged). Primary CTA label
-// matches the Hero's exact wording (same CTA-hierarchy consistency rule
-// used on the Ücretsiz İşitme Testi redesign).
-import { contactConfig } from "../../config";
+// Cihaz Deneme — Final CTA (Faz 2 P2). "Risksiz karar" ve "uzman destek"
+// ifadeleri çıkarıldı; trust maddeleri yalnızca kanonik deneme modeli.
+import { contactConfig } from "../../config/contact";
 import type { BrandPageFinalCtaContent } from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 export const cihazDenemeFinalCta: BrandPageFinalCtaContent = {
-  badge: "RİSKSİZ BİR KARAR İÇİN YANINIZDAYIZ",
-  heading: "İşitme Cihazını Kendiniz Deneyin",
-  description: "Size uygun seçenekleri birlikte değerlendirelim.",
-  ctaPrimary: { label: "Cihaz Denemesi İçin Randevu Al", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href },
-  trustItems: ["Merkezde Ücretsiz Demo", "Satın Alarak 7 Güne Kadar Deneme", "Kesintisiz Ücret İadesi", "Darıca'da Uzman Destek"],
+  badge: "RANDEVU",
+  heading: "Cihaz Denemesi İçin Bize Ulaşın",
+  description: "Demo randevusu için bizi arayın veya WhatsApp'tan yazın.",
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
+  trustItems: ["Merkezde Ücretsiz Demo", "Satın Alarak 7 Güne Kadar Deneme", "Kesintisiz Ücret İadesi"],
   accentColor: "#0d9488",
   accentColorHover: "#0f766e",
   accentColorGlow: "rgb(13 148 136 / 0.22)",
