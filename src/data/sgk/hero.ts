@@ -51,6 +51,6 @@ export const sgkHero: SgkHeroContent = {
       description: "Hızlı ve kolay bir süreçle yanınızdayız.",
     },
   ],
-  ctaPrimaryLabel: "Hemen Ara",
-  ctaSecondaryLabel: "WhatsApp'tan Yaz",
+  ctaPrimaryLabel: "Bizi Arayın",
+  ctaSecondaryLabel: "WhatsApp'tan Yazın",
 };

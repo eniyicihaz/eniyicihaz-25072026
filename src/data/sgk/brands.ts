@@ -95,7 +95,7 @@ export const sgkBrands: SgkBrandsContent = {
       "Kişiye Özel Danışmanlık",
       "Satış Sonrası Destek",
     ],
-    primaryLabel: "Hemen Ara",
-    secondaryLabel: "WhatsApp'tan Yaz",
+    primaryLabel: "Bizi Arayın",
+    secondaryLabel: "WhatsApp'tan Yazın",
   },
 };

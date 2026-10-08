@@ -44,7 +44,7 @@ export const kulakIciHero: BrandPageHeroContent = {
   ],
   image: {
     src: "/images/coselgi/models/effect-ite.webp",
-    alt: "Kulak içi (ITE) tipi, kişiye özel kalıpla üretilmiş tek parça işitme cihazı görseli",
+    alt: "Kulak içi tipi işitme cihazı",
   },
   floatingCard: {
     title: "Kişiye Özel Kalıp",

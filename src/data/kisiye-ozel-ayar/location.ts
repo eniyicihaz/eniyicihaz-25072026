@@ -14,7 +14,7 @@ export const kisiyeOzelAyarLocation: ContactLocationCardContent = {
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",
-  whatsappLabel: "WhatsApp'tan Yaz",
+  whatsappLabel: "WhatsApp'tan Yazın",
   whatsappHref: contactConfig.whatsapp.href,
   emailLabel: "E-posta",
   hoursLabel: "Çalışma Saatleri",

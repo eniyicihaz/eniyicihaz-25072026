@@ -1,5 +1,6 @@
 ---
 import { readableTextOn } from "../../../lib/contrast";
+import { standardCtaLabel } from "../../../lib/cta-labels";
 // BrandPageFaq — shared, cross-brand grouped FAQ accordion with a sticky
 // decision card. Generic counterpart of Oticon's original OticonFaq;
 // data-driven so every brand page can reuse it. Independent of the
@@ -86,7 +87,7 @@ let runningIndex = 0;
             }
           </ul>
           <a class="brand-page-faq__decision-cta" href={data.decisionCard.ctaHref}>
-            <span>{data.decisionCard.ctaLabel}</span>
+            <span>{standardCtaLabel(data.decisionCard.ctaLabel, data.decisionCard.ctaHref)}</span>
             <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
           </a>
         </div>

@@ -22,7 +22,7 @@ export const knowledgeHero: BrandHeroContent = {
     "İşitme kaybından cihaz bakımına, SGK sürecinden güncel teknolojilere kadar merak ettiğiniz tüm konularda güvenilir bilgi kaynağınız.",
     "Genel bilgiler kişisel değerlendirmenin yerini tutmaz; kendi durumunuz için ücretsiz işitme testimizden faydalanabilirsiniz.",
   ],
-  ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
   ctaSecondary: { label: "WhatsApp", href: "https://wa.me/905337733199" },
   trustPills: [
     "Rehber İçerikleri",

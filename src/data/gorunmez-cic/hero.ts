@@ -18,6 +18,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const gorunmezCicHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: marka/model görseli cihaz türünü doğru temsil etmiyor → görselsiz kısa hero
   badge: "İŞİTME CİHAZI ÇEŞİTLERİ · GÖRÜNMEZ (CIC)",
   headingLines: ["Görünmez (CIC)", "İşitme Cihazları"],
   paragraphs: [

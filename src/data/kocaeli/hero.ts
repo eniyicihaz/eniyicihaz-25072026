@@ -12,6 +12,7 @@ import { contactConfig } from "../../config/contact";
 import { company } from "../../components/footer/Footer/data/company";
 
 export const kocaeliHero: CorporateHeroContent = {
+  compactHeading: true,
   locationLabel: "Kocaeli geneli",
   heading: "Kocaeli İşitme Cihazları: Tek Merkezimiz Darıca'da",
   subheading:

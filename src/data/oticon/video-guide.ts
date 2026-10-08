@@ -60,6 +60,6 @@ export const oticonVideoGuide: OticonVideoGuideContent = {
     "Kablosuz bağlantı özellikleri",
   ],
   ctaText: "Oticon teknolojilerini yakından deneyimlemek için ücretsiz işitme testi oluşturabilirsiniz.",
-  ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp'tan Yaz", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
 };

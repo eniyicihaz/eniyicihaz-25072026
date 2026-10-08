@@ -75,7 +75,7 @@ export const sgkPayments: SgkPaymentsContent = {
   },
   cta: {
     heading: "Size uygun SGK desteğini öğrenmek ister misiniz?",
-    primaryLabel: "Hemen Ara",
-    secondaryLabel: "WhatsApp'tan Yaz",
+    primaryLabel: "Bizi Arayın",
+    secondaryLabel: "WhatsApp'tan Yazın",
   },
 };

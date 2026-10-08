@@ -205,7 +205,6 @@ const servicesMega: MegaMenuData = {
     icon: "headset",
     title: "Hızlı Erişim",
     items: [
-      { icon: "calendar", title: "Randevu Al", desc: "Size uygun saatte", href: "tel:+905337733199" },
       { icon: "phone", title: "Bizi Arayın", desc: "Telefonla randevu", href: "tel:+905337733199" },
       { icon: "building", title: "Merkezimiz", desc: "Darıca'da yanınızdayız", href: "/iletisim/" },
       { icon: "shield", title: "SGK İşlemleri", desc: "Anlaşmalı merkez", href: "/sgk-isitme-cihazi-odemesi/" },
@@ -299,5 +298,5 @@ export const headerData: HeaderData = {
     label: "Bizi Arayın",
     href: "tel:+905337733199",
   },
-  cta: { label: "Randevu Al", href: "tel:+905337733199", icon: "calendar" },
+  cta: { label: "Bizi Arayın", href: "tel:+905337733199", icon: "phone" },
 };

@@ -90,6 +90,6 @@ export const oticonVsPhonak: OticonVsPhonakContent = {
   calloutText:
     "Daha iyi marka yoktur. Doğru kullanıcı için doğru cihaz vardır. İşitme kaybının derecesi, yaşam tarzı, beklentiler ve kulak yapısı değerlendirilerek seçim yapılmalıdır.",
   ctaText: "Size uygun markayı ve modeli birlikte belirleyelim.",
-  ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp'tan Yaz", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
 };

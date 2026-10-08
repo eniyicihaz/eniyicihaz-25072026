@@ -14,7 +14,7 @@ export const cihazDenemeLocation: ContactLocationCardContent = {
   addressNote: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısında.",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",
-  whatsappLabel: "WhatsApp'tan Yaz",
+  whatsappLabel: "WhatsApp'tan Yazın",
   whatsappHref: contactConfig.whatsapp.href,
   emailLabel: "E-posta",
   hoursLabel: "Çalışma Saatleri",

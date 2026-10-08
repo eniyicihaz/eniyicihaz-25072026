@@ -74,7 +74,7 @@ export const sgkSupport: SgkSupportContent = {
   cta: {
     heading: "SGK süreciniz hakkında ücretsiz destek almak ister misiniz?",
     subtext: "Uzman ekibimiz süreç boyunca size yardımcı olmaya hazır.",
-    primaryLabel: "Hemen Ara",
-    secondaryLabel: "WhatsApp'tan Yaz",
+    primaryLabel: "Bizi Arayın",
+    secondaryLabel: "WhatsApp'tan Yazın",
   },
 };

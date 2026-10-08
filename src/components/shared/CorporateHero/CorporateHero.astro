@@ -27,6 +27,8 @@ export interface CorporateHeroCta {
 }
 
 export interface CorporateHeroContent {
+  /** Uzun H1'ler için mobilde (≤640 px) bir kademe küçük başlık; metin değişmez. */
+  compactHeading?: boolean;
   locationLabel: string;
   heading: string;
   subheading: string;
@@ -57,7 +59,7 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<section class="corporate-hero" aria-labelledby="corporate-hero-title">
+<section class:list={["corporate-hero", { "corporate-hero--compact-h1": data.compactHeading }]} aria-labelledby="corporate-hero-title">
   <div class:list={["corporate-hero__photo", { "corporate-hero__photo--no-image": !data.image }]}>
     {data.image && (
       <img
@@ -377,6 +379,11 @@ const { data } = Astro.props;
   }
 
   @media (max-width: 640px) {
+    .corporate-hero--compact-h1 .corporate-hero__heading {
+      font-size: clamp(1.625rem, 1.2rem + 2.2vw, 2rem);
+      line-height: 1.15;
+    }
+
     .corporate-hero__photo {
       min-height: 420px;
     }

@@ -15,6 +15,7 @@ import type { BrandPageHeroContent } from "../../components/brand-page/BrandPage
 import { contactConfig } from "../../config";
 
 export const bluetoothHero: BrandPageHeroContent = {
+  textOnly: true, // Hero Visual Paketi: marka/model görseli cihaz türünü doğru temsil etmiyor → görselsiz kısa hero
   badge: "İŞİTME CİHAZI ÇEŞİTLERİ · BLUETOOTH ÖZELLİKLİ",
   headingLines: ["Bluetooth Özellikli", "İşitme Cihazları"],
   paragraphs: [
