@@ -1,0 +1,29 @@
+---
+// BrandSimplePage — sade marka sayfası kompozisyonu (Faz 2 P2).
+// Yeni, yalnızca sayfa kompozisyonu yapan bir bileşen: mevcut paylaşılan BrandPage* bileşenlerini
+// değiştirmez, yalnızca sırayla çağırır. İçerik `buildSimpleBrandPage` (src/data/brand-simple/build.ts)
+// tarafından üretilir. Sıra: Hero → Marka hakkında → Model aileleri → Kimler için → SSS → İlgili sayfalar
+// → Final CTA.
+import BrandPageHero from "../BrandPageHero/BrandPageHero.astro";
+import BrandPageIntro from "../BrandPageIntro/BrandPageIntro.astro";
+import BrandPageModels from "../BrandPageModels/BrandPageModels.astro";
+import BrandPageIdealUser from "../BrandPageIdealUser/BrandPageIdealUser.astro";
+import BrandPageFaq from "../BrandPageFaq/BrandPageFaq.astro";
+import BrandPageRelatedContent from "../BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../BrandPageFinalCta/BrandPageFinalCta.astro";
+import type { SimpleBrandPage } from "../../../data/brand-simple/build";
+
+interface Props {
+  page: SimpleBrandPage;
+}
+
+const { page } = Astro.props;
+---
+
+<BrandPageHero data={page.hero} />
+<BrandPageIntro data={page.intro} />
+<BrandPageModels data={page.models} />
+<BrandPageIdealUser data={page.idealUser} />
+<BrandPageFaq data={page.faq} />
+<BrandPageRelatedContent data={page.related} />
+<BrandPageFinalCta data={page.finalCta} />
