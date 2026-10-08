@@ -236,7 +236,7 @@ export const typeProfiles: TypeProfile[] = [
     ],
     watch: [
       "Büyümeye bağlı olarak kalıp ve ayar düzenli yenilenmelidir",
-      "Kullanım takibi ve aile-uzman iletişimi süreç için önemlidir",
+      "Kullanım takibi ve aile-ekip iletişimi süreç için önemlidir",
     ],
     href: "/isitme-cihazlari/cocuklara-ozel/",
     linkLabel: "Çocuklara yönelik çözümler",

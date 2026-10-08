@@ -33,7 +33,7 @@ export const trialSteps: GuideCard[] = [
     icon: Sparkles,
     tag: "2. Deneme",
     title: "Cihaz deneme",
-    text: "Uygun bulunan cihazlar, stok ve değerlendirmeye bağlı olarak denenebilir; karar öncesinde gerçek ortamınızda nasıl hissettirdiğini görürsünüz.",
+    text: "Merkezimizde yaklaşık 20 dakikalık ücretsiz demo yapılır; cihazı satın alarak 7 güne kadar da deneyebilirsiniz. Uygun bulunmazsa ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
     href: "/uygulama-ayar/cihaz-deneme/",
     linkLabel: "Cihaz deneme",
   },

@@ -37,7 +37,6 @@ import GuideSection from "../../components/price-guide/GuideSection.astro";
 import InfoGrid from "../../components/price-guide/InfoGrid.astro";
 import GuideTable from "../../components/price-guide/GuideTable.astro";
 import GuideNotice from "../../components/price-guide/GuideNotice.astro";
-import LocalBlocks from "../../components/price-guide/LocalBlocks.astro";
 import GuideCta from "../../components/price-guide/GuideCta.astro";
 
 import TypeProfiles from "../../components/device-guide/TypeProfiles.astro";
@@ -48,7 +47,7 @@ import { buildMedicalBusinessSchema } from "../../lib/schema";
 import { daricaLocation } from "../../data/darica/location";
 import { devicesExtended } from "../../data/devices/extended";
 import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../../data/isitme-cihazlari/page";
-import { devicesGuideHero } from "../../data/isitme-cihazlari/hero";
+import { devicesGuideHero, contactLinks } from "../../data/isitme-cihazlari/hero";
 import { devicesQuickAnswer } from "../../data/isitme-cihazlari/quick-answer";
 import { typesSection, typeProfiles } from "../../data/isitme-cihazlari/types";
 import { typesTable, inVsBehindTable, chargeVsBatteryTable, featuresTable, scenariosTable } from "../../data/isitme-cihazlari/comparisons";
@@ -58,7 +57,7 @@ import { featuresSection, features } from "../../data/isitme-cihazlari/features"
 import { ricSection, ric, invisibleSection, invisible, childrenSection, children } from "../../data/isitme-cihazlari/focus";
 import { brandsSection, brandCards, brandsNote, modelsShowcase, modelPickSection, modelPickCards } from "../../data/isitme-cihazlari/brands";
 import { trialSection, trialSteps, afterSalesSection, afterSales, priceSgkSection, priceSgkCards } from "../../data/isitme-cihazlari/process";
-import { localSection, localBlocks } from "../../data/isitme-cihazlari/local";
+import { localSection, localContent } from "../../data/isitme-cihazlari/local";
 import { devicesFaq } from "../../data/isitme-cihazlari/faq";
 import { devicesRelated, devicesCta } from "../../data/isitme-cihazlari/related-cta";
 
@@ -93,9 +92,11 @@ const typesListSchema = {
 const locationCard = {
   ...daricaLocation,
   eyebrow: "DARICA'DAKİ MERKEZİMİZ",
-  heading: "İşitme Cihazlarını Merkezimizde Yakından Görün",
+  heading: "Merkezimizin Adresi ve Çalışma Saatleri",
   intro:
-    "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimize kolayca ulaşabilir. Önceden randevu almanızı tavsiye ederiz.",
+    "Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur.",
+  addressNote: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısında.",
+  largeTargets: true,
 };
 ---
 
@@ -109,6 +110,11 @@ const locationCard = {
   </div>
 
   <GuideHero data={devicesGuideHero} icons={{ primary: Compass, secondary: Stethoscope }} />
+
+  <div class="dg-contact-strip" role="group" aria-label="Hızlı iletişim">
+    <a class="dg-contact-strip__btn dg-contact-strip__btn--solid" href={contactLinks.phone}>Bizi Arayın</a>
+    <a class="dg-contact-strip__btn" href={contactLinks.whatsapp}>WhatsApp'tan Yazın</a>
+  </div>
   <GuideToc links={toc} />
 
   <!-- B. Doğrudan cevap -->
@@ -249,7 +255,12 @@ const locationCard = {
 
   <!-- U. Lokal bölümler -->
   <GuideSection {...localSection}>
-    <LocalBlocks blocks={localBlocks} />
+    <div class="dg-local">
+      {localContent.paragraphs.map((t) => <p class="dg-local__p">{t}</p>)}
+      <ul class="dg-local__links">
+        {localContent.links.map((l) => <li><a class="dg-local__link" href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
   </GuideSection>
 
   <ContactLocationCard data={locationCard} />
@@ -266,6 +277,88 @@ const locationCard = {
 </MainLayout>
 
 <style>
+  .dg-contact-strip {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .dg-contact-strip__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .dg-contact-strip__btn--solid {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+
+  .dg-contact-strip__btn:hover {
+    text-decoration: underline;
+  }
+
+  .dg-contact-strip__btn:focus-visible,
+  .dg-local__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .dg-local {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .dg-local__p {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .dg-local__links {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .dg-local__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .dg-local__link:hover {
+    text-decoration: underline;
+  }
+
   .dg-breadcrumb {
     max-width: var(--container-2xl);
     margin-inline: auto;

@@ -104,7 +104,7 @@ export const choosingGroups: { id: string; title: string; intro: string; cards: 
       {
         icon: Sliders,
         title: "Kullanım kolaylığı",
-        text: "Düğmelerin boyutu, takıp çıkarma ve temizlik gibi günlük işlemlerin sizin için ne kadar rahat olduğunu cihazı elinize alarak deneyin.",
+        text: "Düğmelerin boyutu, takıp çıkarma ve temizlik gibi günlük işlemlerin sizin için ne kadar rahat olduğunu görüşmede birlikte değerlendirin.",
       },
     ],
   },

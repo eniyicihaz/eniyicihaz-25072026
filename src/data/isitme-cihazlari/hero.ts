@@ -17,7 +17,7 @@ export const devicesGuideHero: PriceGuideHeroContent = {
     "Darıca'daki gerçek merkezimizin deneyimiyle hazırlanan bu rehber, size hangi cihazın 'en iyi' olduğunu söylemez; kendi işitme kaybınıza ve yaşamınıza uygun olanı ayırt etmeniz için doğru soruları verir.",
   ctaPrimary: { label: "İşitme Cihazlarını Keşfet", href: "#cihaz-turleri" },
   ctaSecondary: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
-  chips: ["2009'dan beri işitme alanında", "SGK anlaşmalı merkez", "Ücretsiz işitme testi", "18 marka"],
+  chips: ["SGK anlaşmalı merkez", "Ücretsiz işitme testi", "18 marka"],
   image: {
     src: "/images/heroes/isitme-cihazi-turleri.webp",
     alt: "Kulak arkası, kulak içi ve şarj kutulu işitme cihazlarının yan yana durduğu kavramsal görsel — temsili görsel",

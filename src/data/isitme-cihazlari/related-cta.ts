@@ -38,5 +38,5 @@ export const devicesCta: GuideCtaContent = {
     { label: "WhatsApp'tan Yazın", href: `${contactConfig.whatsapp.href}?text=${whatsappText}`, variant: "outline", external: true },
     { label: "Darıca Merkezimiz", href: "/darica-isitme-cihazlari/", variant: "outline" },
   ],
-  reassurance: ["Baskı yok, taahhüt yok", "Cihaz deneme imkânı", "SGK anlaşmalı merkez"],
+  reassurance: ["Merkezde ücretsiz demo", "Satın alarak 7 güne kadar deneme", "SGK anlaşmalı merkez"],
 };
