@@ -7,9 +7,10 @@ import { company } from "../../components/footer/Footer/data/company";
 import { contactConfig } from "../../config";
 
 export const sgkLocation: ContactLocationCardContent = {
-  eyebrow: "DARICA'DA SGK İŞİTME CİHAZI SÜRECİ",
-  heading: "SGK Sürecinizi Darıca'daki Merkezimizde Yürütelim",
-  intro: "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimizde SGK anlaşmalı işitme cihazı sürecinden faydalanabilir.",
+  eyebrow: "MERKEZİMİZ DARICA'DA",
+  heading: "SGK İşlemleri İçin Merkezimiz",
+  intro: "Tek fiziksel merkezimiz Darıca'dadır; Gebze ve Çayırova'dan gelen danışanlarımız da SGK işlemleri için bu merkeze gelebilir.",
+  addressNote: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısında.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",
@@ -19,4 +20,5 @@ export const sgkLocation: ContactLocationCardContent = {
   hoursLabel: "Çalışma Saatleri",
   mapTitle: "Avrasya İşitme Cihazları — Darıca Konum Haritası",
   company,
+  largeTargets: true,
 };

@@ -23,12 +23,12 @@ export interface SgkTrustBarContent {
 export const sgkTrustBar: SgkTrustBarContent = {
   items: [
     {
-      title: "Darıca · Gebze · Çayırova",
-      text: "Bölgesinde hizmet veriyoruz.",
+      title: "Merkezimiz Darıca'da",
+      text: "Tek fiziksel merkezimiz Darıca'dadır.",
     },
     {
       title: "SGK Anlaşmalı İşitme Merkezi",
-      text: "SGK süreçlerinde deneyimli ekip.",
+      text: "SGK işlemlerinde destek veriyoruz.",
     },
     {
       title: "Odyometrist Desteği",

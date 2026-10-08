@@ -12,14 +12,13 @@ export const onlineIsitmeTestiFaq: BrandPageFaqContent = {
   heading: "Online İşitme Testi Hakkında Merak Edilenler",
   intro: "Taramanın güvenilirliği, teknik işleyişi ve sonrasında olacaklar hakkında en çok sorulan sorular.",
   decisionCard: {
-    title: "Darıca'da Profesyonel İşitme Testi Randevusu Alın",
+    title: "Merkezimizde Ücretsiz İşitme Testi",
     points: [
+      "Ücretsiz işitme testi",
       "Odyometrist eşliğinde test",
-      "Kalibre edilmiş profesyonel ekipman",
-      "Aynı gün sonuç",
-      "SGK danışmanlığı",
+      "SGK anlaşmalı merkez",
     ],
-    ctaLabel: "Hemen Randevu Alın",
+    ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
   categories: [
@@ -29,12 +28,12 @@ export const onlineIsitmeTestiFaq: BrandPageFaqContent = {
         {
           question: "Online işitme testi güvenilir mi?",
           answer:
-            "Online işitme taraması, kulaklığınızın ve cihazınızın kalibrasyonu bilinmediği için genel bir ön fikir verir; klinikte kalibre edilmiş ekipmanla yapılan profesyonel bir işitme testinin doğruluğuyla karşılaştırılamaz. Kesin bir değerlendirme için her zaman bir odyometriste danışmanızı öneririz.",
+            "Online işitme taraması, kulaklığınızın ve cihazınızın özellikleri bilinmediği için yalnızca genel bir ön fikir verir; merkezimizde odyometrist eşliğinde yapılan işitme testinin yerini tutmaz. Kesin bir değerlendirme için bir odyometriste danışmanızı öneririz.",
         },
         {
-          question: "Bu tarama klinik odyometrinin yerini tutar mı?",
+          question: "Bu tarama merkezdeki işitme testinin yerini tutar mı?",
           answer:
-            "Hayır. Online tarama yalnızca bir ön değerlendirmedir; klinikte odyometrist eşliğinde, ses yalıtımlı bir ortamda ve kalibre edilmiş cihazlarla yapılan odyometrinin yerini tutmaz.",
+            "Hayır. Online tarama yalnızca bir ön değerlendirmedir; merkezimizde odyometrist eşliğinde yapılan işitme testinin yerini tutmaz.",
         },
       ],
     },
@@ -78,7 +77,7 @@ export const onlineIsitmeTestiFaq: BrandPageFaqContent = {
         {
           question: "Sonucum \"zorlandınız\" çıkarsa ne yapmalıyım?",
           answer:
-            "Bu, bir tanı değil; yalnızca bir ön işarettir. Bir sonraki adım olarak Darıca'daki merkezimizde ücretsiz, odyometrist eşliğinde profesyonel bir işitme testi randevusu almanızı öneririz.",
+            "Bu, bir tanı değil; yalnızca bir ön işarettir. Bir sonraki adım olarak Darıca'daki merkezimizde ücretsiz, odyometrist eşliğinde işitme testi için randevu almanızı öneririz.",
         },
       ],
     },

@@ -28,10 +28,10 @@ export const onlineIsitmeTestiHero: BrandPageHeroContent = {
   headingLines: ["Online İşitme Testi", "Ücretsiz Ön Değerlendirme"],
   paragraphs: [
     "Online işitme taraması; bilgisayarınıza veya telefonunuza taktığınız kulaklıkla, tarayıcınız üzerinden birkaç dakikada tamamlayabileceğiniz, ücretsiz bir ön değerlendirmedir. Sağ ve sol kulağınız ayrı ayrı test edilir.",
-    "Darıca, Gebze ve Çayırova'da yaşıyorsanız, bu taramadan hemen sonra Avrasya İşitme'deki profesyonel işitme testine yönlendirilirsiniz — online tarama klinik odyometrinin yerini tutmaz, yalnızca genel bir ön fikir verir.",
+    "Tarama sonunda isterseniz merkezimizde ücretsiz işitme testi için randevu alabilirsiniz; online tarama merkezimizdeki işitme testinin yerini tutmaz, yalnızca genel bir ön fikir verir.",
   ],
   ctaPrimary: { label: "Taramayı Hemen Başlat", href: "#online-isitme-taramasi" },
-  ctaSecondary: { label: "Hemen Ara", href: contactConfig.phone.href },
+  ctaSecondary: { label: "Bizi Arayın", href: contactConfig.phone.href },
   features: [
     {
       label: "SAF SES TONLARI",
