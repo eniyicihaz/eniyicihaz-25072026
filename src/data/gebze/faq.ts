@@ -1,56 +1,35 @@
-// Gebze landing page — SSS (P1-B). Sorular Gebze'den gelen kullanıcının
-// gerçek karar sorularına odaklanıyor: şube var mı, nasıl gelinir,
-// randevusuz gelinir mi, evde hizmet kapsıyor mu, deneme nasıl. Genel
-// cihaz/fiyat soruları Darıca ve pillar sayfalarda kaldı; burada
-// tekrarlanmıyor. Deneme cevabı SERVICE_SOT §1.5 kanonik modelini
-// (merkezde ~20 dk ücretsiz demo; satın alarak 7 güne kadar deneme,
-// kesintisiz iade; kulak içi hariç) kendi cümleleriyle veriyor.
-import { contactConfig } from "../../config/contact";
+// Gebze landing page — SSS (Faz 2 P2, Gebze V1). 5 soru 3'e indirildi.
+// Ulaşım (hat/tarif) ve deneme soruları çıkarıldı: ulaşım kendi bölümünde,
+// deneme kanonik sayfada (/uygulama-ayar/cihaz-deneme/). Kalan 3 soru:
+// şube durumu, randevu kuralı, evde hizmet kapsamı.
+// Kaynak: LOCAL_SOURCE_OF_TRUTH §1/§2/§3 (tek fiziksel merkez Darıca; walk-in
+// kabul + hizmet bazında randevu birlikte), SERVICE_SOURCE_OF_TRUTH H16
+// (evde hizmet: ücretsiz, randevulu, Kocaeli'nin tamamı ve İstanbul Anadolu
+// Yakası; merkezde verilen hizmetlerin kapsamı doğrultusunda).
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 
 export const gebzeFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
   heading: "Gebze'den Gelenlerin Sık Sorduğu Sorular",
-  intro: "Ulaşım, randevu ve merkezimizdeki süreç hakkında Gebze'den en çok sorulanlar.",
-  decisionCard: {
-    title: "Gelmeden Önce Arayın",
-    points: [
-      "Fiziksel merkezimiz Darıca'da",
-      "Gebze'den 502, 440, 510, 515 hatları",
-      "Randevusuz ziyaret kabul edilir",
-      "Gebze evde hizmet bölgemizde",
-    ],
-    ctaLabel: "Bizi Arayın",
-    ctaHref: contactConfig.phone.href,
-  },
+  intro: "Şube, randevu ve evde hizmet hakkında kısa cevaplar.",
   categories: [
     {
-      label: "Ulaşım ve Ziyaret",
+      label: "Merkez ve Hizmet",
       items: [
         {
           question: "Gebze'de şubeniz var mı?",
-          answer: "Hayır. Tek fiziksel merkezimiz Darıca'dadır; Gebze'den gelen danışanlarımıza burada hizmet veriyoruz.",
+          answer:
+            "Hayır. Tek fiziksel merkezimiz Darıca'dadır; Gebze'den gelen danışanlarımızı Darıca'daki merkezimizde ağırlıyoruz. Yol tarifi ve hat bilgileri bu sayfadaki ulaşım bölümünde.",
         },
         {
-          question: "Gebze'den merkezinize toplu taşımayla nasıl gelirim?",
-          answer: "502, 440, 510 ve 515 numaralı otobüs hatlarıyla gelebilirsiniz. Merkezimiz Farabi Devlet Hastanesi durağının karşısındadır. Hat bilgileri değişebileceği için yola çıkmadan önce kontrol etmenizi öneririz.",
+          question: "Gebze'den gelirken randevu gerekir mi?",
+          answer:
+            "Randevusuz gelebilirsiniz. Yine de işitme testi, cihaz ayarı ve teknik servis gibi hizmetler randevuyla verildiği için, bu hizmetlerden biri için geliyorsanız önceden aramanız iyi olur.",
         },
         {
-          question: "Randevu almadan gelebilir miyim?",
-          answer: "Randevusuz gelebilirsiniz. Ancak işitme testi ve cihaz ayarı gibi hizmetler randevuyla verildiği için gelmeden önce aramanızı öneririz.",
-        },
-      ],
-    },
-    {
-      label: "Hizmet ve Süreç",
-      items: [
-        {
-          question: "Evde hizmet Gebze'yi kapsıyor mu?",
-          answer: "Evet. Evde işitme cihazı hizmetimiz Gebze dahil Kocaeli'nin tüm ilçelerini kapsar; hizmet ücretsizdir ve randevuyla planlanır.",
-        },
-        {
-          question: "Gebze'den gelip cihazı deneyebilir miyim?",
-          answer: "Merkezimizde yaklaşık 20 dakikalık ücretsiz bir demoyla cihazı deneyebilirsiniz. Günlük hayatınızda da kullanmak isterseniz cihazı satın alıp 7 güne kadar deneyebilirsiniz; uygun bulmazsanız cihazı iade eder, ödediğiniz tutarı kesintisiz geri alırsınız. Kulak içi cihazlar bu 7 günlük denemeye dahil değildir.",
+          question: "Gebze'de evde hizmet veriyor musunuz?",
+          answer:
+            "Evet. Evde hizmetimiz Kocaeli'nin tamamını kapsar; Gebze de bu alandadır. Hizmet ücretsizdir ve randevuyla planlanır; merkezde verdiğimiz hizmetlerin kapsamı doğrultusunda sunulur.",
         },
       ],
     },

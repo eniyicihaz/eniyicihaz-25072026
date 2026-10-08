@@ -30,8 +30,10 @@ export interface CorporateHeroContent {
   locationLabel: string;
   heading: string;
   subheading: string;
-  image: string;
-  imageAlt: string;
+  // Optional: when omitted (e.g. Gebze while its real photo is pending) the
+  // hero renders on a plain dark gradient instead of a photo — no <img>.
+  image?: string;
+  imageAlt?: string;
   // Optional intrinsic size + LCP priority for the hero photo. The image is
   // absolutely positioned and sized by CSS (object-fit: cover), so these
   // only give the browser the aspect ratio and fetch priority — layout and
@@ -39,6 +41,11 @@ export interface CorporateHeroContent {
   imageWidth?: number;
   imageHeight?: number;
   imagePriority?: boolean;
+  // Optional responsive candidates for the hero photo.
+  imageSrcset?: string;
+  imageSizes?: string;
+  // Optional stronger dark overlay for bright photos (text contrast).
+  scrimStrong?: boolean;
   stats: CorporateHeroStat[];
   ctas?: CorporateHeroCta[];
 }
@@ -51,17 +58,21 @@ const { data } = Astro.props;
 ---
 
 <section class="corporate-hero" aria-labelledby="corporate-hero-title">
-  <div class="corporate-hero__photo">
-    <img
-      class="corporate-hero__image"
-      src={data.image}
-      alt={data.imageAlt}
-      width={data.imageWidth}
-      height={data.imageHeight}
-      loading="eager"
-      fetchpriority={data.imagePriority ? "high" : undefined}
-    />
-    <div class="corporate-hero__scrim" aria-hidden="true" />
+  <div class:list={["corporate-hero__photo", { "corporate-hero__photo--no-image": !data.image }]}>
+    {data.image && (
+      <img
+        class="corporate-hero__image"
+        src={data.image}
+        srcset={data.imageSrcset}
+        sizes={data.imageSizes}
+        alt={data.imageAlt ?? ""}
+        width={data.imageWidth}
+        height={data.imageHeight}
+        loading="eager"
+        fetchpriority={data.imagePriority ? "high" : undefined}
+      />
+    )}
+    <div class:list={["corporate-hero__scrim", { "corporate-hero__scrim--strong": data.scrimStrong }]} aria-hidden="true" />
 
     <div class="corporate-hero__content" data-rise>
       <span class="corporate-hero__location">
@@ -149,6 +160,11 @@ const { data } = Astro.props;
     overflow: hidden;
   }
 
+  .corporate-hero__photo--no-image {
+    min-height: 0;
+    background: linear-gradient(135deg, var(--color-text) 0%, rgb(30 58 138) 100%);
+  }
+
   .corporate-hero__image {
     position: absolute;
     inset: 0;
@@ -162,6 +178,10 @@ const { data } = Astro.props;
     position: absolute;
     inset: 0;
     background: linear-gradient(0deg, var(--color-text) 0%, rgb(15 23 42 / 0.55) 45%, rgb(15 23 42 / 0.15) 75%, transparent 100%);
+  }
+
+  .corporate-hero__scrim--strong {
+    background: linear-gradient(0deg, var(--color-text) 0%, rgb(15 23 42 / 0.72) 50%, rgb(15 23 42 / 0.5) 100%);
   }
 
   .corporate-hero__content {

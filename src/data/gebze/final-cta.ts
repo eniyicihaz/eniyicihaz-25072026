@@ -1,20 +1,22 @@
-// Gebze landing page — Final CTA. Gebze odaklı, Darıca vurgusu yok (plan
-// onayı §10). Component yalnızca 2 CTA butonu destekliyor (ctaPrimary/
-// ctaSecondary) — "Randevu Al" (gerçek ücretsiz değerlendirme sayfasına) ve
-// "WhatsApp'tan Yaz" seçildi; telefon zaten Hero'da ayrı bir CTA olarak var.
+// Gebze landing page — Son CTA (Faz 2 P2, Gebze V1): Ara + WhatsApp + Yol
+// tarifi (CONVERSION_SOT §5). Walk-in bilgisi tek başına değil, hizmet
+// bazında randevu kuralıyla birlikte verilir (CONVERSION_SOT §1).
 import { contactConfig } from "../../config/contact";
+import { company } from "../../components/footer/Footer/data/company";
 import type { BrandPageFinalCtaContent } from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 export const gebzeFinalCta: BrandPageFinalCtaContent = {
-  badge: "HEMEN BAŞLAYALIM",
+  badge: "DARICA MERKEZİMİZ",
   heading: "Gebze'den Gelmeden Önce Bizi Arayın",
-  description: "Darıca'daki merkezimiz için randevunuzu telefonla ya da WhatsApp'tan planlayalım; evde hizmet isterseniz onu da birlikte ayarlayalım.",
-  ctaPrimary: { label: "Arayıp Randevu Alın", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
+  description:
+    "Randevusuz gelebilirsiniz; hizmetler için önceden aramanızı öneririz. Arayabilir, WhatsApp'tan yazabilir ya da yol tarifiyle doğrudan Darıca'daki merkezimize gelebilirsiniz.",
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
+  ctaTertiary: { label: "Yol Tarifi Al", href: company.directionsHref },
   trustItems: [
     "Fiziksel Merkez Darıca'da",
-    "Randevusuz Ziyaret Kabul Edilir",
-    "Gebze Evde Hizmet Bölgemizde",
+    "Asansörle 1. Kat",
+    "Randevusuz gelebilirsiniz; hizmetler için önceden arayın",
     "SGK Anlaşmalı Merkez",
   ],
   accentColor: "#2563eb",

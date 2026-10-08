@@ -1,28 +1,49 @@
-// Gebze landing page — CorporateHero verisi (P1-B, "Gebze'den Darıca
-// merkezimize" modeli). Gebze'de şube yok; fiziksel merkez Darıca'da.
-// Rakamlar ve hatlar yalnızca LOCAL_SOURCE_OF_TRUTH §5'ten:
-// - Gebze'den gelen müşteri payı: yaklaşık %20 [TIME-SENSITIVE]
-// - Gebze'den merkeze otobüs hatları: 502, 440, 510, 515 [TIME-SENSITIVE]
-// Görsel (image/imageAlt) bu turda değiştirilmedi — hero görselleri ayrı
-// P2 fazında ele alınacak.
+// Gebze landing page — CorporateHero verisi (Faz 2 P2, Gebze V1).
+// Konumlandırma: "Gebze'den Darıca'daki gerçek merkezimize ulaşım".
+// Gebze'de şube yok; fiziksel merkez Darıca'da — hero bunu olumsuz açılışla
+// değil, merkezin yeri + hat numaralarıyla anlatır.
+// Kaynak: LOCAL_SOURCE_OF_TRUTH §1/§2/§5:
+// - adres tarifi (Palandöken Eczanesi üst katı, Farabi Devlet Hastanesi
+//   durağının karşısı, asansörle 1. kat) [DOĞRULANDI]
+// - Gebze'den merkeze hatlar 502, 440, 510, 515 [DOĞRULANDI][TIME-SENSITIVE]
+// "%20 Gebze'den" istatistiği hero'dan kaldırıldı (P2 audit kararı).
+//
+// Görsel: merkezin gerçek bekleme alanı fotoğrafı (ASSET_SOT §2,
+// hakkimizda-bekleme-alani.webp, [DOĞRULANDI] D1; içerik değiştirilmedi).
+// Darıca hero'su (dış cephe) ve ana sayfa hero'su (resepsiyon) ile aynı
+// görsel değil; Gebze'den gelene "geleceğiniz gerçek merkez" hissini veren
+// iç mekân karesi. 1536 px orijinal + yalnızca yeniden boyutlandırılmış
+// 1024 px WebP varyantı (kadraj aynı).
 import type { CorporateHeroContent } from "../../components/shared/CorporateHero/CorporateHero.astro";
 import { contactConfig } from "../../config/contact";
 import { company } from "../../components/footer/Footer/data/company";
 
 export const gebzeHero: CorporateHeroContent = {
   locationLabel: "Gebze'den Darıca Merkezimize",
-  heading: "Gebze'den İşitme Cihazı Hizmeti",
+  heading: "Gebze'den Darıca'daki İşitme Merkezimize Ulaşım",
   subheading:
-    "Gebze'de şubemiz yok; Gebze'den gelen danışanlarımızı Darıca'daki merkezimizde ağırlıyoruz. Danışanlarımızın yaklaşık beşte biri Gebze'den geliyor.",
-  image: "/images/heroes/isitme-cihazi-turleri.webp",
-  imageAlt: "Farklı işitme cihazı türlerini gösteren kavramsal ürün görseli",
+    "Merkezimiz Darıca'da, Palandöken Eczanesi'nin üst katında; Farabi Devlet Hastanesi durağının karşısındadır. Gebze'den 502, 440, 510 veya 515 numaralı hatlarla gelebilirsiniz; hat bilgileri değişebilir, yola çıkmadan önce kontrol edin.",
+  image: "/images/pages/hakkimizda-bekleme-alani.webp",
+  imageAlt: "Avrasya İşitme Cihazları Darıca merkezinin gün ışığı alan bekleme alanı",
+  imageWidth: 1536,
+  imageHeight: 1024,
+  imagePriority: true,
+  scrimStrong: true, // parlak iç mekân fotoğrafı: metin kontrastı için
+  // Mobilde hero dikey uzun (~670px) ve foto "cover" ile yüksekliğe göre
+  // ölçeklenir (3:2 → ~1005px genişlik); bu yüzden dar ekranda sizes 100vw
+  // değil ~1020px.
+  imageSrcset:
+    "/images/pages/hakkimizda-bekleme-alani-1024.webp 1024w, /images/pages/hakkimizda-bekleme-alani.webp 1536w",
+  imageSizes: "(max-width: 768px) 1020px, 100vw",
   stats: [
-    { value: "Yaklaşık %20", label: "Danışanlarımız Gebze'den" },
-    { value: "4 Otobüs Hattı", label: "Gebze'den Merkeze" },
+    { value: "502 · 440 · 510 · 515", label: "Gebze'den merkeze hatlar" },
     { value: "Darıca", label: "Fiziksel Merkezimiz" },
+    { value: "1. Kat · Asansör", label: "Palandöken Eczanesi üst katı" },
   ],
+  // Mobil öncelik sırası: Ara, Yol tarifi, Mesaj (CONVERSION_SOT §5).
   ctas: [
-    { label: "Arayıp Randevu Alın", href: contactConfig.phone.href },
+    { label: "Bizi Arayın", href: contactConfig.phone.href },
     { label: "Yol Tarifi Al", href: company.directionsHref, variant: "outline" },
+    { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href, variant: "outline" },
   ],
 };

@@ -1,30 +1,60 @@
-// Gebze landing page — page-scoped metin blokları (P1-B). Darıca/Çayırova
-// sayfalarıyla aynı genel cihaz/fiyat/SGK metinleri burada tekrar
-// edilmiyor; bu konular pillar sayfalarda anlatılıyor. Buradaki bilgiler
-// yalnızca LOCAL_SOURCE_OF_TRUTH (§2, §3, §5) ve SERVICE_SOURCE_OF_TRUTH
-// H16'dan geliyor. Hat numaraları [TIME-SENSITIVE].
-export interface GebzeCopyBlock {
-  badge: string;
+// Gebze landing page — page-scoped metin/veri blokları (Faz 2 P2, Gebze V1).
+// Yalnızca LOCAL_SOURCE_OF_TRUTH (§2, §5) ve SERVICE_SOURCE_OF_TRUTH H16'dan.
+// Mesafe, süre, güzergâh başlangıcı, ücret, metro bağlantısı YAZILMAZ
+// (doğrulanmadı). Hat numaraları [TIME-SENSITIVE]. Hatların global tek
+// kaynağa (routes.ts) taşınması ayrı teknik temizlik işidir; bu dosya yalnızca
+// Gebze sayfasının hat verisini tutar.
+export interface GebzeRoute {
+  eyebrow: string;
   heading: string;
-  paragraphs: string[];
+  linesLabel: string;
+  lines: string[];
+  timeNote: string;
+  landmark: string;
 }
 
-export const gebzeIntro: GebzeCopyBlock = {
-  badge: "GEBZE'DEN ULAŞIM",
-  heading: "Gebze'den Darıca'daki Merkezimize Nasıl Gelinir?",
-  paragraphs: [
-    "Gebze'de ayrı bir şubemiz bulunmuyor. Testten cihaz seçimine, ayardan teknik servise kadar tüm hizmetlerimizi Darıca'daki merkezimizde veriyoruz.",
-    "Gebze'den gelen danışanlarımız genellikle özel araçla ya da otobüsle geliyor. Gebze'den merkezimize 502, 440, 510 ve 515 numaralı otobüs hatlarıyla ulaşabilirsiniz; hat bilgileri değişebileceği için yola çıkmadan önce güncel durumu kontrol etmenizi öneririz.",
-    "Merkezimiz Farabi Devlet Hastanesi durağının karşısında, Palandöken Eczanesi'nin üst katındadır; 1. kata asansörle çıkılır. Otopark imkânı da bulunuyor.",
-    "Randevusuz da gelebilirsiniz; ancak işitme testi, cihaz ayarı gibi hizmetler randevuyla verildiği için gelmeden önce bizi aramanızı öneririz.",
-  ],
+export const gebzeRoute: GebzeRoute = {
+  eyebrow: "GEBZE'DEN ULAŞIM",
+  heading: "Gebze'den Merkezimize Ulaşım",
+  linesLabel: "Gebze'den merkeze otobüs hatları",
+  lines: ["502", "440", "510", "515"],
+  timeNote: "Hat bilgileri zamanla değişebilir; yola çıkmadan önce güncel durumu kontrol edin.",
+  landmark: "Palandöken Eczanesi'nin üst katı, Farabi Devlet Hastanesi durağının karşısı.",
 };
 
-export const gebzeHomeService: GebzeCopyBlock = {
-  badge: "EVDE HİZMET",
-  heading: "Merkeze Gelemiyorsanız: Gebze'de Evde Hizmet",
-  paragraphs: [
-    "Merkezimize gelmekte zorlanan danışanlarımız için evde işitme cihazı hizmeti veriyoruz. Gebze, bu hizmeti verdiğimiz Kocaeli genelindeki bölgenin içindedir.",
-    "Evde hizmet ücretsizdir ve randevuyla planlanır.",
+export interface GebzeBeforeVisit {
+  eyebrow: string;
+  heading: string;
+  points: string[];
+  homeService: { text: string; linkLabel: string; href: string };
+}
+
+export const gebzeBeforeVisit: GebzeBeforeVisit = {
+  eyebrow: "GELMEDEN ÖNCE",
+  heading: "Gelmeden Önce Bilmeniz Gerekenler",
+  points: [
+    "Randevusuz gelebilirsiniz.",
+    "Test, ayar ve teknik servis gibi hizmetler randevuyla verildiği için gelmeden önce aramanızı öneririz.",
   ],
+  homeService: {
+    text: "Merkeze gelmekte zorlanıyorsanız evde hizmet de bir seçenek; Kocaeli genelinde, Gebze dahil verilir, ücretsizdir ve randevuyla planlanır.",
+    linkLabel: "Evde işitme cihazı hizmeti",
+    href: "/uygulama-ayar/evde-isitme-cihazi-hizmeti/",
+  },
+};
+
+export interface GebzeShortcut {
+  label: string;
+  href: string;
+}
+
+export const gebzeShortcuts = {
+  eyebrow: "KISA YOLLAR",
+  heading: "Gelmeden Önce Göz Atabileceğiniz Sayfalar",
+  items: [
+    { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
+    { label: "SGK ile Cihaz Süreci", href: "/sgk-isitme-cihazi-odemesi/" },
+    { label: "Cihaz Deneme", href: "/uygulama-ayar/cihaz-deneme/" },
+    { label: "Teknik Servis", href: "/servis-bakim/teknik-servis/" },
+  ] as GebzeShortcut[],
 };
