@@ -7,11 +7,11 @@ import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageF
 export const kisiyeOzelAyarFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
   heading: "Kişiye Özel Ayar Hakkında Merak Edilenler",
-  intro: "Ayarın neden yapıldığı, süreci ve bölgeden ulaşım hakkında en çok sorulan sorular.",
+  intro: "Ayarın neden yapıldığı ve süreci hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Kişiye Özel Ayar Randevusu Hakkında Bilgi Almak İster misiniz?",
-    points: ["Marka bağımsız değerlendirme", "Geri bildirime dayalı süreç", "Mevcut cihazınızla gelebilirsiniz", "Darıca'da yüz yüze randevu"],
-    ctaLabel: "Hemen Bilgi Alın",
+    points: ["Geri bildirime dayalı süreç", "Mevcut cihazınızla gelebilirsiniz", "Ücretsiz işitme testi", "Darıca'da yüz yüze randevu"],
+    ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
   categories: [
@@ -33,11 +33,9 @@ export const kisiyeOzelAyarFaq: BrandPageFaqContent = {
       ],
     },
     {
-      label: "Bölgemizden Ulaşım",
+      label: "Ulaşım",
       items: [
-        { question: "Darıca'da işitme cihazı ayarı nerede yapılır?", answer: "Darıca'daki merkezimizde randevu alarak kişiye özel ayar hizmetinden faydalanabilirsiniz." },
-        { question: "Gebze'de işitme cihazı ayarı nerede yapılır?", answer: "Gebze'den Darıca'daki merkezimize kolayca ulaşabilir, ayar randevunuzu alabilirsiniz." },
-        { question: "Çayırova'da işitme cihazı ayarı için nereye başvurulur?", answer: "Çayırova'dan da Darıca'daki merkezimize ulaşabilir, aynı süreçten faydalanabilirsiniz." },
+        { question: "Gebze veya Çayırova'dan ayar için gelebilir miyim?", answer: "Evet. Ayar, Darıca'daki merkezimizde yapılır; Gebze ve Çayırova'da şubemiz yok, bu ilçelerden gelen danışanlarımız da aynı merkeze gelir. Ulaşım bilgileri Gebze ve Çayırova sayfalarımızda." },
       ],
     },
   ],

@@ -8,24 +8,24 @@ import type { BrandPageIdealUserContent } from "../../components/brand-page/Bran
 
 export const kisiyeOzelAyarIdealUser: BrandPageIdealUserContent = {
   badge: "BİR CİHAZ, FARKLI HAYATLAR",
-  heading: "Yaşadığınız Yer, İhtiyacınızı Şekillendirir",
+  heading: "Günlük Yaşamınız, İhtiyacınızı Şekillendirir",
   intro: "Aynı cihaz, farklı günlük yaşam düzenlerinde farklı şekilde ayarlanır.",
   profiles: [
     {
       icon: Home,
-      title: "Darıca'da Günlük Yaşam",
+      title: "Evde ve Sakin Ortamlarda",
       description: "Evde televizyon izlemek, ailece sohbet etmek ve mahallede günlük işleri yürütmek öncelikli dinleme ortamınızsa, ayar bu sakin/orta yoğunluktaki ortamlara göre şekillenir.",
       suggestedFamilies: ["Ev / TV", "Aile Sohbeti"],
     },
     {
       icon: Briefcase,
-      title: "Gebze'de Çalışma Hayatı",
+      title: "Çalışma Hayatında",
       description: "Gününüzün büyük bölümü toplantılarda ve iş görüşmelerinde geçiyorsa, konuşmayı net duymak ve arka plan gürültüsünü ayırt etmek öne çıkan ihtiyaçtır.",
       suggestedFamilies: ["İş Ortamı", "Toplantı / Konuşma"],
     },
     {
       icon: Car,
-      title: "Çayırova'da Hareketli Yaşam",
+      title: "Hareketli Yaşamda",
       description: "Sık sık dışarıda, trafikte veya sosyal ortamlarda bulunuyorsanız, değişken ve bazen yoğun seslere hızlı uyum önemli bir başlıktır.",
       suggestedFamilies: ["Dış Ortam", "Trafik / Sosyal Ortam"],
     },

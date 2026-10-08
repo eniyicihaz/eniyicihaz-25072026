@@ -8,11 +8,11 @@ import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageF
 export const markaDanismanligiFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
   heading: "Marka Danışmanlığı Hakkında Merak Edilenler",
-  intro: "Marka seçimi, karşılaştırma ve bölgeden ulaşım hakkında en çok sorulan sorular.",
+  intro: "Marka seçimi ve karşılaştırma hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Marka Danışmanlığı Randevusu Hakkında Bilgi Almak İster misiniz?",
-    points: ["18 marka seçeneği", "Marka bağımsız değerlendirme", "İhtiyaç odaklı yaklaşım", "Darıca'da yüz yüze randevu"],
-    ctaLabel: "Hemen Bilgi Alın",
+    points: ["18 marka seçeneği", "İhtiyaç odaklı yaklaşım", "Ücretsiz işitme testi", "Darıca'da yüz yüze randevu"],
+    ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
   categories: [
@@ -32,11 +32,9 @@ export const markaDanismanligiFaq: BrandPageFaqContent = {
       ],
     },
     {
-      label: "Bölgemizden Ulaşım",
+      label: "Ulaşım",
       items: [
-        { question: "Darıca'da marka danışmanlığı nereden alınır?", answer: "Darıca'daki merkezimizde randevu alarak marka danışmanlığı hizmetinden faydalanabilirsiniz." },
-        { question: "Gebze'den marka danışmanlığı için nasıl ulaşabilirim?", answer: "Gebze'den Darıca'daki merkezimize kolayca ulaşabilir, randevunuzu alabilirsiniz." },
-        { question: "Çayırova'dan marka danışmanlığı için nereye başvurmalıyım?", answer: "Çayırova'dan da Darıca'daki merkezimize ulaşabilir, aynı süreçten faydalanabilirsiniz." },
+        { question: "Gebze veya Çayırova'dan marka danışmanlığı için gelebilir miyim?", answer: "Evet. Marka danışmanlığı Darıca'daki merkezimizde yapılır; Gebze ve Çayırova'da şubemiz yok, bu ilçelerden gelen danışanlarımız da aynı merkeze gelir. Ulaşım bilgileri Gebze ve Çayırova sayfalarımızda." },
       ],
     },
   ],

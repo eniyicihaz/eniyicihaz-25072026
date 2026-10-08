@@ -12,9 +12,9 @@ export const kisiyeOzelAyarHero: SoundProfileHeroContent = {
   subheading:
     "İşitme cihazınızın günlük yaşamınızdaki seslere ve sizin dinleme alışkanlıklarınıza uygun şekilde ayarlanması, cihazdan alınan deneyimin önemli bir parçasıdır.",
   paragraph:
-    "Darıca'da işitme cihazı kullanan kişilerin cihazlarından beklediği verimi alabilmesi için yalnızca doğru cihazı seçmek yeterli değildir. Cihazın kişinin işitme kaybına, günlük yaşamına ve dinleme ihtiyaçlarına uygun şekilde ayarlanması gerekir.",
-  ctaPrimary: { label: "Ücretsiz Değerlendirme", href: contactConfig.phone.href },
-  ctaSecondary: { label: "WhatsApp'tan Bilgi Al", href: contactConfig.whatsapp.href },
+    "İşitme cihazından beklenen verimi alabilmek için yalnızca doğru cihazı seçmek yeterli değildir. Cihazın kişinin işitme kaybına, günlük yaşamına ve dinleme ihtiyaçlarına uygun şekilde ayarlanması gerekir.",
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   ctaTertiary: { label: "Cihazımı Getireyim", href: "#mevcut-cihaz" },
   panelLabel: "Kişiye Özel Ayar Paneli",
   panelCaption: "Her frekans bandı, sizin işitme profilinize ve dinleme ortamlarınıza göre ayrı değerlendirilir.",

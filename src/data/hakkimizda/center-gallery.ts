@@ -8,7 +8,7 @@ export const hakkimizdaCenterGallery: CenterGalleryContent = {
   heading: "Darıca'daki Merkezimiz",
   paragraphs: [
     "Darıca'daki merkezimiz; danışan karşılama, işitme değerlendirmesi, cihaz uygulaması, kişiye özel ayar ve satış sonrası görüşmelerin yürütüldüğü fiziksel bir mekandır.",
-    "Randevu alarak merkezimizi ziyaret edebilir, uzman ekibimizle yüz yüze görüşebilirsiniz.",
+    "Merkezimizi ziyaret edebilir, ekibimizle yüz yüze görüşebilirsiniz.",
   ],
   featureImage: {
     src: "/images/pages/hakkimizda-danisma-odasi.webp",
@@ -28,7 +28,7 @@ export const hakkimizdaCenterGallery: CenterGalleryContent = {
     src: "/images/pages/hakkimizda-tabela-cadde.webp",
     alt: "Darıca'da cadde üzerindeki Avrasya İşitme Cihazları tabelası",
   },
-  locationCaption: "Cadde üzerinde, kolay bulunabilir bir konumdayız.",
+  locationCaption: "Merkezimiz Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısındadır.",
   accentColor: "#2563eb",
   accentColorBadgeBg: "rgb(37 99 235 / 0.08)",
   accentColorBadgeBorder: "rgb(37 99 235 / 0.35)",

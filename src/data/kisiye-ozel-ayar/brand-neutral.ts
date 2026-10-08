@@ -4,9 +4,9 @@
 // üstünlük iddiası yok; mesaj "doğru cihaz + doğru uygulama + kişiye
 // uygun ayar".
 export const kisiyeOzelAyarBrandNeutral = {
-  eyebrow: "MARKA BAĞIMSIZ YAKLAŞIM",
+  eyebrow: "MARKALAR",
   heading: "Doğru Cihaz, Doğru Uygulama, Kişiye Uygun Ayar",
-  body: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar gibi farklı markalardan cihazlarla çalışıyoruz. Hiçbir markayı diğerine üstün göstermiyoruz; asıl belirleyici olan, doğru cihazın doğru şekilde uygulanması ve kişiye uygun ayarlanmasıdır.",
+  body: "Merkezimizde 18 işitme cihazı markasıyla çalışıyoruz. Asıl belirleyici olan, doğru cihazın doğru şekilde uygulanması ve kişiye uygun ayarlanmasıdır.",
   linkLabel: "Markaları İnceleyin",
   href: "/markalar/",
 };

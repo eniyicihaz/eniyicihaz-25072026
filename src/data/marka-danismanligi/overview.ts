@@ -10,6 +10,6 @@ export const markaDanismanligiOverview: BrandPageOverviewContent = {
     { icon: "map-pin", label: "Merkez Konum", value: "Darıca" },
     { icon: "cpu", label: "Kapsam", value: "18 Marka" },
     { icon: "users", label: "Yöntem", value: "İhtiyaç Odaklı" },
-    { icon: "sparkles", label: "Yaklaşım", value: "Marka Bağımsız" },
+    { icon: "sparkles", label: "Yaklaşım", value: "İhtiyaç Odaklı" },
   ],
 };

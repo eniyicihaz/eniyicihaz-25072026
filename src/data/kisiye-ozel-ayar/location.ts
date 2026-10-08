@@ -7,9 +7,10 @@ import { company } from "../../components/footer/Footer/data/company";
 import { contactConfig } from "../../config";
 
 export const kisiyeOzelAyarLocation: ContactLocationCardContent = {
-  eyebrow: "DARICA, GEBZE VE ÇAYIROVA'DA İŞİTME CİHAZI AYARI",
-  heading: "Darıca'daki Merkezimizde Randevunuzu Alın",
-  intro: "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimizde kişiye özel ayar randevusu alabilir, mevcut cihazlarını getirebilir.",
+  eyebrow: "MERKEZİMİZ DARICA'DA",
+  heading: "Adres ve Çalışma Saatleri",
+  intro: "Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur. Mevcut cihazınızı yanınızda getirebilirsiniz.",
+  addressNote: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısında.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",
@@ -19,4 +20,5 @@ export const kisiyeOzelAyarLocation: ContactLocationCardContent = {
   hoursLabel: "Çalışma Saatleri",
   mapTitle: "Avrasya İşitme Cihazları — Darıca Konum Haritası",
   company,
+  largeTargets: true,
 };

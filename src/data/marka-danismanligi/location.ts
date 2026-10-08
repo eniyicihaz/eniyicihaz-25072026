@@ -6,9 +6,10 @@ import { company } from "../../components/footer/Footer/data/company";
 import { contactConfig } from "../../config";
 
 export const markaDanismanligiLocation: ContactLocationCardContent = {
-  eyebrow: "DARICA'DA MARKA DANIŞMANLIĞI",
-  heading: "Darıca'daki Merkezimizde Birlikte Değerlendirelim",
-  intro: "Gebze ve Çayırova'dan gelen danışanlarımız da Darıca'daki merkezimizde marka danışmanlığı randevusu alabilir.",
+  eyebrow: "MERKEZİMİZ DARICA'DA",
+  heading: "Adres ve Çalışma Saatleri",
+  intro: "Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur.",
+  addressNote: "Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısında.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",
@@ -18,4 +19,5 @@ export const markaDanismanligiLocation: ContactLocationCardContent = {
   hoursLabel: "Çalışma Saatleri",
   mapTitle: "Avrasya İşitme Cihazları — Darıca Konum Haritası",
   company,
+  largeTargets: true,
 };
