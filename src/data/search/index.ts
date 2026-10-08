@@ -18,7 +18,7 @@ export const searchIndex: SearchIndexItem[] = [
   { title: "Başarı Hikayeleri", description: "İşitme cihazı kullanmanın aile iletişimi, sosyal hayat ve iş hayatına genel katkılarını, gizliliğe saygılı genel deneyim kategorileriyle öğrenin.", href: "/blog/basari-hikayeleri/" },
   { title: "Etkinlikler", description: "Farkındalık günleri, okul taramaları ve kurumsal işbirlikleri gibi etkinlik kategorilerimizi genel hatlarıyla öğrenin; güncel takvim için bizi arayın.", href: "/blog/etkinlikler/" },
   { title: "Kampanyalar", description: "Yeni kullanıcı, aile paketi ve sezonluk gibi kampanya kategorilerimizi genel hatlarıyla öğrenin; güncel kampanyalar için bizi arayın.", href: "/blog/kampanyalar/" },
-  { title: "Sık Sorulan Sorular", description: "Randevu almaktan hizmet bölgemize kadar, kliniğimizle ilgili en sık sorulan genel soruların yanıtlarını bulun.", href: "/blog/sik-sorulan-sorular/" },
+  { title: "Sık Sorulan Sorular", description: "Randevu almaktan merkezimizin konumuna ve evde hizmete kadar, merkezimizle ilgili en sık sorulan genel soruların yanıtlarını bulun.", href: "/blog/sik-sorulan-sorular/" },
   { title: "Uzman Görüşleri", description: "İşitme kaybı ve işitme cihazları hakkında en sık duyulan yanlış bilgileri ve uzman görüşünü öğrenin.", href: "/blog/uzman-gorusleri/" },
   { title: "Yeni Teknolojiler", description: "İşitme cihazlarında yapay zeka, kablosuz bağlantı ve şarj edilebilir pil gibi güncel teknolojileri genel hatlarıyla öğrenin.", href: "/blog/yeni-teknolojiler/" },
   { title: "Çocuk İşitme Testi", description: "Çocuklarda işitme testi nasıl yapılır? Yenidoğan taraması, ABR, oyun odyometrisi ve yaşa göre kullanılan test yöntemleri hakkında bilgi edinin.", href: "/degerlendirme/cocuk-isitme-testi/" },

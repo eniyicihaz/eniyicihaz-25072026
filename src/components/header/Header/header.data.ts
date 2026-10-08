@@ -83,9 +83,9 @@ const devicesMega: MegaMenuData = {
 const brandsMega: MegaMenuData = {
   id: "markalar",
   promo: {
-    badge: "Dünya Markaları Bir Arada",
-    title: "Önde Gelen İşitme Cihazı Markaları",
-    text: "Güvenilir global üreticilerin en yeni teknolojilerini orijinal ve garantili olarak sunuyoruz.",
+    badge: "18 Marka",
+    title: "İşitme Cihazı Markaları",
+    text: "Darıca'daki merkezimizde 18 marka ile çalışıyoruz; marka ve model ailelerini birlikte inceleyin.",
     cta: { label: "Tüm Markalar", href: "/markalar/" },
     image: "/images/ui/mega-menu-markalar.webp",
   },
@@ -93,7 +93,7 @@ const brandsMega: MegaMenuData = {
     {
       icon: "award",
       title: "Popüler Markalar",
-      description: "Dünyanın önde gelen işitme cihazı markaları.",
+      description: "Merkezimizde çalıştığımız markalardan bazıları.",
       links: [
         { label: "Oticon", href: "/markalar/oticon/", logo: "/images/brands/oticon-logo-seffaf.webp" },
         { label: "Phonak", href: "/markalar/phonak/", logo: "/images/brands/phonak-logo-seffaf.webp" },
@@ -107,12 +107,12 @@ const brandsMega: MegaMenuData = {
     {
       icon: "shield",
       title: "Marka Rehberi",
-      description: "Orijinal ürün seçmenin gerçek faydaları.",
+      description: "Marka seçimi, servis ve aksesuar hakkında bilgiler.",
       links: [
         { label: "Güvenilir Teknoloji", href: "/neden-orijinal/guvenilir-teknoloji/" },
         { label: "Uzun Ömürlü Cihazlar", href: "/neden-orijinal/uzun-omurlu-cihazlar/" },
         { label: "Servis Desteği", href: "/neden-orijinal/yaygin-servis-agi/" },
-        { label: "Orijinal Aksesuar", href: "/neden-orijinal/orijinal-aksesuar/" },
+        { label: "Aksesuar ve Yedek Parça", href: "/neden-orijinal/orijinal-aksesuar/" },
         { label: "Ücretsiz Danışmanlık", href: "/neden-orijinal/ucretsiz-danismanlik/" },
         { label: "Kolay Değişim", href: "/neden-orijinal/kolay-degisim/" },
       ],
@@ -138,7 +138,7 @@ const brandsMega: MegaMenuData = {
     title: "Marka Desteği",
     items: [
       { icon: "wrench", title: "Teknik Servis", desc: "Sattığımız 18 marka için", href: "/neden-orijinal/yaygin-servis-agi/" },
-      { icon: "battery", title: "Aksesuar & Yedek", desc: "Orijinal parçalar", href: "/neden-orijinal/orijinal-aksesuar/" },
+      { icon: "battery", title: "Aksesuar & Yedek", desc: "Pil, kulak ucu, filtre", href: "/neden-orijinal/orijinal-aksesuar/" },
       { icon: "headphones", title: "Marka Danışmanlığı", desc: "Size uygun markayı seçin", href: "/neden-orijinal/marka-danismanligi/" },
     ],
     footer: { label: "Tüm Hizmetler", href: "/hizmetlerimiz/" },

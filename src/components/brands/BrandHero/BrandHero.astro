@@ -34,8 +34,9 @@ export interface BrandHeroContent {
   ctaPrimary: BrandHeroCta;
   ctaSecondary: BrandHeroCta;
   trustPills: string[];
-  image: BrandHeroImage;
-  floatingCard: BrandHeroFloatingCard;
+  // Optional: when `image` is omitted the hero renders as a single text column.
+  image?: BrandHeroImage;
+  floatingCard?: BrandHeroFloatingCard;
 }
 
 interface Props {
@@ -46,7 +47,7 @@ const { data: brandHero } = Astro.props;
 ---
 
 <section class="brand-hero" aria-labelledby="brand-hero-title">
-  <div class="brand-hero__inner">
+  <div class:list={["brand-hero__inner", { "brand-hero__inner--text-only": !brandHero.image }]}>
     <div class="brand-hero__copy" data-rise>
       <p class="brand-hero__badge">{brandHero.badge}</p>
 
@@ -98,12 +99,15 @@ const { data: brandHero } = Astro.props;
       </ul>
     </div>
 
+    {brandHero.image && (
     <div class="brand-hero__visual" data-rise>
+      {brandHero.floatingCard && (
       <div class="brand-hero__floating-card">
         <span class="brand-hero__floating-value">{brandHero.floatingCard.value}</span>
         <span class="brand-hero__floating-label">{brandHero.floatingCard.label}</span>
         <p class="brand-hero__floating-desc">{brandHero.floatingCard.description}</p>
       </div>
+      )}
 
       <div class="brand-hero__frame">
         <img
@@ -116,6 +120,7 @@ const { data: brandHero } = Astro.props;
         />
       </div>
     </div>
+    )}
   </div>
 </section>
 
