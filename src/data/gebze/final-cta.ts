@@ -9,14 +9,14 @@ export const gebzeFinalCta: BrandPageFinalCtaContent = {
   badge: "DARICA MERKEZİMİZ",
   heading: "Gebze'den Gelmeden Önce Bizi Arayın",
   description:
-    "Randevusuz gelebilirsiniz; hizmetler için önceden aramanızı öneririz. Arayabilir, WhatsApp'tan yazabilir ya da yol tarifiyle doğrudan Darıca'daki merkezimize gelebilirsiniz.",
+    "Hangi işlem için geleceğinizi söylemeniz yeterli; size uygun zamanı birlikte planlayalım. Arayabilir, WhatsApp'tan yazabilir ya da yol tarifiyle Darıca'daki merkezimize gelebilirsiniz.",
   ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   ctaTertiary: { label: "Yol Tarifi Al", href: company.directionsHref },
   trustItems: [
     "Fiziksel Merkez Darıca'da",
     "Asansörle 1. Kat",
-    "Randevusuz gelebilirsiniz; hizmetler için önceden arayın",
+    "Gebze'de şube yok",
     "SGK Anlaşmalı Merkez",
   ],
   accentColor: "#2563eb",

@@ -27,7 +27,7 @@ export const gebzeLocation: ContactLocationCardContent = {
     {
       icon: Accessibility,
       label: "Erişim",
-      text: "Merkez 1. kattadır ve asansörle çıkılır. Merkez için otopark imkânı bulunuyor.",
+      text: "Merkez 1. kattadır; asansör vardır ve tekerlekli sandalye için uygundur. Merkez için otopark imkânı bulunuyor.",
     },
   ],
   hoursNotes: ["Öğle arası vermiyoruz.", "Resmî tatillerde kapalıyız."],

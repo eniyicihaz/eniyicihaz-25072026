@@ -1,15 +1,14 @@
 ---
-// Gebze İşitme Cihazları — /gebze-isitme-cihazlari (Faz 2 P2, Gebze V1).
+// Gebze İşitme Cihazları — /gebze-isitme-cihazlari (Gebze nihai paket).
 //
 // KRİTİK ÇERÇEVE (LOCAL_SOURCE_OF_TRUTH §5): Gebze'de fiziksel şube YOK.
-// Sayfa tek soruya cevap verir: "Gebze'den Darıca'daki merkezinize nasıl
-// gelirim?" Bölüm sırası: Hero → Ulaşım (hat rozetleri) → Konum kartı →
-// Gelmeden önce → Kısa yollar → SSS (3 soru) → Son CTA. Cihaz türü/marka/
-// model/deneme-ayar kartı/SGK anlatımı yok; bunlar pillar sayfalarda ve
-// kısa yollar şeridinde link olarak.
-// Hat numaraları [TIME-SENSITIVE] (LOCAL_SOT §5). Mesafe/süre/ücret/metro
-// uydurulmaz. Gebze için ayrı adres/NAP/schema yok.
-// Meta/schema/OG bu turda DEĞİŞTİRİLMEDİ (Faz 3).
+// Sayfa "Gebze'den Darıca'daki merkezimize" modelinde, Gebze'den arayanın karar
+// yolculuğunu izler: Hero → Hizmetler (ücret/randevu/süre tablosu) → Ulaşım ve
+// erişim + konum kartı → Gelmeden önce → SGK işlem desteği → Her işlem için
+// gelmek gerekir mi? → İlk ziyaret → Fiyat → Satış sonrası → SSS → Son CTA.
+// Hat numaraları [TIME-SENSITIVE]. Mesafe/güzergâh/otobüs süresi/ücret tutarı/
+// hastane adı/metro uydurulmaz. Gebze için ayrı adres/NAP/schema yok;
+// MedicalBusiness şeması Darıca'daki tek gerçek işletme kaydıdır (aynı @id).
 import MainLayout from "../layouts/MainLayout.astro";
 import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
@@ -18,7 +17,21 @@ import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.ast
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 import { gebzeHero } from "../data/gebze/hero";
-import { gebzeRoute, gebzeBeforeVisit, gebzeShortcuts } from "../data/gebze/copy-blocks";
+import {
+  gebzeServices,
+  gebzeRoute,
+  gebzeBeforeVisit,
+  gebzeCtaAfterBefore,
+  gebzeSgk,
+  gebzeRemote,
+  gebzeRemoteLinks,
+  gebzeFirstVisit,
+  gebzePrice,
+  gebzeCtaAfterPrice,
+  gebzeAfterSales,
+} from "../data/gebze/copy-blocks";
+import { contactConfig } from "../config/contact";
+import { CTA_CALL, CTA_WHATSAPP } from "../lib/cta-labels";
 import { gebzeLocation } from "../data/gebze/location";
 import { gebzeFaq } from "../data/gebze/faq";
 import { gebzeFinalCta } from "../data/gebze/final-cta";
@@ -51,8 +64,8 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 ---
 
 <MainLayout
-  title="Gebze İşitme Cihazları | Avrasya İşitme"
-  description="Gebze'de işitme cihazı arıyorsanız doğru yerdesiniz. Ücretsiz değerlendirme, SGK desteği, marka seçenekleri ve cihaz deneme süreci hakkında bilgi alın."
+  title="Gebze İşitme Cihazları: Test, SGK ve Ulaşım | Darıca Merkez"
+  description="Merkezimiz Darıca'dadır; Gebze'de şubemiz yok. Gebze'den ulaşım, randevu, SGK işlem desteği, ücretsiz işitme testi ve evde hizmet seçeneklerini öğrenin."
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
@@ -62,6 +75,33 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
   </div>
 
   <CorporateHero data={gebzeHero} />
+
+  <section class="gebze-block gebze-services" aria-labelledby="gebze-services-title">
+    <div class="gebze-block__inner gebze-block__inner--table">
+      <p class="gebze-block__badge">{gebzeServices.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-services-title">{gebzeServices.heading}</h2>
+      <p class="gebze-block__text">{gebzeServices.intro}</p>
+      <div class="gebze-table-wrap">
+        <table class="gebze-table">
+          <thead>
+            <tr>{gebzeServices.columns.map((col) => <th scope="col">{col}</th>)}</tr>
+          </thead>
+          <tbody>
+            {gebzeServices.rows.map((row) => (
+              <tr>
+                {row.map((cell, i) => (
+                  i === 0
+                    ? <th scope="row">{cell}</th>
+                    : <td data-label={gebzeServices.columns[i]}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {gebzeServices.note && <p class="gebze-route__note">{gebzeServices.note}</p>}
+    </div>
+  </section>
 
   <section class="gebze-block gebze-route" aria-labelledby="gebze-route-title">
     <div class="gebze-block__inner">
@@ -87,28 +127,115 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
   </p>
 
   <section class="gebze-block gebze-before" aria-labelledby="gebze-before-title">
-    <div class="gebze-block__inner">
+    <div class="gebze-block__inner gebze-block__inner--wide">
       <p class="gebze-block__badge">{gebzeBeforeVisit.eyebrow}</p>
       <h2 class="gebze-block__heading" id="gebze-before-title">{gebzeBeforeVisit.heading}</h2>
-      {gebzeBeforeVisit.points.map((p) => <p class="gebze-block__text">{p}</p>)}
-      <p class="gebze-block__text">
-        {gebzeBeforeVisit.homeService.text}
-        <a class="gebze-link gebze-link--inline" href={gebzeBeforeVisit.homeService.href}>{gebzeBeforeVisit.homeService.linkLabel} →</a>
+      <p class="gebze-block__text">{gebzeBeforeVisit.intro}</p>
+      <ul class="gebze-points">
+        {gebzeBeforeVisit.points.map((point) => <li>{point}</li>)}
+      </ul>
+      {gebzeBeforeVisit.note && <p class="gebze-route__note">{gebzeBeforeVisit.note}</p>}
+      <div class="gebze-cta">
+        <p class="gebze-cta__text">{gebzeCtaAfterBefore.text}</p>
+        <div class="gebze-cta__actions">
+          <a class="gebze-cta__btn gebze-cta__btn--solid" href={contactConfig.phone.href}>{CTA_CALL}</a>
+          <a class="gebze-cta__btn" href={contactConfig.whatsapp.href}>{CTA_WHATSAPP}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gebze-block gebze-sgk" aria-labelledby="gebze-sgk-title">
+    <div class="gebze-block__inner gebze-block__inner--wide">
+      <p class="gebze-block__badge">{gebzeSgk.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-sgk-title">{gebzeSgk.heading}</h2>
+      <p class="gebze-block__text">{gebzeSgk.intro}</p>
+      <ul class="gebze-points">
+        {gebzeSgk.points.map((point) => <li>{point}</li>)}
+      </ul>
+      {gebzeSgk.note && <p class="gebze-route__note">{gebzeSgk.note}</p>}
+      <p class="gebze-block__links">
+        {gebzeSgk.links?.map((link) => <a class="gebze-link" href={link.href}>{link.label} →</a>)}
       </p>
     </div>
   </section>
 
-  <section class="gebze-block gebze-shortcuts" aria-labelledby="gebze-shortcuts-title">
+  <section class="gebze-block gebze-remote" aria-labelledby="gebze-remote-title">
+    <div class="gebze-block__inner gebze-block__inner--table">
+      <p class="gebze-block__badge">{gebzeRemote.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-remote-title">{gebzeRemote.heading}</h2>
+      <p class="gebze-block__text">{gebzeRemote.intro}</p>
+      <div class="gebze-table-wrap">
+        <table class="gebze-table gebze-table--wide">
+          <thead>
+            <tr>{gebzeRemote.columns.map((col) => <th scope="col">{col}</th>)}</tr>
+          </thead>
+          <tbody>
+            {gebzeRemote.rows.map((row) => (
+              <tr>
+                {row.map((cell, i) => (
+                  i === 0
+                    ? <th scope="row">{cell}</th>
+                    : <td data-label={gebzeRemote.columns[i]}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {gebzeRemote.note && <p class="gebze-route__note">{gebzeRemote.note}</p>}
+      <p class="gebze-block__links">
+        {gebzeRemoteLinks.map((link) => <a class="gebze-link" href={link.href}>{link.label} →</a>)}
+      </p>
+    </div>
+  </section>
+
+  <section class="gebze-block gebze-first" aria-labelledby="gebze-first-title">
     <div class="gebze-block__inner gebze-block__inner--wide">
-      <p class="gebze-block__badge">{gebzeShortcuts.eyebrow}</p>
-      <h2 class="gebze-block__heading" id="gebze-shortcuts-title">{gebzeShortcuts.heading}</h2>
-      <ul class="gebze-shortcuts__list">
-        {gebzeShortcuts.items.map((item) => (
-          <li>
-            <a class="gebze-shortcuts__link" href={item.href}>{item.label}</a>
-          </li>
-        ))}
+      <p class="gebze-block__badge">{gebzeFirstVisit.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-first-title">{gebzeFirstVisit.heading}</h2>
+      <p class="gebze-block__text">{gebzeFirstVisit.intro}</p>
+      <ol class="gebze-points gebze-points--steps">
+        {gebzeFirstVisit.points.map((point) => <li>{point}</li>)}
+      </ol>
+      <p class="gebze-block__links">
+        {gebzeFirstVisit.links?.map((link) => <a class="gebze-link" href={link.href}>{link.label} →</a>)}
+      </p>
+    </div>
+  </section>
+
+  <section class="gebze-block gebze-price" aria-labelledby="gebze-price-title">
+    <div class="gebze-block__inner gebze-block__inner--wide">
+      <p class="gebze-block__badge">{gebzePrice.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-price-title">{gebzePrice.heading}</h2>
+      <p class="gebze-block__text">{gebzePrice.intro}</p>
+      <ul class="gebze-points">
+        {gebzePrice.points.map((point) => <li>{point}</li>)}
       </ul>
+      <p class="gebze-block__links">
+        {gebzePrice.links?.map((link) => <a class="gebze-link" href={link.href}>{link.label} →</a>)}
+      </p>
+      <div class="gebze-cta">
+        <p class="gebze-cta__text">{gebzeCtaAfterPrice.text}</p>
+        <div class="gebze-cta__actions">
+          <a class="gebze-cta__btn gebze-cta__btn--solid" href={contactConfig.phone.href}>{CTA_CALL}</a>
+          <a class="gebze-cta__btn" href={contactConfig.whatsapp.href}>{CTA_WHATSAPP}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gebze-block gebze-after" aria-labelledby="gebze-after-title">
+    <div class="gebze-block__inner gebze-block__inner--wide">
+      <p class="gebze-block__badge">{gebzeAfterSales.eyebrow}</p>
+      <h2 class="gebze-block__heading" id="gebze-after-title">{gebzeAfterSales.heading}</h2>
+      <p class="gebze-block__text">{gebzeAfterSales.intro}</p>
+      <ul class="gebze-points">
+        {gebzeAfterSales.points.map((point) => <li>{point}</li>)}
+      </ul>
+      <p class="gebze-block__links">
+        {gebzeAfterSales.links?.map((link) => <a class="gebze-link" href={link.href}>{link.label} →</a>)}
+      </p>
     </div>
   </section>
 
@@ -129,8 +256,10 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     padding-block: var(--space-16);
   }
 
+  .gebze-services,
   .gebze-before,
-  .gebze-shortcuts {
+  .gebze-remote,
+  .gebze-price {
     background: var(--color-surface);
   }
 
@@ -281,6 +410,201 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 
   .gebze-shortcuts__link:hover {
     border-color: var(--color-primary);
+  }
+
+  .gebze-block__inner--table {
+    max-width: 64rem;
+  }
+
+  /* --- Madde listeleri, tablolar, CTA şeridi ---------------------------- */
+  .gebze-points {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+    text-align: left;
+  }
+
+  .gebze-points li {
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .gebze-points--steps {
+    counter-reset: gebze-step;
+  }
+
+  .gebze-points--steps li {
+    counter-increment: gebze-step;
+    position: relative;
+    padding-left: var(--space-12);
+  }
+
+  .gebze-points--steps li::before {
+    content: counter(gebze-step);
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-4);
+    width: 1.75rem;
+    height: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: #fff;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .gebze-block__links {
+    margin: var(--space-6) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .gebze-table-wrap {
+    margin-top: var(--space-8);
+    text-align: left;
+  }
+
+  .gebze-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-background);
+    font-size: var(--font-size-md);
+  }
+
+  .gebze-table th,
+  .gebze-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: var(--line-height-normal, 1.5);
+    text-align: left;
+    color: var(--color-text);
+  }
+
+  .gebze-table thead th {
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .gebze-table tbody th {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .gebze-table tbody tr:last-child th,
+  .gebze-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .gebze-cta {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+  }
+
+  .gebze-cta__text {
+    margin: 0;
+    font-size: var(--font-size-md);
+    color: var(--color-text);
+  }
+
+  .gebze-cta__actions {
+    margin-top: var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .gebze-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 var(--space-6);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    background: transparent;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .gebze-cta__btn--solid {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .gebze-cta__btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  @media (max-width: 720px) {
+    .gebze-table,
+    .gebze-table thead,
+    .gebze-table tbody,
+    .gebze-table tr,
+    .gebze-table th,
+    .gebze-table td {
+      display: block;
+    }
+
+    .gebze-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    .gebze-table tbody tr {
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .gebze-table tbody tr:last-child {
+      border-bottom: 0;
+    }
+
+    .gebze-table th,
+    .gebze-table td {
+      border-bottom: 0;
+      padding: var(--space-1) var(--space-4);
+    }
+
+    .gebze-table td::before {
+      content: attr(data-label) ": ";
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+    }
+
+    .gebze-cta__btn {
+      width: 100%;
+    }
   }
 
   @media (max-width: 640px) {

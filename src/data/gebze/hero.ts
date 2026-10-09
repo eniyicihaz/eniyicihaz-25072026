@@ -19,10 +19,11 @@ import { contactConfig } from "../../config/contact";
 import { company } from "../../components/footer/Footer/data/company";
 
 export const gebzeHero: CorporateHeroContent = {
+  compactHeading: true,
   locationLabel: "Gebze'den Darıca Merkezimize",
-  heading: "Gebze'den Darıca'daki İşitme Merkezimize Ulaşım",
+  heading: "Gebze'den İşitme Cihazı ve İşitme Testi İçin Darıca Merkezimize",
   subheading:
-    "Merkezimiz Darıca'da, Palandöken Eczanesi'nin üst katında; Farabi Devlet Hastanesi durağının karşısındadır. Gebze'den 502, 440, 510 veya 515 numaralı hatlarla gelebilirsiniz; hat bilgileri değişebilir, yola çıkmadan önce kontrol edin.",
+    "Tek fiziksel merkezimiz Darıca'dadır; Gebze'de şubemiz yok. Gebze'den işitme cihazı, işitme testi ve SGK işlem desteği için merkezimize gelebilir, bazı işlemleri uzaktan ayar veya evde hizmetle planlayabilirsiniz.",
   image: "/images/pages/hakkimizda-bekleme-alani.webp",
   imageAlt: "Avrasya İşitme Cihazları Darıca merkezinin gün ışığı alan bekleme alanı",
   imageWidth: 1536,
