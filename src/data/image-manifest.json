@@ -418,8 +418,21 @@
 },
 "/images/pages/hakkimizda-bekleme-alani.webp": {
 "h": 1024,
-"v": {},
+"v": {
+"1024": "/images/pages/hakkimizda-bekleme-alani-1024.webp",
+"400": "/images/pages/hakkimizda-bekleme-alani-400.webp",
+"640": "/images/pages/hakkimizda-bekleme-alani-640.webp"
+},
 "w": 1536
+},
+"/images/pages/hakkimizda-danisma-odasi.webp": {
+"h": 1295,
+"v": {
+"400": "/images/pages/hakkimizda-danisma-odasi-400.webp",
+"640": "/images/pages/hakkimizda-danisma-odasi-640.webp",
+"800": "/images/pages/hakkimizda-danisma-odasi-800.webp"
+},
+"w": 1214
 },
 "/images/pages/hakkimizda-hero-marka-duvari.webp": {
 "h": 1023,
@@ -428,6 +441,23 @@
 "800": "/images/pages/hakkimizda-hero-marka-duvari-800.webp"
 },
 "w": 1537
+},
+"/images/pages/hakkimizda-isitme-testi-odasi.webp": {
+"h": 1023,
+"v": {
+"1024": "/images/pages/hakkimizda-isitme-testi-odasi-1024.webp",
+"400": "/images/pages/hakkimizda-isitme-testi-odasi-400.webp",
+"640": "/images/pages/hakkimizda-isitme-testi-odasi-640.webp"
+},
+"w": 1537
+},
+"/images/pages/hakkimizda-tabela-cadde.webp": {
+"h": 1086,
+"v": {
+"160": "/images/pages/hakkimizda-tabela-cadde-160.webp",
+"320": "/images/pages/hakkimizda-tabela-cadde-320.webp"
+},
+"w": 1448
 },
 "/images/pages/isitme-testi-odyometri-odasi.webp": {
 "h": 1024,

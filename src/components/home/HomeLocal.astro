@@ -11,6 +11,7 @@ import HomeBlockHeader from "./HomeBlockHeader.astro";
 import ConsentEmbed from "../consent/ConsentEmbed/ConsentEmbed.astro";
 import { homeCenterGallery as data } from "../../data/home/center-gallery";
 import { company } from "../footer/Footer/data/company";
+import { imageSrcset } from "../../lib/responsive-images";
 ---
 
 <section class="home-local" aria-labelledby="home-local-title" data-track-location="home_local">
@@ -20,6 +21,8 @@ import { company } from "../footer/Footer/data/company";
         <img
           class="home-local__feature-img"
           src={data.featureImage.src}
+          srcset={imageSrcset(data.featureImage.src)}
+          sizes="(min-width: 1024px) 330px, 57vw"
           alt={data.featureImage.alt}
           width={data.featureImage.width}
           height={data.featureImage.height}
@@ -30,6 +33,8 @@ import { company } from "../footer/Footer/data/company";
           <img
             class="home-local__location-img"
             src={data.locationImage.src}
+            srcset={imageSrcset(data.locationImage.src)}
+            sizes="44px"
             alt={data.locationImage.alt}
             width={data.locationImage.width}
             height={data.locationImage.height}
@@ -44,6 +49,8 @@ import { company } from "../footer/Footer/data/company";
           <img
             class="home-local__support-img"
             src={image.src}
+            srcset={imageSrcset(image.src)}
+            sizes="(min-width: 1024px) 220px, 38vw"
             alt={image.alt}
             width={image.width}
             height={image.height}
