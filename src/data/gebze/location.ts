@@ -13,7 +13,7 @@ import { contactConfig } from "../../config/contact";
 export const gebzeLocation: ContactLocationCardContent = {
   eyebrow: "MERKEZİMİZ DARICA'DA",
   heading: "Merkezimizin Adresi ve Çalışma Saatleri",
-  intro: "Gebze'den yola çıkmadan önce adresi, çalışma saatlerini ve yol tarifini buradan alabilirsiniz.",
+  intro: "Adres, erişim ve çalışma saatleri.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",
@@ -27,7 +27,7 @@ export const gebzeLocation: ContactLocationCardContent = {
     {
       icon: Accessibility,
       label: "Erişim",
-      text: "Merkez 1. kattadır ve asansörle çıkılır. Merkez için otopark imkânı bulunuyor.",
+      text: "Merkez 1. kattadır; asansör vardır ve tekerlekli sandalye için uygundur. Merkez için otopark imkânı bulunuyor.",
     },
   ],
   hoursNotes: ["Öğle arası vermiyoruz.", "Resmî tatillerde kapalıyız."],

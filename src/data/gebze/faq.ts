@@ -1,35 +1,42 @@
-// Gebze landing page — SSS (Faz 2 P2, Gebze V1). 5 soru 3'e indirildi.
-// Ulaşım (hat/tarif) ve deneme soruları çıkarıldı: ulaşım kendi bölümünde,
-// deneme kanonik sayfada (/uygulama-ayar/cihaz-deneme/). Kalan 3 soru:
-// şube durumu, randevu kuralı, evde hizmet kapsamı.
-// Kaynak: LOCAL_SOURCE_OF_TRUTH §1/§2/§3 (tek fiziksel merkez Darıca; walk-in
-// kabul + hizmet bazında randevu birlikte), SERVICE_SOURCE_OF_TRUTH H16
-// (evde hizmet: ücretsiz, randevulu, Kocaeli'nin tamamı ve İstanbul Anadolu
-// Yakası; merkezde verilen hizmetlerin kapsamı doğrultusunda).
+// Gebze landing page — SSS (Gebze sade sürüm). 5 soru; cevaplar gövdede ayrıntısı
+// verilmeyen YENİ bilgi taşır (ilk ziyaret adımları, rapor/reçete yokken sıra,
+// çocuk testi, arıza süreci) veya zorunlu entity cevabıdır (şube yok).
+// Kaynak: LOCAL_SOURCE_OF_TRUTH §1/§5; SERVICE_SOURCE_OF_TRUTH H1/H4/H17/H21/
+// §2.5–§2.9/§2.15. Hastane adı, mesafe, güzergâh, fiyat/SGK tutarı YAZILMAZ.
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 
 export const gebzeFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
   heading: "Gebze'den Gelenlerin Sık Sorduğu Sorular",
-  intro: "Şube, randevu ve evde hizmet hakkında kısa cevaplar.",
+  intro: "Gövdede ayrıntısı olmayan sorular için kısa cevaplar.",
   categories: [
     {
-      label: "Merkez ve Hizmet",
+      label: "Sık Sorulanlar",
       items: [
         {
           question: "Gebze'de şubeniz var mı?",
           answer:
-            "Hayır. Tek fiziksel merkezimiz Darıca'dadır; Gebze'den gelen danışanlarımızı Darıca'daki merkezimizde ağırlıyoruz. Yol tarifi ve hat bilgileri bu sayfadaki ulaşım bölümünde.",
+            "Hayır. Tek fiziksel merkezimiz Darıca'dadır; Gebze'den gelen danışanlarımızı Darıca'daki merkezimizde ağırlıyoruz.",
         },
         {
-          question: "Gebze'den gelirken randevu gerekir mi?",
+          question: "İlk ziyarette neler yapılır?",
           answer:
-            "Randevusuz gelebilirsiniz. Yine de işitme testi, cihaz ayarı ve teknik servis gibi hizmetler randevuyla verildiği için, bu hizmetlerden biri için geliyorsanız önceden aramanız iyi olur.",
+            "Önce talepleriniz sorulur ve kısa bir öykü alınır; sonra işitme testi yapılır (güncel testiniz varsa onun üzerinden ilerlenir). İşitme kaybı varsa cihaz seçimi ve demoya geçilir; şüpheli bir durum varsa KBB hekimine yönlendirme yapılır. Süre işlemlere göre yaklaşık 1–2 saattir ve kesin bir taahhüt değildir.",
         },
         {
-          question: "Gebze'de evde hizmet veriyor musunuz?",
+          question: "Raporum veya reçetem henüz yoksa ne yapmalıyım?",
           answer:
-            "Evet. Evde hizmetimiz Kocaeli'nin tamamını kapsar; Gebze de bu alandadır. Hizmet ücretsizdir ve randevuyla planlanır; merkezde verdiğimiz hizmetlerin kapsamı doğrultusunda sunulur.",
+            "Gelmeden önce arayın. İki sıradan biri izlenebilir: önce merkeze gelip rapor, reçete ve testi sonra temin etmek ya da önce işitme testini yaptırıp satın alma başladığında rapor ve reçeteyi almak. Hangisinin size uygun olduğunu birlikte belirleriz.",
+        },
+        {
+          question: "Çocuğum için işitme testi yaptırabilir miyim?",
+          answer:
+            "Evet. 3 yaş ve üstü çocuklar için oyun odyometrisi yapılır; bu test ücretlidir ve randevu gerekir. Ücretsiz işitme testi 5 yaş ve üstü içindir.",
+        },
+        {
+          question: "Cihazım arızalanırsa ne yapmalıyım?",
+          answer:
+            "Randevu için arayın ve cihazınızı getirin. Teknik servis genellikle 3 gün içinde tamamlanır; garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir. Her sorun uzaktan veya evde çözülemeyebilir.",
         },
       ],
     },
