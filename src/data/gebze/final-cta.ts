@@ -9,7 +9,7 @@ export const gebzeFinalCta: BrandPageFinalCtaContent = {
   badge: "DARICA MERKEZİMİZ",
   heading: "Gebze'den Gelmeden Önce Bizi Arayın",
   description:
-    "Hangi işlem için geleceğinizi söylemeniz yeterli; size uygun zamanı birlikte planlayalım. Arayabilir, WhatsApp'tan yazabilir ya da yol tarifiyle Darıca'daki merkezimize gelebilirsiniz.",
+    "Hangi işlem için geleceğinizi söylemeniz yeterli; uygun zamanı birlikte planlayalım.",
   ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   ctaTertiary: { label: "Yol Tarifi Al", href: company.directionsHref },

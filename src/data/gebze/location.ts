@@ -13,7 +13,7 @@ import { contactConfig } from "../../config/contact";
 export const gebzeLocation: ContactLocationCardContent = {
   eyebrow: "MERKEZİMİZ DARICA'DA",
   heading: "Merkezimizin Adresi ve Çalışma Saatleri",
-  intro: "Gebze'den yola çıkmadan önce adresi, çalışma saatlerini ve yol tarifini buradan alabilirsiniz.",
+  intro: "Adres, erişim ve çalışma saatleri.",
   addressLabel: "Adres",
   directionsLabel: "Yol Tarifi Al",
   phonesLabel: "Telefon",

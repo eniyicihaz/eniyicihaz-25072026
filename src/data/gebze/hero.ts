@@ -23,7 +23,7 @@ export const gebzeHero: CorporateHeroContent = {
   locationLabel: "Gebze'den Darıca Merkezimize",
   heading: "Gebze'den İşitme Cihazı ve İşitme Testi İçin Darıca Merkezimize",
   subheading:
-    "Tek fiziksel merkezimiz Darıca'dadır; Gebze'de şubemiz yok. Gebze'den işitme cihazı, işitme testi ve SGK işlem desteği için merkezimize gelebilir, bazı işlemleri uzaktan ayar veya evde hizmetle planlayabilirsiniz.",
+    "Tek fiziksel merkezimiz Darıca'dadır; Gebze'de şubemiz yok. Gebze'den işitme testi, cihaz seçimi ve SGK işlem desteği için gelebilir, bazı işlemleri uzaktan ayar veya evde hizmetle planlayabilirsiniz.",
   image: "/images/pages/hakkimizda-bekleme-alani.webp",
   imageAlt: "Avrasya İşitme Cihazları Darıca merkezinin gün ışığı alan bekleme alanı",
   imageWidth: 1536,
@@ -40,9 +40,9 @@ export const gebzeHero: CorporateHeroContent = {
   // yatay görselin yalnızca ~%34'ü görünüyordu; 1,0× dikey çözünürlük 1,5×'e çıkar). Masaüstü ve tablet aynı.
   imageMobile: { src: "/images/pages/hakkimizda-bekleme-alani-mobil.webp", media: "(max-width: 480px)" },
   stats: [
-    { value: "502 · 440 · 510 · 515", label: "Gebze'den merkeze hatlar" },
-    { value: "Darıca", label: "Fiziksel Merkezimiz" },
+    { value: "Darıca", label: "Tek Fiziksel Merkezimiz" },
     { value: "1. Kat · Asansör", label: "Palandöken Eczanesi üst katı" },
+    { value: "SGK Anlaşmalı", label: "İşitme Merkezi" },
   ],
   // Mobil öncelik sırası: Ara, Yol tarifi, Mesaj (CONVERSION_SOT §5).
   ctas: [
