@@ -8,6 +8,16 @@
 // iconLeft/iconRight accept a lucide-astro icon component reference (e.g.
 // `import { Ear } from "lucide-astro"; <CtaButton iconLeft={Ear} .../>`).
 // Both optional — existing label-only usages are unaffected.
+//
+// Telefon (tel:), WhatsApp (wa.me) ve yol tarifi (Google Haritalar) hedefleri href'ten
+// tanınır ve ortak iletişim görünümünü alır (src/ds/styles/base/contact-actions.css):
+// telefon mavi dolu, WhatsApp beyaz + resmî yeşil glif, yol tarifi açık mavi. Bu
+// hedeflerde `variant` ve `iconLeft` yok sayılır (WhatsApp için genel mesaj ikonu yerine
+// gerçek WhatsApp glifi kullanılır). Diğer hedeflerde davranış değişmez.
+import { Phone, Navigation } from "lucide-astro";
+import WhatsAppIcon from "../WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
+
 interface Props {
   label: string;
   href: string;
@@ -15,6 +25,8 @@ interface Props {
   variant?: "solid" | "outline";
   iconLeft?: any;
   iconRight?: any;
+  /** Kompakt (48 px) alanlar için; yalnızca iletişim hedeflerinde etkilidir. */
+  size?: "md" | "sm";
 }
 
 const {
@@ -23,13 +35,24 @@ const {
   variant = "solid",
   iconLeft: IconLeft,
   iconRight: IconRight,
+  size = "md",
 } = Astro.props;
+
+const action = contactAction(href);
 ---
 
-<a class:list={["cta-button", `cta-button--${variant}`]} href={href}>
-  {IconLeft && <IconLeft size={20} stroke-width={2} aria-hidden="true" class="cta-button__icon" />}
+<a
+  class:list={["cta-button", `cta-button--${variant}`]}
+  href={href}
+  data-contact-action={action}
+  data-contact-size={action && size === "sm" ? "sm" : undefined}
+>
+  {action === "whatsapp" && <WhatsAppIcon size={20} />}
+  {action === "phone" && <Phone size={20} stroke-width={2} aria-hidden="true" class="cta-button__icon" />}
+  {action === "directions" && <Navigation size={20} stroke-width={2} aria-hidden="true" class="cta-button__icon" />}
+  {!action && IconLeft && <IconLeft size={20} stroke-width={2} aria-hidden="true" class="cta-button__icon" />}
   <span>{label}</span>
-  {IconRight && <IconRight size={18} stroke-width={2} aria-hidden="true" class="cta-button__icon" />}
+  {!action && IconRight && <IconRight size={18} stroke-width={2} aria-hidden="true" class="cta-button__icon" />}
 </a>
 
 <style>

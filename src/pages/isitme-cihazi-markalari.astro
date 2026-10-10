@@ -23,7 +23,9 @@
 // Görünüm mevcut componentlerin (price-guide/*, Brands, BrandPageModels, BrandPageFaq,
 // BrandExtended, ContactLocationCard) yeniden kullanımıdır; yalnızca BrandProfile
 // (components/brand-guide/) bu sayfa için yenidir. İçerik data/isitme-cihazi-markalari/*.
-import { LayoutGrid, Stethoscope, Compass, Tag, MessageCircle, MapPin } from "lucide-astro";
+import { LayoutGrid, Stethoscope, Compass, Tag, MessageCircle, MapPin, Phone } from "lucide-astro";
+import WhatsAppIcon from "../components/shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../lib/contact-action";
 import MainLayout from "../layouts/MainLayout.astro";
 import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import Brands from "../components/brands/Brands/Brands.astro";
@@ -33,7 +35,7 @@ import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.ast
 import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 
-import GuideHero from "../components/price-guide/GuideHero.astro";
+import BrandsGuideHero from "../components/brand-guide/BrandsGuideHero.astro";
 import GuideToc from "../components/price-guide/GuideToc.astro";
 import DirectAnswer from "../components/price-guide/DirectAnswer.astro";
 import GuideSection from "../components/price-guide/GuideSection.astro";
@@ -43,6 +45,8 @@ import GuideNotice from "../components/price-guide/GuideNotice.astro";
 import QaStack from "../components/price-guide/QaStack.astro";
 import GuideCta from "../components/price-guide/GuideCta.astro";
 import BrandProfile from "../components/brand-guide/BrandProfile.astro";
+import BrandCompareTable from "../components/brand-guide/BrandCompareTable.astro";
+import BrandMatrixTable from "../components/brand-guide/BrandMatrixTable.astro";
 
 import { buildMedicalBusinessSchema } from "../lib/schema";
 import { daricaLocation } from "../data/darica/location";
@@ -109,11 +113,11 @@ const locationCard = {
     <Breadcrumb items={breadcrumbItems} />
   </div>
 
-  <GuideHero data={brandsHero} icons={{ primary: LayoutGrid, secondary: Stethoscope }} extraCta={brandsHeroExtra} />
+  <BrandsGuideHero data={brandsHero} icons={{ primary: LayoutGrid, secondary: Stethoscope }} extraCta={brandsHeroExtra} />
 
   <div class="bg-contact-strip" role="group" aria-label="Hızlı iletişim">
-    <a class="bg-contact-strip__btn bg-contact-strip__btn--solid" href={contactLinks.phone}>Bizi Arayın</a>
-    <a class="bg-contact-strip__btn" href={contactLinks.whatsapp}>WhatsApp'tan Yazın</a>
+    <a class="bg-contact-strip__btn bg-contact-strip__btn--solid" href={contactLinks.phone} data-contact-action={contactAction(contactLinks.phone)} data-contact-size="sm"><Phone size={20} stroke-width={2} aria-hidden="true" /><span>Bizi Arayın</span></a>
+    <a class="bg-contact-strip__btn" href={contactLinks.whatsapp} data-contact-action={contactAction(contactLinks.whatsapp)} data-contact-size="sm"><WhatsAppIcon size={20} /><span>WhatsApp'tan Yazın</span></a>
   </div>
   <GuideToc links={toc} />
 
@@ -122,7 +126,7 @@ const locationCard = {
 
   <!-- C. Marka karşılaştırma tablosu -->
   <GuideSection {...comparisonSection} tone="alt">
-    <GuideTable data={brandTable} />
+    <BrandCompareTable data={brandTable} />
   </GuideSection>
 
   <!-- Ana markalar: giriş + logo şeridi -->
@@ -155,7 +159,7 @@ const locationCard = {
 
   <!-- K. Marka × cihaz türü / özellik -->
   <GuideSection {...matrixSection}>
-    <GuideTable data={matrixTable} bare />
+    <BrandMatrixTable data={matrixTable} />
     <div class="bg-spaced">
       <QaStack items={matrixAnswers} />
     </div>
@@ -318,6 +322,116 @@ const locationCard = {
   @media (max-width: 640px) {
     .bg-breadcrumb {
       padding-inline: var(--space-4);
+    }
+  }
+</style>
+
+<style is:global>
+  /* "Marka Karşılaştırması" bölüm başlığı (yalnızca bu bölüm): daha net hiyerarşi, tabloya yakın. */
+  #marka-karsilastirma {
+    padding-block: var(--space-12);
+  }
+
+  #marka-karsilastirma .guide-section__header {
+    max-width: 42rem;
+    margin-bottom: var(--space-6);
+  }
+
+  #marka-karsilastirma .guide-section__heading {
+    margin-top: var(--space-3);
+    font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  #marka-karsilastirma .guide-section__intro {
+    margin-top: var(--space-3);
+    max-width: 38rem;
+    font-size: var(--font-size-md);
+    line-height: 1.65;
+  }
+
+  /* ===== CTA renk tutarlılığı (yalnızca bu sayfa) ==================================
+     Ortak GuideCta / ContactLocationCard / contact-actions.css DEĞİŞMEZ; bu blok yalnızca bu sayfanın
+     CSS paketine girer. İşlev → görünüm:
+       Ücretsiz işitme testi = kurumsal mavi dolu (zaten)   · Telefon = mavi dolu (ortak stil, değişmedi)
+       İşitme cihazlarını keşfet = açık mavi yüzey (ikincil) · Fiyat / Darıca sayfası = sade çerçeveli (bilgi)
+       WhatsApp = resmî yeşil #25D366 dolu, koyu metin/ikon  · Yol tarifi = ortak açık mavi stil
+     Darıca Merkezimiz bir SAYFA bağlantısıdır (harita değil); yol tarifi stili almaz. */
+
+  /* WhatsApp: bu sayfada her yerde (iletişim şeridi, harita kartı, sıradaki adım) aynı yeşil buton.
+     Yeşil, logonun resmî rengidir; üstünde beyaz değil koyu metin/ikon kullanılır (kontrast ≈ 9:1). */
+  html body main a[href][data-contact-action][data-contact-action][data-contact-action="whatsapp"] {
+    background: #25d366;
+    border-color: #25d366;
+    color: #0f172a;
+  }
+
+  html body main a[href][data-contact-action][data-contact-action][data-contact-action="whatsapp"]:hover {
+    transform: none;
+    box-shadow: none;
+    background: #1fbd5b;
+    border-color: #1fbd5b;
+    color: #0f172a;
+  }
+
+  html body main a[href][data-contact-action][data-contact-action][data-contact-action="whatsapp"] > svg {
+    color: #0f172a;
+  }
+
+  /* Sıradaki Adım kartı: lacivert zemin üstünde tüm düğmeler aynı boyut ve belirgin odak halkası. */
+  html body main .guide-cta a.guide-cta__btn {
+    min-height: 52px;
+    height: auto;
+    padding-inline: var(--space-6);
+    font-size: var(--font-size-md);
+    letter-spacing: normal;
+  }
+
+  /* WhatsApp düğmesi ortak stilin sabit 56px yüksekliğini taşır; kartın diğer düğmeleriyle aynı ölçüye getirilir. */
+  html body main .guide-cta a[href][data-contact-action][data-contact-action][data-contact-action="whatsapp"] {
+    height: auto;
+    min-height: 52px;
+    padding-inline: var(--space-6);
+    font-size: var(--font-size-md);
+    letter-spacing: normal;
+  }
+
+  html body main .guide-cta a.guide-cta__btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+    box-shadow: none;
+  }
+
+  /* İşitme Cihazlarını Keşfet: ikincil — açık mavi yüzey, koyu mavi metin (birincil mavi dolu ile yarışmaz). */
+  html body main .guide-cta a.guide-cta__btn[href="/isitme-cihazlari/"] {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e3a8a;
+  }
+
+  html body main .guide-cta a.guide-cta__btn[href="/isitme-cihazlari/"]:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+    color: #1e3a8a;
+  }
+
+  /* Harita kartındaki "Google Haritalar'da aç" (izin yedeği) gerçekten harita bağlantısıdır: ortak yol tarifi stili. */
+  html body main a.btn[href^="https://maps.app.goo.gl/"]:not([data-contact-action]) {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e3a8a;
+  }
+
+  html body main a.btn[href^="https://maps.app.goo.gl/"]:not([data-contact-action]):hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+    color: #1e3a8a;
+  }
+
+  @media (max-width: 640px) {
+    #marka-karsilastirma {
+      padding-block: var(--space-10);
     }
   }
 </style>

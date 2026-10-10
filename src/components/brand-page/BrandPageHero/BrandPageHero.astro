@@ -9,7 +9,9 @@ import { readableTextOn } from "../../../lib/contrast";
 // orijinaliyle birebir aynı — yalnızca veri kaynağı prop'a taşındı ve
 // CSS sınıfları/animasyon script'i marka-agnostik isimlere yeniden
 // adlandırıldı (görsel/davranışsal fark yok).
-import { Phone, MessageCircle, BrainCircuit } from "lucide-astro";
+import { Phone, MessageCircle, Navigation, BrainCircuit } from "lucide-astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
 import { standardCtaLabel } from "../../../lib/cta-labels";
 import { imageDims, imageSrcset } from "../../../lib/responsive-images";
 
@@ -175,12 +177,12 @@ const heroStyleOverrides = [
       }
 
       <div class="brand-page-hero__actions" data-rise>
-        <a class="brand-page-hero__cta brand-page-hero__cta--solid" href={data.ctaPrimary.href}>
-          <Phone size={18} stroke-width={2} aria-hidden="true" />
+        <a class="brand-page-hero__cta brand-page-hero__cta--solid" href={data.ctaPrimary.href} data-contact-action={contactAction(data.ctaPrimary.href)}>
+          {contactAction(data.ctaPrimary.href) === "whatsapp" ? <WhatsAppIcon size={20} /> : <Phone size={18} stroke-width={2} aria-hidden="true" />}
           <span>{standardCtaLabel(data.ctaPrimary.label, data.ctaPrimary.href)}</span>
         </a>
-        <a class="brand-page-hero__cta brand-page-hero__cta--outline" href={data.ctaSecondary.href}>
-          <MessageCircle size={18} stroke-width={2} aria-hidden="true" />
+        <a class="brand-page-hero__cta brand-page-hero__cta--outline" href={data.ctaSecondary.href} data-contact-action={contactAction(data.ctaSecondary.href)}>
+          {contactAction(data.ctaSecondary.href) === "whatsapp" ? <WhatsAppIcon size={20} /> : contactAction(data.ctaSecondary.href) === "directions" ? <Navigation size={18} stroke-width={2} aria-hidden="true" /> : contactAction(data.ctaSecondary.href) === "phone" ? <Phone size={18} stroke-width={2} aria-hidden="true" /> : <MessageCircle size={18} stroke-width={2} aria-hidden="true" />}
           <span>{standardCtaLabel(data.ctaSecondary.label, data.ctaSecondary.href)}</span>
         </a>
       </div>

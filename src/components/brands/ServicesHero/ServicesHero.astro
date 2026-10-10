@@ -1,0 +1,390 @@
+---
+// ServicesHero — /hizmetlerimiz sayfasına özel hero.
+// Ortak BrandHero'nun görselsiz (text-only) modu tek sütundur ve geniş ekranda sağ yarıyı boş
+// bırakır. Gerçek merkez fotoğrafları (ASSET_SOURCE_OF_TRUTH §2) başka sayfalarda zaten
+// tekrar kullanıldığından ve hizmet hub'ının asıl işi yönlendirme olduğundan, sağ kolon
+// fotoğraf yerine "Hizmet sürecimiz" paneli taşır: Değerlendirme → Uygulama ve ayar → Servis ve
+// bakım, her adım sayfanın ilgili bölümüne giden gerçek bir bağlantıdır. İçerik (rozet,
+// başlık, açıklama, CTA'lar, etiketler) data/services/hero.ts'ten aynen alınır; BrandHero'ya
+// dokunulmaz. JavaScript yoktur.
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { Check, ArrowRight, ArrowDown, ClipboardCheck, SlidersHorizontal, Wrench } from "lucide-astro";
+import type { BrandHeroContent } from "../BrandHero/BrandHero.astro";
+import type { ServicesHeroPanel } from "../../../data/services/hero-panel";
+
+interface Props {
+  data: BrandHeroContent;
+  panel: ServicesHeroPanel;
+}
+
+const { data, panel } = Astro.props;
+const icons = { assess: ClipboardCheck, apply: SlidersHorizontal, care: Wrench };
+---
+
+<section class="sh" aria-labelledby="brand-hero-title" data-track-location="hero">
+  <div class="sh__inner">
+    <div class="sh__copy">
+      <p class="sh__badge">{data.badge}</p>
+
+      <h1 class="sh__heading" id="brand-hero-title">
+        {data.headingLines.map((line) => <span class="sh__heading-line">{line}</span>)}
+      </h1>
+
+      {data.description.map((p) => <p class="sh__desc">{p}</p>)}
+
+      <div class="sh__actions">
+        <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} />
+        <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} />
+      </div>
+
+      <ul class="sh__pills">
+        {
+          data.trustPills.map((pill) => (
+            <li class="sh__pill">
+              <Check size={14} stroke-width={2.5} aria-hidden="true" />
+              <span>{pill}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <nav class="sh__panel" aria-labelledby="sh-panel-title">
+      <h2 class="sh__panel-title" id="sh-panel-title">{panel.title}</h2>
+
+      <ol class="sh__steps">
+        {
+          panel.steps.map((step, i) => {
+            const Icon = icons[step.tone];
+            return (
+              <li class="sh__step-item">
+                <a class:list={["sh__step", `sh__step--${step.tone}`]} href={step.href}>
+                  <span class="sh__step-icon" aria-hidden="true">
+                    <Icon size={24} stroke-width={1.85} />
+                  </span>
+                  <span class="sh__step-body">
+                    <span class="sh__step-title">
+                      <span class="sh__step-number">{i + 1}.</span> {step.title}
+                    </span>
+                    <span class="sh__step-text">{step.text}</span>
+                  </span>
+                  <ArrowRight class="sh__step-go" size={18} stroke-width={2} aria-hidden="true" />
+                </a>
+                {i < panel.steps.length - 1 && <ArrowDown class="sh__step-arrow" size={20} stroke-width={2} aria-hidden="true" />}
+              </li>
+            );
+          })
+        }
+      </ol>
+
+      <a class="sh__link" href={panel.link.href}>
+        <span>{panel.link.label}</span>
+        <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+      </a>
+    </nav>
+  </div>
+</section>
+
+<style>
+  .sh {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: min(92vh, 780px);
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-8);
+  }
+
+  .sh__inner {
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-12);
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  /* --- Left: content (BrandHero ile aynı tarif) ---------------------------- */
+
+  .sh__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .sh__heading {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(2.5rem, 1.6rem + 2.6vw, 4rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sh__heading-line {
+    display: block;
+  }
+
+  .sh__desc {
+    margin: var(--space-3) 0 0;
+    max-width: 36rem;
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .sh__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .sh__pills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-4) 0 0;
+    padding: 0;
+  }
+
+  .sh__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .sh__pill :global(svg) {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  /* --- Right: process panel ------------------------------------------------- */
+
+  .sh__panel {
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sh__panel-title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .sh__steps {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .sh__step-item {
+    position: relative;
+  }
+
+  /* Her adım gerçek bir bağlantıdır (bölüme gider); renkler extended kartlarla aynı. */
+  .sh__step {
+    --tone: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: color-mix(in srgb, var(--tone) 6%, var(--color-background));
+    border: 1px solid color-mix(in srgb, var(--tone) 22%, var(--color-border));
+    border-radius: var(--radius-xl);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 250ms ease, box-shadow 250ms ease, background-color 250ms ease;
+  }
+
+  .sh__step--apply {
+    --tone: #0f766e;
+  }
+
+  .sh__step--care {
+    --tone: #b45309;
+  }
+
+  .sh__step:hover {
+    border-color: var(--tone);
+    background: color-mix(in srgb, var(--tone) 10%, var(--color-background));
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sh__step:focus-visible,
+  .sh__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .sh__step-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--tone) 14%, var(--color-background));
+    color: var(--tone);
+    transition: background-color 250ms ease;
+  }
+
+  .sh__step:hover .sh__step-icon {
+    background: color-mix(in srgb, var(--tone) 22%, var(--color-background));
+  }
+
+  .sh__step-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sh__step-title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .sh__step-number {
+    color: var(--tone);
+  }
+
+  .sh__step-text {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .sh__step :global(.sh__step-go) {
+    flex: none;
+    color: var(--color-text-muted);
+    transition: transform 250ms ease, color 250ms ease;
+  }
+
+  .sh__step:hover :global(.sh__step-go) {
+    color: var(--tone);
+    transform: translateX(3px);
+  }
+
+  /* Adımlar arası yön oku: kartların arasındaki boşlukta, ikon sütunuyla hizalı. */
+  .sh__step-item :global(.sh__step-arrow) {
+    position: absolute;
+    left: calc(var(--space-4) + 26px - 10px);
+    bottom: calc(-1 * var(--space-8) + 6px);
+    color: var(--color-text-muted);
+  }
+
+  .sh__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    margin-top: var(--space-4);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* --- Responsive ----------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .sh {
+      min-height: 0;
+      padding-block: var(--space-12);
+    }
+
+    .sh__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+      padding-inline: var(--space-6);
+    }
+
+    .sh__panel {
+      max-width: 40rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sh {
+      padding-block: var(--space-8);
+    }
+
+    .sh__inner {
+      padding-inline: var(--space-5);
+      gap: var(--space-8);
+    }
+
+    .sh__heading {
+      font-size: clamp(2.125rem, 1.9rem + 1.2vw, 2.5rem);
+    }
+
+    .sh__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sh__panel {
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .sh__step {
+      padding: var(--space-3);
+      gap: var(--space-3);
+    }
+
+    .sh__step-icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .sh__step-item :global(.sh__step-arrow) {
+      left: calc(var(--space-3) + 22px - 10px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sh__step,
+    .sh__step-icon,
+    .sh__step :global(.sh__step-go) {
+      transition: none;
+    }
+
+    .sh__step:hover :global(.sh__step-go) {
+      transform: none;
+    }
+  }
+</style>

@@ -116,5 +116,7 @@ export const sonicUnique: UniqueBrandContent = {
     heading: "Sonic Ailelerini Merkezde Sorun",
     description: "Beş Sonic ailesinden hangisinin size uygun olduğunu işitme testinizden sonra birlikte netleştirelim; bizi arayın veya WhatsApp'tan yazın.",
     trustItems: ["Ücretsiz İşitme Testi", "4 Enchant Ailesi", "Merkezimiz Darıca'da"],
+    // Aynı sayfadaki model aileleri bölümü (BrandPageModels başlık kimliği).
+    trustLinks: { "4 Enchant Ailesi": "#brand-page-models-title" },
   },
 };

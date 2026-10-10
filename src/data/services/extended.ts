@@ -7,6 +7,7 @@
 
 import {
   Sliders,
+  UserCog,
   Headphones,
   Ruler,
   Radio,
@@ -27,7 +28,7 @@ export const servicesExtended: BrandExtendedContent = {
     "Değerlendirme sonrasında ihtiyaç duyabileceğiniz uygulama, ayar, servis ve bakım hizmetlerimizi de inceleyebilirsiniz.",
   brands: [
     { name: "Cihaz Uygulama", href: "/uygulama-ayar/cihaz-uygulama/", icon: Sliders },
-    { name: "Kişiye Özel Programlama", href: "/uygulama-ayar/kisiye-ozel-programlama/", icon: Sliders },
+    { name: "Kişiye Özel Programlama", href: "/uygulama-ayar/kisiye-ozel-programlama/", icon: UserCog },
     { name: "Cihaz Deneme", href: "/uygulama-ayar/cihaz-deneme/", icon: Headphones },
     { name: "Kalıp Alımı", href: "/uygulama-ayar/kalip-alimi/", icon: Ruler },
     { name: "Uzaktan Ayar", href: "/uygulama-ayar/uzaktan-ayar/", icon: Radio },

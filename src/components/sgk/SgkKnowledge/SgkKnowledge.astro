@@ -16,6 +16,7 @@ import {
 } from "lucide-astro";
 import { sgkKnowledge } from "../../../data/sgk/knowledge";
 import { contactConfig } from "../../../config";
+import { contactAction } from "../../../lib/contact-action";
 
 const cardIcons = [Users, Wallet, FileCheck2, ClipboardCheck, RefreshCw, UserCheck];
 ---
@@ -57,8 +58,8 @@ const cardIcons = [Users, Wallet, FileCheck2, ClipboardCheck, RefreshCw, UserChe
         <p class="sgk-knowledge__notice-label">{sgkKnowledge.notice.label}</p>
         <p class="sgk-knowledge__notice-text">{sgkKnowledge.notice.text}</p>
       </div>
-      <a class="sgk-knowledge__notice-cta" href={contactConfig.phone.href}>
-        <Phone size={15} stroke-width={2} aria-hidden="true" />
+      <a class="sgk-knowledge__notice-cta" href={contactConfig.phone.href} data-contact-action={contactAction(contactConfig.phone.href)} data-contact-size="sm">
+        <Phone size={20} stroke-width={2} aria-hidden="true" />
         <span>{sgkKnowledge.notice.contactLabel}</span>
       </a>
     </div>

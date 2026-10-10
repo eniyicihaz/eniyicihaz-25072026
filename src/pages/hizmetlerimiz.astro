@@ -15,7 +15,7 @@
 // M8 is the page's final section. Do not add later modules until
 // they're specifically requested.
 import MainLayout from "../layouts/MainLayout.astro";
-import BrandHero from "../components/brands/BrandHero/BrandHero.astro";
+import ServicesHero from "../components/brands/ServicesHero/ServicesHero.astro";
 import BrandShowcase from "../components/brands/BrandShowcase/BrandShowcase.astro";
 import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
 import BrandDecision from "../components/brands/BrandDecision/BrandDecision.astro";
@@ -25,6 +25,7 @@ import BrandExpertSupport from "../components/brands/BrandExpertSupport/BrandExp
 import BrandFaq from "../components/brands/BrandFaq/BrandFaq.astro";
 
 import { servicesHero } from "../data/services/hero";
+import { servicesHeroPanel } from "../data/services/hero-panel";
 import { servicesShowcase } from "../data/services/showcase";
 import { servicesCriteria } from "../data/services/criteria";
 import { servicesDecision } from "../data/services/decision";
@@ -38,7 +39,7 @@ import { servicesFaq } from "../data/services/faq";
   title="Hizmetlerimiz | Uçtan Uca İşitme Sağlığı Hizmeti"
   description="Değerlendirmeden cihaz uygulamasına, ayardan servis ve bakıma kadar tüm işitme sağlığı hizmetlerimizi tek sayfada keşfedin."
 >
-  <BrandHero data={servicesHero} />
+  <ServicesHero data={servicesHero} panel={servicesHeroPanel} />
   <BrandShowcase data={servicesShowcase} />
   <BrandCriteria data={servicesCriteria} />
   <BrandDecision data={servicesDecision} />
@@ -47,3 +48,230 @@ import { servicesFaq } from "../data/services/faq";
   <BrandExpertSupport data={servicesExpertSupport} />
   <BrandFaq data={servicesFaq} />
 </MainLayout>
+
+<style is:global>
+  /* /hizmetlerimiz sayfasina ozel gorsel duzen. Bu blok yalnizca bu sayfanin CSS paketine girer;
+     ortak BrandShowcase / BrandExtended / BrandCriteria / BrandDecision / BrandBuyingGuide /
+     BrandExpertSupport diger sayfalarda oldugu gibi kalir. Secicilere `body` eklenir; ikon hover
+     kurallari `[class]` ile ayrica guclendirilir (bilesenlerin kapsamli :hover kurallari daha ozgul).
+
+     Stiller:
+       A - Sade beyaz: kriter kartlari (salt bilgi), SSS.
+       B - Acik mavi/turkuaz zemin + renkli ikon alani: karar paneli, karar senaryolari.
+       C - Numarali adimlar: "Randevu oncesi" sorulari; hero'daki surec paneli.
+     Hover yalnizca gercek baglantilarda (kartlar, hero adimlari, CTA'lar). */
+
+  /* Sticky header (~79px) hash hedeflerini ortmesin. */
+  html {
+    scroll-padding-top: var(--space-24);
+  }
+
+  /* --- 6 degerlendirme karti (BrandShowcase): tiklanabilir, premium ---------- */
+
+  body .brand-showcase .brand-showcase__card {
+    --tone: var(--color-primary);
+    gap: var(--space-3);
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+  }
+
+  /* !important: kartlar giris animasyonunun (data-rise, fill-mode: both) son karesini tasir;
+     animasyon normal bildirimleri ezer, !important olanlari ezemez. */
+  body .brand-showcase .brand-showcase__card:hover,
+  body .brand-showcase .brand-showcase__card:focus-visible {
+    transform: translateY(-3px) !important;
+    background: color-mix(in srgb, var(--tone) 4%, var(--color-background));
+    border-color: var(--tone);
+    box-shadow: var(--shadow-md);
+  }
+
+  body .brand-showcase .brand-showcase__card:focus-visible {
+    box-shadow: var(--shadow-md), var(--focus-ring);
+  }
+
+  body .brand-showcase .brand-showcase__icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--tone) 10%, var(--color-background));
+    color: var(--tone);
+    opacity: 1;
+    transition: background-color 300ms var(--bs-ease);
+  }
+
+  body .brand-showcase .brand-showcase__icon-wrap svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  body .brand-showcase .brand-showcase__card:hover .brand-showcase__icon-wrap[class],
+  body .brand-showcase .brand-showcase__card:focus-visible .brand-showcase__icon-wrap[class] {
+    background: color-mix(in srgb, var(--tone) 16%, var(--color-background));
+    color: var(--tone);
+  }
+
+  body .brand-showcase .brand-showcase__name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  /* "Incele": normal durumda da gorunur (bilesen varsayilani hover'a bagli). */
+  body .brand-showcase .brand-showcase__cta {
+    opacity: 1;
+    transform: none;
+    color: var(--color-primary);
+  }
+
+  /* --- 12 hizmet karti (BrandExtended): kompakt yatay ------------------------ */
+  /* Renk siraya degil baglantiya bagli: /uygulama-ayar = turkuaz, /servis-bakim = amber. */
+
+  body .brand-extended .brand-extended__card {
+    --tone: var(--color-primary);
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-background);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xs);
+    text-align: left;
+  }
+
+  body .brand-extended .brand-extended__card[href^="/uygulama-ayar/"] {
+    --tone: #0f766e;
+  }
+
+  body .brand-extended .brand-extended__card[href^="/servis-bakim/"] {
+    --tone: #b45309;
+  }
+
+  body .brand-extended .brand-extended__card:hover,
+  body .brand-extended .brand-extended__card:focus-visible {
+    transform: translateY(-2px) !important;
+    background: color-mix(in srgb, var(--tone) 4%, var(--color-background));
+    border-color: var(--tone);
+    box-shadow: var(--shadow-md);
+  }
+
+  body .brand-extended .brand-extended__card:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-md), var(--focus-ring);
+  }
+
+  body .brand-extended .brand-extended__icon-wrap {
+    flex: none;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--tone) 10%, var(--color-background));
+    color: var(--tone);
+    opacity: 1;
+    transition: background-color 300ms var(--be-ease);
+  }
+
+  body .brand-extended .brand-extended__icon-wrap svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  body .brand-extended .brand-extended__card:hover .brand-extended__icon-wrap[class],
+  body .brand-extended .brand-extended__card:focus-visible .brand-extended__icon-wrap[class] {
+    background: color-mix(in srgb, var(--tone) 16%, var(--color-background));
+    color: var(--tone);
+  }
+
+  body .brand-extended .brand-extended__name {
+    min-width: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 1279px) {
+    body .brand-extended .brand-extended__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 1023px) {
+    body .brand-extended .brand-extended__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    body .brand-showcase .brand-showcase__card {
+      padding: var(--space-6) var(--space-4);
+    }
+
+    body .brand-extended .brand-extended__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* --- Kriter kartlari (salt bilgi, Stil A): daha buyuk renkli ikon alani ---- */
+  /* Kartlar baglanti degil; hover kazanmazlar. */
+
+  body .brand-criteria .brand-criteria__icon {
+    width: 48px;
+    height: 48px;
+    background: rgb(37 99 235 / 0.1);
+  }
+
+  body .brand-criteria .brand-criteria__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* --- Karar bolumu (Stil B): senaryo ikonlari turkuaz, panel acik mavi ------- */
+
+  body .brand-decision .brand-decision__scenario-icon {
+    width: 44px;
+    height: 44px;
+    background: rgb(15 118 110 / 0.1);
+    color: #0f766e;
+  }
+
+  body .brand-decision .brand-decision__panel {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+  }
+
+  /* --- "Randevu oncesi" sorulari (Stil C): numaralar renkli rozet ------------- */
+
+  body .brand-buying-guide .brand-buying-guide__number {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: rgb(37 99 235 / 0.1);
+    font-size: var(--font-size-md);
+    color: var(--color-primary);
+  }
+
+  /* --- Son bolum: guvence satiri alttaki ayiriciya yapismasin ------------------ */
+
+  body .brand-expert-support .brand-expert-support__reassurance {
+    margin-bottom: var(--space-6);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body .brand-showcase .brand-showcase__card:hover,
+    body .brand-showcase .brand-showcase__card:focus-visible,
+    body .brand-extended .brand-extended__card:hover,
+    body .brand-extended .brand-extended__card:focus-visible {
+      transform: none !important;
+    }
+
+    body .brand-showcase .brand-showcase__icon-wrap,
+    body .brand-extended .brand-extended__icon-wrap {
+      transition: none;
+    }
+  }
+</style>

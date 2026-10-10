@@ -40,6 +40,41 @@ import { company } from "../../components/footer/Footer/data/company";
 
 const allBrands = [...brandShowcase.brands, ...brandExtended.brands];
 
+// Logo dosyaları 612x408 / 707x353 / 1774x887 tuvallerin ortasında, her yanında
+// farklı ve simetrik olmayan şeffaf boşlukla duruyor. Kartın içinde tuval değil
+// logonun kendisi hizalansın ve boyutlansın diye her logonun görünen alanı
+// (alfa > 8, her yana ~%1.2 güvenlik payıyla) ölçüldü: [tuvalW, tuvalH, x, y, w, h].
+// Dosyalar değişirse buradaki ölçü de güncellenmeli; kaydı olmayan logo,
+// tuvalin tamamı kutuya sığdırılarak (contain) gösterilir.
+const LOGO_BOX: Record<string, [number, number, number, number, number, number]> = {
+  "/images/brands/am-logo-seffaf.webp": [612, 408, 188, 93, 246, 230],
+  "/images/brands/audifon-logo-seffaf.webp": [612, 408, 83, 146, 446, 108],
+  "/images/brands/audio-service-logo-seffaf.webp": [612, 408, 125, 128, 371, 137],
+  "/images/brands/beltone-logo-seffaf.webp": [612, 408, 86, 153, 447, 92],
+  "/images/brands/bernafon-logo-seffaf.webp": [612, 408, 90, 150, 453, 107],
+  "/images/brands/coselgi-logo-seffaf.webp": [612, 408, 145, 152, 327, 100],
+  "/images/brands/maico-logo-seffaf.webp": [612, 408, 80, 145, 458, 112],
+  "/images/brands/nuear-logo-seffaf.webp": [612, 408, 41, 150, 550, 96],
+  "/images/brands/oticon-logo-seffaf.webp": [1774, 887, 150, 227, 1481, 401],
+  "/images/brands/philips-logo-seffaf.webp": [612, 408, 98, 151, 435, 90],
+  "/images/brands/phonak-logo-seffaf.webp": [707, 353, 60, 107, 590, 126],
+  "/images/brands/resound-logo-seffaf.webp": [707, 353, 65, 71, 577, 207],
+  "/images/brands/rexton-logo-seffaf.webp": [612, 408, 88, 156, 449, 85],
+  "/images/brands/signia-logo-seffaf.webp": [707, 353, 69, 86, 581, 168],
+  "/images/brands/sonic-logo-seffaf.webp": [612, 408, 117, 131, 387, 139],
+  "/images/brands/unitron-logo-seffaf.webp": [612, 408, 98, 133, 451, 110],
+  "/images/brands/vista-logo-seffaf.webp": [612, 408, 146, 131, 330, 135],
+  "/images/brands/widex-logo-seffaf.webp": [707, 353, 64, 90, 618, 167],
+};
+
+function logoMarkStyle(logo?: string): string | undefined {
+  const box = logo ? LOGO_BOX[logo] : undefined;
+  if (!box) return undefined;
+  const [cw, ch, x, y, w, h] = box;
+  const pct = (n: number) => `${+(n * 100).toFixed(3)}%`;
+  return `--mark-ar:${+(w / h).toFixed(4)};--mark-img-w:${pct(cw / w)};--mark-img-x:${pct(-x / w)};--mark-img-y:${pct(-y / h)};`;
+}
+
 const PAGE_URL = "https://www.eniyicihaz.com/neden-orijinal/marka-danismanligi";
 
 const breadcrumbItems = [
@@ -127,7 +162,9 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
     <div class="md-brand-grid__grid">
       {allBrands.map((brand) => (
         <a class="md-brand-grid__logo" href={brand.href} aria-label={brand.name}>
-          <img src={brand.logo} alt={brand.name} width={imageDims(brand.logo ?? "")?.width} height={imageDims(brand.logo ?? "")?.height} loading="lazy" />
+          <span class="md-brand-grid__mark" style={logoMarkStyle(brand.logo)} data-fit={LOGO_BOX[brand.logo ?? ""] ? "box" : "contain"}>
+            <img src={brand.logo} alt={brand.name} width={imageDims(brand.logo ?? "")?.width} height={imageDims(brand.logo ?? "")?.height} loading="lazy" />
+          </span>
         </a>
       ))}
     </div>
@@ -215,11 +252,31 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
     box-shadow: var(--focus-ring);
   }
 
-  .md-brand-grid__logo img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
+  /* Mark = logonun görünen alanı. Oranı logodan gelir, boyutu kartın içeriğine
+     göre sınırlanır; img tuvalini mark'a göre konumlandırır, böylece tuvaldeki
+     şeffaf boşluk yerleşimi etkilemez. */
+  .md-brand-grid__mark {
+    --mark-max-h: 44px;
+    position: relative;
+    display: block;
+    width: min(88%, calc(var(--mark-max-h) * var(--mark-ar, 3)));
+    aspect-ratio: var(--mark-ar, 3);
+    overflow: hidden;
+  }
+
+  .md-brand-grid__mark img {
+    position: absolute;
+    left: var(--mark-img-x);
+    top: var(--mark-img-y);
+    width: var(--mark-img-w);
+    max-width: none;
     height: auto;
+  }
+
+  .md-brand-grid__mark[data-fit="contain"] img {
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
   }
 
@@ -231,7 +288,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
 
   @media (max-width: 640px) {
     .md-brand-grid {
-      padding-block: var(--space-14);
+      padding-block: var(--space-12);
     }
 
     .md-brand-grid__grid {
@@ -243,6 +300,11 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVIC
     .md-brand-grid__logo {
       height: 68px;
       padding: var(--space-2);
+    }
+
+    .md-brand-grid__mark {
+      --mark-max-h: 34px;
+      width: min(92%, calc(var(--mark-max-h) * var(--mark-ar, 3)));
     }
   }
 </style>

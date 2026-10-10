@@ -5,10 +5,12 @@
 // from brands/showcase.ts + brands/extended.ts, never re-hardcoded here).
 // Own page-copy namespace (../../../data/sgk/brands), independent of the
 // rest of sgk/*.
-import { ArrowRight, Star, LayoutGrid, Lightbulb, Check, Phone, MessageCircle } from "lucide-astro";
+import { ArrowRight, Star, LayoutGrid, Lightbulb, Check, Phone } from "lucide-astro";
 import { sgkBrands } from "../../../data/sgk/brands";
 import { contactConfig } from "../../../config";
 import { imageDims } from "../../../lib/responsive-images";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
 ---
 
 <section class="sgk-brands" aria-labelledby="sgk-brands-title">
@@ -107,15 +109,16 @@ import { imageDims } from "../../../lib/responsive-images";
         <p class="sgk-brands__cta-subtext">{sgkBrands.cta.subtext}</p>
 
         <div class="sgk-brands__cta-actions">
-          <a class="sgk-brands__cta-btn sgk-brands__cta-btn--solid" href={contactConfig.phone.href}>
+          <a class="sgk-brands__cta-btn sgk-brands__cta-btn--solid" href={contactConfig.phone.href} data-contact-action={contactAction(contactConfig.phone.href)}>
             <Phone size={20} stroke-width={2} aria-hidden="true" />
             <span>{sgkBrands.cta.primaryLabel}</span>
           </a>
           <a
             class="sgk-brands__cta-btn sgk-brands__cta-btn--outline"
             href={contactConfig.whatsapp.href}
+            data-contact-action={contactAction(contactConfig.whatsapp.href)}
           >
-            <MessageCircle size={20} stroke-width={2} aria-hidden="true" />
+            <WhatsAppIcon size={20} />
             <span>{sgkBrands.cta.secondaryLabel}</span>
           </a>
         </div>

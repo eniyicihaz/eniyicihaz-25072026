@@ -1,0 +1,164 @@
+/* İletişim aksiyonları — telefon, WhatsApp, yol tarifi (tek tasarım ailesi).
+   Bileşenler butonlarına `data-contact-action="phone|whatsapp|directions"` ekler
+   (src/lib/contact-action.ts, href'ten türetilir); isteğe bağlı `data-contact-size="sm"`
+   kompakt (48 px) alanlar içindir. Sınıf adları DEĞİŞMEZ: ölçüm (events.ts) `link_location`
+   değerini ata sınıflarından okur.
+
+   Hiyerarşi: telefon = birincil (kurumsal mavi dolu) · WhatsApp = ikincil (beyaz zemin,
+   resmî yeşil glif, ince kenarlık) · yol tarifi = üçüncül (açık mavi, mavi ikon).
+   Sabit WhatsApp yeşili (#25D366) logonun kendi rengidir; değiştirilmez ve zemin olarak
+   kullanılmaz. Seçiciler, bileşenlerin kapsamlı (data-astro-cid) kurallarını ve :hover
+   kurallarını yenmek için [href] ve tekrarlı [data-contact-action] ile güçlendirilmiştir. */
+
+html body a[href][data-contact-action][data-contact-action] {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 56px;
+  min-height: 48px;
+  padding: 0 var(--space-8);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+html body a[href][data-contact-action][data-contact-action][data-contact-size="sm"] {
+  height: 48px;
+  padding-inline: var(--space-6);
+  font-size: var(--font-size-md);
+}
+
+html body a[href][data-contact-action][data-contact-action] > svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+html body a[href][data-contact-action][data-contact-action]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* --- Telefon: birincil ---------------------------------------------------- */
+
+html body a[href][data-contact-action][data-contact-action="phone"] {
+  background: var(--color-primary);
+  border-color: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.25),
+    0 10px 24px -10px rgb(37 99 235 / 0.55);
+}
+
+html body a[href][data-contact-action][data-contact-action="phone"]:hover {
+  transform: translateY(-2px);
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    0 18px 36px -12px rgb(37 99 235 / 0.6);
+}
+
+html body a[href][data-contact-action][data-contact-action="phone"]:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* --- WhatsApp: ikincil ---------------------------------------------------- */
+
+html body a[href][data-contact-action][data-contact-action="whatsapp"] {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: var(--color-text);
+  box-shadow: none;
+}
+
+html body a[href][data-contact-action][data-contact-action="whatsapp"] {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+/* Hover yalnızca gerçek hover destekleyen cihazlarda (dokunmatikte yapışkan hover olmaz):
+   çok açık yeşil zemin, WhatsApp yeşili kenarlık, hafif yükselme ve yumuşak gölge. */
+@media (hover: hover) {
+  html body a[href][data-contact-action][data-contact-action="whatsapp"]:hover {
+    transform: translateY(-2px);
+    background: #f0fdf4;
+    border-color: #25d366;
+    color: var(--color-text);
+    box-shadow:
+      0 10px 22px -12px rgb(37 211 102 / 0.6),
+      0 2px 6px rgb(15 23 42 / 0.08);
+  }
+
+  html body a[href][data-contact-action][data-contact-action="whatsapp"]:hover:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgb(15 23 42 / 0.1);
+  }
+}
+
+/* Resmî WhatsApp yeşili: logonun rengi, zemin değil. */
+html body a[href][data-contact-action][data-contact-action="whatsapp"] > svg {
+  color: #25d366;
+}
+
+/* Klavye odağı: açık yeşil zemin + yeşil kenarlık + beyaz/yeşil çift halka (açık ve koyu zeminde görünür). */
+html body a[href][data-contact-action][data-contact-action="whatsapp"]:focus-visible {
+  background: #f0fdf4;
+  border-color: #25d366;
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 4px #1da851;
+}
+
+/* --- Yol tarifi: üçüncül -------------------------------------------------- */
+
+html body a[href][data-contact-action][data-contact-action="directions"] {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1e3a8a;
+  box-shadow: none;
+}
+
+html body a[href][data-contact-action][data-contact-action="directions"]:hover {
+  transform: none;
+  background: #dbeafe;
+  border-color: #93c5fd;
+  color: #1e3a8a;
+  box-shadow: none;
+}
+
+html body a[href][data-contact-action][data-contact-action="directions"] > svg {
+  color: var(--color-primary);
+}
+
+html body a[href][data-contact-action][data-contact-action="directions"]:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body a[href][data-contact-action][data-contact-action] {
+    transition:
+      background-color var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  html body a[href][data-contact-action][data-contact-action]:hover {
+    transform: none;
+  }
+}

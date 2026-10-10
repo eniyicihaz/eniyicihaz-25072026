@@ -4,6 +4,9 @@
 // removed, its glow/grain visual recipe migrates here unchanged).
 // Spec: docs/CLOSING_SPECIFICATION.md · DNA: PRINCIPLES §1 · Visual: DESIGN_SYSTEM §6.
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { Phone, Navigation } from "lucide-astro";
+import { contactAction } from "../../../lib/contact-action";
 import { closing } from "./closing.data";
 ---
 
@@ -16,20 +19,21 @@ import { closing } from "./closing.data";
     <div class="closing__actions">
       <CtaButton label={closing.cta.label} href={closing.cta.href} />
 
-      <p class="closing__secondary">
-        {closing.secondaryContact.lead}{" "}
-        <a class="closing__phone" href={closing.secondaryContact.href}>
-          {closing.secondaryContact.label}
+      <p class="closing__secondary">{closing.secondaryContact.lead}</p>
+      <div class="closing__contacts">
+        <a class="closing__phone" href={closing.secondaryContact.href} data-contact-action={contactAction(closing.secondaryContact.href)} data-contact-size="sm">
+          <Phone size={20} stroke-width={2} aria-hidden="true" />
+          <span>{closing.secondaryContact.label}</span>
         </a>
-        {" · "}
-        <a class="closing__phone" href={closing.secondaryContact.whatsapp.href}>
-          {closing.secondaryContact.whatsapp.label}
+        <a class="closing__phone" href={closing.secondaryContact.whatsapp.href} data-contact-action={contactAction(closing.secondaryContact.whatsapp.href)} data-contact-size="sm">
+          <WhatsAppIcon size={20} />
+          <span>{closing.secondaryContact.whatsapp.label}</span>
         </a>
-        {" · "}
-        <a class="closing__phone" href={closing.secondaryContact.directions.href} target="_blank" rel="noopener">
-          {closing.secondaryContact.directions.label}
+        <a class="closing__phone" href={closing.secondaryContact.directions.href} data-contact-action={contactAction(closing.secondaryContact.directions.href)} data-contact-size="sm" target="_blank" rel="noopener">
+          <Navigation size={20} stroke-width={2} aria-hidden="true" />
+          <span>{closing.secondaryContact.directions.label}</span>
         </a>
-      </p>
+      </div>
     </div>
 
     <p class="closing__reassurance">{closing.reassurance}</p>
@@ -187,31 +191,20 @@ import { closing } from "./closing.data";
     margin-top: var(--space-4);
   }
 
-  /* Secondary contact: plain text + a plain link, never styled as a
-     button — it must never compete visually with the primary CTA.
-     text-muted, not text-soft: text-soft fails WCAG AA here (~2.6:1 on
-     white vs muted's ~7.6:1) — the same fix already applied in Hero. */
+  /* Secondary contact: a quiet lead line + the shared compact (48 px) contact
+     buttons (telefon → WhatsApp → yol tarifi). The primary CTA above stays the
+     free hearing test; text-muted keeps the lead line WCAG AA on white. */
   .closing__secondary {
     margin: 0;
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
   }
 
-  .closing__phone {
-    color: var(--color-text-muted);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    font-weight: var(--font-weight-medium);
-  }
-
-  .closing__phone:hover {
-    color: var(--color-text);
-  }
-
-  .closing__phone:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-    border-radius: var(--radius-sm);
+  .closing__contacts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
   }
 
   .closing__reassurance {

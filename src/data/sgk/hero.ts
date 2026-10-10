@@ -17,6 +17,14 @@
 // (pages/sgk-isitme-cihazi.webp — görsele işlenmiş "uzman kadro" metni, SGK
 // logosu ve sahte personel) ve ona bağlı floating card + yıl chip'i kaldırıldı.
 // Dosya silinmedi.
+//
+// Sağ kolondaki "SGK sürecinin 4 adımı" paneli görsel değil, bilgi alanıdır:
+// adım adları ve bağlantıları data/sgk/process.ts'ten gelir (yeni süreç,
+// süre veya uygunluk iddiası YOK). "Aynı Gün Başvuru" güven maddesi
+// işletme tarafından doğrulanmış bir koşula dayanmadığı için kaldırıldı
+// (doğrulanan bilgi yalnızca rapordan cihaz teslimine 1-3 gün, çoğunlukla
+// aynı gündür ve zamana duyarlıdır); yerine, process.ts'te zaten yer alan
+// "Belgelerde Destek" kullanıldı.
 
 export interface SgkHeroTrustItem {
   title: string;
@@ -30,6 +38,9 @@ export interface SgkHeroContent {
   trustItems: SgkHeroTrustItem[];
   ctaPrimaryLabel: string;
   ctaSecondaryLabel: string;
+  panelTitle: string;
+  panelLinkLabel: string;
+  panelLinkHref: string;
 }
 
 export const sgkHero: SgkHeroContent = {
@@ -47,10 +58,14 @@ export const sgkHero: SgkHeroContent = {
       description: "Değerlendirme odyolog ve odyometristimizle yapılır.",
     },
     {
-      title: "Aynı Gün Başvuru",
-      description: "Hızlı ve kolay bir süreçle yanınızdayız.",
+      title: "Belgelerde Destek",
+      description: "Gerekli belgeleri birlikte gözden geçirelim.",
     },
   ],
   ctaPrimaryLabel: "Bizi Arayın",
   ctaSecondaryLabel: "WhatsApp'tan Yazın",
+  panelTitle: "SGK sürecinin 4 adımı",
+  panelLinkLabel: "2026 SGK ödeme tablosuna git",
+  // SgkPayments başlığının gerçek id'si (components/sgk/SgkPayments).
+  panelLinkHref: "#sgk-payments-title",
 };

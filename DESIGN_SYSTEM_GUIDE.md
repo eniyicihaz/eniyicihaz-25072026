@@ -718,3 +718,54 @@ Bu doküman, projede zaten inşa edilmiş olan mimariyi (Astro, Atomic Design, k
 
 - Kanonik bileşen hedefleri `docs/tech/TEMPLATES.md` §3'tedir. Bunlar işlevsel hedef adlarıdır; mevcut bileşenlerle eşleme ve konsolidasyon §26 karar ağacı ve IMPLEMENTATION_STANDARD.md §5 gereği her adımda ayrı onayla yapılır.
 - §14 "Mevcut Durum" notu tarihseldir; canlı bileşen envanteri Faz 2 audit'inde çıkarılır.
+
+## 28.9 İçeriğe Özgü Görsel Anlatım
+
+> Bu bölüm **yeni bir görsel sistem, renk paleti veya token tanımlamaz** (bkz. §28.4). Mevcut tasarım dilinin, sayfanın içeriğine ve kullanıcı amacına göre nasıl farklı anlatılabileceğini söyler. Kaynaklar: §2–§3, §6, §12, §17, §24, §26, §28.3–§28.7; görsel kaynağı kuralları `docs/strategy/IMAGE_GUIDELINES.md` ve `docs/source-of-truth/ASSET_SOURCE_OF_TRUTH.md`; sayfa tipleri `docs/tech/TEMPLATES.md` §2.
+
+### Ortak dil, içeriğe özgü anlatım
+
+- Renk, tipografi, boşluk, köşe yarıçapı, gölge ve etkileşim davranışı tutarlı kalır; ortak temel §5–§8, §10 ve §12'de tanımlıdır.
+- Görsel anlatım sayfanın konusuna ve kullanıcının o sayfadaki amacına göre seçilir. İçerik farklıysa anlatım da farklılaşır; aynı düzen, grafik veya bilgi paneli bütün sayfalara uygulanmaz.
+- Aşağıdaki öğeler içeriğe uygunsa kullanılabilir; hiçbiri zorunlu değildir: büyük ve anlamlı ikonlar, kategoriye göre kontrollü vurgu, numaralı adımlar, süreç diyagramları, bilgi panelleri, içeriğe özgü tablo ve karşılaştırmalar, ürün görselleri, teknik çizimler, gerçek mekân fotoğrafları.
+- Her görsel öğe, kullanıcının içeriği anlamasına, karşılaştırmasına veya bir sonraki adıma geçmesine yardımcı olmalıdır. Yalnızca sayfayı renklendirmek veya boşluğu doldurmak için eklenmez.
+
+### Anlatım biçiminin seçimi
+
+| İhtiyaç | Uygun biçim |
+|---|---|
+| Sayısal veriler ve koşullar | Tablo |
+| Birbirini izleyen aşamalar | Süreç diyagramı |
+| Seçeneklerin değerlendirilmesi | Karşılaştırma tablosu |
+| Bir parçanın yapısı | Etiketli teknik şema |
+| Hizmetin ilerleyişi | Numaralı yol haritası |
+| Bilgi kategorilerini keşfetme | Kategori kartları |
+
+- Sayfa tiplerine göre anlatım değişebilir (örneğin hizmet hub'ında hizmet kartları ve süreç, ödeme ve SGK sayfalarında mekanizma şemaları ve koşul tabloları, marka sayfalarında ürün özellikleri ve cihaz görselleri, teknik rehberlerde parça şemaları, iletişimde gerçek mekân fotoğrafları ve ulaşım bilgisi). Bunlar örnektir; gerçek içerik incelenmeden zorunlu şablon olarak uygulanmaz.
+- Tablo, infografik veya diyagram, yalnızca başlığı değiştirilerek sayfalar arasında kopyalanmaz (`docs/tech/TEMPLATES.md` §1 "Kopya yasağı" ile aynı mantık). Aynı gerçek süreç başka bir sayfada yeniden kullanılacaksa o sayfanın bağlamı, ayrıntı seviyesi ve kullanıcı amacı yeniden değerlendirilir.
+
+### Gerçeklik ve görsel kaynağı
+
+- Gerçeğe dayanmayan değer, uydurma istatistik veya güncelliği doğrulanmamış ödeme tutarı gösterilmez. Süreç anlatımı hesaplama aracı gibi sunulmaz; kesin tutar içermeyen bir şema genel bilgi olduğunu açıkça belirtir (içerik bütünlüğü: `PRINCIPLES.md`, işletme gerçekleri: SoT).
+- Önce kaynağı doğrulanmış gerçek işletme ve ürün görselleri değerlendirilir; aynı fotoğrafın çok sayfada tekrar kullanımı da bir değerlendirme ölçütüdür. Ürün ve teknik konularda editoryal illüstrasyon veya şema kullanılabilir.
+- Yapay görünen insan veya klinik görselleri gerçek personel, müşteri ya da işletme fotoğrafı gibi sunulmaz; görsel yoksa boşluk yapay fotoğrafla doldurulmaz. Bilgi paneli veya daha kompakt bir düzen tercih edilir.
+- Görsel yükü gereksiz artırılmaz (§21).
+
+### Renk ve vurgu
+
+- Vurgu, mevcut tasarım kuralları ve geçerli token'larla uyumlu kalır; az ve anlamlı kullanılır (§28.4). Her öğeye ayrı renk verilmez; aynı sayfada yalnızca birkaç ana vurgu kullanılır.
+- Kategori vurgusu, kategorinin veri ile belirlenmiş kimliğine bağlanır; kartın görünüm sırasına bağlanmaz.
+- Renk tek başına anlam taşımaz (§17): ikon ve etiket de anlamı taşır.
+- Yeni bir renk, ton veya token ihtiyacı doğarsa bu bölümle uygulanmaz; ayrı karar olarak belirtilir (bkz. BRAND_SOT §6–§7).
+
+### Kartlar ve etkileşim
+
+- Kartın normal hâli de anlaşılır ve okunabilir olur; bir bağlantının tıklanabilir olduğu anlamı yalnızca hover'a bırakılmaz.
+- Salt bilgi gösteren kutular, gerçek bağlantı ve butonlardan görsel olarak ayırt edilir; bilgi kutusu sahte buton gibi görünmez.
+- Hover ve animasyon yalnızca anlamlı geri bildirim veya yönlendirme sağlar (§12, §28.7); gerekli olmayan hareket `prefers-reduced-motion` tercihinde devre dışı kalır.
+- Dokunma hedefi (§28.3), görünür odak ve kontrast (§17, §28.6) korunur. Mobil düzen masaüstü görünümünün daraltılması olarak değil, içerik akışına göre tasarlanır (§11, §28.2).
+
+### Yeni bileşen gerekirse
+
+- Önce §26 karar ağacı uygulanır: mevcut bileşen, mevcut bileşenin varyantı, yeni prop, composition. İçeriğe özgü bir anlatım yalnızca bunlar karşılamıyorsa yeni bir bileşen gerektirir (§24).
+- Bileşenler bir sayfaya kilitlenmemelidir (§13); sayfaya özel bir bileşen ancak karar ağacı bunu gerektirdiğinde ve §23 kontrol listesinden geçerek oluşturulur. Mevcut bileşenlerle eşleme ve konsolidasyon her adımda ayrı onayla yapılır (§28.8).

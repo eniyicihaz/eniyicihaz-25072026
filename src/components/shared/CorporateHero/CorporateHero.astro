@@ -8,7 +8,9 @@
 // scrim keeps the headline readable, and a white "trust strip" card
 // overlaps the photo's bottom edge (pure CSS negative-margin overlap, no
 // absolute positioning) to bridge into the page's first white section.
-import { MapPin } from "lucide-astro";
+import { MapPin, Phone, Navigation } from "lucide-astro";
+import WhatsAppIcon from "../WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
 
 export interface CorporateHeroStat {
   value: string;
@@ -59,6 +61,14 @@ interface Props {
 }
 
 const { data } = Astro.props;
+
+// Aynı alanda iletişim sırası: telefon → WhatsApp → yol tarifi; iletişim olmayan
+// CTA'lar (varsa) kendi göreli sırasıyla sonda kalır.
+const CONTACT_RANK = { phone: 0, whatsapp: 1, directions: 2 } as const;
+const sortedCtas = [...(data.ctas ?? [])]
+  .map((cta, i) => ({ cta, i, rank: CONTACT_RANK[contactAction(cta.href) as keyof typeof CONTACT_RANK] ?? 3 }))
+  .sort((a, b) => a.rank - b.rank || a.i - b.i)
+  .map((x) => x.cta);
 ---
 
 <section class:list={["corporate-hero", { "corporate-hero--compact-h1": data.compactHeading }]} aria-labelledby="corporate-hero-title">
@@ -91,14 +101,21 @@ const { data } = Astro.props;
 
       {data.ctas && data.ctas.length > 0 && (
         <div class="corporate-hero__actions">
-          {data.ctas.map((cta) => (
-            <a
-              class={`corporate-hero__cta${cta.variant === "outline" ? " corporate-hero__cta--outline" : ""}`}
-              href={cta.href}
-            >
-              {cta.label}
-            </a>
-          ))}
+          {sortedCtas.map((cta) => {
+            const action = contactAction(cta.href);
+            return (
+              <a
+                class={`corporate-hero__cta${cta.variant === "outline" ? " corporate-hero__cta--outline" : ""}`}
+                href={cta.href}
+                data-contact-action={action}
+              >
+                {action === "phone" && <Phone size={20} stroke-width={2} aria-hidden="true" />}
+                {action === "whatsapp" && <WhatsAppIcon size={20} />}
+                {action === "directions" && <Navigation size={20} stroke-width={2} aria-hidden="true" />}
+                {action ? <span>{cta.label}</span> : cta.label}
+              </a>
+            );
+          })}
         </div>
       )}
     </div>

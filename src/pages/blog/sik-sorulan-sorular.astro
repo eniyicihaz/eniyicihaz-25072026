@@ -17,7 +17,7 @@
 // Telefon vs WhatsApp Karşılaştırması -> Uzman Yorumu -> SSS (bu
 // sayfanın asıl içeriği) -> Premium CTA -> İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
-import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import SikSorulanSorularHero from "../../components/brand-page/SikSorulanSorularHero/SikSorulanSorularHero.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
@@ -31,6 +31,7 @@ import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/Bra
 import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
 
 import { sikSorulanSorularHero } from "../../data/sik-sorulan-sorular/hero";
+import { sikSorulanSorularHeroPanel } from "../../data/sik-sorulan-sorular/hero-panel";
 import { sikSorulanSorularIntro } from "../../data/sik-sorulan-sorular/intro";
 import { sikSorulanSorularIdealUser } from "../../data/sik-sorulan-sorular/ideal-user";
 import { sikSorulanSorularAdvantages } from "../../data/sik-sorulan-sorular/advantages";
@@ -50,7 +51,7 @@ import { sikSorulanSorularFinalCta } from "../../data/sik-sorulan-sorular/final-
   title="Sık Sorulan Sorular | Randevu, Süreç ve Hizmetler"
   description="Randevu almaktan merkezimizin konumuna ve evde hizmete kadar, merkezimizle ilgili en sık sorulan genel soruların yanıtlarını bulun."
 >
-  <BrandPageHero data={sikSorulanSorularHero} />
+  <SikSorulanSorularHero data={sikSorulanSorularHero} panel={sikSorulanSorularHeroPanel} />
   <BrandPageIntro data={sikSorulanSorularIntro} />
   <BrandPageIdealUser data={sikSorulanSorularIdealUser} />
   <BrandPageAdvantages data={sikSorulanSorularAdvantages} />
@@ -65,3 +66,11 @@ import { sikSorulanSorularFinalCta } from "../../data/sik-sorulan-sorular/final-
   <BrandPageFinalCta data={sikSorulanSorularFinalCta} />
   <BrandPageRelatedContent data={sikSorulanSorularRelatedContent} />
 </MainLayout>
+
+<style is:global>
+  /* Hero'daki "Sorunuza hızlı ulaşın" bağlantıları bölüm başlıklarına iner;
+     sticky header (~79px) başlığı örtmesin. Yalnızca bu sayfanın CSS'ine girer. */
+  html {
+    scroll-padding-top: var(--space-24);
+  }
+</style>

@@ -1,0 +1,449 @@
+---
+// BrandMatrixTable — /isitme-cihazi-markalari/ "Marka × Cihaz Türü ve Özellik Matrisi" (Tablo 2).
+// Ortak GuideTable ve ilk tablo (BrandCompareTable) değiştirilmez. Veri sözleşmesi aynıdır
+// (GuideTableContent, data/isitme-cihazi-markalari/comparison.ts → matrixTable). Hücre metinleri
+// AYNEN gösterilir; yalnızca "n/m" sayıları rozetlenir. Satır başlıkları (tür/özellik) varsa
+// gerçek bir sayfaya bağlanır, sütun başlıkları marka sayfalarına gider.
+// Her veri satırı kendi anlamına bağlı (sıraya değil) bir pastel tona sahiptir; ton satırın
+// tamamını (ilk sütun dâhil) tek parça olarak boyar. Renkler yalnızca ayırt etmek içindir: hiçbir
+// markayı öne çıkarmaz (renkler satırlara, yani tür/özelliklere aittir, markalara değil).
+import { ChevronRight } from "lucide-astro";
+import type { GuideTableContent } from "../price-guide/price-guide.types";
+
+interface Props {
+  data: GuideTableContent;
+}
+
+const { data } = Astro.props;
+
+/** Satır anlamı → ton anahtarı (etiket metninden; sıraya bağlı değil). Bilinmeyen satır: nötr. */
+const rowKey: Record<string, string> = {
+  "RIC": "ric",
+  "Kulak arkası (BTE)": "bte",
+  "Kulak içi": "ite",
+  "Şarjlı": "charge",
+  "Pilli": "battery",
+  "Bluetooth": "bluetooth",
+  "Çocuk": "child",
+  "Güçlü kayıplar": "power",
+  "Tek taraflı kayıp (CROS)": "cros",
+};
+
+function segments(text: string): { t: string; num: boolean }[] {
+  return text
+    .split(/(\d+\/\d+)/)
+    .filter((s) => s !== "")
+    .map((s) => ({ t: s, num: /^\d+\/\d+$/.test(s) }));
+}
+
+const NONE = "Sitemizde etiketli aile yok";
+---
+
+<div class="bmt" id={data.id}>
+  <div class="bmt__card">
+    <p class="bmt__hint">Diğer sütunlar için tabloyu yana kaydırın →</p>
+
+    <div class="bmt__body">
+      <div class="bmt__scroll" tabindex="0" role="region" aria-label={`${data.caption} — yatay kaydırılabilir tablo`}>
+        <table class="bmt__table">
+          <caption class="bmt__caption">{data.caption}</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="bmt__corner">{data.criterionLabel}</th>
+              {
+                data.columns.map((col) => (
+                  <th scope="col" class="bmt__col">
+                    {col.href ? <a class="bmt__col-link" href={col.href}>{col.name}</a> : col.name}
+                  </th>
+                ))
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              data.rows.map((row) => (
+                <tr class="bmt__row" data-row={rowKey[row.label] ?? "neutral"}>
+                  <th scope="row" class="bmt__label">
+                    {
+                      row.href ? (
+                        <a class="bmt__label-link" href={row.href}>
+                          <span>{row.label}</span>
+                          <ChevronRight size={16} stroke-width={2.25} aria-hidden="true" />
+                        </a>
+                      ) : (
+                        row.label
+                      )
+                    }
+                  </th>
+                  {row.cells.map((cell) => (
+                    <td class:list={["bmt__cell", { "bmt__cell--none": cell === NONE }]}>
+                      {segments(cell).map((s) => (s.num ? <strong class="bmt__num">{s.t}</strong> : s.t))}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <span class="bmt__more" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  {data.note && <p class="bmt__note">{data.note}</p>}
+  {
+    data.links && data.links.length > 0 && (
+      <p class="bmt__links">
+        {data.links.map((link) => <a href={link.href}>{link.label} →</a>)}
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .bmt {
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .bmt__card {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .bmt__hint,
+  .bmt__more {
+    display: none;
+  }
+
+  .bmt__body {
+    position: relative;
+  }
+
+  .bmt__scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .bmt__scroll:focus-visible {
+    outline: none;
+    box-shadow: inset var(--focus-ring);
+  }
+
+  /* Destekleyen tarayıcılarda sağ kenar göstergesi (JS yok); desteklemeyende ipucu metni yeterli. */
+  @supports (animation-timeline: scroll()) {
+    .bmt__scroll {
+      scroll-timeline: --bmt x;
+    }
+
+    .bmt__card {
+      timeline-scope: --bmt;
+    }
+  }
+
+  .bmt__table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+
+  .bmt__caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .bmt__corner,
+  .bmt__label {
+    width: 15%;
+  }
+
+  /* --- Başlık satırı: veri satırlarından açıkça ayrışan, daha güçlü mavi yüzey -------- */
+  .bmt__corner,
+  .bmt__col {
+    padding: var(--space-4) var(--space-4);
+    background: color-mix(in srgb, var(--color-primary) 12%, var(--color-background));
+    border-bottom: 2px solid color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: left;
+    color: var(--color-text);
+  }
+
+  .bmt__corner {
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bmt__corner,
+  .bmt__label {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .bmt__corner {
+    z-index: 2;
+  }
+
+  .bmt__col + .bmt__col {
+    border-left: 1px solid color-mix(in srgb, var(--color-primary) 14%, transparent);
+  }
+
+  .bmt__col-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-primary-active);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .bmt__col-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .bmt__col-link:focus-visible,
+  .bmt__label-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Satır tonları: anlama bağlı (data-row), düşük doygunluklu pastel ------------- */
+  .bmt__row {
+    --tone: var(--color-primary);
+    --row-bg: color-mix(in srgb, var(--tone) 8%, var(--color-background));
+    --row-bg-label: color-mix(in srgb, var(--tone) 13%, var(--color-background));
+    /* Hover/odak: tüm satırlarda AYNI nötr renk ve aynı sol çizgi (satır tonundan bağımsız). */
+    --row-bg-hover: color-mix(in srgb, var(--color-text) 11%, var(--color-background));
+    --row-bar-hover: var(--color-primary-active);
+  }
+
+  .bmt__row[data-row="ric"] { --tone: #2563eb; }
+  .bmt__row[data-row="bte"] { --tone: #475569; }
+  .bmt__row[data-row="ite"] { --tone: #0f766e; }
+  .bmt__row[data-row="charge"] { --tone: #7c3aed; }
+  .bmt__row[data-row="battery"] { --tone: #0369a1; }
+  .bmt__row[data-row="bluetooth"] { --tone: #4f46e5; }
+  .bmt__row[data-row="child"] { --tone: #047857; }
+  .bmt__row[data-row="power"] { --tone: #334155; }
+  .bmt__row[data-row="cros"] { --tone: #0e7490; }
+
+  .bmt__cell,
+  .bmt__label {
+    padding: var(--space-4);
+    background: var(--row-bg);
+    border-top: 1px solid color-mix(in srgb, var(--tone) 16%, var(--color-background));
+    vertical-align: middle;
+    text-align: left;
+    transition: background-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .bmt__label {
+    background: var(--row-bg-label);
+    /* İnce sol vurgu çizgisi: satırın tonu; sabit sütunda kaydırırken de yerinde kalır. */
+    box-shadow: inset 3px 0 0 color-mix(in srgb, var(--tone) 55%, transparent);
+  }
+
+  .bmt__cell {
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: var(--color-text);
+  }
+
+  .bmt__cell + .bmt__cell {
+    border-left: 1px solid color-mix(in srgb, var(--tone) 12%, transparent);
+  }
+
+  /* "Sitemizde etiketli aile yok": hafif geri çekilir, metin aynı kalır. */
+  .bmt__cell--none {
+    color: var(--color-text-muted);
+  }
+
+  .bmt__label-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: 44px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-primary-active);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .bmt__label-link :global(svg) {
+    flex: none;
+    transition: transform 160ms ease;
+  }
+
+  .bmt__label-link:hover span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Hover (yalnızca fare/işaretçi) ve klavye odağı: satırın tamamı bir ton güçlenir. */
+  @media (hover: hover) {
+    .bmt__row:hover .bmt__cell {
+      background: var(--row-bg-hover);
+    }
+
+    .bmt__row:hover .bmt__label {
+      background: var(--row-bg-hover);
+      box-shadow: inset 4px 0 0 var(--row-bar-hover);
+    }
+
+    .bmt__label-link:hover :global(svg) {
+      transform: translateX(2px);
+    }
+  }
+
+  .bmt__row:focus-within .bmt__cell {
+    background: var(--row-bg-hover);
+  }
+
+  .bmt__row:focus-within .bmt__label {
+    background: var(--row-bg-hover);
+    box-shadow: inset 4px 0 0 var(--row-bar-hover);
+  }
+
+  .bmt__num {
+    display: inline-block;
+    padding: 0 var(--space-2);
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--color-background) 75%, transparent);
+    border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text);
+  }
+
+  .bmt__note {
+    margin: var(--space-4) 0 0;
+    max-width: 52rem;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .bmt__links {
+    margin: var(--space-3) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .bmt__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .bmt__links a:hover {
+    text-decoration: underline;
+  }
+
+  .bmt__links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Dar ekranlar (tablo kabından geniş): kaydırma ipucu + sağ kenar göstergesi. */
+  @media (max-width: 949px) {
+    .bmt__hint {
+      display: block;
+      margin: 0;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    @supports (animation-timeline: scroll()) {
+      .bmt__more {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        display: block;
+        width: 18px;
+        pointer-events: none;
+        /* Yalnızca ince kenar gölgesi (ok yok): hücre metinlerinin üstüne simge binmez; ipucu metni yukarıda. */
+        background: linear-gradient(to left, rgb(15 23 42 / 0.1), transparent);
+        animation: bmt-more-fade linear both;
+      }
+
+      /* Ayrı kural: küçültücü (minifier) zaman çizelgesini kısaltmaya katıp geçersiz kılmasın. */
+      .bmt__more[class] {
+        animation-timeline: --bmt;
+      }
+    }
+  }
+
+  @keyframes bmt-more-fade {
+    0%,
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .bmt__corner,
+    .bmt__label {
+      width: 128px;
+    }
+
+    .bmt__table {
+      min-width: 900px;
+    }
+
+    .bmt__corner,
+    .bmt__col,
+    .bmt__cell,
+    .bmt__label {
+      padding-inline: var(--space-3);
+    }
+
+    .bmt__col:nth-child(n + 2) {
+      width: 128px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bmt__cell,
+    .bmt__label,
+    .bmt__label-link :global(svg) {
+      transition: none;
+    }
+
+    .bmt__label-link:hover :global(svg) {
+      transform: none;
+    }
+  }
+</style>

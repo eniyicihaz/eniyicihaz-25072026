@@ -11,6 +11,8 @@
 // point-icons) that literally draws the page's subject — the service
 // travelling to the visitor, not the visitor travelling to the service.
 import { Building2, Home, ArrowRight, Phone, MessageCircle } from "lucide-astro";
+import WhatsAppIcon from "../WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
 
 export interface HomeVisitHeroContent {
   eyebrow: string;
@@ -42,12 +44,13 @@ const { data } = Astro.props;
       <p class="home-visit-hero__paragraph">{data.paragraph}</p>
 
       <div class="home-visit-hero__actions">
-        <a class="home-visit-hero__cta home-visit-hero__cta--primary" href={data.ctaPrimary.href}>
+        <a class="home-visit-hero__cta home-visit-hero__cta--primary" href={data.ctaPrimary.href} data-contact-action={contactAction(data.ctaPrimary.href)} data-contact-size="sm">
+          {contactAction(data.ctaPrimary.href) ? <Phone size={20} stroke-width={2} aria-hidden="true" /> : null}
           <span>{data.ctaPrimary.label}</span>
-          <Phone size={16} stroke-width={2} aria-hidden="true" />
+          {!contactAction(data.ctaPrimary.href) && <Phone size={16} stroke-width={2} aria-hidden="true" />}
         </a>
-        <a class="home-visit-hero__cta home-visit-hero__cta--secondary" href={data.ctaSecondary.href}>
-          <MessageCircle size={16} stroke-width={2} aria-hidden="true" />
+        <a class="home-visit-hero__cta home-visit-hero__cta--secondary" href={data.ctaSecondary.href} data-contact-action={contactAction(data.ctaSecondary.href)} data-contact-size="sm">
+          {contactAction(data.ctaSecondary.href) === "whatsapp" ? <WhatsAppIcon size={20} /> : <MessageCircle size={16} stroke-width={2} aria-hidden="true" />}
           <span>{data.ctaSecondary.label}</span>
         </a>
       </div>

@@ -1,15 +1,57 @@
 ---
 import { footerIcons } from "../../footer.icons";
 import type { SocialItem } from "../../footer.types";
+import WhatsAppIcon from "../../../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 
 type Props = SocialItem;
 
 const { iconKey, href, label } = Astro.props;
 const Icon = footerIcons[iconKey as keyof typeof footerIcons] as any;
+
+// Resmî marka işaretleri (değiştirilmemiş dosyalar, yerel: public/images/social/).
+//   facebook : Meta Brand Resource Center, "Facebook_Logo_Primary" (mavi daire, beyaz f)
+//              https://www.meta.com/brand/resources/facebook/logo/
+//   instagram: Meta Brand Resource Center, IG_brand_asset_pack_2023 → "Instagram_Glyph_Gradient.svg"
+//              (renk geçişli glif). Orijinal SVG içine ~10 MB'lık bir PNG gömülü olduğundan footer'da
+//              kullanılamaz; aynı SVG tarayıcıda 256 px'e oluşturulup kayıpsız WebP'ye alındı (yeniden çizim yok).
+//              https://www.meta.com/brand/resources/instagram/instagram-brand/
+//   youtube  : YouTube Brand Resources, "yt_icon_red_digital" (kırmızı oynatma simgesi)
+//              https://developers.google.com/youtube/terms/branding-guidelines → https://brand.youtube/
+// `w` yalnızca görünür işaretin genişliğidir (px); dosyadaki saydam kenar boşluğu YouTube için ayrıca hesaplanır.
+const brandLogos: Record<string, { src: string; width: number; height: number; w: number; pad?: number }> = {
+  facebook: { src: "/images/social/facebook-logo-primary.webp", width: 2084, height: 2084, w: 28 },
+  instagram: { src: "/images/social/instagram-glyph-gradient-256.webp", width: 256, height: 256, w: 26 },
+  // Dosya 1255×1075; işaret 827 px genişliğinde ve ortalı → görünür genişlik w olsun diye resim w*1255/827 çizilir.
+  youtube: { src: "/images/social/youtube-icon-red-digital.webp", width: 1255, height: 1075, w: 30, pad: 1255 / 827 },
+};
+const logo = brandLogos[iconKey];
+const logoWidth = logo ? Math.round(logo.w * (logo.pad ?? 1) * 10) / 10 : 0;
 ---
 
-<a class="social-icon" href={href} aria-label={label}>
-  {Icon && <Icon size={18} stroke-width={1.75} aria-hidden="true" />}
+<a
+  class:list={["social-icon", { "social-icon--whatsapp": iconKey === "whatsapp", "social-icon--logo": !!logo }]}
+  href={href}
+  aria-label={label}
+>
+  {
+    logo ? (
+      <img
+        class="social-icon__logo"
+        src={logo.src}
+        width={logo.width}
+        height={logo.height}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        style={`width:${logoWidth}px;height:auto`}
+      />
+    ) : iconKey === "whatsapp" ? (
+      <WhatsAppIcon size={24} />
+    ) : (
+      Icon && <Icon size={18} stroke-width={1.75} aria-hidden="true" />
+    )
+  }
 </a>
 
 <style>
@@ -32,6 +74,19 @@ const Icon = footerIcons[iconKey as keyof typeof footerIcons] as any;
     color: var(--footer-link-hover);
     background: var(--footer-surface-hover);
     border-color: var(--footer-accent-border);
+  }
+
+  /* Gerçek WhatsApp glifi: logonun kendi yeşili, hover'da da değişmez. */
+  .social-icon--whatsapp,
+  .social-icon--whatsapp:hover {
+    color: #25d366;
+  }
+
+  /* Resmî logolar: renkleri ve oranları korunur; hover'da yalnızca düğme yüzeyi değişir. */
+  .social-icon__logo {
+    display: block;
+    max-width: none;
+    flex: none;
   }
 
   .social-icon:focus-visible {

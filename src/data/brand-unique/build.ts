@@ -81,7 +81,7 @@ export interface UniqueBrandContent {
   idealUser: { heading: string; intro: string; profiles: UniqueProfile[] };
   faq: { heading: string; intro: string; label: string; points: string[]; items: { question: string; answer: string }[] };
   related: { heading: string; links: BrandPageRelatedLink[] };
-  cta: { heading: string; description: string; trustItems: string[] };
+  cta: { heading: string; description: string; trustItems: string[]; trustLinks?: Record<string, string> };
 }
 
 export interface UniqueBrandBase {
@@ -174,6 +174,7 @@ export function buildUniqueBrandPage(base: UniqueBrandBase, c: UniqueBrandConten
     ctaPrimary: { label: "Bizi Arayın", href: phone },
     ctaSecondary: { label: "WhatsApp'tan Yazın", href: whatsapp },
     trustItems: c.cta.trustItems,
+    ...(c.cta.trustLinks ? { trustLinks: c.cta.trustLinks } : {}),
   };
 
   return { meta: c.meta, hero, intro, models, idealUser, faq, related, finalCta };

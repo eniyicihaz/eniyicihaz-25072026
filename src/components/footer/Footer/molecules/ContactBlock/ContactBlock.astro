@@ -2,6 +2,8 @@
 import FooterHeading from "../../atoms/FooterHeading/FooterHeading.astro";
 import { footerIcons } from "../../footer.icons";
 import type { CompanyInfo } from "../../footer.types";
+import { Navigation } from "lucide-astro";
+import { contactAction } from "../../../../../lib/contact-action";
 
 interface Props {
   title: string;
@@ -28,8 +30,9 @@ const ClockIcon = footerIcons.clock as any;
         <address class="contact-block__address">{company.address}</address>
         {
           company.directionsHref && (
-            <a class="contact-block__action" href={company.directionsHref}>
-              Yol tarifi al
+            <a class="contact-block__action" href={company.directionsHref} data-contact-action={contactAction(company.directionsHref)} data-contact-size="sm">
+              <Navigation size={20} stroke-width={2} aria-hidden="true" />
+              <span>Yol tarifi al</span>
             </a>
           )
         }

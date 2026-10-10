@@ -1,0 +1,496 @@
+---
+// BrandCompareTable — /isitme-cihazi-markalari/ "Marka Karşılaştırması" tablosu.
+// Ortak GuideTable değiştirilmez (4 sayfa daha kullanıyor). Aynı veri sözleşmesi
+// (GuideTableContent, data/isitme-cihazi-markalari/comparison.ts → brandTable) ve aynı
+// semantik <table> yapısı: kaydırma kabı tablonun DIŞINDA, ilk sütun sticky. Hücre metinleri
+// veriden AYNEN alınır; yalnızca "n/m" sayıları vurgulanır ve "; " ile ayrılmış iki bilgi
+// (şarjlı / pilli) ile Oticon yerleşim notu ayrı satırda gösterilir. Hiçbir marka diğerinden
+// farklı vurgulanmaz: sıralama, puan, çubuk veya renk farkı yoktur.
+import { ChevronRight } from "lucide-astro";
+import type { GuideTableContent } from "../price-guide/price-guide.types";
+
+interface Props {
+  data: GuideTableContent;
+}
+
+const { data } = Astro.props;
+
+/** "5/12" gibi sayı çiftlerini ayır; metnin geri kalanı aynen kalır. */
+function segments(text: string): { t: string; num: boolean }[] {
+  return text
+    .split(/(\d+\/\d+)/)
+    .filter((s) => s !== "")
+    .map((s) => ({ t: s, num: /^\d+\/\d+$/.test(s) }));
+}
+
+const NOTE_SPLIT = ". RIC/BTE: ";
+
+/** Hücreyi satırlara böler: cihaz türü hücresinde Oticon yerleşim notu, diğerlerinde "; " ayırıcısı. */
+function lines(cell: string): { text: string; note?: boolean }[] {
+  const i = cell.indexOf(NOTE_SPLIT);
+  if (i >= 0) {
+    return [{ text: cell.slice(0, i) + "." }, { text: "RIC/BTE: " + cell.slice(i + NOTE_SPLIT.length), note: true }];
+  }
+  return cell.split("; ").map((text) => ({ text }));
+}
+---
+
+<div class="bct" id={data.id}>
+  <div class="bct__card">
+    <header class="bct__head">
+      <p class="bct__eyebrow">{data.eyebrow}</p>
+      <h3 class="bct__heading">{data.heading}</h3>
+    </header>
+
+    <!-- Yalnızca dar ekranlarda (CSS): tablo yatay kaydırılıyor. Kullanım ipucudur, düğme değildir. -->
+    <p class="bct__hint">Diğer sütunlar için tabloyu yana kaydırın →</p>
+
+    <div class="bct__body">
+    <div class="bct__scroll" tabindex="0" role="region" aria-label={`${data.caption} — yatay kaydırılabilir tablo`}>
+      <table class="bct__table">
+        <caption class="bct__caption">{data.caption}</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="bct__corner">
+              <span class="bct__corner-short" aria-hidden="true">Marka</span>
+              <span class="bct__corner-full">{data.criterionLabel}</span>
+            </th>
+            {data.columns.map((col) => <th scope="col" class="bct__col">{col.name}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data.rows.map((row) => (
+              <tr>
+                <th scope="row" class="bct__brand">
+                  {
+                    row.href ? (
+                      <a class="bct__brand-link" href={row.href}>
+                        <span>{row.label}</span>
+                        <ChevronRight size={16} stroke-width={2.25} aria-hidden="true" />
+                      </a>
+                    ) : (
+                      row.label
+                    )
+                  }
+                </th>
+                {row.cells.map((cell) => (
+                  <td class="bct__cell">
+                    {lines(cell).map((l) => (
+                      <p class:list={["bct__line", { "bct__line--note": l.note }]}>
+                        {segments(l.text).map((s) => (s.num ? <strong class="bct__num">{s.t}</strong> : s.t))}
+                      </p>
+                    ))}
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <!-- Sağda devam eden sütun göstergesi: dekoratif, tıklamayı/kaydırmayı yakalamaz; en sona kaydırılınca söner. -->
+    <span class="bct__more" aria-hidden="true"><ChevronRight size={20} stroke-width={2.5} /></span>
+    </div>
+  </div>
+
+  {data.note && <p class="bct__note">{data.note}</p>}
+  {
+    data.links && data.links.length > 0 && (
+      <p class="bct__links">
+        {data.links.map((link) => <a href={link.href}>{link.label} →</a>)}
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .bct {
+    scroll-margin-top: calc(var(--space-16) + var(--space-4));
+  }
+
+  .bct__card {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  /* Tablo başlığı: kartın üst şeridi. */
+  .bct__head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .bct__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .bct__heading {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .bct__hint,
+  .bct__more {
+    display: none;
+  }
+
+  .bct__body {
+    position: relative;
+  }
+
+  .bct__corner-short {
+    display: none;
+  }
+
+  /* Kaydırma kabı tablonun dışında. Yedek gösterge (scroll-timeline desteklenmeyen tarayıcılar):
+     kenarlarda yumuşak "daha fazla var" gölgesi. */
+  .bct__scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    background:
+      linear-gradient(to right, var(--color-background) 30%, transparent) left center / 24px 100% no-repeat local,
+      linear-gradient(to left, var(--color-background) 30%, transparent) right center / 24px 100% no-repeat local,
+      linear-gradient(to right, rgb(15 23 42 / 0.1), transparent) left center / 10px 100% no-repeat scroll,
+      linear-gradient(to left, rgb(15 23 42 / 0.1), transparent) right center / 10px 100% no-repeat scroll;
+  }
+
+  /* Destekleyen tarayıcılarda gösterge .bct__more ile verilir (JS yok); yedek gölge kapanır. */
+  @supports (animation-timeline: scroll()) {
+    .bct__scroll {
+      background: none;
+      scroll-timeline: --bct x;
+    }
+
+    .bct__card {
+      timeline-scope: --bct;
+    }
+  }
+
+  .bct__scroll:focus-visible {
+    outline: none;
+    box-shadow: inset var(--focus-ring);
+  }
+
+  .bct__table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+
+  .bct__caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Sütun genişlikleri içeriğe göre: marka | cihaz türleri | bağlantı | şarj. */
+  .bct__corner,
+  .bct__brand {
+    width: 17%;
+  }
+
+  .bct__col:nth-child(2) {
+    width: 36%;
+  }
+
+  .bct__col:nth-child(3) {
+    width: 26%;
+  }
+
+  .bct__col:nth-child(4) {
+    width: 22%;
+  }
+
+  /* Başlık satırı: hafif mavi yüzey, ince alt çizgi. */
+  .bct__corner,
+  .bct__col {
+    padding: var(--space-3) var(--space-5);
+    background: color-mix(in srgb, var(--color-primary) 6%, var(--color-background));
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border));
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .bct__corner {
+    white-space: normal;
+  }
+
+  .bct__corner,
+  .bct__brand {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .bct__corner {
+    z-index: 2;
+  }
+
+  .bct__col + .bct__col,
+  .bct__cell + .bct__cell {
+    border-left: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
+  }
+
+  .bct__brand {
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-background);
+    border-top: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: middle;
+    transition: background-color 160ms ease;
+  }
+
+  .bct__brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: 44px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+  }
+
+  .bct__brand-link :global(svg) {
+    flex: none;
+    transition: transform 160ms ease;
+  }
+
+  .bct__brand-link:hover span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .bct__brand-link:hover :global(svg) {
+    transform: translateX(2px);
+  }
+
+  .bct__brand-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .bct__cell {
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--color-border);
+    vertical-align: middle;
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    transition: background-color 160ms ease;
+  }
+
+  /* Çok hafif satır dönüşümü (zebra): yalnızca yüzey farkı. */
+  .bct tbody tr:nth-child(even) .bct__cell,
+  .bct tbody tr:nth-child(even) .bct__brand {
+    background: color-mix(in srgb, var(--color-surface) 70%, var(--color-background));
+  }
+
+  /* Satır üzerine gelince konum geri bildirimi (hover yalnızca fare/işaretçi için). */
+  @media (hover: hover) {
+    .bct tbody tr:hover .bct__cell,
+    .bct tbody tr:hover .bct__brand {
+      background: color-mix(in srgb, var(--color-primary) 5%, var(--color-background));
+    }
+  }
+
+  .bct__line {
+    margin: 0;
+  }
+
+  .bct__line + .bct__line {
+    margin-top: var(--space-1);
+  }
+
+  .bct__line--note {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    opacity: 0.9;
+  }
+
+  /* Sayısal değerler: sade, nötr rozet — tüm markalarda aynı biçim. */
+  .bct__num {
+    display: inline-block;
+    padding: 0 var(--space-2);
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--color-primary) 9%, var(--color-background));
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-primary-active);
+  }
+
+  .bct__note {
+    margin: var(--space-4) 0 0;
+    max-width: 52rem;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .bct__links {
+    margin: var(--space-3) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .bct__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .bct__links a:hover {
+    text-decoration: underline;
+  }
+
+  .bct__links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Dar ekranlar (tablo kabından geniş olduğunda): kaydırma ipucu + sağ kenar göstergesi. */
+  @media (max-width: 729px) {
+    .bct__hint {
+      display: block;
+      margin: 0;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    @supports (animation-timeline: scroll()) {
+      .bct__more {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 44px;
+        padding-right: 4px;
+        pointer-events: none;
+        color: var(--color-primary);
+        background: linear-gradient(to left, rgb(15 23 42 / 0.12), rgb(15 23 42 / 0.04) 55%, transparent);
+        animation: bct-more-fade linear both;
+      }
+
+      /* Ayrı kural: küçültücü (minifier) zaman çizelgesini kısaltmaya katıp geçersiz kılmasın. */
+      .bct__more[class] {
+        animation-timeline: --bct;
+      }
+    }
+  }
+
+  @keyframes bct-more-fade {
+    0%,
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .bct__corner-short {
+      display: inline;
+    }
+
+    /* Tam başlık yardımcı teknolojiler için kalır; görsel olarak yalnızca "Marka". */
+    .bct__corner-full {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .bct__head {
+      padding: var(--space-4);
+    }
+
+    .bct__corner,
+    .bct__col,
+    .bct__brand,
+    .bct__cell {
+      padding-inline: var(--space-3);
+    }
+
+    .bct__corner,
+    .bct__brand {
+      width: 112px;
+    }
+
+    .bct__col:nth-child(2) {
+      width: 240px;
+    }
+
+    .bct__col:nth-child(3) {
+      width: 140px;
+    }
+
+    .bct__col:nth-child(4) {
+      width: 170px;
+    }
+
+    .bct__table {
+      min-width: 662px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bct__brand,
+    .bct__cell,
+    .bct__brand-link :global(svg) {
+      transition: none;
+    }
+
+    .bct__brand-link:hover :global(svg) {
+      transform: none;
+    }
+  }
+</style>

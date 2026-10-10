@@ -4,7 +4,10 @@ import { standardCtaLabel } from "../../../lib/cta-labels";
 // BrandPageFinalCta — shared, cross-brand closing CTA section. Generic
 // counterpart of Oticon's original OticonFinalCta; data-driven so every
 // brand page can reuse it.
-import { Phone, MessageCircle, CheckCircle2, Navigation } from "lucide-astro";
+import { Phone, MessageCircle, CheckCircle2, Navigation, ChevronRight } from "lucide-astro";
+import { trustHref, isInfoTestLink } from "../../../lib/trust-links";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
 
 export interface BrandPageFinalCtaAction {
   label: string;
@@ -22,6 +25,9 @@ export interface BrandPageFinalCtaContent {
   // exactly as before.
   ctaTertiary?: BrandPageFinalCtaAction;
   trustItems: string[];
+  // Optional page-specific chip links (label -> target), e.g. a same-page "#section" anchor. Chips whose label
+  // is in src/lib/trust-links.ts are linked automatically; everything else stays a plain chip.
+  trustLinks?: Record<string, string>;
   accentColor: string;
   accentColorHover: string;
   accentColorGlow: string;
@@ -74,6 +80,13 @@ interface Props {
 
 const { data } = Astro.props;
 
+// Chip icon colour: the brand accent is often too dark for the dark navy card (e.g. Sonic #3D4C59 = 1.7:1),
+// so on dark cards chips use a light tone; on light cards (Signia) the brand accent stays.
+const darkCard = readableTextOn(data.cardBg || "#0f2547") === "#ffffff";
+const chipIcon = darkCard ? "#bfdbfe" : data.ctaAccent || data.accentColor;
+const currentPath = Astro.url.pathname;
+const chips = data.trustItems.map((label) => ({ label, href: trustHref(label, data.trustLinks, currentPath) }));
+
 const finalCtaStyleOverrides = [
   data.cardBg ? `--bpfc-card-bg:${data.cardBg};` : "",
   data.cardBorder ? `--bpfc-card-border:${data.cardBorder};` : "",
@@ -99,7 +112,7 @@ const finalCtaStyleOverrides = [
 <section
   class="brand-page-final-cta"
   aria-labelledby="brand-page-final-cta-title"
-  style={`--bpfc-accent:${data.ctaAccent || data.accentColor}; --bpfc-accent-hover:${data.ctaAccentHover || data.accentColorHover}; --bpfc-glow:${data.accentColorGlow}; --bpfc-shadow:${data.accentColorShadow}; --bpfc-shadow-hover:${data.accentColorShadowHover}; --bpfc-focus:${data.accentColorFocus}; --bpfc-trust-bg:${data.accentColorTrustBg}; ${finalCtaStyleOverrides}`}
+  style={`--bpfc-accent:${data.ctaAccent || data.accentColor}; --bpfc-accent-hover:${data.ctaAccentHover || data.accentColorHover}; --bpfc-glow:${data.accentColorGlow}; --bpfc-shadow:${data.accentColorShadow}; --bpfc-shadow-hover:${data.accentColorShadowHover}; --bpfc-focus:${data.accentColorFocus}; --bpfc-trust-bg:${data.accentColorTrustBg}; --bpfc-chip-icon:${chipIcon}; ${finalCtaStyleOverrides}`}
 >
   <div class="brand-page-final-cta__frame">
     <div class="brand-page-final-cta__card" data-rise>
@@ -114,34 +127,46 @@ const finalCtaStyleOverrides = [
       <p class="brand-page-final-cta__desc">{data.description}</p>
 
       <div class="brand-page-final-cta__actions">
-        <a class="brand-page-final-cta__button brand-page-final-cta__button--solid" href={data.ctaPrimary.href}>
-          <Phone size={22} stroke-width={2} aria-hidden="true" />
+        <a class="brand-page-final-cta__button brand-page-final-cta__button--solid" href={data.ctaPrimary.href} data-contact-action={contactAction(data.ctaPrimary.href)}>
+          {contactAction(data.ctaPrimary.href) === "whatsapp" ? <WhatsAppIcon size={20} /> : <Phone size={22} stroke-width={2} aria-hidden="true" />}
           <span>{standardCtaLabel(data.ctaPrimary.label, data.ctaPrimary.href)}</span>
         </a>
-        <a class="brand-page-final-cta__button brand-page-final-cta__button--outline" href={data.ctaSecondary.href}>
-          <MessageCircle size={22} stroke-width={2} aria-hidden="true" />
+        <a class="brand-page-final-cta__button brand-page-final-cta__button--outline" href={data.ctaSecondary.href} data-contact-action={contactAction(data.ctaSecondary.href)}>
+          {contactAction(data.ctaSecondary.href) === "whatsapp" ? <WhatsAppIcon size={20} /> : contactAction(data.ctaSecondary.href) === "directions" ? <Navigation size={22} stroke-width={2} aria-hidden="true" /> : contactAction(data.ctaSecondary.href) === "phone" ? <Phone size={22} stroke-width={2} aria-hidden="true" /> : <MessageCircle size={22} stroke-width={2} aria-hidden="true" />}
           <span>{standardCtaLabel(data.ctaSecondary.label, data.ctaSecondary.href)}</span>
         </a>
         {data.ctaTertiary && (
-          <a class="brand-page-final-cta__button brand-page-final-cta__button--outline" href={data.ctaTertiary.href}>
+          <a class="brand-page-final-cta__button brand-page-final-cta__button--outline" href={data.ctaTertiary.href} data-contact-action={contactAction(data.ctaTertiary.href)}>
             <Navigation size={22} stroke-width={2} aria-hidden="true" />
             <span>{data.ctaTertiary.label}</span>
           </a>
         )}
       </div>
 
-      <div class="brand-page-final-cta__trust">
+      <ul class="brand-page-final-cta__trust">
         {
-          data.trustItems.map((item) => (
-            <span class="brand-page-final-cta__trust-item">
-              <span class="brand-page-final-cta__trust-icon">
-                <CheckCircle2 size={18} stroke-width={2} aria-hidden="true" />
-              </span>
-              <span class="brand-page-final-cta__trust-label">{item}</span>
-            </span>
+          chips.map((chip) => (
+            <li class="brand-page-final-cta__trust-li">
+              {chip.href ? (
+                <a
+                  class="brand-page-final-cta__trust-item brand-page-final-cta__trust-item--link"
+                  href={chip.href}
+                  data-track-event={isInfoTestLink(chip.href) ? "hearing_test_info_click" : undefined}
+                >
+                  <CheckCircle2 class="brand-page-final-cta__trust-icon" size={18} stroke-width={2} aria-hidden="true" />
+                  <span class="brand-page-final-cta__trust-label">{chip.label}</span>
+                  <ChevronRight class="brand-page-final-cta__trust-go" size={16} stroke-width={2.25} aria-hidden="true" />
+                </a>
+              ) : (
+                <span class="brand-page-final-cta__trust-item">
+                  <CheckCircle2 class="brand-page-final-cta__trust-icon" size={18} stroke-width={2} aria-hidden="true" />
+                  <span class="brand-page-final-cta__trust-label">{chip.label}</span>
+                </span>
+              )}
+            </li>
           ))
         }
-      </div>
+      </ul>
     </div>
   </div>
 </section>
@@ -186,7 +211,7 @@ const finalCtaStyleOverrides = [
 <style>
   .brand-page-final-cta {
     background: var(--color-background);
-    padding-block: var(--space-20);
+    padding-block: var(--space-12);
   }
 
   .brand-page-final-cta__frame {
@@ -203,7 +228,7 @@ const finalCtaStyleOverrides = [
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: var(--space-20) var(--space-10);
+    padding: var(--space-12) var(--space-8);
     background: var(--bpfc-card-bg, #0f2547);
     border: var(--bpfc-card-border, none);
     border-radius: var(--radius-2xl);
@@ -254,21 +279,22 @@ const finalCtaStyleOverrides = [
   }
 
   .brand-page-final-cta__heading {
-    margin: var(--space-6) 0 0;
-    max-width: 18ch;
-    font-size: clamp(2.75rem, 2.1rem + 3vw, 4.25rem);
+    margin: var(--space-4) 0 0;
+    max-width: 26ch;
+    font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
     font-weight: var(--font-weight-bold);
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -0.02em;
+    text-wrap: balance;
     color: var(--bpfc-heading, #ffffff);
   }
 
   .brand-page-final-cta__desc {
     margin: var(--space-3) 0 0;
-    max-width: 40ch;
-    font-size: var(--font-size-sm);
+    max-width: 54ch;
+    font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
-    color: var(--bpfc-desc, rgb(255 255 255 / 0.5));
+    color: var(--bpfc-desc, rgb(255 255 255 / 0.78));
   }
 
   .brand-page-final-cta__actions {
@@ -276,15 +302,15 @@ const finalCtaStyleOverrides = [
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: var(--space-4);
-    margin-top: var(--space-10);
+    gap: var(--space-3);
+    margin-top: var(--space-6);
   }
 
   .brand-page-final-cta__button {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    height: 72px;
+    height: 56px;
     border-radius: var(--radius-lg);
     font-weight: var(--font-weight-semibold);
     text-decoration: none;
@@ -293,8 +319,8 @@ const finalCtaStyleOverrides = [
   }
 
   .brand-page-final-cta__button--solid {
-    padding-inline: var(--space-10);
-    font-size: var(--font-size-xl);
+    padding-inline: var(--space-8);
+    font-size: var(--font-size-lg);
     background: var(--bpfc-accent);
     border: 1px solid var(--bpfc-accent);
     color: var(--bpfc-cta-text, #0a1408);
@@ -308,7 +334,7 @@ const finalCtaStyleOverrides = [
   }
 
   .brand-page-final-cta__button--outline {
-    padding-inline: var(--space-8);
+    padding-inline: var(--space-6);
     font-size: var(--font-size-md);
     background: transparent;
     border: 1px solid var(--bpfc-outline-border, rgb(255 255 255 / 0.28));
@@ -327,67 +353,98 @@ const finalCtaStyleOverrides = [
     box-shadow: 0 0 0 3px var(--bpfc-focus);
   }
 
+  /* Güven çipleri: yatay, kompakt (>= 44 px). Marka vurgusu koyu kartta ikon rengi olarak kullanılmaz
+     (--bpfc-chip-icon: koyu kartta açık ton, açık kartta marka rengi). */
   .brand-page-final-cta__trust {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--space-4);
-    margin-top: var(--space-12);
-    padding-top: var(--space-8);
-    border-top: 1px solid var(--bpfc-trust-border-top, rgb(255 255 255 / 0.1));
+    gap: var(--space-2);
+    margin: var(--space-6) 0 0;
+    padding: var(--space-5) 0 0;
+    list-style: none;
+    border-top: 1px solid var(--bpfc-trust-border-top, rgb(255 255 255 / 0.12));
     width: 100%;
-    max-width: 46rem;
+    max-width: 56rem;
+  }
+
+  .brand-page-final-cta__trust-li {
+    display: flex;
   }
 
   .brand-page-final-cta__trust-item {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
-    gap: var(--space-3);
-    flex: 1 1 140px;
-    max-width: 180px;
-    padding: var(--space-5) var(--space-3);
-    border-radius: var(--radius-xl);
-    background: var(--bpfc-trust-item-bg, rgb(255 255 255 / 0.04));
-    border: 1px solid var(--bpfc-trust-item-border, rgb(255 255 255 / 0.08));
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: 0 var(--space-4) 0 var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--bpfc-trust-item-bg, rgb(255 255 255 / 0.1));
+    border: 1px solid var(--bpfc-trust-item-border, rgb(255 255 255 / 0.24));
+    text-decoration: none;
+    transition: background-color 160ms ease, border-color 160ms ease;
   }
 
-  .brand-page-final-cta__trust-icon {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-lg);
-    background: var(--bpfc-trust-bg);
-    color: var(--bpfc-accent);
+  .brand-page-final-cta__trust-item :global(.brand-page-final-cta__trust-icon) {
+    flex: none;
+    color: var(--bpfc-chip-icon);
   }
 
   .brand-page-final-cta__trust-label {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
-    line-height: 1.4;
-    color: var(--bpfc-trust-label, rgb(255 255 255 / 0.8));
+    line-height: 1.3;
+    color: var(--bpfc-trust-label, rgb(255 255 255 / 0.95));
+  }
+
+  .brand-page-final-cta__trust-item :global(.brand-page-final-cta__trust-go) {
+    flex: none;
+    margin-left: calc(-1 * var(--space-1));
+    color: var(--bpfc-trust-label, rgb(255 255 255 / 0.95));
+    opacity: 0.7;
+    transition: transform 160ms ease, opacity 160ms ease;
+  }
+
+  @media (hover: hover) {
+    .brand-page-final-cta__trust-item--link:hover {
+      background: var(--bpfc-trust-item-hover-bg, rgb(255 255 255 / 0.18));
+      border-color: var(--bpfc-chip-icon);
+    }
+
+    .brand-page-final-cta__trust-item--link:hover :global(.brand-page-final-cta__trust-go) {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+  }
+
+  .brand-page-final-cta__trust-item--link:focus-visible {
+    outline: 2px solid var(--bpfc-chip-icon);
+    outline-offset: 2px;
   }
 
   @media (max-width: 1023px) {
     .brand-page-final-cta__card {
-      padding: var(--space-16) var(--space-8);
+      padding: var(--space-10) var(--space-6);
     }
   }
 
   @media (max-width: 640px) {
     .brand-page-final-cta {
-      padding-block: var(--space-16);
+      padding-block: var(--space-10);
+    }
+
+    .brand-page-final-cta__frame {
+      padding-inline: var(--space-4);
     }
 
     .brand-page-final-cta__card {
-      padding: var(--space-12) var(--space-6);
+      padding: var(--space-8) var(--space-5);
     }
 
-    /* Falls back to the exact same clamp() as the base rule, so every page
-       that does not set headingMobileFontSize renders identically. */
+    /* Slightly tighter than the base clamp() so long headings stay within 3-4 lines on phones;
+       pages that set headingMobileFontSize keep their own value. */
     .brand-page-final-cta__heading {
-      font-size: var(--bpfc-heading-size-mobile, clamp(2.75rem, 2.1rem + 3vw, 4.25rem));
+      font-size: var(--bpfc-heading-size-mobile, clamp(1.5rem, 1rem + 2.4vw, 2.75rem));
     }
 
     .brand-page-final-cta__actions {
@@ -401,11 +458,8 @@ const finalCtaStyleOverrides = [
     }
 
     .brand-page-final-cta__trust {
-      gap: var(--space-3);
-    }
-
-    .brand-page-final-cta__trust-item {
-      flex: 1 1 42%;
+      margin-top: var(--space-5);
+      padding-top: var(--space-4);
     }
   }
 
@@ -414,16 +468,22 @@ const finalCtaStyleOverrides = [
       animation: none;
     }
 
-    .brand-page-final-cta__button {
+    .brand-page-final-cta__button,
+    .brand-page-final-cta__trust-item,
+    .brand-page-final-cta__trust-item :global(.brand-page-final-cta__trust-go) {
       transition: none;
+    }
+
+    .brand-page-final-cta__trust-item--link:hover :global(.brand-page-final-cta__trust-go) {
+      transform: none;
     }
   }
 
-  /* Long labels ("Cihaz Denemesi İçin Randevu Al", "Ücretsiz İşitme Değerlendirmesi") were clipped at 390–430px by nowrap; wrap instead. */
+  /* Long labels ("Cihaz Denemesi Için Randevu Al", "Ücretsiz Işitme Değerlendirmesi") were clipped at 390-430px by nowrap; wrap instead. */
   @media (max-width: 640px) {
     .brand-page-final-cta__button {
       height: auto;
-      min-height: 72px;
+      min-height: 56px;
       padding-block: var(--space-3);
       white-space: normal;
       text-align: center;

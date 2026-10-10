@@ -675,14 +675,6 @@
 },
 "w": 1024
 },
-"/images/sonic/models/enchant-bte.webp": {
-"h": 1254,
-"v": {
-"400": "/images/sonic/models/enchant-bte-400.webp",
-"640": "/images/sonic/models/enchant-bte-640.webp"
-},
-"w": 1254
-},
 "/images/sonic/models/enchant-ite.webp": {
 "h": 1024,
 "v": {
@@ -714,6 +706,14 @@
 "640": "/images/sonic/models/radiant-640.webp"
 },
 "w": 1024
+},
+"/images/sonic/models/sonic-enchant-bte-transparent.webp": {
+"h": 662,
+"v": {
+"400": "/images/sonic/models/sonic-enchant-bte-transparent-400.webp",
+"640": "/images/sonic/models/sonic-enchant-bte-transparent-640.webp"
+},
+"w": 662
 },
 "/images/ui/mega-menu-bilgi-merkezi.webp": {
 "h": 800,

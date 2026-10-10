@@ -12,6 +12,7 @@
 // sınıf adındaki "hero" kalıbından link_location="hero" üretir.
 import { Phone, Navigation, ArrowRight, MapPin } from "lucide-astro";
 import WhatsAppIcon from "../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../lib/contact-action";
 import type { HomeHeroContent } from "../../data/home/hero";
 
 interface Props {
@@ -35,20 +36,21 @@ const [directions, whatsapp] = data.secondaryCtas;
       </p>
 
       <div class="home-hero__actions">
-        <a class="home-hero__btn home-hero__btn--primary" href={data.primaryCta.href}>
+        <a class="home-hero__btn home-hero__btn--primary" href={data.primaryCta.href} data-contact-action={contactAction(data.primaryCta.href)}>
           <Phone size={20} stroke-width={2} aria-hidden="true" />
           <span>{data.primaryCta.label}</span>
         </a>
-        {directions && (
-          <a class="home-hero__btn home-hero__btn--secondary" href={directions.href}>
-            <Navigation size={20} stroke-width={2} aria-hidden="true" />
-            <span>{directions.label}</span>
-          </a>
-        )}
+        {/* Sıra: telefon (birincil) → WhatsApp (ikincil) → yol tarifi (üçüncül). */}
         {whatsapp && (
-          <a class="home-hero__btn home-hero__btn--secondary" href={whatsapp.href}>
+          <a class="home-hero__btn home-hero__btn--secondary" href={whatsapp.href} data-contact-action={contactAction(whatsapp.href)}>
             <WhatsAppIcon size={20} />
             <span>{whatsapp.label}</span>
+          </a>
+        )}
+        {directions && (
+          <a class="home-hero__btn home-hero__btn--secondary" href={directions.href} data-contact-action={contactAction(directions.href)}>
+            <Navigation size={20} stroke-width={2} aria-hidden="true" />
+            <span>{directions.label}</span>
           </a>
         )}
       </div>

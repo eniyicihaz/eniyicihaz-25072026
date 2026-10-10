@@ -1,0 +1,377 @@
+---
+// SgkKatkiPayiHero — /sgk/katki-payi sayfasına özel hero.
+// Ortak BrandPageHero'nun görselsiz (textOnly) modu tek sütundur ve geniş ekranda sağ
+// yarıyı boş bırakır. Bu sayfa bir kavram açıklaması olduğundan sağ kolon dekoratif bir
+// görsel yerine "SGK desteği ve katkı payı nasıl oluşur?" üç adımlı bilgi paneli taşır.
+// İçerik (rozet, başlık, paragraflar, CTA'lar, renkler) mevcut hero.ts'ten aynen alınır;
+// ortak BrandPageHero'ya dokunulmaz. JavaScript ve giriş animasyonu yoktur.
+// Panel bir hesaplama aracı değildir (tutar/oran yok) — bkz. data/sgk-katki-payi/hero-panel.ts.
+import { Phone, MessageCircle, Tag, Landmark, Wallet, ArrowDown, ArrowRight } from "lucide-astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
+import { readableTextOn } from "../../../lib/contrast";
+import { standardCtaLabel } from "../../../lib/cta-labels";
+import type { BrandPageHeroContent } from "../BrandPageHero/BrandPageHero.astro";
+import type { SgkKatkiPayiHeroPanel } from "../../../data/sgk-katki-payi/hero-panel";
+
+interface Props {
+  data: BrandPageHeroContent;
+  panel: SgkKatkiPayiHeroPanel;
+}
+
+const { data, panel } = Astro.props;
+
+const accent = data.heroAccent || data.accentColor;
+const style = [
+  `--kph-accent:${accent};`,
+  `--kph-accent-hover:${data.heroAccentHover || data.accentColorHover};`,
+  `--kph-accent-soft:${data.accentColorSoft};`,
+  `--kph-accent-border:${data.accentColorBorder};`,
+  `--kph-cta-text:${readableTextOn(accent, data.ctaTextColor)};`,
+  data.heroBackground ? `--kph-bg-image:${data.heroBackground};` : "",
+  data.heroBaseBg ? `--kph-base-bg:${data.heroBaseBg};` : "",
+  data.heroWaveColor ? `--kph-wave-color:${data.heroWaveColor};` : "",
+  data.heroWaveOpacity ? `--kph-wave-opacity:${data.heroWaveOpacity};` : "",
+].join(" ");
+
+const stepIcons = { price: Tag, sgk: Landmark, remaining: Wallet };
+---
+
+<section class="kph" aria-labelledby="brand-page-hero-title" style={style} data-track-location="hero">
+  <div class="kph__bg" aria-hidden="true"></div>
+  <div class="kph__wave" aria-hidden="true"></div>
+
+  <div class="kph__inner">
+    <div class="kph__content">
+      <p class="kph__badge">{data.badge}</p>
+
+      <h1 class="kph__heading" id="brand-page-hero-title">
+        {data.headingLines.map((line) => <span class="kph__heading-line">{line}</span>)}
+      </h1>
+
+      {data.paragraphs.map((p) => <p class="kph__paragraph">{p}</p>)}
+
+      <div class="kph__actions">
+        <a class="kph__cta kph__cta--solid" href={data.ctaPrimary.href} data-track-location="hero" data-contact-action={contactAction(data.ctaPrimary.href)}>
+          <Phone size={18} stroke-width={2} aria-hidden="true" />
+          <span>{standardCtaLabel(data.ctaPrimary.label, data.ctaPrimary.href)}</span>
+        </a>
+        <a class="kph__cta kph__cta--outline" href={data.ctaSecondary.href} data-track-location="hero" data-contact-action={contactAction(data.ctaSecondary.href)}>
+          {contactAction(data.ctaSecondary.href) === "whatsapp" ? <WhatsAppIcon size={20} /> : <MessageCircle size={18} stroke-width={2} aria-hidden="true" />}
+          <span>{standardCtaLabel(data.ctaSecondary.label, data.ctaSecondary.href)}</span>
+        </a>
+      </div>
+    </div>
+
+    <aside class="kph__panel" aria-labelledby="kph-panel-title">
+      <h2 class="kph__panel-title" id="kph-panel-title">{panel.title}</h2>
+
+      <ol class="kph__steps">
+        {
+          panel.steps.map((step, i) => {
+            const Icon = stepIcons[step.tone];
+            return (
+              <li class:list={["kph__step", `kph__step--${step.tone}`]}>
+                <span class="kph__step-icon" aria-hidden="true">
+                  <Icon size={22} stroke-width={1.85} />
+                </span>
+                <div class="kph__step-body">
+                  <p class="kph__step-title">
+                    <span class="kph__step-number">{i + 1}.</span> {step.title}
+                  </p>
+                  <p class="kph__step-text">{step.text}</p>
+                </div>
+                {i < panel.steps.length - 1 && <ArrowDown class="kph__step-arrow" size={20} stroke-width={2} aria-hidden="true" />}
+              </li>
+            );
+          })
+        }
+      </ol>
+
+      <p class="kph__disclaimer">{panel.disclaimer}</p>
+      <a class="kph__link" href={panel.link.href}>
+        <span>{panel.link.label}</span>
+        <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+      </a>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .kph {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: var(--kph-base-bg, #050505);
+    color: var(--color-text-inverse);
+    padding-block: var(--space-16);
+  }
+
+  .kph__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--kph-bg-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .kph__wave {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--kph-wave-color, transparent);
+    opacity: var(--kph-wave-opacity, 0);
+    -webkit-mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+  }
+
+  .kph__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  /* --- Left: content ------------------------------------------------------ */
+
+  .kph__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--kph-accent-border);
+    border-radius: var(--radius-full);
+    background: var(--kph-accent-soft);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--kph-accent) 42%, #ffffff);
+  }
+
+  .kph__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2rem, 1.5rem + 2.4vw, 3.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-text-inverse);
+  }
+
+  .kph__heading-line {
+    display: block;
+  }
+
+  .kph__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 36rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.72);
+  }
+
+  .kph__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  /* Telefon/WhatsApp görünümü data-contact-action ile ortak stilden gelir
+     (src/ds/styles/base/contact-actions.css); burada yalnızca yerleşim kalır. */
+  .kph__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 56px;
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .kph__cta--solid {
+    background: var(--kph-accent);
+    border: 1px solid var(--kph-accent);
+    color: var(--kph-cta-text);
+  }
+
+  .kph__cta--outline {
+    background: transparent;
+    border: 1px solid rgb(255 255 255 / 0.28);
+    color: var(--color-text-inverse);
+  }
+
+  .kph__cta:focus-visible,
+  .kph__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Right: info panel -------------------------------------------------- */
+
+  .kph__panel {
+    padding: var(--space-8) var(--space-6);
+    background: rgb(255 255 255 / 0.07);
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: var(--radius-2xl);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+
+  .kph__panel-title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-text-inverse);
+  }
+
+  .kph__steps {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .kph__step {
+    --step-tint: rgb(255 255 255 / 0.14);
+    --step-ink: #ffffff;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: var(--radius-xl);
+  }
+
+  /* Kontrollü renk: fiyat = mavi, SGK = turkuaz yardımcı renk, kalan ödeme = nötr beyaz. */
+  .kph__step--price {
+    --step-tint: rgb(96 165 250 / 0.2);
+    --step-ink: #bfdbfe;
+  }
+
+  .kph__step--sgk {
+    --step-tint: rgb(45 212 191 / 0.2);
+    --step-ink: #99f6e4;
+  }
+
+  .kph__step-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: var(--step-tint);
+    color: var(--step-ink);
+  }
+
+  .kph__step-body {
+    min-width: 0;
+  }
+
+  .kph__step-title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.35;
+    color: var(--color-text-inverse);
+  }
+
+  .kph__step-number {
+    color: var(--step-ink);
+  }
+
+  .kph__step-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: rgb(255 255 255 / 0.74);
+  }
+
+  /* Adımlar arası yön oku: kartların arasındaki boşlukta ortalanır. */
+  .kph__step :global(.kph__step-arrow) {
+    position: absolute;
+    left: calc(var(--space-4) + 22px - 10px);
+    bottom: calc(-1 * var(--space-8) + 6px);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .kph__disclaimer {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: rgb(255 255 255 / 0.7);
+  }
+
+  .kph__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    margin-top: var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-inverse);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  .kph__link:hover {
+    color: #99f6e4;
+  }
+
+  /* --- Responsive --------------------------------------------------------- */
+
+  @media (max-width: 1023px) {
+    .kph__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+
+    .kph__panel {
+      max-width: 40rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .kph {
+      padding-block: var(--space-10);
+    }
+
+    .kph__inner {
+      padding-inline: var(--space-5);
+      gap: var(--space-8);
+    }
+
+    .kph__heading {
+      font-size: clamp(1.625rem, 1.2rem + 2.2vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .kph__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .kph__panel {
+      padding: var(--space-6) var(--space-4);
+    }
+  }
+</style>

@@ -5,7 +5,8 @@ import { standardCtaLabel } from "../../../lib/cta-labels";
 // decision card. Generic counterpart of Oticon's original OticonFaq;
 // data-driven so every brand page can reuse it. Independent of the
 // /markalar hub page's own brand-agnostic BrandFaq component.
-import { CheckCircle2, ChevronDown, ArrowRight } from "lucide-astro";
+import { CheckCircle2, ChevronDown, ArrowRight, Phone } from "lucide-astro";
+import { contactAction } from "../../../lib/contact-action";
 
 export interface BrandPageFaqItem {
   question: string;
@@ -86,9 +87,10 @@ let runningIndex = 0;
               ))
             }
           </ul>
-          <a class="brand-page-faq__decision-cta" href={data.decisionCard.ctaHref}>
+          <a class="brand-page-faq__decision-cta" href={data.decisionCard.ctaHref} data-contact-action={contactAction(data.decisionCard.ctaHref)} data-contact-size="sm">
+            {contactAction(data.decisionCard.ctaHref) === "phone" && <Phone size={18} stroke-width={2} aria-hidden="true" />}
             <span>{standardCtaLabel(data.decisionCard.ctaLabel, data.decisionCard.ctaHref)}</span>
-            <ArrowRight size={16} stroke-width={2} aria-hidden="true" />
+            {contactAction(data.decisionCard.ctaHref) !== "phone" && <ArrowRight size={16} stroke-width={2} aria-hidden="true" />}
           </a>
         </div>
         )

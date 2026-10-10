@@ -47,7 +47,12 @@ const categories = [
 >
   <div class="consent-banner__inner">
     <div class="consent-banner__text">
-      <h2 class="consent-banner__title" id="consent-banner-title">Çerez tercihleri</h2>
+      <div class="consent-banner__head">
+        <h2 class="consent-banner__title" id="consent-banner-title">Çerez tercihleri</h2>
+        <!-- Yalnızca mobilde görünür (820px altı); masaüstünde display:none olduğundan odak sırasına girmez.
+             Masaüstünde aynı işlevi actions içindeki "Tercihler" düğmesi görür. -->
+        <button type="button" class="btn btn--ghost btn--md consent-banner__more" data-consent-open><span>Tercihler</span></button>
+      </div>
       <p class="consent-banner__copy">
         Sitemizin çalışması için zorunlu çerezleri kullanıyoruz. Analitik ve reklam/pazarlama çerezleri ile zorunlu
         olmayan üçüncü taraf içerikleri yalnızca tercihinize göre etkinleştiriyoruz. Tercihlerinizi dilediğiniz zaman
@@ -277,6 +282,18 @@ const categories = [
     box-shadow: var(--shadow-xl);
   }
 
+  .consent-banner__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  /* Başlık satırındaki mobil "Tercihler": masaüstünde gizli. */
+  .consent-banner__more {
+    display: none;
+  }
+
   .consent-banner__title {
     margin: 0 0 var(--space-1);
     font-size: var(--font-size-md);
@@ -310,11 +327,32 @@ const categories = [
     white-space: nowrap;
   }
 
+  /* Mobil kompakt düzen: "Tercihler" başlık satırında, "Tümünü Kabul Et" / "Sadece Gerekli" tek
+     satırda yan yana. DOM sırası görsel sıra ile aynıdır (başlık → Tercihler → metin → kabul →
+     gerekli); actions içindeki masaüstü "Tercihler" bu aralıkta display:none'dır. */
   @media (max-width: 820px) {
+    .consent-banner {
+      padding: var(--space-2);
+    }
+
     .consent-banner__inner {
       grid-template-columns: minmax(0, 1fr);
-      padding: var(--space-4);
-      gap: var(--space-3);
+      padding: var(--space-3);
+      gap: var(--space-2);
+    }
+
+    .consent-banner__title {
+      margin: 0;
+    }
+
+    .consent-banner__more {
+      display: inline-flex;
+      flex: none;
+      width: auto;
+    }
+
+    .consent-banner__copy {
+      line-height: 1.45;
     }
 
     .consent-banner__actions {
@@ -323,7 +361,7 @@ const categories = [
     }
 
     .consent-banner__actions :global(.btn--ghost) {
-      grid-column: 1 / -1;
+      display: none;
     }
 
     .consent-banner__actions :global(.btn) {

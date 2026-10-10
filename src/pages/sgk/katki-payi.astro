@@ -22,7 +22,7 @@
 // Markalara Göre İnceleyin -> Anlaşmalı vs Anlaşmasız Merkez -> Uzman
 // Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
-import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import SgkKatkiPayiHero from "../../components/brand-page/SgkKatkiPayiHero/SgkKatkiPayiHero.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
@@ -36,6 +36,7 @@ import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/Bra
 import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
 
 import { sgkKatkiPayiHero } from "../../data/sgk-katki-payi/hero";
+import { sgkKatkiPayiHeroPanel } from "../../data/sgk-katki-payi/hero-panel";
 import { sgkKatkiPayiIntro } from "../../data/sgk-katki-payi/intro";
 import { sgkKatkiPayiIdealUser } from "../../data/sgk-katki-payi/ideal-user";
 import { sgkKatkiPayiAdvantages } from "../../data/sgk-katki-payi/advantages";
@@ -55,7 +56,7 @@ import { sgkKatkiPayiFinalCta } from "../../data/sgk-katki-payi/final-cta";
   title="SGK Katkı Payı | İşitme Cihazında Katkı Payı Nasıl Hesaplanır?"
   description="SGK katkı payı nedir ve nasıl hesaplanır? Yaş grubu, çalışan/emekli durumu ve cihaz fiyatına göre katkı payı hesaplama mantığı hakkında bilgi edinin."
 >
-  <BrandPageHero data={sgkKatkiPayiHero} />
+  <SgkKatkiPayiHero data={sgkKatkiPayiHero} panel={sgkKatkiPayiHeroPanel} />
   <BrandPageIntro data={sgkKatkiPayiIntro} />
   <BrandPageIdealUser data={sgkKatkiPayiIdealUser} />
   <BrandPageAdvantages data={sgkKatkiPayiAdvantages} />
@@ -70,3 +71,120 @@ import { sgkKatkiPayiFinalCta } from "../../data/sgk-katki-payi/final-cta";
   <BrandPageFinalCta data={sgkKatkiPayiFinalCta} />
   <BrandPageRelatedContent data={sgkKatkiPayiRelatedContent} />
 </MainLayout>
+
+<style is:global>
+  /* /sgk/katki-payi'ye özel görsel hiyerarşi. Bu blok yalnızca bu sayfanın CSS paketine
+     girer; ortak brand-page bileşenleri diğer ~60 sayfada olduğu gibi kalır. Seçiciler
+     `body` ile öne alınır (bileşenlerin kapsamlı kuralları aynı özgüllükte olduğundan).
+
+     Üç stil:
+       A — Sade (varsayılan): bilgi kartları, tablo, SSS, süreç; değiştirilmedi.
+       B — Renkli kategori vurgusu: ana kavram kartları (Maliyet Desteği = turkuaz,
+           Emekli/Çocuk desteği = mavi) ve "Nedir?" özet kutusu.
+       C — Etkileşimli: gerçekten tıklanabilir kartlar (markalar, ilgili içerikler).
+     Salt bilgi kartları hover'da hareket etmez. */
+
+  /* Sticky header (~79px) hash hedeflerini örtmesin. */
+  html {
+    scroll-padding-top: var(--space-24);
+  }
+
+  /* --- B: "Nedir?" özet kutusu --------------------------------------------- */
+
+  body .brand-page-intro .brand-page-intro__stats {
+    padding: var(--space-6) var(--space-8);
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-2xl);
+  }
+
+  body .brand-page-intro .brand-page-intro__stat {
+    border-top-color: #bfdbfe;
+  }
+
+  /* --- Faydalar (bento): salt bilgi, sakin; ana kavramlar B ------------------ */
+
+  body .brand-page-adv .brand-page-adv__cell:hover {
+    transform: none;
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-xs);
+  }
+
+  body .brand-page-adv .brand-page-adv__cell:hover .brand-page-adv__icon {
+    transform: none;
+  }
+
+  /* Maliyet Desteği: açık turkuaz */
+  body .brand-page-adv .brand-page-adv__cell--hero,
+  body .brand-page-adv .brand-page-adv__cell--hero:hover {
+    --bpad-accent: #0f766e;
+    --bpad-icon-bg: rgb(15 118 110 / 0.12);
+    background: #f0fdfa;
+    border-color: #99f6e4;
+  }
+
+  /* Emekli / çocuk desteği: açık mavi */
+  body .brand-page-adv .brand-page-adv__cell--s1,
+  body .brand-page-adv .brand-page-adv__cell--s1:hover,
+  body .brand-page-adv .brand-page-adv__cell--s2,
+  body .brand-page-adv .brand-page-adv__cell--s2:hover {
+    --bpad-accent: #2563eb;
+    --bpad-icon-bg: rgb(37 99 235 / 0.12);
+    background: #eff6ff;
+    border-color: #bfdbfe;
+  }
+
+  /* --- C: tıklanabilir kartlar (markalar ve ilgili içerikler) ---------------- */
+
+  body .brand-page-related .brand-page-related__card {
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+  }
+
+  body .brand-page-related .brand-page-related__card:hover,
+  body .brand-page-related .brand-page-related__card:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--bprc-accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  body .brand-page-related .brand-page-related__card:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-md), var(--focus-ring);
+  }
+
+  body .brand-page-related .brand-page-related__card:hover .brand-page-related__label,
+  body .brand-page-related .brand-page-related__card:focus-visible .brand-page-related__label {
+    color: color-mix(in srgb, var(--bprc-accent) 70%, #000);
+  }
+
+  body .brand-page-related .brand-page-related__card:hover .brand-page-related__arrow,
+  body .brand-page-related .brand-page-related__card:focus-visible .brand-page-related__arrow {
+    transform: translateX(5px);
+  }
+
+  /* --- Karşılaştırma tablosu: telefonda yatay kaydırma ipucu ----------------------
+     Tablo bilerek kaydırılabilir bölgedir (3 sütun dar ekrana sığmaz; sütunları
+     sıkıştırmak sözcükleri bozar). Kenar gölgeleri, sağda devam eden içerik olduğunu
+     gösterir; yalnızca CSS, içerik değişmez. */
+
+  @media (max-width: 640px) {
+    body .ka-comparison .ka-comparison__table-wrap {
+      background:
+        linear-gradient(to right, #fff 30%, rgb(255 255 255 / 0)) left center / 32px 100% no-repeat local,
+        linear-gradient(to left, #fff 30%, rgb(255 255 255 / 0)) right center / 32px 100% no-repeat local,
+        radial-gradient(farthest-side at 0 50%, rgb(15 23 42 / 0.22), transparent) left center / 12px 100% no-repeat scroll,
+        radial-gradient(farthest-side at 100% 50%, rgb(15 23 42 / 0.22), transparent) right center / 12px 100% no-repeat scroll,
+        #fff;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body .brand-page-related .brand-page-related__card:hover,
+    body .brand-page-related .brand-page-related__card:focus-visible,
+    body .brand-page-related .brand-page-related__card:hover .brand-page-related__arrow,
+    body .brand-page-related .brand-page-related__card:focus-visible .brand-page-related__arrow {
+      transform: none;
+    }
+  }
+</style>

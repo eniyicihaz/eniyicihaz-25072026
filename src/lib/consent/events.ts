@@ -11,6 +11,9 @@
 //   whatsapp_click     href="https://wa.me/…"
 //   directions_click   href=Google Haritalar bağlantısı ("Yol tarifi al")
 //   hearing_test_cta   href="/degerlendirme/ucretsiz-isitme-testi/"
+//   hearing_test_info_click  aynı sayfaya giden BİLGİ çipi (BrandPageFinalCta güven çipi): yalnızca
+//                      `data-track-event="hearing_test_info_click"` taşıyan bağlantı; ana CTA olayından AYRIDIR
+//                      ve aynı tıklama için hearing_test_cta üretmez (classify tek sonuç döndürür).
 // Oluşturulmayanlar: appointment_submit ve contact_form_submit — sitede
 // sunucuya veri gönderen randevu/iletişim formu YOKTUR (randevu ve iletişim
 // düğmeleri tel:/wa.me bağlantılarıdır ve phone_click/whatsapp_click olarak
@@ -24,7 +27,7 @@
 //     içindeki PII filtresi son savunmadır).
 import { trackEvent } from "./analytics";
 
-type EventName = "phone_click" | "whatsapp_click" | "directions_click" | "hearing_test_cta";
+type EventName = "phone_click" | "whatsapp_click" | "directions_click" | "hearing_test_cta" | "hearing_test_info_click";
 type LinkType = "phone" | "whatsapp" | "map" | "internal";
 
 const ONLINE_TEST_PATH = /^\/degerlendirme\/online-isitme-testi(\/|$)/;
@@ -32,6 +35,12 @@ const FREE_TEST_PATH = /\/degerlendirme\/ucretsiz-isitme-testi\/?$/;
 
 function classify(a: HTMLAnchorElement): { event: EventName; linkType: LinkType } | null {
   const href = a.getAttribute("href") || "";
+  // Açık, izin listeli işaret: yalnızca bilinen bilgi-çipi olayı kabul edilir (rastgele `data-track-event`
+  // değerleri olay adı üretemez). URL'ye değil işarete bakar; böylece ana CTA ile aynı sayfaya gitse de ayrışır.
+  // Bu dal ilk sırada olduğundan aynı tıklama ayrıca hearing_test_cta olarak SAYILMAZ.
+  if (a.getAttribute("data-track-event") === "hearing_test_info_click" && FREE_TEST_PATH.test(href.split(/[?#]/)[0])) {
+    return { event: "hearing_test_info_click", linkType: "internal" };
+  }
   if (/^tel:/i.test(href)) return { event: "phone_click", linkType: "phone" };
   if (/^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href)) return { event: "whatsapp_click", linkType: "whatsapp" };
   if (/^https?:\/\/(maps\.app\.goo\.gl|(www\.)?google\.com\/maps)/i.test(href)) return { event: "directions_click", linkType: "map" };

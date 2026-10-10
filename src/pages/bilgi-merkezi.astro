@@ -15,7 +15,7 @@
 // the page's final section. Do not add later modules until they're
 // specifically requested.
 import MainLayout from "../layouts/MainLayout.astro";
-import BrandHero from "../components/brands/BrandHero/BrandHero.astro";
+import KnowledgeHero from "../components/brands/KnowledgeHero/KnowledgeHero.astro";
 import BrandShowcase from "../components/brands/BrandShowcase/BrandShowcase.astro";
 import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
 import BrandDecision from "../components/brands/BrandDecision/BrandDecision.astro";
@@ -25,6 +25,7 @@ import BrandExpertSupport from "../components/brands/BrandExpertSupport/BrandExp
 import BrandFaq from "../components/brands/BrandFaq/BrandFaq.astro";
 
 import { knowledgeHero } from "../data/knowledge/hero";
+import { knowledgeHeroPanel } from "../data/knowledge/hero-panel";
 import { knowledgeShowcase } from "../data/knowledge/showcase";
 import { knowledgeCriteria } from "../data/knowledge/criteria";
 import { knowledgeDecision } from "../data/knowledge/decision";
@@ -38,7 +39,7 @@ import { knowledgeFaq } from "../data/knowledge/faq";
   title="Bilgi Merkezi | İşitme Sağlığı Hakkında Her Şey"
   description="İşitme kaybından cihaz bakımına, SGK sürecinden güncel teknolojilere kadar tüm rehber ve içeriklerimizi tek sayfada keşfedin."
 >
-  <BrandHero data={knowledgeHero} />
+  <KnowledgeHero data={knowledgeHero} panel={knowledgeHeroPanel} />
   <BrandShowcase data={knowledgeShowcase} />
   <BrandCriteria data={knowledgeCriteria} />
   <BrandDecision data={knowledgeDecision} />
@@ -47,3 +48,176 @@ import { knowledgeFaq } from "../data/knowledge/faq";
   <BrandExpertSupport data={knowledgeExpertSupport} />
   <BrandFaq data={knowledgeFaq} />
 </MainLayout>
+
+<style is:global>
+  /* /bilgi-merkezi'ne özel kart düzeni. Bu blok yalnızca bu sayfanın CSS
+     paketine girer; ortak BrandShowcase / BrandExtended diğer sayfalarda
+     (hizmetlerimiz, markalar, isitme-cihazlari...) olduğu gibi kalır.
+     Seçiciler `body` ile öne alınır: bileşenlerin kapsamlı (data-astro-cid)
+     kuralları ve :hover kuralları aynı özgüllükte olduğundan. */
+
+  /* Sticky header (~79px) hash hedeflerini örtmesin. */
+  html {
+    scroll-padding-top: var(--space-24);
+  }
+
+  /* --- 6 rehber kartı (BrandShowcase) ------------------------------------- */
+
+  body .brand-showcase .brand-showcase__card {
+    --tone: var(--color-primary);
+    gap: var(--space-3);
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+  }
+
+  body .brand-showcase .brand-showcase__card:hover,
+  body .brand-showcase .brand-showcase__card:focus-visible {
+    transform: translateY(-3px) !important;
+    background: color-mix(in srgb, var(--tone) 4%, var(--color-background));
+    border-color: var(--tone);
+    box-shadow: var(--shadow-md);
+  }
+
+  body .brand-showcase .brand-showcase__card:focus-visible {
+    box-shadow: var(--shadow-md), var(--focus-ring);
+  }
+
+  body .brand-showcase .brand-showcase__icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--tone) 10%, var(--color-background));
+    color: var(--tone);
+    opacity: 1;
+    transition: background-color 300ms var(--bs-ease);
+  }
+
+  body .brand-showcase .brand-showcase__icon-wrap svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  body .brand-showcase .brand-showcase__card:hover .brand-showcase__icon-wrap[class],
+  body .brand-showcase .brand-showcase__card:focus-visible .brand-showcase__icon-wrap[class] {
+    background: color-mix(in srgb, var(--tone) 16%, var(--color-background));
+    color: var(--tone);
+  }
+
+  body .brand-showcase .brand-showcase__name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  /* "Rehberi Oku": normal durumda da görünür (bileşen varsayılanı gizli). */
+  body .brand-showcase .brand-showcase__cta {
+    opacity: 1;
+    transform: none;
+    color: var(--color-primary);
+  }
+
+  /* --- 12 kategori kartı (BrandExtended) ---------------------------------- */
+  /* Renk, sıraya değil bağlantının kendisine bağlı: /sgk… = SGK ve haklar
+     (turkuaz), /blog/ = blog ve haberler (amber). Sıra değişse de bozulmaz. */
+
+  body .brand-extended .brand-extended__card {
+    --tone: var(--color-primary);
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-background);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xs);
+    text-align: left;
+  }
+
+  body .brand-extended .brand-extended__card[href^="/sgk"] {
+    --tone: #0f766e;
+  }
+
+  body .brand-extended .brand-extended__card[href^="/blog/"] {
+    --tone: #b45309;
+  }
+
+  body .brand-extended .brand-extended__card:hover,
+  body .brand-extended .brand-extended__card:focus-visible {
+    transform: translateY(-2px) !important;
+    background: color-mix(in srgb, var(--tone) 4%, var(--color-background));
+    border-color: var(--tone);
+    box-shadow: var(--shadow-md);
+  }
+
+  body .brand-extended .brand-extended__card:focus-visible {
+    box-shadow: var(--shadow-md), var(--focus-ring);
+  }
+
+  body .brand-extended .brand-extended__icon-wrap {
+    flex: none;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--tone) 10%, var(--color-background));
+    color: var(--tone);
+    opacity: 1;
+    transition: background-color 300ms var(--be-ease);
+  }
+
+  body .brand-extended .brand-extended__icon-wrap svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  body .brand-extended .brand-extended__card:hover .brand-extended__icon-wrap[class],
+  body .brand-extended .brand-extended__card:focus-visible .brand-extended__icon-wrap[class] {
+    background: color-mix(in srgb, var(--tone) 16%, var(--color-background));
+    color: var(--tone);
+  }
+
+  body .brand-extended .brand-extended__name {
+    min-width: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 1279px) {
+    body .brand-extended .brand-extended__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 1023px) {
+    body .brand-extended .brand-extended__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    body .brand-showcase .brand-showcase__card {
+      padding: var(--space-6) var(--space-4);
+    }
+
+    body .brand-extended .brand-extended__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body .brand-showcase .brand-showcase__card:hover,
+    body .brand-showcase .brand-showcase__card:focus-visible,
+    body .brand-extended .brand-extended__card:hover,
+    body .brand-extended .brand-extended__card:focus-visible {
+      transform: none !important;
+    }
+
+    body .brand-showcase .brand-showcase__icon-wrap,
+    body .brand-extended .brand-extended__icon-wrap {
+      transition: none;
+    }
+  }
+</style>

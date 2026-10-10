@@ -128,9 +128,10 @@ export const matrixSection: GuideSectionMeta = {
     "Bu matris, sitemizdeki marka sayfalarında yer alan model ailelerinin etiketlerinden ve açıklamalarından derlendi. Bir hücrede 'etiketli aile yok' yazması, markanın o türde ürünü olmadığı anlamına gelmez; yalnızca model listemizde o etiketle yer almadığını gösterir.",
 };
 
-function matrixRow(label: string, tags: string[], opts: { placementRow?: boolean; countOnly?: boolean } = {}): GuideTableRow {
+function matrixRow(label: string, tags: string[], opts: { placementRow?: boolean; countOnly?: boolean; href?: string } = {}): GuideTableRow {
   return {
     label,
+    ...(opts.href ? { href: opts.href } : {}),
     cells: brands.map((b) => {
       if (opts.placementRow && b.key === "oticon") return oticonPlacementNote;
       const list = withTag(b, ...tags);
@@ -149,15 +150,16 @@ export const matrixTable: GuideTableContent = {
   criterionLabel: "Tür / özellik",
   columns: brands.map((b) => ({ name: b.label, href: b.href })),
   rows: [
-    matrixRow("RIC", ["RIC"], { placementRow: true }),
-    matrixRow("Kulak arkası (BTE)", ["BTE"], { placementRow: true }),
-    matrixRow("Kulak içi", ["Kulak İçi"]),
-    matrixRow("Şarjlı", ["Şarjlı"]),
-    matrixRow("Pilli", ["Pilli"]),
-    matrixRow("Bluetooth", ["Bluetooth"], { countOnly: true }),
-    matrixRow("Çocuk", ["Çocuk"]),
-    matrixRow("Güçlü kayıplar", ["Güçlü Kayıplar", "Power"]),
-    matrixRow("Tek taraflı kayıp (CROS)", ["Tek Taraflı"]),
+    // Satır başlığı bağlantıları: yalnızca sitede var olan, konuyla ilgili sayfalar (dist'te doğrulandı).
+    matrixRow("RIC", ["RIC"], { placementRow: true, href: "/isitme-cihazlari/#ric-rite" }),
+    matrixRow("Kulak arkası (BTE)", ["BTE"], { placementRow: true, href: "/isitme-cihazlari/kulak-arkasi-bte/" }),
+    matrixRow("Kulak içi", ["Kulak İçi"], { href: "/isitme-cihazlari/kulak-ici-ite/" }),
+    matrixRow("Şarjlı", ["Şarjlı"], { href: "/isitme-cihazlari/sarj-edilebilir/" }),
+    matrixRow("Pilli", ["Pilli"], { href: "/isitme-cihazlari/#sarjli-pilli" }),
+    matrixRow("Bluetooth", ["Bluetooth"], { countOnly: true, href: "/isitme-cihazlari/bluetooth-ozellikli/" }),
+    matrixRow("Çocuk", ["Çocuk"], { href: "/isitme-cihazlari/cocuklara-ozel/" }),
+    matrixRow("Güçlü kayıplar", ["Güçlü Kayıplar", "Power"], { href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/" }),
+    matrixRow("Tek taraflı kayıp (CROS)", ["Tek Taraflı"], { href: "/ihtiyaciniza-gore/tek-tarafli-isitme-kaybi/" }),
   ],
   note:
     "Etiketler model ailesi düzeyindedir; aynı ailenin farklı sürümlerinde özellikler değişebilir. Kesin bilgi için marka sayfasına ve değerlendirme görüşmesine bakın.",

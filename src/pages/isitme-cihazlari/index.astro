@@ -20,7 +20,9 @@
 // Eski M1–M8 modüler içeriği (data/devices/*) bu sayfayla değiştirildi;
 // yalnızca 21 alt sayfaya iç bağlantı sağlayan `devices/extended.ts` korunur.
 import { Compass, Stethoscope, Tag } from "lucide-astro";
-import { MessageCircle, MapPin } from "lucide-astro";
+import { MessageCircle, MapPin, Phone } from "lucide-astro";
+import WhatsAppIcon from "../../components/shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../lib/contact-action";
 import MainLayout from "../../layouts/MainLayout.astro";
 import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import Brands from "../../components/brands/Brands/Brands.astro";
@@ -112,8 +114,8 @@ const locationCard = {
   <GuideHero data={devicesGuideHero} icons={{ primary: Compass, secondary: Stethoscope }} />
 
   <div class="dg-contact-strip" role="group" aria-label="Hızlı iletişim">
-    <a class="dg-contact-strip__btn dg-contact-strip__btn--solid" href={contactLinks.phone}>Bizi Arayın</a>
-    <a class="dg-contact-strip__btn" href={contactLinks.whatsapp}>WhatsApp'tan Yazın</a>
+    <a class="dg-contact-strip__btn dg-contact-strip__btn--solid" href={contactLinks.phone} data-contact-action={contactAction(contactLinks.phone)} data-contact-size="sm"><Phone size={20} stroke-width={2} aria-hidden="true" /><span>Bizi Arayın</span></a>
+    <a class="dg-contact-strip__btn" href={contactLinks.whatsapp} data-contact-action={contactAction(contactLinks.whatsapp)} data-contact-size="sm"><WhatsAppIcon size={20} /><span>WhatsApp'tan Yazın</span></a>
   </div>
   <GuideToc links={toc} />
 

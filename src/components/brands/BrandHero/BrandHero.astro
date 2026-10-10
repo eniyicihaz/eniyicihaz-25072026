@@ -7,8 +7,7 @@
 // every hub page can supply its own copy while sharing this exact
 // markup/CSS.
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
-import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
-import { Phone, Check } from "lucide-astro";
+import { Check } from "lucide-astro";
 import "./BrandHero.css";
 
 export interface BrandHeroCta {
@@ -62,29 +61,9 @@ const { data: brandHero } = Astro.props;
       {brandHero.description.map((paragraph) => <p class="brand-hero__desc">{paragraph}</p>)}
 
       <div class="brand-hero__actions">
-        <CtaButton
-          label={brandHero.ctaPrimary.label}
-          href={brandHero.ctaPrimary.href}
-          iconLeft={Phone}
-        />
-        {
-          /* Hand-written (not <CtaButton>) because CtaButton's iconLeft
-             prop expects a lucide-astro component reference, and the real
-             WhatsApp glyph isn't one (lucide deliberately carries no brand
-             logos) — WhatsAppIcon is the shared extraction of that one-off
-             SVG (see its own file for why). The class below
-             (.brand-hero__whatsapp-btn) mirrors CtaButton's exact recipe in
-             BrandHero.css, so the size/radius/hover-lift/focus-ring all
-             match — same premium quality, just not routed through the
-             shared button component for this one icon. */
-        }
-        <a
-          class="brand-hero__whatsapp-btn"
-          href={brandHero.ctaSecondary.href}
-        >
-          <WhatsAppIcon />
-          <span>{brandHero.ctaSecondary.label}</span>
-        </a>
+        {/* Telefon birincil, WhatsApp ikincil; görünüm href'ten gelir (contact-actions.css). */}
+        <CtaButton label={brandHero.ctaPrimary.label} href={brandHero.ctaPrimary.href} />
+        <CtaButton label={brandHero.ctaSecondary.label} href={brandHero.ctaSecondary.href} />
       </div>
 
       <ul class="brand-hero__pills">

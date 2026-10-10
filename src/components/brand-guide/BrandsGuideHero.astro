@@ -1,0 +1,362 @@
+---
+// BrandsGuideHero — /isitme-cihazi-markalari/ sayfasına özel hero.
+// Ortak GuideHero değiştirilmez (başka sayfalar kullanıyor). İçerik (eyebrow, başlık, açıklamalar,
+// CTA'lar, etiketler, görsel) data/isitme-cihazi-markalari/hero.ts'ten aynen alınır.
+// Görsel sağ kenara taşan bir "ürün sahnesi"dir: sol kenarı ve alt/üst kenarı maske ile hero
+// zeminine eritilir; cihazlar sağ yarıda kalır, metin solda okunur. Mobilde görsel metnin altına
+// iner ve cihazları gösterecek biçimde sağdan hizalanarak kırpılır. JavaScript yoktur.
+import CtaButton from "../shared/CtaButton/CtaButton.astro";
+import { ShieldCheck } from "lucide-astro";
+import type { PriceGuideHeroContent } from "../../data/isitme-cihazi-fiyatlari/hero";
+
+interface Props {
+  data: PriceGuideHeroContent;
+  icons?: { primary?: any; secondary?: any };
+  extraCta?: { label: string; href: string };
+}
+
+const { data, icons, extraCta } = Astro.props;
+---
+
+<section class="brands-hero" aria-labelledby="brands-hero-title" data-track-location="hero">
+  {
+    data.image && (
+      <div class="brands-hero__scene">
+        <img
+          class="brands-hero__image"
+          src={data.image.src}
+          alt={data.image.alt}
+          width={data.image.width}
+          height={data.image.height}
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+    )
+  }
+
+  <div class="brands-hero__inner">
+    <div class="brands-hero__copy">
+      <p class="brands-hero__eyebrow">{data.eyebrow}</p>
+      <h1 class="brands-hero__heading" id="brands-hero-title">{data.heading}</h1>
+      <p class="brands-hero__lead">{data.lead}</p>
+      <p class="brands-hero__supporting">{data.supporting}</p>
+
+      <div class="brands-hero__actions">
+        <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} iconLeft={icons?.primary} />
+        <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} variant="outline" iconLeft={icons?.secondary} />
+      </div>
+      {extraCta && <a class="brands-hero__extra" href={extraCta.href}>{extraCta.label} →</a>}
+
+      <ul class="brands-hero__chips">
+        {
+          data.chips.map((chip) => (
+            <li>
+              <ShieldCheck size={14} stroke-width={2} aria-hidden="true" />
+              <span>{chip}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .brands-hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    min-height: clamp(34rem, 46vw, 40rem);
+    overflow: clip;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-12);
+  }
+
+  /* Ürün sahnesi: bölümün tamamını kaplar, cihazlar sağda kalır. */
+  .brands-hero__scene {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* Sol kenar, üst ve alt kenar hero zeminine erir. */
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0, #000 34%),
+      linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0, #000 34%),
+      linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  .brands-hero__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Cihazlar görselin sağ yarısında; kırpma her zaman sağdan hizalı. */
+    object-position: right center;
+  }
+
+  /* Metnin altına çok hafif bir yumuşatma: okunabilirlik, görselin soluk dalgaları üstünde de korunur. */
+  .brands-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      var(--color-surface) 0%,
+      color-mix(in srgb, var(--color-surface) 82%, transparent) 30%,
+      transparent 52%
+    );
+  }
+
+  .brands-hero__inner {
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .brands-hero__copy {
+    max-width: 34rem;
+  }
+
+  .brands-hero__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .brands-hero__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  .brands-hero__lead {
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .brands-hero__supporting {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .brands-hero__actions {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .brands-hero__extra {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: var(--space-3);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .brands-hero__extra:hover {
+    text-decoration: underline;
+  }
+
+  .brands-hero__extra:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .brands-hero__chips {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .brands-hero__chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .brands-hero__chips :global(svg) {
+    color: var(--color-primary);
+  }
+
+  /* --- Tablet / dar masaüstü (<1280px): metin sahnenin üstüne taşmasın; görsel metnin altında tam genişlikte --- */
+
+  @media (max-width: 1279px) {
+    .brands-hero {
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 0;
+      padding-block: var(--space-10) 0;
+    }
+
+    .brands-hero::before {
+      display: none;
+    }
+
+    .brands-hero__inner {
+      position: relative;
+      z-index: 1;
+      order: 1;
+    }
+
+    .brands-hero__copy {
+      max-width: 40rem;
+    }
+
+    .brands-hero__scene {
+      position: relative;
+      inset: auto;
+      z-index: 0;
+      order: 2;
+      margin-top: var(--space-8);
+      aspect-ratio: 16 / 9;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 90%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 90%, transparent 100%);
+      -webkit-mask-composite: source-over;
+      mask-composite: add;
+    }
+  }
+
+  /* --- Mobil (<=640px): ürün sahnesi ilk ekranda görünsün ---------------------------
+     Metin kolonu `display: contents` ile çözülür; akış (yalnızca görsel sıra, DOM sırası
+     aynı): rozet → başlık → ana açıklama → ÜRÜN SAHNESİ → CTA'lar → destekleyici metin →
+     ek bağlantı → etiketler. Sahne, cihaz grubunu büyüten yatay kırpımla (görsel elemanı
+     sahneden yüksek, sağdan hizalı) yaklaşık tam genişlikte gösterilir. */
+  @media (max-width: 640px) {
+    .brands-hero {
+      padding-block: var(--space-4) var(--space-8);
+    }
+
+    .brands-hero__inner,
+    .brands-hero__copy {
+      display: contents;
+    }
+
+    .brands-hero__eyebrow,
+    .brands-hero__heading,
+    .brands-hero__lead,
+    .brands-hero__supporting,
+    .brands-hero__actions,
+    .brands-hero__extra,
+    .brands-hero__chips {
+      margin-inline: var(--space-4);
+    }
+
+    .brands-hero__eyebrow {
+      order: 1;
+      align-self: flex-start;
+    }
+
+    .brands-hero__heading {
+      order: 2;
+      margin-top: var(--space-3);
+    }
+
+    .brands-hero__lead {
+      order: 3;
+      margin-top: var(--space-3);
+      font-size: var(--font-size-md);
+    }
+
+    .brands-hero__scene {
+      order: 4;
+      aspect-ratio: 39 / 25;
+      margin-top: var(--space-2);
+      overflow: hidden;
+    }
+
+    .brands-hero__actions {
+      order: 5;
+      margin-top: var(--space-2);
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .brands-hero__actions :global(.cta-button) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .brands-hero__supporting {
+      order: 6;
+      margin-top: var(--space-5);
+    }
+
+    .brands-hero__extra {
+      order: 7;
+    }
+
+    .brands-hero__chips {
+      order: 8;
+      margin-top: var(--space-4);
+    }
+
+    /* Görsel elemanı sahneden %30 yüksek ve sağdan hizalı: cihaz grubu sahne genişliğinin
+       yaklaşık %84'ünü kaplar; üstteki boş zemin kırpılır, cihazlar ve şarj kutusu kesilmez. */
+    .brands-hero__image {
+      position: absolute;
+      top: -24%;
+      right: 0;
+      width: 100%;
+      height: 130%;
+      object-position: right center;
+    }
+  }
+
+  /* 360×740 gibi kısa/dar ekranlar: ana CTA ilk görünümde tam görünsün diye dikey aralıklar
+     yaklaşık 30px sıkılaştırılır (görsel boyutu ve sıra aynı). 390px ve üstü etkilenmez. */
+  @media (max-width: 380px) {
+    .brands-hero {
+      padding-block-start: var(--space-2);
+    }
+
+    .brands-hero__heading,
+    .brands-hero__lead {
+      margin-top: var(--space-2);
+    }
+
+    .brands-hero__scene {
+      margin-top: 0;
+    }
+
+    .brands-hero__actions {
+      margin-top: 0;
+    }
+  }
+</style>

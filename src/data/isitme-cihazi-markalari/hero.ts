@@ -7,7 +7,6 @@ import type { PriceGuideHeroContent } from "../isitme-cihazi-fiyatlari/hero";
 const whatsappText = encodeURIComponent("Merhaba, işitme cihazı markaları hakkında bilgi almak istiyorum.");
 
 export const brandsHero: PriceGuideHeroContent = {
-  textOnly: true, // Görsel/Performance paketi: AI podyum sahnesi kaldırıldı (görsel dosyası silinmedi)
   eyebrow: "Marka ve Model Rehberi",
   heading: "İşitme Cihazı Markaları",
   lead:
@@ -18,10 +17,11 @@ export const brandsHero: PriceGuideHeroContent = {
   ctaSecondary: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
   chips: ["18 marka", "SGK anlaşmalı merkez", "Ücretsiz işitme testi"],
   image: {
-    src: "/images/brand-guide/isitme-cihazi-markalari-hero.webp",
-    alt: "Farklı işitme cihazlarının birlikte sergilendiği temsili marka ve model sahnesi",
-    width: 1672,
-    height: 941,
+    src: "/images/brand-guide/en-iyi-isitme-cihazi-markalari.webp",
+    alt: "Açık mavi zeminde beyaz podyumlar üzerinde kulak arkası, kanal içi ve şarj kutulu farklı işitme cihazı türleri",
+    width: 1774,
+    height: 887,
+    priority: true,
   },
 };
 

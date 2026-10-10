@@ -38,7 +38,7 @@ export const sonicModels: BrandPageModelsContent = {
       name: "Sonic Enchant BTE",
       description: "Geniş güç aralığı sunan, ileri derece işitme kayıpları için değerlendirilebilecek Enchant ailesi.",
       tags: ["BTE", "Bluetooth"],
-      image: "/images/sonic/models/enchant-bte.webp",
+      image: "/images/sonic/models/sonic-enchant-bte-transparent.webp",
     },
     {
       slug: "enchant-ite",

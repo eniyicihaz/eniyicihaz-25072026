@@ -12,6 +12,7 @@ import ConsentEmbed from "../consent/ConsentEmbed/ConsentEmbed.astro";
 import { homeCenterGallery as data } from "../../data/home/center-gallery";
 import { company } from "../footer/Footer/data/company";
 import { imageSrcset } from "../../lib/responsive-images";
+import { contactAction } from "../../lib/contact-action";
 ---
 
 <section class="home-local" aria-labelledby="home-local-title" data-track-location="home_local">
@@ -100,7 +101,7 @@ import { imageSrcset } from "../../lib/responsive-images";
       </div>
 
       <div class="home-local__actions">
-        <a class="home-local__btn" href={company.directionsHref}>
+        <a class="home-local__btn" href={company.directionsHref} data-contact-action={contactAction(company.directionsHref)}>
           <Navigation size={20} stroke-width={2} aria-hidden="true" />
           <span>Yol Tarifi Al</span>
         </a>

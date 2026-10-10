@@ -11,9 +11,8 @@
 // never stand in for one). This is a real extension point for a future
 // photo once one exists — swapping this panel for an <img> is a small,
 // contained change when that day comes.
-import { MapPin, ShieldCheck, Phone, Navigation, Check } from "lucide-astro";
+import { MapPin, ShieldCheck, Check } from "lucide-astro";
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
-import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 
 export interface ContactHeroCta {
   label: string;
@@ -54,17 +53,10 @@ const { data } = Astro.props;
       <p class="contact-hero__paragraph">{data.paragraph}</p>
 
       <div class="contact-hero__actions">
-        <CtaButton label={data.ctaCall.label} href={data.ctaCall.href} iconLeft={Phone} />
-        <CtaButton
-          label={data.ctaDirections.label}
-          href={data.ctaDirections.href}
-          iconLeft={Navigation}
-          variant="outline"
-        />
-        <a class="contact-hero__whatsapp-btn" href={data.ctaWhatsapp.href}>
-          <WhatsAppIcon />
-          <span>{data.ctaWhatsapp.label}</span>
-        </a>
+        {/* Sıra: telefon (birincil) → WhatsApp (ikincil) → yol tarifi (üçüncül). Görünüm href'ten gelir. */}
+        <CtaButton label={data.ctaCall.label} href={data.ctaCall.href} />
+        <CtaButton label={data.ctaWhatsapp.label} href={data.ctaWhatsapp.href} />
+        <CtaButton label={data.ctaDirections.label} href={data.ctaDirections.href} />
       </div>
 
       <ul class="contact-hero__pills">
@@ -203,37 +195,6 @@ const { data } = Astro.props;
     flex-wrap: wrap;
     gap: var(--space-3);
     margin-top: var(--space-8);
-  }
-
-  /* Mirrors CtaButton's outline recipe so the hand-written WhatsApp button
-     sits visually level with the three real CtaButton instances beside it. */
-  .contact-hero__whatsapp-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    height: 56px;
-    padding-inline: var(--space-8);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border);
-    background: transparent;
-    color: var(--color-text);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color var(--transition-base), border-color var(--transition-base);
-  }
-
-  .contact-hero__whatsapp-btn:hover {
-    background: var(--color-surface);
-    border-color: var(--color-border-hover);
-  }
-
-  .contact-hero__whatsapp-btn:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
   }
 
   .contact-hero__pills {

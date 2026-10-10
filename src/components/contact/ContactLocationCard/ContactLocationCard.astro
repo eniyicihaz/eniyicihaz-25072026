@@ -13,6 +13,7 @@
 import { MapPin, Phone, Clock, Navigation } from "lucide-astro";
 import ConsentEmbed from "../../consent/ConsentEmbed/ConsentEmbed.astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
 import type { CompanyInfo } from "../../footer/Footer/footer.types";
 
 export interface ContactLocationDetail {
@@ -86,8 +87,10 @@ const { data } = Astro.props;
           <a
             class:list={["contact-location__action", { "contact-location__action--directions": data.largeTargets }]}
             href={data.company.directionsHref}
+            data-contact-action={contactAction(data.company.directionsHref)}
+            data-contact-size="sm"
           >
-            <Navigation size={data.largeTargets ? 18 : 14} stroke-width={2.5} aria-hidden="true" />
+            <Navigation size={20} stroke-width={2} aria-hidden="true" />
             {data.directionsLabel}
           </a>
         </div>
@@ -122,8 +125,8 @@ const { data } = Astro.props;
               </a>
             ))}
           </div>
-          <a class="contact-location__action" href={data.whatsappHref}>
-            <WhatsAppIcon size={14} />
+          <a class="contact-location__action" href={data.whatsappHref} data-contact-action={contactAction(data.whatsappHref)} data-contact-size="sm">
+            <WhatsAppIcon size={20} />
             {data.whatsappLabel}
           </a>
         </div>
@@ -483,9 +486,9 @@ const { data } = Astro.props;
     box-shadow: var(--focus-ring);
   }
 
-  /* 48px+ tap targets (opt-in via `largeTargets`). Directions becomes the
-     section's primary button; phone and WhatsApp links keep their text
-     look but get a 48px-tall hit area. */
+  /* 48px+ tap targets (opt-in via `largeTargets`). Directions and WhatsApp use the shared
+     contact-button look (contact-actions.css); phone-number links keep their text look
+     but get a 48px-tall hit area. */
   .contact-location--large-targets .contact-location__action,
   .contact-location--large-targets .contact-location__phone {
     min-height: 48px;
@@ -498,15 +501,6 @@ const { data } = Astro.props;
 
   .contact-location--large-targets .contact-location__action--directions {
     margin-top: var(--space-2);
-    padding-inline: var(--space-6);
-    border-radius: var(--radius-lg);
-    background: var(--color-primary);
-    color: var(--color-text-inverse);
-  }
-
-  .contact-location--large-targets .contact-location__action--directions:hover {
-    background: var(--color-primary-hover);
-    text-decoration: none;
   }
 
   .contact-location__map-wrap {

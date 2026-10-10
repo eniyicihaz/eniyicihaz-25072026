@@ -102,65 +102,6 @@
   margin-top: var(--space-5);
 }
 
-/* WhatsApp button — mirrors CtaButton.astro's exact recipe (height,
-   padding, radius, type, transition curve) so it matches the primary
-   CTA's premium quality, but hand-written rather than routed through
-   <CtaButton> since it needs a one-off inline SVG icon (see BrandHero.astro).
-   Colors are WhatsApp's own: #25D366 is their brand green exactly, #128C7E
-   (hover) is their own darker teal-green accent — neither is an invented
-   tone. Shadow uses the same tinted-glow recipe as the primary CTA's blue
-   shadow, just in green, and gets the same hover lift. */
-.brand-hero__whatsapp-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  height: 56px;
-  padding-inline: var(--space-8);
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: -0.01em;
-  line-height: 1;
-  text-decoration: none;
-  white-space: nowrap;
-  background: #25d366;
-  border: 1px solid #25d366;
-  color: #0a1408;
-  box-shadow: 0 10px 24px -10px rgb(37 211 102 / 0.45);
-  transition: transform 300ms var(--bh-ease), box-shadow 300ms var(--bh-ease),
-    background-color var(--transition-base), border-color var(--transition-base);
-}
-
-.brand-hero__whatsapp-btn:hover {
-  transform: translateY(-2px);
-  background: #128c7e;
-  border-color: #128c7e;
-  box-shadow: 0 16px 34px -10px rgb(18 140 126 / 0.5);
-}
-
-.brand-hero__whatsapp-btn:active {
-  transform: translateY(0);
-  transition-duration: var(--transition-fast);
-}
-
-.brand-hero__whatsapp-btn:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .brand-hero__whatsapp-btn {
-    transition: background-color var(--transition-base),
-      border-color var(--transition-base);
-  }
-
-  .brand-hero__whatsapp-btn:hover,
-  .brand-hero__whatsapp-btn:active {
-    transform: none;
-  }
-}
-
 /* Trust pills — the same visual recipe as the homepage Hero's badge
    (border, full radius, quiet surface), repeated with a check icon
    instead of a single uppercase label. */

@@ -18,13 +18,13 @@ Bu klasör, projenin **`/ds/` demo/katalog Pattern Library'sini** barındırır 
 - `/ds/*` rotaları XML sitemap'ten hariç tutulur ve `noindex, nofollow` ile işaretlidir (bkz. `astro.config.mjs`, `src/ds/layouts/DSLayout.astro`) — arama motorlarına ve gerçek kullanıcı deneyimine yönelik değildir.
 - `src/ds/DESIGN_LANGUAGES.md` ve `src/ds/COMPONENT_THEMING.md`'deki 5 temadan hiçbiri canlı site için kanonik değildir.
 
-**İstisna:** `src/ds/styles/base/variables.css` bu genel kuralın dışındadır — canlı site `MainLayout.astro` üzerinden bu dosyayı doğrudan import eder ve gerçek, tek doğruluk kaynağı token dosyasıdır. Canlı sitenin tasarım kuralları için Canonical Source: `docs/DESIGN_SYSTEM.md`.
+**İstisna:** `src/ds/styles/base/variables.css` bu genel kuralın dışındadır — canlı site `MainLayout.astro` üzerinden bu dosyayı doğrudan import eder ve gerçek, tek doğruluk kaynağı token dosyasıdır. Canlı sitenin tasarım kuralları için Canonical Source: `DESIGN_SYSTEM_GUIDE.md` (kök); canlı tasarım token'ları bu dosyadadır.
 
 ## Özet
 
 | Soru | Cevap |
 |---|---|
-| Canlı sitenin tasarım kuralı nerede? | `docs/DESIGN_SYSTEM.md` |
+| Canlı sitenin tasarım kuralı nerede? | `DESIGN_SYSTEM_GUIDE.md` (kök) |
 | Canlı sitenin gerçek token dosyası nerede? | `src/ds/styles/base/variables.css` (bu klasörde, ama canlı site tarafından da kullanılır) |
 | `/ds/` demo kataloğunun tema sistemi nerede? | `src/ds/DESIGN_LANGUAGES.md`, `src/ds/COMPONENT_THEMING.md` |
 | `/ds/` kataloğu arama motorlarında görünür mü? | Hayır — `noindex, nofollow` + sitemap dışı |

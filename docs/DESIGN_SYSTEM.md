@@ -1,4 +1,4 @@
-> **DURUM: ARŞİVLENECEK / GÜNCELLEME BEKLİYOR** (Faz 1 durum bandı, 2026-10-07). Başlıktaki eski proje adı marka adı olarak kullanılmaz; tek marka Avrasya İşitme Cihazları'dır (BRAND_SOT §1). Teknik içerik ileride `docs/tech/` mimarisine eşlenecektir. Bu belgenin aşağıdaki içeriği Faz 1'de **değiştirilmedi**. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
+> **DURUM: ARŞİVLENECEK / GÜNCELLEME BEKLİYOR** (Faz 1 durum bandı, 2026-10-07). Başlıktaki eski proje adı marka adı olarak kullanılmaz; tek marka Avrasya İşitme Cihazları'dır (BRAND_SOT §1). Teknik içerik ileride `docs/tech/` mimarisine eşlenecektir. Bu belge güncel tasarım kuralları için kanonik kaynak değildir ve arşivlenmeye adaydır: güncel tasarım kuralları `DESIGN_SYSTEM_GUIDE.md` (kök), canlı tasarım token'ları `src/ds/styles/base/variables.css` dosyasındadır. Bu belgenin içeriği Faz 1'de **değiştirilmedi**; sonradan yalnızca "Uygulama notları" bloğu eklendi ("Component Kuralları" bölümünün sonunda) ve bu notlar ileride uygun bir teknik belgeye taşınmalıdır. Çelişki olursa öncelik: SoT (`docs/source-of-truth/*`) > `MASTER_PLAN.md` > kök belgeler > `docs/strategy/*` ve `docs/tech/*` > bu belge. Ayrıntı: `docs/tech/DOC_MIGRATION_MAP.md` §5–§6.
 
 # En İyi Cihaz - Design System
 
@@ -395,6 +395,18 @@ Her component
 - kendi klasöründe bulunmalıdır.
 - kendi CSS dosyasını kullanmalıdır.
 - yalnızca Design Token kullanmalıdır.
+
+---
+
+## Uygulama notları (projede doğrulanmış tuzaklar)
+
+- **Kategori rengi sıraya değil veriye bağlanır.** Örnek: bağlantı yoluna göre (`/uygulama-ayar/…` turkuaz, `/servis-bakim/…` amber). Kart sırası değişince renk bozulmaz.
+- **Ortak bileşeni değiştirmeden:** sayfa kapsamlı `<style is:global>` blokları yalnızca o sayfanın CSS paketine girer. Bileşenlerin kapsamlı (`data-astro-cid`) kuralları için seçici `body` ile, ikon hover kuralları ayrıca `[class]` ile güçlendirilir.
+- **Giriş animasyonu hover yükselmesini ezer.** `data-rise` animasyonunun son kareyi tutan (`fill-mode: both`) olduğu kartlarda `transform` hover'ı yalnızca `!important` ile çalışır; bu durumda `prefers-reduced-motion` kuralı da `!important` olmalıdır.
+- **Tanımsız spacing token'ı bildirimi geçersiz kılar.** Ölçekte yalnızca `--space-0…6, 8, 10, 12, 16, 20, 24` vardır; `--space-7`, `--space-14` gibi adlar padding/margin'i sessizce 0 yapar.
+- **Ölçüm bozulmaz.** Telefon, WhatsApp ve yol tarifi bağlantıları `src/lib/consent/events.ts` ile hedeften sınıflandırılır; `link_location` ata sınıf adlarından türer. Hero gibi bölümlerde yeni sınıf adı kuralları tetikleyebilir; bu durumda `data-track-location` kullanılır.
+- **İletişim butonları** `data-contact-action` ile ortak görünümü alır (`src/ds/styles/base/contact-actions.css`, `src/lib/contact-action.ts`).
+- **Henüz token olmayan renkler:** Kategori vurgu renkleri (turkuaz `#0f766e`, amber `#b45309`, açık mavi `#eff6ff`) şu an sayfa kapsamlı CSS'te sabittir. Kalıcı token'a çevrilmesi `variables.css` değişikliği gerektirir ve ayrı kararla yapılır; bu bölüm token'ları değiştirmez.
 
 ---
 

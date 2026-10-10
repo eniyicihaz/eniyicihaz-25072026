@@ -23,7 +23,7 @@
 //
 // Hero image: Sonic Enchant BTE, a fresh model variant not yet used by
 // any prior page this session (verified in public/images/sonic/models/
-// enchant-bte.webp).
+// sonic-enchant-bte-transparent.webp).
 
 import type { BrandPageHeroContent } from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
 import { contactConfig } from "../../config";
@@ -59,7 +59,7 @@ export const basariHikayeleriHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/sonic/models/enchant-bte.webp",
+    src: "/images/sonic/models/sonic-enchant-bte-transparent.webp",
     alt: "Kullanıcıların günlük hayatında olumlu değişim yaşamasına katkı sağlayabilecek Sonic Enchant BTE işitme cihazı görseli",
   },
   floatingCard: {

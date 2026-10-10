@@ -4,9 +4,10 @@
 // not a copy of OticonHero — light background, the site's own blue accent
 // (--color-primary, untouched/unscoped), and its own layout. Contact links
 // come from the shared contactConfig, never hardcoded.
-import { Phone, MessageCircle, ShieldCheck, Stethoscope, CalendarClock } from "lucide-astro";
+import { Phone, MessageCircle, ShieldCheck, Stethoscope, CalendarClock, ArrowRight, ArrowDown } from "lucide-astro";
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
 import { sgkHero } from "../../../data/sgk/hero";
+import { sgkProcess } from "../../../data/sgk/process";
 import { contactConfig } from "../../../config";
 
 const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
@@ -15,7 +16,7 @@ const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
 <section class="sgk-hero" aria-labelledby="sgk-hero-title">
   <div class="sgk-hero__bg" aria-hidden="true"></div>
 
-  <div class="sgk-hero__inner sgk-hero__inner--text-only">
+  <div class="sgk-hero__inner">
     <div class="sgk-hero__content">
       <p class="sgk-hero__badge" data-rise>{sgkHero.badge}</p>
 
@@ -59,6 +60,29 @@ const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
         }
       </div>
     </div>
+
+    <aside class="sgk-hero__panel" aria-labelledby="sgk-hero-panel-title" data-rise>
+      <h2 class="sgk-hero__panel-title" id="sgk-hero-panel-title">{sgkHero.panelTitle}</h2>
+
+      <ol class="sgk-hero__steps">
+        {
+          sgkProcess.steps.map((step) => (
+            <li>
+              <a class="sgk-hero__step" href={step.href}>
+                <span class="sgk-hero__step-number" aria-hidden="true">{step.number}</span>
+                <span class="sgk-hero__step-title">{step.title}</span>
+                <ArrowRight class="sgk-hero__step-arrow" size={16} stroke-width={2} aria-hidden="true" />
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+
+      <a class="sgk-hero__panel-link" href={sgkHero.panelLinkHref}>
+        <span>{sgkHero.panelLinkLabel}</span>
+        <ArrowDown size={16} stroke-width={2} aria-hidden="true" />
+      </a>
+    </aside>
   </div>
 </section>
 
@@ -151,19 +175,10 @@ const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
     margin-inline: auto;
     padding-inline: var(--space-6);
     display: grid;
-    grid-template-columns: 54% 46%;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
     align-items: center;
     gap: var(--space-12);
     width: 100%;
-  }
-
-  /* Text-only hero (no image): single readable column. */
-  .sgk-hero__inner--text-only {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .sgk-hero__inner--text-only .sgk-hero__content {
-    max-width: 820px;
   }
 
   /* --- Left: content --------------------------------------------------- */
@@ -252,104 +267,105 @@ const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
     color: var(--color-text-soft);
   }
 
-  /* --- Right: premium-framed image + floating card ------------------------ */
+  /* --- Right: SGK process panel (information, not imagery) -------------- */
 
-  .sgk-hero__visual {
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-
-  .sgk-hero__glow {
-    position: absolute;
-    inset: -8%;
-    z-index: -1;
-    background: radial-gradient(closest-side, rgb(37 99 235 / 0.28), transparent 72%);
-    filter: blur(40px);
-  }
-
-  .sgk-hero__frame {
-    position: relative;
-    width: 100%;
-    max-width: 520px;
-    border-radius: var(--radius-2xl);
-    overflow: hidden;
-    border: 1px solid rgb(37 99 235 / 0.12);
+  .sgk-hero__panel {
+    padding: var(--space-8) var(--space-6);
     background: var(--color-white);
-    box-shadow:
-      0 30px 60px -24px rgb(37 99 235 / 0.35),
-      var(--shadow-lg);
+    border: 1px solid rgb(37 99 235 / 0.16);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
   }
 
-  .sgk-hero__image {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  /* Small "current year" chip — ties the hero to the real 2026 figures
-     further down the page without repeating any amount. */
-  .sgk-hero__date-chip {
-    position: absolute;
-    top: var(--space-4);
-    right: var(--space-4);
-    z-index: 1;
-    padding: var(--space-1) var(--space-3);
-    border-radius: var(--radius-full);
-    background: var(--color-primary);
-    color: var(--color-text-inverse);
-    font-size: var(--font-size-xs);
+  .sgk-hero__panel-title {
+    margin: 0;
+    font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
-    letter-spacing: 0.02em;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .sgk-hero__floating {
-    position: absolute;
-    left: var(--space-4);
-    bottom: calc(-1 * var(--space-6));
-    width: 260px;
-    max-width: calc(100% - var(--space-4));
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    padding: var(--space-4) var(--space-5);
-    background: rgb(255 255 255 / 0.72);
-    border: 1px solid rgb(255 255 255 / 0.6);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-  }
-
-  .sgk-hero__floating-icon {
-    display: grid;
-    place-items: center;
-    flex: none;
-    width: 34px;
-    height: 34px;
-    border-radius: var(--radius-lg);
-    background: rgb(37 99 235 / 0.12);
-    color: var(--color-primary);
-  }
-
-  .sgk-hero__floating-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-
-  .sgk-hero__floating-title {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
     color: var(--color-text);
   }
 
-  .sgk-hero__floating-desc {
-    font-size: var(--font-size-xs);
-    line-height: var(--line-height-relaxed);
-    color: var(--color-text-muted);
+  .sgk-hero__steps {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sgk-hero__step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .sgk-hero__step:hover {
+    border-color: var(--color-primary);
+    background: var(--color-white);
+  }
+
+  .sgk-hero__step:focus-visible,
+  .sgk-hero__panel-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .sgk-hero__step-number {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: rgb(37 99 235 / 0.1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  .sgk-hero__step-title {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.35;
+  }
+
+  .sgk-hero__step :global(.sgk-hero__step-arrow) {
+    flex: none;
+    color: var(--color-text-soft);
+    transition: color var(--transition-base);
+  }
+
+  .sgk-hero__step:hover :global(.sgk-hero__step-arrow) {
+    color: var(--color-primary);
+  }
+
+  .sgk-hero__panel-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.5;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sgk-hero__panel-link:hover {
+    text-decoration: underline;
   }
 
   /* --- Entrance: progressive-enhancement, transition-based (not
@@ -371,7 +387,7 @@ const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
   .sgk-hero[data-anim="armed"] .sgk-hero__intro { transition-delay: 120ms; }
   .sgk-hero[data-anim="armed"] .sgk-hero__actions { transition-delay: 160ms; }
   .sgk-hero[data-anim="armed"] .sgk-hero__trust { transition-delay: 200ms; }
-  .sgk-hero[data-anim="armed"] .sgk-hero__visual { transition-delay: 140ms; }
+  .sgk-hero[data-anim="armed"] .sgk-hero__panel { transition-delay: 140ms; }
 
   /* --- Responsive ----------------------------------------------------- */
 
@@ -382,39 +398,46 @@ const trustIcons = [ShieldCheck, Stethoscope, CalendarClock];
 
     .sgk-hero__inner {
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--space-12);
+      gap: var(--space-10);
     }
 
-    .sgk-hero__visual {
-      order: -1;
-      flex-direction: column;
-    }
-
-    .sgk-hero__frame {
-      max-width: 460px;
-      margin-inline: auto;
-    }
-
-    .sgk-hero__floating {
-      position: static;
-      width: 100%;
-      max-width: 100%;
-      margin-top: var(--space-6);
+    .sgk-hero__panel {
+      max-width: 36rem;
     }
   }
 
   @media (max-width: 640px) {
+    .sgk-hero {
+      padding-block: var(--space-10);
+    }
+
+    .sgk-hero__inner {
+      gap: var(--space-6);
+    }
+
     .sgk-hero__heading {
       font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.25rem);
     }
 
+    .sgk-hero__intro {
+      font-size: var(--font-size-md);
+      line-height: 1.6;
+    }
+
     .sgk-hero__trust {
       grid-template-columns: minmax(0, 1fr);
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
     }
 
     .sgk-hero__actions {
       flex-direction: column;
       align-items: stretch;
+      margin-top: var(--space-6);
+    }
+
+    .sgk-hero__panel {
+      padding: var(--space-6) var(--space-4);
     }
   }
 
