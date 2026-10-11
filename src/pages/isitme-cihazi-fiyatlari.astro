@@ -174,14 +174,18 @@ const locationCard = {
 
   <GuideSection {...localSection} tone="alt">
     <div class="pg-local">
-      {localContent.paragraphs.map((t) => <p class="pg-local__p">{t}</p>)}
-      <ul class="pg-local__items">
-        {localContent.items.map((it) => <li><strong>{it.title}.</strong> {it.text}</li>)}
-      </ul>
-      <p class="pg-local__p">{localContent.otherAreas}</p>
-      <ul class="pg-local__links">
-        {localContent.links.map((l) => <li><a class="pg-local__link" href={l.href}>{l.label}</a></li>)}
-      </ul>
+      <div class="pg-local__main">
+        {localContent.paragraphs.map((t) => <p class="pg-local__p">{t}</p>)}
+        <ul class="pg-local__items">
+          {localContent.items.map((it) => <li><strong>{it.title}.</strong> {it.text}</li>)}
+        </ul>
+      </div>
+      <div class="pg-local__areas">
+        <p class="pg-local__areas-text">{localContent.otherAreas}</p>
+        <ul class="pg-local__links">
+          {localContent.links.map((l) => <li><a class="pg-local__link" href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
     </div>
   </GuideSection>
 
@@ -197,37 +201,90 @@ const locationCard = {
 </MainLayout>
 
 <style>
+  /* Yerel bölüm ("Darıca · Merkezimiz"): GuideSection başlığı kapsayıcının sol kenarına hizalıdır;
+     içerik de aynı sol kenardan, aynı genişlikte başlar (önceden 42rem'lik ortalanmış bir blok ve
+     ortalanmış metin, başlıktan kopuk ikinci bir sütun oluşturuyordu). ≥900 px: solda ziyaret
+     metni + hazırlık listesi, sağda Gebze/Çayırova ve bağlantılar (üst hizalar aynı). Altında tek sütun. */
   .pg-local {
-    max-width: 42rem;
-    margin-inline: auto;
-    text-align: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .pg-local__main {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 44rem;
   }
 
   .pg-local__p {
-    margin: var(--space-4) 0 0;
+    margin: 0;
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
   }
 
   .pg-local__items {
-    margin: var(--space-4) 0 0;
-    padding: 0;
+    margin: var(--space-2) 0 0;
+    padding: var(--space-5) 0 0;
     list-style: none;
     display: grid;
     gap: var(--space-3);
+    border-top: 1px solid var(--color-border);
     color: var(--color-text-muted);
     line-height: var(--line-height-relaxed);
   }
 
+  .pg-local__items li {
+    position: relative;
+    padding-left: var(--space-6);
+  }
+
+  /* Liste işareti: dekoratif nokta (anlam metindedir). */
+  .pg-local__items li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0.65em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+
+  .pg-local__items strong {
+    color: var(--color-text);
+  }
+
+  .pg-local__areas {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+  }
+
+  .pg-local__areas-text {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
   .pg-local__links {
-    margin: var(--space-6) 0 0;
+    margin: var(--space-5) 0 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: var(--space-3);
+  }
+
+  @media (min-width: 900px) {
+    .pg-local {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: var(--space-12);
+    }
   }
 
   .pg-local__link {
@@ -283,6 +340,14 @@ const locationCard = {
   @media (max-width: 640px) {
     .pg-breadcrumb {
       padding-inline: var(--space-4);
+    }
+
+    .pg-local__p {
+      font-size: var(--font-size-md);
+    }
+
+    .pg-local__areas {
+      padding: var(--space-5);
     }
   }
 </style>
