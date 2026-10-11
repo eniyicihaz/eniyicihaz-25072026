@@ -39,6 +39,9 @@ function dsDevRoutes() {
 // veya eksik URL üretir.
 export default defineConfig({
   site: 'https://www.eniyicihaz.com',
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [
     dsDevRoutes(),
     sitemap({
