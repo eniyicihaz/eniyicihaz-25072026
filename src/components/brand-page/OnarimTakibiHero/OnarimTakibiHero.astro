@@ -1,0 +1,687 @@
+---
+// OnarimTakibiHero — /servis-bakim/onarim-takibi sayfasına özel hero: solda mevcut içerik (rozet, başlık, iki paragraf, CTA'lar),
+// sağda "dijital servis kaydı ve bilgilendirme akışı" illüstrasyonu. Ortak BrandPageHero (59 sayfa) DEĞİŞMEZ; bu bileşen aynı
+// hero verisini (data/onarim-takibi/hero.ts: metinler, CTA'lar, arka plan gradyanı, dalga rengi) aynen kullanır.
+// İllüstrasyon içeriği ve her ifadenin kaynağı: data/onarim-takibi/hero-visual.ts. Bilgilendiricidir; canlı takip, panel veya
+// otomatik bildirim göstermez. Yalnızca Astro + CSS + inline SVG; JavaScript ve sürekli animasyon yoktur.
+// Masaüstü (>=1200): iki sütun. 680–1199: metin üstte, illüstrasyon altta (en çok 560 px). <680: sadeleştirilmiş şema
+// (kayıt kartı + 3 numaralı düğüm; iletişim kartları gizlenir, CTA'lar zaten hemen üstte).
+import { Phone, FileText } from "lucide-astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
+import { standardCtaLabel } from "../../../lib/cta-labels";
+import type { BrandPageHeroContent } from "../BrandPageHero/BrandPageHero.astro";
+import { onarimTakibiHeroVisual as visual } from "../../../data/onarim-takibi/hero-visual";
+
+interface Props {
+  data: BrandPageHeroContent;
+}
+
+const { data } = Astro.props;
+const ctas = [data.ctaPrimary, data.ctaSecondary];
+const heroStyle = [
+  `--oth-accent:${data.accentColor}`,
+  data.heroBackground ? `--oth-bg:${data.heroBackground}` : "",
+  data.heroBaseBg ? `--oth-base:${data.heroBaseBg}` : "",
+  data.heroWaveColor ? `--oth-wave-color:${data.heroWaveColor}` : "",
+  data.heroWaveOpacity ? `--oth-wave-opacity:${data.heroWaveOpacity}` : "",
+  `--oth-accent-soft:${data.accentColorSoft}`,
+  `--oth-accent-border:${data.accentColorBorder}`,
+].filter(Boolean).join(";");
+---
+
+<section class="oth" aria-labelledby="brand-page-hero-title" style={heroStyle} data-track-location="hero">
+  <div class="oth__bg" aria-hidden="true"></div>
+  <div class="oth__wave" aria-hidden="true"></div>
+
+  <div class="oth__inner">
+    <div class="oth__content">
+      <p class="oth__badge">{data.badge}</p>
+
+      <h1 class="oth__heading" id="brand-page-hero-title">
+        {data.headingLines.map((line) => <span class="oth__heading-line">{line}</span>)}
+      </h1>
+
+      {data.paragraphs.map((p) => <p class="oth__paragraph">{p}</p>)}
+
+      <div class="oth__actions">
+        {
+          ctas.map((cta) => (
+            <a class="oth__cta" href={cta.href} data-contact-action={contactAction(cta.href)}>
+              {contactAction(cta.href) === "whatsapp" ? <WhatsAppIcon size={20} /> : <Phone size={18} stroke-width={2} aria-hidden="true" />}
+              <span>{standardCtaLabel(cta.label, cta.href)}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="oth__visual" role="group" aria-label={visual.label}>
+      <div class="oth__stage">
+        <svg class="oth__lines" viewBox="0 0 560 560" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="oth-spoke" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e879f9" stop-opacity="0.85"></stop>
+              <stop offset="1" stop-color="#2dd4bf" stop-opacity="0.85"></stop>
+            </linearGradient>
+          </defs>
+          <path class="oth__spoke" d="M 200 240 C 200 278, 95 262, 95 298" stroke="url(#oth-spoke)"></path>
+          <path class="oth__spoke oth__spoke--optional" d="M 280 240 L 280 298" stroke="url(#oth-spoke)"></path>
+          <path class="oth__spoke" d="M 360 240 C 360 278, 465 262, 465 298" stroke="url(#oth-spoke)"></path>
+          <circle class="oth__dot" cx="200" cy="240" r="3.5"></circle>
+          <circle class="oth__dot" cx="280" cy="240" r="3.5"></circle>
+          <circle class="oth__dot" cx="360" cy="240" r="3.5"></circle>
+        </svg>
+
+        <div class="oth__record">
+          <span class="oth__record-icon" aria-hidden="true">
+            <FileText size={28} stroke-width={1.75} />
+          </span>
+          <div class="oth__record-text">
+            <p class="oth__record-title">{visual.record.title}</p>
+            <p class="oth__record-note">{visual.record.note}</p>
+          </div>
+        </div>
+
+        <ol class="oth__nodes">
+          {
+            visual.nodes.map((node, i) => (
+              <li class:list={["oth__node", { "oth__node--optional": node.optional }]}>
+                <span class="oth__num" aria-hidden="true">{i + 1}</span>
+                <p class="oth__node-title">
+                  <span class="oth__full">{node.title}</span>
+                  <span class="oth__short">{node.short}</span>
+                </p>
+                <p class="oth__node-note">{node.note}</p>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="oth__contacts">
+          <a class="oth__contact oth__contact--phone" href={data.ctaPrimary.href}>
+            <span class="oth__contact-icon" aria-hidden="true"><Phone size={20} stroke-width={2} /></span>
+            <span class="oth__contact-text">
+              <span class="oth__contact-title">{visual.contacts.phone.title}</span>
+              <span class="oth__contact-note">{visual.contacts.phone.note}</span>
+            </span>
+          </a>
+          <a class="oth__contact oth__contact--wa" href={data.ctaSecondary.href}>
+            <span class="oth__contact-icon" aria-hidden="true"><WhatsAppIcon size={22} /></span>
+            <span class="oth__contact-text">
+              <span class="oth__contact-title">{visual.contacts.whatsapp.title}</span>
+              <span class="oth__contact-note">{visual.contacts.whatsapp.note}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .oth {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    display: flex;
+    align-items: center;
+    background: var(--oth-base, #050505);
+    color: var(--color-text-inverse);
+    padding-block: var(--space-16);
+  }
+
+  .oth__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--oth-bg, #050505);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .oth__wave {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--oth-wave-color, transparent);
+    opacity: var(--oth-wave-opacity, 0);
+    -webkit-mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+  }
+
+  .oth__inner {
+    position: relative;
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  /* --- Sol: mevcut hero içeriği ------------------------------------------- */
+  .oth__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--oth-accent-border);
+    border-radius: var(--radius-full);
+    background: var(--oth-accent-soft);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--oth-accent) 42%, #ffffff);
+  }
+
+  .oth__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--color-text-inverse);
+  }
+
+  .oth__heading-line {
+    display: block;
+  }
+
+  .oth__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 36rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.72);
+  }
+
+  .oth__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  /* CTA görünümü ortak iletişim stilinden gelir (contact-actions.css: telefon mavi dolu, WhatsApp beyaz + yeşil glif). */
+
+  /* --- Sağ: illüstrasyon -------------------------------------------------- */
+  .oth__visual {
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+    min-width: 0;
+  }
+
+  .oth__stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 560 / 560;
+  }
+
+  /* Ambient ışık: kart arkasında mor, alt düğümde turkuaz; kenarsız, arka plana gömülü. */
+  .oth__stage::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -6% -8%;
+    pointer-events: none;
+    background:
+      radial-gradient(closest-side at 50% 24%, rgb(192 38 211 / 0.34), transparent 100%),
+      radial-gradient(closest-side at 82% 58%, rgb(45 212 191 / 0.16), transparent 100%),
+      radial-gradient(closest-side at 16% 62%, rgb(139 92 246 / 0.2), transparent 100%);
+    filter: blur(28px);
+  }
+
+  .oth__lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .oth__spoke {
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.85;
+  }
+
+  /* Her cihaz teknik servise gitmez: "gerekirse" adımının çizgisi kesikli. */
+  .oth__spoke--optional {
+    stroke-dasharray: 5 6;
+  }
+
+  .oth__dot {
+    fill: #e879f9;
+    opacity: 0.9;
+  }
+
+  /* Servis kaydı kartı: hafif cam; arkasında iki kayıt katmanı derinlik verir. */
+  .oth__record {
+    position: absolute;
+    left: 23.21%;
+    top: 8.93%;
+    width: 53.57%;
+    height: 33.93%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(155deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0.05));
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      0 30px 50px -28px rgb(0 0 0 / 0.85),
+      0 0 60px -18px rgb(192 38 211 / 0.55);
+  }
+
+  .oth__record::before,
+  .oth__record::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: inherit;
+    background: rgb(255 255 255 / 0.04);
+  }
+
+  .oth__record::before {
+    transform: translate(12px, -10px) scale(0.96);
+    opacity: 0.8;
+  }
+
+  .oth__record::after {
+    transform: translate(24px, -20px) scale(0.92);
+    opacity: 0.5;
+  }
+
+  .oth__record-icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-xl);
+    color: #ffffff;
+    background: linear-gradient(135deg, #d946ef, #7c3aed);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.35),
+      0 12px 26px -10px rgb(192 38 211 / 0.9);
+  }
+
+  .oth__record-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+  }
+
+  .oth__record-note {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    color: rgb(255 255 255 / 0.74);
+  }
+
+  /* Süreç düğümleri */
+  .oth__nodes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .oth__node {
+    position: absolute;
+    top: 53.21%;
+    width: 31%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .oth__node:nth-child(1) { left: 16.96%; }
+  .oth__node:nth-child(2) { left: 50%; }
+  .oth__node:nth-child(3) { left: 83.04%; }
+
+  .oth__num {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-inline: auto;
+    border-radius: 50%;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    background: radial-gradient(circle at 30% 25%, #a21caf, #3b0764 90%);
+    border: 1.5px solid #e879f9;
+    box-shadow:
+      0 0 0 4px rgb(5 5 5 / 0.8),
+      0 0 22px -2px rgb(232 121 249 / 0.6);
+  }
+
+  .oth__node:nth-child(3) .oth__num {
+    border-color: #2dd4bf;
+    box-shadow:
+      0 0 0 4px rgb(5 5 5 / 0.8),
+      0 0 22px -2px rgb(45 212 191 / 0.55);
+  }
+
+  .oth__node--optional .oth__num {
+    border-style: dashed;
+    border-color: #c4b5fd;
+    box-shadow:
+      0 0 0 4px rgb(5 5 5 / 0.8),
+      0 0 22px -2px rgb(139 92 246 / 0.5);
+  }
+
+  .oth__node-title {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: #ffffff;
+  }
+
+  .oth__node-note {
+    margin: var(--space-1) 0 0;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: rgb(255 255 255 / 0.68);
+  }
+
+  .oth__short {
+    display: none;
+  }
+
+  /* İletişim kartları: müşterinin durumu kendisinin sorabildiği iki yol (hero CTA'larıyla aynı bağlantılar). */
+  .oth__contacts {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 83.57%;
+    height: 14.29%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .oth__contact {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: var(--radius-xl);
+    background: rgb(255 255 255 / 0.07);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 16px 30px -22px rgb(0 0 0 / 0.9);
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
+  }
+
+  .oth__contact-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+  }
+
+  .oth__contact--phone .oth__contact-icon {
+    color: #5eead4;
+    background: rgb(45 212 191 / 0.16);
+  }
+
+  .oth__contact--wa .oth__contact-icon {
+    color: #25d366;
+    background: rgb(37 211 102 / 0.14);
+  }
+
+  .oth__contact-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .oth__contact-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+  }
+
+  .oth__contact-note {
+    margin-top: 2px;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: rgb(255 255 255 / 0.68);
+  }
+
+  @media (hover: hover) {
+    .oth__contact:hover {
+      transform: translateY(-3px);
+      border-color: rgb(255 255 255 / 0.4);
+      background: rgb(255 255 255 / 0.11);
+    }
+  }
+
+  .oth__contact:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+
+  /* --- Geniş masaüstü (>=1200): iki sütun ----------------------------------- */
+  @media (min-width: 1200px) {
+    .oth {
+      min-height: 700px;
+    }
+
+    .oth__inner {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: var(--space-8);
+    }
+
+    .oth__visual {
+      margin-inline: auto 0;
+    }
+  }
+
+  /* --- Mobil (<680): metin ve CTA düzeni -------------------------------------- */
+  @media (max-width: 679px) {
+    .oth {
+      padding-block: var(--space-8);
+    }
+
+    .oth__inner {
+      padding-inline: var(--space-5);
+      gap: var(--space-6);
+    }
+
+    .oth__heading {
+      font-size: clamp(1.625rem, 1.2rem + 2.2vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .oth__paragraph {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+
+    .oth__actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-2);
+    }
+
+    .oth__visual {
+      max-width: 26rem;
+      margin-inline: auto;
+    }
+  }
+
+  /* --- Tablet (680–1199): yalnızca yerleşim boşlukları; mobil kurallarına dokunmaz ------- */
+  @media (min-width: 680px) and (max-width: 1199px) {
+    .oth {
+      padding-block: var(--space-10);
+    }
+
+    .oth__inner {
+      gap: var(--space-8);
+    }
+
+    .oth__visual {
+      max-width: 30rem;
+      margin-inline: 0;
+    }
+  }
+
+  /* --- Tablet + mobil (<1200): sadeleştirilmiş şema ---------------------------------- */
+  @media (max-width: 1199px) {
+    .oth__stage {
+      aspect-ratio: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .oth__stage::before {
+      inset: -10% -6%;
+    }
+
+    .oth__lines,
+    .oth__contacts {
+      display: none;
+    }
+
+    .oth__record {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: auto;
+      height: auto;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      margin-right: 12px;
+      border-radius: var(--radius-xl);
+    }
+
+    .oth__record::before {
+      transform: translate(8px, -7px) scale(0.97);
+    }
+
+    .oth__record::after {
+      display: none;
+    }
+
+    .oth__record-icon {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-lg);
+    }
+
+    .oth__record-icon :global(svg) {
+      width: 22px;
+      height: 22px;
+    }
+
+    .oth__record-title {
+      font-size: 1.0625rem;
+    }
+
+    .oth__record-note {
+      font-size: 0.75rem;
+    }
+
+    /* Kayıt kartından üç düğüme inen ince "dallanma" çizgisi. */
+    .oth__nodes {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-2);
+      padding-top: 26px;
+    }
+
+    .oth__nodes::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: 13px;
+      background: linear-gradient(#e879f9, #c4b5fd);
+    }
+
+    .oth__nodes::after {
+      content: "";
+      position: absolute;
+      top: 13px;
+      left: 16.67%;
+      right: 16.67%;
+      height: 1px;
+      background: linear-gradient(90deg, #e879f9, #c4b5fd, #2dd4bf);
+    }
+
+    .oth__node {
+      position: relative;
+      top: auto;
+      left: auto !important;
+      width: auto;
+      transform: none;
+    }
+
+    .oth__node::before {
+      content: "";
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      height: 13px;
+      border-left: 1px solid #c4b5fd;
+    }
+
+    .oth__node--optional::before {
+      border-left-style: dashed;
+    }
+
+    .oth__num {
+      width: 34px;
+      height: 34px;
+      font-size: var(--font-size-sm);
+      box-shadow:
+        0 0 0 3px rgb(5 5 5 / 0.8),
+        0 0 16px -2px rgb(232 121 249 / 0.55);
+    }
+
+    .oth__node-title {
+      margin-top: var(--space-2);
+      font-size: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .oth__node-note {
+      display: none;
+    }
+
+    .oth__full {
+      display: none;
+    }
+
+    .oth__short {
+      display: inline;
+    }
+  }
+</style>
