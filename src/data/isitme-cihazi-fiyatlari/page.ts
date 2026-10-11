@@ -4,24 +4,26 @@
 // LOKAL BAĞLAM → KAPSAMLI CEVAP → İÇ BAĞLANTI → DÖNÜŞÜM (bu sayfada uygulanan
 // içerik mantığı; sonraki konu merkezi sayfaları da aynı iskeleti kullanır).
 //
-// Ana sorgu: "işitme cihazı fiyatları". Sayfa bilinçli olarak RAKAM İÇERMEZ:
-// COMPANY.md §23 ve PRINCIPLES.md §5 uyarınca site fiyat listesi yayımlamaz,
-// tahmin etmez, türetmez; QUALITY_GATES.md §4 Product/Offer şemasında fiyatı
-// yasaklar. Rakam yerine, fiyatı neyin belirlediği ve kullanıcı için hangi
-// kalemlerin önemli olduğu anlatılır (PRINCIPLES.md §5 "Şeffaflık").
+// Ana sorgu: "işitme cihazı fiyatları". COMPANY.md §23 ve PRINCIPLES.md §5 uyarınca
+// site fiyat listesi yayımlamaz, tahmin etmez, türetmez; QUALITY_GATES.md §4
+// Product/Offer şemasında fiyatı yasaklar. TEK İSTİSNA bu sayfadır (DECISIONS
+// K-Fiyat-1, 2026-10-11): işletme sahibinin onayladığı başlangıç fiyatı ve taksit
+// mesajı pricing.ts'ten gelir; model bazında fiyat listesi yine yoktur ve şemaya
+// fiyat yazılmaz. Fiyatı neyin belirlediği eksiksiz anlatılmaya devam eder.
 //
 // Bu dosyadaki `queries` alanı yalnızca içerik planlama kaydıdır — hiçbir
 // arama hacmi/sıralama verisi içermez (bu ortamda Search Console/Keyword
 // Planner erişimi yok; rakam uydurulmaz).
 import type { GuideLink } from "../../components/price-guide/price-guide.types";
+import { pricing } from "./pricing";
 
 export const PAGE_PATH = "/isitme-cihazi-fiyatlari/";
 export const PAGE_URL = "https://www.eniyicihaz.com/isitme-cihazi-fiyatlari/";
 
 export const pageMeta = {
-  title: "İşitme Cihazı Fiyatları: Fiyatı Ne Belirler? | Darıca",
+  title: `İşitme Cihazı Fiyatları ${pricing.year} | ${pricing.amountLabel}'den Başlıyor`,
   description:
-    "İşitme cihazı fiyatları neye göre değişir? Cihaz türü, teknoloji, şarjlı ve Bluetooth özellikler, SGK desteği ve fiyat bilgisinin Darıca'da nasıl alınacağı.",
+    `${pricing.year}'da yapay zekâ destekli yeni nesil işitme cihazları ${pricing.amountLabel}'den başlıyor. 9 taksite kadar ödeme, fiyatı belirleyen faktörler ve Darıca'da ücretsiz test.`,
   schemaDescription:
     "İşitme cihazı fiyatlarını belirleyen faktörleri, cihaz türlerini, SGK desteğini ve Darıca merkezli süreci anlatan rehber sayfası.",
 };
@@ -35,6 +37,7 @@ export const breadcrumbItems = [
 /** Anchor navigation under the hero — every id below exists on the page. */
 export const toc: GuideLink[] = [
   { label: "Kısa cevap", href: "#hizli-cevap" },
+  { label: "Fiyat ve ödeme", href: "#fiyat-odeme" },
   { label: "Fiyatı belirleyenler", href: "#fiyati-belirleyenler" },
   { label: "Toplam maliyet", href: "#toplam-maliyet" },
   { label: "Teknoloji seviyesi", href: "#teknoloji-seviyesi" },
@@ -52,7 +55,7 @@ export const toc: GuideLink[] = [
 
 /** İçerik planlama kaydı — sayfa metninde doğal biçimde karşılanan sorgu kümeleri. */
 export const queries = {
-  primary: ["işitme cihazı fiyatları", "işitme cihazı ne kadar", "işitme cihazı fiyat listesi", "güncel işitme cihazı fiyatları"],
+  primary: ["işitme cihazı fiyatları", "işitme cihazı fiyatları 2026", "işitme cihazı ne kadar", "işitme cihazı fiyat listesi", "güncel işitme cihazı fiyatları"],
   local: [
     "Darıca işitme cihazı fiyatları",
     "Gebze işitme cihazı fiyatları",
@@ -69,7 +72,8 @@ export const queries = {
       "görünmez işitme cihazı fiyatları",
       "çocuk işitme cihazı fiyatları",
     ],
-    features: ["şarjlı işitme cihazı fiyatları", "Bluetooth işitme cihazı fiyatları"],
+    features: ["şarjlı işitme cihazı fiyatları", "Bluetooth işitme cihazı fiyatları", "yapay zekâ destekli işitme cihazı fiyatları"],
+    payment: ["işitme cihazı taksit", "işitme cihazı ödeme seçenekleri"],
     brands: ["işitme cihazı markaları ve fiyatları", "işitme cihazı modelleri"],
     decision: [
       "işitme cihazı alırken nelere dikkat edilmeli",

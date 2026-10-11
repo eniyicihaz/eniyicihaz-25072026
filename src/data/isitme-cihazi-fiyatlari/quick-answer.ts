@@ -1,6 +1,8 @@
 // Kısa cevap (GEO): kullanıcı sayfaya gelir gelmez temel sorusunu cevaplar.
-// Rakam yok — bkz. page.ts başlığındaki politika notu.
+// İlk cümle onaylı başlangıç fiyatı mesajıdır (pricing.ts, DECISIONS K-Fiyat-1);
+// model bazında fiyat listesi yoktur — bkz. page.ts başlığındaki politika notu.
 import type { GuideLink } from "../../components/price-guide/price-guide.types";
+import { pricing } from "./pricing";
 
 export interface QuickAnswerContent {
   id: string;
@@ -18,7 +20,7 @@ export const quickAnswer: QuickAnswerContent = {
   eyebrow: "Kısa Cevap",
   question: "İşitme cihazı fiyatları ne kadar?",
   answer:
-    "İşitme cihazı fiyatı tek bir rakam değil, geniş bir aralıktır. Aynı işitme kaybı için bile cihaz tipi, teknoloji seviyesi, marka ve model, Bluetooth ve şarj gibi özellikler ile satın alma sonrası hizmetler toplam bedeli belirler. Bu yüzden doğru fiyat, ancak işitme değerlendirmesi ve ihtiyaç konuşmasının ardından netleşir.",
+    `${pricing.message} Size uygun cihazın fiyatı ise tek bir rakam değil, geniş bir aralıktır. Aynı işitme kaybı için bile cihaz tipi, teknoloji seviyesi, marka ve model, Bluetooth ve şarj gibi özellikler ile satın alma sonrası hizmetler toplam bedeli belirler. Bu yüzden doğru fiyat, ancak işitme değerlendirmesi ve ihtiyaç konuşmasının ardından netleşir.`,
   factorsHeading: "İşitme cihazı fiyatlarını neler belirler?",
   factors: [
     "Cihaz tipi ve yerleşimi (kulak arkası, RIC, kulak içi, kanal içi)",
@@ -28,10 +30,10 @@ export const quickAnswer: QuickAnswerContent = {
     "Tek veya çift kulak; uygulama, takip ve teknik servis",
   ],
   transparency: {
-    title: "Bu sayfada neden rakam yok?",
+    title: "Neden model bazında fiyat listesi yok?",
     paragraphs: [
-      "Bu sayfada fiyat listesi ve tahmini rakam paylaşmıyoruz. Bu bir gizleme değil: işitme cihazı, kişiye özel bir değerlendirmenin sonucunda seçildiği için herkese aynı görünen bir liste sizi yanıltır.",
-      "Rakam yerine, fiyatın neye göre oluştuğunu ve sizin için hangi kalemlerin önemli olduğunu eksiksiz anlatıyoruz. SGK tutarları her yıl güncellendiği için güncel tutarları ayrı ve güncel tutulan SGK rehberimizde bulabilirsiniz.",
+      "Başlangıç fiyatını açıkça paylaşıyoruz; ancak model bazında fiyat listesi yayımlamıyoruz. Bu bir gizleme değil: işitme cihazı, kişiye özel bir değerlendirmenin sonucunda seçildiği için herkese aynı görünen bir liste sizi yanıltır.",
+      "Bu yüzden fiyatın neye göre oluştuğunu ve sizin için hangi kalemlerin önemli olduğunu eksiksiz anlatıyoruz. SGK tutarları her yıl güncellendiği için güncel tutarları ayrı ve güncel tutulan SGK rehberimizde bulabilirsiniz.",
     ],
   },
   links: [

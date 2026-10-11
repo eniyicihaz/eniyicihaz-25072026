@@ -89,3 +89,15 @@
 - Özellikle incelenecekler: duplicate / near-copy sayfalar; şehir adı değiştirilmiş sayfalar; ilgisiz hero; başka sayfadan kopyalanmış hero; search intent ile uyuşmayan hero veya metin; eski veya yanlış işletme bilgisi; thin content; cannibalization; yanlış CTA / yanlış hedef.
 - Audit önce rapor olarak sunulur; uygulama ayrı onayla yapılır. Ayrıntı: `MASTER_PLAN.md` §7.1, `docs/tech/TEMPLATES.md` §6.
 - Belge tutarlılık düzeltmeleri: oluşturulmuş Faz 1 belgelerindeki "planlandı" işaretleri güncellendi; QUALITY_GATES §1 niyet sınıflarına "Local" eklendi; DESIGN_SYSTEM_GUIDE ve IMPLEMENTATION_STANDARD'daki otorite cümleleri SoT hiyerarşisine göre düzeltildi (işletme gerçeklerinin kanonik kaynağı SoT; COMPANY.md kısa kanonik özet).
+
+## 2026-10-11 (K-Fiyat-1: Fiyat sayfası için sayfaya özel fiyat istisnası)
+
+> Kaynak: işletme sahibinin kesin kararı (2026-10-11). Global fiyat yayımlama yasağı kaldırılmadı.
+
+- **Kapsam yalnızca `/isitme-cihazi-fiyatlari/`.** Bu sayfada şu mesaj yayımlanır: "2026 yılında yapay zekâ destekli yeni nesil işitme cihazları 20.000 TL'den başlayan fiyatlarla." ve "9 taksite kadar ödeme imkânı".
+- Mesaj hero, kısa cevap, "Fiyat ve Ödeme Seçenekleri" bölümü, ilgili SSS cevapları ve bu sayfanın meta title/description alanlarında kullanılır. Tek veri kaynağı: `src/data/isitme-cihazi-fiyatlari/pricing.ts`.
+- Mesaja KDV, SGK katkısı veya tek/çift cihaz koşulu eklenmez; dipnotla zayıflatılmaz. Banka, kart, faiz, vade farkı veya kampanya bitişi gibi doğrulanmamış ödeme koşulları yazılmaz; "faizsiz", "vade farksız", "tüm kartlara", "her bütçeye uygun" ifadeleri kullanılmaz.
+- **Diğer bütün sayfalarda yasak aynen sürer:** fiyat rakamı ve taksit sayısı başka bir sayfaya eklenmez.
+- **Şema yasağı bu sayfada da sürer:** `Product`, `Offer`, `priceRange` veya başka bir yapılandırılmış veri alanına fiyat yazılmaz. FAQPage, görünür SSS metnini aynen yansıttığı için fiyat cümlesi yalnızca görünür cevap metni olarak yer alır.
+- Fiyat ve taksit [TIME-SENSITIVE]'dır; değiştiğinde yalnızca `pricing.ts` ve PRODUCT_SOT §4 güncellenir.
+- İlgili belgelerdeki istisna referansları: PRINCIPLES.md §5, QUALITY_GATES.md §4, COMPANY.md (Fiyat bilgisi), PRODUCT_SOT §4, INTENT_MAP D4.

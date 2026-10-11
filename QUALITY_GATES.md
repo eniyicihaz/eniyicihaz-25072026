@@ -88,7 +88,7 @@ Bir sayfa, aşağıdakilerin **tamamı** doğrulanmadan yayınlanmaz:
 - [ ] **Article vb. — Yalnızca Uygun Sayfalarda** — Article şeması yalnızca gerçekten makale/rehber niteliğindeki sayfalarda kullanılır; ürün veya hizmet sayfasına Article şeması eklenmez.
 - [ ] **Görünür İçerik/Şema Tutarlılığı** — Şemada beyan edilen her bilgi, sayfada kullanıcının gerçekten gördüğü içerikle birebir örtüşüyor; kullanıcının görmediği bir bilgi şemaya yazılmıyor.
 - [ ] **Sahte Şema Yasağı** — Uydurma rating, review, award, sertifika şeması yok.
-- [ ] **Fiyat/Offer Yasağı** — Sitede cihaz fiyatı yayınlanmasına dair karar verilmediği için (PRODUCT_SOT §4, PRINCIPLES.md §5) hiçbir şemaya fiyat, para birimi veya "başlangıç fiyatı" alanı eklenmiyor.
+- [ ] **Fiyat/Offer Yasağı** — Sitede cihaz fiyatı yayınlanmasına dair karar verilmediği için (PRODUCT_SOT §4, PRINCIPLES.md §5) hiçbir şemaya fiyat, para birimi veya "başlangıç fiyatı" alanı eklenmiyor. Görünür metindeki sayfaya özel fiyat istisnası (`/isitme-cihazi-fiyatlari/`, DECISIONS K-Fiyat-1) bu şema yasağını kaldırmaz.
 
 ---
 

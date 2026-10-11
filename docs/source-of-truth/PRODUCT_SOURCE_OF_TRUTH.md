@@ -99,6 +99,7 @@
 | Telefonda fiyat sorulduğunda verilen gerçek cevap | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | YENİDEN DOĞRULA |
 | Ödeme yöntemleri | Nakit; banka ve kredi kartı | [MEVCUT BELGELERDE VAR] | COMPANY.md §20 | — | YENİDEN DOĞRULA |
 | Taksit seçenekleri | 9 aya kadar taksit | [DOĞRULANDI] **[TIME-SENSITIVE]** | İşletme sahibi | 2026-10-07 | GÜNCEL TUTULMALI |
+| Sayfaya özel fiyat istisnası (K-Fiyat-1) | Yalnızca `/isitme-cihazi-fiyatlari/` sayfasında yayımlanır: "2026 yılında yapay zekâ destekli yeni nesil işitme cihazları 20.000 TL'den başlayan fiyatlarla." ve "9 taksite kadar ödeme imkânı". KDV/SGK/tek-çift cihaz koşulu ve doğrulanmamış ödeme koşulu eklenmez. Diğer sayfalarda ve tüm şemalarda fiyat yayımlanmaz. Kod kaynağı: `src/data/isitme-cihazi-fiyatlari/pricing.ts` | [DOĞRULANDI] (yayın kararı) **[TIME-SENSITIVE]** | İşletme sahibi | 2026-10-11 | GÜNCEL TUTULMALI |
 
 ## 5. Pil / Aksesuar / Kampanyalar
 

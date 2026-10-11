@@ -49,6 +49,7 @@ Kanonik sayfalar mevcut URL'lerdir; bu tablo URL değişikliği önermez.
 Kurallar:
 - D3, D4 ve D5'te Darıca'ya özgü yeni sayfa, yalnızca kanonik sayfanın karşılayamadığı ve SoT'ta doğrulanmış yerel bilgiyle taşınabilen ayrı bir niyet ortaya çıkarsa açılır (§6).
 - D4'te fiyat yayınlama kararı verilmedi (PRODUCT_SOT §4). Cevap modeli: fiyatı belirleyen etkenler, resmî kaynağa dayalı SGK bilgisi ve ücretsiz değerlendirme daveti. Fiyat tutarı yazılmaz.
+  - İstisna (DECISIONS K-Fiyat-1, 2026-10-11): kanonik D4 sayfası `/isitme-cihazi-fiyatlari/`, onaylı başlangıç fiyatı ve taksit mesajını taşır. Bu istisna D4'ün başka sayfalarına (Darıca hub, yerel sayfalar, segmentler) uygulanmaz.
 - D6'da deneme dili SERVICE_SOT §1.5'e uyar: merkezdeki yaklaşık 20 dakikalık demo (H7) ile satın alarak 7 güne kadar deneme (H28) ayrı anlatılır; kulak içi cihazlarda eve deneme vaat edilmez.
 
 ## 4. Gerçek Kullanıcı Soruları → Kanonik Cevap Yeri

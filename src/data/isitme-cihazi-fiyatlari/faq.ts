@@ -1,8 +1,10 @@
-// SSS — 15 soru, gerçek arama niyetleri. BrandPageFaq, FAQPage şemasını bu
-// verinin AYNISINDAN üretir (görünür içerik = şema; QUALITY_GATES.md §4).
-// Cevaplar kısa ve doğrudan alıntılanabilir (GEO); derinlik için sayfadaki
-// bölümlere ve ilgili sayfalara güvenilir. Hiçbir cevapta fiyat/tutar yok.
+// SSS — 16 soru (mevcut 15 + yapay zekâ fiyat sorusu), gerçek arama niyetleri. BrandPageFaq,
+// FAQPage şemasını bu verinin AYNISINDAN üretir (görünür içerik = şema; QUALITY_GATES.md §4).
+// Cevaplar kısa ve doğrudan alıntılanabilir (GEO); derinlik için sayfadaki bölümlere ve ilgili
+// sayfalara güvenilir. Fiyat/taksit yalnızca pricing.ts'teki onaylı metinle ve yalnızca görünür
+// cevap metninde geçer (DECISIONS K-Fiyat-1); Product/Offer/priceRange şeması yoktur.
 import { contactConfig } from "../../config/contact";
+import { pricing } from "./pricing";
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 
 export const priceGuideFaq: BrandPageFaqContent = {
@@ -26,8 +28,7 @@ export const priceGuideFaq: BrandPageFaqContent = {
         },
         {
           question: "İşitme cihazı ne kadar?",
-          answer:
-            "Tek bir fiyat yoktur; bedel kişiye ve seçilen cihaza göre geniş bir aralıkta değişir. Şu an bu sayfada fiyat rakamı paylaşmıyoruz; işitme değerlendirmesinden sonra, ihtiyacınıza uygun seçenekler ve bunların fiyat bilgisi birlikte netleşir.",
+          answer: `${pricing.message} Size uygun cihazın bedeli ise kişiye ve seçilen cihaza göre geniş bir aralıkta değişir; işitme değerlendirmesinden sonra, ihtiyacınıza uygun seçenekler ve bunların fiyat bilgisi birlikte netleşir.`,
         },
         {
           question: "Şarjlı işitme cihazları daha mı pahalı?",
@@ -50,8 +51,12 @@ export const priceGuideFaq: BrandPageFaqContent = {
             "Herkes için geçerli tek bir 'en ucuz cihaz' yoktur; uygun cihaz işitme kaybınıza ve ihtiyacınıza göre değişir. Bütçeniz önceliğinizse bunu işitme testi sırasında paylaşın; ihtiyacınızı karşılayan daha sade seçenekleri birlikte değerlendirelim.",
         },
         {
+          question: "Yapay zekâ destekli işitme cihazlarının fiyatı ne kadar?",
+          answer: `${pricing.message} Yapay zekâ destekli ses işleme her modelde bulunmaz; size uygun olup olmadığını ve fiyat bilgisini işitme testinden sonra birlikte değerlendiririz.`,
+        },
+        {
           question: "Ödeme yöntemleri nelerdir?",
-          answer: "Nakit, banka kartı ve kredi kartı ile ödeme kabul ediyoruz.",
+          answer: `Nakit, banka kartı ve kredi kartı ile ödeme kabul ediyoruz; ${pricing.installmentLabel} sunuyoruz.`,
         },
       ],
     },
