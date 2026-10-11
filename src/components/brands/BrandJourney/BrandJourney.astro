@@ -1,0 +1,581 @@
+---
+// BrandJourney — /markalar/ sayfasına özel süreç grafiği: 4 aşama, kıvrımlı bir çizgiyle birbirine bağlı.
+// Veri: data/brands/journey.ts. Yalnızca Astro + CSS + inline SVG; JavaScript yok.
+// Masaüstü (>=1100): dalgalı çizgi üzerinde basamaklı 4 düğüm + kart. 720–1099: 2 × 2 kompakt satır (solda düğüm,
+// sağda kart; aynı satırdaki iki aşama noktalı çizgiyle bağlı). <720: kompakt dikey zaman çizelgesi.
+// Her kart, "stretched link" ile bütünüyle tıklanabilir (tek bağlantı: kart içindeki metin bağlantısı).
+// Akış animasyonu yalnızca CSS (stroke-dashoffset); prefers-reduced-motion'da kapalıdır.
+import { ArrowRight } from "lucide-astro";
+import { brandJourney } from "../../../data/brands/journey";
+
+const { eyebrow, heading, intro, steps } = brandJourney;
+---
+
+<section class="bj" id="marka-yolculugu" aria-labelledby="brand-journey-title">
+  <div class="bj__inner">
+    <header class="bj__header">
+      <p class="bj__eyebrow">{eyebrow}</p>
+      <h2 class="bj__heading" id="brand-journey-title">{heading}</h2>
+      <p class="bj__intro">{intro}</p>
+    </header>
+
+    <div class="bj__flow">
+      <svg class="bj__wave" viewBox="0 0 1000 150" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="bj-grad" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2563eb" />
+            <stop offset="0.36" stop-color="#0e7490" />
+            <stop offset="0.64" stop-color="#7c3aed" />
+            <stop offset="1" stop-color="#d97706" />
+          </linearGradient>
+        </defs>
+        <path
+          class="bj__wave-base"
+          d="M 10 44 C 60 44, 80 44, 125 44 C 250 44, 250 100, 375 100 C 500 100, 500 44, 625 44 C 750 44, 750 100, 875 100 C 930 100, 960 100, 990 100"
+          stroke="url(#bj-grad)"
+        />
+        <path
+          class="bj__wave-flow"
+          d="M 10 44 C 60 44, 80 44, 125 44 C 250 44, 250 100, 375 100 C 500 100, 500 44, 625 44 C 750 44, 750 100, 875 100 C 930 100, 960 100, 990 100"
+          stroke="url(#bj-grad)"
+        />
+      </svg>
+
+      <ol class="bj__list">
+        {
+          steps.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <li class={`bj__step bj__step--${step.tone}`}>
+                <span class="bj__node" data-n={i + 1} aria-hidden="true">
+                  <Icon size={26} stroke-width={1.9} />
+                </span>
+                <div class="bj__card">
+                  <p class="bj__label">{step.label}</p>
+                  <h3 class="bj__title">{step.title}</h3>
+                  <p class="bj__text">{step.text}</p>
+                  <a class="bj__link" href={step.href}>
+                    <span>{step.linkLabel}</span>
+                    <ArrowRight size={16} stroke-width={2.25} aria-hidden="true" />
+                  </a>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bj {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    background: #ffffff;
+    padding-block: var(--space-12) var(--space-10);
+  }
+
+  /* Ambient ışık: çok düşük kontrastlı iki yumuşak leke (kenarsız). */
+  .bj::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(40% 55% at 12% 20%, rgb(37 99 235 / 0.07), transparent 100%),
+      radial-gradient(40% 55% at 90% 80%, rgb(124 58 237 / 0.06), transparent 100%);
+  }
+
+  .bj__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .bj__header {
+    max-width: 44rem;
+    margin: 0 auto var(--space-8);
+    text-align: center;
+  }
+
+  .bj__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .bj__heading {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.625rem, 1.1rem + 1.8vw, 2.375rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--color-text);
+  }
+
+  .bj__intro {
+    margin: var(--space-2) auto 0;
+    max-width: 38rem;
+    font-size: var(--font-size-md);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .bj__flow {
+    position: relative;
+  }
+
+  .bj__wave {
+    display: none;
+  }
+
+  .bj__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .bj__step {
+    --tone: var(--color-primary);
+    --tone-2: #1d4ed8;
+    --tone-soft: rgb(37 99 235 / 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bj__step--teal {
+    --tone: #0e7490;
+    --tone-2: #0f766e;
+    --tone-soft: rgb(14 116 144 / 0.1);
+  }
+
+  .bj__step--violet {
+    --tone: #7c3aed;
+    --tone-2: #6d28d9;
+    --tone-soft: rgb(124 58 237 / 0.1);
+  }
+
+  .bj__step--amber {
+    --tone: #d97706;
+    --tone-2: #b45309;
+    --tone-soft: rgb(217 119 6 / 0.12);
+  }
+
+  .bj__node {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    color: #ffffff;
+    background: linear-gradient(145deg, var(--tone), var(--tone-2));
+    box-shadow:
+      0 0 0 6px #ffffff,
+      0 0 0 7px var(--tone-soft),
+      0 14px 24px -10px var(--tone);
+    position: relative;
+    z-index: 1;
+  }
+
+  .bj__card {
+    position: relative;
+    width: 100%;
+    margin-top: var(--space-3);
+    padding: var(--space-4) var(--space-5) var(--space-3);
+    border: 1px solid color-mix(in srgb, var(--tone) 22%, var(--color-border));
+    border-top: 3px solid var(--tone);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--tone) 5%, #ffffff), #ffffff 55%);
+    box-shadow: var(--shadow-sm);
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+
+  .bj__label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    color: var(--tone-2);
+  }
+
+  .bj__title {
+    margin: 2px 0 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    color: var(--color-text);
+  }
+
+  .bj__text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  /* Bağlantı: kartın tamamını kaplayan (stretched) tek bağlantı; normal durumda da ok ile görünür.
+     Dokunma hedefi kartın tamamıdır; satır içi bağlantı yüksekliği bu yüzden kompakt tutulabilir. */
+  .bj__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 32px;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tone-2);
+    text-decoration: none;
+  }
+
+  .bj__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .bj__link :global(svg) {
+    flex: none;
+    transition: transform 180ms ease;
+  }
+
+  .bj__link span {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--tone-2) 40%, transparent);
+    text-underline-offset: 3px;
+  }
+
+  @media (hover: hover) {
+    .bj__card:hover {
+      transform: translateY(-4px);
+      border-color: var(--tone);
+      box-shadow: var(--shadow-md);
+    }
+
+    .bj__card:hover .bj__link :global(svg) {
+      transform: translateX(3px);
+    }
+  }
+
+  .bj__card:focus-within {
+    transform: translateY(-2px);
+    border-color: var(--tone);
+  }
+
+  .bj__link:focus-visible {
+    outline: none;
+  }
+
+  .bj__card:has(.bj__link:focus-visible) {
+    box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px var(--tone);
+  }
+
+  /* --- Geniş masaüstü (>=1100): dalgalı çizgi + basamaklı düğümler --------------------------- */
+  @media (min-width: 1100px) {
+    .bj__wave {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .bj__wave path {
+      fill: none;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .bj__wave-base {
+      stroke-width: 3;
+      opacity: 0.35;
+    }
+
+    .bj__wave-flow {
+      stroke-width: 4;
+      stroke-dasharray: 1 16;
+      opacity: 0.95;
+      animation: bj-flow 3.2s linear infinite;
+    }
+
+    .bj__list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .bj__step {
+      align-items: center;
+      padding-inline: var(--space-3);
+    }
+
+    /* Düğüm merkezleri çizginin y değerleriyle aynı: 44 (yüksek) ve 100 (alçak) → üst boşluk = merkez − 32. */
+    .bj__step:nth-child(odd) {
+      margin-top: 12px;
+    }
+
+    .bj__step:nth-child(even) {
+      margin-top: 68px;
+    }
+
+    .bj__card {
+      margin-top: var(--space-4);
+    }
+  }
+
+  /* --- Tablet ve mobil (<1100): kompakt yatay satır — solda düğüm, sağda kart --------------------- */
+  @media (max-width: 1099px) {
+    .bj__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 36px;
+      row-gap: var(--space-4);
+    }
+
+    .bj__step {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      column-gap: var(--space-3);
+      align-items: start;
+    }
+
+    .bj__node {
+      width: 48px;
+      height: 48px;
+      box-shadow:
+        0 0 0 4px #ffffff,
+        0 8px 16px -8px var(--tone);
+    }
+
+    .bj__node :global(svg) {
+      width: 22px;
+      height: 22px;
+    }
+
+    .bj__card {
+      margin-top: 0;
+      padding: var(--space-3) var(--space-4) var(--space-2);
+    }
+
+    .bj__title {
+      font-size: var(--font-size-md);
+    }
+
+    /* Aynı satırdaki iki aşamayı bağlayan noktalı çizgi (kartın sağ kenarından sonraki düğüme). */
+    .bj__step:nth-child(odd)::after {
+      content: "";
+      position: absolute;
+      top: 23px;
+      right: -36px;
+      width: 36px;
+      border-top: 3px dotted var(--tone);
+      opacity: 0.55;
+    }
+  }
+
+  /* --- Mobil (<720): tek sütun, dikey zaman çizelgesi ------------------------------------------- */
+  @media (max-width: 719px) {
+    .bj {
+      padding-block: var(--space-6) var(--space-5);
+    }
+
+    .bj__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .bj__header {
+      margin-bottom: var(--space-5);
+      text-align: left;
+    }
+
+    .bj__intro {
+      margin-inline: 0;
+      font-size: var(--font-size-sm);
+      line-height: 1.5;
+    }
+
+    .bj__list {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+      position: relative;
+    }
+
+    /* Dikey akış: çizgi ve akan noktalar listede değil, SON ADIM HARİÇ her adımda — o adımın düğüm merkezinden
+       sonraki düğümün merkezine kadar (3. adım 4. düğümde biter). Böylece son düğümün altına uzantı kalmaz. */
+    .bj__step {
+      --next-tone: #0e7490;
+    }
+
+    .bj__step--teal {
+      --next-tone: #7c3aed;
+    }
+
+    .bj__step--violet {
+      --next-tone: #d97706;
+    }
+
+    .bj__step:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: 23px;
+      top: 24px;
+      height: calc(100% + var(--space-3));
+      width: 2px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--tone), var(--next-tone));
+      opacity: 0.35;
+    }
+
+    .bj__step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 24px;
+      right: auto;
+      width: 4px;
+      height: calc(100% + var(--space-3));
+      border: 0;
+      background-image: radial-gradient(circle, var(--tone) 1.4px, transparent 1.6px);
+      background-size: 4px 16px;
+      background-repeat: repeat-y;
+      animation: bj-flow-y 3.2s linear infinite;
+      opacity: 0.85;
+    }
+
+    /* Son adımda tablet bağlantı çizgisi veya akış uzantısı olmaz. */
+    .bj__step:last-child::after {
+      display: none;
+    }
+
+    .bj__text {
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    /* Sıkı zaman çizelgesi: "Adım 0X" etiketi görsel olarak düğümdeki numara rozetine taşınır
+       (metin ekran okuyucu için yerinde kalır). */
+    .bj__step {
+      grid-template-columns: 40px minmax(0, 1fr);
+      column-gap: 10px;
+    }
+
+    .bj__node {
+      width: 40px;
+      height: 40px;
+    }
+
+    .bj__node :global(svg) {
+      width: 19px;
+      height: 19px;
+    }
+
+    .bj__node::after {
+      content: attr(data-n);
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 0 1px var(--tone-soft), 0 2px 4px rgb(15 23 42 / 0.15);
+      font-size: 11px;
+      font-weight: var(--font-weight-bold);
+      line-height: 1;
+      color: var(--tone-2);
+    }
+
+    .bj__step:not(:last-child)::before {
+      left: 19px;
+      top: 20px;
+    }
+
+    .bj__step:not(:last-child)::after {
+      left: 18px;
+      top: 20px;
+    }
+
+    .bj__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .bj__card {
+      padding: var(--space-3) var(--space-3) var(--space-1);
+    }
+
+    .bj__title {
+      margin-top: 0;
+    }
+
+    .bj__link {
+      min-height: 30px;
+    }
+  }
+
+  @keyframes bj-flow {
+    to {
+      stroke-dashoffset: -34;
+    }
+  }
+
+  @keyframes bj-flow-y {
+    to {
+      background-position-y: 32px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bj__wave-flow,
+    .bj__step::after {
+      animation: none;
+    }
+
+    .bj__wave-flow {
+      stroke-dasharray: 1 16;
+      opacity: 0.5;
+    }
+
+    .bj__card,
+    .bj__link :global(svg) {
+      transition: none;
+    }
+
+    .bj__card:hover,
+    .bj__card:focus-within {
+      transform: none;
+    }
+
+    .bj__card:hover .bj__link :global(svg) {
+      transform: none;
+    }
+  }
+</style>

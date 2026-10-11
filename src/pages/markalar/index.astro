@@ -11,7 +11,8 @@
 // /bilgi-merkezi — this page now passes its own data/brands/* content
 // explicitly, same as every other page on the site.
 import MainLayout from "../../layouts/MainLayout.astro";
-import BrandHero from "../../components/brands/BrandHero/BrandHero.astro";
+import BrandDiscoveryHero from "../../components/brands/BrandDiscoveryHero/BrandDiscoveryHero.astro";
+import BrandJourney from "../../components/brands/BrandJourney/BrandJourney.astro";
 import BrandShowcase from "../../components/brands/BrandShowcase/BrandShowcase.astro";
 import BrandCriteria from "../../components/brands/BrandCriteria/BrandCriteria.astro";
 import BrandDecision from "../../components/brands/BrandDecision/BrandDecision.astro";
@@ -21,6 +22,7 @@ import BrandExpertSupport from "../../components/brands/BrandExpertSupport/Brand
 import BrandFaq from "../../components/brands/BrandFaq/BrandFaq.astro";
 
 import { brandHero } from "../../data/brands/hero";
+import { brands } from "../../components/brands/Brands/brands.data";
 import { brandShowcase } from "../../data/brands/showcase";
 import { brandCriteria } from "../../data/brands/criteria";
 import { brandDecision } from "../../data/brands/decision";
@@ -34,7 +36,8 @@ import { brandFaq } from "../../data/brands/faq";
   title="Tüm Markalar | Avrasya İşitme Cihazları"
   description="Oticon, Phonak, Signia, Widex, ReSound ve daha birçok dünya markasını karşılaştırın, size en uygun işitme cihazı teknolojisini keşfedin."
 >
-  <BrandHero data={brandHero} />
+  <BrandDiscoveryHero data={brandHero} brands={brands.brands} />
+  <BrandJourney />
   <BrandShowcase data={brandShowcase} />
   <BrandCriteria data={brandCriteria} />
   <BrandDecision data={brandDecision} />

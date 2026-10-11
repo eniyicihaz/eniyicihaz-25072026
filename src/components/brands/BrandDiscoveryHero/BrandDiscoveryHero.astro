@@ -1,0 +1,665 @@
+---
+// BrandDiscoveryHero — /markalar/ ("Tüm Markalar") sayfasına özel Marka Keşif Hero'su.
+// Ortak BrandHero (4 sayfa daha kullanıyor) DEĞİŞMEZ. İçerik (rozet, başlık, açıklamalar, CTA'lar, etiketler)
+// data/brands/hero.ts'ten AYNEN alınır; sağ kolon, sitede gerçekten kullanılan 18 marka logosuyla (public/images/brands)
+// bir "marka ekosistemi" kompozisyonudur: ortada "18 Marka", çevresinde iki yörünge (6 öne çıkan + 12 diğer marka).
+// Her logo, gerçek marka sayfasına (/markalar/{slug}/) giden bir bağlantıdır. Ürün fotoğrafı yoktur: ürün ve model
+// anlatımı /isitme-cihazi-markalari/ rehberinde kalır.
+// Logolar yeniden çizilmez; her dosyanın gerçek içerik kutusu (data/brands/logo-bounds.ts) ölçülüp pencereye oranı
+// korunarak yerleştirilir. JavaScript yoktur.
+//
+// Masaüstü (>=1024): kutusuz kompozisyon — 18 logo iki yörüngede, arkada hero yüzeyine karışan ambient ışık.
+// Tablet/mobil (<1024): yalnızca 6 öne çıkan marka (şerit/ızgara) + #brand-extended-title bölümüne (diğer 12 marka)
+// giden bağlantı; kalan 12 marka sayfanın aşağısındaki "Merkezimizde Desteklenen Diğer Markalar" bölümünde zaten listelidir.
+import CtaButton from "../../shared/CtaButton/CtaButton.astro";
+import { Check, ArrowRight } from "lucide-astro";
+import type { BrandHeroContent } from "../BrandHero/BrandHero.astro";
+import type { BrandItem } from "../Brands/brands.types";
+import { logoBounds } from "../../../data/brands/logo-bounds";
+
+interface Props {
+  data: BrandHeroContent;
+  brands: BrandItem[];
+}
+
+const { data, brands } = Astro.props;
+
+// Sahne koordinat sistemi (SVG viewBox ile aynı): 600 × 520, merkez (300, 260).
+const VW = 600;
+const VH = 520;
+const CX = VW / 2;
+const CY = VH / 2;
+const FEATURED = ["oticon", "phonak", "signia", "widex", "resound", "nuear"];
+const A = { rx: 146, ry: 116, w: 19.5, h: 9.3, angles: [30, 90, 150, 210, 270, 330] };
+const B = { rx: 246, ry: 196, w: 15.6, h: 7.4 };
+const WIN_RATIO = 0.43; // logo penceresinin yükseklik/genişlik oranı (her iki halkada aynı)
+
+const bySlug = new Map(brands.map((b) => [b.slug, b]));
+const ringA = FEATURED.map((s) => bySlug.get(s)).filter((b): b is BrandItem => !!b);
+const ringB = brands.filter((b) => !FEATURED.includes(b.slug));
+
+const pos = (rx: number, ry: number, deg: number) => {
+  const t = (deg * Math.PI) / 180;
+  const x = CX + rx * Math.cos(t);
+  const y = CY + ry * Math.sin(t);
+  return { x, y, left: (x / VW) * 100, top: (y / VH) * 100 };
+};
+
+/** Logoyu içerik kutusuna göre pencereye oturtur (oran korunur, ortalanır). */
+function fit(slug: string) {
+  const m = logoBounds[slug];
+  if (!m) return null;
+  const [x0, y0, x1, y1] = m.bbox;
+  const cw = x1 - x0;
+  const ch = y1 - y0;
+  const s = Math.min(1 / cw, WIN_RATIO / ch); // pencere genişliği = 1 birim
+  const left = (1 - cw * s) / 2 - x0 * s;
+  const top = (WIN_RATIO - ch * s) / 2 - y0 * s;
+  return {
+    width: +(m.w * s * 100).toFixed(3),
+    left: +(left * 100).toFixed(3),
+    top: +((top / WIN_RATIO) * 100).toFixed(3),
+  };
+}
+
+const chipsA = ringA.map((b, i) => ({ b, ...pos(A.rx, A.ry, A.angles[i]), ring: "a" as const }));
+const chipsB = ringB.map((b, i) => ({ b, ...pos(B.rx, B.ry, 15 + i * 30), ring: "b" as const }));
+const lines = chipsA.map((c) => ({ x: +c.x.toFixed(1), y: +c.y.toFixed(1) }));
+const heading = data.headingLines.join(" ");
+---
+
+<section class="bdh" aria-labelledby="bdh-title" data-track-location="hero">
+  <div class="bdh__inner">
+    <div class="bdh__copy">
+      <p class="bdh__badge">{data.badge}</p>
+
+      <h1 class="bdh__heading" id="bdh-title">{heading}</h1>
+
+      {data.description.map((p) => <p class="bdh__desc">{p}</p>)}
+
+      <div class="bdh__actions">
+        <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} />
+        <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} />
+      </div>
+
+      <ul class="bdh__pills">
+        {
+          data.trustPills.map((pill) => (
+            <li class="bdh__pill">
+              <Check size={14} stroke-width={2.5} aria-hidden="true" />
+              <span>{pill}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="bdh__board" role="group" aria-label={`${brands.length} işitme cihazı markası: marka sayfasına gitmek için logoya tıklayın`}>
+      <svg class="bdh__orbits" viewBox={`0 0 ${VW} ${VH}`} aria-hidden="true" focusable="false">
+        <ellipse cx={CX} cy={CY} rx={B.rx} ry={B.ry} class="bdh__orbit bdh__orbit--outer" />
+        <ellipse cx={CX} cy={CY} rx={A.rx} ry={A.ry} class="bdh__orbit bdh__orbit--inner" />
+        {lines.map((l) => <line x1={CX} y1={CY} x2={l.x} y2={l.y} class="bdh__spoke" />)}
+      </svg>
+
+      <div class="bdh__hub" aria-hidden="true">
+        <strong class="bdh__hub-num">{brands.length}</strong>
+        <span class="bdh__hub-label">Marka</span>
+      </div>
+
+      <ul class="bdh__ring bdh__ring--a">
+        {
+          chipsA.map((c) => {
+            const f = fit(c.b.slug);
+            return (
+              <li class="bdh__item" style={`left:${c.left.toFixed(2)}%;top:${c.top.toFixed(2)}%;--w:${A.w}%`}>
+                <a class="bdh__chip" href={`/markalar/${c.b.slug}/`}>
+                  <span class="bdh__win">
+                    <img
+                      src={c.b.logo}
+                      alt={c.b.name}
+                      width={c.b.logoWidth}
+                      height={c.b.logoHeight}
+                      loading="eager"
+                      decoding="async"
+                      style={f ? `width:${f.width}%;left:${f.left}%;top:${f.top}%` : undefined}
+                    />
+                  </span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+
+      <a class="bdh__more" href="#brand-extended-title">
+        <span>Diğer {brands.length - ringA.length} markayı keşfedin</span>
+        <ArrowRight size={16} stroke-width={2.25} aria-hidden="true" />
+      </a>
+
+      <ul class="bdh__ring bdh__ring--b">
+        {
+          chipsB.map((c) => {
+            const f = fit(c.b.slug);
+            return (
+              <li class="bdh__item" style={`left:${c.left.toFixed(2)}%;top:${c.top.toFixed(2)}%;--w:${B.w}%`}>
+                <a class="bdh__chip" href={`/markalar/${c.b.slug}/`}>
+                  <span class="bdh__win">
+                    <img
+                      src={c.b.logo}
+                      alt={c.b.name}
+                      width={c.b.logoWidth}
+                      height={c.b.logoHeight}
+                      loading="eager"
+                      decoding="async"
+                      style={f ? `width:${f.width}%;left:${f.left}%;top:${f.top}%` : undefined}
+                    />
+                  </span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bdh {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    color: var(--color-text);
+    background: linear-gradient(180deg, #ffffff 0%, var(--color-surface) 55%, #ffffff 100%);
+    padding-block: var(--space-10);
+  }
+
+  /* Ambient ışık: sağ kompozisyonun arkasında, hero yüzeyine karışan yumuşak mavi/camgöbeği hale.
+     Kenar yok: merkezden dışa doğru saydamlaşan radyal katmanlar. */
+  .bdh::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    right: -6%;
+    width: min(62vw, 980px);
+    aspect-ratio: 1.15;
+    translate: 0 -50%;
+    pointer-events: none;
+    background:
+      radial-gradient(closest-side at 50% 50%, rgb(37 99 235 / 0.26), rgb(37 99 235 / 0.1) 45%, transparent 100%),
+      radial-gradient(closest-side at 62% 40%, rgb(14 165 233 / 0.22), transparent 100%),
+      radial-gradient(closest-side at 38% 66%, rgb(56 189 248 / 0.12), transparent 100%);
+    filter: blur(28px);
+  }
+
+  /* İnce, düşük kontrastlı nokta dokusu; merkezden dışa solar (kare/sınır oluşturmaz). */
+  .bdh::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgb(15 23 42 / 0.07) 1px, transparent 1px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(55% 80% at 78% 50%, #000 0%, transparent 78%);
+    mask-image: radial-gradient(55% 80% at 78% 50%, #000 0%, transparent 78%);
+    opacity: 0.55;
+  }
+
+  .bdh__inner {
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  /* --- Sol: içerik ------------------------------------------------------- */
+  .bdh__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .bdh__heading {
+    margin: var(--space-4) 0 0;
+    max-width: 22ch;
+    font-size: clamp(2rem, 0.4rem + 3vw, 3.25rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    color: var(--color-text);
+  }
+
+  .bdh__desc {
+    margin: var(--space-3) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .bdh__desc:first-of-type {
+    margin-top: var(--space-5);
+  }
+
+  .bdh__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .bdh__pills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-5) 0 0;
+    padding: 0;
+  }
+
+  .bdh__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 36px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.85);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .bdh__pill :global(svg) {
+    flex: none;
+    color: var(--color-primary);
+  }
+
+  /* --- Sağ: marka ekosistemi (kutu yok: hero yüzeyinde ışıkla beliren kompozisyon) --- */
+  .bdh__board {
+    position: relative;
+    width: 100%;
+    max-width: 660px;
+    justify-self: center;
+    aspect-ratio: 600 / 520;
+  }
+
+  /* Merkez halesi: göbek ve iç halka etrafında beyaz-mavi ışık; kenarı yok. */
+  .bdh__board::before {
+    content: "";
+    position: absolute;
+    inset: 4% 2%;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0.55) 50%, transparent 100%);
+    filter: blur(6px);
+  }
+
+  .bdh__orbits {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .bdh__orbit {
+    fill: none;
+    stroke: var(--color-primary);
+  }
+
+  .bdh__orbit--outer {
+    stroke-opacity: 0.14;
+    stroke-width: 1.1;
+    stroke-dasharray: 2 8;
+  }
+
+  .bdh__orbit--inner {
+    stroke-opacity: 0.18;
+    stroke-width: 1.1;
+  }
+
+  .bdh__spoke {
+    stroke: var(--color-primary);
+    stroke-opacity: 0.12;
+    stroke-width: 1;
+  }
+
+  .bdh__hub {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 0;
+    width: 17%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, #1d4ed8, #0f2547 70%);
+    color: #ffffff;
+    box-shadow:
+      0 0 0 8px rgb(37 99 235 / 0.08),
+      0 0 0 18px rgb(37 99 235 / 0.05),
+      0 18px 36px -12px rgb(15 37 71 / 0.55);
+  }
+
+  .bdh__hub-num {
+    font-size: clamp(1.25rem, 3.6vw, 2rem);
+    line-height: 1;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .bdh__hub-label {
+    font-size: clamp(0.5625rem, 1.2vw, 0.75rem);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .bdh__ring {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+  }
+
+  .bdh__item {
+    position: absolute;
+    width: var(--w);
+    aspect-ratio: 2.1;
+    translate: -50% -50%;
+  }
+
+  /* Logo yüzeyi: yarı saydam, buzlu cam; dış halka daha hafif. Kart değil, ışığın üzerinde duran işaretler. */
+  .bdh__chip {
+    position: absolute;
+    inset: 0;
+    display: block;
+    border: 1px solid rgb(255 255 255 / 0.9);
+    border-radius: var(--radius-xl);
+    background: rgb(255 255 255 / 0.78);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    box-shadow:
+      0 0 0 1px rgb(37 99 235 / 0.07),
+      0 16px 28px -16px rgb(15 37 71 / 0.4);
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  }
+
+  .bdh__ring--b .bdh__chip {
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 0.62);
+    box-shadow:
+      0 0 0 1px rgb(37 99 235 / 0.06),
+      0 10px 20px -14px rgb(15 37 71 / 0.35);
+  }
+
+  /* Logo penceresi: oran sabit; logo, içerik kutusuna göre img üzerindeki satır içi konumla oturur. */
+  .bdh__win {
+    position: absolute;
+    inset: 14% 10%;
+    display: block;
+    overflow: hidden;
+  }
+
+  .bdh__win img {
+    position: absolute;
+    display: block;
+    max-width: none;
+    height: auto;
+  }
+
+  @media (hover: hover) {
+    .bdh__chip:hover {
+      transform: translateY(-3px);
+      background: #ffffff;
+      box-shadow:
+        0 0 0 1px rgb(37 99 235 / 0.45),
+        0 18px 30px -14px rgb(37 99 235 / 0.45);
+    }
+  }
+
+  .bdh__chip:focus-visible {
+    outline: none;
+    background: #ffffff;
+    box-shadow: var(--focus-ring);
+  }
+
+  .bdh__more {
+    display: none;
+  }
+
+  /* Dar masaüstü (1024–1279): iki eşit kolon; iki CTA yan yana sığar. */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .bdh__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  /* --- Tablet ve mobil: tek kolon; 6 öne çıkan marka + "diğer 12 marka" bağlantısı ------------- */
+  @media (max-width: 1023px) {
+    .bdh {
+      padding-block: var(--space-8);
+    }
+
+    .bdh::before {
+      right: -20%;
+      top: auto;
+      bottom: -6%;
+      translate: none;
+      width: min(120vw, 760px);
+      aspect-ratio: 1.6;
+      opacity: 0.9;
+    }
+
+    .bdh::after {
+      -webkit-mask-image: radial-gradient(70% 45% at 60% 82%, #000 0%, transparent 78%);
+      mask-image: radial-gradient(70% 45% at 60% 82%, #000 0%, transparent 78%);
+    }
+
+    .bdh__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+
+    .bdh__heading {
+      max-width: 22ch;
+    }
+
+    /* Yörünge/hale kompozisyonu yerine kompakt bir logo şeridi. */
+    .bdh__board {
+      aspect-ratio: auto;
+      max-width: none;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-areas:
+        "hub more"
+        "ring ring";
+      gap: var(--space-3) var(--space-4);
+      align-items: center;
+    }
+
+    .bdh__board::before,
+    .bdh__orbits,
+    .bdh__ring--b {
+      display: none;
+    }
+
+    .bdh__hub {
+      grid-area: hub;
+      position: static;
+      translate: none;
+      width: auto;
+      aspect-ratio: auto;
+      display: inline-flex;
+      align-items: baseline;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      box-shadow: none;
+    }
+
+    .bdh__hub-num {
+      font-size: var(--font-size-lg);
+    }
+
+    .bdh__hub-label {
+      font-size: var(--font-size-xs);
+    }
+
+    .bdh__more {
+      grid-area: more;
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      min-height: 44px;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-primary);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+    }
+
+    .bdh__more:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .bdh__more:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .bdh__ring--a {
+      grid-area: ring;
+      position: static;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-2);
+    }
+
+    .bdh__item {
+      position: relative;
+      left: auto !important;
+      top: auto !important;
+      width: auto;
+      translate: none;
+    }
+  }
+
+  /* 641–719: tek kolon; 6 marka tek şerit. */
+  @media (min-width: 641px) and (max-width: 719px) {
+    .bdh__ring--a {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+
+  /* Tablet (720–1023): iki kolon — solda metin/CTA, sağda 6 öne çıkan marka 3 × 2 (kutu yok, ambient ışık sağda). */
+  @media (min-width: 720px) and (max-width: 1023px) {
+    .bdh::before {
+      top: 50%;
+      bottom: auto;
+      right: -14%;
+      translate: 0 -50%;
+      width: min(80vw, 760px);
+      aspect-ratio: 1.1;
+    }
+
+    .bdh::after {
+      -webkit-mask-image: radial-gradient(48% 75% at 82% 50%, #000 0%, transparent 78%);
+      mask-image: radial-gradient(48% 75% at 82% 50%, #000 0%, transparent 78%);
+    }
+
+    .bdh__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+      gap: var(--space-8);
+    }
+
+    .bdh__heading {
+      max-width: none;
+      font-size: clamp(1.75rem, 0.6rem + 2.5vw, 2.25rem);
+    }
+
+    .bdh__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .bdh__board {
+      align-self: center;
+      gap: var(--space-4) var(--space-3);
+    }
+
+    .bdh__ring--a {
+      gap: var(--space-3);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .bdh {
+      padding-block: var(--space-6) var(--space-6);
+    }
+
+    .bdh__inner {
+      padding-inline: var(--space-4);
+      gap: var(--space-5);
+    }
+
+    .bdh__heading {
+      max-width: none;
+      font-size: clamp(2rem, 1.4rem + 2.8vw, 2.5rem);
+    }
+
+    .bdh__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .bdh__ring--a {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bdh__chip {
+      transition: none;
+    }
+
+    .bdh__chip:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Sabit header (~79 px) "Diğer markalar" bağlantısının hedef başlığını örtmesin (yalnızca bu sayfanın CSS paketi). */
+  html {
+    scroll-padding-top: var(--space-24);
+  }
+</style>
