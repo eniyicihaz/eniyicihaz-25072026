@@ -6,6 +6,9 @@
 // this site never publishes, estimates or derives a price. None of these
 // shapes has a price/amount field on purpose — a price would have to be
 // added as a deliberate, separate policy decision, not slipped in here.
+// Tek istisna (DECISIONS K-Fiyat-1, 2026-10-11): /isitme-cihazi-fiyatlari/ sayfasının onaylı
+// başlangıç fiyatı ve taksit mesajı; yalnızca data/isitme-cihazi-fiyatlari/pricing.ts'te durur,
+// bu paylaşılan tiplere fiyat alanı eklenmez.
 
 export interface GuideLink {
   label: string;
@@ -57,7 +60,14 @@ export interface GuideTableContent extends GuideSectionMeta {
   caption: string;
   /** Header of the first (criterion) column, then one header per data column. */
   criterionLabel: string;
-  columns: { name: string; href?: string; /** Only with `mobile="stack"`: hide this column's cell in the stacked card (e.g. a redundant "Detail" link column). */ stackHidden?: boolean }[];
+  columns: {
+    name: string;
+    href?: string;
+    /** Only with `mobile="stack"`: hide this column's cell in the stacked card (e.g. a redundant "Detail" link column). */
+    stackHidden?: boolean;
+    /** Opt-in: "impact" → hücre metni InfoGrid'in "Fiyata etkisi" rozet skalasıyla çizilir (metin aynen kalır). */
+    kind?: "impact";
+  }[];
   rows: GuideTableRow[];
   note?: string;
   links?: GuideLink[];

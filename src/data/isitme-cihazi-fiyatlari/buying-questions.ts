@@ -3,7 +3,12 @@
 // doğrudan alıntılanabilir; devamı derinlik verir. "En iyi/en ucuz/en kaliteli"
 // gibi mutlak hüküm yoktur — kullanıcı ihtiyacına göre değişen etkenler açıklanır.
 // SSS'teki kısa cevaplarla (faq.ts) çakışmamak için burada karar mantığı
-// anlatılır; orada doğrudan cevap verilir.
+// anlatılır; orada doğrudan cevap verilir. SSS ile aynı konuyu taşıyan üç madde
+// (test, deneme, bütçe) burada okurun satın almadan önce kendine sorduğu KONTROL
+// SORUSU olarak yazılır ("…yaptım mı / paylaştım mı?") ve cevap ne yapılacağını
+// söyler; SSS'te ise genel soru ("…gerekir mi / yapılabilir mi / hangisi?") ve
+// doğrudan cevap kalır. Bilgi içeriği iki yerde de korunur; id'ler (sayfa içi
+// bağlantılar) değişmez. FAQPage şeması yalnızca faq.ts'ten üretilir.
 import type { GuideSectionMeta, QaItem } from "../../components/price-guide/price-guide.types";
 
 export const buyingSection: GuideSectionMeta = {
@@ -17,9 +22,9 @@ export const buyingSection: GuideSectionMeta = {
 export const buyingQuestions: QaItem[] = [
   {
     id: "test-gerekir-mi",
-    question: "İşitme cihazı almadan önce işitme testi gerekir mi?",
+    question: "Teklifi değerlendirmeden önce güncel bir işitme testim var mı?",
     answer:
-      "Evet. Doğru cihaz tipi ve güç seviyesi, işitme kaybınızın derecesi ve biçimi bilinmeden belirlenemez; testsiz seçilen bir cihaz, ihtiyacınıza uymayabilir.",
+      "Bir teklifi değerlendirmeden önce güncel bir işitme testiniz olsun. Doğru cihaz tipi ve güç seviyesi, işitme kaybınızın derecesi ve biçimi bilinmeden belirlenemez; testsiz hazırlanan bir teklif, ihtiyacınıza uymayan bir cihazı kapsayabilir.",
     more: [
       "İşitme testi, hangi cihaz tipinin ve hangi teknoloji seviyesinin size uygun olduğunu göstererek, gereksiz özelliklere ödeme yapmanızı da önler. Avrasya İşitme'de işitme testi ücretsizdir.",
       "SGK desteğinden yararlanmak için gereken sağlık kurulu raporu ise ayrı bir süreçtir; ilgili sayfalarda adım adım anlatılmıştır.",
@@ -31,11 +36,11 @@ export const buyingQuestions: QaItem[] = [
   },
   {
     id: "deneme-yapilabilir-mi",
-    question: "İşitme cihazı deneme yapılabilir mi?",
+    question: "Kararı vermeden önce cihazı kendi kulağımda denedim mi?",
     answer:
-      "Evet. Merkezimizde önerilen cihazı yaklaşık 20 dakikalık ücretsiz bir demoyla deneyebilirsiniz. Cihazı satın alarak 7 güne kadar da deneyebilir, uygun bulmazsanız iade edebilirsiniz; ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
+      "Kararı denemeden vermeyin; deneme iki aşamalıdır. Önce merkezimizde yaklaşık 20 dakikalık ücretsiz demoyla önerilen cihazı denersiniz; ardından cihazı satın alarak 7 güne kadar günlük hayatınızda kullanır, uygun bulmazsanız iade edersiniz ve ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır.",
     more: [
-      "Merkezdeki demo ilk izlenimi verir; cihazın günlük hayatınızdaki konforunu ise satın alarak 7 güne kadar süren deneme sürecinde görebilirsiniz.",
+      "Merkezdeki demo ilk izlenimi verir; cihazın günlük hayatınızdaki konforunu ise satın alarak 7 güne kadar süren deneme sürecinde görebilirsiniz. Deneme sırasında sizin için önemli ortamlara (telefon, televizyon, kalabalık) özellikle dikkat edin.",
     ],
     links: [{ label: "Cihaz deneme süreci", href: "/uygulama-ayar/cihaz-deneme/" }],
   },
@@ -55,11 +60,11 @@ export const buyingQuestions: QaItem[] = [
   },
   {
     id: "en-ucuz-cihaz",
-    question: "En ucuz işitme cihazı hangisi?",
+    question: "Bütçemi ve önceliklerimi baştan paylaştım mı?",
     answer:
-      "Herkes için geçerli tek bir 'en ucuz cihaz' yoktur; çünkü uygun cihaz, işitme kaybınıza ve ihtiyaçlarınıza göre değişir ve bedel cihaz tipi, teknoloji seviyesi ve özelliklerle birlikte oluşur.",
+      "Bütçenizi ve önceliklerinizi işitme testi sırasında baştan paylaşın. Herkes için geçerli tek bir 'en ucuz cihaz' yoktur; uygun cihaz işitme kaybınıza ve ihtiyaçlarınıza göre değişir, bedel ise cihaz tipi, teknoloji seviyesi ve özelliklerle birlikte oluşur.",
     more: [
-      "İhtiyacınızı karşılamayan bir cihaz, düşük bedelli olsa bile beklenen faydayı sağlamayabilir. Bütçe önceliğiniz varsa bunu işitme testi sırasında söyleyin; ihtiyacınızı karşılayan, daha sade seçenekleri birlikte değerlendirelim.",
+      "İhtiyacınızı karşılamayan bir cihaz, düşük bedelli olsa bile beklenen faydayı sağlamayabilir. Bütçe önceliğinizi bildiğimizde, ihtiyacınızı karşılayan daha sade seçenekleri birlikte değerlendiririz.",
       "SGK desteği varsa, ödeyeceğiniz tutar cihaz bedeli ile SGK'nın karşıladığı tutar arasındaki farktır; bu da seçiminizi etkiler.",
     ],
     links: [

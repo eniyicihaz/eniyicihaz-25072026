@@ -1,0 +1,536 @@
+---
+// YayginServisAgiHero — /neden-orijinal/yaygin-servis-agi sayfasına özel hero: solda mevcut içerik (rozet, başlık, iki paragraf,
+// CTA'lar), sağda "18 markada üretici servis yetkisi" illüstrasyonu. Ortak BrandPageHero (59 sayfa) DEĞİŞMEZ; bu bileşen aynı
+// hero verisini (data/yaygin-servis-agi/hero.ts: metinler, CTA'lar, sıcak arka plan gradyanı, dalga rengi) aynen kullanır.
+// İllüstrasyon içeriği ve her ifadenin kaynağı: data/yaygin-servis-agi/hero-visual.ts. Harita, şube veya servis noktası
+// izlenimi vermez; yalnızca üretici servis yetkisini anlatır. Yalnızca Astro + CSS + inline SVG; JavaScript yoktur.
+// Masaüstü (>=1200): iki sütun, tam illüstrasyon (cihaz, kalkan, "18 MARKA", üç teknik kart).
+// <1200 (tablet + mobil): sadeleştirilmiş şema — cihaz rozeti + "18 MARKA"; kartlar ve bağlantı çizgileri gizlenir.
+import { Phone, ShieldCheck, BadgeCheck, SearchCheck, FileCheck } from "lucide-astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
+import { standardCtaLabel } from "../../../lib/cta-labels";
+import type { BrandPageHeroContent } from "../BrandPageHero/BrandPageHero.astro";
+import { yayginServisAgiHeroVisual as visual } from "../../../data/yaygin-servis-agi/hero-visual";
+
+interface Props {
+  data: BrandPageHeroContent;
+}
+
+const { data } = Astro.props;
+const ctas = [data.ctaPrimary, data.ctaSecondary];
+const icons = { badge: BadgeCheck, search: SearchCheck, file: FileCheck };
+const heroStyle = [
+  `--ysh-accent:${data.accentColor}`,
+  data.heroBackground ? `--ysh-bg:${data.heroBackground}` : "",
+  data.heroBaseBg ? `--ysh-base:${data.heroBaseBg}` : "",
+  data.heroWaveColor ? `--ysh-wave-color:${data.heroWaveColor}` : "",
+  data.heroWaveOpacity ? `--ysh-wave-opacity:${data.heroWaveOpacity}` : "",
+  `--ysh-accent-soft:${data.accentColorSoft}`,
+  `--ysh-accent-border:${data.accentColorBorder}`,
+].filter(Boolean).join(";");
+---
+
+<section class="ysh" aria-labelledby="brand-page-hero-title" style={heroStyle} data-track-location="hero">
+  <div class="ysh__bg" aria-hidden="true"></div>
+  <div class="ysh__wave" aria-hidden="true"></div>
+
+  <div class="ysh__inner">
+    <div class="ysh__content">
+      <p class="ysh__badge">{data.badge}</p>
+
+      <h1 class="ysh__heading" id="brand-page-hero-title">
+        {data.headingLines.map((line) => <span class="ysh__heading-line">{line}</span>)}
+      </h1>
+
+      {data.paragraphs.map((p) => <p class="ysh__paragraph">{p}</p>)}
+
+      <div class="ysh__actions">
+        {
+          ctas.map((cta) => (
+            <a class="ysh__cta" href={cta.href} data-contact-action={contactAction(cta.href)}>
+              {contactAction(cta.href) === "whatsapp" ? <WhatsAppIcon size={20} /> : <Phone size={18} stroke-width={2} aria-hidden="true" />}
+              <span>{standardCtaLabel(cta.label, cta.href)}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="ysh__visual" role="group" aria-label={visual.label}>
+      <div class="ysh__stage">
+        <svg class="ysh__lines" viewBox="0 0 560 450" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <circle class="ysh__ring" cx="280" cy="200" r="132"></circle>
+          <circle class="ysh__ring ysh__ring--dashed" cx="280" cy="200" r="176"></circle>
+          <path class="ysh__link" d="M 175 78 C 196 78, 200 112, 208 131"></path>
+          <path class="ysh__link" d="M 385 128 L 351 130"></path>
+          <path class="ysh__link" d="M 175 308 C 196 308, 200 286, 208 269"></path>
+          <circle class="ysh__dot" cx="208" cy="131" r="3.5"></circle>
+          <circle class="ysh__dot" cx="351" cy="130" r="3.5"></circle>
+          <circle class="ysh__dot" cx="208" cy="269" r="3.5"></circle>
+        </svg>
+
+        <div class="ysh__emblem">
+          <div class="ysh__disc">
+            <svg class="ysh__device" viewBox="0 0 120 140" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="ysh-body" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#fff7ed"></stop>
+                  <stop offset="0.55" stop-color="#fdba74"></stop>
+                  <stop offset="1" stop-color="#c2410c"></stop>
+                </linearGradient>
+              </defs>
+              <!-- Kulak arkası cihaz (stilize): kanca, gövde, kulak ucu -->
+              <path d="M 50 50 C 46 22, 76 6, 94 22 C 106 33, 106 52, 98 66" fill="none" stroke="#fed7aa" stroke-width="5" stroke-linecap="round" opacity="0.9"></path>
+              <circle cx="98" cy="70" r="7" fill="#fdba74"></circle>
+              <path d="M 40 56 C 40 36, 68 30, 82 46 C 96 62, 90 104, 72 122 C 60 134, 42 128, 40 112 C 38 94, 40 74, 40 56 Z" fill="url(#ysh-body)"></path>
+              <path d="M 48 60 C 50 46, 66 44, 74 54" fill="none" stroke="#ffffff" stroke-opacity="0.65" stroke-width="3" stroke-linecap="round"></path>
+            </svg>
+          </div>
+          <span class="ysh__shield" aria-hidden="true"><ShieldCheck size={26} stroke-width={2} /></span>
+        </div>
+
+        <div class="ysh__count">
+          <span class="ysh__count-main">
+            <span class="ysh__count-num">{visual.count}</span>
+            <span class="ysh__count-label">{visual.countLabel}</span>
+          </span>
+          <span class="ysh__count-note">{visual.countNote}</span>
+        </div>
+
+        {
+          visual.cards.map((card, i) => {
+            const Icon = icons[card.icon];
+            return (
+              <div class={`ysh__card ysh__card--${i + 1}`}>
+                <span class="ysh__card-icon" aria-hidden="true"><Icon size={18} stroke-width={2} /></span>
+                <span class="ysh__card-title">{card.title}</span>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ysh {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    display: flex;
+    align-items: center;
+    background: var(--ysh-base, #050505);
+    color: var(--color-text-inverse);
+    padding-block: var(--space-16);
+  }
+
+  .ysh__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--ysh-bg, #050505);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .ysh__wave {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--ysh-wave-color, transparent);
+    opacity: var(--ysh-wave-opacity, 0);
+    -webkit-mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+  }
+
+  .ysh__inner {
+    position: relative;
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  /* --- Sol: mevcut hero içeriği (BrandPageHero text-only görünümüyle aynı) ------- */
+  .ysh__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--ysh-accent-border);
+    border-radius: var(--radius-full);
+    background: var(--ysh-accent-soft);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--ysh-accent) 42%, #ffffff);
+  }
+
+  .ysh__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--color-text-inverse);
+  }
+
+  .ysh__heading-line {
+    display: block;
+  }
+
+  .ysh__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 36rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.72);
+  }
+
+  .ysh__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  /* CTA görünümü ortak iletişim stilinden gelir (contact-actions.css). */
+
+  /* --- Sağ: illüstrasyon (masaüstü, 560 × 450 tasarım alanı) -------------------- */
+  .ysh__visual {
+    container-type: inline-size;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+    min-width: 0;
+  }
+
+  .ysh__stage {
+    --u: calc(100cqw / 560);
+    position: relative;
+    width: 100%;
+    aspect-ratio: 560 / 450;
+  }
+
+  /* Ambient ışık: kenarsız amber/turuncu, arka plana gömülü. */
+  .ysh__stage::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -8% -8%;
+    pointer-events: none;
+    background:
+      radial-gradient(closest-side at 50% 44%, rgb(251 146 60 / 0.4), transparent 100%),
+      radial-gradient(closest-side at 84% 76%, rgb(245 158 11 / 0.2), transparent 100%),
+      radial-gradient(closest-side at 14% 30%, rgb(194 65 12 / 0.28), transparent 100%);
+    filter: blur(28px);
+  }
+
+  .ysh__lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .ysh__ring {
+    fill: none;
+    stroke: rgb(253 186 116 / 0.28);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .ysh__ring--dashed {
+    stroke-dasharray: 3 7;
+    stroke: rgb(253 186 116 / 0.22);
+  }
+
+  .ysh__link {
+    fill: none;
+    stroke: rgb(253 186 116 / 0.75);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .ysh__dot {
+    fill: #fdba74;
+  }
+
+  /* Cihaz rozeti: cam disk + cihaz çizimi + kalkan onayı */
+  .ysh__emblem {
+    position: absolute;
+    left: 32.14%;
+    top: 22.22%;
+    width: 35.71%;
+  }
+
+  .ysh__disc {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgb(255 255 255 / 0.22);
+    background:
+      radial-gradient(circle at 32% 24%, rgb(255 255 255 / 0.22), transparent 55%),
+      linear-gradient(155deg, rgb(251 146 60 / 0.38), rgb(124 45 18 / 0.28));
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(150%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.3),
+      0 30px 50px -26px rgb(0 0 0 / 0.85),
+      0 0 70px -14px rgb(251 146 60 / 0.6);
+  }
+
+  .ysh__device {
+    width: 62%;
+    height: auto;
+    filter: drop-shadow(0 14px 14px rgb(0 0 0 / 0.4));
+  }
+
+  .ysh__shield {
+    position: absolute;
+    left: 69%;
+    top: 68%;
+    width: 34%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #ffffff;
+    background: linear-gradient(145deg, #fbbf24, #ea580c);
+    border: 2px solid rgb(5 5 5 / 0.85);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.4),
+      0 12px 24px -8px rgb(234 88 12 / 0.9);
+  }
+
+  /* "18 MARKA" vurgusu */
+  .ysh__count {
+    position: absolute;
+    left: 30.36%;
+    top: 81.1%;
+    width: 39.29%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(8 * var(--u)) calc(14 * var(--u));
+    border: 1px solid rgb(253 186 116 / 0.4);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(160deg, rgb(251 146 60 / 0.22), rgb(255 255 255 / 0.06));
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 18px 30px -22px rgb(0 0 0 / 0.9), 0 0 40px -18px rgb(251 146 60 / 0.7);
+  }
+
+  .ysh__count-main {
+    display: inline-flex;
+    align-items: baseline;
+    gap: calc(8 * var(--u));
+  }
+
+  .ysh__count-num {
+    font-size: clamp(1.75rem, calc(44 * var(--u)), 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+  }
+
+  .ysh__count-label {
+    font-size: clamp(0.875rem, calc(18 * var(--u)), 1.125rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.14em;
+    color: #fdba74;
+  }
+
+  .ysh__count-note {
+    margin-top: calc(4 * var(--u));
+    font-size: clamp(0.6875rem, calc(12 * var(--u)), 0.8125rem);
+    line-height: 1.3;
+    color: rgb(255 255 255 / 0.75);
+  }
+
+  /* Teknik kartlar */
+  .ysh__card {
+    position: absolute;
+    width: 31.25%;
+    display: flex;
+    align-items: center;
+    gap: calc(10 * var(--u));
+    padding: calc(10 * var(--u)) calc(12 * var(--u));
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: var(--radius-xl);
+    background: rgb(255 255 255 / 0.08);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 16px 30px -22px rgb(0 0 0 / 0.9);
+  }
+
+  .ysh__card--1 { left: 0; top: 11.11%; }
+  .ysh__card--2 { left: 68.75%; top: 22.22%; }
+  .ysh__card--3 { left: 0; top: 62.22%; }
+
+  .ysh__card-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: clamp(28px, calc(34 * var(--u)), 36px);
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    color: #fdba74;
+    background: rgb(251 146 60 / 0.18);
+  }
+
+  .ysh__card-title {
+    font-size: clamp(0.75rem, calc(13.5 * var(--u)), 0.875rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: #ffffff;
+  }
+
+  /* --- Geniş masaüstü (>=1200): iki sütun ----------------------------------------- */
+  @media (min-width: 1200px) {
+    .ysh {
+      min-height: 700px;
+    }
+
+    .ysh__inner {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    .ysh__visual {
+      margin-inline: auto 0;
+    }
+  }
+
+  /* --- Tablet ve mobil (<1200): sadeleştirilmiş şema ---------------------------------- */
+  @media (max-width: 1199px) {
+    .ysh {
+      padding-block: var(--space-10);
+    }
+
+    .ysh__visual {
+      max-width: 30rem;
+      margin-inline: auto;
+    }
+
+    .ysh__stage {
+      aspect-ratio: auto;
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+    }
+
+    .ysh__stage::before {
+      inset: -20% -6%;
+    }
+
+    .ysh__lines,
+    .ysh__card {
+      display: none;
+    }
+
+    .ysh__emblem {
+      position: relative;
+      left: auto;
+      top: auto;
+      flex: none;
+      width: 8.5rem;
+      margin-right: 0.75rem;
+    }
+
+    .ysh__shield {
+      width: 36%;
+    }
+
+    .ysh__count {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: auto;
+      flex: 1;
+      min-width: 0;
+      align-items: flex-start;
+      padding: var(--space-3) var(--space-4);
+    }
+
+    .ysh__count-num {
+      font-size: 2.5rem;
+    }
+
+    .ysh__count-label {
+      font-size: 1rem;
+    }
+
+    .ysh__count-note {
+      font-size: 0.8125rem;
+    }
+  }
+
+  /* --- Mobil (<768): metin ve CTA öncelikli, şema daha küçük ------------------------------- */
+  @media (max-width: 767px) {
+    .ysh {
+      padding-block: var(--space-8);
+    }
+
+    .ysh__inner {
+      padding-inline: var(--space-5);
+      gap: var(--space-6);
+    }
+
+    .ysh__heading {
+      font-size: clamp(1.625rem, 1.2rem + 2.2vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .ysh__paragraph {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+
+    .ysh__actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-2);
+    }
+
+    .ysh__visual {
+      max-width: 26rem;
+      margin-inline: auto;
+    }
+
+    .ysh__stage {
+      gap: var(--space-3);
+    }
+
+    .ysh__emblem {
+      width: 6.25rem;
+      margin-right: 0.5rem;
+    }
+
+    .ysh__count {
+      padding: var(--space-2) var(--space-3);
+    }
+
+    .ysh__count-num {
+      font-size: 2rem;
+    }
+
+    .ysh__count-label {
+      font-size: 0.875rem;
+    }
+
+    .ysh__count-note {
+      font-size: 0.75rem;
+    }
+  }
+</style>

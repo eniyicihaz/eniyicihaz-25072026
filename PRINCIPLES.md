@@ -209,6 +209,7 @@ Bu, sağlık bitişik bir alanda faaliyet gösteren bir marka için en kritik b�
 - **Fiyat bilgisi hiçbir zaman üretilmez veya tahmin edilmez.**
   - Fiyat ve kampanya bilgileri yalnızca SoT'ta [TIME-SENSITIVE] kayıt olarak tutulur (PRODUCT_SOT §4–5).
   - **Cihaz fiyatlarının web sitesinde yayınlanıp yayınlanmayacağına henüz karar verilmedi.** Karar verilene kadar sitede cihaz fiyatı yayınlanmaz ve "site fiyat yayınlayacak" yönünde bir varsayım yapılmaz.
+  - **Sayfaya özel istisna (K-Fiyat-1, 2026-10-11):** Yalnızca `/isitme-cihazi-fiyatlari/` sayfasında işletme sahibinin onayladığı başlangıç fiyatı ve taksit mesajı yayımlanır (metin ve sınırlar: `docs/DECISIONS.md` K-Fiyat-1). Diğer sayfalarda bu madde aynen geçerlidir.
   - Zaman duyarlı kampanya bilgileri tarih, kaynak ve sorumlu kaydıyla ele alınır; görsele gömülmez.
 - **Kaçınılması gereken ifadeler** değişmez: *"Dünyanın en iyisi", "Kesin çözüm", "%100 başarı garantisi", "Mucize sonuç"* ve bunlara benzer her türlü mutlak, ölçülemez üstünlük iddiası.
   - **Ek yasaklar (2026-10-07):**

@@ -16,12 +16,25 @@ interface Props {
    *  "stack" → each row becomes a labelled card at ≤640px, so no column is hidden behind a sideways scroll.
    *  "fit"   → the table shrinks to the screen width and cells wrap (for 3 short columns). */
   mobile?: "stack" | "fit";
+  /** Opt-in görünüm (yalnızca /isitme-cihazi-fiyatlari/): renkli başlık satırı, zebra satırlar,
+   *  satır vurgusu (fare: hover · klavye: focus-within) ve `kind: "impact"` sütunlarında rozet.
+   *  Verilmezse çıktı ve görünüm önceki hâliyle birebir aynıdır. */
+  variant?: "enhanced";
 }
 
-const { data, bare = false, mobile } = Astro.props;
+const { data, bare = false, mobile, variant } = Astro.props;
+
+/** `kind: "impact"` hücre metni → InfoGrid'in "Fiyata etkisi" rozet skalası (yalnızca renk sınıfı; metin aynen görünür). */
+const impactTone = (value: string) => {
+  const v = value.toLocaleLowerCase("tr");
+  if (v.startsWith("yüksek")) return "high";
+  if (v.startsWith("orta")) return "mid";
+  if (v.startsWith("düşük")) return "low";
+  return "var";
+};
 ---
 
-<div class:list={["guide-table", { "guide-table--stack": mobile === "stack", "guide-table--fit": mobile === "fit" }]} id={data.id}>
+<div class:list={["guide-table", { "guide-table--stack": mobile === "stack", "guide-table--fit": mobile === "fit", "guide-table--enhanced": variant === "enhanced" }]} id={data.id}>
   {
     !bare && (
       <div class="guide-table__header">
@@ -55,7 +68,7 @@ const { data, bare = false, mobile } = Astro.props;
               {
                 row.cells.map((cell, ci) => (
                   <td class:list={["guide-table__cell", { "guide-table__cell--stack-hidden": data.columns[ci]?.stackHidden }]} data-label={data.columns[ci]?.name}>
-                    {cell}
+                    {data.columns[ci]?.kind === "impact" ? <span class={`guide-table__impact guide-table__impact--${impactTone(cell)}`}>{cell}</span> : cell}
                   </td>
                 ))
               }
@@ -346,6 +359,125 @@ const { data, bare = false, mobile } = Astro.props;
 
     .guide-table--stack .guide-table__cell--stack-hidden {
       display: none;
+    }
+  }
+  /* --- Opt-in `variant="enhanced"` (yalnızca fiyat sayfası) ---------------------------
+     Renk yalnızca mavi yoğunluk skalası + nötr; "iyi/kötü" çağrışımı yapan kırmızı/yeşil yok.
+     Satır vurgusu okuma çizgisini takip etmeye yarar: fare için hover (yalnızca hover destekleyen
+     cihazlarda), klavye için focus-within. Hiçbir bilgi hover'a bağlı değildir. Yapışkan ilk sütun
+     zebra ve vurgu renginde de opak kalır (kayan hücreler altından görünmez). */
+  .guide-table--enhanced .guide-table__scroll {
+    border-color: rgb(37 99 235 / 0.22);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Başlık hücreleri dikeyde ortalanır: bağlantılı sütun başlığı (48 px dokunma alanı) ile düz
+     metin başlığı ve iki satıra kayan başlıklar aynı hizada durur (varsayılan: bottom). */
+  .guide-table--enhanced .guide-table__corner,
+  .guide-table--enhanced .guide-table__col-head {
+    vertical-align: middle;
+    background: #eff6ff;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .guide-table--enhanced .guide-table__corner {
+    color: var(--color-primary-hover);
+  }
+
+  .guide-table--enhanced .guide-table__col-head {
+    color: #1e3a8a;
+  }
+
+  .guide-table--enhanced tbody tr > * {
+    transition: background-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .guide-table--enhanced tbody tr:nth-child(even) > * {
+    background: var(--color-surface);
+  }
+
+  .guide-table--enhanced .guide-table__row-head {
+    color: var(--color-text);
+  }
+
+  .guide-table--enhanced .guide-table__cell {
+    color: #334155;
+  }
+
+  @media (hover: hover) {
+    .guide-table--enhanced tbody tr:hover > * {
+      background: #eff6ff;
+    }
+
+    .guide-table--enhanced tbody tr:hover > .guide-table__row-head {
+      box-shadow: inset 3px 0 0 var(--color-primary);
+    }
+  }
+
+  .guide-table--enhanced tbody tr:focus-within > * {
+    background: #eff6ff;
+  }
+
+  .guide-table--enhanced tbody tr:focus-within > .guide-table__row-head {
+    box-shadow: inset 3px 0 0 var(--color-primary);
+  }
+
+  /* `kind: "impact"` rozeti — InfoGrid "Fiyata etkisi" ile aynı skala. */
+  .guide-table__impact {
+    display: inline-flex;
+    padding: 2px var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.5;
+    white-space: nowrap;
+    color: var(--color-text-muted);
+  }
+
+  .guide-table__impact--high {
+    border-color: rgb(37 99 235 / 0.4);
+    background: rgb(37 99 235 / 0.1);
+    color: var(--color-primary-hover);
+  }
+
+  .guide-table__impact--mid {
+    border-color: rgb(37 99 235 / 0.25);
+    background: rgb(37 99 235 / 0.05);
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    /* Kart görünümünde zebra ve vurgu kartın kendisine uygulanır (hücrelere değil). */
+    .guide-table--enhanced.guide-table--stack .guide-table__scroll {
+      box-shadow: none;
+    }
+
+    .guide-table--enhanced.guide-table--stack tbody tr > *,
+    .guide-table--enhanced.guide-table--stack tbody tr:hover > *,
+    .guide-table--enhanced.guide-table--stack tbody tr:focus-within > * {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .guide-table--enhanced.guide-table--stack tbody tr {
+      border-color: rgb(37 99 235 / 0.2);
+      border-left: 3px solid rgb(37 99 235 / 0.45);
+    }
+
+    .guide-table--enhanced.guide-table--stack tbody tr:nth-child(even) {
+      background: var(--color-surface);
+    }
+
+    .guide-table--enhanced.guide-table--stack .guide-table__row-head {
+      color: #1e3a8a;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .guide-table--enhanced tbody tr > * {
+      transition: none;
     }
   }
 </style>

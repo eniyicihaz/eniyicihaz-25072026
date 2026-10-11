@@ -1,0 +1,598 @@
+---
+// PriceGuideHero — YALNIZCA /isitme-cihazi-fiyatlari/ sayfasının hero'su. Ortak GuideHero
+// (fiyat, ücretsiz test ve cihazlar sayfaları) DEĞİŞMEZ; bu bileşen aynı hero verisini
+// (data/isitme-cihazi-fiyatlari/hero.ts: rozet, H1, iki paragraf, CTA'lar, güven çipleri)
+// ve aynı CtaButton'ları kullanır, sağ tarafa "Fiyat Özeti Paneli" ekler.
+//
+// Panel metni yalnızca data/isitme-cihazi-fiyatlari/pricing.ts'ten gelir (DECISIONS K-Fiyat-1):
+// onaylı cümle birebir yazılır, "20.000 TL'den" görsel hiyerarşide öne çıkar; KDV/SGK/tek-çift
+// cihaz koşulu veya dipnot eklenmez. İllüstrasyon markasız, stilize bir yeni nesil cihazdır
+// (model/özellik iddiası taşımaz). Yalnızca Astro + CSS + inline SVG; JavaScript yok.
+//
+// DOM sırası: rozet+H1 → fiyat paneli → paragraflar → CTA'lar → çipler (ekran okuyucu fiyatı
+// H1'den hemen sonra duyar). 1024 px ve üstü: iki sütun, panel sağda. 1024 px altı: H1 → panel →
+// CTA'lar → paragraflar → çipler; panel 420 px'ten darsa illüstrasyon gizlenir (kompakt panel).
+import { Phone, MessageCircle, ShieldCheck, Sparkles, CreditCard, ArrowRight } from "lucide-astro";
+import CtaButton from "../shared/CtaButton/CtaButton.astro";
+import type { PriceGuideHeroContent } from "../../data/isitme-cihazi-fiyatlari/hero";
+import { pricing } from "../../data/isitme-cihazi-fiyatlari/pricing";
+
+interface Props {
+  data: PriceGuideHeroContent;
+}
+
+const { data } = Astro.props;
+const { before, amount, after } = pricing.messageParts;
+---
+
+<section class="price-hero" aria-labelledby="guide-hero-title">
+  <div class="price-hero__inner">
+    <div class="price-hero__head">
+      <p class="price-hero__eyebrow">{data.eyebrow}</p>
+      <h1 class="price-hero__heading" id="guide-hero-title">{data.heading}</h1>
+    </div>
+
+    <div class="price-hero__panel" role="group" aria-labelledby="price-hero-panel-title">
+      <svg class="price-hero__network" viewBox="0 0 400 300" preserveAspectRatio="xMaxYMin slice" aria-hidden="true" focusable="false">
+        <g class="price-hero__net-lines">
+          <path d="M 250 40 L 320 90 L 380 60 M 320 90 L 300 170 L 380 200 M 300 170 L 220 210 M 250 40 L 200 110 L 220 210"></path>
+        </g>
+        <g class="price-hero__net-nodes">
+          <circle cx="250" cy="40" r="3"></circle>
+          <circle cx="320" cy="90" r="4"></circle>
+          <circle cx="380" cy="60" r="3"></circle>
+          <circle cx="300" cy="170" r="3.5"></circle>
+          <circle cx="380" cy="200" r="3"></circle>
+          <circle cx="220" cy="210" r="3"></circle>
+          <circle cx="200" cy="110" r="2.5"></circle>
+        </g>
+      </svg>
+
+      <svg class="price-hero__device" viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="ph-glow" cx="0.55" cy="0.45" r="0.5">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="0.32"></stop>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0"></stop>
+          </radialGradient>
+          <linearGradient id="ph-body" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff"></stop>
+            <stop offset="1" stop-color="#c7d2fe"></stop>
+          </linearGradient>
+        </defs>
+        <circle cx="92" cy="72" r="66" fill="url(#ph-glow)"></circle>
+        <!-- Stilize, markasız RIC cihaz: gövde, ince kablo, kanal içi hoparlör -->
+        <path d="M 82 104 C 80 126, 62 134, 50 130" fill="none" stroke="#e0e7ff" stroke-width="3" stroke-linecap="round"></path>
+        <circle cx="45" cy="130" r="9" fill="#e0e7ff"></circle>
+        <path d="M 78 32 C 98 22, 122 34, 122 58 C 122 82, 110 100, 96 108 C 86 114, 74 108, 72 96 C 70 80, 64 44, 78 32 Z" fill="url(#ph-body)"></path>
+        <path d="M 84 42 C 96 36, 110 42, 112 54" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.9"></path>
+        <!-- Yapay zekâ vurgusu: gövdeye bağlanan küçük ağ düğümleri -->
+        <path d="M 122 58 L 144 46 M 118 84 L 146 96 M 144 46 L 152 24" fill="none" stroke="#c7d2fe" stroke-width="1.5" stroke-linecap="round" opacity="0.8"></path>
+        <circle cx="144" cy="46" r="4" fill="#a5b4fc"></circle>
+        <circle cx="146" cy="96" r="4" fill="#a5b4fc"></circle>
+        <circle cx="152" cy="24" r="3" fill="#c7d2fe"></circle>
+      </svg>
+
+      <p class="price-hero__panel-badge" id="price-hero-panel-title">{pricing.year} Fiyatları</p>
+
+      <p class="price-hero__message">
+        <span class="price-hero__message-lead">{before}</span>{" "}
+        <strong class="price-hero__amount">{amount}</strong>{" "}
+        <span class="price-hero__message-tail">{after}</span>
+      </p>
+
+      <ul class="price-hero__features">
+        <li>
+          <span class="price-hero__feature-icon" aria-hidden="true"><Sparkles size={18} stroke-width={2} /></span>
+          <span>{pricing.aiLabel}</span>
+        </li>
+        <li>
+          <span class="price-hero__feature-icon" aria-hidden="true"><CreditCard size={18} stroke-width={2} /></span>
+          <span>{pricing.installmentLabel}</span>
+        </li>
+      </ul>
+
+      <a class="price-hero__panel-link" href="#fiyat-odeme">
+        <span>Fiyat ve ödeme seçenekleri</span>
+        <ArrowRight size={16} stroke-width={2.25} aria-hidden="true" />
+      </a>
+    </div>
+
+    <div class="price-hero__text">
+      <p class="price-hero__lead">{data.lead}</p>
+      <p class="price-hero__supporting">{data.supporting}</p>
+    </div>
+
+    <div class="price-hero__actions">
+      <CtaButton label={data.ctaPrimary.label} href={data.ctaPrimary.href} iconLeft={Phone} />
+      <CtaButton label={data.ctaSecondary.label} href={data.ctaSecondary.href} variant="outline" iconLeft={MessageCircle} />
+    </div>
+
+    <ul class="price-hero__chips">
+      {
+        data.chips.map((chip: string) => (
+          <li>
+            <ShieldCheck size={14} stroke-width={2} aria-hidden="true" />
+            <span>{chip}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .price-hero {
+    --ph-deep: #1e3a8a;
+    --ph-mid: #1d4ed8;
+    --ph-indigo: #4338ca;
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding-block: var(--space-10) var(--space-16);
+  }
+
+  /* Panelin arkasında yumuşak mavi ışık: panel sayfadan kopuk bir kutu gibi durmasın. */
+  .price-hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0 -10% 0 45%;
+    background: radial-gradient(closest-side at 55% 50%, rgb(37 99 235 / 0.12), transparent 100%);
+    pointer-events: none;
+  }
+
+  .price-hero__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "head"
+      "panel"
+      "actions"
+      "text"
+      "chips";
+    column-gap: var(--space-12);
+  }
+
+  .price-hero__head { grid-area: head; }
+  .price-hero__panel { grid-area: panel; }
+  .price-hero__text { grid-area: text; }
+  .price-hero__actions { grid-area: actions; }
+  .price-hero__chips { grid-area: chips; }
+
+  /* --- Sol: mevcut hero içeriği (GuideHero ile aynı tipografi) ----------------- */
+  .price-hero__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .price-hero__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  .price-hero__lead {
+    margin: var(--space-5) 0 0;
+    max-width: 38rem;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .price-hero__supporting {
+    margin: var(--space-3) 0 0;
+    max-width: 38rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .price-hero__actions {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .price-hero__chips {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .price-hero__chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .price-hero__chips :global(svg) {
+    color: var(--color-primary);
+  }
+
+  /* --- Sağ: Fiyat Özeti Paneli ----------------------------------------------- */
+  .price-hero__panel {
+    container-type: inline-size;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin-top: var(--space-6);
+    padding: var(--space-8);
+    border-radius: var(--radius-2xl);
+    color: #ffffff;
+    background:
+      radial-gradient(120% 90% at 100% 0%, rgb(129 140 248 / 0.45), transparent 60%),
+      linear-gradient(150deg, var(--ph-deep) 0%, var(--ph-mid) 55%, var(--ph-indigo) 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.18),
+      0 30px 60px -30px rgb(30 58 138 / 0.65),
+      0 12px 24px -16px rgb(15 23 42 / 0.4);
+  }
+
+  .price-hero__network {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .price-hero__net-lines path {
+    fill: none;
+    stroke: rgb(199 210 254 / 0.28);
+    stroke-width: 1;
+  }
+
+  .price-hero__net-nodes circle {
+    fill: rgb(199 210 254 / 0.5);
+  }
+
+  .price-hero__device {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    width: 7.5rem;
+    height: auto;
+    filter: drop-shadow(0 16px 20px rgb(15 23 42 / 0.35));
+  }
+
+  .price-hero__panel-badge {
+    display: inline-flex;
+    margin: 0;
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgb(255 255 255 / 0.3);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.12);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+
+  /* Küresel paragraf rengi (koyu) panelde devralınmasın: bütün panel metni açık renk. */
+  .price-hero__message {
+    margin: var(--space-5) 0 0;
+    color: #ffffff;
+  }
+
+  /* Üst satırlar sağdaki illüstrasyonun yanında kalır; tutar tam genişlikte, illüstrasyonun altında. */
+  .price-hero__message-lead {
+    display: block;
+    max-width: calc(100% - 8rem);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
+    color: rgb(255 255 255 / 0.9);
+  }
+
+  .price-hero__amount {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: clamp(2.75rem, 11.5cqw, 3.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    white-space: nowrap;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    text-shadow: 0 6px 24px rgb(15 23 42 / 0.3);
+  }
+
+  .price-hero__message-tail {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+    color: #ffffff;
+  }
+
+  .price-hero__features {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .price-hero__features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 0.1);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+    color: #ffffff;
+  }
+
+  .price-hero__feature-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: rgb(255 255 255 / 0.16);
+    color: #ffffff;
+  }
+
+  .price-hero__panel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    margin-top: var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .price-hero__panel-link span {
+    text-decoration: underline;
+    text-decoration-color: rgb(255 255 255 / 0.5);
+    text-underline-offset: 3px;
+  }
+
+  .price-hero__panel-link:hover span {
+    text-decoration-color: #ffffff;
+  }
+
+  .price-hero__panel-link:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+
+  /* Kompakt panel (dar alan): illüstrasyon ve ağ gizlenir, yazı ölçüsü küçülür. */
+  @container (max-width: 419px) {
+    .price-hero__device,
+    .price-hero__network {
+      display: none;
+    }
+
+    .price-hero__message {
+      margin-top: var(--space-3);
+    }
+
+    .price-hero__message-lead {
+      max-width: none;
+      font-size: var(--font-size-md);
+    }
+
+    .price-hero__amount {
+      margin-top: var(--space-1);
+      font-size: clamp(2rem, 11.5cqw, 2.75rem);
+    }
+
+    .price-hero__message-tail {
+      margin-top: var(--space-1);
+      font-size: var(--font-size-lg);
+    }
+
+    .price-hero__features {
+      margin-top: var(--space-4);
+      gap: var(--space-2);
+    }
+
+    .price-hero__features li {
+      padding: 6px var(--space-2);
+      font-size: var(--font-size-sm);
+    }
+
+    .price-hero__feature-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .price-hero__panel-link {
+      margin-top: var(--space-1);
+      min-height: 40px;
+    }
+  }
+
+  /* --- Tablet (641–1023): yatay panel ---------------------------------------------
+     Panel tam genişlikte iki sütuna ayrılır (solda fiyat cümlesi, sağda yapay zekâ ve taksit
+     satırları); böylece fiyat, yapay zekâ ve taksit bilgisi görünür kalırken hero kısalır.
+     İllüstrasyon ve ağ deseni bu aralıkta gizlenir: geniş panelde ağ düğümleri sağ sütundaki
+     yazıların (bağlantı metni) üzerine denk geliyordu; teknoloji vurgusu ikon ve degradeyle kalır. */
+  @media (min-width: 641px) and (max-width: 1023px) {
+    .price-hero {
+      padding-block: var(--space-8) var(--space-10);
+    }
+
+    .price-hero__panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      grid-template-areas:
+        "badge features"
+        "message features"
+        "message link";
+      grid-template-rows: auto auto 1fr;
+      column-gap: var(--space-6);
+      align-items: start;
+      margin-top: var(--space-5);
+      padding: var(--space-6);
+    }
+
+    .price-hero__panel-badge {
+      grid-area: badge;
+      justify-self: start;
+    }
+
+    .price-hero__message {
+      grid-area: message;
+      margin-top: var(--space-3);
+    }
+
+    .price-hero__features {
+      grid-area: features;
+      align-self: center;
+      margin-top: 0;
+    }
+
+    .price-hero__panel-link {
+      grid-area: link;
+      justify-self: start;
+      margin-top: var(--space-2);
+    }
+
+    .price-hero__device,
+    .price-hero__network {
+      display: none;
+    }
+
+    .price-hero__message-lead {
+      max-width: none;
+      font-size: var(--font-size-md);
+    }
+
+    .price-hero__amount {
+      font-size: clamp(2.25rem, 6.5cqw, 3rem);
+    }
+
+    .price-hero__message-tail {
+      font-size: var(--font-size-lg);
+    }
+
+    .price-hero__actions {
+      margin-top: var(--space-5);
+    }
+
+    .price-hero__lead {
+      margin-top: var(--space-4);
+    }
+
+    .price-hero__chips {
+      margin-top: var(--space-4);
+    }
+  }
+
+  /* --- Masaüstü (≥1024): iki sütun, panel sağda ---------------------------------- */
+  @media (min-width: 1024px) {
+    .price-hero {
+      padding-block: var(--space-12) var(--space-16);
+    }
+
+    .price-hero__inner {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      grid-template-areas:
+        "head panel"
+        "text panel"
+        "actions panel"
+        "chips panel";
+      grid-template-rows: auto auto auto 1fr;
+    }
+
+    .price-hero__panel {
+      align-self: center;
+      margin-top: 0;
+      max-width: 34rem;
+      justify-self: end;
+      width: 100%;
+    }
+  }
+
+  /* --- Dar masaüstü (1024–1199): panel sütunu daralır, Ara ve WhatsApp yan yana sığar.
+     Panel bu genişlikte kompakt moddadır (illüstrasyon gizli, fiyat okunaklı). --------- */
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    .price-hero__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 22.5rem);
+      column-gap: var(--space-6);
+    }
+  }
+
+  /* --- Mobil (≤640) ------------------------------------------------------------- */
+  @media (max-width: 640px) {
+    .price-hero {
+      padding-block: var(--space-6) var(--space-10);
+    }
+
+    .price-hero__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .price-hero__heading {
+      font-size: clamp(2rem, 1.4rem + 3vw, 2.5rem);
+    }
+
+    .price-hero__panel {
+      margin-top: var(--space-4);
+      padding: var(--space-4) var(--space-5) var(--space-5);
+    }
+
+    /* Mobilde ilk ekran: başlık + fiyat + CTA'lar. "2026 Fiyatları" rozeti (H1 ve cümle zaten
+       2026 diyor) ve panel bağlantısı (İçindekiler'de "Fiyat ve ödeme" var) gizlenir. */
+    .price-hero__panel-badge,
+    .price-hero__panel-link {
+      display: none;
+    }
+
+    .price-hero__message {
+      margin-top: 0;
+    }
+
+    .price-hero__actions {
+      margin-top: var(--space-4);
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .price-hero__actions :global(.cta-button) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .price-hero__lead {
+      margin-top: var(--space-5);
+    }
+  }
+</style>

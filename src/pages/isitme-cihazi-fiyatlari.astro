@@ -7,10 +7,15 @@
 //   LOKAL BAĞLAM → KAPSAMLI VE ÖZGÜN CEVAP → İÇ BAĞLANTILAR → DÖNÜŞÜM
 //
 // Politika: site fiyat yayımlamaz/tahmin etmez (COMPANY.md §23, PRINCIPLES.md
-// §5) ve Product/Offer şemasına fiyat girmez (QUALITY_GATES.md §4); bu yüzden
-// sayfa RAKAMSIZ ve bunu kullanıcıya açıkça söyler. Video yok. Yeni görsel
-// üretilmedi — eksik görsel alanları nötr yer tutucudur (bkz. hero.ts /
-// device-types.ts `imageNeeded`).
+// §5) ve Product/Offer şemasına fiyat girmez (QUALITY_GATES.md §4). TEK İSTİSNA
+// bu sayfadır (DECISIONS K-Fiyat-1, 2026-10-11): onaylı başlangıç fiyatı ve taksit
+// mesajı data/isitme-cihazi-fiyatlari/pricing.ts'ten gelir ve hero, kısa cevap,
+// "Fiyat ve Ödeme Seçenekleri" bölümü ile SSS'te kullanılır; model bazında fiyat
+// listesi yoktur ve hiçbir şemaya fiyat yazılmaz. Video yok.
+//
+// Hero: sayfaya özel PriceGuideHero (ortak GuideHero değişmez). Tablolar: ortak
+// GuideTable'ın opt-in `variant="enhanced"` + `mobile="stack"` modu (varsayılan
+// görünüm diğer sayfalarda aynen kalır).
 //
 // İçerik data/isitme-cihazi-fiyatlari/* altındadır; görünüm mevcut
 // componentlerin (MainLayout, Breadcrumb, BrandPageFaq, BrandPageModels,
@@ -24,7 +29,7 @@ import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.ast
 import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 
-import GuideHero from "../components/price-guide/GuideHero.astro";
+import PriceGuideHero from "../components/price-guide/PriceGuideHero.astro";
 import GuideToc from "../components/price-guide/GuideToc.astro";
 import DirectAnswer from "../components/price-guide/DirectAnswer.astro";
 import GuideSection from "../components/price-guide/GuideSection.astro";
@@ -40,6 +45,9 @@ import { daricaLocation } from "../data/darica/location";
 import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../data/isitme-cihazi-fiyatlari/page";
 import { priceGuideHero } from "../data/isitme-cihazi-fiyatlari/hero";
 import { quickAnswer } from "../data/isitme-cihazi-fiyatlari/quick-answer";
+import {
+  paymentSection, paymentCards, paymentNote, paymentLinks, aiTechNote, aiTechLinks,
+} from "../data/isitme-cihazi-fiyatlari/payment";
 import {
   factorsSection, factors, totalCostSection, totalCost, totalCostInsight, techLevelsTable,
 } from "../data/isitme-cihazi-fiyatlari/factors";
@@ -92,44 +100,50 @@ const locationCard = {
     <Breadcrumb items={breadcrumbItems} />
   </div>
 
-  <GuideHero data={priceGuideHero} />
+  <PriceGuideHero data={priceGuideHero} />
   <GuideToc links={toc} />
 
   <DirectAnswer data={quickAnswer} />
 
-  <GuideSection {...factorsSection} tone="alt">
+  <GuideSection {...paymentSection} tone="alt">
+    <InfoGrid cards={paymentCards} columns={4} />
+    <GuideNotice text={paymentNote} links={paymentLinks} />
+  </GuideSection>
+
+  <GuideSection {...factorsSection}>
     <InfoGrid cards={factors} columns={3} />
   </GuideSection>
 
-  <GuideSection {...totalCostSection}>
+  <GuideSection {...totalCostSection} tone="alt">
     <InfoGrid cards={totalCost} columns={4} />
     <GuideNotice text={totalCostInsight} />
   </GuideSection>
 
-  <GuideSection id={techLevelsTable.id} eyebrow={techLevelsTable.eyebrow} heading={techLevelsTable.heading} intro={techLevelsTable.intro} tone="alt">
-    <GuideTable data={{ ...techLevelsTable, id: `${techLevelsTable.id}-tablo` }} bare />
+  <GuideSection id={techLevelsTable.id} eyebrow={techLevelsTable.eyebrow} heading={techLevelsTable.heading} intro={techLevelsTable.intro}>
+    <GuideTable data={{ ...techLevelsTable, id: `${techLevelsTable.id}-tablo` }} bare variant="enhanced" mobile="stack" />
+    <GuideNotice text={aiTechNote} links={aiTechLinks} />
   </GuideSection>
 
-  <GuideSection {...deviceTypesSection}>
+  <GuideSection {...deviceTypesSection} tone="alt">
     <DeviceTypeCards items={deviceTypes} />
   </GuideSection>
 
-  <GuideSection {...comparisonsSection} tone="alt">
-    <GuideTable data={deviceTypesTable} />
-    <GuideTable data={priorityTable} />
-    <GuideTable data={chargingTable} />
-    <GuideTable data={featuresTable} />
+  <GuideSection {...comparisonsSection}>
+    <GuideTable data={deviceTypesTable} variant="enhanced" mobile="stack" />
+    <GuideTable data={priorityTable} variant="enhanced" mobile="stack" />
+    <GuideTable data={chargingTable} variant="enhanced" mobile="stack" />
+    <GuideTable data={featuresTable} variant="enhanced" mobile="stack" />
   </GuideSection>
 
-  <GuideSection {...featuresSection}>
+  <GuideSection {...featuresSection} tone="alt">
     <InfoGrid cards={features} columns={4} />
   </GuideSection>
 
-  <GuideSection {...scenariosSection} tone="alt">
+  <GuideSection {...scenariosSection}>
     <InfoGrid cards={scenarios} columns={3} />
   </GuideSection>
 
-  <GuideSection {...brandModelSection}>
+  <GuideSection {...brandModelSection} tone="alt">
     <div class="pg-brands">
       <Brands embedded />
     </div>
@@ -160,14 +174,18 @@ const locationCard = {
 
   <GuideSection {...localSection} tone="alt">
     <div class="pg-local">
-      {localContent.paragraphs.map((t) => <p class="pg-local__p">{t}</p>)}
-      <ul class="pg-local__items">
-        {localContent.items.map((it) => <li><strong>{it.title}.</strong> {it.text}</li>)}
-      </ul>
-      <p class="pg-local__p">{localContent.otherAreas}</p>
-      <ul class="pg-local__links">
-        {localContent.links.map((l) => <li><a class="pg-local__link" href={l.href}>{l.label}</a></li>)}
-      </ul>
+      <div class="pg-local__main">
+        {localContent.paragraphs.map((t) => <p class="pg-local__p">{t}</p>)}
+        <ul class="pg-local__items">
+          {localContent.items.map((it) => <li><strong>{it.title}.</strong> {it.text}</li>)}
+        </ul>
+      </div>
+      <div class="pg-local__areas">
+        <p class="pg-local__areas-text">{localContent.otherAreas}</p>
+        <ul class="pg-local__links">
+          {localContent.links.map((l) => <li><a class="pg-local__link" href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
     </div>
   </GuideSection>
 
@@ -183,37 +201,90 @@ const locationCard = {
 </MainLayout>
 
 <style>
+  /* Yerel bölüm ("Darıca · Merkezimiz"): GuideSection başlığı kapsayıcının sol kenarına hizalıdır;
+     içerik de aynı sol kenardan, aynı genişlikte başlar (önceden 42rem'lik ortalanmış bir blok ve
+     ortalanmış metin, başlıktan kopuk ikinci bir sütun oluşturuyordu). ≥900 px: solda ziyaret
+     metni + hazırlık listesi, sağda Gebze/Çayırova ve bağlantılar (üst hizalar aynı). Altında tek sütun. */
   .pg-local {
-    max-width: 42rem;
-    margin-inline: auto;
-    text-align: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .pg-local__main {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 44rem;
   }
 
   .pg-local__p {
-    margin: var(--space-4) 0 0;
+    margin: 0;
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
   }
 
   .pg-local__items {
-    margin: var(--space-4) 0 0;
-    padding: 0;
+    margin: var(--space-2) 0 0;
+    padding: var(--space-5) 0 0;
     list-style: none;
     display: grid;
     gap: var(--space-3);
+    border-top: 1px solid var(--color-border);
     color: var(--color-text-muted);
     line-height: var(--line-height-relaxed);
   }
 
+  .pg-local__items li {
+    position: relative;
+    padding-left: var(--space-6);
+  }
+
+  /* Liste işareti: dekoratif nokta (anlam metindedir). */
+  .pg-local__items li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0.65em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+
+  .pg-local__items strong {
+    color: var(--color-text);
+  }
+
+  .pg-local__areas {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+  }
+
+  .pg-local__areas-text {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
   .pg-local__links {
-    margin: var(--space-6) 0 0;
+    margin: var(--space-5) 0 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: var(--space-3);
+  }
+
+  @media (min-width: 900px) {
+    .pg-local {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: var(--space-12);
+    }
   }
 
   .pg-local__link {
@@ -257,8 +328,9 @@ const locationCard = {
     margin-top: 0;
   }
 
+  /* "Fiyat ve Ödeme" bölümü eklenince bölüm ritmi kaydı: marka bölümü artık "alt" tonda, model vitrini beyaz. */
   .pg-models {
-    background: var(--color-surface);
+    background: var(--color-background);
   }
 
   .pg-anchor {
@@ -268,6 +340,14 @@ const locationCard = {
   @media (max-width: 640px) {
     .pg-breadcrumb {
       padding-inline: var(--space-4);
+    }
+
+    .pg-local__p {
+      font-size: var(--font-size-md);
+    }
+
+    .pg-local__areas {
+      padding: var(--space-5);
     }
   }
 </style>

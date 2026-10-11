@@ -1,6 +1,7 @@
-// Hero — H1 "İşitme Cihazı Fiyatları". Görsel alanı bilinçli olarak
-// PLACEHOLDER: bu turda görsel üretilmiyor; `imageNeeded` neyin üretileceğini
-// belgeler (GuideHero, `image` verilene kadar nötr, metinsiz bir yüzey çizer).
+// Hero — H1 "İşitme Cihazı Fiyatları 2026". Bu sayfa artık sayfaya özel PriceGuideHero
+// bileşenini kullanır (sağda "Fiyat Özeti Paneli"; fiyat/taksit metni pricing.ts'ten,
+// DECISIONS K-Fiyat-1). `PriceGuideHeroContent` arayüzü GuideHero ve BrandsGuideHero
+// tarafından da kullanıldığı için DEĞİŞMEZ; `textOnly`/`image` alanları bu sayfada kullanılmaz.
 import { contactConfig } from "../../config/contact";
 import type { GuideImage, GuideLink } from "../../components/price-guide/price-guide.types";
 
@@ -22,9 +23,9 @@ export interface PriceGuideHeroContent {
 const whatsappText = encodeURIComponent("Merhaba, işitme cihazı fiyatları hakkında bilgi almak istiyorum.");
 
 export const priceGuideHero: PriceGuideHeroContent = {
-  textOnly: true, // Hero Visual Paketi: AI/kavramsal görsel kaldırıldı (dosya silinmedi)
+  textOnly: true, // GuideHero için geçerliydi; PriceGuideHero bu alanı kullanmaz
   eyebrow: "Fiyat Rehberi",
-  heading: "İşitme Cihazı Fiyatları",
+  heading: "İşitme Cihazı Fiyatları 2026",
   lead:
     "İşitme cihazı fiyatları neden bu kadar farklı? Cihaz tipinden teknoloji seviyesine, SGK desteğinden satın alma sonrası hizmetlere kadar fiyatı belirleyen her şeyi anlatıyoruz.",
   supporting:

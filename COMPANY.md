@@ -86,6 +86,6 @@ Bilgi içerikleri (Bilgi Merkezi) ulusal kapsamlıdır. Bu durum fiziksel hizmet
 | Davranış, ton, marka mimarisi, iddia politikası | `PRINCIPLES.md`, BRAND_SOT |
 | Arama ve yerel SEO stratejisi | `SEARCH_STRATEGY.md` |
 | Yayın kapıları | `QUALITY_GATES.md` |
-| Fiyat bilgisi | Fiyat **üretilmez ve tahmin edilmez**. Cihaz fiyatlarının sitede yayınlanıp yayınlanmayacağına **henüz karar verilmedi** (PRODUCT_SOT §4). |
+| Fiyat bilgisi | Fiyat **üretilmez ve tahmin edilmez**. Cihaz fiyatlarının sitede yayınlanıp yayınlanmayacağına **henüz karar verilmedi** (PRODUCT_SOT §4). Tek istisna: `/isitme-cihazi-fiyatlari/` sayfasındaki onaylı başlangıç fiyatı ve taksit mesajı (DECISIONS K-Fiyat-1, 2026-10-11). |
 
 Bu dosya yaşayan bir özettir. İşletme bilgisi değiştiğinde önce SoT güncellenir, sonra gerekiyorsa bu özet.

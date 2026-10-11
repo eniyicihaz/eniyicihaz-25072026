@@ -2,6 +2,8 @@
 // sayfalarındaki (kulak-arkasi, kulak-ici, gorunmez-cic, sarj-edilebilir)
 // ifadelerle tutarlı, "genellikle / modele göre" ile temkinli genellemelerdir.
 // Hiçbir satırda fiyat, oran veya "daha ucuz/daha pahalı" hükmü yoktur.
+// Sayfada `variant="enhanced"` + `mobile="stack"` ile çizilir (bkz. isitme-cihazi-fiyatlari.astro);
+// özellik tablosunun "Fiyata genel etkisi" sütunu `kind: "impact"` rozetiyle gösterilir.
 import type { GuideSectionMeta, GuideTableContent } from "../../components/price-guide/price-guide.types";
 
 export const comparisonsSection: GuideSectionMeta = {
@@ -9,7 +11,7 @@ export const comparisonsSection: GuideSectionMeta = {
   eyebrow: "Karşılaştırmalar",
   heading: "Cihaz Türlerini ve Özellikleri Yan Yana Görün",
   intro:
-    "Aşağıdaki tablolar fiyatı değil, fiyatı belirleyen farkları karşılaştırır. Tablolar mobilde yatay kaydırılır; ilk sütun kaydırma sırasında sabit kalır.",
+    "Aşağıdaki tablolar fiyatı değil, fiyatı belirleyen farkları karşılaştırır. Küçük ekranlarda her satır ayrı bir kart olarak gösterilir; yan yana kaydırmanız gerekmez.",
 };
 
 export const deviceTypesTable: GuideTableContent = {
@@ -85,7 +87,7 @@ export const featuresTable: GuideTableContent = {
   intro: "Her özelliğin değeri, sizin günlük hayatınızda ne kadar yer tuttuğuna bağlıdır.",
   caption: "İşitme cihazı özelliklerinin işlevi, kimin işine yaradığı ve fiyata genel etkisi",
   criterionLabel: "Özellik",
-  columns: [{ name: "Ne işe yarar?" }, { name: "Kimin işine yarar?" }, { name: "Fiyata genel etkisi" }, { name: "Dikkat" }],
+  columns: [{ name: "Ne işe yarar?" }, { name: "Kimin işine yarar?" }, { name: "Fiyata genel etkisi", kind: "impact" }, { name: "Dikkat" }],
   rows: [
     { label: "Bluetooth", cells: ["Telefon, TV ve müzik sesini doğrudan cihaza aktarır", "Sık telefon ve TV kullananlar", "Orta", "Telefon uyumluluğu modele göre değişir"] },
     { label: "Şarj edilebilir pil", cells: ["Pil değiştirme ihtiyacını ortadan kaldırır", "Küçük pillerle zorlananlar", "Orta", "Şarj alışkanlığı gerektirir"] },
