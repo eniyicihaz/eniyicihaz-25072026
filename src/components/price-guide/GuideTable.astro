@@ -371,8 +371,11 @@ const impactTone = (value: string) => {
     box-shadow: var(--shadow-sm);
   }
 
+  /* Başlık hücreleri dikeyde ortalanır: bağlantılı sütun başlığı (48 px dokunma alanı) ile düz
+     metin başlığı ve iki satıra kayan başlıklar aynı hizada durur (varsayılan: bottom). */
   .guide-table--enhanced .guide-table__corner,
   .guide-table--enhanced .guide-table__col-head {
+    vertical-align: middle;
     background: #eff6ff;
     border-bottom: 2px solid var(--color-primary);
   }
