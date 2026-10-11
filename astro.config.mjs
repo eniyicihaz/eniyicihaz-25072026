@@ -40,6 +40,7 @@ function dsDevRoutes() {
 export default defineConfig({
   site: 'https://www.eniyicihaz.com',
   build: {
+    // CSS'i HTML'e göm: render-blocking harici stylesheet isteklerini kaldırır (mobil FCP).
     inlineStylesheets: 'always',
   },
   integrations: [
