@@ -24,6 +24,8 @@ export interface BrandPageEcosystemContent {
   heading: string;
   intro: string;
   items: BrandPageEcosystemItem[];
+  /** Optional: label of the note callout; omit for the default "Uzman Yorumu" (every other page). */
+  noteLabel?: string;
   accentColor: string;
   accentColorBadgeBg: string;
   accentColorBadgeBorder: string;
@@ -126,7 +128,7 @@ const iconMap = {
                 </div>
 
                 <div class="brand-page-eco__callout">
-                  <p class="brand-page-eco__callout-label">Uzman Yorumu</p>
+                  <p class="brand-page-eco__callout-label">{data.noteLabel ?? "Uzman Yorumu"}</p>
                   <p class="brand-page-eco__callout-text">{item.expertNote}</p>
                 </div>
               </div>

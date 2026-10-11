@@ -16,7 +16,7 @@ export const onarimTakibiRelatedContent: BrandPageRelatedContentContent = {
   links: [
     {
       label: "Teknik Servis",
-      description: "Bir arıza fark ederseniz, yerinde teşhis ve onarım sürecini keşfedin.",
+      description: "Arıza belirtilerini, merkezdeki ilk değerlendirmeyi ve teknik servis sürecini öğrenin.",
       href: "/servis-bakim/teknik-servis/",
     },
     {

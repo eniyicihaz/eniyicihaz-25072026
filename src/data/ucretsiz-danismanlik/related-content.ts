@@ -19,8 +19,8 @@ export const ucretsizDanismanlikRelatedContent: BrandPageRelatedContentContent =
       href: "/neden-orijinal/guvenilir-teknoloji/",
     },
     {
-      label: "Servis Desteği",
-      description: "18 markada verdiğimiz teknik servis desteği hakkında bilgi edinin.",
+      label: "Üretici Yetkili Servis Desteği",
+      description: "18 markanın tamamı için üretici servis yetkimiz ve servis desteği hakkında bilgi edinin.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {

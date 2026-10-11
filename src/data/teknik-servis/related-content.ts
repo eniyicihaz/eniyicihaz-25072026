@@ -15,6 +15,11 @@ export const teknikServisRelatedContent: BrandPageRelatedContentContent = {
   heading: "Devam Etmek İçin",
   links: [
     {
+      label: "Onarım Takibi",
+      description: "Cihazınızı teslim ettiyseniz, servis kaydı ve durum bilgisi alma yollarını öğrenin.",
+      href: "/servis-bakim/onarim-takibi/",
+    },
+    {
       label: "Kontrol Randevusu",
       description: "Fiziksel bir arıza değilse, önce düzenli kontrol randevusunu değerlendirin.",
       href: "/uygulama-ayar/kontrol-randevusu/",
@@ -28,11 +33,6 @@ export const teknikServisRelatedContent: BrandPageRelatedContentContent = {
       label: "Garanti İşlemleri",
       description: "Cihazınızın garanti kapsamı ve süreci hakkında detaylı bilgi edinin.",
       href: "/servis-bakim/garanti-islemleri/",
-    },
-    {
-      label: "Onarım Takibi",
-      description: "Onarıma gönderilen cihazınızın sürecini nasıl takip edeceğinizi öğrenin.",
-      href: "/servis-bakim/onarim-takibi/",
     },
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",

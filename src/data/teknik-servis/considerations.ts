@@ -5,7 +5,7 @@
 // not every issue needs a hardware repair — some are better resolved
 // through Kontrol Randevusu or Uzaktan Ayar first.
 
-import { AlertTriangle, Truck, ShieldQuestion, PackageCheck, RefreshCcw } from "lucide-astro";
+import { Hourglass, Phone, ShieldQuestion, PackageCheck, RefreshCcw } from "lucide-astro";
 import type { BrandPageIdealUserContent } from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 
 export const teknikServisConsiderations: BrandPageIdealUserContent = {
@@ -14,34 +14,34 @@ export const teknikServisConsiderations: BrandPageIdealUserContent = {
   intro: "Teknik servis faydalı bir çözüm yoludur; yine de göz önünde bulundurulması gereken birkaç önemli nokta vardır.",
   profiles: [
     {
-      icon: AlertTriangle,
-      title: "Her Sorun Fiziksel Bir Arıza Olmayabilir",
-      description: "Bazı şikayetler aslında ayar veya programlama kaynaklıdır; bu durumlarda önce Kontrol Randevusu veya Uzaktan Ayar değerlendirilebilir.",
-      suggestedFamilies: ["Ön Değerlendirme"],
-    },
-    {
-      icon: Truck,
-      title: "Üretici Servisine Gönderim Süreyi Uzatabilir",
-      description: "Yerinde çözülemeyen onarımlar için cihazın üreticiye gönderilmesi gerekebilir; bu durumda süreç birkaç iş günü daha uzayabilir.",
-      suggestedFamilies: ["Üretici Servis Süresi"],
+      icon: Hourglass,
+      title: "İşlem Süresi Değişebilir",
+      description: "Süre arızaya göre değişir; gerektiğinde teknik servisin veya yedek parçanın beklenmesi süreyi uzatabilir. Tahmini onarım süresi, teknik servisteki ilk teknik kontrolden sonra bildirilir.",
+      suggestedFamilies: ["Süre Beklentisi"],
     },
     {
       icon: ShieldQuestion,
-      title: "Garanti Kapsamı Hasar Türüne Göre Değişir",
-      description: "Su teması veya düşme gibi kullanıcı kaynaklı hasarlar, garanti kapsamı dışında kalabilir.",
+      title: "Garanti Kapsamı Duruma Göre Değişir",
+      description: "Garanti kapsamı, cihazın garanti şartlarına ve arızanın niteliğine bağlıdır; su teması veya düşme gibi kullanıcı kaynaklı hasarlar kapsam dışında kalabilir.",
       suggestedFamilies: ["Garanti Kapsamı"],
     },
     {
       icon: PackageCheck,
-      title: "Onarım Öncesi Ücret Bilgisi Paylaşılır",
-      description: "Garanti dışı bir onarım gerektiğinde, işleme başlamadan önce tahmini maliyet sizinle paylaşılır.",
+      title: "Garanti Dışı İşlemde Ücret Önceden Paylaşılır",
+      description: "Teknik servis ücreti cihazın durumuna göre belirlenir; varsa onarım ücreti teknik servisteki ilk teknik kontrolden sonra bildirilir.",
       suggestedFamilies: ["Maliyet Şeffaflığı"],
     },
     {
       icon: RefreshCcw,
-      title: "Yedek Cihaz İmkânı Sınırlı Olabilir",
+      title: "Yedek Cihaz İmkânı Değişebilir",
       description: "Onarım süresince kullanılabilecek yedek cihaz imkânı, stok durumuna göre değişebilir.",
       suggestedFamilies: ["Yedek Cihaz"],
+    },
+    {
+      icon: Phone,
+      title: "Başvurmadan Önce Bizimle İletişime Geçin",
+      description: "Teknik servis için randevu gerekir; telefonla veya WhatsApp üzerinden iletişime geçmeniz, sorununuzun daha hızlı değerlendirilmesine yardımcı olur.",
+      suggestedFamilies: ["Randevu"],
     },
   ],
   accentColor: "#d97706",

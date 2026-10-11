@@ -19,32 +19,32 @@ import { contactConfig } from "../../config";
 
 export const yayginServisAgiHero: BrandPageHeroContent = {
   textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
-  badge: "MARKALAR · NEDEN ORİJİNAL · SERVİS DESTEĞİ",
-  headingLines: ["Servis Desteği", "Nasıl Bir Güven Verir?"],
+  badge: "MARKALAR · NEDEN ORİJİNAL · ÜRETİCİ YETKİLİ SERVİS DESTEĞİ",
+  headingLines: ["Üretici Yetkili Servis", "Desteği Neden Önemlidir?"],
   paragraphs: [
-    "Bir işitme cihazının uzun vadeli kullanımında, bakım ve onarım ihtiyacında ulaşabileceğiniz teknik servis desteği önemli bir güvencedir.",
-    "Avrasya İşitme olarak sattığımız 18 markanın tamamında Darıca'daki merkezimizde teknik servis veriyoruz; garanti kapsamındaki cihazları gerektiğinde dış servise gönderiyoruz.",
+    "Bir işitme cihazının uzun vadeli kullanımında, üretici yetkisiyle yürütülen servis desteği; garanti koşullarının doğru uygulanması, doğru parça ve uygun teknik müdahale açısından önemlidir.",
+    "Avrasya İşitme'nin sattığı 18 markanın tamamı için üretici servis yetkisi bulunmaktadır. Fiziksel hizmet noktamız Darıca'daki merkezimizdir; gerektiğinde cihaz teknik servise gönderilebilir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
   features: [
     {
-      label: "18 MARKADA SERVİS",
+      label: "18 MARKADA ÜRETİCİ YETKİSİ",
       accent: "#ea580c",
-      title: "Sattığımız Tüm Markalarda Teknik Servis",
-      description: "Sattığımız 18 markanın tamamında teknik servis desteği veriyoruz.",
+      title: "Sattığımız Tüm Markalarda Servis Yetkisi",
+      description: "Sattığımız 18 markanın tamamı için üretici servis yetkisi bulunmaktadır.",
     },
     {
-      label: "TESLİM SÜRESİ",
+      label: "DARICA MERKEZİMİZ",
       accent: "#c2410c",
-      title: "Teknik Serviste 3 Gün İçinde Teslim",
-      description: "Teknik servis işlemlerinde cihaz 3 gün içinde teslim edilir; ücret cihazın durumuna göre belirlenir.",
+      title: "Fiziksel Hizmet Noktamız Darıca'dadır",
+      description: "Servis desteği için randevu alarak Darıca'daki merkezimize başvurabilirsiniz.",
     },
     {
-      label: "GARANTİ İŞLEMLERİ",
+      label: "GARANTİ KAPSAMI",
       accent: "#9a3412",
-      title: "Garanti İşlemlerinde Ücretsiz Destek",
-      description: "Garanti işlemleri ücretsizdir; süre cihaza göre 1–5 gün arasında değişebilir.",
+      title: "Kapsam Garanti Şartlarına Göre Belirlenir",
+      description: "Garanti kapsamı, cihazın garanti şartlarına ve arızanın niteliğine göre değerlendirilir.",
     },
   ],
   image: {

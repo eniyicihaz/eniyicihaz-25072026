@@ -13,6 +13,11 @@ export const yayginServisAgiRelatedContent: BrandPageRelatedContentContent = {
   heading: "Devam Etmek İçin",
   links: [
     {
+      label: "Teknik Servis",
+      description: "Arıza türlerini, merkezdeki ilk değerlendirmeyi ve teknik servis sürecini ayrıntılı olarak öğrenin.",
+      href: "/servis-bakim/teknik-servis/",
+    },
+    {
       label: "Güvenilir Teknoloji",
       description: "Orijinal ürünlerin neden güvenilir bir teknoloji sunduğunu keşfedin.",
       href: "/neden-orijinal/guvenilir-teknoloji/",
@@ -31,11 +36,6 @@ export const yayginServisAgiRelatedContent: BrandPageRelatedContentContent = {
       label: "Tüm Markalarımız",
       description: "Sattığımız 18 markayı ve ürün ailelerini inceleyin.",
       href: "/markalar/",
-    },
-    {
-      label: "Bize Ulaşın",
-      description: "Servis randevusu veya sorularınız için bizimle iletişime geçin.",
-      href: "/iletisim/",
     },
   ],
   accentColor: "#ea580c",

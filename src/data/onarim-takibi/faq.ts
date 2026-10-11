@@ -9,10 +9,10 @@ import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageF
 export const onarimTakibiFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
   heading: "Onarım Takibi Hakkında Merak Edilenler",
-  intro: "Bildirimler, süre ve gecikme durumları konusunda en çok sorulan sorular.",
+  intro: "Bilgilendirme, süre ve gecikme durumları konusunda en çok sorulan sorular.",
   decisionCard: {
-    title: "Onarımdaki Cihazınızın Durumunu Öğrenmek İster misiniz?",
-    points: ["Aşama aşama görünürlük", "SMS/WhatsApp bildirimleri", "Tahmini teslim süresi", "Doğrudan iletişim"],
+    title: "Servisteki Cihazınızın Durumunu Öğrenmek İster misiniz?",
+    points: ["Dijital servis kaydı", "SMS / WhatsApp ile manuel bilgilendirme", "Telefon ve WhatsApp'tan bilgi alma", "Tahmini süre ilk teknik kontrolden sonra"],
     ctaLabel: "Hemen Bilgi Alın",
     ctaHref: contactConfig.phone.href,
   },
@@ -23,12 +23,17 @@ export const onarimTakibiFaq: BrandPageFaqContent = {
         {
           question: "Cihazımın durumunu nasıl öğrenebilirim?",
           answer:
-            "Önemli aşamalarda otomatik bildirim alırsınız; ayrıca istediğiniz zaman bizi arayarak güncel durumu öğrenebilirsiniz.",
+            "Bizi telefonla arayabilir veya WhatsApp'tan yazabilirsiniz; cihazınızın servis kaydına bakılarak güncel durum sizinle paylaşılır. Gerektiğinde personelimiz de sizi SMS veya WhatsApp üzerinden manuel olarak bilgilendirir.",
         },
         {
-          question: "Bildirimleri hangi kanaldan alırım?",
+          question: "Her aşamada otomatik mesaj alır mıyım?",
           answer:
-            "Tercihinize göre SMS veya WhatsApp üzerinden bilgilendirilebilirsiniz.",
+            "Hayır; otomatik bir bildirim sistemi bulunmamaktadır. Bilgilendirme, gerektiğinde personelimiz tarafından manuel yapılır. Durumu merak ederseniz bizi arayabilir veya WhatsApp'tan yazabilirsiniz.",
+        },
+        {
+          question: "Cihazımın durumunu internetten görebilir miyim?",
+          answer:
+            "Hayır; dijital servis kaydı personelimiz tarafından kullanılır ve internet üzerinden müşteriye açık değildir. Güncel durumu telefonla veya WhatsApp üzerinden öğrenebilirsiniz.",
         },
       ],
     },
@@ -38,12 +43,12 @@ export const onarimTakibiFaq: BrandPageFaqContent = {
         {
           question: "Onarım sürecim ne kadar sürer?",
           answer:
-            "Süre, onarımın yerinde mi yoksa üretici servisinde mi yapıldığına göre değişir; tahmini süre teslim alma sırasında sizinle paylaşılır.",
+            "İşlem süresi arızanın türüne ve gerektiğinde teknik servisin veya yedek parçanın beklenmesine göre değişebilir. Tahmini onarım süresi ve varsa ücret, merkezdeki ilk değerlendirmeden ayrı olarak teknik servisteki ilk teknik kontrolden sonra bildirilir.",
         },
         {
           question: "Beklenenden uzun sürerse ne olur?",
           answer:
-            "Beklenmedik bir gecikme olması durumunda sizinle iletişime geçilir; siz de istediğiniz zaman bizi arayarak durumu sorabilirsiniz.",
+            "Gecikme veya ek bir değerlendirme ihtiyacı doğarsa sizinle iletişime geçilir; siz de istediğiniz zaman bizi arayarak veya WhatsApp'tan yazarak durumu sorabilirsiniz.",
         },
       ],
     },
@@ -53,7 +58,7 @@ export const onarimTakibiFaq: BrandPageFaqContent = {
         {
           question: "Cihazım hazır olduğunda nasıl haberdar olurum?",
           answer:
-            "Cihazınız teslime hazır olduğunda bildirim alırsınız ve teslim alma seçenekleri sizinle paylaşılır.",
+            "Cihazınız teslime hazır olduğunda sizinle iletişime geçilir.",
         },
       ],
     },
@@ -61,9 +66,9 @@ export const onarimTakibiFaq: BrandPageFaqContent = {
       label: "Diğer",
       items: [
         {
-          question: "Onarım takibi ücretli midir?",
+          question: "Arıza belirtileri ve onarım kapsamı için nereye bakmalıyım?",
           answer:
-            "Hayır; onarım takibi herhangi bir ücret talep edilmeden sunulan bir hizmettir.",
+            "Arıza türleri, merkezdeki ilk değerlendirme ve teknik servis süreci için Teknik Servis sayfamıza bakabilirsiniz.",
         },
       ],
     },

@@ -10,10 +10,10 @@ export const onarimTakibiFinalCta: BrandPageFinalCtaContent = {
   badge: "SÜRECİNİZİ MERAK MI EDİYORSUNUZ?",
   heading: "Cihazınızın Güncel Durumunu Öğrenelim",
   description:
-    "Onarımdaki veya garanti sürecindeki cihazınızın hangi aşamada olduğunu öğrenmek için bizimle iletişime geçebilirsiniz.",
+    "Servisteki cihazınızın hangi aşamada olduğunu öğrenmek için bizi arayabilir veya WhatsApp'tan yazabilirsiniz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Aşama Aşama Görünürlük", "Otomatik Bildirim", "Net Süre Beklentisi", "Doğrudan İletişim"],
+  trustItems: ["Dijital Servis Kaydı", "SMS / WhatsApp ile Manuel Bilgilendirme", "Telefon ve WhatsApp'tan Bilgi Alma", "Tahmini Süre İlk Değerlendirmeden Sonra"],
   accentColor: "#c026d3",
   accentColorHover: "#a21caf",
   accentColorGlow: "rgb(192 38 211 / 0.22)",

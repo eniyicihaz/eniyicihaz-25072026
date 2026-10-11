@@ -9,7 +9,7 @@ export const onarimTakibiExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Cihazsız kalmak, kullanıcılarımız için gerçekten stresli bir dönem olabilir. Bu yüzden onarım sürecinde onları karanlıkta bırakmamayı, her aşamada bilgilendirmeyi önemsiyoruz.",
+    "Cihazsız kalmak, kullanıcılarımız için stresli bir dönem olabilir. Bu yüzden süreç hakkında bilgi almanızı kolaylaştırmayı ve gerektiğinde sizi bilgilendirmeyi önemsiyoruz.",
   note: "Onarımdaki cihazınızın güncel durumu hakkında bilgi almak için bizimle iletişime geçebilirsiniz.",
   accentColor: "#c026d3",
   accentColorBadgeBg: "rgb(192 38 211 / 0.08)",

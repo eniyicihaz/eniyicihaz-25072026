@@ -1,0 +1,483 @@
+---
+// OnarimTakipTimeline — /servis-bakim/onarim-takibi sayfasına özel numaralı zaman çizelgesi + "Durum bilgisi nasıl alınır?" alanı.
+// Masaüstü (>=1100): kıvrımlı yatay çizgi üzerinde 5 numaralı düğüm; <1100: sıkı dikey zaman çizelgesi. Bilgi alanı çizelgenin
+// ALTINDA ayrı ve görünür bir panel olarak durur (telefon, WhatsApp, manuel SMS/WhatsApp). Veri: data/onarim-takibi/timeline.ts.
+// Bu bölümde telefon/WhatsApp bağlantısı yoktur (yeni ölçüm olayı üretmez); eylem butonları sayfanın hero ve kapanış CTA'larındadır.
+import { PackageOpen, SearchCheck, Route, Wrench, BadgeCheck, Phone, MessageCircle, UserRoundCheck, ArrowRight, Info } from "lucide-astro";
+import { onarimTimeline } from "../../../data/onarim-takibi/timeline";
+
+const { eyebrow, heading, intro, steps, info } = onarimTimeline;
+const stepIcons = [PackageOpen, SearchCheck, Route, Wrench, BadgeCheck];
+const infoIcons = { phone: Phone, whatsapp: MessageCircle, manual: UserRoundCheck } as const;
+---
+
+<section class="ott" aria-labelledby="ott-title">
+  <div class="ott__inner">
+    <header class="ott__header">
+      <p class="ott__eyebrow">{eyebrow}</p>
+      <h2 class="ott__heading" id="ott-title">{heading}</h2>
+      <p class="ott__intro">{intro}</p>
+    </header>
+
+    <div class="ott__flow">
+      <svg class="ott__wave" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="ott-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0">
+            <stop offset="0" stop-color="#2563eb" />
+            <stop offset="0.3" stop-color="#0e7490" />
+            <stop offset="0.55" stop-color="#7c3aed" />
+            <stop offset="0.8" stop-color="#0f2547" />
+            <stop offset="1" stop-color="#0284c7" />
+          </linearGradient>
+        </defs>
+        <path d="M 0 60 C 50 60, 70 28, 100 28 C 160 28, 140 92, 300 92 C 360 92, 340 28, 500 28 C 560 28, 540 92, 700 92 C 760 92, 740 28, 900 28 C 950 28, 960 60, 1000 60" stroke="url(#ott-grad)" />
+      </svg>
+
+      <ol class="ott__steps">
+        {
+          steps.map((s, i) => {
+            const Icon = stepIcons[i];
+            return (
+              <li class={`ott__step ott__step--${s.tone}`}>
+                <span class="ott__node" aria-hidden="true">
+                  <Icon size={24} stroke-width={1.9} />
+                  <span class="ott__num">{i + 1}</span>
+                </span>
+                <div class="ott__card">
+                  <h3 class="ott__title">{s.title}</h3>
+                  <p class="ott__text">{s.text}</p>
+                  {s.link && (
+                    <a class="ott__link" href={s.link.href}>
+                      <span>{s.link.label}</span>
+                      <ArrowRight size={14} stroke-width={2.25} aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </div>
+
+    <aside class="ott__info" aria-labelledby="ott-info-title">
+      <div class="ott__info-head">
+        <span class="ott__info-icon" aria-hidden="true"><Info size={22} stroke-width={1.9} /></span>
+        <div>
+          <h3 class="ott__info-title" id="ott-info-title">{info.title}</h3>
+          <p class="ott__info-lead">{info.lead}</p>
+        </div>
+      </div>
+      <ul class="ott__info-list">
+        {
+          info.items.map((it) => {
+            const Icon = infoIcons[it.kind];
+            return (
+              <li class={`ott__info-item ott__info-item--${it.kind}`}>
+                <span class="ott__info-item-icon" aria-hidden="true"><Icon size={20} stroke-width={1.9} /></span>
+                <div>
+                  <strong class="ott__info-item-title">{it.title}</strong>
+                  <p class="ott__info-item-text">{it.text}</p>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <p class="ott__caution">{info.caution}</p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .ott {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    background: var(--color-surface);
+    padding-block: var(--space-12);
+    --navy: #0f2547;
+    --blue: #2563eb;
+    --teal: #0e7490;
+    --violet: #7c3aed;
+    --sky: #0284c7;
+  }
+
+  .ott::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(36% 50% at 10% 25%, rgb(14 116 144 / 0.07), transparent 100%),
+      radial-gradient(36% 50% at 92% 70%, rgb(124 58 237 / 0.06), transparent 100%);
+  }
+
+  .ott__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .ott__header {
+    max-width: 46rem;
+    margin: 0 auto var(--space-8);
+    text-align: center;
+  }
+
+  .ott__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--teal);
+  }
+
+  .ott__heading {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.625rem, 1.1rem + 1.8vw, 2.375rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--color-text);
+  }
+
+  .ott__intro {
+    margin: var(--space-2) auto 0;
+    max-width: 40rem;
+    font-size: var(--font-size-md);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .ott__flow {
+    position: relative;
+  }
+
+  .ott__wave {
+    display: none;
+  }
+
+  .ott__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+    position: relative;
+  }
+
+  .ott__step {
+    --tone: var(--blue);
+    position: relative;
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    column-gap: var(--space-3);
+    align-items: start;
+  }
+
+  .ott__step--teal { --tone: var(--teal); }
+  .ott__step--violet { --tone: var(--violet); }
+  .ott__step--navy { --tone: var(--navy); }
+  .ott__step--sky { --tone: var(--sky); }
+
+  .ott__node {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--tone) 12%, #ffffff);
+    color: var(--tone);
+    box-shadow:
+      0 0 0 4px var(--color-surface),
+      0 0 0 5px color-mix(in srgb, var(--tone) 28%, transparent),
+      0 10px 18px -10px var(--tone);
+  }
+
+  .ott__num {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: 0 0 0 3px var(--color-surface);
+    font-size: 12px;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  .ott__card {
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid color-mix(in srgb, var(--tone) 22%, var(--color-border));
+    border-left: 3px solid var(--tone);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .ott__title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    color: var(--color-text);
+  }
+
+  .ott__text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .ott__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 32px;
+    margin-top: 2px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: color-mix(in srgb, var(--tone) 85%, #000000);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .ott__link span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .ott__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Dikey çizelge (<1100): düğümlerin merkezinden geçen ince çizgi ------------------------------- */
+  @media (max-width: 1099px) {
+    .ott__steps::before {
+      content: "";
+      position: absolute;
+      left: 25px;
+      top: 26px;
+      bottom: 26px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--blue), var(--teal) 30%, var(--violet) 55%, var(--navy) 80%, var(--sky));
+      opacity: 0.35;
+    }
+  }
+
+  /* --- Geniş masaüstü (>=1100): kıvrımlı yatay çizgi, 5 sütun --------------------------------------- */
+  @media (min-width: 1100px) {
+    .ott__wave {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .ott__wave path {
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 2 9;
+      opacity: 0.7;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .ott__steps {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    .ott__step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Düğüm merkezleri çizgiyle aynı y'de: dalga 120 px yüksekliğinde; tepe y=28, çukur y=92; düğüm yüksekliği 52 px
+       (merkez = üst boşluk + 26). Düğüm x merkezleri sütun merkezleriyle (%10, %30, %50, %70, %90) çakışır. */
+    .ott__step:nth-child(odd) { margin-top: 2px; }
+    .ott__step:nth-child(even) { margin-top: 66px; }
+
+    .ott__card {
+      margin-top: var(--space-4);
+      border-left-width: 1px;
+      border-top: 3px solid var(--tone);
+      width: 100%;
+    }
+  }
+
+  /* --- Bilgi alanı -------------------------------------------------------------------------------- */
+  .ott__info {
+    margin: var(--space-8) auto 0;
+    max-width: 58rem;
+    padding: var(--space-5);
+    border: 1px solid color-mix(in srgb, var(--teal) 28%, var(--color-border));
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--teal) 6%, #ffffff), #ffffff 65%);
+    box-shadow: var(--shadow-md);
+  }
+
+  .ott__info-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .ott__info-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--teal) 14%, #ffffff);
+    color: var(--teal);
+  }
+
+  .ott__info-title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .ott__info-lead {
+    margin: 2px 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .ott__info-list {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .ott__info-item {
+    --tone: var(--blue);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border: 1px solid color-mix(in srgb, var(--tone) 22%, var(--color-border));
+    border-radius: var(--radius-lg);
+    background: #ffffff;
+  }
+
+  .ott__info-item--whatsapp { --tone: #15803d; }
+  .ott__info-item--manual { --tone: var(--violet); }
+
+  .ott__info-item-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--tone) 12%, #ffffff);
+    color: var(--tone);
+  }
+
+  .ott__info-item-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .ott__info-item-text {
+    margin: 2px 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .ott__caution {
+    margin: var(--space-4) 0 0;
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--violet) 7%, #ffffff);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 899px) {
+    .ott {
+      padding-block: var(--space-8);
+    }
+
+    .ott__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .ott__header {
+      margin-bottom: var(--space-6);
+      text-align: left;
+    }
+
+    .ott__intro {
+      margin-inline: 0;
+    }
+
+    .ott__info {
+      margin-top: var(--space-6);
+      padding: var(--space-4);
+    }
+
+    .ott__info-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 559px) {
+    .ott__step {
+      grid-template-columns: 44px minmax(0, 1fr);
+      column-gap: 10px;
+    }
+
+    .ott__node {
+      width: 44px;
+      height: 44px;
+    }
+
+    .ott__steps::before {
+      left: 21px;
+      top: 22px;
+      bottom: 22px;
+    }
+
+    .ott__info-title {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>

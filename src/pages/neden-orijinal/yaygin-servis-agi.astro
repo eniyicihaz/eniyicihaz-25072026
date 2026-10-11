@@ -36,27 +36,20 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
+import ServisYetkiHub from "../../components/brand-page/ServisYetkiHub/ServisYetkiHub.astro";
 import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
-import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
-import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
-import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
 import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
-import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
 
 import { yayginServisAgiHero } from "../../data/yaygin-servis-agi/hero";
 import { yayginServisAgiIntro } from "../../data/yaygin-servis-agi/intro";
 import { yayginServisAgiIdealUser } from "../../data/yaygin-servis-agi/ideal-user";
 import { yayginServisAgiAdvantages } from "../../data/yaygin-servis-agi/advantages";
 import { yayginServisAgiConsiderations } from "../../data/yaygin-servis-agi/considerations";
-import { yayginServisAgiEvolution } from "../../data/yaygin-servis-agi/evolution";
-import { yayginServisAgiUseCases } from "../../data/yaygin-servis-agi/use-cases";
-import { yayginServisAgiTechnology } from "../../data/yaygin-servis-agi/technology";
 import { yayginServisAgiRecommendedBrands } from "../../data/yaygin-servis-agi/recommended-brands";
-import { yayginServisAgiComparison } from "../../data/yaygin-servis-agi/comparison";
 import { yayginServisAgiExpertOpinion } from "../../data/yaygin-servis-agi/expert-opinion";
 import { yayginServisAgiFaq } from "../../data/yaygin-servis-agi/faq";
 import { yayginServisAgiRelatedContent } from "../../data/yaygin-servis-agi/related-content";
@@ -64,19 +57,16 @@ import { yayginServisAgiFinalCta } from "../../data/yaygin-servis-agi/final-cta"
 ---
 
 <MainLayout
-  title="İşitme Cihazı Servis Desteği: 18 Markada Teknik Servis"
-  description="Sattığımız 18 markanın tamamında Darıca'daki merkezimizde teknik servis veriyoruz. Teslim süreleri, garanti işlemleri ve servis sürecini öğrenin."
+  title="Üretici Yetkili Servis Desteği | 18 Markada Servis Yetkisi"
+  description="18 markanın tamamı için üretici servis yetkisi: yetkili servis desteğinin garanti koşulları, doğru parça ve belgeli işlem açısından önemi. Fiziksel hizmet noktamız Darıca."
 >
   <BrandPageHero data={yayginServisAgiHero} />
   <BrandPageIntro data={yayginServisAgiIntro} />
+  <ServisYetkiHub />
   <BrandPageIdealUser data={yayginServisAgiIdealUser} />
   <BrandPageAdvantages data={yayginServisAgiAdvantages} />
   <BrandPageIdealUser data={yayginServisAgiConsiderations} />
-  <BrandPageTechEvolution data={yayginServisAgiEvolution} />
-  <BrandPageTechnology data={yayginServisAgiUseCases} />
-  <BrandPageEcosystem data={yayginServisAgiTechnology} />
   <BrandPageRelatedContent data={yayginServisAgiRecommendedBrands} />
-  <KulakArkasiComparison data={yayginServisAgiComparison} />
   <BrandPageExpertOpinion data={yayginServisAgiExpertOpinion} />
   <BrandPageFaq data={yayginServisAgiFaq} />
   <BrandPageFinalCta data={yayginServisAgiFinalCta} />

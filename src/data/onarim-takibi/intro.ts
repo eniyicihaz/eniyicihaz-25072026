@@ -8,19 +8,19 @@
 import type { BrandPageIntroContent } from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 
 export const onarimTakibiIntro: BrandPageIntroContent = {
-  badge: "ONARIM TAKİBİ NEDİR?",
-  heading: "Onarım Takibi Nedir ve Neyi Kapsar?",
+  badge: "ONARIM TAKİBİ NASIL İŞLER?",
+  heading: "Onarım Takibi Nasıl İşler?",
   paragraphs: [
-    "Onarım takibi, Teknik Servis veya Garanti İşlemleri kapsamında bize teslim ettiğiniz cihazınızın sürecini adım adım görebilmenizi sağlayan bir hizmettir.",
-    "Cihazınız teslim alındığı andan itibaren bir takip kaydı oluşturulur; teşhis, onarım ve kalite kontrolü gibi önemli aşamalarda durumu güncellenir.",
-    "Önemli aşama değişikliklerinde SMS veya WhatsApp üzerinden bilgilendirilirsiniz; ayrıca istediğiniz zaman bizi arayarak güncel durumu öğrenebilirsiniz.",
-    "Takip, genel aşamaları gösterir; dakika dakika bir izleme değildir. Beklenen süreden belirgin bir gecikme fark ederseniz, bizimle iletişime geçmenizi öneririz.",
+    "Cihazınız bize teslim edildiğinde dijital bir servis kaydı oluşturulur; süreç ilerledikçe durum bilgisi bu kayıt üzerinden takip edilir.",
+    "Kayıt personelimiz tarafından kullanılır; internet üzerinden kendi kaydınızı görüntüleyebileceğiniz bir sistem değildir.",
+    "Gerektiğinde personelimiz SMS veya WhatsApp aracılığıyla sizi manuel olarak bilgilendirir. Bu, her aşamada otomatik bir mesaj gönderileceği anlamına gelmez.",
+    "Güncel durumu öğrenmek için bizi telefonla arayabilir veya WhatsApp'tan yazabilirsiniz. Beklenen süreden belirgin bir gecikme fark ederseniz de bizimle iletişime geçmenizi öneririz.",
   ],
   stats: [
-    { value: "Aşama Aşama Görünürlük", label: "Temel Amaç" },
-    { value: "SMS / WhatsApp", label: "Bildirim Kanalı" },
-    { value: "Teslim Alma ile Başlar", label: "İlk Adım" },
-    { value: "Tahmini Süre", label: "Beklenti Yönetimi" },
+    { value: "Dijital Servis Kaydı", label: "Cihaz Teslim Edildiğinde" },
+    { value: "SMS / WhatsApp", label: "Gerektiğinde Manuel Bilgilendirme" },
+    { value: "Telefon / WhatsApp", label: "Durum Sorma Kanalları" },
+    { value: "Genel Aşamalar", label: "Dakika Dakika İzleme Değildir" },
   ],
   accentColor: "#c026d3",
   accentColorBadgeBg: "rgb(192 38 211 / 0.08)",

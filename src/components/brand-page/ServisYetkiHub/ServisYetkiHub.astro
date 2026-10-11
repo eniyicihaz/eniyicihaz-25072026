@@ -1,0 +1,397 @@
+---
+// ServisYetkiHub — /neden-orijinal/yaygin-servis-agi sayfasına özel merkez-ve-ilke grafiği.
+// Ortada "Avrasya İşitme — Darıca / 18 markada üretici servis yetkisi", çevresinde dört bilgi alanı (solda 2, sağda 2) ince çizgilerle
+// merkeze bağlıdır. Harita, şube işareti veya servis ağı görseli yoktur: grafik bir ilişki şemasıdır, coğrafi bir ağ değildir.
+// Veri: data/yaygin-servis-agi/authority-map.ts. Yalnızca Astro + CSS + inline SVG.
+import { Factory, Cpu, ShieldCheck, ReceiptText, ArrowRight } from "lucide-astro";
+import { authorityMap } from "../../../data/yaygin-servis-agi/authority-map";
+
+const { eyebrow, heading, intro, hub, items, note, link } = authorityMap;
+const icons = [Factory, Cpu, ShieldCheck, ReceiptText];
+---
+
+<section class="syh" id="uretici-yetkisi-ne-anlama-gelir" aria-labelledby="syh-title">
+  <div class="syh__inner">
+    <header class="syh__header">
+      <p class="syh__eyebrow">{eyebrow}</p>
+      <h2 class="syh__heading" id="syh-title">{heading}</h2>
+      <p class="syh__intro">{intro}</p>
+    </header>
+
+    <div class="syh__board">
+      <div class="syh__hub">
+        <span class="syh__hub-count" aria-hidden="true">{hub.count}</span>
+        <strong class="syh__hub-title">{hub.title}</strong>
+        <span class="syh__hub-text">{hub.text}</span>
+      </div>
+
+      <svg class="syh__links syh__links--left" viewBox="0 0 56 200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M56 100 C28 100, 28 50, 0 50" />
+        <path d="M56 100 C28 100, 28 150, 0 150" />
+      </svg>
+      <svg class="syh__links syh__links--right" viewBox="0 0 56 200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M0 100 C28 100, 28 50, 56 50" />
+        <path d="M0 100 C28 100, 28 150, 56 150" />
+      </svg>
+
+      <ul class="syh__items">
+        {
+          items.map((it, i) => {
+            const Icon = icons[i];
+            return (
+              <li class={`syh__item syh__item--${i + 1}`}>
+                <span class="syh__icon" aria-hidden="true"><Icon size={22} stroke-width={1.9} /></span>
+                <div>
+                  <h3 class="syh__item-title">{it.title}</h3>
+                  <p class="syh__item-text">{it.text}</p>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+
+    <p class="syh__note">{note}</p>
+    <a class="syh__link" href={link.href}>
+      <span>{link.label}</span>
+      <ArrowRight size={14} stroke-width={2.25} aria-hidden="true" />
+    </a>
+  </div>
+</section>
+
+<style>
+  .syh {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    background: var(--color-background);
+    padding-block: var(--space-12);
+    --navy: #0f2547;
+    --blue: #2563eb;
+    --teal: #0e7490;
+    --violet: #7c3aed;
+  }
+
+  .syh::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(34% 55% at 50% 52%, rgb(14 116 144 / 0.09), transparent 100%);
+  }
+
+  .syh__inner {
+    max-width: 64rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .syh__header {
+    max-width: 44rem;
+    margin: 0 auto var(--space-8);
+    text-align: center;
+  }
+
+  .syh__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--teal);
+  }
+
+  .syh__heading {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.625rem, 1.1rem + 1.8vw, 2.375rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--color-text);
+  }
+
+  .syh__intro {
+    margin: var(--space-2) auto 0;
+    max-width: 38rem;
+    font-size: var(--font-size-md);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  /* --- Merkez ve çevresi ---------------------------------------------------------------------- */
+  .syh__board {
+    display: grid;
+    grid-template-columns: 1fr 56px 260px 56px 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .syh__hub {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    align-self: center;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-1);
+    padding: var(--space-6) var(--space-4);
+    border-radius: var(--radius-2xl);
+    text-align: center;
+    color: #ffffff;
+    background: radial-gradient(120% 90% at 30% 10%, #1d4ed8, var(--navy) 62%);
+    box-shadow:
+      0 0 0 8px rgb(37 99 235 / 0.08),
+      0 0 0 18px rgb(14 116 144 / 0.06),
+      0 22px 40px -18px rgb(15 37 71 / 0.7);
+  }
+
+  .syh__hub-count {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.14);
+    border: 1px solid rgb(255 255 255 / 0.4);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+
+  .syh__hub-title {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-lg);
+    line-height: 1.25;
+  }
+
+  .syh__hub-text {
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    color: rgb(255 255 255 / 0.88);
+  }
+
+  .syh__links {
+    grid-row: 1 / span 2;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .syh__links--left {
+    grid-column: 2;
+  }
+
+  .syh__links--right {
+    grid-column: 4;
+  }
+
+  .syh__links path {
+    fill: none;
+    stroke: var(--teal);
+    stroke-opacity: 0.55;
+    stroke-width: 2;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .syh__items {
+    display: contents;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .syh__item {
+    --tone: var(--blue);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-block: var(--space-2);
+    padding: var(--space-4);
+    border: 1px solid color-mix(in srgb, var(--tone) 24%, var(--color-border));
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--tone) 5%, #ffffff), #ffffff 70%);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .syh__item--1 {
+    grid-column: 1;
+    grid-row: 1;
+    --tone: var(--blue);
+  }
+
+  .syh__item--2 {
+    grid-column: 1;
+    grid-row: 2;
+    --tone: var(--teal);
+  }
+
+  .syh__item--3 {
+    grid-column: 5;
+    grid-row: 1;
+    --tone: var(--violet);
+  }
+
+  .syh__item--4 {
+    grid-column: 5;
+    grid-row: 2;
+    --tone: var(--navy);
+  }
+
+  .syh__icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--tone) 12%, #ffffff);
+    color: var(--tone);
+  }
+
+  .syh__item-title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .syh__item-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .syh__note {
+    margin: var(--space-8) auto 0;
+    max-width: 46rem;
+    padding: var(--space-3) var(--space-4);
+    border-left: 3px solid var(--teal);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--teal) 6%, #ffffff);
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: var(--color-text);
+  }
+
+  .syh__link {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    margin: var(--space-2) auto 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--teal);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .syh__link span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .syh__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Tablet / mobil (<900): merkez üstte, dört alan altında (2 sütun, sonra 1 sütun) ---------------- */
+  @media (max-width: 899px) {
+    .syh {
+      padding-block: var(--space-8);
+    }
+
+    .syh__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .syh__header {
+      margin-bottom: var(--space-6);
+      text-align: left;
+    }
+
+    .syh__intro {
+      margin-inline: 0;
+    }
+
+    .syh__board {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto;
+      gap: var(--space-3);
+      position: relative;
+    }
+
+    .syh__links {
+      display: none;
+    }
+
+    .syh__hub {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      width: 100%;
+      justify-self: stretch;
+      grid-template-columns: auto 1fr;
+      justify-items: start;
+      align-items: center;
+      column-gap: var(--space-3);
+      text-align: left;
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+      position: relative;
+    }
+
+    .syh__hub::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      width: 2px;
+      height: var(--space-4);
+      background: color-mix(in srgb, var(--teal) 55%, transparent);
+    }
+
+    .syh__hub-count {
+      grid-row: 1 / span 2;
+      width: 48px;
+      height: 48px;
+    }
+
+    .syh__hub-title {
+      margin-top: 0;
+      font-size: var(--font-size-md);
+    }
+
+    .syh__item--1,
+    .syh__item--2,
+    .syh__item--3,
+    .syh__item--4 {
+      grid-column: auto;
+      grid-row: auto;
+      margin-block: 0;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .syh__board {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .syh__hub::after {
+      left: 24px;
+    }
+  }
+</style>

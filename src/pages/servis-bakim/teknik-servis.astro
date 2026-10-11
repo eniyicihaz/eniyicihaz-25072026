@@ -22,11 +22,11 @@
 // İnceleyin -> Yerinde Onarım vs Üretici Servisi -> Uzman Yorumu -> SSS
 // -> Premium CTA -> İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
-import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
+import TeknikServisHero from "../../components/brand-page/TeknikServisHero/TeknikServisHero.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
-import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
+import TeknikServisDecision from "../../components/brand-page/TeknikServisDecision/TeknikServisDecision.astro";
 import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
 import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
 import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
@@ -37,10 +37,8 @@ import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComp
 
 import { teknikServisHero } from "../../data/teknik-servis/hero";
 import { teknikServisIntro } from "../../data/teknik-servis/intro";
-import { teknikServisIdealUser } from "../../data/teknik-servis/ideal-user";
 import { teknikServisAdvantages } from "../../data/teknik-servis/advantages";
 import { teknikServisConsiderations } from "../../data/teknik-servis/considerations";
-import { teknikServisEvolution } from "../../data/teknik-servis/evolution";
 import { teknikServisUseCases } from "../../data/teknik-servis/use-cases";
 import { teknikServisTechnology } from "../../data/teknik-servis/technology";
 import { teknikServisRecommendedBrands } from "../../data/teknik-servis/recommended-brands";
@@ -53,14 +51,13 @@ import { teknikServisFinalCta } from "../../data/teknik-servis/final-cta";
 
 <MainLayout
   title="Teknik Servis | İşitme Cihazı Onarım Hizmeti"
-  description="İşitme cihazı teknik servis hizmeti nasıl işler? Ses kesintisi, fiziksel hasar veya su teması gibi durumlarda yerinde teşhis ve onarım süreci."
+  description="İşitme cihazı arızası mı yaşıyorsunuz? Darıca'daki merkezimizde ses kesintisi, açılmama veya fiziksel hasar için merkezde ilk değerlendirme, teknik servise gönderim ve ilk teknik kontrol süreci."
 >
-  <BrandPageHero data={teknikServisHero} />
+  <TeknikServisHero data={teknikServisHero} />
   <BrandPageIntro data={teknikServisIntro} />
-  <BrandPageIdealUser data={teknikServisIdealUser} />
   <BrandPageAdvantages data={teknikServisAdvantages} />
   <BrandPageIdealUser data={teknikServisConsiderations} />
-  <BrandPageTechEvolution data={teknikServisEvolution} />
+  <TeknikServisDecision />
   <BrandPageTechnology data={teknikServisUseCases} />
   <BrandPageEcosystem data={teknikServisTechnology} />
   <BrandPageRelatedContent data={teknikServisRecommendedBrands} />

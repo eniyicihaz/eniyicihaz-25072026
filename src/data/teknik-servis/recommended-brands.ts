@@ -9,7 +9,7 @@ import type { BrandPageRelatedContentContent } from "../../components/brand-page
 
 export const teknikServisRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Teknik Servis Sunduğumuz Markalardan Bazıları",
+  heading: "Teknik Servis Kapsamındaki Markalardan Bazıları",
   links: [
     {
       label: "Oticon",

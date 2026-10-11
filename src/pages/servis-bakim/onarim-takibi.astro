@@ -25,25 +25,19 @@ import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHe
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 import BrandPageIdealUser from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import BrandPageAdvantages from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
-import BrandPageTechEvolution from "../../components/brand-page/BrandPageTechEvolution/BrandPageTechEvolution.astro";
-import BrandPageTechnology from "../../components/brand-page/BrandPageTechnology/BrandPageTechnology.astro";
+import OnarimTakipTimeline from "../../components/brand-page/OnarimTakipTimeline/OnarimTakipTimeline.astro";
 import BrandPageEcosystem from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
 import BrandPageRelatedContent from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertOpinion/BrandPageExpertOpinion.astro";
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
-import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
 
 import { onarimTakibiHero } from "../../data/onarim-takibi/hero";
 import { onarimTakibiIntro } from "../../data/onarim-takibi/intro";
 import { onarimTakibiIdealUser } from "../../data/onarim-takibi/ideal-user";
 import { onarimTakibiAdvantages } from "../../data/onarim-takibi/advantages";
 import { onarimTakibiConsiderations } from "../../data/onarim-takibi/considerations";
-import { onarimTakibiEvolution } from "../../data/onarim-takibi/evolution";
-import { onarimTakibiUseCases } from "../../data/onarim-takibi/use-cases";
 import { onarimTakibiTechnology } from "../../data/onarim-takibi/technology";
-import { onarimTakibiRecommendedBrands } from "../../data/onarim-takibi/recommended-brands";
-import { onarimTakibiComparison } from "../../data/onarim-takibi/comparison";
 import { onarimTakibiExpertOpinion } from "../../data/onarim-takibi/expert-opinion";
 import { onarimTakibiFaq } from "../../data/onarim-takibi/faq";
 import { onarimTakibiRelatedContent } from "../../data/onarim-takibi/related-content";
@@ -51,21 +45,27 @@ import { onarimTakibiFinalCta } from "../../data/onarim-takibi/final-cta";
 ---
 
 <MainLayout
-  title="Onarım Takibi | İşitme Cihazı Onarım Süreci Takibi"
-  description="Onarımdaki işitme cihazınızın durumunu nasıl takip edersiniz? Aşama aşama görünürlük, SMS/WhatsApp bildirimleri ve tahmini teslim süresi hakkında bilgi edinin."
+  title="Onarım Takibi | Servis Kaydı ve Durum Bilgisi"
+  description="Cihazınızı servise teslim ettiyseniz: dijital servis kaydı, gerektiğinde SMS/WhatsApp ile manuel bilgilendirme ve telefon veya WhatsApp'tan durum sorma yolları."
 >
   <BrandPageHero data={onarimTakibiHero} />
   <BrandPageIntro data={onarimTakibiIntro} />
   <BrandPageIdealUser data={onarimTakibiIdealUser} />
   <BrandPageAdvantages data={onarimTakibiAdvantages} />
   <BrandPageIdealUser data={onarimTakibiConsiderations} />
-  <BrandPageTechEvolution data={onarimTakibiEvolution} />
-  <BrandPageTechnology data={onarimTakibiUseCases} />
+  <OnarimTakipTimeline />
   <BrandPageEcosystem data={onarimTakibiTechnology} />
-  <BrandPageRelatedContent data={onarimTakibiRecommendedBrands} />
-  <KulakArkasiComparison data={onarimTakibiComparison} />
   <BrandPageExpertOpinion data={onarimTakibiExpertOpinion} />
   <BrandPageFaq data={onarimTakibiFaq} />
   <BrandPageFinalCta data={onarimTakibiFinalCta} />
   <BrandPageRelatedContent data={onarimTakibiRelatedContent} />
 </MainLayout>
+
+<style is:global>
+  /* Bu sayfanın "Bilgi Alırken Bilmeniz Gerekenler" bölümünde model listesi anlamlı değildir (ortak bileşenin sabit "Kullanıldığı Modeller" bloğu);
+     yalnızca bu sayfanın CSS paketinde gizlenir, ortak bileşen değişmez. */
+  .brand-page-eco__block:has(> .brand-page-eco__tags),
+  .brand-page-eco__block:has(.brand-page-eco__tags) {
+    display: none;
+  }
+</style>

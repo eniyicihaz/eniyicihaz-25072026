@@ -10,10 +10,11 @@ export const teknikServisFinalCta: BrandPageFinalCtaContent = {
   badge: "BİR ARIZA MI FARK ETTİNİZ?",
   heading: "Cihazınızı Birlikte İnceleyelim",
   description:
-    "Ses kesintisi, açılmama sorunu veya fiziksel hasar gibi bir durumla karşılaştıysanız, yerinde teşhisle çözüm sürecini başlatalım.",
+    "Ses kesintisi, açılmama sorunu veya fiziksel hasar gibi bir durumla karşılaştıysanız, merkezimizdeki ilk değerlendirmeyle çözüm sürecini başlatalım.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücret Duruma Göre Belirlenir", "18 Markada Teknik Servis", "3 Gün İçinde Teslim", "Takip Edilebilir Süreç"],
+  trustItems: ["Ücret Duruma Göre Belirlenir", "18 Markada Üretici Servis Yetkisi", "Tahmini Süre İlk Teknik Kontrolden Sonra", "Dijital Servis Kaydı"],
+  trustLinks: { "Dijital Servis Kaydı": "/servis-bakim/onarim-takibi/" },
   accentColor: "#dc2626",
   accentColorHover: "#b91c1c",
   accentColorGlow: "rgb(220 38 38 / 0.22)",

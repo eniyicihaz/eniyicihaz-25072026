@@ -1,0 +1,545 @@
+---
+// TeknikServisDecision — /servis-bakim/teknik-servis sayfasına özel karar grafiği ("Sorununuzun Niteliğine Göre Hangi Yol İzlenir?").
+// Hero'daki 5 aşamalı süreç grafiğini TEKRARLAMAZ: burada süreç yoktur, alternatif senaryolar vardır. Başvuru → ilk kontrol ve teknik
+// değerlendirme → duruma göre BİR yol (merkezde işlem | üretici servisi | garanti/ücret yönünden ayrı değerlendirme) → son kontrol.
+// Dallar alternatiftir; bir işlemde hepsinin izlenmesi gerekmez. Veri: data/teknik-servis/decision.ts. Yalnızca Astro + CSS + inline SVG.
+// Hero'daki "Süreç adımlarının ayrıntısı" bağlantısı #brand-page-techevo-title çapasını kullandığı için başlık kimliği korunur.
+import { PhoneCall, SearchCheck, Wrench, Factory, ReceiptText, BadgeCheck, ArrowRight } from "lucide-astro";
+import { teknikServisDecision } from "../../../data/teknik-servis/decision";
+
+const d = teknikServisDecision;
+const icons = { center: Wrench, maker: Factory, cost: ReceiptText } as const;
+---
+
+<section class="tsd" aria-labelledby="brand-page-techevo-title">
+  <div class="tsd__inner">
+    <header class="tsd__header">
+      <p class="tsd__eyebrow">{d.eyebrow}</p>
+      <h2 class="tsd__heading" id="brand-page-techevo-title">{d.heading}</h2>
+      <p class="tsd__intro">{d.intro}</p>
+    </header>
+
+    <div class="tsd__map">
+      <ol class="tsd__start">
+        <li class="tsd__node tsd__node--a">
+          <span class="tsd__badge" aria-hidden="true">1</span>
+          <span class="tsd__icon" aria-hidden="true"><PhoneCall size={22} stroke-width={1.9} /></span>
+          <span class="tsd__node-body">
+            <strong class="tsd__node-title">{d.start[0].title}</strong>
+            <span class="tsd__node-text">{d.start[0].text}</span>
+          </span>
+        </li>
+        <li class="tsd__node tsd__node--b">
+          <span class="tsd__badge" aria-hidden="true">2</span>
+          <span class="tsd__icon" aria-hidden="true"><SearchCheck size={22} stroke-width={1.9} /></span>
+          <span class="tsd__node-body">
+            <strong class="tsd__node-title">{d.start[1].title}</strong>
+            <span class="tsd__node-text">{d.start[1].text}</span>
+          </span>
+        </li>
+      </ol>
+
+      <p class="tsd__fork-label"><span>Değerlendirmeye göre uygun yol belirlenir</span></p>
+
+      <svg class="tsd__fan tsd__fan--out" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M150 0 C150 34, 50 26, 50 60" />
+        <path d="M150 0 L150 60" />
+        <path d="M150 0 C150 34, 250 26, 250 60" />
+      </svg>
+
+      <ul class="tsd__branches">
+        {
+          d.branches.map((b) => {
+            const Icon = icons[b.key];
+            return (
+              <li class={`tsd__branch tsd__branch--${b.key}`}>
+                <span class="tsd__or" aria-hidden="true">veya</span>
+                <span class="tsd__icon" aria-hidden="true"><Icon size={22} stroke-width={1.9} /></span>
+                <p class="tsd__branch-tag">{b.tag}</p>
+                <h3 class="tsd__branch-title">{b.title}</h3>
+                <p class="tsd__branch-text">{b.text}</p>
+              </li>
+            );
+          })
+        }
+      </ul>
+
+      <svg class="tsd__fan tsd__fan--in" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M50 0 C50 34, 150 26, 150 60" />
+        <path d="M150 0 L150 60" />
+        <path d="M250 0 C250 34, 150 26, 150 60" />
+      </svg>
+
+      <div class="tsd__node tsd__node--end">
+        <span class="tsd__badge" aria-hidden="true">3</span>
+        <span class="tsd__icon" aria-hidden="true"><BadgeCheck size={22} stroke-width={1.9} /></span>
+        <span class="tsd__node-body">
+          <strong class="tsd__node-title">{d.end.title}</strong>
+          <span class="tsd__node-text">{d.end.text}</span>
+        </span>
+      </div>
+    </div>
+
+    <p class="tsd__note">{d.note}</p>
+    <p class="tsd__links">
+      {
+        d.links.map((l) => (
+          <a href={l.href}>
+            <span>{l.label}</span>
+            <ArrowRight size={14} stroke-width={2.25} aria-hidden="true" />
+          </a>
+        ))
+      }
+    </p>
+  </div>
+</section>
+
+<style>
+  .tsd {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    background: var(--color-surface);
+    padding-block: var(--space-10);
+    --navy: #0f2547;
+    --blue: #2563eb;
+    --teal: #0e7490;
+    --violet: #7c3aed;
+  }
+
+  .tsd::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(38% 50% at 15% 30%, rgb(37 99 235 / 0.07), transparent 100%),
+      radial-gradient(38% 50% at 88% 75%, rgb(124 58 237 / 0.06), transparent 100%);
+  }
+
+  .tsd__inner {
+    max-width: 62rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .tsd__header {
+    max-width: 44rem;
+    margin: 0 auto var(--space-6);
+    text-align: center;
+  }
+
+  .tsd__eyebrow {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    box-shadow: var(--shadow-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--blue);
+  }
+
+  .tsd__heading {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.625rem, 1.1rem + 1.8vw, 2.375rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--color-text);
+  }
+
+  .tsd__intro {
+    margin: var(--space-2) auto 0;
+    max-width: 38rem;
+    font-size: var(--font-size-md);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  /* --- Düğümler (başvuru, ilk kontrol, son kontrol) ------------------------------------------- */
+  .tsd__start {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: var(--space-8);
+    position: relative;
+  }
+
+  .tsd__start::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(var(--space-8) + 8px);
+    translate: -50% -50%;
+    border-top: 2px dashed color-mix(in srgb, var(--blue) 45%, transparent);
+  }
+
+  .tsd__node {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    max-width: 24rem;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid color-mix(in srgb, var(--blue) 25%, var(--color-border));
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tsd__node--end {
+    margin-inline: auto;
+    border-color: color-mix(in srgb, var(--navy) 35%, var(--color-border));
+    background: linear-gradient(180deg, #ffffff, color-mix(in srgb, var(--navy) 5%, #ffffff));
+  }
+
+  .tsd__badge {
+    position: absolute;
+    top: -9px;
+    left: -9px;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--navy);
+    box-shadow: 0 0 0 3px var(--color-surface);
+    font-size: 12px;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  .tsd__icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--tone, var(--blue)) 12%, #ffffff);
+    color: var(--tone, var(--blue));
+  }
+
+  .tsd__node--end .tsd__icon {
+    --tone: var(--navy);
+  }
+
+  .tsd__node-body {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .tsd__node-title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    color: var(--color-text);
+  }
+
+  .tsd__node-text {
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .tsd__fork-label {
+    margin: var(--space-2) 0 0;
+    text-align: center;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+
+  .tsd__fork-label span {
+    display: inline-block;
+    padding: 2px var(--space-3);
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--blue) 8%, #ffffff);
+  }
+
+  /* --- Dallar (alternatif senaryolar) ---------------------------------------------------------- */
+  .tsd__fan {
+    display: block;
+    width: 100%;
+    height: 40px;
+    overflow: visible;
+  }
+
+  .tsd__fan path {
+    fill: none;
+    stroke: color-mix(in srgb, var(--blue) 45%, transparent);
+    stroke-width: 2;
+    stroke-dasharray: 4 5;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .tsd__branches {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .tsd__branch {
+    --tone: var(--blue);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid color-mix(in srgb, var(--tone) 28%, var(--color-border));
+    border-top: 4px solid var(--tone);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--tone) 6%, #ffffff), #ffffff 60%);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tsd__branch--maker {
+    --tone: var(--teal);
+  }
+
+  .tsd__branch--cost {
+    --tone: var(--violet);
+  }
+
+  .tsd__or {
+    display: none;
+  }
+
+  .tsd__branch-tag {
+    margin: var(--space-2) 0 0;
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--tone);
+  }
+
+  .tsd__branch-title {
+    margin: 2px 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .tsd__branch-text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .tsd__note {
+    margin: var(--space-5) auto 0;
+    max-width: 44rem;
+    padding: var(--space-2) var(--space-4);
+    border-left: 3px solid var(--blue);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--blue) 6%, #ffffff);
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: var(--color-text);
+  }
+
+  .tsd__links {
+    margin: var(--space-3) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-1) var(--space-6);
+  }
+
+  .tsd__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--blue);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .tsd__links a span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .tsd__links a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* --- Tablet / mobil (<900): dikey akış; dallar "veya" ayracıyla alt alta ------------------------ */
+  @media (max-width: 899px) {
+    .tsd {
+      padding-block: var(--space-6);
+    }
+
+    .tsd__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .tsd__header {
+      margin-bottom: var(--space-4);
+      text-align: left;
+    }
+
+    .tsd__intro {
+      margin-inline: 0;
+    }
+
+    .tsd__start {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-3);
+      padding-left: 0;
+    }
+
+    .tsd__start::before {
+      left: 21px;
+      top: auto;
+      bottom: calc(-1 * var(--space-3) + 2px);
+      width: 0;
+      height: calc(var(--space-3) - 4px);
+      translate: none;
+      border-top: 0;
+      border-left: 2px dashed color-mix(in srgb, var(--blue) 45%, transparent);
+    }
+
+    .tsd__node {
+      max-width: none;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-3);
+    }
+
+    .tsd__node .tsd__icon {
+      width: 36px;
+      height: 36px;
+    }
+
+    .tsd__node-text {
+      font-size: 0.8125rem;
+      line-height: 1.4;
+    }
+
+    .tsd__fork-label {
+      text-align: left;
+      margin-top: var(--space-4);
+    }
+
+    .tsd__fan {
+      display: none;
+    }
+
+    .tsd__branches {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      margin-top: var(--space-3);
+    }
+
+    .tsd__or {
+      display: block;
+      align-self: center;
+      margin: calc(-1 * var(--space-3) - 14px) 0 var(--space-1);
+      padding: 2px var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      background: var(--color-background);
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .tsd__branch:first-child .tsd__or {
+      display: none;
+    }
+
+    /* Kompakt mobil kart: ikon başlığın yanında (üstünde ayrı satır tutmaz). */
+    .tsd__branch {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      column-gap: var(--space-3);
+      align-items: start;
+      padding: var(--space-2) var(--space-3) var(--space-3);
+    }
+
+    .tsd__branch > .tsd__icon {
+      width: 38px;
+      height: 38px;
+    }
+
+    .tsd__branch > .tsd__or,
+    .tsd__branch > .tsd__branch-text {
+      grid-column: 1 / -1;
+    }
+
+    .tsd__branch > .tsd__or {
+      justify-self: center;
+    }
+
+    .tsd__branch > .tsd__icon {
+      grid-column: 1;
+      grid-row: 2 / span 2;
+    }
+
+    .tsd__branch > .tsd__branch-tag,
+    .tsd__branch > .tsd__branch-title {
+      grid-column: 2;
+    }
+
+    .tsd__branch-tag {
+      margin-top: 0;
+    }
+
+    .tsd__branch + .tsd__branch {
+      margin-top: var(--space-4);
+    }
+
+    .tsd__node--end {
+      margin-top: var(--space-4);
+      margin-inline: 0;
+    }
+
+    .tsd__branches + .tsd__fan + .tsd__node--end {
+      margin-top: var(--space-4);
+    }
+
+    .tsd__note {
+      margin-top: var(--space-4);
+    }
+
+    .tsd__links {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .tsd__node--end {
+      max-width: 26rem;
+    }
+  }
+</style>

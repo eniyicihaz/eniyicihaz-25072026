@@ -9,7 +9,7 @@ import type { BrandPageTechnologyContent } from "../../components/brand-page/Bra
 export const teknikServisUseCases: BrandPageTechnologyContent = {
   badge: "TEKNİK SERVİS HANGİ SORUNLARI KAPSAR",
   heading: "Teknik Servis Hangi Sorunları Kapsar?",
-  intro: "Teknik servise sıkça başvurulan durumlara daha yakından bakalım.",
+  intro: "Aşağıdaki durumlar, teknik servis başvurularında sık karşılaşılan arıza türleridir; kesin değerlendirme cihaz incelendikten sonra yapılır.",
   items: [
     {
       label: "SES SORUNU",

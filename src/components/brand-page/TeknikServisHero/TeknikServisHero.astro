@@ -1,0 +1,697 @@
+---
+// TeknikServisHero — /servis-bakim/teknik-servis sayfasına özel hero: solda mevcut içerik (rozet, başlık, açıklamalar, CTA'lar),
+// sağda 5 aşamalı süreç infografiği. Ortak BrandPageHero (59 sayfa) DEĞİŞMEZ; bu bileşen aynı hero verisini
+// (data/teknik-servis/hero.ts: arka plan gradyanı, dalga rengi, CTA'lar) aynen kullanır ve yalnızca bu sayfada çalışır.
+// Süreç içeriği: data/teknik-servis/hero-process.ts (her cümlenin kaynağı orada yazılı). Yalnızca Astro + CSS + inline SVG.
+// Masaüstü (>=1100): basamaklı akış — her aşama bir öncekinden biraz içeriden başlar, düğümler eğri çizgilerle bağlıdır.
+// <1100: aynı akış, girinti azalır; <720: dikey zaman çizelgesi. Akış animasyonu prefers-reduced-motion'da kapalıdır.
+import { Phone, Navigation, MessageCircle, ArrowRight } from "lucide-astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactAction } from "../../../lib/contact-action";
+import { standardCtaLabel } from "../../../lib/cta-labels";
+import type { BrandPageHeroContent } from "../BrandPageHero/BrandPageHero.astro";
+import { teknikServisProcess } from "../../../data/teknik-servis/hero-process";
+
+interface Props {
+  data: BrandPageHeroContent;
+}
+
+const { data } = Astro.props;
+const { heading, steps, detailLink } = teknikServisProcess;
+const icon = (href: string) =>
+  contactAction(href) === "whatsapp" ? "wa" : contactAction(href) === "directions" ? "nav" : contactAction(href) === "phone" ? "phone" : "msg";
+const heroStyle = [
+  `--tsh-accent:${data.accentColor}`,
+  data.heroBackground ? `--tsh-bg:${data.heroBackground}` : "",
+  data.heroBaseBg ? `--tsh-base:${data.heroBaseBg}` : "",
+  data.heroWaveColor ? `--tsh-wave-color:${data.heroWaveColor}` : "",
+  data.heroWaveOpacity ? `--tsh-wave-opacity:${data.heroWaveOpacity}` : "",
+].filter(Boolean).join(";");
+---
+
+<section class="tsh" aria-labelledby="brand-page-hero-title" style={heroStyle} data-track-location="hero">
+  <div class="tsh__bg" aria-hidden="true"></div>
+  <div class="tsh__wave" aria-hidden="true"></div>
+
+  <div class="tsh__inner">
+    <div class="tsh__content">
+      <p class="tsh__badge">{data.badge}</p>
+
+      <h1 class="tsh__heading" id="brand-page-hero-title">
+        {data.headingLines.map((line) => <span class="tsh__heading-line">{line}</span>)}
+      </h1>
+
+      {data.paragraphs.map((p) => <p class="tsh__paragraph">{p}</p>)}
+
+      <div class="tsh__actions">
+        {
+          [data.ctaPrimary, data.ctaSecondary].map((cta) => {
+            const kind = icon(cta.href);
+            return (
+              <a class="tsh__cta" href={cta.href} data-contact-action={contactAction(cta.href)}>
+                {kind === "wa" ? <WhatsAppIcon size={20} /> : kind === "nav" ? <Navigation size={18} stroke-width={2} aria-hidden="true" /> : kind === "phone" ? <Phone size={18} stroke-width={2} aria-hidden="true" /> : <MessageCircle size={18} stroke-width={2} aria-hidden="true" />}
+                <span>{standardCtaLabel(cta.label, cta.href)}</span>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div class="tsh__process" role="group" aria-labelledby="tsh-process-title">
+      <div class="tsh__process-head">
+        <h2 class="tsh__process-title" id="tsh-process-title">{heading}</h2>
+        <a class="tsh__detail" href={detailLink.href}>
+          <span>{detailLink.label}</span>
+          <ArrowRight size={14} stroke-width={2.25} aria-hidden="true" />
+        </a>
+      </div>
+
+      <ol class="tsh__steps">
+        {
+          steps.map((step, i) => {
+            const Icon = step.icon;
+            const last = i === steps.length - 1;
+            return (
+              <li class={`tsh__step tsh__step--${step.tone}`} style={`--i:${i}`}>
+                <span class="tsh__node" data-n={i + 1} aria-hidden="true">
+                  <Icon size={22} stroke-width={1.9} />
+                </span>
+                {!last && (
+                  <svg class="tsh__conn" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                    <defs>
+                      <linearGradient id={`tsh-g${i}`} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+                        <stop offset="0" style="stop-color:var(--tone)" />
+                        <stop offset="1" style="stop-color:var(--next)" />
+                      </linearGradient>
+                    </defs>
+                    <path class="tsh__conn-base" d="M 0 0 C 0 55, 100 45, 100 100" stroke={`url(#tsh-g${i})`} />
+                    <path class="tsh__conn-flow" d="M 0 0 C 0 55, 100 45, 100 100" stroke={`url(#tsh-g${i})`} />
+                  </svg>
+                )}
+                <div class:list={["tsh__card", { "tsh__card--link": !!step.link }]}>
+                  <p class="tsh__label">{step.label}</p>
+                  <h3 class="tsh__title">{step.title}</h3>
+                  <p class="tsh__text tsh__text--full">{step.text}</p>
+                  <p class="tsh__text tsh__text--short">{step.short}</p>
+                  {step.link && (
+                    <a class="tsh__link" href={step.link.href}>
+                      <span>{step.link.label}</span>
+                      <ArrowRight size={14} stroke-width={2.25} aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tsh {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    display: flex;
+    align-items: center;
+    background: var(--tsh-base, #050505);
+    color: var(--color-text-inverse);
+    padding-block: var(--space-12);
+  }
+
+  .tsh__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--tsh-bg, #050505);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .tsh__wave {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--tsh-wave-color, transparent);
+    opacity: var(--tsh-wave-opacity, 0);
+    -webkit-mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+    mask: url("/images/hero/wave-lines.svg") center / cover no-repeat;
+  }
+
+  .tsh__inner {
+    position: relative;
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  /* --- Sol: mevcut hero içeriği ------------------------------------------- */
+  .tsh__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(220 38 38 / 0.4);
+    border-radius: var(--radius-full);
+    background: rgb(220 38 38 / 0.12);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--tsh-accent, #dc2626) 42%, #ffffff);
+  }
+
+  .tsh__heading {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(2rem, 1.2rem + 2.4vw, 3.25rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-text-inverse);
+  }
+
+  .tsh__heading-line {
+    display: block;
+  }
+
+  .tsh__paragraph {
+    margin: var(--space-4) 0 0;
+    max-width: 34rem;
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    color: rgb(255 255 255 / 0.76);
+  }
+
+  .tsh__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  /* CTA görünümü ortak iletişim stilinden gelir (contact-actions.css: telefon mavi dolu, WhatsApp beyaz + yeşil glif). */
+
+  /* --- Sağ: 5 aşamalı süreç ---------------------------------------------- */
+  .tsh__process {
+    position: relative;
+    z-index: 0;
+  }
+
+  /* Ambient ışık: kart arkasında kızıl/turuncu, kenarsız. */
+  .tsh__process::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -8% -10%;
+    pointer-events: none;
+    background:
+      radial-gradient(closest-side at 70% 30%, rgb(249 115 22 / 0.22), transparent 100%),
+      radial-gradient(closest-side at 30% 75%, rgb(220 38 38 / 0.26), transparent 100%);
+    filter: blur(24px);
+  }
+
+  .tsh__process-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .tsh__process-title {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.7);
+  }
+
+  .tsh__steps {
+    --indent: 0px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .tsh__step {
+    --tone: #f87171;
+    --next: #fb923c;
+    --tone-soft: rgb(248 113 113 / 0.18);
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    column-gap: var(--space-3);
+    align-items: start;
+    margin-left: calc(var(--i) * var(--indent));
+  }
+
+  .tsh__step--orange {
+    --tone: #fb923c;
+    --next: #fbbf24;
+    --tone-soft: rgb(251 146 60 / 0.18);
+  }
+
+  .tsh__step--amber {
+    --tone: #fbbf24;
+    --next: #38bdf8;
+    --tone-soft: rgb(251 191 36 / 0.18);
+  }
+
+  .tsh__step--sky {
+    --tone: #38bdf8;
+    --next: #34d399;
+    --tone-soft: rgb(56 189 248 / 0.18);
+  }
+
+  .tsh__step--emerald {
+    --tone: #34d399;
+    --next: #34d399;
+    --tone-soft: rgb(52 211 153 / 0.18);
+  }
+
+  .tsh__node {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: #0a0a0a;
+    background: var(--tone);
+    box-shadow:
+      0 0 0 4px rgb(5 5 5 / 0.85),
+      0 0 0 5px var(--tone-soft),
+      0 10px 24px -8px var(--tone);
+  }
+
+  /* Eğri bağlantı: bu düğümün merkezinden bir sonrakinin merkezine (son adımda yok). */
+  .tsh__conn {
+    position: absolute;
+    z-index: 0;
+    left: 22px;
+    top: 22px;
+    width: max(var(--indent), 2px);
+    height: calc(100% + var(--space-3));
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .tsh__conn path {
+    fill: none;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .tsh__conn-base {
+    stroke-width: 2;
+    opacity: 0.4;
+  }
+
+  .tsh__conn-flow {
+    stroke-width: 3;
+    stroke-dasharray: 1 12;
+    animation: tsh-flow 3s linear infinite;
+  }
+
+  .tsh__card {
+    position: relative;
+    padding: 10px var(--space-4);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-left: 3px solid var(--tone);
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 0.07);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 14px 28px -20px rgb(0 0 0 / 0.8);
+    transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
+  }
+
+  .tsh__text--short {
+    display: none;
+  }
+
+  .tsh__label {
+    margin: 0;
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--tone);
+  }
+
+  .tsh__title {
+    margin: 2px 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    color: #ffffff;
+  }
+
+  .tsh__text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: rgb(255 255 255 / 0.78);
+  }
+
+  /* Bağlantılı kartlar: tamamı tıklanabilir (stretched link), ok her zaman görünür. Bağlantısız kartlarda yok. */
+  .tsh__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 28px;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tone);
+    text-decoration: none;
+  }
+
+  .tsh__link span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .tsh__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  @media (hover: hover) {
+    .tsh__card--link:hover {
+      transform: translateY(-3px);
+      border-color: var(--tone);
+      background: rgb(255 255 255 / 0.1);
+    }
+  }
+
+  .tsh__link:focus-visible {
+    outline: none;
+  }
+
+  .tsh__card:has(.tsh__link:focus-visible) {
+    box-shadow: 0 0 0 2px #050505, 0 0 0 4px var(--tone);
+  }
+
+  .tsh__detail {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: rgb(255 255 255 / 0.85);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .tsh__detail span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgb(255 255 255 / 0.4);
+  }
+
+  .tsh__detail:hover {
+    color: #ffffff;
+  }
+
+  .tsh__detail:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+
+  /* --- Tablet (>=720): girintili akış (basamak) --------------------------------- */
+  @media (min-width: 720px) {
+    .tsh__steps {
+      --indent: 20px;
+    }
+  }
+
+  /* --- Geniş tablet ve masaüstü (>=900): iki kolon -------------------------------- */
+  @media (min-width: 900px) {
+    .tsh__inner {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: var(--space-8);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .tsh {
+      min-height: 620px;
+    }
+
+    .tsh__inner {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: var(--space-12);
+    }
+
+    .tsh__steps {
+      --indent: 26px;
+    }
+  }
+
+  /* --- Mobil (<720): dikey zaman çizelgesi ---------------------------------------- */
+  @media (max-width: 719px) {
+    .tsh {
+      padding-block: var(--space-8);
+    }
+
+    .tsh__inner {
+      padding-inline: var(--space-5);
+      gap: var(--space-6);
+    }
+
+    .tsh__heading {
+      font-size: clamp(1.625rem, 1.2rem + 2.2vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .tsh__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .tsh__steps {
+      gap: var(--space-2);
+    }
+
+    .tsh__step {
+      grid-template-columns: 40px minmax(0, 1fr);
+      column-gap: 10px;
+    }
+
+    .tsh__node {
+      width: 40px;
+      height: 40px;
+    }
+
+    .tsh__node :global(svg) {
+      width: 19px;
+      height: 19px;
+    }
+
+    .tsh__conn {
+      left: 20px;
+      top: 20px;
+      height: calc(100% + var(--space-2));
+    }
+
+    .tsh__card {
+      padding: var(--space-3);
+    }
+
+    .tsh__detail {
+      font-size: 0.8125rem;
+    }
+
+    /* Sıkı zaman çizelgesi: "Adım 0X" etiketi görsel olarak düğümdeki numara rozetine taşınır (metin ekran okuyucuda kalır). */
+    .tsh__node::after {
+      content: attr(data-n);
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      display: grid;
+      place-items: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: #050505;
+      border: 1px solid var(--tone);
+      font-size: 10px;
+      font-weight: var(--font-weight-bold);
+      line-height: 1;
+      color: var(--tone);
+    }
+
+    .tsh__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .tsh__title {
+      margin-top: 0;
+    }
+
+    .tsh__text {
+      font-size: 0.8125rem;
+      line-height: 1.45;
+    }
+  }
+
+  /* --- Mobil (<720) kompakt zaman çizelgesi: kutusuz satırlar, ince ayırıcılar, kısa metin ------------- */
+  @media (max-width: 719px) {
+    .tsh {
+      padding-block: var(--space-6);
+    }
+
+    .tsh__inner {
+      gap: var(--space-5);
+    }
+
+    .tsh__paragraph {
+      margin-top: var(--space-3);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+
+    .tsh__actions {
+      margin-top: var(--space-4);
+      gap: var(--space-2);
+    }
+
+    .tsh__process-head {
+      margin-bottom: var(--space-1);
+    }
+
+    .tsh__steps {
+      gap: 0;
+    }
+
+    .tsh__step {
+      grid-template-columns: 34px minmax(0, 1fr);
+      column-gap: 10px;
+      padding-bottom: var(--space-3);
+    }
+
+    .tsh__step:last-child {
+      padding-bottom: 0;
+    }
+
+    .tsh__node {
+      width: 34px;
+      height: 34px;
+      box-shadow:
+        0 0 0 3px rgb(5 5 5 / 0.85),
+        0 6px 14px -6px var(--tone);
+    }
+
+    .tsh__node :global(svg) {
+      width: 16px;
+      height: 16px;
+    }
+
+    .tsh__node::after {
+      width: 15px;
+      height: 15px;
+      top: -5px;
+      right: -5px;
+      font-size: 9px;
+    }
+
+    /* Bağlantı çizgisi: bu düğümün merkezinden bir sonrakinin merkezine; son adımda yok. */
+    .tsh__conn {
+      left: 17px;
+      top: 17px;
+      height: 100%;
+    }
+
+    .tsh__card {
+      padding: 0 0 var(--space-3);
+      border: 0;
+      border-bottom: 1px solid rgb(255 255 255 / 0.12);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .tsh__step:last-child .tsh__card {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .tsh__text--full {
+      display: none;
+    }
+
+    .tsh__text--short {
+      display: block;
+      margin: 2px 0 0;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      color: rgb(255 255 255 / 0.8);
+    }
+
+    .tsh__title {
+      font-size: 0.9375rem;
+    }
+
+    .tsh__link {
+      min-height: 28px;
+      margin-top: 2px;
+      font-size: 0.8125rem;
+    }
+
+    .tsh__link::after {
+      inset: -6px 0 -6px -44px;
+    }
+  }
+
+  @keyframes tsh-flow {
+    to {
+      stroke-dashoffset: -26;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tsh__conn-flow {
+      animation: none;
+      opacity: 0.6;
+    }
+
+    .tsh__card {
+      transition: none;
+    }
+
+    .tsh__card--link:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Sabit header, hero'daki sayfa içi bağlantıların hedef başlığını örtmesin (yalnızca bu sayfanın CSS paketi). */
+  html {
+    scroll-padding-top: var(--space-24);
+  }
+</style>

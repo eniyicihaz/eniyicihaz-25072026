@@ -9,36 +9,36 @@ import type { BrandPageRelatedContentContent } from "../../components/brand-page
 
 export const yayginServisAgiRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Teknik Servis Desteği Sunduğumuz Markalardan Bazıları",
+  heading: "Üretici Servis Yetkimiz Bulunan Markalardan Bazıları",
   links: [
     {
       label: "Oticon",
-      description: "Oticon cihazlarınız için teknik servis desteği veriyoruz.",
+      description: "Oticon için üretici servis yetkimiz bulunmaktadır.",
       href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
-      description: "Phonak cihazlarınız için teknik servis desteği veriyoruz.",
+      description: "Phonak için üretici servis yetkimiz bulunmaktadır.",
       href: "/markalar/phonak/",
     },
     {
       label: "Signia",
-      description: "Signia cihazlarınız için teknik servis desteği veriyoruz.",
+      description: "Signia için üretici servis yetkimiz bulunmaktadır.",
       href: "/markalar/signia/",
     },
     {
       label: "Widex",
-      description: "Widex cihazlarınız için teknik servis desteği veriyoruz.",
+      description: "Widex için üretici servis yetkimiz bulunmaktadır.",
       href: "/markalar/widex/",
     },
     {
       label: "ReSound",
-      description: "ReSound cihazlarınız için teknik servis desteği veriyoruz.",
+      description: "ReSound için üretici servis yetkimiz bulunmaktadır.",
       href: "/markalar/resound/",
     },
     {
       label: "NuEar",
-      description: "NuEar cihazlarınız için teknik servis desteği veriyoruz.",
+      description: "NuEar için üretici servis yetkimiz bulunmaktadır.",
       href: "/markalar/nuear/",
     },
   ],

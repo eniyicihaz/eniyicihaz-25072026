@@ -1,4 +1,4 @@
-// "Yerinde Onarım ile Üretici Servisine Gönderim Karşılaştırması"
+// "Merkezde Çözüm ile Teknik Servise Gönderim Karşılaştırması"
 // comparison table for the /servis-bakim/teknik-servis page. Renders
 // through the existing, already-generic KulakArkasiComparison component
 // (see src/components/kulak-arkasi/) — reused as-is, not duplicated.
@@ -11,43 +11,38 @@ import type { KulakArkasiComparisonContent } from "../../components/kulak-arkasi
 
 export const teknikServisComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
-  heading: "Yerinde Onarım ile Üretici Servisine Gönderim Karşılaştırması",
-  intro: "İki onarım yolu arasındaki temel farkları aşağıdaki tabloda özetledik. Hangi yolun izleneceği, sorunun kaynağına göre belirlenir.",
-  primaryLabel: "Yerinde Onarım",
-  secondaryLabel: "Üretici Servisine Gönderim",
+  heading: "Merkezde Çözüm ile Teknik Servise Gönderim Karşılaştırması",
+  intro: "İki yol arasındaki temel farkları aşağıdaki tabloda özetledik. Hangi yolun izleneceği, sorunun niteliğine ve garanti durumuna göre belirlenir.",
+  primaryLabel: "Merkezde Çözüm",
+  secondaryLabel: "Teknik Servise Gönderim",
   rows: [
     {
       feature: "Uygulandığı Durumlar",
-      primary: "Basit, yüzeysel veya hızlı çözülebilen sorunlar için uygulanır.",
-      secondary: "Karmaşık, iç bileşenlere yönelik sorunlar için gereklidir.",
+      primary: "Merkezdeki ilk değerlendirmede çözülebilen sorunlar için uygulanır.",
+      secondary: "Merkezde çözülemeyen durumlar için gerektiğinde uygulanır.",
     },
     {
-      feature: "Süre",
-      primary: "Genellikle aynı gün veya kısa sürede tamamlanabilir.",
-      secondary: "Gönderim ve inceleme nedeniyle birkaç iş günü sürebilir.",
-    },
-    {
-      feature: "Uzmanlık Düzeyi",
-      primary: "Kliniğimizin teknik ekibi tarafından yapılır.",
-      secondary: "Üreticinin kendi uzman teknisyenleri tarafından yapılır.",
-    },
-    {
-      feature: "Yedek Parça Erişimi",
-      primary: "Kliniğimizde bulunan sınırlı yedek parçalarla sınırlıdır.",
-      secondary: "Üreticinin tam kapsamlı orijinal parça stoğuna erişim sağlar.",
+      feature: "Kim Yürütür?",
+      primary: "Merkezimizdeki uzmanımız tarafından yürütülür.",
+      secondary: "Teknik serviste yürütülür; ilk teknik kontrolle arıza netleşir.",
     },
     {
       feature: "Garanti Süreci",
       primary: "Garanti kapsamındaki bazı işlemler için yeterli olmayabilir.",
-      secondary: "Garanti kapsamındaki resmi onarım süreci için gereklidir.",
+      secondary: "Garanti kapsamı, cihazın garanti şartlarına ve arızanın niteliğine göre değerlendirilir.",
     },
     {
-      feature: "Cihazsız Kalma Süresi",
-      primary: "Genellikle minimum düzeydedir.",
-      secondary: "Gönderim süresi boyunca cihazsız kalabilirsiniz; yedek cihaz imkânı değerlendirilebilir.",
+      feature: "Süre",
+      primary: "Arızanın türüne ve değerlendirmeye göre değişir.",
+      secondary: "Gönderim, inceleme ve gerektiğinde parça temini nedeniyle değişir; tahmini onarım süresi ve varsa ücret, teknik servisteki ilk teknik kontrolden sonra bildirilir.",
+    },
+    {
+      feature: "Cihazsız Kalma",
+      primary: "İşlemin niteliğine bağlıdır.",
+      secondary: "Gönderim ve inceleme süresince cihazsız kalabilirsiniz; yedek cihaz imkânı değerlendirilebilir.",
     },
   ],
-  note: "Bu karşılaştırma genel eğilimleri özetler; hangi onarım yolunun izleneceği, yerinde teşhis sonucuna göre belirlenir.",
+  note: "Bu karşılaştırma genel bir çerçeve sunar; hangi yolun izleneceği merkezdeki ilk değerlendirmeye göre belirlenir.",
   accentColor: "#dc2626",
   accentColorBadgeBg: "rgb(220 38 38 / 0.08)",
   accentColorBadgeBorder: "rgb(220 38 38 / 0.35)",

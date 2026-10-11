@@ -9,7 +9,7 @@ export const yayginServisAgiExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Bir işitme cihazının uzun vadeli performansı, yalnızca ürünün kalitesine değil, arıza anında ulaşabileceğiniz servis desteğine de bağlıdır; bu nedenle danışanlarımıza düzenli bakım ve belgeli servis işlemlerinin önemini anlatıyoruz.",
+    "Bir işitme cihazının uzun vadeli performansı yalnızca ürünün kalitesine değil, ihtiyaç duyduğunuzda ulaşabileceğiniz servis desteğine de bağlıdır; bu nedenle danışanlarımıza düzenli bakımın ve kayıtlı servis işlemlerinin önemini anlatıyoruz.",
   note: "Servis randevusu ve süreç hakkında bilgi almak için bizimle iletişime geçebilirsiniz.",
   accentColor: "#ea580c",
   accentColorBadgeBg: "rgb(234 88 12 / 0.08)",

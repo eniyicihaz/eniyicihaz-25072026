@@ -8,19 +8,19 @@
 import type { BrandPageIntroContent } from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 
 export const yayginServisAgiIntro: BrandPageIntroContent = {
-  badge: "SERVİS DESTEĞİ NEDİR?",
-  heading: "Servis Desteği Nedir ve Neden Önemlidir?",
+  badge: "ÜRETİCİ YETKİLİ SERVİS",
+  heading: "Üretici Yetkili Servis Desteği Neden Önemlidir?",
   paragraphs: [
     "Servis desteği; cihazınızın bakım, temizlik, onarım ve garanti işlemleri için ulaşabileceğiniz teknik destektir.",
-    "Orijinal ürünlerde garanti kapsamındaki işlemler üreticinin garanti koşullarına göre yürütülür.",
+    "Üretici yetkisi, servis işlemlerinin üreticinin garanti ve servis koşullarına uygun yürütülebilmesi anlamına gelir. Garanti kapsamı ise cihazın garanti şartlarına ve arızanın niteliğine bağlıdır.",
     "Orijinal olmayan veya paralel ithal ürünler genellikle üretici garantisi kapsamı dışında kalır; bu durum, arıza anında destek bulmayı zorlaştırabilir.",
-    "Avrasya İşitme'de sattığımız 18 markanın tamamında Darıca'daki merkezimizde teknik servis veriyoruz.",
+    "Avrasya İşitme'nin 18 markanın tamamı için üretici servis yetkisi bulunmaktadır; fiziksel hizmet noktamız Darıca'daki merkezimizdir.",
   ],
   stats: [
-    { value: "18 Marka", label: "Teknik Servis Kapsamı" },
-    { value: "3 Gün İçinde", label: "Teknik Servis Teslimi" },
-    { value: "1–3 Gün", label: "Onarım Teslimi" },
-    { value: "Ücretsiz", label: "Garanti İşlemleri" },
+    { value: "18 Marka", label: "Üretici Servis Yetkisi" },
+    { value: "Darıca", label: "Fiziksel Hizmet Noktası" },
+    { value: "Garanti Şartlarına Göre", label: "Kapsam Değerlendirmesi" },
+    { value: "İşlemden Önce", label: "Kapsam ve Ücret Bilgisi" },
   ],
   accentColor: "#ea580c",
   accentColorBadgeBg: "rgb(234 88 12 / 0.08)",

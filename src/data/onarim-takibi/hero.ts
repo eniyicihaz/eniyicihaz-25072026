@@ -28,31 +28,31 @@ import { contactConfig } from "../../config";
 export const onarimTakibiHero: BrandPageHeroContent = {
   textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
   badge: "HİZMETLERİMİZ · SERVİS & BAKIM · ONARIM TAKİBİ",
-  headingLines: ["Onarım Takibi", "Sürecinizi Nasıl İzlersiniz?"],
+  headingLines: ["Onarım Takibi", "Cihazınızın Durumunu Nasıl Öğrenirsiniz?"],
   paragraphs: [
-    "Onarım takibi, teknik servise veya garanti kapsamına alınan cihazınızın hangi aşamada olduğunu adım adım görebilmenizi sağlayan bir hizmettir.",
-    "Avrasya İşitme'de, cihazınız teslim alındığı andan size geri teslim edilene kadar sürecin her aşamasında sizi bilgilendiriyoruz.",
+    "Cihazınızı servise teslim ettiğinizde dijital bir servis kaydı oluşturulur. Bu sayfa; kaydın, bilgilendirmenin ve durum sormanın nasıl işlediğini anlatır.",
+    "Süreç ilerledikçe gerektiğinde personelimiz SMS veya WhatsApp üzerinden sizi manuel olarak bilgilendirir; güncel durumu bizi arayarak veya WhatsApp'tan yazarak sorabilirsiniz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
   features: [
     {
-      label: "AŞAMA AŞAMA GÖRÜNÜRLÜK",
+      label: "DİJİTAL SERVİS KAYDI",
       accent: "#c026d3",
-      title: "Hangi Aşamada Olduğunuzu Bilirsiniz",
-      description: "Cihazınızın teslim alma, teşhis, onarım ve teslim aşamalarını takip edebilirsiniz.",
+      title: "Teslimde Servis Kaydı Oluşturulur",
+      description: "Cihazınız teslim edildiğinde dijital bir servis kaydı oluşturulur.",
     },
     {
-      label: "OTOMATİK BİLDİRİM",
+      label: "MANUEL BİLGİLENDİRME",
       accent: "#a21caf",
-      title: "Durum Değiştiğinde Haberdar Olursunuz",
-      description: "Onarım sürecinizdeki önemli aşamalarda SMS veya WhatsApp üzerinden bilgilendirilirsiniz.",
+      title: "Gerektiğinde SMS veya WhatsApp",
+      description: "Personelimiz gerektiğinde sizi SMS veya WhatsApp üzerinden manuel olarak bilgilendirir.",
     },
     {
-      label: "SORU SORMA İMKÂNI",
+      label: "DURUM SORMA",
       accent: "#86198f",
-      title: "İstediğiniz Zaman Bilgi Alabilirsiniz",
-      description: "Sürecin herhangi bir aşamasında bizimle iletişime geçerek güncel durumu öğrenebilirsiniz.",
+      title: "Telefon veya WhatsApp ile Bilgi Alın",
+      description: "Güncel durumu bizi arayarak veya WhatsApp'tan yazarak öğrenebilirsiniz.",
     },
   ],
   image: {

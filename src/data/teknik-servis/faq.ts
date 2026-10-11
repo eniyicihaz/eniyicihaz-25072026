@@ -9,10 +9,10 @@ import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageF
 export const teknikServisFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
   heading: "Teknik Servis Hakkında Merak Edilenler",
-  intro: "Süreç, süre ve maliyet konusunda en çok sorulan sorular.",
+  intro: "Kapsam, süre, ücret ve garanti konusunda en çok sorulan sorular.",
   decisionCard: {
     title: "Teknik Servis Desteği Almak İster misiniz?",
-    points: ["Ücret duruma göre belirlenir", "18 markada teknik servis", "3 gün içinde teslim", "Takip edilebilir süreç"],
+    points: ["Ücret duruma göre belirlenir", "18 markada üretici servis yetkisi", "Tahmini süre ilk teknik kontrolden sonra", "Dijital servis kaydı"],
     ctaLabel: "Hemen Bilgi Alın",
     ctaHref: contactConfig.phone.href,
   },
@@ -23,27 +23,32 @@ export const teknikServisFaq: BrandPageFaqContent = {
         {
           question: "Teknik servis için randevu almam gerekir mi?",
           answer:
-            "Öncesinde bizimle iletişime geçmeniz, sorununuzu daha hızlı değerlendirmemize yardımcı olur.",
+            "Evet; teknik servis için randevu gerekir. Bizi arayarak veya WhatsApp'tan yazarak sorununuzu paylaşabilir, randevu alabilirsiniz.",
         },
         {
-          question: "Yerinde teşhis ücretli midir?",
+          question: "İlk kontrol ücretli midir?",
           answer:
-            "Teknik servis ücreti, cihazınızın durumuna göre değişir.",
+            "Teknik servis ücreti cihazınızın durumuna göre değişir. Varsa onarım ücreti, teknik servisteki ilk teknik kontrolden sonra size bildirilir.",
+        },
+        {
+          question: "Cihazım teknik servise gönderilir mi?",
+          answer:
+            "Cihazınız önce merkezimizde ilk değerlendirmeden geçer; bazı sorunlar burada çözülebilir ve teknik servise gönderim gerekmeyebilir. Merkezde çözülemeyen cihaz teknik servise gönderilir.",
         },
       ],
     },
     {
-      label: "Süreç",
+      label: "Süre ve Takip",
       items: [
         {
           question: "Onarım ne kadar sürer?",
           answer:
-            "Yerinde çözülebilen sorunlar genellikle kısa sürede tamamlanır; üretici servisine gönderim gerektiren durumlar birkaç iş günü sürebilir.",
+            "İşlem süresi arızanın türüne ve gerektiğinde teknik servisin veya yedek parçanın beklenmesine göre değişebilir. Tahmini onarım süresi ve varsa ücret, merkezdeki ilk değerlendirmeden ayrı olarak teknik servisteki ilk teknik kontrolden sonra bildirilir.",
         },
         {
-          question: "Onarım sürecimi nasıl takip edebilirim?",
+          question: "Cihazımın durumunu nasıl öğrenebilirim?",
           answer:
-            "Cihazınız teknik servise alındığında bir takip kaydı oluşturulur ve sürecin aşamaları hakkında sizinle iletişime geçilir.",
+            "Cihazınız teslim edildiğinde dijital bir servis kaydı oluşturulur. Güncel durumu bizi arayarak veya WhatsApp'tan yazarak öğrenebilirsiniz; gerektiğinde personelimiz de SMS veya WhatsApp ile sizi bilgilendirir. Ayrıntılar için Onarım Takibi sayfamıza bakabilirsiniz.",
         },
       ],
     },
@@ -51,20 +56,15 @@ export const teknikServisFaq: BrandPageFaqContent = {
       label: "Maliyet ve Garanti",
       items: [
         {
-          question: "Onarım ücretli mi?",
+          question: "Garanti kapsamı nasıl belirlenir?",
           answer:
-            "Garanti kapsamındaki sorunlar genellikle ücretsizdir; garanti dışı onarımlar için işleme başlamadan önce tahmini maliyet sizinle paylaşılır.",
+            "Garanti kapsamı, cihazın garanti şartlarına ve arızanın niteliğine göre değerlendirilir; kesin durum teşhis sonrasında netleşir.",
         },
         {
           question: "Su teması garanti kapsamında mıdır?",
           answer:
             "Su teması gibi kullanıcı kaynaklı hasarlar, genellikle garanti kapsamı dışında kalabilir; kesin durum teşhis sonrası netleşir.",
         },
-      ],
-    },
-    {
-      label: "Sırasında",
-      items: [
         {
           question: "Onarım süresince yedek bir cihaz kullanabilir miyim?",
           answer:

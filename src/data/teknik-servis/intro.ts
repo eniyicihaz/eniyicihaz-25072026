@@ -8,19 +8,19 @@
 import type { BrandPageIntroContent } from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 
 export const teknikServisIntro: BrandPageIntroContent = {
-  badge: "TEKNİK SERVİS NEDİR?",
-  heading: "Teknik Servis Nedir ve Neyi Kapsar?",
+  badge: "TEKNİK SERVİS KAPSAMI",
+  heading: "Teknik Servisin Kapsamı ve İşleyişi",
   paragraphs: [
-    "Teknik servis, işitme cihazınızda ses kesintisi, açılmama sorunu, fiziksel hasar veya su teması gibi bir arıza fark ettiğinizde başvurabileceğiniz teşhis ve onarım hizmetimizdir.",
-    "Süreç, sorununuzun kliniğimizde yerinde teşhis edilmesiyle başlar; birçok basit sorun bu aşamada çözülebilir.",
-    "Teknik serviste cihazınız 3 gün içinde teslim edilir; garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir ve garanti işlemleri cihaza göre 1–5 gün sürebilir.",
-    "Cihazınızda hiçbir fiziksel sorun olmasa da performans veya ayar kaynaklı bir şikayetiniz varsa, teknik servis yerine Kontrol Randevusu veya Uzaktan Ayar hizmetlerimiz daha uygun bir ilk adım olabilir.",
+    "Teknik servis kapsamında cihazınızdaki ses, güç, bağlantı veya fiziksel hasar kaynaklı sorunlar Darıca'daki merkezimizde incelenir; yapılacak işlem sorunun niteliğine göre belirlenir.",
+    "Cihazınız önce merkezimizde ilk değerlendirmeden geçer; bazı sorunlar burada çözülebilir. Merkezde çözülemeyen cihaz teknik servise gönderilir ve arıza teknik serviste yapılan ilk teknik kontrolle netleşir.",
+    "Garanti kapsamı cihazın garanti şartlarına ve arızanın niteliğine göre belirlenir; ayrıntılar aşağıdaki bölümlerde yer alır.",
+    "İşlem süresi arızanın türüne ve gerektiğinde teknik servisin veya yedek parçanın beklenmesine göre değişebilir. Tahmini onarım süresi ve varsa ücret, merkezdeki ilk değerlendirmeden ayrı olarak teknik servisteki ilk teknik kontrolden sonra bildirilir.",
   ],
   stats: [
-    { value: "Yerinde Teşhis", label: "İlk Adım" },
-    { value: "1–3 Gün", label: "Onarım Teslimi" },
-    { value: "Gerektiğinde Dış Servis", label: "Garanti Kapsamındaki Cihazlar" },
-    { value: "Takip Edilebilir Süreç", label: "Şeffaflık" },
+    { value: "Merkezde İlk Kontrol", label: "Başvuru Sonrası İlk Adım" },
+    { value: "18 Marka", label: "Üretici Servis Yetkisi" },
+    { value: "Garanti Değerlendirmesi", label: "Cihaz ve Arıza Türüne Göre" },
+    { value: "Dijital Servis Kaydı", label: "Cihaz Teslim Edildiğinde" },
   ],
   accentColor: "#dc2626",
   accentColorBadgeBg: "rgb(220 38 38 / 0.08)",

@@ -22,7 +22,7 @@ export const yayginServisAgiConsiderations: BrandPageIdealUserContent = {
     {
       icon: Clock,
       title: "Bazı Onarımlar Parça Temini Nedeniyle Zaman Alabilir",
-      description: "Nadir kullanılan parçaların temini, onarım süresini uzatabilir.",
+      description: "Parçanın bulunabilirliği ve temin süresi marka ve modele göre değişebilir; tahmini süre, değerlendirme sonrasında paylaşılır.",
       suggestedFamilies: ["Gerçekçi Süre Beklentisi"],
     },
     {
@@ -33,9 +33,9 @@ export const yayginServisAgiConsiderations: BrandPageIdealUserContent = {
     },
     {
       icon: MapPin,
-      title: "Servis Noktası Yoğunluğu Bölgeye Göre Değişebilir",
-      description: "Yetkili servis noktalarının yoğunluğu şehir ve bölgeye göre farklılık gösterebilir.",
-      suggestedFamilies: ["Bölgesel Kapsama Kontrolü"],
+      title: "Yetki Kapsamı ile Hizmet Noktası Farklı Şeylerdir",
+      description: "Üretici servis yetkisi 18 markanın tamamı için geçerlidir; fiziksel hizmet noktamız Darıca'daki merkezimizdir ve servis için randevu gerekir.",
+      suggestedFamilies: ["Hizmet Noktası"],
     },
     {
       icon: Gauge,
