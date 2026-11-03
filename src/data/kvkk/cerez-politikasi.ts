@@ -96,6 +96,47 @@ export const cerezPolitikasi: LegalDocumentData = {
         { type: "p", text: "Butonlar: “Tümünü kabul et” | “Tümünü reddet” | “Tercihleri yönet”" },
       ],
     },
+    {
+      heading: "9. Cloudflare Web Analytics ve Teknik Performans Ölçümü",
+      blocks: [
+        {
+          type: "p",
+          text: "Web sitemiz Cloudflare altyapısı üzerinden sunulmaktadır ve sitede Cloudflare Web Analytics (gerçek kullanıcı performans ölçümü) kullanılmaktadır. Bu ölçüm, 4. bölümdeki Google Analytics ve 5. bölümdeki Google Ads ölçümlerinden ayrıdır; yukarıda açıklanan Analitik ve Reklam ölçüm tercihlerine bağlı olarak açılıp kapanmaz ve çerez tercih panelinde ayrı bir çerez kategorisi olarak sunulmaz.",
+        },
+        {
+          type: "p",
+          text: "Amaç: sitenin sayfa yükleme hızı ve kullanıcı deneyimi performansının teknik olarak izlenmesi ve iyileştirilmesidir.",
+        },
+        {
+          type: "p",
+          text: "Cloudflare’ın teknik belgelerine göre ölçüm, tarayıcının Performance API’leri üzerinden yapılır ve aşağıdaki teknik bilgiler işlenebilir:",
+        },
+        {
+          type: "ul",
+          items: [
+            "Sayfa yükleme ve boyama zamanlamaları ile LCP, CLS, INP, FCP ve TTFB gibi performans ölçümleri.",
+            "Sayfa yükleme kimliği, girilen sayfanın yolu ve yönlendiren sayfa bilgisi.",
+            "Ölçümün yapıldığı zaman ve tarayıcının bellek kullanımına ilişkin teknik bilgiler.",
+          ],
+        },
+        {
+          type: "p",
+          text: "Cloudflare, Web Analytics ölçümünde sorgu parametrelerini (internet adresinde “?” işaretinden sonra gelen bölümü) kaydetmediğini belirtmektedir.",
+        },
+        {
+          type: "p",
+          text: "Çerez ve yerel depolama: Cloudflare’ın teknik belgelerine göre ölçüm betiği tarayıcınızda çerez, localStorage, sessionStorage veya IndexedDB oluşturmaz ve bunlara erişmez; ölçüm verileri yalnızca tarayıcı belleğinde bulunur ve sayfa yenilendiğinde kaybolur.",
+        },
+        {
+          type: "p",
+          text: "IP adresi: Ölçüm isteği, her internet isteğinde olduğu gibi IP adresinizle birlikte Cloudflare’a ulaşır. Cloudflare, bu adresin en yakın veri merkezinde silindiğini ve ana veritabanlarında veya loglarında saklanmadığını belirtmektedir.",
+        },
+        {
+          type: "p",
+          text: "İşleme yeri: Cloudflare, performans verilerinin genellikle en yakın Cloudflare veri merkezinde işlendiğini, ancak verinin ortaya çıktığı ülke veya bölgeden farklı bir ülke ya da bölgede işlenebileceğini belirtmektedir. Yurt dışına aktarıma ilişkin bilgi İnternet Sitesi Kullanıcısı Aydınlatma Metni’nde yer almaktadır.",
+        },
+      ],
+    },
     contactSection,
   ],
 };

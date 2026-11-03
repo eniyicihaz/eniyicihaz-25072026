@@ -34,7 +34,7 @@
 | Sosyal hesaplar | Instagram, Facebook, TikTok, YouTube (URL'ler: BUSINESS_SOT §3; TikTok URL [KULLANICIDAN BİLGİ GEREKLİ]) | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | `sameAs` |
 | Merchant Center / diğer Google servisleri | Repoda iz yok | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | Kullanılıyor mu? |
 | Bing Webmaster Tools | Repoda iz yok | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | AI arama görünürlüğü için önerilecek |
-| Cloudflare (hosting, yönlendirme, bot ayarları) | Repoda yalnızca `_redirects` ve 404 yorumu var | [ERİŞİM GEREKLİ] | `public/_redirects`, `src/pages/404.astro` | — | AI botları engelleniyor mu: audit |
+| Cloudflare (hosting, yönlendirme, bot ayarları) | Repoda yalnızca `_redirects` ve 404 yorumu var. Pages projesi `eniyicihaz-25072026` (production branch `main`) ve **Cloudflare Web Analytics** (bkz. §2 “Cloudflare Web Analytics”) | [DOĞRULANDI] (Pages ve Web Analytics: panelden salt okunur, 2026-11-04) [ERİŞİM GEREKLİ] (bot ayarları vb.) | `public/_redirects`, `src/pages/404.astro` | — | AI botları engelleniyor mu: audit |
 | Hesap sahipliği ve yöneticiler (GBP, GA4, GTM, GSC, Ads, Cloudflare) | GBP: Erdinç Kılıç [DOĞRULANDI, 2026-10-07]. Diğerleri: — | GBP dışındakiler: [KULLANICIDAN BİLGİ GEREKLİ] | — | — | **Yalnızca kişi/rol bilgisi.** Giriş bilgisi istenmez ve yazılmaz |
 
 ## 2. Consent ve Ölçüm Altyapısı (güncel — 2026-11-04)
@@ -62,6 +62,18 @@
 | Üçüncü taraf gömme | Harita/video, kullanıcı içeriğin kendi “yükle” düğmesine basana kadar yüklenmez; düğme yalnızca o içeriği, o sayfa ziyareti için yükler ve kalıcı tercih yazmaz | [DOĞRULANDI] | `ConsentEmbed.astro`, `ConsentManager.astro` |
 | Fontlar | Yerel (`/fonts/`); fontlar için Google isteği yok | [DOĞRULANDI] | `src/ds/styles/base/fonts.css` |
 | Kural | Event payload'larına kişisel veya sağlık verisi gönderilmez | [DOĞRULANDI] | İşletme sahibi |
+
+### Cloudflare Web Analytics (teknik performans ölçümü; Google tercihlerinden bağımsız)
+
+| Bilgi | Değer | Durum |
+|---|---|---|
+| Hizmet | Cloudflare Web Analytics (RUM beacon). Cloudflare panelinde Web Analytics sitesi `eniyicihaz.com`, kurulum **Automatic setup** | [DOĞRULANDI] (panel, salt okunur, 2026-11-04) |
+| Yükleme | Beacon sitenin kaynak kodunda **yok** (repo, `dist`); Cloudflare uç noktasında HTML'e enjekte ediliyor (`static.cloudflareinsights.com/beacon.min.js`, `data-cf-beacon` özniteliği: `version`, `token`, `r`, `spa`) | [DOĞRULANDI] (canlı sayfa, tarayıcı) |
+| Veri adresi | Ölçüm verisi aynı alan adındaki `https://www.eniyicihaz.com/cdn-cgi/rum` adresine gidiyor (otomatik kurulum; `cloudflareinsights.com/cdn-cgi/rum` değil) | [DOĞRULANDI] (canlı sayfa, ağ isteği) |
+| Consent ilişkisi | Çerez izin sistemine bağlı **değil**: Google izinleri reddedilse de, tercih yokken de yükleniyor | [DOĞRULANDI] (canlı test) |
+| Çerez / depolama | Canlı sayfada Cloudflare'a ait çerez veya localStorage anahtarı görülmedi; Cloudflare belgesi beacon'ın çerez, localStorage, sessionStorage, IndexedDB kullanmadığını belirtiyor | [DOĞRULANDI] (canlı sayfa adları) / [MEVCUT BELGELERDE VAR] (Cloudflare belgesi) |
+| Metinlere işlenme | Çerez Politikası §9, Aydınlatma Metni §7 ve Gizlilik Politikası §3'e açıklama eklendi; yürürlük tarihi değiştirilmedi | [DOĞRULANDI] (kod); hukuk onayı bekleniyor |
+| Doğrulanamayanlar | Veri saklama süresi, hukuki işleme şartı, yurt dışı aktarım mekanizması, Cloudflare'ın veri işleyen / sorumlu sıfatı, Web Analytics'te AB/AEA ülkeleri için "ölçümü hariç tut" seçeneğinin bu sitede açık olup olmadığı | [KULLANICIDAN BİLGİ GEREKLİ] / [HUKUKİ DEĞERLENDİRME GEREKLİ] |
 
 ### GTM durumu (2026-11-04)
 

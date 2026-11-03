@@ -39,7 +39,7 @@ export const gizlilikPolitikasi: LegalDocumentData = {
       blocks: [
         {
           type: "p",
-          text: "Website altyapısında Cloudflare; harita/içerik hizmetlerinde Google Maps ve YouTube; gelecekte analitik ve dönüşüm ölçümünde Google Analytics ve Google Ads kullanılabilir. Bu hizmetlerin her biri için ilgili teknik ve hukuki aktarım koşulları ayrıca değerlendirilir.",
+          text: "Website altyapısında Cloudflare; harita/içerik hizmetlerinde Google Maps ve YouTube; gelecekte analitik ve dönüşüm ölçümünde Google Analytics ve Google Ads kullanılabilir. Cloudflare ayrıca sitenin teknik performans ölçümü (Cloudflare Web Analytics) için kullanılmaktadır; ayrıntılar Çerez Politikası’nın 9. bölümünde yer alır. Bu hizmetlerin her biri için ilgili teknik ve hukuki aktarım koşulları ayrıca değerlendirilir.",
         },
       ],
     },

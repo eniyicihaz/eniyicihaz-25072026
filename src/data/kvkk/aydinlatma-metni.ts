@@ -33,6 +33,7 @@ export const aydinlatmaMetni: LegalDocumentData = {
             "Tarayıcı, işletim sistemi, cihaz ve bağlantı bilgileri.",
             "Ziyaret edilen sayfalar, zaman damgaları, yönlendiren sayfa ve teknik olay kayıtları.",
             "Çerez tercihleri ve kullanıcı tarafından verildiğinde analitik/reklam etkileşim verileri.",
+            "Sayfa yükleme süresi ve benzeri teknik performans ölçümleri (Cloudflare Web Analytics; bkz. 7. bölüm).",
           ],
         },
       ],
@@ -70,6 +71,27 @@ export const aydinlatmaMetni: LegalDocumentData = {
         {
           type: "p",
           text: "Website ziyaretçilerinin Avrasya İşitme’ye telefon, WhatsApp Business, e-posta, Instagram, TikTok veya diğer iletişim kanallarından ulaşması hâlinde iletilen bilgiler ilgili hizmet veya talebin gerektirdiği ölçüde işlenir. WhatsApp üzerindeki iletişim içerikleri cihaz üzerinde saklanabilir; gereksiz ve süresiz saklama yapılmaması için periyodik silme uygulanır.",
+        },
+      ],
+    },
+    {
+      heading: "7. Cloudflare Web Analytics ve Teknik Performans Ölçümü",
+      blocks: [
+        {
+          type: "p",
+          text: "Website, Cloudflare altyapısı üzerinden sunulmaktadır ve sitenin sayfa yükleme hızı ile kullanıcı deneyimi performansını teknik olarak izlemek ve iyileştirmek amacıyla Cloudflare Web Analytics kullanılmaktadır. Bu ölçüm Google Analytics ve Google Ads ölçümlerinden ayrıdır; çerez tercih panelindeki Analitik ve Reklam ölçüm tercihlerine bağlı olarak açılıp kapanmaz.",
+        },
+        {
+          type: "p",
+          text: "Cloudflare’ın teknik belgelerine göre bu ölçümde tarayıcının Performance API’leri üzerinden elde edilen sayfa yükleme zamanlamaları ve performans ölçümleri (LCP, CLS, INP, FCP, TTFB gibi), sayfa yükleme kimliği, girilen sayfanın yolu, yönlendiren sayfa, ölçüm zamanı ve tarayıcının bellek kullanımı gibi teknik veriler işlenebilir. Cloudflare, sorgu parametrelerini kaydetmediğini; ölçüm betiğinin tarayıcıda çerez, localStorage, sessionStorage veya IndexedDB oluşturmadığını ve bunlara erişmediğini belirtmektedir.",
+        },
+        {
+          type: "p",
+          text: "Ölçüm isteği sırasında IP adresiniz, her internet isteğinde olduğu gibi Cloudflare’a ulaşır. Cloudflare, bu adresi en yakın veri merkezinde sildiğini ve ana veritabanlarında veya loglarında saklamadığını belirtmektedir. Cloudflare ayrıca performans verilerinin verinin ortaya çıktığı ülke veya bölgeden farklı bir ülke ya da bölgede işlenebileceğini belirtmektedir; bu durumda yurt dışına aktarım 5. bölümdeki ilkeler çerçevesinde değerlendirilir.",
+        },
+        {
+          type: "p",
+          text: "Hizmet sağlayıcı: Cloudflare. Ayrıntılı bilgi için Çerez Politikası’nın 9. bölümüne bakabilirsiniz.",
         },
       ],
     },
