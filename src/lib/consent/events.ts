@@ -2,9 +2,13 @@
 //
 // Yeni/paralel bir analytics sistemi DEĞİLDİR: tek bir belge düzeyi click
 // dinleyicisi, tıklanan bağlantının `href`'inden sabit bir event adı seçer
-// ve `trackEvent` ile dataLayer'a yazar. İzin yoksa `trackEvent` hiçbir şey
-// yapmaz (Analitik izni + yüklü GTM gerekir). Parametreler yalnızca
-// analytics.ts'teki izin listesidir.
+// ve `trackEvent` ile dataLayer'a yazar. İzin yoksa hiçbir olay oluşturulmaz (Basic Consent Mode):
+// GA4 olayları Analitik izni, Ads dönüşüm olayları Reklam ölçüm izni gerektirir.
+// Parametreler yalnızca analytics.ts'teki izin listeleridir.
+//
+// Ads dönüşümleri (yalnızca GERÇEK tel:/wa.me tıklamasında, tıklama başına bir kez):
+//   phone_click_ads / whatsapp_click_ads — GA4 olaylarından AYRI olaylardır; yalnızca Reklam ölçüm izni
+//   varsa gönderilir, numara/URL/etiket taşımaz (yalnızca link_location, link_type, contact_channel).
 //
 // Oluşturulan event'ler (yalnızca sitede GERÇEKTEN var olan aksiyonlar):
 //   phone_click        href="tel:…"
@@ -25,7 +29,12 @@
 //     HİÇ OKUNMAZ (cta_label gönderilmez); yalnızca sabit değerler gider.
 //   • Telefon numarası, e-posta, URL vb. etikete giremez (ayrıca analytics.ts
 //     içindeki PII filtresi son savunmadır).
-import { trackEvent } from "./analytics";
+//
+// Hangi hat tıklandı (phone_click / whatsapp_click): numara değil, sabit bir kanal adı
+// `contact_channel` parametresiyle gider (mobile_main, whatsapp_main, landline_office, ads_line,
+// other_phone). Eşleme src/lib/consent/contact-channel.ts içindedir.
+import { trackAdsEvent, trackEvent } from "./analytics";
+import { contactChannelFor } from "./contact-channel";
 
 type EventName = "phone_click" | "whatsapp_click" | "directions_click" | "hearing_test_cta" | "hearing_test_info_click";
 type LinkType = "phone" | "whatsapp" | "map" | "internal";
@@ -115,7 +124,12 @@ function safeLabel(a: HTMLElement): string {
   return "";
 }
 
+// Aynı tıklama olayı iki kez işlenmesin — tıklama başına tek gönderim.
+const handled = new WeakSet<Event>();
+
 function onClick(e: MouseEvent): void {
+  if (handled.has(e)) return;
+  handled.add(e);
   const a = (e.target as Element | null)?.closest<HTMLAnchorElement>("a[href]");
   if (!a) return;
   const hit = classify(a);
@@ -132,7 +146,16 @@ function onClick(e: MouseEvent): void {
     const label = safeLabel(a);
     if (label) params.cta_label = label;
   }
+  const channel = contactChannelFor(hit.event, a.getAttribute("href") || "");
+  if (channel) params.contact_channel = channel;
   trackEvent(hit.event, params);
+  if (hit.event === "phone_click" || hit.event === "whatsapp_click") {
+    trackAdsEvent(`${hit.event}_ads`, {
+      link_location: params.link_location,
+      link_type: params.link_type,
+      contact_channel: params.contact_channel,
+    });
+  }
 }
 
 let started = false;

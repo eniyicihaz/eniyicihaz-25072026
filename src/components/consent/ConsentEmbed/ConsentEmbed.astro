@@ -1,11 +1,10 @@
 ---
 // ConsentEmbed — üçüncü taraf gömme içeriği (Google Maps / YouTube) için
-// sarmalayıcı. Slot içindeki <iframe>, <template> içinde durur ve "üçüncü
-// taraf içerik" izni verilene kadar tarayıcı onu YÜKLEMEZ (ağ isteği yok).
-// Bunun yerine bilgilendirme + doğrudan dış bağlantı gösterilir — Çerez
-// Politikası §6 (“Kullanıcı tarafından seçilen tercih doğrultusunda
-// yüklenebilir… doğrudan dış bağlantı tercih edilebilir”) ile uyumludur.
-// İzin ConsentManager tarafından yönetilir; bu bileşen yalnızca yer tutucudur.
+// sarmalayıcı. Slot içindeki <iframe>, <template> içinde durur ve kullanıcı “yükle”
+// düğmesine basana kadar tarayıcı onu YÜKLEMEZ (ağ isteği yok). Düğme yalnızca BU içeriği,
+// yalnızca bu sayfa ziyareti için yükler; kalıcı bir çerez tercihi yazmaz. Bunun yerine
+// bilgilendirme + doğrudan dış bağlantı gösterilir — Çerez Politikası §6 ile uyumludur.
+// Yükleme tıklamasını ConsentManager işler; bu bileşen yalnızca yer tutucudur.
 import "../../../ds/components/ui/atoms/Button/Button.css";
 
 interface Props {
@@ -27,9 +26,8 @@ const { provider, directHref, directLabel, loadLabel, title } = Astro.props;
   <div class="consent-embed__placeholder" role="group" aria-label={title}>
     <p class="consent-embed__title">{title}</p>
     <p class="consent-embed__text">
-      Bu içerik {provider} tarafından sunulur. Yüklendiğinde üçüncü taraf çerez veya benzeri teknolojiler kullanılabilir.
-      “{loadLabel}” düğmesi “Üçüncü taraf içerik” tercihinizi açar; dilediğiniz zaman sayfa altındaki “Çerez
-      Tercihleri” bağlantısından değiştirebilirsiniz.
+      Bu içerik {provider} tarafından sunulur. “{loadLabel}” düğmesine bastığınızda içerik yüklenir ve {provider} üçüncü taraf
+      çerez veya benzeri teknolojiler kullanabilir; yüklemezseniz {provider}’a hiçbir istek gönderilmez.
     </p>
     <div class="consent-embed__actions">
       <button type="button" class="btn btn--primary btn--md" data-consent-enable-embed><span>{loadLabel}</span></button>

@@ -27,9 +27,8 @@ export const cerezPolitikasi: LegalDocumentData = {
           head: ["Kategori", "Amaç", "Varsayılan durum"],
           rows: [
             ["Zorunlu", "Güvenlik, oturum, tercihlerin teknik olarak uygulanması, sitenin çalışması", "Açık"],
-            ["Analitik", "Google Analytics ile ziyaret ve kullanım istatistikleri, dönüşüm ölçümü", "Kapalı / açık rıza gerekir"],
-            ["Reklam/Pazarlama", "Google Ads dönüşüm, remarketing ve reklam ölçümü", "Kapalı / açık rıza gerekir"],
-            ["Üçüncü taraf içerik", "Google Maps, YouTube ve benzeri içerik/harita hizmetleri", "Kapalı / gerektiğinde açık rıza"],
+            ["Analitik", "Google Analytics 4 ile ziyaret ve kullanım istatistikleri", "Kapalı / açık rıza gerekir"],
+            ["Reklam ölçüm", "Google Ads dönüşüm ölçümü (ör. reklamdan gelen telefon veya WhatsApp tıklaması). Kişiselleştirilmiş reklam izni verilmez.", "Kapalı / açık rıza gerekir"],
           ],
         },
       ],
@@ -39,11 +38,11 @@ export const cerezPolitikasi: LegalDocumentData = {
       blocks: [
         {
           type: "p",
-          text: "Kullanıcılar çerez tercihlerini “Tümünü Kabul Et”, “Sadece Gerekli” ve “Tercihler” seçenekleriyle yönetebilir. Analitik, reklam/pazarlama ve zorunlu olmayan üçüncü taraf çerezler, gerekli teknik ve hukuki koşullar sağlanmadan etkinleştirilmez. Tercih değişikliği daha sonra tekrar yapılabilir.",
+          text: "Kullanıcılar çerez tercihlerini eşit görünürlükteki “Tümünü kabul et”, “Tümünü reddet” ve “Tercihleri yönet” seçenekleriyle yönetebilir. Analitik ve reklam ölçüm çerezleri, kullanıcı açıkça izin vermeden etkinleştirilmez; bir seçim yapılana kadar Google Tag Manager, Google Analytics veya Google Ads etiketleri yüklenmez ve Google’a istek gönderilmez. Tercih değişikliği sayfa altındaki “Çerez Tercihleri” bağlantısından daha sonra tekrar yapılabilir; bir izin geri alındığında ilgili ölçüm etiketleri bundan sonra çalışmaz.",
         },
         {
           type: "p",
-          text: "Çerez tercihleriniz, benzeri teknolojiler kapsamında cihazınızın tarayıcısında (yerel depolama) saklanır. Bu kayıtta tercihleriniz, tercihin yapıldığı tarih ve bu Politika’nın sürüm bilgisi yer alır; kayıt yalnızca tercihlerinizin uygulanması amacıyla kullanılır, kimliğinizi belirleyen bir bilgi içermez ve sunucumuza gönderilmez. Bu Politika’nın sürümü değiştiğinde tercihiniz yeniden istenebilir.",
+          text: "Çerez tercihleriniz, benzeri teknolojiler kapsamında cihazınızın tarayıcısında (yerel depolama) saklanır. Bu kayıtta tercihleriniz, hangi seçenekle (tümünü kabul / tümünü reddet / özel seçim) karar verdiğiniz, tercihin yapıldığı tarih ve bu Politika’nın sürüm bilgisi yer alır; siz bir seçim yapmadan hiçbir kayıt oluşturulmaz; kayıt yalnızca tercihlerinizin uygulanması amacıyla kullanılır, kimliğinizi belirleyen bir bilgi içermez ve sunucumuza gönderilmez. Bu Politika’nın sürümü değiştiğinde tercihiniz yeniden istenebilir.",
         },
       ],
     },
@@ -52,16 +51,16 @@ export const cerezPolitikasi: LegalDocumentData = {
       blocks: [
         {
           type: "p",
-          text: "Google Analytics kullanıldığında sayfa görüntüleme, olay, kampanya, cihaz ve benzeri kullanım verileri istatistik ve dönüşüm ölçümü amacıyla işlenebilir. Sağlık verileri, online işitme testi sonuçları veya dB değerleri Analytics’e gönderilmez.",
+          text: "Yalnızca Analitik iznini verirseniz Google Analytics 4 kullanılır; sayfa görüntüleme, olay, kampanya, cihaz ve benzeri kullanım verileri istatistik amacıyla işlenebilir. Sağlık verileri, online işitme testi sonuçları veya dB değerleri Analytics’e gönderilmez.",
         },
       ],
     },
     {
-      heading: "5. Google Ads / Remarketing",
+      heading: "5. Google Ads Dönüşüm Ölçümü",
       blocks: [
         {
           type: "p",
-          text: "Google Ads reklam ölçümü ve remarketing çerezleri yalnızca gerekli tercih/izin mekanizması kapsamında etkinleştirilir. Reklam/pazarlama amaçlı çerezler zorunlu değildir.",
+          text: "Google Ads dönüşüm ölçümü yalnızca Reklam ölçüm iznini verirseniz etkinleşir ve yalnızca telefon veya WhatsApp bağlantısına gerçekten tıklandığında bir dönüşüm olayı gönderilir; olayda telefon numarası, WhatsApp bağlantısı veya sağlık bilgisi bulunmaz. Kişiselleştirilmiş reklam (ad_personalization) izni hiçbir durumda verilmez ve remarketing/kitle oluşturulmaz. Reklam çerezleri zorunlu değildir.",
         },
       ],
     },
@@ -70,7 +69,7 @@ export const cerezPolitikasi: LegalDocumentData = {
       blocks: [
         {
           type: "p",
-          text: "Harita veya video gömülü içerikler üçüncü taraf sağlayıcılar tarafından sunulabilir. Kullanıcı tarafından seçilen tercih doğrultusunda yüklenebilir. Ziyaretçinin çerez tercihini etkilememek amacıyla doğrudan dış bağlantı tercih edilebilir.",
+          text: "Harita veya video gömülü içerikler üçüncü taraf sağlayıcılar tarafından sunulabilir. Bu içerikler siz ilgili “Haritayı yükle / Videoyu yükle” düğmesine basana kadar yüklenmez ve sağlayıcıya istek gönderilmez; düğme yalnızca o içeriği, o sayfa ziyareti için yükler. Dilerseniz içeriği yüklemeden doğrudan dış bağlantıyı kullanabilirsiniz.",
         },
       ],
     },
@@ -92,9 +91,9 @@ export const cerezPolitikasi: LegalDocumentData = {
       blocks: [
         {
           type: "quote",
-          text: "“Sitemizin çalışması için zorunlu çerezleri kullanıyoruz. Analitik ve reklam/pazarlama çerezleri ile zorunlu olmayan üçüncü taraf içerikleri yalnızca tercihinize göre etkinleştiriyoruz. Tercihlerinizi dilediğiniz zaman değiştirebilirsiniz.”",
+          text: "“Sitemizin çalışması için zorunlu çerezleri kullanıyoruz. Analitik ve reklam ölçüm çerezlerini yalnızca açık tercihinize göre etkinleştiriyoruz; seçim yapana kadar Google’a istek gönderilmez. Tercihlerinizi dilediğiniz zaman değiştirebilirsiniz.”",
         },
-        { type: "p", text: "Butonlar: “Tümünü Kabul Et” | “Sadece Gerekli” | “Tercihler”" },
+        { type: "p", text: "Butonlar: “Tümünü kabul et” | “Tümünü reddet” | “Tercihleri yönet”" },
       ],
     },
     contactSection,
