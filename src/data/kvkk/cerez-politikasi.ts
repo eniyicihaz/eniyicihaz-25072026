@@ -109,6 +109,10 @@ export const cerezPolitikasi: LegalDocumentData = {
         },
         {
           type: "p",
+          text: "Avrupa Birliği (AB) ziyaretçileri: Cloudflare Web Analytics ayarlarında, AB ülkelerinden gelen ziyaretçiler için JavaScript ölçüm kodunun (beacon) yüklenmesini engelleyen seçenek etkin durumdadır. Cloudflare’ın panel açıklamasına göre bu durumda ölçüm kodu AB’den gelen ziyaretçilere enjekte edilmez; bu nedenle bu ziyaretçilere yönelik Cloudflare Web Analytics JavaScript performans ölçümü gerçekleştirilmez. Bu açıklama yalnızca Cloudflare Web Analytics JavaScript ölçümüne ilişkindir ve yalnızca AB kapsamındadır.",
+        },
+        {
+          type: "p",
           text: "Cloudflare’ın teknik belgelerine göre ölçüm, tarayıcının Performance API’leri üzerinden yapılır ve aşağıdaki teknik bilgiler işlenebilir:",
         },
         {

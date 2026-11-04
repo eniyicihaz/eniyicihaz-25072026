@@ -83,6 +83,10 @@ export const aydinlatmaMetni: LegalDocumentData = {
         },
         {
           type: "p",
+          text: "Cloudflare Web Analytics ayarlarında, Avrupa Birliği (AB) ülkelerinden gelen ziyaretçiler için JavaScript ölçüm kodunun (beacon) yüklenmesini engelleyen seçenek etkin durumdadır. Cloudflare’ın panel açıklamasına göre ölçüm kodu AB’den gelen ziyaretçilere enjekte edilmez; bu nedenle bu ziyaretçilere yönelik Cloudflare Web Analytics JavaScript performans ölçümü gerçekleştirilmez. Bu açıklama yalnızca Cloudflare Web Analytics JavaScript ölçümüne ilişkindir ve yalnızca AB kapsamındadır.",
+        },
+        {
+          type: "p",
           text: "Cloudflare’ın teknik belgelerine göre bu ölçümde tarayıcının Performance API’leri üzerinden elde edilen sayfa yükleme zamanlamaları ve performans ölçümleri (LCP, CLS, INP, FCP, TTFB gibi), sayfa yükleme kimliği, girilen sayfanın yolu, yönlendiren sayfa, ölçüm zamanı ve tarayıcının bellek kullanımı gibi teknik veriler işlenebilir. Cloudflare, sorgu parametrelerini kaydetmediğini; ölçüm betiğinin tarayıcıda çerez, localStorage, sessionStorage veya IndexedDB oluşturmadığını ve bunlara erişmediğini belirtmektedir.",
         },
         {
