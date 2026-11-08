@@ -22,7 +22,7 @@ import HomeKnowledge from "../components/home/HomeKnowledge.astro";
 import Closing from "../components/closing/Closing/Closing.astro";
 
 import { homeHero } from "../data/home/hero";
-import { buildMedicalBusinessSchema } from "../lib/schema";
+import { buildMedicalBusinessSchema, ORGANIZATION_ID, WEBSITE_ID } from "../lib/schema";
 
 // Extends the sitewide Organization node (MainLayout.astro) via the same
 // `@id` rather than redeclaring it — same real business, described more
@@ -34,6 +34,18 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(
   "https://www.eniyicihaz.com/",
   homeHero.definitionSentence,
 );
+
+// WebSite node — homepage only. It adds no business data of its own: it only
+// points at the sitewide Organization node (MainLayout.astro) as publisher.
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": WEBSITE_ID,
+  url: "https://www.eniyicihaz.com/",
+  name: "Avrasya İşitme Cihazları",
+  inLanguage: "tr",
+  publisher: { "@id": ORGANIZATION_ID },
+};
 ---
 
 <MainLayout
@@ -41,6 +53,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(
   description="Avrasya İşitme Cihazları; Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi. Ücretsiz işitme testi, cihaz uygulaması ve SGK danışmanlığı sunuyoruz."
 >
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 
   <HomeHero data={homeHero} />
   <HomeLocal />

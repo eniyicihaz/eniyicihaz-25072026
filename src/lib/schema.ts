@@ -18,6 +18,7 @@
 // natural next step for a future, separately-approved site-wide pass, not
 // part of this homepage-scoped task.
 import { company } from "../components/footer/Footer/data/company";
+import { social } from "../components/footer/Footer/data/social";
 
 /** Brand/site Organization node (declared once in MainLayout). */
 export const ORGANIZATION_ID = "https://www.eniyicihaz.com/#organization";
@@ -32,6 +33,16 @@ export const BUSINESS_POSTAL_CODE = "41700";
 /** Real storefront photo (Darıca street frontage, 1200×630) already served as the sitewide OG image. */
 export const BUSINESS_IMAGE = "https://www.eniyicihaz.com/images/og/og-default.jpg";
 export const SERVICE_AREA_NAMES = ["Darıca", "Gebze", "Çayırova", "Kocaeli"];
+/** WebSite node (homepage only). Publisher is the sitewide Organization node. */
+export const WEBSITE_ID = "https://www.eniyicihaz.com/#website";
+/** Official horizontal brand logo (unaltered owner-supplied file, 1774×887) — the Organization `logo`. */
+export const ORGANIZATION_LOGO = "https://www.eniyicihaz.com/images/brand/avrasya-isitme-cihazlari-logo-yatay.webp";
+/** Google Business Profile short link — single source is company.directionsHref. Used as MedicalBusiness `hasMap` by every page. */
+export const BUSINESS_MAP_URL = company.directionsHref;
+/** Organization `sameAs`: only the owner-verified Facebook and Instagram profiles (BUSINESS_SOT §3, 2026-11-08), read from the footer's social data. YouTube is NOT owner-verified and is deliberately excluded. */
+export const ORGANIZATION_SAME_AS = social
+  .filter((item) => item.platform === "Facebook" || item.platform === "Instagram")
+  .map((item) => item.href);
 
 // Real coordinates behind company.directionsHref/mapEmbedSrc — a verified
 // Google Business Profile embed, not a re-geocoded guess. Same numbers
@@ -73,6 +84,7 @@ export interface MedicalBusinessSchema {
     closes: string;
   }>;
   areaServed: string[];
+  hasMap: string;
 }
 
 /**
@@ -127,5 +139,6 @@ export function buildMedicalBusinessSchema(
       },
     ],
     areaServed: SERVICE_AREA_NAMES,
+    hasMap: BUSINESS_MAP_URL,
   };
 }

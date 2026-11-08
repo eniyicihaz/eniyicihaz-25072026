@@ -1,6 +1,6 @@
 # BUSINESS_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-10-07 (Faz 0 son bilgi aktarımı)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-08 (Facebook ve Instagram URL doğrulaması, §3)
 > **Amaç:** Avrasya İşitme Cihazları için tek kaynak. Kapsadığı konular:
 > - İşletme kimliği ve tarihçesi
 > - Yasal yapı
@@ -140,11 +140,13 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 | KEP adresi | erdinc.kilic.3@hs01.kep.tr | [MEVCUT BELGELERDE VAR] | `src/data/kvkk/common.ts` | — | KVKK | YENİDEN DOĞRULA |
 | Diğer alan adları | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | Yönlendirme, entity | — |
 | Sosyal hesaplar (aktif) | Instagram, Facebook, TikTok, YouTube | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | Footer, schema `sameAs` | YENİDEN DOĞRULA |
-| Facebook URL | https://www.facebook.com/daricaisitmecihazi | [MEVCUT BELGELERDE VAR] | footer `social.ts` | — | Footer, `sameAs` | YENİDEN DOĞRULA |
-| Instagram URL | https://www.instagram.com/avrasyaisitme | [MEVCUT BELGELERDE VAR] | footer `social.ts` | — | Footer, `sameAs` | YENİDEN DOĞRULA |
+| Facebook URL | https://www.facebook.com/daricaisitmecihazi | [DOĞRULANDI] | İşletme sahibi (açık teyit; profilden siteye karşılıklı bağlantı) | 2026-11-08 | Footer, Organization `sameAs` | STATIC |
+| Instagram URL | https://www.instagram.com/avrasyaisitme | [DOĞRULANDI] | İşletme sahibi (açık teyit; profilden siteye karşılıklı bağlantı) | 2026-11-08 | Footer, Organization `sameAs` | STATIC |
 | YouTube URL | https://www.youtube.com/@EniyiCihaz | [MEVCUT BELGELERDE VAR] | footer `social.ts` | — | Footer, `sameAs` | YENİDEN DOĞRULA |
 | TikTok URL | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | Footer, `sameAs` | — |
 | Kanal ve sayfa adlarının yeni markaya göre değişip değişmeyeceği | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | BRAND_SOT | — |
+
+> **Not (2026-11-08):** Facebook ve Instagram URL'lerinin işletmeye ait ve işletme tarafından yönetilen resmî hesaplar olduğu işletme sahibi tarafından açıkça teyit edildi. İşletme sahibi ayrıca her iki profilde https://www.eniyicihaz.com/ bağlantısının bulunduğunu doğruladı (profilden siteye karşılıklı bağlantı). Bu teyide dayanarak yalnızca bu iki URL schema `Organization.sameAs` içinde kullanılır. **YouTube (`@EniyiCihaz`) için sahiplik teyidi yoktur**; YouTube `sameAs`'a eklenmez ve satırı [MEVCUT BELGELERDE VAR] / YENİDEN DOĞRULA olarak kalır.
 
 ## 4. Ekip / Uzmanlık / E-E-A-T
 
