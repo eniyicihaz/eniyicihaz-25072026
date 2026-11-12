@@ -70,7 +70,7 @@ export const widexUnique: UniqueBrandContent = {
         icon: Smartphone,
         title: "Telefon bağlantısına bakanlar",
         description: `Bluetooth etiketi ${f.n} ailenin ${f.bt.length}'inde var; ${join(noBt)} bu etikete sahip değil. Telefon uyumu modele göre değişir.`,
-        families: f.bt.slice(0, 4),
+        families: f.bt,
       },
       {
         icon: Volume2,

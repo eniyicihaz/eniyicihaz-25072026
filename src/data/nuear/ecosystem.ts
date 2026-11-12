@@ -49,11 +49,11 @@ export const nuearEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Uzaktan Bakım",
       title: "Uzaktan Profesyonel Ayar ve Düşme Bildirimi",
-      lead: "Hear Circle uygulaması üzerinden kliniğe gitmeden uzaktan ince ayar alabilme ve düşme anında seçilen kişilere bildirim gönderebilme imkânı.",
+      lead: "Hear Circle uygulaması üzerinden merkeze gitmeden uzaktan ince ayar alabilme ve düşme anında seçilen kişilere bildirim gönderebilme imkânı.",
       howItWorks:
         "Kullanıcı uygulama üzerinden bir talep gönderir; uzman ayarları günceller ve yeni ayarlar kablosuz olarak cihaza iletilir. Düşme algılama özelliği ise, uygun ayarlandığında bir düşme meydana geldiğinde önceden belirlenen kişilere bildirim gönderebilir.",
       advantages: [
-        "Kliniğe gitmeden ince ayar talep etme imkânı sunar",
+        "Merkeze gitmeden ince ayar talep etme imkânı sunar",
         "Düşme riski olan kullanıcılar için ek bir güvenlik katmanı sunabilir",
         "Aile bireylerinin bilgilendirilmesine yardımcı olabilir",
       ],

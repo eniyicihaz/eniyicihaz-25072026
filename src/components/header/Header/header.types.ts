@@ -93,8 +93,11 @@ export interface PhoneData {
 
 /** The complete data model consumed by `Header`. */
 export interface HeaderData {
-  brand: { name: string; tagline: string; href: string };
+  brand: { name: string; href: string };
   nav: NavItem[];
   phone: PhoneData;
+  /** Main number's WhatsApp link (same number as `phone`, MASTER_PLAN K2). */
+  whatsapp: { label: string; href: string };
+  /** Primary header action: the free hearing test page. */
   cta: NavLink & { icon: IconKey };
 }

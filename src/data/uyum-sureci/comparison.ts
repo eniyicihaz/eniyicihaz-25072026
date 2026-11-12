@@ -41,7 +41,7 @@ export const uyumSureciComparison: KulakArkasiComparisonContent = {
       secondary: "Kademeli maruziyet yöntemi özellikle önerilir.",
     },
   ],
-  note: "Bu karşılaştırma genel eğilimleri özetler; bu yüzden işitme kaybını fark eder etmez değerlendirilmesi önemlidir. Kişisel süreciniz odyometristinizle birlikte takip edilir.",
+  note: "Bu karşılaştırma genel eğilimleri özetler. İşitme kaybının fark edilir edilmez değerlendirilmesi bu yüzden önemlidir. Kişisel süreciniz odyometristinizle birlikte takip edilir.",
   accentColor: "#7c3aed",
   accentColorBadgeBg: "rgb(124 58 237 / 0.08)",
   accentColorBadgeBorder: "rgb(124 58 237 / 0.35)",

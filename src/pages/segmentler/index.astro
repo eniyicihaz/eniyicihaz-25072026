@@ -1,0 +1,8 @@
+---
+// /segmentler/ — kategori hub sayfası (içerik: src/data/hubs.ts, kartlar: src/config/site-map.ts). Mevcut sayfaları bir araya toplar;
+// yeni bilgi içermez.
+import HubPage from "../../components/hub/HubPage/HubPage.astro";
+import { hubs } from "../../data/hubs";
+---
+
+<HubPage hub={hubs["/segmentler/"]} />

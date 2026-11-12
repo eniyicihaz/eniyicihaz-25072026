@@ -10,7 +10,7 @@ export const cocuklaraOzelIntro: BrandPageIntroContent = {
   badge: "ÇOCUKLARA ÖZEL NEDİR?",
   heading: "Çocuklara Özel İşitme Cihazı Nedir ve Yetişkin Cihazlarından Farkı Nedir?",
   paragraphs: [
-    "Çocuklara özel işitme cihazı, belirli bir fiziksel cihaz tipi değildir; çocuk kullanıcıların ihtiyaçlarına göre ek güvenlik önlemleri ve dayanıklılık özellikleriyle donatılmış kulak arkası (BTE) modelleridir.",
+    "Çocuklara özel işitme cihazı, ayrı bir fiziksel cihaz tipi değildir; çocuk kullanıcıların ihtiyaçlarına göre ek güvenlik önlemleri ve dayanıklılık özellikleriyle donatılmış, çoğunlukla kulak arkası (BTE) tipindeki modellerdir.",
     "Kulak arkası (BTE) tipi, büyüyen kulağa kolayca uyarlanabilen kalıp değişimi imkânı nedeniyle çocuklarda en sık tercih edilen cihaz tipidir.",
     "Standart yetişkin modellerinden temel farkı; kilitli pil kapağı, daha dayanıklı gövde, renkli tasarım seçenekleri ve okul ortamına yönelik Roger/FM sistem uyumluluğudur.",
     "Cihazın kapsamı ve özellikleri, çocuğun yaşına, işitme kaybının derecesine ve yaşam tarzına göre bir odyometrist tarafından belirlenir.",

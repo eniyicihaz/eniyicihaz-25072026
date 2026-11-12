@@ -1,0 +1,161 @@
+---
+// EarDiagram — TEMSİLİ (şematik) kulak çizimi: altı cihaz türünün kulakta nerede durduğunu gösterir.
+//
+// Gerçek bir kulak fotoğrafı veya anatomik çizim DEĞİLDİR; marka renklerinde, bilinçli olarak sade bir çizgi çizimdir
+// ve yanında "temsili çizim" notuyla kullanılır. Ürün fotoğrafı bu çizimin üzerine yerleştirilmez (gerçek olmayan bir
+// yerleşimi fotoğraf gibi göstermemek için); cihaz yalnızca renkli bir bölge / siluet olarak işaretlenir.
+//
+// `step` verilirse yalnızca o türün işareti çizilir (mobil kartlar). `all` verilirse altısı da çizilir ve
+// etkin olan `is-active` sınıfıyla gösterilir (masaüstü yapışkan sahne; sınıfı DeviceTypeScroller'ın betiği değiştirir).
+export type EarStep = "iic" | "cic" | "itc" | "ite" | "bte" | "ric";
+
+interface Props {
+  step?: EarStep;
+  all?: boolean;
+  /** Erişilebilir ad; verilmezse çizim dekoratiftir (aria-hidden). */
+  label?: string;
+  class?: string;
+}
+
+const { step, all = false, label, class: className } = Astro.props;
+const STEPS: EarStep[] = ["iic", "cic", "itc", "ite", "bte", "ric"];
+const shown = all ? STEPS : step ? [step] : [];
+const CONCHA = "M184 204C196 176 240 174 252 202C262 228 250 270 222 284C198 294 178 274 178 250C178 232 178 218 184 204Z";
+---
+
+<svg
+  class:list={["ear", className]}
+  viewBox="0 0 380 440"
+  role={label ? "img" : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : "true"}
+  focusable="false"
+>
+  <!-- kulak kepçesi (şematik) -->
+  <path
+    class="ear__auricle"
+    d="M138 158C122 104 158 46 226 38C296 30 350 86 344 176C340 236 318 286 288 326C270 350 262 380 240 402C214 428 170 424 160 392C153 370 166 346 164 324C162 304 148 294 144 274C140 252 164 246 166 230C168 214 146 202 138 158Z"
+  ></path>
+  <path class="ear__fold" d="M166 166C156 122 180 76 228 68C284 60 320 104 316 174C313 226 296 268 272 300"></path>
+  <path class="ear__fold" d="M214 318C246 300 276 262 274 214C272 172 248 140 218 128"></path>
+  <path class="ear__fold" d="M262 168C250 150 232 142 214 146"></path>
+  <path class="ear__concha" d={CONCHA}></path>
+  <ellipse class="ear__canal" cx="196" cy="238" rx="13" ry="17"></ellipse>
+  <path class="ear__fold" d="M166 230C180 226 190 236 188 250C186 262 174 268 164 266"></path>
+
+  {
+    shown.map((s) => (
+      <g class:list={["ear__mark", `ear__mark--${s}`, { "is-active": !all || s === STEPS[0] }]} data-ear-mark={s}>
+        {s === "iic" && (
+          <>
+            <circle class="ear__ring" cx="196" cy="238" r="12" />
+            <circle class="ear__device" cx="196" cy="238" r="6" />
+          </>
+        )}
+        {s === "cic" && (
+          <>
+            <ellipse class="ear__device" cx="197" cy="239" rx="11" ry="14" />
+            <path class="ear__wire" d="M204 248L214 261" />
+          </>
+        )}
+        {s === "itc" && <ellipse class="ear__device" cx="203" cy="245" rx="20" ry="23" />}
+        {s === "ite" && <path class="ear__device" d={CONCHA} />}
+        {s === "bte" && (
+          <>
+            <path class="ear__tube" d="M300 70C242 34 168 58 150 130C142 170 170 214 194 234" />
+            <path class="ear__device" d="M300 62C338 74 362 130 356 196C353 226 340 250 326 262C320 252 330 230 332 196C336 140 320 96 290 80Z" />
+            <ellipse class="ear__device ear__device--soft" cx="200" cy="243" rx="16" ry="19" />
+          </>
+        )}
+        {s === "ric" && (
+          <>
+            <path class="ear__wire" d="M302 76C244 42 172 62 154 132C146 170 172 214 194 234" />
+            <path class="ear__device" d="M302 70C332 84 350 132 346 186C344 208 336 226 326 236C322 228 328 210 330 186C332 140 318 102 294 86Z" />
+            <circle class="ear__device" cx="196" cy="238" r="8" />
+          </>
+        )}
+      </g>
+    ))
+  }
+</svg>
+
+<style>
+  .ear {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ear__auricle {
+    fill: var(--color-primary-50);
+    stroke: rgb(var(--brand-navy-rgb) / 0.55);
+    stroke-width: 3;
+    stroke-linejoin: round;
+  }
+
+  .ear__fold {
+    fill: none;
+    stroke: rgb(var(--brand-navy-rgb) / 0.32);
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+
+  .ear__concha {
+    fill: var(--color-primary-100);
+    stroke: rgb(var(--brand-navy-rgb) / 0.28);
+    stroke-width: 2;
+  }
+
+  .ear__canal {
+    fill: rgb(var(--brand-navy-rgb) / 0.55);
+  }
+
+  /* Cihaz işareti: tek renk siluet (fotoğraf değil) */
+  .ear__device {
+    fill: var(--color-accent);
+    stroke: var(--color-accent-text);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+  }
+
+  .ear__device--soft {
+    fill: rgb(var(--color-accent-rgb) / 0.55);
+  }
+
+  .ear__ring {
+    fill: none;
+    stroke: var(--color-accent-text);
+    stroke-width: 2.5;
+    stroke-dasharray: 4 5;
+  }
+
+  .ear__tube {
+    fill: none;
+    stroke: var(--color-accent-text);
+    stroke-width: 6;
+    stroke-linecap: round;
+    opacity: 0.75;
+  }
+
+  .ear__wire {
+    fill: none;
+    stroke: var(--color-accent-text);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
+
+  .ear__mark {
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+  }
+
+  .ear__mark.is-active {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ear__mark {
+      transition: none;
+    }
+  }
+</style>

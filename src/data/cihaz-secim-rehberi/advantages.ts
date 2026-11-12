@@ -47,7 +47,7 @@ export const cihazSecimRehberiAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Sparkles,
       category: "Ücretsiz Rehberlik",
-      title: "Uzman Desteği Herhangi Bir Ücret Talep Etmez",
+      title: "Uzman Desteği İçin Ücret Talep Edilmez",
       description: "Seçim sürecinde aldığınız uzman rehberliği, herhangi bir ücret talep edilmeden sunulur.",
     },
   ],

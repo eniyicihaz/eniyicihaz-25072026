@@ -12,7 +12,7 @@ export const tinnitusDegerlendirmeIntro: BrandPageIntroContent = {
   heading: "Tinnitus Değerlendirmesi Nedir ve Neyi Kapsar?",
   paragraphs: [
     "Tinnitus değerlendirmesi, dışarıdan bir ses kaynağı olmadan duyulan çınlama, uğultu veya vınlama gibi şikayetlerin olası nedenlerini araştırmaya yönelik kapsamlı bir işitme muayenesidir.",
-    "Değerlendirme; şikayetinizin öyküsünü almakla başlar, odyometrik işitme testiyle devam eder ve tinnitus'un perdesini ile şiddetini ölçen eşleştirme yöntemleriyle tamamlanır.",
+    "Değerlendirme; şikayetinizin öyküsünü almakla başlar, odyometrik işitme testiyle devam eder ve tinnitus'un perdesini ve şiddetini ölçen eşleştirme yöntemleriyle tamamlanır.",
     "Tinnitus, tek başına bir hastalık değil; işitme kaybı, kulak enfeksiyonu, gürültüye maruziyet veya bazı ilaçlar gibi farklı nedenlere işaret edebilen bir semptomdur.",
     "Bu sayfa genel bir bilgilendirme amacı taşır, kendi kendine tanı koymak için kullanılmamalıdır; tinnitus şikayetinizin nedeni yalnızca bir odyometrist ve gerektiğinde bir KBB uzmanı tarafından değerlendirilebilir.",
   ],

@@ -18,7 +18,7 @@ export const kocaeliFaq: BrandPageFaqContent = {
           answer: "Hayır. Tek fiziksel merkezimiz Darıca'dadır; diğer ilçelerden gelen danışanlarımıza burada hizmet veriyoruz.",
         },
         {
-          question: "Hangi ilçelerden hangi hatla gelebilirim?",
+          question: "Hangi bölgelerden hangi hatla gelebilirim?",
           answer: "Gebze, Çayırova, Beylikbağı, Dilovası ve Mutlukent için hat numaraları bu sayfadaki ilçe listesinde yer alıyor.",
         },
         {

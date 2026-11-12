@@ -7,7 +7,7 @@ import { contactConfig } from "../../config";
 import type { BrandPageFinalCtaContent } from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 
 export const sikSorulanSorularFinalCta: BrandPageFinalCtaContent = {
-  badge: "HALA SORULARINIZ MI VAR?",
+  badge: "HÂLÂ SORULARINIZ MI VAR?",
   heading: "Aradığınız Yanıtı Birlikte Bulalım",
   description:
     "Bu sayfada bulamadığınız her soruyu telefon veya WhatsApp üzerinden bize sorabilirsiniz.",

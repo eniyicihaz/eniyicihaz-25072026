@@ -93,7 +93,8 @@ export interface UniqueBrandBase {
 
 export function buildUniqueBrandPage(base: UniqueBrandBase, c: UniqueBrandContent): SimpleBrandPage {
   const { name } = c;
-  const upper = name.toLocaleUpperCase("tr-TR");
+  // Marka adı Latin özel addır: Türkçe kuralla büyütülürse "PHİLİPS", "WİDEX" çıkar; dil-bağımsız büyütülür.
+  const upper = name.toLocaleUpperCase("en-US");
   const accent = base.faq; // accentColor + badge renkleri her markanın SSS verisinde mevcut
   const phone = contactConfig.phone.href;
   const whatsapp = contactConfig.whatsapp.href;

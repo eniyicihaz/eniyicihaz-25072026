@@ -11,6 +11,7 @@
 // On desktop a two-column grid places them side by side in that same
 // document order.
 import { MapPin, Phone, Clock, Navigation } from "lucide-astro";
+import OpenStatus from "../../shared/OpenStatus/OpenStatus.astro";
 import ConsentEmbed from "../../consent/ConsentEmbed/ConsentEmbed.astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../../lib/contact-action";
@@ -138,6 +139,7 @@ const { data } = Astro.props;
         </span>
         <div class="contact-location__body">
           <p class="contact-location__label">{data.hoursLabel}</p>
+          <OpenStatus />
           <dl class="contact-location__hours">
             {data.company.hours.map((entry) => (
               <div class="contact-location__hours-row">

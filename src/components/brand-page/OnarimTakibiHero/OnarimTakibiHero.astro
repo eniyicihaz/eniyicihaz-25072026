@@ -6,6 +6,7 @@
 // otomatik bildirim göstermez. Yalnızca Astro + CSS + inline SVG; JavaScript ve sürekli animasyon yoktur.
 // Masaüstü (>=1200): iki sütun. 680–1199: metin üstte, illüstrasyon altta (en çok 560 px). <680: sadeleştirilmiş şema
 // (kayıt kartı + 3 numaralı düğüm; iletişim kartları gizlenir, CTA'lar zaten hemen üstte).
+import { withCorporateHero } from "../../../lib/hero-theme";
 import { Phone, FileText } from "lucide-astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../../lib/contact-action";
@@ -17,7 +18,8 @@ interface Props {
   data: BrandPageHeroContent;
 }
 
-const { data } = Astro.props;
+const { data: rawData } = Astro.props;
+const data = withCorporateHero(rawData);
 const ctas = [data.ctaPrimary, data.ctaSecondary];
 const heroStyle = [
   `--oth-accent:${data.accentColor}`,
@@ -39,7 +41,7 @@ const heroStyle = [
       <p class="oth__badge">{data.badge}</p>
 
       <h1 class="oth__heading" id="brand-page-hero-title">
-        {data.headingLines.map((line) => <span class="oth__heading-line">{line}</span>)}
+        {data.headingLines.map((line) => <><span class="oth__heading-line">{line}</span>{" "}</>)}
       </h1>
 
       {data.paragraphs.map((p) => <p class="oth__paragraph">{p}</p>)}
@@ -394,7 +396,7 @@ const heroStyle = [
 
   .oth__node-note {
     margin: var(--space-1) 0 0;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     line-height: 1.4;
     color: rgb(255 255 255 / 0.68);
   }
@@ -465,7 +467,7 @@ const heroStyle = [
 
   .oth__contact-note {
     margin-top: 2px;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     line-height: 1.3;
     color: rgb(255 255 255 / 0.68);
   }
@@ -516,7 +518,7 @@ const heroStyle = [
     }
 
     .oth__paragraph {
-      font-size: 0.9375rem;
+      font-size: var(--font-size-md);
       line-height: 1.5;
     }
 
@@ -604,7 +606,7 @@ const heroStyle = [
     }
 
     .oth__record-note {
-      font-size: 0.75rem;
+      font-size: var(--font-size-xs);
     }
 
     /* Kayıt kartından üç düğüme inen ince "dallanma" çizgisi. */
@@ -668,7 +670,7 @@ const heroStyle = [
 
     .oth__node-title {
       margin-top: var(--space-2);
-      font-size: 0.75rem;
+      font-size: var(--font-size-xs);
       line-height: 1.3;
     }
 

@@ -14,7 +14,7 @@ export const orijinalAksesuarFinalCta: BrandPageFinalCtaContent = {
     "Kulak ucundan şarj aksesuarına, cihazınızın ihtiyaç duyduğu tüm orijinal aksesuarları hızlı ve güvenilir bir şekilde temin ediyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Orijinal Aksesuar Garantisi", "Modele Özel Uyum", "Hızlı Temin", "Ücretsiz Danışmanlık"],
+  trustItems: ["Orijinal Aksesuar", "Modele Özel Uyum", "Hızlı Temin", "Ücretsiz Danışmanlık"],
   accentColor: "#7c3aed",
   accentColorHover: "#6d28d9",
   accentColorGlow: "rgb(124 58 237 / 0.22)",

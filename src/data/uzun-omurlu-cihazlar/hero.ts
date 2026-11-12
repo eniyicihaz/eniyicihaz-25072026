@@ -25,7 +25,7 @@ export const uzunOmurluCihazlarHero: BrandPageHeroContent = {
   headingLines: ["Uzun Ömürlü Cihazlar", "Neyle Mümkün Olur?"],
   paragraphs: [
     "Orijinal işitme cihazları; kaliteli bileşenler, düzenli bakım ve orijinal yedek parça desteğiyle uzun yıllar güvenilir bir şekilde kullanılabilir.",
-    "Avrasya İşitme olarak sattığımız cihazlar için ücretsiz periyodik bakım ve teknik servis desteği veriyoruz; düzenli bakım, cihazın uzun yıllar kullanılmasına yardımcı olur.",
+    "Avrasya İşitme Cihazları olarak sattığımız cihazlar için teknik servis desteği ve ücretsiz periyodik bakım veriyoruz; düzenli bakım, cihazın uzun yıllar kullanılmasına yardımcı olur.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

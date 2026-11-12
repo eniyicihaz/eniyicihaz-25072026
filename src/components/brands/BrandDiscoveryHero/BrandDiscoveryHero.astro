@@ -187,7 +187,7 @@ const heading = data.headingLines.join(" ");
     translate: 0 -50%;
     pointer-events: none;
     background:
-      radial-gradient(closest-side at 50% 50%, rgb(37 99 235 / 0.26), rgb(37 99 235 / 0.1) 45%, transparent 100%),
+      radial-gradient(closest-side at 50% 50%, rgb(var(--color-primary-rgb) / 0.26), rgb(var(--color-primary-rgb) / 0.1) 45%, transparent 100%),
       radial-gradient(closest-side at 62% 40%, rgb(14 165 233 / 0.22), transparent 100%),
       radial-gradient(closest-side at 38% 66%, rgb(56 189 248 / 0.12), transparent 100%);
     filter: blur(28px);
@@ -356,11 +356,11 @@ const heading = data.headingLines.join(" ");
     width: 17%;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 25%, #1d4ed8, #0f2547 70%);
+    background: radial-gradient(circle at 30% 25%, var(--color-primary-hover), var(--brand-navy-deep) 70%);
     color: #ffffff;
     box-shadow:
-      0 0 0 8px rgb(37 99 235 / 0.08),
-      0 0 0 18px rgb(37 99 235 / 0.05),
+      0 0 0 8px rgb(var(--color-primary-rgb) / 0.08),
+      0 0 0 18px rgb(var(--color-primary-rgb) / 0.05),
       0 18px 36px -12px rgb(15 37 71 / 0.55);
   }
 
@@ -405,7 +405,7 @@ const heading = data.headingLines.join(" ");
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     box-shadow:
-      0 0 0 1px rgb(37 99 235 / 0.07),
+      0 0 0 1px rgb(var(--color-primary-rgb) / 0.07),
       0 16px 28px -16px rgb(15 37 71 / 0.4);
     transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
   }
@@ -414,7 +414,7 @@ const heading = data.headingLines.join(" ");
     border-radius: var(--radius-lg);
     background: rgb(255 255 255 / 0.62);
     box-shadow:
-      0 0 0 1px rgb(37 99 235 / 0.06),
+      0 0 0 1px rgb(var(--color-primary-rgb) / 0.06),
       0 10px 20px -14px rgb(15 37 71 / 0.35);
   }
 
@@ -438,8 +438,8 @@ const heading = data.headingLines.join(" ");
       transform: translateY(-3px);
       background: #ffffff;
       box-shadow:
-        0 0 0 1px rgb(37 99 235 / 0.45),
-        0 18px 30px -14px rgb(37 99 235 / 0.45);
+        0 0 0 1px rgb(var(--color-primary-rgb) / 0.45),
+        0 18px 30px -14px rgb(var(--color-primary-rgb) / 0.45);
     }
   }
 

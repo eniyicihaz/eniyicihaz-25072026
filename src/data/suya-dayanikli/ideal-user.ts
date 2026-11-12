@@ -25,7 +25,7 @@ export const suyaDayankliIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: Bike,
-      title: "Dış Mekan Aktiviteleri Yapanlar",
+      title: "Dış Mekân Aktiviteleri Yapanlar",
       description: "Yürüyüş, bisiklet ve diğer açık hava aktivitelerinde hava koşullarına karşı ek koruma arayanlar için değerlendirilir.",
       suggestedFamilies: ["Dayanıklı Gövdeli Modeller"],
     },

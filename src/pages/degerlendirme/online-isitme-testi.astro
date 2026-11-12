@@ -17,7 +17,6 @@
 // (interactive widget) -> FinalCta (strongest CTA, right under the
 // result) -> Faq -> RelatedContent.
 import MainLayout from "../../layouts/MainLayout.astro";
-import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
@@ -31,33 +30,12 @@ import { onlineIsitmeTestiFinalCta } from "../../data/online-isitme-testi/final-
 import { onlineIsitmeTestiFaq } from "../../data/online-isitme-testi/faq";
 import { onlineIsitmeTestiRelatedContent } from "../../data/online-isitme-testi/related-content";
 
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Değerlendirme", href: "/degerlendirme/ucretsiz-isitme-testi/" },
-  { label: "Online İşitme Testi", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
 ---
 
 <MainLayout
   title="Online İşitme Testi | Ücretsiz Ön Değerlendirme"
   description="Kulaklığınızla birkaç dakikada yapılan online işitme taraması. Klinik teşhis aracı değildir; ücretsiz işitme testi için Darıca'daki merkezimizden randevu alın."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-
-  <div class="online-isitme-testi-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <BrandPageHero data={onlineIsitmeTestiHero} />
   <BrandPageIntro data={onlineIsitmeTestiIntro} />
@@ -68,9 +46,4 @@ const breadcrumbSchema = {
 </MainLayout>
 
 <style>
-  .online-isitme-testi-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
 </style>

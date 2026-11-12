@@ -36,12 +36,12 @@
 
 .ds-chip.is-xs{
     --chip-height:1.5rem;
-    font-size:.6875rem;
+    font-size: var(--font-size-xs);
 }
 
 .ds-chip.is-sm{
     --chip-height:1.875rem;
-    font-size:.75rem;
+    font-size: var(--font-size-xs);
 }
 
 .ds-chip.is-md{
@@ -78,7 +78,7 @@
 }
 
 .ds-chip.is-selected{
-    box-shadow:0 0 0 3px rgba(59,130,246,.18);
+    box-shadow:0 0 0 3px rgb(var(--brand-blue-rgb) / .18);
 }
 
 .ds-chip.is-disabled{

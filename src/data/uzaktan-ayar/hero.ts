@@ -39,7 +39,7 @@ export const uzaktanAyarHero: BrandPageHeroContent = {
   badge: "HİZMETLERİMİZ · UYGULAMA & AYAR · UZAKTAN AYAR",
   headingLines: ["Uzaktan Ayar", "Hizmeti Nasıl İşler?"],
   paragraphs: [
-    "Uzaktan ayar, uygun bir cihaza sahipseniz, kliniğe gelmeden video görüşme üzerinden odyometristinizle bağlanıp küçük ayar güncellemeleri almanızı sağlayan bir hizmettir.",
+    "Uzaktan ayar, uygun bir cihaza sahipseniz, merkeze gelmeden video görüşme üzerinden odyometristinizle bağlanıp küçük ayar güncellemeleri almanızı sağlayan bir hizmettir.",
     "Avrasya İşitme'de, uygunluk kontrolünden güvenli video görüşme oturumuna kadar uzaktan ayar sürecini aynı özenle yürütüyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -49,7 +49,7 @@ export const uzaktanAyarHero: BrandPageHeroContent = {
       label: "KLİNİĞE GELMEDEN",
       accent: "#16a34a",
       title: "Video Görüşmeyle Bağlanırsınız",
-      description: "Uygun cihazınızla, kliniğe gelmeden odyometristinizle görüşebilirsiniz.",
+      description: "Uygun cihazınızla, merkeze gelmeden odyometristinizle görüşebilirsiniz.",
     },
     {
       label: "GÜVENLİ OTURUM",

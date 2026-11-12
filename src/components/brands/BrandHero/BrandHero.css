@@ -157,7 +157,7 @@
   z-index: -1;
   background: radial-gradient(
       circle at 26% 20%,
-      rgb(37 99 235 / 0.18),
+      rgb(var(--color-primary-rgb) / 0.18),
       transparent 58%
     ),
     radial-gradient(circle at 75% 85%, rgb(15 23 42 / 0.12), transparent 60%);

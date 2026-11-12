@@ -27,7 +27,7 @@ export const onarimTakibiConsiderations: BrandPageIdealUserContent = {
     {
       icon: Truck,
       title: "Teknik Servisteki Süre Bizim Kontrolümüzde Olmayabilir",
-      description: "Cihazınız teknik servise gönderildiyse, bu aşamadaki süre kliniğimizin doğrudan kontrolü dışında olabilir.",
+      description: "Cihazınız teknik servise gönderildiyse, bu aşamadaki süre merkezimizin doğrudan kontrolü dışında olabilir.",
       suggestedFamilies: ["Teknik Servis Süresi"],
     },
     {

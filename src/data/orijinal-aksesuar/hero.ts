@@ -26,7 +26,7 @@ export const orijinalAksesuarHero: BrandPageHeroContent = {
   headingLines: ["Orijinal Aksesuar", "Neden Önemlidir?"],
   paragraphs: [
     "Kulak uçlarından şarj kutusuna, cerumen filtrelerinden pillere kadar kullandığınız her aksesuar, cihazınızın performansını ve hijyenini doğrudan etkiler.",
-    "Avrasya İşitme olarak, sunduğumuz markaların orijinal aksesuarlarını; doğru uyum, hijyen ve cihaz uyumluluğu garantisiyle sunuyoruz.",
+    "Avrasya İşitme Cihazları olarak, sunduğumuz markaların orijinal aksesuarlarını; doğru uyum, hijyen ve cihaz uyumluluğunu gözeterek sunuyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

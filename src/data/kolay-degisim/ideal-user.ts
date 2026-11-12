@@ -16,7 +16,7 @@ export const kolayDegisimIdealUser: BrandPageIdealUserContent = {
     {
       icon: XCircle,
       title: "Uygun Olmayan Cihazla Devam Etmek Zorunda Kalma",
-      description: "Değişim imkânı olmadığında, ihtiyacı karşılamayan bir cihazla kullanmaya devam etmek zorunda kalınabilir.",
+      description: "Değişim imkânı olmadığında, ihtiyacı karşılamayan bir cihazı kullanmaya devam etmek zorunda kalınabilir.",
       suggestedFamilies: ["Değişim Hakkı"],
     },
     {

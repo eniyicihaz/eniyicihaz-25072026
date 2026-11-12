@@ -1,0 +1,352 @@
+---
+// A11yPanel — "Erişilebilirlik" paneli: yazı boyutu (A− / A / A+, dört kademe), yüksek kontrast, hareketi azalt, sıfırla.
+// Tercihler tarayıcıda (localStorage `eic-a11y`) saklanır; sunucuya GİTMEZ, çerez değildir. İlk boyamadan önce uygulanması için
+// MainLayout <head> içinde aynı anahtarı okuyan küçük bir satır içi betik vardır; etki CSS'i: ds/styles/base/a11y-prefs.css.
+// Panel bir iletişim kutusu gibi davranır: açılınca odak içine girer, Esc veya dış tıklama kapatır ve odağı düğmeye geri verir.
+import { Accessibility, Minus, Plus, RotateCcw } from "lucide-astro";
+---
+
+<div class="a11y" data-a11y>
+  <button type="button" class="a11y__toggle" aria-expanded="false" aria-controls="a11y-panel" data-a11y-toggle>
+    <Accessibility size={24} stroke-width={2} aria-hidden="true" />
+    <span class="a11y__toggle-label">Erişilebilirlik</span>
+  </button>
+
+  <div class="a11y__panel" id="a11y-panel" role="dialog" aria-modal="false" aria-labelledby="a11y-title" hidden data-a11y-panel>
+    <h2 class="a11y__title" id="a11y-title">Erişilebilirlik ayarları</h2>
+
+    <div class="a11y__row">
+      <p class="a11y__label" id="a11y-text-label">Yazı boyutu: <strong data-a11y-text-value>%100</strong></p>
+      <div class="a11y__group" role="group" aria-labelledby="a11y-text-label">
+        <button type="button" class="a11y__btn" data-a11y-smaller aria-label="Yazıyı küçült">
+          <Minus size={20} stroke-width={2.5} aria-hidden="true" />
+          <span aria-hidden="true">A</span>
+        </button>
+        <button type="button" class="a11y__btn" data-a11y-larger aria-label="Yazıyı büyüt">
+          <Plus size={20} stroke-width={2.5} aria-hidden="true" />
+          <span aria-hidden="true" class="a11y__big-a">A</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="a11y__row">
+      <button type="button" class="a11y__switch" role="switch" aria-checked="false" data-a11y-btn-contrast>
+        <span class="a11y__switch-text">Yüksek kontrast</span>
+        <span class="a11y__switch-state" aria-hidden="true" data-a11y-contrast-state>Kapalı</span>
+      </button>
+    </div>
+
+    <div class="a11y__row">
+      <button type="button" class="a11y__switch" role="switch" aria-checked="false" data-a11y-btn-motion>
+        <span class="a11y__switch-text">Hareketi azalt</span>
+        <span class="a11y__switch-state" aria-hidden="true" data-a11y-motion-state>Kapalı</span>
+      </button>
+    </div>
+
+    <button type="button" class="a11y__reset" data-a11y-reset>
+      <RotateCcw size={18} stroke-width={2.25} aria-hidden="true" />
+      <span>Ayarları sıfırla</span>
+    </button>
+    <p class="a11y__note">Tercihleriniz yalnızca bu cihazda saklanır.</p>
+  </div>
+  <p class="a11y__sr" aria-live="polite" data-a11y-live></p>
+</div>
+
+<script>
+  const KEY = "eic-a11y";
+  const SIZES = ["100", "115", "130", "150"];
+  type Prefs = { t?: string; c?: boolean; m?: boolean };
+
+  const read = (): Prefs => {
+    try {
+      return JSON.parse(localStorage.getItem(KEY) || "{}") as Prefs;
+    } catch {
+      return {};
+    }
+  };
+  const write = (p: Prefs) => {
+    try {
+      if (!p.t && !p.c && !p.m) localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, JSON.stringify(p));
+    } catch {
+      /* depolama kapalı: tercih yalnızca bu sayfa için geçerli kalır */
+    }
+  };
+
+  const root = document.querySelector<HTMLElement>("[data-a11y]");
+  if (root) {
+    const html = document.documentElement;
+    const toggle = root.querySelector<HTMLButtonElement>("[data-a11y-toggle]")!;
+    const panel = root.querySelector<HTMLElement>("[data-a11y-panel]")!;
+    const live = root.querySelector<HTMLElement>("[data-a11y-live]")!;
+    const textValue = root.querySelector<HTMLElement>("[data-a11y-text-value]")!;
+    const smaller = root.querySelector<HTMLButtonElement>("[data-a11y-smaller]")!;
+    const larger = root.querySelector<HTMLButtonElement>("[data-a11y-larger]")!;
+    const contrastBtn = root.querySelector<HTMLButtonElement>("[data-a11y-btn-contrast]")!;
+    const motionBtn = root.querySelector<HTMLButtonElement>("[data-a11y-btn-motion]")!;
+    const reset = root.querySelector<HTMLButtonElement>("[data-a11y-reset]")!;
+
+    let prefs = read();
+    const sizeIndex = () => Math.max(0, SIZES.indexOf(prefs.t || "100"));
+
+    const apply = (announce?: string) => {
+      const t = prefs.t && prefs.t !== "100" ? prefs.t : "";
+      if (t) html.dataset.a11yText = t;
+      else delete html.dataset.a11yText;
+      if (prefs.c) html.dataset.a11yContrast = "high";
+      else delete html.dataset.a11yContrast;
+      if (prefs.m) html.dataset.a11yMotion = "reduce";
+      else delete html.dataset.a11yMotion;
+
+      textValue.textContent = `%${SIZES[sizeIndex()]}`;
+      smaller.disabled = sizeIndex() === 0;
+      larger.disabled = sizeIndex() === SIZES.length - 1;
+      contrastBtn.setAttribute("aria-checked", String(!!prefs.c));
+      motionBtn.setAttribute("aria-checked", String(!!prefs.m));
+      const cs = contrastBtn.querySelector("[data-a11y-contrast-state]");
+      const ms = motionBtn.querySelector("[data-a11y-motion-state]");
+      if (cs) cs.textContent = prefs.c ? "Açık" : "Kapalı";
+      if (ms) ms.textContent = prefs.m ? "Açık" : "Kapalı";
+      root.classList.toggle("is-modified", !!(t || prefs.c || prefs.m));
+      write(prefs);
+      if (announce) live.textContent = announce;
+    };
+
+    smaller.addEventListener("click", () => {
+      prefs = { ...prefs, t: SIZES[Math.max(0, sizeIndex() - 1)] };
+      apply(`Yazı boyutu %${prefs.t}`);
+    });
+    larger.addEventListener("click", () => {
+      prefs = { ...prefs, t: SIZES[Math.min(SIZES.length - 1, sizeIndex() + 1)] };
+      apply(`Yazı boyutu %${prefs.t}`);
+    });
+    contrastBtn.addEventListener("click", () => {
+      prefs = { ...prefs, c: !prefs.c };
+      apply(prefs.c ? "Yüksek kontrast açık" : "Yüksek kontrast kapalı");
+    });
+    motionBtn.addEventListener("click", () => {
+      prefs = { ...prefs, m: !prefs.m };
+      apply(prefs.m ? "Hareket azaltıldı" : "Hareket azaltma kapalı");
+    });
+    reset.addEventListener("click", () => {
+      prefs = {};
+      apply("Ayarlar sıfırlandı");
+    });
+
+    const open = () => {
+      panel.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      (panel.querySelector("button:not(:disabled)") as HTMLElement | null)?.focus();
+    };
+    const close = (returnFocus = true) => {
+      panel.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+      if (returnFocus) toggle.focus();
+    };
+    toggle.addEventListener("click", () => (panel.hidden ? open() : close()));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !panel.hidden) close();
+    });
+    document.addEventListener("click", (e) => {
+      if (!panel.hidden && !root.contains(e.target as Node)) close(false);
+    });
+
+    apply();
+  }
+</script>
+
+<style>
+  .a11y {
+    position: fixed;
+    z-index: var(--z-fixed);
+    left: var(--space-4);
+    bottom: var(--space-4);
+  }
+
+  /* İlk ziyarette çerez bandı açıkken düğme gizlenir (üst üste binmesin); seçim yapılınca görünür. */
+  :global(body:has([data-consent-banner]:not([hidden]))) .a11y {
+    display: none;
+  }
+
+  .a11y__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 52px;
+    padding: 0 var(--space-4);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    color: var(--color-primary);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: background-color var(--transition-base), color var(--transition-base);
+  }
+
+  .a11y__toggle:hover {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .a11y__toggle:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring), var(--shadow-md);
+  }
+
+  .a11y.is-modified .a11y__toggle {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .a11y__panel {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + var(--space-3));
+    width: min(21rem, calc(100vw - 2 * var(--space-4)));
+    padding: var(--space-5);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    color: var(--color-text);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .a11y__panel[hidden] {
+    display: none;
+  }
+
+  .a11y__title {
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--brand-navy);
+  }
+
+  .a11y__row {
+    margin-bottom: var(--space-3);
+  }
+
+  .a11y__label {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-md);
+  }
+
+  .a11y__group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .a11y__btn,
+  .a11y__switch,
+  .a11y__reset {
+    min-height: 52px;
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+  }
+
+  .a11y__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    font-size: var(--font-size-md);
+  }
+
+  .a11y__big-a {
+    font-size: 1.45em;
+    line-height: 1;
+  }
+
+  .a11y__btn:hover:not(:disabled),
+  .a11y__switch:hover,
+  .a11y__reset:hover {
+    background: var(--color-primary-50);
+    border-color: var(--color-primary);
+  }
+
+  .a11y__btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .a11y__switch {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-4);
+    text-align: left;
+  }
+
+  .a11y__switch[aria-checked="true"] {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .a11y__reset {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .a11y__btn:focus-visible,
+  .a11y__switch:focus-visible,
+  .a11y__reset:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .a11y__note {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .a11y__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Mobil: sabit iletişim çubuğunun (--dock-h) üstünde, yalnızca simge (etiket ekran okuyucuya kalır). */
+  @media (max-width: 1023px) {
+    .a11y {
+      left: var(--space-3);
+      bottom: calc(var(--dock-h, 68px) + var(--space-3));
+    }
+
+    .a11y__toggle {
+      width: 52px;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .a11y__toggle-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+  }
+</style>

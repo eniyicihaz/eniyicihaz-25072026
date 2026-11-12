@@ -48,11 +48,11 @@
 }
 
 .ds-tabs__tab:hover:not(:disabled) {
-  color: var(--ds-primary, #2563eb);
+  color: var(--ds-primary, var(--color-primary));
 }
 
 .ds-tabs__tab--active {
-  color: var(--ds-primary, #2563eb);
+  color: var(--ds-primary, var(--color-primary));
 }
 
 .ds-tabs__tab--active::after {
@@ -66,7 +66,7 @@
 
   height: 2px;
 
-  background: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
 }
 
 .ds-tabs__tab:disabled {

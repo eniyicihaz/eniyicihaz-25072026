@@ -24,7 +24,7 @@ export const uzaktanKontrolFaq: BrandPageFaqContent = {
         {
           question: "Uzaktan destek (TeleCare) nedir?",
           answer:
-            "Odyometristinizin, video görüşme sırasında cihazınızın temel ayarlarını uzaktan güncelleyebildiği bir hizmettir; kliniğe gelmeden küçük ayar değişiklikleri yapılabilir.",
+            "Odyometristinizin, video görüşme sırasında cihazınızın temel ayarlarını uzaktan güncelleyebildiği bir hizmettir; merkeze gelmeden küçük ayar değişiklikleri yapılabilir.",
         },
         {
           question: "Uzaktan destek yüz yüze randevunun yerini tutar mı?",
@@ -54,7 +54,7 @@ export const uzaktanKontrolFaq: BrandPageFaqContent = {
         {
           question: "İlk kurulum nasıl yapılır?",
           answer:
-            "Uzaktan destek özelliğinin ilk kurulumu genellikle klinikte yapılan bir randevu ile başlar; uygulama tanıtımı ve eşleştirme bu randevuda gerçekleştirilir.",
+            "Uzaktan destek özelliğinin ilk kurulumu genellikle merkezde yapılan bir randevu ile başlar; uygulama tanıtımı ve eşleştirme bu randevuda gerçekleştirilir.",
         },
         {
           question: "Uzaktan destek oturumu ne kadar sürer?",

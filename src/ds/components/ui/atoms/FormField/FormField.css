@@ -29,7 +29,7 @@
 .ds-form-field__description {
   margin: 0;
 
-  font-size: .8125rem;
+  font-size: var(--font-size-xs);
   line-height: 1.5;
 
   color: var(--ds-text-secondary, #64748b);
@@ -38,7 +38,7 @@
 .ds-form-field__error {
   margin: 0;
 
-  font-size: .8125rem;
+  font-size: var(--font-size-xs);
   line-height: 1.5;
 
   color: var(--ds-danger, #dc2626);

@@ -40,7 +40,7 @@ export const uzaktanAyarConsiderations: BrandPageIdealUserContent = {
     {
       icon: RefreshCcw,
       title: "Sonuç Yeterli Olmazsa Yüz Yüze Randevu Önerilebilir",
-      description: "Uzaktan yapılan güncelleme beklenen sonucu vermezse, kapsamlı bir değerlendirme için kliniğe davet edilebilirsiniz.",
+      description: "Uzaktan yapılan güncelleme beklenen sonucu vermezse, kapsamlı bir değerlendirme için merkeze davet edilebilirsiniz.",
       suggestedFamilies: ["Yönlendirme"],
     },
   ],

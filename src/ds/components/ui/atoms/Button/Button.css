@@ -81,7 +81,7 @@
 
     padding:0 .85rem;
 
-    font-size:.75rem;
+    font-size: var(--font-size-xs);
 }
 
 .btn--sm{
@@ -182,7 +182,7 @@
 
 .btn--gradient{
 
-    background:linear-gradient(135deg,#005baa,#3b82f6);
+    background:linear-gradient(135deg,#005baa,var(--brand-blue));
 
     color:#fff;
 

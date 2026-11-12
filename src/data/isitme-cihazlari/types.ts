@@ -178,7 +178,7 @@ export const typeProfiles: TypeProfile[] = [
       "IIC cihaz, kulak kanalının daha derinine yerleşen ve doğru takıldığında dışarıdan görünmeyecek şekilde tasarlanan en küçük cihaz türüdür.",
     facts: {
       howUsed: "Kulak kanalının derinine, ölçüye göre üretilmiş kabukla yerleştirilir.",
-      visibility: "Doğru yerleştirildiğinde dışarıdan görünmesi hedeflenir.",
+      visibility: "Doğru yerleştirildiğinde dışarıdan görünmemesi hedeflenir.",
       ease: "Yerleştirme ve çıkarma ince beceri gerektirir; küçük parçalarla dikkatli olunmalıdır.",
       scope: "Genellikle daha hafif kayıplarda; küçük boyut nedeniyle özellik ve pil seçenekleri sınırlı olabilir.",
     },

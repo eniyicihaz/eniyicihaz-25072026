@@ -10,7 +10,7 @@ export const gurultuEngellemeExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Gürültü engelleme teknolojisi; trafik, ofis veya restoran gibi gürültülü ortamlarda sık bulunan kullanıcılarda sunduğu dinleme konforu nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir teknolojidir.",
+    "Gürültü engelleme teknolojisi; trafik, ofis veya restoran gibi gürültülü ortamlarda sık bulunan kullanıcılarda sunduğu dinleme konforu nedeniyle merkezimizde sıkça değerlendirdiğimiz bir teknolojidir.",
   note: "Ancak gürültü engelleme seviyesinin dengeli ayarlanması önemlidir; aşırı azaltma konuşma netliğini de etkileyebileceğinden ilk ayar ve periyodik kontrol bir odyometrist tarafından yapılmalıdır.",
   accentColor: "#c026d3",
   accentColorBadgeBg: "rgb(192 38 211 / 0.08)",

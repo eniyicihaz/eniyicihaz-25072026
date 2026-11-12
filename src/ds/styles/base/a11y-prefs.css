@@ -1,0 +1,96 @@
+/* Kullanıcı erişilebilirlik tercihleri — A11yPanel (src/components/a11y/A11yPanel.astro) <html> üzerine
+   data-a11y-text / data-a11y-contrast / data-a11y-motion yazar; tercih localStorage'da saklanır ve <head> içindeki küçük
+   betikle ilk boyamadan önce uygulanır (yanıp sönme yok). Hiçbir tercih seçilmediyse bu dosya hiçbir şeyi değiştirmez.
+
+   YAZI BOYUTU: font-size tokenlarının hepsi rem'dir; kök yazı boyutunu yüzdeyle büyütmek metni tarayıcı yazı-boyutu
+   ayarı gibi ölçekler (aralıklar px olduğundan düzen bozulmaz; geniş metinler kendiliğinden sarar). */
+html[data-a11y-text="115"] {
+    font-size: 115%;
+}
+
+html[data-a11y-text="130"] {
+    font-size: 130%;
+}
+
+html[data-a11y-text="150"] {
+    font-size: 150%;
+}
+
+/* UZUN KELİMELER: Türkçe'de 15–20 harfli sözcükler (örn. "Yararlanabilirsiniz") %130–150 yazıda dar sütuna sığmaz ve sayfaya yatay
+   kaydırma ekler. Büyütülmüş yazı modunda sığmayan sözcük satır sonunda bölünür; başka hiçbir yerde davranış değişmez. */
+html[data-a11y-text] body,
+html[data-a11y-text] :is(h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: anywhere;
+}
+/* Başlıklar ayrıca yazılır: typography.css başlıklara `overflow-wrap: break-word` verir (normal modda uzun sözcük
+   taşmasın diye) ve bu, body'den miras gelen `anywhere`'i ezer. `break-word` en küçük içerik genişliğini küçültmediği
+   için büyütülmüş yazıda dar sütunlardaki başlıklar sütunu genişletip sayfayı taşırıyordu
+   (ölçüm: /hakkimizda/ 1024 px + %150 → +149 px). */
+
+/* SABİT İLETİŞİM ÇUBUĞU (mobil/tablet): büyük yazıda üç düğme yan yana sığmaz; simge üstte, etiket altta olur ve çubuk yükselir. */
+@media (max-width: 1023px) {
+    html[data-a11y-text] {
+        --dock-h: calc(92px + env(safe-area-inset-bottom, 0px));
+    }
+
+    html[data-a11y-text] .contact-dock__btn {
+        flex-direction: column;
+        gap: 4px;
+        padding-inline: 2px;
+        min-height: 68px;
+        font-size: var(--font-size-sm);
+        line-height: 1.15;
+    }
+
+    /* Üç EŞİT sütunda %150 yazıyla "WhatsApp" etiketi (≈ 122 px) 360–390 px ekranda düğmesinden 1–11 px taşıyordu
+       (ölçüm, 2. tur). Büyütülmüş yazıda sütunlar etiket uzunluğuyla orantılanır: "Ara" kısa, diğer ikisi uzun. */
+    html[data-a11y-text] .contact-dock {
+        grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.28fr) minmax(0, 1.1fr);
+    }
+}
+
+/* YÜKSEK KONTRAST: yalnızca token katmanı + bağlantı alt çizgisi + kalın odak halkası. Koyu (lacivert) hero/şerit yüzeyleri
+   zaten ≥12:1 olduğundan korunur; açık yüzeylerde metin siyaha, ince gri sınırlar koyuya çekilir. */
+html[data-a11y-contrast="high"] {
+    --color-text: #000000;
+    --color-text-muted: #111111;
+    --color-text-soft: #1f1f1f;
+    --color-border: #4a4a4a;
+    --color-border-hover: #000000;
+    --color-primary: #003e5c;
+    --color-primary-hover: #002a40;
+    --color-primary-active: #001c2b;
+    --color-primary-50: #ffffff;
+    --color-primary-100: #f1f1f1;
+    --color-primary-200: #d4d4d4;
+    --color-accent-text: #00464c;
+    --color-accent-soft: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f1f1f1;
+    --color-secondary: #1f1f1f;
+}
+
+html[data-a11y-contrast="high"] a:not([class*="btn"]):not([class*="cta"]) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+html[data-a11y-contrast="high"] :focus-visible {
+    outline: 4px solid #000000 !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 7px #ffd400 !important;
+}
+
+html[data-a11y-contrast="high"] img {
+    filter: contrast(1.06);
+}
+
+/* HAREKETİ AZALT: işletim sistemi ayarından bağımsız, sayfadaki tüm animasyon/geçiş/yumuşak kaydırmayı kapatır. */
+html[data-a11y-motion="reduce"],
+html[data-a11y-motion="reduce"] *,
+html[data-a11y-motion="reduce"] *::before,
+html[data-a11y-motion="reduce"] *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+}

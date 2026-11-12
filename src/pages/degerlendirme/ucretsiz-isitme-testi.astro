@@ -24,7 +24,6 @@
 // AudiogramDiagram. İçerik data/ucretsiz-isitme-testi/* altındadır.
 import { TriangleAlert } from "lucide-astro";
 import MainLayout from "../../layouts/MainLayout.astro";
-import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import ProcessTimeline from "../../components/shared/ProcessTimeline/ProcessTimeline.astro";
 import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
@@ -40,7 +39,7 @@ import GuideNotice from "../../components/price-guide/GuideNotice.astro";
 import AudiogramDiagram from "../../components/hearing-test/AudiogramDiagram.astro";
 
 import { buildMedicalBusinessSchema } from "../../lib/schema";
-import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../../data/ucretsiz-isitme-testi/page";
+import { pageMeta, toc, PAGE_URL } from "../../data/ucretsiz-isitme-testi/page";
 import { testHero, testHeroExtra } from "../../data/ucretsiz-isitme-testi/hero";
 import { testQuickAnswer, basicsCards } from "../../data/ucretsiz-isitme-testi/answer";
 import {
@@ -65,27 +64,12 @@ import { testRelated } from "../../data/ucretsiz-isitme-testi/cta-related";
 // Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması, görünür SSS
 // verisinden BrandPageFaq içinde üretilir. Ortak MedicalBusiness builder'ı, sitenin
 // tek gerçek işletme varlığını (@id ortak) tanımlar; doktor/hastane/klinik/ürün/fiyat yok.
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : { item: PAGE_URL }),
-  })),
-};
 const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
 ---
 
 <MainLayout title={pageMeta.title} description={pageMeta.description}>
   <div class="uit-page">
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="uit-breadcrumb">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <GuideHero data={testHero} extraCta={testHeroExtra} />
   <GuideToc links={toc} />
@@ -317,12 +301,6 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.sche
     margin-top: var(--space-12);
   }
 
-  .uit-breadcrumb {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-4) var(--space-6) 0;
-  }
-
   /* Continuation of the "İşitme testi nedir?" / "nasıl yapılır?" sections: H3 cards
      that live directly under the section's own H2 block. */
   .uit-cont {
@@ -474,7 +452,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.sche
     margin: var(--space-5) 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
     gap: var(--space-4);
   }
 
@@ -503,10 +481,6 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.sche
   }
 
   @media (max-width: 640px) {
-    .uit-breadcrumb {
-      padding-inline: var(--space-4);
-    }
-
     .uit-cont {
       padding: var(--space-6) var(--space-4) var(--space-10);
     }

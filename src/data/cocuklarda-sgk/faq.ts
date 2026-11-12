@@ -31,7 +31,7 @@ export const cocuklardaSgkFaq: BrandPageFaqContent = {
         {
           question: "Pediatrik odyolojik değerlendirme nasıl bulunur?",
           answer:
-            "Çocuğunuz için uygun pediatrik değerlendirme merkezini yönlendirmek üzere bizimle iletişime geçebilirsiniz.",
+            "Sizi çocuğunuz için uygun bir pediatrik değerlendirme merkezine yönlendirebilmemiz için bizimle iletişime geçebilirsiniz.",
         },
       ],
     },

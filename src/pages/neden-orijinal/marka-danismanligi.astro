@@ -13,7 +13,6 @@
 // Darıca'da Marka Danışmanlığı -> SSS -> Son CTA -> İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
 import { imageDims } from "../../lib/responsive-images";
-import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import DecisionCockpit from "../../components/shared/DecisionCockpit/DecisionCockpit.astro";
 import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
@@ -77,22 +76,6 @@ function logoMarkStyle(logo?: string): string | undefined {
 
 const PAGE_URL = "https://www.eniyicihaz.com/neden-orijinal/marka-danismanligi";
 
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Marka Danışmanlığı", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
-
 // Same MedicalBusiness node as every other page on the site — same @id,
 // same real NAP source, extending the sitewide Organization.
 const medicalBusinessSchema = {
@@ -142,12 +125,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   title="Marka Danışmanlığı | Size Uygun İşitme Cihazı Markası"
   description="Darıca'daki merkezimizde 18 marka arasından ihtiyacınıza uygun işitme cihazı marka ve model ailesini birlikte değerlendiriyoruz. Marka değil, size uyan çözüm."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="md-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <DecisionCockpit data={markaDanismanligiHero} />
   <BrandPageOverview data={markaDanismanligiOverview} />
@@ -181,12 +159,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
 </MainLayout>
 
 <style>
-  .md-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .md-brand-grid {
     background: var(--color-background);
     padding-block: var(--space-20);

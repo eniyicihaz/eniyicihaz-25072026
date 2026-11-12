@@ -46,7 +46,7 @@ export const garantiIslemleriAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Sparkles,
       category: "Ücretsiz Değerlendirme",
-      title: "Kapsam Değerlendirmesi Herhangi Bir Ücret Talep Etmez",
+      title: "Kapsam Değerlendirmesi İçin Ücret Talep Edilmez",
       description: "Garanti kapsamı değerlendirmesi, herhangi bir ücret talep edilmeden yapılır.",
     },
   ],

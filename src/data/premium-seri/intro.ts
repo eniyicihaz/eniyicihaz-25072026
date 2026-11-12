@@ -21,7 +21,7 @@ export const premiumSeriIntro: BrandPageIntroContent = {
     { value: "En Güncel Teknoloji", label: "Teknoloji Seviyesi" },
     { value: "Tam Bağlantı", label: "Kablosuz Özellikler" },
     { value: "Yapay Zeka Destekli", label: "Ses İşleme" },
-    { value: "En Kapsamlı Garanti", label: "Güvence" },
+    { value: "Üretici Garantisi", label: "Güvence" },
   ],
   accentColor: "#eab308",
   accentColorBadgeBg: "rgb(234 179 8 / 0.08)",

@@ -9,7 +9,7 @@ export const kulakArkasiExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Kulak arkası (BTE) işitme cihazları; özellikle ileri derece işitme kayıplarında ve çocuk kullanıcılarda sunduğu güç, dayanıklılık ve kullanım kolaylığı nedeniyle klinik pratiğimizde sıkça tercih ettiğimiz bir cihaz tipidir.",
+    "Kulak arkası (BTE) işitme cihazları; özellikle ileri derece işitme kayıplarında ve çocuk kullanıcılarda sunduğu güç, dayanıklılık ve kullanım kolaylığı nedeniyle merkezimizde sıkça tercih ettiğimiz bir cihaz tipidir.",
   note: "Ancak cihaz tipi tek başına yeterli değildir; işitme kaybınızın derecesi, kulak yapınız ve yaşam tarzınız birlikte değerlendirilmelidir.",
   accentColor: "#2563eb",
   accentColorBadgeBg: "rgb(37 99 235 / 0.08)",

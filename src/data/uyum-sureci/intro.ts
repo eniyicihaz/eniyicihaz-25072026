@@ -18,7 +18,7 @@ export const uyumSureciIntro: BrandPageIntroContent = {
   ],
   stats: [
     { value: "Haftalar / Aylar", label: "Genel Süre" },
-    { value: "Beyin Yeniden Kalibrasyonu", label: "Temel Mekanizma" },
+    { value: "Beynin Yeniden Kalibrasyonu", label: "Temel Mekanizma" },
     { value: "Kişiden Kişiye Değişir", label: "Gerçekçi Beklenti" },
     { value: "Takip Randevularıyla Desteklenir", label: "Destek Şekli" },
   ],

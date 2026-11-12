@@ -20,10 +20,10 @@ interface Props {
 const { page } = Astro.props;
 ---
 
-<BrandPageHero data={page.hero} />
-<BrandPageIntro data={page.intro} />
-<BrandPageModels data={page.models} />
-<BrandPageIdealUser data={page.idealUser} />
-<BrandPageFaq data={page.faq} />
-<BrandPageRelatedContent data={page.related} />
-<BrandPageFinalCta data={page.finalCta} />
+<BrandPageHero data={page.hero} variant="brand" />
+<BrandPageIntro data={page.intro} variant="brand" />
+<BrandPageModels data={page.models} variant="brand" />
+<BrandPageIdealUser data={page.idealUser} variant="brand" />
+<BrandPageFaq data={page.faq} variant="brand" />
+<BrandPageRelatedContent data={page.related} variant="brand" />
+<BrandPageFinalCta data={page.finalCta} variant="brand" />

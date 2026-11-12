@@ -10,7 +10,7 @@ export const suyaDayankliExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Suya dayanıklı işitme cihazları; düzenli spor yapan, aktif yaşam tarzı süren veya nemli iklimde yaşayan kullanıcılarda sunduğu ek güvence nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir özelliktir.",
+    "Suya dayanıklı işitme cihazları; düzenli spor yapan, aktif yaşam tarzı süren veya nemli iklimde yaşayan kullanıcılarda sunduğu ek güvence nedeniyle merkezimizde sıkça değerlendirdiğimiz bir özelliktir.",
   note: "Ancak IP koruma sınıfı tek başına yeterli değildir; cihazın suya tam dayanıklı (waterproof) olmadığı unutulmamalı ve düzenli bakım alışkanlıkları sürdürülmelidir.",
   accentColor: "#0d9488",
   accentColorBadgeBg: "rgb(13 148 136 / 0.08)",

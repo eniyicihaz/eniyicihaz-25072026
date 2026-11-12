@@ -1,25 +1,36 @@
 ---
+// Header logo — the real owner-supplied Avrasya İşitme Cihazları logo (ASSET_SOT §1, MASTER_PLAN A1).
+// The file is only trimmed of its surrounding whitespace and resized (no redraw, no recolour). Its own
+// tagline stays part of the artwork; no tagline is added as site text (BRAND_SOT, MASTER_PLAN B3).
+// The visible logo text and the accessible name are the same ("Avrasya İşitme Cihazları"), which also
+// satisfies WCAG 2.5.3 Label in Name.
 interface Props {
-  name: string;
-  tagline: string;
+  name?: string;
+  tagline?: string;
   href: string;
 }
 
-const { tagline, href } = Astro.props;
+const { href } = Astro.props;
 ---
 
-<a class="hd-logo" href={href} aria-label="Avrasya İşitme Cihazları ana sayfa">
-  <span class="hd-logo__name">
-    <span class="hd-logo__name-a">ENİYİ</span><span class="hd-logo__name-b">CİHAZ</span>
-  </span>
-  <span class="hd-logo__tagline">{tagline}</span>
+<a class="hd-logo" href={href}>
+  <img
+    class="hd-logo__img"
+    src="/images/brand/avrasya-isitme-cihazlari-logo-header-360.webp"
+    srcset="/images/brand/avrasya-isitme-cihazlari-logo-header-360.webp 360w, /images/brand/avrasya-isitme-cihazlari-logo-header-720.webp 720w"
+    sizes="(max-width: 640px) 140px, 168px"
+    width="360"
+    height="128"
+    alt="Avrasya İşitme Cihazları"
+    decoding="async"
+  />
 </a>
 
 <style>
   .hd-logo {
     display: inline-flex;
-    flex-direction: column;
-    gap: 2px;
+    align-items: center;
+    min-height: 48px;
     text-decoration: none;
     border-radius: var(--radius-sm);
   }
@@ -29,39 +40,23 @@ const { tagline, href } = Astro.props;
     box-shadow: var(--focus-ring);
   }
 
-  /* font-size-2xl (24px) is exactly +20% over the previous xl (20px) —
-     matches the requested size bump with an existing token, no new value. */
-  .hd-logo__name {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: -0.025em;
-    line-height: 1;
-  }
-
-  .hd-logo__name-a {
-    color: var(--color-text);
-  }
-
-  .hd-logo__name-b {
-    color: var(--color-primary);
-  }
-
-  .hd-logo__tagline {
-    font-size: 0.6875rem;
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text-muted);
-    letter-spacing: 0.01em;
+  .hd-logo__img {
+    display: block;
+    height: 56px;
+    width: auto;
+    aspect-ratio: 360 / 128;
   }
 
   @media (max-width: 640px) {
-    .hd-logo__tagline {
-      display: none;
+    .hd-logo__img {
+      height: 48px;
     }
   }
 
-  /* Dokunma hedefi (≥48 px) — Phase 2 UX paketi */
-  .hd-logo {
-    min-height: 48px;
-    justify-content: center;
+  /* ≤ 359 px: üst çubuk 320 px'e sığsın diye logo bir kademe küçülür (oran aynı, yeniden çizim yok). */
+  @media (max-width: 359px) {
+    .hd-logo__img {
+      height: 44px;
+    }
   }
 </style>

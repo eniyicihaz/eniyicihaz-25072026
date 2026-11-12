@@ -104,7 +104,7 @@ import { homeServiceJourney } from "../../data/home/service-journey";
 
   /* Link olmayan bilgi kartı (7 günlük deneme): hover/odak efekti yok. */
   .home-journey__card--static {
-    background: rgb(37 99 235 / 0.04);
+    background: rgb(var(--color-primary-rgb) / 0.04);
   }
 
   a.home-journey__card:hover {
@@ -131,7 +131,7 @@ import { homeServiceJourney } from "../../data/home/service-journey";
     width: 40px;
     height: 40px;
     border-radius: var(--radius-lg);
-    background: rgb(37 99 235 / 0.08);
+    background: rgb(var(--color-primary-rgb) / 0.08);
     color: var(--color-primary);
   }
 
@@ -154,7 +154,7 @@ import { homeServiceJourney } from "../../data/home/service-journey";
     border-radius: var(--radius-full);
     background: var(--color-primary);
     color: var(--color-text-inverse);
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
   }
 
   .home-journey__title {

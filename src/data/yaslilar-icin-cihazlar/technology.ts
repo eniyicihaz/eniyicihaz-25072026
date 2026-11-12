@@ -40,9 +40,9 @@ export const yaslilarIcinCihazlarTechnology: BrandPageEcosystemContent = {
       navLabel: "Aile Destekli Uzaktan Ayar",
       title: "RemoteCare ile Aile ve Uzman Desteği",
       lead: "Bazı sistemler, aile bireylerinin veya odyometristin internet üzerinden uzaktan destek sağlamasına imkan tanır.",
-      howItWorks: "Cihaz, uyumlu bir mobil uygulama üzerinden internete bağlanır; odyometrist veya yetkilendirilmiş aile bireyi, kliniğe gelmeye gerek kalmadan bazı ayarları uzaktan güncelleyebilir.",
+      howItWorks: "Cihaz, uyumlu bir mobil uygulama üzerinden internete bağlanır; odyometrist veya yetkilendirilmiş aile bireyi, merkeze gelmeye gerek kalmadan bazı ayarları uzaktan güncelleyebilir.",
       advantages: [
-        "Küçük ayar değişiklikleri için klinik ziyaretini azaltmaya yardımcı olabilir",
+        "Küçük ayar değişiklikleri için merkez ziyaretini azaltmaya yardımcı olabilir",
         "Aile bireylerinin sürece dahil olmasına imkan tanır",
         "Hareket kısıtlılığı olan kullanıcılar için pratik bir seçenek olabilir",
       ],

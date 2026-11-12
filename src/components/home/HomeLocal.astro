@@ -13,6 +13,7 @@ import { homeCenterGallery as data } from "../../data/home/center-gallery";
 import { company } from "../footer/Footer/data/company";
 import { imageSrcset } from "../../lib/responsive-images";
 import { contactAction } from "../../lib/contact-action";
+import OpenStatus from "../shared/OpenStatus/OpenStatus.astro";
 ---
 
 <section class="home-local" aria-labelledby="home-local-title" data-track-location="home_local">
@@ -85,6 +86,7 @@ import { contactAction } from "../../lib/contact-action";
             <Clock size={18} stroke-width={1.75} aria-hidden="true" class="home-local__icon" />
             Çalışma Saatleri
           </p>
+          <OpenStatus />
           <dl>
             {company.hours.map((entry) => (
               <div class="home-local__hours-row">

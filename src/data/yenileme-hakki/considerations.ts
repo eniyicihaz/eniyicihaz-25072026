@@ -16,7 +16,7 @@ export const yenilemeHakkiConsiderations: BrandPageIdealUserContent = {
     {
       icon: AlertTriangle,
       title: "Güncel Yenileme Süresi İçin SGK Rehberimizi İnceleyin",
-      description: "Yenileme süresi ve şartları SGK mevzuatındaki güncellemelere göre değişebilir; güncel bilgi için SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi sayfamızı veya merkezimizi inceleyebilirsiniz.",
+      description: "Yenileme süresi ve şartları SGK mevzuatındaki güncellemelere göre değişebilir; güncel bilgi için SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi sayfamızı inceleyebilir veya merkezimizden bilgi alabilirsiniz.",
       suggestedFamilies: ["Güncel Süre"],
     },
     {

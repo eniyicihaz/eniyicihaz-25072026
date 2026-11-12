@@ -58,7 +58,7 @@ export const garantiIslemleriFaq: BrandPageFaqContent = {
       ],
     },
     {
-      label: "Garanti vs Değişim",
+      label: "Garanti ve Değişim Farkı",
       items: [
         {
           question: "Cihazımdan memnun değilim, bu garanti kapsamında mı?",

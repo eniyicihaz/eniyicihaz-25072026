@@ -45,8 +45,8 @@
 
 .ds-search__input:focus {
   outline: none;
-  border-color: var(--ds-primary, #2563eb);
-  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+  border-color: var(--ds-primary, var(--color-primary));
+  box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / .15);
 }
 
 .ds-search__input:disabled {
@@ -66,7 +66,7 @@
   border: 0;
   border-radius: var(--ds-radius-lg, 12px);
 
-  background: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
   color: #fff;
 
   font: inherit;
@@ -78,7 +78,7 @@
 }
 
 .ds-search__button:hover:not(:disabled) {
-  background: var(--ds-primary-hover, #1d4ed8);
+  background: var(--ds-primary-hover, var(--color-primary-hover));
 }
 
 .ds-search__button:disabled {

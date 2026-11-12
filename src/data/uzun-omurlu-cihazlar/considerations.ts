@@ -15,13 +15,13 @@ export const uzunOmurluCihazlarConsiderations: BrandPageIdealUserContent = {
   profiles: [
     {
       icon: AlertTriangle,
-      title: "Garanti Dışı Onarımlar Riskli Olabilir",
+      title: "Yetkisiz Serviste Onarım Riskli Olabilir",
       description: "Yetkisiz servislerde yapılan onarımlar, cihazın garantisini geçersiz kılabilir ve ek hasara yol açabilir.",
       suggestedFamilies: ["Yetkili Servis Kullanımı"],
     },
     {
       icon: Droplets,
-      title: "Nem ve Neme Karşı Düzenli Kontrol Gereklidir",
+      title: "Neme Karşı Düzenli Kontrol Gereklidir",
       description: "Aktif kullanımda nem birikimi artabilir; düzenli kontrol cihaz ömrünü korumaya yardımcı olur.",
       suggestedFamilies: ["Nem Kontrolü"],
     },

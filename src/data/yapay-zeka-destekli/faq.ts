@@ -44,7 +44,7 @@ export const yapayZekaDestekliFaq: BrandPageFaqContent = {
         {
           question: "İlk kez cihaz kullanacaklar için uygun mudur?",
           answer:
-            "Evet, otomatik optimizasyon sayesinde manuel ayarla uğraşmadan doğal bir dinleme deneyimi sunduğundan ilk kez kullanıcılar için sıkça değerlendirilir.",
+            "Evet, otomatik optimizasyon sayesinde manuel ayarla uğraşmadan doğal bir dinleme deneyimi sunduğundan ilk kez cihaz kullanacaklar için sıkça değerlendirilir.",
         },
       ],
     },

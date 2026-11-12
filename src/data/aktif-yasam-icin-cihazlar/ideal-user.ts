@@ -29,7 +29,7 @@ export const aktifYasamIcinCihazlarIdealUser: BrandPageIdealUserContent = {
     {
       icon: Plane,
       title: "Sık Seyahat Eden Kullanıcılar",
-      description: "Uzun süreli seyahatlerde uzun pil ömrü ve hızlı şarj imkanı pratik bir avantaj sağlayabilir.",
+      description: "Uzun süreli seyahatlerde uzun pil ömrü ve hızlı şarj imkânı pratik bir avantaj sağlayabilir.",
       suggestedFamilies: ["Hızlı Şarj Özellikli Modeller"],
     },
     {
@@ -41,7 +41,7 @@ export const aktifYasamIcinCihazlarIdealUser: BrandPageIdealUserContent = {
     {
       icon: Briefcase,
       title: "Yoğun Sosyal ve İş Temposu Olan Kullanıcılar",
-      description: "Gün boyu aktif kullanım gerektiren yoğun bir temponun sürdürülmesi, uzun pil ömrünü öncelikli hale getirebilir.",
+      description: "Gün boyu aktif kullanım gerektiren yoğun bir temponun sürdürülmesi, uzun pil ömrünü öncelikli hâle getirebilir.",
       suggestedFamilies: ["Uzun Pil Ömürlü Modeller"],
     },
   ],

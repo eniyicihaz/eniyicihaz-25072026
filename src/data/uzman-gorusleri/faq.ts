@@ -39,7 +39,7 @@ export const uzmanGorusleriFaq: BrandPageFaqContent = {
         {
           question: "Bu bilgiler nereden geliyor?",
           answer:
-            "Bu sayfa, kliniğimizin günlük pratiğinde en sık karşılaştığı sorular ve yanlış inanışlar üzerine hazırlanan genel bir değerlendirmeyi yansıtır.",
+            "Bu sayfa, merkezimizin günlük pratiğinde en sık karşılaştığı sorular ve yanlış inanışlar üzerine hazırlanan genel bir değerlendirmeyi yansıtır.",
         },
       ],
     },

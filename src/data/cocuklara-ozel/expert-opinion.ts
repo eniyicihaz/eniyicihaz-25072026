@@ -10,7 +10,7 @@ export const cocuklaraOzelExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Çocuklarda erken tanı ve düzenli cihaz kullanımı, dil ve konuşma gelişimi açısından belirleyici bir rol oynar; bu nedenle çocuğa özel güvenlik ve dayanıklılık özellikleri taşıyan cihazları klinik pratiğimizde sıkça değerlendiriyoruz.",
+    "Çocuklarda erken tanı ve düzenli cihaz kullanımı, dil ve konuşma gelişimi açısından belirleyici bir rol oynar; bu nedenle çocuğa özel güvenlik ve dayanıklılık özellikleri taşıyan cihazları merkezimizde sıkça değerlendiriyoruz.",
   note: "Ancak cihaz seçimi tek başına yeterli değildir; çocuğun yaşı, işitme kaybının derecesi ve okul/aile ortamı birlikte değerlendirilmelidir.",
   accentColor: "#e11d48",
   accentColorBadgeBg: "rgb(225 29 72 / 0.08)",

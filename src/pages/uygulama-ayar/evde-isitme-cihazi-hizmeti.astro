@@ -13,8 +13,8 @@
 // kaldırıldı; kapsam yalnızca "merkezde verilen hizmetlerin kapsamı
 // doğrultusunda, randevuda netleştirilir" olarak anlatılır.
 import MainLayout from "../../layouts/MainLayout.astro";
-import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import HomeVisitHero from "../../components/shared/HomeVisitHero/HomeVisitHero.astro";
+import HomeVisitFlow from "../../components/shared/HomeVisitFlow/HomeVisitFlow.astro";
 import TuningProcess from "../../components/shared/TuningProcess/TuningProcess.astro";
 import BrandPageSignalList from "../../components/brand-page/BrandPageSignalList/BrandPageSignalList.astro";
 import ContactLocationCard from "../../components/contact/ContactLocationCard/ContactLocationCard.astro";
@@ -34,22 +34,6 @@ import { evdeHizmetRelatedContent } from "../../data/evde-isitme-cihazi-hizmeti/
 import { company } from "../../components/footer/Footer/data/company";
 
 const PAGE_URL = "https://www.eniyicihaz.com/uygulama-ayar/evde-isitme-cihazi-hizmeti";
-
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Evde İşitme Cihazı Hizmeti", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
 
 // Same MedicalBusiness node as /iletisim, Kişiye Özel Ayar ve Cihaz
 // Deneme — same @id, same real NAP source, extending the sitewide
@@ -101,14 +85,10 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   title="Evde İşitme Cihazı Hizmeti | Kocaeli ve Anadolu Yakası"
   description="Kocaeli'nin tamamında ve İstanbul Anadolu Yakası'nın tüm ilçelerinde ücretsiz, randevulu evde işitme cihazı hizmeti. Bizi arayın veya WhatsApp'tan yazın."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
 
-  <div class="evde-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
-
   <HomeVisitHero data={evdeHizmetHero} />
+  <HomeVisitFlow />
 
   <section class="evde-block" aria-labelledby="evde-area-title">
     <div class="evde-block__inner">
@@ -127,12 +107,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
 </MainLayout>
 
 <style>
-  .evde-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .evde-block {
     background: var(--color-background);
     padding-block: var(--space-16);

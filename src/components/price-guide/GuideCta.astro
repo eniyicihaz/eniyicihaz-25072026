@@ -76,7 +76,7 @@ const icons = iconsProp ?? [Stethoscope, MessageCircle, MapPin];
     overflow: hidden;
     padding: var(--space-10) var(--space-8);
     border-radius: var(--radius-2xl);
-    background: linear-gradient(160deg, #123063 0%, #0f2547 60%);
+    background: linear-gradient(160deg, #123063 0%, var(--brand-navy-deep) 60%);
     color: #fff;
     text-align: center;
   }
@@ -86,7 +86,7 @@ const icons = iconsProp ?? [Stethoscope, MessageCircle, MapPin];
     position: absolute;
     inset: -30% 20% auto;
     height: 70%;
-    background: radial-gradient(50% 50% at 50% 50%, rgb(37 99 235 / 0.35), transparent 70%);
+    background: radial-gradient(50% 50% at 50% 50%, rgb(var(--color-primary-rgb) / 0.35), transparent 70%);
     pointer-events: none;
   }
 

@@ -25,14 +25,16 @@ const { label, variant = "dark" } = Astro.props;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
     letter-spacing: -0.005em;
-    white-space: nowrap;
-    line-height: 1;
+    max-width: 100%;
+    /* Büyük yazı boyutunda (erişilebilirlik paneli) tek satıra sığmazsa alt satıra geçer; taşma yok. */
+    white-space: normal;
+    line-height: 1.2;
   }
 
   /* On the dark footer surface. */
   .sgk-badge--dark {
     color: #ffffff;
-    background: rgb(37 99 235 / 0.18);
+    background: rgb(var(--color-primary-rgb) / 0.18);
     border: 1px solid rgb(147 197 253 / 0.28);
   }
 
@@ -40,7 +42,7 @@ const { label, variant = "dark" } = Astro.props;
   .sgk-badge--light {
     color: var(--color-primary-active);
     background: var(--primary-light);
-    border: 1px solid rgb(37 99 235 / 0.16);
+    border: 1px solid rgb(var(--color-primary-rgb) / 0.16);
   }
 
   /* Tighter chip. */
@@ -49,6 +51,6 @@ const { label, variant = "dark" } = Astro.props;
     font-size: var(--font-size-xs);
     color: var(--color-primary-active);
     background: var(--primary-light);
-    border: 1px solid rgb(37 99 235 / 0.16);
+    border: 1px solid rgb(var(--color-primary-rgb) / 0.16);
   }
 </style>

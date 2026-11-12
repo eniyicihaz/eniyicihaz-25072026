@@ -48,7 +48,7 @@ export const onlineIsitmeTestiFaq: BrandPageFaqContent = {
         {
           question: "Kulaklık kullanmak zorunlu mu?",
           answer:
-            "Evet; sağ ve sol kulağın ayrı ayrı test edilebilmesi için kulaklık (kablolu veya Bluetooth) kullanmanız gerekir. Hoparlörle yapılan bir tarama, kulaklar arası ayrımı ve oda gürültüsü etkisini ortadan kaldıramaz.",
+            "Evet; sağ ve sol kulağın ayrı ayrı test edilebilmesi için kulaklık (kablolu veya Bluetooth) kullanmanız gerekir. Hoparlörle yapılan bir taramada kulaklar ayrı ayrı test edilemez ve oda gürültüsünün etkisi azaltılamaz.",
         },
         {
           question: "Bluetooth kulaklıkla test yapabilir miyim?",

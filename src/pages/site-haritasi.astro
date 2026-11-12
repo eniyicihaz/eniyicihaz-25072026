@@ -5,36 +5,15 @@
 // yerine geçmiyor — o ayrı, otomatik üretilen, arama motorları için
 // olan altyapı (astro.config.mjs); bu sayfa insan kullanıcılar için.
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import SitemapSection from "../components/shared/SitemapSection/SitemapSection.astro";
 import { sitemapCategories } from "../data/site-haritasi";
 
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Site Haritası", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
 ---
 
 <MainLayout
   title="Site Haritası | Avrasya İşitme Cihazları"
   description="Avrasya İşitme Cihazları sitesindeki tüm sayfalara tek bir yerden ulaşın: işitme cihazları, hizmetlerimiz, markalar, SGK bilgileri, rehberler ve daha fazlası."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-
-  <div class="site-map-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <header class="site-map-intro">
     <h1 class="site-map-intro__title">Site Haritası</h1>
@@ -51,12 +30,6 @@ const breadcrumbSchema = {
 </MainLayout>
 
 <style>
-  .site-map-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .site-map-intro {
     max-width: var(--container-2xl);
     margin-inline: auto;

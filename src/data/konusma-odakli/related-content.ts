@@ -30,7 +30,7 @@ export const konusmaOdakliRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Kablosuz Bağlantı Özellikleri",
-      description: "Telefon, TV ve diğer cihazlarla kablosuz bağlantı kuran teknolojileri yakından tanıyın.",
+      description: "Telesarmal, uzaktan mikrofon ve kulaktan kulağa bağlantı gibi kablosuz protokolleri yakından tanıyın.",
       href: "/teknolojiler/kablosuz-baglanti/",
     },
     {

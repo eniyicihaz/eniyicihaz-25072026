@@ -27,7 +27,7 @@
 
   border-radius: 999px;
 
-  background: var(--ds-primary-light, #eff6ff);
+  background: var(--ds-primary-light, var(--color-primary-50));
 
   font-size: 1.25rem;
 }

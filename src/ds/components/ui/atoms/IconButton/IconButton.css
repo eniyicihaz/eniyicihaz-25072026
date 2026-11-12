@@ -35,7 +35,7 @@
 }
 
 .ds-icon-button:focus-visible {
-    outline: 3px solid rgba(59,130,246,.25);
+    outline: 3px solid rgb(var(--brand-blue-rgb) / .25);
     outline-offset: 3px;
 }
 
@@ -139,7 +139,7 @@
 }
 
 .ds-icon-button.is-outline:hover {
-    background: rgba(59,130,246,.08);
+    background: rgb(var(--brand-blue-rgb) / .08);
 }
 
 .ds-icon-button.is-bordered {

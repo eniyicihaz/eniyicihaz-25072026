@@ -27,7 +27,7 @@ export const kalipAlimiAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: VolumeX,
-      category: "Geri Bildirim Önleme",
+      category: "Islık Sesini Azaltma",
       title: "Islık Sesi Riskini Azaltabilir",
       description: "İyi bir sızdırmazlık, standart kulak uçlarında sık görülen ıslık sesi sorununu azaltmaya yardımcı olabilir.",
     },

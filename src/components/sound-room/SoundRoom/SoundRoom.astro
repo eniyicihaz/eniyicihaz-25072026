@@ -142,6 +142,8 @@ const Tag = embedded ? "div" : "section";
 <style>
   .sound-room {
     position: relative;
+    /* İplik etiketleri (sağa taşan) büyük yazı boyutunda sayfaya yatay kaydırma eklemesin. */
+    overflow-x: clip;
     background: var(--color-background);
     color: var(--color-text);
     /* Top trimmed one step (was space-20) — homepage rhythm pass: shortens

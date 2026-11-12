@@ -10,7 +10,7 @@ export const cihazUygulamaFinalCta: BrandPageFinalCtaContent = {
   badge: "DOĞRU BAŞLANGIÇ İÇİN YANINIZDAYIZ",
   heading: "Cihazınızla Doğru Bir Başlangıç Yapın",
   description:
-    "Odyograma dayalı programlama, doğrulama ölçümü ve kapsamlı kullanım eğitimiyle, cihazınızdan en iyi verimi almanızı sağlıyoruz.",
+    "Odyograma dayalı programlama, doğrulama ölçümü ve kapsamlı kullanım eğitimiyle, cihazınızdan daha iyi verim almanıza yardımcı oluyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: ["Ücretsiz Uygulama Randevusu", "Odyograma Dayalı Programlama", "Doğrulama Ölçümü", "Kapsamlı Kullanım Eğitimi"],

@@ -24,7 +24,7 @@ export const gorunmezCicFaq: BrandPageFaqContent = {
         {
           question: "Görünmez (CIC) işitme cihazı nedir?",
           answer:
-            "Kulak kanalının derinlerine, kulak zarına yakın bir noktaya yerleşen, kulak içi (ITE) ailesinin en küçük alt tipidir; dışarıdan neredeyse hiç fark edilmez.",
+            "Kulak kanalının derinlerine, kulak zarına yakın bir noktaya yerleşen, kulak içi (ITE) ailesinin en küçük alt tiplerinden biridir; dışarıdan neredeyse hiç fark edilmez.",
         },
         {
           question: "CIC ile IIC arasındaki fark nedir?",

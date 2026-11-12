@@ -11,7 +11,7 @@ export const ortaDereceIsitmeKaybiExpertOpinion: BrandPageExpertOpinionContent =
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Orta derecede işitme kaybını zamanında değerlendirmek; günlük konuşmaların çoğunun etkilendiği bu dönemde iletişim kalitesini korumaya yardımcı olabileceğinden klinik pratiğimizde sıkça önerdiğimiz bir yaklaşımdır.",
+    "Orta derecede işitme kaybını zamanında değerlendirmek; günlük konuşmaların çoğunun etkilendiği bu dönemde iletişim kalitesini korumaya yardımcı olabileceğinden merkezimizde sıkça önerdiğimiz bir yaklaşımdır.",
   note: "Ancak bu sayfadaki bilgiler genel bir yönlendirme amacı taşır; kesin derece ve size uygun çözüm, yalnızca bir odyometri testi sonrasında belirlenebilir.",
   accentColor: "#16a34a",
   accentColorBadgeBg: "rgb(22 163 74 / 0.08)",

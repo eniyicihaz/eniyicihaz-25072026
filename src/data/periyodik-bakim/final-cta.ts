@@ -10,7 +10,7 @@ export const periyodikBakimFinalCta: BrandPageFinalCtaContent = {
   badge: "SORUN OLUŞMADAN ÖNCE",
   heading: "Cihazınızın Bakımını Şimdi Planlayalım",
   description:
-    "Balmumu filtresi ve tüp yenilemeden genel aşınma kontrolüne kadar, cihazınızı en iyi durumda tutmanıza yardımcı oluyoruz.",
+    "Kulak kiri filtresi ve tüp yenilemeden genel aşınma kontrolüne kadar, cihazınızı en iyi durumda tutmanıza yardımcı oluyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: ["Ücretsiz Periyodik Bakım", "Filtre ve Tüp Yenileme", "Genel Aşınma Kontrolü", "Hızlı Randevu"],

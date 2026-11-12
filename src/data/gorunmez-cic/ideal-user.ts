@@ -19,7 +19,7 @@ export const gorunmezCicIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: Briefcase,
-      title: "İş Ortamında Ayrıcalık Bekleyenler",
+      title: "İş Ortamında Fark Edilmemek İsteyenler",
       description: "Toplantı ve müşteri görüşmelerinde fark edilmeden kullanmak isteyen profesyoneller için uygundur.",
       suggestedFamilies: ["Diskret CIC Modeller"],
     },

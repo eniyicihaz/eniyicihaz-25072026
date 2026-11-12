@@ -11,7 +11,7 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const pilAksesuarAdvantages: BrandPageAdvantagesContent = {
   badge: "AVANTAJLARI",
   heading: "Pil ve Aksesuar Desteğimizin Sunduğu Avantajlar",
-  intro: "Pil ve aksesuar ihtiyaçlarınızı kliniğinizden karşılamanın nedenleri.",
+  intro: "Pil ve aksesuar ihtiyaçlarınızı merkezimizden karşılamanın nedenleri.",
   hero: {
     icon: ShoppingBag,
     category: "Geniş Seçenek",

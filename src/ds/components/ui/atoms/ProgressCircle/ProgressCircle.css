@@ -17,7 +17,7 @@
 
 .ds-progress-circle__indicator {
   fill: none;
-  stroke: var(--ds-primary, #2563eb);
+  stroke: var(--ds-primary, var(--color-primary));
   stroke-linecap: round;
   transition: stroke-dashoffset .35s ease;
 }

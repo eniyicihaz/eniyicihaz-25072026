@@ -5,6 +5,7 @@
 // Süreç içeriği: data/teknik-servis/hero-process.ts (her cümlenin kaynağı orada yazılı). Yalnızca Astro + CSS + inline SVG.
 // Masaüstü (>=1100): basamaklı akış — her aşama bir öncekinden biraz içeriden başlar, düğümler eğri çizgilerle bağlıdır.
 // <1100: aynı akış, girinti azalır; <720: dikey zaman çizelgesi. Akış animasyonu prefers-reduced-motion'da kapalıdır.
+import { withCorporateHero } from "../../../lib/hero-theme";
 import { Phone, Navigation, MessageCircle, ArrowRight } from "lucide-astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../../lib/contact-action";
@@ -16,7 +17,8 @@ interface Props {
   data: BrandPageHeroContent;
 }
 
-const { data } = Astro.props;
+const { data: rawData } = Astro.props;
+const data = withCorporateHero<BrandPageHeroContent>(rawData);
 const { heading, steps, detailLink } = teknikServisProcess;
 const icon = (href: string) =>
   contactAction(href) === "whatsapp" ? "wa" : contactAction(href) === "directions" ? "nav" : contactAction(href) === "phone" ? "phone" : "msg";
@@ -38,7 +40,7 @@ const heroStyle = [
       <p class="tsh__badge">{data.badge}</p>
 
       <h1 class="tsh__heading" id="brand-page-hero-title">
-        {data.headingLines.map((line) => <span class="tsh__heading-line">{line}</span>)}
+        {data.headingLines.map((line) => <><span class="tsh__heading-line">{line}</span>{" "}</>)}
       </h1>
 
       {data.paragraphs.map((p) => <p class="tsh__paragraph">{p}</p>)}
@@ -343,7 +345,7 @@ const heroStyle = [
 
   .tsh__label {
     margin: 0;
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -371,7 +373,7 @@ const heroStyle = [
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    min-height: 28px;
+    min-height: 44px;
     margin-top: var(--space-1);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
@@ -515,7 +517,7 @@ const heroStyle = [
     }
 
     .tsh__detail {
-      font-size: 0.8125rem;
+      font-size: var(--font-size-xs);
     }
 
     /* Sıkı zaman çizelgesi: "Adım 0X" etiketi görsel olarak düğümdeki numara rozetine taşınır (metin ekran okuyucuda kalır). */
@@ -531,7 +533,7 @@ const heroStyle = [
       border-radius: 50%;
       background: #050505;
       border: 1px solid var(--tone);
-      font-size: 10px;
+      font-size: var(--font-size-xs);
       font-weight: var(--font-weight-bold);
       line-height: 1;
       color: var(--tone);
@@ -552,7 +554,7 @@ const heroStyle = [
     }
 
     .tsh__text {
-      font-size: 0.8125rem;
+      font-size: var(--font-size-xs);
       line-height: 1.45;
     }
   }
@@ -569,7 +571,7 @@ const heroStyle = [
 
     .tsh__paragraph {
       margin-top: var(--space-3);
-      font-size: 0.9375rem;
+      font-size: var(--font-size-md);
       line-height: 1.5;
     }
 
@@ -614,7 +616,7 @@ const heroStyle = [
       height: 15px;
       top: -5px;
       right: -5px;
-      font-size: 9px;
+      font-size: var(--font-size-xs);
     }
 
     /* Bağlantı çizgisi: bu düğümün merkezinden bir sonrakinin merkezine; son adımda yok. */
@@ -647,7 +649,7 @@ const heroStyle = [
     .tsh__text--short {
       display: block;
       margin: 2px 0 0;
-      font-size: 0.8125rem;
+      font-size: var(--font-size-xs);
       line-height: 1.4;
       color: rgb(255 255 255 / 0.8);
     }
@@ -657,9 +659,9 @@ const heroStyle = [
     }
 
     .tsh__link {
-      min-height: 28px;
+      min-height: 44px;
       margin-top: 2px;
-      font-size: 0.8125rem;
+      font-size: var(--font-size-xs);
     }
 
     .tsh__link::after {

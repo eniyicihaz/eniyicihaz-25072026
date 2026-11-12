@@ -18,7 +18,7 @@ export const aktifYasamIcinCihazlarConsiderations: BrandPageIdealUserContent = {
     {
       icon: AlertTriangle,
       title: "Ani Başlayan Kayıp Acil Değerlendirme Gerektirebilir",
-      description: "Ani gelişen işitme kaybı, aktif yaşam kaynaklı geçici bir durumdan farklıdır; vakit kaybetmeden bir kulak burun boğaz uzmanına başvurulmalıdır.",
+      description: "Ani gelişen işitme kaybında vakit kaybetmeden bir kulak burun boğaz uzmanına başvurulmalıdır.",
       suggestedFamilies: ["Acil KBB Değerlendirmesi"],
     },
     {

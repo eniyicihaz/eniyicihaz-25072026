@@ -19,7 +19,7 @@ export const ileriDereceIsitmeKaybiIntro: BrandPageIntroContent = {
   stats: [
     { value: "71-90 dB", label: "İşitme Eşiği Aralığı" },
     { value: "Yüksek Ses Bile Zor", label: "Sıkça Etkilenen Alan" },
-    { value: "Odyometri ile Belirlenir", label: "Kesin Tanı Yöntemi" },
+    { value: "Odyometri ile Belirlenir", label: "Değerlendirme Yöntemi" },
     { value: "Güçlü RIC / BTE", label: "Sıkça Tercih Edilen Modeller" },
   ],
   accentColor: "#57534e",

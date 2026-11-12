@@ -62,7 +62,7 @@ export const devicesFaq: BrandPageFaqContent = {
             "Görünmez (CIC ve IIC) cihazlar, kulak kanalının içine yerleşen ve dışarıdan çok az fark edilen küçük cihazlardır. Küçük boyut bazı özellikleri sınırlayabilir ve her kulak kanalı bu türe uygun olmayabilir; uygunluk değerlendirme sonrasında belirlenir.",
         },
         {
-          question: "İşitme cihazı deneme yapılabilir mi?",
+          question: "İşitme cihazı denemesi yapılabilir mi?",
           answer:
             "Evet. Merkezimizde yaklaşık 20 dakikalık ücretsiz bir demo yapılır; cihazı satın alarak 7 güne kadar da deneyebilir, uygun bulmazsanız iade edebilirsiniz. Ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; ayrıntılar cihaz deneme sayfamızda.",
         },

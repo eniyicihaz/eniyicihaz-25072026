@@ -14,7 +14,7 @@ export const evdeHizmetHero: HomeVisitHeroContent = {
     "Merkezimize gelemiyorsanız evde hizmetimiz Kocaeli'nin tamamını ve İstanbul Anadolu Yakası'nın tüm ilçelerini kapsar. Hizmet ücretsizdir ve randevuyla planlanır.",
   paragraph:
     "Fiziksel merkezimiz Darıca'dadır; ekibimiz randevu gününde adresinize gelir. Evde yapılacak işlemler randevuda netleştirilir.",
-  ctaPrimary: { label: "Evde Hizmet Talep Et", href: contactConfig.phone.href },
+  ctaPrimary: { label: "Evde Hizmet İçin Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   routeFromLabel: "Merkezimiz",
   routeToLabel: "Eviniz",

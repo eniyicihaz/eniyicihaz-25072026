@@ -20,7 +20,7 @@ export const tekTarafliIsitmeKaybiIntro: BrandPageIntroContent = {
   stats: [
     { value: "Tek Kulak", label: "Etkilenen Taraf" },
     { value: "Baş Gölgesi Etkisi", label: "Sıkça Yaşanan Zorluk" },
-    { value: "Odyometri ile Belirlenir", label: "Kesin Tanı Yöntemi" },
+    { value: "Odyometri ile Belirlenir", label: "Değerlendirme Yöntemi" },
     { value: "CROS / BiCROS", label: "Sıkça Değerlendirilen Sistemler" },
   ],
   accentColor: "#52525b",

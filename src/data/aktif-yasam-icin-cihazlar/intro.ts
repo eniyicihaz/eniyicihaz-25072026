@@ -20,7 +20,7 @@ export const aktifYasamIcinCihazlarIntro: BrandPageIntroContent = {
   stats: [
     { value: "Spor & Seyahat", label: "Yaygın Kullanım Alanı" },
     { value: "Güvenli Oturma", label: "Sıkça Öncelik Verilen Özellik" },
-    { value: "Odyometri ile Belirlenir", label: "Kesin Tanı Yöntemi" },
+    { value: "Odyometri ile Belirlenir", label: "Değerlendirme Yöntemi" },
     { value: "Yüksek IP Koruma", label: "Sıkça Değerlendirilen Standart" },
   ],
   accentColor: "#4b5563",

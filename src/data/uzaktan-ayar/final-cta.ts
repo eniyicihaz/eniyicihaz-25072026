@@ -10,10 +10,10 @@ export const uzaktanAyarFinalCta: BrandPageFinalCtaContent = {
   badge: "KLİNİĞE GELMEDEN DESTEK",
   heading: "Küçük Bir Ayar İhtiyacınız mı Var?",
   description:
-    "Uygun cihazınızla, güvenli bir video görüşme üzerinden kliniğe gelmeden küçük ayar güncellemeleri alabilirsiniz.",
+    "Uygun cihazınızla, güvenli bir video görüşme üzerinden merkeze gelmeden küçük ayar güncellemeleri alabilirsiniz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Uzaktan Ayar", "Güvenli Video Görüşme", "Aynı Klinik Ekibi", "Hızlı Çözüm"],
+  trustItems: ["Ücretsiz Uzaktan Ayar", "Güvenli Video Görüşme", "Aynı Ekip", "Hızlı Çözüm"],
   accentColor: "#16a34a",
   accentColorHover: "#15803d",
   accentColorGlow: "rgb(22 163 74 / 0.22)",

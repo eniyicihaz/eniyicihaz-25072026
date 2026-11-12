@@ -21,7 +21,7 @@ export const kisiyeOzelProgramlamaTechnology: BrandPageEcosystemContent = {
       icon: "brain",
       navLabel: "Veri Kaydı Analizi",
       title: "Kullanım Verisi (Data Logging) Analizi",
-      lead: "Bazı modeller, hangi ortamlarda ne kadar süre kullanıldığınızı ve hangi ses seviyelerini tercih ettiğinizi kaydedebilir.",
+      lead: "Bazı modeller, cihazı hangi ortamlarda ne kadar süre kullandığınızı ve hangi ses seviyelerini tercih ettiğinizi kaydedebilir.",
       howItWorks: "Cihaz, kullanım süresi ve ortam türü gibi verileri kaydeder; bu veriler, fitting yazılımı üzerinden takip randevusunda incelenir.",
       advantages: [
         "İnce ayar kararlarına objektif bir destek sağlar",
@@ -66,10 +66,10 @@ export const kisiyeOzelProgramlamaTechnology: BrandPageEcosystemContent = {
       icon: "smartphone",
       navLabel: "Uzaktan İnce Ayar",
       title: "Uzaktan İnce Ayar (Telecare) Desteği",
-      lead: "Bazı modellerde, kliniğe gelmeden akıllı telefon uygulaması üzerinden uzaktan ince ayar talep edilebilir.",
+      lead: "Bazı modellerde, merkeze gelmeden akıllı telefon uygulaması üzerinden uzaktan ince ayar talep edilebilir.",
       howItWorks: "Uygulama üzerinden ilettiğiniz geri bildirim, odyometristiniz tarafından incelenir ve ayar güncellemesi cihazınıza uzaktan iletilir.",
       advantages: [
-        "Küçük ayar ihtiyaçları için kliniğe gelmeyi gerektirmeyebilir",
+        "Küçük ayar ihtiyaçları için merkeze gelmeyi gerektirmeyebilir",
         "Geri bildiriminizi anlık olarak iletme imkânı sunar",
         "Takip sürecini daha esnek hale getirir",
       ],

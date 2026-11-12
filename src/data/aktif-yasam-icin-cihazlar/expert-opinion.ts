@@ -10,7 +10,7 @@ export const aktifYasamIcinCihazlarExpertOpinion: BrandPageExpertOpinionContent 
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Aktif bir yaşam tarzı sürdüren kullanıcılarda cihazın güvenli oturması ve dayanıklılığı, ses kalitesi kadar önemli bir konu olarak klinik pratiğimizde sıkça değerlendirdiğimiz bir husustur.",
+    "Aktif bir yaşam tarzı sürdüren kullanıcılarda cihazın güvenli oturması ve dayanıklılığı, ses kalitesi kadar önemli bir konu olarak merkezimizde sıkça değerlendirdiğimiz bir husustur.",
   note: "Ancak bu sayfadaki bilgiler genel bir yönlendirme amacı taşır; ani başlayan kayıplarda vakit kaybetmeden bir KBB uzmanına başvurulmalı, size uygun cihaz ise bir odyometrist ile birlikte belirlenmelidir.",
   accentColor: "#4b5563",
   accentColorBadgeBg: "rgb(75 85 99 / 0.08)",

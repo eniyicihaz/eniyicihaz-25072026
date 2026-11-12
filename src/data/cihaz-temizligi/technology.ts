@@ -36,8 +36,8 @@ export const cihazTemizligiTechnology: BrandPageEcosystemContent = {
       icon: "layers",
       navLabel: "Temizlik Kiti Bileşenleri",
       title: "Temizlik Kiti Bileşenleri",
-      lead: "Temel bir temizlik kiti; yumuşak bir fırça, balmumu teli ve kuru bir bezden oluşur.",
-      howItWorks: "Fırça yüzey tozunu alır, balmumu teli kulak ucundaki görünür kiri nazikçe çıkarır, bez ise genel silme için kullanılır.",
+      lead: "Temel bir temizlik kiti; yumuşak bir fırça, kulak kiri temizleme teli ve kuru bir bezden oluşur.",
+      howItWorks: "Fırça yüzey tozunu alır, kulak kiri temizleme teli kulak ucundaki görünür kiri nazikçe çıkarır, bez ise genel silme için kullanılır.",
       advantages: [
         "Günlük temizlik için yeterli ve basit bir çözüm sunar",
         "Cihaza zarar vermeyecek şekilde tasarlanmıştır",

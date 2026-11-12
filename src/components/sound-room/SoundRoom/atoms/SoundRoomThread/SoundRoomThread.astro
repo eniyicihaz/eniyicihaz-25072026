@@ -76,7 +76,7 @@ const jitter = JITTER[order - 1];
     border-radius: inherit;
     background: var(--color-primary);
     opacity: var(--progress);
-    box-shadow: 0 0 10px 0 rgb(37 99 235 / calc(var(--progress) * 0.5));
+    box-shadow: 0 0 10px 0 rgb(var(--color-primary-rgb) / calc(var(--progress) * 0.5));
   }
 
   .sound-room-thread__label {

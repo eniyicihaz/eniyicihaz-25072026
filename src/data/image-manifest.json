@@ -257,6 +257,13 @@
 },
 "w": 1024
 },
+"/images/device-guide/device-type-itc.webp": {
+"h": 1254,
+"v": {
+"640": "/images/device-guide/device-type-itc-640.webp"
+},
+"w": 1254
+},
 "/images/heroes/avrasya-isitme-cihazlari-ofis.webp": {
 "h": 941,
 "v": {
@@ -268,19 +275,68 @@
 "/images/heroes/darica-dis-cephe.webp": {
 "h": 1500,
 "v": {
+"640": "/images/heroes/darica-dis-cephe-640.webp",
 "1000": "/images/heroes/darica-dis-cephe-1000.webp",
-"1600": "/images/heroes/darica-dis-cephe-1600.webp",
-"640": "/images/heroes/darica-dis-cephe-640.webp"
+"1600": "/images/heroes/darica-dis-cephe-1600.webp"
 },
 "w": 2000
 },
 "/images/heroes/isitme-cihazi-turleri.webp": {
 "h": 868,
 "v": {
-"1024": "/images/heroes/isitme-cihazi-turleri-1024.webp",
-"640": "/images/heroes/isitme-cihazi-turleri-640.webp"
+"640": "/images/heroes/isitme-cihazi-turleri-640.webp",
+"1024": "/images/heroes/isitme-cihazi-turleri-1024.webp"
 },
 "w": 1811
+},
+"/images/homepage/device-comparison/device-comparison-bluetooth-ozellikli.webp": {
+"h": 1254,
+"v": {
+"640": "/images/homepage/device-comparison/device-comparison-bluetooth-ozellikli-640.webp"
+},
+"w": 1254
+},
+"/images/homepage/device-comparison/device-comparison-cocuklara-ozel.webp": {
+"h": 1254,
+"v": {
+"640": "/images/homepage/device-comparison/device-comparison-cocuklara-ozel-640.webp"
+},
+"w": 1254
+},
+"/images/homepage/device-comparison/device-comparison-gorunmez-cic.webp": {
+"h": 1254,
+"v": {
+"640": "/images/homepage/device-comparison/device-comparison-gorunmez-cic-640.webp"
+},
+"w": 1254
+},
+"/images/homepage/device-comparison/device-comparison-kulak-arkasi-bte.webp": {
+"h": 1254,
+"v": {
+"640": "/images/homepage/device-comparison/device-comparison-kulak-arkasi-bte-640.webp"
+},
+"w": 1254
+},
+"/images/homepage/device-comparison/device-comparison-kulak-ici-ite.webp": {
+"h": 1254,
+"v": {
+"640": "/images/homepage/device-comparison/device-comparison-kulak-ici-ite-640.webp"
+},
+"w": 1254
+},
+"/images/homepage/device-comparison/device-comparison-sarj-edilebilir.webp": {
+"h": 1254,
+"v": {
+"640": "/images/homepage/device-comparison/device-comparison-sarj-edilebilir-640.webp"
+},
+"w": 1254
+},
+"/images/homepage/device-comparison/device-comparison-suya-dayanikli.webp": {
+"h": 1254,
+"v": {
+"640": "/images/homepage/device-comparison/device-comparison-suya-dayanikli-640.webp"
+},
+"w": 1254
 },
 "/images/maico/models/bluetooth-serisi.webp": {
 "h": 1024,
@@ -419,9 +475,9 @@
 "/images/pages/hakkimizda-bekleme-alani.webp": {
 "h": 1024,
 "v": {
-"1024": "/images/pages/hakkimizda-bekleme-alani-1024.webp",
 "400": "/images/pages/hakkimizda-bekleme-alani-400.webp",
-"640": "/images/pages/hakkimizda-bekleme-alani-640.webp"
+"640": "/images/pages/hakkimizda-bekleme-alani-640.webp",
+"1024": "/images/pages/hakkimizda-bekleme-alani-1024.webp"
 },
 "w": 1536
 },
@@ -437,17 +493,17 @@
 "/images/pages/hakkimizda-hero-marka-duvari.webp": {
 "h": 1023,
 "v": {
-"1200": "/images/pages/hakkimizda-hero-marka-duvari-1200.webp",
-"800": "/images/pages/hakkimizda-hero-marka-duvari-800.webp"
+"800": "/images/pages/hakkimizda-hero-marka-duvari-800.webp",
+"1200": "/images/pages/hakkimizda-hero-marka-duvari-1200.webp"
 },
 "w": 1537
 },
 "/images/pages/hakkimizda-isitme-testi-odasi.webp": {
 "h": 1023,
 "v": {
-"1024": "/images/pages/hakkimizda-isitme-testi-odasi-1024.webp",
 "400": "/images/pages/hakkimizda-isitme-testi-odasi-400.webp",
-"640": "/images/pages/hakkimizda-isitme-testi-odasi-640.webp"
+"640": "/images/pages/hakkimizda-isitme-testi-odasi-640.webp",
+"1024": "/images/pages/hakkimizda-isitme-testi-odasi-1024.webp"
 },
 "w": 1537
 },
@@ -462,8 +518,8 @@
 "/images/pages/isitme-testi-odyometri-odasi.webp": {
 "h": 1024,
 "v": {
-"1024": "/images/pages/isitme-testi-odyometri-odasi-1024.webp",
-"640": "/images/pages/isitme-testi-odyometri-odasi-640.webp"
+"640": "/images/pages/isitme-testi-odyometri-odasi-640.webp",
+"1024": "/images/pages/isitme-testi-odyometri-odasi-1024.webp"
 },
 "w": 1536
 },
@@ -570,6 +626,20 @@
 "640": "/images/phonak/models/virto-640.webp"
 },
 "w": 1024
+},
+"/images/price-guide/device-type-gorunmez-cok-kucuk.webp": {
+"h": 1254,
+"v": {
+"640": "/images/price-guide/device-type-gorunmez-cok-kucuk-640.webp"
+},
+"w": 1254
+},
+"/images/price-guide/device-type-ric-rite.webp": {
+"h": 1254,
+"v": {
+"640": "/images/price-guide/device-type-ric-rite-640.webp"
+},
+"w": 1254
 },
 "/images/resound/models/key.webp": {
 "h": 1024,
@@ -715,15 +785,30 @@
 },
 "w": 662
 },
+"/images/ui/mega-menu-bilgi-merkez.webp": {
+"h": 560,
+"v": {},
+"w": 640
+},
 "/images/ui/mega-menu-bilgi-merkezi.webp": {
 "h": 800,
 "v": {},
 "w": 1200
 },
+"/images/ui/mega-menu-cihazlar-merkez.webp": {
+"h": 560,
+"v": {},
+"w": 640
+},
 "/images/ui/mega-menu-isitme-cihazlari.webp": {
 "h": 772,
 "v": {},
 "w": 1200
+},
+"/images/ui/mega-menu-markalar-merkez.webp": {
+"h": 560,
+"v": {},
+"w": 640
 },
 "/images/ui/mega-menu-markalar.webp": {
 "h": 784,

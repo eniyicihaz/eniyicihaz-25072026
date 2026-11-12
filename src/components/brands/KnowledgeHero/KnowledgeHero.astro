@@ -32,7 +32,7 @@ const icons = {
       <p class="kh__badge">{data.badge}</p>
 
       <h1 class="kh__heading" id="brand-hero-title">
-        {data.headingLines.map((line) => <span class="kh__heading-line">{line}</span>)}
+        {data.headingLines.map((line) => <><span class="kh__heading-line">{line}</span>{" "}</>)}
       </h1>
 
       {data.description.map((p) => <p class="kh__desc">{p}</p>)}
@@ -215,7 +215,7 @@ const icons = {
   }
 
   .kh__link:hover {
-    background: #eff6ff;
+    background: var(--color-primary-50);
     border-color: var(--color-primary);
     box-shadow: var(--shadow-sm);
   }
@@ -232,7 +232,7 @@ const icons = {
     width: 44px;
     height: 44px;
     border-radius: var(--radius-lg);
-    background: rgb(37 99 235 / 0.1);
+    background: rgb(var(--color-primary-rgb) / 0.1);
     color: var(--color-primary);
   }
 

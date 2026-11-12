@@ -46,7 +46,8 @@ export interface SimpleBrandPage {
 
 export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
   const { name } = cfg;
-  const upper = name.toLocaleUpperCase("tr-TR");
+  // Marka adı Latin özel addır: Türkçe kuralla büyütülürse "PHİLİPS", "WİDEX" çıkar; dil-bağımsız büyütülür.
+  const upper = name.toLocaleUpperCase("en-US");
   const short = (n: string) => (n.startsWith(name + " ") ? n.slice(name.length + 1) : n);
   const accent = cfg.faq; // accentColor + badge renkleri her markanın SSS verisinde mevcut
   const items = cfg.models.items;

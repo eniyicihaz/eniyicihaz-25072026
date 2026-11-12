@@ -27,7 +27,7 @@ export const sarjliTeknolojilerUseCases: BrandPageTechnologyContent = {
     {
       label: "DÖNGÜ ÖMRÜ",
       title: "Yüzlerce Şarj Döngüsüne Dayanıklılık",
-      description: "Modern hücreler, yıllar süren düzenli kullanıma dayanacak şekilde mühendislik edilir.",
+      description: "Modern hücreler, yıllar süren düzenli kullanıma dayanacak şekilde tasarlanır.",
     },
     {
       label: "HIZLI ŞARJ",

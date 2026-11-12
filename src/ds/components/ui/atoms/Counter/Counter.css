@@ -35,7 +35,7 @@
 }
 
 .ds-counter__button:hover:not(:disabled) {
-  background: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
   color: #fff;
 }
 

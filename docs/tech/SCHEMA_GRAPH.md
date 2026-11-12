@@ -114,3 +114,16 @@ Değerlendirme kriterleri:
 - LOCAL_SEO_PLAYBOOK.md §1, §10: tek merkez modeli.
 - BRAND_MIGRATION.md M8: schema adı.
 - TEMPLATES.md: sayfa tipleri.
+
+---
+
+## 7. Uygulama Notu (2026-11-11)
+
+İşletme **varlık ve tip modeli kararı hâlâ beklemektedir** (§1); mevcut `Organization`, `WebSite`, `MedicalBusiness` düğümleri ve `@id` ilişkileri aynen korundu (seçenek C). Sahibin talimatıyla yalnızca **sayfa düzeyi** tipler (§5) eklendi, §3 ilkeleri korunarak:
+
+- `MainLayout.astro` her indekslenebilir sayfaya `WebPage` (alt tip: `CollectionPage` / `AboutPage` / `ContactPage`; `isPartOf` → WebSite, `publisher` → Organization) ve görünür breadcrumb'dan üretilen `BreadcrumbList` yazar (`src/lib/schema.ts`, `src/config/site-map.ts`). Sayfada zaten `BreadcrumbList` / `WebPage` varsa yenisi üretilmez.
+- 17 hizmet sayfasına `Service` eklenir (`src/config/page-types.ts`): fiyatsız; `provider` mevcut MedicalBusiness `@id`'sine referans; `areaServed` yalnızca sayfanın kendisinin yazdığı evde hizmet alanı (Kocaeli, İstanbul Anadolu Yakası).
+- `FAQPage` yalnızca görünür SSS bloğu olan sayfalarda kalır (değişmedi).
+- `Organization.foundingDate: "2009"` eklendi (BUSINESS_SOT §2 doğrulanmış; ana sayfada görünür). Darıca merkezinin açılışı (Ağustos 2024) schema'ya kuruluş tarihi olarak yazılmaz.
+- Eklenmeyenler: şube/ek adres, `AggregateRating`/`Review`, fiyat/`Offer`, `Person`, `Organization ↔ MedicalBusiness` ilişkisi (`parentOrganization` / `subOrganization`; varlık modeli kararına bağlı).
+- Doğrulama: 469 JSON-LD bloğunun tamamı ayrıştırılıyor; tüm `@id` referansları aynı sayfada tanımlı bir düğüme çözülüyor (yapı denetimi). Rich Results Test / Schema Markup Validator ile canlıya almadan önce ayrıca doğrulanmalıdır (QUALITY_GATES §12.8) — bu çalışmada harici doğrulayıcıya erişilmedi.

@@ -29,7 +29,7 @@ export const kalipAlimiTechnology: BrandPageEcosystemContent = {
         "Ölçüm tekrarlanabilirliğini artırabilir",
       ],
       models: ["Dijital Tarama Yöntemi"],
-      expertNote: "Dijital tarama her klinikte veya her durumda mevcut olmayabilir.",
+      expertNote: "Dijital tarama her merkezde veya her durumda mevcut olmayabilir.",
     },
     {
       id: "silikon-kalip-malzemesi",
@@ -41,7 +41,7 @@ export const kalipAlimiTechnology: BrandPageEcosystemContent = {
       advantages: [
         "Uzun süredir güvenilirliği kanıtlanmış bir yöntemdir",
         "Kulak kanalının ince detaylarını hassas şekilde kopyalayabilir",
-        "Çoğu klinikte yaygın olarak uygulanabilir",
+        "Çoğu merkezde yaygın olarak uygulanabilir",
       ],
       models: ["Silikon Kalıp Yöntemi"],
       expertNote: "Malzeme türü ve sertliği, kalıbın kullanım amacına göre seçilir.",

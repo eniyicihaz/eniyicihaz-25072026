@@ -54,8 +54,8 @@
 }
 
 .ds-menu__item--active .ds-menu__link {
-  background: var(--ds-primary-light, #eff6ff);
-  color: var(--ds-primary, #2563eb);
+  background: var(--ds-primary-light, var(--color-primary-50));
+  color: var(--ds-primary, var(--color-primary));
   font-weight: 600;
 }
 

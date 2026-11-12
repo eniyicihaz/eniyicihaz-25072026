@@ -38,7 +38,7 @@
 .note__content{
     color:var(--text);
 
-    font-size:1rem;
+    font-size: var(--font-size-md);
     line-height:1.7;
 
     text-wrap:pretty;

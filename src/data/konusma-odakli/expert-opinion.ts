@@ -10,7 +10,7 @@ export const konusmaOdakliExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Konuşma odaklı teknolojiler; kalabalık sohbetlerde ve gürültülü sosyal ortamlarda karşısındaki kişiyi takip etmekte zorlanan kullanıcılarda sunduğu konuşma netliği nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir teknolojidir.",
+    "Konuşma odaklı teknolojiler; kalabalık sohbetlerde ve gürültülü sosyal ortamlarda karşısındaki kişiyi takip etmekte zorlanan kullanıcılarda sunduğu konuşma netliği nedeniyle merkezimizde sıkça değerlendirdiğimiz bir teknolojidir.",
   note: "Ancak yönlü odaklanma çevresel farkındalığı bir miktar azaltabilir; bu nedenle ilk ayar ve periyodik kontrol her zaman bir odyometrist tarafından yapılmalıdır.",
   accentColor: "#ea580c",
   accentColorBadgeBg: "rgb(234 88 12 / 0.08)",

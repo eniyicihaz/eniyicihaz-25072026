@@ -19,7 +19,7 @@ export const isitmeKaybiNedirIntro: BrandPageIntroContent = {
     { value: "Kulaktan Beyne", label: "İşitme Yolu" },
     { value: "İletim, Sensörinöral, Karma", label: "Ana Türler" },
     { value: "Doğuştan veya Sonradan", label: "Başlangıç Şekli" },
-    { value: "Odyometri ile Belirlenir", label: "Kesin Tanı Yöntemi" },
+    { value: "Odyometri ile Belirlenir", label: "Değerlendirme Yöntemi" },
   ],
   accentColor: "#2563eb",
   accentColorBadgeBg: "rgb(37 99 235 / 0.08)",

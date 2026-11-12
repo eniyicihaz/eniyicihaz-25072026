@@ -6,6 +6,7 @@
 // izlenimi vermez; yalnızca üretici servis yetkisini anlatır. Yalnızca Astro + CSS + inline SVG; JavaScript yoktur.
 // Masaüstü (>=1200): iki sütun, tam illüstrasyon (cihaz, kalkan, "18 MARKA", üç teknik kart).
 // <1200 (tablet + mobil): sadeleştirilmiş şema — cihaz rozeti + "18 MARKA"; kartlar ve bağlantı çizgileri gizlenir.
+import { withCorporateHero } from "../../../lib/hero-theme";
 import { Phone, ShieldCheck, BadgeCheck, SearchCheck, FileCheck } from "lucide-astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../../lib/contact-action";
@@ -17,7 +18,8 @@ interface Props {
   data: BrandPageHeroContent;
 }
 
-const { data } = Astro.props;
+const { data: rawData } = Astro.props;
+const data = withCorporateHero(rawData);
 const ctas = [data.ctaPrimary, data.ctaSecondary];
 const icons = { badge: BadgeCheck, search: SearchCheck, file: FileCheck };
 const heroStyle = [
@@ -40,7 +42,7 @@ const heroStyle = [
       <p class="ysh__badge">{data.badge}</p>
 
       <h1 class="ysh__heading" id="brand-page-hero-title">
-        {data.headingLines.map((line) => <span class="ysh__heading-line">{line}</span>)}
+        {data.headingLines.map((line) => <><span class="ysh__heading-line">{line}</span>{" "}</>)}
       </h1>
 
       {data.paragraphs.map((p) => <p class="ysh__paragraph">{p}</p>)}
@@ -391,7 +393,7 @@ const heroStyle = [
   }
 
   .ysh__card-title {
-    font-size: clamp(0.75rem, calc(13.5 * var(--u)), 0.875rem);
+    font-size: clamp(0.875rem, calc(13.5 * var(--u)), 1rem);
     font-weight: var(--font-weight-bold);
     line-height: 1.3;
     color: #ffffff;
@@ -472,7 +474,7 @@ const heroStyle = [
     }
 
     .ysh__count-note {
-      font-size: 0.8125rem;
+      font-size: var(--font-size-xs);
     }
   }
 
@@ -493,7 +495,7 @@ const heroStyle = [
     }
 
     .ysh__paragraph {
-      font-size: 0.9375rem;
+      font-size: var(--font-size-md);
       line-height: 1.5;
     }
 
@@ -530,7 +532,7 @@ const heroStyle = [
     }
 
     .ysh__count-note {
-      font-size: 0.75rem;
+      font-size: var(--font-size-xs);
     }
   }
 </style>

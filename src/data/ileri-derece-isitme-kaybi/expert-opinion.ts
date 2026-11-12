@@ -11,7 +11,7 @@ export const ileriDereceIsitmeKaybiExpertOpinion: BrandPageExpertOpinionContent 
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "İleri derecede işitme kaybını doğru cihazlarla değerlendirmek; günlük iletişimin belirgin şekilde etkilendiği bu dönemde yaşam kalitesini korumaya yardımcı olabileceğinden klinik pratiğimizde büyük önem verdiğimiz bir konudur.",
+    "İleri derecede işitme kaybını doğru cihazlarla değerlendirmek; günlük iletişimin belirgin şekilde etkilendiği bu dönemde yaşam kalitesini korumaya yardımcı olabileceğinden merkezimizde büyük önem verdiğimiz bir konudur.",
   note: "Ancak bu sayfadaki bilgiler genel bir yönlendirme amacı taşır; kesin derece ve size uygun çözüm, yalnızca bir odyometri testi sonrasında belirlenebilir.",
   accentColor: "#57534e",
   accentColorBadgeBg: "rgb(87 83 78 / 0.08)",

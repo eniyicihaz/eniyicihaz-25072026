@@ -25,9 +25,9 @@ export const ilkKullanimRehberiRelatedContent: BrandPageRelatedContentContent = 
       href: "/rehberler/uyum-sureci/",
     },
     {
-      label: "Cihaz Bakımı",
+      label: "Cihaz Temizliği",
       description: "Cihazınızın günlük bakımı ve temizliği hakkında bilgi edinin.",
-      href: "/servis-bakim/periyodik-bakim/",
+      href: "/servis-bakim/cihaz-temizligi/",
     },
     {
       label: "Pil Kullanımı",

@@ -24,6 +24,9 @@ export const pageMeta = {
   title: `İşitme Cihazı Fiyatları ${pricing.year} | ${pricing.amountLabel}'den Başlıyor`,
   description:
     `${pricing.year}'da yapay zekâ destekli yeni nesil işitme cihazları ${pricing.amountLabel}'den başlıyor. 9 taksite kadar ödeme, fiyatı belirleyen faktörler ve Darıca'da ücretsiz test.`,
+  // Yapılandırılmış veri (WebPage + MedicalBusiness) için fiyat/taksit İÇERMEYEN ad ve açıklama (K-Fiyat-1: fiyat hiçbir
+  // şema alanına yazılmaz; görünür başlık ve meta açıklama yukarıdaki gibi kalır).
+  schemaName: `İşitme Cihazı Fiyatları ${pricing.year}`,
   schemaDescription:
     "İşitme cihazı fiyatlarını belirleyen faktörleri, cihaz türlerini, SGK desteğini ve Darıca merkezli süreci anlatan rehber sayfası.",
 };

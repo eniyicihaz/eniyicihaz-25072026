@@ -22,7 +22,7 @@ export const cocuklaraOzelAdvantages: BrandPageAdvantagesContent = {
       icon: Palette,
       category: "Kişiselleştirme",
       title: "Renkli ve Eğlenceli Tasarım Seçenekleri",
-      description: "Cihazı benimsemesini kolaylaştıran canlı renk ve desen seçenekleri sunulur.",
+      description: "Çocuğun cihazı benimsemesini kolaylaştıran canlı renk ve desen seçenekleri sunulur.",
     },
     {
       icon: Activity,

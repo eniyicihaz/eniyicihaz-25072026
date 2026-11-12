@@ -33,7 +33,7 @@ export const periyodikBakimHero: BrandPageHeroContent = {
   badge: "HİZMETLERİMİZ · SERVİS & BAKIM · PERİYODİK BAKIM",
   headingLines: ["Periyodik Bakım", "Randevusu Ne İçerir?"],
   paragraphs: [
-    "Periyodik bakım, işitme cihazınızın balmumu filtresi, tüp ve kulak ucu gibi aşınan parçalarının düzenli aralıklarla profesyonelce yenilendiği önleyici bir randevudur.",
+    "Periyodik bakım, işitme cihazınızın kulak kiri filtresi, tüp ve kulak ucu gibi aşınan parçalarının düzenli aralıklarla profesyonelce yenilendiği önleyici bir randevudur.",
     "Avrasya İşitme'de, bir sorun oluşmadan önce cihazınızın aşınan parçalarını kontrol ediyor ve gerektiğinde yeniliyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -42,7 +42,7 @@ export const periyodikBakimHero: BrandPageHeroContent = {
     {
       label: "AŞINAN PARÇA YENİLEME",
       accent: "#65a30d",
-      title: "Balmumu Filtresi ve Tüp Yenilenir",
+      title: "Kulak Kiri Filtresi ve Tüp Yenilenir",
       description: "Zamanla aşınan parçalar, sorun oluşmadan önce profesyonelce değiştirilir.",
     },
     {

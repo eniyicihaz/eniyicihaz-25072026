@@ -48,11 +48,11 @@ export const resoundEcosystem: BrandPageEcosystemContent = {
       icon: "smartphone",
       navLabel: "ReSound Assist",
       title: "ReSound Assist",
-      lead: "ReSound Smart 3D uygulaması üzerinden kliniğe gitmeden uzaktan ince ayar ve destek almayı sağlayan tele-odyoloji hizmeti.",
+      lead: "ReSound Smart 3D uygulaması üzerinden merkeze gitmeden uzaktan ince ayar ve destek almayı sağlayan tele-odyoloji hizmeti.",
       howItWorks:
         "Kullanıcı uygulama üzerinden bir talep gönderir; uzman, ayarları inceleyip günceller ve yeni ayarlar kablosuz olarak cihaza iletilir.",
       advantages: [
-        "Kliniğe gitmeden ince ayar talep etme imkânı sunar",
+        "Merkeze gitmeden ince ayar talep etme imkânı sunar",
         "Video görüşme ile uzaktan destek seçeneği sunar",
         "Düzenli takip süreçlerini kolaylaştırabilir",
       ],

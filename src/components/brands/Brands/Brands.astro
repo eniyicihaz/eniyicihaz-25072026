@@ -71,6 +71,11 @@ const Tag = embedded ? "div" : "section";
     </div>
   </div>
 
+  {/* WCAG 2.2.2 (Pause, Stop, Hide): the strip moves for more than 5 s, so keyboard, touch and screen-reader users get an explicit pause control (hover still pauses it). */}
+  <button type="button" class="brands__pause" data-brands-pause aria-pressed="false">
+    <span data-brands-pause-label>Kaydırmayı durdur</span>
+  </button>
+
   {!embedded && <a class="brands__trust" href={trust.href} data-rise>
     <span class="brands__trust-icon" aria-hidden="true">
       <ShieldCheck size={18} stroke-width={2} />
@@ -125,6 +130,19 @@ const Tag = embedded ? "div" : "section";
 
     io.observe(section);
   })();
+</script>
+
+<script>
+  const pause = document.querySelector<HTMLButtonElement>("[data-brands-pause]");
+  const marquee = document.querySelector<HTMLElement>(".brands__marquee");
+  if (pause && marquee) {
+    pause.addEventListener("click", () => {
+      const paused = marquee.classList.toggle("is-paused");
+      pause.setAttribute("aria-pressed", String(paused));
+      const label = pause.querySelector("[data-brands-pause-label]");
+      if (label) label.textContent = paused ? "Kaydırmayı başlat" : "Kaydırmayı durdur";
+    });
+  }
 </script>
 
 <style>
@@ -215,6 +233,42 @@ const Tag = embedded ? "div" : "section";
     }
     to {
       transform: translateX(-50%);
+    }
+  }
+
+  .brands__marquee.is-paused .brands__track {
+    animation-play-state: paused;
+  }
+
+  .brands__pause {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    min-height: 44px;
+    margin: var(--space-2) auto 0;
+    padding: 0 var(--space-4);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+  }
+
+  .brands__pause:hover {
+    color: var(--color-text);
+    border-color: var(--color-primary);
+  }
+
+  .brands__pause:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brands__pause {
+      display: none;
     }
   }
 

@@ -27,7 +27,7 @@ export const premiumSeriIdealUser: BrandPageIdealUserContent = {
     {
       icon: Sparkles,
       title: "En Güncel Teknolojiyi Önceliklendirenler",
-      description: "Piyasadaki en güncel ses işleme teknolojisini deneyimlemek isteyen kullanıcılar için uygun bir seçenektir.",
+      description: "Markaların güncel ses işleme teknolojisini deneyimlemek isteyen kullanıcılar için uygun bir seçenektir.",
       suggestedFamilies: ["Yapay Zeka Destekli Ses İşleme"],
     },
     {
@@ -39,7 +39,7 @@ export const premiumSeriIdealUser: BrandPageIdealUserContent = {
     {
       icon: Gauge,
       title: "En Yüksek Kişiselleştirme İsteyenler",
-      description: "Cihazının her yönünü ihtiyacına göre ince ayar yapmak isteyen kullanıcılar için premium seri daha fazla seçenek sunar.",
+      description: "Cihazının her özelliğinde ihtiyacına göre ince ayar yapmak isteyen kullanıcılar için premium seri daha fazla seçenek sunar.",
       suggestedFamilies: ["Kişiselleştirilebilir Modeller"],
     },
   ],

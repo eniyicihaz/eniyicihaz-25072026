@@ -40,7 +40,7 @@ const { data } = Astro.props;
     <p class="experience-hero__eyebrow" data-rise>{data.eyebrow}</p>
 
     <h1 class="experience-hero__heading" id="experience-hero-title" data-rise>
-      {data.headingLines.map((line) => <span class="experience-hero__heading-line">{line}</span>)}
+      {data.headingLines.map((line) => <><span class="experience-hero__heading-line">{line}</span>{" "}</>)}
     </h1>
 
     <p class="experience-hero__lead" data-rise>{data.lead}</p>
@@ -237,7 +237,7 @@ const { data } = Astro.props;
     border-radius: var(--radius-full);
     background: var(--eh-accent);
     color: var(--color-text-inverse);
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
   }
 

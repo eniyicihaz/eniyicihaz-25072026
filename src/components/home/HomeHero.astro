@@ -1,18 +1,16 @@
 ---
-// HomeHero — ana sayfanın tek, statik hero'su (Faz 2 P2, onay V1). Önceki
-// 6 slaytlı carousel'in yerini alır: tek H1, tek mesaj, ilk ekranda ziyaret
-// bilgisi ve Ara / Yol tarifi / WhatsApp hiyerarşisi.
+// HomeHero — ana sayfanın tek, statik hero'su. Tek H1, tek mesaj, ilk ekranda ziyaret bilgisi.
+// Hiyerarşi (araştırma raporu U1, proje kararı): birincil CTA = Ücretsiz İşitme Testi; ikincil = ana numara
+// (Bizi Arayın · WhatsApp'tan Yazın); yol tarifi = metin bağlantı. Görsel gerçek merkez fotoğrafıdır (D1) ve
+// üzerindeki kart yalnızca LOCAL_SOT'taki doğrulanmış çalışma saatlerini gösterir.
 //
-// Görsel: `data.image` verildiğinde tek <img> render edilir — width/height
-// (CLS koruması), loading="eager", fetchpriority="high", srcset/sizes.
-// Verilmediğinde hero metin odaklı tek sütun kalır; yer tutucu basılmaz.
-//
-// Ölçüm: CTA'lar mevcut href desenlerini kullanır (tel:, wa.me,
-// maps.app.goo.gl, /degerlendirme/ucretsiz-isitme-testi/); events.ts
-// sınıf adındaki "hero" kalıbından link_location="hero" üretir.
-import { Phone, Navigation, ArrowRight, MapPin } from "lucide-astro";
+// Ölçüm: CTA'lar mevcut href desenlerini kullanır (tel:, wa.me, maps.app.goo.gl, /degerlendirme/ucretsiz-isitme-testi/);
+// events.ts sınıf adındaki "hero" kalıbından link_location="hero" üretir. Olay adları değişmedi.
+import { Phone, Stethoscope, MapPin, Navigation, Clock } from "lucide-astro";
 import WhatsAppIcon from "../shared/WhatsAppIcon/WhatsAppIcon.astro";
-import { contactAction } from "../../lib/contact-action";
+import HeroDeviceStage from "./HeroDeviceStage.astro";
+import OpenStatus from "../shared/OpenStatus/OpenStatus.astro";
+import { company } from "../footer/Footer/data/company";
 import type { HomeHeroContent } from "../../data/home/hero";
 
 interface Props {
@@ -20,7 +18,10 @@ interface Props {
 }
 
 const { data } = Astro.props;
-const [directions, whatsapp] = data.secondaryCtas;
+const [call, whatsapp] = data.secondaryCtas;
+// Süzülen cihaz görseli dik (uzun) ise fotoğrafın üstünde ayrılan boşluk görselin oranından hesaplanır (aşağıdaki stil).
+const stage = data.deviceStage;
+const stageTall = !!stage && stage.height > stage.width;
 ---
 
 <section class:list={["home-hero", { "home-hero--with-image": !!data.image }]} aria-labelledby="home-hero-title">
@@ -31,58 +32,85 @@ const [directions, whatsapp] = data.secondaryCtas;
       <p class="home-hero__description">{data.description}</p>
 
       <p class="home-hero__visit">
-        <MapPin size={20} stroke-width={1.75} aria-hidden="true" class="home-hero__visit-icon" />
+        <MapPin size={22} stroke-width={1.75} aria-hidden="true" class="home-hero__visit-icon" />
         <span>{data.visit}</span>
       </p>
 
       <div class="home-hero__actions">
-        <a class="home-hero__btn home-hero__btn--primary" href={data.primaryCta.href} data-contact-action={contactAction(data.primaryCta.href)}>
-          <Phone size={20} stroke-width={2} aria-hidden="true" />
+        <a class="home-hero__btn home-hero__btn--primary" href={data.primaryCta.href}>
+          <Stethoscope size={22} stroke-width={2} aria-hidden="true" />
           <span>{data.primaryCta.label}</span>
         </a>
-        {/* Sıra: telefon (birincil) → WhatsApp (ikincil) → yol tarifi (üçüncül). */}
-        {whatsapp && (
-          <a class="home-hero__btn home-hero__btn--secondary" href={whatsapp.href} data-contact-action={contactAction(whatsapp.href)}>
-            <WhatsAppIcon size={20} />
-            <span>{whatsapp.label}</span>
-          </a>
-        )}
-        {directions && (
-          <a class="home-hero__btn home-hero__btn--secondary" href={directions.href} data-contact-action={contactAction(directions.href)}>
-            <Navigation size={20} stroke-width={2} aria-hidden="true" />
-            <span>{directions.label}</span>
-          </a>
-        )}
+        {
+          call && (
+            <a class="home-hero__btn home-hero__btn--secondary home-hero__btn--call" href={call.href}>
+              <Phone size={20} stroke-width={2} aria-hidden="true" />
+              <span>{call.label}</span>
+            </a>
+          )
+        }
+        {
+          whatsapp && (
+            <a class="home-hero__btn home-hero__btn--secondary home-hero__btn--wa" href={whatsapp.href}>
+              <WhatsAppIcon size={22} class="home-hero__wa-icon" />
+              <span>{whatsapp.label}</span>
+            </a>
+          )
+        }
       </div>
 
-      <a class="home-hero__text-link" href={data.textLink.href}>
+      <a class="home-hero__text-link" href={data.textLink.href} target="_blank" rel="noopener">
+        <Navigation size={18} stroke-width={2} aria-hidden="true" />
         <span>{data.textLink.label}</span>
-        <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
       </a>
     </div>
 
-    {data.image && (
-      <div class="home-hero__media">
-        <img
-          class="home-hero__image"
-          src={data.image.src}
-          srcset={data.image.srcset}
-          sizes={data.image.sizes ?? "(min-width: 1024px) 50vw, 100vw"}
-          alt={data.image.alt}
-          width={data.image.width}
-          height={data.image.height}
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </div>
-    )}
+    {
+      data.image && (
+        <div
+          class:list={["home-hero__media", { "home-hero__media--stage": !!stage && !stageTall, "home-hero__media--stage-tall": stageTall }]}
+          style={stage && stageTall ? `--device-stage-ratio:${(stage.height / stage.width).toFixed(4)};` : undefined}
+        >
+          {stage && <HeroDeviceStage {...stage} />}
+          <img
+            class="home-hero__image"
+            src={data.image.src}
+            srcset={data.image.srcset}
+            sizes={data.image.sizes ?? "(min-width: 1024px) 50vw, 100vw"}
+            alt={data.image.alt}
+            width={data.image.width}
+            height={data.image.height}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <div class="home-hero__hours" role="group" aria-label="Çalışma saatleri">
+            <Clock size={20} stroke-width={1.75} aria-hidden="true" class="home-hero__hours-icon" />
+            <div class="home-hero__hours-body">
+              <OpenStatus />
+              <dl>
+                {company.hours.map((h) => (
+                  <div>
+                    <dt>{h.days}</dt>
+                    <dd>{h.time}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </div>
+      )
+    }
   </div>
 </section>
 
 <style>
   .home-hero {
-    background: var(--color-surface);
+    /* Süzülen cihazın yumuşak hâlesi kenardan taşabilir; yatay kaydırma oluşturmasın (özellikle büyük yazı boyutunda). */
+    overflow-x: clip;
+    background:
+      radial-gradient(ellipse 50% 70% at 92% 8%, rgb(var(--brand-teal-rgb) / 0.16) 0%, transparent 62%),
+      linear-gradient(180deg, var(--color-primary-50) 0%, var(--color-background) 100%);
     color: var(--color-text);
     padding-block: var(--space-16);
     border-bottom: 1px solid var(--color-border);
@@ -96,7 +124,7 @@ const [directions, whatsapp] = data.secondaryCtas;
 
   .home-hero--with-image .home-hero__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: var(--space-12);
     align-items: center;
   }
@@ -108,8 +136,9 @@ const [directions, whatsapp] = data.secondaryCtas;
   .home-hero__eyebrow {
     margin: 0 0 var(--space-3);
     font-size: var(--font-size-md);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.01em;
+    color: var(--color-accent-text);
   }
 
   .home-hero__title {
@@ -118,6 +147,7 @@ const [directions, whatsapp] = data.secondaryCtas;
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-tight);
     letter-spacing: -0.02em;
+    color: var(--brand-navy);
   }
 
   .home-hero__description {
@@ -130,14 +160,15 @@ const [directions, whatsapp] = data.secondaryCtas;
   .home-hero__visit {
     display: flex;
     align-items: flex-start;
-    gap: var(--space-2);
+    gap: var(--space-3);
     margin: var(--space-5) 0 0;
     padding: var(--space-3) var(--space-4);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-hover);
     border-radius: var(--radius-lg);
     background: var(--color-background);
     font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
+    color: var(--color-text);
   }
 
   .home-hero__visit-icon {
@@ -162,7 +193,7 @@ const [directions, whatsapp] = data.secondaryCtas;
     min-height: 56px;
     padding-inline: var(--space-6);
     border-radius: var(--radius-lg);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     line-height: 1.2;
     text-decoration: none;
@@ -172,23 +203,31 @@ const [directions, whatsapp] = data.secondaryCtas;
   .home-hero__btn--primary {
     background: var(--color-primary);
     color: var(--color-text-inverse);
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-primary-hover);
+    box-shadow: 0 12px 24px -12px rgb(var(--color-primary-rgb) / 0.6);
   }
 
   .home-hero__btn--primary:hover {
     background: var(--color-primary-hover);
-    border-color: var(--color-primary-hover);
   }
 
   .home-hero__btn--secondary {
     background: var(--color-background);
     color: var(--color-text);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-hover);
+  }
+
+  .home-hero__btn--call :global(svg) {
+    color: var(--color-primary);
+  }
+
+  .home-hero__btn--secondary :global(.home-hero__wa-icon) {
+    color: #25d366;
   }
 
   .home-hero__btn--secondary:hover {
     border-color: var(--color-primary);
-    color: var(--color-primary);
+    background: var(--color-primary-50);
   }
 
   .home-hero__btn:focus-visible,
@@ -202,7 +241,7 @@ const [directions, whatsapp] = data.secondaryCtas;
     align-items: center;
     gap: var(--space-2);
     min-height: 48px;
-    margin-top: var(--space-4);
+    margin-top: var(--space-3);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
@@ -211,7 +250,22 @@ const [directions, whatsapp] = data.secondaryCtas;
   }
 
   .home-hero__media {
+    position: relative;
     min-width: 0;
+  }
+
+  /* Süzülen cihaz için fotoğrafın üstünde ayrılan sahne boşluğu (cihaz fotoğrafın sağ üst köşesine biner). */
+  .home-hero__media--stage {
+    padding-top: 124px;
+  }
+
+  /* Dik (uzun) cihaz görseli — 3B modelin karesi. Sahne genişliği fotoğrafın genişliğiyle orantılıdır, böylece her ekran
+     genişliğinde aynı kompozisyon korunur. Üstte ayrılan boşluk = sahne yüksekliği − cihazın fotoğrafa bindiği pay
+     (fotoğraf genişliğinin %4,4'ü: pil kapağı duvardaki tabelanın üst kenarına inmeden kalır). Yüzdeler bu kutunun
+     genişliğine göredir; `--device-stage-w` değerini HeroDeviceStage de sahne genişliği olarak kullanır. */
+  .home-hero__media--stage-tall {
+    --device-stage-w: clamp(100px, 23.5%, 150px);
+    padding-top: calc(var(--device-stage-w) * var(--device-stage-ratio, 1.3333) - 4.4%);
   }
 
   .home-hero__image {
@@ -219,7 +273,58 @@ const [directions, whatsapp] = data.secondaryCtas;
     width: 100%;
     height: auto;
     border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .home-hero__hours {
+    position: absolute;
+    left: var(--space-4);
+    bottom: var(--space-4);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    max-width: calc(100% - var(--space-8));
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid rgb(255 255 255 / 0.6);
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 0.94);
     box-shadow: var(--shadow-md);
+    backdrop-filter: blur(6px);
+  }
+
+  .home-hero__hours-icon {
+    flex: none;
+    margin-top: 3px;
+    color: var(--color-primary);
+  }
+
+  .home-hero__hours-body {
+    min-width: 0;
+  }
+
+  .home-hero__hours dl {
+    margin: 0;
+    display: grid;
+    gap: 2px;
+  }
+
+  .home-hero__hours dl div {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: space-between;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+  }
+
+  .home-hero__hours dt {
+    color: var(--color-text-muted);
+  }
+
+  .home-hero__hours dd {
+    margin: 0;
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text);
   }
 
   @media (max-width: 1023px) {
@@ -231,19 +336,38 @@ const [directions, whatsapp] = data.secondaryCtas;
 
   @media (max-width: 640px) {
     .home-hero {
-      padding-block: var(--space-10);
+      padding-block: var(--space-8);
     }
 
     .home-hero__inner {
       padding-inline: var(--space-4);
     }
 
+    /* Mobilde birincil CTA tam genişlik; telefon + WhatsApp yan yana (ilk ekranda dikey alan kazanımı). */
     .home-hero__actions {
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-hero__btn--primary {
+      grid-column: 1 / -1;
     }
 
     .home-hero__btn {
       width: 100%;
+      padding-inline: var(--space-3);
+    }
+
+    .home-hero__media--stage {
+      padding-top: 92px;
+    }
+
+    .home-hero__hours {
+      position: static;
+      margin-top: var(--space-3);
+      max-width: none;
+      background: var(--color-background);
+      border-color: var(--color-border-hover);
     }
   }
 </style>

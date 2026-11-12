@@ -13,7 +13,7 @@ export const periyodikBakimIdealUser: BrandPageIdealUserContent = {
     {
       icon: Ear,
       title: "Kulak Arkası (BTE/RIC) Cihaz Kullananlar",
-      description: "Tüp, kulak ucu veya balmumu filtresi gibi değişebilir parçaları olan BTE/RIC kullanıcıları için periyodik bakım önerilir.",
+      description: "Tüp, kulak ucu veya kulak kiri filtresi gibi değişebilir parçaları olan BTE/RIC kullanıcıları için periyodik bakım önerilir.",
       suggestedFamilies: ["Parça Yenileme"],
     },
     {

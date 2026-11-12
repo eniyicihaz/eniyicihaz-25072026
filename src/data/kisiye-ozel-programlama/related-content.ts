@@ -23,7 +23,7 @@ export const kisiyeOzelProgramlamaRelatedContent: BrandPageRelatedContentContent
     },
     {
       label: "Uzaktan Ayar",
-      description: "Kliniğe gelmeden uzaktan ince ayar imkânı hakkında bilgi edinin.",
+      description: "Merkeze gelmeden uzaktan ince ayar imkânı hakkında bilgi edinin.",
       href: "/uygulama-ayar/uzaktan-ayar/",
     },
     {

@@ -13,34 +13,34 @@ import type { KulakArkasiComparisonContent } from "../../components/kulak-arkasi
 
 export const yaslilarIcinCihazlarComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
-  heading: "Aile Destekli Uzaktan Ayar ile Geleneksel Klinik Ayarı Karşılaştırması",
+  heading: "Aile Destekli Uzaktan Ayar ile Merkezde Yapılan Ayar Karşılaştırması",
   intro: "İki yaklaşım arasındaki temel farkları aşağıdaki tabloda özetledik. Size uygun yaklaşım, teknolojiye aşinalığınıza ve aile desteğinize göre değişir.",
   primaryLabel: "Aile Destekli Uzaktan Ayar (RemoteCare)",
-  secondaryLabel: "Geleneksel Klinik Ayarı",
+  secondaryLabel: "Merkezde Yapılan Ayar",
   rows: [
     {
       feature: "Çalışma Prensibi",
       primary: "Cihaz ayarları, uyumlu bir uygulama üzerinden internet aracılığıyla uzaktan güncellenir.",
-      secondary: "Cihaz ayarları, klinikte yüz yüze bir görüşmede güncellenir.",
+      secondary: "Cihaz ayarları, merkezde yüz yüze bir görüşmede güncellenir.",
     },
     {
-      feature: "Klinik Ziyareti İhtiyacı",
-      primary: "Küçük ayar değişiklikleri için kliniğe gitme ihtiyacını azaltabilir.",
-      secondary: "Her ayar değişikliği için kliniğe gidilmesi gerekir.",
+      feature: "Merkez Ziyareti İhtiyacı",
+      primary: "Küçük ayar değişiklikleri için merkeze gitme ihtiyacını azaltabilir.",
+      secondary: "Her ayar değişikliği için merkeze gidilmesi gerekir.",
     },
     {
       feature: "Aile Katılımı",
-      primary: "Aile bireyleri, yetkilendirilmesi durumunda sürece dahil olabilir.",
+      primary: "Aile bireyleri, yetkilendirilmeleri durumunda sürece dahil olabilir.",
       secondary: "Süreç genellikle yalnızca kullanıcı ve odyometrist arasında yürür.",
     },
     {
       feature: "Ulaşım İhtiyacı",
       primary: "Hareket kısıtlılığı olan kullanıcılar için ulaşım zorluğunu azaltmaya yardımcı olabilir.",
-      secondary: "Her ziyaret için kliniğe ulaşım gerekir.",
+      secondary: "Her ziyaret için merkeze ulaşım gerekir.",
     },
     {
       feature: "Kapsamlı Değerlendirmeler",
-      primary: "İlk uyum ve kapsamlı testler için yine bir klinik ziyareti gerekebilir.",
+      primary: "İlk uyum ve kapsamlı testler için yine bir merkez ziyareti gerekebilir.",
       secondary: "Her türlü değerlendirme ve ayar yüz yüze yapılır.",
     },
     {
@@ -51,7 +51,7 @@ export const yaslilarIcinCihazlarComparison: KulakArkasiComparisonContent = {
     {
       feature: "Hız",
       primary: "Küçük ayar değişiklikleri genellikle daha hızlı yapılabilir.",
-      secondary: "Randevu almak ve kliniğe gitmek zaman alabilir.",
+      secondary: "Randevu almak ve merkeze gitmek zaman alabilir.",
     },
     {
       feature: "Uygunluk",

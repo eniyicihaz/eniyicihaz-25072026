@@ -218,7 +218,7 @@ const layouts = [makeLayout("desktop"), makeLayout("mobile")];
     stroke-linejoin: round;
     font-size: 15px;
     font-weight: 600;
-    fill: #1e3a8a;
+    fill: var(--brand-navy);
     font-family: inherit;
   }
 
@@ -238,7 +238,7 @@ const layouts = [makeLayout("desktop"), makeLayout("mobile")];
   }
 
   .audiogram__sym--left {
-    stroke: #2563eb;
+    stroke: var(--color-primary);
   }
 
   .audiogram__caption {
@@ -263,7 +263,7 @@ const layouts = [makeLayout("desktop"), makeLayout("mobile")];
     }
 
     .audiogram__svg--mobile .audiogram__tick {
-      font-size: 13px;
+      font-size: var(--font-size-xs);
     }
 
     .audiogram__svg--mobile .audiogram__axis {
@@ -271,11 +271,11 @@ const layouts = [makeLayout("desktop"), makeLayout("mobile")];
     }
 
     .audiogram__svg--mobile .audiogram__hint {
-      font-size: 12px;
+      font-size: var(--font-size-xs);
     }
 
     .audiogram__svg--mobile .audiogram__band-label {
-      font-size: 13px;
+      font-size: var(--font-size-xs);
       stroke-width: 4px;
     }
 

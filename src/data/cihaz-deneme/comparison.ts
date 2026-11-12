@@ -24,7 +24,7 @@ export const cihazDenemeComparison: KulakArkasiComparisonContent = {
     {
       feature: "Test Ortamı",
       primary: "Ev, iş ve sosyal ortamlarınızda gerçek koşullarda gerçekleşir.",
-      secondary: "Klinik ortamında simüle edilen senaryolarla sınırlıdır.",
+      secondary: "Merkez ortamında simüle edilen senaryolarla sınırlıdır.",
     },
     {
       feature: "Amaç",

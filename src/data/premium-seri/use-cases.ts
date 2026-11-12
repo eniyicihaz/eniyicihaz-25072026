@@ -19,7 +19,7 @@ export const premiumSeriUseCases: BrandPageTechnologyContent = {
     {
       label: "BAĞLANTI",
       title: "Tam Kablosuz Bağlantı",
-      description: "Telefon, TV ve diğer cihazlarla kesintisiz bağlantı sağlar.",
+      description: "Telefon, TV ve diğer uyumlu cihazlarla kablosuz bağlantı kurar.",
     },
     {
       label: "YÖNLÜ MİKROFON",
@@ -34,7 +34,7 @@ export const premiumSeriUseCases: BrandPageTechnologyContent = {
     {
       label: "KİŞİSELLEŞTİRME",
       title: "Detaylı Kişiselleştirme Seçenekleri",
-      description: "Cihaz, ihtiyacınıza göre ince ayar yapılabilir.",
+      description: "Cihaza ihtiyacınıza göre ince ayar yapılabilir.",
     },
     {
       label: "GARANTİ",

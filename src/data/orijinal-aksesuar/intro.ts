@@ -17,7 +17,7 @@ export const orijinalAksesuarIntro: BrandPageIntroContent = {
     "Aksesuarlarınızı yenilerken, cihazınızın markasına ve modeline özel orijinal ürünleri tercih etmeniz önerilir.",
   ],
   stats: [
-    { value: "Modele Özel Üretim", label: "Uyum Garantisi" },
+    { value: "Modele Özel Üretim", label: "Modele Uygunluk" },
     { value: "Düzenli Değişim", label: "Hijyen Önerisi" },
     { value: "Orijinal Kulak Ucu", label: "Sık Kullanılan Aksesuar" },
     { value: "Yetkili Kanaldan Temin", label: "Güvenilir Kaynak" },

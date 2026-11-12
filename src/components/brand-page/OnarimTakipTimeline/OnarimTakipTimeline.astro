@@ -23,11 +23,11 @@ const infoIcons = { phone: Phone, whatsapp: MessageCircle, manual: UserRoundChec
       <svg class="ott__wave" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <defs>
           <linearGradient id="ott-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0">
-            <stop offset="0" stop-color="#2563eb" />
+            <stop offset="0" stop-color="#05618a" />
             <stop offset="0.3" stop-color="#0e7490" />
-            <stop offset="0.55" stop-color="#7c3aed" />
-            <stop offset="0.8" stop-color="#0f2547" />
-            <stop offset="1" stop-color="#0284c7" />
+            <stop offset="0.55" stop-color="#1a7077" />
+            <stop offset="0.8" stop-color="#043556" />
+            <stop offset="1" stop-color="#0476a3" />
           </linearGradient>
         </defs>
         <path d="M 0 60 C 50 60, 70 28, 100 28 C 160 28, 140 92, 300 92 C 360 92, 340 28, 500 28 C 560 28, 540 92, 700 92 C 760 92, 740 28, 900 28 C 950 28, 960 60, 1000 60" stroke="url(#ott-grad)" />
@@ -96,8 +96,8 @@ const infoIcons = { phone: Phone, whatsapp: MessageCircle, manual: UserRoundChec
     overflow: clip;
     background: var(--color-surface);
     padding-block: var(--space-12);
-    --navy: #0f2547;
-    --blue: #2563eb;
+    --navy: var(--brand-navy-deep);
+    --blue: var(--color-primary);
     --teal: #0e7490;
     --violet: #7c3aed;
     --sky: #0284c7;
@@ -217,7 +217,7 @@ const infoIcons = { phone: Phone, whatsapp: MessageCircle, manual: UserRoundChec
     border-radius: 50%;
     background: var(--tone);
     box-shadow: 0 0 0 3px var(--color-surface);
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     line-height: 1;
     color: #ffffff;
@@ -251,7 +251,7 @@ const infoIcons = { phone: Phone, whatsapp: MessageCircle, manual: UserRoundChec
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    min-height: 32px;
+    min-height: 44px;
     margin-top: 2px;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);

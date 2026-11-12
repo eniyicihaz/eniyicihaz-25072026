@@ -353,7 +353,7 @@ const resultItems = categoryExplorer.items.filter((item) => resultHrefs.includes
 
   .chooser__option:has(.chooser__radio:checked) {
     border-color: var(--color-primary);
-    background: rgb(37 99 235 / 0.05);
+    background: rgb(var(--color-primary-rgb) / 0.05);
   }
 
   .chooser__radio:focus-visible ~ .chooser__option-label {
@@ -477,8 +477,8 @@ const resultItems = categoryExplorer.items.filter((item) => resultHrefs.includes
   }
 
   .chooser__result-card--fallback {
-    background: rgb(37 99 235 / 0.05);
-    border-color: rgb(37 99 235 / 0.35);
+    background: rgb(var(--color-primary-rgb) / 0.05);
+    border-color: rgb(var(--color-primary-rgb) / 0.35);
   }
 
   .chooser__result-card--fallback:hover .chooser__result-link,

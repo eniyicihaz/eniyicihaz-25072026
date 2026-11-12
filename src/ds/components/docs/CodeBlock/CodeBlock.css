@@ -31,7 +31,7 @@
 }
 
 .code-block__language{
-    font-size:.75rem;
+    font-size: var(--font-size-xs);
     font-weight:600;
     letter-spacing:.08em;
     text-transform:uppercase;

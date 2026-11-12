@@ -9,7 +9,7 @@ export const sarjEdilebilirExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Şarj edilebilir işitme cihazları; özellikle pil değiştirme zahmetinden kaçınmak isteyen ve düzenli bir günlük rutine sahip kullanıcılarda, sunduğu kullanım kolaylığı nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir seçenektir.",
+    "Şarj edilebilir işitme cihazları; özellikle pil değiştirme zahmetinden kaçınmak isteyen ve düzenli bir günlük rutine sahip kullanıcılarda, sunduğu kullanım kolaylığı nedeniyle merkezimizde sıkça değerlendirdiğimiz bir seçenektir.",
   note: "Ancak güç seçimi tek başına yeterli değildir; cihaz tipi, işitme kaybınızın derecesi ve yaşam tarzınız birlikte değerlendirilmelidir.",
   accentColor: "#059669",
   accentColorBadgeBg: "rgb(5 150 105 / 0.08)",

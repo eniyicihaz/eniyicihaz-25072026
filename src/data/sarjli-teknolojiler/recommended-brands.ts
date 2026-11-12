@@ -11,7 +11,7 @@ import type { BrandPageRelatedContentContent } from "../../components/brand-page
 
 export const sarjliTeknolojilerRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Şarjlı Teknolojisiyle Öne Çıkan Markalar",
+  heading: "Şarj Teknolojisiyle Öne Çıkan Markalar",
   links: [
     {
       label: "Oticon",

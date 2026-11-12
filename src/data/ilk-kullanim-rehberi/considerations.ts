@@ -28,7 +28,7 @@ export const ilkKullanimRehberiConsiderations: BrandPageIdealUserContent = {
       icon: FileText,
       title: "Kullanım Kılavuzunuzu Saklayın",
       description: "Markaya özel talimatlar farklılık gösterebilir; teslim aldığınız kullanım kılavuzunu saklamanız önerilir.",
-      suggestedFamilies: ["Marka Özel Talimatlar"],
+      suggestedFamilies: ["Markaya Özel Talimatlar"],
     },
     {
       icon: Wrench,

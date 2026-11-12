@@ -51,7 +51,7 @@ export const nuearFaq: BrandPageFaqContent = {
         },
         {
           question: "NuEar cihazları uzaktan ayarlanabilir mi?",
-          answer: "Uygun modellerde, Hear Circle uygulaması üzerinden kliniğe gitmeden uzaktan ince ayar talep edilebilir.",
+          answer: "Uygun modellerde, Hear Circle uygulaması üzerinden merkeze gitmeden uzaktan ince ayar talep edilebilir.",
         },
         {
           question: "NuEar'da şarjlı model var mı?",

@@ -20,7 +20,7 @@ export const yaslilarIcinCihazlarIntro: BrandPageIntroContent = {
   stats: [
     { value: "Presbiakuzi", label: "Yaygın Neden" },
     { value: "Kademeli İlerleme", label: "Tipik Seyir" },
-    { value: "Odyometri ile Belirlenir", label: "Kesin Tanı Yöntemi" },
+    { value: "Odyometri ile Belirlenir", label: "Değerlendirme Yöntemi" },
     { value: "Aile Destekli Sistemler", label: "Sıkça Değerlendirilen Çözüm" },
   ],
   accentColor: "#ca8a04",

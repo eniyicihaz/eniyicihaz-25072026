@@ -19,7 +19,7 @@ export const audifonUnique: UniqueBrandContent = {
   ],
   heroFeatures: [
     { label: "MODEL", title: `${f.n} Model Ailesi`, description: `${join(f.all)}.` },
-    { label: "SİNO", title: "3 Sino Varyantı", description: "sino S (kulak içi), sino P (BTE) ve sino R (RITE)." },
+    { label: "SİNO", title: "3 sino Varyantı", description: "sino S (kulak içi), sino P (BTE) ve sino R (RITE)." },
     { label: "AYAR", title: "Ayar Merkezde", description: "Audifon cihazlarında uzaktan ayar yapılmıyor." },
   ],
   floatingCard: { title: "Bluetooth: yalnızca rega R", description: "Listedeki tek Bluetooth etiketli Audifon ailesi." },
@@ -119,6 +119,6 @@ export const audifonUnique: UniqueBrandContent = {
   cta: {
     heading: "Audifon Ailelerini Merkezde Sorun",
     description: "Beş Audifon ailesinden hangisinin size uygun olduğunu işitme testinizden sonra birlikte netleştirelim; bizi arayın veya WhatsApp'tan yazın.",
-    trustItems: ["Ücretsiz İşitme Testi", "3 Sino Varyantı", "Merkezimiz Darıca'da"],
+    trustItems: ["Ücretsiz İşitme Testi", "3 sino Varyantı", "Merkezimiz Darıca'da"],
   },
 };

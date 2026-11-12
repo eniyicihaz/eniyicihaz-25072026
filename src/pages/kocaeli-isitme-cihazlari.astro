@@ -9,11 +9,12 @@
 // Çayırova, Kocaeli — src/lib/schema.ts). Dilovası/Tuzla/Pendik
 // areaServed'de BİLİNÇLİ olarak yoktur; Kocaeli için ayrı adres yoktur.
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import { kocaeliRelated } from "../data/local/related";
 
 import { kocaeliHero } from "../data/kocaeli/hero";
 import { kocaeliDistricts, kocaeliHomeService, kocaeliShortcuts } from "../data/kocaeli/copy-blocks";
@@ -26,22 +27,6 @@ import { contactHero } from "../data/contact/hero";
 
 const PAGE_URL = "https://www.eniyicihaz.com/kocaeli-isitme-cihazlari/";
 
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Kocaeli İşitme Cihazları", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
-
 const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.definitionSentence);
 ---
 
@@ -49,12 +34,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
   title="Kocaeli İşitme Cihazları | Tek Merkezimiz Darıca'da"
   description="Tek fiziksel merkezimiz Darıca'da. Kocaeli'nin ilçelerinden otobüs hatları, adres, çalışma saatleri, yol tarifi ve Kocaeli genelinde evde hizmet bilgisi."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="kocaeli-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <CorporateHero data={kocaeliHero} />
 
@@ -106,16 +86,11 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 
   <BrandPageFaq data={kocaeliFaq} />
 
+  <BrandPageRelatedContent data={kocaeliRelated} />
   <BrandPageFinalCta data={kocaeliFinalCta} />
 </MainLayout>
 
 <style>
-  .kocaeli-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .kocaeli-block {
     background: var(--color-background);
     padding-block: var(--space-16);

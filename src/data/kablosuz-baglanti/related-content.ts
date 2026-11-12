@@ -30,7 +30,7 @@ export const kablosuzBaglantiRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Şarjlı Teknolojiler",
-      description: "Kablosuz bağlantı özellikleriyle sıkça bir arada sunulan şarjlı modelleri yakından tanıyın.",
+      description: "Şarjlı cihazların arkasındaki pil ve şarj yönetimi teknolojisini yakından tanıyın.",
       href: "/teknolojiler/sarjli-teknolojiler/",
     },
     {

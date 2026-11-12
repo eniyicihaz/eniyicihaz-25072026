@@ -20,7 +20,7 @@ export const cokIleriDereceIsitmeKaybiIntro: BrandPageIntroContent = {
   stats: [
     { value: "91 dB ve Üzeri", label: "İşitme Eşiği Aralığı" },
     { value: "Konuşmanın Büyük Bölümü", label: "Sıkça Etkilenen Alan" },
-    { value: "Odyometri ile Belirlenir", label: "Kesin Tanı Yöntemi" },
+    { value: "Odyometri ile Belirlenir", label: "Değerlendirme Yöntemi" },
     { value: "Power BTE", label: "Sıkça Tercih Edilen Modeller" },
   ],
   accentColor: "#92400e",

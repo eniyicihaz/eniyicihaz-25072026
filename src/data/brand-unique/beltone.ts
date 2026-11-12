@@ -60,7 +60,7 @@ export const beltoneUnique: UniqueBrandContent = {
       },
       {
         icon: Layers,
-        title: "RIC ya da BTE arasında kararsızlar",
+        title: "RIC ile BTE arasında kararsız kalanlar",
         description: "Serene sitemizde hem RIC hem BTE etiketli; Boost Max S saf BTE. Hangi yerleşimin uygun olduğu kulak yapınıza göre belirlenir.",
         families: ["Serene", "Boost Max S"],
       },

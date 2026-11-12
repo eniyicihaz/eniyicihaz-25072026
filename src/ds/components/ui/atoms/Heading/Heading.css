@@ -5,7 +5,7 @@
 }
 
 .ds-heading--xs {
-  font-size: .75rem;
+  font-size: var(--font-size-xs);
 }
 
 .ds-heading--sm {
@@ -65,7 +65,7 @@
 }
 
 .ds-heading--primary {
-  color: var(--ds-primary, #2563eb);
+  color: var(--ds-primary, var(--color-primary));
 }
 
 .ds-heading--muted {

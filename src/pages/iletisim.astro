@@ -12,7 +12,6 @@
 // Kapanış CTA. Sekiz adımlı ziyaret süreci ve 6 kartlık hizmet bölümü
 // kaldırıldı (Darıca sayfası ve ilgili sayfalar kapsıyor).
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import ContactHero from "../components/contact/ContactHero/ContactHero.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import ContactServiceArea from "../components/contact/ContactServiceArea/ContactServiceArea.astro";
@@ -27,22 +26,6 @@ import { contactFaq } from "../data/contact/faq";
 import { contactFinalCta } from "../data/contact/finalCta";
 
 import { company } from "../components/footer/Footer/data/company";
-
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "İletişim", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
 
 // Extends the sitewide Organization node (MainLayout.astro) via the same
 // `@id` rather than redeclaring it — one real business, described more
@@ -99,12 +82,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   title="İletişim | Darıca, Kocaeli — Avrasya İşitme Cihazları"
   description="Darıca, Kocaeli'deki SGK anlaşmalı işitme merkezimizin adresi, telefon numaraları, çalışma saatleri ve hizmet bölgeleri. Hemen arayın veya yol tarifi alın."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="contact-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <ContactHero data={contactHero} />
   <ContactLocationCard data={contactLocationCard} />
@@ -139,12 +117,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
 </MainLayout>
 
 <style>
-  .contact-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .contact-block {
     background: var(--color-background);
     padding-block: var(--space-16);

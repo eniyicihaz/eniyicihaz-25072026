@@ -27,7 +27,7 @@ const icons = { assess: ClipboardCheck, apply: SlidersHorizontal, care: Wrench }
       <p class="sh__badge">{data.badge}</p>
 
       <h1 class="sh__heading" id="brand-hero-title">
-        {data.headingLines.map((line) => <span class="sh__heading-line">{line}</span>)}
+        {data.headingLines.map((line) => <><span class="sh__heading-line">{line}</span>{" "}</>)}
       </h1>
 
       {data.description.map((p) => <p class="sh__desc">{p}</p>)}

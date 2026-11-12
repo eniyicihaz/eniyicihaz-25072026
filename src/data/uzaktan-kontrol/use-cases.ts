@@ -38,7 +38,7 @@ export const uzaktanKontrolUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "RANDEVU TASARRUFU",
-      title: "Küçük Ayarlar İçin Kliniğe Gelmeyin",
+      title: "Küçük Ayarlar İçin Merkeze Gelmeyin",
       description: "Basit ayar güncellemeleri için uzaktan destek oturumu yeterli olabilir.",
     },
   ],

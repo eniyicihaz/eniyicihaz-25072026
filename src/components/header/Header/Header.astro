@@ -21,12 +21,12 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
 <div class="hd" data-header>
   <header class="hd-bar">
     <div class="hd-bar__inner">
-      <Logo name={data.brand.name} tagline={data.brand.tagline} href={data.brand.href} />
+      <Logo name={data.brand.name} href={data.brand.href} />
 
       <Navbar items={data.nav} currentPath={currentPath} />
 
       <div class="hd-bar__actions">
-        <HeaderActions phone={data.phone} cta={data.cta} />
+        <HeaderActions phone={data.phone} whatsapp={data.whatsapp} cta={data.cta} />
         <button
           type="button"
           class="hd-bar__burger"
@@ -47,6 +47,7 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
     brand={data.brand}
     items={data.nav}
     phone={data.phone}
+    whatsapp={data.whatsapp}
     cta={data.cta}
     currentPath={currentPath}
   />
@@ -176,6 +177,21 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
   @media (max-width: 640px) {
     .hd {
       --hd-pad: var(--space-4);
+    }
+  }
+
+  /* En dar ekranlar (≤ 359 px: küçük telefonlar, ekran yakınlaştırması açık cihazlar — WCAG 1.4.10 Yeniden Akış).
+     Logo + eylem düğmeleri en az 347 px istiyordu; 320 px'te her sayfa 27 px yatay kayıyordu (ölçüm, 2. tur).
+     Yalnızca boşluklar daralır ve logo bir kademe küçülür (Logo.astro); düğmeler 48 px kalır. */
+  @media (max-width: 359px) {
+    .hd {
+      --hd-pad: var(--space-3);
+    }
+    .hd-bar__inner {
+      gap: var(--space-3);
+    }
+    .hd-bar__actions {
+      gap: var(--space-2);
     }
   }
 
@@ -326,7 +342,11 @@ const megaMenus = data.nav.filter((i) => i.mega).map((i) => i.mega!);
       const action = el.dataset.action;
       if (action === "open-mobile") setMobile(true);
       else if (action === "close-mobile") setMobile(false);
-      else if (action === "open-search") setSearch(true);
+      else if (action === "open-search") {
+        // Opened from the drawer: close the drawer first so the overlay is not stacked under it.
+        if (mobile?.hasAttribute("data-open")) setMobile(false);
+        setSearch(true);
+      }
       else if (action === "close-search") setSearch(false);
       else if (action === "toggle-accordion") {
         const group = el.closest<HTMLElement>("[data-accordion]");

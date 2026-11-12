@@ -26,7 +26,7 @@ export const uzmanGorusleriTechnology: BrandPageEcosystemContent = {
       advantages: [
         "Erken müdahalenin önemini daha iyi anlamanızı sağlar",
         "Uyum sürecinin neden zaman aldığını açıklar",
-        "Bilinçli bir bekleme kararı almanıza yardımcı olur",
+        "Beklemenin etkisini bilerek karar vermenize yardımcı olur",
       ],
       models: ["Beyin-İşitme İlişkisi"],
       expertNote: "Bu konu hakkında daha fazla bilgi için Uyum Süreci sayfamızı inceleyebilirsiniz.",

@@ -40,7 +40,7 @@ export const kulakArkasiTechnology: BrandPageEcosystemContent = {
         "Genellikle tam şarjla bir günlük kullanım sağlar",
       ],
       models: ["Şarjlı BTE / RIC Modelleri"],
-      expertNote: "Şarjlı modeller, günlük pil değişimini unutmak istemeyen kullanıcılar arasında hızla yaygınlaşıyor.",
+      expertNote: "Şarjlı modeller, pil değiştirmekle uğraşmak istemeyen kullanıcılar arasında yaygınlaşıyor.",
     },
     {
       id: "geri-besleme",

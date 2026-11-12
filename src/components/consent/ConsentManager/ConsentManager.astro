@@ -34,15 +34,18 @@ const categories = [
 ---
 
 <section class="consent-banner" data-consent-banner hidden aria-labelledby="consent-banner-title">
-  <h2 class="consent-banner__title" id="consent-banner-title">Çerez tercihleriniz</h2>
+  <div class="consent-banner__head">
+    <h2 class="consent-banner__title" id="consent-banner-title">Çerez tercihleriniz</h2>
+    <button type="button" class="consent-banner__manage" data-consent-open>Tercihleri yönet</button>
+  </div>
   <p class="consent-banner__text">
-    Zorunlu çerezler sitenin çalışması için kullanılır. Analitik ve reklam ölçüm çerezleri yalnızca sizin onayınızla
-    açılır; seçim yapana kadar Google’a hiçbir istek gönderilmez.
+    Zorunlu çerezler sitenin çalışması içindir. Analitik ve reklam ölçüm çerezleri yalnızca onayınızla açılır; seçim
+    yapana kadar Google’a hiçbir istek gönderilmez.
   </p>
+  <!-- Kabul ve ret aynı boyut, aynı stil, yan yana: biri diğerinden daha belirgin değildir. -->
   <div class="consent-banner__actions">
     <button type="button" class="btn btn--outline btn--md" data-consent-action="accept-all"><span>Tümünü kabul et</span></button>
     <button type="button" class="btn btn--outline btn--md" data-consent-action="reject-all"><span>Tümünü reddet</span></button>
-    <button type="button" class="btn btn--outline btn--md" data-consent-open><span>Tercihleri yönet</span></button>
   </div>
 </section>
 
@@ -260,17 +263,22 @@ const categories = [
 </script>
 
 <style>
-  /* --- Çerez bandı -------------------------------------------------------- */
+  /* --- Çerez bandı --------------------------------------------------------
+     Kompakt alt bant: mobilde ekranın yaklaşık beşte biri (eski 3 satırlık yığın ≈ %39'du). Kabul / ret yan yana ve
+     eşit ağırlıkta. Sabit iletişim çubuğu (ContactDock) varsa onun üstünde durur (--dock-h). */
   .consent-banner {
     position: fixed;
-    inset: auto var(--space-3) var(--space-3) var(--space-3);
+    inset: auto var(--space-3) calc(var(--dock-h, 0px) + var(--space-3)) var(--space-3);
     z-index: 1000;
     display: grid;
-    gap: var(--space-3);
-    max-width: 44rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-5);
+    row-gap: var(--space-2);
+    align-items: center;
+    max-width: 56rem;
     margin-inline: auto;
     padding: var(--space-4) var(--space-5);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-hover);
     border-radius: var(--radius-xl);
     background: var(--color-white);
     color: var(--color-text);
@@ -281,34 +289,81 @@ const categories = [
     display: none;
   }
 
+  .consent-banner__head {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
   .consent-banner__title {
     margin: 0;
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .consent-banner__manage {
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-primary);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .consent-banner__manage:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
   }
 
   .consent-banner__text {
+    grid-column: 1;
     margin: 0;
-    font-size: var(--font-size-sm);
-    line-height: 1.55;
+    font-size: var(--font-size-xs);
+    line-height: 1.45;
     color: var(--color-text-muted);
   }
 
   .consent-banner__actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(min(9rem, 100%), 1fr));
     gap: var(--space-2);
   }
 
   .consent-banner__actions :global(.btn) {
     width: 100%;
     justify-content: center;
+    white-space: nowrap;
   }
 
-  @media (max-width: 520px) {
-    .consent-banner__actions {
+  @media (max-width: 720px) {
+    .consent-banner {
       grid-template-columns: 1fr;
+      padding: var(--space-3) var(--space-4);
+      inset-inline: var(--space-2);
+      inset-block-end: calc(var(--dock-h, 0px) + var(--space-2));
+      border-radius: var(--radius-lg);
+    }
+    .consent-banner__actions {
+      grid-column: 1;
+      grid-row: auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: var(--space-1);
+    }
+    .consent-banner__actions :global(.btn) {
+      padding-inline: var(--space-2);
+      height: 48px;
     }
   }
 

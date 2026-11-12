@@ -18,7 +18,7 @@ export const kontrolRandevusuIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: History,
-      title: "Uzun Süredir İşitme Yeniden Testi Yaptırmayanlar",
+      title: "Uzun Süredir İşitme Testini Yenilemeyenler",
       description: "Bir süredir işitme yeniden değerlendirmesi yaptırmayan kullanıcılar için kontrol randevusu faydalı olabilir.",
       suggestedFamilies: ["İşitme Yeniden Değerlendirmesi"],
     },

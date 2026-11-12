@@ -17,8 +17,8 @@
 }
 
 .ds-phone-input:focus-within {
-  border-color: var(--ds-primary, #2563eb);
-  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+  border-color: var(--ds-primary, var(--color-primary));
+  box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / .15);
 }
 
 .ds-phone-input--invalid {

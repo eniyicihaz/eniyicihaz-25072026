@@ -35,6 +35,9 @@
 
 Konum bilgileri yeniden taramada güncellenir. "Faz" sütunu MASTER_PLAN.md §7'ye göredir.
 
+
+
+> **Güncelleme 2026-11-11 (§3.1 durumu):** Header ve footer artık gerçek yatay logoyu kullanır (`Logo.astro`, `FooterBrand.astro`); erişilebilir ad logodaki yazıyla aynıdır ve "ENİYİCİHAZ" yazı logosu ile "En İyi" içeren tagline kaldırılmıştır. Palet logodan ölçülmüştür (`docs/tech/DESIGN_REFRESH.md`). Favicon seti (eski "E" kare) ve kare logo henüz değiştirilmedi (ayrı onay).
 ### 3.1 Marka adı ve wordmark (Faz 3)
 | # | Madde | Hedef | Not |
 |---|---|---|---|

@@ -38,7 +38,7 @@ export const cihazTemizligiFaq: BrandPageFaqContent = {
         {
           question: "Hangi temizlik malzemelerini kullanmalıyım?",
           answer:
-            "Yumuşak, kuru bir bez ve gerekiyorsa balmumu temizleme teli yeterlidir; bu araçlar temizlik kitinde bulunur.",
+            "Yumuşak, kuru bir bez ve gerekiyorsa kulak kiri temizleme teli yeterlidir; bu araçlar temizlik kitinde bulunur.",
         },
         {
           question: "Elektronik kuru saklama kutusu kullanmam gerekir mi?",
@@ -63,7 +63,7 @@ export const cihazTemizligiFaq: BrandPageFaqContent = {
         {
           question: "Temizlik sonrası ses sorunu devam ederse ne yapmalıyım?",
           answer:
-            "Bu durumda balmumu filtresi veya tüp yenilenmesi gerekebilir; Periyodik Bakım veya Teknik Servis değerlendirmesi önerilir.",
+            "Bu durumda kulak kiri filtresi veya tüp yenilenmesi gerekebilir; Periyodik Bakım veya Teknik Servis değerlendirmesi önerilir.",
         },
       ],
     },

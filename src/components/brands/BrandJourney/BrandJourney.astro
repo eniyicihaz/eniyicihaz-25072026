@@ -23,10 +23,10 @@ const { eyebrow, heading, intro, steps } = brandJourney;
       <svg class="bj__wave" viewBox="0 0 1000 150" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <defs>
           <linearGradient id="bj-grad" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#2563eb" />
+            <stop offset="0" stop-color="#05618a" />
             <stop offset="0.36" stop-color="#0e7490" />
-            <stop offset="0.64" stop-color="#7c3aed" />
-            <stop offset="1" stop-color="#d97706" />
+            <stop offset="0.64" stop-color="#3ea4aa" />
+            <stop offset="1" stop-color="#043556" />
           </linearGradient>
         </defs>
         <path
@@ -85,7 +85,7 @@ const { eyebrow, heading, intro, steps } = brandJourney;
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(40% 55% at 12% 20%, rgb(37 99 235 / 0.07), transparent 100%),
+      radial-gradient(40% 55% at 12% 20%, rgb(var(--color-primary-rgb) / 0.07), transparent 100%),
       radial-gradient(40% 55% at 90% 80%, rgb(124 58 237 / 0.06), transparent 100%);
   }
 
@@ -152,8 +152,8 @@ const { eyebrow, heading, intro, steps } = brandJourney;
 
   .bj__step {
     --tone: var(--color-primary);
-    --tone-2: #1d4ed8;
-    --tone-soft: rgb(37 99 235 / 0.1);
+    --tone-2: var(--color-primary-hover);
+    --tone-soft: rgb(var(--color-primary-rgb) / 0.1);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -239,7 +239,7 @@ const { eyebrow, heading, intro, steps } = brandJourney;
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    min-height: 32px;
+    min-height: 44px;
     margin-top: var(--space-1);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
@@ -469,7 +469,7 @@ const { eyebrow, heading, intro, steps } = brandJourney;
     }
 
     .bj__text {
-      font-size: 0.875rem;
+      font-size: var(--font-size-md);
       line-height: 1.5;
     }
 
@@ -502,7 +502,7 @@ const { eyebrow, heading, intro, steps } = brandJourney;
       border-radius: 50%;
       background: #ffffff;
       box-shadow: 0 0 0 1px var(--tone-soft), 0 2px 4px rgb(15 23 42 / 0.15);
-      font-size: 11px;
+      font-size: var(--font-size-xs);
       font-weight: var(--font-weight-bold);
       line-height: 1;
       color: var(--tone-2);
@@ -537,7 +537,7 @@ const { eyebrow, heading, intro, steps } = brandJourney;
     }
 
     .bj__link {
-      min-height: 30px;
+      min-height: 44px;
     }
   }
 

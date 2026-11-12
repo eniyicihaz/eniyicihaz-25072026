@@ -20,7 +20,7 @@ export const etkinliklerIdealUser: BrandPageIdealUserContent = {
       icon: Building2,
       title: "Kurumlar ve İş Yerleri",
       description: "Çalışanlarına yönelik farkındalık etkinliği düzenlemek isteyen kurumlar için faydalıdır.",
-      suggestedFamilies: ["Kurumsal İşbirliği"],
+      suggestedFamilies: ["Kurumsal İş Birliği"],
     },
     {
       icon: HeartHandshake,

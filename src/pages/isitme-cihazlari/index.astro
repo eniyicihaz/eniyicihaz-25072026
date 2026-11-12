@@ -24,7 +24,6 @@ import { MessageCircle, MapPin, Phone } from "lucide-astro";
 import WhatsAppIcon from "../../components/shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../lib/contact-action";
 import MainLayout from "../../layouts/MainLayout.astro";
-import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import Brands from "../../components/brands/Brands/Brands.astro";
 import BrandExtended from "../../components/brands/BrandExtended/BrandExtended.astro";
 import BrandPageModels from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
@@ -42,13 +41,15 @@ import GuideNotice from "../../components/price-guide/GuideNotice.astro";
 import GuideCta from "../../components/price-guide/GuideCta.astro";
 
 import TypeProfiles from "../../components/device-guide/TypeProfiles.astro";
+import DeviceTypeScroller from "../../components/device-types/DeviceTypeScroller.astro";
+import DeviceTypeCompare from "../../components/device-types/DeviceTypeCompare.astro";
 import AnatomyMap from "../../components/device-guide/AnatomyMap.astro";
 import FocusBlock from "../../components/device-guide/FocusBlock.astro";
 
 import { buildMedicalBusinessSchema } from "../../lib/schema";
 import { daricaLocation } from "../../data/darica/location";
 import { devicesExtended } from "../../data/devices/extended";
-import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../../data/isitme-cihazlari/page";
+import { pageMeta, toc, PAGE_URL } from "../../data/isitme-cihazlari/page";
 import { devicesGuideHero, contactLinks } from "../../data/isitme-cihazlari/hero";
 import { devicesQuickAnswer } from "../../data/isitme-cihazlari/quick-answer";
 import { typesSection, typeProfiles } from "../../data/isitme-cihazlari/types";
@@ -65,16 +66,6 @@ import { devicesRelated, devicesCta } from "../../data/isitme-cihazlari/related-
 
 // Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması, görünür
 // SSS verisinden BrandPageFaq içinde üretilir. Product/Offer/fiyat yok.
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : { item: PAGE_URL }),
-  })),
-};
 const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
 
 // Sayfada görünen 8 cihaz türü profili — her öğe kendi bölüm çapasına işaret eder.
@@ -103,13 +94,8 @@ const locationCard = {
 ---
 
 <MainLayout title={pageMeta.title} description={pageMeta.description}>
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(typesListSchema)} />
-
-  <div class="dg-breadcrumb">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <GuideHero data={devicesGuideHero} icons={{ primary: Compass, secondary: Stethoscope }} />
 
@@ -122,6 +108,9 @@ const locationCard = {
   <!-- B. Doğrudan cevap -->
   <DirectAnswer data={devicesQuickAnswer} />
 
+  <!-- B2. Kulakta nerede durur? — kaydırmalı görsel özet (IIC → RIC), ayrıntılar aşağıdaki profillerde -->
+  <DeviceTypeScroller />
+
   <!-- C. Cihaz türleri -->
   <GuideSection {...typesSection} tone="alt">
     <TypeProfiles items={typeProfiles} />
@@ -131,6 +120,9 @@ const locationCard = {
   <GuideSection id="tur-karsilastirmasi" eyebrow={typesTable.eyebrow} heading={typesTable.heading} intro={typesTable.intro}>
     <GuideTable data={typesTable} bare />
   </GuideSection>
+
+  <!-- D2. Etkileşimli yan yana karşılaştırma (en fazla 3 tür; fiyat/tanı yok) -->
+  <DeviceTypeCompare />
 
   <!-- E. Nasıl çalışır -->
   <GuideSection {...anatomySection} tone="alt">
@@ -361,12 +353,6 @@ const locationCard = {
     text-decoration: underline;
   }
 
-  .dg-breadcrumb {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-4) var(--space-6) 0;
-  }
-
   .dg-group + .dg-group {
     margin-top: var(--space-10);
   }
@@ -445,10 +431,6 @@ const locationCard = {
   }
 
   @media (max-width: 640px) {
-    .dg-breadcrumb {
-      padding-inline: var(--space-4);
-    }
-
     .dg-trio {
       gap: var(--space-2);
     }

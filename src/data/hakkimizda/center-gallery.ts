@@ -7,7 +7,7 @@ export const hakkimizdaCenterGallery: CenterGalleryContent = {
   badge: "Merkezimiz",
   heading: "Darıca'daki Merkezimiz",
   paragraphs: [
-    "Darıca'daki merkezimiz; danışan karşılama, işitme değerlendirmesi, cihaz uygulaması, kişiye özel ayar ve satış sonrası görüşmelerin yürütüldüğü fiziksel bir mekandır.",
+    "Darıca'daki merkezimiz; danışan karşılama, işitme değerlendirmesi, cihaz uygulaması, kişiye özel ayar ve satış sonrası görüşmelerin yürütüldüğü fiziksel bir mekândır.",
     "Merkezimizi ziyaret edebilir, ekibimizle yüz yüze görüşebilirsiniz.",
   ],
   featureImage: {

@@ -13,8 +13,8 @@ export const periyodikBakimUseCases: BrandPageTechnologyContent = {
   items: [
     {
       label: "BALMUMU FİLTRESİ",
-      title: "Balmumu Filtresi Değişimi",
-      description: "Aşınan veya tıkanan balmumu filtresi yenilenir.",
+      title: "Kulak Kiri Filtresi Değişimi",
+      description: "Aşınan veya tıkanan kulak kiri filtresi yenilenir.",
     },
     {
       label: "TÜP / KULAK UCU",

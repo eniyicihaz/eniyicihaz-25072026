@@ -1,0 +1,367 @@
+---
+// DeviceTypeCompare — cihaz türlerini yan yana karşılaştırma aracı. Veri: sitedeki 8 tür profili (data/isitme-cihazlari/types.ts);
+// yeni bilgi yok, FİYAT YOK, TANI YOK: yalnızca "nasıl kullanılır / görünürlük / kolaylık / kapsam / kimler için / dikkat edilecekler".
+// En fazla üç tür seçilir (dördüncüde kalanlar devre dışı kalır); varsayılan BTE + RIC + ITE. JS yoksa varsayılan üç kart görünür.
+import { typeProfiles } from "../../data/isitme-cihazlari/types";
+import { imageSrcset } from "../../lib/responsive-images";
+
+const SHORT: Record<string, string> = {
+  "kulak-arkasi-bte": "Kulak arkası (BTE)",
+  "tur-ric-rite": "RIC / RITE",
+  "kulak-ici-ite": "Kulak içi (ITE)",
+  itc: "Yarım kanal (ITC)",
+  cic: "Kanal içi (CIC)",
+  iic: "Görünmez (IIC)",
+  "sarj-edilebilir": "Şarj edilebilir",
+  cocuk: "Çocuklara yönelik",
+};
+const DEFAULTS = new Set(["kulak-arkasi-bte", "tur-ric-rite", "kulak-ici-ite"]);
+const FALLBACK_HREF: Record<string, string> = { itc: "/isitme-cihazlari/kulak-ici-ite/" };
+
+const items = typeProfiles.map((p) => ({
+  p,
+  short: SHORT[p.id] ?? p.name,
+  selected: DEFAULTS.has(p.id),
+  href: p.href ?? FALLBACK_HREF[p.id],
+  srcset: p.image ? imageSrcset(p.image.src) : undefined,
+}));
+---
+
+<section class="dtcmp" id="tur-karsilastirma-araci" aria-labelledby="dtcmp-title" data-dtcmp>
+  <div class="dtcmp__inner">
+    <header class="dtcmp__head">
+      <p class="dtcmp__eyebrow">Yan Yana Karşılaştırın</p>
+      <h2 class="dtcmp__title" id="dtcmp-title">İşitme Cihazı Türlerini Yan Yana Karşılaştırın</h2>
+      <p class="dtcmp__intro">En fazla üç tür seçin; kullanım, görünürlük, kolaylık ve dikkat edilecekleri yan yana görün.</p>
+    </header>
+
+    <fieldset class="dtcmp__pick" data-dtcmp-pick>
+      <legend class="dtcmp__legend">Karşılaştırılacak türler (en fazla 3)</legend>
+      <div class="dtcmp__chips">
+        {
+          items.map((it) => (
+            <label class="dtcmp__chip">
+              <input type="checkbox" class="dtcmp__check" value={it.p.id} checked={it.selected} />
+              <span class="dtcmp__chip-body">{it.short}</span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+    <p class="dtcmp__status" aria-live="polite" data-dtcmp-status>3 tür seçili.</p>
+
+    <div class="dtcmp__grid" data-dtcmp-grid>
+      {
+        items.map((it) => (
+          <article class="dtcmp__card" data-id={it.p.id} hidden={!it.selected}>
+            {it.p.image && (
+              <div class="dtcmp__media">
+                <img
+                  src={it.p.image.src}
+                  srcset={it.srcset}
+                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw"
+                  width={it.p.image.width}
+                  height={it.p.image.height}
+                  alt={it.p.image.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+            <div class="dtcmp__body">
+              <h3 class="dtcmp__name">{it.p.name}</h3>
+              {it.p.alias && <p class="dtcmp__alias">{it.p.alias}</p>}
+              <dl class="dtcmp__facts">
+                <dt>Nasıl kullanılır?</dt>
+                <dd>{it.p.facts.howUsed}</dd>
+                <dt>Görünürlük</dt>
+                <dd>{it.p.facts.visibility}</dd>
+                <dt>Kullanım kolaylığı</dt>
+                <dd>{it.p.facts.ease}</dd>
+                <dt>Güç ve kullanım kapsamı</dt>
+                <dd>{it.p.facts.scope}</dd>
+              </dl>
+              <h4 class="dtcmp__sub">Kimler için değerlendirilebilir?</h4>
+              <ul>
+                {it.p.whoFor.map((x) => <li>{x}</li>)}
+              </ul>
+              <h4 class="dtcmp__sub">Dikkat edilecekler</h4>
+              <ul>
+                {it.p.watch.map((x) => <li>{x}</li>)}
+              </ul>
+              {it.href && (
+                <a class="dtcmp__link" href={it.href}>
+                  {it.p.linkLabel ?? "Ayrıntıları okuyun"}
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <p class="dtcmp__empty" data-dtcmp-empty hidden>Karşılaştırmak için yukarıdan en az bir tür seçin.</p>
+    <p class="dtcmp__note">
+      Bu karşılaştırma genel bilgidir. Hangi türün size uygun olduğuna işitme testi ve uzman değerlendirmesi sonrasında karar verilir.
+    </p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-dtcmp]").forEach((root) => {
+    const boxes = [...root.querySelectorAll<HTMLInputElement>("[data-dtcmp-pick] input[type=checkbox]")];
+    const cards = [...root.querySelectorAll<HTMLElement>(".dtcmp__card")];
+    const status = root.querySelector<HTMLElement>("[data-dtcmp-status]");
+    const empty = root.querySelector<HTMLElement>("[data-dtcmp-empty]");
+    const MAX = 3;
+    const update = () => {
+      const on = boxes.filter((b) => b.checked).map((b) => b.value);
+      cards.forEach((c) => (c.hidden = !on.includes(c.dataset.id ?? "")));
+      boxes.forEach((b) => (b.disabled = !b.checked && on.length >= MAX));
+      if (empty) empty.hidden = on.length > 0;
+      if (status) status.textContent = on.length >= MAX ? `${on.length} tür seçili (en fazla ${MAX}). Başka tür eklemek için birini kaldırın.` : `${on.length} tür seçili.`;
+    };
+    boxes.forEach((b) => b.addEventListener("change", update));
+    update();
+  });
+</script>
+
+<style>
+  .dtcmp {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-12);
+  }
+
+  .dtcmp__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .dtcmp__head {
+    max-width: 52rem;
+  }
+
+  .dtcmp__eyebrow {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-text);
+  }
+
+  .dtcmp__title {
+    margin: 0;
+    font-size: clamp(1.625rem, 1.25rem + 1.6vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--brand-navy);
+  }
+
+  .dtcmp__intro {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .dtcmp__pick {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  .dtcmp__legend {
+    padding: 0;
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .dtcmp__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .dtcmp__chip {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+  }
+
+  .dtcmp__check {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  .dtcmp__chip-body {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 var(--space-5);
+    border: 2px solid var(--color-border-hover);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    transition: border-color var(--transition-base), background-color var(--transition-base), color var(--transition-base);
+  }
+
+  .dtcmp__chip:hover .dtcmp__chip-body {
+    border-color: var(--color-primary);
+  }
+
+  .dtcmp__check:checked + .dtcmp__chip-body {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .dtcmp__check:focus-visible + .dtcmp__chip-body {
+    box-shadow: var(--focus-ring);
+  }
+
+  .dtcmp__check:disabled + .dtcmp__chip-body {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .dtcmp__status {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .dtcmp__grid {
+    margin-top: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  .dtcmp__card[hidden],
+  .dtcmp__empty[hidden] {
+    display: none;
+  }
+
+  .dtcmp__card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    overflow: hidden;
+  }
+
+  .dtcmp__media {
+    aspect-ratio: 4 / 3;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .dtcmp__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .dtcmp__body {
+    padding: var(--space-5);
+  }
+
+  .dtcmp__name {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    color: var(--brand-navy);
+  }
+
+  .dtcmp__alias {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .dtcmp__facts {
+    margin: var(--space-4) 0 0;
+  }
+
+  .dtcmp__facts dt {
+    margin-top: var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.01em;
+    color: var(--color-accent-text);
+  }
+
+  .dtcmp__facts dd {
+    margin: 2px 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .dtcmp__sub {
+    margin: var(--space-4) 0 var(--space-1);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .dtcmp__body ul {
+    margin: 0;
+    padding-left: var(--space-5);
+  }
+
+  .dtcmp__body li {
+    margin-bottom: var(--space-1);
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+  }
+
+  .dtcmp__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    margin-top: var(--space-3);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-underline-offset: 4px;
+  }
+
+  .dtcmp__empty {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .dtcmp__note {
+    margin: var(--space-6) 0 0;
+    padding: var(--space-4) var(--space-5);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 1023px) {
+    .dtcmp__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .dtcmp__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .dtcmp__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

@@ -12,7 +12,7 @@ export const periyodikBakimFaq: BrandPageFaqContent = {
   intro: "Sıklık, kapsam ve maliyet konusunda en çok sorulan sorular.",
   decisionCard: {
     title: "Periyodik Bakım Randevusu Almak İster misiniz?",
-    points: ["Balmumu filtresi ve tüp yenileme", "Genel aşınma kontrolü", "Fonksiyon testi", "Ücretsiz"],
+    points: ["Kulak kiri filtresi ve tüp yenileme", "Genel aşınma kontrolü", "Fonksiyon testi", "Ücretsiz"],
     ctaLabel: "Hemen Randevu Alın",
     ctaHref: contactConfig.phone.href,
   },

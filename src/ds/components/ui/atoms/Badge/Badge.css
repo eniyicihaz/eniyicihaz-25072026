@@ -23,7 +23,7 @@
 
 .badge--sm {
   padding: 0.3rem 0.65rem;
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
 }
 
 .badge--md {

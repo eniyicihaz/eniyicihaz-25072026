@@ -24,7 +24,7 @@ export const kulakArkasiHero: BrandPageHeroContent = {
   headingLines: ["Kulak Arkası (BTE)", "İşitme Cihazları"],
   paragraphs: [
     "Hafif işitme kaybından çok ileri dereceye kadar geniş bir aralıkta kullanılabilen kulak arkası (BTE) işitme cihazları, dayanıklılığı ve güçlü ses çıkışıyla öne çıkar.",
-    "Bluetooth bağlantı, şarj edilebilir pil ve çocuklardan yaşlılara kadar geniş bir kullanıcı kitlesine uygun modelleriyle Avrasya İşitme'de keşfedin.",
+    "Bluetooth bağlantılı, şarj edilebilir ve çocuklardan yaşlılara kadar geniş bir kullanıcı kitlesine uygun kulak arkası modelleri Avrasya İşitme Cihazları'nda inceleyebilirsiniz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

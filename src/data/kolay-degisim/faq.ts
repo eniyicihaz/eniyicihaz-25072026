@@ -38,7 +38,7 @@ export const kolayDegisimFaq: BrandPageFaqContent = {
         {
           question: "Değişim talebimi nasıl iletebilirim?",
           answer:
-            "Bizimle telefon, WhatsApp veya klinik ziyaretiyle iletişime geçerek değişim talebinizi iletebilirsiniz.",
+            "Değişim talebinizi telefonla, WhatsApp'tan veya merkezimize gelerek iletebilirsiniz.",
         },
         {
           question: "Değişim süreci ne kadar sürer?",

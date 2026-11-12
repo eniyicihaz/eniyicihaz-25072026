@@ -32,11 +32,11 @@ export const periyodikBakimTechnology: BrandPageEcosystemContent = {
       expertNote: "Belirgin bir hasar tespit edilirse, Teknik Servis değerlendirmesi önerilir.",
     },
     {
-      id: "balmumu-filtresi-ve-tup-degisimi",
+      id: "kulak kiri-filtresi-ve-tup-degisimi",
       icon: "layers",
       navLabel: "Filtre ve Tüp Değişimi",
-      title: "Balmumu Filtresi ve Tüp Değişimi",
-      lead: "Aşınan veya tıkanan balmumu filtresi ve tüp, uygun yenileriyle değiştirilir.",
+      title: "Kulak Kiri Filtresi ve Tüp Değişimi",
+      lead: "Aşınan veya tıkanan kulak kiri filtresi ve tüp, uygun yenileriyle değiştirilir.",
       howItWorks: "Mevcut filtre ve tüp çıkarılır; cihaz modelinize uygun yeni parçalar takılır.",
       advantages: [
         "Ses kalitesini olumsuz etkileyen tıkanıklıkları giderir",
@@ -71,7 +71,7 @@ export const periyodikBakimTechnology: BrandPageEcosystemContent = {
       advantages: [
         "Bakımın etkili olduğunu doğrular",
         "Olası bir sorunun bakım sırasında fark edilmesini sağlar",
-        "Kliniği güvenle terk etmenizi sağlar",
+        "Merkezden cihazınız kontrol edilmiş olarak ayrılmanızı sağlar",
       ],
       models: ["Fonksiyon Testi"],
       expertNote: "Testte bir sorun tespit edilirse, uygun bir sonraki adım birlikte belirlenir.",

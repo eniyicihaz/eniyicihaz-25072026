@@ -12,7 +12,7 @@ export const cokIleriDereceIsitmeKaybiExpertOpinion: BrandPageExpertOpinionConte
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Çok ileri derecede işitme kaybını kapsamlı bir yaklaşımla, gerektiğinde bir kulak burun boğaz uzmanıyla birlikte değerlendirmek; bu derecede en uygun çözümü belirlemek için klinik pratiğimizde önem verdiğimiz bir yaklaşımdır.",
+    "Çok ileri derecede işitme kaybını kapsamlı bir yaklaşımla, gerektiğinde bir kulak burun boğaz uzmanıyla birlikte değerlendirmek; bu derecede en uygun çözümü belirlemek için merkezimizde önem verdiğimiz bir yaklaşımdır.",
   note: "Ancak bu sayfadaki bilgiler genel bir yönlendirme amacı taşır; kesin derece, uygunluk ve size özel çözüm, yalnızca bir odyometri testi ve gerektiğinde bir KBB değerlendirmesi sonrasında belirlenebilir.",
   accentColor: "#92400e",
   accentColorBadgeBg: "rgb(146 64 14 / 0.08)",

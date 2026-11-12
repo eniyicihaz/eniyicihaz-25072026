@@ -74,7 +74,7 @@ export const resoundUnique: UniqueBrandContent = {
         icon: Smartphone,
         title: "Telefon bağlantısına bakanlar",
         description: "Altı ReSound ailesinin hepsinde Bluetooth etiketi var; telefon uyumu modele göre değişir.",
-        families: f.bt.slice(0, 4),
+        families: f.bt,
       },
     ],
   },

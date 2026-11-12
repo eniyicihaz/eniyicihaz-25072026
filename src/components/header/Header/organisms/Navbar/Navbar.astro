@@ -73,8 +73,8 @@ const { items, currentPath } = Astro.props;
     background: transparent;
     border-radius: var(--radius-md);
     font-family: inherit;
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-medium);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
     letter-spacing: -0.01em;
     color: var(--color-text-muted);
     text-decoration: none;
@@ -149,14 +149,14 @@ const { items, currentPath } = Astro.props;
   /* Compact sizing is the default: the 6 items are 641px wide, which is what
      fits beside the logo and the full actions cluster from 1500px up. The
      roomy sizing (912px wide) only fits from 1780px, so it is opt-in there. */
-  @media (min-width: 1780px) {
+  @media (min-width: 1900px) {
     .hd-nav__link,
     .hd-nav__trigger {
-      font-size: var(--font-size-lg);
+      font-size: var(--font-size-md);
       padding-inline: var(--space-3);
     }
     .hd-nav__list {
-      gap: 36px;
+      gap: 24px;
     }
   }
 </style>

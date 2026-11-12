@@ -27,8 +27,8 @@
 }
 
 .ds-step--active .ds-step__indicator {
-  background: var(--ds-primary, #2563eb);
-  border-color: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
+  border-color: var(--ds-primary, var(--color-primary));
   color: #fff;
 }
 
@@ -54,6 +54,6 @@
 }
 
 .ds-step__description {
-  font-size: .8125rem;
+  font-size: var(--font-size-xs);
   color: var(--ds-text-secondary, #64748b);
 }

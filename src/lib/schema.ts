@@ -142,3 +142,73 @@ export function buildMedicalBusinessSchema(
     hasMap: BUSINESS_MAP_URL,
   };
 }
+
+// ---------------------------------------------------------------------------------------------------------------
+// Page-level nodes generated centrally by MainLayout (WebPage, BreadcrumbList, Service). All of them reference the
+// existing sitewide @ids (Organization / MedicalBusiness / WebSite) instead of declaring new entities, and none adds
+// a branch, address, phone, rating or review (MASTER_PLAN K7, QUALITY_GATES §4).
+const SITE_ORIGIN = "https://www.eniyicihaz.com";
+
+export function absoluteUrl(path: string): string {
+  return new URL(path, SITE_ORIGIN).toString();
+}
+
+export function buildBreadcrumbSchema(pageUrl: string, trail: Array<{ label: string; path: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: trail.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.label,
+      ...(index < trail.length - 1 ? { item: absoluteUrl(item.path) } : {}),
+    })),
+  };
+}
+
+export type WebPageKind = "WebPage" | "CollectionPage" | "AboutPage" | "ContactPage";
+
+export function buildWebPageSchema(opts: {
+  pageUrl: string;
+  name: string;
+  description: string;
+  kind?: WebPageKind;
+  hasBreadcrumb?: boolean;
+  aboutBusiness?: boolean;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": opts.kind ?? "WebPage",
+    "@id": `${opts.pageUrl}#webpage`,
+    url: opts.pageUrl,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: "tr",
+    isPartOf: { "@type": "WebSite", "@id": WEBSITE_ID, url: `${SITE_ORIGIN}/`, name: company.legalName },
+    publisher: { "@id": ORGANIZATION_ID },
+    ...(opts.hasBreadcrumb ? { breadcrumb: { "@id": `${opts.pageUrl}#breadcrumb` } } : {}),
+    ...(opts.aboutBusiness ? { about: { "@type": "MedicalBusiness", "@id": BUSINESS_ID, name: company.legalName, url: BUSINESS_URL } } : {}),
+  };
+}
+
+export interface ServiceMeta {
+  name: string;
+  serviceType: string;
+  /** Only where the page itself states the area (e.g. the home-visit page). */
+  areaServed?: string[];
+}
+
+export function buildServiceSchema(pageUrl: string, description: string, meta: ServiceMeta) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${pageUrl}#service`,
+    name: meta.name,
+    serviceType: meta.serviceType,
+    description,
+    url: pageUrl,
+    provider: { "@type": "MedicalBusiness", "@id": BUSINESS_ID, name: company.legalName, url: BUSINESS_URL },
+    ...(meta.areaServed ? { areaServed: meta.areaServed } : {}),
+  };
+}

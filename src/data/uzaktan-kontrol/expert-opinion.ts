@@ -10,8 +10,8 @@ export const uzaktanKontrolExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Uzaktan kontrol ve uzaktan destek özellikleri; kliniğe sık gelmekte zorlanan veya kolay ayar yapmak isteyen kullanıcılarda sunduğu erişim kolaylığı nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir teknolojidir.",
-  note: "Ancak uzaktan destek her ayarı kapsamaz; ilk programlama ve karmaşık ayarlamalar için yüz yüze bir randevu her zaman gerekli olabilir.",
+    "Uzaktan kontrol ve uzaktan destek özellikleri; merkeze sık gelmekte zorlanan veya kolay ayar yapmak isteyen kullanıcılarda sunduğu erişim kolaylığı nedeniyle merkezimizde sıkça değerlendirdiğimiz bir teknolojidir.",
+  note: "Ancak uzaktan destek her ayarı kapsamaz; ilk programlama ve karmaşık ayarlamalar için yüz yüze bir randevu gerekebilir.",
   accentColor: "#0284c7",
   accentColorBadgeBg: "rgb(2 132 199 / 0.08)",
   accentColorBadgeBorder: "rgb(2 132 199 / 0.35)",

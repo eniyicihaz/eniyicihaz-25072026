@@ -1,0 +1,32 @@
+---
+// PageBreadcrumb — the single, site-wide breadcrumb row (research report N1/R10). It is rendered by MainLayout from
+// the route tree in src/config/site-map.ts, so every page shows its real position (Ana Sayfa › category › page) and
+// the matching BreadcrumbList JSON-LD is generated from the very same trail.
+import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
+import type { RouteInfo } from "../../config/site-map";
+
+interface Props {
+  trail: RouteInfo[];
+}
+
+const { trail } = Astro.props;
+const items = trail.map((r, i) => (i === trail.length - 1 ? { label: r.label, current: true } : { label: r.label, href: r.path }));
+---
+
+<div class="page-breadcrumb">
+  <Breadcrumb items={items} />
+</div>
+
+<style>
+  .page-breadcrumb {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-6);
+  }
+
+  @media (max-width: 640px) {
+    .page-breadcrumb {
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+</style>

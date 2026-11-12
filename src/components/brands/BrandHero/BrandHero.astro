@@ -53,7 +53,9 @@ const { data: brandHero } = Astro.props;
       <h1 class="brand-hero__heading" id="brand-hero-title">
         {
           brandHero.headingLines.map((line) => (
-            <span class="brand-hero__heading-line">{line}</span>
+            <>
+              <span class="brand-hero__heading-line">{line}</span>{" "}
+            </>
           ))
         }
       </h1>

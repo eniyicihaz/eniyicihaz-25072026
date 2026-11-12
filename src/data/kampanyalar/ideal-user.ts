@@ -37,7 +37,7 @@ export const kampanyalarIdealUser: BrandPageIdealUserContent = {
     {
       icon: ShieldQuestion,
       title: "Güncel Fırsatları Takip Edenler",
-      description: "Kliniğimizin güncel kampanyalarını düzenli olarak takip etmek isteyen kullanıcılar için faydalıdır.",
+      description: "Merkezimizin güncel kampanyalarını düzenli olarak takip etmek isteyen kullanıcılar için faydalıdır.",
       suggestedFamilies: ["Genel Takip"],
     },
   ],

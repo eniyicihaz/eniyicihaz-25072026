@@ -26,7 +26,7 @@ export const nuearIdealUser: BrandPageIdealUserContent = {
     {
       icon: Smartphone,
       title: "Uzaktan Destek İsteyenler",
-      description: "Kliniğe gitmeden uzaktan ince ayar almak isteyen kullanıcılar için sıkça önerilir.",
+      description: "Merkeze gitmeden uzaktan ince ayar almak isteyen kullanıcılar için sıkça önerilir.",
       suggestedFamilies: ["NXG AI", "Circa"],
     },
     {

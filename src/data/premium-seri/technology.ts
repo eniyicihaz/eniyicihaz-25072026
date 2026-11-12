@@ -26,7 +26,7 @@ export const premiumSeriTechnology: BrandPageEcosystemContent = {
       lead: "Premium seri modeller, ortamı gerçek zamanlı olarak analiz eden yapay zeka destekli ses işleme sistemleri kullanır.",
       howItWorks: "Cihazdaki sensörler ortam gürültüsünü ve konuşma yoğunluğunu sürekli analiz eder; yapay zeka algoritmaları en uygun dinleme profilini otomatik olarak seçer.",
       advantages: [
-        "Karmaşık ortamlarda bile net ses ayrımı sağlar",
+        "Karmaşık ortamlarda ses ayrımını kolaylaştırmayı hedefler",
         "Manuel ayar ihtiyacını azaltır",
         "Farklı ortamlara hızlı uyum sağlar",
       ],

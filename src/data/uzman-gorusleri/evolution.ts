@@ -10,7 +10,7 @@ import type { BrandPageTechEvolutionContent } from "../../components/brand-page/
 export const uzmanGorusleriEvolution: BrandPageTechEvolutionContent = {
   badge: "EN SIK DUYULAN YANLIŞ BİLGİLER",
   heading: "En Sık Duyduğumuz 5 Yanlış Bilgi",
-  intro: "Kliniğimizde en sık karşılaştığımız yanlış inanışları ve yerine bilinmesi gerekenleri bir araya getirdik.",
+  intro: "Merkezimizde en sık karşılaştığımız yanlış inanışları ve yerine bilinmesi gerekenleri bir araya getirdik.",
   stages: [
     {
       era: "\"İşitme cihazları sesi rahatsız edici şekilde yükseltir\"",

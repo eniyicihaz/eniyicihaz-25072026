@@ -1,0 +1,177 @@
+---
+// HubPage — category hub (index) page. Gathers the existing pages of one section (src/config/site-map.ts) under a
+// short orientation, in the site's shared corporate hero + related-content + closing-CTA components, so a hub looks
+// and behaves like every other content page. Legal hubs (variant "legal") render a plain header and no sales CTA.
+import MainLayout from "../../../layouts/MainLayout.astro";
+import BrandPageHero from "../../brand-page/BrandPageHero/BrandPageHero.astro";
+import type { BrandPageHeroContent } from "../../brand-page/BrandPageHero/BrandPageHero.astro";
+import BrandPageRelatedContent from "../../brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import BrandPageFinalCta from "../../brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import { ArrowRight } from "lucide-astro";
+import { childrenOf } from "../../../config/site-map";
+import { contactConfig } from "../../../config";
+import type { HubDef } from "../../../data/hubs";
+
+interface Props {
+  hub: HubDef;
+}
+
+const { hub } = Astro.props;
+const children = childrenOf(hub.path);
+
+const heroData: BrandPageHeroContent = {
+  textOnly: true,
+  badge: hub.badge,
+  headingLines: [hub.h1],
+  paragraphs: hub.paragraphs,
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
+  features: [],
+  image: { src: "", alt: "" },
+  floatingCard: { title: "", description: "" },
+  accentColor: "#8fd3d7",
+  accentColorHover: "#b8e6e9",
+  accentColorSoft: "rgb(143 211 215 / 0.14)",
+  accentColorBorder: "rgb(143 211 215 / 0.42)",
+};
+
+const listData = {
+  badge: "BU BÖLÜMDEKİ SAYFALAR",
+  heading: hub.listHeading,
+  links: children.map((c) => ({ label: c.label, description: c.summary ?? "", href: c.path })),
+  accentColor: "#05618a",
+  accentColorBadgeBg: "rgb(5 97 138 / 0.08)",
+  accentColorBadgeBorder: "rgb(5 97 138 / 0.32)",
+  accentColorBadgeText: "#05618a",
+};
+
+const ctaData = {
+  badge: "SİZE YARDIMCI OLALIM",
+  heading: "Hangisiyle Başlayacağınızdan Emin Değil misiniz?",
+  description:
+    "Durumunuzu anlatın; size en uygun sayfayı ve gerekirse bir sonraki adımı birlikte belirleyelim. Aramak veya yazmak için aşağıdaki seçenekleri kullanabilirsiniz.",
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
+  trustItems: ["SGK anlaşmalı merkez", "Ücretsiz işitme testi", "18 markada teknik servis", "Baskısız süreç"],
+  accentColor: "#8fd3d7",
+  accentColorHover: "#b8e6e9",
+  accentColorGlow: "rgb(62 164 170 / 0.28)",
+  accentColorShadow: "rgb(143 211 215 / 0.35)",
+  accentColorShadowHover: "rgb(143 211 215 / 0.5)",
+  accentColorFocus: "rgb(143 211 215 / 0.6)",
+  accentColorTrustBg: "rgb(143 211 215 / 0.14)",
+};
+---
+
+<MainLayout title={hub.title} description={hub.description} pageType="CollectionPage">
+  {
+    hub.variant === "legal" ? (
+      <section class="hub-legal" aria-labelledby="hub-legal-title">
+        <div class="hub-legal__inner">
+          <h1 class="hub-legal__title" id="hub-legal-title">{hub.h1}</h1>
+          <p class="hub-legal__lead">{hub.paragraphs[0]}</p>
+          <ul class="hub-legal__list">
+            {children.map((c) => (
+              <li>
+                <a class="hub-legal__link" href={c.path}>
+                  <span class="hub-legal__label">{c.label}</span>
+                  <span class="hub-legal__desc">{c.summary}</span>
+                  <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ) : (
+      <>
+        <BrandPageHero data={heroData} />
+        <BrandPageRelatedContent data={listData} />
+        <BrandPageFinalCta data={ctaData} />
+      </>
+    )
+  }
+</MainLayout>
+
+<style>
+  .hub-legal {
+    background: var(--color-background);
+    padding-block: var(--space-12) var(--space-16);
+  }
+
+  .hub-legal__inner {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .hub-legal__title {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+    letter-spacing: -0.02em;
+    color: var(--brand-navy);
+  }
+
+  .hub-legal__lead {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .hub-legal__list {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .hub-legal__link {
+    position: relative;
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-12) var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .hub-legal__link :global(svg) {
+    position: absolute;
+    right: var(--space-5);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-primary);
+  }
+
+  .hub-legal__link:hover {
+    border-color: var(--color-primary);
+    background: var(--color-background);
+  }
+
+  .hub-legal__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hub-legal__label {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .hub-legal__desc {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .hub-legal__inner {
+      padding-inline: var(--space-4);
+    }
+  }
+</style>

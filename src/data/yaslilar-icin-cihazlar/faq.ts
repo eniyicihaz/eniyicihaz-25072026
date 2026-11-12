@@ -61,7 +61,7 @@ export const yaslilarIcinCihazlarFaq: BrandPageFaqContent = {
         {
           question: "Cihazın bakımını kim yapacak, kendim mi yapmalıyım?",
           answer:
-            "Günlük temizlik genellikle kullanıcı tarafından yapılabilir; teknik bakım ve periyodik kontroller ise klinikte gerçekleştirilir.",
+            "Günlük temizlik genellikle kullanıcı tarafından yapılabilir; teknik bakım ve periyodik kontroller ise merkezde gerçekleştirilir.",
         },
       ],
     },

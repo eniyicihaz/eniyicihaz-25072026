@@ -27,7 +27,7 @@ export const cihazTemizligiEvolution: BrandPageTechEvolutionContent = {
     },
     {
       era: "Kulak Ucu ve Kalıp Kontrolü",
-      whatItBrought: "Kulak ucu veya kalıpta görünür kir varsa, önerilen aracıyla nazikçe temizlenir.",
+      whatItBrought: "Kulak ucu veya kalıpta görünür kir varsa, önerilen araçla nazikçe temizlenir.",
       bestFor: "Detay kontrolü",
       families: ["Kulak Ucu Kontrolü"],
     },

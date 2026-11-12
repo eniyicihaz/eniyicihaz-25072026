@@ -10,7 +10,7 @@ export const kisiyeOzelProgramlamaFinalCta: BrandPageFinalCtaContent = {
   badge: "SİZE ÖZEL BİR DENEYİM İÇİN YANINIZDAYIZ",
   heading: "Cihazınızı Tam Size Göre Ayarlayalım",
   description:
-    "Geri bildiriminize, ortam ihtiyaçlarınıza ve gerektiğinde kullanım verilerinize dayanan kişiye özel programlamayla, cihazınızdan en iyi verimi almanızı sağlıyoruz.",
+    "Geri bildiriminize, ortam ihtiyaçlarınıza ve gerektiğinde kullanım verilerinize dayanan kişiye özel programlamayla, cihazınızdan daha iyi verim almanıza yardımcı oluyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: ["Ücretsiz İnce Ayar", "Ortama Özel Programlar", "Veri Kaydı Desteği", "Kademeli Takip Süreci"],

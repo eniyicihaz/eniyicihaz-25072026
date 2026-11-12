@@ -25,6 +25,9 @@ h6{
     line-height:var(--line-height-tight);
     color:var(--color-text);
     text-wrap:balance;
+    /* Tek başına satıra sığmayan uzun sözcük (ör. 320 px ekranda "Düzenleyebileceğimiz") sayfayı yatay kaydırmasın:
+       yalnızca sığmadığında sözcük içinden kırılır; sığan başlıklarda hiçbir şey değişmez (WCAG 1.4.10). */
+    overflow-wrap:break-word;
 }
 
 h1{
@@ -86,4 +89,25 @@ code{
 ::selection{
     color:var(--color-text-inverse);
     background:var(--color-primary);
+}
+/* Metin içi sayfa atıfları (src/lib/ref-links.ts → "… <Sayfa adı> sayfamızı inceleyebilirsiniz").
+   Renk devralınır (açık ve koyu zeminlerde aynı kontrast), bağlantı olduğu alt çizgiyle belli olur — yalnızca renge
+   dayanmaz (WCAG 1.4.1). Paragraf içi satır-içi bağlantıdır; 48 px hedef kuralının satır-içi istisnasına girer. */
+a[data-ref-link]{
+    color:inherit;
+    font-weight:var(--font-weight-semibold);
+    text-decoration:underline;
+    text-decoration-thickness:2px;
+    text-decoration-color:var(--color-accent);
+    text-underline-offset:3px;
+}
+
+a[data-ref-link]:hover{
+    text-decoration-thickness:3px;
+}
+
+a[data-ref-link]:focus-visible{
+    outline:none;
+    border-radius:var(--radius-sm);
+    box-shadow:var(--focus-ring);
 }

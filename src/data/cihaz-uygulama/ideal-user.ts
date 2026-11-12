@@ -30,7 +30,7 @@ export const cihazUygulamaIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: Home,
-      title: "Cihazını Farklı Bir Klinikten Getiren Kullanıcılar",
+      title: "Cihazını Farklı Bir Merkezden Getiren Kullanıcılar",
       description: "Cihazını başka bir yerden temin eden ancak yerel takip ve ayar desteği arayan kullanıcılar için değerlendirme yapılabilir.",
       suggestedFamilies: ["Bağımsız Ayar Değerlendirmesi"],
     },

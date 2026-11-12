@@ -19,7 +19,7 @@ export const PAGE_PATH = "/isitme-cihazlari/";
 export const PAGE_URL = "https://www.eniyicihaz.com/isitme-cihazlari/";
 
 export const pageMeta = {
-  title: "İşitme Cihazları: Çeşitleri, Özellikleri, Nasıl Seçilir? | Darıca",
+  title: "İşitme Cihazları: Çeşitleri ve Nasıl Seçilir? | Darıca",
   description:
     "İşitme cihazı nedir, hangi türleri var? Kulak arkası, RIC, kulak içi, görünmez ve şarjlı cihazlar; özellikler ve seçim. Merkezimiz Darıca'dadır.",
   schemaDescription:
@@ -34,7 +34,9 @@ export const breadcrumbItems = [
 /** Anchor navigation under the hero — every id below exists on the page. */
 export const toc: GuideLink[] = [
   { label: "İşitme cihazı nedir?", href: "#hizli-cevap" },
+  { label: "Kulakta nerede durur?", href: "#kulakta-nerede-durur" },
   { label: "Cihaz türleri", href: "#cihaz-turleri" },
+  { label: "Türleri karşılaştırın", href: "#tur-karsilastirma-araci" },
   { label: "Nasıl çalışır?", href: "#nasil-calisir" },
   { label: "Nasıl seçilir?", href: "#secerken" },
   { label: "Hangisi bana uygun?", href: "#hangi-cihaz" },

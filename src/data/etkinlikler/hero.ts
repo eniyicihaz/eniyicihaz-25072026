@@ -32,7 +32,7 @@ export const etkinliklerHero: BrandPageHeroContent = {
   badge: "BLOG & HABERLER · ETKİNLİKLER",
   headingLines: ["Etkinliklerimiz", "Hakkında"],
   paragraphs: [
-    "Kliniğimiz, toplum sağlığını desteklemek amacıyla dönem dönem farklı kategorilerde etkinliklere katılım gösterebiliyor.",
+    "Merkezimiz, toplum sağlığını desteklemek amacıyla dönem dönem farklı kategorilerde etkinliklere katılım gösterebiliyor.",
     "Güncel etkinlik takvimimizi öğrenmek için bizi aramanızı veya WhatsApp üzerinden yazmanızı öneririz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },

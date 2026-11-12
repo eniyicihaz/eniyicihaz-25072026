@@ -23,11 +23,11 @@ export const coselgiUnique: UniqueBrandContent = {
     { label: "EFFECT", title: "Effect ve Effect ITE", description: "Aynı isimli iki aile: RIC/BTE ve kulak içi." },
     { label: "ŞARJ", title: "Mojo Şarjlı", description: "Coselgi listesindeki tek şarjlı aile." },
   ],
-  floatingCard: { title: "Üç aile, üç yerleşim", description: "RIC/BTE, kulak içi ve şarjlı RIC." },
+  floatingCard: { title: "Üç aile, üç etiket seti", description: "RIC/BTE, kulak içi ve şarjlı RIC." },
   intro: {
     heading: "Coselgi'ye Kısa Bir Bakış",
     paragraphs: [
-      "Coselgi sayfası kısa bir liste: üç aile var ve her biri başka bir yerleşimi gösteriyor. Effect sitemizde RIC/BTE ve Bluetooth etiketli, Effect ITE kulak içi, Mojo ise RIC, şarjlı ve Bluetooth etiketli.",
+      "Coselgi sayfası kısa bir liste: üç aile var ve her biri başka bir etiket setiyle listeleniyor. Effect sitemizde RIC/BTE ve Bluetooth etiketli, Effect ITE kulak içi, Mojo ise RIC, şarjlı ve Bluetooth etiketli.",
       "Coselgi cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
     ],
     stats: [

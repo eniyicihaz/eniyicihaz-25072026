@@ -1,0 +1,212 @@
+---
+// ContactDock — persistent contact actions (research report R1).
+//   • Below 1024 px: a fixed bottom bar with three equal 56 px actions: Ara · WhatsApp · Yol tarifi. It keeps the
+//     main number one tap away on every page (mobile is ~64–79 % of the traffic). The bar publishes its own height
+//     as `--dock-h` so the page gets matching bottom padding and the consent banner stacks above it.
+//   • From 1024 px: a small floating pair (WhatsApp + Ara) in the bottom-right corner.
+// Only the main number is used (MASTER_PLAN K2); the directions link is the verified Business Profile link.
+// No new analytics: clicks are classified by href (tel: / wa.me / maps) by lib/consent/events.ts, and
+// `data-track-location` names this surface "contact_dock". Nothing is sent without consent.
+import { Phone, Navigation } from "lucide-astro";
+import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
+import { contactConfig } from "../../../config/contact";
+import { company } from "../../footer/Footer/data/company";
+---
+
+<aside class="contact-dock" aria-label="Hızlı iletişim" data-contact-dock data-track-location="contact_dock">
+  <a class="contact-dock__btn contact-dock__btn--call" href={contactConfig.phone.href}>
+    <Phone size={22} aria-hidden="true" />
+    <span class="contact-dock__label contact-dock__label--short">Ara</span>
+    <span class="contact-dock__label contact-dock__label--long">Bizi Arayın</span>
+    <span class="contact-dock__sr"> {contactConfig.phone.display}</span>
+  </a>
+  <a class="contact-dock__btn contact-dock__btn--wa" href={contactConfig.whatsapp.href} aria-label="WhatsApp'tan yazın">
+    <WhatsAppIcon size={22} class="contact-dock__wa-icon" />
+    <span class="contact-dock__label contact-dock__label--short">WhatsApp</span>
+    <span class="contact-dock__label contact-dock__label--long">WhatsApp'tan Yazın</span>
+  </a>
+  <a class="contact-dock__btn contact-dock__btn--map" href={company.directionsHref} aria-label="Yol tarifi al" target="_blank" rel="noopener">
+    <Navigation size={22} aria-hidden="true" />
+    <span class="contact-dock__label">Yol tarifi</span>
+  </a>
+</aside>
+
+<style is:global>
+  /* Mobile: reserve the bar's height so no content (footer, last CTA) ends up underneath it. */
+  @media (max-width: 1023px) {
+    :root {
+      --dock-h: calc(68px + env(safe-area-inset-bottom, 0px));
+    }
+    body {
+      padding-bottom: var(--dock-h);
+    }
+  }
+</style>
+
+<style>
+  .contact-dock {
+    position: fixed;
+    z-index: var(--z-fixed);
+    display: grid;
+  }
+
+  .contact-dock__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 52px;
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background-color var(--transition-base),
+      border-color var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .contact-dock__btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .contact-dock__btn--call {
+    background: var(--color-primary);
+    border-color: var(--color-primary-hover);
+    color: var(--color-text-inverse);
+  }
+  .contact-dock__btn--call:hover {
+    background: var(--color-primary-hover);
+  }
+
+  .contact-dock__btn--wa:hover,
+  .contact-dock__btn--map:hover {
+    background: var(--color-surface);
+  }
+  .contact-dock :global(.contact-dock__wa-icon) {
+    color: #25d366;
+    flex: none;
+  }
+
+  .contact-dock__btn--map {
+    background: var(--color-primary-50);
+    border-color: var(--color-primary-100);
+    color: var(--color-primary);
+  }
+  .contact-dock__btn--map:hover {
+    background: var(--color-primary-100);
+  }
+
+  .contact-dock__label--long {
+    display: none;
+  }
+
+  /* Erişilebilir ad = görünen metin + numara (WCAG 2.5.3 "Label in Name"); numara yalnızca ekran okuyucuya. */
+  .contact-dock__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* ---- Mobile / tablet bar ---- */
+  @media (max-width: 1023px) {
+    .contact-dock {
+      inset: auto 0 0 0;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-3) max(var(--space-2), env(safe-area-inset-bottom));
+      background: rgb(255 255 255 / 0.96);
+      border-top: 1px solid var(--color-border-hover);
+      box-shadow: 0 -8px 24px -12px rgb(var(--brand-navy-deep-rgb) / 0.25);
+      backdrop-filter: blur(6px);
+    }
+    .contact-dock__btn {
+      min-height: 52px;
+      padding-inline: var(--space-2);
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .contact-dock {
+      gap: 6px;
+      padding-inline: 8px;
+    }
+    .contact-dock__btn {
+      gap: 6px;
+      padding-inline: 4px;
+    }
+    .contact-dock__btn :global(svg) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 359px) {
+    /* Üç eşit sütunda "WhatsApp" düğmesi (simge + yazı ≈ 106 px) 97 px'lik sütuna sığmıyor, simge kenarlığa
+       biniyordu (ölçüm: 320 px). Sütunlar içerik uzunluğuyla orantılanır: Ara kısa, diğer ikisi uzun. */
+    .contact-dock {
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.16fr) minmax(0, 1.12fr);
+    }
+    .contact-dock__label {
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  /* ---- Desktop: small floating pair ---- */
+  @media (min-width: 1024px) {
+    .contact-dock__label--long {
+      display: inline;
+    }
+    .contact-dock {
+      right: var(--space-5);
+      bottom: var(--space-5);
+      gap: var(--space-2);
+    }
+    .contact-dock__btn {
+      padding-inline: var(--space-5);
+      min-height: 52px;
+      box-shadow: var(--shadow-lg);
+    }
+    .contact-dock__btn--map {
+      display: none;
+    }
+    .contact-dock__btn:hover {
+      transform: translateY(-2px);
+    }
+    .contact-dock__label--short {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-height: 560px) {
+    .contact-dock {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-dock__btn {
+      transition: none;
+    }
+    .contact-dock__btn:hover {
+      transform: none;
+    }
+  }
+
+  @media print {
+    .contact-dock {
+      display: none;
+    }
+  }
+</style>

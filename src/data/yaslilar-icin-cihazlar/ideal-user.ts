@@ -35,7 +35,7 @@ export const yaslilarIcinCihazlarIdealUser: BrandPageIdealUserContent = {
     {
       icon: MessageCircle,
       title: "\"Ne Dedin?\" Sorusunu Sıkça Tekrarlama",
-      description: "Konuşmaların bir kısmını kaçırdığı için karşısındakine sık sık tekrar ettirme ihtiyacı duyulabilir.",
+      description: "Konuşmaların bir kısmı kaçırıldığı için karşıdaki kişiye sık sık tekrar ettirme ihtiyacı duyulabilir.",
       suggestedFamilies: ["Yönlü Mikrofonlu Modeller"],
     },
     {

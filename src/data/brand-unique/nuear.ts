@@ -61,7 +61,7 @@ export const nuearUnique: UniqueBrandContent = {
       },
       {
         icon: Layers,
-        title: "RIC ya da kulak arkası arasında kararsızlar",
+        title: "RIC ile kulak arkası arasında kararsız kalanlar",
         description: "Savant AI hem RIC hem BTE etiketli tek NuEar ailesi; şarjlı etiketi yok. Hangi yerleşimin uygun olduğu kulak yapınıza göre belirlenir.",
         families: ["Savant AI"],
       },
@@ -75,7 +75,7 @@ export const nuearUnique: UniqueBrandContent = {
         icon: Smartphone,
         title: "Telefon bağlantısına bakanlar",
         description: "Altı NuEar ailesinin hepsinde Bluetooth etiketi var; telefon uyumu modele göre değişir.",
-        families: f.bt.slice(0, 4),
+        families: f.bt,
       },
     ],
   },

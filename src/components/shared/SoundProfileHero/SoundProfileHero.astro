@@ -36,6 +36,16 @@ interface Props {
 }
 
 const { data } = Astro.props;
+
+// Çubuk etiketi "125Hz" → sayı + birim. Dar ekranda birim gizlenir (yedi etiket yan yana sığsın diye) ve grafiğin
+// altında tek bir eksen notu ("Frekans (Hz)") gösterilir. Birimi olmayan etiketler olduğu gibi kalır.
+// (Alan adı `text`: `value` çubuk yüksekliğidir, onunla karışmamalı.)
+const splitUnit = (label: string) => {
+  const m = /^(.+?)\s?(Hz)$/.exec(label);
+  return m ? { text: m[1], unit: m[2] } : { text: label, unit: "" };
+};
+const bars = data.bars.map((bar) => ({ ...bar, ...splitUnit(bar.label) }));
+const allHz = bars.length > 0 && bars.every((bar) => bar.unit === "Hz");
 ---
 
 <section
@@ -63,18 +73,21 @@ const { data } = Astro.props;
 
       <div class="sound-profile-hero__chart">
         {
-          data.bars.map((bar) => (
+          bars.map((bar) => (
             <div class="sound-profile-hero__bar-col">
               {bar.highlighted && <span class="sound-profile-hero__handle" />}
               <span
                 class:list={["sound-profile-hero__bar", { "sound-profile-hero__bar--highlighted": bar.highlighted }]}
                 style={`--bar-h:${bar.value}%;`}
               />
-              <span class="sound-profile-hero__bar-label">{bar.label}</span>
+              <span class="sound-profile-hero__bar-label">
+                {bar.text}{bar.unit && <span class="sound-profile-hero__bar-unit">{bar.unit}</span>}
+              </span>
             </div>
           ))
         }
       </div>
+      {allHz && <p class="sound-profile-hero__axis">Frekans (Hz)</p>}
 
       <p class="sound-profile-hero__panel-caption">{data.panelCaption}</p>
     </div>
@@ -261,9 +274,20 @@ const { data } = Astro.props;
 
   .sound-profile-hero__bar-label {
     margin-top: var(--space-3);
-    font-size: 0.625rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
     color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  /* Eksen notu yalnızca dar ekranda (birimler gizlenince) görünür. */
+  .sound-profile-hero__axis {
+    display: none;
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    text-align: center;
   }
 
   .sound-profile-hero__panel-caption {
@@ -308,7 +332,11 @@ const { data } = Astro.props;
       gap: var(--space-10);
     }
 
+    /* `width: 100%` şart: otomatik kenar boşluklu ızgara öğesi içeriğine göre boyutlanır ve yedi etiketin en küçük
+       genişliği (≈ 376 px) paneli 390 px ekranda sayfanın dışına itiyordu (ölçüm: +10 px; 320 px'te +80 px). */
     .sound-profile-hero__panel {
+      width: 100%;
+      min-width: 0;
       max-width: 30rem;
       margin-inline: auto;
     }
@@ -334,6 +362,15 @@ const { data } = Astro.props;
 
     .sound-profile-hero__bar {
       max-width: 16px;
+    }
+
+    /* Dar ekranda yedi "125Hz" etiketi yan yana sığmaz (üst üste biner): birim gizlenir, altına eksen notu gelir. */
+    .sound-profile-hero__bar-unit {
+      display: none;
+    }
+
+    .sound-profile-hero__axis {
+      display: block;
     }
   }
 

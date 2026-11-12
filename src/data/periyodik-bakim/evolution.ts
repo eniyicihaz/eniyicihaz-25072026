@@ -20,7 +20,7 @@ export const periyodikBakimEvolution: BrandPageTechEvolutionContent = {
     },
     {
       era: "Aşınan Parçaların Tespiti",
-      whatItBrought: "Balmumu filtresi, tüp veya kulak ucu gibi yenilenmesi gereken parçalar belirlenir.",
+      whatItBrought: "Kulak kiri filtresi, tüp veya kulak ucu gibi yenilenmesi gereken parçalar belirlenir.",
       bestFor: "Parça değerlendirmesi",
       families: ["Aşınma Tespiti"],
     },

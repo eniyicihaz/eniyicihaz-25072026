@@ -63,7 +63,7 @@
 
   color: var(--ds-text-secondary, #64748b);
 
-  font-size: .875rem;
+  font-size: var(--font-size-md);
   line-height: 1.6;
 }
 
@@ -112,5 +112,5 @@
 }
 
 .ds-toast--info {
-  border-color: #3b82f6;
+  border-color: var(--brand-blue);
 }

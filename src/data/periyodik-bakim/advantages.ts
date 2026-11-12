@@ -46,7 +46,7 @@ export const periyodikBakimAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Sparkles,
       category: "Ücretsiz",
-      title: "Periyodik Bakım Herhangi Bir Ücret Talep Etmez",
+      title: "Periyodik Bakım İçin Ücret Talep Edilmez",
       description: "Periyodik bakım randevusu, herhangi bir ücret talep edilmeden sunulur.",
     },
   ],

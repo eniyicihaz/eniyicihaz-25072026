@@ -28,7 +28,7 @@ export const kontrolRandevusuAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Gauge,
       category: "Cihaz Performansı",
-      title: "Cihazınızın En İyi Performansta Kaldığından Emin Olursunuz",
+      title: "Ayarların Hâlâ İhtiyacınıza Uygun Olduğunu Görürsünüz",
       description: "Cihaz performans kontrolü, ayarların hâlâ ihtiyacınıza uygun olup olmadığını gösterir.",
     },
     {
@@ -46,7 +46,7 @@ export const kontrolRandevusuAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Sparkles,
       category: "Ücretsiz",
-      title: "Kontrol Randevusu Herhangi Bir Ücret Talep Etmez",
+      title: "Kontrol Randevusu İçin Herhangi Bir Ücret Talep Edilmez",
       description: "Kontrol randevusu, herhangi bir ücret talep edilmeden sunulur.",
     },
   ],

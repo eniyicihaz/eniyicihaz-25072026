@@ -27,7 +27,6 @@ import { LayoutGrid, Stethoscope, Compass, Tag, MessageCircle, MapPin, Phone } f
 import WhatsAppIcon from "../components/shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../lib/contact-action";
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import Brands from "../components/brands/Brands/Brands.astro";
 import BrandExtended from "../components/brands/BrandExtended/BrandExtended.astro";
 import BrandPageModels from "../components/brand-page/BrandPageModels/BrandPageModels.astro";
@@ -50,7 +49,7 @@ import BrandMatrixTable from "../components/brand-guide/BrandMatrixTable.astro";
 
 import { buildMedicalBusinessSchema } from "../lib/schema";
 import { daricaLocation } from "../data/darica/location";
-import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../data/isitme-cihazi-markalari/page";
+import { pageMeta, toc, PAGE_URL } from "../data/isitme-cihazi-markalari/page";
 import { brandsHero, brandsHeroExtra, contactLinks } from "../data/isitme-cihazi-markalari/hero";
 import { brandsQuickAnswer } from "../data/isitme-cihazi-markalari/quick-answer";
 import { profilesIntro, brandSections, brandProfiles } from "../data/isitme-cihazi-markalari/profiles";
@@ -68,16 +67,6 @@ import { brandsRelated, brandsCta } from "../data/isitme-cihazi-markalari/relate
 // verisinden BrandPageFaq içinde üretilir. Marka/model için Product/Offer/Brand
 // şeması KASITLI olarak yok: ürün sayfası değil, fiyatsız bir rehber; yalnızca
 // görünür 6 marka profilinin gerçek sayfalarına işaret eden ItemList var.
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : { item: PAGE_URL }),
-  })),
-};
 const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
 
 const brandsListSchema = {
@@ -105,13 +94,8 @@ const locationCard = {
 ---
 
 <MainLayout title={pageMeta.title} description={pageMeta.description}>
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(brandsListSchema)} />
-
-  <div class="bg-breadcrumb">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <BrandsGuideHero data={brandsHero} icons={{ primary: LayoutGrid, secondary: Stethoscope }} extraCta={brandsHeroExtra} />
 
@@ -293,12 +277,6 @@ const locationCard = {
     text-decoration: none;
   }
 
-  .bg-breadcrumb {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-4) var(--space-6) 0;
-  }
-
   .bg-logos {
     margin-bottom: var(--space-6);
     padding-block: var(--space-4);
@@ -320,9 +298,6 @@ const locationCard = {
   }
 
   @media (max-width: 640px) {
-    .bg-breadcrumb {
-      padding-inline: var(--space-4);
-    }
   }
 </style>
 
@@ -405,28 +380,28 @@ const locationCard = {
 
   /* İşitme Cihazlarını Keşfet: ikincil — açık mavi yüzey, koyu mavi metin (birincil mavi dolu ile yarışmaz). */
   html body main .guide-cta a.guide-cta__btn[href="/isitme-cihazlari/"] {
-    background: #eff6ff;
-    border-color: #bfdbfe;
-    color: #1e3a8a;
+    background: var(--color-primary-50);
+    border-color: var(--color-primary-200);
+    color: var(--brand-navy);
   }
 
   html body main .guide-cta a.guide-cta__btn[href="/isitme-cihazlari/"]:hover {
-    background: #dbeafe;
-    border-color: #93c5fd;
-    color: #1e3a8a;
+    background: var(--color-primary-100);
+    border-color: var(--brand-teal-light);
+    color: var(--brand-navy);
   }
 
   /* Harita kartındaki "Google Haritalar'da aç" (izin yedeği) gerçekten harita bağlantısıdır: ortak yol tarifi stili. */
   html body main a.btn[href^="https://maps.app.goo.gl/"]:not([data-contact-action]) {
-    background: #eff6ff;
-    border-color: #bfdbfe;
-    color: #1e3a8a;
+    background: var(--color-primary-50);
+    border-color: var(--color-primary-200);
+    color: var(--brand-navy);
   }
 
   html body main a.btn[href^="https://maps.app.goo.gl/"]:not([data-contact-action]):hover {
-    background: #dbeafe;
-    border-color: #93c5fd;
-    color: #1e3a8a;
+    background: var(--color-primary-100);
+    border-color: var(--brand-teal-light);
+    color: var(--brand-navy);
   }
 
   @media (max-width: 640px) {

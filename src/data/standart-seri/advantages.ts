@@ -45,9 +45,9 @@ export const standartSeriAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: ShieldCheck,
-      category: "Kanıtlanmış Teknoloji",
+      category: "Uzun Süredir Kullanılan Teknoloji",
       title: "Geniş Kullanıcı Kitlesi Tarafından Tercih Edilir",
-      description: "Standart seri, uzun süredir kullanılan ve güvenilirliği kanıtlanmış bir teknoloji seviyesi sunar.",
+      description: "Standart seri, uzun süredir kullanılan bir teknoloji seviyesi sunar.",
     },
   ],
   accentColor: "#0284c7",

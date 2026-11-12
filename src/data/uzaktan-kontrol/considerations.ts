@@ -41,7 +41,7 @@ export const uzaktanKontrolConsiderations: BrandPageIdealUserContent = {
     {
       icon: Wrench,
       title: "İlk Kurulum Uzman Desteği Gerektirir",
-      description: "Uzaktan destek özelliğinin ilk kurulumu, genellikle klinikte yapılan bir randevu ile başlar.",
+      description: "Uzaktan destek özelliğinin ilk kurulumu, genellikle merkezde yapılan bir randevu ile başlar.",
       suggestedFamilies: ["İlk Kurulum Randevusu"],
     },
   ],

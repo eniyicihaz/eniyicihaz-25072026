@@ -34,7 +34,7 @@ export const pilAksesuarUseCases: BrandPageTechnologyContent = {
     {
       label: "YEDEK PARÇA STOKU",
       title: "Yedek Kulak Ucu ve Filtre Stoku",
-      description: "Sık kullanılan kulak ucu ve balmumu filtresi gibi parçalar stokta bulundurulur.",
+      description: "Sık kullanılan kulak ucu ve kulak kiri filtresi gibi parçalar stokta bulundurulur.",
     },
     {
       label: "SEYAHAT AKSESUARLARI",

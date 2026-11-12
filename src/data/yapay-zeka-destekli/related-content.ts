@@ -32,7 +32,7 @@ export const yapayZekaDestekliRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Gürültü Engelleme Teknolojisi",
-      description: "Gürültülü ortamlarda konuşmayı öne çıkaran teknolojileri yakından tanıyın.",
+      description: "Gürültülü ortamlarda istenmeyen sesleri azaltan teknolojileri yakından tanıyın.",
       href: "/teknolojiler/gurultu-engelleme/",
     },
     {

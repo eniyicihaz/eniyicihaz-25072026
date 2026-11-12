@@ -21,7 +21,7 @@ export const uzaktanKontrolAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Video,
       category: "Uzaktan Destek",
-      title: "Kliniğe Gelmeden Uzman Desteği Alın",
+      title: "Merkeze Gelmeden Uzman Desteği Alın",
       description: "Video görüşme sırasında odyometristiniz, cihaz ayarlarınızı uzaktan güncelleyebilir.",
     },
     {
@@ -39,14 +39,14 @@ export const uzaktanKontrolAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Clock,
       category: "Zaman Tasarrufu",
-      title: "Randevu Beklemeden Hızlı Ayar Güncellemesi",
-      description: "Küçük ayar değişiklikleri için kliniğe gelmeden uzaktan destek alınabilir.",
+      title: "Merkeze Gelmeden Hızlı Ayar Güncellemesi",
+      description: "Küçük ayar değişiklikleri için merkeze gelmeden uzaktan destek alınabilir.",
     },
     {
       icon: MapPin,
       category: "Erişilebilirlik",
       title: "Mesafeden Bağımsız Destek",
-      description: "Kliniğe uzak yaşayan kullanıcılar için uzaktan destek, erişimi kolaylaştırır.",
+      description: "Merkeze uzak yaşayan kullanıcılar için uzaktan destek, erişimi kolaylaştırır.",
     },
   ],
   accentColor: "#0284c7",

@@ -75,13 +75,13 @@
 
 .textarea-helper {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: var(--font-size-xs);
   color: #64748b;
 }
 
 .textarea-counter {
   margin-left: auto;
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   color: #94a3b8;
 }
 

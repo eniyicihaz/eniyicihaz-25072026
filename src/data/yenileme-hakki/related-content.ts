@@ -14,7 +14,7 @@ export const yenilemeHakkiRelatedContent: BrandPageRelatedContentContent = {
   links: [
     {
       label: "SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi",
-      description: "Güncel SGK destek tutarlarını ve yenileme süresini inceleyin.",
+      description: "Güncel SGK destek tutarlarını ve ödeme tablosunu inceleyin.",
       href: "/sgk-isitme-cihazi-odemesi/",
     },
     {

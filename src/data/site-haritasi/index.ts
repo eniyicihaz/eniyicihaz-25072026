@@ -15,7 +15,7 @@
 //
 // Yeni bir gerçek sayfa eklendiğinde buraya da bir satır eklenmesi
 // gerekir (search index'e eklenirken zaten yapılan aynı bakım adımı).
-import { Home, Headset, Building2, Layers, BookOpen, Wrench, Shield, Stethoscope, Cpu, Target, ShieldCheck, FileText, Newspaper, Award, Ear, SlidersHorizontal } from "lucide-astro";
+import { Home, Headset, Building2, MapPin, Layers, BookOpen, Wrench, Shield, Stethoscope, Cpu, Target, ShieldCheck, FileText, Newspaper, Award, Ear, SlidersHorizontal } from "lucide-astro";
 import type { SitemapSectionContent } from "../../components/shared/SitemapSection/SitemapSection.astro";
 
 export const sitemapCategories: SitemapSectionContent[] = [
@@ -38,9 +38,20 @@ export const sitemapCategories: SitemapSectionContent[] = [
     ],
   },
   {
+    icon: MapPin,
+    title: "Merkezimiz ve Ulaşım",
+    links: [
+      { label: "Darıca İşitme Cihazları (Merkezimiz)", href: "/darica-isitme-cihazlari/" },
+      { label: "Gebze'den Darıca Merkezimize", href: "/gebze-isitme-cihazlari/" },
+      { label: "Çayırova'dan Darıca Merkezimize", href: "/cayirova-isitme-cihazlari/" },
+      { label: "Kocaeli'den Darıca Merkezimize", href: "/kocaeli-isitme-cihazlari/" },
+    ],
+  },
+  {
     icon: Layers,
     title: "Segmentler",
     links: [
+      { label: "İşitme Cihazı Serileri", href: "/segmentler/" },
       { label: "Premium Seri", href: "/segmentler/premium-seri/" },
       { label: "Standart Seri", href: "/segmentler/standart-seri/" },
       { label: "Ekonomik Seri", href: "/segmentler/ekonomik-seri/" },
@@ -50,6 +61,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     icon: FileText,
     title: "KVKK ve Gizlilik",
     links: [
+      { label: "KVKK ve Gizlilik", href: "/kvkk/" },
       { label: "KVKK Aydınlatma Metni", href: "/kvkk/aydinlatma-metni/" },
       { label: "Gizlilik Politikası", href: "/kvkk/gizlilik-politikasi/" },
       { label: "Çerez Politikası", href: "/kvkk/cerez-politikasi/" },
@@ -60,6 +72,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     icon: BookOpen,
     title: "Rehberler",
     links: [
+      { label: "Tüm Rehberler", href: "/rehberler/" },
       { label: "İşitme Kaybı Nedir?", href: "/rehberler/isitme-kaybi-nedir/" },
       { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi/" },
       { label: "İlk Kullanım Rehberi", href: "/rehberler/ilk-kullanim-rehberi/" },
@@ -70,6 +83,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     icon: Wrench,
     title: "Servis & Bakım",
     links: [
+      { label: "Servis ve Bakım Hizmetleri", href: "/servis-bakim/" },
       { label: "Teknik Servis", href: "/servis-bakim/teknik-servis/" },
       { label: "Periyodik Bakım", href: "/servis-bakim/periyodik-bakim/" },
       { label: "Cihaz Temizliği", href: "/servis-bakim/cihaz-temizligi/" },
@@ -94,6 +108,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     icon: Stethoscope,
     title: "Değerlendirme",
     links: [
+      { label: "İşitme Değerlendirme Hizmetleri", href: "/degerlendirme/" },
       { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
       { label: "Odyometri", href: "/degerlendirme/odyometri/" },
       { label: "Timpanometri", href: "/degerlendirme/timpanometri/" },
@@ -106,6 +121,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     icon: Cpu,
     title: "Teknolojiler",
     links: [
+      { label: "İşitme Cihazı Teknolojileri", href: "/teknolojiler/" },
       { label: "Yapay Zeka Destekli Cihazlar", href: "/teknolojiler/yapay-zeka-destekli/" },
       { label: "Gürültü Engelleme Teknolojisi", href: "/teknolojiler/gurultu-engelleme/" },
       { label: "Konuşma Odaklı Teknolojiler", href: "/teknolojiler/konusma-odakli/" },
@@ -119,6 +135,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     icon: Target,
     title: "İhtiyacınıza Göre",
     links: [
+      { label: "İhtiyaca Göre Rehberler", href: "/ihtiyaciniza-gore/" },
       { label: "Hafif İşitme Kaybı", href: "/ihtiyaciniza-gore/hafif-isitme-kaybi/" },
       { label: "Orta Derece İşitme Kaybı", href: "/ihtiyaciniza-gore/orta-derece-isitme-kaybi/" },
       { label: "İleri Derece İşitme Kaybı", href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/" },
@@ -132,6 +149,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     icon: ShieldCheck,
     title: "Neden Orijinal?",
     links: [
+      { label: "Neden Orijinal İşitme Cihazı?", href: "/neden-orijinal/" },
       { label: "Güvenilir Teknoloji", href: "/neden-orijinal/guvenilir-teknoloji/" },
       { label: "Uzun Ömürlü Cihazlar", href: "/neden-orijinal/uzun-omurlu-cihazlar/" },
       { label: "Üretici Yetkili Servis Desteği", href: "/neden-orijinal/yaygin-servis-agi/" },
@@ -186,6 +204,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     title: "İşitme Cihazları",
     links: [
       { label: "Tüm İşitme Cihazları", href: "/isitme-cihazlari/" },
+      { label: "İşitme Cihazı Fiyatları", href: "/isitme-cihazi-fiyatlari/" },
       { label: "Kulak Arkası (BTE)", href: "/isitme-cihazlari/kulak-arkasi-bte/" },
       { label: "Kulak İçi (ITE)", href: "/isitme-cihazlari/kulak-ici-ite/" },
       { label: "Şarj Edilebilir Cihazlar", href: "/isitme-cihazlari/sarj-edilebilir/" },
@@ -199,6 +218,7 @@ export const sitemapCategories: SitemapSectionContent[] = [
     icon: SlidersHorizontal,
     title: "Uygulama & Ayar",
     links: [
+      { label: "Uygulama ve Ayar Hizmetleri", href: "/uygulama-ayar/" },
       { label: "Cihaz Uygulama", href: "/uygulama-ayar/cihaz-uygulama/" },
       { label: "Kişiye Özel Ayar", href: "/uygulama-ayar/kisiye-ozel-ayar/" },
       { label: "Kişiye Özel Programlama", href: "/uygulama-ayar/kisiye-ozel-programlama/" },

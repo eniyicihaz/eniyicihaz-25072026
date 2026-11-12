@@ -26,7 +26,7 @@ export const servicesDecision: BrandDecisionContent = {
     {
       icon: Wrench,
       title: "Cihazım Arızalandı",
-      description: "Teknik servis ekibimiz sorununuzu hızlı ve güvenilir bir şekilde çözer.",
+      description: "Teknik servis desteğimizden faydalanabilirsiniz; arıza teknik servisimiz tarafından değerlendirilir.",
     },
     {
       icon: RefreshCcw,

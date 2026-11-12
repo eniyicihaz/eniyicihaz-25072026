@@ -49,7 +49,7 @@
 .ds-calendar__weekday {
   padding: .75rem 0;
   text-align: center;
-  font-size: .75rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
   color: var(--ds-text-secondary, #64748b);
 }
@@ -77,11 +77,11 @@
 
 .ds-calendar__day--today {
   font-weight: 700;
-  color: var(--ds-primary, #2563eb);
+  color: var(--ds-primary, var(--color-primary));
 }
 
 .ds-calendar__day--selected {
-  background: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
   color: #fff;
 }
 

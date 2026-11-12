@@ -37,7 +37,7 @@ export const kampanyalarAdvantages: BrandPageAdvantagesContent = {
       icon: RefreshCcw,
       category: "Sadakat Avantajı",
       title: "Mevcut Kullanıcılarımıza Özel Fırsatlar",
-      description: "Kliniğimizin mevcut kullanıcılarına yönelik sadakat avantajları sunulabiliyor.",
+      description: "Merkezimizin mevcut kullanıcılarına yönelik sadakat avantajları sunulabiliyor.",
     },
     {
       icon: Calendar,

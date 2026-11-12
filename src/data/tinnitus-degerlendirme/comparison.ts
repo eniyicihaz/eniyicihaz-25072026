@@ -16,7 +16,7 @@ import type { KulakArkasiComparisonContent } from "../../components/kulak-arkasi
 export const tinnitusDegerlendirmeComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
   heading: "Subjektif Tinnitus ile Objektif Tinnitus Karşılaştırması",
-  intro: "İki tinnitus türü arasındaki temel farkları aşağıdaki tabloda özetledik. Hangi türle karşı karşıya olduğunuz, değerlendirme sürecinde belirlenir.",
+  intro: "İki tinnitus türü arasındaki temel farkları aşağıdaki tabloda özetledik. Hangi türün söz konusu olduğu ancak değerlendirmeyle anlaşılabilir; gerektiğinde bir KBB uzmanının değerlendirmesi gerekir.",
   primaryLabel: "Subjektif Tinnitus",
   secondaryLabel: "Objektif Tinnitus",
   rows: [

@@ -17,7 +17,7 @@ export const raporSureciConsiderations: BrandPageIdealUserContent = {
     {
       icon: AlertTriangle,
       title: "Güncel Şartlar İçin SGK Rehberimizi İnceleyin",
-      description: "Rapor ve belge şartları SGK mevzuatındaki güncellemelere göre değişebilir; en güncel bilgi için SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi sayfamızı veya merkezimizi inceleyebilirsiniz.",
+      description: "Rapor ve belge şartları SGK mevzuatındaki güncellemelere göre değişebilir; en güncel bilgi için SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi sayfamızı inceleyebilir veya merkezimizden bilgi alabilirsiniz.",
       suggestedFamilies: ["Güncel Şartlar"],
     },
     {

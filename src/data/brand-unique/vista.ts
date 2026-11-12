@@ -9,7 +9,7 @@ const f = facts("Vista", vistaModels.items);
 export const vistaUnique: UniqueBrandContent = {
   name: "Vista",
   meta: {
-    title: "Vista İşitme Cihazları: V, B, T ve IC | Avrasya İşitme Cihazları",
+    title: "Vista İşitme Cihazları: V, B, T ve IC",
     description: `Sitemizde Vista için ${f.n} model ailesi var: V, B, T ve IC. Şarjlı etiketi yalnızca T'de, kulak içi aile IC kişiye özel üretim etiketli. Darıca'da bilgi alın.`,
   },
   heroAlt: "Vista V işitme cihazı",

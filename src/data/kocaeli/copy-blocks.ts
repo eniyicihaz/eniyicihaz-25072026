@@ -21,9 +21,9 @@ export interface KocaeliDistricts {
 }
 
 export const kocaeliDistricts: KocaeliDistricts = {
-  eyebrow: "İLÇELERDEN ULAŞIM",
-  heading: "Kocaeli'nin Hangi İlçesinden Geliyorsunuz?",
-  intro: "Merkezimize toplu taşımayla şu ilçelerden şu hatlarla ulaşabilirsiniz:",
+  eyebrow: "BÖLGELERDEN ULAŞIM",
+  heading: "Kocaeli'de Nereden Geliyorsunuz?",
+  intro: "Merkezimize toplu taşımayla şu bölgelerden şu hatlarla ulaşabilirsiniz:",
   items: [
     { name: "Gebze", lines: "502, 440, 510, 515", href: "/gebze-isitme-cihazlari/" },
     { name: "Çayırova", lines: "550", href: "/cayirova-isitme-cihazlari/" },

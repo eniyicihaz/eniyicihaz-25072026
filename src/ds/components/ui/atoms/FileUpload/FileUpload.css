@@ -28,8 +28,8 @@
 }
 
 .ds-file-upload__label:hover {
-  border-color: var(--ds-primary, #2563eb);
-  background: var(--ds-primary-light, #eff6ff);
+  border-color: var(--ds-primary, var(--color-primary));
+  background: var(--ds-primary-light, var(--color-primary-50));
 }
 
 .ds-file-upload__label--disabled {

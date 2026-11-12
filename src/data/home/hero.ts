@@ -26,6 +26,15 @@ export interface HomeHeroImage {
   height: number;
 }
 
+/** Süzülen cihaz (dekoratif; 3B görüntüleyicideki markasız temsili modelin karesi) — bkz. HeroDeviceStage. */
+export interface HomeHeroDeviceStage {
+  avifSrcset: string;
+  webpSrcset: string;
+  src: string;
+  width: number;
+  height: number;
+}
+
 export interface HomeHeroLink {
   label: string;
   href: string;
@@ -41,6 +50,7 @@ export interface HomeHeroContent {
   textLink: HomeHeroLink;
   definitionSentence: string;
   image?: HomeHeroImage;
+  deviceStage?: HomeHeroDeviceStage;
 }
 
 export const homeHero: HomeHeroContent = {
@@ -50,12 +60,14 @@ export const homeHero: HomeHeroContent = {
     "Darıca, Kocaeli'de SGK anlaşmalı işitme cihazı satış ve uygulama merkeziyiz. Ücretsiz işitme testi, cihaz seçimi, merkezde ücretsiz demo ve 18 markada teknik servis hizmeti sunuyoruz.",
   visit:
     "Palandöken Eczanesi'nin üst katı, Farabi Devlet Hastanesi durağının karşısı. Randevusuz ziyaret kabul edilir.",
-  primaryCta: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  // Birincil: en düşük sürtünmeli giriş (ücretsiz işitme testi sayfası). İkincil: ana numara (telefon ve WhatsApp,
+  // MASTER_PLAN K2). Yol tarifi, ziyaret kutusunun altındaki metin bağlantıdır.
+  primaryCta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
   secondaryCtas: [
-    { label: "Yol Tarifi Al", href: company.directionsHref },
+    { label: "Bizi Arayın", href: contactConfig.phone.href },
     { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   ],
-  textLink: { label: "Ücretsiz işitme testi hakkında bilgi alın", href: "/degerlendirme/ucretsiz-isitme-testi/" },
+  textLink: { label: "Yol tarifi al", href: company.directionsHref },
   definitionSentence:
     "Avrasya İşitme Cihazları, Darıca, Kocaeli'de bulunan SGK anlaşmalı bir işitme cihazı satış ve uygulama merkezidir.",
   // Gerçek merkez fotoğrafı (D1), değiştirilmeden kullanılır. 1672×941.
@@ -69,5 +81,17 @@ export const homeHero: HomeHeroContent = {
     alt: "Avrasya İşitme Cihazları'nın Darıca'daki merkezinin resepsiyon ve bekleme alanı",
     width: 1672,
     height: 941,
+  },
+  // Süzülen cihaz: 3B görüntüleyicideki (BteViewer3D) markasız, temsili kulak arkası (BTE) modelin BAŞLANGIÇ KARESİ;
+  // aynı model, aynı malzeme, aynı ışık, şeffaf zemin. Canlı sahneden üretilir: tools/bte-model/make-hero-frame.cjs
+  // (model veya malzeme değişirse yeniden çalıştırılır). Ayrıntı: docs/tech/BTE_3D_VIEWER.md §12.
+  // Önceki görsel (sahibin fotoğrafından kesilmiş gerçek cihaz, hero-device-bte-{320,480}, 480×394) silinmedi; geri
+  // dönmek için bu kayıt eski dosya adları ve ölçüleriyle değiştirilir (yatay görsel için sahne stili duruyor).
+  deviceStage: {
+    avifSrcset: "/images/homepage/hero-device-bte3d-240.avif 240w, /images/homepage/hero-device-bte3d-360.avif 360w",
+    webpSrcset: "/images/homepage/hero-device-bte3d-240.webp 240w, /images/homepage/hero-device-bte3d-360.webp 360w",
+    src: "/images/homepage/hero-device-bte3d-240.webp",
+    width: 360,
+    height: 480,
   },
 };

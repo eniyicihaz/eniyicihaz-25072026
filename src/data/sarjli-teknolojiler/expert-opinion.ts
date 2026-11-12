@@ -10,7 +10,7 @@ export const sarjliTeknolojilerExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Gelişmiş şarj yönetim teknolojisi; pil güvenliğini ve uzun vadeli pil sağlığını önceliklendiren kullanıcılarda sunduğu ek güvence nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir konudur.",
+    "Gelişmiş şarj yönetim teknolojisi; pil güvenliğini ve uzun vadeli pil sağlığını önceliklendiren kullanıcılarda sunduğu ek güvence nedeniyle merkezimizde sıkça değerlendirdiğimiz bir konudur.",
   note: "Ancak şarj teknolojisi tek başına yeterli değildir; cihaz tipi, işitme kaybınızın derecesi ve günlük kullanım alışkanlıklarınız birlikte değerlendirilmelidir.",
   accentColor: "#dc2626",
   accentColorBadgeBg: "rgb(220 38 38 / 0.08)",

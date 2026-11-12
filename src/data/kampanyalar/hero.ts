@@ -33,7 +33,7 @@ export const kampanyalarHero: BrandPageHeroContent = {
   badge: "BLOG & HABERLER · KAMPANYALAR",
   headingLines: ["Kampanyalarımız", "Hakkında"],
   paragraphs: [
-    "Kliniğimizde dönem dönem farklı kategorilerde kampanyalar düzenliyoruz; kampanya içerikleri ve şartları zaman içinde değişebilir.",
+    "Merkezimizde dönem dönem farklı kategorilerde kampanyalar düzenliyoruz; kampanya içerikleri ve şartları zaman içinde değişebilir.",
     "Güncel ve aktif kampanyalarımızı öğrenmek için bizi aramanızı veya WhatsApp üzerinden yazmanızı öneririz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },

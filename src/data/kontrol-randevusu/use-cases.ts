@@ -12,8 +12,8 @@ export const kontrolRandevusuUseCases: BrandPageTechnologyContent = {
   intro: "Randevu sırasında gözden geçirilen bileşenlere daha yakından bakalım.",
   items: [
     {
-      label: "İŞİTME YENİDEN TESTİ",
-      title: "Kısa İşitme Yeniden Değerlendirmesi",
+      label: "İŞİTME TESTİNİN YENİLENMESİ",
+      title: "İşitmenin Kısa Yeniden Değerlendirmesi",
       description: "İşitme durumunuzda bir değişiklik olup olmadığı kısa bir testle değerlendirilir.",
     },
     {

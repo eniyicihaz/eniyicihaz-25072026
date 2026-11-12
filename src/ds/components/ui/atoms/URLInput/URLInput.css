@@ -37,9 +37,9 @@
 .ds-url-input__field:focus {
   outline: none;
 
-  border-color: var(--ds-primary, #2563eb);
+  border-color: var(--ds-primary, var(--color-primary));
 
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+  box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / .15);
 }
 
 .ds-url-input__field:disabled {

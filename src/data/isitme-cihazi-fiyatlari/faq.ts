@@ -84,7 +84,7 @@ export const priceGuideFaq: BrandPageFaqContent = {
             "Evet. Doğru cihaz tipi ve güç seviyesi, işitme kaybınızın derecesi bilinmeden belirlenemez. Avrasya İşitme'de işitme testi ücretsizdir.",
         },
         {
-          question: "İşitme cihazı deneme yapılabilir mi?",
+          question: "İşitme cihazı denemesi yapılabilir mi?",
           answer:
             "Evet. Merkezimizde yaklaşık 20 dakikalık ücretsiz cihaz demosu yapılır; cihazı satın alarak 7 güne kadar deneyip uygun bulmazsanız iade edebilirsiniz ve ödediğiniz tutar kesintisiz iade edilir. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; bu cihazlar merkezimizde demo olarak denenebilir.",
         },

@@ -16,6 +16,7 @@
 // they're specifically requested.
 import MainLayout from "../layouts/MainLayout.astro";
 import ServicesHero from "../components/brands/ServicesHero/ServicesHero.astro";
+import ServiceWizard from "../components/services/ServiceWizard/ServiceWizard.astro";
 import BrandShowcase from "../components/brands/BrandShowcase/BrandShowcase.astro";
 import BrandCriteria from "../components/brands/BrandCriteria/BrandCriteria.astro";
 import BrandDecision from "../components/brands/BrandDecision/BrandDecision.astro";
@@ -40,6 +41,7 @@ import { servicesFaq } from "../data/services/faq";
   description="Değerlendirmeden cihaz uygulamasına, ayardan servis ve bakıma kadar tüm işitme sağlığı hizmetlerimizi tek sayfada keşfedin."
 >
   <ServicesHero data={servicesHero} panel={servicesHeroPanel} />
+  <ServiceWizard />
   <BrandShowcase data={servicesShowcase} />
   <BrandCriteria data={servicesCriteria} />
   <BrandDecision data={servicesDecision} />
@@ -220,7 +222,7 @@ import { servicesFaq } from "../data/services/faq";
   body .brand-criteria .brand-criteria__icon {
     width: 48px;
     height: 48px;
-    background: rgb(37 99 235 / 0.1);
+    background: rgb(var(--color-primary-rgb) / 0.1);
   }
 
   body .brand-criteria .brand-criteria__icon svg {
@@ -238,8 +240,8 @@ import { servicesFaq } from "../data/services/faq";
   }
 
   body .brand-decision .brand-decision__panel {
-    background: #eff6ff;
-    border-color: #bfdbfe;
+    background: var(--color-primary-50);
+    border-color: var(--color-primary-200);
   }
 
   /* --- "Randevu oncesi" sorulari (Stil C): numaralar renkli rozet ------------- */
@@ -250,7 +252,7 @@ import { servicesFaq } from "../data/services/faq";
     width: 44px;
     height: 44px;
     border-radius: var(--radius-lg);
-    background: rgb(37 99 235 / 0.1);
+    background: rgb(var(--color-primary-rgb) / 0.1);
     font-size: var(--font-size-md);
     color: var(--color-primary);
   }

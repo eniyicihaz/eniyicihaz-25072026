@@ -10,7 +10,7 @@ export const kontrolRandevusuFinalCta: BrandPageFinalCtaContent = {
   badge: "DÜZENLİ TAKİP ÖNEMLİDİR",
   heading: "Kontrol Randevunuzu Planlayalım",
   description:
-    "İşitme durumunuzu ve cihazınızın performansını düzenli aralıklarla birlikte gözden geçirerek, her zaman en iyi durumda kalmanızı sağlıyoruz.",
+    "İşitme durumunuzu ve cihazınızın performansını düzenli aralıklarla birlikte gözden geçirerek, değişiklikleri erken fark etmenize yardımcı oluyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: ["Ücretsiz Kontrol Randevusu", "İşitme + Cihaz Kontrolü", "Erken Tespit", "Odyometrist Desteği"],

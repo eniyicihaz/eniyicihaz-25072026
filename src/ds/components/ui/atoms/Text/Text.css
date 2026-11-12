@@ -6,22 +6,22 @@
 /* Variants */
 
 .ds-text--body {
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   line-height: 1.7;
 }
 
 .ds-text--body-sm {
-  font-size: .875rem;
+  font-size: var(--font-size-md);
   line-height: 1.6;
 }
 
 .ds-text--caption {
-  font-size: .75rem;
+  font-size: var(--font-size-xs);
   line-height: 1.5;
 }
 
 .ds-text--overline {
-  font-size: .75rem;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: .08em;
 }
@@ -32,7 +32,7 @@
 }
 
 .ds-text--muted {
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   color: var(--ds-text-secondary, #64748b);
 }
 

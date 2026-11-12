@@ -17,8 +17,8 @@ export const uzaktanAyarComparison: KulakArkasiComparisonContent = {
   rows: [
     {
       feature: "Konum Gereksinimi",
-      primary: "Kliniğe gelmeden, uygun internet bağlantısı olan herhangi bir yerden yapılabilir.",
-      secondary: "Klinikte fiziksel olarak bulunmanız gerekir.",
+      primary: "Merkeze gelmeden, uygun internet bağlantısı olan herhangi bir yerden yapılabilir.",
+      secondary: "Merkezde fiziksel olarak bulunmanız gerekir.",
     },
     {
       feature: "Kapsam",
@@ -42,7 +42,7 @@ export const uzaktanAyarComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Kimler İçin Daha Uygun Olabilir",
-      primary: "Küçük bir ayar ihtiyacı olan, kliniğe uzak veya seyahatte olan kullanıcılar için sıkça tercih edilir.",
+      primary: "Küçük bir ayar ihtiyacı olan, merkeze uzak veya seyahatte olan kullanıcılar için sıkça tercih edilir.",
       secondary: "Kapsamlı bir değerlendirme veya fiziksel kontrol gerektiren durumlar için gereklidir.",
     },
   ],

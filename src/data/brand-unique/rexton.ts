@@ -96,7 +96,7 @@ export const rextonUnique: UniqueBrandContent = {
       { label: "Şarj Edilebilir Cihazlar", description: "Reach gibi şarjlı ailelerin genel özellikleri.", href: "/isitme-cihazlari/sarj-edilebilir/" },
       { label: "Kulak Arkası (BTE) Cihazlar", description: "MCore gibi kulak arkası cihazların genel özellikleri.", href: "/isitme-cihazlari/kulak-arkasi-bte/" },
       { label: "Kulak İçi (ITE) Cihazlar", description: "BiCore ITE gibi kulak içi cihazların genel özellikleri.", href: "/isitme-cihazlari/kulak-ici-ite/" },
-      { label: "İşitme Cihazı Markaları", description: "Rexton'ı diğer markalarla etiketler üzerinden karşılaştırın.", href: "/isitme-cihazi-markalari/" },
+      { label: "İşitme Cihazı Markaları", description: "Rexton'u diğer markalarla etiketler üzerinden karşılaştırın.", href: "/isitme-cihazi-markalari/" },
     ],
   },
   cta: {

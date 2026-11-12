@@ -101,7 +101,7 @@ const action = contactAction(href);
     color: var(--color-text-inverse);
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.25),
-      0 10px 24px -10px rgb(37 99 235 / 0.55);
+      0 10px 24px -10px rgb(var(--color-primary-rgb) / 0.55);
   }
 
   .cta-button--solid:hover {
@@ -109,7 +109,7 @@ const action = contactAction(href);
     background: var(--color-primary-hover);
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.28),
-      0 18px 36px -12px rgb(37 99 235 / 0.6);
+      0 18px 36px -12px rgb(var(--color-primary-rgb) / 0.6);
   }
 
   /* --- Secondary: quiet. No fill, no shadow, no lift. ------------------- */
@@ -141,6 +141,25 @@ const action = contactAction(href);
   @media (max-width: 640px) {
     .cta-button {
       width: 100%;
+    }
+  }
+
+  /* En dar ekranlar (≤ 359 px) — özellikle erişilebilirlik panelinden yazı büyütülmüşken: uzun etiket
+     ("İşitme Cihazlarını Keşfet") tek satıra sığmayıp sayfayı yatay kaydırıyordu (ölçüm: 320 px + %150 → +17 px).
+     Düğme zaten tam genişlikte olduğundan görünüm değişmez; yalnızca iç boşluk daralır ve etiket GEREKİRSE iki
+     satıra kırılır (WCAG 1.4.10 Yeniden Akış). Yükseklik en az 56 px kalır. */
+  @media (max-width: 359px) {
+    .cta-button {
+      height: auto;
+      min-height: 56px;
+      padding: var(--space-2) var(--space-4);
+      line-height: 1.2;
+      text-align: center;
+      white-space: normal;
+    }
+
+    .cta-button :global(svg) {
+      flex: none;
     }
   }
 </style>

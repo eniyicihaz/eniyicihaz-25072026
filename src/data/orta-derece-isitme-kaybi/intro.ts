@@ -19,7 +19,7 @@ export const ortaDereceIsitmeKaybiIntro: BrandPageIntroContent = {
   stats: [
     { value: "41-55 dB", label: "İşitme Eşiği Aralığı" },
     { value: "Normal Ton Konuşma", label: "Sıkça Etkilenen Alan" },
-    { value: "Odyometri ile Belirlenir", label: "Kesin Tanı Yöntemi" },
+    { value: "Odyometri ile Belirlenir", label: "Değerlendirme Yöntemi" },
     { value: "Standart RIC / BTE", label: "Sıkça Tercih Edilen Modeller" },
   ],
   accentColor: "#16a34a",

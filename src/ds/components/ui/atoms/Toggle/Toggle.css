@@ -82,7 +82,7 @@
 /* Checked */
 
 .ds-toggle__input:checked + .ds-toggle__track {
-  background: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
 }
 
 .ds-toggle--sm .ds-toggle__input:checked + .ds-toggle__track .ds-toggle__thumb {
@@ -108,6 +108,6 @@
 }
 
 .ds-toggle__description {
-  font-size: .8125rem;
+  font-size: var(--font-size-xs);
   color: var(--ds-text-secondary, #64748b);
 }

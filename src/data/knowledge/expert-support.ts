@@ -23,7 +23,7 @@ export const knowledgeExpertSupport: BrandExpertSupportContent = {
   reassurance: "Randevunuz ücretsizdir, satın alma zorunluluğu yoktur.",
   panelHeading: "Sizi Dinliyoruz, Sizinle Karar Veriyoruz.",
   panelBody:
-    "Genel bilgiler faydalı bir başlangıçtır; kendi durumunuz için kişisel bir değerlendirme yapmaktan çekinmeyin.",
+    "Genel bilgiler faydalı bir başlangıçtır; kendi durumunuz için kişisel bir değerlendirme yaptırmaktan çekinmeyin.",
   band: [
     { icon: UserCheck, label: "Odyometrist Desteği" },
     { icon: ShieldCheck, label: "SGK Anlaşmalı Merkez" },

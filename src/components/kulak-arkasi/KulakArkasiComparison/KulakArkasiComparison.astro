@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 // KulakArkasiComparison — page-specific comparison table for the
 // "Kulak Arkası (BTE)" product page (/isitme-cihazlari/kulak-arkasi-bte).
 // No existing brand-page component fits a real two-column, criterion-by-
@@ -33,9 +34,12 @@ export interface KulakArkasiComparisonContent {
 
 interface Props {
   data: KulakArkasiComparisonContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 ---
 
 <section
@@ -186,7 +190,7 @@ const { data } = Astro.props;
   }
 
   .ka-comparison__table thead tr {
-    background: #0f2547;
+    background: var(--brand-navy-deep);
   }
 
   .ka-comparison__table thead th {

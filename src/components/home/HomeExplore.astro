@@ -3,13 +3,15 @@
 // özeti (Faz 2 P2, onay V1). Önceki sürümdeki karşılaştırma tablosu ve
 // ayrı HomeShowroom model vitrini ana sayfadan kaldırıldı; ayrıntılı
 // karşılaştırma ve seçim kriterleri kendi pillar sayfalarında kalır.
-// Burada: cihaz türü başına tek kart (tek link) + 18 markanın logo şeridi
-// (Brands, embedded) + iki hub linki. Kart metinleri mevcut kilitli
+// Burada: cihaz türü başına tek kart (tek link) bir CAROUSEL'de (mobilde dokunmatik kaydırma, masaüstünde oklar;
+// görseller temsili) + 18 markanın logo şeridi (Brands, embedded) + iki hub linki. Kart metinleri mevcut kilitli
 // category-explorer verisinden; yeni iddia yok.
 import { ArrowRight } from "lucide-astro";
 import HomeBlockHeader from "./HomeBlockHeader.astro";
 import Brands from "../brands/Brands/Brands.astro";
+import DeviceTypeCarousel from "../device-types/DeviceTypeCarousel.astro";
 import { categoryExplorer } from "../../data/category-explorer/category-explorer.data";
+import { deviceTypeCards, deviceFeatureLinks } from "../../data/device-types/carousel";
 ---
 
 <section class="home-explore" aria-labelledby="home-explore-title">
@@ -21,24 +23,26 @@ import { categoryExplorer } from "../../data/category-explorer/category-explorer
       intro={categoryExplorer.intro}
     />
 
-    <ul class="home-explore__grid">
-      {
-        categoryExplorer.items.map((item) => {
-          const Icon = item.icon;
-          return (
-            <li>
-              <a class="home-explore__card" href={item.href}>
-                <span class="home-explore__icon" aria-hidden="true">
-                  <Icon size={20} stroke-width={1.75} />
-                </span>
-                <span class="home-explore__name">{item.name}</span>
-                <span class="home-explore__desc">{item.description}</span>
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
+    <div class="home-explore__carousel">
+      <DeviceTypeCarousel items={deviceTypeCards} label="İşitme cihazı türleri" />
+    </div>
+
+    {
+      deviceFeatureLinks.length > 0 && (
+        <nav class="home-explore__features" aria-label="Özelliğe göre işitme cihazları">
+          <p class="home-explore__features-label">Özelliğe göre:</p>
+          <ul class="home-explore__features-list">
+            {deviceFeatureLinks.map((l) => (
+              <li>
+                <a class="home-explore__feature" href={l.href}>
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
 
     <p class="home-explore__brands-lead">
       Tek bir markaya bağlı değiliz; 18 marka satıyor ve tamamında teknik servis veriyoruz.
@@ -73,60 +77,69 @@ import { categoryExplorer } from "../../data/category-explorer/category-explorer
     padding-inline: var(--space-6);
   }
 
-  .home-explore__grid {
-    list-style: none;
-    margin: var(--space-8) 0 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-4);
+  .home-explore__carousel {
+    margin-top: var(--space-8);
   }
 
-  .home-explore__card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    height: 100%;
-    min-height: 48px;
-    padding: var(--space-5);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    background: var(--color-background);
-    color: var(--color-text);
-    text-decoration: none;
-    transition: border-color var(--transition-base), box-shadow var(--transition-base);
-  }
 
-  .home-explore__card:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-sm);
-  }
 
-  .home-explore__card:focus-visible,
   .home-explore__hub:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
   }
 
-  .home-explore__icon {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-lg);
-    background: rgb(37 99 235 / 0.08);
-    color: var(--color-primary);
+
+
+
+  /* Özelliğe göre ayrılan sayfalar (şarjlı, Bluetooth, çocuk, suya dayanıklı): carousel'in altında bağlantı satırı. */
+  .home-explore__features {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
   }
 
-  .home-explore__name {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .home-explore__desc {
+  .home-explore__features-label {
+    margin: 0;
     font-size: var(--font-size-md);
-    line-height: var(--line-height-relaxed);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-muted);
+  }
+
+  .home-explore__features-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .home-explore__feature {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 var(--space-4);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    transition:
+      background-color var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  .home-explore__feature:hover {
+    background: var(--color-primary-50);
+    border-color: var(--color-primary);
+  }
+
+  .home-explore__feature:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
   }
 
   .home-explore__brands-lead {
@@ -158,11 +171,6 @@ import { categoryExplorer } from "../../data/category-explorer/category-explorer
     text-underline-offset: 4px;
   }
 
-  @media (max-width: 1023px) {
-    .home-explore__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
 
   @media (max-width: 640px) {
     .home-explore {
@@ -173,13 +181,6 @@ import { categoryExplorer } from "../../data/category-explorer/category-explorer
       padding-inline: var(--space-4);
     }
 
-    .home-explore__grid {
-      grid-template-columns: minmax(0, 1fr);
-      gap: var(--space-3);
-    }
 
-    .home-explore__card {
-      padding: var(--space-4);
-    }
   }
 </style>

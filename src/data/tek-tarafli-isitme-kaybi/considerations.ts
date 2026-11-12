@@ -30,7 +30,7 @@ export const tekTarafliIsitmeKaybiConsiderations: BrandPageIdealUserContent = {
     {
       icon: Gauge,
       title: "Sistem Seçimi Kayıp Derecesine Göre Değişir",
-      description: "CROS mu, BiCROS mu yoksa başka bir seçenek mi uygun olduğu, iyi duyan kulağınızın durumuna göre değişir.",
+      description: "CROS'un mu, BiCROS'un mu yoksa başka bir seçeneğin mi uygun olduğu, iyi duyan kulağınızın durumuna göre değişir.",
       suggestedFamilies: ["Kişiye Özel Sistem Seçimi"],
     },
     {

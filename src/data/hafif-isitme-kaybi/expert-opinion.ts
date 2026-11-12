@@ -11,7 +11,7 @@ export const hafifIsitmeKaybiExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Hafif derecede işitme kaybını erken dönemde değerlendirmek; günlük iletişim kalitesini korumaya yardımcı olabileceğinden klinik pratiğimizde sıkça önerdiğimiz bir yaklaşımdır.",
+    "Hafif derecede işitme kaybını erken dönemde değerlendirmek; günlük iletişim kalitesini korumaya yardımcı olabileceğinden merkezimizde sıkça önerdiğimiz bir yaklaşımdır.",
   note: "Ancak bu sayfadaki bilgiler genel bir yönlendirme amacı taşır; kesin derece ve size uygun çözüm, yalnızca bir odyometri testi sonrasında belirlenebilir.",
   accentColor: "#db2777",
   accentColorBadgeBg: "rgb(219 39 119 / 0.08)",

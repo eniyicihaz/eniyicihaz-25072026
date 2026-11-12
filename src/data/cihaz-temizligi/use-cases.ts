@@ -38,7 +38,7 @@ export const cihazTemizligiUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "NE ZAMAN DESTEK GEREKİR",
-      title: "Sorun Devam Ederse Klinik Desteği",
+      title: "Sorun Devam Ederse Merkez Desteği",
       description: "Temizlik sonrası sorun devam ediyorsa, Periyodik Bakım veya Teknik Servis değerlendirilebilir.",
     },
   ],

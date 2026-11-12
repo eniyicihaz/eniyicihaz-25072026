@@ -23,7 +23,7 @@
 }
 
 .ds-video__player:focus-visible {
-  outline: 2px solid var(--ds-primary, #2563eb);
+  outline: 2px solid var(--ds-primary, var(--color-primary));
   outline-offset: 3px;
 }
 

@@ -64,7 +64,7 @@ export const maicoUnique: UniqueBrandContent = {
       {
         icon: Ear,
         title: "Kulak içi cihaz düşünenler",
-        description: "Kulak İçi Serisi, Maico listesindeki tek kulak içi seri. Kulak içi cihazların deneme kuralları diğer ailelerden farklıdır; ayrıntı sıkça sorulan sorularda.",
+        description: "Kulak İçi Serisi, Maico listesindeki tek kulak içi seri. Kulak içi cihazların deneme kuralları diğer serilerden farklıdır; ayrıntı sıkça sorulan sorularda.",
         families: f.inEar,
       },
     ],

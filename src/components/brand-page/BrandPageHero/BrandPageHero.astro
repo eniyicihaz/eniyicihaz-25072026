@@ -1,5 +1,6 @@
 ---
 import { readableTextOn } from "../../../lib/contrast";
+import { withCorporateHero } from "../../../lib/hero-theme";
 // BrandPageHero — generic, data-driven Hero for every brand page
 // (/markalar/{slug}). First component of the Brand Component Architecture
 // refactor: previously OticonHero.astro (marka-özel, oticonHero'yu
@@ -115,9 +116,12 @@ export interface BrandPageHeroContent {
 
 interface Props {
   data: BrandPageHeroContent;
+  /** "brand" keeps a brand page's own colours; every other page uses the shared corporate navy hero (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateHero(rawData);
 
 // Gerçek görsel oranı ve 400/640/1024 w srcset (manifestten); yoksa eski davranış (900×900).
 const heroImgDims = imageDims(data.image.src);
@@ -165,7 +169,7 @@ const heroStyleOverrides = [
       <p class="brand-page-hero__badge" data-rise>{data.badge}</p>
 
       <h1 class="brand-page-hero__heading" id="brand-page-hero-title" data-rise>
-        {data.headingLines.map((line) => <span class="brand-page-hero__heading-line">{line}</span>)}
+        {data.headingLines.map((line) => <><span class="brand-page-hero__heading-line">{line}</span>{" "}</>)}
       </h1>
 
       {
@@ -481,7 +485,7 @@ const heroStyleOverrides = [
 
   .brand-page-hero__feature-label {
     margin: 0;
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.08em;
     text-transform: uppercase;

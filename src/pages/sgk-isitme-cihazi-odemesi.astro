@@ -8,7 +8,6 @@
 // added using existing, already-proven components. The 2026 payment
 // figures/image/table (SgkPayments + payments.ts) are untouched.
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import SgkHero from "../components/sgk/SgkHero/SgkHero.astro";
 import SgkProcess from "../components/sgk/SgkProcess/SgkProcess.astro";
 import SgkKnowledge from "../components/sgk/SgkKnowledge/SgkKnowledge.astro";
@@ -16,6 +15,7 @@ import SgkPayments from "../components/sgk/SgkPayments/SgkPayments.astro";
 import BrandPageIdealUser from "../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import SgkInsight from "../components/sgk/SgkInsight/SgkInsight.astro";
 import SgkEligibility from "../components/sgk/SgkEligibility/SgkEligibility.astro";
+import SgkStepGuide from "../components/sgk/SgkStepGuide/SgkStepGuide.astro";
 import SgkSupport from "../components/sgk/SgkSupport/SgkSupport.astro";
 import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
@@ -30,22 +30,6 @@ import { sgkLocation } from "../data/sgk/location";
 import { company } from "../components/footer/Footer/data/company";
 
 const PAGE_URL = "https://www.eniyicihaz.com/sgk-isitme-cihazi-odemesi";
-
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "SGK İşitme Cihazı Ödemesi", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
 
 // Same MedicalBusiness node as every other page on the site — same @id,
 // same real NAP source, extending the sitewide Organization (already
@@ -106,12 +90,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   title="2026 SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi"
   description="SGK işitme cihazı ödemesi, katkı payı, devlet desteği, rapor süreci ve gerekli belgeler hakkında rehber. SGK anlaşmalı merkezde ücretsiz işitme testi."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="sgk-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <SgkHero />
 
@@ -131,6 +110,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   </div>
   <SgkInsight />
   <SgkEligibility />
+  <SgkStepGuide />
   <SgkSupport />
   <BrandPageRelatedContent data={sgkRelatedContent} />
   <ContactLocationCard data={sgkLocation} />
@@ -140,12 +120,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
 </MainLayout>
 
 <style>
-  .sgk-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   /* Quiet single-row pill nav — deliberately not a card grid (redesign
      brief: "gereksiz kart kalabalığı oluşturma"). Horizontal scroll on
      narrow screens instead of wrapping, so it never breaks into a messy

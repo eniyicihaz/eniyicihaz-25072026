@@ -8,7 +8,7 @@ export const evdeHizmetFinalCta: BrandPageFinalCtaContent = {
   badge: "EVDE HİZMET",
   heading: "Evde Hizmet İçin Bize Ulaşın",
   description: "Adresinizi ve ihtiyacınızı iletin, size uygun bir randevu günü belirleyelim.",
-  ctaPrimary: { label: "Evde Hizmet Talep Et", href: contactConfig.phone.href },
+  ctaPrimary: { label: "Evde Hizmet İçin Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   trustItems: ["Kocaeli ve Anadolu Yakası", "Ücretsiz Evde Hizmet", "Randevulu Ziyaret"],
   accentColor: "#0d9488",

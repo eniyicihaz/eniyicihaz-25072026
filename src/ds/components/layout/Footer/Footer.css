@@ -28,13 +28,13 @@
 }
 
 .ds-footer__version {
-    font-size: 13px;
+    font-size: var(--font-size-xs);
     color: var(--ds-text-muted);
     font-weight: 500;
 }
 
 .ds-footer__text {
-    font-size: 13px;
+    font-size: var(--font-size-xs);
     color: var(--ds-text-muted);
 }
 

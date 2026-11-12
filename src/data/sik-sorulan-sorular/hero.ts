@@ -30,7 +30,7 @@ export const sikSorulanSorularHero: BrandPageHeroContent = {
   badge: "BLOG & HABERLER · SIK SORULAN SORULAR",
   headingLines: ["Sık Sorulan", "Sorular"],
   paragraphs: [
-    "Randevu almadan cihaz seçimine kadar, kliniğimizle ilgili en çok merak edilen genel soruları bir araya getirdik.",
+    "Randevu almadan cihaz seçimine kadar, merkezimizle ilgili en çok merak edilen genel soruları bir araya getirdik.",
     "Belirli bir konuda daha derinlemesine bilgi arıyorsanız, ilgili rehber ve hizmet sayfalarımıza yönlendiriyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
@@ -40,7 +40,7 @@ export const sikSorulanSorularHero: BrandPageHeroContent = {
       label: "GENEL SORULAR",
       accent: "#0284c7",
       title: "Randevu, Süreç ve Hizmetler Hakkında",
-      description: "Kliniğimizle ilgili en sık sorulan genel soruları tek sayfada topladık.",
+      description: "Merkezimizle ilgili en sık sorulan genel soruları tek sayfada topladık.",
     },
     {
       label: "KONUYA ÖZEL DERİNLEMESİNE BİLGİ",

@@ -1,0 +1,105 @@
+---
+// BackToTop — uzun sayfalar için "Sayfanın başına dön" düğmesi. Yalnızca "Bu sayfada" içindekiler (data-page-toc) bulunan
+// uzun sayfalarda (≥6 başlık ve ≥1.200 kelime) ve en az bir buçuk ekran kaydırıldıktan sonra görünür. Metin kaybı/gizleme yoktur.
+// Tıklanınca sayfa başına gider ve odağı "İçeriğe geç" bağlantısına taşır (odak kaybolmasın). Azaltılmış harekette yumuşak kaydırma yok.
+import { ArrowUp } from "lucide-astro";
+---
+
+<button type="button" class="btt" aria-label="Sayfanın başına dön" data-btt hidden>
+  <ArrowUp size={22} stroke-width={2.5} aria-hidden="true" />
+  <span class="btt__label">Yukarı</span>
+</button>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>("[data-btt]");
+  if (btn && document.querySelector("[data-page-toc]")) {
+    const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.dataset.a11yMotion === "reduce";
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      btn.hidden = window.scrollY < window.innerHeight * 1.5;
+    };
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: reduce() ? "auto" : "smooth" });
+      document.querySelector<HTMLElement>(".skip-link")?.focus({ preventScroll: true });
+    });
+    update();
+  }
+</script>
+
+<style>
+  .btt {
+    position: fixed;
+    z-index: var(--z-fixed);
+    left: var(--space-4);
+    bottom: calc(var(--space-4) + 52px + var(--space-3));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    padding: 0 var(--space-4);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    color: var(--color-primary);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: background-color var(--transition-base), color var(--transition-base);
+  }
+
+  .btt[hidden] {
+    display: none;
+  }
+
+  .btt:hover {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .btt:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring), var(--shadow-md);
+  }
+
+  :global(body:has([data-consent-banner]:not([hidden]))) .btt {
+    display: none;
+  }
+
+  @media (max-width: 1023px) {
+    .btt {
+      left: var(--space-3);
+      bottom: calc(var(--dock-h, 68px) + var(--space-3) + 52px + var(--space-3));
+      width: 48px;
+      padding: 0;
+    }
+
+    .btt__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+  }
+
+  @media print {
+    .btt {
+      display: none;
+    }
+  }
+</style>

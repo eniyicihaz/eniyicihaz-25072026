@@ -9,7 +9,7 @@ export const uzaktanAyarExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Uzaktan ayar, kliniğe gelmenin bir alternatifi değil; küçük ihtiyaçlar için pratik bir tamamlayıcıdır. Kapsamlı bir değerlendirme gerektiğinde bunu sizinle açıkça paylaşıyoruz.",
+    "Uzaktan ayar, merkeze gelmenin bir alternatifi değil; küçük ihtiyaçlar için pratik bir tamamlayıcıdır. Kapsamlı bir değerlendirme gerektiğinde bunu sizinle açıkça paylaşıyoruz.",
   note: "Uzaktan ayar hizmetimiz hakkında bilgi almak veya randevu oluşturmak için bizimle iletişime geçebilirsiniz.",
   accentColor: "#16a34a",
   accentColorBadgeBg: "rgb(22 163 74 / 0.08)",

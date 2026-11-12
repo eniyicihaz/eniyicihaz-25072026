@@ -20,7 +20,7 @@ export const cocuklardaSgkUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "OYUN TABANLI TEST",
-      title: "Play Odyometri",
+      title: "Oyun Odyometrisi",
       description: "Küçük çocuklarda oyun yoluyla işitme eşiklerinin belirlendiği test yöntemi.",
     },
     {

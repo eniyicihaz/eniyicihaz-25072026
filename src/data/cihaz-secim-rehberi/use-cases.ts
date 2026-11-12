@@ -23,7 +23,7 @@ export const cihazSecimRehberiUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "BÜTÇE VE SGK",
-      title: "Bütçem Nedir ve SGK Desteğinden Yararlanabilir Miyim?",
+      title: "Bütçem Nedir ve SGK Desteğinden Yararlanabilir miyim?",
       description: "Bütçeniz ve SGK durumunuz, değerlendirilecek segmenti belirlemenize yardımcı olur.",
     },
     {
@@ -33,12 +33,12 @@ export const cihazSecimRehberiUseCases: BrandPageTechnologyContent = {
     },
     {
       label: "BAĞLANTI İHTİYACI",
-      title: "Telefonuma Bağlanabilen Bir Cihaz İster Miyim?",
+      title: "Telefonuma Bağlanabilen Bir Cihaz İster miyim?",
       description: "Bluetooth bağlantısı gibi özellikler, günlük kullanım kolaylığını artırabilir.",
     },
     {
       label: "EL BECERİSİ",
-      title: "Küçük Parçaları Rahatça Kullanabiliyor Muyum?",
+      title: "Küçük Parçaları Rahatça Kullanabiliyor muyum?",
       description: "Pil değişimi veya küçük düğmeler, el becerisi açısından tercih edilecek modeli etkileyebilir.",
     },
   ],

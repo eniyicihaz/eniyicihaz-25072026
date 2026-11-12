@@ -1,7 +1,7 @@
 .ds-banner {
-  --banner-bg: #eff6ff;
-  --banner-color: #1e3a8a;
-  --banner-border: #bfdbfe;
+  --banner-bg: var(--color-primary-50);
+  --banner-color: var(--brand-navy);
+  --banner-border: var(--color-primary-200);
 
   display: flex;
   align-items: center;
@@ -51,9 +51,9 @@
 }
 
 .ds-banner--primary {
-  --banner-bg: #eff6ff;
-  --banner-color: #1d4ed8;
-  --banner-border: #bfdbfe;
+  --banner-bg: var(--color-primary-50);
+  --banner-color: var(--color-primary-hover);
+  --banner-border: var(--color-primary-200);
 }
 
 .ds-banner--success {

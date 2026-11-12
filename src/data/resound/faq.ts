@@ -55,7 +55,7 @@ export const resoundFaq: BrandPageFaqContent = {
         },
         {
           question: "ReSound Assist ne işe yarar?",
-          answer: "ReSound Assist, ReSound Smart 3D uygulaması üzerinden kliniğe gitmeden uzaktan ince ayar ve destek almanızı sağlayan bir tele-odyoloji hizmetidir.",
+          answer: "ReSound Assist, ReSound Smart 3D uygulaması üzerinden merkeze gitmeden uzaktan ince ayar ve destek almanızı sağlayan bir tele-odyoloji hizmetidir.",
         },
       ],
     },

@@ -12,7 +12,7 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const guvenilirTeknolojiAdvantages: BrandPageAdvantagesContent = {
   badge: "AVANTAJLARI",
   heading: "Orijinal Ürün Almanın Avantajları",
-  intro: "Yetkili kanaldan alınan orijinal bir cihazın sunduğu güvenceleri sıkça önerilen hâle getiren nedenler.",
+  intro: "Yetkili kanaldan alınan orijinal bir cihazın sunduğu başlıca güvenceler.",
   hero: {
     icon: ShieldCheck,
     category: "Üretici Garantisi",

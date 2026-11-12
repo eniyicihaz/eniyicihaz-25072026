@@ -20,7 +20,7 @@ export const tekTarafliIsitmeKaybiRecommendedBrands: BrandPageRelatedContentCont
     },
     {
       label: "Phonak",
-      description: "Phonak'ın CROS/BiCROS sistemleri, tek taraflı işitme kaybında en sık tercih edilen, köklü bir çözüm ailesidir.",
+      description: "Phonak'ın CROS/BiCROS sistemleri, tek taraflı işitme kaybında sıkça değerlendirilen bir çözüm ailesidir.",
       href: "/markalar/phonak/",
     },
     {

@@ -31,7 +31,7 @@
 }
 
 .ds-breadcrumb__link:hover {
-  color: var(--ds-primary, #2563eb);
+  color: var(--ds-primary, var(--color-primary));
 }
 
 .ds-breadcrumb__current {
@@ -40,6 +40,6 @@
 }
 
 .ds-breadcrumb__separator {
-  color: var(--ds-border-color, #cbd5e1);
+  color: var(--color-text-soft);
   user-select: none;
 }

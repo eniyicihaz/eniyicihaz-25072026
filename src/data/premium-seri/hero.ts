@@ -35,8 +35,8 @@ export const premiumSeriHero: BrandPageHeroContent = {
   badge: "MARKALAR · SEGMENTLER · PREMIUM SERİ",
   headingLines: ["Premium Seri", "İşitme Cihazları"],
   paragraphs: [
-    "Premium seri işitme cihazları; en gelişmiş yapay zeka destekli ses işleme, tam kablosuz bağlantı ve en yüksek performans seviyesini bir arada sunar.",
-    "Avrasya İşitme'de, dünyaca tanınan markaların premium seri modellerini en güncel teknolojiyle sunuyoruz; üretici garanti koşulları geçerlidir.",
+    "Premium seri işitme cihazları; bir markanın üst teknoloji seviyesindeki yapay zeka destekli ses işleme, kablosuz bağlantı ve kişiselleştirme özelliklerini bir arada sunar.",
+    "Avrasya İşitme'de, dünyaca tanınan markaların premium seri modellerini sunuyoruz; üretici garanti koşulları geçerlidir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

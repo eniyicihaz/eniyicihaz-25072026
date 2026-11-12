@@ -32,7 +32,7 @@ export const resoundIdealUser: BrandPageIdealUserContent = {
     {
       icon: Smartphone,
       title: "Uzaktan Destek İsteyenler",
-      description: "ReSound Assist ile kliniğe gitmeden ince ayar almak isteyen kullanıcılar için sıkça değerlendirilir.",
+      description: "ReSound Assist ile merkeze gitmeden ince ayar almak isteyen kullanıcılar için sıkça değerlendirilir.",
       suggestedFamilies: ["Nexia", "Omnia"],
     },
     {

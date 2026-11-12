@@ -36,7 +36,7 @@ export const odyometriTechnology: BrandPageEcosystemContent = {
       icon: "layers",
       navLabel: "Kemik Yolu İletimi",
       title: "Kemik Yolu İletimi Testi",
-      lead: "Kemik yolu iletimi testi, kafatası arkasına yerleştirilen bir cihazla verilen titreşimlere karşı iç kulağın doğrudan tepkisini ölçer.",
+      lead: "Kemik yolu iletimi testi, kulak arkasına yerleştirilen bir cihazla verilen titreşimlere karşı iç kulağın doğrudan tepkisini ölçer.",
       howItWorks: "Kulak arkasına yerleştirilen küçük bir titreşim cihazı, sesi doğrudan iç kulağa iletir; bu sayede dış ve orta kulağın etkisi devre dışı bırakılır.",
       advantages: [
         "İşitme kaybının türünü (iletim tipi veya sensörinöral) ayırt etmeye yardımcı olur",

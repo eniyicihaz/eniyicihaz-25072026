@@ -11,7 +11,7 @@ export const uzunOmurluCihazlarFinalCta: BrandPageFinalCtaContent = {
   badge: "UZUN ÖMÜRLÜ KULLANIM",
   heading: "Cihazınızın Ömrünü Birlikte Uzatalım",
   description:
-    "Ücretsiz periyodik bakım ve teknik servis desteğiyle cihazınızın uzun yıllar kullanılmasına yardımcı oluyoruz.",
+    "Teknik servis desteği ve ücretsiz periyodik bakımla cihazınızın uzun yıllar kullanılmasına yardımcı oluyoruz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: ["Ücretsiz Periyodik Bakım", "Teknik Servis Desteği", "Ücretsiz Garanti İşlemleri", "Ücretsiz Danışmanlık"],

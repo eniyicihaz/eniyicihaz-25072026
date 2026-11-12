@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 // BrandPageTechEvolution — shared, cross-brand "Technology Evolution"
 // editorial section. New component, not a migration: Phonak's blueprint
 // deliberately replaces Oticon's technical Segments/tier table with a
@@ -29,9 +30,17 @@ export interface BrandPageTechEvolutionContent {
 
 interface Props {
   data: BrandPageTechEvolutionContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
+
+// "Kimler İçin" etiketi yalnızca metin gerçekten bir kullanıcı grubunu anlatıyorsa yazılır ("… kullanıcılar",
+// "… yaşayanlar", "… isteyenler"). Süreç adımı / konu notu olan değerlerde ("Sürecin ilk adımı", "Kalite kontrolü")
+// etiket anlamsız kalıyordu; orada yalnızca not gösterilir.
+const isAudience = (text: string) => /(l[ae]r|l[ae]r için)$/u.test(text.trim().replace(/[.…]+$/u, ""));
 ---
 
 <section
@@ -62,7 +71,7 @@ const { data } = Astro.props;
               <p class="brand-page-techevo__era">{stage.era}</p>
               <p class="brand-page-techevo__brought">{stage.whatItBrought}</p>
               <p class="brand-page-techevo__best-for">
-                <span class="brand-page-techevo__best-for-label">Kimler İçin</span>
+                {isAudience(stage.bestFor) && <span class="brand-page-techevo__best-for-label">Kimler İçin</span>}
                 <span>{stage.bestFor}</span>
               </p>
               <div class="brand-page-techevo__families">

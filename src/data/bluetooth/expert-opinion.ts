@@ -10,7 +10,7 @@ export const bluetoothExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Bluetooth özellikli işitme cihazları; telefon, TV ve uygulama üzerinden bağlantıyı aktif kullanan, teknolojiye yatkın kullanıcılarda sunduğu kullanım kolaylığı nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir özelliktir.",
+    "Bluetooth özellikli işitme cihazları; telefon, TV ve uygulama üzerinden bağlantıyı aktif kullanan, teknolojiye yatkın kullanıcılarda sunduğu kullanım kolaylığı nedeniyle merkezimizde sıkça değerlendirdiğimiz bir özelliktir.",
   note: "Ancak bağlantı özelliği tek başına yeterli değildir; cihaz tipi, işitme kaybınızın derecesi ve günlük teknoloji kullanımınız birlikte değerlendirilmelidir.",
   accentColor: "#0891b2",
   accentColorBadgeBg: "rgb(8 145 178 / 0.08)",

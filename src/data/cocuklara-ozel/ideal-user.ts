@@ -25,7 +25,7 @@ export const cocuklaraOzelIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: Backpack,
-      title: "Okul Çağı Çocuklar (6–12 Yaş)",
+      title: "Okul Çağındaki Çocuklar (6–12 Yaş)",
       description: "Sınıf ortamında öğretmeni net duyabilmek için Roger/FM sistemleriyle uyumlu modeller sıkça tercih edilir.",
       suggestedFamilies: ["FM / Roger Uyumlu BTE Modelleri"],
     },

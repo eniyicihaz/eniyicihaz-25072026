@@ -39,7 +39,7 @@
   border: 2px solid #fff;
   border-radius: 50%;
 
-  background: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
 
   cursor: pointer;
 
@@ -56,7 +56,7 @@
   border: 2px solid #fff;
   border-radius: 50%;
 
-  background: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
 
   cursor: pointer;
 }

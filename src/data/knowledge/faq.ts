@@ -29,7 +29,7 @@ export const knowledgeFaq: BrandFaqContent = {
     {
       question: "İçerikler kim tarafından hazırlanıyor?",
       answer:
-        "İçerikler, kliniğimizin uzman ekibinin günlük pratiğine ve genel işitme sağlığı bilgisine dayanılarak hazırlanır.",
+        "İçerikler, merkezimizin uzman ekibinin günlük pratiğine ve genel işitme sağlığı bilgisine dayanılarak hazırlanır.",
     },
     {
       question: "Aradığım konu Bilgi Merkezi'nde yoksa ne yapmalıyım?",

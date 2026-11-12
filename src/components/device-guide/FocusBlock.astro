@@ -126,7 +126,7 @@ const { data, flip = false } = Astro.props;
   .focus-block__cols {
     margin-top: var(--space-6);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: var(--space-4);
   }
 
@@ -163,7 +163,7 @@ const { data, flip = false } = Astro.props;
     gap: var(--space-3);
     padding: var(--space-4);
     border-radius: var(--radius-lg);
-    background: rgb(37 99 235 / 0.05);
+    background: rgb(var(--color-primary-rgb) / 0.05);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);

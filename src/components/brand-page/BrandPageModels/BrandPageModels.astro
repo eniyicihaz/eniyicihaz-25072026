@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 // BrandPageModels — shared, cross-brand product showcase grid. Generic
 // counterpart of Oticon's original OticonModels (M5); data-driven so every
 // brand page can reuse it.
@@ -27,7 +28,7 @@ import {
 import { imageDims, imageSrcset } from "../../../lib/responsive-images";
 
 const badgeMap: Record<string, { icon: any; color: string }> = {
-  "bluetooth": { icon: Bluetooth, color: "#2563eb" },
+  "bluetooth": { icon: Bluetooth, color: "#05618a" },
   "şarjlı": { icon: BatteryCharging, color: "#16a34a" },
   "pilli": { icon: Battery, color: "#64748b" },
   "kulak içi": { icon: Ear, color: "#0d9488" },
@@ -71,13 +72,16 @@ export interface BrandPageModelsContent {
 
 interface Props {
   data: BrandPageModelsContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
   /** Denser layout for the homepage showcase (shorter cards, tighter padding, centered flex rows so an odd item count leaves no orphan-left card). Default false — brand pages render exactly as before. */
   compact?: boolean;
   /** Rendered inside a merged homepage block: a <div> with no own header and no vertical padding (the parent block supplies the heading). Default false. */
   embedded?: boolean;
 }
 
-const { data, compact = false, embedded = false } = Astro.props;
+const { data: rawData, compact = false, embedded = false, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 const Tag = embedded ? "div" : "section";
 
 // Plain server-side hex→rgba conversion (runs once at build time, output is
@@ -314,7 +318,7 @@ function hexToRgba(hex: string, alpha: number) {
     border-radius: var(--radius-full);
     background: var(--color-background);
     border: 1px solid var(--color-border);
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
     letter-spacing: 0.03em;
     color: var(--color-text-muted);
@@ -402,7 +406,7 @@ function hexToRgba(hex: string, alpha: number) {
     padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-md);
     background: var(--color-surface);
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
     color: var(--color-text-muted);
   }
@@ -416,7 +420,7 @@ function hexToRgba(hex: string, alpha: number) {
     padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-md);
     background: var(--fb-bg);
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
     color: var(--fb-color);
   }

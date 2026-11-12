@@ -15,7 +15,7 @@ const links = [
 ];
 ---
 
-<MainLayout title="Sayfa bulunamadı | Avrasya İşitme Cihazları" description="Aradığınız sayfa bulunamadı." noindex>
+<MainLayout title="Sayfa bulunamadı | Avrasya İşitme Cihazları" description="Aradığınız sayfa bulunamadı. Ana sayfaya dönebilir veya aşağıdaki bağlantılardan devam edebilirsiniz." noindex>
   <section class="nf" aria-labelledby="nf-title">
     <div class="nf__inner">
       <p class="nf__code">404</p>
@@ -31,12 +31,58 @@ const links = [
           ))
         }
       </ul>
+      <!-- Eski/değişmiş adres için konuya en yakın sayfa önerisi (aşağıdaki küçük betik; betik yoksa yukarıdaki liste yeterli). -->
+      <div class="nf__suggest" data-nf-suggest hidden>
+        <h2 class="nf__sub">Aradığınız konu şu olabilir</h2>
+        <ul class="nf__links" data-nf-suggest-list></ul>
+      </div>
       <p class="nf__text">
-        Yardım için <a href={contactConfig.phone.href}>bizi arayabilirsiniz</a>.
+        Yardım için <a href={contactConfig.phone.href}>bizi arayabilirsiniz</a> ya da{" "}
+        <a href={contactConfig.whatsapp.href}>WhatsApp'tan yazabilirsiniz</a>.
       </p>
     </div>
   </section>
 </MainLayout>
+
+<script is:inline>
+  (function () {
+    var box = document.querySelector("[data-nf-suggest]");
+    var list = document.querySelector("[data-nf-suggest-list]");
+    if (!box || !list) return;
+    var path = decodeURIComponent(location.pathname).toLowerCase();
+    var rules = [
+      [/oticon/, "/markalar/oticon/", "Oticon işitme cihazları"],
+      [/signia|siemens/, "/markalar/signia/", "Signia işitme cihazları"],
+      [/resound/, "/markalar/resound/", "ReSound işitme cihazları"],
+      [/phonak/, "/markalar/phonak/", "Phonak işitme cihazları"],
+      [/widex/, "/markalar/widex/", "Widex işitme cihazları"],
+      [/nuear/, "/markalar/nuear/", "NuEar işitme cihazları"],
+      [/unitron/, "/markalar/unitron/", "Unitron işitme cihazları"],
+      [/bernafon/, "/markalar/bernafon/", "Bernafon işitme cihazları"],
+      [/(^|\/)am-|a-?m-/, "/markalar/am/", "A&M işitme cihazları"],
+      [/fiyat|ucret|taksit/, "/isitme-cihazi-fiyatlari/", "İşitme cihazı fiyatları"],
+      [/sgk|katki|rapor|yenileme/, "/sgk-isitme-cihazi-odemesi/", "SGK işitme cihazı ödemesi ve katkı payı"],
+      [/pil|aksesuar/, "/servis-bakim/pil-aksesuar/", "Pil ve aksesuar"],
+      [/tamir|onar|servis|ariza/, "/servis-bakim/teknik-servis/", "Teknik servis"],
+      [/test|odyo|timpano/, "/degerlendirme/ucretsiz-isitme-testi/", "Ücretsiz işitme testi"],
+      [/evde/, "/uygulama-ayar/evde-isitme-cihazi-hizmeti/", "Evde işitme cihazı hizmeti"],
+      [/ayar|program/, "/uygulama-ayar/kisiye-ozel-ayar/", "Kişiye özel ayar"],
+      [/marka|model|hakkinda-bilgi/, "/isitme-cihazlari/", "İşitme cihazları"],
+    ];
+    var seen = {};
+    rules.forEach(function (r) {
+      if (!r[0].test(path) || seen[r[1]]) return;
+      seen[r[1]] = true;
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = r[1];
+      a.textContent = r[2];
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    if (list.children.length) box.hidden = false;
+  })();
+</script>
 
 <style>
   .nf {

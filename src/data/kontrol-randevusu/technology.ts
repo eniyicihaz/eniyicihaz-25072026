@@ -21,7 +21,7 @@ export const kontrolRandevusuTechnology: BrandPageEcosystemContent = {
       id: "kisa-yeniden-test",
       icon: "radar",
       navLabel: "Kısa Yeniden Test",
-      title: "Kısa İşitme Yeniden Değerlendirmesi",
+      title: "İşitmenin Kısa Yeniden Değerlendirmesi",
       lead: "Tam kapsamlı bir odyometriden daha kısa süren bir tarama testiyle, işitme durumunuzda bir değişiklik olup olmadığı kontrol edilir.",
       howItWorks: "Birkaç frekansta hızlı bir ölçüm yapılır ve sonuçlar önceki kayıtlarınızla karşılaştırılır.",
       advantages: [

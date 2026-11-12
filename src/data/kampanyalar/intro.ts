@@ -10,7 +10,7 @@ export const kampanyalarIntro: BrandPageIntroContent = {
   badge: "KAMPANYALARIMIZ NASIL İŞLER?",
   heading: "Kampanyalarımız Nasıl İşler?",
   paragraphs: [
-    "Kliniğimizde, kullanıcılarımıza farklı avantajlar sunmak amacıyla dönem dönem çeşitli kategorilerde kampanyalar düzenliyoruz.",
+    "Merkezimizde, kullanıcılarımıza farklı avantajlar sunmak amacıyla dönem dönem çeşitli kategorilerde kampanyalar düzenliyoruz.",
     "Bu kampanyalar; yeni kullanıcılara yönelik avantajlardan aile paketlerine, sezonluk fırsatlardan sadakat avantajlarına kadar farklı kategorilerde olabiliyor.",
     "Kampanya içerikleri, şartları ve süreleri zaman içinde değişebildiğinden, bu sayfada belirli bir tarih veya oran paylaşmıyoruz.",
     "Güncel ve aktif kampanyalarımız hakkında en doğru bilgiyi almak için bizi aramanızı veya WhatsApp üzerinden yazmanızı öneririz.",

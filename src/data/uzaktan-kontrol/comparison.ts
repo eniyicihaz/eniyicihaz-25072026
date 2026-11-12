@@ -12,7 +12,7 @@ import type { KulakArkasiComparisonContent } from "../../components/kulak-arkasi
 export const uzaktanKontrolComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
   heading: "Uzaktan Kontrol Destekli ile Standart (Sadece Cihaz Üzerinden Kontrol) Karşılaştırması",
-  intro: "İki yaklaşım arasındaki temel farkları aşağıdaki tabloda özetledik. Size uygun seçim, kliniğe erişiminize ve teknoloji kullanım alışkanlığınıza göre değişir.",
+  intro: "İki yaklaşım arasındaki temel farkları aşağıdaki tabloda özetledik. Size uygun seçim, merkeze erişiminize ve teknoloji kullanım alışkanlığınıza göre değişir.",
   primaryLabel: "Uzaktan Kontrol Destekli",
   secondaryLabel: "Standart (Sadece Cihaz Üzerinden Kontrol)",
   rows: [
@@ -24,7 +24,7 @@ export const uzaktanKontrolComparison: KulakArkasiComparisonContent = {
     {
       feature: "Uzaktan Destek",
       primary: "Odyometrist, video görüşme sırasında temel ayarları uzaktan güncelleyebilir.",
-      secondary: "Her ayar değişikliği için klinik randevusu gerekir.",
+      secondary: "Her ayar değişikliği için merkez randevusu gerekir.",
     },
     {
       feature: "Fark Ettirmeme",
@@ -38,8 +38,8 @@ export const uzaktanKontrolComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Erişilebilirlik",
-      primary: "Kliniğe uzak yaşayanlar için uzaktan destek erişimi kolaylaştırır.",
-      secondary: "Her ayar için kliniğe gidiş gerekebilir.",
+      primary: "Merkeze uzak yaşayanlar için uzaktan destek erişimi kolaylaştırır.",
+      secondary: "Her ayar için merkeze gidiş gerekebilir.",
     },
     {
       feature: "İnternet Bağımlılığı",
@@ -63,11 +63,11 @@ export const uzaktanKontrolComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Kimler İçin Daha Uygun Olabilir",
-      primary: "Kliniğe sık gelmekte zorlanan veya kolay ayar yapmak isteyen kullanıcılar için sıkça değerlendirilir.",
-      secondary: "Düzenli klinik ziyaretleri yapabilen, sade bir kullanım isteyen kullanıcılar için yeterli olabilir.",
+      primary: "Merkeze sık gelmekte zorlanan veya kolay ayar yapmak isteyen kullanıcılar için sıkça değerlendirilir.",
+      secondary: "Düzenli merkez ziyaretleri yapabilen, sade bir kullanım isteyen kullanıcılar için yeterli olabilir.",
     },
   ],
-  note: "Bu karşılaştırma genel eğilimleri özetler; sizin için en uygun seçim kliniğe erişiminiz, teknoloji kullanım alışkanlığınız ve bütçenize göre bir odyometrist ile birlikte belirlenmelidir.",
+  note: "Bu karşılaştırma genel eğilimleri özetler; sizin için en uygun seçim merkeze erişiminiz, teknoloji kullanım alışkanlığınız ve bütçenize göre bir odyometrist ile birlikte belirlenmelidir.",
   accentColor: "#0284c7",
   accentColorBadgeBg: "rgb(2 132 199 / 0.08)",
   accentColorBadgeBorder: "rgb(2 132 199 / 0.35)",

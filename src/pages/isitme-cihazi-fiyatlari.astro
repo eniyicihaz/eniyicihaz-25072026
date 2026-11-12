@@ -22,7 +22,6 @@
 // BrandPageRelatedContent, Brands, ContactLocationCard, CtaButton,
 // ImagePlaceholder) yeniden kullanımı + components/price-guide/* ile kurulur.
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import Brands from "../components/brands/Brands/Brands.astro";
 import BrandPageModels from "../components/brand-page/BrandPageModels/BrandPageModels.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
@@ -42,7 +41,7 @@ import GuideCta from "../components/price-guide/GuideCta.astro";
 
 import { buildMedicalBusinessSchema } from "../lib/schema";
 import { daricaLocation } from "../data/darica/location";
-import { pageMeta, breadcrumbItems, toc, PAGE_URL } from "../data/isitme-cihazi-fiyatlari/page";
+import { pageMeta, toc, PAGE_URL } from "../data/isitme-cihazi-fiyatlari/page";
 import { priceGuideHero } from "../data/isitme-cihazi-fiyatlari/hero";
 import { quickAnswer } from "../data/isitme-cihazi-fiyatlari/quick-answer";
 import {
@@ -69,16 +68,6 @@ import { priceGuideRelated, priceGuideCta } from "../data/isitme-cihazi-fiyatlar
 
 // Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması,
 // görünür SSS verisinden BrandPageFaq içinde üretilir. Product/Offer/fiyat yok.
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : { item: PAGE_URL }),
-  })),
-};
 const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
 
 // Darıca konum kartı — aynı gerçek veri, bu sayfaya uygun başlık.
@@ -92,13 +81,8 @@ const locationCard = {
 };
 ---
 
-<MainLayout title={pageMeta.title} description={pageMeta.description}>
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<MainLayout title={pageMeta.title} description={pageMeta.description} schemaName={pageMeta.schemaName} schemaDescription={pageMeta.schemaDescription}>
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="pg-breadcrumb">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <PriceGuideHero data={priceGuideHero} />
   <GuideToc links={toc} />
@@ -311,12 +295,6 @@ const locationCard = {
     border-radius: var(--radius-sm);
   }
 
-  .pg-breadcrumb {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-4) var(--space-6) 0;
-  }
-
   .pg-brands {
     margin-bottom: var(--space-8);
     padding-block: var(--space-4);
@@ -338,10 +316,6 @@ const locationCard = {
   }
 
   @media (max-width: 640px) {
-    .pg-breadcrumb {
-      padding-inline: var(--space-4);
-    }
-
     .pg-local__p {
       font-size: var(--font-size-md);
     }

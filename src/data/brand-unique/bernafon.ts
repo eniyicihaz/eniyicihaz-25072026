@@ -99,7 +99,7 @@ export const bernafonUnique: UniqueBrandContent = {
         answer: "Zerena sitemizde kulak arkası (BTE) ve pilli etiketli; Bluetooth etiketi yok. Pil ve aksesuar satışını merkezimizde yapıyoruz.",
       },
       {
-        question: "Bernafon Encanta CIC'i satın almadan denemek mümkün mü?",
+        question: "Bernafon Encanta CIC'yi satın almadan denemek mümkün mü?",
         answer: "Encanta CIC kulak içi bir aile; kulak içi cihazlar satın alarak 7 güne kadar deneme kapsamı dışındadır. Merkezimizde yaklaşık 20 dakikalık ücretsiz bir demo yapılabilir.",
       },
       {

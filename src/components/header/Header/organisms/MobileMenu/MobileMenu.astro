@@ -1,6 +1,7 @@
 ---
-import { ChevronDown, X, Phone } from "lucide-astro";
+import { ChevronDown, X, Phone, Search, Stethoscope, Ear, ShieldCheck, Tag, Wrench, MapPin } from "lucide-astro";
 import { icons } from "../../icons";
+import WhatsAppIcon from "../../../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import type { HeaderData } from "../../header.types";
 import { isActive } from "../../isActive";
 
@@ -8,12 +9,23 @@ interface Props {
   brand: HeaderData["brand"];
   items: HeaderData["nav"];
   phone: HeaderData["phone"];
+  whatsapp: HeaderData["whatsapp"];
   cta: HeaderData["cta"];
   currentPath: string;
 }
 
-const { brand, items, phone, cta, currentPath } = Astro.props;
+const { brand, items, phone, whatsapp, cta, currentPath } = Astro.props;
 const CtaIcon = icons[cta.icon] as any;
+
+// The six things visitors most often come for — one tap from anywhere (every target is an existing page).
+const quick = [
+  { label: "İşitme testi", href: "/degerlendirme/ucretsiz-isitme-testi/", Icon: Stethoscope },
+  { label: "Cihaz seçimi", href: "/rehberler/cihaz-secim-rehberi/", Icon: Ear },
+  { label: "SGK desteği", href: "/sgk-isitme-cihazi-odemesi/", Icon: ShieldCheck },
+  { label: "Fiyat bilgisi", href: "/isitme-cihazi-fiyatlari/", Icon: Tag },
+  { label: "Teknik servis", href: "/servis-bakim/teknik-servis/", Icon: Wrench },
+  { label: "İletişim ve adres", href: "/iletisim/", Icon: MapPin },
+];
 ---
 
 <div class="hd-mobile" id="hd-mobile" data-mobile aria-hidden="true">
@@ -21,99 +33,127 @@ const CtaIcon = icons[cta.icon] as any;
 
   <aside class="hd-mobile__panel" role="dialog" aria-modal="true" aria-label="Menü">
     <div class="hd-mobile__head">
-      <span class="hd-mobile__brand">
-        <span class="hd-mobile__brand-a">ENİYİ</span><span class="hd-mobile__brand-b">CİHAZ</span>
-      </span>
-      <button
-        type="button"
-        class="hd-mobile__close"
-        data-action="close-mobile"
-        aria-label="Menüyü kapat"
-      >
-        <X size={22} aria-hidden="true" />
+      <a class="hd-mobile__brand" href={brand.href}>
+        <img
+          src="/images/brand/avrasya-isitme-cihazlari-logo-header-360.webp"
+          width="360"
+          height="128"
+          alt="Avrasya İşitme Cihazları"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <button type="button" class="hd-mobile__close" data-action="close-mobile" aria-label="Menüyü kapat">
+        <X size={24} aria-hidden="true" />
       </button>
     </div>
 
-    <nav class="hd-mobile__nav" aria-label="Mobil menü">
-      <ul class="hd-mobile__list">
-        {
-          items.map((item) =>
-            item.mega ? (
-              <li class="hd-mobile__group" data-accordion>
-                <button
-                  type="button"
-                  class="hd-mobile__acc-trigger"
-                  data-action="toggle-accordion"
-                  aria-expanded="false"
-                  aria-current={isActive(item.href, currentPath) ? "true" : undefined}
-                >
-                  <span>{item.label}</span>
-                  <ChevronDown class="hd-mobile__acc-chev" size={18} aria-hidden="true" />
-                </button>
-                <div class="hd-mobile__acc-panel">
-                  {item.mega.columns.map((col) => {
-                    const ColIcon = icons[col.icon] as any;
-                    return (
-                      <div class="hd-mobile__sub">
-                        <p class="hd-mobile__sub-title">
-                          <span class="hd-mobile__sub-icon" aria-hidden="true">
-                            <ColIcon size={16} />
-                          </span>
-                          {col.title}
-                        </p>
-                        <ul class="hd-mobile__sub-list">
-                          {col.links.map((link) => (
-                            <li>
-                              <a
-                                class="hd-mobile__sub-link"
-                                href={link.href}
-                                aria-current={isActive(link.href, currentPath) ? "page" : undefined}
-                              >
-                                {link.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    );
-                  })}
-                  <a
-                    class="hd-mobile__sub-all"
-                    href={item.mega.support.footer.href}
-                    aria-current={isActive(item.mega.support.footer.href, currentPath) ? "page" : undefined}
-                  >
-                    {item.mega.support.footer.label}
-                  </a>
-                </div>
-              </li>
-            ) : (
+    <div class="hd-mobile__scroll">
+      <button type="button" class="hd-mobile__search" data-action="open-search">
+        <Search size={20} aria-hidden="true" />
+        <span>Sitede ara</span>
+      </button>
+
+      <nav class="hd-mobile__quick" aria-label="Sık kullanılan sayfalar">
+        <ul>
+          {
+            quick.map(({ label, href, Icon }) => (
               <li>
-                <a
-                  class="hd-mobile__link"
-                  href={item.href}
-                  aria-current={isActive(item.href, currentPath) ? "page" : undefined}
-                >
-                  {item.label}
+                <a href={href} aria-current={isActive(href, currentPath) ? "page" : undefined}>
+                  <Icon size={22} aria-hidden="true" />
+                  <span>{label}</span>
                 </a>
               </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav class="hd-mobile__nav" aria-label="Mobil menü">
+        <ul class="hd-mobile__list">
+          {
+            items.map((item) =>
+              item.mega ? (
+                <li class="hd-mobile__group" data-accordion>
+                  <button
+                    type="button"
+                    class="hd-mobile__acc-trigger"
+                    data-action="toggle-accordion"
+                    aria-expanded="false"
+                    aria-current={isActive(item.href, currentPath) ? "true" : undefined}
+                  >
+                    <span>{item.label}</span>
+                    <ChevronDown class="hd-mobile__acc-chev" size={20} aria-hidden="true" />
+                  </button>
+                  <div class="hd-mobile__acc-panel">
+                    {item.mega.columns.map((col) => {
+                      const ColIcon = icons[col.icon] as any;
+                      return (
+                        <div class="hd-mobile__sub">
+                          <p class="hd-mobile__sub-title">
+                            <span class="hd-mobile__sub-icon" aria-hidden="true">
+                              <ColIcon size={16} />
+                            </span>
+                            {col.title}
+                          </p>
+                          <ul class="hd-mobile__sub-list">
+                            {col.links.map((link) => (
+                              <li>
+                                <a
+                                  class="hd-mobile__sub-link"
+                                  href={link.href}
+                                  aria-current={isActive(link.href, currentPath) ? "page" : undefined}
+                                >
+                                  {link.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                    <a
+                      class="hd-mobile__sub-all"
+                      href={item.mega.support.footer.href}
+                      aria-current={isActive(item.mega.support.footer.href, currentPath) ? "page" : undefined}
+                    >
+                      {item.mega.support.footer.label}
+                    </a>
+                  </div>
+                </li>
+              ) : (
+                <li>
+                  <a
+                    class="hd-mobile__link"
+                    href={item.href}
+                    aria-current={isActive(item.href, currentPath) ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              )
             )
-          )
-        }
-      </ul>
-    </nav>
+          }
+        </ul>
+      </nav>
+    </div>
 
     <div class="hd-mobile__foot">
-      <a class="hd-mobile__phone" href={phone.href}>
-        <Phone size={18} aria-hidden="true" />
-        <span>
-          <strong>{phone.number}</strong>
-          <small>{phone.label}</small>
-        </span>
-      </a>
       <a class="hd-mobile__cta" href={cta.href}>
-        <CtaIcon size={18} aria-hidden="true" />
+        <CtaIcon size={20} aria-hidden="true" />
         <span>{cta.label}</span>
       </a>
+      <div class="hd-mobile__contact">
+        <a class="hd-mobile__call" href={phone.href}>
+          <Phone size={20} aria-hidden="true" />
+          <span>Ara</span>
+        </a>
+        <a class="hd-mobile__wa" href={whatsapp.href} aria-label={whatsapp.label}>
+          <WhatsAppIcon size={22} class="hd-mobile__wa-icon" />
+          <span>WhatsApp</span>
+        </a>
+      </div>
+      <p class="hd-mobile__number">{phone.number}</p>
     </div>
   </aside>
 </div>
@@ -135,7 +175,7 @@ const CtaIcon = icons[cta.icon] as any;
   .hd-mobile__backdrop {
     position: absolute;
     inset: 0;
-    background: rgb(15 23 42 / 0.5);
+    background: rgb(var(--brand-navy-deep-rgb) / 0.55);
     opacity: 0;
     transition: opacity var(--transition-base);
   }
@@ -149,7 +189,7 @@ const CtaIcon = icons[cta.icon] as any;
     top: 0;
     right: 0;
     height: 100%;
-    width: min(400px, 88vw);
+    width: min(420px, 92vw);
     display: flex;
     flex-direction: column;
     background: var(--color-white);
@@ -166,21 +206,25 @@ const CtaIcon = icons[cta.icon] as any;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-4) var(--space-5);
+    padding: var(--space-3) var(--space-4);
     border-bottom: 1px solid var(--color-border);
     flex: none;
   }
 
   .hd-mobile__brand {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: -0.021em;
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    border-radius: var(--radius-sm);
   }
-  .hd-mobile__brand-a {
-    color: var(--color-text);
+  .hd-mobile__brand img {
+    display: block;
+    height: 48px;
+    width: auto;
   }
-  .hd-mobile__brand-b {
-    color: var(--color-primary);
+  .hd-mobile__brand:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
   }
 
   .hd-mobile__close {
@@ -204,10 +248,75 @@ const CtaIcon = icons[cta.icon] as any;
     box-shadow: var(--focus-ring);
   }
 
-  .hd-mobile__nav {
+  .hd-mobile__scroll {
     flex: 1;
     overflow-y: auto;
-    padding: var(--space-3) var(--space-4);
+    overscroll-behavior: contain;
+    padding: var(--space-4);
+  }
+
+  .hd-mobile__search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 52px;
+    padding: 0 var(--space-4);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: var(--font-size-md);
+    cursor: pointer;
+  }
+  .hd-mobile__search:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-mobile__quick {
+    margin-top: var(--space-4);
+  }
+  .hd-mobile__quick ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+  .hd-mobile__quick a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 56px;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-primary-100);
+    border-radius: var(--radius-lg);
+    background: var(--color-primary-50);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.25;
+    text-decoration: none;
+  }
+  .hd-mobile__quick a :global(svg) {
+    flex: none;
+    color: var(--color-primary);
+  }
+  .hd-mobile__quick a[aria-current="page"] {
+    background: var(--color-primary-100);
+  }
+  .hd-mobile__quick a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .hd-mobile__nav {
+    margin-top: var(--space-4);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border);
   }
 
   .hd-mobile__list {
@@ -224,11 +333,12 @@ const CtaIcon = icons[cta.icon] as any;
     justify-content: space-between;
     gap: var(--space-2);
     padding: var(--space-4) var(--space-3);
+    min-height: 56px;
     border: none;
     background: transparent;
     font-family: inherit;
     font-size: var(--font-size-md);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-semibold);
     letter-spacing: -0.01em;
     color: var(--color-text);
     text-decoration: none;
@@ -297,7 +407,9 @@ const CtaIcon = icons[cta.icon] as any;
     padding: 0;
   }
   .hd-mobile__sub-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
     padding: var(--space-2) var(--space-3);
     font-size: var(--font-size-md);
     line-height: 1.45;
@@ -316,7 +428,9 @@ const CtaIcon = icons[cta.icon] as any;
     box-shadow: var(--focus-ring);
   }
   .hd-mobile__sub-all {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
     margin-top: var(--space-2);
     padding: var(--space-2) var(--space-3);
     font-size: var(--font-size-sm);
@@ -330,33 +444,10 @@ const CtaIcon = icons[cta.icon] as any;
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
-    padding: var(--space-4) var(--space-5);
+    padding: var(--space-4);
     border-top: 1px solid var(--color-border);
-  }
-
-  .hd-mobile__phone {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-3);
-    color: var(--color-primary);
-    text-decoration: none;
-  }
-  .hd-mobile__phone {
-    min-height: 48px;
-    align-items: center;
-  }
-  .hd-mobile__phone span {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.2;
-  }
-  .hd-mobile__phone strong {
-    font-size: var(--font-size-md);
-    color: var(--color-text);
-  }
-  .hd-mobile__phone small {
-    font-size: var(--font-size-xs);
-    color: var(--color-text-muted);
+    background: var(--color-white);
+    padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
   }
 
   .hd-mobile__cta {
@@ -364,9 +455,9 @@ const CtaIcon = icons[cta.icon] as any;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    height: 50px;
+    height: 56px;
     border-radius: var(--radius-lg);
-    background: var(--color-text);
+    background: var(--color-primary);
     color: var(--color-text-inverse);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
@@ -374,11 +465,47 @@ const CtaIcon = icons[cta.icon] as any;
     transition: background-color var(--transition-base);
   }
   .hd-mobile__cta:hover {
-    background: var(--color-primary-active);
+    background: var(--color-primary-hover);
   }
-  .hd-mobile__cta:focus-visible {
+  .hd-mobile__cta:focus-visible,
+  .hd-mobile__call:focus-visible,
+  .hd-mobile__wa:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
+  }
+
+  .hd-mobile__contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+  .hd-mobile__call,
+  .hd-mobile__wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 52px;
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+  }
+  .hd-mobile__call :global(svg) {
+    color: var(--color-primary);
+  }
+  .hd-mobile__wa :global(.hd-mobile__wa-icon) {
+    color: #25d366;
+  }
+  .hd-mobile__number {
+    margin: 0;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-muted);
   }
 
   @media (prefers-reduced-motion: reduce) {

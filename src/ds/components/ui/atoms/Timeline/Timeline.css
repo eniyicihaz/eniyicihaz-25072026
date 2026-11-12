@@ -33,7 +33,7 @@
 
   border-radius: 999px;
 
-  background: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
 }
 
 .ds-timeline__item:not(:last-child) .ds-timeline__marker::after {
@@ -68,7 +68,7 @@
 .ds-timeline__date {
   margin-top: .25rem;
 
-  font-size: .75rem;
+  font-size: var(--font-size-xs);
 
   color: var(--ds-text-secondary, #64748b);
 }
@@ -76,7 +76,7 @@
 .ds-timeline__description {
   margin-top: .5rem;
 
-  font-size: .875rem;
+  font-size: var(--font-size-md);
   line-height: 1.6;
 
   color: var(--ds-text-secondary, #64748b);

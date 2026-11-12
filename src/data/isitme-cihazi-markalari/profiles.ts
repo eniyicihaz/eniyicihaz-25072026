@@ -111,7 +111,7 @@ export const brandSections: Record<string, GuideSectionMeta> = {
   signia: { id: "signia", eyebrow: "Signia", heading: "Signia İşitme Cihazları ve Modelleri", intro: "Signia model aileleri, cihaz türleri ve özellik etiketleri." },
   widex: { id: "widex", eyebrow: "Widex", heading: "Widex İşitme Cihazları ve Modelleri", intro: "Widex model aileleri, cihaz türleri ve özellik etiketleri." },
   resound: { id: "resound", eyebrow: "ReSound", heading: "ReSound İşitme Cihazları ve Modelleri", intro: "ReSound model aileleri, cihaz türleri ve özellik etiketleri." },
-  nuear: { id: "nuear-profili", eyebrow: "NuEar", heading: "NuEar İşitme Cihazları ve NuEar Modelleri", intro: "NuEar model aileleri, cihaz türleri ve özellik etiketleri." },
+  nuear: { id: "nuear-profili", eyebrow: "NuEar", heading: "NuEar İşitme Cihazları ve Modelleri", intro: "NuEar model aileleri, cihaz türleri ve özellik etiketleri." },
 };
 
 const oticonItems = oticonModels.items as RawModel[];

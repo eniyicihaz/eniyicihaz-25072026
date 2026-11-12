@@ -20,7 +20,7 @@ export const uzaktanKontrolRecommendedBrands: BrandPageRelatedContentContent = {
     },
     {
       label: "Phonak",
-      description: "Phonak'ın Remote Support özelliği, kliniğe gelmeden uzaktan ince ayar imkânı sağlar.",
+      description: "Phonak'ın Remote Support özelliği, merkeze gelmeden uzaktan ince ayar imkânı sağlar.",
       href: "/markalar/phonak/",
     },
     {

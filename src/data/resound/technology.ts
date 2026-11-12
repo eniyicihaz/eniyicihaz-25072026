@@ -32,7 +32,7 @@ export const resoundTechnology: BrandPageTechnologyContent = {
     {
       label: "CARE",
       title: "ReSound Assist",
-      description: "Kliniğe gitmeden uzaktan ince ayar ve destek almanızı sağlayan tele-odyoloji hizmeti.",
+      description: "Merkeze gitmeden uzaktan ince ayar ve destek almanızı sağlayan tele-odyoloji hizmeti.",
     },
     {
       label: "CHARGE",

@@ -10,7 +10,7 @@ export const etkinliklerIntro: BrandPageIntroContent = {
   badge: "ETKİNLİKLERİMİZ NASIL İŞLER?",
   heading: "Etkinliklerimiz Nasıl İşler?",
   paragraphs: [
-    "İşitme sağlığı farkındalığını desteklemek amacıyla, kliniğimiz dönem dönem çeşitli toplum sağlığı etkinliklerine katılım gösterebiliyor.",
+    "İşitme sağlığı farkındalığını desteklemek amacıyla, merkezimiz dönem dönem çeşitli toplum sağlığı etkinliklerine katılım gösterebiliyor.",
     "Bu etkinlikler; farkındalık günlerinden okul taramalarına, kurumsal işbirliklerinden ücretsiz test günlerine kadar farklı kategorilerde olabiliyor.",
     "Etkinlik takvimi ve katılım şartları zaman içinde değişebildiğinden, bu sayfada belirli bir tarih paylaşmıyoruz.",
     "Güncel etkinlik takvimimiz hakkında en doğru bilgiyi almak için bizi aramanızı veya WhatsApp üzerinden yazmanızı öneririz.",

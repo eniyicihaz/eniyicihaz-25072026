@@ -21,7 +21,7 @@ import { company } from "../../components/footer/Footer/data/company";
 export const gebzeHero: CorporateHeroContent = {
   compactHeading: true,
   locationLabel: "Gebze'den Darıca Merkezimize",
-  heading: "Gebze'den İşitme Cihazı ve İşitme Testi İçin Darıca Merkezimize",
+  heading: "Gebze'den Darıca Merkezimize: İşitme Testi ve İşitme Cihazı Hizmetleri",
   subheading:
     "Tek fiziksel merkezimiz Darıca'dadır; Gebze'de şubemiz yok. Gebze'den işitme testi, cihaz seçimi ve SGK işlem desteği için gelebilir, bazı işlemleri uzaktan ayar veya evde hizmetle planlayabilirsiniz.",
   image: "/images/pages/hakkimizda-bekleme-alani.webp",

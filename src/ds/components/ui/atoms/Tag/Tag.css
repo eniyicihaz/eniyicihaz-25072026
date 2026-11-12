@@ -23,7 +23,7 @@
 .ds-tag--sm {
   height: 24px;
   padding: 0 .5rem;
-  font-size: .75rem;
+  font-size: var(--font-size-xs);
 }
 
 .ds-tag--md {
@@ -53,9 +53,9 @@
 }
 
 .ds-tag--primary {
-  background: #eff6ff;
-  color: #2563eb;
-  border-color: #bfdbfe;
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+  border-color: var(--color-primary-200);
 }
 
 .ds-tag--secondary {
@@ -83,7 +83,7 @@
 }
 
 .ds-tag--info {
-  background: #eff6ff;
+  background: var(--color-primary-50);
   color: #0284c7;
   border-color: #bae6fd;
 }

@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 import { readableTextOn } from "../../../lib/contrast";
 import { standardCtaLabel } from "../../../lib/cta-labels";
 // BrandPageFaq — shared, cross-brand grouped FAQ accordion with a sticky
@@ -40,9 +41,12 @@ export interface BrandPageFaqContent {
 
 interface Props {
   data: BrandPageFaqContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 
 const flatItems = data.categories.flatMap((category) => category.items);
 
@@ -400,15 +404,23 @@ let runningIndex = 0;
     grid-template-rows: 1fr;
   }
 
+  /* Kapalı panel yalnızca görünmez değil, ODAKLANAMAZ da olmalı: yanıtların içinde bağlantı olabilir (iç bağlantı
+     katmanı sayfa atıflarını bağlantıya çevirir) ve `aria-hidden` bir bölgenin içine klavyeyle girilmemelidir
+     (WCAG 4.1.2; axe "aria-hidden-focus"). `visibility: hidden` içeriği sekme sırasından çıkarır; kapanırken
+     daralma animasyonu bitene kadar (350 ms) görünür kalır. */
   .brand-page-faq__panel {
     overflow: hidden;
     opacity: 0;
-    transition: opacity 250ms var(--bpfq-ease);
+    visibility: hidden;
+    transition:
+      opacity 250ms var(--bpfq-ease),
+      visibility 0s linear 350ms;
   }
 
   .brand-page-faq__item[data-open="true"] .brand-page-faq__panel {
     opacity: 1;
-    transition-delay: 100ms;
+    visibility: visible;
+    transition-delay: 100ms, 0s;
   }
 
   .brand-page-faq__panel p {

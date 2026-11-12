@@ -34,7 +34,7 @@ export const basariHikayeleriHero: BrandPageHeroContent = {
   headingLines: ["İşitme Cihazının", "Hayata Kattıkları"],
   paragraphs: [
     "İşitme cihazı kullanan birçok kişi, aile iletişiminden iş hayatına kadar günlük yaşamlarında olumlu değişimler yaşadığını paylaşıyor.",
-    "Bu sayfada, kliniğimizde sıkça gözlemlediğimiz genel deneyim kategorilerini sizinle paylaşıyoruz — gizlilik nedeniyle kişisel isim veya vaka paylaşmıyoruz.",
+    "Bu sayfada, merkezimizde sıkça gözlemlediğimiz genel deneyim kategorilerini sizinle paylaşıyoruz — gizlilik nedeniyle kişisel isim veya vaka paylaşmıyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

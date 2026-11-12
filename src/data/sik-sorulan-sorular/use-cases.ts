@@ -40,7 +40,7 @@ export const sikSorulanSorularUseCases: BrandPageTechnologyContent = {
     {
       label: "GARANTİ VE DEĞİŞİM",
       title: "Garanti Kapsamı Nedir?",
-      description: "Garanti işlemleri ve kolay değişim hakkı hakkında ilgili sayfalarımızı inceleyebilirsiniz.",
+      description: "Garanti işlemleri ve kolay değişim uygulaması için ilgili sayfalarımızı inceleyebilirsiniz.",
     },
   ],
   accentColor: "#0284c7",

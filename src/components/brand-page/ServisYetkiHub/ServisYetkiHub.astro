@@ -67,8 +67,8 @@ const icons = [Factory, Cpu, ShieldCheck, ReceiptText];
     overflow: clip;
     background: var(--color-background);
     padding-block: var(--space-12);
-    --navy: #0f2547;
-    --blue: #2563eb;
+    --navy: var(--brand-navy-deep);
+    --blue: var(--color-primary);
     --teal: #0e7490;
     --violet: #7c3aed;
   }
@@ -146,9 +146,9 @@ const icons = [Factory, Cpu, ShieldCheck, ReceiptText];
     border-radius: var(--radius-2xl);
     text-align: center;
     color: #ffffff;
-    background: radial-gradient(120% 90% at 30% 10%, #1d4ed8, var(--navy) 62%);
+    background: radial-gradient(120% 90% at 30% 10%, var(--color-primary-hover), var(--navy) 62%);
     box-shadow:
-      0 0 0 8px rgb(37 99 235 / 0.08),
+      0 0 0 8px rgb(var(--color-primary-rgb) / 0.08),
       0 0 0 18px rgb(14 116 144 / 0.06),
       0 22px 40px -18px rgb(15 37 71 / 0.7);
   }

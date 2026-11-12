@@ -27,8 +27,8 @@ export const uzaktanKontrolEvolution: BrandPageTechEvolutionContent = {
     },
     {
       era: "Uzaktan Destek (TeleCare / TeleAudiology)",
-      whatItBrought: "Video görüşme teknolojisiyle entegre çalışan uzaktan destek özellikleri, odyometristin cihaz ayarlarını kliniğe gelmeden güncellemesini mümkün kıldı.",
-      bestFor: "Kliniğe sık gelmeden destek almak isteyenler",
+      whatItBrought: "Video görüşme teknolojisiyle entegre çalışan uzaktan destek özellikleri, odyometristin cihaz ayarlarını merkeze gelmeden güncellemesini mümkün kıldı.",
+      bestFor: "Merkeze sık gelmeden destek almak isteyenler",
       families: ["Uzaktan Destek Uyumlu Modeller"],
     },
     {

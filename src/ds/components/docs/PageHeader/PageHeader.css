@@ -19,7 +19,7 @@
     background:var(--surface);
     color:var(--primary);
 
-    font-size:.75rem;
+    font-size: var(--font-size-xs);
     font-weight:600;
     letter-spacing:.08em;
     text-transform:uppercase;
@@ -55,7 +55,7 @@
     max-width:720px;
     margin:0;
 
-    font-size:1.05rem;
+    font-size: var(--font-size-md);
     line-height:1.8;
 
     color:var(--text-muted);
@@ -71,7 +71,7 @@
     }
 
     .page-header__description{
-        font-size:1rem;
+        font-size: var(--font-size-md);
         line-height:1.7;
     }
 

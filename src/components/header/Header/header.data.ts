@@ -17,7 +17,7 @@ const devicesMega: MegaMenuData = {
     title: "Size Uygun İşitme Cihazını Keşfedin",
     text: "En yeni teknoloji işitme cihazlarıyla duyma deneyiminizi yeniden keşfedin.",
     cta: { label: "Tüm İşitme Cihazları", href: "/isitme-cihazlari/" },
-    image: "/images/ui/mega-menu-isitme-cihazlari.webp",
+    image: "/images/ui/mega-menu-cihazlar-merkez.webp",
   },
   columns: [
     {
@@ -47,7 +47,7 @@ const devicesMega: MegaMenuData = {
         { label: "Uzaktan Kontrol Özellikleri", href: "/teknolojiler/uzaktan-kontrol/" },
         { label: "Tinnitus (Kulak Çınlaması) Çözümleri", href: "/teknolojiler/tinnitus-cozumleri/" },
       ],
-      footer: { label: "Tüm Teknolojiler", href: "/isitme-cihazlari/" },
+      footer: { label: "Tüm Teknolojiler", href: "/teknolojiler/" },
     },
     {
       icon: "target",
@@ -62,7 +62,7 @@ const devicesMega: MegaMenuData = {
         { label: "Yaşlılar İçin Cihazlar", href: "/ihtiyaciniza-gore/yaslilar-icin-cihazlar/" },
         { label: "Aktif Yaşam İçin Cihazlar", href: "/ihtiyaciniza-gore/aktif-yasam-icin-cihazlar/" },
       ],
-      footer: { label: "Size Özel Çözümler", href: "/isitme-cihazlari/" },
+      footer: { label: "İhtiyaca Göre Tüm Rehberler", href: "/ihtiyaciniza-gore/" },
     },
   ],
   support: {
@@ -87,7 +87,7 @@ const brandsMega: MegaMenuData = {
     title: "İşitme Cihazı Markaları",
     text: "Darıca'daki merkezimizde 18 marka ile çalışıyoruz; marka ve model ailelerini birlikte inceleyin.",
     cta: { label: "Tüm Markalar", href: "/markalar/" },
-    image: "/images/ui/mega-menu-markalar.webp",
+    image: "/images/ui/mega-menu-markalar-merkez.webp",
   },
   columns: [
     {
@@ -116,7 +116,7 @@ const brandsMega: MegaMenuData = {
         { label: "Ücretsiz Danışmanlık", href: "/neden-orijinal/ucretsiz-danismanlik/" },
         { label: "Kolay Değişim", href: "/neden-orijinal/kolay-degisim/" },
       ],
-      footer: { label: "Detaylı Bilgi", href: "/markalar/" },
+      footer: { label: "Neden Orijinal?", href: "/neden-orijinal/" },
     },
     {
       icon: "sparkles",
@@ -130,7 +130,7 @@ const brandsMega: MegaMenuData = {
         { label: "Görünmez Seri", href: "/isitme-cihazlari/gorunmez-cic/" },
         { label: "Çocuk Serisi", href: "/isitme-cihazlari/cocuklara-ozel/" },
       ],
-      footer: { label: "Tüm Seriler", href: "/markalar/" },
+      footer: { label: "Tüm Seriler", href: "/segmentler/" },
     },
   ],
   support: {
@@ -169,7 +169,7 @@ const servicesMega: MegaMenuData = {
         { label: "İşitme Danışmanlığı", href: "/neden-orijinal/ucretsiz-danismanlik/" },
         { label: "Online İşitme Testi", href: "/degerlendirme/online-isitme-testi/" },
       ],
-      footer: { label: "Değerlendirme Hizmetleri", href: "/hizmetlerimiz/" },
+      footer: { label: "Tüm Değerlendirmeler", href: "/degerlendirme/" },
     },
     {
       icon: "sliders",
@@ -184,7 +184,7 @@ const servicesMega: MegaMenuData = {
         { label: "Kontrol Randevusu", href: "/uygulama-ayar/kontrol-randevusu/" },
         { label: "Evde Cihaz Hizmeti", href: "/uygulama-ayar/evde-isitme-cihazi-hizmeti/" },
       ],
-      footer: { label: "Uygulama Hizmetleri", href: "/hizmetlerimiz/" },
+      footer: { label: "Tüm Uygulama Hizmetleri", href: "/uygulama-ayar/" },
     },
     {
       icon: "wrench",
@@ -198,7 +198,7 @@ const servicesMega: MegaMenuData = {
         { label: "Garanti İşlemleri", href: "/servis-bakim/garanti-islemleri/" },
         { label: "Onarım Takibi", href: "/servis-bakim/onarim-takibi/" },
       ],
-      footer: { label: "Servis Hizmetleri", href: "/hizmetlerimiz/" },
+      footer: { label: "Tüm Servis Hizmetleri", href: "/servis-bakim/" },
     },
   ],
   support: {
@@ -220,7 +220,7 @@ const knowledgeMega: MegaMenuData = {
     title: "İşitme Sağlığı Hakkında Her Şey.",
     text: "İşitme kaybından cihaz bakımına, merak ettiğiniz tüm konularda güvenilir bilgi kaynağınız.",
     cta: { label: "Tüm İçerikler", href: "/bilgi-merkezi/" },
-    image: "/images/ui/mega-menu-bilgi-merkezi.webp",
+    image: "/images/ui/mega-menu-bilgi-merkez.webp",
   },
   columns: [
     {
@@ -235,13 +235,14 @@ const knowledgeMega: MegaMenuData = {
         { label: "Tinnitus Değerlendirme", href: "/degerlendirme/tinnitus-degerlendirme/" },
         { label: "Çocuk İşitme Testi", href: "/degerlendirme/cocuk-isitme-testi/" },
       ],
-      footer: { label: "Tüm Değerlendirmeler", href: "/bilgi-merkezi/" },
+      footer: { label: "Tüm Değerlendirmeler", href: "/degerlendirme/" },
     },
     {
       icon: "sliders",
       title: "Cihaz Kullanımı",
       description: "Cihazınızdan en iyi verimi almanın yolları.",
       links: [
+        { label: "Cihaz Seçim Rehberi", href: "/rehberler/cihaz-secim-rehberi/" },
         { label: "İlk Kullanım Rehberi", href: "/rehberler/ilk-kullanim-rehberi/" },
         { label: "Uyum Süreci", href: "/rehberler/uyum-sureci/" },
         { label: "Cihaz Temizliği", href: "/servis-bakim/cihaz-temizligi/" },
@@ -249,7 +250,7 @@ const knowledgeMega: MegaMenuData = {
         { label: "Pil & Aksesuar", href: "/servis-bakim/pil-aksesuar/" },
         { label: "Onarım Takibi", href: "/servis-bakim/onarim-takibi/" },
       ],
-      footer: { label: "Tüm Rehberler", href: "/bilgi-merkezi/" },
+      footer: { label: "Tüm Rehberler", href: "/rehberler/" },
     },
     {
       icon: "shield",
@@ -280,9 +281,10 @@ const knowledgeMega: MegaMenuData = {
 };
 
 export const headerData: HeaderData = {
+  // Brand: the real logo is rendered by Logo.astro; `name` is only the accessible/brand name. The former
+  // "ENİYİCİHAZ" wordmark and its "En İyi" tagline are retired (BRAND_SOT, MASTER_PLAN B3).
   brand: {
-    name: "ENİYİCİHAZ",
-    tagline: "İşitme Sağlığınız İçin En İyi Çözümler",
+    name: "Avrasya İşitme Cihazları",
     href: "/",
   },
   nav: [
@@ -298,5 +300,6 @@ export const headerData: HeaderData = {
     label: "Bizi Arayın",
     href: "tel:+905337733199",
   },
-  cta: { label: "Bizi Arayın", href: "tel:+905337733199", icon: "phone" },
+  whatsapp: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+  cta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/", icon: "stethoscope" },
 };

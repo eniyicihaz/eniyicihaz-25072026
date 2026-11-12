@@ -28,7 +28,7 @@ export const kontrolRandevusuRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Uzaktan Ayar",
-      description: "Küçük bir güncelleme için kliniğe gelmeden uzaktan destek imkânını keşfedin.",
+      description: "Küçük bir güncelleme için merkeze gelmeden uzaktan destek imkânını keşfedin.",
       href: "/uygulama-ayar/uzaktan-ayar/",
     },
     {

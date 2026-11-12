@@ -9,7 +9,7 @@ export const kulakIciExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Kulak içi (ITE) işitme cihazları; özellikle görünürlüğü öncelik gören ve hafif ile orta-ileri derece işitme kaybı yaşayan yetişkin kullanıcılarda, kişiye özel kalıbı ve kompakt tasarımı nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir cihaz tipidir.",
+    "Kulak içi (ITE) işitme cihazları; özellikle görünürlüğü öncelik gören ve hafif ile orta-ileri derece işitme kaybı yaşayan yetişkin kullanıcılarda, kişiye özel kalıbı ve kompakt tasarımı nedeniyle merkezimizde sıkça değerlendirdiğimiz bir cihaz tipidir.",
   note: "Ancak cihaz tipi tek başına yeterli değildir; işitme kaybınızın derecesi, kulak kanalı yapınız ve el becerisi gibi faktörler birlikte değerlendirilmelidir.",
   accentColor: "#7c3aed",
   accentColorBadgeBg: "rgb(124 58 237 / 0.08)",

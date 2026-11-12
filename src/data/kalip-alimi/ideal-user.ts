@@ -20,7 +20,7 @@ export const kalipAlimiIdealUser: BrandPageIdealUserContent = {
       icon: VolumeX,
       title: "Standart Kulak Ucuyla Islık Sesi Yaşayanlar",
       description: "Standart kulak ucuyla ıslık sesi (feedback) sorunu yaşayan kullanıcılar için özel kalıp, sızdırmazlığı artırabilir.",
-      suggestedFamilies: ["Geri Bildirim Önleme"],
+      suggestedFamilies: ["Islık Sesini Azaltma"],
     },
     {
       icon: Sparkles,

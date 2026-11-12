@@ -11,7 +11,7 @@ export const basariHikayeleriIntro: BrandPageIntroContent = {
   heading: "İşitme Cihazı Kullanmanın Hayata Kattıkları",
   paragraphs: [
     "İşitme kaybının desteklenmesi, birçok kişinin günlük hayatında fark edilir olumlu değişimlere katkıda bulunabiliyor.",
-    "Bu değişimler kişiden kişiye farklılık gösterse de, kliniğimizde en sık gözlemlediğimiz genel deneyim kategorileri aile iletişimi, sosyal hayat ve iş hayatı çevresinde yoğunlaşıyor.",
+    "Bu değişimler kişiden kişiye farklılık gösterse de, merkezimizde en sık gözlemlediğimiz genel deneyim kategorileri aile iletişimi, sosyal hayat ve iş hayatı çevresinde yoğunlaşıyor.",
     "Bu sayfa, hastalarımızın kişisel bilgilerini veya belirli vakaları paylaşmaz; yalnızca genel ve toplulaştırılmış deneyim kategorilerini yansıtır.",
     "Kendi deneyiminizin nasıl şekilleneceği, işitme kaybınıza, yaşam tarzınıza ve seçtiğiniz cihaza göre değişir; kesin bir sonuç garanti edilemez.",
   ],

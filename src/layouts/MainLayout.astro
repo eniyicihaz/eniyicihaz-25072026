@@ -10,24 +10,60 @@ import "../ds/styles/base/typography.css";
 import "../ds/styles/base/touch-targets.css";
 // Telefon / WhatsApp / yol tarifi butonlarının ortak görünümü (data-contact-action).
 import "../ds/styles/base/contact-actions.css";
+// "Bu sayfada" içindekiler (uzun sayfalar; lib/page-enhance.ts üretir).
+import "../ds/styles/base/page-toc.css";
+// Kullanıcı erişilebilirlik tercihleri (yazı boyutu / yüksek kontrast / hareketi azalt) — A11yPanel yazar, bu dosya uygular.
+import "../ds/styles/base/a11y-prefs.css";
+import A11yPanel from "../components/a11y/A11yPanel.astro";
+import BackToTop from "../components/page/BackToTop.astro";
 import Header from "../components/header/Header/Header.astro";
 import Footer from "../components/footer/Footer/Footer.astro";
 import ConversionTracking from "../components/analytics/ConversionTracking/ConversionTracking.astro";
 import ConsentManager from "../components/consent/ConsentManager/ConsentManager.astro";
 import AnnouncementBar from "../components/announcement-bar/AnnouncementBar/AnnouncementBar.astro";
-import { ORGANIZATION_LOGO, ORGANIZATION_SAME_AS } from "../lib/schema";
+import ContactDock from "../components/contact-dock/ContactDock/ContactDock.astro";
+import PageBreadcrumb from "../components/page/PageBreadcrumb.astro";
+import {
+  ORGANIZATION_LOGO,
+  ORGANIZATION_SAME_AS,
+  buildBreadcrumbSchema,
+  buildServiceSchema,
+  buildWebPageSchema,
+  type WebPageKind,
+} from "../lib/schema";
+import { breadcrumbTrail, normalizePath } from "../config/site-map";
+import { ABOUT_BUSINESS, PAGE_KINDS, SERVICE_PAGES, TOC_EXCLUDED } from "../config/page-types";
+import { buildTocHtml, enhancePage, insertAfterHero } from "../lib/page-enhance";
 
 interface Props {
   title?: string;
   description?: string;
   /** Utility pages (404): emit robots noindex and no canonical/og:url. */
   noindex?: boolean;
+  /** Overrides the WebPage subtype derived from src/config/page-types.ts. */
+  pageType?: WebPageKind;
+  /** Hide the automatic breadcrumb row (pages that render their own position cue). */
+  noBreadcrumb?: boolean;
+  /** `false` disables the automatic "Bu sayfada" table of contents. */
+  toc?: boolean;
+  /**
+   * WebPage JSON-LD için başlık/açıklama (verilmezse `title` / `description`). Yalnızca meta metni yapılandırılmış
+   * veriye girmemesi gereken bir bilgi taşıyorsa kullanılır — örn. fiyat sayfası: K-Fiyat-1 kararı gereği fiyat/taksit
+   * hiçbir yapılandırılmış veri alanına yazılmaz.
+   */
+  schemaName?: string;
+  schemaDescription?: string;
 }
 
 const {
   title = "Avrasya İşitme Cihazları",
-  description = "İşitme sağlığınız için en iyi çözümler.",
+  description = "Avrasya İşitme Cihazları; Darıca, Kocaeli'de SGK anlaşmalı işitme merkezi.",
   noindex = false,
+  pageType,
+  noBreadcrumb = false,
+  toc = true,
+  schemaName,
+  schemaDescription,
 } = Astro.props;
 
 // Canonical/OG URL — requires `site` in astro.config.mjs (set to the real
@@ -52,9 +88,45 @@ const organizationSchema = {
   name: "Avrasya İşitme Cihazları",
   url: "https://www.eniyicihaz.com/",
   telephone: "+905337733199",
+  // Kuruluş yılı SoT'ta doğrulanmıştır ve sitede görünür (ana sayfa "Kurumsal Bilgiler"). Darıca merkezinin açılışı
+  // (Ağustos 2024) ayrı bir bilgidir ve burada kuruluş tarihi gibi yazılmaz (MASTER_PLAN B2).
+  foundingDate: "2009",
   logo: ORGANIZATION_LOGO,
   sameAs: ORGANIZATION_SAME_AS,
 };
+
+// ---- Page enhancement (lib/page-enhance.ts): heading ids, automatic breadcrumb + JSON-LD, table of contents ----
+const path = normalizePath(Astro.url.pathname);
+const slotHtml = Astro.slots.has("default") ? await Astro.slots.render("default") : "";
+const enhanced = enhancePage(slotHtml);
+let bodyHtml = enhanced.html;
+
+const showToc = toc && !noindex && !enhanced.hasToc && !TOC_EXCLUDED.has(path) && enhanced.headings.length >= 6 && enhanced.words >= 1200;
+if (showToc) bodyHtml = insertAfterHero(bodyHtml, buildTocHtml(enhanced.headings));
+
+const trail = noindex || noBreadcrumb ? null : breadcrumbTrail(path);
+const pageUrl = canonicalURL.toString();
+const pageSchemas: Record<string, unknown>[] = [];
+if (!noindex) {
+  if (trail && !enhanced.ldTypes.includes("BreadcrumbList")) {
+    pageSchemas.push(buildBreadcrumbSchema(pageUrl, trail.map((r) => ({ label: r.label, path: r.path }))));
+  }
+  if (!enhanced.ldTypes.some((t) => ["WebPage", "CollectionPage", "AboutPage", "ContactPage"].includes(t))) {
+    pageSchemas.push(
+      buildWebPageSchema({
+        pageUrl,
+        name: schemaName ?? title,
+        description: schemaDescription ?? description,
+        kind: pageType ?? PAGE_KINDS[path] ?? "WebPage",
+        hasBreadcrumb: Boolean(trail) || enhanced.ldTypes.includes("BreadcrumbList"),
+        aboutBusiness: ABOUT_BUSINESS.has(path),
+      }),
+    );
+  }
+  const service = SERVICE_PAGES[path];
+  if (service && !enhanced.ldTypes.includes("Service")) pageSchemas.push(buildServiceSchema(pageUrl, description, service));
+}
+const showBreadcrumbRow = Boolean(trail) && !enhanced.hasBreadcrumbUi;
 ---
 
 <!DOCTYPE html>
@@ -62,6 +134,17 @@ const organizationSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#043556" />
+    <!-- Erişilebilirlik tercihi (yazı boyutu / yüksek kontrast / hareketi azalt): ilk boyamadan ÖNCE uygulanır, yanıp sönme olmaz.
+         Yalnızca bu cihazdaki localStorage'dan okur (sunucuya gitmez); depolama kapalıysa sessizce atlanır. Anahtar: eic-a11y. -->
+    <script is:inline>
+      try {
+        var p = JSON.parse(localStorage.getItem("eic-a11y") || "{}"), d = document.documentElement;
+        if (p.t && p.t !== "100") d.dataset.a11yText = p.t;
+        if (p.c) d.dataset.a11yContrast = "high";
+        if (p.m) d.dataset.a11yMotion = "reduce";
+      } catch (e) {}
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonicalURL} />}
@@ -87,14 +170,15 @@ const organizationSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
-    <!-- Self-hosted Inter (see ds/styles/base/fonts.css): preload both subsets Turkish text needs, no third-party stylesheet. -->
+    <!-- Self-hosted Inter (see ds/styles/base/fonts.css): preload both subsets Turkish text needs (latin 48 KB + the 3.3 KB Turkish extras), no third-party stylesheet. -->
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin-ext-tr.woff2" as="font" type="font/woff2" crossorigin />
 
     <script
       type="application/ld+json"
       set:html={JSON.stringify(organizationSchema)}
     />
+    {pageSchemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
   </head>
 
   <body>
@@ -106,10 +190,21 @@ const organizationSchema = {
     <Header />
 
     <main id="main">
-      <slot />
+      {showBreadcrumbRow && <PageBreadcrumb trail={trail!} />}
+      <Fragment set:html={bodyHtml} />
     </main>
 
     <Footer />
+    <ContactDock />
+    <A11yPanel />
+    <BackToTop />
+    <script is:inline>
+      // "Bu sayfada" is collapsed on phones and open on desktop (progressive enhancement; the links work without it).
+      (function () {
+        var toc = document.querySelector("[data-page-toc]");
+        if (toc && window.matchMedia("(min-width: 1024px)").matches) toc.open = true;
+      })();
+    </script>
   </body>
 </html>
 

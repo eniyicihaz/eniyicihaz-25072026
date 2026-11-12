@@ -30,7 +30,7 @@ export const ekonomikSeriConsiderations: BrandPageIdealUserContent = {
     {
       icon: Sliders,
       title: "Kişiselleştirme Seçenekleri Azdır",
-      description: "Ekonomik seri, ihtiyaca göre ince ayar yapma imkânı standart ve premium seriye göre daha kısıtlıdır.",
+      description: "Ekonomik seride ihtiyaca göre ince ayar yapma imkânı, standart ve premium seriye göre daha kısıtlıdır.",
       suggestedFamilies: ["Kişiselleştirme İhtiyacı"],
     },
     {

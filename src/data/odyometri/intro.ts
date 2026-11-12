@@ -12,7 +12,7 @@ export const odyometriIntro: BrandPageIntroContent = {
   paragraphs: [
     "Odyometri, işitme duyarlılığınızı ölçen ve sonuçları bir odyogram üzerinde kaydeden temel bir işitme testidir.",
     "Test sırasında kulaklık aracılığıyla farklı frekanslarda (genellikle 250 Hz ile 8000 Hz arasında) sesler verilir; her frekansta duyabildiğiniz en düşük ses şiddeti (dB HL) kaydedilir.",
-    "Odyometri; hava yolu iletimi (kulaklıkla) ve kemik yolu iletimi (kafatası arkasına yerleştirilen bir cihazla) olmak üzere iki farklı yöntemle uygulanabilir; bu ikisi arasındaki fark, işitme kaybının türünü belirlemeye yardımcı olur.",
+    "Odyometri; hava yolu iletimi (kulaklıkla) ve kemik yolu iletimi (kulak arkasına yerleştirilen bir cihazla) olmak üzere iki farklı yöntemle uygulanabilir; bu ikisi arasındaki fark, işitme kaybının türünü belirlemeye yardımcı olur.",
     "Odyogram sonuçlarının yorumlanması ve işitme kaybı derecesinin belirlenmesi, yalnızca bir odyometrist tarafından yapılabilir; bu sayfa genel bir bilgilendirme amacı taşır, kendi kendine tanı koymak için kullanılmamalıdır.",
   ],
   stats: [

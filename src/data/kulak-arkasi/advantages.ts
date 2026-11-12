@@ -13,7 +13,7 @@ export const kulakArkasiAdvantages: BrandPageAdvantagesContent = {
   hero: {
     icon: Volume2,
     category: "Ses Gücü",
-    title: "Her Derece Kayıpta Etkili Amplifikasyon",
+    title: "Geniş Bir Kayıp Aralığında Amplifikasyon",
     description: "Daha büyük hoparlör ve amplifikatör alanı sayesinde hafiften çok ileri dereceye kadar geniş bir aralıkta kullanılabilir.",
   },
   items: [

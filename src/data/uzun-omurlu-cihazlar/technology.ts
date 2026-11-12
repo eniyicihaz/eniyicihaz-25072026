@@ -46,7 +46,7 @@ export const uzunOmurluCihazlarTechnology: BrandPageEcosystemContent = {
         "Beklenmedik arıza riskini azaltabilir",
       ],
       models: ["Periyodik Bakım Programı"],
-      expertNote: "Önerilen bakım sıklığı marka ve kullanım yoğunluğuna göre değişebilir; size uygun program klinikte belirlenir.",
+      expertNote: "Önerilen bakım sıklığı marka ve kullanım yoğunluğuna göre değişebilir; size uygun program merkezimizde belirlenir.",
     },
     {
       id: "orijinal-yedek-parca",

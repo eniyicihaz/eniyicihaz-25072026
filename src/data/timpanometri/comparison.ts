@@ -31,7 +31,7 @@ export const timpanometriComparison: KulakArkasiComparisonContent = {
     {
       feature: "Süre",
       primary: "Genellikle birkaç saniyede tamamlanır.",
-      secondary: "Frekans başına birkaç dakika sürebilir.",
+      secondary: "Genellikle timpanometriden daha uzun sürer.",
     },
     {
       feature: "Çocuklarda Uygulama",

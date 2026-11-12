@@ -16,7 +16,7 @@ export const cayirovaRoute: CayirovaRoute = {
   heading: "Çayırova'dan 550 Numaralı Hatla",
   paragraphs: [
     "Çayırova'dan merkezimize toplu taşımayla 550 numaralı hatla ulaşabilirsiniz. Hat bilgileri zamanla değişebilir; yola çıkmadan önce güncel durumu kontrol edin.",
-    "Merkezimiz Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısındadır. Asansörle çıkılır ve tekerlekli sandalyeye uygundur.",
+    "Merkezimiz Palandöken Eczanesi'nin üst katında, Farabi Devlet Hastanesi durağının karşısındadır. Asansörle çıkılır ve tekerlekli sandalyeye uygundur. Arabayla gelenler için merkezimizin otopark imkânı bulunuyor.",
   ],
   testLink: { label: "Ücretsiz işitme testi hakkında bilgi alın", href: "/degerlendirme/ucretsiz-isitme-testi/" },
 };

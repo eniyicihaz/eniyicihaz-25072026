@@ -9,7 +9,7 @@ export const yapayZekaDestekliExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Yapay zeka destekli işitme cihazları; sürekli değişen ortamlarda bulunan ve manuel ayarla uğraşmak istemeyen kullanıcılarda sunduğu otomatik uyum nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir teknolojidir.",
+    "Yapay zeka destekli işitme cihazları; sürekli değişen ortamlarda bulunan ve manuel ayarla uğraşmak istemeyen kullanıcılarda sunduğu otomatik uyum nedeniyle merkezimizde sıkça değerlendirdiğimiz bir teknolojidir.",
   note: "Ancak yapay zeka, profesyonel programlamanın yerini almaz; cihazın ilk ayarı ve periyodik kontrolü her zaman bir odyometrist tarafından yapılmalıdır.",
   accentColor: "#4f46e5",
   accentColorBadgeBg: "rgb(79 70 229 / 0.08)",

@@ -37,7 +37,7 @@ export const odyometriIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: Users,
-      title: "Yaş Ortalaması İlerlemiş Kullanıcılar",
+      title: "İleri Yaştaki Kullanıcılar",
       description: "İleri yaş kullanıcılar için düzenli odyometri, yaşa bağlı işitme değişimlerini takip etmeye yardımcı olabilir.",
       suggestedFamilies: ["Yaşa Bağlı Takip"],
     },

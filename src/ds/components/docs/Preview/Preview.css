@@ -53,10 +53,10 @@
 
     border-radius: 999px;
 
-    background: var(--primary-soft, rgb(37 99 235 / .08));
+    background: var(--primary-soft, rgb(var(--color-primary-rgb) / .08));
     color: var(--primary);
 
-    font-size: .75rem;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     letter-spacing: .04em;
     text-transform: uppercase;
@@ -81,7 +81,7 @@
 
     color: var(--text-muted);
 
-    font-size: .92rem;
+    font-size: var(--font-size-md);
     line-height: 1.7;
 
     text-wrap: pretty;
@@ -128,7 +128,7 @@
     }
 
     .preview__description {
-        font-size: .9rem;
+        font-size: var(--font-size-md);
     }
 
     .preview__actions {

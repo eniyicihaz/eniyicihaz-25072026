@@ -2,31 +2,65 @@
 
     /* Colors */
 
-    --color-primary: #2563eb;
-    --color-primary-hover: #1d4ed8;
-    --color-primary-active: #1e40af;
+    /* Brand palette — measured from the real logo file
+       (public/images/brand/avrasya-isitme-cihazlari-logo-yatay.webp, 2026-11):
+       "Avrasya" wordmark #043556 · ear gradient #024972→#0476a3 · sound waves #3ea4aa · "İşitme Cihazları" #5b626b.
+       Brand colours stay the single source: components use the semantic tokens below, never raw hex. */
+    --brand-navy: #043556;
+    --brand-navy-rgb: 4 53 86;
+    --brand-navy-deep: #03263e;
+    --brand-navy-deep-rgb: 3 38 62;
+    --brand-blue: #0476a3;
+    --brand-blue-rgb: 4 118 163;
+    --brand-teal: #3ea4aa;
+    --brand-teal-rgb: 62 164 170;
+    --brand-teal-light: #8fd3d7;
+    --brand-gray: #5b626b;
 
-    --color-secondary: #64748b;
+    /* Semantic: primary action colour is the logo blue deepened to reach ≥6.8:1 with white text (AA large-text safe,
+       comfortable for older readers). Hover/active step further toward the logo navy. */
+    --color-primary: #05618a;
+    --color-primary-rgb: 5 97 138;
+    --color-primary-hover: #04526f;
+    --color-primary-hover-rgb: 4 82 111;
+    --color-primary-active: #033f56;
+    --color-primary-50: #eaf4f9;
+    --color-primary-100: #d3e8f1;
+    --color-primary-200: #a9d0e3;
 
-    --color-success: #16a34a;
-    --color-warning: #d97706;
+    /* Accent: logo teal. --color-accent is decorative only (2.96:1 on white); text uses --color-accent-text (5.8:1). */
+    --color-accent: #3ea4aa;
+    --color-accent-rgb: 62 164 170;
+    --color-accent-text: #1a7077;
+    --color-accent-soft: #e4f2f3;
+
+    --color-secondary: #5b626b;
+
+    --color-success: #15803d;
+    --color-warning: #b45309;
     --color-danger: #dc2626;
-    --color-info: #0284c7;
+    --color-info: #0476a3;
 
     --color-white: #ffffff;
     --color-black: #000000;
 
     --color-background: #ffffff;
-    --color-surface: #f8fafc;
-    --color-surface-hover: #f1f5f9;
+    --color-surface: #f4f8fa;
+    --color-surface-hover: #eaf1f5;
 
-    --color-border: #e2e8f0;
-    --color-border-hover: #cbd5e1;
+    --color-border: #d9e3ea;
+    --color-border-hover: #bccbd6;
 
-    --color-text: #0f172a;
-    --color-text-muted: #475569;
-    --color-text-soft: #94a3b8;
+    --color-text: #0b2236;
+    --color-text-muted: #3d4a59;
+    --color-text-soft: #66717e;
     --color-text-inverse: #ffffff;
+
+    /* Hero surface shared by every unified hero (brand navy with a soft teal glow). */
+    --hero-bg:
+        radial-gradient(ellipse 60% 80% at 88% 20%, rgb(var(--brand-teal-rgb) / 0.28) 0%, transparent 62%),
+        radial-gradient(ellipse 50% 70% at 8% 100%, rgb(var(--brand-blue-rgb) / 0.32) 0%, transparent 60%),
+        linear-gradient(135deg, var(--brand-navy-deep) 0%, var(--brand-navy) 62%, #05507a 100%);
 
     /* Radius */
 
@@ -66,14 +100,15 @@
         "Segoe UI",
         sans-serif;
 
-    --font-size-xs: .75rem;
-    --font-size-sm: .875rem;
-    --font-size-md: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 1.875rem;
-    --font-size-4xl: 2.25rem;
+    /* Type scale (MASTER_PLAN K5: 17 px body; nothing below 14 px). xs 15 px (captions/meta), sm 16 px, md 17 px (body), lg 19 px. */
+    --font-size-xs: .9375rem;
+    --font-size-sm: 1rem;
+    --font-size-md: 1.0625rem;
+    --font-size-lg: 1.1875rem;
+    --font-size-xl: 1.375rem;
+    --font-size-2xl: 1.625rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.5rem;
 
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -81,8 +116,8 @@
     --font-weight-bold: 700;
 
     --line-height-tight: 1.2;
-    --line-height-normal: 1.5;
-    --line-height-relaxed: 1.75;
+    --line-height-normal: 1.55;
+    --line-height-relaxed: 1.7;
 
     /* Shadow */
 
@@ -107,7 +142,7 @@
 
     --focus-ring:
         0 0 0 2px #ffffff,
-        0 0 0 4px rgb(37 99 235 / 0.35);
+        0 0 0 5px var(--color-primary);
 
     /* Motion */
 
@@ -153,7 +188,7 @@
     --text-muted: var(--color-text-muted);
 
     --primary: var(--color-primary);
-    --primary-light: rgb(37 99 235 / 0.1);
+    --primary-light: rgb(var(--color-primary-rgb) / 0.1);
 
     --success: var(--color-success);
     --warning: var(--color-warning);

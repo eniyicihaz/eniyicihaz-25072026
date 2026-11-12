@@ -7,7 +7,7 @@ import { brandLinksForTopic } from "../brand-unique/topic-links";
 
 export const pilAksesuarRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Pilli Etiketli Aileleri Olan Markalar",
+  heading: "Pilli Model Aileleri Olan Markalar",
   links: brandLinksForTopic("pilli"),
   accentColor: "#ca8a04",
   accentColorBadgeBg: "rgb(202 138 4 / 0.08)",

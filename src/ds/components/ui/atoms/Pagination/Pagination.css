@@ -49,13 +49,13 @@
 }
 
 .ds-pagination__button:hover {
-  border-color: var(--ds-primary, #2563eb);
-  background: var(--ds-primary-light, #eff6ff);
+  border-color: var(--ds-primary, var(--color-primary));
+  background: var(--ds-primary-light, var(--color-primary-50));
 }
 
 .ds-pagination__button--active {
-  background: var(--ds-primary, #2563eb);
-  border-color: var(--ds-primary, #2563eb);
+  background: var(--ds-primary, var(--color-primary));
+  border-color: var(--ds-primary, var(--color-primary));
   color: #fff;
 }
 

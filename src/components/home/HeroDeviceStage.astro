@@ -1,0 +1,271 @@
+---
+// HeroDeviceStage — ana sayfa hero'sunda süzülen işitme cihazı + ince ses dalgası çizgileri (marka paletinde).
+//
+// Cihaz görseli: 3B görüntüleyicideki (BteViewer3D) markasız, TEMSİLİ kulak arkası (BTE) modelin başlangıç karesi —
+// aynı model, aynı malzeme, aynı ışık; şeffaf zeminli (kanca, tüp ve kulak kalıbı gerçekten saydamdır, arkalarından hero
+// zemini görünür). Canlı sahneden üretilir: tools/bte-model/make-hero-frame.cjs (ayrıntı: docs/tech/BTE_3D_VIEWER.md §12).
+// Belirli bir marka veya modeli göstermez, marka/model iddiası taşımaz; alt metni boştur (dekoratif — sayfanın anlamı
+// değişmez). Görüntüleyiciden bağımsız çalışır: tek sabit görsel + CSS hareketi (WebGL/three.js yüklenmez).
+//
+// İki sahne biçimi vardır; hangisinin kullanılacağı görselin oranından belirlenir:
+//   • dik görsel (yükseklik > genişlik) — varsayılan; 3B modelin karesi (3:4). Sahne genişliği fotoğrafla orantılıdır.
+//   • yatay görsel (`--wide`) — önceki, fotoğraftan kesilmiş gerçek cihaz görseli (hero-device-bte-*, 480×394) içindir;
+//     dosyalar ve stil duruyor, src/data/home/hero.ts kaydı eski değerlere alınırsa aynen çalışır.
+//
+// Performans: statik görüntü HTML'de ilk anda hazırdır (AVIF/WebP, ~9–40 KB, fetchpriority=low → LCP'ye rakip olmaz).
+// Hareket yalnızca CSS transform/opacity'dir (yerleşimi etkilemez, CLS 0) ve sayfa `load` olduktan sonra, öğe
+// görünürken başlar. `prefers-reduced-motion: reduce` → hiç başlamaz, kompozisyon statik kalır.
+interface Props {
+  avifSrcset: string;
+  webpSrcset: string;
+  src: string;
+  width: number;
+  height: number;
+  sizes?: string;
+}
+
+const { avifSrcset, webpSrcset, src, width, height } = Astro.props;
+// Yatay ve dik görseller için ayrı sahne ölçüsü; oran görselin kendi boyutundan gelir.
+// Dik sahne genişliği: clamp(100px, fotoğraf genişliğinin %23,5'i, 150px) — `sizes` bunun üstten yaklaşık değeridir.
+const wide = width > height;
+const sizes = Astro.props.sizes ?? (wide ? "(min-width: 1024px) 190px, (max-width: 640px) 132px, 176px" : "(min-width: 641px) 150px, (min-width: 460px) 23vw, 100px");
+---
+
+<div class:list={["device-stage", { "device-stage--wide": wide }]} style={`--stage-ar:${width} / ${height};`} data-device-stage aria-hidden="true">
+  <span class="device-stage__halo"></span>
+  <svg class="device-stage__waves" viewBox="0 0 200 200" focusable="false">
+    <path class="device-stage__wave device-stage__wave--3" d="M118 56 A104 104 0 0 0 118 184"></path>
+    <path class="device-stage__wave device-stage__wave--2" d="M143.3 75.6 A72 72 0 0 0 143.3 164.4"></path>
+    <path class="device-stage__wave device-stage__wave--1" d="M168.5 95.4 A40 40 0 0 0 168.5 144.6"></path>
+  </svg>
+  <span class="device-stage__shadow"></span>
+  <picture class="device-stage__device">
+    <source type="image/avif" srcset={avifSrcset} sizes={sizes} />
+    <img
+      src={src}
+      srcset={webpSrcset}
+      sizes={sizes}
+      width={width}
+      height={height}
+      alt=""
+      loading="eager"
+      fetchpriority="low"
+      decoding="async"
+    />
+  </picture>
+</div>
+
+<script>
+  const stage = document.querySelector<HTMLElement>("[data-device-stage]");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (stage && !reduce.matches && "IntersectionObserver" in window) {
+    const start = () => {
+      const io = new IntersectionObserver(
+        (entries) => {
+          const live = !!entries[0]?.isIntersecting && !reduce.matches;
+          stage.classList.toggle("is-live", live);
+        },
+        { rootMargin: "60px" },
+      );
+      io.observe(stage);
+      reduce.addEventListener("change", () => {
+        if (reduce.matches) stage.classList.remove("is-live");
+      });
+    };
+    // Animasyon sayfa yüklendikten ve tarayıcı boşta kaldıktan sonra başlar (LCP/TBT'ye dokunmaz).
+    const afterLoad = () => {
+      const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void }).requestIdleCallback;
+      if (ric) ric(start, { timeout: 1500 });
+      else window.setTimeout(start, 300);
+    };
+    if (document.readyState === "complete") afterLoad();
+    else window.addEventListener("load", afterLoad, { once: true });
+  }
+</script>
+
+<style>
+  /* Dik cihaz (3B modelin karesi, 3:4) — varsayılan sahne. Genişlik fotoğrafın genişliğiyle orantılıdır (üst kutu
+     `--device-stage-w` verir ve aynı değerle üstte yer ayırır: HomeHero → .home-hero__media--stage-tall). Sağdan pay da
+     orantılıdır: cihazın alt ucu (pil kapağı) fotoğrafta, duvardaki tabela ile çerçeveli pano arasındaki düz duvara
+     gelir; her ekran genişliğinde ikisinin de yazısını örtmez. */
+  .device-stage {
+    position: absolute;
+    top: 0;
+    right: 12.7%;
+    width: var(--device-stage-w, clamp(100px, 23.5%, 150px));
+    aspect-ratio: var(--stage-ar, 3 / 4);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Yatay cihaz (fotoğraftan kesilmiş gövde): daha geniş sahne, sabit ölçüler. */
+  .device-stage--wide {
+    width: 176px;
+    right: 20px;
+  }
+
+  .device-stage--wide .device-stage__halo {
+    inset: -30% -22% -26% -22%;
+  }
+
+  .device-stage--wide .device-stage__waves {
+    right: 90%;
+    top: -4%;
+    width: 62%;
+  }
+
+  .device-stage--wide .device-stage__shadow {
+    left: 18%;
+    right: 12%;
+    bottom: -10%;
+    height: 9%;
+  }
+
+  .device-stage--wide .device-stage__device {
+    transform-origin: 50% 70%;
+  }
+
+  .device-stage__halo {
+    position: absolute;
+    inset: -18% -46% -14% -46%;
+    background: radial-gradient(closest-side, rgb(var(--brand-teal-rgb) / 0.26) 0%, rgb(var(--brand-blue-rgb) / 0.1) 55%, transparent 100%);
+    border-radius: 50%;
+  }
+
+  /* Ses dalgaları: kancanın solunda, cihazın üst yarısı hizasında. */
+  .device-stage__waves {
+    position: absolute;
+    right: 94%;
+    top: 2%;
+    width: 66%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .device-stage__wave {
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+  }
+
+  /* Statik durum (hareketsiz): üç yay, dıştan içe azalan şeffaflık. Renk: logo mavisi → turkuaz. */
+  .device-stage__wave--3 {
+    stroke: var(--brand-blue);
+    opacity: 0.28;
+  }
+
+  .device-stage__wave--2 {
+    stroke: var(--brand-teal);
+    opacity: 0.45;
+  }
+
+  .device-stage__wave--1 {
+    stroke: var(--brand-teal);
+    opacity: 0.7;
+  }
+
+  /* Yumuşak gölge: gövdenin (sağ yarı) altında. */
+  .device-stage__shadow {
+    position: absolute;
+    left: 34%;
+    right: 2%;
+    bottom: -6%;
+    height: 6%;
+    border-radius: 50%;
+    background: rgb(var(--brand-navy-deep-rgb) / 0.3);
+    filter: blur(7px);
+    transform-origin: 50% 50%;
+  }
+
+  .device-stage__device {
+    position: absolute;
+    inset: 0;
+    display: block;
+    transform-origin: 58% 62%;
+    transform: rotate(-2deg);
+    filter: drop-shadow(0 14px 18px rgb(var(--brand-navy-deep-rgb) / 0.22));
+  }
+
+  .device-stage__device img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Hareket yalnızca JS "is-live" ekleyince ve kullanıcı azaltılmış hareket istemiyorsa. */
+  @media (prefers-reduced-motion: no-preference) {
+    .device-stage.is-live .device-stage__device {
+      animation: stage-float 8s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .device-stage.is-live .device-stage__shadow {
+      animation: stage-shadow 8s ease-in-out infinite;
+    }
+
+    .device-stage.is-live .device-stage__wave {
+      animation: stage-wave 3.6s ease-in-out infinite;
+    }
+
+    .device-stage.is-live .device-stage__wave--3 {
+      animation-delay: 0s;
+    }
+
+    .device-stage.is-live .device-stage__wave--2 {
+      animation-delay: 0.45s;
+    }
+
+    .device-stage.is-live .device-stage__wave--1 {
+      animation-delay: 0.9s;
+    }
+  }
+
+  @keyframes stage-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(-3deg);
+    }
+    50% {
+      transform: translate3d(0, -12px, 0) rotate(3.5deg);
+    }
+  }
+
+  @keyframes stage-shadow {
+    0%,
+    100% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scaleX(0.82);
+      opacity: 0.6;
+    }
+  }
+
+  /* Ses, dıştan içe (cihazın mikrofonuna doğru) ilerler. */
+  @keyframes stage-wave {
+    0%,
+    100% {
+      opacity: 0.12;
+    }
+    35% {
+      opacity: 0.85;
+    }
+  }
+
+  /* Yalnızca yatay sahnenin sabit ölçüleri ekran genişliğine göre değişir; dik sahne orantılıdır (yukarıda). */
+  @media (min-width: 1024px) {
+    .device-stage--wide {
+      width: 190px;
+      right: 28px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .device-stage--wide {
+      width: 132px;
+      right: 10px;
+    }
+  }
+</style>

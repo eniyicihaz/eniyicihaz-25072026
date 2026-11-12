@@ -5,11 +5,12 @@
 // sayfa bilinçli olarak kısa: hero (görselsiz) → ulaşım → konum kartı →
 // gelmeden önce → SSS → final CTA. Gebze'nin bölüm yapısı kopyalanmıyor.
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import { cayirovaRelated } from "../data/local/related";
 
 import { cayirovaHero } from "../data/cayirova/hero";
 import { cayirovaRoute, cayirovaBeforeVisit } from "../data/cayirova/copy-blocks";
@@ -22,22 +23,6 @@ import { contactHero } from "../data/contact/hero";
 
 const PAGE_URL = "https://www.eniyicihaz.com/cayirova-isitme-cihazlari/";
 
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Çayırova İşitme Cihazları", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
-
 // Aynı kanonik tanım cümlesi + aynı gerçek MedicalBusiness kaydı (aynı
 // @id, aynı gerçek Darıca adresi) — Çayırova için AYRI bir işletme/adres
 // ASLA oluşturulmadı. Çayırova zaten `areaServed` dizisinde var (bkz.
@@ -47,15 +32,10 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 ---
 
 <MainLayout
-  title="Çayırova'dan Darıca İşitme Merkezine Ulaşım | Avrasya İşitme"
-  description="Merkezimiz Darıca'da. Çayırova'dan 550 numaralı hatla ulaşım, adres, çalışma saatleri, yol tarifi ve evde hizmet bilgisi."
+  title="Çayırova İşitme Cihazları: Darıca Merkez ve Evde Hizmet"
+  description="Çayırova'da şubemiz yok; tek fiziksel merkezimiz Darıca'dadır. Çayırova'dan 550 numaralı hatla ulaşabilir veya randevuyla ücretsiz evde hizmet alabilirsiniz."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="cayirova-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <CorporateHero data={cayirovaHero} />
 
@@ -84,6 +64,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 
   <BrandPageFaq data={cayirovaFaq} />
 
+  <BrandPageRelatedContent data={cayirovaRelated} />
   <BrandPageFinalCta data={cayirovaFinalCta} />
   <p class="cayirova-links-row">
     <a class="cayirova-link" href="/darica-isitme-cihazlari/">Darıca merkezimizin sayfası →</a>
@@ -91,12 +72,6 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 </MainLayout>
 
 <style>
-  .cayirova-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .cayirova-block {
     background: var(--color-background);
     padding-block: var(--space-16);

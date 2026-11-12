@@ -60,7 +60,7 @@ const TOPICS: Record<Topic, { match: (i: Item) => boolean; text: (fam: string, n
   sarjli: { match: (i) => hasTag(i, "Şarjlı"), text: (f, n) => `${f}: şarjlı etiketli ${n > 1 ? "aileler" : "aile"}.` },
   bte: { match: (i) => hasTag(i, "BTE", "RIC/BTE", "BTE/RIC"), text: (f, n) => `${f}: kulak arkası (BTE) etiketli ${n > 1 ? "aileler" : "aile"}.` },
   bluetooth: { match: (i) => hasTag(i, "Bluetooth"), text: (f, n) => `${f}: Bluetooth etiketli ${n > 1 ? "aileler" : "aile"}.` },
-  pilli: { match: (i) => hasTag(i, "Pilli"), text: (f, n) => `${f}: pilli etiketli ${n > 1 ? "aileler" : "aile"}.` },
+  pilli: { match: (i) => hasTag(i, "Pilli"), text: (f, n) => `${f}: pille çalışan model ${n > 1 ? "aileleri" : "ailesi"}.` },
   kalip: {
     // Kişiye özel üretilen kulak içi aileler: "Kişiye Özel" etiketi VEYA kulak içi + model açıklamasında kişiye özel/özel üretim ifadesi.
     match: (i) => hasTag(i, "Kişiye Özel") || (hasTag(i, "Kulak İçi") && /kişiye özel|özel üretilen/i.test(i.description)),

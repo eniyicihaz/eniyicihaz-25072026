@@ -1,0 +1,126 @@
+---
+// OpenStatus — "Şu an açık / kapalı" satırı (İstanbul saati; doğrulanmış çalışma saatleri + resmî tatil tablosu).
+// Mantık: src/lib/open-status.ts (saf fonksiyon, birim testli). Resmî tatil durumu DOĞRULANAMIYORSA (arife günü, tatil
+// tablosunun kapsamı dışındaki tarih) "açık" denmez ve hiçbir iddia gösterilmez — satır boş kalır, yalnızca saatler görünür.
+//
+// Derleme güvenliği: SCHEDULE tablosu company.hours metinleriyle birebir karşılaştırılır; saatler değişirse ve tablo
+// güncellenmezse DERLEME HATA VERİR (iki yerde farklı saat yayımlanamaz).
+// Yerleşim kayması yok: satır JS'ten önce de yer ayırır (min-height); durum boşken görünmez ama yer tutar.
+// JS yoksa satır boş kalır; sayfadaki saat listesi zaten metin olarak görünür.
+import { company } from "../../footer/Footer/data/company";
+import { SCHEDULE } from "../../../lib/open-status";
+
+interface Props {
+  /** Kart/şerit üzerinde koyu zemin için açık renkli metin. */
+  onDark?: boolean;
+}
+const { onDark = false } = Astro.props;
+
+const pad = (n: number) => String(n).padStart(2, "0");
+const fmt = (m: number) => `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+const range = (d: number) => (SCHEDULE[d] ? `${fmt(SCHEDULE[d]!.open)} – ${fmt(SCHEDULE[d]!.close)}` : "Kapalı");
+const time = (days: string) => company.hours.find((h) => h.days === days)?.time;
+const weekdaysSame = [1, 2, 3, 4, 5].every((d) => range(d) === range(1));
+if (!weekdaysSame || time("Hafta içi") !== range(1) || time("Cumartesi") !== range(6) || time("Pazar") !== range(0)) {
+  throw new Error(
+    `OpenStatus: src/lib/open-status.ts SCHEDULE, company.hours ile uyuşmuyor (Hafta içi ${time("Hafta içi")} / Cumartesi ${time("Cumartesi")} / Pazar ${time("Pazar")}). İkisini birlikte güncelleyin.`,
+  );
+}
+---
+
+<p class:list={["open-status", { "open-status--on-dark": onDark }]} data-open-status data-state="unknown">
+  <span class="open-status__dot" aria-hidden="true"></span>
+  <span class="open-status__text" data-open-status-text></span>
+</p>
+
+<script>
+  import { getOpenStatus } from "../../../lib/open-status";
+
+  const nodes = () => document.querySelectorAll<HTMLElement>("[data-open-status]");
+  const render = () => {
+    const s = getOpenStatus();
+    nodes().forEach((el) => {
+      el.dataset.state = s.state;
+      const t = el.querySelector<HTMLElement>("[data-open-status-text]");
+      if (!t) return;
+      t.textContent = s.state === "unknown" ? "" : s.detail ? `${s.label} · ${s.detail}` : s.label;
+    });
+  };
+  if (nodes().length) {
+    render();
+    window.setInterval(() => {
+      if (!document.hidden) render();
+    }, 30000);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) render();
+    });
+  }
+</script>
+
+<style>
+  .open-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 1.75em;
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.35;
+    color: var(--color-text);
+  }
+
+  /* Durum bilinmiyorsa (arife, tablo dışı tarih) hiçbir şey gösterilmez ama satırın yeri korunur. */
+  .open-status[data-state="unknown"] {
+    visibility: hidden;
+  }
+
+  .open-status__dot {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgb(91 98 107 / 0.18);
+  }
+
+  .open-status[data-state="open"] .open-status__dot {
+    background: var(--color-success);
+    box-shadow: 0 0 0 3px rgb(21 128 61 / 0.2);
+  }
+
+  .open-status[data-state="open"] {
+    color: #116a31;
+  }
+
+  .open-status[data-state="holiday"] .open-status__dot {
+    background: var(--color-warning);
+    box-shadow: 0 0 0 3px rgb(180 83 9 / 0.2);
+  }
+
+  .open-status[data-state="holiday"] {
+    color: #8a4107;
+  }
+
+  .open-status--on-dark,
+  .open-status--on-dark[data-state="open"],
+  .open-status--on-dark[data-state="holiday"] {
+    color: var(--color-text-inverse);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .open-status[data-state="open"] .open-status__dot {
+      animation: open-status-pulse 2.6s ease-in-out infinite;
+    }
+  }
+
+  @keyframes open-status-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 3px rgb(21 128 61 / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgb(21 128 61 / 0.08);
+    }
+  }
+</style>

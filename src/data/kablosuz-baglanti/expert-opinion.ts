@@ -10,7 +10,7 @@ export const kablosuzBaglantiExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Telesarmal, Roger/FM ve kulaktan kulağa bağlantı gibi kablosuz protokoller; okul, toplantı veya ibadethane gibi özel ortamlarda ek destek arayan kullanıcılarda sunduğu geniş erişim nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir konudur.",
+    "Telesarmal, Roger/FM ve kulaktan kulağa bağlantı gibi kablosuz protokoller; okul, toplantı veya ibadethane gibi özel ortamlarda ek destek arayan kullanıcılarda sunduğu geniş erişim nedeniyle merkezimizde sıkça değerlendirdiğimiz bir konudur.",
   note: "Ancak her protokol her ortamda çalışmaz; hangi protokole ihtiyaç duyduğunuz günlük yaşadığınız ortamlara göre bir odyometrist ile birlikte belirlenmelidir.",
   accentColor: "#65a30d",
   accentColorBadgeBg: "rgb(101 163 13 / 0.08)",

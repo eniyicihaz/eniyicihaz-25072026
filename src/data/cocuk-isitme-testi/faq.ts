@@ -62,7 +62,7 @@ export const cocukIsitmeTestiFaq: BrandPageFaqContent = {
       label: "Sonrası",
       items: [
         {
-          question: "Test sonrası çocuğuma cihaz önerilirse ne olmalıyım?",
+          question: "Test sonrası çocuğuma cihaz önerilirse ne yapmalıyım?",
           answer:
             "Sonuçlar ve seçenekler sizinle detaylıca paylaşılır; karar sürecinde size eşlik ederiz.",
         },

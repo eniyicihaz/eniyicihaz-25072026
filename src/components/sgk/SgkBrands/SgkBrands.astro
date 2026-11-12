@@ -218,9 +218,9 @@ import { contactAction } from "../../../lib/contact-action";
     display: inline-block;
     margin: 0;
     padding: var(--space-2) var(--space-4);
-    border: 1px solid rgb(37 99 235 / 0.22);
+    border: 1px solid rgb(var(--color-primary-rgb) / 0.22);
     border-radius: var(--radius-full);
-    background: rgb(37 99 235 / 0.08);
+    background: rgb(var(--color-primary-rgb) / 0.08);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.06em;
@@ -307,15 +307,15 @@ import { contactAction } from "../../../lib/contact-action";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: radial-gradient(240px 160px at 12% 0%, rgb(37 99 235 / 0.12), transparent 72%);
+    background: radial-gradient(240px 160px at 12% 0%, rgb(var(--color-primary-rgb) / 0.12), transparent 72%);
     opacity: 0;
     transition: opacity 320ms var(--sb-ease);
   }
 
   .sgk-brands__card:hover {
     transform: translateY(-4px);
-    border-color: rgb(37 99 235 / 0.32);
-    box-shadow: 0 28px 52px -24px rgb(37 99 235 / 0.32);
+    border-color: rgb(var(--color-primary-rgb) / 0.32);
+    box-shadow: 0 28px 52px -24px rgb(var(--color-primary-rgb) / 0.32);
   }
 
   .sgk-brands__card:hover::before {
@@ -408,8 +408,8 @@ import { contactAction } from "../../../lib/contact-action";
     max-width: 860px;
     margin: var(--space-12) auto 0;
     padding: var(--space-6);
-    background: rgb(37 99 235 / 0.05);
-    border: 1px solid rgb(37 99 235 / 0.16);
+    background: rgb(var(--color-primary-rgb) / 0.05);
+    border: 1px solid rgb(var(--color-primary-rgb) / 0.16);
     border-radius: var(--radius-2xl);
   }
 
@@ -421,7 +421,7 @@ import { contactAction } from "../../../lib/contact-action";
     height: 42px;
     border-radius: var(--radius-lg);
     background: var(--color-white);
-    border: 1px solid rgb(37 99 235 / 0.2);
+    border: 1px solid rgb(var(--color-primary-rgb) / 0.2);
     color: var(--color-primary);
   }
 
@@ -446,7 +446,7 @@ import { contactAction } from "../../../lib/contact-action";
 
   /* --- Final CTA: the page's true closing banner — deliberately bolder
      than the quiet in-page CTA boxes above it (Payments/Eligibility/
-     Support all use the same light rgb(37 99 235 / 0.05) tint; this one
+     Support all use the same light rgb(var(--color-primary-rgb) / 0.05) tint; this one
      earns a real gradient because it's the last thing a visitor sees). --- */
 
   .sgk-brands__cta {
@@ -517,7 +517,7 @@ import { contactAction } from "../../../lib/contact-action";
 
   .sgk-brands__cta-chip svg {
     flex: none;
-    color: #bfdbfe;
+    color: var(--color-primary-200);
   }
 
   .sgk-brands__cta-subtext {
@@ -603,7 +603,7 @@ import { contactAction } from "../../../lib/contact-action";
 
   .sgk-brands__cta-trust-item svg {
     flex: none;
-    color: #bfdbfe;
+    color: var(--color-primary-200);
   }
 
   /* --- Entrance: transition-based (armed/in), not @keyframes -------------- */

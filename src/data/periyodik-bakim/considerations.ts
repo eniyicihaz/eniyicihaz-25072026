@@ -33,8 +33,8 @@ export const periyodikBakimConsiderations: BrandPageIdealUserContent = {
     },
     {
       icon: PackageCheck,
-      title: "Bazı Parçalar Arada Kendi Kendinize Değiştirilebilir",
-      description: "Kulak ucu gibi bazı basit parçalar, bakım randevuları arasında size gösterilen şekilde kendiniz değiştirebilirsiniz.",
+      title: "Bazı Parçaları Arada Kendiniz Değiştirebilirsiniz",
+      description: "Kulak ucu gibi bazı basit parçaları, bakım randevuları arasında size gösterilen şekilde kendiniz değiştirebilirsiniz.",
       suggestedFamilies: ["Kendi Kendine Bakım"],
     },
     {

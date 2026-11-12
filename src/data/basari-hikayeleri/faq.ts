@@ -24,7 +24,7 @@ export const basariHikayeleriFaq: BrandPageFaqContent = {
         {
           question: "Bu sayfada gerçek hasta hikayeleri mi paylaşılıyor?",
           answer:
-            "Hayır; gizlilik ilkemiz gereği belirli hastalarımızın bilgilerini paylaşmıyoruz. Bu sayfa, kliniğimizde sıkça gözlemlediğimiz genel deneyim kategorilerini yansıtır.",
+            "Hayır; gizlilik ilkemiz gereği belirli hastalarımızın bilgilerini paylaşmıyoruz. Bu sayfa, merkezimizde sıkça gözlemlediğimiz genel deneyim kategorilerini yansıtır.",
         },
         {
           question: "Benim için de aynı sonuçlar geçerli olur mu?",

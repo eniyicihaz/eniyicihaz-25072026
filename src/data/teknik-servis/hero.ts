@@ -45,8 +45,8 @@ export const teknikServisHero: BrandPageHeroContent = {
     {
       label: "YERİNDE TEŞHİS",
       accent: "#dc2626",
-      title: "Sorununuz Önce Kliniğimizde İncelenir",
-      description: "Birçok sorun, üreticiye göndermeden önce kliniğimizde teşhis edilebilir.",
+      title: "Sorununuz Önce Merkezimizde İncelenir",
+      description: "Birçok sorun, üreticiye göndermeden önce merkezimizde teşhis edilebilir.",
     },
     {
       label: "YETKİLİ SERVİS AĞI",

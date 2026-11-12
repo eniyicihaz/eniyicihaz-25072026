@@ -19,8 +19,8 @@ export const uzaktanKontrolIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: Video,
-      title: "Kliniğe Sık Gelmekte Zorlananlar",
-      description: "Uzaktan destek oturumuyla, kliniğe gelmeden temel ayar güncellemesi almak isteyen kullanıcılar için sıkça değerlendirilir.",
+      title: "Merkeze Sık Gelmekte Zorlananlar",
+      description: "Uzaktan destek oturumuyla, merkeze gelmeden temel ayar güncellemesi almak isteyen kullanıcılar için sıkça değerlendirilir.",
       suggestedFamilies: ["Uzaktan Destek (TeleCare) Uyumlu Modeller"],
     },
     {
@@ -37,7 +37,7 @@ export const uzaktanKontrolIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: MapPin,
-      title: "Kliniğe Uzak Mesafede Yaşayanlar",
+      title: "Merkeze Uzak Mesafede Yaşayanlar",
       description: "Uzaktan destek özelliği, sık seyahat etmeden temel ayar ihtiyaçlarını karşılamaya yardımcı olabilir.",
       suggestedFamilies: ["Uzaktan Destek Uyumlu Modeller"],
     },

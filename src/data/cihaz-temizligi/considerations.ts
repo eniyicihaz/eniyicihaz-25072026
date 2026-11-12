@@ -22,13 +22,13 @@ export const cihazTemizligiConsiderations: BrandPageIdealUserContent = {
     {
       icon: AlertTriangle,
       title: "Sivri veya Sert Cisim Kullanmayın",
-      description: "Balmumu teli dışında sivri veya sert bir cisimle temizlik yapmak, cihazın hassas bileşenlerine zarar verebilir.",
+      description: "Kulak kiri temizleme teli dışında sivri veya sert bir cisimle temizlik yapmak, cihazın hassas bileşenlerine zarar verebilir.",
       suggestedFamilies: ["Araç Seçimi"],
     },
     {
       icon: RefreshCcw,
       title: "Günlük Temizlik Periyodik Bakımın Yerini Almaz",
-      description: "Balmumu filtresi veya tüp gibi parçaların profesyonelce yenilenmesi gerekir; bunun için Periyodik Bakım sayfamızı inceleyebilirsiniz.",
+      description: "Kulak kiri filtresi veya tüp gibi parçaların profesyonelce yenilenmesi gerekir; bunun için Periyodik Bakım sayfamızı inceleyebilirsiniz.",
       suggestedFamilies: ["Profesyonel Bakım"],
     },
     {

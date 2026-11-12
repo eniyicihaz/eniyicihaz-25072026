@@ -37,7 +37,7 @@ export const daricaVisitLocation: ContactLocationCardContent = {
   ...daricaLocation,
   eyebrow: "KONUM VE ERİŞİM",
   heading: "Merkezin Konumu, Erişim ve Çalışma Saatleri",
-  intro: "Gelmeden önce bilmeniz gereken adres, erişim ve çalışma saati bilgileri.",
+  intro: "Gelmeden önce bilmeniz gereken adres, erişim ve çalışma saati bilgileri. Merkezimiz Fevziçakmak Mahallesi'ndedir; danışanlarımız Darıca'nın Fevziçakmak, Abdi İpekçi, Bağlarbaşı ve Kazımkarabekir mahallelerinden de bize ulaşıyor.",
   addressNote: "Palandöken Eczanesi'nin üst katı; Farabi Devlet Hastanesi durağının karşısı.",
   details: [
     {

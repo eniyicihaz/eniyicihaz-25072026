@@ -28,7 +28,7 @@ export const nuearAdvantages: BrandPageAdvantagesContent = {
       icon: Smartphone,
       category: "Uzaktan Bakım",
       title: "Uzaktan Profesyonel Ayar",
-      description: "Kliniğe gitmeden ince ayar talep etmenizi sağlar.",
+      description: "Merkeze gitmeden ince ayar talep etmenizi sağlar.",
     },
     {
       icon: BatteryCharging,

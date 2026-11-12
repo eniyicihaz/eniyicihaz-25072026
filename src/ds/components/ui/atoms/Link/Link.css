@@ -3,7 +3,7 @@
   align-items: center;
   gap: .375rem;
 
-  color: var(--ds-primary, #2563eb);
+  color: var(--ds-primary, var(--color-primary));
 
   text-decoration: none;
   cursor: pointer;
@@ -14,11 +14,11 @@
 }
 
 .ds-link:hover {
-  color: var(--ds-primary-hover, #1d4ed8);
+  color: var(--ds-primary-hover, var(--color-primary-hover));
 }
 
 .ds-link:focus-visible {
-  outline: 2px solid var(--ds-primary, #2563eb);
+  outline: 2px solid var(--ds-primary, var(--color-primary));
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -33,7 +33,7 @@
 }
 
 .ds-link--primary {
-  color: var(--ds-primary, #2563eb);
+  color: var(--ds-primary, var(--color-primary));
 }
 
 .ds-link--secondary {

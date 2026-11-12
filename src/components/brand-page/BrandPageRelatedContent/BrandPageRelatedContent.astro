@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 import { domId } from "../../../lib/dom-id";
 // BrandPageRelatedContent — shared, cross-brand internal-linking section
 // (Hub-and-Spoke, see SEARCH_STRATEGY.md). New component, not a
@@ -23,9 +24,12 @@ export interface BrandPageRelatedContentContent {
 
 interface Props {
   data: BrandPageRelatedContentContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 const titleId = domId("brand-page-related", data.heading);
 ---
 

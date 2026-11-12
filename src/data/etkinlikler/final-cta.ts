@@ -13,7 +13,7 @@ export const etkinliklerFinalCta: BrandPageFinalCtaContent = {
     "Planlanan etkinliklerimiz veya kurumsal işbirliği talepleriniz hakkında en doğru bilgiyi almak için bizi arayabilir veya WhatsApp üzerinden yazabilirsiniz.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["Ücretsiz Bilgilendirme", "Kurumsal İşbirliği", "Şeffaf Planlama", "Hızlı Geri Dönüş"],
+  trustItems: ["Ücretsiz Bilgilendirme", "Kurumsal İş Birliği", "Şeffaf Planlama", "Hızlı Geri Dönüş"],
   accentColor: "#059669",
   accentColorHover: "#047857",
   accentColorGlow: "rgb(5 150 105 / 0.22)",

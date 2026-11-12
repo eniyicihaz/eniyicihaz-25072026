@@ -1,4 +1,5 @@
 ---
+import { withCorporateFinalCta } from "../../../lib/hero-theme";
 import { readableTextOn } from "../../../lib/contrast";
 import { standardCtaLabel } from "../../../lib/cta-labels";
 // BrandPageFinalCta — shared, cross-brand closing CTA section. Generic
@@ -76,9 +77,12 @@ export interface BrandPageFinalCtaContent {
 
 interface Props {
   data: BrandPageFinalCtaContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateFinalCta(rawData);
 
 // Chip icon colour: the brand accent is often too dark for the dark navy card (e.g. Sonic #3D4C59 = 1.7:1),
 // so on dark cards chips use a light tone; on light cards (Signia) the brand accent stays.
@@ -229,7 +233,7 @@ const finalCtaStyleOverrides = [
     align-items: center;
     text-align: center;
     padding: var(--space-12) var(--space-8);
-    background: var(--bpfc-card-bg, #0f2547);
+    background: var(--bpfc-card-bg, var(--brand-navy-deep));
     border: var(--bpfc-card-border, none);
     border-radius: var(--radius-2xl);
   }

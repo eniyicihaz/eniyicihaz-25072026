@@ -90,9 +90,9 @@ const lines = Array.from({ length: LINE_COUNT }, (_, idx) => {
   /* The resolved line — the "signal". */
   .hero-signal__line:nth-child(5) {
     height: 3px;
-    background: var(--hero-signal, #2563eb);
+    background: var(--hero-signal, var(--color-primary));
     opacity: 1;
-    box-shadow: 0 0 12px 0 rgb(37 99 235 / 0.5);
+    box-shadow: 0 0 12px 0 rgb(var(--color-primary-rgb) / 0.5);
   }
 
   /* Scattered start — only present while Hero has armed the animation. */

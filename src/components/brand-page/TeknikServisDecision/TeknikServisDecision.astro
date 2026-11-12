@@ -101,8 +101,8 @@ const icons = { center: Wrench, maker: Factory, cost: ReceiptText } as const;
     overflow: clip;
     background: var(--color-surface);
     padding-block: var(--space-10);
-    --navy: #0f2547;
-    --blue: #2563eb;
+    --navy: var(--brand-navy-deep);
+    --blue: var(--color-primary);
     --teal: #0e7490;
     --violet: #7c3aed;
   }
@@ -114,7 +114,7 @@ const icons = { center: Wrench, maker: Factory, cost: ReceiptText } as const;
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(38% 50% at 15% 30%, rgb(37 99 235 / 0.07), transparent 100%),
+      radial-gradient(38% 50% at 15% 30%, rgb(var(--color-primary-rgb) / 0.07), transparent 100%),
       radial-gradient(38% 50% at 88% 75%, rgb(124 58 237 / 0.06), transparent 100%);
   }
 
@@ -215,7 +215,7 @@ const icons = { center: Wrench, maker: Factory, cost: ReceiptText } as const;
     border-radius: 50%;
     background: var(--navy);
     box-shadow: 0 0 0 3px var(--color-surface);
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     line-height: 1;
     color: #ffffff;
@@ -326,7 +326,7 @@ const icons = { center: Wrench, maker: Factory, cost: ReceiptText } as const;
 
   .tsd__branch-tag {
     margin: var(--space-2) 0 0;
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -440,7 +440,7 @@ const icons = { center: Wrench, maker: Factory, cost: ReceiptText } as const;
     }
 
     .tsd__node-text {
-      font-size: 0.8125rem;
+      font-size: var(--font-size-xs);
       line-height: 1.4;
     }
 
@@ -467,7 +467,7 @@ const icons = { center: Wrench, maker: Factory, cost: ReceiptText } as const;
       border: 1px solid var(--color-border);
       border-radius: var(--radius-full);
       background: var(--color-background);
-      font-size: 0.6875rem;
+      font-size: var(--font-size-xs);
       font-weight: var(--font-weight-bold);
       letter-spacing: 0.08em;
       text-transform: uppercase;

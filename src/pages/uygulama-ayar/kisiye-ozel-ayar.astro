@@ -13,7 +13,6 @@
 // Yaklaşımımız -> Darıca/Gebze/Çayırova Konum -> SSS -> Son CTA ->
 // İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
-import Breadcrumb from "../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import SoundProfileHero from "../../components/shared/SoundProfileHero/SoundProfileHero.astro";
 import BrandPageOverview from "../../components/brand-page/BrandPageOverview/BrandPageOverview.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
@@ -43,22 +42,6 @@ import { kisiyeOzelAyarRelatedContent } from "../../data/kisiye-ozel-ayar/relate
 import { company } from "../../components/footer/Footer/data/company";
 
 const PAGE_URL = "https://www.eniyicihaz.com/uygulama-ayar/kisiye-ozel-ayar";
-
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Kişiye Özel Ayar", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
 
 // Same MedicalBusiness node as /iletisim, Ücretsiz İşitme Testi ve Cihaz
 // Deneme — same @id, same real NAP source, extending the sitewide
@@ -110,12 +93,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   title="Kişiye Özel İşitme Cihazı Ayarı | Darıca"
   description="İşitme cihazınızın günlük yaşamınıza ve dinleme ihtiyaçlarınıza göre kişiye özel ayarı: süreç, sık sorulan sorular ve randevu. Merkezimiz Darıca'dadır."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="koa-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <SoundProfileHero data={kisiyeOzelAyarHero} />
   <BrandPageOverview data={kisiyeOzelAyarOverview} />
@@ -148,12 +126,6 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
 </MainLayout>
 
 <style>
-  .koa-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .koa-simple-section {
     background: var(--color-surface);
     padding-block: var(--space-16);

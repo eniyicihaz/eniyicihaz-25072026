@@ -10,11 +10,12 @@
 // Gebze için ayrı adres/NAP/schema yok; MedicalBusiness şeması Darıca'daki
 // tek gerçek işletme kaydıdır (aynı @id).
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import { gebzeRelated } from "../data/local/related";
 
 import { gebzeHero } from "../data/gebze/hero";
 import {
@@ -35,22 +36,6 @@ import { contactHero } from "../data/contact/hero";
 
 const PAGE_URL = "https://www.eniyicihaz.com/gebze-isitme-cihazlari/";
 
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Gebze İşitme Cihazları", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
-
 // Aynı kanonik tanım cümlesi + aynı gerçek MedicalBusiness kaydı (aynı
 // @id, aynı gerçek Darıca adresi) — Gebze için AYRI bir işletme/adres
 // ASLA oluşturulmadı.
@@ -61,12 +46,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
   title="Gebze İşitme Cihazları: Test, SGK ve Ulaşım | Darıca Merkez"
   description="Merkezimiz Darıca'dadır; Gebze'de şubemiz yok. Gebze'den ulaşım, randevu, SGK işlem desteği, ücretsiz işitme testi ve evde hizmet seçeneklerini öğrenin."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="gebze-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <CorporateHero data={gebzeHero} />
 
@@ -171,16 +151,11 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 
   <BrandPageFaq data={gebzeFaq} />
 
+  <BrandPageRelatedContent data={gebzeRelated} />
   <BrandPageFinalCta data={gebzeFinalCta} />
 </MainLayout>
 
 <style>
-  .gebze-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .gebze-block {
     background: var(--color-background);
     padding-block: var(--space-16);
@@ -347,7 +322,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
     margin: var(--space-8) 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
     gap: var(--space-4);
     text-align: left;
   }

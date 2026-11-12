@@ -36,5 +36,5 @@
 }
 
 .ds-table--hoverable .ds-table__body tr:hover {
-  background: var(--ds-surface-hover, #eff6ff);
+  background: var(--ds-surface-hover, var(--color-primary-50));
 }

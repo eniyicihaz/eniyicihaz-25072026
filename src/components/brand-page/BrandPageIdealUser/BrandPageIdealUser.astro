@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 import { domId } from "../../../lib/dom-id";
 // BrandPageIdealUser — shared, cross-brand "who is this for" profile grid.
 // New component, not a migration: Oticon has no direct equivalent (its
@@ -37,9 +38,12 @@ export interface BrandPageIdealUserContent {
 
 interface Props {
   data: BrandPageIdealUserContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 const titleId = domId("brand-page-idealuser", data.heading);
 const extraVars = [
   data.accentColorBorder ? `--bpiu-accent-border:${data.accentColorBorder};` : "",

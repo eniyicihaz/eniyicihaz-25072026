@@ -34,7 +34,7 @@ export const etkinliklerFaq: BrandPageFaqContent = {
       ],
     },
     {
-      label: "Kurumsal İşbirliği",
+      label: "Kurumsal İş Birliği",
       items: [
         {
           question: "Okulumuz için tarama işbirliği talep edebilir miyiz?",

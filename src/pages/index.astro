@@ -1,18 +1,20 @@
 ---
-// Ana Sayfa — Faz 2 P2 (onay V1) yapısı, 8 bölüm:
-// 1 HomeHero (tek statik hero; 6 slaytlı carousel kaldırıldı)
-// → 2 HomeLocal (Merkezimiz ve Ulaşım)
-// → 3 HomeJourney (Ana hizmet yolları)
-// → 4 HomeTrust (Güven / kurumsal bilgiler)
-// → 5 HomeExplore (İşitme cihazları ve markalar kısa özeti)
-// → 6 HomeStory (ses odası deneyimi)
-// → 7 HomeKnowledge (Bilgi Merkezi + SSS)
-// → 8 Closing.
-// BuyingCriteria, Chooser ve HomeShowroom (model vitrini) ana sayfadan
-// kaldırıldı; ayrıntılı seçim kriterleri ve karşılaştırmalar kendi pillar
-// sayfalarında kalır. Title/description ve schema bu adımda değişmedi.
+// Ana Sayfa — kurumsal yenileme (araştırma raporu R4 + proje kararı), 9 bölüm:
+// 1 HomeHero (birincil CTA: Ücretsiz İşitme Testi; ikincil: telefon ve WhatsApp)
+// → 2 HomeRouter (Size nasıl yardımcı olabiliriz? — niyete göre 6 kart)
+// → 3 HomeTrust (güven / kurumsal bilgiler, yalnızca doğrulanmış olgular)
+// → 4 HomeJourney (hizmetler: testten servise akış)
+// → 5 HomeExplore (cihaz türleri ve markalar)
+//   + BteViewer3D (markasız, temsili bir kulak arkası cihazın gerçek 3 boyutlu, sürükle-döndür görünümü; kod ve model tembel yüklenir)
+// → 6 HomeLocal (Merkezimiz ve ulaşım)
+// → 7 HomeStory (ses odası deneyimi)
+// → 8 HomeKnowledge (Bilgi Merkezi + SSS)
+// → 9 Closing (güçlü kapanış iletişim alanı).
+// Eski sıradan fark: Merkez/ulaşım bloğu hizmetlerin önünden alındı (mobilde ilk hizmet kartına ulaşmak için üç
+// ekran kaydırma gerekiyordu) ve niyet yönlendirme eklendi. Hiçbir mevcut bölüm veya içerik kaldırılmadı.
 import MainLayout from "../layouts/MainLayout.astro";
 import HomeHero from "../components/home/HomeHero.astro";
+import HomeRouter from "../components/home/HomeRouter.astro";
 import HomeLocal from "../components/home/HomeLocal.astro";
 import HomeJourney from "../components/home/HomeJourney.astro";
 import HomeTrust from "../components/home/HomeTrust.astro";
@@ -20,6 +22,7 @@ import HomeExplore from "../components/home/HomeExplore.astro";
 import HomeStory from "../components/home/HomeStory.astro";
 import HomeKnowledge from "../components/home/HomeKnowledge.astro";
 import Closing from "../components/closing/Closing/Closing.astro";
+import BteViewer3D from "../components/bte3d/BteViewer3D.astro";
 
 import { homeHero } from "../data/home/hero";
 import { buildMedicalBusinessSchema, ORGANIZATION_ID, WEBSITE_ID } from "../lib/schema";
@@ -56,10 +59,12 @@ const websiteSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 
   <HomeHero data={homeHero} />
-  <HomeLocal />
-  <HomeJourney />
+  <HomeRouter />
   <HomeTrust />
+  <HomeJourney />
   <HomeExplore />
+  <BteViewer3D />
+  <HomeLocal />
   <HomeStory />
   <HomeKnowledge />
   <Closing />

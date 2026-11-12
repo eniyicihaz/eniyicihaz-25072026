@@ -10,7 +10,7 @@ export const yaslilarIcinCihazlarExpertOpinion: BrandPageExpertOpinionContent = 
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Yaşlı kullanıcılarda doğru cihazın kolay kullanılabilir olması kadar, aile desteğiyle birlikte değerlendirilmesi de klinik pratiğimizde sıkça önem verdiğimiz bir konudur; bu sayede cihaza uyum süreci daha rahat ilerleyebilir.",
+    "Yaşlı kullanıcılarda doğru cihazın kolay kullanılabilir olması kadar, aile desteğiyle birlikte değerlendirilmesi de merkezimizde sıkça önem verdiğimiz bir konudur; bu sayede cihaza uyum süreci daha rahat ilerleyebilir.",
   note: "Ancak bu sayfadaki bilgiler genel bir yönlendirme amacı taşır; ani başlayan kayıplarda vakit kaybetmeden bir KBB uzmanına başvurulmalı, size uygun cihaz ise bir odyometrist ile birlikte belirlenmelidir.",
   accentColor: "#ca8a04",
   accentColorBadgeBg: "rgb(202 138 4 / 0.08)",

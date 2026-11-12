@@ -11,11 +11,11 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const uzaktanAyarAdvantages: BrandPageAdvantagesContent = {
   badge: "AVANTAJLARI",
   heading: "Uzaktan Ayar Hizmetinin Sunduğu Avantajlar",
-  intro: "Küçük ayar ihtiyaçları için kliniğe gelmeden çözüm sunmanın nedenleri.",
+  intro: "Küçük ayar ihtiyaçları için merkeze gelmeden çözüm sunmanın nedenleri.",
   hero: {
     icon: Video,
     category: "Video Görüşmeli Destek",
-    title: "Kliniğe Gelmeden Odyometristinizle Bağlanırsınız",
+    title: "Merkeze Gelmeden Odyometristinizle Bağlanırsınız",
     description: "Uygun cihazınızla, güvenli bir video görüşme üzerinden aynı odyometristinizle iletişim kurarsınız.",
   },
   items: [
@@ -23,13 +23,13 @@ export const uzaktanAyarAdvantages: BrandPageAdvantagesContent = {
       icon: Clock,
       category: "Zaman Tasarrufu",
       title: "Küçük Ayarlar İçin Hızlı Çözüm",
-      description: "Basit ayar güncellemeleri için kliniğe gelmenize gerek kalmayabilir.",
+      description: "Basit ayar güncellemeleri için merkeze gelmenize gerek kalmayabilir.",
     },
     {
       icon: MapPin,
       category: "Erişim Kolaylığı",
       title: "Mesafe Fark Etmeksizin Destek Alırsınız",
-      description: "Kliniğe uzak yaşayan veya seyahatte olan kullanıcılar için erişimi kolaylaştırır.",
+      description: "Merkeze uzak yaşayan veya seyahatte olan kullanıcılar için erişimi kolaylaştırır.",
     },
     {
       icon: ShieldCheck,
@@ -41,12 +41,12 @@ export const uzaktanAyarAdvantages: BrandPageAdvantagesContent = {
       icon: Users2,
       category: "Aynı Ekip",
       title: "Tanıdığınız Odyometristle Devam Edersiniz",
-      description: "Oturum, sizi ve geçmiş kayıtlarınızı bilen aynı klinik ekibi tarafından yürütülür.",
+      description: "Oturum, sizi ve geçmiş kayıtlarınızı bilen aynı ekip tarafından yürütülür.",
     },
     {
       icon: Sparkles,
       category: "Ücretsiz",
-      title: "Uzaktan Ayar Herhangi Bir Ücret Talep Etmez",
+      title: "Uzaktan Ayar İçin Herhangi Bir Ücret Talep Edilmez",
       description: "Uzaktan ayar oturumu, herhangi bir ücret talep edilmeden sunulur.",
     },
   ],

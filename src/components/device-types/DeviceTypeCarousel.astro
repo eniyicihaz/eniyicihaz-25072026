@@ -1,0 +1,279 @@
+---
+// DeviceTypeCarousel — cihaz türü kartları (mevcut /isitme-cihazlari/ alt sayfalarına bağlanır).
+// Mobil: dokunmatik kaydırma (CSS scroll-snap, JS gerekmez; sonraki kart "görünür" kalır).
+// Masaüstü/tablet: Önceki / Sonraki okları (JS) + klavye (liste odaklanabilir, ←/→ yatay kaydırır).
+// Hareket: yalnızca kaydırma; otomatik oynatma yok (WCAG 2.2.2). prefers-reduced-motion → yumuşak kaydırma yok.
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-astro";
+import type { DeviceTypeCard } from "../../data/device-types/carousel";
+
+interface Props {
+  items: DeviceTypeCard[];
+  label?: string;
+}
+
+const { items, label = "İşitme cihazı türleri" } = Astro.props;
+---
+
+<div class="dtc" data-dtc>
+  <ul class="dtc__track" tabindex="0" aria-label={`${label} — yatay kaydırılabilir liste`} data-dtc-track>
+    {
+      items.map((item) => (
+        <li class="dtc__slide">
+          <a class="dtc__card" href={item.href}>
+            <span class="dtc__media">
+              <img
+                src={item.image.src}
+                srcset={item.image.srcset}
+                sizes="(min-width: 1024px) 300px, (min-width: 640px) 36vw, 74vw"
+                width={item.image.width}
+                height={item.image.height}
+                alt={item.image.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <span class="dtc__body">
+              {item.abbr && <span class="dtc__abbr">{item.abbr}</span>}
+              <span class="dtc__name">{item.name}</span>
+              <span class="dtc__desc">{item.description}</span>
+              <span class="dtc__more">
+                Ayrıntıları gör
+                <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+              </span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="dtc__controls" data-dtc-controls>
+    <button type="button" class="dtc__btn" data-dtc-prev aria-label="Önceki cihaz türleri" disabled>
+      <ChevronLeft size={24} stroke-width={2.25} aria-hidden="true" />
+    </button>
+    <button type="button" class="dtc__btn" data-dtc-next aria-label="Sonraki cihaz türleri">
+      <ChevronRight size={24} stroke-width={2.25} aria-hidden="true" />
+    </button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-dtc]").forEach((root) => {
+    const track = root.querySelector<HTMLElement>("[data-dtc-track]");
+    const prev = root.querySelector<HTMLButtonElement>("[data-dtc-prev]");
+    const next = root.querySelector<HTMLButtonElement>("[data-dtc-next]");
+    if (!track || !prev || !next) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max;
+    };
+    const step = () => {
+      const slide = track.querySelector<HTMLElement>(".dtc__slide");
+      if (!slide) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+      const per = Math.max(1, Math.floor((track.clientWidth + gap) / (slide.offsetWidth + gap)));
+      return per * (slide.offsetWidth + gap);
+    };
+    const go = (dir: 1 | -1) => track.scrollBy({ left: dir * step(), behavior: reduce.matches ? "auto" : "smooth" });
+    prev.addEventListener("click", () => go(-1));
+    next.addEventListener("click", () => go(1));
+    let ticking = false;
+    track.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+      },
+      { passive: true },
+    );
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  });
+</script>
+
+<style>
+  .dtc {
+    position: relative;
+  }
+
+  .dtc__track {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-2) 0 var(--space-4);
+    display: flex;
+    gap: var(--space-4);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--color-primary-rgb) / 0.45) transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dtc__track:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-lg);
+  }
+
+  .dtc__slide {
+    flex: 0 0 74%;
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+
+  .dtc__card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    color: var(--color-text);
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  }
+
+  .dtc__card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .dtc__card:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .dtc__media {
+    display: block;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .dtc__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .dtc__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-5) var(--space-5);
+  }
+
+  /* Tür kısaltması rozeti (IIC, CIC …) */
+  .dtc__abbr {
+    justify-self: start;
+    align-self: flex-start;
+    display: inline-grid;
+    place-items: center;
+    min-width: 3.25rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+  }
+
+  .dtc__name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+  }
+
+  .dtc__desc {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .dtc__more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: auto;
+    padding-top: var(--space-2);
+    min-height: 48px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+
+  .dtc__controls {
+    display: none;
+  }
+
+  .dtc__btn {
+    display: inline-grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    color: var(--color-primary);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-base), border-color var(--transition-base), opacity var(--transition-base);
+  }
+
+  .dtc__btn:hover:not(:disabled) {
+    background: var(--color-primary-50);
+    border-color: var(--color-primary);
+  }
+
+  .dtc__btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .dtc__btn:disabled {
+    opacity: 0.38;
+    cursor: default;
+  }
+
+  @media (min-width: 640px) {
+    .dtc__slide {
+      flex-basis: calc((100% - var(--space-4)) / 2.35);
+    }
+  }
+
+  @media (min-width: 768px) {
+    /* Oklar ORTADA durur: sağ altta sabit iletişim kutusu (contact-dock), sol altta erişilebilirlik düğmesi var.
+       Oklar sağa yaslıyken carousel ekranın ortasındayken tam iletişim kutusunun altında kalıyor, tıklama
+       "WhatsApp'tan Yazın" bağlantısına gidiyordu (ölçüm: 1440×900). */
+    .dtc__controls {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-top: var(--space-2);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .dtc__slide {
+      flex-basis: calc((100% - 3 * var(--space-4)) / 4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dtc__card {
+      transition: none;
+    }
+  }
+</style>

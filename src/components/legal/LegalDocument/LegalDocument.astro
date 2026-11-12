@@ -4,7 +4,6 @@
 // 2xl konteyner, bkz. /site-haritasi/) izler; ağır hero veya satış CTA'sı
 // yok. Metin `src/data/kvkk/*` içindeki kaynak belgelerden gelir ve burada
 // hiçbir şekilde değiştirilmez — bu bileşen yalnızca sunumdur.
-import Breadcrumb from "../../../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import type { LegalDocumentData } from "../../../data/kvkk/types";
 
 interface Props {
@@ -13,28 +12,8 @@ interface Props {
 
 const { doc } = Astro.props;
 
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: doc.title, current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-
-<div class="legal-breadcrumb">
-  <Breadcrumb items={breadcrumbItems} />
-</div>
 
 <article class="legal-doc">
   <header class="legal-doc__header">
@@ -130,12 +109,6 @@ const breadcrumbSchema = {
 </article>
 
 <style>
-  .legal-breadcrumb {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   .legal-doc {
     max-width: 52rem;
     margin-inline: auto;
@@ -353,8 +326,5 @@ const breadcrumbSchema = {
   }
 
   @media print {
-    .legal-breadcrumb {
-      display: none;
-    }
   }
 </style>

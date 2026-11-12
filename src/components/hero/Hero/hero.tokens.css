@@ -15,7 +15,7 @@
   --hero-signal: var(--color-primary); /* the resolved line */
   --hero-signal-idle: var(--color-border); /* scattered / neutral lines */
   --hero-signal-gap: var(--space-3); /* vertical rhythm between lines */
-  --hero-glow: rgb(37 99 235 / 0.06); /* soft brand glow behind signal */
+  --hero-glow: rgb(var(--color-primary-rgb) / 0.06); /* soft brand glow behind signal */
 
   /* Vertical footprint — generous but never taller than the viewport. */
   --hero-min-h: min(88vh, 900px);

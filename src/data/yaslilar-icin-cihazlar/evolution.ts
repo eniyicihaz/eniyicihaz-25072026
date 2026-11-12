@@ -28,7 +28,7 @@ export const yaslilarIcinCihazlarEvolution: BrandPageTechEvolutionContent = {
     {
       era: "Aile Destekli Uzaktan Ayar",
       whatItBrought: "Bazı üreticilerin sunduğu uzaktan destek sistemleri, aile bireylerinin veya uzmanın uzaktan ayar yapmasına imkan tanır.",
-      bestFor: "Kliniğe sık gelmekte zorlanan kullanıcılar",
+      bestFor: "Merkeze sık gelmekte zorlanan kullanıcılar",
       families: ["RemoteCare Sistemleri"],
     },
     {

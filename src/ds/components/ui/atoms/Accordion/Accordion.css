@@ -96,7 +96,7 @@
 }
 
 .ds-accordion__subtitle{
-    font-size:.875rem;
+    font-size: var(--font-size-md);
     color:var(--ds-text-muted);
     line-height:1.5;
 }
@@ -109,7 +109,7 @@
     border-radius:999px;
     background:var(--ds-primary-100);
     color:var(--ds-primary);
-    font-size:.75rem;
+    font-size: var(--font-size-xs);
     font-weight:600;
     white-space:nowrap;
     flex-shrink:0;
@@ -160,7 +160,7 @@
 }
 
 .ds-accordion--sm .ds-accordion__subtitle{
-    font-size:.8125rem;
+    font-size: var(--font-size-xs);
 }
 
 .ds-accordion--md .ds-accordion__trigger{
@@ -176,7 +176,7 @@
 }
 
 .ds-accordion--lg .ds-accordion__subtitle{
-    font-size:.95rem;
+    font-size: var(--font-size-md);
 }
 
 .ds-accordion--lg .ds-accordion__content{

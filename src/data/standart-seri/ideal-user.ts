@@ -33,7 +33,7 @@ export const standartSeriIdealUser: BrandPageIdealUserContent = {
     {
       icon: Users,
       title: "Ara Sıra Kalabalık Ortamlarda Bulunanlar",
-      description: "Zaman zaman kalabalık ortamlarda bulunan ancak bunun günlük rutinin büyük bölümünü oluşturmadığı kullanıcılar için standart seri değerlendirilebilir.",
+      description: "Kalabalık ortamlarda yalnızca zaman zaman bulunan kullanıcılar için standart seri değerlendirilebilir.",
       suggestedFamilies: ["Temel Yönlü Mikrofon Desteği"],
     },
     {

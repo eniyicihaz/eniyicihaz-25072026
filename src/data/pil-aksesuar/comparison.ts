@@ -43,7 +43,7 @@ export const pilAksesuarComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Pilin Kendisinin Ömrü",
-      primary: "Dahili pil, birkaç yıl sonra profesyonelce değiştirilmesi gerekebilir.",
+      primary: "Dahili pilin birkaç yıl sonra profesyonelce değiştirilmesi gerekebilir.",
       secondary: "Her pil tek kullanımlıktır, kendi ömrü yoktur.",
     },
   ],

@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 // BrandPageExpertOpinion — shared, cross-brand expert-perspective quote
 // section. New component, not a migration: no Oticon equivalent (see
 // PHONAK MASTER BLUEPRINT §6.11). Deliberately not a named/personal
@@ -20,9 +21,12 @@ export interface BrandPageExpertOpinionContent {
 
 interface Props {
   data: BrandPageExpertOpinionContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 ---
 
 <section

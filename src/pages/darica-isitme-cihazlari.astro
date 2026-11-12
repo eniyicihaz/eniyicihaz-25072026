@@ -20,7 +20,6 @@
 // dosyasının başında. Title/description ve schema bu adımda değişmedi
 // (Faz 3).
 import MainLayout from "../layouts/MainLayout.astro";
-import Breadcrumb from "../ds/components/ui/atoms/Breadcrumb/Breadcrumb.astro";
 import CorporateHero from "../components/shared/CorporateHero/CorporateHero.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import ProcessTimeline from "../components/shared/ProcessTimeline/ProcessTimeline.astro";
@@ -29,6 +28,8 @@ import ValueGrid from "../components/shared/ValueGrid/ValueGrid.astro";
 import CenterGallery from "../components/shared/CenterGallery/CenterGallery.astro";
 import BrandPageFaq from "../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
+import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
+import { daricaRelated } from "../data/local/related";
 
 import { daricaHero } from "../data/darica/hero";
 import { daricaVisitLocation } from "../data/darica/location";
@@ -44,22 +45,6 @@ import { contactHero } from "../data/contact/hero";
 
 const PAGE_URL = "https://www.eniyicihaz.com/darica-isitme-cihazlari/";
 
-const breadcrumbItems = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Darıca İşitme Cihazları", current: true },
-];
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, "https://www.eniyicihaz.com").toString() } : {}),
-  })),
-};
-
 // Aynı kanonik tanım cümlesi homepage ve /iletisim'de kullanılıyor —
 // GEO non-contradiction (SEARCH_STRATEGY.md §9), burada yeni bir cümle
 // icat edilmedi.
@@ -67,15 +52,10 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
 ---
 
 <MainLayout
-  title="Darıca İşitme Cihazları | Avrasya İşitme"
-  description="Darıca, Kocaeli'de SGK anlaşmalı Avrasya İşitme Cihazları merkezi. Ücretsiz işitme değerlendirmesi, 18 marka seçeneği ve kişiye özel uygulama. Randevu alın."
+  title="Darıca İşitme Cihazları Merkezi | Avrasya İşitme Cihazları"
+  description="Darıca işitme cihazları merkezimiz Farabi Devlet Hastanesi durağının karşısında. Adres, yol tarifi, çalışma saatleri, ilk ziyaret adımları ve SGK işlemleri."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
-
-  <div class="darica-breadcrumb-wrap">
-    <Breadcrumb items={breadcrumbItems} />
-  </div>
 
   <div class="darica-hero">
     <CorporateHero data={daricaHero} />
@@ -106,16 +86,11 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
   </div>
 
   <BrandPageFaq data={daricaFaq} />
+  <BrandPageRelatedContent data={daricaRelated} />
   <BrandPageFinalCta data={daricaFinalCta} />
 </MainLayout>
 
 <style>
-  .darica-breadcrumb-wrap {
-    max-width: var(--container-2xl);
-    margin-inline: auto;
-    padding: var(--space-6) var(--space-6) 0;
-  }
-
   /* Hero layout — the real exterior photo shows the building's actual
      signs (İşitme Cihazları, SGK, Pil-Tamir, İşitme Testi, Eczane), so the
      text must never sit on top of it. Page-scoped: instead of the shared
@@ -247,7 +222,7 @@ const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, contactHero.d
   }
 
   .darica-inline-link--button:hover {
-    background: rgb(37 99 235 / 0.06);
+    background: rgb(var(--color-primary-rgb) / 0.06);
     text-decoration: none;
   }
 

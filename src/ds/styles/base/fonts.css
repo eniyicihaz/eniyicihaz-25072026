@@ -1,14 +1,20 @@
 /* Self-hosted Inter (SIL OFL 1.1) — replaces the render-blocking Google Fonts stylesheet.
-   One variable-weight file per subset covers 400–700. Turkish needs latin-ext (ş ğ İ …), so both subsets are
-   preloaded in MainLayout. "Inter Fallback" is Arial rescaled to Inter's metrics (Capsize values), so when the
-   web font swaps in, the text reflows by ~0px instead of shifting the layout (CLS). */
+   One variable-weight file per subset covers 400–700. Turkish needs a few latin-ext letters (Ğ ğ İ Ş ş) and the ₺ sign;
+   the full Google latin-ext file (85 KB, hundreds of glyphs the site never uses) was cut to exactly those six glyphs
+   (3.3 KB, byte-identical outlines and the full variable wght axis — see docs/tech/PERFORMANCE_LCP.md). The latin
+   file is the unmodified Google subset (an attempt to limit its wght axis to 400–700 saved 12 KB but shifted glyph edges at
+   weights 500–700 by up to 157/255 on antialiased pixels, so it was rejected). Both subsets are preloaded in
+   MainLayout. If new content ever needs another Latin Extended character (e.g. a foreign brand name), add it to the
+   subset and to the unicode-range below; until then it falls back to the system font like any uncovered glyph.
+   "Inter Fallback" is Arial rescaled to Inter's metrics (Capsize values), so when the web font swaps in, the text
+   reflows by ~0px instead of shifting the layout (CLS). */
 @font-face {
     font-family: "Inter";
     font-style: normal;
     font-weight: 400 700;
     font-display: swap;
-    src: url("/fonts/inter-latin-ext.woff2") format("woff2");
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    src: url("/fonts/inter-latin-ext-tr.woff2") format("woff2");
+    unicode-range: U+011E-011F, U+0130, U+015E-015F, U+20BA;
 }
 
 @font-face {

@@ -18,7 +18,7 @@ export const periyodikBakimComparison: KulakArkasiComparisonContent = {
   rows: [
     {
       feature: "Kim Tarafından Yapılır",
-      primary: "Klinik ekibimiz tarafından yapılır.",
+      primary: "Merkezimizdeki ekibimiz tarafından yapılır.",
       secondary: "Kullanıcının kendisi tarafından evde yapılır.",
     },
     {

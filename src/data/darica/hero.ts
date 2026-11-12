@@ -16,7 +16,8 @@ import { company } from "../../components/footer/Footer/data/company";
 
 export const daricaHero: CorporateHeroContent = {
   locationLabel: "Fevziçakmak, Darıca · Palandöken Eczanesi üst katı",
-  heading: "Darıca'da İşitme Cihazı Merkezi",
+  // Search Console (2026-05-01→2026-11-09): aranan biçim "darıca işitme cihazları (merkezi)" (çoğul) — başlık/H1 aynı biçimde.
+  heading: "Darıca'da İşitme Cihazları Merkezi",
   subheading:
     "Avrasya İşitme Cihazları'nın Darıca merkezi Fevziçakmak'ta, Palandöken Eczanesi'nin üst katında; Farabi Devlet Hastanesi durağının karşısındadır. Randevusuz gelebilirsiniz; ilk ziyaret işlemlere göre yaklaşık 1 saat (1–2 saat) sürer.",
   image: "/images/heroes/darica-dis-cephe.webp",
@@ -24,9 +25,12 @@ export const daricaHero: CorporateHeroContent = {
   imageWidth: 2000,
   imageHeight: 1500,
   imagePriority: true,
-  // Mobilde 640/1000 w, masaüstünde (~600 px alan, 2x) 1000/1600 w seçilir.
+  // LCP öğesi bu fotoğraf. AVIF (q50) önce, WebP yedek; aynı fotoğraf, aynı genişlikler. Mobilde (412 px × 1,75 DPR ≈ 720 px)
+  // AVIF 800 w (38 KB) seçilir — önceki 1000 w WebP 113 KB idi. Görsel fark: docs/tech/PERFORMANCE_LCP.md.
+  imageAvifSrcset:
+    "/images/heroes/darica-dis-cephe-640.avif 640w, /images/heroes/darica-dis-cephe-800.avif 800w, /images/heroes/darica-dis-cephe-1000.avif 1000w, /images/heroes/darica-dis-cephe-1600.avif 1600w",
   imageSrcset:
-    "/images/heroes/darica-dis-cephe-640.webp 640w, /images/heroes/darica-dis-cephe-1000.webp 1000w, /images/heroes/darica-dis-cephe-1600.webp 1600w, /images/heroes/darica-dis-cephe.webp 2000w",
+    "/images/heroes/darica-dis-cephe-640.webp 640w, /images/heroes/darica-dis-cephe-800.webp 800w, /images/heroes/darica-dis-cephe-1000.webp 1000w, /images/heroes/darica-dis-cephe-1600.webp 1600w, /images/heroes/darica-dis-cephe.webp 2000w",
   imageSizes: "(max-width: 768px) 100vw, 50vw",
   // Ziyaret bilgileri — ana sayfanın güven bölümünü (2009, SGK, 18 marka)
   // tekrar etmek yerine. Saatlerin kendisi konum bölümünde company.hours'tan.

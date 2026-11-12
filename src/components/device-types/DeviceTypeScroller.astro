@@ -1,0 +1,603 @@
+---
+// DeviceTypeScroller — Starkey tarzı kaydırmalı bölüm: IIC → CIC → ITC → ITE → BTE → RIC.
+//   Masaüstü (≥1024 px): solda YAPIŞKAN görsel (cihaz + konum çubuğu), sağda adımlar; kaydırdıkça etkin adım değişir.
+//   Mobil / JS yok: doğal dikey akış — her adım kendi görseliyle yığılır; sayfa kaydırması hiçbir yerde kilitlenmez.
+// Her adım: cihaz adı, kulaktaki konum, kısa metin ve mevcut detay sayfasına bağlantı.
+//
+// Kulak: TEMSİLİ şematik çizim (EarDiagram.astro). Gerçek kulak fotoğrafı yoktur; ürün fotoğrafı çizimin üzerine
+// yerleştirilmez — cihazın yeri çizimde renkli bir bölge olarak işaretlenir, temsili ürün görseli ayrı bir kutuda durur
+// ve bölümde "temsili" notu görünür. (Gerçek bir kulak görseli sağlanırsa `scrollerEarImage` + `pin` yolu hâlâ çalışır.)
+import { ArrowRight } from "lucide-astro";
+import EarDiagram from "./EarDiagram.astro";
+import type { EarStep } from "./EarDiagram.astro";
+import { scrollerSteps, scrollerGroups, scrollerEarImage } from "../../data/device-types/scroller";
+
+const steps = scrollerSteps;
+const ear = scrollerEarImage;
+const earStep = (abbr: string) => abbr.toLowerCase() as EarStep;
+---
+
+<section class="dts" id="kulakta-nerede-durur" aria-labelledby="dts-title" data-dts>
+  <div class="dts__inner">
+    <header class="dts__head">
+      <p class="dts__eyebrow">Kulakta Nerede Durur?</p>
+      <h2 class="dts__title" id="dts-title">İşitme Cihazı Türleri Kulakta Nerede Durur?</h2>
+      <p class="dts__intro">
+        Türleri ayıran temel fark, cihazın kulakta nerede durduğudur. En derinden başlayıp kulak arkasına doğru ilerleyin; her
+        türün ayrıntılı sayfasına buradan geçebilirsiniz.
+      </p>
+      <p class="dts__note">
+        Kulak çizimi ve cihaz görselleri temsilidir; cihazın kulaktaki yeri ve boyutu kulak yapısına ve modele göre değişir.
+      </p>
+    </header>
+
+    <div class="dts__layout">
+      <div class="dts__stage" aria-hidden="true" data-dts-stage data-ear={ear ? "true" : undefined}>
+        <div class:list={["dts__stage-card", { "dts__stage-card--diagram": !ear }]}>
+          {ear && <img class="dts__ear" src={ear.src} alt="" width={ear.width} height={ear.height} loading="lazy" decoding="async" />}
+          {!ear && (
+            <div class="dts__diagram">
+              <EarDiagram all />
+            </div>
+          )}
+          {
+            steps.map((s, i) => (
+              <figure
+                class:list={["dts__stage-item", { "is-active": i === 0 }]}
+                data-dts-stage-item
+                style={
+                  s.pin
+                    ? `--pin-x:${s.pin.x}%;--pin-y:${s.pin.y}%;--pin-s:${s.pin.scale ?? 1};--pin-r:${s.pin.rotate ?? 0}deg;`
+                    : undefined
+                }
+              >
+                <img
+                  src={s.image.src}
+                  srcset={s.image.srcset}
+                  sizes="(min-width: 1024px) 520px, 90vw"
+                  width={s.image.width}
+                  height={s.image.height}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            ))
+          }
+          <p class="dts__stage-label">
+            <span class="dts__stage-abbr" data-dts-abbr>{steps[0].abbr}</span>
+            <span class="dts__stage-zone" data-dts-zone>{steps[0].zone}</span>
+          </p>
+        </div>
+
+        <ol class="dts__rail" data-dts-rail>
+          {
+            steps.map((s, i) => (
+              <li class:list={["dts__rail-node", `dts__rail-node--g${s.zoneGroup}`, { "is-active": i === 0 }]} data-dts-node>
+                <span class="dts__rail-dot"></span>
+                <span class="dts__rail-abbr">{s.abbr}</span>
+              </li>
+            ))
+          }
+        </ol>
+        <ul class="dts__legend">
+          {scrollerGroups.map((g) => <li>{g.label}</li>)}
+        </ul>
+      </div>
+
+      <ol class="dts__steps">
+        {
+          steps.map((s, i) => (
+            <li class:list={["dts__step", { "is-active": i === 0 }]} id={`dts-${s.id}`} data-dts-step>
+              <figure class="dts__step-media">
+                <span class="dts__step-ear">
+                  <EarDiagram step={earStep(s.abbr)} label={`Temsili çizim: ${s.abbr} tipinin kulaktaki yeri — ${s.zone}`} />
+                </span>
+                <img
+                  src={s.image.src}
+                  srcset={s.image.srcset}
+                  sizes="(min-width: 640px) 420px, 88vw"
+                  width={s.image.width}
+                  height={s.image.height}
+                  alt={s.image.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="dts__step-body">
+                <p class="dts__step-count">
+                  {i + 1} / {steps.length}
+                </p>
+                <h3 class="dts__step-title">
+                  <span class="dts__step-abbr">{s.abbr}</span>{" "}
+                  <span>{s.name}</span>
+                </h3>
+                <p class="dts__step-zone">
+                  <strong>Kulaktaki konumu:</strong> {s.zone}
+                </p>
+                <p class="dts__step-text">{s.howUsed}</p>
+                <p class="dts__step-text">{s.visibility}</p>
+                <a class="dts__step-link" href={s.href}>
+                  <span>{s.linkLabel}</span>
+                  <ArrowRight size={18} stroke-width={2} aria-hidden="true" />
+                </a>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-dts]").forEach((root) => {
+    const steps = [...root.querySelectorAll<HTMLElement>("[data-dts-step]")];
+    const items = [...root.querySelectorAll<HTMLElement>("[data-dts-stage-item]")];
+    const nodes = [...root.querySelectorAll<HTMLElement>("[data-dts-node]")];
+    const marks = [...root.querySelectorAll<SVGGElement>("[data-dts-stage] [data-ear-mark]")];
+    const abbr = root.querySelector<HTMLElement>("[data-dts-abbr]");
+    const zone = root.querySelector<HTMLElement>("[data-dts-zone]");
+    if (!steps.length || !("IntersectionObserver" in window)) return;
+    root.classList.add("dts--live");
+    let current = 0;
+    const setActive = (i: number) => {
+      if (i === current) return;
+      current = i;
+      steps.forEach((el, k) => el.classList.toggle("is-active", k === i));
+      items.forEach((el, k) => el.classList.toggle("is-active", k === i));
+      nodes.forEach((el, k) => el.classList.toggle("is-active", k === i));
+      marks.forEach((el, k) => el.classList.toggle("is-active", k === i));
+      const a = steps[i]?.querySelector(".dts__step-abbr")?.textContent ?? "";
+      const z = steps[i]?.querySelector(".dts__step-zone")?.textContent?.replace("Kulaktaki konumu:", "").trim() ?? "";
+      if (abbr) abbr.textContent = a;
+      if (zone) zone.textContent = z;
+    };
+    // Ekranın ortasındaki adım etkin sayılır (kaydırma kilitlenmez; yalnızca gözlem).
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(steps.indexOf(e.target as HTMLElement));
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+    );
+    steps.forEach((s) => io.observe(s));
+  });
+</script>
+
+<style>
+  .dts {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding-block: var(--space-16);
+  }
+
+  .dts__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .dts__head {
+    max-width: 52rem;
+  }
+
+  .dts__eyebrow {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-text);
+  }
+
+  .dts__title {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.015em;
+    color: var(--brand-navy);
+  }
+
+  .dts__intro {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .dts__note {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-soft);
+  }
+
+  .dts__layout {
+    margin-top: var(--space-10);
+  }
+
+  /* Varsayılan (mobil / JS yok): yapışkan sahne gizli, her adım kendi görseliyle yığılır. */
+  .dts__stage {
+    display: none;
+  }
+
+  .dts__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .dts__step {
+    display: grid;
+    gap: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-background);
+    overflow: hidden;
+  }
+
+  /* Mobil kart: temsili kulak çizimi, cihaz görselinin köşesinde */
+  .dts__step-ear {
+    position: absolute;
+    left: var(--space-3);
+    top: var(--space-3);
+    width: 34%;
+    max-width: 150px;
+    aspect-ratio: 380 / 440;
+    padding: var(--space-1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 0.94);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .dts__step-media {
+    position: relative;
+    margin: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+    aspect-ratio: 4 / 3;
+  }
+
+  .dts__step-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .dts__step-body {
+    display: grid;
+    gap: var(--space-3);
+    padding: 0 var(--space-5) var(--space-5);
+  }
+
+  .dts__step-count {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .dts__step-title {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    color: var(--brand-navy);
+  }
+
+  .dts__step-abbr {
+    display: inline-grid;
+    place-items: center;
+    min-width: 3.25rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+  }
+
+  .dts__step-zone,
+  .dts__step-text {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .dts__step-zone strong {
+    color: var(--color-accent-text);
+  }
+
+  .dts__step-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    width: fit-content;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .dts__step-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (min-width: 640px) {
+    .dts__step {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .dts__step-media {
+      border-bottom: 0;
+      border-right: 1px solid var(--color-border);
+      align-self: stretch;
+      aspect-ratio: auto;
+      min-height: 260px;
+    }
+
+    .dts__step-body {
+      padding: var(--space-5) var(--space-6) var(--space-5) 0;
+    }
+  }
+
+  /* ── Masaüstü etkileşimi: yalnızca JS çalıştığında (dts--live) ── */
+  @media (min-width: 1024px) {
+    .dts--live .dts__layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-12);
+      align-items: start;
+    }
+
+    .dts--live .dts__stage {
+      display: grid;
+      gap: var(--space-4);
+      position: sticky;
+      top: 104px;
+      align-self: start;
+    }
+
+    .dts--live .dts__steps {
+      gap: 0;
+    }
+
+    .dts--live .dts__step {
+      display: flex;
+      align-items: center;
+      min-height: 62vh;
+      border: 0;
+      border-left: 4px solid var(--color-border);
+      border-radius: 0;
+      background: transparent;
+      padding: var(--space-8) 0 var(--space-8) var(--space-8);
+      overflow: visible;
+      transition: border-color var(--transition-slow);
+    }
+
+    .dts--live .dts__step.is-active {
+      border-left-color: var(--color-accent);
+    }
+
+    .dts--live .dts__step-media {
+      display: none;
+    }
+
+    .dts--live .dts__step-body {
+      padding: 0;
+      max-width: 34rem;
+    }
+  }
+
+  /* Sahne (yapışkan görsel) */
+  .dts__stage-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-height: min(74vh, 560px);
+    margin-inline: auto;
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: #fff;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  /* Şematik kulak çizimi sahnenin büyük kısmını kaplar; temsili cihaz görseli sağ altta küçük kutudur. */
+  .dts__diagram {
+    position: absolute;
+    left: 3%;
+    top: 12%;
+    width: 62%;
+    bottom: 3%;
+  }
+
+  .dts__stage-card--diagram .dts__stage-item {
+    inset: auto 4% 5% auto;
+    width: 36%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  .dts__ear {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .dts__stage-item {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transform: scale(0.97);
+    transition:
+      opacity var(--transition-slow),
+      transform 450ms ease;
+  }
+
+  .dts__stage-item.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .dts__stage-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Kulak görseli varsa: cihaz, adımın `pin` koordinatına küçük olarak yerleşir. */
+  .dts__stage[data-ear] .dts__stage-item {
+    inset: auto;
+    left: var(--pin-x, 50%);
+    top: var(--pin-y, 50%);
+    width: calc(30% * var(--pin-s, 1));
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%) rotate(var(--pin-r, 0deg)) scale(0.9);
+  }
+
+  .dts__stage[data-ear] .dts__stage-item.is-active {
+    transform: translate(-50%, -50%) rotate(var(--pin-r, 0deg)) scale(1);
+  }
+
+  .dts__stage-label {
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-4);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    background: rgb(var(--brand-navy-rgb) / 0.92);
+    color: var(--color-text-inverse);
+    max-width: calc(100% - var(--space-8));
+  }
+
+  .dts__stage-abbr {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+  }
+
+  .dts__stage-zone {
+    font-size: var(--font-size-sm);
+    line-height: 1.35;
+  }
+
+  /* Konum çubuğu: kulak kanalı içinden kulak arkasına — anatomi çizimi DEĞİL, yalnızca sıralama. */
+  .dts__rail {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    position: relative;
+  }
+
+  .dts__rail::before {
+    content: "";
+    position: absolute;
+    left: calc(100% / 12);
+    right: calc(100% / 12);
+    top: 9px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--color-border-hover);
+  }
+
+  .dts__rail-node {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-1);
+  }
+
+  .dts__rail-dot {
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    border: 3px solid var(--color-border-hover);
+    background: #fff;
+    transition:
+      background-color var(--transition-base),
+      border-color var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .dts__rail-abbr {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  .dts__rail-node.is-active .dts__rail-dot {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: scale(1.2);
+  }
+
+  .dts__rail-node.is-active .dts__rail-abbr {
+    color: var(--color-primary);
+  }
+
+  .dts__legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    font-size: var(--font-size-xs);
+    line-height: 1.3;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .dts {
+      padding-block: var(--space-12);
+    }
+
+    .dts__inner {
+      padding-inline: var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dts__stage-item,
+    .dts__step,
+    .dts__rail-dot {
+      transition: none;
+    }
+
+    .dts__stage-item {
+      transform: none;
+    }
+  }
+</style>

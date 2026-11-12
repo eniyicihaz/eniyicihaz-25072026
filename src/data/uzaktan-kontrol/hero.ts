@@ -26,7 +26,7 @@ export const uzaktanKontrolHero: BrandPageHeroContent = {
   headingLines: ["Uzaktan Kontrol", "Özellikleri"],
   paragraphs: [
     "Uzaktan kontrol özellikleri; akıllı telefon uygulaması veya fiziksel bir uzaktan kumanda üzerinden ses seviyesi ve program değişikliği yapmanızı, hatta bazı durumlarda odyometristinizin cihazınızı uzaktan ayarlamasını sağlayan teknolojilerdir.",
-    "Cihazını kolayca ayarlamak isteyen veya kliniğe gelmeden uzaktan destek almak isteyen kullanıcılar için Avrasya İşitme'de sıkça değerlendirdiğimiz bir teknolojidir.",
+    "Cihazını kolayca ayarlamak isteyen veya merkeze gelmeden uzaktan destek almak isteyen kullanıcılar için Avrasya İşitme'de sıkça değerlendirdiğimiz bir teknolojidir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
@@ -46,7 +46,7 @@ export const uzaktanKontrolHero: BrandPageHeroContent = {
     {
       label: "UZAKTAN DESTEK (TELEAUDIOLOGY)",
       accent: "#075985",
-      title: "Kliniğe Gelmeden Uzman Desteği",
+      title: "Merkeze Gelmeden Uzman Desteği",
       description: "Bazı modellerde odyometristiniz, video görüşme sırasında cihaz ayarlarınızı uzaktan güncelleyebilir.",
     },
   ],

@@ -16,14 +16,14 @@ export const premiumSeriAdvantages: BrandPageAdvantagesContent = {
     icon: Brain,
     category: "Yapay Zeka Destekli",
     title: "En Gelişmiş Ses İşleme Teknolojisi",
-    description: "Premium seri modeller, karmaşık dinleme ortamlarında bile net ses ayrımı sağlayan en gelişmiş algoritmaları taşır.",
+    description: "Premium seri modeller, karmaşık dinleme ortamlarında ses ayrımını kolaylaştırmayı hedefleyen, markanın üst seviye algoritmalarını taşır.",
   },
   items: [
     {
       icon: Bluetooth,
       category: "Tam Bağlantı",
       title: "Eksiksiz Kablosuz Bağlantı",
-      description: "Telefon, TV ve diğer cihazlarla kesintisiz bağlantı sağlar.",
+      description: "Telefon, TV ve diğer uyumlu cihazlarla kablosuz bağlantı kurar.",
     },
     {
       icon: Radar,
@@ -47,7 +47,7 @@ export const premiumSeriAdvantages: BrandPageAdvantagesContent = {
       icon: Sliders,
       category: "İnce Ayar İmkânı",
       title: "Detaylı Kişiselleştirme Seçenekleri",
-      description: "Cihazın birçok yönü, ihtiyacınıza göre ince ayar yapılabilir.",
+      description: "Cihazın birçok özelliğinde ihtiyacınıza göre ince ayar yapılabilir.",
     },
   ],
   accentColor: "#eab308",

@@ -1,0 +1,232 @@
+---
+// HomeRouter — "Size nasıl yardımcı olabiliriz?" (araştırma raporu U2 / R4). Hero'nun hemen altında, ziyaretçiyi
+// niyetine göre mevcut sayfaya götüren 6 büyük kart. Kartın tamamı tek bir bağlantıdır (başlık bağlantısı kartı
+// kaplar); aynı niyete hizmet eden ikinci sayfa ayrı küçük bir bağlantı olarak kartın altında durur.
+import HomeBlockHeader from "./HomeBlockHeader.astro";
+import { ArrowRight } from "lucide-astro";
+import { homeRouter } from "../../data/home/router";
+---
+
+<section class="home-router" aria-labelledby="home-router-title">
+  <div class="home-router__inner">
+    <HomeBlockHeader id="home-router-title" eyebrow={homeRouter.eyebrow} heading={homeRouter.heading} intro={homeRouter.intro} />
+
+    <ul class="home-router__grid">
+      {
+        homeRouter.items.map((item) => {
+          const Icon = item.icon;
+          return (
+            <li class="home-router__item">
+              <article class="home-router__card">
+                <span class="home-router__icon" aria-hidden="true">
+                  <Icon size={26} stroke-width={1.75} />
+                </span>
+                <h3 class="home-router__title">
+                  <a class="home-router__link" href={item.href}>
+                    {item.title}
+                  </a>
+                </h3>
+                <p class="home-router__desc">{item.description}</p>
+                {item.also && (
+                  <a class="home-router__also" href={item.also.href}>
+                    {item.also.label}
+                  </a>
+                )}
+                <span class="home-router__go" aria-hidden="true">
+                  <ArrowRight size={20} stroke-width={2} />
+                </span>
+              </article>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .home-router {
+    background: var(--color-background);
+    padding-block: var(--space-16);
+  }
+
+  .home-router__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .home-router__grid {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .home-router__item {
+    display: flex;
+  }
+
+  .home-router__card {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    padding-right: var(--space-12);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    transition:
+      border-color var(--transition-base),
+      box-shadow var(--transition-base),
+      background-color var(--transition-base);
+  }
+
+  .home-router__card:hover,
+  .home-router__card:focus-within {
+    border-color: var(--color-primary);
+    background: var(--color-background);
+    box-shadow: var(--shadow-md);
+  }
+
+  .home-router__icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-lg);
+    background: var(--color-primary-50);
+    color: var(--color-primary);
+  }
+
+  .home-router__title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  /* Başlık bağlantısı tüm kartı kaplar: büyük, tek dokunma hedefi. */
+  .home-router__link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .home-router__link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 0;
+  }
+
+  .home-router__link:focus-visible {
+    outline: none;
+  }
+
+  .home-router__link:focus-visible::before {
+    box-shadow: var(--focus-ring);
+  }
+
+  .home-router__desc {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  /* İkinci bağlantı kartın üstünde kalır (z-index), böylece kendi hedefine tıklanır. */
+  .home-router__also {
+    position: relative;
+    z-index: 1;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .home-router__also:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .home-router__go {
+    position: absolute;
+    top: var(--space-6);
+    right: var(--space-5);
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: var(--color-background);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border-hover);
+    transition: transform var(--transition-base), background-color var(--transition-base), color var(--transition-base);
+  }
+
+  .home-router__card:hover .home-router__go,
+  .home-router__card:focus-within .home-router__go {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 1023px) {
+    .home-router__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-router {
+      padding-block: var(--space-10);
+    }
+
+    .home-router__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .home-router__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+
+    .home-router__card {
+      padding: var(--space-4);
+      padding-right: var(--space-12);
+    }
+
+    .home-router__icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .home-router__title {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-router__card,
+    .home-router__go {
+      transition: none;
+    }
+    .home-router__card:hover .home-router__go,
+    .home-router__card:focus-within .home-router__go {
+      transform: none;
+    }
+  }
+</style>

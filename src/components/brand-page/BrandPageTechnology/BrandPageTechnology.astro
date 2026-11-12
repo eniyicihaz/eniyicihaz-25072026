@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 // BrandPageTechnology — shared, cross-brand "teaser grid" section (short
 // technology overview, 6 cards). Generic counterpart of Oticon's original
 // OticonTechnologies (M3); data-driven so every brand page can reuse it.
@@ -23,9 +24,12 @@ export interface BrandPageTechnologyContent {
 
 interface Props {
   data: BrandPageTechnologyContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 ---
 
 <section
@@ -168,7 +172,7 @@ const { data } = Astro.props;
 
   .brand-page-tech__label {
     margin: 0;
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.1em;
     text-transform: uppercase;

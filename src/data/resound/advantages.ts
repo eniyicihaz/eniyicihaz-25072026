@@ -28,7 +28,7 @@ export const resoundAdvantages: BrandPageAdvantagesContent = {
       icon: Smartphone,
       category: "Uzaktan Bakım",
       title: "ReSound Assist ile Uzaktan Destek",
-      description: "Kliniğe gitmeden ince ayar ve destek almanızı sağlar.",
+      description: "Merkeze gitmeden ince ayar ve destek almanızı sağlar.",
     },
     {
       icon: BatteryCharging,

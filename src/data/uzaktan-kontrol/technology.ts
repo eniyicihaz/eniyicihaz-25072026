@@ -40,9 +40,9 @@ export const uzaktanKontrolTechnology: BrandPageEcosystemContent = {
       lead: "Odyometristiniz, video görüşme sırasında cihazınızın temel ayarlarını uzaktan güncelleyebilir.",
       howItWorks: "Görüşme sırasında cihazınız uygulama üzerinden odyometristinizin ekranına bağlanır; odyometrist, sizin geri bildiriminize göre programlamada gerekli güncellemeleri uzaktan yapar.",
       advantages: [
-        "Kliniğe gelmeden temel ayar güncellemesi",
+        "Merkeze gelmeden temel ayar güncellemesi",
         "Küçük değişiklikler için zaman tasarrufu sağlar",
-        "Kliniğe uzak yaşayan kullanıcılar için erişim kolaylığı",
+        "Merkeze uzak yaşayan kullanıcılar için erişim kolaylığı",
       ],
       models: ["Uzaktan Destek (TeleCare) Uyumlu Modeller"],
       expertNote: "Uzaktan destek her ayarı kapsamaz; bazı durumlarda yüz yüze bir randevu gerekebilir.",

@@ -39,7 +39,7 @@ export const sgkInsight: SgkInsightContent = {
   badge: "Uzman Açıklaması",
   heading: "İşitme Cihazı İçin SGK Ödeme Tutarı Ne Kadardır?",
   intro:
-    "Bir önceki bölümde SGK'nın güncel ödeme tutarlarını gördünüz. Bu rakamların neye göre belirlendiğini ve başvuru öncesinde nelere dikkat etmeniz gerektiğini birlikte inceleyelim.",
+    "Yukarıdaki tabloda SGK'nın güncel ödeme tutarlarını gördünüz. Bu rakamların neye göre belirlendiğini ve başvuru öncesinde nelere dikkat etmeniz gerektiğini birlikte inceleyelim.",
   points: [
     {
       title: "Yaş grubuna göre değişir",

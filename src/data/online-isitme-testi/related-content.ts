@@ -18,7 +18,7 @@ export const onlineIsitmeTestiRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Odyometri",
-      description: "Klinik ortamda işitme eşiğinin nasıl ölçüldüğünü daha yakından tanıyın.",
+      description: "Merkez ortamında işitme eşiğinin nasıl ölçüldüğünü daha yakından tanıyın.",
       href: "/degerlendirme/odyometri/",
     },
     {

@@ -195,6 +195,12 @@ const impactTone = (value: string) => {
 
   .guide-table__col-head a,
   .guide-table__row-head a {
+    /* Kısa başlıklar ("RIC", "Orta") bile en az 44 × 44 px dokunma hedefi olsun. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     color: var(--color-primary);
     text-decoration: none;
   }
@@ -367,7 +373,7 @@ const impactTone = (value: string) => {
      cihazlarda), klavye için focus-within. Hiçbir bilgi hover'a bağlı değildir. Yapışkan ilk sütun
      zebra ve vurgu renginde de opak kalır (kayan hücreler altından görünmez). */
   .guide-table--enhanced .guide-table__scroll {
-    border-color: rgb(37 99 235 / 0.22);
+    border-color: rgb(var(--color-primary-rgb) / 0.22);
     box-shadow: var(--shadow-sm);
   }
 
@@ -376,7 +382,7 @@ const impactTone = (value: string) => {
   .guide-table--enhanced .guide-table__corner,
   .guide-table--enhanced .guide-table__col-head {
     vertical-align: middle;
-    background: #eff6ff;
+    background: var(--color-primary-50);
     border-bottom: 2px solid var(--color-primary);
   }
 
@@ -385,7 +391,7 @@ const impactTone = (value: string) => {
   }
 
   .guide-table--enhanced .guide-table__col-head {
-    color: #1e3a8a;
+    color: var(--brand-navy);
   }
 
   .guide-table--enhanced tbody tr > * {
@@ -406,7 +412,7 @@ const impactTone = (value: string) => {
 
   @media (hover: hover) {
     .guide-table--enhanced tbody tr:hover > * {
-      background: #eff6ff;
+      background: var(--color-primary-50);
     }
 
     .guide-table--enhanced tbody tr:hover > .guide-table__row-head {
@@ -415,7 +421,7 @@ const impactTone = (value: string) => {
   }
 
   .guide-table--enhanced tbody tr:focus-within > * {
-    background: #eff6ff;
+    background: var(--color-primary-50);
   }
 
   .guide-table--enhanced tbody tr:focus-within > .guide-table__row-head {
@@ -437,14 +443,14 @@ const impactTone = (value: string) => {
   }
 
   .guide-table__impact--high {
-    border-color: rgb(37 99 235 / 0.4);
-    background: rgb(37 99 235 / 0.1);
+    border-color: rgb(var(--color-primary-rgb) / 0.4);
+    background: rgb(var(--color-primary-rgb) / 0.1);
     color: var(--color-primary-hover);
   }
 
   .guide-table__impact--mid {
-    border-color: rgb(37 99 235 / 0.25);
-    background: rgb(37 99 235 / 0.05);
+    border-color: rgb(var(--color-primary-rgb) / 0.25);
+    background: rgb(var(--color-primary-rgb) / 0.05);
     color: var(--color-primary);
   }
 
@@ -462,8 +468,8 @@ const impactTone = (value: string) => {
     }
 
     .guide-table--enhanced.guide-table--stack tbody tr {
-      border-color: rgb(37 99 235 / 0.2);
-      border-left: 3px solid rgb(37 99 235 / 0.45);
+      border-color: rgb(var(--color-primary-rgb) / 0.2);
+      border-left: 3px solid rgb(var(--color-primary-rgb) / 0.45);
     }
 
     .guide-table--enhanced.guide-table--stack tbody tr:nth-child(even) {
@@ -471,7 +477,7 @@ const impactTone = (value: string) => {
     }
 
     .guide-table--enhanced.guide-table--stack .guide-table__row-head {
-      color: #1e3a8a;
+      color: var(--brand-navy);
     }
   }
 

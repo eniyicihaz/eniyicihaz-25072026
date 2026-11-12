@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 // BrandPageComparison — shared, cross-brand quick comparison table.
 // Generic counterpart of Oticon's original OticonComparison; data-driven so
 // every brand page can reuse it. Column labels and the 4th column's meaning
@@ -40,9 +41,12 @@ export interface BrandPageComparisonContent {
 
 interface Props {
   data: BrandPageComparisonContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 ---
 
 <section
@@ -223,7 +227,7 @@ const { data } = Astro.props;
 
   .brand-page-comparison__row--head {
     padding: var(--space-5) var(--space-8);
-    background: var(--bpcmp-header-bg, #0f2547);
+    background: var(--bpcmp-header-bg, var(--brand-navy-deep));
   }
 
   .brand-page-comparison__row--head span {
@@ -266,7 +270,7 @@ const { data } = Astro.props;
     padding: 2px var(--space-2);
     border-radius: var(--radius-full);
     background: var(--bpcmp-new-tag-bg);
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.04em;
     color: var(--bpcmp-dark);
@@ -386,7 +390,7 @@ const { data } = Astro.props;
     .brand-page-comparison__mobile-label {
       display: block;
       margin-top: var(--space-2);
-      font-size: 0.6875rem;
+      font-size: var(--font-size-xs);
       font-weight: var(--font-weight-bold);
       letter-spacing: 0.06em;
       text-transform: uppercase;

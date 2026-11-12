@@ -184,8 +184,8 @@ const { data } = Astro.props;
   .brand-profile__chips li {
     padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-full);
-    border: 1px solid rgb(37 99 235 / 0.25);
-    background: rgb(37 99 235 / 0.06);
+    border: 1px solid rgb(var(--color-primary-rgb) / 0.25);
+    background: rgb(var(--color-primary-rgb) / 0.06);
     color: var(--color-primary);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
@@ -203,7 +203,7 @@ const { data } = Astro.props;
     margin: var(--space-5) 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
     gap: var(--space-4);
   }
 
@@ -260,7 +260,7 @@ const { data } = Astro.props;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
     gap: var(--space-3);
   }
 
@@ -285,7 +285,7 @@ const { data } = Astro.props;
     margin: var(--space-5) 0 0;
     padding: var(--space-4);
     border-radius: var(--radius-lg);
-    background: rgb(37 99 235 / 0.05);
+    background: rgb(var(--color-primary-rgb) / 0.05);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);

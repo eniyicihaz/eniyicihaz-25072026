@@ -6,6 +6,7 @@
 // İçerik (rozet, başlık, paragraflar, CTA'lar, renkler) mevcut hero.ts'ten aynen alınır;
 // ortak BrandPageHero'ya dokunulmaz. JavaScript ve giriş animasyonu yoktur.
 // Panel bir hesaplama aracı değildir (tutar/oran yok) — bkz. data/sgk-katki-payi/hero-panel.ts.
+import { withCorporateHero } from "../../../lib/hero-theme";
 import { Phone, MessageCircle, Tag, Landmark, Wallet, ArrowDown, ArrowRight } from "lucide-astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../../lib/contact-action";
@@ -19,7 +20,8 @@ interface Props {
   panel: SgkKatkiPayiHeroPanel;
 }
 
-const { data, panel } = Astro.props;
+const { data: rawData, panel } = Astro.props;
+const data = withCorporateHero(rawData);
 
 const accent = data.heroAccent || data.accentColor;
 const style = [
@@ -46,7 +48,7 @@ const stepIcons = { price: Tag, sgk: Landmark, remaining: Wallet };
       <p class="kph__badge">{data.badge}</p>
 
       <h1 class="kph__heading" id="brand-page-hero-title">
-        {data.headingLines.map((line) => <span class="kph__heading-line">{line}</span>)}
+        {data.headingLines.map((line) => <><span class="kph__heading-line">{line}</span>{" "}</>)}
       </h1>
 
       {data.paragraphs.map((p) => <p class="kph__paragraph">{p}</p>)}
@@ -262,7 +264,7 @@ const stepIcons = { price: Tag, sgk: Landmark, remaining: Wallet };
   /* Kontrollü renk: fiyat = mavi, SGK = turkuaz yardımcı renk, kalan ödeme = nötr beyaz. */
   .kph__step--price {
     --step-tint: rgb(96 165 250 / 0.2);
-    --step-ink: #bfdbfe;
+    --step-ink: var(--color-primary-200);
   }
 
   .kph__step--sgk {

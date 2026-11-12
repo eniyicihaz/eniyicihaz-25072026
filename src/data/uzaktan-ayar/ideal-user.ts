@@ -12,14 +12,14 @@ export const uzaktanAyarIdealUser: BrandPageIdealUserContent = {
   profiles: [
     {
       icon: MapPin,
-      title: "Kliniğe Uzak Mesafede Yaşayanlar",
-      description: "Kliniğimize uzak bir mesafede yaşayan, mevcut cihazı için küçük bir ayar güncellemesi isteyen kullanıcılar için uzaktan ayar önerilir.",
+      title: "Merkeze Uzak Mesafede Yaşayanlar",
+      description: "Merkezimize uzak bir mesafede yaşayan, mevcut cihazı için küçük bir ayar güncellemesi isteyen kullanıcılar için uzaktan ayar önerilir.",
       suggestedFamilies: ["Uzak Mesafe Desteği"],
     },
     {
       icon: Accessibility,
       title: "Hareket Kısıtlılığı Olan Kullanıcılar",
-      description: "Kliniğe ulaşımda zorluk yaşayan kullanıcılar için uzaktan ayar, erişimi kolaylaştıran bir seçenektir.",
+      description: "Merkeze ulaşımda zorluk yaşayan kullanıcılar için uzaktan ayar, erişimi kolaylaştıran bir seçenektir.",
       suggestedFamilies: ["Erişim Kolaylığı"],
     },
     {

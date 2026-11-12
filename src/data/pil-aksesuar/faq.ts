@@ -43,7 +43,7 @@ export const pilAksesuarFaq: BrandPageFaqContent = {
         {
           question: "Şarjlı pil bir gecede tam şarj olur mu?",
           answer:
-            "Çoğu modelde evet; ancak tam şarj süresi cihaz markası ve moduna göre değişebilir.",
+            "Çoğu modelde evet; ancak tam şarj süresi cihaz markası ve modeline göre değişebilir.",
         },
       ],
     },

@@ -48,6 +48,9 @@ export interface CorporateHeroContent {
   // Optional responsive candidates for the hero photo.
   imageSrcset?: string;
   imageSizes?: string;
+  // Optional AVIF candidates (same photo, same widths, ~40 % smaller than the WebP at equal quality). Emitted as a
+  // <source type="image/avif"> ahead of the <img>, so browsers without AVIF fall back to imageSrcset (WebP) unchanged.
+  imageAvifSrcset?: string;
   // Opsiyonel: dar ekranlar için farklı kırpılmış (portre) varyant — <picture><source media>.
   imageMobile?: { src: string; media: string };
   // Optional stronger dark overlay for bright photos (text contrast).
@@ -76,6 +79,7 @@ const sortedCtas = [...(data.ctas ?? [])]
     {data.image && (
       <picture>
         {data.imageMobile && <source media={data.imageMobile.media} srcset={data.imageMobile.src} />}
+        {data.imageAvifSrcset && <source type="image/avif" srcset={data.imageAvifSrcset} sizes={data.imageSizes} />}
       <img
         class="corporate-hero__image"
         src={data.image}
@@ -186,7 +190,7 @@ const sortedCtas = [...(data.ctas ?? [])]
 
   .corporate-hero__photo--no-image {
     min-height: 0;
-    background: linear-gradient(135deg, var(--color-text) 0%, rgb(30 58 138) 100%);
+    background: linear-gradient(135deg, var(--color-text) 0%, rgb(var(--brand-navy-rgb)) 100%);
   }
 
   .corporate-hero__image {
@@ -279,7 +283,7 @@ const sortedCtas = [...(data.ctas ?? [])]
   .corporate-hero__cta:not(.corporate-hero__cta--outline) {
     background: var(--color-primary);
     color: var(--color-text-inverse);
-    box-shadow: 0 10px 24px -10px rgb(37 99 235 / 0.55);
+    box-shadow: 0 10px 24px -10px rgb(var(--color-primary-rgb) / 0.55);
   }
 
   .corporate-hero__cta:not(.corporate-hero__cta--outline):hover {

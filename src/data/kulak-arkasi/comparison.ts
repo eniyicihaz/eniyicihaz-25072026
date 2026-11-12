@@ -10,14 +10,14 @@ import type { KulakArkasiComparisonContent } from "../../components/kulak-arkasi
 export const kulakArkasiComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
   heading: "Kulak Arkası (BTE) ile Kulak İçi (ITE) Karşılaştırması",
-  intro: "İki cihaz tipi arasındaki temel farkları aşağıdaki tabloda özetledik. İTE ailesinin en küçük üyesi olan görünmez (CIC) cihazlarla karşılaştırıldığında bu farklar daha da belirginleşir.",
+  intro: "İki cihaz tipi arasındaki temel farkları aşağıdaki tabloda özetledik. ITE ailesinin en küçük üyelerinden olan görünmez (CIC) cihazlarla karşılaştırıldığında bu farklar daha da belirginleşir.",
   primaryLabel: "Kulak Arkası (BTE)",
   secondaryLabel: "Kulak İçi (ITE)",
   rows: [
     {
       feature: "Boyut ve Görünürlük",
       primary: "Kulak kepçesinin arkasında konumlanır; ince RIC modellerinde oldukça az fark edilir.",
-      secondary: "Tamamen kulak kanalı içinde yer alır; en az görünür seçeneklerden biridir.",
+      secondary: "Kulak kanalı içinde veya kepçenin iç bölümünde yer alır; kulak arkası cihazlara göre genellikle daha az fark edilir.",
     },
     {
       feature: "Uygun İşitme Kaybı Aralığı",

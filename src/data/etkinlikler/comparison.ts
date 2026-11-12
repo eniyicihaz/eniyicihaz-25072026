@@ -10,7 +10,7 @@ import type { KulakArkasiComparisonContent } from "../../components/kulak-arkasi
 export const etkinliklerComparison: KulakArkasiComparisonContent = {
   badge: "KARŞILAŞTIRMA",
   heading: "Bireysel Randevu ile Etkinlik Katılımı Karşılaştırması",
-  intro: "Kliniğimizde bireysel randevu almak ile bir etkinliğe katılmak arasındaki genel farkları aşağıda özetledik.",
+  intro: "Merkezimizde bireysel randevu almak ile bir etkinliğe katılmak arasındaki genel farkları aşağıda özetledik.",
   primaryLabel: "Bireysel Randevu",
   secondaryLabel: "Etkinlik Katılımı",
   rows: [

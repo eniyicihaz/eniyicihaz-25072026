@@ -41,7 +41,7 @@ export const ekonomikSeriAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Users,
       category: "Geniş Erişilebilirlik",
-      title: "Daha Fazla Kullanıcıya Ulaşabilir Bir Seçenek",
+      title: "Daha Fazla Kullanıcı İçin Ulaşılabilir Bir Seçenek",
       description: "Uygun fiyatı sayesinde işitme cihazına erişimi kolaylaştırabilir.",
     },
     {

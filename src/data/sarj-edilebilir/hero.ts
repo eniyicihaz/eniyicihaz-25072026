@@ -18,7 +18,7 @@ export const sarjEdilebilirHero: BrandPageHeroContent = {
   badge: "İŞİTME CİHAZI ÇEŞİTLERİ · ŞARJ EDİLEBİLİR",
   headingLines: ["Şarj Edilebilir", "İşitme Cihazları"],
   paragraphs: [
-    "Değiştirilebilir pil yerine dahili lityum-iyon pil kullanan şarj edilebilir işitme cihazları, şarj kutusuna yerleştirilerek tek dokunuşla dolar ve gün boyu kullanıma hazır hâle gelir.",
+    "Değiştirilebilir pil yerine dahili lityum-iyon pil kullanan şarj edilebilir işitme cihazları, şarj kutusuna yerleştirilerek gece boyunca dolar ve gün boyu kullanıma hazır hâle gelir.",
     "Pil değiştirme zahmetini ortadan kaldıran bu teknoloji; el becerisi sınırlı kullanıcılardan yoğun tempolu yaşam sürenlere kadar geniş bir kullanıcı kitlesi için Avrasya İşitme'de sıkça değerlendirdiğimiz bir seçenektir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },

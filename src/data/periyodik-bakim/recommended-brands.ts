@@ -8,31 +8,31 @@ import type { BrandPageRelatedContentContent } from "../../components/brand-page
 
 export const periyodikBakimRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Periyodik Bakım Sunduğumuz Markalar",
+  heading: "Periyodik Bakım Sunduğumuz Markalardan Bazıları",
   links: [
     {
       label: "Oticon",
-      description: "Oticon cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
+      description: "Oticon cihazları için uyumlu kulak kiri filtresi ve tüp seçenekleri mevcuttur.",
       href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
-      description: "Phonak cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
+      description: "Phonak cihazları için uyumlu kulak kiri filtresi ve tüp seçenekleri mevcuttur.",
       href: "/markalar/phonak/",
     },
     {
       label: "Signia",
-      description: "Signia cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
+      description: "Signia cihazları için uyumlu kulak kiri filtresi ve tüp seçenekleri mevcuttur.",
       href: "/markalar/signia/",
     },
     {
       label: "Widex",
-      description: "Widex cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
+      description: "Widex cihazları için uyumlu kulak kiri filtresi ve tüp seçenekleri mevcuttur.",
       href: "/markalar/widex/",
     },
     {
       label: "ReSound",
-      description: "ReSound cihazları için uyumlu balmumu filtresi ve tüp seçenekleri mevcuttur.",
+      description: "ReSound cihazları için uyumlu kulak kiri filtresi ve tüp seçenekleri mevcuttur.",
       href: "/markalar/resound/",
     },
     {

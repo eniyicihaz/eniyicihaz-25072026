@@ -61,7 +61,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
       {
         data.promo.image ? (
           <div class="hd-mega__promo-image" aria-hidden="true">
-            <img src={data.promo.image} alt="" width={imageDims(data.promo.image)?.width} height={imageDims(data.promo.image)?.height} loading="lazy" />
+            <img src={data.promo.image} alt="" width={imageDims(data.promo.image)?.width} height={imageDims(data.promo.image)?.height} loading="lazy" decoding="async" fetchpriority="low" />
           </div>
         ) : data.promo.badge ? (
           <div class="hd-mega__promo-illustration" aria-hidden="true">
@@ -266,7 +266,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: radial-gradient(55% 55% at 82% 100%, rgb(37 99 235 / 0.35), transparent 72%);
+    background: radial-gradient(55% 55% at 82% 100%, rgb(var(--color-primary-rgb) / 0.35), transparent 72%);
     pointer-events: none;
   }
 
@@ -392,7 +392,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
   #hd-mega-cihazlar .hd-mega__promo,
   #hd-mega-markalar .hd-mega__promo,
   #hd-mega-bilgi .hd-mega__promo {
-    background: linear-gradient(165deg, rgb(37 99 235 / 0.06), var(--color-white) 60%);
+    background: linear-gradient(165deg, rgb(var(--color-primary-rgb) / 0.06), var(--color-white) 60%);
     border: 1px solid var(--color-border);
     box-shadow: none;
   }
@@ -474,7 +474,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
   #hd-mega-hizmetler .hd-mega__promo {
     justify-content: flex-start;
     padding-top: var(--space-5);
-    background: linear-gradient(165deg, rgb(37 99 235 / 0.06), var(--color-white) 60%);
+    background: linear-gradient(165deg, rgb(var(--color-primary-rgb) / 0.06), var(--color-white) 60%);
     border: 1px solid var(--color-border);
     box-shadow: none;
   }
@@ -606,7 +606,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
     height: 60%;
     background-image: repeating-linear-gradient(
       90deg,
-      rgb(37 99 235 / 0.1) 0 2px,
+      rgb(var(--color-primary-rgb) / 0.1) 0 2px,
       transparent 2px 14px
     );
     mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
@@ -616,25 +616,25 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
   .hd-mega__promo-ring {
     grid-area: 1 / 1;
     border-radius: 50%;
-    border: 1.5px solid rgb(37 99 235 / 0.22);
+    border: 1.5px solid rgb(var(--color-primary-rgb) / 0.22);
   }
 
   .hd-mega__promo-ring--1 {
     width: 106px;
     height: 106px;
-    border-color: rgb(37 99 235 / 0.3);
+    border-color: rgb(var(--color-primary-rgb) / 0.3);
   }
 
   .hd-mega__promo-ring--2 {
     width: 176px;
     height: 176px;
-    border-color: rgb(37 99 235 / 0.18);
+    border-color: rgb(var(--color-primary-rgb) / 0.18);
   }
 
   .hd-mega__promo-ring--3 {
     width: 246px;
     height: 246px;
-    border-color: rgb(37 99 235 / 0.1);
+    border-color: rgb(var(--color-primary-rgb) / 0.1);
   }
 
   .hd-mega__promo-illustration-icon {
@@ -829,7 +829,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
      heading, so it reads as ambient "you're browsing this category". */
   .hd-mega__col:hover .hd-mega__col-icon,
   .hd-mega__col:focus-within .hd-mega__col-icon {
-    background: rgb(37 99 235 / 0.16);
+    background: rgb(var(--color-primary-rgb) / 0.16);
   }
 
   .hd-mega__list {
@@ -1124,7 +1124,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
      change needed, the order (Randevu Al/Bizi Arayın/Merkezimiz/SGK) is
      already fixed in header.data.ts. */
   #hd-mega-hizmetler .hd-mega__support li:nth-child(1) .hd-mega__support-item {
-    --hd-support-tint: rgb(37 99 235 / 0.06);
+    --hd-support-tint: rgb(var(--color-primary-rgb) / 0.06);
   }
   #hd-mega-hizmetler .hd-mega__support li:nth-child(2) .hd-mega__support-item {
     --hd-support-tint: rgb(22 163 74 / 0.06);
@@ -1212,7 +1212,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
   #hd-mega-cihazlar .hd-mega__support li:nth-child(1) .hd-mega__support-item,
   #hd-mega-markalar .hd-mega__support li:nth-child(1) .hd-mega__support-item,
   #hd-mega-bilgi .hd-mega__support li:nth-child(1) .hd-mega__support-item {
-    --hd-support-tint: rgb(37 99 235 / 0.06);
+    --hd-support-tint: rgb(var(--color-primary-rgb) / 0.06);
   }
   #hd-mega-cihazlar .hd-mega__support li:nth-child(2) .hd-mega__support-item,
   #hd-mega-markalar .hd-mega__support li:nth-child(2) .hd-mega__support-item,
@@ -1360,7 +1360,7 @@ const PromoBg = icons.ear as any; // decorative placeholder illustration
       max-width: 50%;
       padding-inline: var(--space-2);
       border-radius: var(--radius-lg);
-      font-size: 0.6875rem;
+      font-size: var(--font-size-xs);
       line-height: 1.35;
     }
     #hd-mega-cihazlar .hd-mega__promo-title {

@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 // BrandPageAdvantages — shared, cross-brand asymmetric bento conversion
 // section (hero card + 5 supporting cards). Generic counterpart of
 // Oticon's original OticonWhyOticon; data-driven so every brand page can
@@ -37,9 +38,12 @@ export interface BrandPageAdvantagesContent {
 
 interface Props {
   data: BrandPageAdvantagesContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 
 const HeroIcon = data.hero.icon;
 const [slot1, slot2, slot3, slot4, slot5] = data.items;
@@ -298,7 +302,7 @@ const extraVars = [
 
   .brand-page-adv__category {
     margin: var(--space-4) 0 0;
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.1em;
     text-transform: uppercase;

@@ -12,7 +12,7 @@ export const uzaktanAyarFaq: BrandPageFaqContent = {
   intro: "Uygunluk, oturum süreci ve güvenlik konusunda en çok sorulan sorular.",
   decisionCard: {
     title: "Uzaktan Ayar Hakkında Bilgi Almak İster misiniz?",
-    points: ["Kliniğe gelmeden video görüşme", "Güvenli ve onaylı erişim", "Küçük ayar güncellemeleri", "Ücretsiz"],
+    points: ["Merkeze gelmeden video görüşme", "Güvenli ve onaylı erişim", "Küçük ayar güncellemeleri", "Ücretsiz"],
     ctaLabel: "Hemen Bilgi Alın",
     ctaHref: contactConfig.phone.href,
   },
@@ -43,7 +43,7 @@ export const uzaktanAyarFaq: BrandPageFaqContent = {
         {
           question: "Oturum sırasında kiminle görüşürüm?",
           answer:
-            "Sizi tanıyan aynı klinik ekibimizden bir odyometristle görüşürsünüz.",
+            "Sizi tanıyan aynı ekibimizden bir odyometristle görüşürsünüz.",
         },
       ],
     },
@@ -68,7 +68,7 @@ export const uzaktanAyarFaq: BrandPageFaqContent = {
         {
           question: "Uzaktan ayar sonrası sorunum devam ederse ne olur?",
           answer:
-            "Bu durumda, kapsamlı bir değerlendirme için kliniğe davet edilirsiniz.",
+            "Bu durumda, kapsamlı bir değerlendirme için merkeze davet edilirsiniz.",
         },
       ],
     },

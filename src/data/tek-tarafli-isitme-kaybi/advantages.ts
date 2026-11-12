@@ -36,7 +36,7 @@ export const tekTarafliIsitmeKaybiAdvantages: BrandPageAdvantagesContent = {
       icon: ShieldCheck,
       category: "Güvenlik",
       title: "Çevresel Farkındalığı Artırmaya Yardımcı Olur",
-      description: "Trafik gibi ortamlarda ses kaynağının yönünü fark etmeye yardımcı olabilir.",
+      description: "Trafik gibi ortamlarda kötü duyan taraftan yaklaşan sesleri fark etmeye yardımcı olabilir.",
     },
     {
       icon: Users,

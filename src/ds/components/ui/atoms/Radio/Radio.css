@@ -67,7 +67,7 @@
 
 .radio-helper {
   margin: 0.45rem 0 0 2.15rem;
-  font-size: 0.85rem;
+  font-size: var(--font-size-xs);
   color: #64748b;
 }
 

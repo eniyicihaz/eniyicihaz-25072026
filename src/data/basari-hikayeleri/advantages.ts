@@ -13,7 +13,7 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const basariHikayeleriAdvantages: BrandPageAdvantagesContent = {
   badge: "GENEL DENEYİM KATEGORİLERİ",
   heading: "Sıkça Gözlemlediğimiz Olumlu Değişim Alanları",
-  intro: "Kliniğimizde kullanıcılarımızın en sık paylaştığı genel deneyim kategorileri.",
+  intro: "Merkezimizde kullanıcılarımızın en sık paylaştığı genel deneyim kategorileri.",
   hero: {
     icon: Users,
     category: "Aile İletişimi",

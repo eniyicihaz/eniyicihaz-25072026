@@ -6,6 +6,7 @@
 // bir gezinme paneli taşır. İçerik (rozet, başlık, paragraflar, CTA'lar ve
 // renkler) mevcut hero.ts'ten aynen alınır; ortak BrandPageHero'ya dokunulmaz.
 // Giriş animasyonu ve JavaScript yoktur.
+import { withCorporateHero } from "../../../lib/hero-theme";
 import { Phone, MessageCircle, ArrowRight } from "lucide-astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../../lib/contact-action";
@@ -19,7 +20,8 @@ interface Props {
   panel: SikSorulanSorularHeroPanel;
 }
 
-const { data, panel } = Astro.props;
+const { data: rawData, panel } = Astro.props;
+const data = withCorporateHero(rawData);
 
 const accent = data.heroAccent || data.accentColor;
 const style = [
@@ -44,7 +46,7 @@ const style = [
       <p class="ssh__badge">{data.badge}</p>
 
       <h1 class="ssh__heading" id="brand-page-hero-title">
-        {data.headingLines.map((line) => <span class="ssh__heading-line">{line}</span>)}
+        {data.headingLines.map((line) => <><span class="ssh__heading-line">{line}</span>{" "}</>)}
       </h1>
 
       {data.paragraphs.map((p) => <p class="ssh__paragraph">{p}</p>)}

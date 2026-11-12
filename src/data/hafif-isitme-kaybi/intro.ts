@@ -11,14 +11,14 @@ export const hafifIsitmeKaybiIntro: BrandPageIntroContent = {
   heading: "Hafif İşitme Kaybı Nedir ve Nasıl Anlaşılır?",
   paragraphs: [
     "Hafif işitme kaybı, uluslararası sınıflandırmaya göre 26-40 desibel (dB) işitme eşiği aralığını ifade eden bir işitme kaybı derecesidir.",
-    "Bu derecedeki kayıp genellikle fısıltı sesini, uzak mesafeden gelen konuşmaları veya kalabalık ortamlarda sessiz sesli konuşmaları duymakta güçlük olarak kendini gösterir.",
+    "Bu derecedeki kayıp genellikle fısıltı sesini, uzak mesafeden gelen konuşmaları veya kalabalık ortamlarda alçak sesle yapılan konuşmaları duymakta güçlük olarak kendini gösterir.",
     "Kesin derece ve tip, yalnızca bir odyometrist tarafından yapılan işitme testi (odyometri) ile belirlenebilir; bu sayfa genel bir bilgilendirme amacı taşır, kendi kendine tanı koymak için kullanılmamalıdır.",
     "Hafif derecede işitme kaybı olan birçok kişi, farkında olmadan sesleri daha yüksek sesle dinleme veya karşısındakinden tekrar etmesini isteme gibi alışkanlıklar geliştirebilir.",
   ],
   stats: [
     { value: "26-40 dB", label: "İşitme Eşiği Aralığı" },
     { value: "Fısıltı ve Uzak Ses", label: "Sıkça Etkilenen Alan" },
-    { value: "Odyometri ile Belirlenir", label: "Kesin Tanı Yöntemi" },
+    { value: "Odyometri ile Belirlenir", label: "Değerlendirme Yöntemi" },
     { value: "İnce RIC / CIC", label: "Sıkça Tercih Edilen Modeller" },
   ],
   accentColor: "#db2777",

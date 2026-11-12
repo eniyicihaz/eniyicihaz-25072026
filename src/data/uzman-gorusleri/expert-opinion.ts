@@ -9,7 +9,7 @@ export const uzmanGorusleriExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Kliniğimize gelen birçok kişinin, cihaz almadan önce yanlış bilgiler nedeniyle tereddüt yaşadığını görüyoruz. Doğru bilgiyle desteklenen bir karar, hem daha rahat hem de daha isabetli oluyor.",
+    "Merkezimize gelen birçok kişinin, cihaz almadan önce yanlış bilgiler nedeniyle tereddüt yaşadığını görüyoruz. Doğru bilgiyle desteklenen bir karar, hem daha rahat hem de daha isabetli oluyor.",
   note: "Duyduğunuz bir bilginin doğruluğundan emin değilseniz, bizimle iletişime geçebilirsiniz.",
   accentColor: "#7c3aed",
   accentColorBadgeBg: "rgb(124 58 237 / 0.08)",

@@ -1,7 +1,7 @@
 .ds-alert{
-    --alert-bg:#eff6ff;
-    --alert-color:#1e3a8a;
-    --alert-border:#bfdbfe;
+    --alert-bg:var(--color-primary-50);
+    --alert-color:var(--brand-navy);
+    --alert-border:var(--color-primary-200);
 
     display:flex;
     align-items:flex-start;
@@ -128,7 +128,7 @@
 }
 
 .ds-alert--sm .ds-alert__text{
-    font-size:.875rem;
+    font-size: var(--font-size-md);
 }
 
 .ds-alert--md{
@@ -145,15 +145,15 @@
 }
 
 .ds-alert--lg .ds-alert__text{
-    font-size:1rem;
+    font-size: var(--font-size-md);
 }
 
 /* Variants */
 
 .ds-alert--info{
-    --alert-bg:#eff6ff;
-    --alert-color:#1e40af;
-    --alert-border:#bfdbfe;
+    --alert-bg:var(--color-primary-50);
+    --alert-color:var(--color-primary-active);
+    --alert-border:var(--color-primary-200);
 }
 
 .ds-alert--success{

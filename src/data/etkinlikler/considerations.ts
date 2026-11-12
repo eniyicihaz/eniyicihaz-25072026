@@ -30,7 +30,7 @@ export const etkinliklerConsiderations: BrandPageIdealUserContent = {
       icon: Building2,
       title: "Kurumsal İşbirlikleri Önceden Planlanmalıdır",
       description: "Okul veya kurum işbirliği talepleriniz için önceden bizimle iletişime geçmenizi öneririz.",
-      suggestedFamilies: ["Kurumsal İşbirliği"],
+      suggestedFamilies: ["Kurumsal İş Birliği"],
     },
     {
       icon: Phone,

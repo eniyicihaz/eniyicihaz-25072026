@@ -40,7 +40,7 @@ export const etkinliklerAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Building2,
-      category: "Kurumsal İşbirliği",
+      category: "Kurumsal İş Birliği",
       title: "Kurumlarla Birlikte Bilgilendirme",
       description: "İş yerleri ve kurumlarla birlikte çalışanlara yönelik bilgilendirme etkinlikleri düzenleyebiliyoruz.",
     },

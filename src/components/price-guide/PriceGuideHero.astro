@@ -122,8 +122,8 @@ const { before, amount, after } = pricing.messageParts;
 
 <style>
   .price-hero {
-    --ph-deep: #1e3a8a;
-    --ph-mid: #1d4ed8;
+    --ph-deep: var(--brand-navy);
+    --ph-mid: var(--color-primary-hover);
     --ph-indigo: #4338ca;
     position: relative;
     isolation: isolate;
@@ -139,7 +139,7 @@ const { before, amount, after } = pricing.messageParts;
     position: absolute;
     z-index: -1;
     inset: 0 -10% 0 45%;
-    background: radial-gradient(closest-side at 55% 50%, rgb(37 99 235 / 0.12), transparent 100%);
+    background: radial-gradient(closest-side at 55% 50%, rgb(var(--color-primary-rgb) / 0.12), transparent 100%);
     pointer-events: none;
   }
 
@@ -248,7 +248,7 @@ const { before, amount, after } = pricing.messageParts;
       linear-gradient(150deg, var(--ph-deep) 0%, var(--ph-mid) 55%, var(--ph-indigo) 100%);
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.18),
-      0 30px 60px -30px rgb(30 58 138 / 0.65),
+      0 30px 60px -30px rgb(var(--brand-navy-rgb) / 0.65),
       0 12px 24px -16px rgb(15 23 42 / 0.4);
   }
 

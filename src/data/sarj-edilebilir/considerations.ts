@@ -39,7 +39,7 @@ export const sarjEdilebilirConsiderations: BrandPageIdealUserContent = {
     },
     {
       icon: Wrench,
-      title: "Pil Değişimi Bağımsız Servis Gerektirir",
+      title: "Dahili Pilin Değişimi Servis Gerektirir",
       description: "Değiştirilebilir pilin aksine, dahili pilin değişimi kullanıcı tarafından yapılamaz; yetkili servis gerektirir.",
       suggestedFamilies: ["Yetkili Servis"],
     },

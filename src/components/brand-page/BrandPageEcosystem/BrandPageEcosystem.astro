@@ -1,4 +1,5 @@
 ---
+import { withCorporateSection } from "../../../lib/hero-theme";
 // BrandPageEcosystem — shared, cross-brand "Technology Explorer" deep-dive
 // hub (nav + <details>/<summary> panels). Generic counterpart of Oticon's
 // original OticonTechnologyExplorer; data-driven so every brand page can
@@ -26,6 +27,8 @@ export interface BrandPageEcosystemContent {
   items: BrandPageEcosystemItem[];
   /** Optional: label of the note callout; omit for the default "Uzman Yorumu" (every other page). */
   noteLabel?: string;
+  /** Optional: label above the tag row. Default depends on the page (see `tagsLabel` below). */
+  modelsLabel?: string;
   accentColor: string;
   accentColorBadgeBg: string;
   accentColorBadgeBorder: string;
@@ -37,9 +40,19 @@ export interface BrandPageEcosystemContent {
 
 interface Props {
   data: BrandPageEcosystemContent;
+  /** "brand" keeps a brand page's own accent colours; every other page uses the shared corporate palette (default). */
+  variant?: "brand" | "corporate";
 }
 
-const { data } = Astro.props;
+const { data: rawData, variant = "corporate" } = Astro.props;
+const data = variant === "brand" ? rawData : withCorporateSection(rawData);
+
+// Etiket satırının başlığı. Bu bileşen marka/cihaz sayfaları için yazıldı ("Kullanıldığı Modeller"); hizmet, SGK, rehber
+// ve blog sayfalarında aynı satır model değil konu adı taşıyor ("e-Devlet Sorgulama", "Teknik Servis" …) — orada
+// "Kapsam" denir. Etiket tek ve panel başlığının tekrarıysa satır hiç çizilmez.
+const MODEL_PAGES = /^\/(markalar|isitme-cihazlari|teknolojiler|ihtiyaciniza-gore|segmentler)\//;
+const tagsLabel = data.modelsLabel ?? (MODEL_PAGES.test(Astro.url.pathname) ? "Kullanıldığı Modeller" : "Kapsam");
+const showTags = (item: BrandPageEcosystemItem) => item.models.length > 0 && !(item.models.length === 1 && item.models[0].trim() === item.title.trim());
 
 const iconMap = {
   brain: Brain,
@@ -118,14 +131,16 @@ const iconMap = {
                   </ul>
                 </div>
 
-                <div class="brand-page-eco__block">
-                  <p class="brand-page-eco__block-label">Kullanıldığı Modeller</p>
-                  <div class="brand-page-eco__tags">
-                    {item.models.map((model) => (
-                      <span class="brand-page-eco__tag">{model}</span>
-                    ))}
+                {showTags(item) && (
+                  <div class="brand-page-eco__block">
+                    <p class="brand-page-eco__block-label">{tagsLabel}</p>
+                    <div class="brand-page-eco__tags">
+                      {item.models.map((model) => (
+                        <span class="brand-page-eco__tag">{model}</span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div class="brand-page-eco__callout">
                   <p class="brand-page-eco__callout-label">{data.noteLabel ?? "Uzman Yorumu"}</p>

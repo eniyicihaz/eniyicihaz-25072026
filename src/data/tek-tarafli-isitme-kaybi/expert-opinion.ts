@@ -11,7 +11,7 @@ export const tekTarafliIsitmeKaybiExpertOpinion: BrandPageExpertOpinionContent =
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Tek taraflı işitme kaybını doğru sistemlerle değerlendirmek; sesin geldiği yönü fark etme ve gürültülü ortamlarda konuşmayı takip etme konusunda sunduğu destek nedeniyle klinik pratiğimizde sıkça değerlendirdiğimiz bir konudur.",
+    "Tek taraflı işitme kaybında doğru sistem seçimi; kötü duyan taraftan gelen sesleri fark etme ve gürültülü ortamlarda konuşmayı takip etme konusunda sunduğu destek nedeniyle merkezimizde sıkça ele aldığımız bir konudur.",
   note: "Ancak bu sayfadaki bilgiler genel bir yönlendirme amacı taşır; ani başlayan kayıplarda vakit kaybetmeden bir KBB uzmanına başvurulmalı, size uygun sistem ise bir odyometrist ile birlikte belirlenmelidir.",
   accentColor: "#52525b",
   accentColorBadgeBg: "rgb(82 82 91 / 0.08)",

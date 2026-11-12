@@ -40,7 +40,7 @@ export const kablosuzBaglantiAdvantages: BrandPageAdvantagesContent = {
       icon: Users,
       category: "Tek Taraflı Kayıp",
       title: "İyi Duyan Kulağa Kablosuz Aktarım",
-      description: "CROS/BiCROS gibi sistemler, sesi iyi duyulmayan taraftan iyi duyulan tarafa kablosuz olarak aktarır.",
+      description: "CROS/BiCROS gibi sistemler, sesi iyi duymayan taraftan iyi duyan tarafa kablosuz olarak aktarır.",
     },
     {
       icon: Landmark,

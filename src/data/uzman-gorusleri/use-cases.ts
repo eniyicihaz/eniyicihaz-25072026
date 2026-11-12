@@ -11,7 +11,7 @@ import type { BrandPageTechnologyContent } from "../../components/brand-page/Bra
 export const uzmanGorusleriUseCases: BrandPageTechnologyContent = {
   badge: "DİĞER YAYGIN SORULAR",
   heading: "Sık Karşılaştığımız Diğer Sorular",
-  intro: "Kliniğimizde sıkça duyduğumuz birkaç soruyu ve genel yanıtlarını daha bir araya getirdik.",
+  intro: "Merkezimizde sıkça duyduğumuz birkaç soruyu daha, genel yanıtlarıyla birlikte bir araya getirdik.",
   items: [
     {
       label: "TEK KULAK YETERLİ Mİ?",

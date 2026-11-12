@@ -27,7 +27,7 @@ export const nuearTechnology: BrandPageTechnologyContent = {
     {
       label: "CARE",
       title: "Uzaktan Profesyonel Ayar",
-      description: "Kliniğe gitmeden, uzaktan ince ayar talep etme imkânı sunar.",
+      description: "Merkeze gitmeden, uzaktan ince ayar talep etme imkânı sunar.",
     },
     {
       label: "APP",

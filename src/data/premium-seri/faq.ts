@@ -67,7 +67,7 @@ export const premiumSeriFaq: BrandPageFaqContent = {
       label: "Karar",
       items: [
         {
-          question: "Premium seriyi denemeden karar verebilir miyim?",
+          question: "Premium seriyi karar vermeden önce deneyebilir miyim?",
           answer:
             "Karar vermeden önce demo cihaz deneyerek premium serinin size sağladığı farkı değerlendirebilirsiniz.",
         },

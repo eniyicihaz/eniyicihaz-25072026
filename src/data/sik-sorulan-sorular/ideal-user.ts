@@ -12,7 +12,7 @@ export const sikSorulanSorularIdealUser: BrandPageIdealUserContent = {
   profiles: [
     {
       icon: Compass,
-      title: "Kliniğimizi Yeni Keşfedenler",
+      title: "Merkezimizi Yeni Keşfedenler",
       description: "Merkezimiz ve hizmetlerimiz hakkında ilk kez bilgi edinmek isteyen kullanıcılar için önemlidir.",
       suggestedFamilies: ["İlk Ziyaret"],
     },

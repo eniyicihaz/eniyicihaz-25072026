@@ -13,7 +13,7 @@ export const cihazTemizligiIntro: BrandPageIntroContent = {
     "Gün içinde biriken kir, nem ve kulak yağı, işitme cihazınızın ses kalitesini zamanla olumsuz etkileyebilir; düzenli günlük temizlik bu birikimi en aza indirmeye yardımcı olur.",
     "Doğru temizlik, yalnızca yumuşak, kuru bir bez ve önerilen aksesuarlarla yapılmalıdır; su, alkol veya kimyasal temizleyiciler cihazınıza kalıcı zarar verebilir.",
     "Günlük temizliğin yanı sıra, cihazınızın gece boyunca kuru ve nemden korunmuş bir şekilde saklanması da performansının korunmasına katkı sağlar.",
-    "Günlük temizlik, balmumu filtresi veya tüp gibi parçaların profesyonelce yenilenmesinin yerini almaz; bu tür ihtiyaçlar için Periyodik Bakım sayfamızı inceleyebilirsiniz.",
+    "Günlük temizlik, kulak kiri filtresi veya tüp gibi parçaların profesyonelce yenilenmesinin yerini almaz; bu tür ihtiyaçlar için Periyodik Bakım sayfamızı inceleyebilirsiniz.",
   ],
   stats: [
     { value: "Günde Birkaç Dakika", label: "Zaman İhtiyacı" },
