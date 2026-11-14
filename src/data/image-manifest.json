@@ -595,6 +595,14 @@
 },
 "w": 1024
 },
+"/images/phonak/models/bolero.webp": {
+"h": 1024,
+"v": {
+"400": "/images/phonak/models/bolero-400.webp",
+"640": "/images/phonak/models/bolero-640.webp"
+},
+"w": 1024
+},
 "/images/phonak/models/cros.webp": {
 "h": 1024,
 "v": {

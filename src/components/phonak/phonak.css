@@ -1,0 +1,200 @@
+/* Phonak marka + model sayfaları için ortak stiller (yalnızca /markalar/phonak/ ve alt sayfalarında yüklenir).
+   Tüm sınıflar "ph-" önekli; renkler ve ölçüler yalnızca tasarım sistemi belirteçlerinden gelir. */
+
+.ph-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ph-container {
+  width: min(100% - 2 * var(--space-4), 1200px);
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .ph-container {
+    width: min(100% - 2 * var(--space-8), 1200px);
+  }
+}
+
+.ph-section {
+  padding-block: clamp(56px, 7vw, 96px);
+  background: var(--color-background);
+}
+
+.ph-section--alt {
+  background: var(--color-surface);
+}
+
+.ph-head {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 760px;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.ph-head--center {
+  margin-inline: auto;
+  text-align: center;
+  justify-items: center;
+}
+
+.ph-eyebrow {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+}
+
+.ph-h2 {
+  margin: 0;
+  font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+.ph-lead {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+}
+
+.ph-prose p {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+  max-width: 72ch;
+}
+
+.ph-prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Bağlantı düğmesi (telefon/WhatsApp dışındaki CTA'lar). Telefon ve WhatsApp görünümü data-contact-action'dan gelir. */
+.ph-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 56px;
+  max-width: 100%;
+  padding: var(--space-2) var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.ph-btn--light {
+  background: var(--color-white);
+  color: var(--brand-navy);
+}
+
+.ph-btn--light:hover {
+  background: var(--color-primary-50);
+}
+
+.ph-btn--primary {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.ph-btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.ph-btn--outline {
+  background: var(--color-white);
+  border-color: var(--color-border-hover);
+  color: var(--brand-navy);
+}
+
+.ph-btn--outline:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-50);
+}
+
+.ph-btn:focus-visible,
+.ph-link:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.ph-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 48px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.ph-link:hover {
+  color: var(--color-primary-hover);
+  text-decoration-thickness: 2px;
+}
+
+/* Etiketler (kartlar ve hero) — tek satıra sığmazsa alt satıra geçer, asla taşmaz. */
+.ph-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ph-tag {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-primary-200);
+  background: var(--color-primary-50);
+  color: var(--brand-navy);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* Ürün görseli sahnesi: tüm Phonak görselleri beyaz zemin üzerinde gösterilir (Bolero görseli beyaz zeminlidir;
+   diğerleri şeffaf). Böylece altı görsel aynı sunumla durur. */
+.ph-stage {
+  display: grid;
+  place-items: center;
+  background: var(--color-white);
+}
+
+.ph-stage img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}

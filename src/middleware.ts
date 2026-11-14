@@ -12,6 +12,7 @@
 import { defineMiddleware } from "astro:middleware";
 import { WA_BASE, whatsappUrlFor } from "./lib/whatsapp";
 import { linkPageRefs } from "./lib/ref-links";
+import { linkPhonakFamilies } from "./lib/phonak-links";
 
 const PLAIN = `href="${WA_BASE}"`;
 
@@ -24,5 +25,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const path = context.url.pathname;
   let out = html.includes(PLAIN) ? html.split(PLAIN).join(`href="${whatsappUrlFor(path)}"`) : html;
   out = linkPageRefs(out, path);
+  // 3) Phonak model ailesi adları → /markalar/phonak/<aile>/ (yalnızca bağlantı; src/lib/phonak-links.ts).
+  out = linkPhonakFamilies(out, path);
   return new Response(out, { status: response.status, statusText: response.statusText, headers: response.headers });
 });

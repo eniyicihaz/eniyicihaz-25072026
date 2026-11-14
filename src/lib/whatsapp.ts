@@ -29,6 +29,12 @@ export function whatsappTextFor(pathname: string): string {
   if (path === "/hizmetlerimiz/") return "Merhaba, hizmetleriniz hakkında bilgi almak istiyorum.";
   if (path.startsWith("/iletisim/") || path.startsWith("/hakkimizda/") || path.startsWith("/kvkk/") || path.startsWith("/site-haritasi/")) return "Merhaba, bilgi almak istiyorum.";
   if (/^\/markalar\/[^/]+\/$/.test(path) && label) return `Merhaba, ${label} işitme cihazları hakkında bilgi almak istiyorum.`;
+  // Marka altındaki model ailesi sayfaları (ör. /markalar/phonak/audeo/ → "Phonak Audéo").
+  const family = /^(\/markalar\/[^/]+\/)[^/]+\/$/.exec(path);
+  if (family && label) {
+    const brand = routeFor(family[1])?.label;
+    if (brand) return topic(`${brand} ${label}`);
+  }
   if (path.startsWith("/markalar/") || path.startsWith("/isitme-cihazi-markalari/")) return topic("işitme cihazı markaları ve modelleri");
   if (path.startsWith("/isitme-cihazlari/") && label) return topic(label);
   if ((path.startsWith("/servis-bakim/") || path.startsWith("/uygulama-ayar/") || path.startsWith("/degerlendirme/")) && label) return topic(label);

@@ -53,6 +53,9 @@ interface Props {
    */
   schemaName?: string;
   schemaDescription?: string;
+  /** Sayfaya özel paylaşım görseli (1200×630, kök göreli yol). Verilmezse varsayılan görsel kullanılır. */
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
 const {
@@ -64,6 +67,8 @@ const {
   toc = true,
   schemaName,
   schemaDescription,
+  ogImage,
+  ogImageAlt: ogImageAltProp,
 } = Astro.props;
 
 // Canonical/OG URL — requires `site` in astro.config.mjs (set to the real
@@ -74,8 +79,8 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // One default share image for every page (real storefront photo, cropped to 1200×630 — public/images/og/og-default.jpg).
-const ogImageURL = new URL("/images/og/og-default.jpg", Astro.site).toString();
-const ogImageAlt = "Avrasya İşitme Cihazları, Darıca — cadde cephesi ve tabelalar";
+const ogImageURL = new URL(ogImage ?? "/images/og/og-default.jpg", Astro.site).toString();
+const ogImageAlt = ogImageAltProp ?? "Avrasya İşitme Cihazları, Darıca — cadde cephesi ve tabelalar";
 
 // Site-wide Organization identity — the brand-level half of the two-part
 // entity described in SEARCH_STRATEGY.md §11. The `/iletisim/` page adds a

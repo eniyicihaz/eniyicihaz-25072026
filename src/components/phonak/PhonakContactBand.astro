@@ -1,0 +1,174 @@
+---
+// Phonak sayfalarının kapanış bandı: Darıca merkezi + iletişim aksiyonları.
+// Telefon/WhatsApp/yol tarifi adresleri yalnızca contactConfig ve company.ts'ten gelir (tek kaynak).
+// WhatsApp bağlantısı yalın bırakılır; src/middleware.ts sayfaya özel mesajı ekler.
+import "./phonak.css";
+import { MapPin, Clock } from "lucide-astro";
+import { contactConfig } from "../../config";
+import { company } from "../footer/Footer/data/company";
+import { contactAction } from "../../lib/contact-action";
+
+interface Props {
+  heading: string;
+  text: string;
+}
+
+const { heading, text } = Astro.props;
+const phone = contactConfig.phone.href;
+const wa = contactConfig.whatsapp.href;
+---
+
+<section class="ph-band" aria-labelledby="ph-band-title">
+  <div class="ph-container ph-band__grid">
+    <div class="ph-band__copy">
+      <p class="ph-band__eyebrow">Avrasya İşitme Cihazları · Darıca</p>
+      <h2 class="ph-band__title" id="ph-band-title">{heading}</h2>
+      <p class="ph-band__text">{text}</p>
+      <div class="ph-band__actions">
+        <a href={phone} data-contact-action={contactAction(phone)}>Hemen Ara: {contactConfig.phone.display}</a>
+        <a href={wa} data-contact-action={contactAction(wa)} target="_blank" rel="noopener noreferrer">WhatsApp'tan Yazın</a>
+        <a class="ph-btn ph-btn--light" href="/degerlendirme/ucretsiz-isitme-testi/">Ücretsiz İşitme Testi</a>
+      </div>
+    </div>
+    <div class="ph-band__card">
+      <p class="ph-band__row">
+        <MapPin size={20} stroke-width={2} aria-hidden="true" />
+        <span>{company.address}</span>
+      </p>
+      <div class="ph-band__row">
+        <Clock size={20} stroke-width={2} aria-hidden="true" />
+        <dl class="ph-band__hours">
+          {
+            company.hours.map((h) => (
+              <div>
+                <dt>{h.days}</dt>
+                <dd>{h.time}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+      <a class="ph-band__dir" href={company.directionsHref} data-contact-action={contactAction(company.directionsHref)} data-contact-size="sm" target="_blank" rel="noopener noreferrer">
+        Yol Tarifi Al
+      </a>
+      <p class="ph-band__note">Gebze ve Çayırova'da şubemiz yoktur; bu ilçelerden gelen ziyaretçilerimize Darıca'daki merkezimizde hizmet veriyoruz.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ph-band {
+    padding-block: clamp(56px, 7vw, 88px);
+    background: var(--hero-bg);
+    color: var(--color-text-inverse);
+  }
+
+  .ph-band__grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  @media (min-width: 960px) {
+    .ph-band__grid {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-12);
+    }
+  }
+
+  .ph-band__eyebrow {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-teal-light);
+  }
+
+  .ph-band__title {
+    margin: 0 0 var(--space-4);
+    font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    color: var(--color-white);
+    text-wrap: balance;
+  }
+
+  .ph-band__text {
+    margin: 0 0 var(--space-6);
+    max-width: 60ch;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.86);
+  }
+
+  .ph-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (max-width: 599px) {
+    .ph-band__actions > * {
+      width: 100%;
+    }
+  }
+
+  .ph-band__card {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    border-radius: var(--radius-2xl);
+    background: rgb(255 255 255 / 0.08);
+    border: 1px solid rgb(255 255 255 / 0.18);
+  }
+
+  .ph-band__row {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-normal);
+    color: var(--color-white);
+  }
+
+  .ph-band__row :global(svg) {
+    flex: none;
+    margin-top: 3px;
+    color: var(--brand-teal-light);
+  }
+
+  .ph-band__hours {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    width: 100%;
+  }
+
+  .ph-band__hours div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .ph-band__hours dt {
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  .ph-band__hours dd {
+    margin: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .ph-band__dir {
+    justify-self: start;
+  }
+
+  .ph-band__note {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: rgb(255 255 255 / 0.78);
+  }
+</style>

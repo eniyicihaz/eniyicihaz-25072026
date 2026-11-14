@@ -1,0 +1,897 @@
+---
+// /markalar/phonak/<aile>/ — Phonak model ailesi sayfası (2026-11-14).
+// Bölümler ailenin kendi verisindeki sırayla ve kendi türleriyle çizilir (variants / steps / notice / compare …);
+// böylece her sayfanın yapısı içeriğine göre değişir. İçerik: src/data/phonak/families.ts.
+import "./phonak.css";
+import { ArrowRight, ChevronLeft, Check, Info } from "lucide-astro";
+import PhonakFamilyCard from "./PhonakFamilyCard.astro";
+import PhonakFaq from "./PhonakFaq.astro";
+import PhonakSources from "./PhonakSources.astro";
+import PhonakContactBand from "./PhonakContactBand.astro";
+import { contactConfig } from "../../config";
+import { contactAction } from "../../lib/contact-action";
+import { imageSrcset } from "../../lib/responsive-images";
+import { FAMILY_BY_SLUG, familyHref, type PhonakFamily } from "../../data/phonak/families";
+
+interface Props {
+  family: PhonakFamily;
+  pageUrl: string;
+}
+
+const { family: f, pageUrl } = Astro.props;
+const phone = contactConfig.phone.href;
+const wa = contactConfig.whatsapp.href;
+const imageUrl = new URL(f.image, pageUrl).toString();
+
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: f.meta.title,
+  description: f.meta.description,
+  inLanguage: "tr",
+  isPartOf: { "@id": "https://www.eniyicihaz.com/#website" },
+  publisher: { "@id": "https://www.eniyicihaz.com/#organization" },
+  breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+  about: [
+    { "@type": "Brand", name: "Phonak", url: "https://www.phonak.com/" },
+    { "@type": "Thing", name: f.fullName, description: f.definition },
+  ],
+  primaryImageOfPage: { "@type": "ImageObject", url: imageUrl, width: 1024, height: 1024, caption: f.imageAlt },
+  significantLink: f.sources.map((s) => s.href),
+};
+
+// Bölümler beyaz / açık gri arasında sırayla değişir; tanım bölümü beyazdır.
+const sectionAlt = (i: number) => i % 2 === 0;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+
+<!-- HERO -->
+<section class="pf-hero" aria-labelledby="pf-hero-title">
+  <div class="ph-container pf-hero__grid">
+    <div class="pf-hero__copy">
+      <a class="pf-hero__back" href="/markalar/phonak/">
+        <ChevronLeft size={18} stroke-width={2.25} aria-hidden="true" />
+        Tüm Phonak aileleri
+      </a>
+      <p class="pf-hero__eyebrow">{f.hero.eyebrow}</p>
+      <h1 class="pf-hero__title" id="pf-hero-title">{f.hero.title}</h1>
+      <p class="pf-hero__lead">{f.hero.lead}</p>
+      <ul class="ph-tags pf-hero__tags" aria-label={`${f.fullName} özellikleri`}>
+        {f.tags.map((t) => <li class="ph-tag">{t}</li>)}
+      </ul>
+      <div class="pf-hero__actions">
+        <a href={phone} data-contact-action={contactAction(phone)}>Hemen Ara</a>
+        <a href={wa} data-contact-action={contactAction(wa)} target="_blank" rel="noopener noreferrer">WhatsApp'tan Yazın</a>
+      </div>
+    </div>
+    <figure class="pf-hero__figure">
+      <div class="pf-hero__stage ph-stage">
+        <img
+          src={f.image}
+          srcset={imageSrcset(f.image)}
+          sizes="(max-width: 599px) 78vw, (max-width: 959px) 60vw, 460px"
+          alt={f.imageAlt}
+          width="1024"
+          height="1024"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+      <figcaption class="pf-hero__caption">{f.fullName} · {f.typeLabel}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- TANIM + KISA BİLGİLER -->
+<section class="ph-section" aria-labelledby="pf-def-title">
+  <div class="ph-container pf-def">
+    <div>
+      <p class="ph-eyebrow">Tanım</p>
+      <h2 class="ph-h2" id="pf-def-title">{f.fullName} nedir?</h2>
+      <p class="pf-def__text">{f.definition}</p>
+    </div>
+    <dl class="pf-facts" aria-label={`${f.fullName} kısa bilgiler`}>
+      {
+        f.facts.map((x) => (
+          <div class="pf-facts__row">
+            <dt>{x.label}</dt>
+            <dd>{x.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+{
+  f.sections.map((s, i) => (
+    <section class:list={["ph-section", sectionAlt(i) && "ph-section--alt"]} id={s.id} aria-labelledby={`${s.id}-title`}>
+      <div class="ph-container">
+        {s.kind === "notice" ? (
+          <div class="pf-notice">
+            <span class="pf-notice__icon" aria-hidden="true">
+              <Info size={26} stroke-width={2} />
+            </span>
+            <div>
+              <h2 class="pf-notice__title" id={`${s.id}-title`}>{s.heading}</h2>
+              {s.paragraphs.map((p) => <p class="pf-notice__text">{p}</p>)}
+            </div>
+          </div>
+        ) : (
+          <>
+            <div class="ph-head">
+              <h2 class="ph-h2" id={`${s.id}-title`}>{s.heading}</h2>
+              {"intro" in s && s.intro && <p class="ph-lead">{s.intro}</p>}
+            </div>
+
+            {s.kind === "prose" && (
+              <div class:list={["pf-prose", s.aside && "pf-prose--aside"]}>
+                <div class="ph-prose">{s.paragraphs.map((p) => <p>{p}</p>)}</div>
+                {s.aside && (
+                  <aside class="pf-aside">
+                    <h3 class="pf-aside__title">{s.aside.title}</h3>
+                    <p class="pf-aside__text">{s.aside.text}</p>
+                  </aside>
+                )}
+              </div>
+            )}
+
+            {s.kind === "variants" && (
+              <>
+                <table class="pf-table">
+                  <caption class="ph-sr">{s.heading}</caption>
+                  <thead>
+                    <tr>{s.columns.map((c) => <th scope="col">{c}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {s.rows.map((r) => (
+                      <tr>
+                        <th scope="row" data-label={s.columns[0]}>{r.name}</th>
+                        {r.cells.map((c, ci) => <td data-label={s.columns[ci + 1]}>{c}</td>)}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {s.note && <p class="pf-note">{s.note}</p>}
+              </>
+            )}
+
+            {(s.kind === "features" || s.kind === "audience") && (
+              <ul class:list={["pf-grid", s.kind === "audience" && "pf-grid--audience"]}>
+                {s.items.map((it) => (
+                  <li class="pf-item">
+                    {s.kind === "audience" && (
+                      <span class="pf-item__check" aria-hidden="true">
+                        <Check size={18} stroke-width={2.75} />
+                      </span>
+                    )}
+                    <h3 class="pf-item__title">{it.title}</h3>
+                    <p class="pf-item__text">{it.text}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {s.kind === "steps" && (
+              <ol class="pf-steps">
+                {s.steps.map((st, si) => (
+                  <li class="pf-step">
+                    <span class="pf-step__num" aria-hidden="true">{si + 1}</span>
+                    <div>
+                      <h3 class="pf-step__title">{st.title}</h3>
+                      <p class="pf-step__text">{st.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            )}
+
+            {s.kind === "compare" && (
+              <ul class="pf-compare">
+                {s.rows.map((r) => {
+                  const other = FAMILY_BY_SLUG[r.slug];
+                  return (
+                    <li class="pf-compare__item">
+                      <span class="pf-compare__img ph-stage">
+                        <img src={other.image} srcset={imageSrcset(other.image)} sizes="88px" alt="" width="1024" height="1024" loading="lazy" decoding="async" />
+                      </span>
+                      <div class="pf-compare__body">
+                        <h3 class="pf-compare__title">
+                          {f.name} ve {other.name}
+                        </h3>
+                        <p class="pf-compare__text">{r.text}</p>
+                        <a class="ph-link" href={familyHref(r.slug)}>
+                          {other.fullName}
+                          <ArrowRight size={16} stroke-width={2.25} aria-hidden="true" />
+                        </a>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+
+            {s.kind === "proscons" && (
+              <div class="pf-pc">
+                <div class="pf-pc__col pf-pc__col--pro">
+                  <h3 class="pf-pc__title">Öne çıkanlar</h3>
+                  <ul>{s.pros.map((p) => <li>{p}</li>)}</ul>
+                </div>
+                <div class="pf-pc__col pf-pc__col--con">
+                  <h3 class="pf-pc__title">Değerlendirilmesi gerekenler</h3>
+                  <ul>{s.cons.map((c) => <li>{c}</li>)}</ul>
+                </div>
+              </div>
+            )}
+
+            {s.kind === "center" && (
+              <ul class="pf-grid pf-grid--center">
+                {s.items.map((it) => (
+                  <li class="pf-item pf-item--center">
+                    <h3 class="pf-item__title">{it.title}</h3>
+                    <p class="pf-item__text">{it.text}</p>
+                    {it.href && (
+                      <a class="ph-link" href={it.href}>
+                        {it.linkLabel ?? "Ayrıntılar"}
+                        <ArrowRight size={16} stroke-width={2.25} aria-hidden="true" />
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
+        )}
+      </div>
+    </section>
+  ))
+}
+
+<PhonakFaq id="sss" heading={`${f.fullName} hakkında sık sorulan sorular`} items={f.faq} pageUrl={pageUrl} alt={sectionAlt(f.sections.length)} />
+
+<!-- İLGİLİ AİLELER -->
+<section class:list={["ph-section", !sectionAlt(f.sections.length) && "ph-section--alt"]} aria-labelledby="pf-related-title">
+  <div class="ph-container">
+    <div class="ph-head">
+      <p class="ph-eyebrow">Diğer Phonak aileleri</p>
+      <h2 class="ph-h2" id="pf-related-title">Bunlara da göz atın</h2>
+    </div>
+    <ul class="pf-related">
+      {f.related.map((slug) => <li><PhonakFamilyCard family={FAMILY_BY_SLUG[slug]} /></li>)}
+    </ul>
+    <p class="pf-back">
+      <a class="ph-btn ph-btn--outline" href="/markalar/phonak/">
+        <ChevronLeft size={18} stroke-width={2.25} aria-hidden="true" />
+        Phonak ana sayfasına dön
+      </a>
+    </p>
+  </div>
+</section>
+
+<PhonakSources groups={[{ items: f.sources }]} />
+
+<PhonakContactBand
+  heading={`${f.fullName} için merkezimize danışın`}
+  text={`${f.fullName} ailesinin size uygun olup olmadığını işitme testinizden sonra birlikte değerlendirelim. Merkezimiz Darıca'da; Gebze, Çayırova ve Kocaeli'nin diğer ilçelerinden gelen ziyaretçilerimize de burada hizmet veriyoruz.`}
+/>
+
+<style>
+  /* ---------- Hero ---------- */
+  .pf-hero {
+    padding-block: clamp(32px, 5vw, 72px);
+    background: var(--hero-bg);
+    color: var(--color-text-inverse);
+    overflow: hidden;
+  }
+
+  .pf-hero__grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  @media (min-width: 960px) {
+    .pf-hero__grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-12);
+    }
+  }
+
+  .pf-hero__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: 44px;
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--brand-teal-light);
+    text-decoration: none;
+  }
+
+  .pf-hero__back:hover {
+    color: var(--color-white);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .pf-hero__back:focus-visible {
+    outline: 3px solid var(--color-white);
+    outline-offset: 2px;
+  }
+
+  .pf-hero__eyebrow {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-teal-light);
+  }
+
+  .pf-hero__title {
+    margin: 0 0 var(--space-5);
+    font-size: clamp(2rem, 1.35rem + 2.8vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    text-wrap: balance;
+  }
+
+  .pf-hero__lead {
+    margin: 0 0 var(--space-5);
+    max-width: 62ch;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.88);
+  }
+
+  .pf-hero__tags {
+    margin-bottom: var(--space-8);
+  }
+
+  .pf-hero__tags :global(.ph-tag) {
+    border-color: rgb(255 255 255 / 0.28);
+    background: rgb(255 255 255 / 0.1);
+    color: var(--color-white);
+  }
+
+  .pf-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (max-width: 599px) {
+    .pf-hero__actions > * {
+      width: 100%;
+    }
+  }
+
+  .pf-hero__figure {
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+  }
+
+  .pf-hero__stage {
+    width: min(100%, 460px);
+    border-radius: 32px;
+    padding: clamp(16px, 3vw, 28px);
+    box-sizing: border-box;
+    box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.6);
+  }
+
+  .pf-hero__caption {
+    font-size: var(--font-size-sm);
+    color: rgb(255 255 255 / 0.78);
+    text-align: center;
+  }
+
+  /* ---------- Tanım ---------- */
+  .pf-def {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 960px) {
+    .pf-def {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: var(--space-12);
+      align-items: start;
+    }
+  }
+
+  .pf-def__text {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+    max-width: 62ch;
+  }
+
+  .pf-facts {
+    margin: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    background: var(--color-white);
+  }
+
+  .pf-facts__row {
+    display: grid;
+    grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pf-facts__row:last-child {
+    border-bottom: 0;
+  }
+
+  .pf-facts__row:nth-child(odd) {
+    background: var(--color-surface);
+  }
+
+  .pf-facts dt {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .pf-facts dd {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 479px) {
+    .pf-facts__row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-1);
+    }
+  }
+
+  /* ---------- Uyarı ---------- */
+  .pf-notice {
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+    padding: clamp(20px, 3vw, 32px);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-primary-200);
+    background: var(--color-primary-50);
+  }
+
+  .pf-notice__icon {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-full);
+    background: var(--color-white);
+    color: var(--color-primary);
+  }
+
+  .pf-notice__title {
+    margin: 0 0 var(--space-3);
+    font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+    color: var(--brand-navy);
+  }
+
+  .pf-notice__text {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+    max-width: 75ch;
+  }
+
+  .pf-notice__text:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 599px) {
+    .pf-notice {
+      flex-direction: column;
+    }
+  }
+
+  /* ---------- Metin + yan not ---------- */
+  .pf-prose--aside {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 960px) {
+    .pf-prose--aside {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: var(--space-12);
+      align-items: start;
+    }
+  }
+
+  .pf-aside {
+    padding: var(--space-6);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+  }
+
+  .pf-aside__title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+  }
+
+  .pf-aside__text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  /* ---------- Model tablosu ---------- */
+  .pf-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    overflow: hidden;
+    font-size: var(--font-size-sm);
+  }
+
+  .pf-table th,
+  .pf-table td {
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    vertical-align: top;
+    line-height: var(--line-height-normal);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pf-table thead th {
+    background: var(--brand-navy);
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .pf-table tbody th {
+    font-weight: var(--font-weight-bold);
+    color: var(--brand-navy);
+    white-space: nowrap;
+  }
+
+  .pf-table td {
+    color: var(--color-text-muted);
+  }
+
+  .pf-table tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  @media (max-width: 767px) {
+    .pf-table,
+    .pf-table tbody,
+    .pf-table tr,
+    .pf-table th,
+    .pf-table td {
+      display: block;
+    }
+
+    .pf-table {
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .pf-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .pf-table tbody {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .pf-table tr {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      background: var(--color-white);
+      overflow: hidden;
+    }
+
+    .pf-table tbody th {
+      background: var(--color-primary-50);
+      font-size: var(--font-size-lg);
+      white-space: normal;
+    }
+
+    .pf-table td {
+      display: grid;
+      grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+      gap: var(--space-3);
+      padding-block: var(--space-3);
+    }
+
+    .pf-table td::before {
+      content: attr(data-label);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text);
+    }
+  }
+
+  .pf-note {
+    margin: var(--space-4) 0 0;
+    max-width: 85ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  /* ---------- Özellik / kullanıcı kartları ---------- */
+  .pf-grid {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .pf-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .pf-grid--center {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .pf-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+  }
+
+  .pf-grid--audience .pf-item {
+    padding-left: calc(var(--space-6) + 40px);
+  }
+
+  .pf-item__check {
+    position: absolute;
+    left: var(--space-6);
+    top: calc(var(--space-6) + 2px);
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+  }
+
+  .pf-item__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .pf-item__text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  .pf-item--center .ph-link {
+    margin-top: auto;
+  }
+
+  /* ---------- Adımlar ---------- */
+  .pf-steps {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+
+  @media (min-width: 860px) {
+    .pf-steps {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+  }
+
+  .pf-step {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+  }
+
+  @media (min-width: 860px) {
+    .pf-step {
+      flex-direction: column;
+    }
+  }
+
+  .pf-step__num {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--brand-navy);
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .pf-step__title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-lg);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .pf-step__text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  /* ---------- Karşılaştırma ---------- */
+  .pf-compare {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 1024px) {
+    .pf-compare {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .pf-compare__item {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+  }
+
+  .pf-compare__img {
+    flex: none;
+    width: 88px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .pf-compare__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .pf-compare__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .pf-compare__text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  /* ---------- Artı / dikkat ---------- */
+  .pf-pc {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 860px) {
+    .pf-pc {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .pf-pc__col {
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+  }
+
+  .pf-pc__col--pro {
+    border-top: 4px solid var(--color-accent);
+  }
+
+  .pf-pc__col--con {
+    border-top: 4px solid var(--brand-navy);
+  }
+
+  .pf-pc__title {
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+  }
+
+  .pf-pc__col ul {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding-left: 1.2em;
+  }
+
+  .pf-pc__col li {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  .pf-pc__col li::marker {
+    color: var(--color-primary);
+  }
+
+  /* ---------- İlgili aileler ---------- */
+  .pf-related {
+    display: grid;
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .pf-related {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pf-related {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .pf-back {
+    margin: var(--space-8) 0 0;
+  }
+</style>

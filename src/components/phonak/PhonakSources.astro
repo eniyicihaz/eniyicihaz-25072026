@@ -1,0 +1,132 @@
+---
+// Ürün bilgilerinin resmî kaynakları — sayfanın sonunda kompakt bir bölüm. Her sayfa yalnızca kendi içeriğinin dayandığı
+// kaynakları gösterir; her bağlantının altında o kaynağın bu sayfada hangi bilgi için kullanıldığı yazar.
+import "./phonak.css";
+import { ExternalLink } from "lucide-astro";
+import { PHONAK_CHECKED, type PhonakSource } from "../../data/phonak/families";
+
+interface Props {
+  groups: Array<{ title?: string; items: PhonakSource[] }>;
+}
+
+const { groups } = Astro.props;
+---
+
+<aside class="ph-sources" aria-labelledby="ph-sources-title">
+  <div class="ph-container">
+    <div class="ph-sources__head">
+      <h2 class="ph-sources__title" id="ph-sources-title">Ürün bilgileri ve resmî kaynaklar</h2>
+      <p class="ph-sources__meta">
+        Phonak'ın resmî sitesi · son kontrol {PHONAK_CHECKED} · fiyat, stok ve garanti bilgisi içermez
+      </p>
+    </div>
+    {
+      groups.map((g) => (
+        <div class="ph-sources__group">
+          {g.title && <h3 class="ph-sources__group-title">{g.title}</h3>}
+          <ul class="ph-sources__list">
+            {g.items.map((s) => (
+              <li class="ph-sources__item">
+                <a href={s.href} target="_blank" rel="noopener noreferrer">
+                  {s.label}
+                  <ExternalLink size={14} stroke-width={2} aria-hidden="true" />
+                  <span class="ph-sr">({s.site}, yeni sekmede açılır)</span>
+                </a>
+                <span class="ph-sources__note">
+                  {s.note} · {s.site}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</aside>
+
+<style>
+  .ph-sources {
+    padding-block: var(--space-8);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .ph-sources__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-1) var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .ph-sources__title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .ph-sources__meta {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-soft);
+  }
+
+  .ph-sources__group + .ph-sources__group {
+    margin-top: var(--space-4);
+  }
+
+  .ph-sources__group-title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .ph-sources__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+    gap: var(--space-2) var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ph-sources__item {
+    display: grid;
+    align-content: start;
+    min-width: 0;
+  }
+
+  .ph-sources__item a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    justify-self: start;
+    min-height: 44px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+  }
+
+  .ph-sources__item a:hover {
+    color: var(--color-primary-hover);
+  }
+
+  .ph-sources__item a:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .ph-sources__note {
+    font-size: var(--font-size-xs);
+    line-height: 1.45;
+    color: var(--color-text-soft);
+    overflow-wrap: anywhere;
+  }
+</style>

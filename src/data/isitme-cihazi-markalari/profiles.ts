@@ -12,6 +12,8 @@ import type { GuideSectionMeta } from "../../components/price-guide/price-guide.
 import type { BrandProfileContent, BrandProfileModel } from "../../components/brand-guide/brand-guide.types";
 import { oticonModels } from "../oticon/models";
 import { phonakModels } from "../phonak/models";
+// Phonak şarj/pil cümlesi resmî Phonak ürün sayfalarına göre düzeltildi (2026-11-14); bkz. PHONAK_POWER.
+import { PHONAK_POWER } from "../phonak/families";
 import { signiaModels } from "../signia/models";
 import { widexModels } from "../widex/models";
 import { resoundModels } from "../resound/models";
@@ -55,7 +57,8 @@ function scenariosFromTags(items: RawModel[], brand: string): { title: string; t
   const has = (...tags: string[]) => items.filter((i) => i.tags.some((t) => tags.includes(t)));
   const list = (arr: RawModel[]) => families(arr, brand).slice(0, 4).join(", ");
   const charge = has("Şarjlı");
-  if (charge.length) out.push({ title: "Şarjlı cihaz arayanlar", text: `Model listemizde ${charge.length}/${items.length} ailede şarjlı etiketi var: ${list(charge)}.` });
+  if (brand === "Phonak") out.push({ title: "Şarjlı cihaz arayanlar", text: PHONAK_POWER.profileText });
+  else if (charge.length) out.push({ title: "Şarjlı cihaz arayanlar", text: `Model listemizde ${charge.length}/${items.length} ailede şarjlı etiketi var: ${list(charge)}.` });
   const inEar = has("Kulak İçi");
   if (inEar.length) out.push({ title: "Daha küçük, kulak içi cihaz arayanlar", text: `Kulak içi etiketli aileler: ${list(inEar)}. Uygunluk kulak yapınıza göre değerlendirilir.` });
   const power = has("Güçlü Kayıplar", "Power");

@@ -1,0 +1,119 @@
+---
+// Phonak SSS bölümü — yerel <details>/<summary> (JS yok). Görünür soru-cevap metni FAQPage JSON-LD'ye birebir yazılır.
+import "./phonak.css";
+import { ChevronDown } from "lucide-astro";
+import type { FaqItem } from "../../data/phonak/families";
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading: string;
+  intro?: string;
+  items: FaqItem[];
+  pageUrl: string;
+  alt?: boolean;
+}
+
+const { id, eyebrow = "Sık sorulan sorular", heading, intro, items, pageUrl, alt = false } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${pageUrl}#faq`,
+  mainEntity: items.map((i) => ({
+    "@type": "Question",
+    name: i.question,
+    acceptedAnswer: { "@type": "Answer", text: i.answer },
+  })),
+};
+---
+
+<section class:list={["ph-section", alt && "ph-section--alt"]} id={id} aria-labelledby={`${id}-title`}>
+  <div class="ph-container ph-faq">
+    <div class="ph-head">
+      <p class="ph-eyebrow">{eyebrow}</p>
+      <h2 class="ph-h2" id={`${id}-title`}>{heading}</h2>
+      {intro && <p class="ph-lead">{intro}</p>}
+    </div>
+    <div class="ph-faq__list">
+      {
+        items.map((item, i) => (
+          <details class="ph-faq__item" open={i === 0}>
+            <summary class="ph-faq__q">
+              <h3 class="ph-faq__q-text">{item.question}</h3>
+              <ChevronDown size={22} stroke-width={2} aria-hidden="true" class="ph-faq__icon" />
+            </summary>
+            <p class="ph-faq__a">{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</section>
+
+<style>
+  .ph-faq__list {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 880px;
+  }
+
+  .ph-faq__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+  }
+
+  .ph-faq__item[open] {
+    border-color: var(--color-primary-200);
+  }
+
+  .ph-faq__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 56px;
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .ph-faq__q::-webkit-details-marker {
+    display: none;
+  }
+
+  .ph-faq__q:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-xl);
+  }
+
+  .ph-faq__q-text {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    line-height: 1.35;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  :global(.ph-faq__icon) {
+    flex: none;
+    color: var(--color-primary);
+    transition: transform var(--transition-base);
+  }
+
+  .ph-faq__item[open] :global(.ph-faq__icon) {
+    transform: rotate(180deg);
+  }
+
+  .ph-faq__a {
+    margin: 0;
+    padding: 0 var(--space-5) var(--space-5);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    max-width: 75ch;
+  }
+</style>

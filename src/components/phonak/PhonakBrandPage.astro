@@ -1,0 +1,925 @@
+---
+// /markalar/phonak/ — Phonak marka sayfası (2026-11-14 yeniden tasarım).
+// Ortak BrandPage* bileşenleri DEĞİŞTİRİLMEDİ; bu sayfa yalnızca src/components/phonak/ bileşenlerini kullanır.
+// İçerik: src/data/phonak/families.ts (resmî Phonak kaynakları + SoT'ta doğrulanmış merkez bilgileri).
+import "./phonak.css";
+import { ArrowRight, Check, Ear, Baby, Volume2, ArrowLeftRight, CircleDot, Cable, Bluetooth, Smartphone, Mic, MapPin } from "lucide-astro";
+import PhonakFamilyCard from "./PhonakFamilyCard.astro";
+import PhonakFaq from "./PhonakFaq.astro";
+import PhonakSources from "./PhonakSources.astro";
+import PhonakContactBand from "./PhonakContactBand.astro";
+import { contactConfig } from "../../config";
+import { contactAction } from "../../lib/contact-action";
+import { imageSrcset } from "../../lib/responsive-images";
+import { PHONAK_BRAND as B, PHONAK_FAMILIES, FAMILY_BY_SLUG, familyHref } from "../../data/phonak/families";
+
+interface Props {
+  pageUrl: string;
+}
+
+const { pageUrl } = Astro.props;
+const phone = contactConfig.phone.href;
+const wa = contactConfig.whatsapp.href;
+const typeIcons = { audeo: Cable, bolero: Ear, naida: Volume2, sky: Baby, virto: CircleDot, cros: ArrowLeftRight } as const;
+const ecoIcons = [Bluetooth, Smartphone, Mic];
+
+const ld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: B.meta.title,
+    description: B.meta.description,
+    inLanguage: "tr",
+    isPartOf: { "@id": "https://www.eniyicihaz.com/#website" },
+    publisher: { "@id": "https://www.eniyicihaz.com/#organization" },
+    breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+    about: { "@type": "Brand", name: "Phonak", url: "https://www.phonak.com/" },
+    mainEntity: { "@id": `${pageUrl}#aileler` },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${pageUrl}#aileler`,
+    name: "Phonak işitme cihazı model aileleri",
+    numberOfItems: PHONAK_FAMILIES.length,
+    itemListElement: PHONAK_FAMILIES.map((f, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: f.fullName,
+      url: new URL(familyHref(f.slug), pageUrl).toString(),
+    })),
+  },
+];
+---
+
+{ld.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+
+<!-- HERO -->
+<section class="pb-hero" aria-labelledby="pb-hero-title">
+  <div class="ph-container pb-hero__grid">
+    <div class="pb-hero__copy">
+      <p class="pb-hero__eyebrow">{B.hero.eyebrow}</p>
+      <h1 class="pb-hero__title" id="pb-hero-title">{B.hero.title}</h1>
+      <p class="pb-hero__lead">{B.hero.lead}</p>
+      <ul class="pb-hero__points">
+        {
+          B.hero.points.map((p) => (
+            <li>
+              <Check size={20} stroke-width={2.5} aria-hidden="true" />
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+      <div class="pb-hero__actions">
+        <a class="ph-btn ph-btn--light" href="/degerlendirme/ucretsiz-isitme-testi/">Ücretsiz İşitme Testi</a>
+        <a href={phone} data-contact-action={contactAction(phone)}>Hemen Ara</a>
+        <a href={wa} data-contact-action={contactAction(wa)} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+
+    <nav class="pb-showcase" aria-label="Phonak model aileleri">
+      <ul class="pb-showcase__grid">
+        {
+          PHONAK_FAMILIES.map((f) => (
+            <li>
+              <a class="pb-showcase__item" href={familyHref(f.slug)}>
+                <span class="pb-showcase__img ph-stage">
+                  <img
+                    src={f.image}
+                    srcset={imageSrcset(f.image)}
+                    sizes="(max-width: 599px) 28vw, (max-width: 959px) 22vw, 150px"
+                    alt=""
+                    width="1024"
+                    height="1024"
+                    decoding="async"
+                  />
+                </span>
+                <span class="pb-showcase__name">{f.name}</span>
+                <span class="pb-showcase__type">{f.typeLabel.replace(/\s*\(.*\)$/, "")}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<!-- TANITIM -->
+<section class="ph-section" aria-labelledby="pb-intro-title">
+  <div class="ph-container pb-intro">
+    <div class="ph-head">
+      <p class="ph-eyebrow">Marka</p>
+      <h2 class="ph-h2" id="pb-intro-title">{B.intro.heading}</h2>
+    </div>
+    <div class="pb-intro__grid">
+      <div class="ph-prose">{B.intro.paragraphs.map((p) => <p>{p}</p>)}</div>
+      <dl class="pb-intro__stats">
+        <div><dt>Model ailesi</dt><dd>6</dd></div>
+        <div><dt>Cihaz türü</dt><dd>RIC · BTE · ITE</dd></div>
+        <div><dt>Tek taraflı kayıp</dt><dd>CROS</dd></div>
+        <div><dt>Çocuklar için</dt><dd>Sky</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- AİLELER -->
+<section class="ph-section ph-section--alt" id="aileler" aria-labelledby="pb-fam-title">
+  <div class="ph-container">
+    <div class="ph-head">
+      <p class="ph-eyebrow">Ürün aileleri</p>
+      <h2 class="ph-h2" id="pb-fam-title">{B.families.heading}</h2>
+      <p class="ph-lead">{B.families.intro}</p>
+    </div>
+    <ul class="pb-cards">
+      {PHONAK_FAMILIES.map((f) => <li><PhonakFamilyCard family={f} /></li>)}
+    </ul>
+  </div>
+</section>
+
+<!-- CİHAZ TÜRLERİ -->
+<section class="ph-section" aria-labelledby="pb-types-title">
+  <div class="ph-container">
+    <div class="ph-head">
+      <p class="ph-eyebrow">Cihaz türleri</p>
+      <h2 class="ph-h2" id="pb-types-title">{B.types.heading}</h2>
+      <p class="ph-lead">{B.types.intro}</p>
+    </div>
+    <ul class="pb-types">
+      {
+        B.types.items.map((t) => {
+          const Icon = typeIcons[t.slug];
+          return (
+            <li class="pb-type">
+              <span class="pb-type__icon" aria-hidden="true"><Icon size={24} stroke-width={2} /></span>
+              <h3 class="pb-type__term">{t.term}</h3>
+              <p class="pb-type__text">{t.text}</p>
+              <a class="ph-link" href={familyHref(t.slug)}>
+                Phonak {FAMILY_BY_SLUG[t.slug].name}
+                <ArrowRight size={16} stroke-width={2.25} aria-hidden="true" />
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- KARŞILAŞTIRMA -->
+<section class="ph-section ph-section--alt" aria-labelledby="pb-compare-title">
+  <div class="ph-container">
+    <div class="ph-head">
+      <p class="ph-eyebrow">Karşılaştırma</p>
+      <h2 class="ph-h2" id="pb-compare-title">{B.compare.heading}</h2>
+      <p class="ph-lead">{B.compare.intro}</p>
+    </div>
+    <table class="pb-table">
+      <caption class="ph-sr">Phonak model ailelerinin cihaz türü, nesil, güç ve kullanıcı grubuna göre karşılaştırması</caption>
+      <thead>
+        <tr>{B.compare.columns.map((c) => <th scope="col">{c}</th>)}</tr>
+      </thead>
+      <tbody>
+        {
+          B.compare.rows.map((r) => (
+            <tr>
+              <th scope="row" data-label={B.compare.columns[0]}>
+                <a href={familyHref(r.slug)}>{FAMILY_BY_SLUG[r.slug].fullName}</a>
+              </th>
+              {r.cells.map((c, i) => <td data-label={B.compare.columns[i + 1]}>{c}</td>)}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SEÇİM -->
+<section class="ph-section" aria-labelledby="pb-select-title">
+  <div class="ph-container">
+    <div class="ph-head">
+      <p class="ph-eyebrow">Seçim süreci</p>
+      <h2 class="ph-h2" id="pb-select-title">{B.selection.heading}</h2>
+      <p class="ph-lead">{B.selection.intro}</p>
+    </div>
+    <ol class="pb-steps">
+      {
+        B.selection.steps.map((s, i) => (
+          <li class="pb-step">
+            <span class="pb-step__num" aria-hidden="true">{i + 1}</span>
+            <h3 class="pb-step__title">{s.title}</h3>
+            <p class="pb-step__text">{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- BAĞLANTI -->
+<section class="ph-section ph-section--alt" aria-labelledby="pb-eco-title">
+  <div class="ph-container">
+    <div class="ph-head">
+      <p class="ph-eyebrow">Bağlantı</p>
+      <h2 class="ph-h2" id="pb-eco-title">{B.ecosystem.heading}</h2>
+      <p class="ph-lead">{B.ecosystem.intro}</p>
+    </div>
+    <ul class="pb-eco">
+      {
+        B.ecosystem.items.map((e, i) => {
+          const Icon = ecoIcons[i];
+          return (
+            <li class="pb-eco__item">
+              <span class="pb-eco__icon" aria-hidden="true"><Icon size={24} stroke-width={2} /></span>
+              <h3 class="pb-eco__title">{e.title}</h3>
+              <p class="pb-eco__text">{e.text}</p>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- YEREL -->
+<section class="ph-section" aria-labelledby="pb-local-title">
+  <div class="ph-container pb-local">
+    <div class="ph-head">
+      <p class="ph-eyebrow">Darıca · Gebze · Çayırova · Kocaeli</p>
+      <h2 class="ph-h2" id="pb-local-title">{B.local.heading}</h2>
+    </div>
+    <div class="pb-local__grid">
+      <div>
+        <div class="ph-prose">{B.local.paragraphs.map((p) => <p>{p}</p>)}</div>
+        <p class="pb-local__regions-label">Bölge sayfalarımız</p>
+        <ul class="pb-local__regions">
+          {B.local.regions.map((r) => <li><a class="ph-link" href={r.href}>{r.label}</a></li>)}
+        </ul>
+      </div>
+      <div class="pb-home">
+        <span class="pb-home__icon" aria-hidden="true"><MapPin size={26} stroke-width={2} /></span>
+        <h3 class="pb-home__title">{B.local.home.title}</h3>
+        <p class="pb-home__text">{B.local.home.text}</p>
+        <a class="ph-btn ph-btn--primary" href={B.local.home.href}>
+          {B.local.home.linkLabel}
+          <ArrowRight size={18} stroke-width={2.25} aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+    <ul class="pb-local__services">
+        {
+          B.local.services.map((s) => (
+            <li class="pb-service">
+              <h3 class="pb-service__title">{s.title}</h3>
+              <p class="pb-service__text">{s.text}</p>
+              {s.href && (
+                <a class="ph-link" href={s.href}>
+                  {s.linkLabel}
+                  <ArrowRight size={16} stroke-width={2.25} aria-hidden="true" />
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+  </div>
+</section>
+
+<PhonakFaq id="sss" heading="Phonak hakkında sık sorulan sorular" items={B.faq} pageUrl={pageUrl} alt />
+
+<!-- İLGİLİ -->
+<section class="ph-section" aria-labelledby="pb-related-title">
+  <div class="ph-container">
+    <div class="ph-head">
+      <p class="ph-eyebrow">İlgili sayfalar</p>
+      <h2 class="ph-h2" id="pb-related-title">Phonak için bakabileceğiniz sayfalar</h2>
+    </div>
+    <ul class="pb-related">
+      {
+        B.related.map((r) => (
+          <li>
+            <a class="pb-related__item" href={r.href}>
+              <span class="pb-related__label">{r.label}</span>
+              <span class="pb-related__desc">{r.description}</span>
+              <ArrowRight size={18} stroke-width={2.25} aria-hidden="true" class="pb-related__arrow" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<PhonakSources groups={B.sourceGroups} />
+
+<PhonakContactBand
+  heading="Hangi Phonak ailesi size uygun?"
+  text="İşitme testinizden sonra Audéo, Naída, Sky, Virto veya CROS arasında size uygun olanı birlikte belirleyelim. Darıca'daki merkezimize gelmeden önce bizi arayabilir ya da WhatsApp'tan yazabilirsiniz."
+/>
+
+<style>
+  /* ---------- Hero ---------- */
+  .pb-hero {
+    padding-block: clamp(40px, 6vw, 80px);
+    background: var(--hero-bg);
+    color: var(--color-text-inverse);
+    overflow: hidden;
+  }
+
+  .pb-hero__grid {
+    display: grid;
+    gap: var(--space-10);
+    align-items: center;
+  }
+
+  @media (min-width: 960px) {
+    .pb-hero__grid {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: var(--space-10);
+    }
+  }
+
+  .pb-hero__eyebrow {
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-teal-light);
+  }
+
+  .pb-hero__title {
+    margin: 0 0 var(--space-5);
+    font-size: clamp(2.125rem, 1.4rem + 3vw, 3.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+  }
+
+  .pb-hero__lead {
+    margin: 0 0 var(--space-6);
+    max-width: 60ch;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: rgb(255 255 255 / 0.88);
+  }
+
+  .pb-hero__points {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-8);
+    padding: 0;
+    list-style: none;
+  }
+
+  .pb-hero__points li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-white);
+  }
+
+  .pb-hero__points :global(svg) {
+    flex: none;
+    margin-top: 2px;
+    color: var(--brand-teal-light);
+  }
+
+  .pb-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (max-width: 599px) {
+    .pb-hero__actions > * {
+      width: 100%;
+    }
+  }
+
+  .pb-showcase {
+    padding: clamp(12px, 2vw, 20px);
+    border-radius: 28px;
+    background: var(--color-white);
+    box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.55);
+  }
+
+  .pb-showcase__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(6px, 1.2vw, 12px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pb-showcase__item {
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+    padding: clamp(6px, 1.2vw, 12px) 4px clamp(10px, 1.4vw, 14px);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background-color var(--transition-base);
+  }
+
+  .pb-showcase__item:hover {
+    background: var(--color-surface);
+  }
+
+  .pb-showcase__item:hover .pb-showcase__img {
+    background: var(--color-surface);
+  }
+
+  .pb-showcase__item:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .pb-showcase__img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    transition: background-color var(--transition-base);
+  }
+
+  .pb-showcase__img img {
+    width: min(100%, 150px);
+    mix-blend-mode: multiply;
+  }
+
+  .pb-showcase__name {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+  }
+
+  .pb-showcase__type {
+    font-size: clamp(0.8125rem, 0.75rem + 0.3vw, 0.9375rem);
+    line-height: 1.3;
+    color: var(--color-text-soft);
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- Tanıtım ---------- */
+  .pb-intro__grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 960px) {
+    .pb-intro__grid {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: var(--space-12);
+      align-items: start;
+    }
+  }
+
+  .pb-intro__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin: 0;
+  }
+
+  .pb-intro__stats div {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+  }
+
+  .pb-intro__stats dt {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-soft);
+  }
+
+  .pb-intro__stats dd {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--brand-navy);
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- Kartlar ---------- */
+  .pb-cards {
+    display: grid;
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 600px) {
+    .pb-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pb-cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-6);
+    }
+  }
+
+  /* ---------- Türler ---------- */
+  .pb-types {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .pb-types {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pb-types {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .pb-type {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .pb-type__icon,
+  .pb-eco__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-2);
+    border-radius: var(--radius-lg);
+    background: var(--color-primary-50);
+    color: var(--color-primary);
+  }
+
+  .pb-type__term,
+  .pb-eco__title,
+  .pb-step__title,
+  .pb-service__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .pb-type__text,
+  .pb-eco__text,
+  .pb-step__text,
+  .pb-service__text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  .pb-type .ph-link {
+    margin-top: auto;
+  }
+
+  /* ---------- Tablo ---------- */
+  .pb-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    overflow: hidden;
+    font-size: var(--font-size-sm);
+  }
+
+  .pb-table th,
+  .pb-table td {
+    padding: var(--space-4);
+    text-align: left;
+    vertical-align: top;
+    line-height: var(--line-height-normal);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pb-table thead th {
+    background: var(--brand-navy);
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .pb-table tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  .pb-table tbody th a {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-underline-offset: 3px;
+  }
+
+  .pb-table td {
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 859px) {
+    .pb-table,
+    .pb-table tbody,
+    .pb-table tr,
+    .pb-table th,
+    .pb-table td {
+      display: block;
+    }
+
+    .pb-table {
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .pb-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .pb-table tbody {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .pb-table tr {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      background: var(--color-white);
+      overflow: hidden;
+    }
+
+    .pb-table tbody th {
+      background: var(--color-primary-50);
+      font-size: var(--font-size-lg);
+    }
+
+    .pb-table td {
+      display: grid;
+      grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr);
+      gap: var(--space-3);
+      padding-block: var(--space-3);
+    }
+
+    .pb-table td::before {
+      content: attr(data-label);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text);
+    }
+  }
+
+  /* ---------- Adımlar ---------- */
+  .pb-steps {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .pb-steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .pb-steps {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .pb-step {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .pb-step__num {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--space-2);
+    border-radius: var(--radius-full);
+    background: var(--brand-navy);
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* ---------- Bağlantı ---------- */
+  .pb-eco {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 860px) {
+    .pb-eco {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .pb-eco__item {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+  }
+
+  /* ---------- Yerel ---------- */
+  .pb-local__grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 960px) {
+    .pb-local__grid {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-12);
+      align-items: start;
+    }
+  }
+
+  .pb-home {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-8);
+    border-radius: var(--radius-2xl);
+    background: var(--color-primary-50);
+    border: 1px solid var(--color-primary-200);
+  }
+
+  .pb-home__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-full);
+    background: var(--color-white);
+    color: var(--color-primary);
+  }
+
+  .pb-home__title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    color: var(--brand-navy);
+  }
+
+  .pb-home__text {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .pb-local__regions-label {
+    margin: var(--space-6) 0 var(--space-1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .pb-local__regions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pb-local__services {
+    display: grid;
+    gap: var(--space-3);
+    margin: var(--space-10) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .pb-local__services {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .pb-local__services {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .pb-service {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .pb-service .ph-link {
+    margin-top: auto;
+  }
+
+  /* ---------- İlgili ---------- */
+  .pb-related {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .pb-related {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pb-related {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .pb-related__item {
+    position: relative;
+    display: grid;
+    gap: var(--space-1);
+    height: 100%;
+    box-sizing: border-box;
+    padding: var(--space-5) var(--space-12) var(--space-5) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  .pb-related__item:hover {
+    border-color: var(--color-primary-200);
+    background: var(--color-primary-50);
+  }
+
+  .pb-related__item:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .pb-related__label {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  .pb-related__desc {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  :global(.pb-related__arrow) {
+    position: absolute;
+    right: var(--space-5);
+    top: 50%;
+    translate: 0 -50%;
+    color: var(--color-primary);
+  }
+</style>

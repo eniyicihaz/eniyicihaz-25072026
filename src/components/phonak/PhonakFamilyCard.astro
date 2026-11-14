@@ -1,0 +1,172 @@
+---
+// Phonak model ailesi kartı — marka sayfasındaki ızgarada ve model sayfalarının "İlgili aileler" bölümünde kullanılır.
+// Kartın tamamı tıklanabilir (görünür "Modeli İncele" bağlantısı kartı kaplar); erişilebilir ad aile adını içerir.
+// Uzun metinler kesilmez: kartlar ızgarada eşit yükseklikte, içerik flex sütununda; CTA her zaman en altta.
+import "./phonak.css";
+import { ArrowRight } from "lucide-astro";
+import { imageSrcset } from "../../lib/responsive-images";
+import { familyHref, type PhonakFamily } from "../../data/phonak/families";
+
+interface Props {
+  family: PhonakFamily;
+  headingLevel?: 2 | 3;
+  /** Görsel boyut ipucu (srcset seçimi için). */
+  sizes?: string;
+}
+
+const { family, headingLevel = 3, sizes = "(max-width: 599px) 80vw, (max-width: 1023px) 42vw, 300px" } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
+const href = familyHref(family.slug);
+---
+
+<article class="ph-card">
+  <div class="ph-card__media ph-stage">
+    <img
+      src={family.image}
+      srcset={imageSrcset(family.image)}
+      sizes={sizes}
+      alt={family.imageAlt}
+      width="1024"
+      height="1024"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="ph-card__body">
+    <p class="ph-card__type">{family.typeLabel}</p>
+    <Heading class="ph-card__title">{family.fullName}</Heading>
+    <p class="ph-card__gen">{family.generation}</p>
+    <p class="ph-card__summary">{family.summary}</p>
+    <ul class="ph-tags ph-card__tags" aria-label={`${family.fullName} özellikleri`}>
+      {family.tags.map((t) => <li class="ph-tag">{t}</li>)}
+    </ul>
+    <a class="ph-card__cta" href={href}>
+      Modeli İncele<span class="ph-sr"> — {family.fullName}</span>
+      <ArrowRight size={18} stroke-width={2.25} aria-hidden="true" />
+    </a>
+  </div>
+</article>
+
+<style>
+  .ph-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: var(--color-white);
+    overflow: hidden;
+    transition:
+      border-color var(--transition-base),
+      box-shadow var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .ph-card:hover {
+    border-color: var(--color-primary-200);
+    box-shadow: 0 18px 40px -24px rgb(var(--brand-navy-rgb) / 0.45);
+    transform: translateY(-2px);
+  }
+
+  .ph-card:focus-within {
+    border-color: var(--color-primary);
+  }
+
+  .ph-card__media {
+    padding: var(--space-6) var(--space-6) var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ph-card__media img {
+    width: min(100%, 220px);
+  }
+
+  .ph-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    min-width: 0;
+  }
+
+  .ph-card__type {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent-text);
+    overflow-wrap: anywhere;
+  }
+
+  .ph-card__title {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--color-text);
+  }
+
+  .ph-card__gen {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--brand-navy);
+  }
+
+  .ph-card__summary {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-muted);
+  }
+
+  .ph-card__tags {
+    margin-top: var(--space-1);
+  }
+
+  .ph-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    margin-top: auto;
+    padding-top: var(--space-3);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  /* Kartın tamamını kaplayan tıklama alanı. */
+  .ph-card__cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .ph-card__cta:hover {
+    color: var(--color-primary-hover);
+  }
+
+  .ph-card__cta:focus-visible {
+    outline: none;
+  }
+
+  .ph-card__cta:focus-visible::after {
+    outline: 3px solid var(--color-primary);
+    outline-offset: -3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ph-card,
+    .ph-card:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

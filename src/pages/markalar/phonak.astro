@@ -1,22 +1,19 @@
 ---
-// Phonak marka sayfası (/markalar/phonak) — özgün içerik çalışması: içerik src/data/brand-unique/phonak.ts'te,
-// yalnızca sitedeki model verisinden ve SoT'ta doğrulanmış hizmet olgularından üretilir (üretici kaynaklı bilgi,
-// uzman yorumu, grup/sahiplik ve doğrulanmamış iddialar yoktur). Model fotoğrafları ve hero görseli değiştirilmedi.
+// Phonak marka sayfası (/markalar/phonak/) — 2026-11-14 yeniden tasarım.
+// Önceki sürüm ortak BrandSimplePage şablonunu kullanıyordu; ortak şablon ve diğer marka sayfaları DEĞİŞTİRİLMEDİ.
+// İçerik: src/data/phonak/families.ts · Bileşenler: src/components/phonak/
 import MainLayout from "../../layouts/MainLayout.astro";
-import BrandSimplePage from "../../components/brand-page/BrandSimplePage/BrandSimplePage.astro";
-import { buildUniqueBrandPage } from "../../data/brand-unique/build";
-import { phonakUnique } from "../../data/brand-unique/phonak";
-import { phonakHero } from "../../data/phonak/hero";
-import { phonakModels } from "../../data/phonak/models";
-import { phonakFaq } from "../../data/phonak/faq";
-import { phonakFinalCta } from "../../data/phonak/final-cta";
+import PhonakBrandPage from "../../components/phonak/PhonakBrandPage.astro";
+import { PHONAK_BRAND } from "../../data/phonak/families";
 
-const page = buildUniqueBrandPage(
-  { hero: phonakHero, models: phonakModels, faq: phonakFaq, finalCta: phonakFinalCta },
-  phonakUnique,
-);
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
-<MainLayout title={page.meta.title} description={page.meta.description}>
-  <BrandSimplePage page={page} />
+<MainLayout
+  title={PHONAK_BRAND.meta.title}
+  description={PHONAK_BRAND.meta.description}
+  ogImage="/images/og/phonak.jpg"
+  ogImageAlt="Phonak Audéo, Naída, Sky, Bolero, Virto ve CROS ailelerinden işitme cihazları"
+>
+  <PhonakBrandPage pageUrl={pageUrl} />
 </MainLayout>

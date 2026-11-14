@@ -13,6 +13,8 @@
 import type { GuideSectionMeta, GuideTableContent, GuideTableRow } from "../../components/price-guide/price-guide.types";
 import { oticonModels } from "../oticon/models";
 import { phonakModels } from "../phonak/models";
+// Phonak şarj/pil hücreleri resmî Phonak ürün sayfalarına göre düzeltildi (2026-11-14); bkz. PHONAK_POWER.
+import { PHONAK_POWER } from "../phonak/families";
 import { signiaModels } from "../signia/models";
 import { widexModels } from "../widex/models";
 import { resoundModels } from "../resound/models";
@@ -85,6 +87,7 @@ function typesCell(b: BrandSource): string {
 }
 
 function chargeCell(b: BrandSource): string {
+  if (b.key === "phonak") return PHONAK_POWER.tableCell;
   const charge = withTag(b, "Şarjlı");
   const battery = withTag(b, "Pilli");
   const c = charge.length ? `Şarjlı: ${charge.length}/${b.items.length} aile` : "Şarjlı etiketli aile yok";
@@ -134,6 +137,8 @@ function matrixRow(label: string, tags: string[], opts: { placementRow?: boolean
     ...(opts.href ? { href: opts.href } : {}),
     cells: brands.map((b) => {
       if (opts.placementRow && b.key === "oticon") return oticonPlacementNote;
+      if (b.key === "phonak" && tags.length === 1 && tags[0] === "Şarjlı") return PHONAK_POWER.rechargeable;
+      if (b.key === "phonak" && tags.length === 1 && tags[0] === "Pilli") return PHONAK_POWER.battery;
       const list = withTag(b, ...tags);
       if (!list.length) return NONE;
       if (opts.countOnly) return `${list.length}/${b.items.length} ailede etiketli`;

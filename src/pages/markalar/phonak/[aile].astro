@@ -1,0 +1,27 @@
+---
+// Phonak model ailesi sayfaları: /markalar/phonak/{audeo,naida,sky,bolero,virto,cros}/
+// İçerik: src/data/phonak/families.ts · Şablon: src/components/phonak/PhonakFamilyPage.astro
+import MainLayout from "../../../layouts/MainLayout.astro";
+import PhonakFamilyPage from "../../../components/phonak/PhonakFamilyPage.astro";
+import { PHONAK_FAMILIES, type PhonakFamily } from "../../../data/phonak/families";
+
+export function getStaticPaths() {
+  return PHONAK_FAMILIES.map((family) => ({ params: { aile: family.slug }, props: { family } }));
+}
+
+interface Props {
+  family: PhonakFamily;
+}
+
+const { family } = Astro.props;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<MainLayout
+  title={family.meta.title}
+  description={family.meta.description}
+  ogImage={`/images/og/phonak-${family.slug}.jpg`}
+  ogImageAlt={family.imageAlt}
+>
+  <PhonakFamilyPage family={family} pageUrl={pageUrl} />
+</MainLayout>
