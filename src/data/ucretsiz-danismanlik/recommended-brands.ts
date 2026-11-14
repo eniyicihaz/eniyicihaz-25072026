@@ -22,16 +22,6 @@ export const ucretsizDanismanlikRecommendedBrands: BrandPageRelatedContentConten
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia modelleri, danışmanlık sürecinde sıkça önerilen genel kullanım seçenekleri arasındadır.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex modelleri, doğal ses tercih eden kullanıcılar için danışmanlık sürecinde değerlendirilir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound modelleri, bağlantı özelliklerini önceliklendiren kullanıcılar için önerilebilir.",
       href: "/markalar/resound/",

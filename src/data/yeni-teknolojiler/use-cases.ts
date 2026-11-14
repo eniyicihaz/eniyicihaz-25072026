@@ -35,7 +35,7 @@ export const yeniTeknolojilerUseCases: BrandPageTechnologyContent = {
     {
       label: "UZAKTAN KONTROL",
       title: "Uzaktan Kontrol Özellikleri",
-      description: "Cihaz ayarlarının uzaktan yapılabilmesini sağlayan telecare özellikleri.",
+      description: "Cihaz ayarlarının uzaktan yapılabilmesini sağlayan uzaktan destek özellikleri.",
     },
     {
       label: "TİNNİTUS ÇÖZÜMLERİ",

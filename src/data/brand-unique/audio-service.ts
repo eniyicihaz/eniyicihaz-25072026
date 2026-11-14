@@ -13,7 +13,7 @@ export const audioServiceUnique: UniqueBrandContent = {
   },
   heroSrc: "/images/audio-service/models/stiline.webp",
   heroParagraphs: [
-    `Audio Service, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} ailenin adları iki türde: Stiline, Mood ve Quix model adları; Kulak İçi Serisi ve Şarjlı Serisi ise özelliği adında taşıyan seriler.`,
+    `Audio Service, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizdeki ${f.n} ailenin adları iki türde: Stiline, Mood ve Quix model adları; Kulak İçi Serisi ve Şarjlı Serisi ise özelliği adında taşıyan seriler.`,
     `${join(f.ric)} aileleri RIC etiketli; yani listenin ağırlığı RIC. Kulak içi tarafında tek aile var: Kulak İçi Serisi.`,
   ],
   heroFeatures: [
@@ -27,7 +27,7 @@ export const audioServiceUnique: UniqueBrandContent = {
     paragraphs: [
       `Audio Service sayfasında iki tür ad var. Stiline, Mood ve Quix model adı; Kulak İçi Serisi ve Şarjlı Serisi ise adlarıyla zaten özelliği söylüyor. Bu yüzden listeyi okumak kolay: şarjlı aile arıyorsanız ${join(f.charge)}, kulak içi arıyorsanız Kulak İçi Serisi.`,
       `Bluetooth etiketi ${join(f.bt)} ailelerinde var. Quix ve Şarjlı Serisi RIC etiketli ama sitemizde Bluetooth etiketi taşımıyor; Quix'te şarjlı etiketi de yok.`,
-      "Audio Service cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Audio Service cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

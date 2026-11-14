@@ -27,16 +27,6 @@ export const cocuklardaSgkRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/resound/",
     },
     {
-      label: "Signia",
-      description: "SGK desteği, anlaşmalı merkezimizden alınan Signia modellerinde de geçerlidir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "SGK desteği, anlaşmalı merkezimizden alınan Widex modellerinde de geçerlidir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "Vista",
       description: "Bütçe dostu bir seçenek arıyorsanız, SGK destekli Vista modelleri değerlendirilebilir.",
       href: "/markalar/vista/",

@@ -23,7 +23,7 @@ export const garantiIslemleriTechnology: BrandPageEcosystemContent = {
       navLabel: "Garanti Kayıt Sistemi",
       title: "Dijital Garanti Kayıt Sistemi",
       lead: "Cihazınızın garanti bilgileri, satın alma anında dijital bir sisteme kaydedilir.",
-      howItWorks: "Seri numaranız ve satın alma tarihiniz, üreticinin garanti takip sistemine işlenir.",
+      howItWorks: "Seri numaranız ve satın alma tarihiniz garanti kaydına işlenir; kayıt yöntemi cihazın markasına göre değişebilir.",
       advantages: [
         "Garanti durumunuzun hızlıca sorgulanmasını sağlar",
         "Belge kaybı durumunda bile kayıt üzerinden doğrulama yapılabilir",
@@ -33,9 +33,9 @@ export const garantiIslemleriTechnology: BrandPageEcosystemContent = {
       expertNote: "Kayıt sistemi, cihaz markasına göre değişebilir.",
     },
     {
-      id: "uretici-garanti-agi",
+      id: "dis-servis",
       icon: "globe",
-      navLabel: "Üretici Garanti Ağı",
+      navLabel: "Dış Servis",
       title: "Gerektiğinde Dış Servis",
       lead: "Garanti kapsamındaki cihazlar, gerektiğinde dış servise gönderilir.",
       howItWorks: "Garanti kapsamında olduğu doğrulanan cihaz, gerektiğinde dış servise gönderilir; garanti işlemleri ücretsizdir ve cihaza göre 1–5 gün sürebilir.",

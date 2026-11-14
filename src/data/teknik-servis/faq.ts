@@ -12,7 +12,7 @@ export const teknikServisFaq: BrandPageFaqContent = {
   intro: "Kapsam, süre, ücret ve garanti konusunda en çok sorulan sorular.",
   decisionCard: {
     title: "Teknik Servis Desteği Almak İster misiniz?",
-    points: ["Ücret duruma göre belirlenir", "18 markada üretici servis yetkisi", "Tahmini süre ilk teknik kontrolden sonra", "Dijital servis kaydı"],
+    points: ["Ücret duruma göre belirlenir", "Farklı marka ve modellerde bakım ve teknik destek", "Tahmini süre ilk teknik kontrolden sonra", "Dijital servis kaydı"],
     ctaLabel: "Hemen Bilgi Alın",
     ctaHref: contactConfig.phone.href,
   },

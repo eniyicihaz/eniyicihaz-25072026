@@ -1,13 +1,13 @@
 ---
 // YayginServisAgiHero — /neden-orijinal/yaygin-servis-agi sayfasına özel hero: solda mevcut içerik (rozet, başlık, iki paragraf,
-// CTA'lar), sağda "18 markada üretici servis yetkisi" illüstrasyonu. Ortak BrandPageHero (59 sayfa) DEĞİŞMEZ; bu bileşen aynı
+// CTA'lar), sağda "bakım ve teknik destek" illüstrasyonu. Ortak BrandPageHero (59 sayfa) DEĞİŞMEZ; bu bileşen aynı
 // hero verisini (data/yaygin-servis-agi/hero.ts: metinler, CTA'lar, sıcak arka plan gradyanı, dalga rengi) aynen kullanır.
 // İllüstrasyon içeriği ve her ifadenin kaynağı: data/yaygin-servis-agi/hero-visual.ts. Harita, şube veya servis noktası
-// izlenimi vermez; yalnızca üretici servis yetkisini anlatır. Yalnızca Astro + CSS + inline SVG; JavaScript yoktur.
-// Masaüstü (>=1200): iki sütun, tam illüstrasyon (cihaz, kalkan, "18 MARKA", üç teknik kart).
-// <1200 (tablet + mobil): sadeleştirilmiş şema — cihaz rozeti + "18 MARKA"; kartlar ve bağlantı çizgileri gizlenir.
+// izlenimi vermez; marka sayısı veya üretici yetkisi iddiası taşımaz. Yalnızca Astro + CSS + inline SVG; JavaScript yoktur.
+// Masaüstü (>=1200): iki sütun, tam illüstrasyon (cihaz, anahtar rozeti, "TEKNİK DESTEK" kutusu, üç teknik kart).
+// <1200 (tablet + mobil): sadeleştirilmiş şema — cihaz rozeti + "TEKNİK DESTEK" kutusu; kartlar ve bağlantı çizgileri gizlenir.
 import { withCorporateHero } from "../../../lib/hero-theme";
-import { Phone, ShieldCheck, BadgeCheck, SearchCheck, FileCheck } from "lucide-astro";
+import { Phone, Wrench, SearchCheck, FileCheck } from "lucide-astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../../lib/contact-action";
 import { standardCtaLabel } from "../../../lib/cta-labels";
@@ -21,7 +21,7 @@ interface Props {
 const { data: rawData } = Astro.props;
 const data = withCorporateHero(rawData);
 const ctas = [data.ctaPrimary, data.ctaSecondary];
-const icons = { badge: BadgeCheck, search: SearchCheck, file: FileCheck };
+const icons = { tool: Wrench, search: SearchCheck, file: FileCheck };
 const heroStyle = [
   `--ysh-accent:${data.accentColor}`,
   data.heroBackground ? `--ysh-bg:${data.heroBackground}` : "",
@@ -89,12 +89,11 @@ const heroStyle = [
               <path d="M 48 60 C 50 46, 66 44, 74 54" fill="none" stroke="#ffffff" stroke-opacity="0.65" stroke-width="3" stroke-linecap="round"></path>
             </svg>
           </div>
-          <span class="ysh__shield" aria-hidden="true"><ShieldCheck size={26} stroke-width={2} /></span>
+          <span class="ysh__shield" aria-hidden="true"><Wrench size={24} stroke-width={2} /></span>
         </div>
 
         <div class="ysh__count">
           <span class="ysh__count-main">
-            <span class="ysh__count-num">{visual.count}</span>
             <span class="ysh__count-label">{visual.countLabel}</span>
           </span>
           <span class="ysh__count-note">{visual.countNote}</span>
@@ -315,7 +314,7 @@ const heroStyle = [
       0 12px 24px -8px rgb(234 88 12 / 0.9);
   }
 
-  /* "18 MARKA" vurgusu */
+  /* "TEKNİK DESTEK" kutusu */
   .ysh__count {
     position: absolute;
     left: 30.36%;
@@ -337,14 +336,6 @@ const heroStyle = [
     display: inline-flex;
     align-items: baseline;
     gap: calc(8 * var(--u));
-  }
-
-  .ysh__count-num {
-    font-size: clamp(1.75rem, calc(44 * var(--u)), 2.75rem);
-    font-weight: var(--font-weight-bold);
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: #ffffff;
   }
 
   .ysh__count-label {
@@ -463,10 +454,6 @@ const heroStyle = [
       min-width: 0;
       align-items: flex-start;
       padding: var(--space-3) var(--space-4);
-    }
-
-    .ysh__count-num {
-      font-size: 2.5rem;
     }
 
     .ysh__count-label {

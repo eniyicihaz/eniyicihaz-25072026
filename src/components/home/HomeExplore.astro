@@ -4,7 +4,7 @@
 // ayrı HomeShowroom model vitrini ana sayfadan kaldırıldı; ayrıntılı
 // karşılaştırma ve seçim kriterleri kendi pillar sayfalarında kalır.
 // Burada: cihaz türü başına tek kart (tek link) bir CAROUSEL'de (mobilde dokunmatik kaydırma, masaüstünde oklar;
-// görseller temsili) + 18 markanın logo şeridi (Brands, embedded) + iki hub linki. Kart metinleri mevcut kilitli
+// görseller temsili) + marka logo şeridi (Brands, embedded) + iki hub linki. Kart metinleri mevcut kilitli
 // category-explorer verisinden; yeni iddia yok.
 import { ArrowRight } from "lucide-astro";
 import HomeBlockHeader from "./HomeBlockHeader.astro";
@@ -19,7 +19,7 @@ import { deviceTypeCards, deviceFeatureLinks } from "../../data/device-types/car
     <HomeBlockHeader
       id="home-explore-title"
       eyebrow="İşitme Cihazları ve Markalar"
-      heading="İşitme Cihazı Türleri ve 18 Marka"
+      heading="İşitme Cihazı Türleri ve Markalar"
       intro={categoryExplorer.intro}
     />
 
@@ -45,7 +45,7 @@ import { deviceTypeCards, deviceFeatureLinks } from "../../data/device-types/car
     }
 
     <p class="home-explore__brands-lead">
-      Tek bir markaya bağlı değiliz; 18 marka satıyor ve tamamında teknik servis veriyoruz.
+      10+ marka ile çalışıyoruz. Farklı marka ve model seçeneklerini değerlendirerek, işitme ihtiyaçlarınıza ve yaşam tarzınıza uygun cihazı birlikte belirliyoruz.
     </p>
     <div class="home-explore__brands">
       <Brands embedded />

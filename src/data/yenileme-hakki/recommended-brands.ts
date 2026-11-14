@@ -21,19 +21,9 @@ export const yenilemeHakkiRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Widex",
-      description: "Yenileme hakkınızla SGK destekli Widex modellerini değerlendirebilirsiniz.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "Yenileme hakkınızla SGK destekli ReSound modellerini değerlendirebilirsiniz.",
       href: "/markalar/resound/",
-    },
-    {
-      label: "Signia",
-      description: "Yenileme hakkınızla SGK destekli Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia/",
     },
     {
       label: "MAICO",

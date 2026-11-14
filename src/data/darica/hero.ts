@@ -32,7 +32,7 @@ export const daricaHero: CorporateHeroContent = {
   imageSrcset:
     "/images/heroes/darica-dis-cephe-640.webp 640w, /images/heroes/darica-dis-cephe-800.webp 800w, /images/heroes/darica-dis-cephe-1000.webp 1000w, /images/heroes/darica-dis-cephe-1600.webp 1600w, /images/heroes/darica-dis-cephe.webp 2000w",
   imageSizes: "(max-width: 768px) 100vw, 50vw",
-  // Ziyaret bilgileri — ana sayfanın güven bölümünü (2009, SGK, 18 marka)
+  // Ziyaret bilgileri — ana sayfanın güven bölümünü (2009, SGK, 10+ marka)
   // tekrar etmek yerine. Saatlerin kendisi konum bölümünde company.hours'tan.
   stats: [
     { value: "Pazartesi–Cumartesi", label: "Pazar ve resmî tatillerde kapalı" },

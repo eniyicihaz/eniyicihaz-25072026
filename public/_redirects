@@ -22,16 +22,16 @@
 
 # Eski (kaldırılmış) sayfalar: yalnızca yakın ve anlamlı hedefi olanlar. Marka/model URL'leri → ilgili marka sayfası
 # (modelin ailesi o sayfada listelenir). Hedefi olmayanlar yönlendirilmedi; karar bekliyor (rapor).
+# 2026-11-14: Yayından kaldırılan marka sayfalarına giden 36 eski model adresinin kuralları (72 satır) silindi.
+# Bu adreslerin eşdeğer bir yeni sayfası yok; marka listesine gelişigüzel yönlendirme yapılmadı. Adresler 404 sayfasını
+# (noindex) 404 durum koduyla döndürür. Cloudflare Pages `_redirects` 404/410 durum kodlarını desteklemez (yalnızca
+# 301/302/303/307/308 ve 200); 410 istenirse bir Pages Function gerekir.
 /oticon-intent-3-isitme-cihazi /markalar/oticon/ 301
 /oticon-intent-3-isitme-cihazi/ /markalar/oticon/ 301
-/signia-silk-7ix-sarjli-hazir-kulak-ici-isitme-cihazi-charge-and-go-cg /markalar/signia/ 301
-/signia-silk-7ix-sarjli-hazir-kulak-ici-isitme-cihazi-charge-and-go-cg/ /markalar/signia/ 301
 /oticon-intent-2-isitme-cihazi /markalar/oticon/ 301
 /oticon-intent-2-isitme-cihazi/ /markalar/oticon/ 301
 /oticon-intent-isitme-cihazi /markalar/oticon/ 301
 /oticon-intent-isitme-cihazi/ /markalar/oticon/ 301
-/signia-pure-312-3ax-isitme-cihazi /markalar/signia/ 301
-/signia-pure-312-3ax-isitme-cihazi/ /markalar/signia/ 301
 /oticon-intent-1-isitme-cihazi /markalar/oticon/ 301
 /oticon-intent-1-isitme-cihazi/ /markalar/oticon/ 301
 /oticon-intent-4-isitme-cihazi /markalar/oticon/ 301
@@ -48,10 +48,6 @@
 /resound-omnia-7-isitme-cihazi/ /markalar/resound/ 301
 /isitme-cihazi-pili /servis-bakim/pil-aksesuar/ 301
 /isitme-cihazi-pili/ /servis-bakim/pil-aksesuar/ 301
-/signia-active-pro-7x-isitme-cihazi /markalar/signia/ 301
-/signia-active-pro-7x-isitme-cihazi/ /markalar/signia/ 301
-/signia-motion-7x-isitme-cihazi /markalar/signia/ 301
-/signia-motion-7x-isitme-cihazi/ /markalar/signia/ 301
 /oticon-opn-s-isitme-cihazi /markalar/oticon/ 301
 /oticon-opn-s-isitme-cihazi/ /markalar/oticon/ 301
 /oticon-opn-s3-isitme-cihazi /markalar/oticon/ 301
@@ -68,20 +64,10 @@
 /oticon-zircon-2-isitme-cihazi/ /markalar/oticon/ 301
 /am-xtm-p12-bte-xp-isitme-cihazi /markalar/am/ 301
 /am-xtm-p12-bte-xp-isitme-cihazi/ /markalar/am/ 301
-/signia-motion-13-3nx-isitme-cihazi /markalar/signia/ 301
-/signia-motion-13-3nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-motion-isitme-cihazi /markalar/signia/ 301
-/signia-motion-isitme-cihazi/ /markalar/signia/ 301
-/signia-pure-312-7ax-isitme-cihazi /markalar/signia/ 301
-/signia-pure-312-7ax-isitme-cihazi/ /markalar/signia/ 301
-/signia-styletto-7ax-isitme-cihazi /markalar/signia/ 301
-/signia-styletto-7ax-isitme-cihazi/ /markalar/signia/ 301
 /isitme-cihazi-hakkinda-bilgi /isitme-cihazlari/ 301
 /isitme-cihazi-hakkinda-bilgi/ /isitme-cihazlari/ 301
 /isitme-cihazi-tamiri /servis-bakim/teknik-servis/ 301
 /isitme-cihazi-tamiri/ /servis-bakim/teknik-servis/ 301
-/signia-silk-7x-isitme-cihazi /markalar/signia/ 301
-/signia-silk-7x-isitme-cihazi/ /markalar/signia/ 301
 /am-xtm-p12-isitme-cihazi /markalar/am/ 301
 /am-xtm-p12-isitme-cihazi/ /markalar/am/ 301
 /am-xtm-p12-ric-isitme-cihazi /markalar/am/ 301
@@ -102,44 +88,22 @@
 /resound-key-3-isitme-cihazi-ke3/ /markalar/resound/ 301
 /resound-key-isitme-cihazi /markalar/resound/ 301
 /resound-key-isitme-cihazi/ /markalar/resound/ 301
-/signia-motion-13-1nx-isitme-cihazi /markalar/signia/ 301
-/signia-motion-13-1nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-motion-1x-isitme-cihazi /markalar/signia/ 301
-/signia-motion-1x-isitme-cihazi/ /markalar/signia/ 301
 /oticon-own-5-isitme-cihazi /markalar/oticon/ 301
 /oticon-own-5-isitme-cihazi/ /markalar/oticon/ 301
 /oticon-play-px-1-pediatrik-isitme-cihazi /markalar/oticon/ 301
 /oticon-play-px-1-pediatrik-isitme-cihazi/ /markalar/oticon/ 301
 /oticon-real-isitme-cihazi /markalar/oticon/ 301
 /oticon-real-isitme-cihazi/ /markalar/oticon/ 301
-/signia-pure-312-5ax-isitme-cihazi /markalar/signia/ 301
-/signia-pure-312-5ax-isitme-cihazi/ /markalar/signia/ 301
-/signia-silk-3ix-sarjli-hazir-kulak-ici-isitme-cihazi-charge-and-go-cg /markalar/signia/ 301
-/signia-silk-3ix-sarjli-hazir-kulak-ici-isitme-cihazi-charge-and-go-cg/ /markalar/signia/ 301
 /oticon-ruby-2-isitme-cihazi /markalar/oticon/ 301
 /oticon-ruby-2-isitme-cihazi/ /markalar/oticon/ 301
 /resound-omnia-9-modeli-isitme-cihazi-teknik-ozellikleri /markalar/resound/ 301
 /resound-omnia-9-modeli-isitme-cihazi-teknik-ozellikleri/ /markalar/resound/ 301
-/signia-pure-312-1ax-isitme-cihazi /markalar/signia/ 301
-/signia-pure-312-1ax-isitme-cihazi/ /markalar/signia/ 301
-/signia-silk-1x-isitme-cihazi /markalar/signia/ 301
-/signia-silk-1x-isitme-cihazi/ /markalar/signia/ 301
-/signia-silk-3x-isitme-cihazi /markalar/signia/ 301
-/signia-silk-3x-isitme-cihazi/ /markalar/signia/ 301
 /oticon-isitme-cihazlari /markalar/oticon/ 301
 /oticon-isitme-cihazlari/ /markalar/oticon/ 301
 /oticon-own-2-isitme-cihazi /markalar/oticon/ 301
 /oticon-own-2-isitme-cihazi/ /markalar/oticon/ 301
 /resound-key-2-isitme-cihazi-modeli-teknik-ozellikleri-ke2 /markalar/resound/ 301
 /resound-key-2-isitme-cihazi-modeli-teknik-ozellikleri-ke2/ /markalar/resound/ 301
-/signia-motion-3x-isitme-cihazi /markalar/signia/ 301
-/signia-motion-3x-isitme-cihazi/ /markalar/signia/ 301
-/signia-pure-312-2ax-isitme-cihazi /markalar/signia/ 301
-/signia-pure-312-2ax-isitme-cihazi/ /markalar/signia/ 301
-/signia-silk-5ix-sarjli-hazir-kulak-ici-isitme-cihazi-charge-and-go-cg /markalar/signia/ 301
-/signia-silk-5ix-sarjli-hazir-kulak-ici-isitme-cihazi-charge-and-go-cg/ /markalar/signia/ 301
-/signia-styletto-3ax-isitme-cihazi /markalar/signia/ 301
-/signia-styletto-3ax-isitme-cihazi/ /markalar/signia/ 301
 /am-xtm-p12-bte-isitme-cihazi /markalar/am/ 301
 /am-xtm-p12-bte-isitme-cihazi/ /markalar/am/ 301
 /am-xtm-ric-p12-isitme-cihazi-modeli-teknik-ozellikleri-data-sheet /markalar/am/ 301
@@ -150,14 +114,6 @@
 /oticon-xceed-play-cocuk-isitme-cihazi/ /markalar/oticon/ 301
 /oticon-zircon-isitme-cihazi /markalar/oticon/ 301
 /oticon-zircon-isitme-cihazi/ /markalar/oticon/ 301
-/signia-insio-7nx-isitme-cihazi /markalar/signia/ 301
-/signia-insio-7nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-motion-13-7nx-isitme-cihazi /markalar/signia/ 301
-/signia-motion-13-7nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-motion-5x-isitme-cihazi /markalar/signia/ 301
-/signia-motion-5x-isitme-cihazi/ /markalar/signia/ 301
-/signia-silk-isitme-cihazi /markalar/signia/ 301
-/signia-silk-isitme-cihazi/ /markalar/signia/ 301
 /oticon-own-4-isitme-cihazi /markalar/oticon/ 301
 /oticon-own-4-isitme-cihazi/ /markalar/oticon/ 301
 /oticon-ruby-isitme-cihazi /markalar/oticon/ 301
@@ -168,10 +124,6 @@
 /resound-enzo-q-5-isitme-cihazi/ /markalar/resound/ 301
 /resound-omnia-9-isitme-cihazi /markalar/resound/ 301
 /resound-omnia-9-isitme-cihazi/ /markalar/resound/ 301
-/signia-motion-2x-isitme-cihazi /markalar/signia/ 301
-/signia-motion-2x-isitme-cihazi/ /markalar/signia/ 301
-/signia-styletto-1ax-isitme-cihazi /markalar/signia/ 301
-/signia-styletto-1ax-isitme-cihazi/ /markalar/signia/ 301
 /kulak-arkasi-isitme-cihazi /isitme-cihazlari/kulak-arkasi-bte/ 301
 /kulak-arkasi-isitme-cihazi/ /isitme-cihazlari/kulak-arkasi-bte/ 301
 /oticon-opn-play-2-pediatrik-isitme-cihazi /markalar/oticon/ 301
@@ -194,18 +146,6 @@
 /resound-omnia-cic-kulak-ici-isitme-cihazi/ /markalar/resound/ 301
 /resound-omnia-modeli-isitme-cihazi-teknik-ozellikleri-ru /markalar/resound/ 301
 /resound-omnia-modeli-isitme-cihazi-teknik-ozellikleri-ru/ /markalar/resound/ 301
-/signia-insio-1nx-isitme-cihazi /markalar/signia/ 301
-/signia-insio-1nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-insio-2nx-isitme-cihazi /markalar/signia/ 301
-/signia-insio-2nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-insio-3nx-isitme-cihazi /markalar/signia/ 301
-/signia-insio-3nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-motion-13-2nx-isitme-cihazi /markalar/signia/ 301
-/signia-motion-13-2nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-motion-13-5nx-isitme-cihazi /markalar/signia/ 301
-/signia-motion-13-5nx-isitme-cihazi/ /markalar/signia/ 301
-/signia-silk-2x-isitme-cihazi /markalar/signia/ 301
-/signia-silk-2x-isitme-cihazi/ /markalar/signia/ 301
 /am-xtm-p12-hazir-kulak-ici-isitme-cihazi /markalar/am/ 301
 /am-xtm-p12-hazir-kulak-ici-isitme-cihazi/ /markalar/am/ 301
 /am-xtm-p12-kulak-ici-isitme-cihazi /markalar/am/ 301
@@ -232,14 +172,6 @@
 /resound-omnia-isitme-cihazi/ /markalar/resound/ 301
 /resound-omnia-kulak-ici-gorunmez-isitme-cihazi-teknik-ozellikleri-cic /markalar/resound/ 301
 /resound-omnia-kulak-ici-gorunmez-isitme-cihazi-teknik-ozellikleri-cic/ /markalar/resound/ 301
-/signia-active-isitme-cihazi /markalar/signia/ 301
-/signia-active-isitme-cihazi/ /markalar/signia/ 301
-/signia-isitme-cihazi-ozellikleri /markalar/signia/ 301
-/signia-isitme-cihazi-ozellikleri/ /markalar/signia/ 301
-/signia-isitme-cihazlari /markalar/signia/ 301
-/signia-isitme-cihazlari/ /markalar/signia/ 301
-/signia-pure-312-isitme-cihazi /markalar/signia/ 301
-/signia-pure-312-isitme-cihazi/ /markalar/signia/ 301
 /cocuklara-ozel-isitme-cihazi /isitme-cihazlari/cocuklara-ozel/ 301
 /cocuklara-ozel-isitme-cihazi/ /isitme-cihazlari/cocuklara-ozel/ 301
 /isitme-cihazi /isitme-cihazlari/ 301

@@ -27,7 +27,7 @@ export const gebzeServices = {
     },
     {
       title: "Cihaz seçimi ve demo",
-      text: "Cihaz seçimi ve merkezdeki demo ücretsizdir; randevu gerekir. 18 marka satıyoruz.",
+      text: "Cihaz seçimi ve merkezdeki demo ücretsizdir; randevu gerekir. 10+ marka ile çalışıyoruz.",
     },
     {
       title: "SGK işlem desteği",
@@ -108,7 +108,7 @@ export const gebzeTrial = {
     "Merkezde yaklaşık 20 dakikalık demo ücretsizdir. Günlük hayatta denemek isterseniz cihazı satın alarak 7 güne kadar deneyebilirsiniz; uygun bulunmazsa ödenen tutar iade edilir. Kulak içi cihazlar bu 7 günlük deneme kapsamı dışındadır; merkezde demo olarak denenebilir.",
   links: [
     { label: "Cihaz deneme", href: "/uygulama-ayar/cihaz-deneme/" },
-    { label: "18 marka", href: "/markalar/" },
+    { label: "10+ marka", href: "/markalar/" },
   ] as GebzeLinkItem[],
 };
 

@@ -2,8 +2,8 @@
 // cihaz-uygulama page. Reuses the shared BrandPageRelatedContent
 // component as a brand-link showcase, same technique every prior page
 // uses. Framed around each brand's own real, verifiable fitting-software
-// name — Oticon Genie 2, Phonak Target, Signia Connexx, Widex Compass
-// GPS and ReSound Smart Fit are all real, publicly documented
+// name — Oticon Genie 2, Phonak Target
+// and ReSound Smart Fit are all real, publicly documented
 // professional fitting platforms; NuEar is described generically since
 // no single public fitting-software name is verifiable for it.
 
@@ -22,16 +22,6 @@ export const cihazUygulamaRecommendedBrands: BrandPageRelatedContentContent = {
       label: "Phonak",
       description: "Phonak cihazları, Target yazılımıyla odyogramınıza göre programlanır.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia cihazları, Connexx yazılımıyla odyogramınıza göre programlanır.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex cihazları, Compass GPS yazılımıyla odyogramınıza göre programlanır.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

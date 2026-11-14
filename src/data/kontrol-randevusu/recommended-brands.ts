@@ -22,16 +22,6 @@ export const kontrolRandevusuRecommendedBrands: BrandPageRelatedContentContent =
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia cihazları, Connexx yazılımı üzerinden kontrol randevusunda incelenir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex cihazları, Compass GPS yazılımı üzerinden kontrol randevusunda değerlendirilir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound cihazları, Smart Fit yazılımı üzerinden kontrol randevusunda incelenir.",
       href: "/markalar/resound/",

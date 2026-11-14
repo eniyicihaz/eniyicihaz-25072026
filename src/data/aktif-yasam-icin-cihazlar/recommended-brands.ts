@@ -2,9 +2,7 @@
 // aktif-yasam-icin-cihazlar page. Reuses the shared
 // BrandPageRelatedContent component as a brand-link showcase, same
 // technique every prior feature/need page uses. All hrefs point to real,
-// already-built /markalar/{slug} pages. Signia Styletto (hafif, hızlı
-// şarj edilebilir tasarım) is this page's own hero image
-// (public/images/signia/models/styletto.webp).
+// already-built /markalar/{slug} pages.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
@@ -21,16 +19,6 @@ export const aktifYasamIcinCihazlarRecommendedBrands: BrandPageRelatedContentCon
       label: "Phonak",
       description: "Phonak'ın Audeo ve Virto serisi, güvenli oturma ve dayanıklılık arayan aktif kullanıcılar arasında sıkça tercih edilir.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın Styletto serisi, hafif ve hızlı şarj edilebilir tasarımıyla aktif bir yaşam tarzına uygun bir seçenektir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in SmartRIC serisi, doğal ses felsefesini hafif ve dayanıklı bir tasarımla birleştirir.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

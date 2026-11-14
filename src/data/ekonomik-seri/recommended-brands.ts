@@ -4,7 +4,7 @@
 // point to real, already-built /markalar/{slug} pages. Oticon Ruby
 // (explicitly tagged "Ekonomik Seri" in its own models.ts) and ReSound
 // Key (tagged "Giriş Seviyesi") are named directly since the data
-// verifies the claim; Phonak, Signia, Widex and NuEar are described
+// verifies the claim; Phonak and NuEar are described
 // generically since none of their models.ts data carries an explicit
 // economy-tier tag.
 
@@ -23,16 +23,6 @@ export const ekonomikSeriRecommendedBrands: BrandPageRelatedContentContent = {
       label: "Phonak",
       description: "Phonak'ın uygun fiyatlı seçenekleri, temel işitme ihtiyaçları için değerlendirilebilir.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın giriş seviyesi seçenekleri, temel kullanım ihtiyaçları için uygun bir başlangıç sunar.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in uygun fiyatlı seçenekleri, temel işitme ihtiyaçları için değerlendirilebilir.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

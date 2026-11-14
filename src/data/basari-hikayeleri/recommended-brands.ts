@@ -24,16 +24,6 @@ export const basariHikayeleriRecommendedBrands: BrandPageRelatedContentContent =
       href: "/markalar/resound/",
     },
     {
-      label: "Signia",
-      description: "Günlük yaşamda pratik kullanım sunan modelleriyle bilinir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Doğal ses deneyimi odaklı modelleriyle bilinir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "Sonic",
       description: "Bütçe dostu bir seçenek arıyorsanız, Sonic modelleri değerlendirilebilir.",
       href: "/markalar/sonic/",

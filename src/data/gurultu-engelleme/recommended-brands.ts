@@ -21,16 +21,6 @@ export const gurultuEngellemeRecommendedBrands: BrandPageRelatedContentContent =
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın gürültü azaltma teknolojisi, gerçek zamanlı sinyal işlemeyle dinleme konforunu artırmayı hedefler.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in gürültü azaltma modelleri, markanın doğal ses felsefesini rahatsız edici seslerin azaltılmasıyla bir araya getirir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un gürültü azaltma aileleri, gürültülü ortamlarda sıkça değerlendirilen bir seçenektir.",
       href: "/markalar/resound/",

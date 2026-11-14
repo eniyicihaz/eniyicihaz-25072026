@@ -21,24 +21,9 @@ export const raporSureciRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Raporunuz onaylandıktan sonra SGK destekli Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Raporunuz onaylandıktan sonra SGK destekli Widex modellerini değerlendirebilirsiniz.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "Raporunuz onaylandıktan sonra SGK destekli ReSound modellerini değerlendirebilirsiniz.",
       href: "/markalar/resound/",
-    },
-    {
-      label: "Rexton",
-      description: "Bütçe dostu bir seçenek arıyorsanız, SGK destekli Rexton modelleri değerlendirilebilir.",
-      href: "/markalar/rexton/",
     },
   ],
   accentColor: "#0891b2",

@@ -29,7 +29,7 @@ export const guvenilirTeknolojiConsiderations: BrandPageIdealUserContent = {
     {
       icon: FileX,
       title: "Garanti Belgesi Olmayan Ürünlerde Servis Reddedilebilir",
-      description: "Yetkili servisler, garanti belgesi bulunmayan ürünlere hizmet vermeyi reddedebilir.",
+      description: "Teknik servisler, garanti belgesi bulunmayan ürünlere hizmet vermeyi reddedebilir.",
       suggestedFamilies: ["Garanti Belgesi Kontrolü"],
     },
     {

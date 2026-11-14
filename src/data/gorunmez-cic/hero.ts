@@ -48,7 +48,7 @@ export const gorunmezCicHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/signia/models/insio.webp",
+    src: "/images/homepage/device-comparison/device-comparison-gorunmez-cic.webp",
     alt: "Görünmez (CIC) tipi, kulak kanalının derinlerine yerleşen, kişiye özel üretilmiş işitme cihazı görseli",
   },
   floatingCard: {

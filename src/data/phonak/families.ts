@@ -142,7 +142,7 @@ const CENTER_TRIAL: CenterItem = {
 };
 const CENTER_SERVICE: CenterItem = {
   title: "Teknik servis ve uzaktan ayar",
-  text: "Phonak cihazların teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir. Uzaktan cihaz ayarı hizmetimiz Phonak cihazlarda da veriliyor.",
+  text: "Phonak cihazlar için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir. Uzaktan cihaz ayarı hizmetimiz Phonak cihazlarda da veriliyor.",
   href: "/servis-bakim/",
   linkLabel: "Servis ve bakım",
 };
@@ -784,7 +784,7 @@ export const PHONAK_FAMILIES: PhonakFamily[] = [
       {
         question: "Bolero cihazımın servisini nerede yaptırabilirim?",
         answer:
-          "Phonak cihazların teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir. Bakım ve temizlik ise ücretsizdir; ikisi için de randevu gerekir.",
+          "Phonak cihazlar için teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir. Bakım ve temizlik ise ücretsizdir; ikisi için de randevu gerekir.",
       },
     ],
     related: ["naida", "sky", "audeo"],
@@ -1113,7 +1113,7 @@ export const PHONAK_BRAND = {
     title: "Phonak İşitme Cihazları",
     lead:
       "Phonak; kanal içi hoparlörlü (RIC), kulak arkası (BTE) ve kişiye özel kulak içi (ITE) işitme cihazları ile tek taraflı işitme kaybı için CROS sistemi sunan bir işitme cihazı markasıdır. Bu sayfada Phonak'ın altı ailesini, farklarını ve hangisinin kime göre değerlendirildiğini bulabilirsiniz.",
-    points: ["Satışını yaptığımız 18 markadan biri", "Phonak cihazlara teknik servis", "Darıca'da SGK anlaşmalı merkez"],
+    points: ["Çalıştığımız 10+ markadan biri", "Phonak cihazlar için bakım ve teknik destek", "Darıca'da SGK anlaşmalı merkez"],
   },
   intro: {
     heading: "Phonak'ı kısaca tanıyın",
@@ -1175,7 +1175,7 @@ export const PHONAK_BRAND = {
     heading: "Phonak için Darıca'daki merkezimiz",
     paragraphs: [
       "Avrasya İşitme Cihazları'nın tek fiziksel merkezi Darıca'dadır. Gebze, Çayırova ve Kocaeli'nin diğer ilçelerinden gelen ziyaretçilerimize de bu merkezde hizmet veriyoruz; bu ilçelerde şubemiz yoktur.",
-      "Phonak cihazlar için işitme testi, demo, uygulama, ayar ve teknik servis aynı merkezde yapılır. Evde hizmetimiz Kocaeli'nin tamamını ve İstanbul Anadolu Yakası'nın tüm ilçelerini kapsar.",
+      "Phonak cihazlar için işitme testi, demo, uygulama ve ayar aynı merkezde yapılır; bakım ve teknik destek için de aynı merkeze başvurabilirsiniz. Evde hizmetimiz Kocaeli'nin tamamını ve İstanbul Anadolu Yakası'nın tüm ilçelerini kapsar.",
     ],
     services: [CENTER_TEST, CENTER_DEMO, CENTER_TRIAL, CENTER_SERVICE] as CenterItem[],
     home: CENTER_HOME,

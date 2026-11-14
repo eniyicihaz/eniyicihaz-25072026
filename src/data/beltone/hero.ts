@@ -46,10 +46,10 @@ export const beltoneHero: BrandPageHeroContent = {
       description: "1940'ta Chicago'da Sam Posen tarafından kurulan bir işitme cihazı geleneği.",
     },
     {
-      label: "SERVİS",
+      label: "DESTEK",
       accent: "#12274A",
-      title: "Merkezimizde Teknik Servis",
-      description: "Beltone cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
+      title: "Bakım ve Teknik Destek",
+      description: "Beltone cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz.",
     },
   ],
   image: {
@@ -65,7 +65,7 @@ export const beltoneHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(27 56 100 / 0.12)",
   accentColorBorder: "rgb(27 56 100 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using Beltone's own
+  // composition established for the earlier brand pages, using Beltone's own
   // already-researched accent (#1B3864). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(27,56,100,0.35) 0%, rgba(27,56,100,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #080F1C 60%, #0C182C 100%)",

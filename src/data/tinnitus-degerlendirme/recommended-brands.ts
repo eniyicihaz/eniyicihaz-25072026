@@ -24,16 +24,6 @@ export const tinnitusDegerlendirmeRecommendedBrands: BrandPageRelatedContentCont
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın tinnitus destek özellikli modelleri, odyometrist eşliğinde değerlendirilebilir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in Zen Therapy teknolojisi, uzun süredir bilinen bir tinnitus destek yaklaşımı olarak değerlendirilebilir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un Relief uygulamalı modelleri, değerlendirme sonrası bir seçenek olarak sunulabilir.",
       href: "/markalar/resound/",

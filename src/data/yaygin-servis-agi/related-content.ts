@@ -34,7 +34,7 @@ export const yayginServisAgiRelatedContent: BrandPageRelatedContentContent = {
     },
     {
       label: "Tüm Markalarımız",
-      description: "Sattığımız 18 markayı ve ürün ailelerini inceleyin.",
+      description: "Çalıştığımız markaları ve ürün ailelerini inceleyin.",
       href: "/markalar/",
     },
   ],

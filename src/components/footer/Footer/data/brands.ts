@@ -7,16 +7,13 @@
 import type { BrandItem } from "../footer.types";
 
 export const brands: BrandItem[] = [
-  { name: "Signia", href: "/markalar/signia/" },
   { name: "Oticon", href: "/markalar/oticon/" },
   { name: "Phonak", href: "/markalar/phonak/" },
-  { name: "Widex", href: "/markalar/widex/" },
   { name: "ReSound", href: "/markalar/resound/" },
   { name: "NuEar", href: "/markalar/nuear/" },
   { name: "Unitron", href: "/markalar/unitron/" },
   { name: "Bernafon", href: "/markalar/bernafon/" },
   { name: "Audio Service", href: "/markalar/audio-service/" },
-  { name: "Rexton", href: "/markalar/rexton/" },
   { name: "Sonic", href: "/markalar/sonic/" },
   { name: "Philips", href: "/markalar/philips-hearing/" },
   { name: "A&M", href: "/markalar/am/" },

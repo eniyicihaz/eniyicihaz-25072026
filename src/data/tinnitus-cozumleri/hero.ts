@@ -57,8 +57,8 @@ export const tinnitusCozumleriHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/widex/models/moment-sheer.webp",
-    alt: "Dahili ses üreteci ile tinnitus destek özelliğine sahip işitme cihazı görseli",
+    src: "/images/price-guide/device-type-ric-rite.webp",
+    alt: "Kulak arkasına yerleşen RIC tipi işitme cihazı görseli (temsili)",
   },
   floatingCard: {
     title: "Rahatlatıcı Ses Desteği",

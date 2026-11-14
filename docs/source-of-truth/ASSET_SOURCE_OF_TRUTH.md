@@ -1,6 +1,6 @@
 # ASSET_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-10-07 (Faz 0 son bilgi aktarımı)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-14 (onaylı dört ofis fotoğrafı ve kaldırılan marka görselleri, §2 ve §3; önceki: 2026-10-07 Faz 0 son bilgi aktarımı)
 > **Amaç:** Görsel varlıkların tek kaynağı: logolar ve kullanım standardı, gerçek merkez fotoğrafları, diğer görseller, video, izinler ve kullanılmayacak varlıklar.
 > **Faz 0 sınırı:** Hiçbir görsel kopyalanmaz, taşınmaz, düzenlenmez veya üretilmez. Logo projeye alınmaz. Favicon üretilmez.
 
@@ -65,6 +65,12 @@
 
 **Notlar**
 - Bu fotoğraflar gerçek olmadıkları gerekçesiyle **değiştirilmez**.
+- **Onaylı dört ofis fotoğrafı** [DOĞRULANDI, İşletme sahibi, 2026-11-14]: Aşağıdaki dört gerçek ofis fotoğrafında, yayından kaldırılan markalara ait fiziksel tanıtım malzemesi görünür. İşletme sahibi bunların olduğu gibi kalmasını özellikle onayladı. Bu fotoğraflar **silinmez, rötuşlanmaz, kırpılmaz, başka fotoğrafla değiştirilmez ve kullanımdan çıkarılmaz**; marka işaretleri yapay olarak temizlenmez. Marka ya da ürün tanıtımı için değil, gerçek ofis ortamını göstermek için kullanılırlar.
+  - `pages/hakkimizda-hero-marka-duvari.webp` (ve `-800`, `-1200` varyantları): Hakkımızda hero'su; masada Signia bayrağı.
+  - `heroes/avrasya-isitme-cihazlari-ofis.webp` (ve `-640`, `-960` varyantları): ana sayfa hero fotoğrafı; kapı yanında Signia standı.
+  - `pages/hakkimizda-isitme-testi-odasi.webp` (ve `-400`, `-640`, `-1024` varyantları): merkez galerisi; Signia ve Siemens panoları.
+  - `ui/mega-menu-markalar-merkez.webp`: Markalar mega menüsündeki resepsiyon fotoğrafı.
+  - Bu istisna yalnızca bu dört fotoğraf içindir. Başka hiçbir görselde kaldırılan markaların logosu veya ürün görseli kullanılmaz (PRODUCT_SOT §1).
 - **Kullanıcı kaynaklı bir "kullanmayın" listesi yoktur** [DOĞRULANDI, İşletme sahibi, 2026-10-07].
   - Gerçek merkez, ekip, cihaz ve mekân fotoğraflarının kullanımını engelleyen bir kısıt yoktur.
   - Bu, her fotoğrafın her yerde otomatik kullanılacağı anlamına gelmez. Her fotoğrafın uygunluğu image audit'te ayrıca değerlendirilir:
@@ -90,6 +96,7 @@
 | Marka logoları | `public/images/brands/*-logo-seffaf.webp` (19 dosya) | [MEVCUT BELGELERDE VAR] |
 | Varsayılan OG görseli | `public/images/og/og-default.jpg` (1200 × 630; tüm sayfalarda OG ve schema `image` olarak kullanılıyor: `MainLayout.astro`, `lib/schema.ts`; alt metni cadde cephesini tarif ediyor) | [MEVCUT BELGELERDE VAR]. Sayfa tipine göre OG kararı Faz 3'te |
 | SGK görselleri | `pages/sgk-2026-odeme-tablosu.webp`, `pages/sgk-isitme-cihazi.webp` | [MEVCUT BELGELERDE VAR] [TIME-SENSITIVE] (tablo tutar içeriyor) |
+| 2026-11-14 güncellemesi | Yayından kaldırılan üç markanın ürün görselleri (`<marka>/models/*`), logoları (`brands/<marka>-logo-seffaf.webp`) ve `pages/<marka>-hero*.webp` dosyaları ile bu markaların logosunu içeren `heroes/isitme-cihazi-markalari.webp` ve `ui/mega-menu-markalar.webp` `public` klasöründen kaldırıldı (46 dosya). Bu tablodaki dosya sayıları 2026-10 envanteridir | [DOĞRULANDI] (İşletme sahibi kararı, 2026-11-14) |
 | Favicon seti | `public/favicon.svg` (mavi kare + "E"), `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` | [MEVCUT BELGELERDE VAR]. Eski markayı çağrıştırıyor. Şimdilik kalır |
 | Kullanılmayan dosyalar (site analizi) | `brands/starkey-logo-seffaf.webp`, `heroes/hero-01..03.webp`, `oticon/models-full/*` (12), `ui/mega-menu-hizmetlerimiz.webp`; ayrıca birebir aynı iki kopya `isitme-cihazi-markalari.webp` (`pages/` ve `heroes/`) | [MEVCUT BELGELERDE VAR]. Silme kararı ayrı onayla |
 

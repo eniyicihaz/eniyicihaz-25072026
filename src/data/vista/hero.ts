@@ -39,10 +39,10 @@ export const vistaHero: BrandPageHeroContent = {
       description: "Soundsuite OS ses işleme teknolojisini taşır.",
     },
     {
-      label: "SERVİS",
+      label: "DESTEK",
       accent: "#F08745",
-      title: "Merkezimizde Teknik Servis",
-      description: "Vista cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
+      title: "Bakım ve Teknik Destek",
+      description: "Vista cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz.",
     },
     {
       label: "VALUE",
@@ -64,7 +64,7 @@ export const vistaHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(232 93 10 / 0.12)",
   accentColorBorder: "rgb(232 93 10 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using Vista's own
+  // composition established for the earlier brand pages, using Vista's own
   // already-researched accent (#E85D0A). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(232,93,10,0.35) 0%, rgba(232,93,10,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #1D0D05 60%, #2E1508 100%)",

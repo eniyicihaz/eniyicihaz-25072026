@@ -22,7 +22,7 @@ function plate(from: string, to: string, w = 800, h = 600): string {
 export const deviceGallery = [
     {
         src: plate("#6f7681", "#2a2f38"),
-        alt: "Signia Pure Charge&Go 7AX kulak arkası işitme cihazı, grafit renk",
+        alt: "Örnek Model RIC 7 kulak arkası işitme cihazı, grafit renk",
         caption: "Kulak arkası yerleşim"
     },
     {

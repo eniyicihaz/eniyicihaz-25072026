@@ -13,7 +13,7 @@ export const phonakUnique: UniqueBrandContent = {
   },
   heroAlt: "Phonak Audéo işitme cihazı",
   heroParagraphs: [
-    `Phonak, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde ${f.n} Phonak ailesi listeliyoruz ve her biri sitemizde ayrı bir kategoride: RIC, güçlü kayıplar, çocuk, kulak arkası (BTE), kulak içi ve tek taraflı kayıp.`,
+    `Phonak, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizde ${f.n} Phonak ailesi listeliyoruz ve her biri sitemizde ayrı bir kategoride: RIC, güçlü kayıplar, çocuk, kulak arkası (BTE), kulak içi ve tek taraflı kayıp.`,
     `Bluetooth etiketi altı ailenin hepsinde var. Şarjlı etiketi ${f.charge.length} ailede (${join(f.charge)}), pilli etiketi yalnızca Bolero'da.`,
   ],
   heroFeatures: [
@@ -27,7 +27,7 @@ export const phonakUnique: UniqueBrandContent = {
     paragraphs: [
       "Phonak sayfasındaki altı aile, sitemizde birbirinden farklı kategorilerle listeleniyor: Audéo RIC, Naída güçlü kayıplar, Sky çocuk, Bolero kulak arkası (BTE), Virto kulak içi ve CROS tek taraflı işitme kaybı. Yani liste, aynı ailenin altı varyantı değil, altı ayrı ihtiyaç başlığı.",
       `Şarjlı etiketi ${join(f.charge)} ailelerinde var. Bolero pilli çalışır; Virto'da şarjlı veya pilli etiketi sitemizdeki veride yer almıyor.`,
-      "Phonak cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Phonak cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

@@ -13,7 +13,7 @@ export const guvenilirTeknolojiIntro: BrandPageIntroContent = {
   heading: "Güvenilir Teknoloji Nedir ve Nasıl Doğrulanır?",
   paragraphs: [
     "Güvenilir teknoloji, bir işitme cihazının üretici tarafından resmi olarak test edilmiş ve sertifikalandırılmış olması anlamına gelir.",
-    "Orijinal bir cihaz; güncel yazılım sürümüne, üretici garantisine, resmi seri numarasına ve yetkili teknik servis desteğine sahiptir.",
+    "Orijinal bir cihaz; güncel yazılım sürümüne, üretici garantisine, resmi seri numarasına ve teknik servis desteğine sahiptir.",
     "Paralel ithal, kaçak veya sahte ürünler ise genellikle bu güvencelerin hiçbirini sunmaz; bu nedenle satın alma öncesinde ürünün orijinalliğini doğrulamak önemlidir.",
     "Bir cihazın orijinalliğini doğrulamanın en güvenilir yolu, faturalı olarak satın almak ve seri numarasını üretici sistemi üzerinden kontrol etmektir.",
   ],
@@ -21,7 +21,7 @@ export const guvenilirTeknolojiIntro: BrandPageIntroContent = {
     { value: "Faturalı Satış", label: "Satış Kaydı" },
     { value: "Üretici Garantili", label: "Güvence Türü" },
     { value: "Seri Numarası ile Doğrulanır", label: "Orijinallik Kontrolü" },
-    { value: "Resmi Teknik Servis", label: "Destek Türü" },
+    { value: "Teknik Servis Desteği", label: "Destek Türü" },
   ],
   accentColor: "#1d4ed8",
   accentColorBadgeBg: "rgb(29 78 216 / 0.08)",

@@ -2,7 +2,7 @@
 // Renders through the shared BrandPageComparison component. Uses
 // levelLabel (descriptive tag) for every row rather than the dot-scale,
 // since NuEar has no well-established public "1-2-3-4" tier system this
-// project has verified — same choice made for Phonak, Signia, Widex and
+// project has verified — same choice made for Phonak and
 // ReSound.
 
 import { Sparkles, Layers, BatteryCharging, Waves, Wallet, Palette } from "lucide-astro";

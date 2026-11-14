@@ -21,10 +21,6 @@ export const coselgiFaq: BrandPageFaqContent = {
       label: "Genel",
       items: [
         {
-          question: "Coselgi hangi markaya bağlı?",
-          answer: "Coselgi, dünyanın önde gelen işitme teknolojisi markalarından, Danimarka merkezli Widex'e bağlı bir markadır.",
-        },
-        {
           question: "Coselgi hangi konuda öne çıkar?",
           answer: "Coselgi, Acoustic Environment Technology ile bulunduğunuz ortamı analiz ederek ses ayarlarını otomatik optimize etmesiyle tanınır.",
         },

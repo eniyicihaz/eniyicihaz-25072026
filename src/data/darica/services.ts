@@ -5,7 +5,7 @@
 // Kaynak: SERVICE_SOURCE_OF_TRUTH §1 (H1 5 yaş ve üstü ücretsiz test; H6,
 // H7, H11, H15, H16 ücretsiz; H24 dışındaki hizmetler randevulu), §1.5 ve
 // H28 (kanonik deneme modeli — ana sayfayla aynı ifade), §2.7 (seçim
-// kriterleri), §2.12 (ilk kontrol ~2 hafta, YENİDEN DOĞRULA), §4 (18
+// kriterleri), §2.12 (ilk kontrol ~2 hafta, YENİDEN DOĞRULA), §4 (
 // markanın tamamında teknik servis; onarımda yedek cihaz — YENİDEN DOĞRULA).
 // "Merkezde ücretsiz demo" ayrıca İlk Ziyaret bölümünde (20 dk) anlatılıyor;
 // burada kısa tutuldu.
@@ -43,8 +43,8 @@ export const daricaServices: BrandCriteriaContent = {
     },
     {
       icon: Wrench,
-      title: "18 Markada Teknik Servis",
-      description: "18 markanın tamamı için teknik servis başvurularınızı merkezimizde alıyoruz; onarım sürecinde ücretsiz yedek cihaz sağlıyoruz.",
+      title: "Bakım ve Teknik Destek",
+      description: "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek başvurularınızı merkezimizde alıyoruz; onarım sürecinde ücretsiz yedek cihaz sağlıyoruz.",
       href: "/servis-bakim/teknik-servis/",
     },
     {
@@ -54,6 +54,6 @@ export const daricaServices: BrandCriteriaContent = {
       href: "/uygulama-ayar/evde-isitme-cihazi-hizmeti/",
     },
   ],
-  closing: "Sattığımız 18 markayı ve modellerini marka sayfalarımızda inceleyebilirsiniz.",
+  closing: "Çalıştığımız markaları ve modellerini marka sayfalarımızda inceleyebilirsiniz.",
   closingCta: { label: "Markaları inceleyin", href: "/isitme-cihazi-markalari/" },
 };

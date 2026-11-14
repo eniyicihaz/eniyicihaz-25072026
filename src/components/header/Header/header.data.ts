@@ -83,9 +83,9 @@ const devicesMega: MegaMenuData = {
 const brandsMega: MegaMenuData = {
   id: "markalar",
   promo: {
-    badge: "18 Marka",
+    badge: "10+ Marka",
     title: "İşitme Cihazı Markaları",
-    text: "Darıca'daki merkezimizde 18 marka ile çalışıyoruz; marka ve model ailelerini birlikte inceleyin.",
+    text: "Darıca'daki merkezimizde 10+ marka ile çalışıyoruz; marka ve model ailelerini birlikte inceleyin.",
     cta: { label: "Tüm Markalar", href: "/markalar/" },
     image: "/images/ui/mega-menu-markalar-merkez.webp",
   },
@@ -97,8 +97,6 @@ const brandsMega: MegaMenuData = {
       links: [
         { label: "Oticon", href: "/markalar/oticon/", logo: "/images/brands/oticon-logo-seffaf.webp" },
         { label: "Phonak", href: "/markalar/phonak/", logo: "/images/brands/phonak-logo-seffaf.webp" },
-        { label: "Signia", href: "/markalar/signia/", logo: "/images/brands/signia-logo-seffaf.webp" },
-        { label: "Widex", href: "/markalar/widex/", logo: "/images/brands/widex-logo-seffaf.webp" },
         { label: "ReSound", href: "/markalar/resound/", logo: "/images/brands/resound-logo-seffaf.webp" },
         { label: "NuEar", href: "/markalar/nuear/", logo: "/images/brands/nuear-logo-seffaf.webp" },
       ],
@@ -111,7 +109,7 @@ const brandsMega: MegaMenuData = {
       links: [
         { label: "Güvenilir Teknoloji", href: "/neden-orijinal/guvenilir-teknoloji/" },
         { label: "Uzun Ömürlü Cihazlar", href: "/neden-orijinal/uzun-omurlu-cihazlar/" },
-        { label: "Üretici Yetkili Servis Desteği", href: "/neden-orijinal/yaygin-servis-agi/" },
+        { label: "Bakım ve Teknik Destek", href: "/neden-orijinal/yaygin-servis-agi/" },
         { label: "Aksesuar ve Yedek Parça", href: "/neden-orijinal/orijinal-aksesuar/" },
         { label: "Ücretsiz Danışmanlık", href: "/neden-orijinal/ucretsiz-danismanlik/" },
         { label: "Kolay Değişim", href: "/neden-orijinal/kolay-degisim/" },
@@ -137,7 +135,7 @@ const brandsMega: MegaMenuData = {
     icon: "headset",
     title: "Marka Desteği",
     items: [
-      { icon: "wrench", title: "Üretici Yetkili Servis", desc: "18 markada servis yetkisi", href: "/neden-orijinal/yaygin-servis-agi/" },
+      { icon: "wrench", title: "Bakım ve Teknik Destek", desc: "Farklı marka ve modeller", href: "/neden-orijinal/yaygin-servis-agi/" },
       { icon: "battery", title: "Aksesuar & Yedek", desc: "Pil, kulak ucu, filtre", href: "/neden-orijinal/orijinal-aksesuar/" },
       { icon: "headphones", title: "Marka Danışmanlığı", desc: "Size uygun markayı seçin", href: "/neden-orijinal/marka-danismanligi/" },
     ],

@@ -18,8 +18,8 @@ export const uzunOmurluCihazlarRelatedContent: BrandPageRelatedContentContent = 
       href: "/neden-orijinal/guvenilir-teknoloji/",
     },
     {
-      label: "Üretici Yetkili Servis Desteği",
-      description: "18 markanın tamamı için üretici servis yetkimiz ve servis desteği hakkında bilgi edinin.",
+      label: "Bakım ve Teknik Destek",
+      description: "Farklı marka ve modellerde bakım ve teknik destek seçenekleri hakkında bilgi edinin.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {
@@ -29,7 +29,7 @@ export const uzunOmurluCihazlarRelatedContent: BrandPageRelatedContentContent = 
     },
     {
       label: "Tüm Markalarımız",
-      description: "Sattığımız 18 markayı ve ürün ailelerini inceleyin.",
+      description: "Çalıştığımız markaları ve ürün ailelerini inceleyin.",
       href: "/markalar/",
     },
     {

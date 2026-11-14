@@ -37,7 +37,7 @@ export const sarjEdilebilirComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Pil Ömrü ve Yaşlanma",
-      primary: "Dahili lityum-iyon pil, yıllar içinde kademeli olarak kapasite kaybedebilir; değişimi yetkili servis gerektirir.",
+      primary: "Dahili lityum-iyon pil, yıllar içinde kademeli olarak kapasite kaybedebilir; değişimi teknik servis gerektirir.",
       secondary: "Piller düzenli olarak tazelenir; cihazın kendi pil bölmesi zamanla değişmez.",
     },
     {

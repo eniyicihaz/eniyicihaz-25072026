@@ -7,7 +7,7 @@
 // %100 Almanya'da geliştirilip üretilen bir marka olması ve Cosma Chip
 // Technology tabanlı Sueno Pro tinnitus çözümlerine sahip olmasıdır.
 // Diğer Alman kökenli markalardan (Audio Service'in kulak içi
-// uzmanlığı, Rexton'ın Siemens/WSA mirası) farklı olarak eksen burada
+// uzmanlığı) farklı olarak eksen burada
 // "tinnitus'a özel teknoloji sunan aile şirketi" — bu projede başka
 // hiçbir markanın ana ekseni olarak kullanılmamış, gerçek bir
 // farklılaşma noktası.
@@ -65,7 +65,7 @@ export const audifonHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(226 0 26 / 0.12)",
   accentColorBorder: "rgb(226 0 26 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using Audifon's own
+  // composition established for the earlier brand pages, using Audifon's own
   // already-researched accent (#E2001A). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(226,0,26,0.35) 0%, rgba(226,0,26,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #1A0508 60%, #290710 100%)",

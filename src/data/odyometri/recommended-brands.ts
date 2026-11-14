@@ -22,16 +22,6 @@ export const odyometriRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın model çeşitliliği, odyogram sonucunuza uygun bir seçenek bulmanıza yardımcı olabilir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in doğal ses felsefesi, bazı odyogram profilleri için değerlendirilebilir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un modelleri, farklı işitme kaybı dereceleri için seçenekler sunar.",
       href: "/markalar/resound/",

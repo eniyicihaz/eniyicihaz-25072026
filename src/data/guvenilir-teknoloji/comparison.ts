@@ -38,8 +38,8 @@ export const guvenilirTeknolojiComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Teknik Servis",
-      primary: "Yetkili teknik servis ve orijinal yedek parça desteği sunar.",
-      secondary: "Yetkili servisler bu ürünlere hizmet vermeyi reddedebilir.",
+      primary: "Teknik servis ve orijinal yedek parça desteği sunar.",
+      secondary: "Teknik servisler bu ürünlere hizmet vermeyi reddedebilir.",
     },
     {
       feature: "Seri Numarası",

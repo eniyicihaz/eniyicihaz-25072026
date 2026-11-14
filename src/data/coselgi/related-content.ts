@@ -19,11 +19,6 @@ export const coselgiRelatedContent: BrandPageRelatedContentContent = {
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
       href: "/sgk-isitme-cihazi-odemesi/",
     },
-    {
-      label: "Widex İşitme Cihazları",
-      description: "Coselgi'nin bağlı olduğu ana markanın kendi teknolojisini incelemek isterseniz Widex'i keşfedin.",
-      href: "/markalar/widex/",
-    },
   ],
   // Precomputed rgb() decomposition of #1595D8.
   accentColor: "#1595D8",

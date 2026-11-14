@@ -67,7 +67,7 @@ export const philipsHearingHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(11 95 206 / 0.12)",
   accentColorBorder: "rgb(11 95 206 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using Philips's own
+  // composition established for the earlier brand pages, using Philips's own
   // already-researched accent (#0B5FCE). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(11,95,206,0.35) 0%, rgba(11,95,206,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #071527 60%, #0A1F3D 100%)",

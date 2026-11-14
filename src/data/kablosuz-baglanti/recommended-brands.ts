@@ -24,16 +24,6 @@ export const kablosuzBaglantiRecommendedBrands: BrandPageRelatedContentContent =
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın kablosuz bağlantı özellikleri, telesarmal ve uzaktan mikrofon aksesuarlarıyla uyumlu çalışır.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in kablosuz bağlantı desteği, markanın doğal ses felsefesini geniş aksesuar uyumluluğuyla birleştirir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un kablosuz bağlantı özellikleri, telesarmal ve uzaktan mikrofon sistemleriyle sıkça değerlendirilen bir seçenektir.",
       href: "/markalar/resound/",

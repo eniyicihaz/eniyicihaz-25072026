@@ -16,7 +16,7 @@ export const yayginServisAgiIdealUser: BrandPageIdealUserContent = {
     {
       icon: UserX,
       title: "Uygun Teknik Müdahale",
-      description: "Cihaza yapılacak müdahalenin cihazın yapısına ve üreticinin koşullarına uygun olması, işlemin cihaza zarar vermeden yürütülmesi açısından önemlidir.",
+      description: "Cihaza yapılacak müdahalenin cihazın yapısına uygun olması, işlemin cihaza zarar vermeden yürütülmesi açısından önemlidir.",
       suggestedFamilies: ["Uygun Müdahale"],
     },
     {
@@ -27,8 +27,8 @@ export const yayginServisAgiIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: FileX,
-      title: "Garanti Koşullarına Uygunluk",
-      description: "Garanti kapsamındaki işlemler üreticinin koşullarına göre yürütülür; yetkisi olmayan kişilerce yapılan müdahaleler garanti kapsamını etkileyebilir.",
+      title: "Garanti Koşullarının Gözetilmesi",
+      description: "Garanti kapsamı cihazın garanti şartlarına bağlıdır; uygun olmayan müdahaleler garanti kapsamını etkileyebilir.",
       suggestedFamilies: ["Garanti Koşulları"],
     },
     {

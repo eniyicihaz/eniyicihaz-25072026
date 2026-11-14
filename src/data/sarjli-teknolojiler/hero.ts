@@ -55,7 +55,7 @@ export const sarjliTeknolojilerHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/widex/models/smartric.webp",
+    src: "/images/homepage/device-comparison/device-comparison-sarj-edilebilir.webp",
     alt: "Gelişmiş lityum-iyon pil ve akıllı şarj yönetim teknolojisine sahip işitme cihazı görseli",
   },
   floatingCard: {

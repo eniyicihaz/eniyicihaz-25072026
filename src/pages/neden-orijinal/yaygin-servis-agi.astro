@@ -1,18 +1,18 @@
 ---
-// Yaygın Servis Ağı — /neden-orijinal/yaygin-servis-agi. Third page of
+// Bakım ve Teknik Destek — /neden-orijinal/yaygin-servis-agi (URL korunur). Third page of
 // the "Neden Orijinal" series (see header.data.ts's brandsMega second
 // column), following Güvenilir Teknoloji and Uzun Ömürlü Cihazlar. Same
-// trust/authenticity content genre: the authorized service network's
-// reach and quality as a direct consequence of buying original,
-// authorized-channel products. Built on the same master templates and
+// trust/authenticity content genre: maintenance and technical support for
+// the device after purchase. 2026-11-14 (owner decision): the page no longer
+// claims manufacturer service authorization or a brand count. Built on the same master templates and
 // shared, data-driven components used throughout the session (same
 // KulakArkasiComparison component, already generic, reused as-is), with
 // every section reframed around service infrastructure rather than
 // hearing health:
 //
-// - The "candidacy"/"symptom" slot becomes risks of unauthorized/
-//   informal repair (unqualified technicians, counterfeit parts,
-//   voided warranty, undocumented work, permanent damage).
+// - The "candidacy"/"symptom" slot becomes why the right part and a
+//   suitable intervention matter (part compatibility, warranty terms,
+//   documented work, device performance).
 // - "Dikkat Edilmesi Gerekenler" covers practical service-logistics
 //   caveats (not every dealer offers service, regional coverage varies,
 //   documentation matters) rather than a health-safety warning — no
@@ -20,19 +20,15 @@
 // - The TechEvolution "stage" slot becomes a 4-step repair process
 //   (ön değerlendirme -> garanti kontrolü -> orijinal parça onarımı ->
 //   test ve teslim) instead of a severity ladder or maintenance routine.
-// - The KulakArkasiComparison table compares authorized-network service
-//   against unauthorized/independent repair — this page's own natural
-//   comparison axis.
 //
 // accentColor: turuncu / orange-600 (#ea580c) — third color in the fresh
 // accent rotation opened for this series on Güvenilir Teknoloji's
 // hero.ts; see that file for the full rationale.
 //
-// 14-section flow, in order: Hero -> Nedir? + Neden Önemlidir? ->
-// Yetkisiz Serviste Sıkça Karşılaşılan Riskler -> Avantajları -> Dikkat
-// Edilmesi Gerekenler -> Servis Süreci -> Öne Çıkan Güvenceler ->
-// Teknolojiler -> Markalara Göre İnceleyin -> Yetkili vs Yetkisiz Servis
-// -> Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
+// Section flow, in order: Hero -> Neden Önemlidir? -> Süreçte Neler Ele
+// Alınır? -> Doğru Parça ve Uygun Müdahale -> Ne Beklenir? -> Dikkat
+// Edilmesi Gerekenler -> Markalara Göre İnceleyin -> Uzman Yorumu -> SSS
+// -> CTA -> İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
 import YayginServisAgiHero from "../../components/brand-page/YayginServisAgiHero/YayginServisAgiHero.astro";
 import BrandPageIntro from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
@@ -57,8 +53,8 @@ import { yayginServisAgiFinalCta } from "../../data/yaygin-servis-agi/final-cta"
 ---
 
 <MainLayout
-  title="Üretici Yetkili Servis Desteği | 18 Markada Servis Yetkisi"
-  description="18 markanın tamamı için üretici servis yetkisi: garanti koşulları, doğru parça ve belgeli işlem açısından yetkili servis desteği. Hizmet noktamız Darıca."
+  title="İşitme Cihazı Bakım ve Teknik Destek | Darıca"
+  description="Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri: doğru parça, garanti koşulları ve belgeli işlem. Hizmet noktamız Darıca."
 >
   <YayginServisAgiHero data={yayginServisAgiHero} />
   <BrandPageIntro data={yayginServisAgiIntro} />

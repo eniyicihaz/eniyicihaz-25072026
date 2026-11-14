@@ -3,7 +3,7 @@
 //   BUSINESS_SOT: kuruluş 2009; Darıca merkezi Ağustos 2024.
 //   COMPANY / BUSINESS_SOT: SGK anlaşmalı merkez; SERVICE_SOT H24: SGK
 //     işlemlerinde destek ücretsiz.
-//   PRODUCT_SOT: 18 marka satılıyor, tamamında teknik servis.
+//   Marka çeşitliliği: "10+ marka" (işletme sahibi kararı, 2026-11-14).
 //   BUSINESS_SOT §4: ekipte odyolog (Odyoloji mezunu) ve odyometrist
 //     (Odyometri mezunu) bulunur. İsim ve fotoğraf yayın rızası doğrulanmadığı
 //     için yalnızca unvan kullanılır.
@@ -30,7 +30,7 @@ export const homeTrust: HomeTrustContent = {
     { value: "2009", label: "Avrasya İşitme Cihazları'nın kuruluş yılı" },
     { value: "Ağustos 2024", label: "Darıca merkezimizin açılışı" },
     { value: "SGK Anlaşmalı", label: "SGK işlemlerinde ücretsiz destek" },
-    { value: "18 Marka", label: "Satış ve teknik servis" },
+    { value: "10+ Marka", label: "Farklı marka ve model seçenekleri" },
     { value: "Odyolog ve Odyometrist", label: "İşitme testi ve cihaz uygulaması ekibimiz" },
   ],
   aboutLink: { label: "Hakkımızda daha fazla bilgi", href: "/hakkimizda/" },

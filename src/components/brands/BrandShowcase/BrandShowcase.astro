@@ -43,7 +43,7 @@ const { data: brandShowcase } = Astro.props;
     <p class="brand-showcase__subhead" data-rise>{brandShowcase.subhead}</p>
   </div>
 
-  <div class="brand-showcase__grid">
+  <div class:list={["brand-showcase__grid", brandShowcase.brands.length === 4 && "brand-showcase__grid--four"]}>
     {
       brandShowcase.brands.map((item) => (
         <a class="brand-showcase__card" href={item.href} data-rise>
@@ -297,6 +297,13 @@ const { data: brandShowcase } = Astro.props;
   }
 
   /* --- Responsive ---------------------------------------------------------- */
+
+  /* Dört kartlı vitrin: 3+1 yerine tek sırada dört kart. Tablet (2×2) ve mobil (tek kolon) kuralları aynen geçerlidir. */
+  @media (min-width: 1024px) {
+    .brand-showcase__grid--four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
 
   @media (max-width: 1023px) {
     .brand-showcase__grid {

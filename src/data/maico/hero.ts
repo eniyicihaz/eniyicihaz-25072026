@@ -40,10 +40,10 @@ export const maicoHero: BrandPageHeroContent = {
       description: "Bluetooth'lu, kulak arkası ve kulak içi seçenekleri bulunan seriler.",
     },
     {
-      label: "SERVİS",
+      label: "DESTEK",
       accent: "#2A4A78",
-      title: "Merkezimizde Teknik Servis",
-      description: "MAICO cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
+      title: "Bakım ve Teknik Destek",
+      description: "MAICO cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz.",
     },
     {
       label: "DE",
@@ -65,7 +65,7 @@ export const maicoHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(16 35 63 / 0.12)",
   accentColorBorder: "rgb(16 35 63 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using MAICO's own
+  // composition established for the earlier brand pages, using MAICO's own
   // already-researched accent (#10233F). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(16,35,63,0.35) 0%, rgba(16,35,63,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #070D18 60%, #0A1428 100%)",

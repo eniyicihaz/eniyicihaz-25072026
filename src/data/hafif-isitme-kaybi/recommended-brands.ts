@@ -4,8 +4,7 @@
 // /isitme-cihazlari/* and /teknolojiler/* feature page uses. All hrefs
 // point to real, already-built /markalar/{slug} pages. "Ruby" (Oticon)
 // and "Key" (ReSound) are real, current entry/essential-tier product
-// lines — Allure (Widex) is already used verbatim as this page's own
-// hero image (public/images/widex/models/allure.webp).
+// lines.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
@@ -22,16 +21,6 @@ export const hafifIsitmeKaybiRecommendedBrands: BrandPageRelatedContentContent =
       label: "Phonak",
       description: "Phonak'ın ince RIC modelleri, hafif kayıplarda görünürlüğü önceliklendiren kullanıcılar için sıkça tercih edilir.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın açık kalıplı modelleri, hafif kayıplarda doğal ses algısını korumayı hedefler.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in Allure ailesi, hafif kayıplarda görünürlüğü öncelikleyen kullanıcılar için özel üretilen kulak içi seçenekler sunar.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

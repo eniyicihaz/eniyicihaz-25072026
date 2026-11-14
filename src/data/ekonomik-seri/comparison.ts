@@ -48,8 +48,8 @@ export const ekonomikSeriComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Teknik Servis",
-      primary: "Yetkili teknik servis desteğinden faydalanılabilir.",
-      secondary: "Yetkili servisler bu ürünlere hizmet vermeyi reddedebilir.",
+      primary: "Teknik servis desteğinden faydalanılabilir.",
+      secondary: "Teknik servisler bu ürünlere hizmet vermeyi reddedebilir.",
     },
     {
       feature: "Fiyat Farkı",

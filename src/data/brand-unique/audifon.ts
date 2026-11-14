@@ -14,7 +14,7 @@ export const audifonUnique: UniqueBrandContent = {
   heroAlt: "Audifon rega R işitme cihazı",
   heroSrc: "/images/audifon/models/rega-r.webp",
   heroParagraphs: [
-    `Audifon, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Audifon ailesinin üçü "sino" adını taşıyor: sino S kulak içi, sino P kulak arkası (BTE), sino R RITE. Diğerleri rega R ve Sueno Pro.`,
+    `Audifon, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizdeki ${f.n} Audifon ailesinin üçü "sino" adını taşıyor: sino S kulak içi, sino P kulak arkası (BTE), sino R RITE. Diğerleri rega R ve Sueno Pro.`,
     "Hizmet tarafında bir fark da var: uzaktan ayar hizmetimiz A&M ve Audifon dışındaki cihazlarda yapılabiliyor; bu nedenle Audifon cihazlarının ayarı merkezimizde yapılır.",
   ],
   heroFeatures: [
@@ -28,7 +28,7 @@ export const audifonUnique: UniqueBrandContent = {
     paragraphs: [
       `Audifon sayfasında beş aile var ve etiketler sade: ${join(f.ric)} aileleri RITE etiketli (${f.ric.length} aile; Sueno Pro aynı zamanda ITE etiketli), ${join(f.bte)} kulak arkası (BTE), ${join(f.inEar)} kulak içi. Bluetooth etiketi yalnızca rega R'de var.`,
       "Sitemizdeki Audifon ailelerinde şarjlı veya pilli etiketi tanımlı değil; bu yüzden pil ve şarj konusu, cihaz seçimi sırasında merkezimizde birlikte netleştirilir.",
-      "Audifon cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Audifon cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

@@ -37,7 +37,7 @@ export const teknikServisHero: BrandPageHeroContent = {
   headingLines: ["Teknik Servis", "Hizmetimiz Nasıl İşler?"],
   paragraphs: [
     "Teknik servis, ses kesintisi, açılmama sorunu veya fiziksel hasar gibi durumlarla karşılaştığınızda cihazınızın teşhis ve onarım sürecini kapsayan hizmetimizdir.",
-    "Avrasya İşitme'de sattığımız 18 markanın tamamında teknik servis veriyoruz. Cihazınızı merkezimizde uzmanımız ilk kez değerlendiriyor; sorun burada çözülebiliyorsa çözüyoruz, çözülemeyen cihazı teknik servise gönderiyoruz. Teknik servisteki ilk teknik kontrolden sonra tahmini onarım süresi ve varsa ücret size bildirilir.",
+    "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz. Cihazınızı merkezimizde uzmanımız ilk kez değerlendiriyor; sorun burada çözülebiliyorsa çözüyoruz, çözülemeyen cihazı teknik servise gönderiyoruz. Teknik servisteki ilk teknik kontrolden sonra tahmini onarım süresi ve varsa ücret size bildirilir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
@@ -46,10 +46,10 @@ export const teknikServisHero: BrandPageHeroContent = {
       label: "YERİNDE TEŞHİS",
       accent: "#dc2626",
       title: "Sorununuz Önce Merkezimizde İncelenir",
-      description: "Birçok sorun, üreticiye göndermeden önce merkezimizde teşhis edilebilir.",
+      description: "Birçok sorun, teknik servise göndermeden önce merkezimizde teşhis edilebilir.",
     },
     {
-      label: "YETKİLİ SERVİS AĞI",
+      label: "TEKNİK SERVİS",
       accent: "#b91c1c",
       title: "Gerektiğinde Teknik Servise Gönderilir",
       description: "Merkezde çözülemeyen cihaz teknik servise gönderilir.",

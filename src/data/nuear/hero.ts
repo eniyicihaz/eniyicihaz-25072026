@@ -1,6 +1,6 @@
 // Hero content for the NuEar brand page (/markalar/nuear). Renders
 // through the shared BrandPageHero component — the same component
-// Oticon, Phonak, Signia, Widex and ReSound's Heroes use, fed by this
+// Oticon, Phonak and ReSound's Heroes use, fed by this
 // page's own data.
 //
 // Positioning axis (researched directly, no blueprint per Phase 7's
@@ -13,8 +13,7 @@
 // well-documented health/activity-tracking and fall-detection features —
 // a "hearing aid as a personal wellness device" angle none of the other
 // five brand pages use as their core axis. Zero repetition of Oticon
-// (BrainHearing), Phonak (Roger/connectivity ecosystem), Signia (Own
-// Voice Processing/conversation AI), Widex (PureSound/minimal processing)
+// (BrainHearing), Phonak (Roger/connectivity ecosystem)
 // or ReSound (M&RIE/Auracast).
 //
 // accentColor: vivid red (#E4002B), sourced directly from this project's
@@ -71,7 +70,7 @@ export const nuearHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(228 0 43 / 0.12)",
   accentColorBorder: "rgb(228 0 43 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using NuEar's own
+  // composition established for the earlier brand pages, using NuEar's own
   // already-researched accent (#E4002B). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(228,0,43,0.35) 0%, rgba(228,0,43,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #1A0508 60%, #29070C 100%)",

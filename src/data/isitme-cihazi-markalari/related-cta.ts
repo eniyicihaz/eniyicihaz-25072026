@@ -11,7 +11,7 @@ export const brandsRelated: BrandPageRelatedContentContent = {
     { label: "İşitme Cihazları", description: "Cihaz türlerini, özellikleri ve seçim ölçütlerini tanıyın.", href: "/isitme-cihazlari/" },
     { label: "İşitme Cihazı Fiyatları", description: "Fiyatı neyin belirlediğini ve toplam maliyet kalemlerini okuyun.", href: "/isitme-cihazi-fiyatlari/" },
     { label: "SGK İşitme Cihazı Ödemesi", description: "Güncel SGK desteği, katkı payı ve başvuru sürecini öğrenin.", href: "/sgk-isitme-cihazi-odemesi/" },
-    { label: "Tüm Markalar", description: "18 markanın dizinine ve marka sayfalarına tek yerden ulaşın.", href: "/markalar/" },
+    { label: "Tüm Markalar", description: "Marka dizinine ve marka sayfalarına tek yerden ulaşın.", href: "/markalar/" },
     { label: "Ücretsiz İşitme Testi", description: "Doğru cihaz ve marka kararının ilk adımı.", href: "/degerlendirme/ucretsiz-isitme-testi/" },
     { label: "Marka Danışmanlığı", description: "Marka ve model seçimi hakkında bilgi alın.", href: "/neden-orijinal/marka-danismanligi/" },
     { label: "Cihaz Deneme", description: "Merkezde ücretsiz demo ve satın alarak 7 güne kadar deneme sürecini öğrenin.", href: "/uygulama-ayar/cihaz-deneme/" },
@@ -39,5 +39,5 @@ export const brandsCta: GuideCtaContent = {
     { label: "WhatsApp'tan Yazın", href: `${contactConfig.whatsapp.href}?text=${whatsappText}`, variant: "outline", external: true },
     { label: "Darıca Merkezimiz", href: "/darica-isitme-cihazlari/", variant: "outline" },
   ],
-  reassurance: ["18 marka", "18 markada teknik servis", "SGK anlaşmalı merkez"],
+  reassurance: ["10+ marka", "Bakım ve teknik destek", "SGK anlaşmalı merkez"],
 };

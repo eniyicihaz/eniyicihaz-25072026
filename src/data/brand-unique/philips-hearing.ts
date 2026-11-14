@@ -13,7 +13,7 @@ export const philipsHearingUnique: UniqueBrandContent = {
   },
   heroSrc: "/images/philips-hearing/models/hearlink-50.webp",
   heroParagraphs: [
-    `Philips Hearing, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} ailenin üçü numaralı HearLink modeli (50, 40, 30); ikisi ise adlarını özellikten alıyor: HearLink Kulak İçi ve HearLink Şarjlı.`,
+    `Philips Hearing, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizdeki ${f.n} ailenin üçü numaralı HearLink modeli (50, 40, 30); ikisi ise adlarını özellikten alıyor: HearLink Kulak İçi ve HearLink Şarjlı.`,
     "Numaralı üç modelde etiketler basamak basamak azalıyor: HearLink 50 RIC, Bluetooth ve şarjlı; HearLink 40 RIC ve Bluetooth; HearLink 30 yalnızca RIC etiketli.",
   ],
   heroFeatures: [
@@ -27,7 +27,7 @@ export const philipsHearingUnique: UniqueBrandContent = {
     paragraphs: [
       `Philips Hearing listesi, etiketleri en okunur olan listelerden biri: HearLink 50 RIC, Bluetooth ve şarjlı; HearLink 40 RIC ve Bluetooth; HearLink 30 yalnızca RIC. Yani numaralar sitemizde etiket sayısıyla birlikte düşüyor.`,
       `Numaralı modellerin dışında iki aile daha var: HearLink Şarjlı (RIC ve şarjlı etiketli, Bluetooth etiketi yok) ve HearLink Kulak İçi. Kulak içi aile, sitemizde ITC, CIC ve IIC gibi seçenekler altında ve kişiye özel üretim etiketiyle listeleniyor.`,
-      "Philips Hearing cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Philips Hearing cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

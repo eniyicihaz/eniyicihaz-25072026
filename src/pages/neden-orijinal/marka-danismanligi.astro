@@ -1,7 +1,7 @@
 ---
 // Marka Danışmanlığı — /neden-orijinal/marka-danismanligi. Mega menüde
 // "Marka Desteği" kolonunun 4. öğesi; diğer 3 öğe (Orijinallik Garantisi,
-// Yetkili Servis, Aksesuar & Yedek) zaten var olan kardeş sayfalara
+// Bakım ve Teknik Destek, Aksesuar & Yedek) zaten var olan kardeş sayfalara
 // (guvenilir-teknoloji, yaygin-servis-agi, orijinal-aksesuar) bağlandı —
 // bu konu ("hangi marka bana uygun?") derinlemesine işlenen tek gerçekten
 // boş konuydu (bkz. implementasyon planı). Konumlandırma: "Marka Değil,
@@ -38,6 +38,9 @@ import { brandExtended } from "../../data/brands/extended";
 import { company } from "../../components/footer/Footer/data/company";
 
 const allBrands = [...brandShowcase.brands, ...brandExtended.brands];
+// Masaüstü logo duvarı: satırlar tam dolsun diye sütun sayısı marka sayısına göre seçilir (6'ya bölünüyorsa 6, yoksa 5'e
+// bölünüyorsa 5; aksi halde 6). Tablet (4) ve mobil (3) kuralları değişmez.
+const mdCols = allBrands.length % 6 === 0 ? 6 : allBrands.length % 5 === 0 ? 5 : 6;
 
 // Logo dosyaları 612x408 / 707x353 / 1774x887 tuvallerin ortasında, her yanında
 // farklı ve simetrik olmayan şeffaf boşlukla duruyor. Kartın içinde tuval değil
@@ -58,12 +61,9 @@ const LOGO_BOX: Record<string, [number, number, number, number, number, number]>
   "/images/brands/philips-logo-seffaf.webp": [612, 408, 98, 151, 435, 90],
   "/images/brands/phonak-logo-seffaf.webp": [707, 353, 60, 107, 590, 126],
   "/images/brands/resound-logo-seffaf.webp": [707, 353, 65, 71, 577, 207],
-  "/images/brands/rexton-logo-seffaf.webp": [612, 408, 88, 156, 449, 85],
-  "/images/brands/signia-logo-seffaf.webp": [707, 353, 69, 86, 581, 168],
   "/images/brands/sonic-logo-seffaf.webp": [612, 408, 117, 131, 387, 139],
   "/images/brands/unitron-logo-seffaf.webp": [612, 408, 98, 133, 451, 110],
   "/images/brands/vista-logo-seffaf.webp": [612, 408, 146, 131, 330, 135],
-  "/images/brands/widex-logo-seffaf.webp": [707, 353, 64, 90, 618, 167],
 };
 
 function logoMarkStyle(logo?: string): string | undefined {
@@ -123,7 +123,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
 
 <MainLayout
   title="Marka Danışmanlığı | Size Uygun İşitme Cihazı Markası"
-  description="Darıca'daki merkezimizde 18 marka arasından ihtiyacınıza uygun işitme cihazı marka ve model ailesini birlikte değerlendiriyoruz. Marka değil, size uyan çözüm."
+  description="Darıca'daki merkezimizde 10+ marka ile çalışıyoruz; ihtiyacınıza uygun işitme cihazı marka ve model ailesini birlikte değerlendiriyoruz. Marka değil, size uyan çözüm."
 >
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
 
@@ -138,7 +138,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
       <h2 class="md-brand-grid__heading" id="md-brand-grid-title">Çalıştığımız Markalar</h2>
       <p class="md-brand-grid__intro">Hiçbirini diğerine üstün göstermeden, tamamını inceleyebilirsiniz.</p>
     </div>
-    <div class="md-brand-grid__grid">
+    <div class="md-brand-grid__grid" style={`--md-cols:${mdCols}`}>
       {allBrands.map((brand) => (
         <a class="md-brand-grid__logo" href={brand.href} aria-label={brand.name}>
           <span class="md-brand-grid__mark" style={logoMarkStyle(brand.logo)} data-fit={LOGO_BOX[brand.logo ?? ""] ? "box" : "contain"}>
@@ -200,7 +200,7 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
     margin: var(--space-12) auto 0;
     padding-inline: var(--space-6);
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--md-cols, 6), minmax(0, 1fr));
     gap: var(--space-5);
   }
 

@@ -32,5 +32,5 @@ export const priceGuideHero: PriceGuideHeroContent = {
     "Darıca'daki gerçek merkezimizin deneyimiyle hazırlanan bu rehber, bir fiyat listesi değil; kendi ihtiyacınız için doğru soruları sormanıza yarayan bir yol haritasıdır.",
   ctaPrimary: { label: "Fiyat Bilgisi İçin Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yazın", href: `${contactConfig.whatsapp.href}?text=${whatsappText}` },
-  chips: ["SGK anlaşmalı merkez", "Ücretsiz işitme testi", "18 marka"],
+  chips: ["SGK anlaşmalı merkez", "Ücretsiz işitme testi", "10+ marka"],
 };

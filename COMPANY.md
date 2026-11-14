@@ -1,6 +1,6 @@
 # COMPANY.md
 
-> **Durum:** ACTIVE · Kısa kanonik özet · Güncelleme: 2026-10-07 (Faz 1, karar F1-2)
+> **Durum:** ACTIVE · Kısa kanonik özet · Güncelleme: 2026-11-14 (marka çeşitliliği ve teknik destek ifadeleri; önceki: 2026-10-07 Faz 1, karar F1-2)
 > **Bu dosya ayrıntılı işletme gerçeği tutmaz.** İşletmenin doğrulanmış bilgileri yalnızca **`docs/source-of-truth/`** altındaki Source of Truth (SoT) dosyalarındadır. Bu dosya yalnızca kanonik özeti ve SoT referanslarını verir.
 > Çelişki olursa **SoT geçerlidir** (bkz. `MASTER_PLAN.md` §1). Eski COMPANY bölümlerinin nereye taşındığı: `docs/tech/DOC_MIGRATION_MAP.md` §1.
 > Davranış, ton ve marka kişiliği burada tanımlanmaz. Bunlar için bkz. `PRINCIPLES.md`.
@@ -28,6 +28,8 @@
 - "2009'dan beri aynı ekip"
 - "2009'dan beri işitme sektöründe"
 - Kanıtsız üstünlük ifadeleri
+- "18 marka", "18+ marka", "yaklaşık 20 marka" (kanonik ifade: "10+ marka ile çalışıyoruz.")
+- Yazılı üretici yetkisi belgelenmedikçe: "üretici servis yetkisi", "yetkili servis", "üretici yetkili servis", "resmî servis", "üretici garantisi kapsamında servis", "üretici tarafından yetkilendirilmiş teknik servis"
 
 ## 2. Ne Yapıyoruz
 
@@ -36,7 +38,8 @@
 - **Hasta süreci:** SERVICE_SOT §2
 - **SGK işleyişi:** SERVICE_SOT §3
   - Tutar ve prosedürler TIME-SENSITIVE'dir ve resmî kaynakla doğrulanmadan kalıcı bilgi gibi yazılmaz.
-- **Markalar ve ürünler:** PRODUCT_SOT (18 marka; başka satılan marka yok)
+- **Markalar ve ürünler:** PRODUCT_SOT §1. Kanonik ifade: "10+ marka ile çalışıyoruz." Kesin marka sayısı yazılmaz; ifade yalnızca marka çeşitliliğini anlatır.
+- **Bakım ve teknik destek anlatımı:** "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz." (SERVICE_SOT §4)
 
 ## 3. Misyon
 

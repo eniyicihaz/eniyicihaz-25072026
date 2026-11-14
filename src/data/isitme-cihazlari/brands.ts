@@ -1,7 +1,7 @@
 // "Markalar", "Gerçek modeller" ve "Marka/model nasıl seçilir?".
 //
 // Marka ve model bilgisi sitedeki doğrulanmış verilerden gelir (marka
-// sayfaları, src/data/home/models.ts, src/data/{resound,nuear,signia}) — yeni
+// sayfaları, src/data/home/models.ts, src/data/{resound,nuear}) — yeni
 // model veya özellik uydurulmaz. Bu sayfada amaç fiyat göstermek değil,
 // cihaz BİÇİMLERİNİ ve kullanım özelliklerini gerçek modeller üzerinden
 // keşfettirmektir; fiyat ilgisi /isitme-cihazi-fiyatlari/ sayfasına bırakılır.
@@ -17,15 +17,13 @@ export const brandsSection: GuideSectionMeta = {
   eyebrow: "Markalar",
   heading: "İşitme Cihazı Markaları: Hangi Markalarla Çalışıyoruz?",
   intro:
-    "18 işitme cihazı markasıyla çalışıyoruz ve hiçbirine bağlı değiliz. Aşağıda en çok sorulan altı markanın işitme cihazı yaklaşımını kısaca tanıtıyoruz; her birinin kendi sayfasında modeller ve özellikler ayrıntılıdır. Sıra bir kalite ya da tercih sıralaması değildir.",
+    "10+ marka ile çalışıyoruz ve hiçbirine bağlı değiliz. Aşağıda en çok sorulan dört markanın işitme cihazı yaklaşımını kısaca tanıtıyoruz; her birinin kendi sayfasında modeller ve özellikler ayrıntılıdır. Sıra bir kalite ya da tercih sıralaması değildir.",
 };
 
-/** 6 marka — hepsinin gerçek /markalar/{slug}/ sayfası var. */
+/** 4 marka — hepsinin gerçek /markalar/{slug}/ sayfası var. */
 export const brandCards: GuideCard[] = [
   { tag: "Oticon", title: "Oticon işitme cihazları", text: "Yapay zekâ destekli işleme ve Bluetooth bağlantısını öne çıkaran model ailelerini sunar; örneğin Oticon Intent bu yaklaşımı temsil eder.", href: "/markalar/oticon/", linkLabel: "Oticon markası ve modelleri" },
   { tag: "Phonak", title: "Phonak işitme cihazları", text: "Genel kullanımdan ileri derece kayıplara kadar geniş bir aralıkta model aileleri vardır; Phonak Naída güçlü kayıplar için tasarlanmış bir örnektir.", href: "/markalar/phonak/", linkLabel: "Phonak markası ve modelleri" },
-  { tag: "Signia", title: "Signia işitme cihazları", text: "Kulak arkasından kulak içine, spor ve aktif kullanıma yönelik modellere uzanan bir yelpaze sunar; Signia Styletto ince tasarımıyla tanınır.", href: "/markalar/signia/", linkLabel: "Signia markası ve modelleri" },
-  { tag: "Widex", title: "Widex işitme cihazları", text: "Doğal ses odaklı yaklaşımı ve Bluetooth bağlantılı RIC modelleriyle öne çıkar; Widex SmartRIC bir örnektir.", href: "/markalar/widex/", linkLabel: "Widex markası ve modelleri" },
   { tag: "ReSound", title: "ReSound işitme cihazları", text: "Premium modellerden temel ihtiyaçlara yönelik giriş seviyesine kadar farklı aileler sunar; ReSound Vivia güncel premium ailelerden biridir.", href: "/markalar/resound/", linkLabel: "ReSound markası ve modelleri" },
   { tag: "NuEar", title: "NuEar işitme cihazları", text: "Günlük kullanıma uygun şarjlı RIC ve minyatür kulak içi seçenekleri içerir; NuEar Circa şarjlı seri için bir örnektir.", href: "/markalar/nuear/", linkLabel: "NuEar markası ve modelleri" },
 ];
@@ -35,8 +33,8 @@ export const brandsNote =
 
 // Model listesi bu sayfaya özeldir — ana sayfanın `homeModels` verisi DEĞİŞMEZ.
 // Kullanıcının belirttiği gerçek modeller: Oticon Intent, NuEar Circa (repodaki
-// gerçek görsel + NuEar'ın doğrulanmış verisi), Signia Styletto, Widex SmartRIC,
-// Phonak Naída. Phonak Audéo çıkarıldı (Widex SmartRIC ile aynı RIC/Bluetooth
+// gerçek görsel + NuEar'ın doğrulanmış verisi), Bernafon Encanta CIC, ReSound Vivia,
+// Phonak Naída. Phonak Audéo çıkarıldı (ReSound Vivia ile aynı RIC/Bluetooth
 // profili). Kartın marka rozeti "NuEar", bağlantısı /markalar/nuear/.
 const nuearCirca = nuearModels.items.find((item) => item.slug === "circa");
 if (!nuearCirca) throw new Error("NuEar Circa model verisi bulunamadı (src/data/nuear/models.ts)");
@@ -54,7 +52,7 @@ export const modelsShowcase: BrandPageModelsContent = {
   badge: "GERÇEK MODELLER",
   heading: "Cihaz Biçimlerini Gerçek Modellerle Keşfedin",
   intro:
-    "Aşağıdaki modeller, işitme cihazlarının farklı biçimlerini ve özelliklerini gerçek ürünler üzerinden göstermek için seçildi: yapay zekâ destekli, şarjlı RIC, ince tasarımlı, Bluetooth bağlantılı ve güçlü kayıplara yönelik. Fiyat için fiyat rehberimize bakabilirsiniz.",
+    "Aşağıdaki modeller, işitme cihazlarının farklı biçimlerini ve özelliklerini gerçek ürünler üzerinden göstermek için seçildi: yapay zekâ destekli, şarjlı RIC, kulak içi, Bluetooth bağlantılı ve güçlü kayıplara yönelik. Fiyat için fiyat rehberimize bakabilirsiniz.",
   ctaLabel: "Marka sayfası",
   items: modelItems,
 };

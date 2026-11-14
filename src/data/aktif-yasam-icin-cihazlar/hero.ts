@@ -60,11 +60,11 @@ export const aktifYasamIcinCihazlarHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/signia/models/styletto.webp",
-    alt: "Aktif yaşam süren kullanıcılar için hafif ve şarj edilebilir tasarımıyla öne çıkan Signia Styletto işitme cihazı görseli",
+    src: "/images/price-guide/device-type-ric-rite.webp",
+    alt: "Aktif yaşam süren kullanıcılar için değerlendirilebilecek, kulak arkasına yerleşen RIC tipi işitme cihazı görseli (temsili)",
   },
   floatingCard: {
-    title: "Signia Styletto",
+    title: "Hafif ve Şarjlı Tasarım",
     description: "İnce, hafif ve hızlı şarj edilebilir tasarım.",
   },
   accentColor: "#4b5563",

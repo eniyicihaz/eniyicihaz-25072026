@@ -1,6 +1,6 @@
 # CONVERSION_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-10-07 (Faz 0 son bilgi aktarımı)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-14 (marka çeşitliliği ifadesi, §3; önceki: 2026-10-07 Faz 0 son bilgi aktarımı)
 > **Amaç:** Dönüşümle ilgili bilgilerin tek kaynağı. Kapsadığı konular:
 > - Dönüşüm kanalları: telefon, WhatsApp, yol tarifi, ücretsiz test, ileride form
 > - CTA kuralları
@@ -59,7 +59,7 @@
 | Merkezdeki ücretsiz demo (H7, yaklaşık 20 dakika) ile eve verilen 7 günlük deneme (H28) CTA'larda birbirine karıştırılmaz | [DOĞRULANDI] (İşletme sahibi, 2026-10-07) | SERVICE_SOT §1.5 |
 | Kulak içi cihazlarla ilgili içerik ve CTA'larda 7 günlük eve deneme vaat edilmez; bu cihazlarda merkezde demo/deneme yapılabilir | [DOĞRULANDI] (İşletme sahibi, 2026-10-07) | SERVICE_SOT §1.5 |
 | Deneme ve iade anlatımı yalnızca işletmenin mevcut uygulaması olarak yazılır; yasal hak veya hüküm ifadesi kullanılmaz | [DOĞRULANDI] (İşletme sahibi, 2026-10-07) | SERVICE_SOT §2.8, §2.14 |
-| Marka sayısı CTA ve metinlerde "18 marka" olarak geçer ("18+" ve "yaklaşık 20" kullanılmaz) | [DOĞRULANDI] (İşletme sahibi, 2026-10-07) | PRODUCT_SOT §1 |
+| Marka çeşitliliği CTA ve metinlerde "10+ marka" olarak geçer ("18 marka", "18+" ve "yaklaşık 20" kullanılmaz); ifade her sayfaya kopyalanmaz | [DOĞRULANDI] (İşletme sahibi, 2026-11-14) | PRODUCT_SOT §1 |
 
 ## 4. Mevcut Ölçüm ve Bilinen Dönüşüm Sorunları (değiştirilmedi)
 

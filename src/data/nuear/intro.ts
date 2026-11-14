@@ -1,6 +1,6 @@
 // Brand story for the NuEar brand page (/markalar/nuear) — combines
 // Oticon's separate About+Heritage sections into one, same pattern used
-// for Phonak, Signia, Widex and ReSound. Renders through the shared
+// for Phonak and ReSound. Renders through the shared
 // BrandPageIntro component. Founding details and Starkey affiliation are
 // general, well-known corporate facts, flagged for a final human check
 // before publishing.
@@ -22,7 +22,7 @@ export const nuearIntro: BrandPageIntroContent = {
     { value: "Hear Circle", label: "Sağlık ve Aktivite Uygulaması" },
   ],
   // Precomputed rgb() decomposition of #E4002B — kept distinct from
-  // Oticon's green, Phonak's blue, Signia's purple, Widex's teal and
+  // Oticon's green, Phonak's blue and
   // ReSound's darker maroon red.
   accentColor: "#E4002B",
   accentColorBadgeBg: "rgb(228 0 43 / 0.08)",

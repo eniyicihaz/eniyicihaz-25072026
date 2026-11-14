@@ -57,7 +57,7 @@ export const homeHero: HomeHeroContent = {
   eyebrow: "Duymak, anlamaktır.",
   heading: "Darıca Avrasya İşitme Cihazları",
   description:
-    "Darıca, Kocaeli'de SGK anlaşmalı işitme cihazı satış ve uygulama merkeziyiz. Ücretsiz işitme testi, cihaz seçimi, merkezde ücretsiz demo ve 18 markada teknik servis hizmeti sunuyoruz.",
+    "Darıca, Kocaeli'de SGK anlaşmalı işitme cihazı satış ve uygulama merkeziyiz. Ücretsiz işitme testi, cihaz seçimi, merkezde ücretsiz demo, bakım ve teknik destek hizmeti sunuyoruz.",
   visit:
     "Palandöken Eczanesi'nin üst katı, Farabi Devlet Hastanesi durağının karşısı. Randevusuz ziyaret kabul edilir.",
   // Birincil: en düşük sürtünmeli giriş (ücretsiz işitme testi sayfası). İkincil: ana numara (telefon ve WhatsApp,

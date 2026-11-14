@@ -22,7 +22,7 @@ export const uzaktanKontrolFaq: BrandPageFaqContent = {
       label: "Genel",
       items: [
         {
-          question: "Uzaktan destek (TeleCare) nedir?",
+          question: "Uzaktan destek nedir?",
           answer:
             "Odyometristinizin, video görüşme sırasında cihazınızın temel ayarlarını uzaktan güncelleyebildiği bir hizmettir; merkeze gelmeden küçük ayar değişiklikleri yapılabilir.",
         },

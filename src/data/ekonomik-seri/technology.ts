@@ -73,7 +73,7 @@ export const ekonomikSeriTechnology: BrandPageEcosystemContent = {
       navLabel: "Garanti ve Teknik Servis",
       title: "Garanti İşlemleri ve Teknik Servis",
       lead: "Ekonomik seri modeller için de garanti işlemlerinde ücretsiz destek ve teknik servis veriyoruz; garanti kapsamı marka ve modele göre değişir.",
-      howItWorks: "Sattığımız 18 markanın tamamında, ekonomik seri modeller dahil, teknik servis veriyoruz.",
+      howItWorks: "Ekonomik seri modeller dahil, farklı marka ve modellerde bakım ve teknik destek seçenekleri hakkında merkezimizden bilgi alabilirsiniz.",
       advantages: [
         "Garanti işlemlerinde ücretsiz destek alınır",
         "Teknik servis desteğine erişim sağlar",

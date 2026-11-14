@@ -1,6 +1,6 @@
 // "Marka Seçimini Birlikte Netleştirelim" süreç grafiği (/markalar/) — 4 aşama.
 // Tüm metinler sitedeki mevcut içerikle tutarlıdır (yeni hizmet, sıralama, klinik sonuç veya sayı iddiası yoktur):
-//   • "merkezimizde 18 marka" → docs/COMPANY.md ve /neden-orijinal/marka-danismanligi/ meta açıklaması
+//   • marka çeşitliliği ("10+ marka") → işletme sahibi kararı 2026-11-14; /neden-orijinal/marka-danismanligi/ meta açıklaması
 //   • "sıralama değildir"     → PRINCIPLES.md §5 ve /isitme-cihazi-markalari/ politikası
 // Bağlantı hedefleri dist'te doğrulandı: aynı sayfadaki #brand-showcase-title (BrandShowcase başlık kimliği),
 // /markalar/oticon/ (marka sayfası, model aileleri bölümü var), /isitme-cihazi-markalari/ ve
@@ -57,7 +57,7 @@ export const brandJourney = {
       icon: UserCheck,
       label: "Adım 04",
       title: "Uzman Desteği Alın",
-      text: "Merkezimizde 18 marka arasından ihtiyacınıza uygun marka ve model ailesini birlikte değerlendiriyoruz.",
+      text: "Farklı marka ve model seçenekleri arasından ihtiyacınıza uygun olanı merkezimizde birlikte değerlendiriyoruz.",
       linkLabel: "Marka danışmanlığı",
       href: "/neden-orijinal/marka-danismanligi/",
     },

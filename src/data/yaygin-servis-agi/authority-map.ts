@@ -1,22 +1,22 @@
-// "Üretici Servis Yetkisi Sizin İçin Ne Anlama Gelir?" merkez-ve-ilke grafiği (/neden-orijinal/yaygin-servis-agi).
-// Kaynaklar (yeni iddia yok): 18 marka üretici servis yetkisi (işletme sahibi doğrulaması), fiziksel hizmet noktası Darıca,
+// "Bakım ve Teknik Destek Sürecinde Neler Ele Alınır?" merkez-ve-ilke grafiği (/neden-orijinal/yaygin-servis-agi).
+// Kaynaklar (yeni iddia yok; 2026-11-14 işletme sahibi kararıyla marka sayısı ve üretici yetkisi ifadeleri kaldırıldı): fiziksel hizmet noktası Darıca,
 // garanti kapsamının garanti şartlarına ve arızanın niteliğine bağlı olması, işlem/ücret bilgisinin süreç içinde paylaşılması
 // (teknik-servis/considerations.ts, yaygin-servis-agi/faq.ts). Harita, şube işareti veya servis ağı görseli KULLANILMAZ;
-// yetkinin her işlemin ücretsiz olduğu anlamına gelmediği açıkça yazılır.
+// teknik desteğin her işlemin ücretsiz olduğu anlamına gelmediği açıkça yazılır.
 export const authorityMap = {
-  eyebrow: "SERVİS YETKİSİ",
-  heading: "Üretici Servis Yetkisi Sizin İçin Ne Anlama Gelir?",
+  eyebrow: "BAKIM VE TEKNİK DESTEK",
+  heading: "Bakım ve Teknik Destek Sürecinde Neler Ele Alınır?",
   intro:
-    "18 markadaki üretici servis yetkisi, servis sürecinde dört konunun üreticinin koşullarına uygun ele alınmasına yardımcı olur.",
-  hub: { title: "Avrasya İşitme — Darıca", text: "18 markada üretici servis yetkisi", count: "18" },
+    "Bakım ve teknik destek sürecinde dört konu birlikte ele alınır.",
+  hub: { title: "Avrasya İşitme — Darıca", text: "Bakım ve teknik destek" },
   items: [
     {
-      title: "Üretici Yetkisi ve Servis Kapsamı",
-      text: "Yetki 18 markanın tamamı için geçerlidir; yapılacak işlemin kapsamı markaya, modele ve arızanın türüne göre değişir.",
+      title: "Marka ve Modele Göre Kapsam",
+      text: "Yapılacak işlemin kapsamı markaya, modele ve arızanın türüne göre değişir.",
     },
     {
       title: "Cihaza Uygun Teknik Değerlendirme",
-      text: "İşlem, cihazın yapısına ve üreticinin koşullarına uygun şekilde değerlendirilir; gerekiyorsa doğru parça belirlenir.",
+      text: "İşlem, cihazın yapısına uygun şekilde değerlendirilir; gerekiyorsa cihazla uyumlu parça belirlenir.",
     },
     {
       title: "Garanti Koşullarının İncelenmesi",
@@ -28,6 +28,6 @@ export const authorityMap = {
     },
   ],
   note:
-    "Servis yetkisi, her işlemin ücretsiz olduğu veya her arızanın garanti kapsamında değerlendirileceği anlamına gelmez. Fiziksel hizmet noktamız Darıca'daki merkezimizdir; servis için randevu gerekir.",
+    "Teknik destek, her işlemin ücretsiz olduğu veya her arızanın garanti kapsamında değerlendirileceği anlamına gelmez. Fiziksel hizmet noktamız Darıca'daki merkezimizdir; servis için randevu gerekir.",
   link: { label: "Arıza ve teknik servis süreci için Teknik Servis", href: "/servis-bakim/teknik-servis/" },
 };

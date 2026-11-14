@@ -8,16 +8,16 @@
 import type { BrandPageIntroContent } from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 
 export const yayginServisAgiIntro: BrandPageIntroContent = {
-  badge: "ÜRETİCİ YETKİLİ SERVİS",
-  heading: "Üretici Yetkili Servis Desteği Neden Önemlidir?",
+  badge: "BAKIM VE TEKNİK DESTEK",
+  heading: "Bakım ve Teknik Destek Neden Önemlidir?",
   paragraphs: [
     "Servis desteği; cihazınızın bakım, temizlik, onarım ve garanti işlemleri için ulaşabileceğiniz teknik destektir.",
-    "Üretici yetkisi, servis işlemlerinin üreticinin garanti ve servis koşullarına uygun yürütülebilmesi anlamına gelir. Garanti kapsamı ise cihazın garanti şartlarına ve arızanın niteliğine bağlıdır.",
+    "Yapılacak işlem cihazın markasına, modeline ve arızanın türüne göre belirlenir. Garanti kapsamı ise cihazın garanti şartlarına ve arızanın niteliğine bağlıdır.",
     "Orijinal olmayan veya paralel ithal ürünler genellikle üretici garantisi kapsamı dışında kalır; bu durum, arıza anında destek bulmayı zorlaştırabilir.",
-    "Avrasya İşitme'nin 18 markanın tamamı için üretici servis yetkisi bulunmaktadır; fiziksel hizmet noktamız Darıca'daki merkezimizdir.",
+    "Bakım ve teknik destek seçenekleri cihazınızın markasına ve modeline göre değişir; ayrıntılı bilgiyi Darıca'daki merkezimizden alabilirsiniz.",
   ],
   stats: [
-    { value: "18 Marka", label: "Üretici Servis Yetkisi" },
+    { value: "Farklı Marka ve Modeller", label: "Bakım ve Teknik Destek" },
     { value: "Darıca", label: "Fiziksel Hizmet Noktası" },
     { value: "Garanti Şartlarına Göre", label: "Kapsam Değerlendirmesi" },
     { value: "İşlemden Önce", label: "Kapsam ve Ücret Bilgisi" },

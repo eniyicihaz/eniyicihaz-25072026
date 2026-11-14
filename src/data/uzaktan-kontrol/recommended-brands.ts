@@ -3,7 +3,7 @@
 // component as a brand-link showcase, same technique every
 // /isitme-cihazlari/* and /teknolojiler/* feature page uses. All hrefs
 // point to real, already-built /markalar/{slug} pages. "RemoteCare"
-// (Oticon), "Remote Support" (Phonak), "TeleCare" (Signia) and "Assist"
+// (Oticon), "Remote Support" (Phonak) and "Assist"
 // (ReSound) are real, verifiable teleaudiology feature names offered by
 // these manufacturers.
 
@@ -22,16 +22,6 @@ export const uzaktanKontrolRecommendedBrands: BrandPageRelatedContentContent = {
       label: "Phonak",
       description: "Phonak'ın Remote Support özelliği, merkeze gelmeden uzaktan ince ayar imkânı sağlar.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın TeleCare özelliği, odyometristinizin cihazınızı uzaktan ayarlamasına imkân tanır.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in uzaktan destek özelliği, markanın doğal ses felsefesini uzaktan erişim kolaylığıyla birleştirir.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

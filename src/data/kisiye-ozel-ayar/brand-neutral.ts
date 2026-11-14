@@ -6,7 +6,7 @@
 export const kisiyeOzelAyarBrandNeutral = {
   eyebrow: "MARKALAR",
   heading: "Doğru Cihaz, Doğru Uygulama, Kişiye Uygun Ayar",
-  body: "Merkezimizde 18 işitme cihazı markasıyla çalışıyoruz. Asıl belirleyici olan, doğru cihazın doğru şekilde uygulanması ve kişiye uygun ayarlanmasıdır.",
+  body: "Merkezimizde 10+ marka ile çalışıyoruz. Asıl belirleyici olan, doğru cihazın doğru şekilde uygulanması ve kişiye uygun ayarlanmasıdır.",
   linkLabel: "Markaları İnceleyin",
   href: "/markalar/",
 };

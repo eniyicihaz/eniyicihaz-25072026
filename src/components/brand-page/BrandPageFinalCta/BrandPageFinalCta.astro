@@ -38,10 +38,10 @@ export interface BrandPageFinalCtaContent {
   accentColorTrustBg: string;
   // Optional per-brand overrides — see BrandPageHero's equivalent fields
   // for why these exist. Omit and the original hardcoded value is used;
-  // every brand page built before the Signia theme revision omits all of
+  // every brand page built before the light-theme revision omits all of
   // these. The card itself is always a solid color block distinct from
   // the page background (originally a dark navy on a white page); a
-  // *light* card (Signia v2) needs its own border since it no longer
+  // *light* card (theme v2) needs its own border since it no longer
   // contrasts against the page by darkness alone, plus its own
   // dark-on-light text/border set for the same reason as Hero's.
   cardBg?: string; // .brand-page-final-cta__card background — default: #0f2547
@@ -85,7 +85,7 @@ const { data: rawData, variant = "corporate" } = Astro.props;
 const data = variant === "brand" ? rawData : withCorporateFinalCta(rawData);
 
 // Chip icon colour: the brand accent is often too dark for the dark navy card (e.g. Sonic #3D4C59 = 1.7:1),
-// so on dark cards chips use a light tone; on light cards (Signia) the brand accent stays.
+// so on dark cards chips use a light tone; on light cards the brand accent stays.
 const darkCard = readableTextOn(data.cardBg || "#0f2547") === "#ffffff";
 const chipIcon = darkCard ? "#bfdbfe" : data.ctaAccent || data.accentColor;
 const currentPath = Astro.url.pathname;

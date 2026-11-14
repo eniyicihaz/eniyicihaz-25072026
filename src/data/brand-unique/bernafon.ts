@@ -15,7 +15,7 @@ export const bernafonUnique: UniqueBrandContent = {
   },
   heroSrc: "/images/bernafon/models/encanta.webp",
   heroParagraphs: [
-    `Bernafon, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Bernafon ailesinin ${encanta.length}'ü Encanta adını taşıyor (${join(encanta)}); geri kalan ikisi ${join(["Juna", "Zerena"])}.`,
+    `Bernafon, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizdeki ${f.n} Bernafon ailesinin ${encanta.length}'ü Encanta adını taşıyor (${join(encanta)}); geri kalan ikisi ${join(["Juna", "Zerena"])}.`,
     `Encanta adı altında üç yerleşim var: RIC (Encanta, Alpha XT), BTE (Encanta BTE) ve kulak içi (Encanta CIC). Zerena ise listedeki tek pilli aile.`,
   ],
   heroFeatures: [
@@ -29,7 +29,7 @@ export const bernafonUnique: UniqueBrandContent = {
     paragraphs: [
       `Bernafon listesinin merkezinde Encanta var: ${join(encanta)} sitemizde ayrı kartlar olarak yer alıyor ve üç farklı yerleşimi kapsıyor. Bu yüzden Bernafon'a bakarken önce Encanta içinde yerleşimi seçmek, sonra gerekirse Juna ve Zerena'ya bakmak mantıklı.`,
       `Bluetooth etiketi ${f.bt.length} ailede var; yalnızca Zerena'da yok. Şarjlı etiketi ${join(f.charge)} ailelerinde; Zerena pilli etiketli, Encanta CIC için şarjlı veya pilli etiketi tanımlı değil.`,
-      "Bernafon cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Bernafon cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

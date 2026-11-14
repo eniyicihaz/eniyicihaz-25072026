@@ -10,7 +10,7 @@
 // accentColor: kurumsal mavi (#2563eb / --color-primary), per the brief —
 // unlike brand pages, this is a category page, not a brand, so it uses the
 // site's own primary blue rather than inventing a new accent.
-// heroBackground follows the Widex/Signia "Hero Background System" layered
+// heroBackground follows the shared "Hero Background System" layered
 // composition (dark base, diagonal gradient into a blue-tinted black, one
 // soft glow behind the device, recolorable wave) — same recipe, blue not
 // teal/purple.

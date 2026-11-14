@@ -2,7 +2,7 @@
 // "Markalar/Teknoloji". Renders through BrandPageModels, used sitewide
 // for the first time — replaces the retired recommended-brands.ts plain
 // link list with real product photos + feature badges, without
-// flooding the page with the full brand catalog (only 4 curated,
+// flooding the page with the full brand catalog (only a few curated,
 // visually distinct models). Each card's href goes to that model's real
 // brand page (see BrandPageModels.astro's own href fix — items without
 // one still render as inert "#" cards, unchanged default).
@@ -14,24 +14,6 @@ export const cihazDenemeModels: BrandPageModelsContent = {
   intro: "Farklı teknoloji ve tasarım seçeneklerine sahip modellerden birkaç örnek. Kulak içi cihazlar 7 günlük deneme kapsamı dışındadır; bu cihazlar merkezimizde demo olarak denenebilir.",
   ctaLabel: "Markayı İncele",
   items: [
-    {
-      slug: "signia-styletto",
-      category: "Signia",
-      name: "Signia Styletto",
-      description: "İnce, göze çarpmayan tasarımıyla şarjlı bir seçenek.",
-      tags: ["Şarjlı", "Kulak İçi"],
-      image: "/images/signia/models/styletto.webp",
-      href: "/markalar/signia/",
-    },
-    {
-      slug: "widex-smartric",
-      category: "Widex",
-      name: "Widex SmartRIC",
-      description: "Bluetooth bağlantılı, doğal ses odaklı bir model.",
-      tags: ["Bluetooth", "Şarjlı"],
-      image: "/images/widex/models/smartric.webp",
-      href: "/markalar/widex/",
-    },
     {
       slug: "resound-vivia",
       category: "ReSound",

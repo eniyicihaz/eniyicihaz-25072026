@@ -66,7 +66,7 @@ import { brandsRelated, brandsCta } from "../data/isitme-cihazi-markalari/relate
 // Schema — yalnızca sayfada görünür olan gerçek bilgi. FAQPage şeması, görünür SSS
 // verisinden BrandPageFaq içinde üretilir. Marka/model için Product/Offer/Brand
 // şeması KASITLI olarak yok: ürün sayfası değil, fiyatsız bir rehber; yalnızca
-// görünür 6 marka profilinin gerçek sayfalarına işaret eden ItemList var.
+// görünür marka profillerinin gerçek sayfalarına işaret eden ItemList var.
 const medicalBusinessSchema = buildMedicalBusinessSchema(PAGE_URL, pageMeta.schemaDescription);
 
 const brandsListSchema = {
@@ -164,7 +164,7 @@ const locationCard = {
     <InfoGrid cards={askCards} columns={3} />
   </GuideSection>
 
-  <!-- Diğer 12 marka -->
+  <!-- Diğer markalar -->
   <div class="bg-others" id="diger-markalar">
     <BrandExtended data={otherBrands} />
   </div>

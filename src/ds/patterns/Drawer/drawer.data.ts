@@ -3,13 +3,13 @@
 export const patientHistory = [
     { date: "14 Haz 2026", event: "Cihaz bakımı", detail: "Filtre değişimi, temizlik" },
     { date: "22 Mar 2026", event: "Kontrol muayenesi", detail: "Odyogram güncellendi" },
-    { date: "8 Oca 2026", event: "Cihaz teslimi", detail: "Signia Pure Charge&Go 7AX" }
+    { date: "8 Oca 2026", event: "Cihaz teslimi", detail: "Örnek Model RIC 7" }
 ];
 
 export const patientInfo = {
     name: "Hatice Yalçın",
     age: "68 yaşında",
-    device: "Signia Pure Charge&Go 7AX",
+    device: "Örnek Model RIC 7",
     clinic: "Kadıköy Şubesi",
     initials: "HY"
 };

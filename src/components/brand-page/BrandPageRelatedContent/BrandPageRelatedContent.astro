@@ -31,6 +31,18 @@ interface Props {
 const { data: rawData, variant = "corporate" } = Astro.props;
 const data = variant === "brand" ? rawData : withCorporateSection(rawData);
 const titleId = domId("brand-page-related", data.heading);
+// Marka bağlantı listeleri (bütün bağlantıları /markalar/… olan "Markalara Göre İnceleyin" blokları) kart sayısına göre
+// dengelenir: 4 kart → tek sırada dört kart (≥1200) ya da 2×2 (1024–1199); üçlü ızgarada tek kalan son kart orta sütuna
+// alınır. Diğer listelerin (ilgili içerikler vb.) yerleşimi değişmez.
+const count = data.links.length;
+const isBrandList = count > 0 && data.links.every((l) => l.href === "/markalar/" || /^\/markalar\/[a-z-]+\/$/.test(l.href));
+const gridMod = !isBrandList
+  ? undefined
+  : count === 4
+    ? "brand-page-related__grid--four"
+    : count > 4 && count % 3 === 1
+      ? "brand-page-related__grid--orphan"
+      : undefined;
 ---
 
 <section
@@ -46,7 +58,7 @@ const titleId = domId("brand-page-related", data.heading);
       </h2>
     </div>
 
-    <div class="brand-page-related__grid" data-rise>
+    <div class:list={["brand-page-related__grid", gridMod]} data-rise>
       {
         data.links.map((link) => (
           <a class="brand-page-related__card" href={link.href}>
@@ -219,6 +231,25 @@ const titleId = domId("brand-page-related", data.heading);
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  /* Dengelenmiş marka listeleri (bkz. gridMod): yalnızca masaüstü; ≤1023 tek kolon kuralı aynen geçerlidir. */
+  @media (min-width: 1200px) {
+    .brand-page-related__grid--four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    .brand-page-related__grid--four {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .brand-page-related__grid--orphan > :last-child {
+      grid-column: 2;
     }
   }
 

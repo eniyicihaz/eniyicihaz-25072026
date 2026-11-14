@@ -21,16 +21,6 @@ export const cihazSecimRehberiRecommendedBrands: BrandPageRelatedContentContent 
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Seçim sürecinde Signia'nın geniş model yelpazesini inceleyebilirsiniz.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Seçim sürecinde Widex'in geniş model yelpazesini inceleyebilirsiniz.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "Seçim sürecinde ReSound'un geniş model yelpazesini inceleyebilirsiniz.",
       href: "/markalar/resound/",

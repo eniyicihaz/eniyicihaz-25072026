@@ -4,9 +4,9 @@
 // /teknolojiler/*, /ihtiyaciniza-gore/* and /neden-orijinal/* page uses.
 // Third page of the "Neden Orijinal" series (see header.data.ts's
 // brandsMega second column), following Güvenilir Teknoloji and Uzun
-// Ömürlü Cihazlar. Same trust/authenticity content genre — the
-// authorized service network's reach and quality as a direct consequence
-// of buying original, authorized-channel products.
+// Ömürlü Cihazlar. Same trust/authenticity content genre — maintenance
+// and technical support for the device after purchase (2026-11-14: the
+// page no longer makes any manufacturer-authorization claim).
 //
 // accentColor: turuncu / orange-600 (#ea580c) — third color in the fresh
 // accent rotation opened for this series on Güvenilir Teknoloji's
@@ -19,20 +19,20 @@ import { contactConfig } from "../../config";
 
 export const yayginServisAgiHero: BrandPageHeroContent = {
   textOnly: true, // Hero Visual Paketi: görselsiz kısa hero
-  badge: "MARKALAR · NEDEN ORİJİNAL · ÜRETİCİ YETKİLİ SERVİS DESTEĞİ",
-  headingLines: ["Üretici Yetkili Servis", "Desteği Neden Önemlidir?"],
+  badge: "MARKALAR · NEDEN ORİJİNAL · BAKIM VE TEKNİK DESTEK",
+  headingLines: ["Bakım ve Teknik Destek", "Neden Önemlidir?"],
   paragraphs: [
-    "Bir işitme cihazının uzun vadeli kullanımında, üretici yetkisiyle yürütülen servis desteği; garanti koşullarının doğru uygulanması, doğru parça ve uygun teknik müdahale açısından önemlidir.",
-    "Avrasya İşitme'nin sattığı 18 markanın tamamı için üretici servis yetkisi bulunmaktadır. Fiziksel hizmet noktamız Darıca'daki merkezimizdir; gerektiğinde cihaz teknik servise gönderilebilir.",
+    "Bir işitme cihazının uzun vadeli kullanımında düzenli bakım ve teknik destek; doğru parça, uygun teknik müdahale ve garanti koşullarının doğru değerlendirilmesi açısından önemlidir.",
+    "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz. Fiziksel hizmet noktamız Darıca'daki merkezimizdir; gerektiğinde cihaz teknik servise gönderilebilir.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
   features: [
     {
-      label: "18 MARKADA ÜRETİCİ YETKİSİ",
+      label: "FARKLI MARKA VE MODELLER",
       accent: "#ea580c",
-      title: "Sattığımız Tüm Markalarda Servis Yetkisi",
-      description: "Sattığımız 18 markanın tamamı için üretici servis yetkisi bulunmaktadır.",
+      title: "Bakım ve Teknik Destek Seçenekleri",
+      description: "Bakım ve teknik destek seçenekleri cihazın markasına ve modeline göre değişir; ayrıntıları merkezimizden öğrenebilirsiniz.",
     },
     {
       label: "DARICA MERKEZİMİZ",
@@ -48,12 +48,12 @@ export const yayginServisAgiHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/signia/models/silk.webp",
-    alt: "Signia Silk işitme cihazı",
+    src: "/images/sonic/models/enchant.webp",
+    alt: "Sonic Enchant işitme cihazı",
   },
   floatingCard: {
-    title: "Signia Silk",
-    description: "Teknik servis desteği sunduğumuz markalardan biri.",
+    title: "Sonic Enchant",
+    description: "Bakım ve teknik destek için değerlendirilebilecek modellerden biri.",
   },
   accentColor: "#ea580c",
   accentColorHover: "#c2410c",

@@ -13,7 +13,7 @@ export const resoundUnique: UniqueBrandContent = {
   },
   heroSrc: "/images/resound/models/vivia.webp",
   heroParagraphs: [
-    `ReSound, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} ReSound ailesinin dördü RIC (${join(f.ric)}), ikisi kulak arkası (${join(f.bte)}).`,
+    `ReSound, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizdeki ${f.n} ReSound ailesinin dördü RIC (${join(f.ric)}), ikisi kulak arkası (${join(f.bte)}).`,
     `Bluetooth etiketi altı ailenin hepsinde var; şarjlı etiketi ${f.charge.length} ailede. Pilli etiketli tek ReSound ailesi: ${join(f.pilli)}.`,
   ],
   heroFeatures: [
@@ -27,7 +27,7 @@ export const resoundUnique: UniqueBrandContent = {
     paragraphs: [
       `ReSound listesinin ağırlığı şarjlı RIC ailelerinde: ${join(f.ric)} dördü de RIC, Bluetooth ve şarjlı etiketli. Bu dört ailenin sitemizdeki etiketleri aynı olduğu için aralarındaki tercih işitme değerlendirmesinde ve denemede netleşir.`,
       "Kulak arkası tarafında iki aile var: ENZO Q sitemizde güçlü kayıplar (BTE) kategorisinde ve şarjlı etiketli; Key ise pilli. Sitemizde kulak içi veya çocuk kategorisinde listelenen bir ReSound ailesi yok.",
-      "ReSound cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "ReSound cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },
@@ -113,7 +113,7 @@ export const resoundUnique: UniqueBrandContent = {
       { label: "Kulak Arkası (BTE) Cihazlar", description: "ENZO Q ve Key gibi kulak arkası cihazların genel özellikleri.", href: "/isitme-cihazlari/kulak-arkasi-bte/" },
       { label: "İleri Derece İşitme Kaybı", description: "ENZO Q'nun listelendiği güçlü kayıplar kategorisi.", href: "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/" },
       { label: "Phonak", description: "Virto (kulak içi) ve Sky (çocuk) ailelerinin listelendiği marka sayfası.", href: "/markalar/phonak/" },
-      { label: "Signia", description: "Insio ve Silk kulak içi ailelerinin listelendiği marka sayfası.", href: "/markalar/signia/" },
+      { label: "NuEar", description: "Miniscopic Synergy iQ kulak içi ailesinin listelendiği marka sayfası.", href: "/markalar/nuear/" },
       { label: "Oticon", description: "Own SI (kulak içi) ile çocuk ve güçlü kayıplar ailelerinin listelendiği marka sayfası.", href: "/markalar/oticon/" },
     ],
   },

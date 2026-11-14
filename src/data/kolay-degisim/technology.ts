@@ -74,8 +74,8 @@ export const kolayDegisimTechnology: BrandPageEcosystemContent = {
       howItWorks: "Değişim talebiniz merkezimizde kayda alınır; garanti kapsamındaki cihazlar gerektiğinde dış servise gönderilir.",
       advantages: [
         "Sürecin her aşamasının izlenebilir olmasını sağlar",
-        "Üretici standartlarına uygun bir değişim süreci sunar",
-        "Yetkisiz kanallarda bulunmayan bir güvence sağlar",
+        "Garanti koşullarına göre yürütülen bir değişim süreci sunar",
+        "Garanti kapsamının baştan netleşmesine yardımcı olur",
       ],
       models: ["Garanti Kapsamındaki Cihazlar"],
       expertNote: "Değişim süreciyle ilgili güncel bilgi için bizimle iletişime geçebilirsiniz.",

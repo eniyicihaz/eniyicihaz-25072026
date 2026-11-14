@@ -69,7 +69,7 @@ export const sarjEdilebilirFaq: BrandPageFaqContent = {
         {
           question: "Pil kapasitesi zamanla azalır mı?",
           answer:
-            "Evet, diğer lityum-iyon pilli cihazlarda olduğu gibi kapasite yıllar içinde kademeli olarak azalabilir; dahili pilin değişimi yetkili servis tarafından yapılır.",
+            "Evet, diğer lityum-iyon pilli cihazlarda olduğu gibi kapasite yıllar içinde kademeli olarak azalabilir; dahili pilin değişimi teknik servis tarafından yapılır.",
         },
       ],
     },

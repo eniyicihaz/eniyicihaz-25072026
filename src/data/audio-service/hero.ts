@@ -5,10 +5,10 @@
 // zanaatkârlığı — Audio Service'in gerçek, doğrulanabilir konumu, 1977'de
 // Löhne, Almanya'da Horst Peter Hühne tarafından, kulak içi işitme
 // sistemlerinin faydalarını Amerika'da fark etmesi üzerine kurulmuş
-// olmasıdır. Bugün WS Audiology grubuna (Signia, Widex, Rexton'ın da
-// içinde bulunduğu grup) bağlı olsa da, çekirdek uzmanlığı hâlâ kulak içi
-// (ITE) modellerdir. Audifon'un tinnitus ekseninden, Rexton'ın çekirdek
-// işlemci ekseninden farklı olarak, buradaki eksen "kulak içinde neredeyse
+// olmasıdır. Bugün WS Audiology grubuna
+// bağlı olsa da, çekirdek uzmanlığı hâlâ kulak içi
+// (ITE) modellerdir. Audifon'un tinnitus ekseninden
+// farklı olarak, buradaki eksen "kulak içinde neredeyse
 // görünmez, kişiye özel üretim" — bu setteki hiçbir markanın birincil
 // ekseni olarak kullanılmamış, gerçek bir uzmanlık alanı.
 //
@@ -47,10 +47,10 @@ export const audioServiceHero: BrandPageHeroContent = {
       description: "1977'den bu yana Löhne, Almanya'da süregelen bir üretim geleneği.",
     },
     {
-      label: "SERVİS",
+      label: "DESTEK",
       accent: "#0C2E7A",
-      title: "Merkezimizde Teknik Servis",
-      description: "Audio Service cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
+      title: "Bakım ve Teknik Destek",
+      description: "Audio Service cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz.",
     },
   ],
   image: {
@@ -66,7 +66,7 @@ export const audioServiceHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(18 64 160 / 0.12)",
   accentColorBorder: "rgb(18 64 160 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using Audio Service's own
+  // composition established for the earlier brand pages, using Audio Service's own
   // already-researched accent (#1240A0). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(18,64,160,0.35) 0%, rgba(18,64,160,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #070E1F 60%, #0A1630 100%)",

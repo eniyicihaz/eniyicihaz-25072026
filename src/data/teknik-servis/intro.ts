@@ -18,7 +18,7 @@ export const teknikServisIntro: BrandPageIntroContent = {
   ],
   stats: [
     { value: "Merkezde İlk Kontrol", label: "Başvuru Sonrası İlk Adım" },
-    { value: "18 Marka", label: "Üretici Servis Yetkisi" },
+    { value: "Farklı Marka ve Modeller", label: "Bakım ve Teknik Destek" },
     { value: "Garanti Değerlendirmesi", label: "Cihaz ve Arıza Türüne Göre" },
     { value: "Dijital Servis Kaydı", label: "Cihaz Teslim Edildiğinde" },
   ],

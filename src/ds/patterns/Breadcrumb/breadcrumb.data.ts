@@ -6,7 +6,7 @@ export const deviceCrumbs: BreadcrumbItem[] = [
     { label: "Ana sayfa", href: "#0" },
     { label: "İşitme cihazları", href: "#0" },
     { label: "Kulak arkası (BTE)", href: "#0" },
-    { label: "Signia Pure Charge&Go 7AX", current: true }
+    { label: "Örnek Model RIC 7", current: true }
 ];
 
 export const deviceSpecs = [

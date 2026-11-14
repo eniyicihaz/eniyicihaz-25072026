@@ -23,7 +23,7 @@ export const brandExpertSupport: BrandExpertSupportContent = {
   eyebrow: "Son Adım",
   heading: "Bu Kararı Sizinle Birlikte Veriyoruz.",
   paragraph:
-    "18 işitme cihazı markasını, aralarındaki farkları ve seçim kriterlerini incelediniz. Şimdi geriye tek bir adım kalıyor: ücretsiz işitme testi ve uzman değerlendirmesiyle, size özel çözümü birlikte belirlemek.",
+    "İşitme cihazı markalarını, aralarındaki farkları ve seçim kriterlerini incelediniz. Şimdi geriye tek bir adım kalıyor: ücretsiz işitme testi ve uzman değerlendirmesiyle, size özel çözümü birlikte belirlemek.",
   trustPoints: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı Hizmet",

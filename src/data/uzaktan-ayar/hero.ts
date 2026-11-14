@@ -7,7 +7,7 @@
 //
 // IMPORTANT genre note: the existing /teknolojiler/uzaktan-kontrol page
 // (devicesMega's "Teknolojilere Göre" series) already explains the
-// remote-control/TeleCare TECHNOLOGY itself in depth — app control,
+// remote-control and remote-support TECHNOLOGY itself in depth — app control,
 // physical remotes, video-call-based teleaudiology, AI suggestions —
 // as a cross-brand device feature. This page deliberately does NOT
 // re-explain that technology. Instead, it covers the SERVICE side: how

@@ -32,16 +32,16 @@ export const guvenilirTeknolojiHero: BrandPageHeroContent = {
   headingLines: ["Güvenilir Teknoloji", "Neden Önemlidir?"],
   paragraphs: [
     "Orijinal işitme cihazları; üretici tarafından test edilmiş, sertifikalı ve güncel yazılıma sahip güvenilir bir teknoloji sunar. Üretici garanti koşulları geçerlidir.",
-    "Avrasya İşitme olarak 18 işitme cihazı markası satıyoruz; satın alma öncesinde cihazın garanti ve seri numarası bilgilerini sormanızı öneriyoruz.",
+    "Avrasya İşitme olarak 10+ marka ile çalışıyoruz; satın alma öncesinde cihazın garanti ve seri numarası bilgilerini sormanızı öneriyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
   features: [
     {
-      label: "18 MARKA",
+      label: "MARKA ÇEŞİTLİLİĞİ",
       accent: "#1d4ed8",
-      title: "18 İşitme Cihazı Markası Satıyoruz",
-      description: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar sattığımız markalardan bazılarıdır.",
+      title: "Farklı Marka ve Model Seçenekleri",
+      description: "Oticon, Phonak, ReSound ve NuEar çalıştığımız markalardan bazılarıdır.",
     },
     {
       label: "ÜRETİCİ GARANTİSİ",

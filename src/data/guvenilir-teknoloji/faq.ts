@@ -56,7 +56,7 @@ export const guvenilirTeknolojiFaq: BrandPageFaqContent = {
         {
           question: "Orijinal olmayan bir cihaz için garanti alabilir miyim?",
           answer:
-            "Genellikle hayır; orijinal olmayan cihazlar üretici garantisi kapsamı dışında kalır ve yetkili servisler bu ürünlere hizmet vermeyi reddedebilir.",
+            "Genellikle hayır; orijinal olmayan cihazlar üretici garantisi kapsamı dışında kalır ve teknik servisler bu ürünlere hizmet vermeyi reddedebilir.",
         },
         {
           question: "Başka bir yerden aldığım cihazın orijinalliğini sizde kontrol ettirebilir miyim?",
@@ -71,12 +71,12 @@ export const guvenilirTeknolojiFaq: BrandPageFaqContent = {
         {
           question: "Neden sizden almalıyım?",
           answer:
-            "18 işitme cihazı markası satıyoruz; ücretsiz işitme testi ve cihaz seçimi desteği veriyor, sattığımız markaların tamamında teknik servis sağlıyoruz. Karar vermeden önce cihazın garanti ve seri numarası bilgilerini sormanızı öneririz.",
+            "Farklı işitme cihazı markalarıyla çalışıyoruz; ücretsiz işitme testi ve cihaz seçimi desteği veriyor, bakım ve teknik destek seçenekleri hakkında bilgilendiriyoruz. Karar vermeden önce cihazın garanti ve seri numarası bilgilerini sormanızı öneririz.",
         },
         {
           question: "Fiyatlar neden bazı yerlerden daha yüksek olabilir?",
           answer:
-            "Orijinal ürünlerde garanti, resmi teknik servis ve yasal güvenceler fiyata dahildir; bu nedenle bazı kayıt dışı kanallara göre fiyat farkı olabilir.",
+            "Orijinal ürünlerde garanti, teknik servis ve yasal güvenceler fiyata dahildir; bu nedenle bazı kayıt dışı kanallara göre fiyat farkı olabilir.",
         },
       ],
     },

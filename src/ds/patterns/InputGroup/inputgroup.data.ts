@@ -42,6 +42,6 @@ export const checkoutSteps = [
 export const inventoryUnits = ["adet", "kutu", "koli", "palet"];
 
 export const inventoryRows = [
-    { name: "Signia Pure Charge&Go 7AX", sku: "SGN-7AX-GR", stock: "24 adet" },
+    { name: "Örnek Model RIC 7", sku: "ORN-RIC7-GR", stock: "24 adet" },
     { name: "Kulak kalıbı seti", sku: "EM-SET-S", stock: "3 kutu" }
 ];

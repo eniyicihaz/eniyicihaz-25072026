@@ -15,7 +15,7 @@ export const oticonUnique: UniqueBrandContent = {
   },
   heroSrc: "/images/oticon/models/intent.webp",
   heroParagraphs: [
-    `Oticon, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde Oticon için ${f.n} model ailesi listeliyoruz; diğer marka sayfalarımızda bu sayı üç ile altı arasında.`,
+    `Oticon, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizde Oticon için ${f.n} model ailesi listeliyoruz; diğer marka sayfalarımızda bu sayı üç ile altı arasında.`,
     "Listede günlük kullanım ailelerinin yanında çocuk, güçlü kayıplar ve kulak içi etiketli aileler de var. Hangisinin size uygun olduğu işitme değerlendirmesinden sonra belirlenir.",
   ],
   heroFeatures: [
@@ -29,7 +29,7 @@ export const oticonUnique: UniqueBrandContent = {
     paragraphs: [
       `Oticon sayfasını diğer markalarımızdan ayıran şey liste genişliği: ${f.n} aile içinde günlük kullanım ailelerinin yanında çocuklar için üç aile (${join(f.child)}) ve güçlü kayıplar etiketli iki aile (${join(f.power)}) var.`,
       `Bluetooth etiketi ${f.n} ailenin ${f.bt.length}'unda bulunuyor; etiketi olmayanlar ${join(noBt)}. Şarjlı etiketi ${f.charge.length} ailede var: ${join(f.charge)}.`,
-      "Oticon cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Oticon cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

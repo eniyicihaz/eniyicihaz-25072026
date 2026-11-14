@@ -65,7 +65,7 @@ export const kisiyeOzelProgramlamaTechnology: BrandPageEcosystemContent = {
       id: "uzaktan-ince-ayar",
       icon: "smartphone",
       navLabel: "Uzaktan İnce Ayar",
-      title: "Uzaktan İnce Ayar (Telecare) Desteği",
+      title: "Uzaktan İnce Ayar Desteği",
       lead: "Bazı modellerde, merkeze gelmeden akıllı telefon uygulaması üzerinden uzaktan ince ayar talep edilebilir.",
       howItWorks: "Uygulama üzerinden ilettiğiniz geri bildirim, odyometristiniz tarafından incelenir ve ayar güncellemesi cihazınıza uzaktan iletilir.",
       advantages: [

@@ -1,6 +1,7 @@
 // Marka SSS — Faz 2 P2. Üretici kaynaklı bilgiler (kuruluş, merkez, teknoloji/uygulama adları),
-// "bağlı değiliz / tarafsız", "altı ana marka", stok ve randevu tavsiyesi ifadeleri çıkarıldı.
-// 18 marka ve "18 markanın tamamında teknik servis" SoT'ta doğrulanmıştır (PRODUCT_SOT §1).
+// "bağlı değiliz / tarafsız", stok ve randevu tavsiyesi ifadeleri çıkarıldı.
+// 2026-11-14 (işletme sahibi kararı): marka çeşitliliği "10+ marka" olarak anlatılır; marka sayısı ve
+// "tamamında teknik servis" ifadeleri kullanılmaz.
 import { contactConfig } from "../../config/contact";
 import { nuearModels } from "../nuear/models";
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
@@ -13,7 +14,7 @@ export const brandsFaq: BrandPageFaqContent = {
   intro: "Markalar, modeller, karşılaştırma ve seçim hakkında en çok sorulan soruların kısa ve net cevapları.",
   decisionCard: {
     title: "Size uygun marka ve modeli birlikte belirleyelim",
-    points: ["Ücretsiz işitme testi", "18 marka", "18 markada teknik servis", "Darıca'daki merkezimizde yüz yüze görüşme"],
+    points: ["Ücretsiz işitme testi", "10+ marka", "Bakım ve teknik destek", "Darıca'daki merkezimizde yüz yüze görüşme"],
     ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },
@@ -24,11 +25,11 @@ export const brandsFaq: BrandPageFaqContent = {
         {
           question: "İşitme cihazı markaları nelerdir?",
           answer:
-            "Merkezimizde 18 markayla çalışıyoruz: Oticon, Phonak, Signia, Widex, ReSound, NuEar, Unitron, Bernafon, Audio Service, Rexton, Sonic, Philips Hearing, A&M, Audifon, Beltone, Coselgi, Maico ve Vista. Her markanın kendi sayfası vardır.",
+            "Merkezimizde 10+ marka ile çalışıyoruz. Sitemizde sayfası bulunan markalar: Oticon, Phonak, ReSound, NuEar, Unitron, Bernafon, Audio Service, Sonic, Philips Hearing, A&M, Audifon, Beltone, Coselgi, Maico ve Vista.",
         },
         {
-          question: "Hangi markalarda teknik servis veriyorsunuz?",
-          answer: "Sattığımız 18 markanın tamamında merkezimizde teknik servis veriyoruz.",
+          question: "Hangi marka ve modeller için bakım ve teknik destek alabilirim?",
+          answer: "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında merkezimizden bilgi alabilirsiniz.",
         },
         {
           question: "En iyi işitme cihazı markası hangisi?",
@@ -60,11 +61,6 @@ export const brandsFaq: BrandPageFaqContent = {
             "Kazanan bir cevap yok; kriterlere bakın. İki markanın model ailelerini, cihaz türü ve özellik etiketlerini marka sayfalarından ve yukarıdaki karşılaştırma tablosundan inceleyebilirsiniz. Hangisinin uygun olduğu modele ve ihtiyacınıza bağlıdır.",
         },
         {
-          question: "Signia mı Widex mi?",
-          answer:
-            "Bu da kriter meselesidir. İki markanın model ailelerini ve etiketlerini karşılaştırma tablosunda ve marka sayfalarında görebilirsiniz. Hangisinin size uygun olduğu, işitme kaybınıza ve önceliklerinize göre belirlenir.",
-        },
-        {
           question: "İşitme cihazı markasını değiştirmek mümkün mü?",
           answer:
             "Mümkündür; ancak cihazlar ve ayarlar kişiye göre yapıldığı için mevcut cihazınızın durumu ve yeni cihazın uygunluğu birlikte değerlendirilir. Bu kararı, işitme testi ve görüşmeyle netleştirmenizi öneririz.",
@@ -77,7 +73,7 @@ export const brandsFaq: BrandPageFaqContent = {
         {
           question: "RIC cihazlarda hangi markalar var?",
           answer:
-            "Sitemizde RIC etiketli aileler Phonak, Signia, Widex, ReSound ve NuEar markalarında yer alıyor. Oticon'un yerleşim bilgisi model listemizde etiketli olmadığı için Oticon'un RIC seçeneklerini marka sayfasında inceleyin.",
+            "Sitemizde RIC etiketli aileler Phonak, ReSound ve NuEar markalarında yer alıyor. Oticon'un yerleşim bilgisi model listemizde etiketli olmadığı için Oticon'un RIC seçeneklerini marka sayfasında inceleyin.",
         },
         {
           question: "Şarjlı işitme cihazlarında hangi markalar var?",
@@ -87,7 +83,7 @@ export const brandsFaq: BrandPageFaqContent = {
         {
           question: "Kulak içi ve küçük cihazlar hangi markalarda var?",
           answer:
-            "Sitemizde kulak içi seçeneği anılan aileler arasında Oticon Own SI, Phonak Virto, Signia Insio ve Silk ile NuEar Miniscopic Synergy iQ yer alıyor. Küçük cihaz kulak yapısına bağlı olduğu için uygunluk ayrıca değerlendirilir.",
+            "Sitemizde kulak içi seçeneği anılan aileler arasında Oticon Own SI, Phonak Virto ve NuEar Miniscopic Synergy iQ yer alıyor. Küçük cihaz kulak yapısına bağlı olduğu için uygunluk ayrıca değerlendirilir.",
         },
         {
           question: "Çocuklar için hangi markalarda cihaz var?",
@@ -117,7 +113,7 @@ export const brandsFaq: BrandPageFaqContent = {
         {
           question: "Markalar hakkında nerede bilgi alabilirim?",
           answer:
-            "18 markanın model aileleri hakkında Darıca'daki merkezimizde bilgi alabilirsiniz; hangi modelin uygun olduğu işitme değerlendirmesinden sonra belirlenir. Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur. Gebze ve Çayırova'da şubemiz yok; bu ilçelerden gelen danışanlarımız da Darıca merkezimize gelir.",
+            "Çalıştığımız markaların model aileleri hakkında Darıca'daki merkezimizde bilgi alabilirsiniz; hangi modelin uygun olduğu işitme değerlendirmesinden sonra belirlenir. Randevusuz gelebilirsiniz; işitme testi gibi hizmetler randevuyla verildiği için önce aramanız iyi olur. Gebze ve Çayırova'da şubemiz yok; bu ilçelerden gelen danışanlarımız da Darıca merkezimize gelir.",
         },
       ],
     },

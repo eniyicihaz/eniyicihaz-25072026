@@ -49,7 +49,7 @@ export const philipsHearingEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Teknik Servis",
       title: "Merkezimizde Philips HearLink Teknik Servisi",
-      lead: "Sattığımız 18 markanın tamamında olduğu gibi Philips HearLink cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
+      lead: "Philips HearLink cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
       howItWorks:
         "Cihazınız merkezimizde incelenir; teknik serviste teslim 3 gün içindedir ve ücret cihazın durumuna göre belirlenir.",
       advantages: [

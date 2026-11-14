@@ -7,14 +7,14 @@
 import type { BrandHeroContent } from "../../components/brands/BrandHero/BrandHero.astro";
 
 export const brandHero: BrandHeroContent = {
-  badge: "18 Marka",
+  badge: "10+ Marka",
   headingLines: [
     "İşitme Cihazı",
     "Markalarını",
     "Keşfedin.",
   ],
   description: [
-    "Oticon, Phonak, Signia, Widex, ReSound, NuEar, Vista ve diğer markalarımızı tek noktada inceleyin.",
+    "10+ marka ile çalışıyoruz. Oticon, Phonak, ReSound, NuEar, Vista ve diğer markalarımızı tek noktada inceleyin.",
     "İşitme kaybınıza en uygun teknolojiyi uzman desteğiyle birlikte belirleyin.",
   ],
   ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
@@ -22,7 +22,7 @@ export const brandHero: BrandHeroContent = {
   trustPills: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı",
-    "18 Marka",
+    "10+ Marka",
     "Odyolog Desteği",
   ],
 };

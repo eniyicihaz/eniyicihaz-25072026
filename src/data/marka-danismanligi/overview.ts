@@ -8,7 +8,7 @@ export const markaDanismanligiOverview: BrandPageOverviewContent = {
   intro: "Değerlendirmeye başlamadan önce merak edebileceğiniz birkaç pratik bilgi.",
   cards: [
     { icon: "map-pin", label: "Merkez Konum", value: "Darıca" },
-    { icon: "cpu", label: "Kapsam", value: "18 Marka" },
+    { icon: "cpu", label: "Kapsam", value: "10+ Marka" },
     { icon: "users", label: "Yöntem", value: "İhtiyaç Odaklı" },
     { icon: "sparkles", label: "Yaklaşım", value: "İhtiyaç Odaklı" },
   ],

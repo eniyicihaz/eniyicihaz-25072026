@@ -4,7 +4,7 @@
 // uses. All hrefs point to real, already-built /markalar/{slug} pages.
 // Oticon (Play PX, Xceed Play) and Phonak (Sky) are named directly since
 // their own models.ts data explicitly tags these as "Çocuk" families;
-// Signia, Widex, ReSound and NuEar are described generically since none
+// ReSound and NuEar are described generically since none
 // carry an explicit pediatric-tier tag in their data.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
@@ -22,16 +22,6 @@ export const cocukIsitmeTestiRecommendedBrands: BrandPageRelatedContentContent =
       label: "Phonak",
       description: "Phonak'ın Sky serisi, çocuk kullanıcıların ihtiyaçlarına göre geliştirilmiş pediatrik bir model ailesidir.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın modelleri, çocuk kullanıcılar için de odyometrist eşliğinde değerlendirilebilir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in modelleri, çocuk kullanıcılar için de odyometrist eşliğinde değerlendirilebilir.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

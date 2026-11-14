@@ -1,15 +1,14 @@
 // "Farklı ihtiyaçlara örnek modeller" — 5 gerçek model, marka sayfalarının kendi
 // doğrulanmış model verisinden (src/data/{marka}/models.ts) alınır: Oticon Intent,
-// NuEar — NuEar Circa, Signia Styletto, Widex SmartRIC, Phonak Naída.
-// (Ana sayfanın `homeModels` verisi bilerek kullanılmadı: Signia Styletto'yu orada
-// "Kulak İçi", signia/models.ts'te "RIC" olarak etiketli; marka sayfası verisi esas alındı.)
+// NuEar Circa, Bernafon Encanta CIC, ReSound Vivia, Phonak Naída.
+// (Ana sayfanın `homeModels` verisi bilerek kullanılmadı: etiketler için marka sayfası verisi esas alındı.)
 // Fiyat gösterilmez. Amaç form, kullanım senaryosu, özellik ve marka keşfidir;
 // her kart kendi marka sayfasına gider (model sayfası yoktur — sahte bağlantı üretilmez).
 import { homeModels } from "../home/models";
 import { oticonModels } from "../oticon/models";
 import { phonakModels } from "../phonak/models";
-import { signiaModels } from "../signia/models";
-import { widexModels } from "../widex/models";
+import { bernafonModels } from "../bernafon/models";
+import { resoundModels } from "../resound/models";
 import { nuearModels } from "../nuear/models";
 import type { BrandPageModelsContent, BrandPageProduct } from "../../components/brand-page/BrandPageModels/BrandPageModels.astro";
 
@@ -22,8 +21,8 @@ function find(items: { slug: string }[], slug: string) {
 const items: BrandPageProduct[] = [
   { ...find(oticonModels.items, "intent"), category: "Oticon", href: "/markalar/oticon/" },
   { ...find(nuearModels.items, "circa"), category: "NuEar", href: "/markalar/nuear/" },
-  { ...find(signiaModels.items, "styletto"), category: "Signia", href: "/markalar/signia/" },
-  { ...find(widexModels.items, "smartric"), category: "Widex", href: "/markalar/widex/" },
+  { ...find(bernafonModels.items, "encanta-cic"), category: "Bernafon", href: "/markalar/bernafon/" },
+  { ...find(resoundModels.items, "vivia"), category: "ReSound", href: "/markalar/resound/" },
   { ...find(phonakModels.items, "naida"), category: "Phonak", href: "/markalar/phonak/" },
 ];
 

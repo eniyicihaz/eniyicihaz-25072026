@@ -34,7 +34,7 @@ export interface HeroImageData {
 
 /** One real brand logo, reused verbatim from Brands.astro's own data
  *  shape (src/components/brands/Brands/brands.types.ts) — no new/invented
- *  logos, this is the same 18-brand set. */
+ *  logos, this is the same brand set. */
 export interface HeroBrandLogoRef {
   name: string;
   slug: string;

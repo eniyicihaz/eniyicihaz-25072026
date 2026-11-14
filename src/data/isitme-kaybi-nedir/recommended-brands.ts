@@ -22,16 +22,6 @@ export const isitmeKaybiNedirRecommendedBrands: BrandPageRelatedContentContent =
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "İşitme değerlendirmeniz sonrasında Signia'nın geniş model yelpazesi incelenebilir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "İşitme değerlendirmeniz sonrasında Widex'in geniş model yelpazesi incelenebilir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "İşitme değerlendirmeniz sonrasında ReSound'un geniş model yelpazesi incelenebilir.",
       href: "/markalar/resound/",

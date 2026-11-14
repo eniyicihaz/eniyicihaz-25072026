@@ -10,8 +10,8 @@ export const devices: {
     featured: boolean;
 }[] = [
     {
-        name: "Pure Charge&Go 7AX",
-        brand: "Signia",
+        name: "Örnek Model RIC 7",
+        brand: "Örnek Marka",
         price: "₺48.900",
         tags: [
             { label: "SGK kapsamında", variant: "success" },

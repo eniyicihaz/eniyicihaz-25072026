@@ -49,7 +49,7 @@ export const sonicEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Teknik Servis",
       title: "Merkezimizde Sonic Teknik Servisi",
-      lead: "Sattığımız 18 markanın tamamında olduğu gibi Sonic cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
+      lead: "Sonic cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
       howItWorks:
         "Cihazınız merkezimizde incelenir; teknik serviste teslim 3 gün içindedir ve ücret cihazın durumuna göre belirlenir.",
       advantages: [

@@ -22,16 +22,6 @@ export const orijinalAksesuarRecommendedBrands: BrandPageRelatedContentContent =
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın orijinal şarj ve temizlik aksesuarları, cihazlarınızla tam uyumlu çalışır.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in orijinal aksesuarları, cihazlarının performansını korumak için özel olarak tasarlanır.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un orijinal pil ve streaming aksesuarları, günlük kullanımı kolaylaştırır.",
       href: "/markalar/resound/",

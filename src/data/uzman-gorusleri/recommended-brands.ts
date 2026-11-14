@@ -24,11 +24,6 @@ export const uzmanGorusleriRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/bernafon/",
     },
     {
-      label: "Signia",
-      description: "Doğru bilgiyle karar verdikten sonra Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia/",
-    },
-    {
       label: "ReSound",
       description: "Doğru bilgiyle karar verdikten sonra ReSound modellerini değerlendirebilirsiniz.",
       href: "/markalar/resound/",

@@ -63,7 +63,7 @@ export const sonicHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(61 76 89 / 0.12)",
   accentColorBorder: "rgb(61 76 89 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using Sonic's own
+  // composition established for the earlier brand pages, using Sonic's own
   // already-researched accent (#3D4C59). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(61,76,89,0.35) 0%, rgba(61,76,89,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #0D1114 60%, #151B1F 100%)",

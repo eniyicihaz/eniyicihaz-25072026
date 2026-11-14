@@ -1,7 +1,7 @@
 // Model Vitrini — homepage's own curated selection (own spec:
 // docs/MODEL_SHOWCASE_SPECIFICATION.md), rendered through the existing,
 // shared BrandPageModels.astro (no new component — see spec §7). Five real,
-// verified products from four different brands, balanced across device
+// verified products from four different brands (Oticon, Phonak, Bernafon, ReSound), balanced across device
 // families (RIC/BTE, kulak içi, power/güçlü kayıp, AI, Bluetooth, şarjlı) —
 // none invented; each was cross-checked against its brand's own
 // src/data/{brand}/models.ts before inclusion (see spec §2). Deliberately a
@@ -15,7 +15,7 @@ import type { BrandPageModelsContent } from "../../components/brand-page/BrandPa
 export const homeModels: BrandPageModelsContent = {
   badge: "GERÇEK ÜRÜNLER",
   heading: "Birkaç Gerçek Modelle Tanışın",
-  intro: "18 markanın seçenekleri arasından, farklı ihtiyaçlara örnek birkaç model.",
+  intro: "Farklı markaların seçenekleri arasından, farklı ihtiyaçlara örnek birkaç model.",
   ctaLabel: "İncele",
   items: [
     {
@@ -37,22 +37,22 @@ export const homeModels: BrandPageModelsContent = {
       href: "/markalar/phonak/",
     },
     {
-      slug: "signia-styletto",
-      category: "Signia",
-      name: "Signia Styletto",
-      description: "İnce, göze çarpmayan tasarımıyla şarjlı bir seçenek.",
-      tags: ["Şarjlı", "Kulak İçi"],
-      image: "/images/signia/models/styletto.webp",
-      href: "/markalar/signia/",
+      slug: "bernafon-encanta-cic",
+      category: "Bernafon",
+      name: "Bernafon Encanta CIC",
+      description: "Kişiye özel üretilen, kulak içi yerleşimli bir model ailesi.",
+      tags: ["Kulak İçi", "Bluetooth"],
+      image: "/images/bernafon/models/encanta-cic.webp",
+      href: "/markalar/bernafon/",
     },
     {
-      slug: "widex-smartric",
-      category: "Widex",
-      name: "Widex SmartRIC",
-      description: "Bluetooth bağlantılı, doğal ses odaklı bir model.",
-      tags: ["Bluetooth", "Şarjlı"],
-      image: "/images/widex/models/smartric.webp",
-      href: "/markalar/widex/",
+      slug: "resound-vivia",
+      category: "ReSound",
+      name: "ReSound Vivia",
+      description: "Bluetooth bağlantı özellikleriyle öne çıkan bir seçenek.",
+      tags: ["RIC", "Bluetooth", "Şarjlı"],
+      image: "/images/resound/models/vivia.webp",
+      href: "/markalar/resound/",
     },
     {
       slug: "phonak-naida",

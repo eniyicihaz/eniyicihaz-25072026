@@ -17,7 +17,7 @@ export const uzunOmurluCihazlarConsiderations: BrandPageIdealUserContent = {
       icon: AlertTriangle,
       title: "Yetkisiz Serviste Onarım Riskli Olabilir",
       description: "Yetkisiz servislerde yapılan onarımlar, cihazın garantisini geçersiz kılabilir ve ek hasara yol açabilir.",
-      suggestedFamilies: ["Yetkili Servis Kullanımı"],
+      suggestedFamilies: ["Servis Seçimi"],
     },
     {
       icon: Droplets,

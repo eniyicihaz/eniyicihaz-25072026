@@ -16,9 +16,8 @@
 // green #16a34a). Cyan evokes clinical/medical documentation, fitting
 // for a health-board-report topic.
 //
-// Hero image: Rexton Bicore, a fresh model not yet used by any prior
-// page this session (verified in public/images/rexton/models/
-// bicore.webp).
+// Hero image: not rendered (textOnly). The record points to a
+// representative, unbranded device image.
 
 import type { BrandPageHeroContent } from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
 import { contactConfig } from "../../config";
@@ -54,12 +53,12 @@ export const raporSureciHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/rexton/models/bicore.webp",
-    alt: "SGK rapor süreci sonrasında değerlendirilebilecek Rexton Bicore işitme cihazı görseli",
+    src: "/images/price-guide/device-type-ric-rite.webp",
+    alt: "SGK rapor süreci sonrasında değerlendirilebilecek işitme cihazı görseli (temsili)",
   },
   floatingCard: {
-    title: "Rexton Bicore",
-    description: "Rapor süreciniz tamamlandıktan sonra değerlendirilebilecek modellerden biri.",
+    title: "Rapor Sonrası Cihaz Seçimi",
+    description: "Rapor süreciniz tamamlandıktan sonra size uygun modeller birlikte değerlendirilir.",
   },
   accentColor: "#0891b2",
   accentColorHover: "#0e7490",

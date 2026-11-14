@@ -203,16 +203,6 @@
 "v": {},
 "w": 707
 },
-"/images/brands/rexton-logo-seffaf.webp": {
-"h": 408,
-"v": {},
-"w": 612
-},
-"/images/brands/signia-logo-seffaf.webp": {
-"h": 353,
-"v": {},
-"w": 707
-},
 "/images/brands/sonic-logo-seffaf.webp": {
 "h": 408,
 "v": {},
@@ -227,11 +217,6 @@
 "h": 408,
 "v": {},
 "w": 612
-},
-"/images/brands/widex-logo-seffaf.webp": {
-"h": 353,
-"v": {},
-"w": 707
 },
 "/images/coselgi/models/effect-ite.webp": {
 "h": 1024,
@@ -539,14 +524,6 @@
 },
 "w": 1024
 },
-"/images/pages/signia-hero.webp": {
-"h": 1536,
-"v": {
-"400": "/images/pages/signia-hero-400.webp",
-"640": "/images/pages/signia-hero-640.webp"
-},
-"w": 1024
-},
 "/images/philips-hearing/models/hearlink-30.webp": {
 "h": 1024,
 "v": {
@@ -681,78 +658,6 @@
 },
 "w": 1024
 },
-"/images/rexton/models/bicore-ite.webp": {
-"h": 1024,
-"v": {
-"400": "/images/rexton/models/bicore-ite-400.webp",
-"640": "/images/rexton/models/bicore-ite-640.webp"
-},
-"w": 1024
-},
-"/images/rexton/models/bicore.webp": {
-"h": 1024,
-"v": {
-"400": "/images/rexton/models/bicore-400.webp",
-"640": "/images/rexton/models/bicore-640.webp"
-},
-"w": 1024
-},
-"/images/rexton/models/mcore.webp": {
-"h": 1024,
-"v": {
-"400": "/images/rexton/models/mcore-400.webp",
-"640": "/images/rexton/models/mcore-640.webp"
-},
-"w": 1024
-},
-"/images/rexton/models/reach.webp": {
-"h": 1024,
-"v": {
-"400": "/images/rexton/models/reach-400.webp",
-"640": "/images/rexton/models/reach-640.webp"
-},
-"w": 1024
-},
-"/images/signia/models/active.webp": {
-"h": 1024,
-"v": {
-"400": "/images/signia/models/active-400.webp",
-"640": "/images/signia/models/active-640.webp"
-},
-"w": 1024
-},
-"/images/signia/models/insio.webp": {
-"h": 1024,
-"v": {
-"400": "/images/signia/models/insio-400.webp",
-"640": "/images/signia/models/insio-640.webp"
-},
-"w": 1024
-},
-"/images/signia/models/pure.webp": {
-"h": 1024,
-"v": {
-"400": "/images/signia/models/pure-400.webp",
-"640": "/images/signia/models/pure-640.webp"
-},
-"w": 1024
-},
-"/images/signia/models/silk.webp": {
-"h": 1024,
-"v": {
-"400": "/images/signia/models/silk-400.webp",
-"640": "/images/signia/models/silk-640.webp"
-},
-"w": 1024
-},
-"/images/signia/models/styletto.webp": {
-"h": 1024,
-"v": {
-"400": "/images/signia/models/styletto-400.webp",
-"640": "/images/signia/models/styletto-640.webp"
-},
-"w": 1024
-},
 "/images/sonic/models/enchant-ite.webp": {
 "h": 1024,
 "v": {
@@ -818,11 +723,6 @@
 "v": {},
 "w": 640
 },
-"/images/ui/mega-menu-markalar.webp": {
-"h": 784,
-"v": {},
-"w": 1200
-},
 "/images/unitron/models/blu.webp": {
 "h": 1024,
 "v": {
@@ -884,30 +784,6 @@
 "v": {
 "400": "/images/vista/models/vista-v-400.webp",
 "640": "/images/vista/models/vista-v-640.webp"
-},
-"w": 1024
-},
-"/images/widex/models/allure.webp": {
-"h": 1024,
-"v": {
-"400": "/images/widex/models/allure-400.webp",
-"640": "/images/widex/models/allure-640.webp"
-},
-"w": 1024
-},
-"/images/widex/models/moment-sheer.webp": {
-"h": 1024,
-"v": {
-"400": "/images/widex/models/moment-sheer-400.webp",
-"640": "/images/widex/models/moment-sheer-640.webp"
-},
-"w": 1024
-},
-"/images/widex/models/smartric.webp": {
-"h": 1024,
-"v": {
-"400": "/images/widex/models/smartric-400.webp",
-"640": "/images/widex/models/smartric-640.webp"
 },
 "w": 1024
 }

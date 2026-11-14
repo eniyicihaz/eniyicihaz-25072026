@@ -20,8 +20,8 @@ export const vistaFaq: BrandPageFaqContent = {
       label: "Genel",
       items: [
         {
-          question: "Vista cihazları için servis veriyor musunuz?",
-          answer: "Evet; sattığımız 18 markanın tamamında olduğu gibi Vista cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
+          question: "Vista cihazları için bakım ve teknik destek alabilir miyim?",
+          answer: "Vista cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz.",
         },
         {
           question: "Vista hangi konuda öne çıkar?",

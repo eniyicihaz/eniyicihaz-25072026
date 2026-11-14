@@ -1,10 +1,10 @@
 // "Diğer markalar" (gerçek liste) ve "Fiyat + SGK" (kısa yönlendirme).
 //
 // Diğer markalar: yalnızca COMPANY.md §8'de "çalışılan marka" olarak geçen VE sitede
-// gerçek bir /markalar/{slug}/ sayfası bulunan 12 marka (src/data/brands/extended.ts —
+// gerçek bir /markalar/{slug}/ sayfası bulunan diğer markalar (src/data/brands/extended.ts —
 // mevcut, doğrulanmış liste; buradan okunur, elle yeniden yazılmaz). Sırf keyword
 // için marka veya sayfa üretilmez; sayfası olmayan markaya bağlantı verilmez.
-// 6 ana marka + 12 diğer marka = COMPANY.md'deki 18 marka.
+// Profili yer alan 4 marka + buradaki diğer markalar = marka sayfası bulunan markaların tamamı (sitede sayı yazılmaz; "10+ marka").
 //
 // Fiyat ve SGK: KOPYALANMAZ; yalnızca neden ayrı sayfada olduğu söylenir.
 import { Tag, ShieldCheck } from "lucide-astro";
@@ -15,9 +15,9 @@ import type { GuideCard, GuideSectionMeta } from "../../components/price-guide/p
 export const otherBrands: BrandExtendedContent = {
   ...brandExtended,
   eyebrow: "Diğer Markalar",
-  heading: "Merkezimizde Çalıştığımız Diğer 12 Marka",
+  heading: "Merkezimizde Çalıştığımız Diğer Markalar",
   intro:
-    "Marka profili yer alan altı markanın yanı sıra aşağıdaki markalarla da çalışıyoruz; her birinin kendi marka sayfası vardır. Toplamda 18 marka ile çalışıyoruz ve 18 markanın tamamında merkezimizde teknik servis veriyoruz.",
+    "Marka profili yer alan dört markanın yanı sıra aşağıdaki markalarla da çalışıyoruz; her birinin kendi marka sayfası vardır.",
 };
 
 export const priceSgkSection: GuideSectionMeta = {

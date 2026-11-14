@@ -13,9 +13,9 @@ export const guvenilirTeknolojiUseCases: BrandPageTechnologyContent = {
   intro: "Her satışta sunduğumuz somut güvencelere daha yakından bakalım.",
   items: [
     {
-      label: "18 MARKA",
-      title: "18 İşitme Cihazı Markası",
-      description: "18 işitme cihazı markası satıyor ve bu markaların tamamında teknik servis veriyoruz.",
+      label: "MARKALAR",
+      title: "Farklı İşitme Cihazı Markaları",
+      description: "Farklı marka ve model seçenekleri sunuyor; bakım ve teknik destek seçenekleri hakkında bilgi veriyoruz.",
     },
     {
       label: "FATURALI SATIŞ",

@@ -21,16 +21,6 @@ export const periyodikBakimRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia cihazları için uyumlu kulak kiri filtresi ve tüp seçenekleri mevcuttur.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex cihazları için uyumlu kulak kiri filtresi ve tüp seçenekleri mevcuttur.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound cihazları için uyumlu kulak kiri filtresi ve tüp seçenekleri mevcuttur.",
       href: "/markalar/resound/",

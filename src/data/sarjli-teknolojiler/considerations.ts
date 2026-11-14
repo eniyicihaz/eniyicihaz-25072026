@@ -22,9 +22,9 @@ export const sarjliTeknolojilerConsiderations: BrandPageIdealUserContent = {
     },
     {
       icon: Wrench,
-      title: "Pil Değişimi Yetkili Servis Gerektirir",
-      description: "Dahili pilin değişimi kullanıcı tarafından yapılamaz, yetkili teknik servis tarafından gerçekleştirilir.",
-      suggestedFamilies: ["Yetkili Servis"],
+      title: "Pil Değişimi Teknik Servis Gerektirir",
+      description: "Dahili pilin değişimi kullanıcı tarafından yapılamaz, teknik servis tarafından gerçekleştirilir.",
+      suggestedFamilies: ["Teknik Servis"],
     },
     {
       icon: Thermometer,

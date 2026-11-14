@@ -33,7 +33,7 @@ export const vistaEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Teknik Servis",
       title: "Merkezimizde Vista Teknik Servisi",
-      lead: "Sattığımız 18 markanın tamamında olduğu gibi Vista cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
+      lead: "Vista cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
       howItWorks:
         "Cihazınız merkezimizde incelenir; teknik serviste teslim 3 gün içindedir ve ücret cihazın durumuna göre belirlenir.",
       advantages: [

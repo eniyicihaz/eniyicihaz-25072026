@@ -32,14 +32,14 @@ export const teknikServisTechnology: BrandPageEcosystemContent = {
       expertNote: "Bazı sorunlar, merkezdeki ilk değerlendirmeden sonra teknik serviste kapsamlı bir inceleme gerektirebilir.",
     },
     {
-      id: "uretici-servis-agi",
+      id: "teknik-servis-ilk-kontrol",
       icon: "globe",
       navLabel: "Teknik Servis",
       title: "Teknik Serviste İlk Teknik Kontrol",
       lead: "Merkezde çözülemeyen cihaz teknik servise gönderilir; arıza teknik serviste yapılan ilk teknik kontrolle daha net belirlenir.",
       howItWorks: "Cihazınız merkezimizde kayda alınır ve teknik servise gönderilir; ilk teknik kontrolden sonra tahmini onarım süresi ve varsa ücret size bildirilir.",
       advantages: [
-        "18 markanın tamamı için üretici servis yetkisi bulunur",
+        "Farklı marka ve modeller için teknik destek seçenekleri hakkında bilgi alınabilir",
         "Karmaşık teknik sorunların teknik serviste ele alınmasına imkân tanır",
         "Garanti kapsamındaki onarımlar için gereken süreci yürütür",
       ],

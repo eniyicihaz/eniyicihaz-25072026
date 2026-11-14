@@ -25,16 +25,6 @@ export const yapayZekaDestekliRecommendedBrands: BrandPageRelatedContentContent 
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın yapay zeka destekli modelleri, gerçek zamanlı ses işleme teknolojisiyle doğal bir dinleme deneyimi sunar.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in yapay zeka destekli modelleri, markanın doğal ses felsefesini akıllı ortam optimizasyonuyla birleştirir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un Nexia ailesi, yapay zeka destekli ses işleme teknolojisiyle öne çıkan bir seçenektir.",
       href: "/markalar/resound/",

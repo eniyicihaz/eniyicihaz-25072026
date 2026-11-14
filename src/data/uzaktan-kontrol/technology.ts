@@ -35,8 +35,8 @@ export const uzaktanKontrolTechnology: BrandPageEcosystemContent = {
     {
       id: "uzaktan-destek",
       icon: "globe",
-      navLabel: "Uzaktan Destek (TeleCare)",
-      title: "Video Görüşme Üzerinden Uzaktan Destek (TeleCare)",
+      navLabel: "Uzaktan Destek",
+      title: "Video Görüşme Üzerinden Uzaktan Destek",
       lead: "Odyometristiniz, video görüşme sırasında cihazınızın temel ayarlarını uzaktan güncelleyebilir.",
       howItWorks: "Görüşme sırasında cihazınız uygulama üzerinden odyometristinizin ekranına bağlanır; odyometrist, sizin geri bildiriminize göre programlamada gerekli güncellemeleri uzaktan yapar.",
       advantages: [
@@ -44,7 +44,7 @@ export const uzaktanKontrolTechnology: BrandPageEcosystemContent = {
         "Küçük değişiklikler için zaman tasarrufu sağlar",
         "Merkeze uzak yaşayan kullanıcılar için erişim kolaylığı",
       ],
-      models: ["Uzaktan Destek (TeleCare) Uyumlu Modeller"],
+      models: ["Uzaktan Destek Uyumlu Modeller"],
       expertNote: "Uzaktan destek her ayarı kapsamaz; bazı durumlarda yüz yüze bir randevu gerekebilir.",
     },
     {

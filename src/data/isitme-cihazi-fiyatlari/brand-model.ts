@@ -12,15 +12,13 @@ export const brandModelSection: GuideSectionMeta = {
   eyebrow: "Marka ve Model",
   heading: "İşitme Cihazı Markaları ve Modelleri: Fiyatı Marka Değil, Seçim Belirler",
   intro:
-    "18 markayla çalışıyoruz. Aynı marka içinde bile seri, teknoloji seviyesi ve özellikler bedeli değiştirir. Bu yüzden 'hangi marka daha ucuz?' sorusu yerine 'hangi model benim ihtiyacıma uygun?' sorusu sorulmalıdır.",
+    "10+ marka ile çalışıyoruz. Aynı marka içinde bile seri, teknoloji seviyesi ve özellikler bedeli değiştirir. Bu yüzden 'hangi marka daha ucuz?' sorusu yerine 'hangi model benim ihtiyacıma uygun?' sorusu sorulmalıdır.",
 };
 
-/** Sayfada öne çıkarılan 6 marka — hepsinin gerçek /markalar/{slug}/ sayfası var. */
+/** Sayfada öne çıkarılan 4 marka — hepsinin gerçek /markalar/{slug}/ sayfası var. */
 export const brandLinks: GuideCard[] = [
   { title: "Oticon", text: "Oticon işitme cihazı ailelerini, teknolojilerini ve hangi kullanıcılara uygun olabileceğini marka sayfasında inceleyin.", href: "/markalar/oticon/", linkLabel: "Oticon sayfası" },
   { title: "Phonak", text: "Phonak modellerini, cihaz türlerini ve özelliklerini marka sayfasında karşılaştırın.", href: "/markalar/phonak/", linkLabel: "Phonak sayfası" },
-  { title: "Signia", text: "Signia ürün ailelerini ve şarjlı, kulak içi seçeneklerini marka sayfasında görün.", href: "/markalar/signia/", linkLabel: "Signia sayfası" },
-  { title: "Widex", text: "Widex modellerini ve teknoloji yaklaşımını marka sayfasında inceleyin.", href: "/markalar/widex/", linkLabel: "Widex sayfası" },
   { title: "ReSound", text: "ReSound ailelerini ve özelliklerini marka sayfasında değerlendirin.", href: "/markalar/resound/", linkLabel: "ReSound sayfası" },
   { title: "NuEar", text: "NuEar modellerini ve hangi kullanıcılar için değerlendirilebileceğini marka sayfasında öğrenin.", href: "/markalar/nuear/", linkLabel: "NuEar sayfası" },
 ];
@@ -29,8 +27,8 @@ export const brandNote =
   "Marka sırası bir fiyat ya da kalite sıralaması değildir. Bir markanın hangi serisinin sizin işitme kaybınıza ve yaşam tarzınıza uygun olduğu, işitme değerlendirmesi sonrasında belirlenir.";
 
 // Model listesi bu sayfaya özeldir — ana sayfanın `homeModels` verisi DEĞİŞMEZ.
-// Ana sayfadaki iki Phonak modelinden (Audéo, Naída) Audéo çıkarıldı (Widex
-// SmartRIC ile aynı RIC/Bluetooth/şarjlı profili); yerine repodaki GERÇEK
+// Ana sayfadaki iki Phonak modelinden (Audéo, Naída) Audéo çıkarıldı (listedeki
+// diğer RIC/Bluetooth/şarjlı modelle aynı profil); yerine repodaki GERÇEK
 // NuEar Circa görseli (public/images/nuear/models/circa.webp) ve NuEar'ın
 // kendi doğrulanmış model verisi (src/data/nuear/models.ts) kullanıldı.
 // Yeni görsel üretilmedi. Phonak Naída, "güçlü kayıp" ihtiyacını temsil ettiği

@@ -3,7 +3,7 @@
 // Slide 1 is the existing, already-approved "Darıca / Yerel Güven +
 // Premium" slide, carried over unchanged in substance: real Darıca photo,
 // badge/context/subhead, 3 CTAs (test/ara/whatsapp), brandLock. Source of
-// truth for its facts: COMPANY.md (2009, SGK anlaşmalı, 18 marka, Darıca
+// truth for its facts: COMPANY.md (2009, SGK anlaşmalı, 10+ marka, Darıca
 // §17 ana merkez). `contextSentence`-equivalent body[0] is the same
 // canonical entity-definition sentence used verbatim in
 // src/data/contact/hero.ts's `definitionSentence` — do not reword without
@@ -32,12 +32,12 @@
 // clinical protocol, matching the informal, reassuring tone of the rest of
 // this slide.
 //
-// Slide 4's visual (isitme-cihazi-markalari.webp) replaces the earlier
-// 18-logo mosaic panel with a single AI-generated concept image (devices +
-// a decorative ring of brand marks). Its alt text is deliberately generic
+// Slide 4's visual (brand-guide/en-iyi-isitme-cihazi-markalari.webp since 2026-11-14) replaces the earlier
+// brand-logo mosaic panel with a single AI-generated concept image (devices +
+// a decorative ring of brand marks; replaced on 2026-11-14 by a logo-free device image). Its alt text is deliberately generic
 // ("...temsil eden kavramsal görsel") and does NOT assert this is a
 // literal, complete inventory of every brand shown — the real, exhaustive
-// 18-brand list stays the authoritative one on /markalar (Brands.astro),
+// brand list stays the authoritative one on /markalar (Brands.astro),
 // unchanged by this decorative image. Native ratio (1536:1024 = 1.5) is
 // narrower than the shared 1672:941 frame, so `fit: "contain"` pillarboxes
 // left/right instead of cropping — same reasoning as slides 2–3, just the
@@ -95,7 +95,7 @@
 // slides 2, 3, and 4's are AI-generated concept images (never presented as
 // real photos/a literal brand inventory); slide 5's is an AI-generated
 // conceptual map graphic; slide 6's is a real product shot of the actual
-// battery brands sold. The real, exhaustive 18-brand data set still lives
+// battery brands sold. The real, exhaustive brand data set still lives
 // in Brands.astro's own brands.data.ts and is unaffected by this file. All
 // six slides now have real visuals — no `visual.kind === "placeholder"`
 // remains in use.
@@ -184,21 +184,21 @@ export const hero: HeroContent = {
       heading: "Dünya Markaları, Size Uygun Çözümler",
       headingLevel: "h2",
       body: [
-        "Tek bir markaya bağlı değiliz; 18 marka arasından size en uygun olanı öneriyoruz.",
+        "Tek bir markaya bağlı değiliz; 10+ marka ile çalışıyor, size uygun olanı birlikte belirliyoruz.",
       ],
       cta: { label: "Markaları Keşfet", href: "/markalar/" },
       visual: {
         kind: "photo",
         image: {
-          src: "/images/heroes/isitme-cihazi-markalari.webp",
-          alt: "İşitme cihazlarını ve farklı işitme cihazı markalarını temsil eden kavramsal görsel",
-          width: 1536,
-          height: 1024,
-          objectPosition: "50% 45%",
+          src: "/images/brand-guide/en-iyi-isitme-cihazi-markalari.webp",
+          alt: "Açık mavi zeminde beyaz podyumlar üzerinde kulak arkası, kanal içi ve şarj kutulu farklı işitme cihazı türleri",
+          width: 1774,
+          height: 887,
+          objectPosition: "75% 50%",
         },
       },
       infoCards: [
-        { icon: "layout-grid", title: "18 Marka", description: "Farklı seçenekleri değerlendirin" },
+        { icon: "layout-grid", title: "10+ Marka", description: "Farklı seçenekleri değerlendirin" },
         { icon: "cpu", title: "Farklı Teknolojiler", description: "İhtiyacınıza uygun çözümler" },
         { icon: "shapes", title: "Farklı Tasarımlar", description: "Kulak arkası ve kulak içi seçenekler" },
         { icon: "user-check", title: "Uzman Desteği", description: "Seçenekleri birlikte değerlendirelim" },
@@ -257,6 +257,6 @@ export const hero: HeroContent = {
     { icon: "award", value: "2009'dan beri", label: "Güvenle yanınızdayız" },
     { icon: "shield", value: "SGK Anlaşmalı", label: "Merkez" },
     { icon: "users", value: "Kişiye Özel", label: "Yaklaşım" },
-    { icon: "gem", value: "18 Marka", label: "Satış ve Teknik Servis" },
+    { icon: "gem", value: "10+ Marka", label: "Marka ve Model Çeşitliliği" },
   ],
 };

@@ -1,6 +1,6 @@
 # BUSINESS_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-08 (Facebook ve Instagram URL doğrulaması, §3)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-14 (marka çeşitliliği ve teknik destek ifadeleri; önceki: 2026-11-08 Facebook ve Instagram URL doğrulaması, §3)
 > **Amaç:** Avrasya İşitme Cihazları için tek kaynak. Kapsadığı konular:
 > - İşletme kimliği ve tarihçesi
 > - Yasal yapı
@@ -83,7 +83,7 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 - Sitedeki gerçek merkez fotoğrafları işletmeye aittir ve gerçektir. Kullanıcının "kullanılmasın" dediği bir fotoğraf **yoktur**.
 
 **Markalar**
-- **18 marka satılıyor; başka satılan marka yok.** "Yaklaşık 20 marka" ve "18+ marka" ifadeleri kullanılmaz (bkz. PRODUCT_SOT).
+- **Kanonik ifade: "10+ marka ile çalışıyoruz."** (İşletme sahibi, 2026-11-14). "18 marka", "18+ marka" ve "yaklaşık 20 marka" ifadeleri kullanılmaz; güncel marka listesi PRODUCT_SOT §1'dedir.
 
 **Deneme**
 - Kanonik ifade: "**Cihazı satın alarak 7 güne kadar deneme; uygun bulunmaması halinde ücret iadesi.**"
@@ -94,6 +94,8 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 
 **İddialar**
 - "Yetkili bayi / tüm markaların yetkili bayisiyiz" iddiası **[DOĞRULAMA GEREKLİ]**. Kamuya açık iddia olarak kullanılmaz.
+- Yazılı üretici yetkisi belgelenmedikçe şu ifadeler kullanılmaz: "üretici servis yetkisi", "yetkili servis", "üretici yetkili servis", "resmî servis", "üretici garantisi kapsamında servis", "üretici tarafından yetkilendirilmiş teknik servis". Bakım ve teknik destek için kanonik ifade: "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz." (İşletme sahibi, 2026-11-14; SERVICE_SOT §4)
+- Üretici eğitimi, sertifika veya yetki ifadeleri belgesi sunulmadıkça kamuya açık metinde kullanılmaz (İşletme sahibi, 2026-11-14).
 
 ---
 
@@ -172,7 +174,7 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 | Okul adları ve mezuniyet yılları | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | Profil | — |
 | Ekip fotoğrafları ve yayın rızası (KVKK) | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | ASSET_SOT | — |
 | Mevcut sitede isimli uzman | Yok (isimsiz "uzman görüşü" blokları var) | [MEVCUT BELGELERDE VAR] | Site analizi | — | E-E-A-T boşluğu | — |
-| E-E-A-T için kullanılabilecek gerçek unsurlar | 2009'dan gelen işletme geçmişi; Darıca merkezinin Ağustos 2024'te açılması; ekip eğitimleri (yukarıda); üretici eğitimleri; Noah ve İŞİTSOFT altyapısı; deneme süreci; SGK işlemleri; takip süreci; yedek cihaz uygulaması; evde hizmet | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | E-E-A-T içerikleri | YENİDEN DOĞRULA |
+| E-E-A-T için kullanılabilecek gerçek unsurlar | 2009'dan gelen işletme geçmişi; Darıca merkezinin Ağustos 2024'te açılması; ekip eğitimleri (yukarıda); üretici eğitimleri (yalnızca belgesi sunulduğunda: 2026-11-14 kuralı); Noah ve İŞİTSOFT altyapısı; deneme süreci; SGK işlemleri; takip süreci; yedek cihaz uygulaması; evde hizmet | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | E-E-A-T içerikleri | YENİDEN DOĞRULA |
 
 ## 5. Doğrulanması veya Kaldırılması Gereken İşletme İddiaları
 
@@ -202,7 +204,7 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 | Bilgi | Durum | Not |
 |---|---|---|
 | Bilinen yakın rakipler (yalnızca biliniyorsa) | [KULLANICIDAN BİLGİ GEREKLİ] | Rakip adı tahmin edilmez. |
-| Kanıtlanabilir farklar ve güçlü hizmetler | Doğrulanmış operasyonel unsurlar: 40 hizmet, H7 ve H28 deneme yapısı, onarımda yedek cihaz, 18 markanın tamamında teknik servis, evde hizmet, Noah ve İŞİTSOFT altyapısı [DOĞRULANDI] | Bunlar "farklılaşma" iddiası olarak değil, olgu olarak kullanılır. "Tek", "ilk", "en iyi" türü ifadeye dönüştürülmez. |
+| Kanıtlanabilir farklar ve güçlü hizmetler | Doğrulanmış operasyonel unsurlar: 40 hizmet, H7 ve H28 deneme yapısı, onarımda yedek cihaz, bakım ve teknik destek (kanonik ifade: SERVICE_SOT §4), evde hizmet, Noah ve İŞİTSOFT altyapısı [DOĞRULANDI] | Bunlar "farklılaşma" iddiası olarak değil, olgu olarak kullanılır. "Tek", "ilk", "en iyi" türü ifadeye dönüştürülmez. |
 | Danışanların tavsiye ederken en sık söylediği şey | [KULLANICIDAN BİLGİ GEREKLİ] | — |
 
 ## 8. İşletme Hedefleri
@@ -260,7 +262,8 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 | "2009'dan beri Darıca'da…" | Kuruluş 2009 (Afyon Merkez); Darıca merkezi Ağustos 2024 |
 | **"Darıca merkezi yaklaşık 3 yıldır"** (B2, 2026-10-06) | **Darıca merkezi Ağustos 2024'te açıldı** (2026-10-07) |
 | "2009'dan beri aynı ekip" | Ekip 2009'dan beri aynı değil; Erdinç Kılıç 2009'dan beri organizasyonda |
-| "Yaklaşık 20 marka" / "18+ marka" | 18 marka |
+| "18 marka" / "18+ marka" / "Yaklaşık 20 marka" | "10+ marka ile çalışıyoruz." (2026-11-14) |
+| "18 markanın tamamı için üretici servis yetkisi" / "üretici yetkili servis" / "18 markada teknik servis" | "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz." (2026-11-14) |
 | "Ücretsiz 7 günlük deneme" | "Cihazı satın alarak 7 güne kadar deneme; uygun bulunmaması halinde ücret iadesi." (H7 ücretsiz demo ayrı) |
 | "avrasyaisitme@gmail.com birincil e-posta" | eniyicihaz@gmail.com (birincil ve form) |
 | "Kullanılmaması gereken fotoğraf listesi" | Böyle bir liste yok |

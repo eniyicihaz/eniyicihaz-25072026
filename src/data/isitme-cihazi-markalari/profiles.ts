@@ -1,11 +1,11 @@
-// Marka profilleri (Oticon, Phonak, Signia, Widex, ReSound, NuEar) — Faz 2 P2.
+// Marka profilleri (Oticon, Phonak, ReSound, NuEar) — Faz 2 P2.
 //
 // Üretici kaynaklı bilgiler (kuruluş yılı, merkez ülke/şehir, felsefe sloganı, teknoloji ve
 // uygulama adları, "X için geliştirilmiştir" gibi ürün iddiaları) bu sayfadan TAMAMEN çıkarıldı:
 // kaynak ve onay yok (PRODUCT_SOT: marka bilgisi sınırı; "marka sayfalarındaki üretici
 // bilgilerinin kaynağı ve onaylayan kişi: KULLANICIDAN BİLGİ GEREKLİ"). Profil yalnızca sitedeki
 // model verisinden (src/data/{marka}/models.ts: aile adları ve etiketler) ve SoT'ta doğrulanmış
-// olgulardan (18 marka satılıyor; 18 markanın tamamında teknik servis) oluşur.
+// olgulardan oluşur (2026-11-14: marka sayısı ve "tamamında teknik servis" ifadeleri işletme sahibi kararıyla kaldırıldı).
 // Marka sıralaması, "en iyi" veya puan yoktur; fiyat yoktur (COMPANY.md §23).
 // Model SAYFASI yoktur: her bağlantı marka sayfasına gider.
 import type { GuideSectionMeta } from "../../components/price-guide/price-guide.types";
@@ -14,8 +14,6 @@ import { oticonModels } from "../oticon/models";
 import { phonakModels } from "../phonak/models";
 // Phonak şarj/pil cümlesi resmî Phonak ürün sayfalarına göre düzeltildi (2026-11-14); bkz. PHONAK_POWER.
 import { PHONAK_POWER } from "../phonak/families";
-import { signiaModels } from "../signia/models";
-import { widexModels } from "../widex/models";
 import { resoundModels } from "../resound/models";
 import { nuearModels } from "../nuear/models";
 
@@ -82,12 +80,12 @@ function buildProfile(opts: {
     name,
     logo: `/images/brands/${logoSlug}-logo-seffaf.webp`,
     logoAlt: `${name} logosu`,
-    lead: `${name}, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir.`,
+    lead: `${name}, merkezimizde çalıştığımız işitme cihazı markalarından biridir.`,
     paragraphs: [
       `Bu profil, ${name} markasının sitemizdeki model ailelerini ve cihaz türü / özellik etiketlerini gösterir. Ayrıntılar ve tüm modeller marka sayfasındadır.`,
     ],
     facts: [
-      { label: "Merkezimizde", value: "Satış ve teknik servis" },
+      { label: "Merkezimizde", value: "Satış, bakım ve teknik destek" },
       { label: "Model ailesi", value: `${items.length} aile` },
     ],
     types: tagList(items),
@@ -105,30 +103,24 @@ export const profilesIntro: GuideSectionMeta = {
   eyebrow: "Marka Profilleri",
   heading: "Marka Profilleri: Cihaz Türleri ve Model Aileleri",
   intro:
-    "Bu bölümde Oticon, Phonak, Signia, Widex, ReSound ve NuEar profilleri yer alıyor; diğer markalar kendi marka sayfalarında. Sıralama bir tercih ya da kalite sıralaması değildir. Bilgiler sitemizdeki model listelerinden derlenmiştir.",
+    "Bu bölümde Oticon, Phonak, ReSound ve NuEar profilleri yer alıyor; diğer markalar kendi marka sayfalarında. Sıralama bir tercih ya da kalite sıralaması değildir. Bilgiler sitemizdeki model listelerinden derlenmiştir.",
 };
 
 export const brandSections: Record<string, GuideSectionMeta> = {
   oticon: { id: "oticon", eyebrow: "Oticon", heading: "Oticon İşitme Cihazları ve Modelleri", intro: "Oticon model aileleri, cihaz türleri ve özellik etiketleri." },
   phonak: { id: "phonak", eyebrow: "Phonak", heading: "Phonak İşitme Cihazları ve Modelleri", intro: "Phonak model aileleri, cihaz türleri ve özellik etiketleri." },
-  signia: { id: "signia", eyebrow: "Signia", heading: "Signia İşitme Cihazları ve Modelleri", intro: "Signia model aileleri, cihaz türleri ve özellik etiketleri." },
-  widex: { id: "widex", eyebrow: "Widex", heading: "Widex İşitme Cihazları ve Modelleri", intro: "Widex model aileleri, cihaz türleri ve özellik etiketleri." },
   resound: { id: "resound", eyebrow: "ReSound", heading: "ReSound İşitme Cihazları ve Modelleri", intro: "ReSound model aileleri, cihaz türleri ve özellik etiketleri." },
   nuear: { id: "nuear-profili", eyebrow: "NuEar", heading: "NuEar İşitme Cihazları ve Modelleri", intro: "NuEar model aileleri, cihaz türleri ve özellik etiketleri." },
 };
 
 const oticonItems = oticonModels.items as RawModel[];
 const phonakItems = phonakModels.items as RawModel[];
-const signiaItems = signiaModels.items as RawModel[];
-const widexItems = widexModels.items as RawModel[];
 const resoundItems = resoundModels.items as RawModel[];
 const nuearItems = nuearModels.items as RawModel[];
 
 export const brandProfiles: BrandProfileContent[] = [
   buildProfile({ id: "oticon", name: "Oticon", logoSlug: "oticon", items: oticonItems, pickSlugs: ["intent", "own-si", "xceed"] }),
   buildProfile({ id: "phonak", name: "Phonak", logoSlug: "phonak", items: phonakItems, pickSlugs: ["audeo", "naida", "sky"] }),
-  buildProfile({ id: "signia", name: "Signia", logoSlug: "signia", items: signiaItems, pickSlugs: ["styletto", "insio", "active"] }),
-  buildProfile({ id: "widex", name: "Widex", logoSlug: "widex", items: widexItems, pickSlugs: ["allure", "smartric", "moment-sheer"] }),
   buildProfile({ id: "resound", name: "ReSound", logoSlug: "resound", items: resoundItems, pickSlugs: ["vivia", "nexia", "key"] }),
   buildProfile({ id: "nuear", name: "NuEar", logoSlug: "nuear", items: nuearItems, pickSlugs: ["circa", "miniscopic-synergy-iq"] }),
 ];

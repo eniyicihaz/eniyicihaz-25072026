@@ -1,29 +1,29 @@
 // "Avantajları" bento section for the /neden-orijinal/yaygin-servis-agi
-// page — framed as the advantages of a widespread, authorized service
-// network rather than a generic device-feature list. Renders through
+// page — framed as what to expect from maintenance and technical support
+// rather than a generic device-feature list. Renders through
 // the shared BrandPageAdvantages component — items must be exactly 5
 // entries: [slot1, slot2, slot3(wide), slot4(wide), slot5(wide)], same
 // contract every brand/category page's advantages data follows.
 
-import { MapPin, Clock, GraduationCap, PackageCheck, ShieldCheck, Plane } from "lucide-astro";
+import { MapPin, Clock, SearchCheck, PackageCheck, ShieldCheck, Plane } from "lucide-astro";
 import type { BrandPageAdvantagesContent } from "../../components/brand-page/BrandPageAdvantages/BrandPageAdvantages.astro";
 
 export const yayginServisAgiAdvantages: BrandPageAdvantagesContent = {
   badge: "AVANTAJLARI",
-  heading: "Üretici Yetkili Servis Desteğinden Ne Beklenir?",
-  intro: "Avrasya İşitme'de servis desteğinin başlıca özellikleri.",
+  heading: "Bakım ve Teknik Destekten Ne Beklenir?",
+  intro: "Avrasya İşitme'de bakım ve teknik desteğin başlıca özellikleri.",
   hero: {
     icon: MapPin,
     category: "Darıca'daki Merkezimiz",
-    title: "18 Markanın Tamamı İçin Üretici Servis Yetkisi",
-    description: "Üretici servis yetkisi 18 markanın tamamı için geçerlidir; fiziksel hizmet noktamız Darıca'daki merkezimizdir.",
+    title: "Farklı Marka ve Modellerde Bakım ve Teknik Destek",
+    description: "Bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; kapsam cihazın markasına ve modeline göre değişir.",
   },
   items: [
     {
-      icon: GraduationCap,
-      category: "Servis Personeli",
-      title: "Üretici Eğitimi Almış Ekip",
-      description: "Servis işlemlerini yürüten ekibimiz üretici eğitimlerine katılmıştır.",
+      icon: SearchCheck,
+      category: "İlk Değerlendirme",
+      title: "Cihazınız Önce Merkezimizde Değerlendirilir",
+      description: "Cihazınız önce merkezimizde ilk değerlendirmeden geçer; bazı sorunlar burada çözülebilir.",
     },
     {
       icon: PackageCheck,
@@ -34,8 +34,8 @@ export const yayginServisAgiAdvantages: BrandPageAdvantagesContent = {
     {
       icon: ShieldCheck,
       category: "Garanti Koşulları",
-      title: "Garanti Koşullarına Uygun İşlem",
-      description: "Garanti kapsamındaki işlemler üreticinin garanti koşullarına göre yürütülür; kapsam cihazın garanti şartlarına ve arızanın niteliğine bağlıdır.",
+      title: "Garanti Kapsamının Değerlendirilmesi",
+      description: "Garanti kapsamı, cihazın garanti şartlarına ve arızanın niteliğine göre değerlendirilir.",
     },
     {
       icon: Plane,

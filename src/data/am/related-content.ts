@@ -19,11 +19,6 @@ export const amRelatedContent: BrandPageRelatedContentContent = {
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
       href: "/sgk-isitme-cihazi-odemesi/",
     },
-    {
-      label: "Rexton İşitme Cihazları",
-      description: "Aynı grup çatısı altındaki farklı bir marka konumlandırmasını karşılaştırmak isterseniz Rexton'u inceleyin.",
-      href: "/markalar/rexton/",
-    },
   ],
   // Precomputed rgb() decomposition of #F3701A.
   accentColor: "#F3701A",

@@ -44,7 +44,7 @@ export const sarjEdilebilirHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/signia/models/pure.webp",
+    src: "/images/audio-service/models/sarjli.webp",
     alt: "Şarj kutusunda duran işitme cihazı çifti",
   },
   floatingCard: {

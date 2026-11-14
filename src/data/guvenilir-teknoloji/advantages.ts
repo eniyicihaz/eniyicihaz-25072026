@@ -29,8 +29,8 @@ export const guvenilirTeknolojiAdvantages: BrandPageAdvantagesContent = {
     {
       icon: Wrench,
       category: "Teknik Servis",
-      title: "Yetkili Teknik Servis Desteği",
-      description: "Arıza durumunda orijinal yedek parça ve yetkili servis desteği alınabilir.",
+      title: "Teknik Servis Desteği",
+      description: "Arıza durumunda orijinal yedek parça ve teknik servis desteği alınabilir.",
     },
     {
       icon: BadgeCheck,

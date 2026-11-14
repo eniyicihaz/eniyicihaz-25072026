@@ -9,10 +9,10 @@ import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageF
 export const yayginServisAgiFaq: BrandPageFaqContent = {
   badge: "SIK SORULAN SORULAR",
   heading: "Servis Desteği Hakkında Merak Edilenler",
-  intro: "Üretici yetkisi, servis süreci, yedek parça ve garanti hakkında en çok sorulan sorular.",
+  intro: "Bakım, servis süreci, yedek parça ve garanti hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Cihazınız İçin Servis Desteği İster misiniz?",
-    points: ["18 markada üretici servis yetkisi", "Fiziksel hizmet noktası: Darıca", "Garanti kapsamı şartlara göre değerlendirilir", "Randevu ile servis"],
+    points: ["Farklı marka ve modellerde bakım ve teknik destek", "Fiziksel hizmet noktası: Darıca", "Garanti kapsamı şartlara göre değerlendirilir", "Randevu ile servis"],
     ctaLabel: "Hemen İletişime Geç",
     ctaHref: contactConfig.phone.href,
   },
@@ -21,14 +21,14 @@ export const yayginServisAgiFaq: BrandPageFaqContent = {
       label: "Genel",
       items: [
         {
-          question: "Hangi markalar için servis desteği veriyorsunuz?",
+          question: "Hangi marka ve modeller için bakım ve teknik destek alabilirim?",
           answer:
-            "Sattığımız 18 markanın tamamı için üretici servis yetkimiz bulunmaktadır. Fiziksel hizmet noktamız Darıca'daki merkezimizdir.",
+            "Seçenekler cihazınızın markasına ve modeline göre değişir; cihazınıza uygun bakım ve teknik destek seçenekleri hakkında merkezimizden bilgi alabilirsiniz. Fiziksel hizmet noktamız Darıca'daki merkezimizdir.",
         },
         {
-          question: "Üretici servis yetkisi ne anlama geliyor?",
+          question: "Bakım ve teknik destek her işlemin garanti kapsamında olduğu anlamına gelir mi?",
           answer:
-            "Servis ve garanti işlemlerinin üreticinin koşullarına uygun yürütülebilmesi anlamına gelir. Bu, her işlemin garanti kapsamında olacağı anlamına gelmez; kapsam cihazın garanti şartlarına ve arızanın niteliğine göre değerlendirilir.",
+            "Hayır. Kapsam, cihazın garanti şartlarına ve arızanın niteliğine göre değerlendirilir; yapılacak işlem ve varsa ücret konusunda süreç içinde bilgilendirilirsiniz.",
         },
         {
           question: "Servis için randevu gerekli mi?",
@@ -43,7 +43,7 @@ export const yayginServisAgiFaq: BrandPageFaqContent = {
         {
           question: "Servis sırasında cihazım garantili kalır mı?",
           answer:
-            "Garanti kapsamındaki işlemler üreticinin garanti koşullarına göre yürütülür; gerektiğinde cihaz teknik servise gönderilebilir. Kapsam, cihazın garanti şartlarına ve arızanın niteliğine bağlıdır.",
+            "Garanti kapsamı, cihazın garanti şartlarına ve arızanın niteliğine bağlıdır; gerektiğinde cihaz teknik servise gönderilebilir.",
         },
         {
           question: "Arıza belirtileri ve teşhis süreci için nereye bakmalıyım?",
@@ -66,9 +66,9 @@ export const yayginServisAgiFaq: BrandPageFaqContent = {
       label: "Garanti ve Fiyat",
       items: [
         {
-          question: "Yetkisiz serviste yaptırdığım işlem sizde geçerli olur mu?",
+          question: "Başka bir yerde işlem görmüş cihazım için destek alabilir miyim?",
           answer:
-            "Yetkisiz serviste yapılan işlemler garanti kapsamını etkileyebilir; bu durumda cihazınız öncelikle detaylı bir şekilde incelenir.",
+            "Daha önce yapılan müdahaleler garanti kapsamını etkileyebilir; bu durumda cihazınız öncelikle ayrıntılı bir şekilde incelenir.",
         },
         {
           question: "Servis ücreti neye göre belirlenir?",

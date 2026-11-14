@@ -22,16 +22,6 @@ export const uyumSureciRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın fitting yazılımı, kademeli bir uyum yaklaşımını desteklemek üzere ayarlanabilir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in fitting yazılımı, kademeli bir uyum yaklaşımını desteklemek üzere ayarlanabilir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un fitting yazılımı, kademeli bir uyum yaklaşımını desteklemek üzere ayarlanabilir.",
       href: "/markalar/resound/",

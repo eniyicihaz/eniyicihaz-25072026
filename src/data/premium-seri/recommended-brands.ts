@@ -4,10 +4,10 @@
 // point to real, already-built /markalar/{slug} pages. Descriptions
 // name each brand's real current-generation/premium model family where
 // the brand's own models.ts data explicitly tags one as "Güncel Seri" /
-// "Güncel Nesil" (Oticon Intent, Widex Moment Sheer, ReSound Vivia,
-// NuEar NXG AI); Phonak's Audéo and Signia's Styletto are described
-// without an unverified "flagship" claim since neither brand's data
-// carries an explicit current-generation tag.
+// "Güncel Nesil" (Oticon Intent, ReSound Vivia,
+// NuEar NXG AI); Phonak's Audéo is described
+// without an unverified "flagship" claim since its data
+// carries no explicit current-generation tag.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
@@ -24,16 +24,6 @@ export const premiumSeriRecommendedBrands: BrandPageRelatedContentContent = {
       label: "Phonak",
       description: "Phonak'ın Audéo serisi, markanın güncel teknolojilerini taşıyan genel kullanım ailesidir.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın Styletto serisi, modern tasarımı ve güncel özellikleriyle öne çıkar.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in Moment Sheer serisi, markanın en güncel nesil teknolojisini taşır.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

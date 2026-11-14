@@ -10,12 +10,12 @@ export const brandsHero: PriceGuideHeroContent = {
   eyebrow: "Marka ve Model Rehberi",
   heading: "İşitme Cihazı Markaları",
   lead:
-    "Her işitme cihazı markası farklı model aileleri ve cihaz türleri sunar. Oticon, Phonak, Signia, Widex, ReSound ve NuEar marka profillerini kriter bazlı tanıyın.",
+    "Her işitme cihazı markası farklı model aileleri ve cihaz türleri sunar. Oticon, Phonak, ReSound ve NuEar marka profillerini kriter bazlı tanıyın.",
   supporting:
     "Bu rehber bir 'en iyi marka' sıralaması yapmaz: marka seçiminde hangi soruların sorulacağını ve model ailelerinin hangi kriterlerle karşılaştırılabileceğini gösterir.",
   ctaPrimary: { label: "Markaları Keşfet", href: "#markalar" },
   ctaSecondary: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
-  chips: ["18 marka", "SGK anlaşmalı merkez", "Ücretsiz işitme testi"],
+  chips: ["10+ marka", "SGK anlaşmalı merkez", "Ücretsiz işitme testi"],
   image: {
     src: "/images/brand-guide/en-iyi-isitme-cihazi-markalari.webp",
     alt: "Açık mavi zeminde beyaz podyumlar üzerinde kulak arkası, kanal içi ve şarj kutulu farklı işitme cihazı türleri",

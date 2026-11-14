@@ -19,13 +19,11 @@ export const brandShowcase: BrandShowcaseContent = {
   eyebrow: "Öne Çıkan Markalar",
   heading: "Öne Çıkan İşitme Cihazı Markaları",
   subhead:
-    "Darıca'daki merkezimizde 18 marka ile çalışıyoruz; aşağıda bunlardan altısı yer alıyor.",
+    "Aşağıda, Darıca'daki merkezimizde çalıştığımız markalardan dördü yer alıyor.",
   ctaLabel: "Markayı Gör",
   brands: [
     { name: "Oticon", href: "/markalar/oticon/", logo: "/images/brands/oticon-logo-seffaf.webp" },
     { name: "Phonak", href: "/markalar/phonak/", logo: "/images/brands/phonak-logo-seffaf.webp" },
-    { name: "Signia", href: "/markalar/signia/", logo: "/images/brands/signia-logo-seffaf.webp" },
-    { name: "Widex", href: "/markalar/widex/", logo: "/images/brands/widex-logo-seffaf.webp" },
     { name: "ReSound", href: "/markalar/resound/", logo: "/images/brands/resound-logo-seffaf.webp" },
     { name: "NuEar", href: "/markalar/nuear/", logo: "/images/brands/nuear-logo-seffaf.webp" },
   ],

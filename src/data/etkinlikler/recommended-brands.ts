@@ -19,11 +19,6 @@ export const etkinliklerRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Etkinliklerimizde Signia modelleri hakkında bilgi alabilirsiniz.",
-      href: "/markalar/signia/",
-    },
-    {
       label: "ReSound",
       description: "Etkinliklerimizde ReSound modelleri hakkında bilgi alabilirsiniz.",
       href: "/markalar/resound/",

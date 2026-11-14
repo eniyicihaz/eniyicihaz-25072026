@@ -13,32 +13,22 @@ export const guvenilirTeknolojiRecommendedBrands: BrandPageRelatedContentContent
   links: [
     {
       label: "Oticon",
-      description: "Oticon işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
+      description: "Oticon işitme cihazlarını satıyoruz; bakım ve teknik destek seçeneklerini merkezimizden öğrenebilirsiniz.",
       href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
-      description: "Phonak işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
+      description: "Phonak işitme cihazlarını satıyoruz; bakım ve teknik destek seçeneklerini merkezimizden öğrenebilirsiniz.",
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
-      description: "ReSound işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
+      description: "ReSound işitme cihazlarını satıyoruz; bakım ve teknik destek seçeneklerini merkezimizden öğrenebilirsiniz.",
       href: "/markalar/resound/",
     },
     {
       label: "NuEar",
-      description: "NuEar işitme cihazlarını satıyor ve teknik servis desteği veriyoruz.",
+      description: "NuEar işitme cihazlarını satıyoruz; bakım ve teknik destek seçeneklerini merkezimizden öğrenebilirsiniz.",
       href: "/markalar/nuear/",
     },
   ],

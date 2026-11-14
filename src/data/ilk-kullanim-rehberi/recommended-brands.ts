@@ -3,9 +3,9 @@
 // component as a brand-link showcase, same technique every prior page
 // uses. Framed around each brand's own real, verifiable consumer
 // companion app — distinct from the fitting-software names (Genie 2,
-// Target, Connexx, Compass GPS, Smart Fit) already cited on Cihaz
-// Uygulama and the telecare-feature names (RemoteCare, Remote Support,
-// TeleCare, Remote Care, Assist) already cited on Uzaktan Ayar; these
+// Target, Smart Fit) already cited on Cihaz
+// Uygulama and the remote-support feature names (RemoteCare, Remote Support,
+// Assist) already cited on Uzaktan Ayar; these
 // are the consumer-facing apps end users pair with on day one.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
@@ -23,16 +23,6 @@ export const ilkKullanimRehberiRecommendedBrands: BrandPageRelatedContentContent
       label: "Phonak",
       description: "Phonak cihazları, myPhonak uygulaması üzerinden telefonunuzla eşleştirilir.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia cihazları, Signia App uygulaması üzerinden telefonunuzla eşleştirilir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex cihazları, Widex Moment uygulaması üzerinden telefonunuzla eşleştirilir.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

@@ -23,16 +23,6 @@ export const garantiIslemleriRecommendedBrands: BrandPageRelatedContentContent =
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
       href: "/markalar/resound/",

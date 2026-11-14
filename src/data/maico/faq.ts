@@ -24,8 +24,8 @@ export const maicoFaq: BrandPageFaqContent = {
           answer: "MAICO; Bluetooth'lu, kulak arkası ve kulak içi seçenekleri bulunan işitme cihazı serileriyle öne çıkar. Size uygun seri, işitme testi sonrasında belirlenir.",
         },
         {
-          question: "MAICO cihazları için servis veriyor musunuz?",
-          answer: "Evet; sattığımız 18 markanın tamamında olduğu gibi MAICO cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
+          question: "MAICO cihazları için bakım ve teknik destek alabilir miyim?",
+          answer: "MAICO cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz.",
         },
       ],
     },

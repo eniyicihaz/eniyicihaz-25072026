@@ -43,7 +43,7 @@ export const uzunOmurluCihazlarFaq: BrandPageFaqContent = {
         {
           question: "Cihazımı kendim temizleyebilir miyim?",
           answer:
-            "Günlük yüzey temizliği kullanıcı tarafından yapılabilir; teknik bakım ve derinlemesine temizlik ise yetkili serviste yapılmalıdır.",
+            "Günlük yüzey temizliği kullanıcı tarafından yapılabilir; teknik bakım ve derinlemesine temizlik ise teknik serviste yapılmalıdır.",
         },
       ],
     },
@@ -68,7 +68,7 @@ export const uzunOmurluCihazlarFaq: BrandPageFaqContent = {
         {
           question: "Bakım garantiyi etkiler mi?",
           answer:
-            "Yetkili serviste yapılan düzenli bakım garantinizi etkilemez; aksine garanti kapsamının korunmasına yardımcı olur.",
+            "Teknik serviste yapılan düzenli bakım garantinizi etkilemez; aksine garanti kapsamının korunmasına yardımcı olur.",
         },
         {
           question: "Cihazım garanti süresi dışına çıkarsa ne olur?",

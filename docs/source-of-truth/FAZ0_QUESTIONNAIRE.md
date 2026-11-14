@@ -1,6 +1,7 @@
 # FAZ0_QUESTIONNAIRE.md: İşletme Bilgi Anketi (yalnızca açık sorular)
 
 > **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-10-07 (Faz 0 son bilgi aktarımı)
+> **Tarihsel kayıt notu (2026-11-14):** Bu anket, cevapların verildiği tarihteki durumu kaydeder; cevap satırları değiştirilmez. P7, Q5.3, Q7.1, Q7.2, Q7.3, Q9.1 ve Q24.2 cevaplarındaki marka sayısı, marka listesi ve "markaların tamamında teknik servis" bilgileri artık kamuya açık metinde kullanılmaz. Güncel kurallar: PRODUCT_SOT §1, SERVICE_SOT §4, BRAND_SOT §3.
 
 ## Nasıl kullanılır
 - Bu ankette yalnızca **henüz cevaplanmamış** sorular var. Daha önce doğrulanan bilgiler Source of Truth (SoT) dosyalarına işlendi ve burada tekrar sorulmuyor. Bunlar: marka, 2009, Darıca merkezinin Ağustos 2024 açılışı, tek merkez, üç telefon, mevcut GBP, iki logo ve gerçek fotoğraflar.

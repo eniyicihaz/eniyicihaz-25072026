@@ -21,16 +21,6 @@ export const cihazTemizligiRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia cihazları için uyumlu temizlik kiti ve saklama aksesuarları mevcuttur.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex cihazları için uyumlu temizlik kiti ve saklama aksesuarları mevcuttur.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound cihazları için uyumlu temizlik kiti ve saklama aksesuarları mevcuttur.",
       href: "/markalar/resound/",

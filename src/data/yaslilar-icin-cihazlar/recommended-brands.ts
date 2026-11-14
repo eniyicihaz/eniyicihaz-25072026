@@ -22,16 +22,6 @@ export const yaslilarIcinCihazlarRecommendedBrands: BrandPageRelatedContentConte
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın Styletto ve Pure serisi, şarj kolaylığı ve sade tasarımıyla öne çıkar.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in SmartRIC serisi, doğal ses felsefesini kolay kullanımla birleştirir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un Key serisi, temel ihtiyaçlar için sade ve uygun fiyatlı bir yaklaşım sunar.",
       href: "/markalar/resound/",

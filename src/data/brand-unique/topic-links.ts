@@ -5,8 +5,6 @@
 import type { BrandPageRelatedLink } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 import { oticonModels } from "../oticon/models";
 import { phonakModels } from "../phonak/models";
-import { signiaModels } from "../signia/models";
-import { widexModels } from "../widex/models";
 import { resoundModels } from "../resound/models";
 import { nuearModels } from "../nuear/models";
 import { audifonModels } from "../audifon/models";
@@ -17,7 +15,6 @@ import { bernafonModels } from "../bernafon/models";
 import { coselgiModels } from "../coselgi/models";
 import { maicoModels } from "../maico/models";
 import { philipsHearingModels } from "../philips-hearing/models";
-import { rextonModels } from "../rexton/models";
 import { sonicModels } from "../sonic/models";
 import { unitronModels } from "../unitron/models";
 import { vistaModels } from "../vista/models";
@@ -28,8 +25,6 @@ type Item = { name: string; category: string; tags: string[]; description: strin
 const BRANDS: { slug: string; name: string; items: Item[] }[] = [
   { slug: "oticon", name: "Oticon", items: oticonModels.items },
   { slug: "phonak", name: "Phonak", items: phonakModels.items },
-  { slug: "signia", name: "Signia", items: signiaModels.items },
-  { slug: "widex", name: "Widex", items: widexModels.items },
   { slug: "resound", name: "ReSound", items: resoundModels.items },
   { slug: "nuear", name: "NuEar", items: nuearModels.items },
   { slug: "am", name: "A&M", items: amModels.items },
@@ -40,7 +35,6 @@ const BRANDS: { slug: string; name: string; items: Item[] }[] = [
   { slug: "coselgi", name: "Coselgi", items: coselgiModels.items },
   { slug: "maico", name: "Maico", items: maicoModels.items },
   { slug: "philips-hearing", name: "Philips Hearing", items: philipsHearingModels.items },
-  { slug: "rexton", name: "Rexton", items: rextonModels.items },
   { slug: "sonic", name: "Sonic", items: sonicModels.items },
   { slug: "unitron", name: "Unitron", items: unitronModels.items },
   { slug: "vista", name: "Vista", items: vistaModels.items },

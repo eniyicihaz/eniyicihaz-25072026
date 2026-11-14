@@ -45,12 +45,12 @@ export interface BrandPageHeroContent {
   accentColorSoft: string; // ~0.12 opacity — badge/floating-icon backgrounds
   accentColorBorder: string; // ~0.4 opacity — badge border, focus ring
   // Optional per-brand overrides for values that were hardcoded (all
-  // sourced from Oticon's original dark/green build) until the Signia
+  // sourced from Oticon's original dark/green build) until the later
   // theme revision. Omit any of them and the exact previous hardcoded
   // value is used — every brand page built before this revision supplies
   // none of these and renders pixel-identical to before. The first four
-  // existed since Signia v1 (dark-theme revision); the rest were added
-  // for Signia v2, which needed a fully *light* Hero — the original
+  // existed since theme v1 (dark-theme revision); the rest were added
+  // for theme v2, which needed a fully *light* Hero — the original
   // markup assumes light-on-dark text throughout, so a light background
   // needs its own dark-on-light text/border set too.
   heroBackground?: string; // .brand-page-hero__bg's background (image/gradient) — default: url(oticon-hero-bg.webp)
@@ -69,9 +69,9 @@ export interface BrandPageHeroContent {
   heroOutlineBorder?: string; // secondary CTA border — default: rgb(255 255 255 / 0.28)
   heroOutlineHoverBg?: string; // secondary CTA hover background — default: rgb(255 255 255 / 0.06)
   heroOutlineHoverBorder?: string; // secondary CTA hover border — default: rgb(255 255 255 / 0.45)
-  heroFeatureHoverBg?: string; // feature card hover background — default: none (no hover state before Signia v2)
-  heroFeatureHoverBorder?: string; // feature card hover border — default: none (no hover state before Signia v2)
-  // Hero Background System (Signia v3) — a 5th, independently-recolorable
+  heroFeatureHoverBg?: string; // feature card hover background — default: none (no hover state before theme v2)
+  heroFeatureHoverBorder?: string; // feature card hover border — default: none (no hover state before theme v2)
+  // Hero Background System (v3) — a 5th, independently-recolorable
   // layer stacked on top of heroBackground's 4 layers (base/gradient/
   // glow/soft-top-light, all still composed into one `heroBackground`
   // background value). This is the abstract "wave" motif every brand's
@@ -302,7 +302,7 @@ const heroStyleOverrides = [
     background-repeat: no-repeat;
   }
 
-  /* Hero Background System (Signia v3) — recolorable "wave" layer.
+  /* Hero Background System (v3) — recolorable "wave" layer.
      wave-lines.svg supplies the shape only (a handful of soft curved
      strands); its actual color/opacity are per-brand data (--bph-wave-*),
      applied via CSS mask so the same one asset can become any brand's

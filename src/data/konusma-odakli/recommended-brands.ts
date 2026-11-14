@@ -25,16 +25,6 @@ export const konusmaOdakliRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın yönlü mikrofon sistemleri, gerçek zamanlı sinyal işlemeyle konuşma netliğini artırmayı hedefler.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in yönlü odaklanma teknolojisi, markanın doğal ses felsefesini konuşma netliğiyle bir araya getirir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un Nexia ailesi, kulağın doğal yön belirleme özelliğinden faydalanan M&RIE tasarımıyla öne çıkar.",
       href: "/markalar/resound/",

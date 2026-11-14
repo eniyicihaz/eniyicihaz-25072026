@@ -20,11 +20,6 @@ export const kampanyalarRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Kampanya döneminde Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia/",
-    },
-    {
       label: "ReSound",
       description: "Kampanya döneminde ReSound modellerini değerlendirebilirsiniz.",
       href: "/markalar/resound/",

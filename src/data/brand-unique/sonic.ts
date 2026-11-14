@@ -14,7 +14,7 @@ export const sonicUnique: UniqueBrandContent = {
   },
   heroSrc: "/images/sonic/models/enchant.webp",
   heroParagraphs: [
-    `Sonic, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Sonic ailesinin ${enchant.length}'ü Enchant adını taşıyor (${join(enchant)}); beşincisi Radiant.`,
+    `Sonic, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizdeki ${f.n} Sonic ailesinin ${enchant.length}'ü Enchant adını taşıyor (${join(enchant)}); beşincisi Radiant.`,
     "Enchant adı altında dört ayrı seçenek var: RIC, BTE, kulak içi ve şarjlı. Radiant ise hem RIC hem BTE etiketli ve Bluetooth etiketi taşımıyor.",
   ],
   heroFeatures: [
@@ -28,7 +28,7 @@ export const sonicUnique: UniqueBrandContent = {
     paragraphs: [
       `Sonic listesinin merkezinde Enchant var: ${join(enchant)} sitemizde ayrı kartlar olarak yer alıyor. Bu yüzden Sonic'e bakarken önce Enchant içinde yerleşimi ve şarjlı seçimini yapmak, sonra gerekirse Radiant'a bakmak mantıklı.`,
       "Enchant ile Enchant Şarjlı arasında etiket farkı da var: Enchant RIC, Bluetooth ve şarjlı etiketli; Enchant Şarjlı RIC ve şarjlı etiketli, Bluetooth etiketi yok. Enchant BTE Bluetooth etiketli kulak arkası, Enchant ITE ise kulak içi.",
-      "Sonic cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Sonic cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

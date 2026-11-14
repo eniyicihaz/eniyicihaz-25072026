@@ -9,7 +9,7 @@ export const markaDanismanligiFinalCta: BrandPageFinalCtaContent = {
   description: "Darıca'daki merkezimizde, ihtiyacınıza uygun marka ve modeli birlikte belirleyelim.",
   ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
-  trustItems: ["18 Marka Seçeneği", "İhtiyaç Odaklı Değerlendirme", "Ücretsiz İşitme Testi", "Darıca'da Yüz Yüze Randevu"],
+  trustItems: ["10+ Marka Seçeneği", "İhtiyaç Odaklı Değerlendirme", "Ücretsiz İşitme Testi", "Darıca'da Yüz Yüze Randevu"],
   accentColor: "#b45309",
   accentColorHover: "#92400e",
   accentColorGlow: "rgb(180 83 9 / 0.22)",

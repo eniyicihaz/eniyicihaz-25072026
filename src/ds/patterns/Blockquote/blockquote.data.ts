@@ -5,7 +5,7 @@ export const patientStory = {
         "Torunumun sesini iki yıldır ilk kez net duydum. Cihazı taktığım gün mutfakta musluğun sesine şaşırdım — o kadar uzun zamandır duymuyormuşum.",
     name: "Hatice Yalçın",
     age: "68 yaşında",
-    device: "Signia Pure Charge&Go 7AX",
+    device: "Örnek Model RIC 7",
     since: "14 aydır kullanıyor",
     initials: "HY"
 };

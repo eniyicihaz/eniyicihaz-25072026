@@ -1,8 +1,8 @@
 // "Dikkat Edilmesi Gerekenler" section for the /neden-orijinal/
 // yaygin-servis-agi page. Reuses the shared BrandPageIdealUser
 // component, same technique every prior page uses — visually
-// differentiated from the "Yetkisiz Serviste Sıkça Karşılaşılan
-// Riskler" section above by using the design system's own
+// differentiated from the "Doğru Parça ve Uygun Müdahale" section
+// above by using the design system's own
 // --color-warning token (#d97706) instead of the page's orange accent.
 
 import { AlertTriangle, Clock, FileX, MapPin, Gauge } from "lucide-astro";
@@ -11,12 +11,12 @@ import type { BrandPageIdealUserContent } from "../../components/brand-page/Bran
 export const yayginServisAgiConsiderations: BrandPageIdealUserContent = {
   badge: "DİKKAT EDİLMESİ GEREKENLER",
   heading: "Servis Desteği Alırken Dikkat Edilmesi Gereken Noktalar",
-  intro: "Yetkili servis kullanımı faydalı bir adımdır; yine de göz önünde bulundurulması gereken birkaç önemli nokta vardır.",
+  intro: "Servis desteği alırken göz önünde bulundurulması gereken birkaç önemli nokta vardır.",
   profiles: [
     {
       icon: AlertTriangle,
-      title: "Her Bayi Yetkili Servis Sunmayabilir",
-      description: "Ürünü satın aldığınız yer ile yetkili servis hizmeti sunan nokta farklı olabilir; satın alma öncesi kontrol edilmelidir.",
+      title: "Servis Desteği Satış Noktasına Göre Değişebilir",
+      description: "Ürünü satın aldığınız yer ile servis desteği alacağınız nokta farklı olabilir; satın alma öncesinde servis desteğinin nasıl sağlandığını sormanız yararlı olur.",
       suggestedFamilies: ["Servis Noktası Kontrolü"],
     },
     {
@@ -33,8 +33,8 @@ export const yayginServisAgiConsiderations: BrandPageIdealUserContent = {
     },
     {
       icon: MapPin,
-      title: "Yetki Kapsamı ile Hizmet Noktası Farklı Şeylerdir",
-      description: "Üretici servis yetkisi 18 markanın tamamı için geçerlidir; fiziksel hizmet noktamız Darıca'daki merkezimizdir ve servis için randevu gerekir.",
+      title: "Hizmet Noktamız Darıca'dadır",
+      description: "Fiziksel hizmet noktamız Darıca'daki merkezimizdir; bakım ve teknik destek için randevu gerekir.",
       suggestedFamilies: ["Hizmet Noktası"],
     },
     {

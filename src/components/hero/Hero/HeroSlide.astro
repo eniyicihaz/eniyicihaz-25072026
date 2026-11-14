@@ -390,7 +390,7 @@ const isFirstSlide = index === 0;
     opacity: 0.55;
   }
 
-  /* Real 18-brand logo grid — same neutral tile recipe as Brands.astro's
+  /* Real brand logo grid — same neutral tile recipe as Brands.astro's
      marquee logos (fixed box, object-fit: contain), just arranged as a
      static grid instead of a scrolling track. */
   .hero-slide__visual-frame--mosaic {
@@ -460,7 +460,7 @@ const isFirstSlide = index === 0;
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    /* The mosaic panel's real content (18 logo tiles) needs more height
+    /* The mosaic panel's real content (logo tiles) needs more height
        than the photo's 1672:941 ratio allows at a single-column mobile/
        tablet width — locked to that ratio, `overflow: hidden` was
        clipping the bottom two rows of logos. Sizing to its own content

@@ -14,7 +14,7 @@ export const amUnique: UniqueBrandContent = {
   heroAlt: "A&M XTM P12 işitme cihazı",
   heroSrc: "/images/am/models/xtm-p12.webp",
   heroParagraphs: [
-    `A&M, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} A&M ailesinin dördü numaralı XTM kulak arkası (BTE) modeli (${join(f.bte)}); beşincisi kulak içi XTM A4.`,
+    `A&M, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizdeki ${f.n} A&M ailesinin dördü numaralı XTM kulak arkası (BTE) modeli (${join(f.bte)}); beşincisi kulak içi XTM A4.`,
     "Listedeki Bluetooth ve şarjlı etiketli ailelere kıyasla A&M sayfası daha sade: sitemizdeki etiketlerde yalnızca yerleşim ve güç bilgisi var. Uzaktan ayar A&M cihazlarında yapılmaz; ayarlar merkezimizde yapılır.",
   ],
   heroFeatures: [
@@ -28,7 +28,7 @@ export const amUnique: UniqueBrandContent = {
     paragraphs: [
       `A&M sayfasının yapısı diğer markalardan farklı: beş ailenin dördü aynı XTM adıyla numaralı (${join(f.bte)}) ve dördü de kulak arkası (BTE). Beşincisi XTM A4 ise kulak içi ve sitemizde kişiye özel üretim etiketiyle listeleniyor.`,
       `Sitemizdeki A&M etiketlerinde Bluetooth veya şarjlı etiketi yok. Yüksek güç etiketi yalnızca XTM P12'de var. Bu yüzden A&M ailelerini ayırt etmek için işitme değerlendirmesi ve kulak yapınız belirleyici olur.`,
-      "A&M cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir. Uzaktan ayar ise A&M'de yapılamıyor.",
+      "A&M cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir. Uzaktan ayar ise A&M'de yapılamıyor.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

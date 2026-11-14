@@ -23,7 +23,7 @@ export const garantiIslemleriConsiderations: BrandPageIdealUserContent = {
       icon: AlertTriangle,
       title: "Yetkisiz Servis Garantiyi Geçersiz Kılabilir",
       description: "Cihazınızın yetkisiz bir yerde onarılması, kalan garanti hakkınızı geçersiz kılabilir.",
-      suggestedFamilies: ["Yetkili Servis Şartı"],
+      suggestedFamilies: ["Garanti Koşulu"],
     },
     {
       icon: FileText,

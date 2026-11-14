@@ -22,18 +22,8 @@ export const uzunOmurluCihazlarRecommendedBrands: BrandPageRelatedContentContent
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın kaliteli üretim standartları, cihazların uzun süre performansını korumasına yardımcı olur.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in sağlam yapısı ve düzenli yazılım güncellemeleri, uzun ömürlü bir kullanım deneyimi sunar.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
-      description: "ReSound cihazları için merkezimizde bakım ve teknik servis desteği veriyoruz.",
+      description: "ReSound cihazları için bakım ve teknik destek seçeneklerini merkezimizden öğrenebilirsiniz.",
       href: "/markalar/resound/",
     },
     {

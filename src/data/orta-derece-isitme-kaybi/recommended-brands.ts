@@ -23,16 +23,6 @@ export const ortaDereceIsitmeKaybiRecommendedBrands: BrandPageRelatedContentCont
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın orta segment modelleri, orta dereceli kayıplarda dengeli bir ses gücü sunar.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in orta dereceye uygun modelleri, markanın doğal ses felsefesini yeterli amplifikasyonla birleştirir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un orta dereceye uygun aileleri, gürültü azaltma özellikleriyle sıkça değerlendirilen bir seçenektir.",
       href: "/markalar/resound/",

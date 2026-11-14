@@ -2,10 +2,7 @@
 // sarjli-teknolojiler page. Reuses the shared BrandPageRelatedContent
 // component as a brand-link showcase, same technique every
 // /isitme-cihazlari/* and /teknolojiler/* feature page uses. All hrefs
-// point to real, already-built /markalar/{slug} pages. "SmartRIC"
-// (Widex) is a real, current-generation rechargeable product line —
-// already used verbatim as this page's own hero image
-// (public/images/widex/models/smartric.webp).
+// point to real, already-built /markalar/{slug} pages.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
@@ -22,16 +19,6 @@ export const sarjliTeknolojilerRecommendedBrands: BrandPageRelatedContentContent
       label: "Phonak",
       description: "Phonak'ın şarjlı aileleri, güvenilir şarj yönetim devresi ve uzun pil ömrü sunar.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın şarjlı modelleri, akıllı şarj yönetimini ince ve dayanıklı bir tasarımla bir araya getirir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in SmartRIC ailesi, gelişmiş pil yönetim teknolojisini markanın doğal ses felsefesiyle birleştirir.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

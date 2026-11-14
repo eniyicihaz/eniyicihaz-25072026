@@ -24,16 +24,6 @@ export const tekTarafliIsitmeKaybiRecommendedBrands: BrandPageRelatedContentCont
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın kablosuz aktarım sistemleri, tek taraflı kayıplarda sıkça değerlendirilen bir seçenektir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in tek taraflı çözümleri, markanın doğal ses felsefesini kablosuz aktarımla birleştirir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un tek taraflı sistemleri, iyi duyan kulağa kablosuz aktarım sağlayan modellerdir.",
       href: "/markalar/resound/",

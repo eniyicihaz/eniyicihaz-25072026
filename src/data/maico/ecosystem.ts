@@ -33,7 +33,7 @@ export const maicoEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Teknik Servis",
       title: "Merkezimizde MAICO Teknik Servisi",
-      lead: "Sattığımız 18 markanın tamamında olduğu gibi MAICO cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
+      lead: "MAICO cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
       howItWorks:
         "Cihazınız merkezimizde incelenir; teknik serviste teslim 3 gün içindedir ve ücret cihazın durumuna göre belirlenir.",
       advantages: [

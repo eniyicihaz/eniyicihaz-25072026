@@ -1,8 +1,8 @@
 // Ecosystem deep-dive for the ReSound brand page (/markalar/resound) —
 // M&RIE, Auracast/Bluetooth LE Audio, and ReSound Assist tele-audiology
 // care. Renders through the shared BrandPageEcosystem component
-// (Technology Explorer pattern). Deliberately 3 items, mirroring Phonak's,
-// Signia's and Widex's depth-over-breadth choice.
+// (Technology Explorer pattern). Deliberately 3 items, mirroring Phonak's
+// depth-over-breadth choice.
 
 import type { BrandPageEcosystemContent } from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";
 

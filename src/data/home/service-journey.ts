@@ -1,9 +1,9 @@
 // Ana sayfa — "Ana Hizmet Yolları" (HomeJourney, Faz 2 P2 onay V1).
 // Akış kullanıcı onayıyla kilitli: ücretsiz işitme testi → cihaz seçimi →
 // merkezde ücretsiz demo → satın alma sonrası 7 güne kadar deneme/iade →
-// kişiye özel ayar → 18 markada teknik servis → SGK desteği.
+// kişiye özel ayar → bakım ve teknik destek → SGK desteği.
 // Kaynak: SERVICE_SOURCE_OF_TRUTH §1 (H1, H6, H7, H11, H17, H24, H28) ve
-// §1.5 kanonik deneme modeli; PRODUCT_SOT (18 marka, tümünde teknik servis).
+// §1.5 kanonik deneme modeli; işletme sahibi kararı 2026-11-14 (marka sayısı ve "tümünde teknik servis" ifadesi yok).
 // Her hedef sayfaya en fazla bir link. Linksiz adımlar bilinçli:
 // - Ücretsiz işitme testi: test sayfası ana sayfada yalnızca hero ve
 //   closing'den linklenir (P2 Home V1 son düzeltme).
@@ -68,8 +68,8 @@ export const homeServiceJourney: HomeJourneyContent = {
     {
       icon: Wrench,
       verb: "Servis",
-      title: "18 Markada Teknik Servis",
-      description: "Sattığımız 18 markanın tamamında teknik servis veriyoruz; teslim 3 gün içindedir.",
+      title: "Bakım ve Teknik Destek",
+      description: "Farklı marka ve modeller için bakım ve teknik destek; teknik serviste teslim 3 gün içindedir.",
       href: "/servis-bakim/teknik-servis/",
     },
     {

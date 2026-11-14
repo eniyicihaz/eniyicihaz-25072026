@@ -2,7 +2,7 @@
 // sound processing, Hear Circle's health/activity tracking with fall
 // detection, and remote professional care. Renders through the shared
 // BrandPageEcosystem component (Technology Explorer pattern). Deliberately
-// 3 items, mirroring Phonak's, Signia's, Widex's and ReSound's
+// 3 items, mirroring Phonak's and ReSound's
 // depth-over-breadth choice.
 
 import type { BrandPageEcosystemContent } from "../../components/brand-page/BrandPageEcosystem/BrandPageEcosystem.astro";

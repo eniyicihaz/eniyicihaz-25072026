@@ -48,7 +48,7 @@ export const suyaDayankliHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/signia/models/active.webp",
+    src: "/images/homepage/device-comparison/device-comparison-suya-dayanikli.webp",
     alt: "Suya ve tere dayanıklı, aktif kullanım için tasarlanmış işitme cihazı görseli",
   },
   floatingCard: {

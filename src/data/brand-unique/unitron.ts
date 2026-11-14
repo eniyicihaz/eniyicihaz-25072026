@@ -14,7 +14,7 @@ export const unitronUnique: UniqueBrandContent = {
   },
   heroSrc: "/images/unitron/models/blu.webp",
   heroParagraphs: [
-    `Unitron, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizdeki ${f.n} Unitron ailesi: ${join(f.all)}.`,
+    `Unitron, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizdeki ${f.n} Unitron ailesi: ${join(f.all)}.`,
     `Smile, Blu ve Moxi Vivante RIC etiketli; Smile ve Blu hem Bluetooth hem şarjlı. Stride şarjlı ama kulak arkası (BTE), Insera ise RIC ve BTE etiketli. Sitemizde kulak içi veya çocuk kategorisinde bir Unitron ailesi yok.`,
   ],
   heroFeatures: [
@@ -28,7 +28,7 @@ export const unitronUnique: UniqueBrandContent = {
     paragraphs: [
       `Unitron listesinde etiketler ailelere eşit dağılmıyor. Bluetooth etiketi ${join(f.bt)} ailelerinde var; ${join(noBt)} ailelerinde yok. Şarjlı etiketi ${join(f.charge)} ailelerinde.`,
       "Yerleşim tarafında Smile, Blu ve Moxi Vivante RIC; Stride kulak arkası (BTE); Insera hem RIC hem BTE etiketli. Yani şarjlı bir kulak arkası cihaz arıyorsanız listedeki tek aday Stride.",
-      "Unitron cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Unitron cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },
@@ -103,7 +103,7 @@ export const unitronUnique: UniqueBrandContent = {
       { label: "Kulak Arkası (BTE) Cihazlar", description: "Stride ve Insera'nın BTE etiketi için genel bilgi.", href: "/isitme-cihazlari/kulak-arkasi-bte/" },
       { label: "Bluetooth Özellikli Cihazlar", description: "Smile, Blu ve Moxi Vivante'deki Bluetooth etiketi için genel bilgi.", href: "/isitme-cihazlari/bluetooth-ozellikli/" },
       { label: "Phonak", description: "Virto (kulak içi) ve Sky (çocuk) ailelerinin listelendiği marka sayfası.", href: "/markalar/phonak/" },
-      { label: "Signia", description: "Insio ve Silk kulak içi ailelerinin listelendiği marka sayfası.", href: "/markalar/signia/" },
+      { label: "NuEar", description: "Miniscopic Synergy iQ kulak içi ailesinin listelendiği marka sayfası.", href: "/markalar/nuear/" },
       { label: "Oticon", description: "Own SI (kulak içi) ile çocuk ve güçlü kayıplar ailelerinin listelendiği marka sayfası.", href: "/markalar/oticon/" },
     ],
   },

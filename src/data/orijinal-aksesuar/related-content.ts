@@ -24,8 +24,8 @@ export const orijinalAksesuarRelatedContent: BrandPageRelatedContentContent = {
       href: "/neden-orijinal/uzun-omurlu-cihazlar/",
     },
     {
-      label: "Üretici Yetkili Servis Desteği",
-      description: "18 markanın tamamı için üretici servis yetkimiz ve servis desteği hakkında bilgi edinin.",
+      label: "Bakım ve Teknik Destek",
+      description: "Farklı marka ve modellerde bakım ve teknik destek seçenekleri hakkında bilgi edinin.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {

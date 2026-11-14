@@ -54,7 +54,7 @@ export const uzunOmurluCihazlarTechnology: BrandPageEcosystemContent = {
       navLabel: "Orijinal Yedek Parça Tedariki",
       title: "Orijinal Yedek Parça Tedariki",
       lead: "İhtiyaç duyulan orijinal yedek parçalar, parçanın türüne göre temin edilir; temin süresi marka ve modele göre değişebilir.",
-      howItWorks: "Aşınan veya arızalanan parçalar, üreticinin resmi tedarik zinciri üzerinden temin edilerek orijinal parçalarla değiştirilir.",
+      howItWorks: "Aşınan veya arızalanan parçalar, cihazla uyumlu orijinal parçalarla değiştirilir; parça, türüne göre temin edilir.",
       advantages: [
         "Cihazın performansını orijinal seviyede korumaya yardımcı olur",
         "Uyumsuz parça kullanımı riskini ortadan kaldırır",

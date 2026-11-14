@@ -21,16 +21,6 @@ export const gerekliBelgelerRecommendedBrands: BrandPageRelatedContentContent = 
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Belgeleriniz tamamlandıktan sonra SGK destekli Signia modellerini değerlendirebilirsiniz.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Belgeleriniz tamamlandıktan sonra SGK destekli Widex modellerini değerlendirebilirsiniz.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "Belgeleriniz tamamlandıktan sonra SGK destekli ReSound modellerini değerlendirebilirsiniz.",
       href: "/markalar/resound/",

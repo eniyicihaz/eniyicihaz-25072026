@@ -49,7 +49,7 @@ export const amEcosystem: BrandPageEcosystemContent = {
       icon: "globe",
       navLabel: "Teknik Servis",
       title: "Merkezimizde A&M Teknik Servisi",
-      lead: "Sattığımız 18 markanın tamamında olduğu gibi A&M cihazları için de Darıca'daki merkezimizde teknik servis veriyoruz.",
+      lead: "A&M cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
       howItWorks:
         "Cihazınız merkezimizde incelenir; teknik serviste teslim 3 gün içindedir ve ücret cihazın durumuna göre belirlenir.",
       advantages: [

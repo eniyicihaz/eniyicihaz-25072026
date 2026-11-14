@@ -39,7 +39,7 @@ export const hubs: Record<string, HubDef> = {
     h1: "Teknik Servis ve Bakım Hizmetleri",
     paragraphs: [
       "Cihazınızı aldıktan sonra da hizmet devam eder: günlük temizlik, periyodik bakım, pil ve aksesuar, garanti işlemleri, onarım takibi ve teknik servis aşağıdaki sayfalarda anlatılır.",
-      "Sattığımız 18 markanın tamamında teknik servis veriyoruz; ayrıntıları ilgili sayfalarda bulabilirsiniz.",
+      "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz. Ayrıntıları ilgili sayfalarda bulabilirsiniz.",
     ],
     listHeading: "Servis ve Bakım Hizmetleri",
   },
@@ -99,11 +99,11 @@ export const hubs: Record<string, HubDef> = {
     path: "/neden-orijinal/",
     title: "Neden Orijinal İşitme Cihazı ve Üretici Desteği?",
     description:
-      "Güvenilir teknoloji, uzun ömürlü cihaz, orijinal aksesuar, kolay değişim, ücretsiz danışmanlık ve üretici yetkili servis desteği: orijinal cihazın önemi.",
+      "Güvenilir teknoloji, uzun ömürlü cihaz, orijinal aksesuar, kolay değişim, ücretsiz danışmanlık, bakım ve teknik destek: orijinal cihazın önemi.",
     badge: "MARKALAR · NEDEN ORİJİNAL",
     h1: "Neden Orijinal İşitme Cihazı ve Üretici Destekli Servis?",
     paragraphs: [
-      "Cihazın kendisi kadar, ardından gelen destek de önemlidir. Güvenilir teknoloji, uzun ömürlü cihaz, orijinal aksesuar, kolay değişim, ücretsiz danışmanlık ve üretici yetkili servis desteğini bu sayfalarda bulabilirsiniz.",
+      "Cihazın kendisi kadar, ardından gelen destek de önemlidir. Güvenilir teknoloji, uzun ömürlü cihaz, orijinal aksesuar, kolay değişim, ücretsiz danışmanlık ile bakım ve teknik destek bilgilerini bu sayfalarda bulabilirsiniz.",
       "Marka danışmanlığı sayfası, size uyan çözümü markadan bağımsız olarak nasıl belirlediğimizi anlatır.",
     ],
     listHeading: "Orijinal Cihaz ve Destek",

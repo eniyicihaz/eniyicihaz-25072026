@@ -14,7 +14,7 @@ export const nuearUnique: UniqueBrandContent = {
   },
   heroAlt: "NuEar işitme cihazı",
   heroParagraphs: [
-    `NuEar, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde ${f.n} NuEar ailesi listeliyoruz: ${join(f.all)}.`,
+    `NuEar, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizde ${f.n} NuEar ailesi listeliyoruz: ${join(f.all)}.`,
     `Bluetooth etiketi altı ailenin hepsinde var. Şarjlı etiketi ${f.charge.length} ailede. Kulak içi etiketli aile: ${join(f.inEar)}. Savant AI hem RIC hem BTE etiketli.`,
   ],
   heroFeatures: [
@@ -28,7 +28,7 @@ export const nuearUnique: UniqueBrandContent = {
     paragraphs: [
       `NuEar listesinin büyük kısmı RIC: ${join(f.ric)} sitemizde RIC etiketiyle listeleniyor. Bunlardan Savant AI aynı zamanda BTE etiketli; yani listede kulak arkası seçeneği de bu aile üzerinden sunuluyor.`,
       `Şarjlı etiketi ${join(f.charge)} ailelerinde; Savant AI'da şarjlı etiketi yok. Kulak içi tarafında tek aile var: Miniscopic Synergy iQ.`,
-      "NuEar cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "NuEar cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },
@@ -103,7 +103,7 @@ export const nuearUnique: UniqueBrandContent = {
       },
       {
         question: "NuEar cihazım için servis ve pil nereden alınır?",
-        answer: "Teknik servisi Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir. Pil ve aksesuar satışı da merkezimizde yapılır.",
+        answer: "NuEar cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir. Pil ve aksesuar satışı da merkezimizde yapılır.",
       },
     ],
   },

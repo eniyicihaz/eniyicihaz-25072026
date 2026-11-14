@@ -21,16 +21,6 @@ export const sgkKatkiPayiRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "SGK desteği, anlaşmalı merkezimizden alınan Signia modellerinde de geçerlidir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "SGK desteği, anlaşmalı merkezimizden alınan Widex modellerinde de geçerlidir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "SGK desteği, anlaşmalı merkezimizden alınan ReSound modellerinde de geçerlidir.",
       href: "/markalar/resound/",

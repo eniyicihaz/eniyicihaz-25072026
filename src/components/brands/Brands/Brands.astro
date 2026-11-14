@@ -31,7 +31,7 @@ const Tag = embedded ? "div" : "section";
            image's current viewport position, but a marquee logo's position
            is constantly changing via `transform` — the browser's heuristic
            never reliably fires, so lazy images can end up stuck unloaded
-           indefinitely. The full set is only ~18 small webp files, cheap
+           indefinitely. The full set is only a handful of small webp files, cheap
            enough to load eagerly and sidestep the bug entirely. */
         brands.map((brand) => (
           <a class="brands__logo" href={`/markalar/${brand.slug}/`} aria-label={brand.name}>
@@ -451,9 +451,11 @@ const Tag = embedded ? "div" : "section";
       animation: none;
     }
 
-    /* No motion: show the 18 real logos wrapped in a static row instead of
-       a frozen, clipped strip — the second (loop-only, aria-hidden) set of
-       18 is hidden rather than left as dead, invisible overflow. */
+    /* No motion: show the real logos wrapped in a static row instead of
+       a frozen, clipped strip — the second (loop-only, aria-hidden) set is
+       hidden rather than left as dead, invisible overflow. Selected by its
+       aria-hidden attribute, not by position, so it stays correct when the
+       number of brands changes. */
     .brands__track {
       animation: none;
       flex-wrap: wrap;
@@ -461,7 +463,7 @@ const Tag = embedded ? "div" : "section";
       justify-content: center;
     }
 
-    .brands__track > :nth-child(n + 19) {
+    .brands__track > [aria-hidden="true"] {
       display: none;
     }
   }

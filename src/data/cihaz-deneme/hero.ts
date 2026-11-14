@@ -5,7 +5,7 @@
 //   3) uygun bulunmazsa ödenen tutarın kesintisiz iadesi,
 //   4) kulak içi cihazlar 7 günlük deneme kapsamı dışında, merkezde demo.
 // "Ücretsiz deneme" ifadesi kullanılmaz: "ücretsiz" yalnızca 20 dakikalık demo için.
-// Görsel bilinçli olarak YOK: önceki Signia Styletto ürün görseli belirli bir
+// Görsel bilinçli olarak YOK: önceki ürün görseli belirli bir
 // markayı öne çıkarıyordu (P8: deneme işletmenin uygun gördüğü marka üzerinden
 // yapılır) ve gerçek bir deneme fotoğrafı yok. Görselsiz hero kullanılır.
 import type { CorporateHeroContent } from "../../components/shared/CorporateHero/CorporateHero.astro";

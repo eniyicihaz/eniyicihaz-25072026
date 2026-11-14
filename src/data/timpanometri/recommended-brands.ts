@@ -22,16 +22,6 @@ export const timpanometriRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın model çeşitliliği, değerlendirme sonucunuza uygun bir seçenek bulmanıza yardımcı olabilir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in doğal ses felsefesi, bazı değerlendirme profilleri için önerilebilir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un modelleri, kapsamlı değerlendirme sonrası farklı seçenekler sunar.",
       href: "/markalar/resound/",

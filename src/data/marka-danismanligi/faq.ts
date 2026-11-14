@@ -11,7 +11,7 @@ export const markaDanismanligiFaq: BrandPageFaqContent = {
   intro: "Marka seçimi ve karşılaştırma hakkında en çok sorulan sorular.",
   decisionCard: {
     title: "Marka Danışmanlığı Randevusu Hakkında Bilgi Almak İster misiniz?",
-    points: ["18 marka seçeneği", "İhtiyaç odaklı yaklaşım", "Ücretsiz işitme testi", "Darıca'da yüz yüze randevu"],
+    points: ["10+ marka seçeneği", "İhtiyaç odaklı yaklaşım", "Ücretsiz işitme testi", "Darıca'da yüz yüze randevu"],
     ctaLabel: "Bizi Arayın",
     ctaHref: contactConfig.phone.href,
   },

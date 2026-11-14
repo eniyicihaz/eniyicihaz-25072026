@@ -29,7 +29,7 @@ export const guvenilirTeknolojiTechnology: BrandPageEcosystemContent = {
         "Garanti sürecinin net olmasına yardımcı olur",
       ],
       models: ["Satış Kanalı Kontrolü"],
-      expertNote: "Sattığımız 18 markanın listesini Markalar sayfamızdan inceleyebilirsiniz.",
+      expertNote: "Çalıştığımız markaların listesini Markalar sayfamızdan inceleyebilirsiniz.",
     },
     {
       id: "uretici-garantisi",

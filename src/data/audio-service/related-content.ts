@@ -19,11 +19,6 @@ export const audioServiceRelatedContent: BrandPageRelatedContentContent = {
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
       href: "/sgk-isitme-cihazi-odemesi/",
     },
-    {
-      label: "Signia İşitme Cihazları",
-      description: "Aynı grup çatısı altındaki farklı bir marka felsefesini karşılaştırmak isterseniz Signia'yı inceleyin.",
-      href: "/markalar/signia/",
-    },
   ],
   // Precomputed rgb() decomposition of #1240A0.
   accentColor: "#1240A0",

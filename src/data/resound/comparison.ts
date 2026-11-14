@@ -2,7 +2,7 @@
 // Renders through the shared BrandPageComparison component. Uses
 // levelLabel (descriptive tag) for every row rather than the dot-scale,
 // since ReSound has no well-established public "1-2-3-4" tier system this
-// project has verified — same choice made for Phonak, Signia and Widex.
+// project has verified — same choice made for Phonak.
 
 import { Sparkles, Radio, Layers, Waves, Volume2, Wallet } from "lucide-astro";
 import type { BrandPageComparisonContent } from "../../components/brand-page/BrandPageComparison/BrandPageComparison.astro";

@@ -1,16 +1,16 @@
 ---
 // BrandDiscoveryHero — /markalar/ ("Tüm Markalar") sayfasına özel Marka Keşif Hero'su.
 // Ortak BrandHero (4 sayfa daha kullanıyor) DEĞİŞMEZ. İçerik (rozet, başlık, açıklamalar, CTA'lar, etiketler)
-// data/brands/hero.ts'ten AYNEN alınır; sağ kolon, sitede gerçekten kullanılan 18 marka logosuyla (public/images/brands)
-// bir "marka ekosistemi" kompozisyonudur: ortada "18 Marka", çevresinde iki yörünge (6 öne çıkan + 12 diğer marka).
+// data/brands/hero.ts'ten AYNEN alınır; sağ kolon, sitede gerçekten kullanılan marka logolarıyla (public/images/brands)
+// bir "marka ekosistemi" kompozisyonudur: ortada "10+ Marka", çevresinde iki yörünge (listenin ilk 6 markası + diğer markalar).
 // Her logo, gerçek marka sayfasına (/markalar/{slug}/) giden bir bağlantıdır. Ürün fotoğrafı yoktur: ürün ve model
 // anlatımı /isitme-cihazi-markalari/ rehberinde kalır.
 // Logolar yeniden çizilmez; her dosyanın gerçek içerik kutusu (data/brands/logo-bounds.ts) ölçülüp pencereye oranı
 // korunarak yerleştirilir. JavaScript yoktur.
 //
-// Masaüstü (>=1024): kutusuz kompozisyon — 18 logo iki yörüngede, arkada hero yüzeyine karışan ambient ışık.
-// Tablet/mobil (<1024): yalnızca 6 öne çıkan marka (şerit/ızgara) + #brand-extended-title bölümüne (diğer 12 marka)
-// giden bağlantı; kalan 12 marka sayfanın aşağısındaki "Merkezimizde Desteklenen Diğer Markalar" bölümünde zaten listelidir.
+// Masaüstü (>=1024): kutusuz kompozisyon — logolar iki yörüngede, arkada hero yüzeyine karışan ambient ışık.
+// Tablet/mobil (<1024): yalnızca iç halkadaki 6 marka (şerit/ızgara) + #brand-extended-title bölümüne (diğer markalar)
+// giden bağlantı; kalan markalar sayfanın aşağısındaki "Merkezimizde Desteklenen Diğer Markalar" bölümünde zaten listelidir.
 import CtaButton from "../../shared/CtaButton/CtaButton.astro";
 import { Check, ArrowRight } from "lucide-astro";
 import type { BrandHeroContent } from "../BrandHero/BrandHero.astro";
@@ -29,7 +29,8 @@ const VW = 600;
 const VH = 520;
 const CX = VW / 2;
 const CY = VH / 2;
-const FEATURED = ["oticon", "phonak", "signia", "widex", "resound", "nuear"];
+// İç halka: marka listesinin (brands.data.ts) ilk 6 markası — liste sırası korunur.
+const FEATURED = brands.slice(0, 6).map((b) => b.slug);
 const A = { rx: 146, ry: 116, w: 19.5, h: 9.3, angles: [30, 90, 150, 210, 270, 330] };
 const B = { rx: 246, ry: 196, w: 15.6, h: 7.4 };
 const WIN_RATIO = 0.43; // logo penceresinin yükseklik/genişlik oranı (her iki halkada aynı)
@@ -63,7 +64,9 @@ function fit(slug: string) {
 }
 
 const chipsA = ringA.map((b, i) => ({ b, ...pos(A.rx, A.ry, A.angles[i]), ring: "a" as const }));
-const chipsB = ringB.map((b, i) => ({ b, ...pos(B.rx, B.ry, 15 + i * 30), ring: "b" as const }));
+// Dış halka: kalan markalar çevreye eşit aralıkla dağıtılır (marka sayısı değişirse boşluk kalmaz).
+const stepB = 360 / Math.max(ringB.length, 1);
+const chipsB = ringB.map((b, i) => ({ b, ...pos(B.rx, B.ry, stepB / 2 + i * stepB), ring: "b" as const }));
 const lines = chipsA.map((c) => ({ x: +c.x.toFixed(1), y: +c.y.toFixed(1) }));
 const heading = data.headingLines.join(" ");
 ---
@@ -94,7 +97,7 @@ const heading = data.headingLines.join(" ");
       </ul>
     </div>
 
-    <div class="bdh__board" role="group" aria-label={`${brands.length} işitme cihazı markası: marka sayfasına gitmek için logoya tıklayın`}>
+    <div class="bdh__board" role="group" aria-label="İşitme cihazı markaları: marka sayfasına gitmek için logoya tıklayın">
       <svg class="bdh__orbits" viewBox={`0 0 ${VW} ${VH}`} aria-hidden="true" focusable="false">
         <ellipse cx={CX} cy={CY} rx={B.rx} ry={B.ry} class="bdh__orbit bdh__orbit--outer" />
         <ellipse cx={CX} cy={CY} rx={A.rx} ry={A.ry} class="bdh__orbit bdh__orbit--inner" />
@@ -102,7 +105,7 @@ const heading = data.headingLines.join(" ");
       </svg>
 
       <div class="bdh__hub" aria-hidden="true">
-        <strong class="bdh__hub-num">{brands.length}</strong>
+        <strong class="bdh__hub-num">10+</strong>
         <span class="bdh__hub-label">Marka</span>
       </div>
 
@@ -132,7 +135,7 @@ const heading = data.headingLines.join(" ");
       </ul>
 
       <a class="bdh__more" href="#brand-extended-title">
-        <span>Diğer {brands.length - ringA.length} markayı keşfedin</span>
+        <span>Diğer markaları keşfedin</span>
         <ArrowRight size={16} stroke-width={2.25} aria-hidden="true" />
       </a>
 
@@ -461,7 +464,7 @@ const heading = data.headingLines.join(" ");
     }
   }
 
-  /* --- Tablet ve mobil: tek kolon; 6 öne çıkan marka + "diğer 12 marka" bağlantısı ------------- */
+  /* --- Tablet ve mobil: tek kolon; iç halkadaki 6 marka + "diğer markalar" bağlantısı ---------- */
   @media (max-width: 1023px) {
     .bdh {
       padding-block: var(--space-8);

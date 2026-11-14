@@ -2,10 +2,7 @@
 // suya-dayanikli page. Reuses the shared BrandPageRelatedContent
 // component as a brand-link showcase, same technique BTE/ITE/Şarj
 // Edilebilir/Bluetooth/Çocuklara Özel/Görünmez use. All hrefs point to
-// real, already-built /markalar/{slug} pages. "Active" (Signia) is a
-// real, long-standing sport/sweat-resistant product line — already used
-// verbatim as this page's own hero image (public/images/signia/models/
-// active.webp).
+// real, already-built /markalar/{slug} pages.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
@@ -22,16 +19,6 @@ export const suyaDayankliRecommendedBrands: BrandPageRelatedContentContent = {
       label: "Phonak",
       description: "Phonak'ın dayanıklı aileleri, aktif yaşam tarzına uygun yüksek IP koruma sınıfı sunar.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın Active ailesi, spor ve aktif kullanım için özel olarak tasarlanmış, tere ve neme dayanıklı modellerdir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in dayanıklı modelleri, markanın doğal ses felsefesini yüksek IP koruma sınıfıyla sunar.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

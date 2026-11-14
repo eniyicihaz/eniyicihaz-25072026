@@ -8,7 +8,7 @@
 // angle is the balanced, everyday tier rather than the top-of-line one.
 //
 // Hero image note: every photographed "genel kullanım" model across the
-// six primary brands (Oticon/Phonak/Signia/Widex/ReSound/NuEar) is
+// primary brands (Oticon/Phonak/ReSound/NuEar) is
 // already used as a hero image elsewhere this session, and the only
 // unused Oticon photos left are children's models (Opn Play, Play PX,
 // Xceed Play) or the économique Ruby (reserved for the future Ekonomik

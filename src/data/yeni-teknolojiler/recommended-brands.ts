@@ -20,19 +20,9 @@ export const yeniTeknolojilerRecommendedBrands: BrandPageRelatedContentContent =
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Akıllı telefon entegrasyonu güçlü modelleriyle bilinir.",
-      href: "/markalar/signia/",
-    },
-    {
       label: "ReSound",
       description: "Bağlantılı ve akıllı işitme cihazı çözümleriyle öne çıkar.",
       href: "/markalar/resound/",
-    },
-    {
-      label: "Widex",
-      description: "Doğal ses deneyimi odaklı teknolojileriyle bilinir.",
-      href: "/markalar/widex/",
     },
     {
       label: "Unitron",

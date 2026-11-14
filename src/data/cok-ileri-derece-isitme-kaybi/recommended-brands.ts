@@ -24,16 +24,6 @@ export const cokIleriDereceIsitmeKaybiRecommendedBrands: BrandPageRelatedContent
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın en güçlü BTE modelleri, çok ileri dereceli kayıplarda yüksek amplifikasyon kapasitesi sunar.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in en güçlü modelleri, markanın doğal ses felsefesini en yüksek amplifikasyon kapasitesiyle birleştirir.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un en güçlü aileleri, çok ileri dereceli kayıplarda sıkça değerlendirilen bir seçenektir.",
       href: "/markalar/resound/",

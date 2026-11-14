@@ -1,6 +1,6 @@
 // Özgün marka sayfası kurucusu — Faz 2 (marka sayfası özgünlük çalışması).
 //
-// `brand-simple/build.ts` 18 sayfaya aynı iskeleti basıyordu (marka adı + model listesi değişiyor, geri kalan
+// `brand-simple/build.ts` bütün marka sayfalarına aynı iskeleti basıyordu (marka adı + model listesi değişiyor, geri kalan
 // ~%85-93 ortak). Bu kurucu iskeleti ortak tutar ama İÇERİĞİ her markanın kendi model portföyünden ve
 // kendi yazılmış metninden alır: bölüm başlıkları, "kimler için" profilleri, SSS soruları, ilgili sayfalar,
 // hero kartları, istatistikler ve model kartı açıklamaları her markada farklıdır.
@@ -8,7 +8,8 @@
 // Kullanılabilir bilgi (yalnızca):
 //  - sitedeki model verisi (src/data/{marka}/models.ts: aile adları, cihaz türü / özellik etiketleri,
 //    kategori etiketleri),
-//  - SoT'ta DOĞRULANDI olan hizmet olguları (18 marka satılıyor; teknik servis 18 markada, ücret duruma göre;
+//  - SoT'ta DOĞRULANDI olan hizmet olguları (bakım ve teknik destek bilgisi, ücret duruma göre — 2026-11-14 işletme sahibi
+//    kararıyla marka sayısı ve "18 markada teknik servis" ifadesi kullanılmaz;
 //    uzaktan ayar A&M ve Audifon dışında yapılabiliyor; kulak içi cihazlarda 7 günlük deneme yok, merkezde demo
 //    var; pil ve aksesuar satışı; ücretsiz işitme testi; SGK anlaşmalı merkez; uzaktan ayar A&M ve Audifon
 //    dışında yapılabiliyor).

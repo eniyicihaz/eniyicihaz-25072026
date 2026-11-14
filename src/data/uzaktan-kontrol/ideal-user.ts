@@ -21,7 +21,7 @@ export const uzaktanKontrolIdealUser: BrandPageIdealUserContent = {
       icon: Video,
       title: "Merkeze Sık Gelmekte Zorlananlar",
       description: "Uzaktan destek oturumuyla, merkeze gelmeden temel ayar güncellemesi almak isteyen kullanıcılar için sıkça değerlendirilir.",
-      suggestedFamilies: ["Uzaktan Destek (TeleCare) Uyumlu Modeller"],
+      suggestedFamilies: ["Uzaktan Destek Uyumlu Modeller"],
     },
     {
       icon: Hand,

@@ -13,8 +13,8 @@ export const markaDanismanligiRelatedContent: BrandPageRelatedContentContent = {
       href: "/neden-orijinal/guvenilir-teknoloji/",
     },
     {
-      label: "Üretici Yetkili Servis Desteği",
-      description: "Sattığımız 18 markanın tamamı için üretici servis yetkimiz bulunmaktadır.",
+      label: "Bakım ve Teknik Destek",
+      description: "Farklı marka ve modellerde bakım ve teknik destek seçenekleri hakkında bilgi edinin.",
       href: "/neden-orijinal/yaygin-servis-agi/",
     },
     {

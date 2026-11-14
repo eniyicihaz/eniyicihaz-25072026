@@ -65,7 +65,7 @@ export const unitronHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(28 76 135 / 0.12)",
   accentColorBorder: "rgb(28 76 135 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using Unitron's own
+  // composition established for the earlier brand pages, using Unitron's own
   // already-researched accent (#1C4C87). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(28,76,135,0.35) 0%, rgba(28,76,135,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #081120 60%, #0C1930 100%)",

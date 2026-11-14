@@ -14,7 +14,7 @@ export const maicoUnique: UniqueBrandContent = {
   },
   heroSrc: "/images/maico/models/kulak-arkasi-serisi.webp",
   heroParagraphs: [
-    `Maico, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde Maico, tek tek model adlarıyla değil üç seri halinde listeleniyor: Bluetooth Serisi, Kulak Arkası Serisi ve Kulak İçi Serisi.`,
+    `Maico, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizde Maico, tek tek model adlarıyla değil üç seri halinde listeleniyor: Bluetooth Serisi, Kulak Arkası Serisi ve Kulak İçi Serisi.`,
     "Her seri farklı bir yerleşimi gösteriyor; bu yüzden Maico'da önce yerleşime, sonra serinin içindeki seçeneklere bakılır.",
   ],
   heroFeatures: [
@@ -27,7 +27,7 @@ export const maicoUnique: UniqueBrandContent = {
     heading: "Maico Serilerini Yerleşime Göre Okumak",
     paragraphs: [
       "Maico sayfasında aile adları yok, seri adları var ve adlar yerleşimi söylüyor: Bluetooth Serisi RIC ve Bluetooth etiketli, Kulak Arkası Serisi BTE, Kulak İçi Serisi kulak içi. Hangi serinin içinde hangi modelin sizin için uygun olduğu işitme değerlendirmesinden sonra belirlenir.",
-      "Maico cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Maico cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: "3", label: "seri" },

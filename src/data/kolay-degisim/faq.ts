@@ -66,9 +66,9 @@ export const kolayDegisimFaq: BrandPageFaqContent = {
             "Farklı bir modele geçişte, cihazlar arasındaki fiyat farkı değişim sürecine yansıyabilir; net bilgi süreç başında paylaşılır.",
         },
         {
-          question: "Yetkisiz bir yerden aldığım cihazı sizde değiştirebilir miyim?",
+          question: "Başka bir yerden aldığım cihazı sizde değiştirebilir miyim?",
           answer:
-            "Değişim güvencesi, yetkili kanaldan yapılan satışlar için geçerlidir; farklı kaynaklardan alınan ürünler için önce bir değerlendirme yapılması gerekir.",
+            "Değişim, merkezimizden alınan cihazlar için geçerlidir; başka bir yerden alınan cihazlar için önce bir değerlendirme yapılması gerekir.",
         },
       ],
     },

@@ -1,16 +1,16 @@
 ---
 // ServisYetkiHub — /neden-orijinal/yaygin-servis-agi sayfasına özel merkez-ve-ilke grafiği.
-// Ortada "Avrasya İşitme — Darıca / 18 markada üretici servis yetkisi", çevresinde dört bilgi alanı (solda 2, sağda 2) ince çizgilerle
+// Ortada "Avrasya İşitme — Darıca / Bakım ve teknik destek", çevresinde dört bilgi alanı (solda 2, sağda 2) ince çizgilerle
 // merkeze bağlıdır. Harita, şube işareti veya servis ağı görseli yoktur: grafik bir ilişki şemasıdır, coğrafi bir ağ değildir.
 // Veri: data/yaygin-servis-agi/authority-map.ts. Yalnızca Astro + CSS + inline SVG.
-import { Factory, Cpu, ShieldCheck, ReceiptText, ArrowRight } from "lucide-astro";
+import { Layers, Cpu, ShieldCheck, ReceiptText, ArrowRight, Wrench } from "lucide-astro";
 import { authorityMap } from "../../../data/yaygin-servis-agi/authority-map";
 
 const { eyebrow, heading, intro, hub, items, note, link } = authorityMap;
-const icons = [Factory, Cpu, ShieldCheck, ReceiptText];
+const icons = [Layers, Cpu, ShieldCheck, ReceiptText];
 ---
 
-<section class="syh" id="uretici-yetkisi-ne-anlama-gelir" aria-labelledby="syh-title">
+<section class="syh" id="bakim-ve-teknik-destek-sureci" aria-labelledby="syh-title">
   <div class="syh__inner">
     <header class="syh__header">
       <p class="syh__eyebrow">{eyebrow}</p>
@@ -20,7 +20,7 @@ const icons = [Factory, Cpu, ShieldCheck, ReceiptText];
 
     <div class="syh__board">
       <div class="syh__hub">
-        <span class="syh__hub-count" aria-hidden="true">{hub.count}</span>
+        <span class="syh__hub-count" aria-hidden="true"><Wrench size={26} stroke-width={2} /></span>
         <strong class="syh__hub-title">{hub.title}</strong>
         <span class="syh__hub-text">{hub.text}</span>
       </div>

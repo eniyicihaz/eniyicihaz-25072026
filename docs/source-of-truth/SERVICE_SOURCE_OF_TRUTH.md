@@ -1,6 +1,6 @@
 # SERVICE_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-10-07 (Faz 0 son bilgi aktarımı)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-14 (marka çeşitliliği ve teknik destek ifadeleri, §2.7 ve §4; önceki: 2026-10-07 Faz 0 son bilgi aktarımı)
 > **Amaç:** Bu dosya şu konuların tek kaynağıdır: gerçekte verilen hizmetler, gerçek hasta/müşteri süreci, SGK işleyişi ve teknik servis.
 
 **Kurallar** (tam metin: `BUSINESS_SOURCE_OF_TRUTH.md` §0)
@@ -86,7 +86,7 @@
 |---|---|---|---|---|---|
 | H1–H40 hizmetlerini yapabilen personel | **Odym. Erdinç Kılıç** · **Od. Sunay Özgür** · **Teknik servis personeli Birsen Şahin** | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA (personel değişiminde) |
 | Unvan yazımı | Verildiği biçimde korunur. Yeni unvan üretilmez, kısaltmalar açılmaz | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | STATIC |
-| Eğitim ve deneyim | **Erdinç Kılıç: Odyometri mezunu** · **Sunay Özgür: Odyoloji mezunu**, yaklaşık 28 yıl deneyim · **Birsen Şahin: teknik servis**, yaklaşık 12 yıl deneyim. Üçünde de üretici eğitimleri var. Ayrıntılar BUSINESS_SOT §4'te. Eğitim bilgileri birbirine karıştırılmaz | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA (yıllık) |
+| Eğitim ve deneyim | **Erdinç Kılıç: Odyometri mezunu** · **Sunay Özgür: Odyoloji mezunu**, yaklaşık 28 yıl deneyim · **Birsen Şahin: teknik servis**, yaklaşık 12 yıl deneyim. Üçünde de üretici eğitimleri var (işletme beyanı; belge adı, kurum ve yıl sunulmadıkça kamuya açık metinde kullanılmaz: 2026-11-14). Ayrıntılar BUSINESS_SOT §4'te. Eğitim bilgileri birbirine karıştırılmaz | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA (yıllık) |
 | İsim ve fotoğrafların sitede yayın rızası (KVKK) | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | — |
 
 ### 1.2 KBB / Başka Sağlık Kuruluşuna Yönlendirme (işletme sahibinin gerçek uygulaması)
@@ -209,7 +209,7 @@
 | P4 | İlk görüşme | Hastanın talepleri sorulur; anamnez alınır | — | — | — | — | §2.4 | İşletme sahibi | 2026-10-07 | STATIC |
 | P5 | İşitme testi / değerlendirme | Son 1 ay içinde test yaptırmışsa rutin olarak tekrar test yapılmaz, mevcut testle ilerlenir. Şüphe varsa test yenilenir. Timpanometri ve REM gerekli görülen hallerde yapılır | Test süreleri: H1–H3, H12 | Varsa mevcut test | H1, H2, H3, H12 | — | Herkese aynı testler uygulanmaz. §2.5 | İşletme sahibi | 2026-10-07 | STATIC |
 | P6 | Test sonrası karar | Normal sonuçta buna göre ilerlenir. İşitme kaybı varsa cihaz bilgilendirme ve deneme sürecine geçilir. Şüpheli durumda KBB hekimine yönlendirilir | — | — | H27, H39, H40 | Şüpheli durumda KBB hekimi | §2.6 | İşletme sahibi | 2026-10-07 | STATIC |
-| P7 | Cihaz seçimi | Önce tüm cihaz türleri anlatılır. Öncelik işitme kaybının derecesi ve kulak yapısı; sonra kullanım kolaylığı, yaşam tarzı ve estetik kaygılar. Marka belirlenmesi: §2.7 | — | — | H6 | — | **18 marka satılıyor; başka satılan marka yok.** §2.7 | İşletme sahibi | 2026-10-07 | STATIC |
+| P7 | Cihaz seçimi | Önce tüm cihaz türleri anlatılır. Öncelik işitme kaybının derecesi ve kulak yapısı; sonra kullanım kolaylığı, yaşam tarzı ve estetik kaygılar. Marka belirlenmesi: §2.7 | — | — | H6 | — | Marka çeşitliliği: "10+ marka ile çalışıyoruz." (2026-11-14) §2.7 | İşletme sahibi | 2026-10-07 | STATIC |
 | P8 | Cihaz denemesi | İşletmenin uygun gördüğü marka, genellikle orta veya üst teknoloji. Memnun kalınırsa ikinci deneme yapılmaz; farklı teknoloji seviyesi istenirse yapılabilir. Cihazı satın alarak 7 güne kadar deneme; uygun bulunmaması halinde ücret iadesi (kesintisiz). **Kulak içi cihazlar hariç:** eve 7 günlük deneme verilmez, merkezde demo/deneme yapılabilir | 7 güne kadar | — | H7, H28 | — | İşletmenin mevcut uygulaması; hukuki ifade içermez. §2.8, §1.5 | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA |
 | P9 | SGK süreci | İki başlangıç senaryosu (A ve B). Ayrıntılar [VERİ BEKLENİYOR] | Hastane süresi işletmenin kontrolünde değil (P15) | Rapor, reçete, işitme testi (senaryoya göre sonradan temin edilebilir) | H24, H37 | — | Mevzuat yorumu yok. §2.9 | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA |
 | P10 | Kalıp / teslim | Kalıp gerekiyorsa cihaz ilk teslimde standart prop veya dome ile verilir; kalıplar gelince değişim yapılır | Kulak izi alma 10 dakika; kalıp teslimi 3 gün içinde (H8/H9) | — | H8, H9, H10 | — | §2.10 | İşletme sahibi | 2026-10-07 | STATIC |
@@ -269,8 +269,8 @@
 - **Öncelikli kriterler:** İşitme kaybının derecesi ve kulak yapısı.
 - **Sonraki kriterler:** Kullanım kolaylığı, yaşam tarzı ve estetik kaygılar.
 - **Marka seçimi:**
-  - **18 marka satılıyor; başka satılan marka yok.** (İşletme sahibi düzeltmesi, 2026-10-07. Önceki "yaklaşık 20 marka" ifadesi geçersizdir ve kullanılmaz. Mevcut 18 markalık liste korunur, yeni marka eklenmez.)
-  - Kanonik ifade: "18 marka satıyoruz." İçeriğe göre "18 farklı işitme cihazı markasıyla çalışıyoruz" da kullanılabilir. Bu ifade, marka ilişkilerinin türü (yetkili bayi vb.) ayrıca doğrulanmış gibi bir anlam taşıyacak şekilde kullanılmaz (bkz. PRODUCT_SOT).
+  - **Marka çeşitliliği "10+ marka ile çalışıyoruz." ifadesiyle anlatılır.** (İşletme sahibi, 2026-11-14. "18 marka", "18+ marka" ve "yaklaşık 20 marka" ifadeleri kullanılmaz. Güncel marka listesi PRODUCT_SOT §1'dedir; onaysız marka eklenmez.)
+  - Bu ifade yalnızca marka çeşitliliğini anlatır; marka ilişkilerinin türü (yetkili bayi, yetkili servis vb.) doğrulanmış gibi bir anlam taşıyacak şekilde kullanılmaz (bkz. PRODUCT_SOT).
   - Hasta özellikle bir marka istemiyorsa marka; fiyat/performans veya teknolojik açıdan işletmenin değerlendirmesine göre seçiliyor.
   - Seçilen markanın neden uygun olduğu hastaya anlatılıyor.
 - *Not:* Bu bilgi ileride PRODUCT_SOURCE_OF_TRUTH ile ilişkilendirilecek. Bu turda PRODUCT dosyası değiştirilmedi.
@@ -361,7 +361,7 @@
 
 | # | Konu | Durum |
 |---|---|---|
-| T1 | Marka sayısı ("yaklaşık 20" ↔ 18) | **ÇÖZÜLDÜ [DOĞRULANDI] (İşletme sahibi, 2026-10-07):** 18 marka satılıyor, başka satılan marka yok. 18 markalık liste korunur |
+| T1 | Marka sayısı ("yaklaşık 20" ↔ 18) | **ÇÖZÜLDÜ [DOĞRULANDI] (İşletme sahibi, 2026-10-07):** 18 marka satılıyor, başka satılan marka yok. 18 markalık liste korunur. **GÜNCELLENDİ (İşletme sahibi, 2026-11-14):** kamuya açık ifade "10+ marka ile çalışıyoruz."; sayı yazılmaz, güncel liste PRODUCT_SOT §1'dedir |
 | T2 | H28 "ücretsiz" ↔ P8 "ücret ödenir, iade edilir" | **ÇÖZÜLDÜ [DOĞRULANDI] (2026-10-07):** H28 = "Cihazı satın alarak 7 güne kadar deneme; uygun bulunmaması halinde ücret iadesi." "Ücretsiz deneme" ifadesi kullanılmaz (§1.5) |
 | T3 | P8 "bütün cihazlarda 7 gün" ↔ P14 "kulak içi iade yok" | **ÇÖZÜLDÜ [DOĞRULANDI] (2026-10-07):** Kulak içi cihazlar eve verilen 7 günlük deneme kapsamına girmez; merkezde demo/deneme yapılabilir (§1.5) |
 | T4 | H15 "Kontrol: 5 dakika" ile P12 ilk kontrol kapsamı | Çelişki değil. İlk kontrolün toplam süresi ayrıca belirtilmedi |
@@ -404,10 +404,11 @@
 | Bakım (H18), temizlik (H19), periyodik bakım ve temizlik (H31) | Veriliyor; ücretsiz; randevu gerekli; 10 dakika | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | STATIC |
 | Yedek / geçici cihaz (H22, H32) | Veriliyor; ücretsiz; randevu gerekli; 10 dakika | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | STATIC |
 | Onarım sürecinde yedek cihaz | Sağlanıyor | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | STATIC |
-| Teknik servis politikası (belgede) | "Yetkili servis süreçleri uygulanır." | [MEVCUT BELGELERDE VAR] | COMPANY.md §20 | — | — |
+| Teknik servis politikası (eski belgede) | "Yetkili servis süreçleri uygulanır." | **KULLANILMAZ** (İşletme sahibi, 2026-11-14): yazılı üretici yetkisi belgelenmedikçe "yetkili servis" ifadesi kullanılmaz | Eski COMPANY.md §20 | 2026-11-14 | — |
 | Garanti politikası (belgede) | "Üretici garanti koşulları geçerlidir." | [MEVCUT BELGELERDE VAR] | COMPANY.md §20 | — | YENİDEN DOĞRULA |
-| Servis kapsamı: markalar | Satılan **18 markanın tamamında** teknik servis var | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA |
-| Servis kapsamı: diğer cihazlar | Kullanıcının ifadesi: Türkiye'de satılan işitme cihazlarının tamamına teknik servis sağlanabiliyor | [DOĞRULANDI] (kullanıcı beyanı). **Üstünlük iddiasına dönüştürülmez** ("Türkiye'de tek firma", "tek merkez", "tek biz yapıyoruz" yasak) | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA |
+| Bakım ve teknik destek anlatımı (kanonik ifade) | "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz." Marka sayısı ya da "markaların tamamında" kapsam iddiası kurulmaz | [DOĞRULANDI] | İşletme sahibi | 2026-11-14 | STATIC |
+| Üretici servis yetkisi | Yazılı üretici yetkisi belgelenmedi. Şu ifadeler kullanılmaz: "üretici servis yetkisi", "yetkili servis", "üretici yetkili servis", "resmî servis", "üretici garantisi kapsamında servis", "üretici tarafından yetkilendirilmiş teknik servis" | [DOĞRULANDI] (kural) | İşletme sahibi | 2026-11-14 | STATIC |
+| Servis kapsamı: diğer cihazlar | Kullanıcının ifadesi: Türkiye'de satılan işitme cihazlarının tamamına teknik servis sağlanabiliyor | [DOĞRULANDI] (kullanıcı beyanı). **Üstünlük iddiasına dönüştürülmez** ("Türkiye'de tek firma", "tek merkez", "tek biz yapıyoruz" yasak). Kamuya açık metinde kapsam yalnızca yukarıdaki kanonik ifadeyle anlatılır (2026-11-14) | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA |
 | Garanti cihazları | Gerektiğinde dış servise gönderiliyor | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | STATIC |
 | Merkezde yerinde yapılan onarım işlemlerinin listesi | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | — |
 | Garanti dışı durumlar | Garanti kapsamı dışındaki kullanıcı hataları ayrıca değerlendiriliyor ("duruma göre" ücret). Ücret tutarları kayıtlı değil | [DOĞRULANDI] · Tutarlar: [TIME-SENSITIVE] | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA |

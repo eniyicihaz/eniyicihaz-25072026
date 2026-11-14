@@ -3,7 +3,7 @@
 // component. Editorial, not a technical platform-name table. "Vivia"
 // (Feb 2025), "Nexia" (Sept 2023) and "Omnia" (Aug 2022) are real, current
 // ReSound platform names — verified via multiple 2025-2026 hearing-aid
-// review sources — a comparably solid footing to Widex's platform names,
+// review sources —
 // still worth a final human check given how fast this product category
 // iterates.
 

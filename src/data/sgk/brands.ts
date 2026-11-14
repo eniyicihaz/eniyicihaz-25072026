@@ -4,9 +4,9 @@
 //
 // Brand identity (name/slug/logo) is NOT re-hardcoded here — it's pulled
 // directly from the same data the /markalar hub itself uses
-// (brands/showcase.ts for the 6 featured brands, brands/extended.ts for
-// the other 12). That's every brand page that actually exists in the
-// project (18 total, confirmed against src/pages/markalar/*.astro) — add
+// (brands/showcase.ts for the featured brands, brands/extended.ts for
+// the others). That's every brand page that actually exists in the
+// project (confirmed against src/pages/markalar/*.astro) — add
 // a brand to either of those two files and it appears here automatically,
 // with zero changes to this file or to SgkBrands.astro.
 //
@@ -52,8 +52,6 @@ export interface SgkBrandsContent {
 const featuredDescriptions: Record<string, string> = {
   oticon: "Global ölçekte tercih edilen, yenilikçi işitme cihazı markalarından biri.",
   phonak: "Geniş model seçenekleriyle bilinen global işitme cihazı markası.",
-  signia: "Modern işitme teknolojileri sunan uluslararası marka.",
-  widex: "Doğal ses deneyimi odaklı işitme cihazı çözümleri sunar.",
   resound: "Bağlantılı ve akıllı işitme cihazı çözümleriyle öne çıkar.",
   nuear: "Kaliteli ve uygun fiyatlı işitme cihazı seçenekleri sunar.",
 };

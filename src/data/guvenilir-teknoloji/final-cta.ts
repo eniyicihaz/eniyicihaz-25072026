@@ -11,10 +11,10 @@ export const guvenilirTeknolojiFinalCta: BrandPageFinalCtaContent = {
   badge: "GÜVENİLİR ALIŞVERİŞ",
   heading: "Orijinal ve Güvenilir Bir Cihaz İçin Bize Ulaşın",
   description:
-    "Sattığımız 18 markanın cihazları hakkında bilgi almak veya elinizdeki cihazın garanti ve seri numarası bilgilerini birlikte incelemek için bizimle iletişime geçin.",
+    "Çalıştığımız markaların cihazları hakkında bilgi almak veya elinizdeki cihazın garanti ve seri numarası bilgilerini birlikte incelemek için bizimle iletişime geçin.",
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
-  trustItems: ["18 Marka", "Ücretsiz Garanti İşlemleri", "Seri Numarası Doğrulama", "Ücretsiz Danışmanlık"],
+  trustItems: ["10+ Marka", "Ücretsiz Garanti İşlemleri", "Seri Numarası Doğrulama", "Ücretsiz Danışmanlık"],
   accentColor: "#1d4ed8",
   accentColorHover: "#1e40af",
   accentColorGlow: "rgb(29 78 216 / 0.22)",

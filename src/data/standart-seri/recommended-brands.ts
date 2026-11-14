@@ -4,11 +4,11 @@
 // point to real, already-built /markalar/{slug} pages. Descriptions name
 // each brand's real general-use model family where the brand's own
 // models.ts data explicitly tags one as general/everyday use (Oticon
-// Zeal = "Genel Kullanım", Signia Pure = "Genel Kullanım (RIC)", NuEar
+// Zeal = "Genel Kullanım", NuEar
 // NOW iQ = "Orta Segment"); Phonak's Audéo is described with its own
-// verified "en yaygın tercih edilen genel kullanım ailesi" line; Widex's
-// SmartRIC and ReSound's Omnia are described without an unverified tier
-// claim since neither carries an explicit "genel kullanım" tag.
+// verified "en yaygın tercih edilen genel kullanım ailesi" line;
+// ReSound's Omnia is described without an unverified tier
+// claim since it carries no explicit "genel kullanım" tag.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
@@ -25,16 +25,6 @@ export const standartSeriRecommendedBrands: BrandPageRelatedContentContent = {
       label: "Phonak",
       description: "Phonak'ın Audéo serisi, en yaygın tercih edilen genel kullanım ailesidir.",
       href: "/markalar/phonak/",
-    },
-    {
-      label: "Signia",
-      description: "Signia'nın Pure serisi, markanın en yaygın tercih edilen genel kullanım ailesidir.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in SmartRIC serisi, günlük kullanım için ince ve pratik bir tasarım sunar.",
-      href: "/markalar/widex/",
     },
     {
       label: "ReSound",

@@ -26,7 +26,6 @@ export const brandExtended: BrandExtendedContent = {
     { name: "Maico", href: "/markalar/maico/", logo: "/images/brands/maico-logo-seffaf.webp" },
     { name: "Beltone", href: "/markalar/beltone/", logo: "/images/brands/beltone-logo-seffaf.webp" },
     { name: "Vista", href: "/markalar/vista/", logo: "/images/brands/vista-logo-seffaf.webp" },
-    { name: "Rexton", href: "/markalar/rexton/", logo: "/images/brands/rexton-logo-seffaf.webp" },
     { name: "Sonic", href: "/markalar/sonic/", logo: "/images/brands/sonic-logo-seffaf.webp" },
     { name: "Coselgi", href: "/markalar/coselgi/", logo: "/images/brands/coselgi-logo-seffaf.webp" },
     { name: "Audifon", href: "/markalar/audifon/", logo: "/images/brands/audifon-logo-seffaf.webp" },

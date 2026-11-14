@@ -1,9 +1,9 @@
-// Sade marka sayfası şablonu — Faz 2 P2 (1. dalga: Oticon, Phonak, Signia, Widex, ReSound, NuEar).
+// Sade marka sayfası şablonu — Faz 2 P2 (1. dalga marka sayfaları).
 //
 // Amaç: "[Marka] işitme cihazları / [Marka] modelleri / [Marka] hakkında bilgi". İçerik yalnızca
 //  - sitedeki model verisinden (src/data/{marka}/models.ts: aile adları ve cihaz türü / özellik etiketleri),
-//  - SoT'ta doğrulanmış olgulardan üretilir: 18 marka satılıyor; 18 markanın tamamında merkezimizde
-//    teknik servis; ücretsiz işitme testi; deneme modeli (20 dk ücretsiz demo, satın alarak 7 güne kadar
+//  - SoT'ta doğrulanmış olgulardan üretilir (2026-11-14: marka sayısı ve "tamamında teknik servis" ifadeleri kaldırıldı); bakım ve
+//    teknik destek bilgisi; ücretsiz işitme testi; deneme modeli (20 dk ücretsiz demo, satın alarak 7 güne kadar
 //    deneme, kesintisiz iade, kulak içi hariç); SGK anlaşmalı merkez; walk-in + hizmet bazında randevu.
 //
 // BİLİNÇLİ OLARAK YOK (kaynak ve onay yok — PRODUCT_SOT "marka bilgisi sınırı"):
@@ -60,7 +60,7 @@ export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
 
   const meta = {
     title: `${name} İşitme Cihazları`,
-    description: `${name} işitme cihazı model aileleri ve cihaz türü etiketleri; merkezimizde ${name} hakkında bilgi, ücretsiz işitme testi ve teknik servis.`,
+    description: `${name} işitme cihazı model aileleri ve cihaz türü etiketleri; merkezimizde ${name} hakkında bilgi, ücretsiz işitme testi, bakım ve teknik destek bilgisi.`,
   };
 
   const hero: BrandPageHeroContent = {
@@ -68,31 +68,31 @@ export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
     badge: `${upper} · İŞİTME CİHAZLARI`,
     headingLines: [name, "İşitme Cihazları"],
     paragraphs: [
-      `${name}, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Bu sayfada ${name} model ailelerini ve cihaz türü / özellik etiketlerini görebilirsiniz.`,
+      `${name}, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Bu sayfada ${name} model ailelerini ve cihaz türü / özellik etiketlerini görebilirsiniz.`,
       "Hangi marka ve model ailesinin size uygun olduğu işitme değerlendirmesinden sonra belirlenir.",
     ],
     ctaPrimary: { label: "Bizi Arayın", href: phone },
     ctaSecondary: { label: "WhatsApp'tan Yazın", href: whatsapp },
     features: [
-      { label: "18 MARKA", accent: cfg.hero.accentColor, title: "18 Markayla Çalışıyoruz", description: `${name} bu 18 markadan biridir.` },
-      { label: "SERVİS", accent: cfg.hero.accentColor, title: "Teknik Servis", description: "18 markanın tamamında merkezimizde teknik servis veriyoruz." },
+      { label: "10+ MARKA", accent: cfg.hero.accentColor, title: "10+ Marka ile Çalışıyoruz", description: `${name} bu markalardan biridir.` },
+      { label: "DESTEK", accent: cfg.hero.accentColor, title: "Bakım ve Teknik Destek", description: `${name} cihazları için bakım ve teknik destek seçenekleri hakkında merkezimizden bilgi alabilirsiniz.` },
       { label: "TEST", accent: cfg.hero.accentColor, title: "Ücretsiz İşitme Testi", description: "İşitme testimiz ücretsizdir." },
     ],
-    floatingCard: { title: "Merkezimiz Darıca'da", description: "Satış ve teknik servis Darıca'daki merkezimizde." },
+    floatingCard: { title: "Merkezimiz Darıca'da", description: "Satış, bakım ve teknik destek için Darıca'daki merkezimiz." },
   };
 
   const intro: BrandPageIntroContent = {
     badge: `${upper} HAKKINDA`,
     heading: `${name} İşitme Cihazları Hakkında Bilgi`,
     paragraphs: [
-      `${name}, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde ${name} için ${items.length} model ailesi yer alıyor; ailelerin cihaz türü ve özellik etiketleri aşağıdaki kartlarda.`,
-      `${name} cihazları için merkezimizde teknik servis veriyoruz; 18 markanın tamamında teknik servis verilir.`,
+      `${name}, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizde ${name} için ${items.length} model ailesi yer alıyor; ailelerin cihaz türü ve özellik etiketleri aşağıdaki kartlarda.`,
+      `${name} cihazları için bakım ve teknik destek seçenekleri hakkında merkezimizden bilgi alabilirsiniz.`,
       "Hangi marka ve model ailesinin size uygun olduğu işitme değerlendirmesinden sonra belirlenir. İşitme testimiz ücretsizdir.",
     ],
     stats: [
-      { value: "18", label: "Marka" },
+      { value: "10+", label: "Marka" },
       { value: String(items.length), label: `${name} model ailesi` },
-      { value: "Servis", label: "Merkezimizde teknik servis" },
+      { value: "Destek", label: "Bakım ve teknik destek" },
       { value: "Ücretsiz", label: "İşitme testi" },
     ],
     accentColor: accent.accentColor,
@@ -145,7 +145,7 @@ export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
     intro: `${name} model aileleri, servis, deneme ve SGK ile ilgili kısa cevaplar.`,
     decisionCard: {
       title: "Bilgi Almak İster misiniz?",
-      points: ["Ücretsiz işitme testi", "18 marka", "18 markada teknik servis"],
+      points: ["Ücretsiz işitme testi", "10+ marka", "Bakım ve teknik destek"],
       ctaLabel: "Bizi Arayın",
       ctaHref: phone,
     },
@@ -162,8 +162,8 @@ export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
             answer: `Sitemizde ${name} için şu model aileleri yer alıyor: ${families.join(", ")}. Ayrıntılar işitme değerlendirmesinden sonra netleşir.`,
           },
           {
-            question: `${name} cihazları için teknik servis veriyor musunuz?`,
-            answer: "Sattığımız 18 markanın tamamında merkezimizde teknik servis veriyoruz.",
+            question: `${name} cihazları için bakım ve teknik destek alabilir miyim?`,
+            answer: "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz.",
           },
           {
             question: `${name} cihazını denemek mümkün mü?`,
@@ -187,7 +187,7 @@ export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
     heading: "Devam Etmek İçin",
     links: [
       { label: "İşitme Cihazı Markaları", description: "Marka profillerini ve model ailelerini karşılaştırın.", href: "/isitme-cihazi-markalari/" },
-      { label: "Tüm Markalar", description: "18 markanın dizinine ve marka sayfalarına ulaşın.", href: "/markalar/" },
+      { label: "Tüm Markalar", description: "Marka dizinine ve marka sayfalarına ulaşın.", href: "/markalar/" },
       { label: "İşitme Cihazları", description: "Cihaz türlerini, özellikleri ve seçim ölçütlerini tanıyın.", href: "/isitme-cihazlari/" },
       { label: "Ücretsiz İşitme Testi", description: "Doğru cihaz kararının ilk adımı.", href: "/degerlendirme/ucretsiz-isitme-testi/" },
       { label: "Cihaz Deneme", description: "Merkezde ücretsiz demo ve satın alarak 7 güne kadar deneme.", href: "/uygulama-ayar/cihaz-deneme/" },
@@ -207,7 +207,7 @@ export function buildSimpleBrandPage(cfg: SimpleBrandConfig): SimpleBrandPage {
     description: `${name} model aileleri hakkında bilgi için bizi arayın veya WhatsApp'tan yazın.`,
     ctaPrimary: { label: "Bizi Arayın", href: phone },
     ctaSecondary: { label: "WhatsApp'tan Yazın", href: whatsapp },
-    trustItems: ["Ücretsiz İşitme Testi", "18 Marka", "18 Markada Teknik Servis", "SGK Anlaşmalı Merkez"],
+    trustItems: ["Ücretsiz İşitme Testi", "10+ Marka", "Bakım ve Teknik Destek", "SGK Anlaşmalı Merkez"],
   };
 
   return { meta, hero, intro, models, idealUser, faq, related, finalCta };

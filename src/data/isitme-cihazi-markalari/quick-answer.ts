@@ -1,7 +1,7 @@
 import type { QuickAnswerContent } from "../isitme-cihazi-fiyatlari/quick-answer";
 
 // Faz 2 P2: "hiçbir markaya bağlı değil" ifadesi kaldırıldı (marka ilişki türü SoT'ta [DOĞRULAMA
-// GEREKLİ]); "altı ana marka" kalıbı kaldırıldı. 18 marka ve 18 markada teknik servis SoT'ta doğrulandı.
+// GEREKLİ]). 2026-11-14 (işletme sahibi kararı): marka çeşitliliği "10+ marka" olarak anlatılır; servis yetkisi/kapsam iddiası yok.
 export const brandsQuickAnswer: QuickAnswerContent = {
   id: "hizli-cevap",
   eyebrow: "Kısa Cevap",
@@ -19,7 +19,7 @@ export const brandsQuickAnswer: QuickAnswerContent = {
   transparency: {
     title: "Bu sayfada neden sıralama yok?",
     paragraphs: [
-      "İşitme cihazı bir tıbbi cihazdır ve doğru seçim kişiye bağlıdır; bu yüzden herkes için geçerli bir 'en iyi marka' listesi vermek yanıltıcı olur. Avrasya İşitme 18 işitme cihazı markasıyla çalışır ve bu 18 markanın tamamında merkezimizde teknik servis verir.",
+      "İşitme cihazı bir tıbbi cihazdır ve doğru seçim kişiye bağlıdır; bu yüzden herkes için geçerli bir 'en iyi marka' listesi vermek yanıltıcı olur. Avrasya İşitme 10+ marka ile çalışır; farklı marka ve model seçeneklerini ihtiyacınıza göre birlikte değerlendiririz.",
       "Fiyat ve SGK konuları ayrı sayfalarda ele alınır; burada yalnızca kısaca yönlendiriyoruz.",
     ],
   },

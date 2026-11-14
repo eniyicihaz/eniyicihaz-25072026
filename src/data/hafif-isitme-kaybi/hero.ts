@@ -57,7 +57,7 @@ export const hafifIsitmeKaybiHero: BrandPageHeroContent = {
     },
   ],
   image: {
-    src: "/images/widex/models/allure.webp",
+    src: "/images/homepage/device-comparison/device-comparison-kulak-ici-ite.webp",
     alt: "Hafif işitme kaybında sıkça tercih edilen, göze az batan kulak içi işitme cihazı görseli",
   },
   floatingCard: {

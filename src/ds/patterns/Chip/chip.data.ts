@@ -34,7 +34,7 @@ export const finderGroups = [
 export const finderActive = ["Kulak arkası", "Şarjlı", "Bluetooth", "₺40.000 altı"];
 
 export const finderResults = [
-    { name: "Signia Pure Charge&Go 7AX", price: "₺48.900", match: "4/4 eşleşme" },
+    { name: "Örnek Model RIC 7", price: "₺48.900", match: "4/4 eşleşme" },
     { name: "Phonak Audéo Lumity L90", price: "₺52.400", match: "4/4 eşleşme" },
     { name: "Oticon Real 1 miniRITE", price: "₺46.200", match: "3/4 eşleşme" }
 ];

@@ -5,8 +5,8 @@
 // Positioning axis: WS Audiology'nin global üretim ağı üzerinden gelen,
 // erişilebilir fiyat noktasında güvenilir teknoloji — A&M'in gerçek,
 // doğrulanabilir konumu Sivantos India Private Limited (Bengaluru,
-// Hindistan) tarafından üretilen, WS Audiology grubunun (Signia, Widex,
-// Rexton, Audio Service ile aynı çatı) bir markası olmasıdır. Diğer 10
+// Hindistan) tarafından üretilen, WS Audiology grubunun (Audio Service ile
+// aynı çatı) bir markası olmasıdır. Diğer 10
 // markadan farklı olarak eksen "en yeni teknoloji" değil, "büyük bir
 // global grubun mühendislik altyapısını daha erişilebilir bir fiyat
 // noktasına taşımak" — NuEar'ın (Starkey/sağlık ekosistemi) veya Vista'nın
@@ -42,10 +42,10 @@ export const amHero: BrandPageHeroContent = {
       description: "Farklı güç seviyelerinde sunulan, geniş bir ihtiyaç yelpazesini kapsayan model ailesi.",
     },
     {
-      label: "SERVİS",
+      label: "DESTEK",
       accent: "#F08A47",
-      title: "Merkezimizde Teknik Servis",
-      description: "A&M cihazları için Darıca'daki merkezimizde teknik servis veriyoruz.",
+      title: "Bakım ve Teknik Destek",
+      description: "A&M cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz.",
     },
     {
       label: "IN",
@@ -67,7 +67,7 @@ export const amHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(243 112 26 / 0.12)",
   accentColorBorder: "rgb(243 112 26 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using A&M's own
+  // composition established for the earlier brand pages, using A&M's own
   // already-researched accent (#F3701A). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(243,112,26,0.35) 0%, rgba(243,112,26,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #1D0F05 60%, #2E1808 100%)",

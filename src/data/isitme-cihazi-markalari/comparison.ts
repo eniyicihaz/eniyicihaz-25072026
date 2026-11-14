@@ -15,8 +15,6 @@ import { oticonModels } from "../oticon/models";
 import { phonakModels } from "../phonak/models";
 // Phonak şarj/pil hücreleri resmî Phonak ürün sayfalarına göre düzeltildi (2026-11-14); bkz. PHONAK_POWER.
 import { PHONAK_POWER } from "../phonak/families";
-import { signiaModels } from "../signia/models";
-import { widexModels } from "../widex/models";
 import { resoundModels } from "../resound/models";
 import { nuearModels } from "../nuear/models";
 
@@ -37,16 +35,14 @@ interface BrandSource {
 const brands: BrandSource[] = [
   { key: "oticon", label: "Oticon", prefix: "Oticon", href: "/markalar/oticon/", items: oticonModels.items as RawModel[] },
   { key: "phonak", label: "Phonak", prefix: "Phonak", href: "/markalar/phonak/", items: phonakModels.items as RawModel[] },
-  { key: "signia", label: "Signia", prefix: "Signia", href: "/markalar/signia/", items: signiaModels.items as RawModel[] },
-  { key: "widex", label: "Widex", prefix: "Widex", href: "/markalar/widex/", items: widexModels.items as RawModel[] },
   { key: "resound", label: "ReSound", prefix: "ReSound", href: "/markalar/resound/", items: resoundModels.items as RawModel[] },
   { key: "nuear", label: "NuEar", prefix: "NuEar", href: "/markalar/nuear/", items: nuearModels.items as RawModel[] },
 ];
 
 const short = (b: BrandSource, name: string) => name.replace(new RegExp(`^${b.prefix}\\s+`), "");
 /**
- * Etiket VEYA ailenin kendi açıklamasında geçen yerleşim ifadesi (ör. Widex Allure "RIC/BTE/ITE
- * seçenekleriyle sunulan", ReSound Nexia, NuEar Savant AI) — böylece yerleşim seçenekleri
+ * Etiket VEYA ailenin kendi açıklamasında geçen yerleşim ifadesi (ör. ReSound Nexia "RIC/BTE/ITE
+ * seçenekleriyle sunulan", NuEar Savant AI) — böylece yerleşim seçenekleri
  * yalnızca etiketten okunup eksik gösterilmez.
  */
 const descMatch: Record<string, RegExp> = {
@@ -109,7 +105,7 @@ export const brandTable: GuideTableContent = {
   id: "marka-karsilastirma-tablosu",
   eyebrow: "Tablo 1",
   heading: "Marka Profilleri: Cihaz Türü, Bağlantı ve Şarj",
-  caption: "Oticon, Phonak, Signia, Widex, ReSound ve NuEar markalarının cihaz türü, Bluetooth ve şarj etiketleri karşılaştırması",
+  caption: "Oticon, Phonak, ReSound ve NuEar markalarının cihaz türü, Bluetooth ve şarj etiketleri karşılaştırması",
   criterionLabel: "Marka (marka sayfası)",
   columns: [
     { name: "Öne çıkan cihaz türleri" },
@@ -177,14 +173,14 @@ export const matrixAnswers = [
     id: "ric-hangi-markalarda",
     question: "RIC hangi markalarda var?",
     answer:
-      "Sitemizde RIC etiketli model aileleri Phonak, Signia, Widex, ReSound ve NuEar markalarında yer alıyor. Oticon'un model verisinde yerleşim etiketi bulunmadığı için Oticon'un RIC seçeneklerini marka sayfasında inceleyin.",
+      "Sitemizde RIC etiketli model aileleri Phonak, ReSound ve NuEar markalarında yer alıyor. Oticon'un model verisinde yerleşim etiketi bulunmadığı için Oticon'un RIC seçeneklerini marka sayfasında inceleyin.",
     links: [{ label: "RIC nedir?", href: "/isitme-cihazlari/#ric-rite" }],
   },
   {
     id: "kulak-ici-hangi-markalarda",
     question: "Kulak içi hangi markalarda var?",
     answer:
-      "Sitemizde kulak içi seçeneği anılan aileler Oticon (Own SI), Phonak (Virto), Signia (Insio, Silk), NuEar (Miniscopic Synergy iQ, Savant AI) ve açıklamasında ITE seçeneği geçen Widex Allure ile ReSound Nexia'dır. Ayrıntı ve güncel seçenekler için marka sayfalarına bakın.",
+      "Sitemizde kulak içi seçeneği anılan aileler Oticon (Own SI), Phonak (Virto), NuEar (Miniscopic Synergy iQ, Savant AI) ve açıklamasında ITE seçeneği geçen ReSound Nexia'dır. Ayrıntı ve güncel seçenekler için marka sayfalarına bakın.",
     links: [{ label: "Kulak içi cihazlar", href: "/isitme-cihazlari/kulak-ici-ite/" }],
   },
   {

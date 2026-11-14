@@ -1,7 +1,7 @@
 ---
 // SgkBrands — the SGK pillar page's final content section: the
 // Pillar Page -> Cluster Pages bridge into every real /markalar/{slug}
-// brand page (18 total — 6 featured + 12 others, both pulled straight
+// brand page (featured + others, both pulled straight
 // from brands/showcase.ts + brands/extended.ts, never re-hardcoded here).
 // Own page-copy namespace (../../../data/sgk/brands), independent of the
 // rest of sgk/*.
@@ -26,7 +26,7 @@ import { contactAction } from "../../../lib/contact-action";
       <span>{sgkBrands.featuredLabel}</span>
     </h3>
 
-    <div class="sgk-brands__grid sgk-brands__grid--featured" data-rise>
+    <div class:list={["sgk-brands__grid sgk-brands__grid--featured", sgkBrands.featuredBrands.length === 4 && "sgk-brands__grid--featured-four"]} data-rise>
       {
         sgkBrands.featuredBrands.map((brand) => (
           <a class="sgk-brands__card sgk-brands__card--featured" href={`/markalar/${brand.slug}/`}>
@@ -286,6 +286,13 @@ import { contactAction } from "../../../lib/contact-action";
   .sgk-brands__grid--other {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-4);
+  }
+
+  /* Dört öne çıkan marka: 3+1 yerine tek sırada dört kart. Tablet (2×2) ve mobil (tek kolon) kuralları aynen geçerlidir. */
+  @media (min-width: 1024px) {
+    .sgk-brands__grid--featured-four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 
   .sgk-brands__card {

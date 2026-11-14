@@ -15,7 +15,7 @@ export const vistaUnique: UniqueBrandContent = {
   heroAlt: "Vista V işitme cihazı",
   heroSrc: "/images/vista/models/vista-v.webp",
   heroParagraphs: [
-    `Vista, merkezimizde çalıştığımız 18 işitme cihazı markasından biridir. Sitemizde Vista için ${f.n} aile listeliyoruz ve adları kısa: ${join(f.all)}.`,
+    `Vista, merkezimizde çalıştığımız işitme cihazı markalarından biridir. Sitemizde Vista için ${f.n} aile listeliyoruz ve adları kısa: ${join(f.all)}.`,
     "Dört aile dört farklı etiket setiyle listeleniyor: V RIC ve Bluetooth, B BTE/RIC, T şarjlı RIC, IC ise kişiye özel kulak içi.",
   ],
   heroFeatures: [
@@ -29,7 +29,7 @@ export const vistaUnique: UniqueBrandContent = {
     paragraphs: [
       "Vista listesi kısa: dört ailenin her biri başka bir etiket setiyle listeleniyor. V RIC ve Bluetooth etiketli, B hem BTE hem RIC etiketli, T RIC ve şarjlı etiketli, IC ise kulak içi.",
       "Bluetooth ve şarjlı etiketleri birbirini tamamlıyor: V'de Bluetooth var ama şarjlı etiketi yok, T'de şarjlı var ama Bluetooth etiketi yok. Her ikisini de arıyorsanız bunu ilk görüşmede söylemeniz, diğer markalarımızdaki seçeneklere de bakmamızı sağlar.",
-      "Vista cihazlarının teknik servisini Darıca'daki merkezimizde veriyoruz; servis ücreti duruma göre değişir.",
+      "Vista cihazları için bakım ve teknik destek seçenekleri hakkında Darıca'daki merkezimizden bilgi alabilirsiniz; servis ücreti duruma göre değişir.",
     ],
     stats: [
       { value: String(f.n), label: "model ailesi" },

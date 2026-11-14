@@ -1,6 +1,6 @@
 // Brand story for the ReSound brand page (/markalar/resound) — combines
 // Oticon's separate About+Heritage sections into one, same pattern used
-// for Phonak, Signia and Widex. Renders through the shared BrandPageIntro
+// for Phonak. Renders through the shared BrandPageIntro
 // component. Founding details and GN Group affiliation are general,
 // well-known corporate facts, flagged for a final human check before
 // publishing.
@@ -22,7 +22,7 @@ export const resoundIntro: BrandPageIntroContent = {
     { value: "Auracast", label: "Öne Çıkan Teknoloji" },
   ],
   // Precomputed rgb() decomposition of #AA1835 — kept distinct from
-  // Oticon's green, Phonak's blue, Signia's purple and Widex's teal.
+  // Oticon's green and Phonak's blue.
   accentColor: "#AA1835",
   accentColorBadgeBg: "rgb(170 24 53 / 0.08)",
   accentColorBadgeBorder: "rgb(170 24 53 / 0.35)",

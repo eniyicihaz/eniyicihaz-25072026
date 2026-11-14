@@ -22,16 +22,6 @@ export const kolayDegisimRecommendedBrands: BrandPageRelatedContentContent = {
       href: "/markalar/phonak/",
     },
     {
-      label: "Signia",
-      description: "Signia'nın ürün ailesi, farklı bütçe ve ihtiyaç seviyeleri arasında geçiş imkânı sağlar.",
-      href: "/markalar/signia/",
-    },
-    {
-      label: "Widex",
-      description: "Widex'in model seçenekleri, değişim sürecinde değerlendirilebilecek alternatifler arasındadır.",
-      href: "/markalar/widex/",
-    },
-    {
       label: "ReSound",
       description: "ReSound'un ürün ailesi, ihtiyaç değişikliğinde uygun bir model geçişi sunabilir.",
       href: "/markalar/resound/",

@@ -12,7 +12,7 @@ export const markaDanismanligiIntro: BrandPageIntroContent = {
     "Bir markayı diğerinden üstün göstermek yerine, marka ve model ailelerini sizin ihtiyacınıza göre birlikte değerlendiriyoruz. Amaç \"en iyi marka\" değil, size uyan çözümdür.",
   ],
   stats: [
-    { value: "18", label: "Marka Seçeneği" },
+    { value: "10+", label: "Marka Seçeneği" },
     { value: "Ücretsiz", label: "İşitme Testi" },
     { value: "İhtiyaç Odaklı", label: "Değerlendirme" },
   ],

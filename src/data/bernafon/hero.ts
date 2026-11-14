@@ -1,6 +1,6 @@
 // Hero content for the Bernafon brand page (/markalar/bernafon). Renders
 // through the shared BrandPageHero component — the same component
-// Oticon, Phonak, Signia, Widex, ReSound and NuEar's Heroes use, fed by
+// Oticon, Phonak, ReSound and NuEar's Heroes use, fed by
 // this page's own data.
 //
 // Positioning axis (researched directly, no blueprint per Phase 8's
@@ -14,8 +14,7 @@
 // Machine Learning 2.0. Deliberately distinct from Oticon's BrainHearing®
 // (despite both brands sharing the Demant Group parent — Bernafon does
 // not use Oticon's trademarked philosophy), Phonak's Roger/connectivity
-// ecosystem, Signia's Own Voice Processing/conversation AI, Widex's
-// PureSound/minimal processing, ReSound's M&RIE/Auracast and NuEar's
+// ecosystem, ReSound's M&RIE/Auracast and NuEar's
 // health-tracking ecosystem.
 //
 // accentColor: red (#DA291C), sourced directly from this project's own
@@ -74,7 +73,7 @@ export const bernafonHero: BrandPageHeroContent = {
   accentColorSoft: "rgb(218 41 28 / 0.12)",
   accentColorBorder: "rgb(218 41 28 / 0.4)",
   // Hero Background System rollout (2026-07) — same layered dark
-  // composition established for Signia, using Bernafon's own
+  // composition established for the earlier brand pages, using Bernafon's own
   // already-researched accent (#DA291C). Oticon/Phonak excluded.
   heroBackground:
     "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(circle at 85% 50%, rgba(218,41,28,0.35) 0%, rgba(218,41,28,0.15) 35%, transparent 70%), linear-gradient(90deg, #050505 0%, #190807 60%, #280C0A 100%)",

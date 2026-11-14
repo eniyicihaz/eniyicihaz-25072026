@@ -19,11 +19,6 @@ export const resoundRelatedContent: BrandPageRelatedContentContent = {
       description: "SGK'nın işitme cihazı desteğini, uygunluk kriterlerini ve süreci öğrenin.",
       href: "/sgk-isitme-cihazi-odemesi/",
     },
-    {
-      label: "Widex İşitme Cihazları",
-      description: "Doğal ses işleme odaklı bir yaklaşımı karşılaştırmak isterseniz Widex'i inceleyin.",
-      href: "/markalar/widex/",
-    },
   ],
   // Precomputed rgb() decomposition of #AA1835.
   accentColor: "#AA1835",
