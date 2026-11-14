@@ -1,6 +1,7 @@
 // Kaynak: 06_Cerez_Politikasi.docx (WEB-CRZ-06)
 import type { LegalDocumentData } from "./types";
-import { contactSection, controllerMeta, EFFECTIVE_DATE } from "./common";
+import { contactSection, controllerMeta, EFFECTIVE_DATE, MAPS_REVISION_DATE } from "./common";
+import { CONSENT_POLICY_VERSION } from "../../lib/consent/config";
 
 export const cerezPolitikasi: LegalDocumentData = {
   title: "Çerez Politikası",
@@ -8,6 +9,8 @@ export const cerezPolitikasi: LegalDocumentData = {
     ...controllerMeta,
     { label: "Doküman Kodu", value: "WEB-CRZ-06" },
     { label: "Yürürlük", value: EFFECTIVE_DATE },
+    { label: "Son güncelleme", value: MAPS_REVISION_DATE },
+    { label: "Sürüm", value: CONSENT_POLICY_VERSION },
   ],
   sections: [
     {
@@ -38,7 +41,7 @@ export const cerezPolitikasi: LegalDocumentData = {
       blocks: [
         {
           type: "p",
-          text: "Kullanıcılar çerez tercihlerini eşit görünürlükteki “Tümünü kabul et”, “Tümünü reddet” ve “Tercihleri yönet” seçenekleriyle yönetebilir. Analitik ve reklam ölçüm çerezleri, kullanıcı açıkça izin vermeden etkinleştirilmez; bir seçim yapılana kadar Google Tag Manager, Google Analytics veya Google Ads etiketleri yüklenmez ve Google’a istek gönderilmez. Tercih değişikliği sayfa altındaki “Çerez Tercihleri” bağlantısından daha sonra tekrar yapılabilir; bir izin geri alındığında ilgili ölçüm etiketleri bundan sonra çalışmaz.",
+          text: "Kullanıcılar çerez tercihlerini eşit görünürlükteki “Tümünü kabul et”, “Tümünü reddet” ve “Tercihleri yönet” seçenekleriyle yönetebilir. Analitik ve reklam ölçüm çerezleri, kullanıcı açıkça izin vermeden etkinleştirilmez; bir seçim yapılana kadar ve bu iki kategori reddedildiğinde Google Tag Manager, Google Analytics ve Google Ads etiketleri yüklenmez. Bu tercihler yalnızca ölçüm etiketlerini kapsar; sayfalardaki Google Maps konum haritası bu tercihlere bağlı değildir ve 6. bölümde ayrıca açıklanmıştır. Tercih değişikliği sayfa altındaki “Çerez Tercihleri” bağlantısından daha sonra tekrar yapılabilir; bir izin geri alındığında ilgili ölçüm etiketleri bundan sonra çalışmaz.",
         },
         {
           type: "p",
@@ -69,7 +72,19 @@ export const cerezPolitikasi: LegalDocumentData = {
       blocks: [
         {
           type: "p",
-          text: "Harita veya video gömülü içerikler üçüncü taraf sağlayıcılar tarafından sunulabilir. Bu içerikler siz ilgili “Haritayı yükle / Videoyu yükle” düğmesine basana kadar yüklenmez ve sağlayıcıya istek gönderilmez; düğme yalnızca o içeriği, o sayfa ziyareti için yükler. Dilerseniz içeriği yüklemeden doğrudan dış bağlantıyı kullanabilirsiniz.",
+          text: "Google Maps: Konum haritası bulunan sayfalarda (ör. ana sayfa, İletişim ve bölge sayfaları) harita, Google tarafından sunulan gömülü bir içeriktir ve sayfa açıldığında, herhangi bir düğmeye basmanız gerekmeden otomatik olarak yüklenir; harita sayfanın aşağısında yer alıyorsa, performans amacıyla harita alanına yaklaştığınızda yüklenebilir. Harita bir çerez kategorisi değildir ve yüklenmesi çerez tercihlerinize bağlı değildir; “Tümünü reddet” seçeneğini seçtiğinizde de harita gösterilir.",
+        },
+        {
+          type: "p",
+          text: "Harita yüklenirken tarayıcınız Google ile bağlantı kurar ve harita içeriği Google sunucularından alınır. Bu sırada IP adresiniz ve bağlantının gerektirdiği bazı teknik bilgiler (ör. tarayıcı ve cihaz bilgisi, dil ayarı ve haritanın gösterildiği sayfanın adresi) Google’a iletilebilir. Google sunucuları yurt dışında bulunabilir; yurt dışına aktarıma ilişkin bilgi İnternet Sitesi Kullanıcısı Aydınlatma Metni’nde yer alır. Google’ın bu içerik kapsamında çerez veya benzeri teknolojiler kullanıp kullanmadığı ve iletilen bilgileri nasıl işlediği Google’ın kendi gizlilik ve hizmet koşullarına tabidir.",
+        },
+        {
+          type: "p",
+          text: "Haritanın yüklenmesi, Analitik ve Reklam ölçüm tercihlerinizi değiştirmez: bu kategoriler kapalıyken Google Tag Manager, Google Analytics ve Google Ads etiketleri, harita bulunan sayfalarda da yüklenmez.",
+        },
+        {
+          type: "p",
+          text: "YouTube: Video içerikleri siz ilgili “Videoyu yükle” düğmesine basana kadar yüklenmez ve YouTube’a istek gönderilmez; düğme yalnızca o videoyu, o sayfa ziyareti için yükler. Dilerseniz videoyu yüklemeden doğrudan dış bağlantıyı kullanabilirsiniz.",
         },
       ],
     },
@@ -91,7 +106,7 @@ export const cerezPolitikasi: LegalDocumentData = {
       blocks: [
         {
           type: "quote",
-          text: "“Sitemizin çalışması için zorunlu çerezleri kullanıyoruz. Analitik ve reklam ölçüm çerezlerini yalnızca açık tercihinize göre etkinleştiriyoruz; seçim yapana kadar Google’a istek gönderilmez. Tercihlerinizi dilediğiniz zaman değiştirebilirsiniz.”",
+          text: "“Zorunlu çerezler her zaman açıktır. Analitik ve reklam çerezleri (Google Analytics, Google Ads) yalnızca onayınızla açılır. Konum haritaları ise reddetseniz de Google Maps’ten yüklenir.”",
         },
         { type: "p", text: "Butonlar: “Tümünü kabul et” | “Tümünü reddet” | “Tercihleri yönet”" },
       ],

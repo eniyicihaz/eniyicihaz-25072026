@@ -1,6 +1,7 @@
 // Kaynak: 04_Internet_Sitesi_Kullanicisi_Aydinlatma_Metni.docx (KVK-AYD-04)
 import type { LegalDocumentData } from "./types";
-import { contactSection, controllerMeta, EFFECTIVE_DATE } from "./common";
+import { contactSection, controllerMeta, EFFECTIVE_DATE, MAPS_REVISION_DATE } from "./common";
+import { CONSENT_POLICY_VERSION } from "../../lib/consent/config";
 
 export const aydinlatmaMetni: LegalDocumentData = {
   title: "İnternet Sitesi Kullanıcısı Aydınlatma Metni",
@@ -8,6 +9,8 @@ export const aydinlatmaMetni: LegalDocumentData = {
     ...controllerMeta,
     { label: "Doküman Kodu", value: "KVK-AYD-04" },
     { label: "Yürürlük", value: EFFECTIVE_DATE },
+    { label: "Son güncelleme", value: MAPS_REVISION_DATE },
+    { label: "Sürüm", value: CONSENT_POLICY_VERSION },
   ],
   sections: [
     {
@@ -52,7 +55,7 @@ export const aydinlatmaMetni: LegalDocumentData = {
       blocks: [
         {
           type: "p",
-          text: "Website üzerinde Google Maps ve bazı sayfalarda YouTube gibi üçüncü taraf içerikleri kullanılabilir. Bu hizmetlerin teknik yapısına bağlı olarak çerez veya benzeri teknolojiler kullanılabileceğinden, zorunlu olmayan üçüncü taraf içerikler kullanıcı tercihiyle yüklenebilir. Harita için ayrıca Google Maps’e yönlendiren doğrudan bir bağlantı da kullanılabilir.",
+          text: "Website üzerinde Google Maps ve bazı sayfalarda YouTube gibi üçüncü taraf içerikleri kullanılabilir. Konum haritası bulunan sayfalarda Google Maps haritası otomatik olarak yüklenir ve çerez tercihlerinize bağlı değildir; harita yüklenirken tarayıcınız Google ile bağlantı kurar ve bu sırada IP adresiniz ile bağlantının gerektirdiği bazı teknik bilgiler Google’a iletilebilir. Google sunucuları yurt dışında bulunabilir (bkz. 5. bölüm). Bu yükleme, 3. bölümdeki Google Analytics ve Google Ads tercihlerinden ayrıdır; Google Maps’in veri işleme uygulamaları Google’ın kendi gizlilik ve hizmet koşullarına tabidir. Ayrıntılar Çerez Politikası’nın 6. bölümünde yer alır. YouTube video içerikleri ise yalnızca ilgili düğmeye basmanızla yüklenir. Bu hizmetlerin teknik yapısına bağlı olarak çerez veya benzeri teknolojiler kullanılabilir. Yol tarifi için ayrıca Google Maps’e yönlendiren doğrudan bir bağlantı da kullanılabilir.",
         },
       ],
     },

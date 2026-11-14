@@ -1,8 +1,9 @@
 // Çerez / izin altyapısı — tek yapılandırma noktası.
 // Davranış, KVKK belgelerindeki (KVK-AYD-04, WEB-CRZ-06) uygulamayla
 // birebir örtüşmelidir: analitik ve reklam ölçüm varsayılan olarak KAPALIDIR,
-// yalnızca kullanıcının AÇIK tercihiyle açılır. Harita/video gibi üçüncü taraf
+// yalnızca kullanıcının AÇIK tercihiyle açılır. Video (YouTube) gibi üçüncü taraf
 // gömme içerikler kategori değildir; her biri ayrı ve açık bir tıklamayla yüklenir.
+// Google Maps haritaları ise otomatik yüklenir (izin sistemine bağlı değildir).
 
 export type ConsentCategory = "necessary" | "analytics" | "marketing";
 export type OptionalCategory = Exclude<ConsentCategory, "necessary">;
@@ -20,7 +21,9 @@ export const CONSENT_STORAGE_KEY = "eniyicihaz:consent";
  * değiştiğinde bu değer artırılır; kayıtlı sürüm farklıysa kullanıcıdan
  * tercih yeniden istenir. Bu TEKNİK bir sürümdür; hukuki metnin yürürlük tarihiyle (EFFECTIVE_DATE) karıştırılmamalıdır.
  */
-export const CONSENT_POLICY_VERSION = "2026-11-04-v2";
+// v3 (2026-11-14): Google Maps haritalarının otomatik yüklenmesi Çerez Politikası §3/§6/§8, Aydınlatma
+// Metni §4 ve çerez bandında açıklandı → eski sürümlü kayıtlarda bant yeniden gösterilir.
+export const CONSENT_POLICY_VERSION = "2026-11-14-v3";
 
 /**
  * Tercihin geçerlilik süresi (gün). `null` = zaman aşımı YOK: tercih,

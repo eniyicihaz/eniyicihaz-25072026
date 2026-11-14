@@ -12,7 +12,11 @@ export const controllerMeta: LegalMetaItem[] = [
   { label: "E-posta", value: "eniyicihaz@gmail.com" },
 ];
 
+/** İlk yürürlük tarihi — güncellemelerde DEĞİŞMEZ. */
 export const EFFECTIVE_DATE = "01.10.2026";
+
+/** Google Maps otomatik yükleme açıklamasıyla güncellenen belgelerin (WEB-CRZ-06, KVK-AYD-04) son güncelleme tarihi. */
+export const MAPS_REVISION_DATE = "14.11.2026";
 
 export const contactSection: LegalSection = {
   heading: "İletişim ve Başvuru",

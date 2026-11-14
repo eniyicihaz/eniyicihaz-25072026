@@ -2,11 +2,12 @@
 // ConsentManager — çerez bandı + tercih paneli + izin mantığı.
 //   • İlk ziyarette (kayıt yok) altta bir bant açılır: “Tümünü kabul et”, “Tümünü reddet”,
 //     “Tercihleri yönet” — üçü aynı görsel ağırlıkta. Kullanıcı seçene kadar HİÇBİR kayıt yazılmaz ve
-//     hiçbir Google isteği gitmez; “seçilmemiş” durumu “reddedildi” veya “kabul edildi” diye saklanmaz.
+//     GTM/GA4/Ads yüklenmez; “seçilmemiş” durumu “reddedildi” veya “kabul edildi” diye saklanmaz.
+//     (Google Maps konum haritası bu mantığın DIŞINDADIR: sahibin kararıyla herkese otomatik yüklenir.)
 //   • Tercih paneli (<dialog>) bant, footer “Çerez Tercihleri” bağlantısı ([data-consent-open]) ile açılır.
 //   • Kategoriler: Zorunlu (kilitli) · Analitik (GA4) · Reklam ölçüm (Google Ads dönüşüm ölçümü).
 //     Kişiselleştirilmiş reklam izni hiçbir durumda verilmez (bkz. lib/consent/google.ts).
-//   • Harita/video gibi gömme içerikler kategori değildir: her biri kendi “yükle” düğmesiyle, yalnızca
+//   • Video (YouTube) gömme içerikleri kategori değildir: her biri kendi “yükle” düğmesiyle, yalnızca
 //     o tek içerik ve yalnızca o sayfa ziyareti için yüklenir; kalıcı tercih yazılmaz.
 // Kütüphane yok: yerel <dialog>, Design System Button sınıfları ve küçük bir modül script'i.
 import "../../../ds/components/ui/atoms/Button/Button.css";
@@ -39,8 +40,8 @@ const categories = [
     <button type="button" class="consent-banner__manage" data-consent-open>Tercihleri yönet</button>
   </div>
   <p class="consent-banner__text">
-    Zorunlu çerezler sitenin çalışması içindir. Analitik ve reklam ölçüm çerezleri yalnızca onayınızla açılır; seçim
-    yapana kadar Google’a hiçbir istek gönderilmez.
+    Zorunlu çerezler her zaman açıktır. Analitik ve reklam çerezleri (Google Analytics, Google Ads) yalnızca onayınızla
+    açılır. Konum haritaları ise reddetseniz de Google Maps’ten yüklenir.
   </p>
   <!-- Kabul ve ret aynı boyut, aynı stil, yan yana: biri diğerinden daha belirgin değildir. -->
   <div class="consent-banner__actions">
@@ -60,6 +61,7 @@ const categories = [
     <p class="consent-dialog__intro">
       Zorunlu çerezler her zaman açıktır. Diğer kategoriler varsayılan olarak kapalıdır ve yalnızca siz açarsanız etkinleşir.
       Tercihinizi daha sonra sayfa altındaki “Çerez Tercihleri” bağlantısından değiştirebilirsiniz.
+      Konum haritaları bir çerez kategorisi değildir; bu tercihlerden bağımsız olarak Google Maps’ten yüklenir.
     </p>
     <ul class="consent-dialog__list">
       {
