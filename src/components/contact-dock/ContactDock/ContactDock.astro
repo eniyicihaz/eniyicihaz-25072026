@@ -14,10 +14,16 @@ import { company } from "../../footer/Footer/data/company";
 ---
 
 <aside class="contact-dock" aria-label="Hızlı iletişim" data-contact-dock data-track-location="contact_dock">
+  {/* Ara düğmesi iki satırdır: üstte etiket, altta küçük "23:59'a kadar" (telefonla ulaşılabilirlik — merkez saati
+      değildir). Düğme yüksekliği DEĞİŞMEZ (52 px), dolayısıyla --dock-h ve çerez bandının konumu da değişmez.
+      Etiket ayrı satırda kaldığı için ölçümdeki cta_label eskisi gibidir ("Ara" / "Bizi Arayın"). */}
   <a class="contact-dock__btn contact-dock__btn--call" href={contactConfig.phone.href}>
     <Phone size={22} aria-hidden="true" />
-    <span class="contact-dock__label contact-dock__label--short">Ara</span>
-    <span class="contact-dock__label contact-dock__label--long">Bizi Arayın</span>
+    <span class="contact-dock__stack">
+      <span class="contact-dock__label contact-dock__label--short">Ara</span>
+      <span class="contact-dock__label contact-dock__label--long">Bizi Arayın</span>
+      <span class="contact-dock__until">{contactConfig.phoneReach.untilLabel}</span>
+    </span>
     <span class="contact-dock__sr"> {contactConfig.phone.display}</span>
   </a>
   <a class="contact-dock__btn contact-dock__btn--wa" href={contactConfig.whatsapp.href} aria-label="WhatsApp'tan yazın">
@@ -107,6 +113,25 @@ import { company } from "../../footer/Footer/data/company";
     display: none;
   }
 
+  /* Ara düğmesinin iki satırı: etiket + "23:59'a kadar". */
+  .contact-dock__stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    min-width: 0;
+  }
+
+  .contact-dock__until {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: nowrap;
+    color: rgb(255 255 255 / 0.95);
+  }
+
   /* Erişilebilir ad = görünen metin + numara (WCAG 2.5.3 "Label in Name"); numara yalnızca ekran okuyucuya. */
   .contact-dock__sr {
     position: absolute;
@@ -152,14 +177,41 @@ import { company } from "../../footer/Footer/data/company";
     }
   }
 
+  @media (max-width: 369px) {
+    /* ≤ 369 px: "Ara" + "23:59'a kadar" iki satırı simgeyle birlikte sütuna sığmıyordu (ölçüm: 320 ve 360 px'te
+       içerik taşıyordu). Yalnızca bu düğmede simge gizlenir, metin ortalanır; düğme "Ara" etiketini ve 23:59 bilgisini
+       korur, WhatsApp ve Yol tarifi aynen kalır. Erişilebilir ad değişmez (simge zaten aria-hidden). */
+    .contact-dock__btn--call > svg {
+      display: none;
+    }
+    .contact-dock__btn--call .contact-dock__stack {
+      align-items: center;
+    }
+  }
+
   @media (max-width: 359px) {
     /* Üç eşit sütunda "WhatsApp" düğmesi (simge + yazı ≈ 106 px) 97 px'lik sütuna sığmıyor, simge kenarlığa
-       biniyordu (ölçüm: 320 px). Sütunlar içerik uzunluğuyla orantılanır: Ara kısa, diğer ikisi uzun. */
+       biniyordu (ölçüm: 320 px). Sütunlar içerik uzunluğuyla orantılanır. Ara düğmesi artık "23:59'a kadar"
+       satırını da taşıdığı için eskisinden geniştir (0.72fr → 1fr); yer açmak için en dar ekranda simgeler 18 px'e
+       iner ve iç boşluklar daralır. */
     .contact-dock {
-      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.16fr) minmax(0, 1.12fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr) minmax(0, 1fr);
+      gap: 4px;
+      padding-inline: 6px;
+    }
+    .contact-dock__btn {
+      gap: 4px;
+      padding-inline: 2px;
+    }
+    .contact-dock__btn :global(svg) {
+      width: 18px;
+      height: 18px;
     }
     .contact-dock__label {
       font-size: var(--font-size-xs);
+    }
+    .contact-dock__until {
+      font-size: 0.6875rem;
     }
   }
 

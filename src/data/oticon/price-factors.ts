@@ -9,6 +9,8 @@
 // facts already established elsewhere on this page (technology tiers,
 // Bluetooth, rechargeable vs. battery, custom in-ear builds, power
 // models, pediatric models).
+import { contactConfig } from "../../config/contact";
+
 
 export interface OticonPriceFactor {
   title: string;
@@ -69,6 +71,6 @@ export const oticonPriceFactors: OticonPriceFactorsContent = {
   calloutText:
     "İşitme cihazı seçiminde yalnızca fiyat değil; işitme kaybının derecesi, yaşam tarzı ve günlük ihtiyaçlar da değerlendirilmelidir.",
   ctaText: "Size uygun Oticon modelini birlikte belirleyelim.",
-  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
 };

@@ -89,6 +89,8 @@ export interface PhoneData {
   number: string;
   label: string;
   href: string;
+  /** Telefonla ulaşılabilirlik kısa bilgisi ("23:59'a kadar") — merkez ziyaret saati DEĞİLDİR (config/contact.ts). */
+  availability?: string;
 }
 
 /** The complete data model consumed by `Header`. */

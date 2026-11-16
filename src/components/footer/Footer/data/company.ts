@@ -1,5 +1,11 @@
 // Company / contact — source of truth: COMPANY.md
+//
+// Telefon numaraları config/contact.ts'ten okunur (tek kaynak). Roller: "Cep" = ANA numara (bütün arama CTA'ları);
+// "Merkez" = ikincil sabit hat (yalnızca bu listede). `hours` FİZİKSEL MERKEZİN ZİYARET SAATLERİDİR ve
+// lib/open-status.ts → SCHEDULE ile birebir eşleşmek zorundadır (OpenStatus derlemede denetler). Telefonla
+// ulaşılabilirlik ("23:59'a kadar") ayrı bilgidir: `phones[].extendedReach` yalnızca etiketi açar, `hours` değişmez.
 import type { CompanyInfo } from "../footer.types";
+import { contactConfig } from "../../../../config/contact";
 
 export const company: CompanyInfo = {
   brand: "Avrasya İşitme Cihazları",
@@ -24,8 +30,8 @@ export const company: CompanyInfo = {
   mapEmbedSrc:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.509333147246!2d29.4047968764159!3d40.772815433889605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cadf45ae27bdc3%3A0xfb00eafb65857912!2zRGFyxLFjYSBBdnJhc2lhIMSwxZ9pdG1lIENpaGF6bGFyxLE!5e0!3m2!1str!2str!4v1786516901339!5m2!1str!2str",
   phones: [
-    { label: "Cep", number: "0533 773 31 99", href: "tel:+905337733199" },
-    { label: "Merkez", number: "0262 656 32 77", href: "tel:+902626563277" },
+    { label: "Cep", number: contactConfig.phone.display, href: contactConfig.phone.href, extendedReach: true },
+    { label: "Merkez", number: contactConfig.landline.display, href: contactConfig.landline.href },
   ],
   email: "eniyicihaz@gmail.com",
   hours: [

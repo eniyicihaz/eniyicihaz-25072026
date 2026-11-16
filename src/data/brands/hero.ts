@@ -5,6 +5,7 @@
 // file and is imported back here.
 
 import type { BrandHeroContent } from "../../components/brands/BrandHero/BrandHero.astro";
+import { contactConfig } from "../../config/contact";
 
 export const brandHero: BrandHeroContent = {
   badge: "10+ Marka",
@@ -17,8 +18,8 @@ export const brandHero: BrandHeroContent = {
     "10+ marka ile çalışıyoruz. Oticon, Phonak, ReSound, NuEar, Vista ve diğer markalarımızı tek noktada inceleyin.",
     "İşitme kaybınıza en uygun teknolojiyi uzman desteğiyle birlikte belirleyin.",
   ],
-  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   trustPills: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı",

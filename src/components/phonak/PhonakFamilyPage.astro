@@ -63,7 +63,7 @@ const sectionAlt = (i: number) => i % 2 === 0;
         {f.tags.map((t) => <li class="ph-tag">{t}</li>)}
       </ul>
       <div class="pf-hero__actions">
-        <a href={phone} data-contact-action={contactAction(phone)}>Hemen Ara</a>
+        <a href={phone} data-contact-action={contactAction(phone)}>{contactConfig.phoneReach.cta}</a>
         <a href={wa} data-contact-action={contactAction(wa)} target="_blank" rel="noopener noreferrer">WhatsApp'tan Yazın</a>
       </div>
     </div>

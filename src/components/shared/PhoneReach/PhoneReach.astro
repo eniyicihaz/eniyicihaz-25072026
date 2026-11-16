@@ -1,0 +1,377 @@
+---
+// PhoneReach — "Telefonla Bize Ulaşın · 23:59'a kadar" güçlü telefon bloğu (ortak bileşen).
+//
+// Yalnızca İKİ yerde kullanılır: ana sayfa hero'su (`variant="hero"`) ve İletişim sayfasının telefon bölümü
+// (`variant="section"`). Diğer sayfalara bu blok EKLENMEZ: orada header, sabit iletişim çubuğu (ContactDock) ve footer
+// aynı bilgiyi kompakt biçimde taşır (kısa etiket: PhoneReachNote).
+//
+// Tek kaynak: numara, bağlantı ve bütün metinler src/config/contact.ts → `phone` + `phoneReach`. Numara metni ile
+// "Bizi Arayın" butonu AYNI `tel:` bağlantısına gider.
+//
+// 23:59 TELEFONLA ULAŞILABİLİRLİK bilgisidir; merkez (fiziksel) ziyaret saati değildir. Bu bileşen merkez saatlerini
+// göstermez, "şu an açık/kapalı" hesabı yapmaz ve yapılandırılmış veri üretmez (bkz. contact.ts başlık notu).
+//
+// Ölçüm: yeni olay yok. Tıklamalar href'ten sınıflandırılır (lib/consent/events.ts: tel: → phone_click).
+// `link_location`: hero varyantında sınıf adındaki "hero" kalıbından "hero"; bölüm varyantında kapsayıcı bölümün
+// `data-track-location` değerinden gelir. Buton etiketi ("Bizi Arayın") önceki hero butonuyla aynıdır.
+import { Phone, PhoneCall } from "lucide-astro";
+import { contactConfig } from "../../../config/contact";
+
+interface Props {
+  /** hero: ana sayfa hero'su içinde kompakt panel · section: İletişim sayfasında iki sütunlu geniş panel. */
+  variant?: "hero" | "section";
+  /** Başlığın id'si (panel bu başlıkla adlandırılır). */
+  headingId: string;
+  /** Başlık etiketi; hero'da sayfanın H1'i ayrı olduğundan varsayılan h2'dir. */
+  headingTag?: "h2" | "h3" | "p";
+  /** Üst küçük etiket (yalnızca bölüm varyantı), ör. "Telefonla İletişim". */
+  eyebrow?: string;
+  /** Görsel olarak ikincil kalan ek CTA (ör. Ücretsiz İşitme Testi). */
+  secondaryCta?: { label: string; href: string; icon?: any };
+  /** Blok altındaki ek açıklama. */
+  note?: string;
+  class?: string;
+}
+
+const { variant = "hero", headingId, headingTag: Heading = "h2", eyebrow, secondaryCta, note, class: className } = Astro.props;
+const { phone, phoneReach: reach } = contactConfig;
+const SecondaryIcon = secondaryCta?.icon;
+---
+
+<div class:list={["phone-reach", `phone-reach--${variant}`, className]} role="group" aria-labelledby={headingId}>
+  <div class="phone-reach__intro">
+    {eyebrow && <p class="phone-reach__eyebrow">{eyebrow}</p>}
+    <Heading class="phone-reach__title" id={headingId}>
+      <PhoneCall size={20} stroke-width={2} aria-hidden="true" class="phone-reach__title-icon" />
+      <span>{reach.heading}</span>
+    </Heading>
+    <p class="phone-reach__text">{reach.text}</p>
+    {note && <p class="phone-reach__note phone-reach__note--intro">{note}</p>}
+  </div>
+
+  <div class="phone-reach__main">
+    <p class="phone-reach__reach">
+      <span class="phone-reach__until">{reach.untilLabel}</span>
+      <a class="phone-reach__number" href={phone.href} aria-label={`Telefon: ${phone.display}`}>{phone.display}</a>
+    </p>
+
+    <div class="phone-reach__actions">
+      <a class="phone-reach__btn phone-reach__btn--call" href={phone.href}>
+        <Phone size={20} stroke-width={2.25} aria-hidden="true" />
+        <span>{reach.cta}</span>
+        <span class="phone-reach__sr"> {phone.display}</span>
+      </a>
+      {
+        secondaryCta && (
+          <a class="phone-reach__btn phone-reach__btn--secondary" href={secondaryCta.href}>
+            {SecondaryIcon && <SecondaryIcon size={20} stroke-width={2} aria-hidden="true" />}
+            <span>{secondaryCta.label}</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .phone-reach {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-2xl);
+    background:
+      radial-gradient(ellipse 55% 130% at 100% 0%, rgb(var(--brand-teal-rgb) / 0.34) 0%, transparent 62%),
+      linear-gradient(135deg, var(--brand-navy-deep) 0%, var(--brand-navy) 70%, #05507a 100%);
+    color: var(--color-text-inverse);
+    box-shadow: 0 20px 40px -24px rgb(var(--brand-navy-deep-rgb) / 0.7);
+  }
+
+  .phone-reach__intro,
+  .phone-reach__main {
+    min-width: 0;
+  }
+
+  .phone-reach__eyebrow {
+    display: inline-block;
+    margin: 0 0 var(--space-3);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgb(255 255 255 / 0.28);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brand-teal-light);
+  }
+
+  /* Başlık: büyük harf CSS ile (html lang="tr" → i/İ doğru dönüşür); kaynak metin doğal yazımdadır. */
+  .phone-reach__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--brand-teal-light);
+  }
+
+  .phone-reach__title :global(.phone-reach__title-icon) {
+    flex: none;
+  }
+
+  .phone-reach__text {
+    margin: var(--space-1) 0 0;
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    color: rgb(255 255 255 / 0.92);
+  }
+
+  .phone-reach__main {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  /* "23:59'A KADAR" + numara: geniş alanda aynı satırda, dar alanda alt alta (ikisi de asla bölünmez). */
+  .phone-reach__reach {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 var(--space-5);
+    margin: 0;
+  }
+
+  .phone-reach__until {
+    font-size: clamp(2rem, 1.35rem + 2.9vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-white, #fff);
+  }
+
+  .phone-reach__number {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    border-radius: var(--radius-sm);
+    font-size: clamp(1.625rem, 1.2rem + 1.9vw, 2.125rem);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: var(--brand-teal-light);
+    text-decoration: none;
+  }
+
+  .phone-reach__number:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+  }
+
+  .phone-reach__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  /* Dokunma hedefi ≥ 48 px (butonlar 56 px). */
+  .phone-reach__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 56px;
+    padding: var(--space-2) var(--space-6);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition:
+      background-color var(--transition-base),
+      border-color var(--transition-base),
+      color var(--transition-base);
+  }
+
+  .phone-reach__btn :global(svg) {
+    flex: none;
+  }
+
+  /* Birincil: lacivert zeminde beyaz dolu buton (panelin tek dolu öğesi). */
+  .phone-reach__btn--call {
+    background: #fff;
+    border-color: #fff;
+    color: var(--brand-navy);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    box-shadow: 0 10px 24px -12px rgb(0 0 0 / 0.55);
+  }
+
+  .phone-reach__btn--call :global(svg) {
+    color: var(--color-primary);
+  }
+
+  .phone-reach__btn--call:hover {
+    background: var(--color-primary-50);
+    border-color: var(--color-primary-50);
+  }
+
+  /* İkincil: yalnızca çerçeve. */
+  .phone-reach__btn--secondary {
+    background: transparent;
+    border-color: rgb(255 255 255 / 0.5);
+    color: #fff;
+  }
+
+  .phone-reach__btn--secondary :global(svg) {
+    color: var(--brand-teal-light);
+  }
+
+  .phone-reach__btn--secondary:hover {
+    background: rgb(255 255 255 / 0.1);
+    border-color: #fff;
+  }
+
+  .phone-reach__btn:focus-visible,
+  .phone-reach__number:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--brand-navy),
+      0 0 0 5px #fff;
+  }
+
+  .phone-reach__note {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+    color: rgb(255 255 255 / 0.86);
+  }
+
+  /* Erişilebilir ad = görünen metin + numara (WCAG 2.5.3); numara yalnızca ekran okuyucuya. */
+  .phone-reach__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* ---- Bölüm varyantı (İletişim sayfası): iki sütun ---- */
+  .phone-reach--section {
+    gap: var(--space-6);
+    padding: var(--space-8);
+  }
+
+  .phone-reach--section .phone-reach__title {
+    font-size: clamp(1.375rem, 1.15rem + 1vw, 1.75rem);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: #fff;
+  }
+
+  .phone-reach--section .phone-reach__title :global(.phone-reach__title-icon) {
+    width: 26px;
+    height: 26px;
+    color: var(--brand-teal-light);
+  }
+
+  .phone-reach--section .phone-reach__text {
+    margin-top: var(--space-3);
+    font-size: var(--font-size-lg);
+  }
+
+  .phone-reach--section .phone-reach__until {
+    font-size: clamp(2.25rem, 1.4rem + 3.6vw, 3.25rem);
+  }
+
+  .phone-reach--section .phone-reach__reach {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+
+  @media (min-width: 900px) {
+    .phone-reach--section {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-12);
+      padding: var(--space-10) var(--space-12);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .phone-reach {
+      padding: var(--space-4) var(--space-4) var(--space-5);
+      border-radius: var(--radius-xl);
+    }
+
+    .phone-reach--section {
+      padding: var(--space-6) var(--space-5);
+    }
+
+    .phone-reach__text {
+      font-size: var(--font-size-sm);
+    }
+
+    .phone-reach--section .phone-reach__text {
+      font-size: var(--font-size-md);
+    }
+
+    .phone-reach__main {
+      gap: var(--space-3);
+    }
+
+    /* Mobilde butonlar tam genişlik ve alt alta: birincil üstte, ikincil daha alçak. */
+    .phone-reach__actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2);
+    }
+
+    .phone-reach__btn {
+      width: 100%;
+      padding-inline: var(--space-3);
+    }
+
+    .phone-reach__btn--secondary {
+      min-height: 48px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phone-reach__btn {
+      transition: none;
+    }
+  }
+
+  @media print {
+    .phone-reach {
+      background: none;
+      color: #000;
+      box-shadow: none;
+      border: 1px solid #000;
+    }
+
+    .phone-reach__title,
+    .phone-reach__until,
+    .phone-reach__number,
+    .phone-reach__text,
+    .phone-reach__note {
+      color: #000;
+    }
+  }
+</style>

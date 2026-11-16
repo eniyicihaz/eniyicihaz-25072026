@@ -28,7 +28,8 @@ const hours = company.hours.map((h) => `${h.days} ${h.time}`).join(" · ");
     <div class="sgk-guide__sheet-head">
       <p class="sgk-guide__sheet-name">SGK Başvuru Kontrol Listesi</p>
       <p>{company.brand} · {company.address}</p>
-      <p>Telefon / WhatsApp: {contactConfig.phone.display} · {hours}</p>
+      <p>Telefon / WhatsApp: {contactConfig.phone.display} ({contactConfig.phoneReach.compactLabel.toLocaleLowerCase("tr")})</p>
+      <p>{contactConfig.phoneReach.visitHoursLabel}: {hours}</p>
     </div>
 
     <ol class="sgk-guide__groups">

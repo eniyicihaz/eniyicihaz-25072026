@@ -13,6 +13,8 @@ import { company } from "../footer/Footer/data/company";
 import { imageSrcset } from "../../lib/responsive-images";
 import { contactAction } from "../../lib/contact-action";
 import OpenStatus from "../shared/OpenStatus/OpenStatus.astro";
+import PhoneReachNote from "../shared/PhoneReach/PhoneReachNote.astro";
+import { contactConfig } from "../../config/contact";
 ---
 
 <section class="home-local" aria-labelledby="home-local-title" data-track-location="home_local">
@@ -83,7 +85,7 @@ import OpenStatus from "../shared/OpenStatus/OpenStatus.astro";
         <div class="home-local__hours">
           <p class="home-local__meta-title">
             <Clock size={18} stroke-width={1.75} aria-hidden="true" class="home-local__icon" />
-            Çalışma Saatleri
+            {contactConfig.phoneReach.visitHoursLabel}
           </p>
           <OpenStatus />
           <dl>
@@ -94,6 +96,8 @@ import OpenStatus from "../shared/OpenStatus/OpenStatus.astro";
               </div>
             ))}
           </dl>
+          {/* Merkez saatlerinden AYRI etiket: telefonla ulaşılabilirlik. */}
+          <PhoneReachNote variant="line" class="home-local__reach" />
         </div>
         <p class="home-local__parking">
           <Car size={18} stroke-width={1.75} aria-hidden="true" class="home-local__icon" />
@@ -296,6 +300,13 @@ import OpenStatus from "../shared/OpenStatus/OpenStatus.astro";
     gap: var(--space-3);
     font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
+  }
+
+  /* Telefonla ulaşılabilirlik satırı: saat listesinden ince bir çizgiyle ayrılır. */
+  .home-local__hours :global(.home-local__reach) {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
   }
 
   .home-local__hours-row dd {

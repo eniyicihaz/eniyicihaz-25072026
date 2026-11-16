@@ -14,6 +14,7 @@
 
 import { Activity, Smartphone, Zap, EyeOff, Wallet, Compass } from "lucide-astro";
 import type { BrandDecisionContent } from "../../components/brands/BrandDecision/BrandDecision.astro";
+import { contactConfig } from "../../config/contact";
 
 export const brandDecision: BrandDecisionContent = {
   eyebrow: "Karar Adımı",
@@ -56,7 +57,7 @@ export const brandDecision: BrandDecisionContent = {
     title: "Hangi Tanım Size Uygun Olursa Olsun",
     description:
       "Uzman odyoloğumuz, ücretsiz işitme testi sonrasında size en uygun markayı birlikte belirler.",
-    ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-    ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+    ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+    ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   },
 };

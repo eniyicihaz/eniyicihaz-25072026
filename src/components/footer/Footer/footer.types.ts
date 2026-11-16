@@ -17,6 +17,9 @@ export interface PhoneEntry {
   label?: string;
   number: string;
   href: string;
+  /** true: bu hat telefonla 23:59'a kadar aranabilir (yalnızca ana numara). Etiket metni config/contact.ts'ten gelir;
+   * merkez ziyaret saatleriyle (`hours`) ilgisi yoktur. */
+  extendedReach?: boolean;
 }
 
 /** A working-hours row. */

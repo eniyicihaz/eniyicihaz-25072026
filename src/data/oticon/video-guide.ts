@@ -7,6 +7,8 @@
 // Oticon Companion) are the same real, already-established facts used
 // elsewhere on this page — nothing new is claimed here, only presented
 // alongside the actual video.
+import { contactConfig } from "../../config/contact";
+
 
 export interface VideoGuideChecklistItem {
   label: string;
@@ -60,6 +62,6 @@ export const oticonVideoGuide: OticonVideoGuideContent = {
     "Kablosuz bağlantı özellikleri",
   ],
   ctaText: "Oticon teknolojilerini yakından deneyimlemek için ücretsiz işitme testi oluşturabilirsiniz.",
-  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
 };

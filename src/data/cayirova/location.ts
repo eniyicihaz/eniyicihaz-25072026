@@ -19,7 +19,7 @@ export const cayirovaLocation: ContactLocationCardContent = {
   whatsappLabel: "WhatsApp'tan Yazın",
   whatsappHref: contactConfig.whatsapp.href,
   emailLabel: "E-posta",
-  hoursLabel: "Çalışma Saatleri",
+  hoursLabel: contactConfig.phoneReach.visitHoursLabel,
   mapTitle: "Avrasya İşitme Cihazları — Darıca Konum Haritası",
   company,
   details: [

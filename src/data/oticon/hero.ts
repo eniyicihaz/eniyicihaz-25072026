@@ -7,6 +7,8 @@
 // BrainHearing® (Oticon's actual branded hearing philosophy) and its real
 // model lines (Intent, Real, Own, Zeal) — no invented specs, numbers or
 // claims beyond what Oticon itself publicly markets.
+import { contactConfig } from "../../config/contact";
+
 
 export interface OticonHeroFeature {
   label: string;
@@ -42,8 +44,8 @@ export const oticonHero: OticonHeroContent = {
     "Oticon BrainHearing® teknolojisi sayesinde konuşmaları daha net duyun, gürültülü ortamlarda sesleri daha kolay ayırt edin.",
     "Intent, Real, Own SI, Zeal ve diğer Oticon modellerini Avrasya İşitme'de keşfedin.",
   ],
-  ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp Yaz", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
   features: [
     {
       label: "OTICON",

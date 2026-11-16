@@ -7,6 +7,8 @@
 // WhatsApp) and the same verified trust facts already established
 // elsewhere on the site (free hearing test, trial device, SGK-affiliated
 // status, audiologist support) — nothing new is claimed here.
+import { contactConfig } from "../../config/contact";
+
 
 export interface FinalCtaAction {
   label: string;
@@ -34,8 +36,8 @@ export const oticonFinalCta: OticonFinalCtaContent = {
   heading: "Hangi Oticon Modeli Size Uygun?",
   description:
     "İşitme kaybınızın derecesine, yaşam tarzınıza ve beklentilerinize uygun Oticon modelini birlikte belirleyelim.",
-  ctaPrimary: { label: "Hemen Ara", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp'tan Yaz", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yaz", href: contactConfig.whatsapp.href },
   trustItems: [
     "Ücretsiz İşitme Testi",
     "Demo İşitme Cihazı",

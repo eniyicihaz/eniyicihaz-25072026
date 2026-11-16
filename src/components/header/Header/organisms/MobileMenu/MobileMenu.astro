@@ -138,22 +138,30 @@ const quick = [
       </nav>
     </div>
 
+    {/* Alt bölüm — sıra: telefon (birincil, dolu; numara + "23:59'a kadar" butonun içinde, tamamı tek tel: bağlantısı)
+        → Ücretsiz İşitme Testi (ikincil, çerçeveli) + WhatsApp. Numara eskiden butonun altında tıklanamayan düz
+        metindi; artık butonun parçasıdır. */}
     <div class="hd-mobile__foot">
-      <a class="hd-mobile__cta" href={cta.href}>
-        <CtaIcon size={20} aria-hidden="true" />
-        <span>{cta.label}</span>
+      <a class="hd-mobile__call" href={phone.href}>
+        <Phone size={22} aria-hidden="true" />
+        <span class="hd-mobile__call-text">
+          <span class="hd-mobile__call-label">{phone.label}</span>
+          <span class="hd-mobile__call-meta">
+            <span class="hd-mobile__call-number">{phone.number}</span>
+            {phone.availability && <span class="hd-mobile__call-until">{phone.availability}</span>}
+          </span>
+        </span>
       </a>
       <div class="hd-mobile__contact">
-        <a class="hd-mobile__call" href={phone.href}>
-          <Phone size={20} aria-hidden="true" />
-          <span>Ara</span>
+        <a class="hd-mobile__cta" href={cta.href}>
+          <CtaIcon size={20} aria-hidden="true" />
+          <span>{cta.label}</span>
         </a>
         <a class="hd-mobile__wa" href={whatsapp.href} aria-label={whatsapp.label}>
           <WhatsAppIcon size={22} class="hd-mobile__wa-icon" />
-          <span>WhatsApp</span>
+          <span class="hd-mobile__wa-text">WhatsApp</span>
         </a>
       </div>
-      <p class="hd-mobile__number">{phone.number}</p>
     </div>
   </aside>
 </div>
@@ -450,23 +458,57 @@ const quick = [
     padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
   }
 
-  .hd-mobile__cta {
-    display: inline-flex;
+  /* Telefon — birincil (dolu). İki satır: "Bizi Arayın" / numara · 23:59'a kadar. */
+  .hd-mobile__call {
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
-    height: 56px;
+    gap: var(--space-3);
+    min-height: 60px;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-primary-hover);
     border-radius: var(--radius-lg);
     background: var(--color-primary);
     color: var(--color-text-inverse);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-semibold);
     text-decoration: none;
     transition: background-color var(--transition-base);
   }
-  .hd-mobile__cta:hover {
+  .hd-mobile__call:hover {
     background: var(--color-primary-hover);
   }
+  .hd-mobile__call :global(svg) {
+    flex: none;
+  }
+  .hd-mobile__call-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 0;
+    line-height: 1.2;
+  }
+  .hd-mobile__call-label {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+  .hd-mobile__call-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-2);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    color: rgb(255 255 255 / 0.94);
+  }
+  .hd-mobile__call-number,
+  .hd-mobile__call-until {
+    white-space: nowrap;
+  }
+  .hd-mobile__call-until::before {
+    content: "·";
+    margin-right: var(--space-2);
+  }
+
   .hd-mobile__cta:focus-visible,
   .hd-mobile__call:focus-visible,
   .hd-mobile__wa:focus-visible {
@@ -474,38 +516,60 @@ const quick = [
     box-shadow: var(--focus-ring);
   }
 
+  /* İkincil satır: Ücretsiz İşitme Testi (çerçeveli, esner) + WhatsApp (dar ekranda yalnızca simge). */
   .hd-mobile__contact {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: var(--space-3);
   }
-  .hd-mobile__call,
+  .hd-mobile__cta,
   .hd-mobile__wa {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    height: 52px;
+    min-height: 52px;
     border: 1px solid var(--color-border-hover);
     border-radius: var(--radius-lg);
     background: var(--color-white);
     color: var(--color-text);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
     text-decoration: none;
   }
-  .hd-mobile__call :global(svg) {
+  .hd-mobile__cta {
+    padding: var(--space-1) var(--space-3);
+    border-color: var(--color-primary);
     color: var(--color-primary);
+    text-align: center;
+    transition: background-color var(--transition-base);
+  }
+  .hd-mobile__cta :global(svg) {
+    flex: none;
+  }
+  .hd-mobile__cta:hover {
+    background: var(--color-primary-50);
+  }
+  .hd-mobile__wa {
+    min-width: 52px;
+    padding-inline: var(--space-4);
   }
   .hd-mobile__wa :global(.hd-mobile__wa-icon) {
     color: #25d366;
+    flex: none;
   }
-  .hd-mobile__number {
-    margin: 0;
-    text-align: center;
-    font-size: var(--font-size-sm);
-    font-variant-numeric: tabular-nums;
-    color: var(--color-text-muted);
+
+  @media (max-width: 420px) {
+    .hd-mobile__wa {
+      padding-inline: 0;
+    }
+    .hd-mobile__wa-text {
+      display: none;
+    }
+    .hd-mobile__cta {
+      font-size: var(--font-size-sm);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

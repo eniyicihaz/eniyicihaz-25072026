@@ -2,6 +2,7 @@
 // (§1 COMPANY.md); Facebook/Instagram/YouTube are the real, verified
 // account URLs supplied for the business.
 import type { SocialItem } from "../footer.types";
+import { contactConfig } from "../../../../config/contact";
 
 export const social: SocialItem[] = [
   {
@@ -25,7 +26,7 @@ export const social: SocialItem[] = [
   {
     platform: "WhatsApp",
     iconKey: "whatsapp",
-    href: "https://wa.me/905337733199",
+    href: contactConfig.whatsapp.href,
     label: "WhatsApp hattımız",
   },
 ];

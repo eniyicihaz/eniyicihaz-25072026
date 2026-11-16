@@ -7,6 +7,7 @@ import { MapPin, Clock } from "lucide-astro";
 import { contactConfig } from "../../config";
 import { company } from "../footer/Footer/data/company";
 import { contactAction } from "../../lib/contact-action";
+import PhoneReachNote from "../shared/PhoneReach/PhoneReachNote.astro";
 
 interface Props {
   heading: string;
@@ -25,10 +26,12 @@ const wa = contactConfig.whatsapp.href;
       <h2 class="ph-band__title" id="ph-band-title">{heading}</h2>
       <p class="ph-band__text">{text}</p>
       <div class="ph-band__actions">
-        <a href={phone} data-contact-action={contactAction(phone)}>Hemen Ara: {contactConfig.phone.display}</a>
+        <a href={phone} data-contact-action={contactAction(phone)}>{contactConfig.phoneReach.cta}: {contactConfig.phone.display}</a>
         <a href={wa} data-contact-action={contactAction(wa)} target="_blank" rel="noopener noreferrer">WhatsApp'tan Yazın</a>
         <a class="ph-btn ph-btn--light" href="/degerlendirme/ucretsiz-isitme-testi/">Ücretsiz İşitme Testi</a>
       </div>
+      {/* Telefonla ulaşılabilirlik — sağdaki kartın merkez ziyaret saatlerinden ayrı etiket. */}
+      <PhoneReachNote variant="line" onDark class="ph-band__reach" />
     </div>
     <div class="ph-band__card">
       <p class="ph-band__row">
@@ -37,16 +40,19 @@ const wa = contactConfig.whatsapp.href;
       </p>
       <div class="ph-band__row">
         <Clock size={20} stroke-width={2} aria-hidden="true" />
-        <dl class="ph-band__hours">
-          {
-            company.hours.map((h) => (
-              <div>
-                <dt>{h.days}</dt>
-                <dd>{h.time}</dd>
-              </div>
-            ))
-          }
-        </dl>
+        <div class="ph-band__hours-wrap">
+          <p class="ph-band__hours-title">{contactConfig.phoneReach.visitHoursLabel}</p>
+          <dl class="ph-band__hours">
+            {
+              company.hours.map((h) => (
+                <div>
+                  <dt>{h.days}</dt>
+                  <dd>{h.time}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
       </div>
       <a class="ph-band__dir" href={company.directionsHref} data-contact-action={contactAction(company.directionsHref)} data-contact-size="sm" target="_blank" rel="noopener noreferrer">
         Yol Tarifi Al
@@ -136,6 +142,24 @@ const wa = contactConfig.whatsapp.href;
   .ph-band__row :global(svg) {
     flex: none;
     margin-top: 3px;
+    color: var(--brand-teal-light);
+  }
+
+  .ph-band :global(.ph-band__reach) {
+    margin-top: var(--space-4);
+  }
+
+  .ph-band__hours-wrap {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ph-band__hours-title {
+    margin: 0 0 var(--space-1);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--brand-teal-light);
   }
 

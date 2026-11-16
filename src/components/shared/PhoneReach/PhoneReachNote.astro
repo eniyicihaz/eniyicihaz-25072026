@@ -1,0 +1,97 @@
+---
+// PhoneReachNote — telefonla ulaşılabilirliğin KOMPAKT etiketi (ortak bileşen). Büyük blok (PhoneReach) yalnızca ana
+// sayfa hero'sunda ve İletişim sayfasındadır; diğer her yerde bu küçük etiket kullanılır:
+//   • chip — bir telefon numarasının yanında: "23:59'a kadar" (footer, konum kartı, mobil menü);
+//   • line — merkez saat listesinin / iletişim butonlarının yanında, ondan AYRI duran satır:
+//            "Telefonla iletişim 23:59'a kadar açık".
+// Metinler src/config/contact.ts → `phoneReach`. Bağlantı değildir (yeni tıklama hedefi üretmez); merkez saatlerini
+// veya "şu an açık/kapalı" durumunu göstermez, onu değiştirmez.
+import { Clock, PhoneCall } from "lucide-astro";
+import { contactConfig } from "../../../config/contact";
+
+interface Props {
+  variant?: "chip" | "line";
+  /** Koyu zemin (footer, Phonak bandı). */
+  onDark?: boolean;
+  class?: string;
+}
+
+const { variant = "chip", onDark = false, class: className } = Astro.props;
+const reach = contactConfig.phoneReach;
+---
+
+{
+  variant === "chip" ? (
+    <span class:list={["phone-reach-note", "phone-reach-note--chip", { "phone-reach-note--on-dark": onDark }, className]}>
+      <Clock size={14} stroke-width={2.25} aria-hidden="true" />
+      <span class="phone-reach-note__sr">Telefonla </span>
+      <span>{reach.untilLabel}</span>
+    </span>
+  ) : (
+    <p class:list={["phone-reach-note", "phone-reach-note--line", { "phone-reach-note--on-dark": onDark }, className]}>
+      <PhoneCall size={18} stroke-width={2} aria-hidden="true" />
+      <span>{reach.statusLabel}</span>
+    </p>
+  )
+}
+
+<style>
+  .phone-reach-note {
+    --prn-fg: var(--color-accent-text);
+    --prn-bg: var(--color-accent-soft);
+    --prn-border: rgb(var(--brand-teal-rgb) / 0.45);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .phone-reach-note--on-dark {
+    --prn-fg: var(--brand-teal-light);
+    --prn-bg: rgb(var(--brand-teal-rgb) / 0.16);
+    --prn-border: rgb(143 211 215 / 0.4);
+  }
+
+  .phone-reach-note--chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px var(--space-2);
+    border: 1px solid var(--prn-border);
+    border-radius: var(--radius-full);
+    background: var(--prn-bg);
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-transform: none;
+    white-space: nowrap;
+    color: var(--prn-fg);
+  }
+
+  .phone-reach-note--line {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    color: var(--prn-fg);
+  }
+
+  .phone-reach-note :global(svg) {
+    flex: none;
+  }
+
+  .phone-reach-note--line :global(svg) {
+    margin-top: 2px;
+  }
+
+  .phone-reach-note__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>

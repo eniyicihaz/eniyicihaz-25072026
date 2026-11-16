@@ -9,6 +9,8 @@
 // ==========================================================
 
 import type { HeaderData, MegaMenuData } from "./header.types";
+// Telefon/WhatsApp bağlantıları ve "23:59'a kadar" bilgisi tek kaynaktan gelir (elle yazılmaz).
+import { contactConfig } from "../../../config/contact";
 
 const devicesMega: MegaMenuData = {
   id: "cihazlar",
@@ -203,7 +205,7 @@ const servicesMega: MegaMenuData = {
     icon: "headset",
     title: "Hızlı Erişim",
     items: [
-      { icon: "phone", title: "Bizi Arayın", desc: "Telefonla randevu", href: "tel:+905337733199" },
+      { icon: "phone", title: "Bizi Arayın", desc: contactConfig.phoneReach.compactLabel, href: contactConfig.phone.href },
       { icon: "building", title: "Merkezimiz", desc: "Darıca'da yanınızdayız", href: "/iletisim/" },
       { icon: "shield", title: "SGK İşlemleri", desc: "Anlaşmalı merkez", href: "/sgk-isitme-cihazi-odemesi/" },
     ],
@@ -271,7 +273,7 @@ const knowledgeMega: MegaMenuData = {
     items: [
       { icon: "learn", title: "Rehberleri Keşfedin", desc: "Adım adım anlatım", href: "/bilgi-merkezi/" },
       { icon: "help", title: "Sık Sorulan Sorular", desc: "Hızlı yanıtlar", href: "/blog/sik-sorulan-sorular/" },
-      { icon: "phone", title: "Bizi Arayın", desc: "Bize ulaşın", href: "tel:+905337733199" },
+      { icon: "phone", title: "Bizi Arayın", desc: contactConfig.phoneReach.compactLabel, href: contactConfig.phone.href },
       { icon: "shield", title: "SGK Rehberi", desc: "Katkı payı ve rapor süreci", href: "/sgk-isitme-cihazi-odemesi/" },
     ],
     footer: { label: "İletişime Geç", href: "/iletisim/" },
@@ -294,10 +296,11 @@ export const headerData: HeaderData = {
     { label: "İletişim", href: "/iletisim/" },
   ],
   phone: {
-    number: "0533 773 31 99",
-    label: "Bizi Arayın",
-    href: "tel:+905337733199",
+    number: contactConfig.phone.display,
+    label: contactConfig.phoneReach.cta,
+    href: contactConfig.phone.href,
+    availability: contactConfig.phoneReach.untilLabel,
   },
-  whatsapp: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+  whatsapp: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   cta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/", icon: "stethoscope" },
 };

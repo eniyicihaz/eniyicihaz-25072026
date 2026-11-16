@@ -6,6 +6,7 @@
 
 import { Stethoscope, Sliders, Wrench, RefreshCcw, ShieldQuestion, Radio } from "lucide-astro";
 import type { BrandDecisionContent } from "../../components/brands/BrandDecision/BrandDecision.astro";
+import { contactConfig } from "../../config/contact";
 
 export const servicesDecision: BrandDecisionContent = {
   eyebrow: "Karar Adımı",
@@ -48,7 +49,7 @@ export const servicesDecision: BrandDecisionContent = {
     title: "Hangi Aşamada Olursanız Olun",
     description:
       "Uzman ekibimiz, ücretsiz bir görüşme sonrasında size en uygun hizmeti birlikte belirler.",
-    ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-    ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+    ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+    ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   },
 };

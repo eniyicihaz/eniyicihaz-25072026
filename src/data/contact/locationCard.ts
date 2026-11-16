@@ -13,7 +13,7 @@ import type { ContactLocationCardContent } from "../../components/contact/Contac
 
 export const contactLocationCard: ContactLocationCardContent = {
   eyebrow: "Nasıl Ulaşırsınız?",
-  heading: "Merkezimizin Adresi ve Çalışma Saatleri",
+  heading: "Merkezimizin Adresi ve Ziyaret Saatleri",
   intro:
     "Randevusuz gelebilirsiniz; test, ayar ve teknik servis gibi hizmetler randevuyla verildiği için önce aramanız iyi olur.",
   addressLabel: "Adres",
@@ -23,7 +23,7 @@ export const contactLocationCard: ContactLocationCardContent = {
   whatsappLabel: "WhatsApp'tan Yazın",
   whatsappHref: contactConfig.whatsapp.href,
   emailLabel: "E-posta",
-  hoursLabel: "Çalışma Saatleri",
+  hoursLabel: contactConfig.phoneReach.visitHoursLabel,
   mapTitle: "Avrasya İşitme Cihazları — Darıca, Kocaeli konum haritası",
   company,
   details: [

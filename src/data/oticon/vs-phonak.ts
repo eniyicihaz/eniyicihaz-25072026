@@ -13,6 +13,8 @@
 // not an artificial per-brand split, because the source material itself
 // treats it as equal between the two brands — forcing a difference
 // there would not be honest.
+import { contactConfig } from "../../config/contact";
+
 
 export interface VsPhonakApproachCard {
   brand: "oticon" | "phonak";
@@ -90,6 +92,6 @@ export const oticonVsPhonak: OticonVsPhonakContent = {
   calloutText:
     "Daha iyi marka yoktur. Doğru kullanıcı için doğru cihaz vardır. İşitme kaybının derecesi, yaşam tarzı, beklentiler ve kulak yapısı değerlendirilerek seçim yapılmalıdır.",
   ctaText: "Size uygun markayı ve modeli birlikte belirleyelim.",
-  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
 };

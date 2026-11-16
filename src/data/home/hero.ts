@@ -45,8 +45,10 @@ export interface HomeHeroContent {
   heading: string;
   description: string;
   visit: string;
-  primaryCta: HomeHeroLink;
-  secondaryCtas: HomeHeroLink[];
+  /** İkincil CTA (Ücretsiz İşitme Testi). Birincil aksiyon telefondur ve PhoneReach bloğundan gelir (contactConfig). */
+  secondaryCta: HomeHeroLink;
+  /** Üçüncül: ana numaranın WhatsApp bağlantısı (ziyaret kutusunun altında). */
+  whatsappCta: HomeHeroLink;
   textLink: HomeHeroLink;
   definitionSentence: string;
   image?: HomeHeroImage;
@@ -60,13 +62,12 @@ export const homeHero: HomeHeroContent = {
     "Darıca, Kocaeli'de SGK anlaşmalı işitme cihazı satış ve uygulama merkeziyiz. Ücretsiz işitme testi, cihaz seçimi, merkezde ücretsiz demo, bakım ve teknik destek hizmeti sunuyoruz.",
   visit:
     "Palandöken Eczanesi'nin üst katı, Farabi Devlet Hastanesi durağının karşısı. Randevusuz ziyaret kabul edilir.",
-  // Birincil: en düşük sürtünmeli giriş (ücretsiz işitme testi sayfası). İkincil: ana numara (telefon ve WhatsApp,
-  // MASTER_PLAN K2). Yol tarifi, ziyaret kutusunun altındaki metin bağlantıdır.
-  primaryCta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
-  secondaryCtas: [
-    { label: "Bizi Arayın", href: contactConfig.phone.href },
-    { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
-  ],
+  // Hiyerarşi (işletme sahibi kararı, 2026-11-17 — telefonla ulaşılabilirlik): birincil aksiyon TELEFON; numara,
+  // "23:59'a kadar" bilgisi ve "Bizi Arayın" butonu PhoneReach bloğundan gelir (tek kaynak: config/contact.ts).
+  // İkincil: Ücretsiz İşitme Testi (aynı blokta, görsel olarak ikincil). Üçüncül: WhatsApp ve yol tarifi (ziyaret
+  // kutusunun altında). Yalnızca ana numara kullanılır (MASTER_PLAN K2).
+  secondaryCta: { label: "Ücretsiz İşitme Testi", href: "/degerlendirme/ucretsiz-isitme-testi/" },
+  whatsappCta: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   textLink: { label: "Yol tarifi al", href: company.directionsHref },
   definitionSentence:
     "Avrasya İşitme Cihazları, Darıca, Kocaeli'de bulunan SGK anlaşmalı bir işitme cihazı satış ve uygulama merkezidir.",

@@ -7,12 +7,20 @@
 // COMPANY.md) — nothing invented.
 //
 // Section order (Faz 2 P2): Breadcrumb → Hero (kim/ne/nerede) →
-// Fiziksel Konum Kartı → Hizmet Bölgeleri (kanonik hat listesi, zaman
+// Telefonla İletişim (23:59'a kadar) → Fiziksel Konum Kartı (adres + MERKEZ
+// ZİYARET saatleri) → Hizmet Bölgeleri (kanonik hat listesi, zaman
 // notu tek yerde) → Evde Hizmet → Kısa yollar → Yerel SSS (5 soru) →
 // Kapanış CTA. Sekiz adımlı ziyaret süreci ve 6 kartlık hizmet bölümü
 // kaldırıldı (Darıca sayfası ve ilgili sayfalar kapsıyor).
+//
+// Telefon / merkez ayrımı (işletme sahibi kararı, 2026-11-17): telefonla
+// ulaşılabilirlik (23:59'a kadar) AYRI bir bölümdür ve fiziksel merkezin
+// ziyaret saatlerinin ÜSTÜNDE durur. İkisi karıştırılmaz: 23:59 bilgisi
+// aşağıdaki MedicalBusiness openingHoursSpecification'a YAZILMAZ; o alan
+// yalnızca merkezin ziyaret saatleridir.
 import MainLayout from "../layouts/MainLayout.astro";
 import ContactHero from "../components/contact/ContactHero/ContactHero.astro";
+import PhoneReach from "../components/shared/PhoneReach/PhoneReach.astro";
 import ContactLocationCard from "../components/contact/ContactLocationCard/ContactLocationCard.astro";
 import ContactServiceArea from "../components/contact/ContactServiceArea/ContactServiceArea.astro";
 import BrandFaq from "../components/brands/BrandFaq/BrandFaq.astro";
@@ -26,6 +34,7 @@ import { contactFaq } from "../data/contact/faq";
 import { contactFinalCta } from "../data/contact/finalCta";
 
 import { company } from "../components/footer/Footer/data/company";
+import { contactConfig } from "../config/contact";
 
 // Extends the sitewide Organization node (MainLayout.astro) via the same
 // `@id` rather than redeclaring it — one real business, described more
@@ -85,6 +94,19 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
 
   <ContactHero data={contactHero} />
+
+  {/* A — Telefonla iletişim (23:59'a kadar). Fiziksel merkez ziyaret saatleri bir alttaki konum kartındadır (B). */}
+  <section class="contact-reach" aria-labelledby="contact-reach-title" data-track-location="contact">
+    <div class="contact-reach__inner">
+      <PhoneReach
+        variant="section"
+        headingId="contact-reach-title"
+        eyebrow="Telefonla İletişim"
+        note={contactConfig.phoneReach.note}
+      />
+    </div>
+  </section>
+
   <ContactLocationCard data={contactLocationCard} />
   <ContactServiceArea data={contactServiceArea} />
 
@@ -117,6 +139,18 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
 </MainLayout>
 
 <style>
+  /* A — Telefonla iletişim: hero (beyaz) ile konum kartı (gri zemin) arasında, kendi bandında durur. */
+  .contact-reach {
+    background: var(--color-background);
+    padding-block: 0 var(--space-16);
+  }
+
+  .contact-reach__inner {
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
   .contact-block {
     background: var(--color-background);
     padding-block: var(--space-16);
@@ -218,6 +252,14 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   }
 
   @media (max-width: 640px) {
+    .contact-reach {
+      padding-block: 0 var(--space-12);
+    }
+
+    .contact-reach__inner {
+      padding-inline: var(--space-4);
+    }
+
     .contact-block {
       padding-block: var(--space-10);
     }

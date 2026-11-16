@@ -14,6 +14,7 @@
 // commence.webp).
 
 import type { BrandHeroContent } from "../../components/brands/BrandHero/BrandHero.astro";
+import { contactConfig } from "../../config/contact";
 
 export const servicesHero: BrandHeroContent = {
   badge: "Testten Servise Hizmetlerimiz",
@@ -22,8 +23,8 @@ export const servicesHero: BrandHeroContent = {
     "Değerlendirmeden cihaz uygulamasına, ayardan servis ve bakıma kadar tüm süreçte uzman kadromuz yanınızda.",
     "İhtiyacınıza uygun hizmeti, ücretsiz işitme testi sonrasında uzman desteğiyle birlikte belirleyin.",
   ],
-  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp", href: contactConfig.whatsapp.href },
   trustPills: [
     "Ücretsiz İşitme Testi",
     "SGK Anlaşmalı",

@@ -12,6 +12,7 @@
 // document order.
 import { MapPin, Phone, Clock, Navigation } from "lucide-astro";
 import OpenStatus from "../../shared/OpenStatus/OpenStatus.astro";
+import PhoneReachNote from "../../shared/PhoneReach/PhoneReachNote.astro";
 import WhatsAppIcon from "../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import { contactAction } from "../../../lib/contact-action";
 import type { CompanyInfo } from "../../footer/Footer/footer.types";
@@ -122,6 +123,9 @@ const { data } = Astro.props;
               <a class="contact-location__phone" href={phone.href}>
                 <span class="contact-location__phone-number">{phone.number}</span>
                 {phone.label && <span class="contact-location__phone-label">{phone.label}</span>}
+                {/* Telefonla ulaşılabilirlik (yalnızca ana numara): "23:59'a kadar". Aşağıdaki saat satırı ise
+                    fiziksel merkezin ziyaret saatleridir; ikisi ayrı etiketlenir. */}
+                {phone.extendedReach && <PhoneReachNote variant="chip" />}
               </a>
             ))}
           </div>
@@ -356,9 +360,11 @@ const { data } = Astro.props;
 
   .contact-location__phone {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: var(--space-2);
+    gap: 2px var(--space-2);
     width: fit-content;
+    max-width: 100%;
     text-decoration: none;
   }
 

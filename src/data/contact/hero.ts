@@ -48,6 +48,7 @@ export const contactHero: ContactHeroContent = {
   trustPills: [
     "Ücretsiz İşitme Testi",
     "Evde Hizmet: Kocaeli Geneli",
-    "Pazar ve Resmî Tatillerde Kapalı",
+    // "Merkez" öneki: kapalılık fiziksel merkeze aittir; telefonla ulaşılabilirlik ayrı bölümdedir (PhoneReach).
+    "Merkez Pazar ve Resmî Tatillerde Kapalı",
   ],
 };

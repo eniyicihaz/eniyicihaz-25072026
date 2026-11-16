@@ -23,13 +23,24 @@ const CtaIcon = icons[cta.icon] as any;
     <Search size={22} aria-hidden="true" />
   </button>
 
-  <a class="hd-actions__phone" href={phone.href} aria-label={`${phone.number} ${phone.label}`}>
+  {/* Telefon: numara + "Bizi Arayın" + küçük "23:59'a kadar" (telefonla ulaşılabilirlik; merkez saati değildir).
+      Etiketin iki parçası ayrı flex öğesidir: ölçüm (events.ts safeLabel) ilk metin satırını okur ve cta_label
+      eskisi gibi "Bizi Arayın" kalır. */}
+  <a
+    class="hd-actions__phone"
+    href={phone.href}
+    aria-label={`${phone.number} ${phone.label}${phone.availability ? ` — telefonla ${phone.availability}` : ""}`}
+    title={phone.availability ? `Telefonla ${phone.availability}` : undefined}
+  >
     <span class="hd-actions__phone-icon" aria-hidden="true">
       <Phone size={20} />
     </span>
     <span class="hd-actions__phone-text">
       <span class="hd-actions__phone-number">{phone.number}</span>
-      <span class="hd-actions__phone-label">{phone.label}</span>
+      <span class="hd-actions__phone-label">
+        <span class="hd-actions__phone-cta">{phone.label}</span>
+        {phone.availability && <span class="hd-actions__phone-until">{phone.availability}</span>}
+      </span>
     </span>
   </a>
 
@@ -127,9 +138,33 @@ const CtaIcon = icons[cta.icon] as any;
   }
 
   .hd-actions__phone-label {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    white-space: nowrap;
     color: var(--color-text-muted);
+  }
+
+  /* "23:59'a kadar" — telefonla ulaşılabilirlik; küçük, turkuaz (beyaz zeminde 5.9:1). */
+  .hd-actions__phone-until {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent-text);
+  }
+
+  /* ≥1720 px (numara görünür): ikinci satır yalnızca "23:59'a kadar" — "Bizi Arayın" etiketi ekran okuyucuda kalır,
+     görsel olarak gizlenir; böylece telefon kümesinin genişliği eskisiyle (numara genişliği) aynı kalır ve menüyle
+     arama düğmesi arasındaki boşluk daralmaz (ölçüm: aksi hâlde 1720 ve 1920 px'te menü arama düğmesine biniyordu). */
+  .hd-actions__phone-cta {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   /* WhatsApp — secondary: white surface, official green glyph, thin border (same hierarchy as the page CTAs) */
@@ -240,6 +275,38 @@ const CtaIcon = icons[cta.icon] as any;
     }
     .hd-actions__cta {
       padding-inline: 20px;
+    }
+  }
+
+  /* 1536–1719 px: numara sığmaz ama küçük iki satırlık etiket sığar — telefon simgesinin yanında "Bizi Arayın" ve
+     altında "23:59'a kadar". 1280–1535 px'te yer yoktur (nav zaten sıkışık): yalnızca simge kalır; aynı bilgi sağ
+     alttaki sabit iletişim düğmesinde (ContactDock) görünür. */
+  @media (min-width: 1536px) and (max-width: 1719px) {
+    .hd-actions__phone-text {
+      display: flex;
+    }
+    .hd-actions__phone-number {
+      display: none;
+    }
+    .hd-actions__phone {
+      gap: var(--space-2);
+      padding-inline: 0 var(--space-1);
+    }
+    .hd-actions__phone-label {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      font-size: 0.8125rem;
+      line-height: 1.15;
+    }
+    .hd-actions__phone-cta {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      color: var(--color-text);
     }
   }
 

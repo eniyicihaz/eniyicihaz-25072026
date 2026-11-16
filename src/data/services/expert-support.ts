@@ -5,6 +5,7 @@
 
 import { UserCheck, ShieldCheck, CalendarCheck, Headphones } from "lucide-astro";
 import type { BrandExpertSupportContent } from "../../components/brands/BrandExpertSupport/BrandExpertSupport.astro";
+import { contactConfig } from "../../config/contact";
 
 export const servicesExpertSupport: BrandExpertSupportContent = {
   eyebrow: "Son Adım",
@@ -18,8 +19,8 @@ export const servicesExpertSupport: BrandExpertSupportContent = {
     "Uçtan Uca Süreç Desteği",
     "Odyometrist Desteği",
   ],
-  ctaPrimary: { label: "Bizi Arayın", href: "tel:+905337733199" },
-  ctaSecondary: { label: "WhatsApp'tan Yazın", href: "https://wa.me/905337733199" },
+  ctaPrimary: { label: "Bizi Arayın", href: contactConfig.phone.href },
+  ctaSecondary: { label: "WhatsApp'tan Yazın", href: contactConfig.whatsapp.href },
   reassurance: "Randevunuz ücretsizdir, satın alma zorunluluğu yoktur.",
   panelHeading: "Sizi Dinliyoruz, Sizinle Karar Veriyoruz.",
   panelBody:

@@ -1,16 +1,26 @@
 ---
-// HomeHero — ana sayfanın tek, statik hero'su. Tek H1, tek mesaj, ilk ekranda ziyaret bilgisi.
-// Hiyerarşi (araştırma raporu U1, proje kararı): birincil CTA = Ücretsiz İşitme Testi; ikincil = ana numara
-// (Bizi Arayın · WhatsApp'tan Yazın); yol tarifi = metin bağlantı. Görsel gerçek merkez fotoğrafıdır (D1) ve
-// üzerindeki kart yalnızca LOCAL_SOT'taki doğrulanmış çalışma saatlerini gösterir.
+// HomeHero — ana sayfanın tek, statik hero'su. Tek H1, ilk ekranda telefonla ulaşılabilirlik ve ziyaret bilgisi.
+// Hiyerarşi (işletme sahibi kararı, 2026-11-17): birincil = TELEFON — "Telefonla Bize Ulaşın · 23:59'a kadar · numara ·
+// Bizi Arayın" (ortak PhoneReach bloğu; numara ve buton aynı tel: bağlantısına gider); ikincil = Ücretsiz İşitme
+// Testi (aynı blokta, çerçeveli); üçüncül = WhatsApp'tan Yazın ve yol tarifi (ziyaret kutusunun altında).
+// Önceki hiyerarşide (araştırma raporu U1) birincil CTA Ücretsiz İşitme Testi idi.
+//
+// Görsel gerçek merkez fotoğrafıdır (D1) ve üzerindeki kart yalnızca LOCAL_SOT'taki doğrulanmış MERKEZ ZİYARET
+// saatlerini gösterir. Kartın "Şu an açık/kapalı" satırı (OpenStatus) fiziksel merkeze aittir; telefonla
+// ulaşılabilirlik (23:59) ayrı bloktadır ve bu kartın hesabına girmez.
+//
+// Mobilde sıra: üst başlık → H1 → telefon bloğu → açıklama → ziyaret kutusu (telefon bilgisi ilk ekranda kalsın diye
+// yalnızca görsel sıra `order` ile değişir; kaynak sırası ve odak sırası aynıdır).
 //
 // Ölçüm: CTA'lar mevcut href desenlerini kullanır (tel:, wa.me, maps.app.goo.gl, /degerlendirme/ucretsiz-isitme-testi/);
 // events.ts sınıf adındaki "hero" kalıbından link_location="hero" üretir. Olay adları değişmedi.
-import { Phone, Stethoscope, MapPin, Navigation, Clock } from "lucide-astro";
+import { Stethoscope, MapPin, Navigation, Clock } from "lucide-astro";
 import WhatsAppIcon from "../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import HeroDeviceStage from "./HeroDeviceStage.astro";
 import OpenStatus from "../shared/OpenStatus/OpenStatus.astro";
+import PhoneReach from "../shared/PhoneReach/PhoneReach.astro";
 import { company } from "../footer/Footer/data/company";
+import { contactConfig } from "../../config/contact";
 import type { HomeHeroContent } from "../../data/home/hero";
 
 interface Props {
@@ -18,7 +28,6 @@ interface Props {
 }
 
 const { data } = Astro.props;
-const [call, whatsapp] = data.secondaryCtas;
 // Süzülen cihaz görseli dik (uzun) ise fotoğrafın üstünde ayrılan boşluk görselin oranından hesaplanır (aşağıdaki stil).
 const stage = data.deviceStage;
 const stageTall = !!stage && stage.height > stage.width;
@@ -31,38 +40,28 @@ const stageTall = !!stage && stage.height > stage.width;
       <h1 class="home-hero__title" id="home-hero-title">{data.heading}</h1>
       <p class="home-hero__description">{data.description}</p>
 
+      <PhoneReach
+        variant="hero"
+        class="home-hero__reach"
+        headingId="home-hero-reach-title"
+        secondaryCta={{ ...data.secondaryCta, icon: Stethoscope }}
+      />
+
       <p class="home-hero__visit">
         <MapPin size={22} stroke-width={1.75} aria-hidden="true" class="home-hero__visit-icon" />
         <span>{data.visit}</span>
       </p>
 
-      <div class="home-hero__actions">
-        <a class="home-hero__btn home-hero__btn--primary" href={data.primaryCta.href}>
-          <Stethoscope size={22} stroke-width={2} aria-hidden="true" />
-          <span>{data.primaryCta.label}</span>
+      <div class="home-hero__links">
+        <a class="home-hero__btn home-hero__btn--secondary home-hero__btn--wa" href={data.whatsappCta.href}>
+          <WhatsAppIcon size={22} class="home-hero__wa-icon" />
+          <span>{data.whatsappCta.label}</span>
         </a>
-        {
-          call && (
-            <a class="home-hero__btn home-hero__btn--secondary home-hero__btn--call" href={call.href}>
-              <Phone size={20} stroke-width={2} aria-hidden="true" />
-              <span>{call.label}</span>
-            </a>
-          )
-        }
-        {
-          whatsapp && (
-            <a class="home-hero__btn home-hero__btn--secondary home-hero__btn--wa" href={whatsapp.href}>
-              <WhatsAppIcon size={22} class="home-hero__wa-icon" />
-              <span>{whatsapp.label}</span>
-            </a>
-          )
-        }
+        <a class="home-hero__text-link" href={data.textLink.href} target="_blank" rel="noopener">
+          <Navigation size={18} stroke-width={2} aria-hidden="true" />
+          <span>{data.textLink.label}</span>
+        </a>
       </div>
-
-      <a class="home-hero__text-link" href={data.textLink.href} target="_blank" rel="noopener">
-        <Navigation size={18} stroke-width={2} aria-hidden="true" />
-        <span>{data.textLink.label}</span>
-      </a>
     </div>
 
     {
@@ -84,9 +83,10 @@ const stageTall = !!stage && stage.height > stage.width;
             fetchpriority="high"
             decoding="async"
           />
-          <div class="home-hero__hours" role="group" aria-label="Çalışma saatleri">
+          <div class="home-hero__hours" role="group" aria-labelledby="home-hero-hours-title">
             <Clock size={20} stroke-width={1.75} aria-hidden="true" class="home-hero__hours-icon" />
             <div class="home-hero__hours-body">
+              <p class="home-hero__hours-title" id="home-hero-hours-title">{contactConfig.phoneReach.visitHoursLabel}</p>
               <OpenStatus />
               <dl>
                 {company.hours.map((h) => (
@@ -112,7 +112,8 @@ const stageTall = !!stage && stage.height > stage.width;
       radial-gradient(ellipse 50% 70% at 92% 8%, rgb(var(--brand-teal-rgb) / 0.16) 0%, transparent 62%),
       linear-gradient(180deg, var(--color-primary-50) 0%, var(--color-background) 100%);
     color: var(--color-text);
-    padding-block: var(--space-16);
+    /* Telefon bloğu eklendiği için üst/alt boşluk 64 → 48 px (hero'nun toplam yüksekliği gereksiz büyümesin). */
+    padding-block: var(--space-12);
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -151,17 +152,22 @@ const stageTall = !!stage && stage.height > stage.width;
   }
 
   .home-hero__description {
-    margin: var(--space-5) 0 0;
+    margin: var(--space-4) 0 0;
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);
+  }
+
+  /* Telefon bloğu (PhoneReach) — hero'nun birincil aksiyonu. */
+  .home-hero__copy :global(.home-hero__reach) {
+    margin-top: var(--space-5);
   }
 
   .home-hero__visit {
     display: flex;
     align-items: flex-start;
     gap: var(--space-3);
-    margin: var(--space-5) 0 0;
+    margin: var(--space-4) 0 0;
     padding: var(--space-3) var(--space-4);
     border: 1px solid var(--color-border-hover);
     border-radius: var(--radius-lg);
@@ -177,21 +183,23 @@ const stageTall = !!stage && stage.height > stage.width;
     color: var(--color-primary);
   }
 
-  .home-hero__actions {
+  /* Üçüncül satır: WhatsApp (beyaz, 48 px) + yol tarifi (metin bağlantı). Birincil/ikincil CTA telefon bloğundadır. */
+  .home-hero__links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-6);
+    align-items: center;
+    gap: var(--space-2) var(--space-5);
+    margin-top: var(--space-3);
   }
 
-  /* Minimum 48 px dokunma hedefi (K5); butonlar 56 px. */
+  /* Minimum 48 px dokunma hedefi (K5). */
   .home-hero__btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    min-height: 56px;
-    padding-inline: var(--space-6);
+    min-height: 48px;
+    padding-inline: var(--space-5);
     border-radius: var(--radius-lg);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
@@ -200,25 +208,10 @@ const stageTall = !!stage && stage.height > stage.width;
     transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
   }
 
-  .home-hero__btn--primary {
-    background: var(--color-primary);
-    color: var(--color-text-inverse);
-    border: 1px solid var(--color-primary-hover);
-    box-shadow: 0 12px 24px -12px rgb(var(--color-primary-rgb) / 0.6);
-  }
-
-  .home-hero__btn--primary:hover {
-    background: var(--color-primary-hover);
-  }
-
   .home-hero__btn--secondary {
     background: var(--color-background);
     color: var(--color-text);
     border: 1px solid var(--color-border-hover);
-  }
-
-  .home-hero__btn--call :global(svg) {
-    color: var(--color-primary);
   }
 
   .home-hero__btn--secondary :global(.home-hero__wa-icon) {
@@ -241,7 +234,6 @@ const stageTall = !!stage && stage.height > stage.width;
     align-items: center;
     gap: var(--space-2);
     min-height: 48px;
-    margin-top: var(--space-3);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
@@ -302,6 +294,17 @@ const stageTall = !!stage && stage.height > stage.width;
     min-width: 0;
   }
 
+  /* Kartın neyi gösterdiğini adlandırır: FİZİKSEL merkezin ziyaret saatleri (telefonla ulaşılabilirlik değil). */
+  .home-hero__hours-title {
+    margin: 0 0 2px;
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+  }
+
   .home-hero__hours dl {
     margin: 0;
     display: grid;
@@ -343,19 +346,33 @@ const stageTall = !!stage && stage.height > stage.width;
       padding-inline: var(--space-4);
     }
 
-    /* Mobilde birincil CTA tam genişlik; telefon + WhatsApp yan yana (ilk ekranda dikey alan kazanımı). */
-    .home-hero__actions {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Mobilde telefon bloğu H1'in hemen altına gelir (ilk ekranda görünsün); açıklama ve ziyaret kutusu onu izler.
+       Yalnızca görsel sıra değişir; kaynak ve odak sırası aynıdır. */
+    .home-hero__copy {
+      display: flex;
+      flex-direction: column;
     }
 
-    .home-hero__btn--primary {
-      grid-column: 1 / -1;
+    .home-hero__copy :global(.home-hero__reach) {
+      order: 1;
+      margin-top: var(--space-4);
+    }
+
+    .home-hero__description {
+      order: 2;
+      font-size: var(--font-size-md);
+    }
+
+    .home-hero__visit {
+      order: 3;
+    }
+
+    .home-hero__links {
+      order: 4;
     }
 
     .home-hero__btn {
-      width: 100%;
-      padding-inline: var(--space-3);
+      padding-inline: var(--space-4);
     }
 
     .home-hero__media--stage {
