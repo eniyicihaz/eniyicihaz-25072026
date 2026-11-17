@@ -37,6 +37,49 @@ import { company } from "../../footer/Footer/data/company";
   </a>
 </aside>
 
+<script>
+  // Büyük yazı (Android "büyük yazı", tarayıcı yazı boyutu, sitedeki A+ ayarı) altında üç düğme yan yana sığmayabilir:
+  // taşma görülürse çubuk "geniş" düzene (data-roomy: simge üstte/etiket altta, "23:59'a kadar" gerekirse alt satıra sarar) geçer
+  // ve gerçek yüksekliğini --dock-h olarak yayınlar (gövde boşluğu ve yüzen düğmeler çubuğun altında kalmasın).
+  // Varsayılan yazı boyutunda hiçbir şey değişmez: taşma yoksa nitelik hiç eklenmez, --dock-h CSS'teki 68 px olarak kalır.
+  const dock = document.querySelector<HTMLElement>("[data-contact-dock]");
+  if (dock) {
+    const root = document.documentElement;
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const overflows = (): boolean =>
+      [...dock.querySelectorAll<HTMLElement>("a")].some((a) => {
+        const r = a.getBoundingClientRect();
+        return [...a.querySelectorAll<HTMLElement>("*")].some((k) => {
+          if (k.classList.contains("contact-dock__sr")) return false;
+          const q = k.getBoundingClientRect();
+          return q.width > 0 && (q.right > r.right + 0.5 || q.left < r.left - 0.5);
+        });
+      });
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      if (!mq.matches) {
+        delete dock.dataset.roomy;
+        root.style.removeProperty("--dock-h");
+        return;
+      }
+      delete dock.dataset.roomy;
+      root.style.removeProperty("--dock-h");
+      if (root.dataset.a11yText || overflows()) dock.dataset.roomy = "";
+      // Gerçek yükseklik yalnızca geniş düzende yayınlanır (varsayılanda CSS değeri geçerli kalır).
+      const h = Math.ceil(dock.getBoundingClientRect().height);
+      if (dock.dataset.roomy !== undefined) root.style.setProperty("--dock-h", `${h}px`);
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    window.addEventListener("resize", schedule, { passive: true });
+    new MutationObserver(schedule).observe(root, { attributes: true, attributeFilter: ["data-a11y-text"] });
+    document.fonts?.ready.then(schedule);
+    schedule();
+  }
+</script>
+
 <style is:global>
   /* Mobile: reserve the bar's height so no content (footer, last CTA) ends up underneath it. */
   @media (max-width: 1023px) {
@@ -211,6 +254,35 @@ import { company } from "../../footer/Footer/data/company";
       font-size: var(--font-size-xs);
     }
     .contact-dock__until {
+      font-size: 0.6875rem;
+    }
+  }
+
+  /* ---- Geniş (büyük yazı) düzeni: script taşma görünce data-roomy ekler; sitedeki A+ ayarı (data-a11y-text) da bunu açar ----
+     Simge üstte/etiket altta; Ara düğmesinde simge gizlenir ve "23:59'a kadar" gerekirse iki satıra sarar (satır başı
+     "23:59'a" / "kadar"), böylece metin düğmenin dışına taşmaz. Sütun oranları a11y-prefs.css ile aynıdır. */
+  @media (max-width: 1023px) {
+    .contact-dock[data-roomy] {
+      grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.28fr) minmax(0, 1.1fr);
+    }
+    .contact-dock[data-roomy] .contact-dock__btn {
+      flex-direction: column;
+      gap: 4px;
+      padding-inline: 2px;
+      min-height: 68px;
+      font-size: var(--font-size-sm);
+      line-height: 1.15;
+    }
+    .contact-dock[data-roomy] .contact-dock__btn--call > svg {
+      display: none;
+    }
+    .contact-dock[data-roomy] .contact-dock__stack {
+      align-items: center;
+    }
+    .contact-dock[data-roomy] .contact-dock__until {
+      white-space: normal;
+      text-align: center;
+      line-height: 1.15;
       font-size: 0.6875rem;
     }
   }

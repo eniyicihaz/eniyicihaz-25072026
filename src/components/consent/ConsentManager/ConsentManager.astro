@@ -1,10 +1,11 @@
 ---
-// ConsentManager — çerez bandı + tercih paneli + izin mantığı.
-//   • İlk ziyarette (kayıt yok) altta bir bant açılır: “Tümünü kabul et”, “Tümünü reddet”,
-//     “Tercihleri yönet” — üçü aynı görsel ağırlıkta. Kullanıcı seçene kadar HİÇBİR kayıt yazılmaz ve
-//     GTM/GA4/Ads yüklenmez; “seçilmemiş” durumu “reddedildi” veya “kabul edildi” diye saklanmaz.
+// ConsentManager — tercih paneli + izin mantığı.
+//   • AÇILIŞ BANDI YOK (sahibin kararı, 2026-11-17): site ilk açıldığında hiçbir çerez penceresi/bandı gösterilmez.
+//     Bu, izin verildiği anlamına GELMEZ: kayıt yoksa durum “karar verilmedi” = tüm isteğe bağlı kategoriler denied;
+//     HİÇBİR kayıt yazılmaz ve GTM/GA4/Ads yüklenmez; “seçilmemiş” durumu “reddedildi” veya “kabul edildi” diye
+//     saklanmaz. Önceden verilmiş geçerli kabul/ret kaydı aynen uygulanır (aşağıdaki başlangıç bloğu).
 //     (Google Maps konum haritası bu mantığın DIŞINDADIR: sahibin kararıyla herkese otomatik yüklenir.)
-//   • Tercih paneli (<dialog>) bant, footer “Çerez Tercihleri” bağlantısı ([data-consent-open]) ile açılır.
+//   • Tercih paneli (<dialog>) YALNIZCA ziyaretçi isteyerek açar: footer “Çerez Tercihleri” bağlantısı ([data-consent-open]).
 //   • Kategoriler: Zorunlu (kilitli) · Analitik (GA4) · Reklam ölçüm (Google Ads dönüşüm ölçümü).
 //     Kişiselleştirilmiş reklam izni hiçbir durumda verilmez (bkz. lib/consent/google.ts).
 //   • Video (YouTube) gömme içerikleri kategori değildir: her biri kendi “yükle” düğmesiyle, yalnızca
@@ -33,22 +34,6 @@ const categories = [
   },
 ] as const;
 ---
-
-<section class="consent-banner" data-consent-banner hidden aria-labelledby="consent-banner-title">
-  <div class="consent-banner__head">
-    <h2 class="consent-banner__title" id="consent-banner-title">Çerez tercihleriniz</h2>
-    <button type="button" class="consent-banner__manage" data-consent-open>Tercihleri yönet</button>
-  </div>
-  <p class="consent-banner__text">
-    Zorunlu çerezler her zaman açıktır. Analitik ve reklam çerezleri (Google Analytics, Google Ads) yalnızca onayınızla
-    açılır. Konum haritaları ise reddetseniz de Google Maps’ten yüklenir.
-  </p>
-  <!-- Kabul ve ret aynı boyut, aynı stil, yan yana: biri diğerinden daha belirgin değildir. -->
-  <div class="consent-banner__actions">
-    <button type="button" class="btn btn--outline btn--md" data-consent-action="accept-all"><span>Tümünü kabul et</span></button>
-    <button type="button" class="btn btn--outline btn--md" data-consent-action="reject-all"><span>Tümünü reddet</span></button>
-  </div>
-</section>
 
 <dialog class="consent-dialog" data-consent-dialog aria-labelledby="consent-dialog-title">
   <form method="dialog" class="consent-dialog__form" data-consent-form>
@@ -106,7 +91,6 @@ const categories = [
   import { applyGoogleConsent, gtmIsActive, setConsentDefault } from "../../../lib/consent/google";
 
   const dialog = document.querySelector<HTMLDialogElement>("[data-consent-dialog]");
-  const banner = document.querySelector<HTMLElement>("[data-consent-banner]");
   const live = document.querySelector<HTMLElement>("[data-consent-live]");
   const toggles = Array.from(document.querySelectorAll<HTMLInputElement>("[data-consent-toggle]"));
 
@@ -124,10 +108,6 @@ const categories = [
       const k = t.dataset.consentToggle as keyof ConsentChoices;
       t.checked = current[k] === true;
     }
-  }
-
-  function showBanner(show: boolean): void {
-    if (banner) banner.hidden = !show;
   }
 
   // --- Gömme içerik (Maps / YouTube): yalnızca tıklanan içerik yüklenir, tercih yazılmaz ----
@@ -171,7 +151,6 @@ const categories = [
   function save(choices: ConsentChoices, method: ConsentMethod, message: string): void {
     writeConsent(choices, method);
     apply(choices, "user");
-    showBanner(false);
     if (dialog?.open) dialog.close();
     announce(message);
   }
@@ -189,11 +168,10 @@ const categories = [
   const stored = readConsent();
   if (stored) {
     apply(stored.choices, "load");
-    showBanner(false);
   } else {
-    // Kayıt YOK: hiçbir şey yazılmaz, GTM yüklenmez; kullanıcı bir seçenek seçene kadar bant görünür.
+    // Kayıt YOK: hiçbir şey yazılmaz, GTM yüklenmez, hiçbir pencere açılmaz. Tüm isteğe bağlı kategoriler denied
+    // kalır (varsayılan kabul YOKTUR); ziyaretçi isterse footer’daki “Çerez Tercihleri” bağlantısıyla panel açar.
     current = { ...ALL_DENIED };
-    showBanner(true);
   }
 
   // --- Olaylar ---------------------------------------------------------------
@@ -258,117 +236,12 @@ const categories = [
     const raw = e.key === null ? window.localStorage.getItem(CONSENT_STORAGE_KEY) : e.newValue; // key === null: clear()
     const s = consentFromStorageValue(raw);
     const next = s ? s.choices : { ...ALL_DENIED };
-    showBanner(!s);
     if (OPTIONAL_CATEGORIES.every((k) => next[k] === current[k])) return; // değişiklik yok → tekrar uygulama/yenileme yok
     apply(next, "storage");
   });
 </script>
 
 <style>
-  /* --- Çerez bandı --------------------------------------------------------
-     Kompakt alt bant: mobilde ekranın yaklaşık beşte biri (eski 3 satırlık yığın ≈ %39'du). Kabul / ret yan yana ve
-     eşit ağırlıkta. Sabit iletişim çubuğu (ContactDock) varsa onun üstünde durur (--dock-h). */
-  .consent-banner {
-    position: fixed;
-    inset: auto var(--space-3) calc(var(--dock-h, 0px) + var(--space-3)) var(--space-3);
-    z-index: 1000;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: var(--space-5);
-    row-gap: var(--space-2);
-    align-items: center;
-    max-width: 56rem;
-    margin-inline: auto;
-    padding: var(--space-4) var(--space-5);
-    border: 1px solid var(--color-border-hover);
-    border-radius: var(--radius-xl);
-    background: var(--color-white);
-    color: var(--color-text);
-    box-shadow: var(--shadow-xl);
-  }
-
-  .consent-banner[hidden] {
-    display: none;
-  }
-
-  .consent-banner__head {
-    grid-column: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-3);
-  }
-
-  .consent-banner__title {
-    margin: 0;
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-  }
-
-  .consent-banner__manage {
-    min-height: 44px;
-    padding: 0 var(--space-3);
-    border: none;
-    border-radius: var(--radius-md);
-    background: transparent;
-    color: var(--color-primary);
-    font: inherit;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
-  }
-
-  .consent-banner__manage:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-  }
-
-  .consent-banner__text {
-    grid-column: 1;
-    margin: 0;
-    font-size: var(--font-size-xs);
-    line-height: 1.45;
-    color: var(--color-text-muted);
-  }
-
-  .consent-banner__actions {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(min(9rem, 100%), 1fr));
-    gap: var(--space-2);
-  }
-
-  .consent-banner__actions :global(.btn) {
-    width: 100%;
-    justify-content: center;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 720px) {
-    .consent-banner {
-      grid-template-columns: 1fr;
-      padding: var(--space-3) var(--space-4);
-      inset-inline: var(--space-2);
-      inset-block-end: calc(var(--dock-h, 0px) + var(--space-2));
-      border-radius: var(--radius-lg);
-    }
-    .consent-banner__actions {
-      grid-column: 1;
-      grid-row: auto;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      margin-top: var(--space-1);
-    }
-    .consent-banner__actions :global(.btn) {
-      padding-inline: var(--space-2);
-      height: 48px;
-    }
-  }
-
   /* --- Tercih paneli ------------------------------------------------------ */
   .consent-dialog {
     width: min(36rem, calc(100vw - var(--space-6)));

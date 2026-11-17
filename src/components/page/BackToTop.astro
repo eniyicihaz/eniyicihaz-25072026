@@ -14,10 +14,34 @@ import { ArrowUp } from "lucide-astro";
   const btn = document.querySelector<HTMLButtonElement>("[data-btt]");
   if (btn && document.querySelector("[data-page-toc]")) {
     const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.dataset.a11yMotion === "reduce";
+    const CLICKABLE = 'a[href],button,input,select,textarea,summary,label,[role="button"],[tabindex="0"]';
+    // Düğme hiçbir tıklanabilir öğenin (bağlantı, düğme, kart, form alanı) üzerine gelmez: konumu 5 × 5 noktayla örneklenir,
+    // altında tıklanabilir bir öğe varsa o an gösterilmez (kullanıcı kaydırdıkça boş bir yere gelince görünür).
+    const overClickable = (): boolean => {
+      const r = btn.getBoundingClientRect();
+      for (const fx of [0.02, 0.26, 0.5, 0.74, 0.98]) {
+        for (const fy of [0.02, 0.26, 0.5, 0.74, 0.98]) {
+          const hit = document
+            .elementsFromPoint(r.left + r.width * fx, r.top + r.height * fy)
+            .some((el) => !btn.contains(el) && !el.closest("[data-contact-dock],[data-a11y]") && el.closest(CLICKABLE));
+          if (hit) return true;
+        }
+      }
+      return false;
+    };
     let ticking = false;
     const update = () => {
       ticking = false;
-      btn.hidden = window.scrollY < window.innerHeight * 1.5;
+      if (window.scrollY < window.innerHeight * 1.5) {
+        btn.hidden = true;
+        return;
+      }
+      // Ölçmek için görünmez ama yerleşik hâle getir, sonra karar ver.
+      btn.style.visibility = "hidden";
+      btn.hidden = false;
+      const blocked = overClickable();
+      btn.style.visibility = "";
+      btn.hidden = blocked;
     };
     window.addEventListener(
       "scroll",
@@ -29,6 +53,7 @@ import { ArrowUp } from "lucide-astro";
       },
       { passive: true },
     );
+    window.addEventListener("resize", () => requestAnimationFrame(update), { passive: true });
     btn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: reduce() ? "auto" : "smooth" });
       document.querySelector<HTMLElement>(".skip-link")?.focus({ preventScroll: true });
@@ -41,14 +66,16 @@ import { ArrowUp } from "lucide-astro";
   .btt {
     position: fixed;
     z-index: var(--z-fixed);
-    left: var(--space-4);
-    bottom: calc(var(--space-4) + 52px + var(--space-3));
+    /* Sağ alt kümenin en üstü: sabit iletişim düğmeleri (112 px) + erişilebilirlik düğmesi (52 px) üstünde. */
+    right: var(--space-5);
+    bottom: calc(var(--space-5) + 112px + var(--space-3) + 52px + var(--space-3));
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    min-height: 48px;
-    padding: 0 var(--space-4);
+    width: 52px;
+    min-height: 52px;
+    padding: 0;
     border: 2px solid var(--color-primary);
     border-radius: var(--radius-full);
     background: var(--color-background);
@@ -75,25 +102,27 @@ import { ArrowUp } from "lucide-astro";
     box-shadow: var(--focus-ring), var(--shadow-md);
   }
 
-  :global(body:has([data-consent-banner]:not([hidden]))) .btt {
-    display: none;
+  .btt__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
+  @media (min-width: 1024px) and (max-height: 560px) {
+    /* ContactDock gizli: küme köşeye iner (erişilebilirlik düğmesi 52 px). */
+    .btt {
+      bottom: calc(var(--space-5) + 52px + var(--space-3));
+    }
+  }
+
+  /* < 1024 px: erişilebilirlik düğmesi yok (menüde); yukarı çık düğmesi alt çubuğun üstünde, sağda. */
   @media (max-width: 1023px) {
     .btt {
-      left: var(--space-3);
-      bottom: calc(var(--dock-h, 68px) + var(--space-3) + 52px + var(--space-3));
-      width: 48px;
-      padding: 0;
-    }
-
-    .btt__label {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
+      right: var(--space-3);
+      bottom: calc(var(--dock-h, 68px) + var(--space-3));
     }
   }
 

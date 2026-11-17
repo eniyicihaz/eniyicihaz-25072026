@@ -1,21 +1,24 @@
 ---
-// Header actions. Primary: the free hearing test (what most first-time visitors want). Secondary: the main
-// number as a phone link and as WhatsApp (MASTER_PLAN K2: only the main number in the header). Search stays
-// a quiet icon button. Below 1280 px the desktop nav is replaced by the drawer, and the bar keeps only the
-// two direct-contact icon buttons (phone + WhatsApp) next to the burger so contact is always one tap away.
+// Header actions. Primary (desktop, ≥1280 px): the "Bizi Arayın" phone button (owner decision 2026-11-17 — phone is the
+// main conversion; it replaced the "Ücretsiz İşitme Testi" button, which stays on the home hero and in the drawer).
+// Next to it: the main number with the small "23:59'a kadar" note and WhatsApp (MASTER_PLAN K2: only the main number
+// in the header). Search stays a quiet icon button. Below 1280 px the desktop nav is replaced by the drawer, and the
+// bar keeps only the two direct-contact icon buttons (phone + WhatsApp) next to the burger.
+// Width tiers (≥1280): ≥1720 [search][number + 23:59][WhatsApp][Bizi Arayın] · 1536–1719 [search][number + 23:59]
+// [Bizi Arayın] · 1280–1535 [search][Bizi Arayın + 23:59 inside the button] (no room for the number text; it stays in
+// the button's accessible name/title and in the contact dock).
 import { Search, Phone } from "lucide-astro";
-import { icons } from "../../icons";
 import WhatsAppIcon from "../../../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 import type { PhoneData, HeaderData } from "../../header.types";
 
 interface Props {
   phone: PhoneData;
   whatsapp: HeaderData["whatsapp"];
-  cta: HeaderData["cta"];
 }
 
-const { phone, whatsapp, cta } = Astro.props;
-const CtaIcon = icons[cta.icon] as any;
+const { phone, whatsapp } = Astro.props;
+const phoneName = `${phone.label} — ${phone.number}${phone.availability ? `, telefonla ${phone.availability}` : ""}`;
+const phoneTitle = phone.availability ? `Telefonla ${phone.availability}` : undefined;
 ---
 
 <div class="hd-actions">
@@ -23,15 +26,9 @@ const CtaIcon = icons[cta.icon] as any;
     <Search size={22} aria-hidden="true" />
   </button>
 
-  {/* Telefon: numara + "Bizi Arayın" + küçük "23:59'a kadar" (telefonla ulaşılabilirlik; merkez saati değildir).
-      Etiketin iki parçası ayrı flex öğesidir: ölçüm (events.ts safeLabel) ilk metin satırını okur ve cta_label
-      eskisi gibi "Bizi Arayın" kalır. */}
-  <a
-    class="hd-actions__phone"
-    href={phone.href}
-    aria-label={`${phone.number} ${phone.label}${phone.availability ? ` — telefonla ${phone.availability}` : ""}`}
-    title={phone.availability ? `Telefonla ${phone.availability}` : undefined}
-  >
+  {/* Telefon numarası + küçük "23:59'a kadar" (telefonla ulaşılabilirlik; merkez saati değildir). <1280 px'te yalnızca
+      dolu telefon simgesi düğmesi (mobil çubuk); 1280–1535 px'te gizli (aynı hedef "Bizi Arayın" düğmesinde). */}
+  <a class="hd-actions__phone" href={phone.href} aria-label={phoneName} title={phoneTitle}>
     <span class="hd-actions__phone-icon" aria-hidden="true">
       <Phone size={20} />
     </span>
@@ -49,9 +46,13 @@ const CtaIcon = icons[cta.icon] as any;
     <span class="hd-actions__wa-text">WhatsApp</span>
   </a>
 
-  <a class="hd-actions__cta" href={cta.href}>
-    <CtaIcon size={20} stroke-width={2} aria-hidden="true" class="hd-actions__cta-icon" />
-    <span>{cta.label}</span>
+  {/* Birincil CTA: telefon. Ölçüm href'ten (tel: → phone_click, link_location=header); etiketin ilk satırı "Bizi Arayın". */}
+  <a class="hd-actions__cta" href={phone.href} aria-label={phoneName} title={phoneTitle}>
+    <span class="hd-actions__cta-icon" aria-hidden="true"><Phone size={20} stroke-width={2.25} /></span>
+    <span class="hd-actions__cta-text">
+      <span class="hd-actions__cta-label">{phone.label}</span>
+      {phone.availability && <span class="hd-actions__cta-until">{phone.availability}</span>}
+    </span>
   </a>
 </div>
 
@@ -90,7 +91,7 @@ const CtaIcon = icons[cta.icon] as any;
     box-shadow: var(--focus-ring);
   }
 
-  /* Phone — icon + number + caption (a text link, the number reads at a glance) */
+  /* Phone — number + caption (a text link, the number reads at a glance) */
   .hd-actions__phone {
     display: inline-flex;
     align-items: center;
@@ -154,9 +155,8 @@ const CtaIcon = icons[cta.icon] as any;
     color: var(--color-accent-text);
   }
 
-  /* ≥1720 px (numara görünür): ikinci satır yalnızca "23:59'a kadar" — "Bizi Arayın" etiketi ekran okuyucuda kalır,
-     görsel olarak gizlenir; böylece telefon kümesinin genişliği eskisiyle (numara genişliği) aynı kalır ve menüyle
-     arama düğmesi arasındaki boşluk daralmaz (ölçüm: aksi hâlde 1720 ve 1920 px'te menü arama düğmesine biniyordu). */
+  /* Numara bloğunun ikinci satırında "Bizi Arayın" etiketi görsel olarak gizlidir (ekran okuyucuda kalır): yalnızca
+     "23:59'a kadar" görünür; düğme zaten "Bizi Arayın"dır. */
   .hd-actions__phone-cta {
     position: absolute;
     width: 1px;
@@ -204,22 +204,18 @@ const CtaIcon = icons[cta.icon] as any;
     box-shadow: var(--focus-ring);
   }
 
-  /* CTA — primary action */
+  /* CTA — primary action: Bizi Arayın (telefon). Dolu kurumsal mavi, simge turkuaz yuvarlak içinde. */
   .hd-actions__cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
+    gap: var(--space-3);
     height: 56px;
-    padding-inline: 28px;
+    padding-inline: 22px 26px;
     border-radius: var(--radius-lg);
     background: var(--color-primary);
     border: 1px solid var(--color-primary-hover);
     color: var(--color-text-inverse);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: -0.01em;
-    line-height: 1;
     text-decoration: none;
     white-space: nowrap;
     box-shadow:
@@ -229,6 +225,40 @@ const CtaIcon = icons[cta.icon] as any;
       transform var(--transition-slow),
       box-shadow var(--transition-slow),
       background-color var(--transition-slow);
+  }
+
+  .hd-actions__cta-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background: var(--brand-teal-light);
+    color: var(--brand-navy-deep);
+  }
+
+  .hd-actions__cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .hd-actions__cta-label {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  /* "23:59'a kadar" yalnızca 1280–1535 px'te düğmenin içinde (numara metni için yer yok); ≥1536 px'te numaranın altında. */
+  .hd-actions__cta-until {
+    display: none;
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: rgb(255 255 255 / 0.94);
   }
 
   .hd-actions__cta:hover {
@@ -259,59 +289,68 @@ const CtaIcon = icons[cta.icon] as any;
     }
   }
 
-  /* 1280–1719 px: nav and the full cluster do not fit side by side — the phone shows its icon only and the
-     WhatsApp button yields to the floating contact dock (which holds WhatsApp + phone on every page). The primary
-     CTA keeps its label. */
-  @media (min-width: 1280px) and (max-width: 1719px) {
-    .hd-actions {
-      gap: var(--space-2);
-    }
-    .hd-actions__phone-text,
-    .hd-actions__wa {
+  /* ≥1280 px: telefon simgesi düğmesi (mobil çubuk) gerekmez — simge "Bizi Arayın" düğmesindedir. */
+  @media (min-width: 1280px) {
+    .hd-actions__phone-icon {
       display: none;
     }
     .hd-actions__phone {
-      padding-inline: 0;
-    }
-    .hd-actions__cta {
-      padding-inline: 20px;
+      padding-inline: var(--space-1);
     }
   }
 
-  /* 1536–1719 px: numara sığmaz ama küçük iki satırlık etiket sığar — telefon simgesinin yanında "Bizi Arayın" ve
-     altında "23:59'a kadar". 1280–1535 px'te yer yoktur (nav zaten sıkışık): yalnızca simge kalır; aynı bilgi sağ
-     alttaki sabit iletişim düğmesinde (ContactDock) görünür. */
-  @media (min-width: 1536px) and (max-width: 1719px) {
-    .hd-actions__phone-text {
-      display: flex;
+  /* 1280–1439 px: nav + tam küme yan yana sığmaz. Numara bloğu ve WhatsApp, sağ alttaki sabit iletişim düğmesine
+     (ContactDock: WhatsApp + Ara) bırakılır; "Bizi Arayın" düğmesi "23:59'a kadar" bilgisini kendi içinde taşır. */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+    .hd-actions {
+      gap: var(--space-2);
     }
-    .hd-actions__phone-number {
+    .hd-actions__phone,
+    .hd-actions__wa {
       display: none;
     }
-    .hd-actions__phone {
+    .hd-actions__cta {
+      padding-inline: 18px 20px;
+    }
+    .hd-actions__cta-until {
+      display: block;
+    }
+  }
+
+  /* 1440–1535 px: numara + 23:59 başlıkta görünür (ölçüm: menü ile logo/eylemler arası boşluk 1440'ta ≥ 35 px (en dar nokta), 1480'de ≥ 55 px);
+     WhatsApp yer olmadığı için sağ alttaki sabit iletişim düğmesinde kalır; "Bizi Arayın" düğmesi yalnızca etiketi taşır. */
+  @media (min-width: 1440px) and (max-width: 1535px) {
+    .hd-actions {
       gap: var(--space-2);
-      padding-inline: 0 var(--space-1);
     }
-    .hd-actions__phone-label {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
-      font-size: 0.8125rem;
-      line-height: 1.15;
+    .hd-actions__wa {
+      display: none;
     }
-    .hd-actions__phone-cta {
-      position: static;
-      width: auto;
-      height: auto;
-      margin: 0;
-      overflow: visible;
-      clip: auto;
-      color: var(--color-text);
+    .hd-actions__cta {
+      padding-inline: 18px 20px;
+    }
+  }
+
+  /* 1536–1719 px: numara + 23:59 görünür. WhatsApp 1536–1599 px'te sabit iletişim düğmesine bırakılır (yer yok);
+     1600–1719 px'te yalnızca simge olarak başlıkta kalır (ölçüm: menü–arama boşluğu ≥ 50 px). */
+  @media (min-width: 1536px) and (max-width: 1599px) {
+    .hd-actions__wa {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1600px) and (max-width: 1719px) {
+    .hd-actions__wa {
+      width: 48px;
+      padding-inline: 0;
+    }
+    .hd-actions__wa-text {
+      display: none;
     }
   }
 
   /* Below the desktop-nav breakpoint: [phone icon][WhatsApp icon] stay in the bar next to the burger
-     (direct contact is one tap away); the test CTA, search and the number text move into the drawer. */
+     (direct contact is one tap away); the call button, search and the number text move into the drawer. */
   @media (max-width: 1279px) {
     .hd-actions__cta,
     .hd-actions__search,
@@ -333,6 +372,15 @@ const CtaIcon = icons[cta.icon] as any;
     .hd-actions__wa {
       width: 48px;
       padding-inline: 0;
+    }
+  }
+
+  /* ≤ 309 px (ör. 360 px telefonda %125 tarayıcı yakınlaştırması = 288 px): logo + telefon + WhatsApp + menü düğmesi sığmıyor,
+     menü düğmesi ekranın dışına çıkıyordu (ölçüm: 288 px'te +20 px). Üst çubukta yalnızca WhatsApp simgesi gizlenir;
+     WhatsApp alt iletişim çubuğunda ve menüde aynen durur. Telefon simgesi ve menü düğmesi kalır. */
+  @media (max-width: 309px) {
+    .hd-actions__wa {
+      display: none;
     }
   }
 </style>
