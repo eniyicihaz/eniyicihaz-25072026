@@ -196,7 +196,7 @@ const sectionAlt = (i: number) => i % 2 === 0;
                   return (
                     <li class="pf-compare__item">
                       <span class="pf-compare__img ph-stage">
-                        <img src={other.image} srcset={imageSrcset(other.image)} sizes="88px" alt="" width="1024" height="1024" loading="lazy" decoding="async" />
+                        <img src={other.image} srcset={imageSrcset(other.image)} sizes="88px" alt={other.fullName} aria-hidden="true" width="1024" height="1024" loading="lazy" decoding="async" />
                       </span>
                       <div class="pf-compare__body">
                         <h3 class="pf-compare__title">

@@ -4,8 +4,10 @@
 // Cihaz görseli: 3B görüntüleyicideki (BteViewer3D) markasız, TEMSİLİ kulak arkası (BTE) modelin başlangıç karesi —
 // aynı model, aynı malzeme, aynı ışık; şeffaf zeminli (kanca, tüp ve kulak kalıbı gerçekten saydamdır, arkalarından hero
 // zemini görünür). Canlı sahneden üretilir: tools/bte-model/make-hero-frame.cjs (ayrıntı: docs/tech/BTE_3D_VIEWER.md §12).
-// Belirli bir marka veya modeli göstermez, marka/model iddiası taşımaz; alt metni boştur (dekoratif — sayfanın anlamı
-// değişmez). Görüntüleyiciden bağımsız çalışır: tek sabit görsel + CSS hareketi (WebGL/three.js yüklenmez).
+// Belirli bir marka veya modeli göstermez, marka/model iddiası taşımaz. İşlevce DEKORATİFTİR: kapsayıcı `aria-hidden`
+// olduğundan ekran okuyucuya hiç görünmez ve sayfanın anlamı değişmez. `alt` yalnızca tarayıcılar/görsel araçları içindir
+// (kısa, "temsili görsel"; Bing "boş alt" uyarısı) — erişilebilirlik ağacını etkilemez.
+// Görüntüleyiciden bağımsız çalışır: tek sabit görsel + CSS hareketi (WebGL/three.js yüklenmez).
 //
 // İki sahne biçimi vardır; hangisinin kullanılacağı görselin oranından belirlenir:
 //   • dik görsel (yükseklik > genişlik) — varsayılan; 3B modelin karesi (3:4). Sahne genişliği fotoğrafla orantılıdır.
@@ -22,9 +24,11 @@ interface Props {
   width: number;
   height: number;
   sizes?: string;
+  /** Görselin kısa açıklaması (yalnızca tarayıcılar için; sahne `aria-hidden`). Önceki yatay cihaz fotoğrafı da BTE'ydi. */
+  alt?: string;
 }
 
-const { avifSrcset, webpSrcset, src, width, height } = Astro.props;
+const { avifSrcset, webpSrcset, src, width, height, alt = "Kulak arkası (BTE) işitme cihazı — temsili görsel" } = Astro.props;
 // Yatay ve dik görseller için ayrı sahne ölçüsü; oran görselin kendi boyutundan gelir.
 // Dik sahne genişliği: clamp(100px, fotoğraf genişliğinin %23,5'i, 150px) — `sizes` bunun üstten yaklaşık değeridir.
 const wide = width > height;
@@ -47,7 +51,7 @@ const sizes = Astro.props.sizes ?? (wide ? "(min-width: 1024px) 190px, (max-widt
       sizes={sizes}
       width={width}
       height={height}
-      alt=""
+      alt={alt}
       loading="eager"
       fetchpriority="low"
       decoding="async"

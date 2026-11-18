@@ -34,7 +34,7 @@ const earStep = (abbr: string) => abbr.toLowerCase() as EarStep;
     <div class="dts__layout">
       <div class="dts__stage" aria-hidden="true" data-dts-stage data-ear={ear ? "true" : undefined}>
         <div class:list={["dts__stage-card", { "dts__stage-card--diagram": !ear }]}>
-          {ear && <img class="dts__ear" src={ear.src} alt="" width={ear.width} height={ear.height} loading="lazy" decoding="async" />}
+          {ear && <img class="dts__ear" src={ear.src} alt={ear.alt} width={ear.width} height={ear.height} loading="lazy" decoding="async" />}
           {!ear && (
             <div class="dts__diagram">
               <EarDiagram all />
@@ -57,7 +57,7 @@ const earStep = (abbr: string) => abbr.toLowerCase() as EarStep;
                   sizes="(min-width: 1024px) 520px, 90vw"
                   width={s.image.width}
                   height={s.image.height}
-                  alt=""
+                  alt={s.image.alt}
                   loading="lazy"
                   decoding="async"
                 />

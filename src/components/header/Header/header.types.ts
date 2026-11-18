@@ -52,6 +52,10 @@ export interface MegaPromo {
   cta: NavLink;
   /** Optional product image; a placeholder illustration is shown when absent. */
   image?: string;
+  /** Descriptive alt text for `image`. The image sits inside an `aria-hidden` wrapper, so this text is
+   * for crawlers/image tools only; assistive tech keeps skipping it (decorative-in-context behaviour is unchanged).
+   * Describe what is visible; do not claim it is a real photo of the center unless it is. */
+  imageAlt?: string;
   /** Small eyebrow label above the title. Only Hizmetlerimiz sets this —
    * when present it also switches the panel to the light CSS/SVG
    * illustration (rings + icon) instead of the plain Ear-glyph fallback,

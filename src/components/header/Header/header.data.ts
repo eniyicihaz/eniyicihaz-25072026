@@ -20,6 +20,7 @@ const devicesMega: MegaMenuData = {
     text: "En yeni teknoloji işitme cihazlarıyla duyma deneyiminizi yeniden keşfedin.",
     cta: { label: "Tüm İşitme Cihazları", href: "/isitme-cihazlari/" },
     image: "/images/ui/mega-menu-cihazlar-merkez.webp",
+    imageAlt: "Kulak anatomisi panosu, masa ve koltukların bulunduğu danışma odası",
   },
   columns: [
     {
@@ -90,6 +91,7 @@ const brandsMega: MegaMenuData = {
     text: "Darıca'daki merkezimizde 10+ marka ile çalışıyoruz; marka ve model ailelerini birlikte inceleyin.",
     cta: { label: "Tüm Markalar", href: "/markalar/" },
     image: "/images/ui/mega-menu-markalar-merkez.webp",
+    imageAlt: "Avrasya İşitme Cihazları logolu duvar ve karşılama bankosu",
   },
   columns: [
     {
@@ -221,6 +223,7 @@ const knowledgeMega: MegaMenuData = {
     text: "İşitme kaybından cihaz bakımına, merak ettiğiniz tüm konularda güvenilir bilgi kaynağınız.",
     cta: { label: "Tüm İçerikler", href: "/bilgi-merkezi/" },
     image: "/images/ui/mega-menu-bilgi-merkez.webp",
+    imageAlt: "Odyometri cihazıyla işitme testi yapılırken — temsili görsel",
   },
   columns: [
     {

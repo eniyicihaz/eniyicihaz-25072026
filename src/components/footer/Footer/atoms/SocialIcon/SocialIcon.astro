@@ -5,7 +5,7 @@ import WhatsAppIcon from "../../../../shared/WhatsAppIcon/WhatsAppIcon.astro";
 
 type Props = SocialItem;
 
-const { iconKey, href, label } = Astro.props;
+const { iconKey, href, label, platform } = Astro.props;
 const Icon = footerIcons[iconKey as keyof typeof footerIcons] as any;
 
 // Resmî marka işaretleri (değiştirilmemiş dosyalar, yerel: public/images/social/).
@@ -40,7 +40,7 @@ const logoWidth = logo ? Math.round(logo.w * (logo.pad ?? 1) * 10) / 10 : 0;
         src={logo.src}
         width={logo.width}
         height={logo.height}
-        alt=""
+        alt={`${platform} logosu`}
         aria-hidden="true"
         loading="lazy"
         decoding="async"

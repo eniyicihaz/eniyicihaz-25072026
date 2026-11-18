@@ -103,7 +103,8 @@ const link = normalizePath(Astro.url.pathname) !== d.link.href ? d.link : null;
                 <img
                   class="bte3d__poster"
                   src={`${d.posterWide.base}.webp`}
-                  alt=""
+                  alt={d.alt}
+                  aria-hidden="true"
                   width={d.posterWide.width}
                   height={d.posterWide.height}
                   loading="lazy"

@@ -255,7 +255,7 @@ Ana sayfanın hero'sunda, merkez fotoğrafının sağ üstünde süzülen cihaz 
 
 Derlemede **yalnızca ana sayfanın HTML'i değişti** ve 4 görsel dosyası eklendi; diğer 112 sayfa, görüntüleyicinin kodu (`bte3d.client-BwwNItdv.js`) ve modeli bayt bayt öncekiyle aynıdır (iki derleme dosya dosya karşılaştırıldı). Görüntüleyici koduna dokunulmadı. Eski görsel dosyaları (`hero-device-bte-*`) **silinmedi**; kullanılmıyor. Geri dönmek için `hero.ts` içindeki `deviceStage` kaydı eski dosya adları ve `480 × 394` ölçüsüyle değiştirilir (yatay görsel için sahne stili duruyor).
 
-Görsel dekoratiftir (`alt=""`), marka/model iddiası taşımaz; hareketi (süzülme, ses dalgaları), yüklemeden sonra başlaması, `prefers-reduced-motion` davranışı ve `fetchpriority="low"` **öncekiyle aynıdır**. Hero'da WebGL/three.js **yüklenmez**; bu yalnızca sabit bir görseldir. Modelin temsili olduğu notu görüntüleyici bölümünde durur; hero'ya ayrıca metin eklenmedi.
+Görsel işlevce dekoratiftir (sahne `aria-hidden`, ekran okuyucuya görünmez; kısa `alt` metni — "temsili görsel" — yalnızca tarayıcılar/Bing içindir), marka/model iddiası taşımaz; hareketi (süzülme, ses dalgaları), yüklemeden sonra başlaması, `prefers-reduced-motion` davranışı ve `fetchpriority="low"` **öncekiyle aynıdır**. Hero'da WebGL/three.js **yüklenmez**; bu yalnızca sabit bir görseldir. Modelin temsili olduğu notu görüntüleyici bölümünde durur; hero'ya ayrıca metin eklenmedi.
 
 ### 12.2 Kare nasıl üretildi (`tools/bte-model/make-hero-frame.cjs`)
 
