@@ -1,7 +1,8 @@
 ---
 // Header logo — the real owner-supplied Avrasya İşitme Cihazları logo (ASSET_SOT §1, MASTER_PLAN A1).
-// The file is only trimmed of its surrounding whitespace and resized (no redraw, no recolour). Its own
-// tagline stays part of the artwork; no tagline is added as site text (BRAND_SOT, MASTER_PLAN B3).
+// Served as a crisp vector (SVG) so the tagline stays sharp at every size and pixel density; the symbol,
+// wordmark and colours are traced from the owner's artwork (no new design). Its own tagline stays part of the
+// artwork; no tagline is added as site text (BRAND_SOT, MASTER_PLAN B3).
 // The visible logo text and the accessible name are the same ("Avrasya İşitme Cihazları"), which also
 // satisfies WCAG 2.5.3 Label in Name.
 interface Props {
@@ -16,9 +17,7 @@ const { href } = Astro.props;
 <a class="hd-logo" href={href}>
   <img
     class="hd-logo__img"
-    src="/images/brand/avrasya-isitme-cihazlari-logo-header-360.webp"
-    srcset="/images/brand/avrasya-isitme-cihazlari-logo-header-360.webp 360w, /images/brand/avrasya-isitme-cihazlari-logo-header-720.webp 720w"
-    sizes="(max-width: 640px) 140px, 168px"
+    src="/images/brand/avrasya-isitme-cihazlari-logo.svg"
     width="360"
     height="128"
     alt="Avrasya İşitme Cihazları"

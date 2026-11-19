@@ -6,7 +6,7 @@ interface Props {
 }
 
 // The real Avrasya İşitme Cihazları logo (ASSET_SOT §1, MASTER_PLAN A1). The artwork is navy/teal/grey on a
-// transparent background, so on the navy footer it sits on a white plate — unaltered, never recoloured or redrawn.
+// transparent background, so on the navy footer it sits on a white plate — same artwork (served as a vector), never recoloured or redesigned.
 // The accessible name is the brand name (the same words the logo shows).
 const { tagline, href = "/" } = Astro.props;
 ---
@@ -15,11 +15,9 @@ const { tagline, href = "/" } = Astro.props;
   <a class="footer-brand__link" href={href}>
     <span class="footer-brand__plate">
       <img
-        src="/images/brand/avrasya-isitme-cihazlari-logo-header-720.webp"
-        srcset="/images/brand/avrasya-isitme-cihazlari-logo-header-360.webp 360w, /images/brand/avrasya-isitme-cihazlari-logo-header-720.webp 720w"
-        sizes="220px"
+        src="/images/brand/avrasya-isitme-cihazlari-logo.svg"
         width="720"
-        height="255"
+        height="256"
         alt="Avrasya İşitme Cihazları"
         loading="lazy"
         decoding="async"

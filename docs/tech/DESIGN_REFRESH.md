@@ -7,7 +7,7 @@
 
 ## 1. Marka paleti (gerçek logodan ölçüldü)
 
-Kaynak: `public/images/brand/avrasya-isitme-cihazlari-logo-yatay.webp` (1774×887, RGBA). Ölçüm: bölgesel medyan renk. Logo yeniden çizilmedi veya yeniden renklendirilmedi; header/footer sürümleri yalnızca çevresindeki boşluğu kırpılmış ve yeniden boyutlandırılmış kopyalardır (`…-logo-header-360.webp`, `…-720.webp`).
+Kaynak: `public/images/brand/avrasya-isitme-cihazlari-logo-yatay.webp` (1774×887, RGBA). Ölçüm: bölgesel medyan renk. Logo yeniden tasarlanmadı veya yeniden renklendirilmedi (aşağıdaki renkler 2026-11 ilk ölçümdür ve vektör sürümde aynen korunur). 2026-11-20'den itibaren header, mobil menü ve altbilgi aynı logonun vektör sürümünü (`avrasya-isitme-cihazlari-logo.svg`) kullanır; ayrıntı: `ASSET_SOURCE_OF_TRUTH.md` §1. Eski kırpılmış kopyalar (`…-logo-header-360.webp`, `…-720.webp`) artık kullanılmıyor.
 
 | Logodaki yer | Ölçülen | Token |
 |---|---|---|

@@ -47,7 +47,7 @@
 **İyileştirme varyantları** [VERİ BEKLENİYOR] (engel değil)
 - Tagline'sız yatay sürüm
 - Koyu zemin sürümü (footer koyu lacivert)
-- SVG/vektör
+- SVG/vektör — **YAPILDI (2026-11-20):** `public/images/brand/avrasya-isitme-cihazlari-logo.svg` (header, mobil menü ve altbilgi bu dosyayı kullanır). Sembol, "Avrasya İşitme Cihazları" yazısı ve renkler mevcut logodan vektöre çevrildi (yeni tasarım değil); slogan aynı metinle (Inter, OFL) okunaklı boyutta yeniden dizildi. `…-logo-yatay.webp` aynı tuvalde (1774 × 887, saydam) bu vektörden yeniden üretildi (şema `logo`). `…-logo-header-360.webp` ve `…-720.webp` artık kullanılmıyor (silinmedi). Önceki dosyalar: git yedek dalı `backup/pre-logo-2026-11-20-1d41043`.
 - Yalnızca simgeden oluşan favicon ikonu
 - Alfa kanalı mevcut; zeminin gerçekten şeffaf olduğu koyu zeminde test edilecek
 
