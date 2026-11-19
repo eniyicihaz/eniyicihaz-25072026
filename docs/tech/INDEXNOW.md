@@ -18,7 +18,7 @@
 | Günlük emniyet çalıştırması (`schedule`) | **Yok** |
 | Anahtar dosyasına `noindex` başlığı | **Yok** (`_headers` değişmedi) |
 | Eski 404 URL'lerin silinen bildirimi | **Sahibinin ayrı onayı olmadan yapılmaz** (bkz. §8) |
-| `lastmod` | Bu işin dışında; ayrı değerlendirilecek |
+| `lastmod` | Bu işin dışında tutuldu; ayrı uygulandı (`docs/tech/SITEMAP_LASTMOD.md`). Sitemap'e `lastmod` eklenmesi IndexNow'u etkilemez (§11 orada) |
 
 ## 2. Parçalar
 

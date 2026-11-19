@@ -109,6 +109,9 @@ Bir sayfa, aşağıdakilerin **tamamı** doğrulanmadan yayınlanmaz:
 - [ ] **Noindex/404/Redirect URL'lerin Dışında Kalması** — `noindex` olarak işaretli, 404 döndüren veya bir redirect'in kaynağı olan hiçbir URL sitemap'te yer almıyor.
 - [ ] **Canonical URL Uyumu** — Sitemap'teki her URL, o sayfanın kendi canonical'ıyla birebir aynı (bkz. Bölüm 5).
 - [ ] **Beklenmeyen URL Değişimi Kontrolü** — Bir release sonrası sitemap'teki toplam URL sayısı ve URL listesi, o release'te yapılan değişikliklerle (kaç sayfa eklendi/kaldırıldı) açıklanabilir; beklenmedik bir URL kaybı veya artışı varsa release durdurulup araştırılır.
+- [ ] **lastmod Doğruluğu** — Sitemap'teki sayfa bazlı `lastmod` tarihleri `tools/lastmod/lastmod.json` manifestinden gelir; kurallar ve prosedür `docs/tech/SITEMAP_LASTMOD.md`'dedir (burada tekrarlanmaz).
+  - İçeriği değişen her release'te `node tools/lastmod/lastmod.mjs check` çıktısı işlendi: anlamlı değişen sayfaların tarihi güncellendi, "inceleme" durumundaki sayfalar karara bağlandı veya `--hold` ile bilinçli bekletildi; değişmeyen sayfaların tarihi aynı kaldı.
+  - Build sonrası `node tools/lastmod/lastmod.mjs verify` başarılı; hiçbir sayfa build/deploy anıyla tarihlenmedi ve tüm sayfalar aynı tarihe çekilmedi.
 
 ---
 

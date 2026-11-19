@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import { readdirSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createSerialize, loadLastmodManifest } from './tools/lastmod/lastmod-lib.mjs';
 
 // Design-system documentation pages live in src/pages/_ds (the leading underscore keeps Astro's file router from
 // producing routes for them, so `astro build` emits none of them). In `astro dev` only, this integration serves
@@ -34,6 +35,11 @@ function dsDevRoutes() {
   };
 }
 
+// Sitemap lastmod: sayfa bazlı tarihler YALNIZCA tools/lastmod/lastmod.json manifestinden okunur; build/deploy zamanından veya
+// new Date()'ten ASLA türetilmez. Manifestte olmayan/geçersiz tarihli sayfaya lastmod yazılmaz (build düşmez).
+// Kurallar ve güncelleme prosedürü: docs/tech/SITEMAP_LASTMOD.md
+const lastmodManifest = loadLastmodManifest(new URL('./tools/lastmod/lastmod.json', import.meta.url));
+
 // site: gerçek prod adresi (COMPANY.md "Resmi Web Sitesi") — canonical/OG
 // etiketleri ve @astrojs/sitemap için gereklidir, aksi halde bunlar göreli
 // veya eksik URL üretir.
@@ -49,6 +55,8 @@ export default defineConfig({
       // Safety net: /ds/* is internal Design System documentation and is not built for production any more;
       // if it ever returns it must still stay out of the sitemap.
       filter: (page) => !new URL(page).pathname.startsWith('/ds/'),
+      // Yalnızca manifesttaki geçerli tarihi yazar; URL listesi ve sırası değişmez.
+      serialize: createSerialize(lastmodManifest),
     }),
   ],
 });
