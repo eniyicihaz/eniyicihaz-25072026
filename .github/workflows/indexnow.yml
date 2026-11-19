@@ -1,0 +1,116 @@
+# IndexNow bildirimi: her BAŞARILI Cloudflare Pages (main) dağıtımından sonra yalnızca yeni / içeriği değişen /
+# silinen / kalıcı taşınan URL'leri api.indexnow.org'a bildirir. 115 URL'nin tamamı her seferinde GÖNDERİLMEZ.
+# Çalışma mantığı, kararlar ve sorun giderme: docs/tech/INDEXNOW.md
+#
+# Tetikleyici: Cloudflare Pages GitHub'a "Deployment" kaydı yazmaz; her dağıtım için "Cloudflare Pages" adlı bir
+# check run yazar. Dal önizlemeleri de aynı adlı check run üretir → yalnızca main dalı süzülür.
+# Sır gerekmez: IndexNow anahtarı protokol gereği herkese açık bir dosyadır (public/<anahtar>.txt).
+
+name: IndexNow
+
+on:
+  check_run:
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry-run = hiçbir şey gönderilmez | diff = yalnızca değişenler | all = tüm uygun URL'ler (bir kerelik tam gönderim)"
+        type: choice
+        options: [dry-run, diff, all]
+        default: dry-run
+      confirm_bulk:
+        description: "Toplu değişiklik korumasını bilinçli olarak aş (yalnızca değişiklikleri doğruladıysanız)"
+        type: boolean
+        default: false
+      extra_removed_urls:
+        description: "Elle silinen/taşınan adaylar (boşlukla ayrılmış tam URL'ler). Yalnızca sitenin sahibinin AYRI onayıyla kullanın."
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+
+# Ardışık dağıtımlar sıraya girer (iptal edilmez); durum dosyası her çalışmada bir öncekini okur.
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.check_run.app.slug == 'cloudflare-workers-and-pages' &&
+       github.event.check_run.name == 'Cloudflare Pages' &&
+       github.event.check_run.conclusion == 'success' &&
+       github.event.check_run.check_suite.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Depoyu al
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Birim testleri (ağ kullanmaz)
+        run: node --test tools/indexnow/indexnow.test.mjs
+
+      - name: Önceki imza durumunu getir
+        run: |
+          mkdir -p prev out
+          ART_ID=$(gh api "repos/${GH_REPO}/actions/artifacts?name=indexnow-state&per_page=30" \
+            --jq '[.artifacts[] | select(.expired == false)] | sort_by(.created_at) | last | .id // empty')
+          if [ -n "${ART_ID}" ]; then
+            gh api "repos/${GH_REPO}/actions/artifacts/${ART_ID}/zip" > prev/state.zip
+            unzip -o -q prev/state.zip -d prev
+            echo "Önceki durum bulundu (artifact ${ART_ID})."
+          else
+            echo "Önceki durum YOK -> bootstrap: yalnızca imzalar kaydedilir, hiçbir URL gönderilmez."
+          fi
+
+      - name: Commit sitenin içeriğine dokundu mu?
+        id: touched
+        if: github.event_name == 'check_run'
+        env:
+          HEAD_SHA: ${{ github.event.check_run.head_sha }}
+        run: |
+          echo "expect=false" >> "$GITHUB_OUTPUT"
+          printf '%s' "${HEAD_SHA}" | grep -Eq '^[0-9a-f]{40}$' || exit 0
+          FILES=$(gh api "repos/${GH_REPO}/commits/${HEAD_SHA}" --jq '.files[].filename' || true)
+          CONTENT=$(printf '%s\n' "${FILES}" | grep -E '^(src|public)/' | grep -Ev '^public/[A-Za-z0-9-]{8,128}\.txt$' || true)
+          if [ -n "${CONTENT}" ]; then echo "expect=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: IndexNow
+        id: run
+        env:
+          EVENT: ${{ github.event_name }}
+          MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'diff' }}
+          CONFIRM_BULK: ${{ github.event_name == 'workflow_dispatch' && inputs.confirm_bulk || false }}
+          EXTRA_REMOVED: ${{ github.event_name == 'workflow_dispatch' && inputs.extra_removed_urls || '' }}
+          EXPECT: ${{ steps.touched.outputs.expect }}
+        run: |
+          set -euo pipefail
+          ARGS=(--state prev/state.json)
+          case "${MODE}" in
+            dry-run) ;;
+            diff) ARGS+=(--send --out-state out/state.json) ;;
+            all)  ARGS+=(--send --all --out-state out/state.json) ;;
+            *) echo "Geçersiz mod: ${MODE}"; exit 2 ;;
+          esac
+          if [ "${EVENT}" = "check_run" ]; then ARGS+=(--wait 60); fi
+          if [ "${EXPECT:-}" = "true" ]; then ARGS+=(--expect-changes); fi
+          if [ "${CONFIRM_BULK}" = "true" ]; then ARGS+=(--confirm-bulk); fi
+          if [ -n "${EXTRA_REMOVED}" ]; then ARGS+=(--extra-removed "${EXTRA_REMOVED}"); fi
+          node tools/indexnow/indexnow.mjs "${ARGS[@]}"
+
+      - name: Yeni imza durumunu sakla
+        if: steps.run.outcome == 'success' && hashFiles('out/state.json') != ''
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: indexnow-state
+          path: out/state.json
+          retention-days: 90
+          if-no-files-found: error
