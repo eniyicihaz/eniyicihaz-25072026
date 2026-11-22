@@ -22,9 +22,9 @@ export const raporSureciConsiderations: BrandPageIdealUserContent = {
     },
     {
       icon: Building2,
-      title: "Rapor Yalnızca Tam Teşekküllü Hastanelerden Alınabilir",
-      description: "SGK, sağlık kurulu raporunun tam teşekküllü bir devlet veya özel hastaneden alınmasını şart koşar.",
-      suggestedFamilies: ["Hastane Şartı"],
+      title: "Özel Hastane Raporları SGK Tarafından Kabul Edilmez",
+      description: "SGK işitme cihazı ödemesinde kullanılacak raporun, SGK'nın kabul ettiği rapor ve MEDULA işlem sürecine uygun olması gerekir. Avrasya İşitme'nin uygulama sürecinde özel hastanelerden alınan raporlar kabul edilmemektedir; rapor almadan önce merkezimizden bilgi alın.",
+      suggestedFamilies: ["Rapor Şartı"],
     },
     {
       icon: FileWarning,

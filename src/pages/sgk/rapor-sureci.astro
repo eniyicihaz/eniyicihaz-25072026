@@ -9,7 +9,9 @@
 // 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Önemlidir?
 // -> Doğru Sürecin Faydaları -> Dikkat Edilmesi Gerekenler -> Sürecin
 // Adımları -> Kullanılan Değerlendirme Yöntemleri -> Rapor Sisteminin
-// Bileşenleri -> Markalara Göre İnceleyin -> Devlet vs Özel Hastane ->
+// Bileşenleri -> e-Devlet Rapor ve Reçete Sorgulama (SgkReportEDevlet: iki resmî
+// bağlantı) -> Markalara Göre İnceleyin -> SGK'nın Kabul Ettiği Rapor vs
+// Özel Hastane Raporu (özel hastane raporları SGK'da kabul edilmez) ->
 // Uzman Yorumu -> SSS -> Premium CTA -> İlgili İçerikler.
 import MainLayout from "../../layouts/MainLayout.astro";
 import BrandPageHero from "../../components/brand-page/BrandPageHero/BrandPageHero.astro";
@@ -24,6 +26,7 @@ import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertO
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+import SgkReportEDevlet from "../../components/sgk/SgkReportEDevlet/SgkReportEDevlet.astro";
 
 import { raporSureciHero } from "../../data/rapor-sureci/hero";
 import { raporSureciIntro } from "../../data/rapor-sureci/intro";
@@ -53,6 +56,7 @@ import { raporSureciFinalCta } from "../../data/rapor-sureci/final-cta";
   <BrandPageTechEvolution data={raporSureciEvolution} />
   <BrandPageTechnology data={raporSureciUseCases} />
   <BrandPageEcosystem data={raporSureciTechnology} />
+  <SgkReportEDevlet />
   <BrandPageRelatedContent data={raporSureciRecommendedBrands} />
   <KulakArkasiComparison data={raporSureciComparison} />
   <BrandPageExpertOpinion data={raporSureciExpertOpinion} />

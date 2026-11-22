@@ -35,8 +35,8 @@ export const raporSureciEvolution: BrandPageTechEvolutionContent = {
       families: ["Reçete"],
     },
     {
-      era: "Belgelerin SGK Sistemine İşlenmesi",
-      whatItBrought: "Onaylanan rapor ve reçete SGK sistemine işlenir; bu noktadan sonra SGK başvurunuzu tamamlayabilirsiniz.",
+      era: "Rapor ve Reçetenin MEDULA'dan Kontrolü",
+      whatItBrought: "Rapor ve reçete elektronik ortamda düzenlenir; cihaz işlemi sırasında bu belgeler MEDULA sisteminden kontrol edilir. Elektronik kayıt tek başına SGK'nın kabul ettiği anlamına gelmez.",
       bestFor: "Sürecin tamamlanması",
       families: ["SGK Başvurusu"],
     },

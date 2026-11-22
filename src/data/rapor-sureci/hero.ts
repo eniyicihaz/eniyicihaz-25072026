@@ -37,7 +37,7 @@ export const raporSureciHero: BrandPageHeroContent = {
       label: "SAĞLIK KURULU RAPORU",
       accent: "#0891b2",
       title: "İşitme Kaybınızı Belgeler",
-      description: "Tam teşekküllü bir hastanenin sağlık kurulu tarafından düzenlenir.",
+      description: "Sağlık kurulu tarafından düzenlenir; SGK'nın kabul ettiği rapor ve MEDULA işlem sürecine uygun olmalıdır.",
     },
     {
       label: "UZMAN HEKİM REÇETESİ",

@@ -30,7 +30,7 @@ export const raporSureciAdvantages: BrandPageAdvantagesContent = {
       icon: Building2,
       category: "Doğru Hastane Seçimi",
       title: "Hangi Hastaneye Başvurmanız Gerektiğini Bilirsiniz",
-      description: "Tam teşekküllü hastane şartını baştan bilmek, yanlış başvurudan kaynaklanan gecikmeleri önler.",
+      description: "SGK'nın kabul ettiği rapor şartını baştan bilmek, özel hastaneden alınıp kabul edilmeyen bir rapor gibi yanlış başvurudan kaynaklanan gecikmeleri önler.",
     },
     {
       icon: FileCheck2,

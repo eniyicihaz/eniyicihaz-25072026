@@ -4,6 +4,11 @@
 // distinct from the pillar page's own FAQ (which already covers "Heyet
 // raporu gerekli mi?") to avoid duplicating content — this page goes
 // deeper into the mechanics of the process itself.
+//
+// Report-source rule (owner-confirmed): private-hospital reports are NOT
+// accepted by SGK in the centre's MEDULA process. Never reintroduce
+// "devlet veya özel hastane" wording, and do not name which public
+// institutions may issue the report (not source-verified for this page).
 
 import { contactConfig } from "../../config";
 import type { BrandPageFaqContent } from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
@@ -30,7 +35,12 @@ export const raporSureciFaq: BrandPageFaqContent = {
         {
           question: "Hangi hastaneye başvurmalıyım?",
           answer:
-            "Rapor, yalnızca tam teşekküllü bir devlet veya özel hastaneden alınabilir. Size en uygun hastaneyi önermek için bizimle iletişime geçebilirsiniz.",
+            "SGK işitme cihazı ödemesinde kullanılacak raporun, SGK'nın kabul ettiği rapor ve MEDULA işlem sürecine uygun olması gerekir. Avrasya İşitme'nin uygulama sürecinde özel hastanelerden alınan raporlar kabul edilmemektedir. Hangi kuruluşa başvurmanız gerektiği konusunda bizimle iletişime geçerek yönlendirme alabilirsiniz.",
+        },
+        {
+          question: "Özel hastaneden alınan rapor SGK'da geçerli mi?",
+          answer:
+            "Hayır. Avrasya İşitme'nin MEDULA üzerinden yürüttüğü işlem sürecinde özel hastanelerden alınan işitme cihazı raporları SGK tarafından kabul edilmemektedir. Özel hastaneye başvurmadan önce merkezimizden bilgi almanızı öneririz.",
         },
       ],
     },
@@ -45,7 +55,7 @@ export const raporSureciFaq: BrandPageFaqContent = {
         {
           question: "Raporumun durumunu nasıl takip edebilirim?",
           answer:
-            "Rapor ve reçetenizin durumunu e-Devlet uygulaması üzerinden sorgulayabilir, ayrıca merkezimizden de bilgi alabilirsiniz.",
+            "SGK, e-Devlet üzerinden işitme cihazı gibi medikal malzemelere ilişkin raporlarınızın listesini \"Rapor Bilgisi Sorgulama\" ile, reçetelerinizi ise \"Medikal Reçete Bilgileri Sorgulama\" ile sorgulama imkânı sunar. Bu hizmetlerin raporunuzun veya reçetenizin işlem aşamasını ya da geçerlilik bilgisini gösterdiğini garanti edemiyoruz; güncel durumunuz için merkezimizden de bilgi alabilirsiniz.",
         },
       ],
     },
