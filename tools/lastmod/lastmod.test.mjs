@@ -415,8 +415,12 @@ test("gerçek manifest: 115 sayfa, geçerli, tek tarih değil, gelecek tarih yok
   const dates = new Set(paths.map((p) => m.pages[p].lastmod));
   assert.ok(dates.size >= 2, "tüm sayfalar aynı tarihte olamaz");
   assert.ok(paths.every((p) => m.pages[p].drift === 0));
-  assert.equal(m.pages["/iletisim/"].lastmod, "2026-11-16T21:52:18.000Z");
-  assert.equal(m.pages["/sgk-isitme-cihazi-odemesi/"].lastmod, "2026-11-16T21:52:18.000Z");
+  // Bu iki sayfanın başlangıç tarihi sahibin kararıyla 16 Kasım'dır (docs/tech/SITEMAP_LASTMOD.md §10). Sonraki gerçek içerik
+  // değişiklikleri tarihi yalnızca ileri taşıyabilir; bu yüzden tam eşitlik değil "bu tarihten geri gitmez" denetlenir
+  // (aynı biçimdeki UTC ISO dizgeleri sözlük sırasıyla karşılaştırılabilir).
+  const OWNER_DECISION = "2026-11-16T21:52:18.000Z";
+  assert.ok(m.pages["/iletisim/"].lastmod >= OWNER_DECISION, "/iletisim/ tarihi sahibin 16 Kasım kararından geri gidemez");
+  assert.ok(m.pages["/sgk-isitme-cihazi-odemesi/"].lastmod >= OWNER_DECISION, "/sgk-isitme-cihazi-odemesi/ tarihi sahibin 16 Kasım kararından geri gidemez");
   assert.equal(L.serializeManifest(m), readFileSync(join(HERE, "lastmod.json"), "utf8"), "dosya deterministik biçimde yazılmış olmalı");
 });
 
