@@ -1,8 +1,9 @@
 // "Yenileme Hakkı Nedir?" section for the /sgk/yenileme-hakki page.
-// Renders through the shared BrandPageIntro component. Paragraph 4 is
-// the load-bearing accuracy disclaimer — deliberately points to the
-// pillar page and the clinic for the current renewal period rather
-// than stating a specific figure here. See hero.ts for the rationale.
+// Renders through the shared BrandPageIntro component. The 5-year
+// renewal period is stated here, in the first section after the hero
+// (owner-confirmed MEDULA information; see hero.ts and renewal-guide.ts
+// for the source split between SUT text and MEDULA process information).
+// The old "güncel süre SGK rehberinde" redirect loop is gone.
 
 import type { BrandPageIntroContent } from "../../components/brand-page/BrandPageIntro/BrandPageIntro.astro";
 
@@ -10,16 +11,16 @@ export const yenilemeHakkiIntro: BrandPageIntroContent = {
   badge: "YENİLEME HAKKI NEDİR?",
   heading: "SGK İşitme Cihazı Yenileme Hakkı Nedir?",
   paragraphs: [
-    "SGK, kullanılmakta olan işitme cihazının belirli bir süre sonunda yeniden SGK desteği kapsamında yenilenmesine imkân tanır.",
-    "Bu süre dolmadan önce de, cihazın onarılamaz şekilde arızalanması veya işitme kaybının belirgin şekilde ilerlemesi gibi durumlarda erken yenileme talebinde bulunulabilir.",
-    "Erken yenileme talepleri, güncel bir sağlık kurulu raporu ve durumu açıklayan gerekçeyle birlikte değerlendirilir.",
-    "Bu sayfa, yenileme hakkının genel mantığını anlatır; güncel yenileme süresi ve şartları için SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi sayfamızı veya merkezimizi inceleyebilirsiniz.",
+    "SGK, kullanılmakta olan işitme cihazının 5 yıllık sürenin ardından yeniden SGK desteği kapsamında yenilenmesine imkân tanır. Bu süre, çocuklar dâhil bütün yaş gruplarında aynıdır.",
+    "Süre, önceki cihazın MEDULA sistemine kaydedildiği tarihten itibaren hesaplanır. Sağ ve sol kulak cihazlarının kayıt tarihleri farklıysa her kulağın süresi ayrı hesaplanır.",
+    "Süre dolmadan yenileme yalnızca SUT'taki istisnalarda mümkündür: büyüme ve gelişme çağındaki çocuğun cihazı kullanamaması ya da cihazın kullanıcı kusuru olmadan kullanılamaz hâle gelip onarılamaması. İkisinde de sağlık raporu gerekir. İşitme kaybının ilerlemesi tek başına yeterli değildir.",
+    "Hesap örneği, süre dolmadan yenileme kuralları ve e-Devlet sorgulama bilgisi bu sayfanın devamındadır; SGK ödeme tutarları için SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi sayfamıza bakabilirsiniz.",
   ],
   stats: [
-    { value: "Periyodik Hak", label: "Standart Yenileme" },
-    { value: "Gerekçeli Başvuru", label: "Erken Yenileme" },
-    { value: "Güncel Rapor", label: "Gerekli Belge" },
-    { value: "Güncel Süre SGK Rehberinde", label: "Kesin Süre" },
+    { value: "5 Yıl", label: "Standart Yenileme Süresi" },
+    { value: "MEDULA Kayıt Tarihi", label: "Sürenin Başlangıcı" },
+    { value: "Her Kulak Ayrı", label: "Süre Hesabı" },
+    { value: "Sağlık Raporu", label: "Süre Dolmadan Yenileme" },
   ],
   accentColor: "#0d9488",
   accentColorBadgeBg: "rgb(13 148 136 / 0.08)",

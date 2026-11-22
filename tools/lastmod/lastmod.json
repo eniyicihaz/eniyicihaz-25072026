@@ -549,9 +549,9 @@
       "drift": 0
     },
     "/sgk-isitme-cihazi-odemesi/": {
-      "lastmod": "2026-11-16T21:52:18.000Z",
-      "sig": "f8138054972bdb655faf3bf1",
-      "fsig": "9ef49e31708f59d5ca10db7f",
+      "lastmod": "2026-11-22T21:51:08.000Z",
+      "sig": "ea2fa9bde6feb973fae131cb",
+      "fsig": "ed67c09b8ee7ed95f45095d6",
       "drift": 0
     },
     "/sgk/cocuklarda-sgk/": {
@@ -579,8 +579,8 @@
       "drift": 0
     },
     "/sgk/yenileme-hakki/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
-      "sig": "bef85d45fac76a496e9d41ff",
+      "lastmod": "2026-11-22T21:51:08.000Z",
+      "sig": "16e9bc9a85574fb6fdf98890",
       "fsig": "24fa10dc38543e88e41cfc5a",
       "drift": 0
     },

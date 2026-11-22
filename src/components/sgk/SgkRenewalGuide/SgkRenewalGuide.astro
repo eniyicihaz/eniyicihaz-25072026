@@ -1,0 +1,383 @@
+---
+// SgkRenewalGuide — /sgk/yenileme-hakki sayfasının ana bilgi bölümü: "SGK işitme cihazı kaç yılda bir yenilenir?"
+// (5 yıl, MEDULA kayıt tarihi, kulak bazında ayrı hesap, varsayımsal örnek), süre dolmadan yenileme (SUT istisnaları),
+// e-Devlet sorgulama bağlantıları ve "bilginin dayanağı" (görünür son kontrol tarihi + resmî kaynaklar).
+//
+// Giriş bölümünden (BrandPageIntro) hemen sonra gelir; içerik her koşulda görünür (giriş animasyonu bilinçli olarak yok).
+// Veri: ../../../data/yenileme-hakki/renewal-guide + ../../../data/sgk/verification (tarih ve bağlantılar tek yerde).
+import { CalendarClock, ShieldAlert, Smartphone, ShieldCheck, ExternalLink } from "lucide-astro";
+import { sgkRenewalGuide as g } from "../../../data/yenileme-hakki/renewal-guide";
+import { sgkLastChecked, sgkOfficialSources, sgkEDevletServices } from "../../../data/sgk/verification";
+---
+
+<section class="sgk-renewal" aria-labelledby="sgk-renewal-title">
+  <div class="sgk-renewal__inner">
+    <header class="sgk-renewal__head">
+      <p class="sgk-renewal__badge">{g.badge}</p>
+      <h2 class="sgk-renewal__heading" id="sgk-renewal-title">{g.heading}</h2>
+      <p class="sgk-renewal__lead">{g.lead}</p>
+    </header>
+
+    <article class="sgk-renewal__card" aria-labelledby="sgk-renewal-calc-title">
+      <h3 class="sgk-renewal__title" id="sgk-renewal-calc-title">
+        <span class="sgk-renewal__icon" aria-hidden="true"><CalendarClock size={20} stroke-width={1.75} /></span>
+        {g.calc.title}
+      </h3>
+      {g.calc.paragraphs.map((p) => <p class="sgk-renewal__text">{p}</p>)}
+      <div class="sgk-renewal__scroll">
+        <table class="sgk-renewal__table">
+          <caption class="sgk-renewal__caption">{g.calc.example.caption}</caption>
+          <thead>
+            <tr>{g.calc.example.columns.map((c) => <th scope="col">{c}</th>)}</tr>
+          </thead>
+          <tbody>
+            {
+              g.calc.example.rows.map((row) => (
+                <tr>
+                  <th scope="row">{row[0]}</th>
+                  {row.slice(1).map((cell) => <td>{cell}</td>)}
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="sgk-renewal__text sgk-renewal__text--note">{g.calc.example.note}</p>
+    </article>
+
+    <article class="sgk-renewal__card" aria-labelledby="sgk-renewal-early-title">
+      <h3 class="sgk-renewal__title" id="sgk-renewal-early-title">
+        <span class="sgk-renewal__icon" aria-hidden="true"><ShieldAlert size={20} stroke-width={1.75} /></span>
+        {g.early.title}
+      </h3>
+      <p class="sgk-renewal__text">{g.early.intro}</p>
+      <ol class="sgk-renewal__list sgk-renewal__list--numbered">
+        {
+          g.early.exceptions.map((ex) => (
+            <li>
+              <strong>{ex.label}:</strong> {ex.text}
+            </li>
+          ))
+        }
+      </ol>
+      <p class="sgk-renewal__text">{g.early.loss}</p>
+      <p class="sgk-renewal__callout">{g.early.progression}</p>
+      <p class="sgk-renewal__text">{g.early.report}</p>
+    </article>
+
+    <article class="sgk-renewal__card" aria-labelledby="sgk-renewal-edevlet-title">
+      <h3 class="sgk-renewal__title" id="sgk-renewal-edevlet-title">
+        <span class="sgk-renewal__icon" aria-hidden="true"><Smartphone size={20} stroke-width={1.75} /></span>
+        {g.eDevlet.title}
+      </h3>
+      <p class="sgk-renewal__text">{g.eDevlet.intro}</p>
+      <ul class="sgk-renewal__list sgk-renewal__list--links">
+        {
+          sgkEDevletServices.map((s) => (
+            <li>
+              <a class="sgk-renewal__link" href={s.href} target="_blank" rel="noopener noreferrer">
+                {s.label}
+                <ExternalLink size={13} stroke-width={2} aria-hidden="true" />
+                {" "}<span class="sgk-renewal__sr">(yeni sekmede açılır)</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="sgk-renewal__list">
+        {g.eDevlet.caveats.map((c) => <li>{c}</li>)}
+      </ul>
+    </article>
+
+    <article class="sgk-renewal__card" aria-labelledby="sgk-renewal-basis-title">
+      <h3 class="sgk-renewal__title" id="sgk-renewal-basis-title">
+        <span class="sgk-renewal__icon" aria-hidden="true"><ShieldCheck size={20} stroke-width={1.75} /></span>
+        {g.basis.title}
+      </h3>
+      {g.basis.paragraphs.map((p) => <p class="sgk-renewal__text">{p}</p>)}
+      <h4 class="sgk-renewal__subtitle">{g.basis.sourcesHeading}</h4>
+      <ul class="sgk-renewal__list sgk-renewal__list--links">
+        {
+          sgkOfficialSources.map((s) => (
+            <li>
+              <a class="sgk-renewal__link" href={s.href} target="_blank" rel="noopener noreferrer">
+                {s.label}
+                <ExternalLink size={13} stroke-width={2} aria-hidden="true" />
+                {" "}<span class="sgk-renewal__sr">(yeni sekmede açılır)</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="sgk-renewal__checked">
+        {g.basis.checkedLabel}{" "}<time datetime={sgkLastChecked.iso}>{sgkLastChecked.label}</time>
+      </p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .sgk-renewal {
+    background: var(--color-surface);
+    padding-block: var(--space-24);
+  }
+
+  .sgk-renewal__inner {
+    max-width: 860px;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .sgk-renewal__head {
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .sgk-renewal__badge {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(var(--color-primary-rgb) / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(var(--color-primary-rgb) / 0.08);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    color: color-mix(in srgb, var(--color-primary) 86%, #000);
+  }
+
+  .sgk-renewal__heading {
+    margin: var(--space-5) 0 0;
+    font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sgk-renewal__lead {
+    margin: var(--space-4) auto 0;
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .sgk-renewal__card {
+    padding: var(--space-8);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sgk-renewal__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-renewal__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+  }
+
+  .sgk-renewal__subtitle {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .sgk-renewal__text {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-renewal__text--note {
+    margin-top: var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .sgk-renewal__callout {
+    margin: var(--space-4) 0 0;
+    padding: var(--space-4) var(--space-5);
+    background: rgb(var(--color-primary-rgb) / 0.05);
+    border: 1px solid rgb(var(--color-primary-rgb) / 0.2);
+    border-radius: var(--radius-xl);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .sgk-renewal__scroll {
+    margin-top: var(--space-5);
+    overflow-x: auto;
+  }
+
+  .sgk-renewal__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .sgk-renewal__caption {
+    padding-bottom: var(--space-3);
+    text-align: left;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .sgk-renewal__table th,
+  .sgk-renewal__table td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .sgk-renewal__table thead th {
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-renewal__table tbody th {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .sgk-renewal__table tbody td {
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .sgk-renewal__table tbody tr:last-child th,
+  .sgk-renewal__table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .sgk-renewal__list {
+    margin: var(--space-3) 0 0;
+    padding-left: var(--space-5);
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-renewal__list strong {
+    color: var(--color-text);
+  }
+
+  .sgk-renewal__list--numbered {
+    list-style: decimal;
+  }
+
+  .sgk-renewal__list--links {
+    list-style: none;
+    padding-left: 0;
+    font-size: var(--font-size-sm);
+  }
+
+  .sgk-renewal__link {
+    display: inline;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .sgk-renewal__link :global(svg) {
+    display: inline-block;
+    vertical-align: -2px;
+    margin-left: var(--space-1);
+  }
+
+  .sgk-renewal__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .sgk-renewal__checked {
+    margin: var(--space-6) 0 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .sgk-renewal__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 1023px) {
+    .sgk-renewal {
+      padding-block: var(--space-16);
+    }
+
+    .sgk-renewal__card {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-renewal__inner {
+      padding-inline: var(--space-4);
+    }
+
+    .sgk-renewal__card {
+      padding: var(--space-5);
+    }
+
+    .sgk-renewal__title {
+      font-size: var(--font-size-lg);
+    }
+
+    .sgk-renewal__lead {
+      font-size: var(--font-size-md);
+    }
+
+    .sgk-renewal__table th,
+    .sgk-renewal__table td {
+      padding: var(--space-3) var(--space-3);
+    }
+  }
+</style>

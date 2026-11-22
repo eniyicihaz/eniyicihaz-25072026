@@ -4,15 +4,16 @@
 // third column), following /sgk/katki-payi, /sgk/rapor-sureci,
 // /sgk/gerekli-belgeler and /sgk/cocuklarda-sgk.
 //
-// CRITICAL accuracy note: the specific renewal PERIOD (how many years
-// must pass before SGK supports a new device) is exactly the kind of
-// SGK mevzuatı detail that changes over time — same category of risk
-// as the TL figures in src/data/sgk/payments.ts. This page deliberately
-// does NOT state a specific renewal period as a hard number; it
-// explains the renewal CONCEPT and the circumstances that can justify
-// early renewal in general terms, and defers to the pillar page and
-// the clinic for the current period. See considerations.ts for the
-// explicit disclaimer.
+// Accuracy note (updated after the owner's MEDULA confirmation): the
+// renewal PERIOD is now stated as a hard number — 5 years for every age
+// group including children, counted from the date the previous device
+// was recorded in MEDULA, with the right and left ear calculated
+// separately. That period rests on the centre's MEDULA process
+// information, NOT on a mevzuat text, and the page says so (see
+// renewal-guide.ts). Early renewal is limited to the two SUT exceptions
+// (growing child; fault without user fault + no repair, both with a
+// health report); "hearing loss progression" is NOT a reason and must
+// not be reintroduced. No e-Devlet claim beyond the two service names.
 //
 // accentColor: turkuaz / teal-600 (#0d9488) — fifth color in the "SGK &
 // Haklar" column's own accent rotation (green, cyan, indigo, pink
@@ -31,8 +32,8 @@ export const yenilemeHakkiHero: BrandPageHeroContent = {
   badge: "BİLGİ MERKEZİ · SGK & HAKLAR · YENİLEME HAKKI",
   headingLines: ["SGK İşitme Cihazı", "Yenileme Hakkı"],
   paragraphs: [
-    "SGK, belirli bir süre kullanılan işitme cihazlarının yeniden destek kapsamında yenilenmesine imkân tanır.",
-    "Avrasya İşitme'de, yenileme hakkının nasıl işlediğini ve hangi durumlarda erken yenileme talep edilebileceğini anlatıyoruz.",
+    "SGK kapsamındaki işitme cihazı, çocuklar dâhil bütün yaş gruplarında 5 yılda bir yenilenebilir. Süre, önceki cihazın MEDULA sistemine kaydedildiği tarihten itibaren hesaplanır; sağ ve sol kulak ayrı ayrı değerlendirilir.",
+    "Avrasya İşitme'de, yenileme süresinin nasıl hesaplandığını ve süre dolmadan hangi durumlarda yenileme yapılabildiğini anlatıyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
@@ -41,16 +42,16 @@ export const yenilemeHakkiHero: BrandPageHeroContent = {
       label: "PERİYODİK YENİLEME HAKKI",
       accent: "#0d9488",
       title: "Cihazınızı Yeniden SGK Desteğiyle Alabilirsiniz",
-      description: "Belirli bir süre sonunda yeni bir cihaz için tekrar SGK desteğinden yararlanabilirsiniz.",
+      description: "5 yıllık süre dolduğunda yeni bir cihaz için tekrar SGK desteğinden yararlanabilirsiniz.",
     },
     {
       label: "ÖZEL DURUMLARDA ERKEN YENİLEME",
       accent: "#0f766e",
       title: "Bazı Durumlarda Süre Beklemeden Yenileme Mümkün",
-      description: "Cihaz arızası veya işitme kaybının ilerlemesi gibi durumlarda erken yenileme değerlendirilebilir.",
+      description: "Çocuğun büyümesi nedeniyle cihazın kullanılamaması veya kullanıcı kusuru olmadan oluşan, onarılamayan arıza hâlinde, sağlık raporuyla süre dolmadan yenileme değerlendirilir.",
     },
     {
-      label: "GÜNCEL SÜRE İÇİN YANINIZDAYIZ",
+      label: "SÜRE TAKİBİ İÇİN YANINIZDAYIZ",
       accent: "#115e59",
       title: "Yenileme Zamanınızı Sizinle Birlikte Kontrol Ederiz",
       description: "Cihazınızın yenileme zamanı geldiğinde size hatırlatır, süreci birlikte planlarız.",

@@ -50,7 +50,7 @@ export const sgkGuide = {
     {
       id: "adim-2",
       title: "2. Adım — Rapor ve reçete",
-      lead: "İşitme cihazı kullanımı uygun görüldüğünde rapor ve reçete düzenlenir. Rapor yalnızca tam teşekküllü bir devlet veya özel hastaneden alınabilir.",
+      lead: "İşitme cihazı kullanımı uygun görüldüğünde rapor ve reçete düzenlenir. Rapor, SGK'nın kabul ettiği resmî (devlet) sağlık kuruluşunda düzenlenmelidir; özel hastane raporları SGK tarafından kabul edilmez.",
       items: [
         { text: "Tam teşekküllü hastaneden sağlık kurulu (heyet) raporu alındı" },
         { text: "Uzman hekim reçetesi alındı (rapor tek başına yeterli değildir)" },

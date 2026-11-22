@@ -7,7 +7,10 @@
 // accentColor: turkuaz / teal-600 (#0d9488) — fifth color in this
 // column's own accent rotation; see hero.ts for the full rationale.
 //
-// 14-section flow, in order: Hero -> Nedir? -> Kimler İçin Önemlidir?
+// 15-section flow, in order: Hero -> Nedir? (5 yıllık süre, ilk bölüm) ->
+// Kaç Yılda Bir Yenilenir? (SgkRenewalGuide: hesap, varsayımsal örnek,
+// süre dolmadan yenileme, e-Devlet bağlantıları, bilginin dayanağı) ->
+// Kimler İçin Önemlidir?
 // -> Hakkın Faydaları -> Dikkat Edilmesi Gerekenler -> Sürecin
 // Adımları -> Yenileme Nedenleri -> Yenileme Sisteminin Bileşenleri ->
 // Markalara Göre İnceleyin -> Standart vs Erken Yenileme
@@ -26,6 +29,7 @@ import BrandPageExpertOpinion from "../../components/brand-page/BrandPageExpertO
 import BrandPageFaq from "../../components/brand-page/BrandPageFaq/BrandPageFaq.astro";
 import BrandPageFinalCta from "../../components/brand-page/BrandPageFinalCta/BrandPageFinalCta.astro";
 import KulakArkasiComparison from "../../components/kulak-arkasi/KulakArkasiComparison/KulakArkasiComparison.astro";
+import SgkRenewalGuide from "../../components/sgk/SgkRenewalGuide/SgkRenewalGuide.astro";
 
 import { yenilemeHakkiHero } from "../../data/yenileme-hakki/hero";
 import { yenilemeHakkiIntro } from "../../data/yenileme-hakki/intro";
@@ -49,6 +53,7 @@ import { yenilemeHakkiFinalCta } from "../../data/yenileme-hakki/final-cta";
 >
   <BrandPageHero data={yenilemeHakkiHero} />
   <BrandPageIntro data={yenilemeHakkiIntro} />
+  <SgkRenewalGuide />
   <BrandPageIdealUser data={yenilemeHakkiIdealUser} />
   <BrandPageAdvantages data={yenilemeHakkiAdvantages} />
   <BrandPageIdealUser data={yenilemeHakkiConsiderations} />

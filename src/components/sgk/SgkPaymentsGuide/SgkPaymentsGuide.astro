@@ -1,0 +1,352 @@
+---
+// SgkPaymentsGuide — SGK ödeme tablosunun hemen altındaki, tablonun DIŞINDAKİ açıklama blokları: tek kulak/iki kulak,
+// çocuk oranları, pil + KDV, 5 yıllık yenileme süresi ve "bilginin dayanağı" (resmî metin ↔ MEDULA işlem bilgisi,
+// görünür son kontrol tarihi, resmî kaynak bağlantıları).
+//
+// SgkPayments.astro'nun <slot />'una yerleştirilir (tablo bölümünün içinde, bildirim kutusundan önce); tablo görselini,
+// HTML tabloyu ve 12 tutarı değiştirmez. Giriş animasyonu (data-rise) bilinçli olarak YOK: içerik her koşulda görünür.
+// Veri: ../../../data/sgk/payments-guide + verification (son kontrol tarihi ve kaynak bağlantıları tek yerde).
+import { Scale, BatteryCharging, CalendarClock, ShieldCheck, ExternalLink } from "lucide-astro";
+import { sgkPaymentsGuide as g } from "../../../data/sgk/payments-guide";
+import { sgkLastChecked, sgkOfficialSources } from "../../../data/sgk/verification";
+---
+
+<div class="sgk-pg">
+  <article class="sgk-pg__card sgk-pg__card--lead" aria-labelledby="sgk-pg-ear-title">
+    <h3 class="sgk-pg__title" id="sgk-pg-ear-title">
+      <span class="sgk-pg__icon" aria-hidden="true"><Scale size={20} stroke-width={1.75} /></span>
+      {g.ear.title}
+    </h3>
+    <p class="sgk-pg__lead">{g.ear.lead}</p>
+    {g.ear.paragraphs.map((p) => <p class="sgk-pg__text">{p}</p>)}
+    <div class="sgk-pg__scroll">
+      <table class="sgk-pg__table">
+        <caption class="sgk-pg__caption">{g.ear.table.caption}</caption>
+        <thead>
+          <tr>{g.ear.table.columns.map((c) => <th scope="col">{c}</th>)}</tr>
+        </thead>
+        <tbody>
+          {
+            g.ear.table.rows.map((row) => (
+              <tr>
+                <th scope="row">{row[0]}</th>
+                {row.slice(1).map((cell) => <td>{cell}</td>)}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  <article class="sgk-pg__card" aria-labelledby="sgk-pg-child-title">
+    <h3 class="sgk-pg__title" id="sgk-pg-child-title">{g.child.title}</h3>
+    {g.child.paragraphs.map((p) => <p class="sgk-pg__text">{p}</p>)}
+    <div class="sgk-pg__scroll">
+      <table class="sgk-pg__table">
+        <caption class="sgk-pg__caption">{g.child.table.caption}</caption>
+        <thead>
+          <tr>{g.child.table.columns.map((c) => <th scope="col">{c}</th>)}</tr>
+        </thead>
+        <tbody>
+          {
+            g.child.table.rows.map((row) => (
+              <tr>
+                <th scope="row">{row[0]}</th>
+                {row.slice(1).map((cell) => <td>{cell}</td>)}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="sgk-pg__text sgk-pg__text--note">{g.child.note}</p>
+  </article>
+
+  <article class="sgk-pg__card" aria-labelledby="sgk-pg-battery-title">
+    <h3 class="sgk-pg__title" id="sgk-pg-battery-title">
+      <span class="sgk-pg__icon" aria-hidden="true"><BatteryCharging size={20} stroke-width={1.75} /></span>
+      {g.battery.title}
+    </h3>
+    <p class="sgk-pg__lead">{g.battery.lead}</p>
+    <div class="sgk-pg__scroll">
+      <table class="sgk-pg__table sgk-pg__table--two">
+        <caption class="sgk-pg__caption">{g.battery.table.caption}</caption>
+        <thead>
+          <tr>{g.battery.table.columns.map((c) => <th scope="col">{c}</th>)}</tr>
+        </thead>
+        <tbody>
+          {
+            g.battery.table.rows.map((row) => (
+              <tr>
+                <th scope="row">{row[0]}</th>
+                <td>{row[1]}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="sgk-pg__text sgk-pg__text--note">{g.battery.note}</p>
+  </article>
+
+  <article class="sgk-pg__card" aria-labelledby="sgk-pg-renewal-title">
+    <h3 class="sgk-pg__title" id="sgk-pg-renewal-title">
+      <span class="sgk-pg__icon" aria-hidden="true"><CalendarClock size={20} stroke-width={1.75} /></span>
+      {g.renewal.title}
+    </h3>
+    <p class="sgk-pg__lead">{g.renewal.lead}</p>
+    <p class="sgk-pg__text">{g.renewal.paragraph}</p>
+    <p class="sgk-pg__text">
+      <a class="sgk-pg__link" href={g.renewal.link.href}>{g.renewal.link.label}</a>
+    </p>
+  </article>
+
+  <article class="sgk-pg__card" aria-labelledby="sgk-pg-basis-title">
+    <h3 class="sgk-pg__title" id="sgk-pg-basis-title">
+      <span class="sgk-pg__icon" aria-hidden="true"><ShieldCheck size={20} stroke-width={1.75} /></span>
+      {g.basis.title}
+    </h3>
+    <p class="sgk-pg__text">{g.basis.intro}</p>
+
+    <h4 class="sgk-pg__subtitle">{g.basis.officialHeading}</h4>
+    <ul class="sgk-pg__list">
+      {g.basis.officialItems.map((item) => <li>{item}</li>)}
+    </ul>
+
+    <h4 class="sgk-pg__subtitle">{g.basis.medulaHeading}</h4>
+    <ul class="sgk-pg__list">
+      {g.basis.medulaItems.map((item) => <li>{item}</li>)}
+    </ul>
+
+    <p class="sgk-pg__text">{g.basis.closing}</p>
+
+    <h4 class="sgk-pg__subtitle">{g.basis.sourcesHeading}</h4>
+    <ul class="sgk-pg__list sgk-pg__list--links">
+      {
+        sgkOfficialSources.map((s) => (
+          <li>
+            <a class="sgk-pg__link" href={s.href} target="_blank" rel="noopener noreferrer">
+              {s.label}
+              <ExternalLink size={13} stroke-width={2} aria-hidden="true" />
+              {" "}<span class="sgk-pg__sr">(yeni sekmede açılır)</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="sgk-pg__checked">
+      {g.basis.checkedLabel}{" "}<time datetime={sgkLastChecked.iso}>{sgkLastChecked.label}</time>
+    </p>
+  </article>
+</div>
+
+<style>
+  .sgk-pg {
+    max-width: 860px;
+    margin: var(--space-8) auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .sgk-pg__card {
+    padding: var(--space-8);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sgk-pg__card--lead {
+    background: rgb(var(--color-primary-rgb) / 0.04);
+    border-color: rgb(var(--color-primary-rgb) / 0.22);
+  }
+
+  .sgk-pg__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .sgk-pg__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+  }
+
+  .sgk-pg__subtitle {
+    margin: var(--space-6) 0 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+
+  .sgk-pg__lead {
+    margin: var(--space-4) 0 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  .sgk-pg__text {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-pg__text--note {
+    margin-top: var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .sgk-pg__scroll {
+    margin-top: var(--space-5);
+    overflow-x: auto;
+  }
+
+  .sgk-pg__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .sgk-pg__caption {
+    padding-bottom: var(--space-3);
+    text-align: left;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .sgk-pg__table th,
+  .sgk-pg__table td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .sgk-pg__table thead th {
+    background: var(--color-surface);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-pg__table tbody th {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .sgk-pg__table tbody td {
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .sgk-pg__table tbody tr:last-child th,
+  .sgk-pg__table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .sgk-pg__list {
+    margin: var(--space-3) 0 0;
+    padding-left: var(--space-5);
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sgk-pg__list--links {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .sgk-pg__link {
+    display: inline;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .sgk-pg__link :global(svg) {
+    display: inline-block;
+    vertical-align: -2px;
+    margin-left: var(--space-1);
+  }
+
+  .sgk-pg__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  .sgk-pg__checked {
+    margin: var(--space-6) 0 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .sgk-pg__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 1023px) {
+    .sgk-pg__card {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sgk-pg__card {
+      padding: var(--space-5);
+    }
+
+    .sgk-pg__title {
+      font-size: var(--font-size-lg);
+    }
+
+    .sgk-pg__lead {
+      font-size: var(--font-size-md);
+    }
+
+    .sgk-pg__table th,
+    .sgk-pg__table td {
+      padding: var(--space-3) var(--space-3);
+    }
+  }
+</style>

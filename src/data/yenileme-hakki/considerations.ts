@@ -1,9 +1,10 @@
 // "Dikkat Edilmesi Gerekenler" section for the /sgk/yenileme-hakki
 // page. Reuses the shared BrandPageIdealUser component, visually
 // differentiated by the design system's own --color-warning token
-// (#d97706). The first item is this page's key accuracy flag —
-// explicitly directs readers to the pillar page and the clinic for the
-// current renewal period, consistent with hero.ts's own rationale.
+// (#d97706). The first item states how the 5-year period is counted
+// (MEDULA record date, each ear separately); the old "see the pillar
+// guide for the current period" redirect card is gone (owner-confirmed
+// period; see hero.ts and renewal-guide.ts).
 
 import { AlertTriangle, FileText, Baby, Building2, RefreshCcw } from "lucide-astro";
 import type { BrandPageIdealUserContent } from "../../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
@@ -15,20 +16,20 @@ export const yenilemeHakkiConsiderations: BrandPageIdealUserContent = {
   profiles: [
     {
       icon: AlertTriangle,
-      title: "Güncel Yenileme Süresi İçin SGK Rehberimizi İnceleyin",
-      description: "Yenileme süresi ve şartları SGK mevzuatındaki güncellemelere göre değişebilir; güncel bilgi için SGK İşitme Cihazı Ödemesi ve Katkı Payı Rehberi sayfamızı inceleyebilir veya merkezimizden bilgi alabilirsiniz.",
-      suggestedFamilies: ["Güncel Süre"],
+      title: "5 Yıllık Süre MEDULA Kayıt Tarihinden Başlar",
+      description: "Süre, önceki cihazın MEDULA sistemine kaydedildiği tarihten itibaren hesaplanır; sağ ve sol kulak cihazları ayrı değerlendirilir. Kendi sürenizi merkezimizden öğrenebilirsiniz.",
+      suggestedFamilies: ["Süre Hesabı"],
     },
     {
       icon: FileText,
-      title: "Erken Yenileme Gerekçe ve Rapor Gerektirir",
-      description: "Süre dolmadan yapılan yenileme taleplerinde, güncel bir sağlık kurulu raporu ve durumu açıklayan gerekçe istenir.",
-      suggestedFamilies: ["Erken Yenileme Şartı"],
+      title: "Süre Dolmadan Yenileme Yalnızca İstisnalarda Mümkündür",
+      description: "SUT iki istisna tanır: büyüme ve gelişme çağındaki çocuk ile kullanıcı kusuru olmadan oluşan, onarılamayan arıza; ikisinde de sağlık raporu gerekir. İşitme kaybının ilerlemesi bu istisnalar arasında yer almaz.",
+      suggestedFamilies: ["Süre Dolmadan Yenileme"],
     },
     {
       icon: Baby,
-      title: "Çocuklarda Yenileme Süreci Farklı Değerlendirilebilir",
-      description: "Çocuklarda büyüme ve gelişim nedeniyle yenileme ihtiyacı, yetişkinlerden farklı bir zaman çizelgesinde ortaya çıkabilir.",
+      title: "Çocuklarda da Süre 5 Yıldır",
+      description: "5 yıllık süre çocuklar için de geçerlidir. Çocuğun büyümesi nedeniyle cihaz kullanılamıyorsa, sağlık raporuyla belgelenmesi koşuluyla süre dolmadan yenileme değerlendirilebilir.",
       suggestedFamilies: ["Çocuklarda SGK"],
     },
     {
@@ -40,7 +41,7 @@ export const yenilemeHakkiConsiderations: BrandPageIdealUserContent = {
     {
       icon: RefreshCcw,
       title: "Yenileme Belgeleri İlk Başvuruya Benzer",
-      description: "Yenileme başvurusunda da güncel rapor, reçete ve kimlik belgeleri istenir; detaylı bilgi için Gerekli Belgeler sayfamızı inceleyebilirsiniz.",
+      description: "Yenileme başvurusunda da güncel rapor, reçete ve kimlik belgeleri istenir. Rapor resmî sağlık hizmeti sunucusunda düzenlenmelidir; özel hastane raporları SGK tarafından kabul edilmez. Detaylı bilgi için Gerekli Belgeler sayfamızı inceleyebilirsiniz.",
       suggestedFamilies: ["Belge Şartı"],
     },
   ],

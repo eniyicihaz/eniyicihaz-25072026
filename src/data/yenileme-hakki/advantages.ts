@@ -30,7 +30,7 @@ export const yenilemeHakkiAdvantages: BrandPageAdvantagesContent = {
       icon: Wrench,
       category: "Arıza Durumunda Güvence",
       title: "Onarılamaz Arızalarda Erken Yenileme İmkânı",
-      description: "Cihazınız onarılamaz şekilde arızalanırsa, süre dolmadan erken yenileme talep edebilirsiniz.",
+      description: "Cihazınız kullanıcı kusuru olmadan arızalanır ve onarılamazsa, sağlık raporuyla süre dolmadan yenileme talep edebilirsiniz.",
     },
     {
       icon: PiggyBank,

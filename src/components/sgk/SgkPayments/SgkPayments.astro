@@ -116,6 +116,9 @@ const colIcons = [Users, Briefcase, UserCheck, Wallet];
       <p class="sgk-payments__source">{sgkPayments.sourceNote}</p>
     </div>
 
+    <!-- Tablonun DIŞINDA, hemen altında açıklama blokları (SgkPaymentsGuide). Tablo/görsel/tutarlara dokunmaz. -->
+    <slot />
+
     <div class="sgk-payments__notice" data-rise>
       <span class="sgk-payments__notice-icon" aria-hidden="true">
         <Pin size={20} stroke-width={1.75} />

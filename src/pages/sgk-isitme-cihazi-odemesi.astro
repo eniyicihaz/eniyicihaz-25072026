@@ -12,6 +12,7 @@ import SgkHero from "../components/sgk/SgkHero/SgkHero.astro";
 import SgkProcess from "../components/sgk/SgkProcess/SgkProcess.astro";
 import SgkKnowledge from "../components/sgk/SgkKnowledge/SgkKnowledge.astro";
 import SgkPayments from "../components/sgk/SgkPayments/SgkPayments.astro";
+import SgkPaymentsGuide from "../components/sgk/SgkPaymentsGuide/SgkPaymentsGuide.astro";
 import BrandPageIdealUser from "../components/brand-page/BrandPageIdealUser/BrandPageIdealUser.astro";
 import SgkInsight from "../components/sgk/SgkInsight/SgkInsight.astro";
 import SgkEligibility from "../components/sgk/SgkEligibility/SgkEligibility.astro";
@@ -104,7 +105,9 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
 
   <SgkProcess />
   <SgkKnowledge />
-  <SgkPayments />
+  <SgkPayments>
+    <SgkPaymentsGuide />
+  </SgkPayments>
   <div class="sgk-idealuser-scope">
     <BrandPageIdealUser data={sgkIdealUser} />
   </div>
