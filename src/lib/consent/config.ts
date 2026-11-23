@@ -46,12 +46,12 @@ export const ALL_DENIED: ConsentChoices = {
 };
 
 // Google Tag Manager container kimliği (herkese açık, gizli değil).
-// GA4 (Measurement ID G-9PC230DJCE) ve ileride Google Ads etiketleri
-// doğrudan sitede DEĞİL, bu container üzerinden GTM panelinden yönetilir.
-// Eski container (GTM-NRWFGX8D) bu projede kullanılmaz.
+// Google etiketleri doğrudan sitede DEĞİL, bu container üzerinden GTM panelinden yönetilir.
+// 2026-11-23 sahibin kararı: container GTM-N8H82DDL → GTM-NRWFGX8D. Yükleme yine yalnızca
+// çerez izniyle olur (google.ts); kodun sitenin <head>'ine koşulsuz eklenmesi bilinçli olarak YAPILMADI.
 // Build-time env ile geçersiz kılınabilir: PUBLIC_GTM_ID=GTM-XXXXXXX
 // (boş/geçersiz değer = GTM hiç yüklenmez).
-const DEFAULT_GTM_ID = "GTM-N8H82DDL";
+const DEFAULT_GTM_ID = "GTM-NRWFGX8D";
 const env = (import.meta as unknown as { env?: Record<string, string | undefined> }).env ?? {};
 const gtm = (env.PUBLIC_GTM_ID ?? DEFAULT_GTM_ID).trim();
 

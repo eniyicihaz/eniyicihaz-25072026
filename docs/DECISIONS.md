@@ -232,3 +232,13 @@
 - **Değişmeyen:** İzin mantığı (seçim yapılana kadar kayıt yazılmaz, GTM/GA4/Ads yüklenmez), `CONSENT_POLICY_VERSION` (`2026-11-14-v3`), politika metinleri, GTM kimliği (`GTM-N8H82DDL`).
 - **Mobil görünüm:** Kompakt tasarım V1 seçildi (≤ 720 px; bant yaklaşık 180 px; önceki tasarım 225–247 px). Metin 14 px, kabul/ret düğmeleri 44 px, "Tercihleri yönet" bağlantı olarak kalır. Daha alçak V2 seçeneği (136 px; başlık gizli, 13 px, üç eşit düğme) ölçüldü, seçilmedi.
 - **Masaüstü / tablet:** Değişmedi (10 genişlikte konum ve stil önceki derlemeyle aynı). Tek ek: ≈ 1024–1450 px genişlikte sağ alttaki sabit iletişim düğmeleriyle çakışmayı önleyen yerleşim düzeltmesi.
+
+## 2026-11-23 (GTM kapsayıcısı GTM-N8H82DDL → GTM-NRWFGX8D)
+
+> Kaynak: işletme sahibinin kararı. Çerez bandı aynı gün `GTM-N8H82DDL` ile yayımlanıp izin mekanizması doğrulandıktan sonra geçiş yapıldı.
+
+- **Karar:** Sitede tek GTM kapsayıcısı olarak `GTM-NRWFGX8D` kullanılır (`src/lib/consent/config.ts`, `DEFAULT_GTM_ID`). Uzmanın verdiği standart GTM kodu `<head>`'e AYRICA eklenmedi: kapsayıcı yine yalnızca çerez izniyle (`google.ts`) yüklenir; aynı anda ikinci kapsayıcı yüklenmez. Koşulsuz `<head>` kodu, tercih yokken izinsiz çerez yazdığı ve izin varsayılanından önce çalıştığı için bilinçli olarak kullanılmadı.
+- **Kapsayıcı:** GTM-NRWFGX8D çalışma alanı 7 düzeltilip **v7** olarak yayımlandı (2026-11-23 23:38): GA4 Google etiketi ve 5 olay etiketi `G-C9GWZ5YY4L`'e (analytics_storage iznine bağlı); Telefon ve WhatsApp Ads dönüşümleri `phone_click_ads` / `whatsapp_click_ads` olaylarına (ad_storage + ad_user_data); Dönüşüm Bağlayıcı pazarlama iznine; “Sayfa Ziyaretleri” ×2 (silinmiş dönüşüm işlemleri) duraklatıldı; kullanıcı tarafından sağlanan veri özellikleri kapalı. Yayın öncesi Tag Assistant önizlemesinde 4 izin senaryosu ve tel / wa.me tıklamaları geçti.
+- **Düzeltme:** `config.ts` yorumundaki “GA4 Measurement ID G-9PC230DJCE” ifadesi yanlıştı (site verisi 8.11.2026'da kesilen eski mülk); doğru GA4 kimliği `G-C9GWZ5YY4L`'dir. Yorum kaldırıldı, kaynak-doğruluk belgesi güncellendi.
+- **Değişmeyen:** İzin mantığı ve çerez bandı, `CONSENT_POLICY_VERSION` (`2026-11-14-v3`), politika metinleri, tercih saklama, GA4 mülkü `G-C9GWZ5YY4L`, Google Ads bütçesi / teklif stratejisi / dönüşüm ayarları.
+- **Geri dönüş:** Sitede `DEFAULT_GTM_ID` yeniden `GTM-N8H82DDL` yapılıp yayımlanır (ya da geçiş commit'i `git revert` edilir); `GTM-N8H82DDL` canlı v6 içeriği değişmedi. Kapsayıcıda önceki sürüm: GTM-NRWFGX8D → Sürümler → v6 → Yayınla.
