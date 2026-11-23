@@ -1,11 +1,12 @@
 ---
-// ConsentManager — tercih paneli + izin mantığı.
-//   • AÇILIŞ BANDI YOK (sahibin kararı, 2026-11-17): site ilk açıldığında hiçbir çerez penceresi/bandı gösterilmez.
-//     Bu, izin verildiği anlamına GELMEZ: kayıt yoksa durum “karar verilmedi” = tüm isteğe bağlı kategoriler denied;
-//     HİÇBİR kayıt yazılmaz ve GTM/GA4/Ads yüklenmez; “seçilmemiş” durumu “reddedildi” veya “kabul edildi” diye
-//     saklanmaz. Önceden verilmiş geçerli kabul/ret kaydı aynen uygulanır (aşağıdaki başlangıç bloğu).
+// ConsentManager — çerez bandı + tercih paneli + izin mantığı.
+//   • İlk ziyarette (kayıt yok) altta bir bant açılır: “Tümünü kabul et”, “Tümünü reddet”,
+//     “Tercihleri yönet” — üçü aynı görsel ağırlıkta. Kullanıcı seçene kadar HİÇBİR kayıt yazılmaz ve
+//     GTM/GA4/Ads yüklenmez; “seçilmemiş” durumu “reddedildi” veya “kabul edildi” diye saklanmaz.
+//     Geçmiş: bant 2026-11-17’de sahibin kararıyla kaldırılmış, 2026-11-23’te yine sahibin kararıyla aynı tasarım ve
+//     metinle geri getirilmiştir (bant yokken yeni ziyaretçiden izin alınamadığı için GA4/Ads ölçümü çalışmıyordu).
 //     (Google Maps konum haritası bu mantığın DIŞINDADIR: sahibin kararıyla herkese otomatik yüklenir.)
-//   • Tercih paneli (<dialog>) YALNIZCA ziyaretçi isteyerek açar: footer “Çerez Tercihleri” bağlantısı ([data-consent-open]).
+//   • Tercih paneli (<dialog>) bant, footer “Çerez Tercihleri” bağlantısı ([data-consent-open]) ile açılır.
 //   • Kategoriler: Zorunlu (kilitli) · Analitik (GA4) · Reklam ölçüm (Google Ads dönüşüm ölçümü).
 //     Kişiselleştirilmiş reklam izni hiçbir durumda verilmez (bkz. lib/consent/google.ts).
 //   • Video (YouTube) gömme içerikleri kategori değildir: her biri kendi “yükle” düğmesiyle, yalnızca
@@ -34,6 +35,22 @@ const categories = [
   },
 ] as const;
 ---
+
+<section class="consent-banner" data-consent-banner hidden aria-labelledby="consent-banner-title">
+  <div class="consent-banner__head">
+    <h2 class="consent-banner__title" id="consent-banner-title">Çerez tercihleriniz</h2>
+    <button type="button" class="consent-banner__manage" data-consent-open>Tercihleri yönet</button>
+  </div>
+  <p class="consent-banner__text">
+    Zorunlu çerezler her zaman açıktır. Analitik ve reklam çerezleri (Google Analytics, Google Ads) yalnızca onayınızla
+    açılır. Konum haritaları ise reddetseniz de Google Maps’ten yüklenir.
+  </p>
+  <!-- Kabul ve ret aynı boyut, aynı stil, yan yana: biri diğerinden daha belirgin değildir. -->
+  <div class="consent-banner__actions">
+    <button type="button" class="btn btn--outline btn--md" data-consent-action="accept-all"><span>Tümünü kabul et</span></button>
+    <button type="button" class="btn btn--outline btn--md" data-consent-action="reject-all"><span>Tümünü reddet</span></button>
+  </div>
+</section>
 
 <dialog class="consent-dialog" data-consent-dialog aria-labelledby="consent-dialog-title">
   <form method="dialog" class="consent-dialog__form" data-consent-form>
@@ -91,6 +108,7 @@ const categories = [
   import { applyGoogleConsent, gtmIsActive, setConsentDefault } from "../../../lib/consent/google";
 
   const dialog = document.querySelector<HTMLDialogElement>("[data-consent-dialog]");
+  const banner = document.querySelector<HTMLElement>("[data-consent-banner]");
   const live = document.querySelector<HTMLElement>("[data-consent-live]");
   const toggles = Array.from(document.querySelectorAll<HTMLInputElement>("[data-consent-toggle]"));
 
@@ -108,6 +126,39 @@ const categories = [
       const k = t.dataset.consentToggle as keyof ConsentChoices;
       t.checked = current[k] === true;
     }
+  }
+
+  function showBanner(show: boolean): void {
+    if (!banner) return;
+    banner.hidden = !show;
+    if (show) fitBanner(); // ilk ölçüm hemen (çakışan konum bir kare bile görünmesin); sonraki olaylar scheduleFit ile
+  }
+
+  // Masaüstünde (≥ 1024 px) sağ alttaki sabit iletişim düğmeleri (ContactDock: “Bizi Arayın” + “WhatsApp'tan Yazın”) yaklaşık
+  // 1024–1430 px genişliklerde bandın sağ ucuna (“Tümünü reddet”) biniyordu: ret düğmesi kısmen/tamamen örtülüyor, kabul ile
+  // eşit görünürlük bozuluyordu. Çakışma VARSA bant, düğme kümesinin solunda kalacak kadar sağdan boşluk bırakır
+  // (--consent-banner-end); çakışma YOKSA eski ortalanmış yerleşim aynen kalır. Mobilde dokunulmaz: orada iletişim çubuğu
+  // alttadır ve bant onun üstünde durur (--dock-h). Düğme kümesinin genişliği yazı boyutuna göre değiştiği için ölçülür.
+  const wideMq = window.matchMedia("(min-width: 1024px)");
+  let fitRaf = 0;
+
+  function fitBanner(): void {
+    fitRaf = 0;
+    if (!banner) return;
+    banner.style.removeProperty("--consent-banner-end");
+    delete banner.dataset.fit;
+    if (banner.hidden || !wideMq.matches) return;
+    const dock = document.querySelector<HTMLElement>("[data-contact-dock]")?.getBoundingClientRect();
+    if (!dock || dock.width === 0 || dock.height === 0) return; // düğmeler gizli (ör. çok alçak pencere)
+    const gap = 12; // --space-3: bant ile düğmeler arasındaki boşluk
+    const box = banner.getBoundingClientRect();
+    if (box.right + gap <= dock.left || box.top >= dock.bottom || box.bottom <= dock.top) return; // çakışma yok
+    banner.style.setProperty("--consent-banner-end", `${Math.ceil(document.documentElement.clientWidth - dock.left + gap)}px`);
+    banner.dataset.fit = "dock"; // boş alanda ortalanmak yerine düğmelere yaslanır: ekran ortasından en az kayma
+  }
+
+  function scheduleFit(): void {
+    if (!fitRaf) fitRaf = requestAnimationFrame(fitBanner);
   }
 
   // --- Gömme içerik (Maps / YouTube): yalnızca tıklanan içerik yüklenir, tercih yazılmaz ----
@@ -151,6 +202,7 @@ const categories = [
   function save(choices: ConsentChoices, method: ConsentMethod, message: string): void {
     writeConsent(choices, method);
     apply(choices, "user");
+    showBanner(false);
     if (dialog?.open) dialog.close();
     announce(message);
   }
@@ -168,11 +220,17 @@ const categories = [
   const stored = readConsent();
   if (stored) {
     apply(stored.choices, "load");
+    showBanner(false);
   } else {
-    // Kayıt YOK: hiçbir şey yazılmaz, GTM yüklenmez, hiçbir pencere açılmaz. Tüm isteğe bağlı kategoriler denied
-    // kalır (varsayılan kabul YOKTUR); ziyaretçi isterse footer’daki “Çerez Tercihleri” bağlantısıyla panel açar.
+    // Kayıt YOK: hiçbir şey yazılmaz, GTM yüklenmez; kullanıcı bir seçenek seçene kadar bant görünür.
     current = { ...ALL_DENIED };
+    showBanner(true);
   }
+
+  // Bant açıkken yerleşim yeniden ölçülür: pencere boyutu, yazı tipi yüklenmesi ve erişilebilirlik yazı boyutu değişince.
+  window.addEventListener("resize", scheduleFit, { passive: true });
+  new MutationObserver(scheduleFit).observe(document.documentElement, { attributes: true, attributeFilter: ["data-a11y-text"] });
+  document.fonts?.ready.then(scheduleFit);
 
   // --- Olaylar ---------------------------------------------------------------
   document.addEventListener("click", (e) => {
@@ -236,12 +294,164 @@ const categories = [
     const raw = e.key === null ? window.localStorage.getItem(CONSENT_STORAGE_KEY) : e.newValue; // key === null: clear()
     const s = consentFromStorageValue(raw);
     const next = s ? s.choices : { ...ALL_DENIED };
+    showBanner(!s);
     if (OPTIONAL_CATEGORIES.every((k) => next[k] === current[k])) return; // değişiklik yok → tekrar uygulama/yenileme yok
     apply(next, "storage");
   });
 </script>
 
 <style>
+  /* --- Çerez bandı --------------------------------------------------------
+     Kompakt alt bant. Kabul / ret yan yana ve eşit ağırlıkta. Sabit iletişim çubuğu (ContactDock) varsa onun üstünde durur
+     (--dock-h). Mobil ölçüler aşağıdaki "MOBİL KOMPAKT" bloğundadır; masaüstü ve tablet kuralları bu bloktan etkilenmez. */
+  .consent-banner {
+    position: fixed;
+    /* Sağ boşluk: masaüstünde sabit iletişim düğmeleriyle çakışma varsa script --consent-banner-end verir (yoksa eski değer). */
+    inset: auto var(--consent-banner-end, var(--space-3)) calc(var(--dock-h, 0px) + var(--space-3)) var(--space-3);
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-5);
+    row-gap: var(--space-2);
+    align-items: center;
+    max-width: 56rem;
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    color: var(--color-text);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .consent-banner[hidden] {
+    display: none;
+  }
+
+  /* Masaüstünde sabit iletişim düğmeleriyle çakışma varken (script ekler): bant düğmelerin hemen soluna yaslanır. */
+  .consent-banner[data-fit="dock"] {
+    margin-inline: auto 0;
+  }
+
+  .consent-banner__head {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .consent-banner__title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .consent-banner__manage {
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-primary);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .consent-banner__manage:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .consent-banner__text {
+    grid-column: 1;
+    margin: 0;
+    font-size: var(--font-size-xs);
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .consent-banner__actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(min(9rem, 100%), 1fr));
+    gap: var(--space-2);
+  }
+
+  .consent-banner__actions :global(.btn) {
+    width: 100%;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  /* MOBİL KOMPAKT (≤ 720 px): metin, üç seçenek ve sıra aynı; yalnız ölçüler sıkılaştırıldı (225–247 → 180 px, ≈ %20–27 daha alçak).
+     • Metin 15 → 14 px, satır aralığı 1,45 → 1,35, rengi muted → ana metin rengi (küçülen yazıda okunabilirlik korunur).
+     • Başlık satırı 44 → 32 px; "Tercihleri yönet" bağlantısının dokunma alanı ::after ile yine 44 px'e tamamlanır.
+     • Kabul / ret düğmeleri 48 → 44 px (dokunma hedefi alt sınırı), eşit boyut ve yan yana.
+     • Sabit iletişim çubuğunun (--dock-h) hemen üstünde durur; çubuğu örtmez.
+     • Büyük yazı ayarında (%130–150) bant ekranı aşmasın diye yüksekliği sınırlıdır (görünür yükseklik − çubuk − 120 px), gerekirse içinde kayar. */
+  @media (max-width: 720px) {
+    .consent-banner {
+      grid-template-columns: 1fr;
+      row-gap: 2px;
+      padding: var(--space-2) var(--space-3);
+      inset-inline: var(--space-2);
+      inset-block-end: calc(var(--dock-h, 0px) + 6px);
+      border-radius: var(--radius-lg);
+      max-height: calc(100vh - var(--dock-h, 0px) - 120px);
+      max-height: calc(100dvh - var(--dock-h, 0px) - 120px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .consent-banner__head {
+      min-height: 32px;
+    }
+    .consent-banner__title {
+      font-size: var(--font-size-sm);
+    }
+    .consent-banner__manage {
+      position: relative;
+      min-height: 32px;
+      padding: 0 var(--space-2);
+      margin-inline-end: calc(-1 * var(--space-2));
+    }
+    .consent-banner__manage::after {
+      content: "";
+      position: absolute;
+      inset: -6px -2px;
+    }
+    .consent-banner__text {
+      font-size: 0.875rem;
+      line-height: 1.35;
+      color: var(--color-text);
+    }
+    .consent-banner__actions {
+      grid-column: 1;
+      grid-row: auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 6px;
+    }
+    .consent-banner__actions :global(.btn) {
+      padding-inline: var(--space-2);
+      height: 44px;
+      min-height: 44px;
+    }
+    /* Sitedeki "yazı boyutu" ayarı (%130–150) açıkken etiketler sütuna sığmayabilir: sarar, düğme gerekirse yükselir. */
+    :global(html[data-a11y-text]) .consent-banner__actions :global(.btn) {
+      height: auto;
+      white-space: normal;
+      line-height: 1.15;
+      padding-block: var(--space-2);
+    }
+  }
+
   /* --- Tercih paneli ------------------------------------------------------ */
   .consent-dialog {
     width: min(36rem, calc(100vw - var(--space-6)));
