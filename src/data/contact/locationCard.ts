@@ -35,4 +35,6 @@ export const contactLocationCard: ContactLocationCardContent = {
   ],
   hoursNotes: ["Öğle arası vermiyoruz.", "Resmî tatillerde kapalıyız."],
   largeTargets: true,
+  // /iletisim, alternatif ofis hattını da listeler (rol etiketiyle; reklam hattı değildir).
+  showAlternatePhone: true,
 };

@@ -31,10 +31,12 @@
 //     içindeki PII filtresi son savunmadır).
 //
 // Hangi hat tıklandı (phone_click / whatsapp_click): numara değil, sabit bir kanal adı
-// `contact_channel` parametresiyle gider (mobile_main, whatsapp_main, landline_office, ads_line,
+// `contact_channel` parametresiyle gider (mobile_main, whatsapp_main, landline_office, mobile_office_alt,
 // other_phone). Eşleme src/lib/consent/contact-channel.ts içindedir.
+// Alternatif ofis hattı (mobile_office_alt, 0543) reklam hattı olmadığı için GA4 `phone_click` ile ölçülür
+// ama Ads dönüşüm olayı (`phone_click_ads`) GÖNDERİLMEZ (countsAsAdsConversion).
 import { trackAdsEvent, trackEvent } from "./analytics";
-import { contactChannelFor } from "./contact-channel";
+import { contactChannelFor, countsAsAdsConversion } from "./contact-channel";
 
 type EventName = "phone_click" | "whatsapp_click" | "directions_click" | "hearing_test_cta" | "hearing_test_info_click";
 type LinkType = "phone" | "whatsapp" | "map" | "internal";
@@ -149,7 +151,7 @@ function onClick(e: MouseEvent): void {
   const channel = contactChannelFor(hit.event, a.getAttribute("href") || "");
   if (channel) params.contact_channel = channel;
   trackEvent(hit.event, params);
-  if (hit.event === "phone_click" || hit.event === "whatsapp_click") {
+  if ((hit.event === "phone_click" || hit.event === "whatsapp_click") && countsAsAdsConversion(channel)) {
     trackAdsEvent(`${hit.event}_ads`, {
       link_location: params.link_location,
       link_type: params.link_type,

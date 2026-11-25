@@ -39,7 +39,7 @@ const Heading = headingLevel;
               />
               <div class="local-block__facts">
                 <p><MapPin size={16} stroke-width={2} aria-hidden="true" /><span>{company.address}</span></p>
-                <p><Phone size={16} stroke-width={2} aria-hidden="true" /><span>{company.phones.map((ph) => ph.number).join(" · ")}</span></p>
+                <p><Phone size={16} stroke-width={2} aria-hidden="true" /><span>{company.phones.filter((ph) => !ph.alternate).map((ph) => ph.number).join(" · ")}</span></p>
                 <a href={company.directionsHref} target="_blank" rel="noopener">Yol tarifi al <ArrowRight size={14} stroke-width={2} aria-hidden="true" /></a>
               </div>
             </div>

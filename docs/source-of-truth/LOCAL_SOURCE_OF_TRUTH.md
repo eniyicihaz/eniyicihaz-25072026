@@ -34,7 +34,7 @@
 | Telefon: ofis mobil | 0543 386 63 60 | [DOĞRULANDI] | İşletme sahibi (D2) | 2026-10-07 | Footer, İletişim (rol etiketiyle) | STATIC |
 | Telefon: ofis sabit | 0262 656 32 77 | [DOĞRULANDI] | İşletme sahibi (D2) | 2026-10-07 | Footer, İletişim (rol etiketiyle) | STATIC |
 | E-posta | eniyicihaz@gmail.com (birincil ve form) | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | İletişim, schema | STATIC |
-| Sitede telefonların mevcut kullanımı | Footer'da 2 numara ("Cep" 0533, "Merkez" 0262). 0543 metin olarak sitede yok; yalnızca tabela fotoğrafında görünüyor | [MEVCUT BELGELERDE VAR] | `company.ts`, site analizi | — | NAP audit | — |
+| Sitede telefonların mevcut kullanımı | Hiyerarşi (işletme sahibi, 2026-11-25): 0533 ana telefon ve reklam hattı → 0543 **alternatif ofis telefonu** (reklam hattı DEĞİL) → 0262 diğer ofis telefonu. Footer'da 3 numara ("Cep" 0533, "Alternatif ofis" 0543, "Merkez" 0262) ve İletişim konum kartında; diğer konum kartlarında ve fiyat rehberinde yalnızca 0533 + 0262. JSON-LD `telephone` dizileri üçünü ana numara ilk sırada taşır. Tabela fotoğrafındaki 0543 ayrı bir konudur | [DOĞRULANDI] (2026-11-25) | `company.ts`, `config/contact.ts` | 2026-11-25 | NAP | — |
 | Schema / NAP / GBP telefon biçimi | NAP/entity audit fazında netleşecek | [VERİ BEKLENİYOR] | K2 | — | — | — |
 | Çalışma saatleri | Hafta içi 08:45–19:00 · Cumartesi 09:00–19:00 · Pazar kapalı | [MEVCUT BELGELERDE VAR] | COMPANY.md §19, `company.ts`, schema | — | Footer, schema, GBP | YENİDEN DOĞRULA |
 | Öğle arası | Yok | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | Saatler | STATIC |

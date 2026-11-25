@@ -3,693 +3,693 @@
   "note": "Başlangıç tarihleri 2026-11-20'de main geçmişinin (56 durum) derlenip ana metin imzalarının karşılaştırılmasıyla üretildi; ayrıntı ve kurallar docs/tech/SITEMAP_LASTMOD.md. Elle düzenlemeyin: tools/lastmod/lastmod.mjs kullanın.",
   "pages": {
     "/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "33f2c9f0398ea3d018a0b122",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/bilgi-merkezi/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "08828f6007608402260f0638",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/blog/basari-hikayeleri/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "7a6056192b67542dc9d9df72",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/blog/etkinlikler/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "a04d02d9a696cb2cde2a546d",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/blog/kampanyalar/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "3d00e5c494f6676abc6c3494",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/blog/sik-sorulan-sorular/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "7799dd2e09e7afb2c0ecfdae",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/blog/uzman-gorusleri/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "9de83a7ce04bf94589f9984b",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/blog/yeni-teknolojiler/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "3bc8f9f1dbde442ba35ea232",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/cayirova-isitme-cihazlari/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "e2782dcea78f5982362bc0ec",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/darica-isitme-cihazlari/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "b1f0847493cf09e7bba2fe2f",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/degerlendirme/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "b3995e9c69b376f7c8608f80",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/degerlendirme/cocuk-isitme-testi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "f6d8b3e0ed0f8c66f5658021",
-      "fsig": "d7234f6ad22794b305cf278a",
+      "fsig": "9dd91f087964559e3236cb64",
       "drift": 0
     },
     "/degerlendirme/odyometri/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "fd49c527c6e8e65663773a68",
-      "fsig": "09bcf7a87e806bb653a49ca3",
+      "fsig": "078a34038442f9e878d3c439",
       "drift": 0
     },
     "/degerlendirme/online-isitme-testi/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "4dc13e88551eb27595e75e97",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/degerlendirme/timpanometri/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "842828b5b0e66edb0e44a1e2",
-      "fsig": "4b9a63f066a3bb7d9f140fe4",
+      "fsig": "3519b004fbdd55f1ecc76135",
       "drift": 0
     },
     "/degerlendirme/tinnitus-degerlendirme/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "d1a86ed2975982b6b5de82bd",
-      "fsig": "51ddc2ad107bb4709f2522a1",
+      "fsig": "b2ac03ec51105b7e2cfad6b0",
       "drift": 0
     },
     "/degerlendirme/ucretsiz-isitme-testi/": {
-      "lastmod": "2026-10-08T22:35:04.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "b1f1723a4fc46f03b5288d32",
-      "fsig": "7718ee99a6ea6086f23a3029",
+      "fsig": "e8c75fe81595b36cf92c28ed",
       "drift": 0
     },
     "/gebze-isitme-cihazlari/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "3b67b39583337da3d3c0b531",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/hakkimizda/": {
       "lastmod": "2026-11-14T20:25:22.000Z",
       "sig": "3f9084911011e7d4ae62e95d",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/hizmetlerimiz/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "a3efaea99852bfe23fb59cf2",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/ihtiyaciniza-gore/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "983249c0c42dca6e27573bdc",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/ihtiyaciniza-gore/aktif-yasam-icin-cihazlar/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "0b37ccd42628542bed268732",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/ihtiyaciniza-gore/cok-ileri-derece-isitme-kaybi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "dd34ba79ca15cd92719cedfa",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/ihtiyaciniza-gore/hafif-isitme-kaybi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "339872fd05196874224eddef",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/ihtiyaciniza-gore/ileri-derece-isitme-kaybi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "aec0c2d9f2110ff79ae1f0b6",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/ihtiyaciniza-gore/orta-derece-isitme-kaybi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "a6c9184c6a3d594a46bd0942",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/ihtiyaciniza-gore/tek-tarafli-isitme-kaybi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "480de59cbb87a18872252529",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/ihtiyaciniza-gore/yaslilar-icin-cihazlar/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "b7f0094ea8112d8f5340d2a8",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/iletisim/": {
-      "lastmod": "2026-11-16T21:52:18.000Z",
-      "sig": "b668e133ff979c819e79b07e",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "lastmod": "2026-11-25T12:55:22.000Z",
+      "sig": "0e3ec860f7b733dd3f28b4ca",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/isitme-cihazi-fiyatlari/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "e5b5975952ea7ce4533e1e00",
-      "fsig": "d284debab85d898e55e46b99",
+      "fsig": "8354a3e05be8ed7b947b7508",
       "drift": 0
     },
     "/isitme-cihazi-markalari/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "ea832722e595915c6f2891c8",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/isitme-cihazlari/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "24e8539d15f65b214442d881",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/isitme-cihazlari/bluetooth-ozellikli/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "47d83c69a2e0705bd09dd10b",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/isitme-cihazlari/cocuklara-ozel/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "14ec1f00d99d3ba777e986d6",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/isitme-cihazlari/gorunmez-cic/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "104879d56f5da6a19f0fe3dc",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/isitme-cihazlari/kulak-arkasi-bte/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "87fec0f887ece97955ae45dd",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/isitme-cihazlari/kulak-ici-ite/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "74d687f3671729294622c366",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/isitme-cihazlari/sarj-edilebilir/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "2c362b17cd96d818beda9f82",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/isitme-cihazlari/suya-dayanikli/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "a33f512814d5cd9874ac1f8c",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/kocaeli-isitme-cihazlari/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "96cfc684ff00e9729b6c308a",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/kvkk/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "3dc39dadfabac4ee086ea697",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/kvkk/aydinlatma-metni/": {
-      "lastmod": "2026-11-14T07:30:12.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "9fa34d64cdf1a8327ab243fb",
-      "fsig": "8ae080990cb42c9ab8595959",
+      "fsig": "dfc03a4dde40a0aa49c1007c",
       "drift": 0
     },
     "/kvkk/cerez-politikasi/": {
-      "lastmod": "2026-11-14T07:30:12.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "62a406c713ac41318d156c1c",
-      "fsig": "8ae080990cb42c9ab8595959",
+      "fsig": "dfc03a4dde40a0aa49c1007c",
       "drift": 0
     },
     "/kvkk/gizlilik-politikasi/": {
-      "lastmod": "2026-11-03T23:56:21.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "6ec654903f66a1d4477aa6ba",
-      "fsig": "8ae080990cb42c9ab8595959",
+      "fsig": "dfc03a4dde40a0aa49c1007c",
       "drift": 0
     },
     "/kvkk/ilgili-kisi-basvuru-formu/": {
-      "lastmod": "2026-09-30T22:40:23.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "e41e676c44031815629ce252",
-      "fsig": "0ee8a255c55bde5da1cce16d",
+      "fsig": "dfc03a4dde40a0aa49c1007c",
       "drift": 0
     },
     "/markalar/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "c4a4589c75aa1d23ca1c94d7",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/am/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "17ad6c91108401c93d99d7f0",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/audifon/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "48c7be9d3bed48e3b3cb46bc",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/audio-service/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "89e6bd7a0beefca7217a54d7",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/beltone/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "df162d22a5a3476138212405",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/bernafon/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "4e3ef384782a846523c294ad",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/coselgi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "33776b323ee73e172470e661",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/maico/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "bfd87f832a9d09e3a7d186c1",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/nuear/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "67196088ab0e243388217c87",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/oticon/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "273b365faf3d96e90c3b3907",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/philips-hearing/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "1adda24295aca066f69ac4a9",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/phonak/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "ae185c8e7dba85fc50986f61",
-      "fsig": "789413421b8fb6df1ae6e44a",
+      "fsig": "62653e819ae0665d3d55641f",
       "drift": 0
     },
     "/markalar/phonak/audeo/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "89376629dc7074e22a69bdcb",
-      "fsig": "b660eaecc395c9b123fb09e0",
+      "fsig": "11c6f230500f4d67bf68913b",
       "drift": 0
     },
     "/markalar/phonak/bolero/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "85aa9bfda6ac1ed9928c6625",
-      "fsig": "556c707b4b550a5cad722ae0",
+      "fsig": "1189092b55f7ce3259884d3e",
       "drift": 0
     },
     "/markalar/phonak/cros/": {
-      "lastmod": "2026-11-14T09:32:26.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "d1b8da278c0a72797ff27210",
-      "fsig": "b660eaecc395c9b123fb09e0",
+      "fsig": "11c6f230500f4d67bf68913b",
       "drift": 0
     },
     "/markalar/phonak/naida/": {
-      "lastmod": "2026-11-14T09:32:26.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "e481e17cf0299b2d9fd07dd1",
-      "fsig": "b660eaecc395c9b123fb09e0",
+      "fsig": "11c6f230500f4d67bf68913b",
       "drift": 0
     },
     "/markalar/phonak/sky/": {
-      "lastmod": "2026-11-14T09:32:26.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "bedc3cac060cdcbdfd4b63bf",
-      "fsig": "556c707b4b550a5cad722ae0",
+      "fsig": "1189092b55f7ce3259884d3e",
       "drift": 0
     },
     "/markalar/phonak/virto/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "34341be341c0941197901cfc",
-      "fsig": "b660eaecc395c9b123fb09e0",
+      "fsig": "11c6f230500f4d67bf68913b",
       "drift": 0
     },
     "/markalar/resound/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "7f7c2c68757dab1b8c7b732c",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/sonic/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "ec845e2473f6ecbb0d902c83",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/unitron/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "b7382a5ca50d9d13065c6fd5",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/markalar/vista/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "98ab769c738248d223fe54d9",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/neden-orijinal/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "5f6cf236cda49e9275bf47ef",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/neden-orijinal/guvenilir-teknoloji/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "4813b99a32e6d74ced446c57",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/neden-orijinal/kolay-degisim/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "8d30fcfb92d254a6bc5fad7b",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/neden-orijinal/marka-danismanligi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "b7c54f539adea45f73c0f067",
-      "fsig": "3c4597adc88b9bd5c39c2345",
+      "fsig": "6ffbc152857d8123400e641c",
       "drift": 0
     },
     "/neden-orijinal/orijinal-aksesuar/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "d11fbead9acb1b0f3ea7cf8f",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/neden-orijinal/ucretsiz-danismanlik/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "93f2e48960b04edd0e2dda55",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/neden-orijinal/uzun-omurlu-cihazlar/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "9246811d5b5497da9063dea1",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/neden-orijinal/yaygin-servis-agi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "fbd8f4117fa6d682ff152da0",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/rehberler/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "f8b0428708c05ddc933f2c55",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/rehberler/cihaz-secim-rehberi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "e4970fa83c4f75729899b8c3",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/rehberler/ilk-kullanim-rehberi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "eb63f8b0ef98fda197442519",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/rehberler/isitme-kaybi-nedir/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "9b80a5726156e4986be379b1",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/rehberler/uyum-sureci/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "2df8dfd3991760f727700a26",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/segmentler/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "53db7b7f7e568cc541793c59",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/segmentler/ekonomik-seri/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "8a3aa62e5bf4d295600d57ec",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/segmentler/premium-seri/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "6509e8b0a5382b0bfb472377",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/segmentler/standart-seri/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "e3d2dde9ecfc0b6e0d9a985a",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/servis-bakim/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "ceacc63dfe6fad8a1255acaf",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/servis-bakim/cihaz-temizligi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "fa7319a35965e2b33e83d8a8",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/servis-bakim/garanti-islemleri/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "40833a7bb17d54039b449a56",
-      "fsig": "d59d1bd651c44e02ed37dd63",
+      "fsig": "527f078741d65a21d59dfec9",
       "drift": 0
     },
     "/servis-bakim/onarim-takibi/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "488e5d08580be4641615336b",
-      "fsig": "62321a8ef448b27f5c174a9a",
+      "fsig": "e3418ee0b7ab3f33cfa8586c",
       "drift": 0
     },
     "/servis-bakim/periyodik-bakim/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "24beefd9725abe74d6e649b6",
-      "fsig": "7a4a9865765803667bce48c5",
+      "fsig": "3aa04316a876472cc1f078ca",
       "drift": 0
     },
     "/servis-bakim/pil-aksesuar/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "4ec373ed9ad9f96c26c6c8d8",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/servis-bakim/teknik-servis/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "0a9785a7106fc0a873261e54",
-      "fsig": "3ffc7701fd80ed8c272151ba",
+      "fsig": "2833520339f5bcd1a495f8cd",
       "drift": 0
     },
     "/sgk-isitme-cihazi-odemesi/": {
-      "lastmod": "2026-11-22T21:51:08.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "ea2fa9bde6feb973fae131cb",
-      "fsig": "ed67c09b8ee7ed95f45095d6",
+      "fsig": "a284cf94f238cfb7deedce4d",
       "drift": 0
     },
     "/sgk/cocuklarda-sgk/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "6a02a4827af7d4ae92707b5e",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/sgk/gerekli-belgeler/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "3c51b7bbdd58f0057b2f5f76",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/sgk/katki-payi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "acea9a907092e8ad5a04442c",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/sgk/rapor-sureci/": {
-      "lastmod": "2026-11-22T22:20:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "41709e92d62b7fd06c1472b6",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/sgk/yenileme-hakki/": {
-      "lastmod": "2026-11-22T21:51:08.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "16e9bc9a85574fb6fdf98890",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/site-haritasi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "d21ee31870c2e35b7bff513e",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/teknolojiler/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "2bad2d9c04036dd1adbbf5cb",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/teknolojiler/gurultu-engelleme/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "3af9b852700374482fce7ca9",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/teknolojiler/kablosuz-baglanti/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "2a1d8f0d3c491815295b0c8c",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/teknolojiler/konusma-odakli/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "1f151167bd661698ee36c7db",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/teknolojiler/sarjli-teknolojiler/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "5497fc4f619a92198cd72519",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/teknolojiler/tinnitus-cozumleri/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "ea3b82fc30b939eff4fbeb51",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/teknolojiler/uzaktan-kontrol/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "b01e18e69f4034f47b35cab8",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/teknolojiler/yapay-zeka-destekli/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "5dcbaf25bca523480010c529",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/uygulama-ayar/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "920009526ac23563747e9892",
-      "fsig": "24fa10dc38543e88e41cfc5a",
+      "fsig": "a70e4216bb34c8d5c657f222",
       "drift": 0
     },
     "/uygulama-ayar/cihaz-deneme/": {
-      "lastmod": "2026-10-08T22:35:04.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "7db9cd22fd36c38b737bc46e",
-      "fsig": "1317e1b5a2abb5a51ead27a2",
+      "fsig": "46bba4b0ec3cfc5a44ab035e",
       "drift": 0
     },
     "/uygulama-ayar/cihaz-uygulama/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "7f9a443fbdb697c571e22026",
-      "fsig": "cc9b4a3f5d40aadfd6a5e1b5",
+      "fsig": "2ae5866848394332d9f66046",
       "drift": 0
     },
     "/uygulama-ayar/evde-isitme-cihazi-hizmeti/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "d5f534ace3b4f8727be23d07",
-      "fsig": "5a38c42f55cf1ddc3abd27bf",
+      "fsig": "5181cd186b9a015ebdd6adf4",
       "drift": 0
     },
     "/uygulama-ayar/kalip-alimi/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "6c5ed315b5733f445353dfb1",
-      "fsig": "85c1749fb869572db3f24e53",
+      "fsig": "5dd5f75e81140e34f9212ea6",
       "drift": 0
     },
     "/uygulama-ayar/kisiye-ozel-ayar/": {
-      "lastmod": "2026-11-12T04:58:56.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "dc9cd0634279140929099261",
-      "fsig": "28079c25caa0eee791167337",
+      "fsig": "ace5ccf81a94cce2327f73eb",
       "drift": 0
     },
     "/uygulama-ayar/kisiye-ozel-programlama/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "f8ee731a78a30b2bcfe67806",
-      "fsig": "1b6529f3c3c1b818cdfa6562",
+      "fsig": "754a8d883918d47ca9b556e2",
       "drift": 0
     },
     "/uygulama-ayar/kontrol-randevusu/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "71f69b6fd56a4766a8cdc7d0",
-      "fsig": "37e8c6c27a1d327045cc5769",
+      "fsig": "a2a22b5159ef048ca7a90cf6",
       "drift": 0
     },
     "/uygulama-ayar/uzaktan-ayar/": {
-      "lastmod": "2026-11-14T20:25:22.000Z",
+      "lastmod": "2026-11-25T12:55:22.000Z",
       "sig": "798d0c4c2943ab38ef41e80e",
-      "fsig": "a95bb2fce152332453217308",
+      "fsig": "a4eebea453b3225e1c324544",
       "drift": 0
     }
   }

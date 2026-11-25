@@ -9,16 +9,21 @@
 // buradaki eşleme yalnızca "bu numara hangi kanal adına denk gelir" bilgisini tutar. Yeni bir hat
 // eklenirse buraya bir satır eklenir; tanınmayan numaralar `other_phone` olarak ölçülür.
 //
+// Hat rolleri (işletme sahibi kararı, 2026-11-25): 0533 = ANA numara VE reklam hattı; 0543 = ALTERNATİF OFİS telefonu
+// (reklam hattı DEĞİL); 0262 = diğer ofis telefonu. Reklam hattı bir "kanal adı" değil, Ads olayının kendisidir
+// (`phone_click_ads`, yalnızca ana hat için sayılır; bkz. `countsAsAdsConversion` ve events.ts). Bu yüzden eskiden
+// 0543'e verilen `ads_line` adı kaldırıldı: yanlış rolü ölçüme taşırdı.
+//
 // Bu dosya bilerek hiçbir şey import etmez: saf fonksiyonlar, tarayıcı veya consent durumundan
 // bağımsız olarak test edilebilir.
 
-export type ContactChannel = "mobile_main" | "whatsapp_main" | "landline_office" | "ads_line" | "other_phone";
+export type ContactChannel = "mobile_main" | "whatsapp_main" | "landline_office" | "mobile_office_alt" | "other_phone";
 
 /** Anahtar: E.164 (yalnızca "+" ve rakam). */
 const PHONE_CHANNELS: Record<string, ContactChannel> = {
-  "+905337733199": "mobile_main", // ana numara (telefon + WhatsApp)
-  "+902626563277": "landline_office", // ofis sabit
-  "+905433866360": "ads_line", // reklam hattı (ofis mobil); sitede kullanılırsa ayrı ölçülür
+  "+905337733199": "mobile_main", // ana numara + reklam hattı (telefon + WhatsApp)
+  "+902626563277": "landline_office", // ofis sabit (diğer ofis telefonu)
+  "+905433866360": "mobile_office_alt", // alternatif ofis telefonu (ofis mobil); reklam hattı DEĞİL
 };
 
 /** Anahtar: wa.me / api.whatsapp.com biçiminde ülke kodlu rakam dizisi ("+" yok). */
@@ -58,4 +63,13 @@ export function contactChannelFor(event: string, href: string): ContactChannel |
   if (event === "phone_click") return phoneChannel(href);
   if (event === "whatsapp_click") return whatsappChannel(href);
   return undefined;
+}
+
+/**
+ * Bu tıklama Google Ads dönüşüm olayına (`phone_click_ads` / `whatsapp_click_ads`) da gitmeli mi?
+ * Alternatif ofis hattı (0543) reklam hattı olmadığı için Ads dönüşümü SAYILMAZ; GA4 `phone_click` olayı ise
+ * `contact_channel=mobile_office_alt` ile yine ayrı ölçülür. Diğer tüm kanallar önceki davranışı korur.
+ */
+export function countsAsAdsConversion(channel: ContactChannel | undefined): boolean {
+  return channel !== "mobile_office_alt";
 }

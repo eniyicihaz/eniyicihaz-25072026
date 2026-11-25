@@ -20,6 +20,9 @@ export interface PhoneEntry {
   /** true: bu hat telefonla 23:59'a kadar aranabilir (yalnızca ana numara). Etiket metni config/contact.ts'ten gelir;
    * merkez ziyaret saatleriyle (`hours`) ilgisi yoktur. */
   extendedReach?: boolean;
+  /** true: alternatif ofis hattı. Footer ve İletişim sayfasında listelenir; diğer konum kartlarında ve fiyat rehberinde
+   * görünmez (ContactLocationCard `showAlternatePhone` ile açılır). Ana CTA/WhatsApp/reklam hattı DEĞİLDİR. */
+  alternate?: boolean;
 }
 
 /** A working-hours row. */

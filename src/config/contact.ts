@@ -3,10 +3,14 @@
 // throughout the project (Header, Oticon brand page) — not a new value,
 // just centralized so components stop hardcoding tel:/wa.me links.
 //
-// İki hat vardır ve rolleri farklıdır:
-//   • `phone`    — ANA numara (cep). Sitedeki bütün "Bizi Arayın" CTA'ları ve WhatsApp bu numaradır.
-//   • `landline` — merkez sabit hattı (ikincil). Yalnızca footer ve konum kartındaki telefon listesinde
-//                  "Merkez" etiketiyle görünür; hiçbir ana CTA bu numaraya gitmez.
+// Üç hat vardır ve rolleri farklıdır (işletme sahibi kararı, 2026-11-25; hiyerarşi bu sırayladır):
+//   • `phone`     — ANA numara (cep) ve REKLAM HATTI. Sitedeki bütün "Bizi Arayın" CTA'ları ve WhatsApp bu numaradır.
+//   • `altOffice` — ALTERNATİF OFİS telefonu (ofis mobil). Reklam hattı DEĞİLDİR. Yalnızca footer ve İletişim sayfası
+//                   telefon listesinde "Alternatif ofis" etiketiyle görünür; hiçbir CTA, WhatsApp veya reklam bu numaraya gitmez.
+//                   Ölçümde ayrı kanaldır (`mobile_office_alt`, bkz. lib/consent/contact-channel.ts) ve Google Ads
+//                   dönüşümü olarak SAYILMAZ (lib/consent/events.ts).
+//   • `landline`  — merkez sabit hattı (diğer ofis telefonu). Yalnızca footer ve konum kartındaki telefon listesinde
+//                   "Merkez" etiketiyle görünür; hiçbir ana CTA bu numaraya gitmez.
 //
 // `phoneReach` — TELEFONLA ULAŞILABİLİRLİK bilgisidir (işletme sahibi kararı, 2026-11-17): ana numara
 // 23:59'a kadar aranabilir. Bu bilgi FİZİKSEL MERKEZ ZİYARET SAATİ DEĞİLDİR:
@@ -21,6 +25,11 @@ export const contactConfig = {
     display: "0533 773 31 99",
     href: "tel:+905337733199",
     e164: "+905337733199",
+  },
+  altOffice: {
+    display: "0543 386 63 60",
+    href: "tel:+905433866360",
+    e164: "+905433866360",
   },
   landline: {
     display: "0262 656 32 77",

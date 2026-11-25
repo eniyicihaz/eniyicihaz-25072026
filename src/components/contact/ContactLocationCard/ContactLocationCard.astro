@@ -54,6 +54,9 @@ export interface ContactLocationCardContent {
   note?: ContactLocationNote;
   /** 48px+ tap targets; directions rendered as a solid button. */
   largeTargets?: boolean;
+  /** Alternatif ofis hattını (company.phones[].alternate) da listeler. Varsayılan kapalı: yalnızca /iletisim açar;
+   * diğer konum kartları önceki iki numarayı göstermeye devam eder (numara footer'da zaten görünür). */
+  showAlternatePhone?: boolean;
 }
 
 interface Props {
@@ -119,7 +122,7 @@ const { data } = Astro.props;
         <div class="contact-location__body">
           <p class="contact-location__label">{data.phonesLabel}</p>
           <div class="contact-location__phones">
-            {data.company.phones.map((phone) => (
+            {data.company.phones.filter((phone) => !phone.alternate || data.showAlternatePhone).map((phone) => (
               <a class="contact-location__phone" href={phone.href}>
                 <span class="contact-location__phone-number">{phone.number}</span>
                 {phone.label && <span class="contact-location__phone-label">{phone.label}</span>}

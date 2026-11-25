@@ -31,6 +31,7 @@ import {
   buildWebPageSchema,
   type WebPageKind,
 } from "../lib/schema";
+import { company } from "../components/footer/Footer/data/company";
 import { breadcrumbTrail, normalizePath } from "../config/site-map";
 import { ABOUT_BUSINESS, PAGE_KINDS, SERVICE_PAGES, TOC_EXCLUDED } from "../config/page-types";
 import { buildTocHtml, enhancePage, insertAfterHero } from "../lib/page-enhance";
@@ -92,7 +93,8 @@ const organizationSchema = {
   "@id": "https://www.eniyicihaz.com/#organization",
   name: "Avrasya İşitme Cihazları",
   url: "https://www.eniyicihaz.com/",
-  telephone: "+905337733199",
+  // Tek kaynak company.phones (ana numara → alternatif ofis → diğer ofis); MedicalBusiness düğümleriyle aynı sıra.
+  telephone: company.phones.map((phone) => phone.href.replace("tel:", "")),
   // Kuruluş yılı SoT'ta doğrulanmıştır ve sitede görünür (ana sayfa "Kurumsal Bilgiler"). Darıca merkezinin açılışı
   // (Ağustos 2024) ayrı bir bilgidir ve burada kuruluş tarihi gibi yazılmaz (MASTER_PLAN B2).
   foundingDate: "2009",

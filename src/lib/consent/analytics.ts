@@ -20,7 +20,7 @@ const ALLOWED_PARAMS = new Set([
   "cta_label",
   "device", // mobile / desktop
   "page_type", // sayfa türü (ör. marka, yerel, rehber) — sayfa içeriği değil
-  "contact_channel", // mobile_main / whatsapp_main / landline_office / ads_line / other_phone (numara DEĞİL, sabit ad)
+  "contact_channel", // mobile_main / whatsapp_main / landline_office / mobile_office_alt / other_phone (numara DEĞİL, sabit ad)
 ]);
 
 // Ads dönüşüm olayları için daha da dar liste: DOM metni (cta_label) ve sayfa bilgisi gitmez.
