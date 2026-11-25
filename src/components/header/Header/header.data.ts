@@ -154,8 +154,8 @@ const servicesMega: MegaMenuData = {
     title: "Profesyonel Hizmetlerimiz",
     text: "Ücretsiz testten cihaz uygulamasına, teknik servisten danışmanlığa kadar tüm süreçte yanınızdayız.",
     cta: { label: "Tüm Hizmetler", href: "/hizmetlerimiz/" },
-    trustItems: ["SGK anlaşmalı merkez", "Kişiye özel çözümler", "Tüm markalara teknik servis", "Darıca'da fiziksel merkez"],
-    floatingBadge: "Tüm Markalara Teknik Servis",
+    trustItems: ["SGK anlaşmalı merkez", "Kişiye özel çözümler", "Randevu ile teknik servis", "Darıca'da fiziksel merkez"],
+    floatingBadge: "Bakım ve Teknik Destek",
   },
   columns: [
     {
