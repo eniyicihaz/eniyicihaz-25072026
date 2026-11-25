@@ -27,6 +27,7 @@ import BrandPageRelatedContent from "../components/brand-page/BrandPageRelatedCo
 
 import { hakkimizdaHero } from "../data/hakkimizda/hero";
 import { hakkimizdaIntro } from "../data/hakkimizda/intro";
+import { hakkimizdaKurumsal } from "../data/hakkimizda/kurumsal";
 import { hakkimizdaCenterGallery } from "../data/hakkimizda/center-gallery";
 import { hakkimizdaSignalList } from "../data/hakkimizda/signal-list";
 import { hakkimizdaValues } from "../data/hakkimizda/values";
@@ -84,7 +85,10 @@ const medicalBusinessSchema = {
   areaServed: SERVICE_AREA_NAMES,
   hasMap: BUSINESS_MAP_URL,
 };
-import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVICE_AREA_NAMES } from "../lib/schema";
+import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVICE_AREA_NAMES, buildErdincKilicSchema } from "../lib/schema";
+
+// Erdinç Kılıç (Person) + İŞİTKOOP (Organization): yalnızca bu sayfada; ilişki ve kapsam lib/schema.ts'te belgelidir.
+const erdincKilicSchema = buildErdincKilicSchema();
 ---
 
 <MainLayout
@@ -92,9 +96,11 @@ import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BU
   description="Avrasya İşitme Cihazları 2009'da kuruldu; Darıca'daki SGK anlaşmalı merkezimiz Ağustos 2024'te açıldı. Test, cihaz uygulaması ve teknik servis Darıca'da."
 >
   <script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(erdincKilicSchema)} />
 
   <CorporateHero data={hakkimizdaHero} />
   <BrandPageIntro data={hakkimizdaIntro} />
+  <ValueGrid data={hakkimizdaKurumsal} />
   <CenterGallery data={hakkimizdaCenterGallery} />
   <BrandPageSignalList data={hakkimizdaSignalList} />
   <ValueGrid data={hakkimizdaValues} />

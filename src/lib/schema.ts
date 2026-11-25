@@ -144,6 +144,56 @@ export function buildMedicalBusinessSchema(
 }
 
 // ---------------------------------------------------------------------------------------------------------------
+// Erdinç Kılıç (Person) + İŞİTKOOP (Organization) — yalnızca /hakkimizda/.
+// Kaynaklar: işletme sahibinin 2026-11-25 beyanı (isim ve iki İŞİTKOOP görevi yayımlanabilir) ve İŞİTKOOP'un resmî
+// yönetim kurulu sayfası (ISITKOOP_BOARD_URL; sayfa kendi JSON-LD'sinde de aynı kişiyi worksFor = Avrasya İşitme Merkezi
+// ile listeler). Bilerek EKLENMEYENLER: eğitim, unvan (Odym.), sertifika, deneyim yılı, dil ve "işletme sahibi/kurucu"
+// gibi sahibin bu iş için yayımlanmasına onay vermediği her kişisel özellik (BUSINESS_SOT §4: yayın rızası açık).
+// İlişkiler (Schema.org Role kalıbı): Person.worksFor → sitewide Organization (Avrasya, kuruluş 2009, MainLayout);
+// Person.memberOf → İŞİTKOOP; İki görev İŞİTKOOP düğümünün `member` alanında iki ayrı OrganizationRole olarak
+// tanımlanır (roleName + member = Person). Görevler Person'a `jobTitle` olarak yazılmaz; böylece Avrasya'daki bir
+// unvan gibi okunmaz, kesinlikle İŞİTKOOP'a ait kalır.
+export const PERSON_ERDINC_ID = "https://www.eniyicihaz.com/hakkimizda/#erdinc-kilic";
+export const ISITKOOP_ID = "https://www.eniyicihaz.com/hakkimizda/#isitkoop";
+export const ISITKOOP_URL = "https://www.isitkoop.com/";
+/** İŞİTKOOP'un resmî yönetim kurulu sayfası — Person'ın iki görevinin kaynağı. */
+export const ISITKOOP_BOARD_URL = "https://www.isitkoop.com/yonetim-kurulu";
+
+export function buildErdincKilicSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": PERSON_ERDINC_ID,
+        name: "Erdinç Kılıç",
+        description:
+          "Erdinç Kılıç, İŞİTKOOP Yönetim Kurulu Başkan Yardımcısı ve Tedarik, Lojistik ve Kurumsal İlişkiler Direktörüdür.",
+        worksFor: { "@id": ORGANIZATION_ID },
+        memberOf: { "@id": ISITKOOP_ID },
+        subjectOf: { "@type": "WebPage", url: ISITKOOP_BOARD_URL, name: "İŞİTKOOP Yönetim Kurulu" },
+      },
+      {
+        "@type": "Organization",
+        "@id": ISITKOOP_ID,
+        name: "İŞİTKOOP",
+        alternateName: "İşitkoop",
+        description: "İşitme Sağlığı Kooperatifi",
+        url: ISITKOOP_URL,
+        member: [
+          { "@type": "OrganizationRole", roleName: "Yönetim Kurulu Başkan Yardımcısı", member: { "@id": PERSON_ERDINC_ID } },
+          {
+            "@type": "OrganizationRole",
+            roleName: "Tedarik, Lojistik ve Kurumsal İlişkiler Direktörü",
+            member: { "@id": PERSON_ERDINC_ID },
+          },
+        ],
+      },
+    ],
+  };
+}
+
+// ---------------------------------------------------------------------------------------------------------------
 // Page-level nodes generated centrally by MainLayout (WebPage, BreadcrumbList, Service). All of them reference the
 // existing sitewide @ids (Organization / MedicalBusiness / WebSite) instead of declaring new entities, and none adds
 // a branch, address, phone, rating or review (MASTER_PLAN K7, QUALITY_GATES §4).

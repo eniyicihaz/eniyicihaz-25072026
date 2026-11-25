@@ -13,6 +13,8 @@ export interface ValueGridItem {
   icon: any;
   title: string;
   description: string;
+  /** Opsiyonel kaynak bağlantısı (ör. resmî kaynak sayfası). `external` yeni sekmede açar. Yoksa kart önceki gibi çizilir. */
+  link?: { label: string; href: string; external?: boolean };
 }
 
 export interface ValueGridContent {
@@ -57,6 +59,16 @@ const titleId = domId("value-grid", data.heading);
             </span>
             <h3 class="value-grid__card-title">{item.title}</h3>
             <p class="value-grid__card-desc">{item.description}</p>
+            {item.link && (
+              <a
+                class="value-grid__link"
+                href={item.link.href}
+                {...(item.link.external ? { target: "_blank", rel: "noopener" } : {})}
+              >
+                {item.link.label}
+                {item.link.external && <span class="value-grid__link-note"> (yeni sekmede açılır)</span>}
+              </a>
+            )}
           </li>
         );
       })}
@@ -163,6 +175,38 @@ const titleId = domId("value-grid", data.heading);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
+  }
+
+  .value-grid__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    margin-top: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .value-grid__link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .value-grid__link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Ekran okuyucu için yeni sekme uyarısı; görsel olarak gizli. */
+  .value-grid__link-note {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   @media (max-width: 640px) {
