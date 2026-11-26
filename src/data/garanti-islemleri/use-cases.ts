@@ -19,7 +19,7 @@ export const garantiIslemleriUseCases: BrandPageTechnologyContent = {
     {
       label: "KAPSAM DIŞI DURUMLAR",
       title: "Kullanıcı Kaynaklı Hasarlar",
-      description: "Su teması, düşme veya yetkisiz müdahale gibi durumlar genellikle kapsam dışındadır.",
+      description: "Su teması, düşme veya uygun olmayan müdahale gibi durumlar genellikle kapsam dışındadır.",
     },
     {
       label: "GEREKLİ BELGELER",

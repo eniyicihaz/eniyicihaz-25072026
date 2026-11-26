@@ -59,7 +59,7 @@ Bilgi veya kural çelişirse öncelik sırası:
 
 | Konu | Durum | Nerede |
 |---|---|---|
-| "Yetkili bayi" iddiası | [DOĞRULAMA GEREKLİ] | BUSINESS_SOT §5, PRODUCT_SOT §1 |
+| "Yetkili bayi" iddiası | KULLANILMAZ [DOĞRULANDI] (İşletme sahibi, 2026-11-25) | BUSINESS_SOT §0.5 ve §5, PRODUCT_SOT §1 |
 | NuEar–Starkey ilişkisi ve adlandırma | [DOĞRULAMA GEREKLİ] | PRODUCT_SOT §2 |
 | SGK güncel tutarları ve prosedürleri | [TIME-SENSITIVE] [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ] | SERVICE_SOT §3 |
 | Cihaz fiyatlarının sitede yayınlanması | Karar verilmedi | PRODUCT_SOT §4 |

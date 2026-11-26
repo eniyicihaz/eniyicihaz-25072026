@@ -1,6 +1,6 @@
 # BUSINESS_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-14 (marka çeşitliliği ve teknik destek ifadeleri; önceki: 2026-11-08 Facebook ve Instagram URL doğrulaması, §3)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-25 (işletme statüsü, marka bağımsızlığı ve üretici kanalı ifadeleri, §0.5; önceki: 2026-11-14 marka çeşitliliği ve teknik destek ifadeleri; 2026-11-08 Facebook ve Instagram URL doğrulaması, §3)
 > **Amaç:** Avrasya İşitme Cihazları için tek kaynak. Kapsadığı konular:
 > - İşletme kimliği ve tarihçesi
 > - Yasal yapı
@@ -93,9 +93,18 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 - Bu kural işletmenin mevcut uygulamasıdır, yasal hak iddiası değildir.
 
 **İddialar**
-- "Yetkili bayi / tüm markaların yetkili bayisiyiz" iddiası **[DOĞRULAMA GEREKLİ]**. Kamuya açık iddia olarak kullanılmaz.
+- "Yetkili bayi / tüm markaların yetkili bayisiyiz" iddiası kamuya açık iddia olarak **kullanılmaz** (İşletme sahibi, 2026-11-25 kesin karar; önceki durum: [DOĞRULAMA GEREKLİ]). Ayrıntı: aşağıdaki "İşletme statüsü ve marka bağımsızlığı".
 - Yazılı üretici yetkisi belgelenmedikçe şu ifadeler kullanılmaz: "üretici servis yetkisi", "yetkili servis", "üretici yetkili servis", "resmî servis", "üretici garantisi kapsamında servis", "üretici tarafından yetkilendirilmiş teknik servis". Bakım ve teknik destek için kanonik ifade: "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz." (İşletme sahibi, 2026-11-14; SERVICE_SOT §4)
 - Üretici eğitimi, sertifika veya yetki ifadeleri belgesi sunulmadıkça kamuya açık metinde kullanılmaz (İşletme sahibi, 2026-11-14).
+
+**İşletme statüsü ve marka bağımsızlığı** — [DOĞRULANDI] · İşletme sahibi · 2026-11-25 · STATIC
+- Avrasya İşitme, **ruhsatlı ve resmî olarak faaliyet gösteren bir işitme cihazı merkezidir.** Kamuya açık temel ifade: **"Ruhsatlı İşitme Cihazı Merkezi."** Bağlama göre: "ruhsatlı işitme cihazı merkezi olarak hizmet veriyoruz", "işitme cihazı merkezi olarak hastalarımıza …", "resmî işitme cihazı merkezi". Merkezin bu resmî statüsü zayıflatılmaz veya belirsizleştirilmez.
+- Merkezin **ruhsat statüsü** ile **üreticilerin bayi ve teknik servis ağlarına bağlılık** birbirinden farklı konulardır. Avrasya'nın kendi işletme statüsü ile üreticilerin satış ve servis süreçleri birbirine karıştırılmaz.
+- Avrasya **belirli bir işitme cihazı markasına ticari olarak bağlı değildir.** Marka ve model önerileri hastanın işitme ihtiyacı, cihazdan beklediği fayda ve ekonomik durumu esas alınarak yapılır; **ticari marka bağlılığı, cihaz önerme kriteri değildir.** Marka çeşitliliği için kanonik ifade ("10+ marka ile çalışıyoruz.") korunur.
+- **Terminoloji:** Avrasya'nın kendi statüsü anlatılırken "yetkili bayi", "yetkili satış noktası", "yetkili teknik servis" kullanılmaz; "Ruhsatlı İşitme Cihazı Merkezi" ifadesi kullanılır. Üreticilerin kendi süreçleri anlatılırken mümkün olduğunca şu ifadeler tercih edilir: "üreticinin belirlediği satış noktaları", "markanın servis ağı", "üreticinin servis noktaları", "üreticinin garanti koşulları", "üretici tarafından belirlenen servis süreci". Kamuya açık metinlerde "yetkili" sözcüğü gereksiz yere kullanılmaz.
+- Üreticinin garanti ve servis sürecine ilişkin **doğru tüketici bilgileri korunabilir** (üretici garanti koşulları, üretici servisine gönderim, seri numarası ve fatura doğrulaması); bu bilgiler Avrasya'nın kendi hizmeti ya da bir markanın satış/servis ağına bağlılığı gibi sunulmaz.
+- Tüketiciye "satıcının yetkili bayi listesinde olup olmadığına bakın" yerine **fatura, garanti belgesi ve seri numarasını kontrol etmesi** önerilir. "Garanti kesin olarak geçersiz olur" gibi kesin ifadeler kullanılmaz; "üretici garanti koşullarına göre garantiyi etkileyebilir" biçiminde yazılır.
+- Kamuya açık siteye bayilik, ÜTS, mevzuat veya ürün alım-satım prosedürü açıklaması **eklenmez**. Mevzuata ilişkin açık sorular dahili olarak ele alınır; kesinleşmiş hukuki sonuç gibi yazılmaz.
 
 ---
 
@@ -185,7 +194,7 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 | "İşitme Kooperatifi", "Anlaşmalı İşitme Merkezi Ağı" (iş ortakları) | COMPANY.md §16 | [KULLANICIDAN BİLGİ GEREKLİ] | Ad ve belge gerekli. |
 | "Yedek işitme cihazı" | COMPANY.md §12 | [DOĞRULANDI] (2026-10-07) | Hizmet veriliyor ve ücretsiz; onarım sürecinde yedek cihaz sağlanıyor (SERVICE_SOT H22, H32, §4). |
 | "3D kalıp atölyesi" | COMPANY.md §12 | Hizmet: [DOĞRULANDI] · "Atölye" ifadesi: [KULLANICIDAN BİLGİ GEREKLİ] | 3D kulak kalıbı hizmeti veriliyor (H9). Kalıp üretiminin ve atölyenin merkezde olup olmadığı doğrulanmadı. |
-| "Yetkili bayi / tüm markaların yetkili bayisiyiz" | Kullanıcı açıklaması ("bayilik anlaşması kalktı, bu yüzden yetkili bayi diyebiliriz") | **[DOĞRULAMA GEREKLİ]** | Hukuki ve kurumsal açıdan çelişkili olabilir. Kamuya açık iddia olarak kilitlenmez, kullanılmaz. |
+| "Yetkili bayi / tüm markaların yetkili bayisiyiz" | Kullanıcı açıklaması ("bayilik anlaşması kalktı, bu yüzden yetkili bayi diyebiliriz") | **KULLANILMAZ** [DOĞRULANDI] (İşletme sahibi, 2026-11-25) | Avrasya belirli bir markaya ticari olarak bağlı değildir; kamuya açık iddia olarak kullanılmaz. İşletme statüsü: "Ruhsatlı İşitme Cihazı Merkezi" (§0.5). |
 | "Türkiye'nin en güvenilir / en iyi / tek / ilk / en ileri teknoloji" ve benzeri ifadeler | COMPANY.md §2, §5, §22; eski metinler | Kullanılmaz [DOĞRULANDI] | Doğrulanmamış üstünlük iddiası (BRAND_SOT §3). |
 
 ## 6. KVKK / Yasal
@@ -265,6 +274,7 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 | "2009'dan beri aynı ekip" | Ekip 2009'dan beri aynı değil; Erdinç Kılıç 2009'dan beri organizasyonda |
 | "18 marka" / "18+ marka" / "Yaklaşık 20 marka" | "10+ marka ile çalışıyoruz." (2026-11-14) |
 | "18 markanın tamamı için üretici servis yetkisi" / "üretici yetkili servis" / "18 markada teknik servis" | "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz." (2026-11-14) |
+| "Yetkili kanaldan alın", "yetkili satış noktası", "yetkili bayi listesini kontrol edin", "yetkisiz servis garantiyi geçersiz kılar" (altı içerik sayfası) | "Üreticinin garanti koşulları", "üreticinin belirlediği satış noktaları", "fatura, garanti belgesi ve seri numarasını kontrol edin", "servis süreci, üretici garanti koşullarına göre garantiyi etkileyebilir" (2026-11-25) |
 | "Ücretsiz 7 günlük deneme" | "Cihazı satın alarak 7 güne kadar deneme; uygun bulunmaması halinde ücret iadesi." (H7 ücretsiz demo ayrı) |
 | "avrasyaisitme@gmail.com birincil e-posta" | eniyicihaz@gmail.com (birincil ve form) |
 | "Kullanılmaması gereken fotoğraf listesi" | Böyle bir liste yok |

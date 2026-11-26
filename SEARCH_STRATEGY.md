@@ -210,7 +210,7 @@ Bir kalıp, yalnızca gerçekten o soruyu cevaplıyorsa kullanılır. Cevap moto
 - **Kanonik işletme tanımı** BUSINESS_SOT §1'dedir ve her yerde aynı kullanılır.
 - **İlk cümle:** İçerik sayfaları ilk 40–60 kelimede soruya doğrudan ve tek başına doğru bir cevap verir (answer-first).
 - **Tutarlılık:** Varlık bilgileri (marka adı, tek merkez, telefon rolleri, kuruluş ile Darıca açılışının ayrımı) SoT'la birebir aynıdır.
-- **Doğrulanmamış bilgi:** AI sistemlerinin alıntılayabileceği metinlerde [DOĞRULAMA GEREKLİ] veya [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ] etiketli bilgi kesin bilgi gibi yer almaz. Örnekler: yetkili bayi iddiası, SGK prosedür ve tutarları.
+- **Doğrulanmamış bilgi:** AI sistemlerinin alıntılayabileceği metinlerde [DOĞRULAMA GEREKLİ] veya [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ] etiketli bilgi kesin bilgi gibi yer almaz. Örnekler: SGK prosedür ve tutarları. ("Yetkili bayi" ifadesi 2026-11-25 kararıyla hiç kullanılmaz; bkz. BUSINESS_SOT §0.5.)
 
 ## Neden Kaynak Gösterilir
 

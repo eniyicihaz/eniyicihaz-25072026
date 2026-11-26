@@ -22,7 +22,7 @@ export const kolayDegisimIdealUser: BrandPageIdealUserContent = {
     {
       icon: FileX,
       title: "Belirsiz veya Yazılı Olmayan Koşullar",
-      description: "Yetkisiz kanallarda değişim koşulları net bir şekilde belirtilmeyebilir.",
+      description: "Koşulları yazılı olarak paylaşılmayan satışlarda değişim şartları net belirtilmeyebilir.",
       suggestedFamilies: ["Net Koşullar"],
     },
     {

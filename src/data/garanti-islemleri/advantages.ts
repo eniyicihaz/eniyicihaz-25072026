@@ -27,9 +27,9 @@ export const garantiIslemleriAdvantages: BrandPageAdvantagesContent = {
     },
     {
       icon: Building2,
-      category: "Yetkili Kanal",
-      title: "Üretici Garantisi Güvencesi",
-      description: "Yetkili kanaldan alınan orijinal ürünlerde üretici garantisi, üreticinin koşullarına göre geçerlidir.",
+      category: "Üretici Garantisi",
+      title: "Üretici Garanti Koşulları Esas Alınır",
+      description: "Orijinal ürünlerde garanti, üreticinin garanti koşullarına göre değerlendirilir.",
     },
     {
       icon: Timer,

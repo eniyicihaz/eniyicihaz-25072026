@@ -1,6 +1,6 @@
 # SERVICE_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-14 (marka çeşitliliği ve teknik destek ifadeleri, §2.7 ve §4; önceki: 2026-10-07 Faz 0 son bilgi aktarımı)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-25 (marka önerisi ölçütü ve üretici garanti/servis anlatımı, §2.7 ve §4; önceki: 2026-11-14 marka çeşitliliği ve teknik destek ifadeleri; 2026-10-07 Faz 0 son bilgi aktarımı)
 > **Amaç:** Bu dosya şu konuların tek kaynağıdır: gerçekte verilen hizmetler, gerçek hasta/müşteri süreci, SGK işleyişi ve teknik servis.
 
 **Kurallar** (tam metin: `BUSINESS_SOURCE_OF_TRUTH.md` §0)
@@ -272,6 +272,7 @@
   - **Marka çeşitliliği "10+ marka ile çalışıyoruz." ifadesiyle anlatılır.** (İşletme sahibi, 2026-11-14. "18 marka", "18+ marka" ve "yaklaşık 20 marka" ifadeleri kullanılmaz. Güncel marka listesi PRODUCT_SOT §1'dedir; onaysız marka eklenmez.)
   - Bu ifade yalnızca marka çeşitliliğini anlatır; marka ilişkilerinin türü (yetkili bayi, yetkili servis vb.) doğrulanmış gibi bir anlam taşıyacak şekilde kullanılmaz (bkz. PRODUCT_SOT).
   - Hasta özellikle bir marka istemiyorsa marka; fiyat/performans veya teknolojik açıdan işletmenin değerlendirmesine göre seçiliyor.
+  - **Öneri ölçütü** — [DOĞRULANDI] · İşletme sahibi · 2026-11-25: Marka ve model önerisi hastanın işitme ihtiyacı, cihazdan beklediği fayda ve ekonomik durumu esas alınarak yapılır. Avrasya belirli bir markaya ticari olarak bağlı değildir; ticari marka bağlılığı öneri kriteri değildir (bkz. BUSINESS_SOT §0.5).
   - Seçilen markanın neden uygun olduğu hastaya anlatılıyor.
 - *Not:* Bu bilgi ileride PRODUCT_SOURCE_OF_TRUTH ile ilişkilendirilecek. Bu turda PRODUCT dosyası değiştirilmedi.
 
@@ -408,6 +409,7 @@
 | Garanti politikası (belgede) | "Üretici garanti koşulları geçerlidir." | [MEVCUT BELGELERDE VAR] | COMPANY.md §20 | — | YENİDEN DOĞRULA |
 | Bakım ve teknik destek anlatımı (kanonik ifade) | "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz." Marka sayısı ya da "markaların tamamında" kapsam iddiası kurulmaz | [DOĞRULANDI] | İşletme sahibi | 2026-11-14 | STATIC |
 | Üretici servis yetkisi | Yazılı üretici yetkisi belgelenmedi. Şu ifadeler kullanılmaz: "üretici servis yetkisi", "yetkili servis", "üretici yetkili servis", "resmî servis", "üretici garantisi kapsamında servis", "üretici tarafından yetkilendirilmiş teknik servis" | [DOĞRULANDI] (kural) | İşletme sahibi | 2026-11-14 | STATIC |
+| Üretici garanti ve servis sürecinin anlatımı | Üreticinin garanti ve servis sürecine ilişkin doğru tüketici bilgileri (üretici garanti koşulları, üretici servisine gönderim, seri numarası ve fatura doğrulaması) korunabilir. Bu süreçler "üreticinin belirlediği satış noktaları", "markanın servis ağı", "üreticinin servis noktaları", "üretici tarafından belirlenen servis süreci" gibi öznesi üretici olan ifadelerle anlatılır; Avrasya'nın kendi hizmeti gibi sunulmaz. "Yetkisiz servis garantiyi geçersiz kılar" gibi kesin ifadeler kullanılmaz; "üretici garanti koşullarına göre garantiyi etkileyebilir" yazılır | [DOĞRULANDI] (İşletme sahibi, 2026-11-25) | İşletme sahibi | 2026-11-25 | STATIC |
 | Servis kapsamı: diğer cihazlar | Kullanıcının ifadesi: Türkiye'de satılan işitme cihazlarının tamamına teknik servis sağlanabiliyor | [DOĞRULANDI] (kullanıcı beyanı). **Üstünlük iddiasına dönüştürülmez** ("Türkiye'de tek firma", "tek merkez", "tek biz yapıyoruz" yasak). Kamuya açık metinde kapsam yalnızca yukarıdaki kanonik ifadeyle anlatılır (2026-11-14) | İşletme sahibi | 2026-10-07 | YENİDEN DOĞRULA |
 | Garanti cihazları | Gerektiğinde dış servise gönderiliyor | [DOĞRULANDI] | İşletme sahibi | 2026-10-07 | STATIC |
 | Merkezde yerinde yapılan onarım işlemlerinin listesi | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | — |

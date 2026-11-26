@@ -41,7 +41,7 @@ export const guvenilirTeknolojiFaq: BrandPageFaqContent = {
         {
           question: "Cihazımın orijinal olup olmadığını nasıl anlarım?",
           answer:
-            "Satıcının yetkili bayi listesinde yer alıp almadığını, faturalı satış yapılıp yapılmadığını ve cihazın seri numarasının üretici sisteminde doğrulanıp doğrulanamadığını kontrol edebilirsiniz.",
+            "Faturalı satış yapılıp yapılmadığını, garanti belgesinin verilip verilmediğini ve cihazın seri numarasının üretici sisteminde doğrulanıp doğrulanamadığını kontrol edebilirsiniz.",
         },
         {
           question: "Seri numarasını nereden kontrol edebilirim?",

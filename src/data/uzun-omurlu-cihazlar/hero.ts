@@ -5,7 +5,7 @@
 // Second page of the "Neden Orijinal" series (see header.data.ts's
 // brandsMega second column), following Güvenilir Teknoloji. Same trust/
 // authenticity content genre — device longevity as a direct consequence
-// of buying original, authorized-channel products with genuine parts
+// of buying original, manufacturer-warranted products with genuine parts
 // and proper maintenance support.
 //
 // accentColor: zümrüt yeşili / emerald-600 (#059669) — second color in

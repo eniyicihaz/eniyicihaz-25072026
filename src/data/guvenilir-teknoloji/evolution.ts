@@ -14,10 +14,10 @@ export const guvenilirTeknolojiEvolution: BrandPageTechEvolutionContent = {
   intro: "Satın alma öncesi ve sonrasında izleyebileceğiniz dört adımlık bir doğrulama sürecini bir araya getirdik.",
   stages: [
     {
-      era: "Yetkili Bayi Kontrolü",
-      whatItBrought: "Ürünü satın almadan önce satıcının markanın resmi yetkili bayi listesinde yer aldığını kontrol edin.",
+      era: "Kaynak ve Koşulları Sorun",
+      whatItBrought: "Ürünü satın almadan önce kaynağını, garanti koşullarını ve değişim ile iade koşullarını sorun; mümkünse bu bilgileri yazılı olarak isteyin.",
       bestFor: "Satın alma öncesi ilk adım",
-      families: ["Yetkili Bayi Listesi"],
+      families: ["Kaynak Sorgulama"],
     },
     {
       era: "Fatura ve Garanti Belgesi",

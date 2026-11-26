@@ -5,11 +5,11 @@
 // "Neden Orijinal" series (see header.data.ts's brandsMega second
 // column) — a new content genre for this component set: not a device
 // category or a needs profile, but a trust/authenticity topic within
-// the Markalar mega (why buying original, authorized-channel devices
+// the Markalar mega (why buying original, manufacturer-warranted devices
 // matters). The Brand Component Architecture is repurposed accordingly:
 // "candidacy" sections become authenticity red-flags and verification
 // steps, and the KulakArkasiComparison table compares an original,
-// authorized-channel product against a parallel-import/counterfeit one.
+// manufacturer-warranted product against a parallel-import/counterfeit one.
 //
 // accentColor: koyu mavi / blue-700 (#1d4ed8) — this page opens a fresh
 // accent rotation for the brandsMega "Neden Orijinal" column. It is not
@@ -32,7 +32,7 @@ export const guvenilirTeknolojiHero: BrandPageHeroContent = {
   headingLines: ["Güvenilir Teknoloji", "Neden Önemlidir?"],
   paragraphs: [
     "Orijinal işitme cihazları; üretici tarafından test edilmiş, sertifikalı ve güncel yazılıma sahip güvenilir bir teknoloji sunar. Üretici garanti koşulları geçerlidir.",
-    "Avrasya İşitme olarak 10+ marka ile çalışıyoruz; satın alma öncesinde cihazın garanti ve seri numarası bilgilerini sormanızı öneriyoruz.",
+    "Ruhsatlı bir işitme cihazı merkezi olarak Avrasya İşitme'de 10+ marka ile çalışıyoruz; satın alma öncesinde cihazın garanti ve seri numarası bilgilerini sormanızı öneriyoruz.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

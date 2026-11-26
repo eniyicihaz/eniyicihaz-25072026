@@ -58,7 +58,7 @@
   - Walk-in kabul edilir; hizmet bazında randevu gerekliliği devam eder (SERVICE_SOT T5).
   - Kullanıcı kaynaklı bir "kullanılmayacak fotoğraf" listesi yok (ASSET_SOT §2).
 - **Karar verilmemiş konular** (karar gibi yazılmaz):
-  - Yetkili bayi iddiası: [DOĞRULAMA GEREKLİ]
+  - Yetkili bayi iddiası: [DOĞRULAMA GEREKLİ] — **AŞILDI (2026-11-25):** kamuya açık iddia olarak kullanılmaz; bkz. aşağıdaki 2026-11-25 kaydı ve BUSINESS_SOT §0.5.
   - NuEar–Starkey ilişkisi ve adlandırması: [DOĞRULAMA GEREKLİ]
   - SGK güncel tutar ve prosedürleri: [TIME-SENSITIVE], [WEB / RESMİ KAYNAK DOĞRULAMASI GEREKLİ]
   - Cihaz fiyatlarının sitede yayınlanması: henüz kararlaştırılmadı
@@ -242,3 +242,14 @@
 - **Düzeltme:** `config.ts` yorumundaki “GA4 Measurement ID G-9PC230DJCE” ifadesi yanlıştı (site verisi 8.11.2026'da kesilen eski mülk); doğru GA4 kimliği `G-C9GWZ5YY4L`'dir. Yorum kaldırıldı, kaynak-doğruluk belgesi güncellendi.
 - **Değişmeyen:** İzin mantığı ve çerez bandı, `CONSENT_POLICY_VERSION` (`2026-11-14-v3`), politika metinleri, tercih saklama, GA4 mülkü `G-C9GWZ5YY4L`, Google Ads bütçesi / teklif stratejisi / dönüşüm ayarları.
 - **Geri dönüş:** Sitede `DEFAULT_GTM_ID` yeniden `GTM-N8H82DDL` yapılıp yayımlanır (ya da geçiş commit'i `git revert` edilir); `GTM-N8H82DDL` canlı v6 içeriği değişmedi. Kapsayıcıda önceki sürüm: GTM-NRWFGX8D → Sürümler → v6 → Yayınla.
+
+## 2026-11-25 (A2: "yetkili" ifadeleri ve işletme statüsü)
+
+> Kaynak: işletme sahibinin kesin kararları. Aşağıdaki karar, daha önceki "yetkili bayi iddiası [DOĞRULAMA GEREKLİ]" durumunu (bu günlükteki önceki kayıtlar dahil) aşar; eski kayıt silinmedi.
+
+- **Karar (statü):** Avrasya İşitme, ruhsatlı ve resmî olarak faaliyet gösteren bir işitme cihazı merkezidir; kamuya açık temel ifade "Ruhsatlı İşitme Cihazı Merkezi". Bu statü, üreticilerin bayi ve teknik servis ağlarına bağlılıktan ayrı bir konudur.
+- **Karar (marka bağımsızlığı):** Avrasya belirli bir markaya ticari olarak bağlı değildir; marka/model önerisi hastanın işitme ihtiyacı, beklenen faydası ve ekonomik durumuna göre yapılır. "10+ marka ile çalışıyoruz" ifadesi korunur.
+- **Karar (terminoloji):** Avrasya için "yetkili bayi / yetkili satış noktası / yetkili teknik servis" kullanılmaz. Üreticinin süreçleri "üreticinin belirlediği satış noktaları", "markanın servis ağı", "üreticinin garanti koşulları" gibi öznesi üretici olan ifadelerle anlatılır; "bayi listesini kontrol edin" yerine fatura, garanti belgesi ve seri numarası kontrolü önerilir; "garanti kesin geçersiz olur" gibi kesin ifadeler kullanılmaz.
+- **Kapsam:** Altı içerik sayfası (`guvenilir-teknoloji`, `kolay-degisim`, `garanti-islemleri`, `orijinal-aksesuar`, `ekonomik-seri`, `uzun-omurlu-cihazlar`) ve üç sayfadaki SSS/JSON-LD metinleri. Kamuya açık siteye bayilik, ÜTS, mevzuat veya ürün alım prosedürü açıklaması eklenmedi.
+- **Değişmeyen:** MegaMenu, telefonlar, reklamlar, sitemap/robots yapısı, Organization ve diğer JSON-LD türleri; "Uzman Ekibinin Değerlendirmesi" başlığı (73 sayfada ortak şablon, ayrı karar bekliyor).
+- **Dayanak:** BUSINESS_SOT §0.5 (tek normatif kayıt); BRAND_SOT §3, PRODUCT_SOT §1, SERVICE_SOT §2.7 ve §4 bu kayda işaret eder.

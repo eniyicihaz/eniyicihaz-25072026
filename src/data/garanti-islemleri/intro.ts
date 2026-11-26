@@ -12,14 +12,14 @@ export const garantiIslemleriIntro: BrandPageIntroContent = {
   heading: "Garanti İşlemleri Nedir ve Neyi Kapsar?",
   paragraphs: [
     "Garanti işlemleri, cihazınızda üretim kaynaklı bir kusur tespit edildiğinde, üreticinin sunduğu garanti kapsamında onarım veya parça değişimi talep edebileceğiniz resmi bir süreçtir.",
-    "Garanti kapsamı yalnızca üretim kaynaklı sorunları içerir; su teması, düşme veya yetkisiz müdahale gibi kullanıcı kaynaklı hasarlar genellikle kapsam dışında kalır.",
+    "Garanti kapsamı yalnızca üretim kaynaklı sorunları içerir; su teması, düşme veya uygun olmayan müdahale gibi kullanıcı kaynaklı hasarlar genellikle kapsam dışında kalır.",
     "Garanti talebinde bulunmak için satın alma faturanız ve garanti belgeniz gereklidir; bu belgeler süreç boyunca saklanmalıdır.",
     "Garanti işlemleri, beklentilerinizi karşılamayan veya ihtiyacınız değişen bir cihaz için model değişimi sunan Kolay Değişim güvencemizden farklıdır; o süreç hakkında Kolay Değişim sayfamızdan bilgi alabilirsiniz.",
   ],
   stats: [
     { value: "Üretim Kaynaklı Sorunlar", label: "Kapsam" },
     { value: "Fatura ve Garanti Belgesi", label: "Gerekli Belgeler" },
-    { value: "Yetkili Kanal Şartı", label: "Geçerlilik Koşulu" },
+    { value: "Üretici Garanti Koşulları", label: "Geçerlilik Çerçevesi" },
     { value: "Şeffaf Süreç", label: "Yaklaşımımız" },
   ],
   accentColor: "#4f46e5",

@@ -1,6 +1,6 @@
 # BRAND_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-14 (marka çeşitliliği, teknik destek ve yetki ifadeleri, §3; önceki: 2026-10-07 Faz 0 son bilgi aktarımı)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-25 (işletme statüsü, marka bağımsızlığı ve üretici kanalı ifadeleri, §3; önceki: 2026-11-14 marka çeşitliliği, teknik destek ve yetki ifadeleri; 2026-10-07 Faz 0 son bilgi aktarımı)
 > **Amaç:** Bu dosya şunların tek kaynağıdır:
 > - Marka adı kuralları
 > - İddia politikası ve yasaklı ifadeler
@@ -53,10 +53,12 @@
 | Şube olmayan yer şube gibi gösterilmez | [DOĞRULANDI] | K7 |
 | Uydurma yorum, istatistik, ödül veya sertifika kullanılmaz | [MEVCUT BELGELERDE VAR] | PRINCIPLES.md §7, §11 |
 | Doğrulama olmadan kullanılmayacak üstünlük ve otorite ifadeleri: "tek firma", "Türkiye'deki tek merkez", "Türkiye'de ilk / tek", "en ileri teknoloji", "tek biz yapıyoruz" | [DOĞRULANDI] (İşletme sahibi, 2026-10-07) | Son bilgi aktarımı |
-| "Yetkili bayi / tüm markaların yetkili bayisiyiz" | **[DOĞRULAMA GEREKLİ]**. Kamuya açık iddia olarak kullanılmaz (PRODUCT_SOT §1) | İşletme sahibi, 2026-10-07 |
+| "Yetkili bayi / tüm markaların yetkili bayisiyiz" | **KULLANILMAZ** [DOĞRULANDI]. Kamuya açık iddia olarak kullanılmaz (PRODUCT_SOT §1; BUSINESS_SOT §0.5) | İşletme sahibi, 2026-10-07; kesinleşti 2026-11-25 |
 | Bakım ve teknik destek kamuya açık metinde kanonik ifadeyle anlatılır: "Farklı marka ve modellerde işitme cihazları için bakım ve teknik destek seçenekleri hakkında bilgi alabilirsiniz." "Tüm markalarda / tüm cihazlarda servis" biçiminde kapsam iddiası ve üstünlük iddiası kurulmaz | [DOĞRULANDI] (İşletme sahibi, 2026-11-14) | SERVICE_SOT §4 |
 | Marka çeşitliliği "10+ marka ile çalışıyoruz." ifadesiyle anlatılır. "18 marka", "18+" ve "yaklaşık 20" kullanılmaz; ifade her sayfaya kopyalanmaz ve yetki ya da servis ağı izlenimi oluşturacak biçimde kullanılmaz | [DOĞRULANDI] (İşletme sahibi, 2026-11-14) | PRODUCT_SOT §1 |
 | Yazılı üretici yetkisi belgelenmedikçe şu ifadeler kullanılmaz: "üretici servis yetkisi", "yetkili servis", "üretici yetkili servis", "resmî servis", "üretici garantisi kapsamında servis", "üretici tarafından yetkilendirilmiş teknik servis" | [DOĞRULANDI] (İşletme sahibi, 2026-11-14) | PRODUCT_SOT §1, SERVICE_SOT §4 |
+| İşletme statüsü: Avrasya İşitme, ruhsatlı ve resmî olarak faaliyet gösteren bir işitme cihazı merkezidir; kamuya açık temel ifade "Ruhsatlı İşitme Cihazı Merkezi". Bu statü, üreticilerin bayi ve teknik servis ağlarına bağlılıktan ayrı bir konudur; ikisi birbirine karıştırılmaz | [DOĞRULANDI] (İşletme sahibi, 2026-11-25) | BUSINESS_SOT §0.5 |
+| Avrasya belirli bir markaya ticari olarak bağlı değildir; marka/model önerisi hastanın işitme ihtiyacı, beklenen faydası ve ekonomik durumuna göre yapılır. Avrasya'yı bir markanın satış veya servis ağına bağlı gösteren ifadeler ("yetkili kanal", "yetkili satış noktası", "yetkili bayi listesi" vb.) kamuya açık metinde kullanılmaz; üreticinin kendi süreçleri öznesi üretici olan ifadelerle anlatılır ("üreticinin belirlediği satış noktaları", "markanın servis ağı", "üreticinin garanti koşulları") | [DOĞRULANDI] (İşletme sahibi, 2026-11-25) | BUSINESS_SOT §0.5 |
 | Üretici eğitimi, sertifika veya yetki ifadeleri belgesi sunulmadıkça kullanılmaz ("Üretici Eğitimi Almış Ekip" ifadesi 2026-11-14'te siteden kaldırıldı) | [DOĞRULANDI] (İşletme sahibi, 2026-11-14) | BUSINESS_SOT §4 |
 | Widex, Signia ve Rexton sitede marka, ürün, logo veya SEO öğesi olarak kullanılmaz. Açık istisna: onaylı dört gerçek ofis fotoğrafı | [DOĞRULANDI] (İşletme sahibi, 2026-11-14) | PRODUCT_SOT §1, ASSET_SOT §2 |
 | "Ücretsiz deneme" ifadesi kullanılmaz. Kanonik ifade: "Cihazı satın alarak 7 güne kadar deneme; uygun bulunmaması halinde ücret iadesi." | [DOĞRULANDI] (İşletme sahibi, 2026-10-07) | SERVICE_SOT §1.5 |

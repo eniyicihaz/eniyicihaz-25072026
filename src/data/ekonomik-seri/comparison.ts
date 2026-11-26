@@ -62,7 +62,7 @@ export const ekonomikSeriComparison: KulakArkasiComparisonContent = {
       secondary: "Yasal güvence ve iade hakları belirsiz olabilir.",
     },
   ],
-  note: "Bu karşılaştırma genel eğilimleri özetler; en uygun fiyatlı seçeneği ararken dahi orijinallik ve yetkili kanaldan alışverişten ödün vermemenizi öneririz.",
+  note: "Bu karşılaştırma genel eğilimleri özetler; en uygun fiyatlı seçeneği ararken dahi orijinallikten ve faturalı, garanti belgeli alışverişten ödün vermemenizi öneririz.",
   accentColor: "#16a34a",
   accentColorBadgeBg: "rgb(22 163 74 / 0.08)",
   accentColorBadgeBorder: "rgb(22 163 74 / 0.35)",

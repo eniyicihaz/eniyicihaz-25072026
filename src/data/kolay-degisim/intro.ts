@@ -12,8 +12,8 @@ export const kolayDegisimIntro: BrandPageIntroContent = {
   heading: "Kolay Değişim Süreci Nedir ve Neden Önemlidir?",
   paragraphs: [
     "Kolay değişim, satın aldığınız cihazın beklentilerinizi karşılamaması, üretim kaynaklı bir sorun taşıması veya ihtiyaçlarınızın zamanla değişmesi durumunda başvurabileceğiniz şeffaf bir süreçtir.",
-    "Orijinal ve yetkili kanaldan alınan cihazlarda değişim koşulları net bir şekilde belirlenmiştir; bu da sürecin güvenilir ve öngörülebilir olmasını sağlar.",
-    "Paralel ithal veya yetkisiz kanallardan alınan ürünlerde ise böyle bir değişim güvencesi genellikle bulunmaz.",
+    "Değişim koşulları satın almadan önce net olarak belirlendiğinde süreç güvenilir ve öngörülebilir olur.",
+    "Paralel ithal veya kaynağı belirsiz satışlarda ise değişim koşulları belirsiz olabilir; bu yüzden değişim imkânını satın almadan önce sormak önemlidir.",
     "Değişim sürecinin kapsamı ve koşulları; ürünün durumuna, kullanım süresine ve satış koşullarına göre değişebilir.",
   ],
   stats: [

@@ -1,8 +1,8 @@
-// "Yetkili Olduğumuz Markalar" section for the /neden-orijinal/
+// "Sattığımız Markalardan Bazıları" section for the /neden-orijinal/
 // guvenilir-teknoloji page. Reuses the shared BrandPageRelatedContent
 // component as a brand-link showcase, same technique every prior page
 // uses. All hrefs point to real, already-built /markalar/{slug} pages —
-// here framed around authorized-channel/warranty language rather than
+// here framed around manufacturer-warranty language rather than
 // device-family fit.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";

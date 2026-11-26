@@ -215,7 +215,7 @@ Bu, sağlık bitişik bir alanda faaliyet gösteren bir marka için en kritik b�
   - **Ek yasaklar (2026-10-07):**
     - "en iyi", "Türkiye'nin en güvenilir", "en kapsamlı", "1 numara", "en büyük"
     - "tek firma", "Türkiye'deki tek merkez", "Türkiye'de ilk / tek", "en ileri teknoloji"
-  - **Doğrulanmadan kullanılmayacak ifade:** "yetkili bayi" ([DOĞRULAMA GEREKLİ]).
+  - **Kullanılmayacak ifade:** "yetkili bayi" (İşletme sahibi kararı, 2026-11-25; BUSINESS_SOT §0.5).
   - **Liste kaynağı:** Tüm proje için kanonik yasak liste BRAND_SOT §3'tür. Bu bölüm o listeyle tutarlıdır.
 - **Deneme dili:**
   - Kanonik ifade: "Cihazı satın alarak 7 güne kadar deneme; uygun bulunmaması halinde ücret iadesi."

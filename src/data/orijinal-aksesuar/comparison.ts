@@ -48,7 +48,7 @@ export const orijinalAksesuarComparison: KulakArkasiComparisonContent = {
     },
     {
       feature: "Bulunabilirlik",
-      primary: "Yetkili satış noktalarından kolayca temin edilebilir.",
+      primary: "Cihazınızın marka ve modeline uygun orijinal aksesuarlar temin edilebilir.",
       secondary: "Kaynağı ve güvenilirliği değişkenlik gösterebilir.",
     },
   ],

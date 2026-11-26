@@ -39,7 +39,7 @@ export const uzunOmurluCihazlarComparison: KulakArkasiComparisonContent = {
     {
       feature: "Garanti Durumu",
       primary: "Düzenli bakım ve orijinal parça kullanımı garantiyi korur.",
-      secondary: "Yetkisiz müdahale veya orijinal olmayan parça, garantiyi geçersiz kılabilir.",
+      secondary: "Uygun olmayan müdahale veya orijinal olmayan parça kullanımı, üretici garanti koşullarına göre garantiyi etkileyebilir.",
     },
     {
       feature: "Yazılım Güncelliği",

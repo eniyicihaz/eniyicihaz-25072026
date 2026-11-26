@@ -1,6 +1,6 @@
 # PRODUCT_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-14 (marka listesi, marka çeşitliliği ve teknik destek ifadeleri; önceki: 2026-10-07 Faz 0 son bilgi aktarımı)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-25 (marka bağımsızlığı ve ilişki türü; önceki: 2026-11-14 marka listesi, marka çeşitliliği ve teknik destek ifadeleri; 2026-10-07 Faz 0 son bilgi aktarımı)
 > **Amaç:** Tek kaynak olarak şunları tutar:
 > - çalışılan markalar ve her biriyle ilişkinin türü,
 > - ürün grupları,
@@ -32,28 +32,28 @@
 - **Yayından kaldırılan markalar** (İşletme sahibi, 2026-11-14): Widex, Signia, Rexton. Bu markalar sitede marka listesi, marka sayfası, ürün kartı, logo, ürün görseli, SEO başlığı/açıklaması, JSON-LD veya site haritası öğesi olarak kullanılmaz.
   - Açık istisna: işletme sahibinin onayladığı dört gerçek ofis fotoğrafında görünen fiziksel materyaller (ASSET_SOT §2).
 - **Marka çeşitliliği vitrinlerinde onaylı örnek modeller** (İşletme sahibi, 2026-11-14): Bernafon Encanta CIC ve ReSound Vivia. Stok, teslimat/temin garantisi, fiyat, kampanya veya satış bilgisi yazılmaz; model özellikleri yalnızca doğrulanmış bilgiden aktarılır.
-- **İlişki türü** (yetkili bayi / satıcı / distribütör): **[DOĞRULAMA GEREKLİ]**.
-  - Kullanıcının açıklaması "bayilik anlaşması kalktı, bu yüzden yetkili bayi diyebiliriz" şeklinde. Bu hukuki ve kurumsal açıdan çelişkili olabilir.
-  - "Bütün markalarda yetkili bayi" ya da "tüm markaların yetkili bayisiyiz" ifadeleri kamuya açık iddia olarak **kullanılmaz** ve kilitlenmez.
+- **İlişki türü** (yetkili bayi / satıcı / distribütör): **Belirli bir markaya ticari bağlılık yok** — **[DOĞRULANDI]** · İşletme sahibi · 2026-11-25 (BUSINESS_SOT §0.5). Marka/model önerisi hastanın işitme ihtiyacı, beklenen faydası ve ekonomik durumuna göre yapılır; ticari marka bağlılığı öneri kriteri değildir.
+  - Önceki kullanıcı açıklaması ("bayilik anlaşması kalktı, bu yüzden yetkili bayi diyebiliriz") **geçersizdir**; 2026-11-25 kararı onun yerine geçmiştir.
+  - "Bütün markalarda yetkili bayi" ya da "tüm markaların yetkili bayisiyiz" ifadeleri kamuya açık iddia olarak **kullanılmaz**. Üreticinin kendi satış ve servis süreçleri anlatılırken "üreticinin belirlediği satış noktaları", "markanın servis ağı", "üreticinin garanti koşulları" gibi öznesi üretici olan ifadeler kullanılır.
 - **Marka bazında demo/deneme:** Doğrulanmadı.
 
-| Marka | Site sayfası | Satılıyor mu | Demo / deneme | Servis | İlişki türü (yetkili bayi / satıcı / distribütör) ve belge | Hâlâ çalışılıyor mu |
+| Marka | Site sayfası | Satılıyor mu | Demo / deneme | Servis | İlişki türü (ticari bağlılık) ve belge | Hâlâ çalışılıyor mu |
 |---|---|---|---|---|---|---|
-| Oticon | `/markalar/oticon/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Phonak | `/markalar/phonak/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| ReSound | `/markalar/resound/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| NuEar | `/markalar/nuear/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] (Starkey ile ilişkisi: §2) | Evet (satılıyor) |
-| Unitron | `/markalar/unitron/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Bernafon | `/markalar/bernafon/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Audio Service | `/markalar/audio-service/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Sonic | `/markalar/sonic/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Philips | `/markalar/philips-hearing/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| A&M | `/markalar/am/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Audifon | `/markalar/audifon/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Beltone | `/markalar/beltone/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Coselgi | `/markalar/coselgi/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Maico | `/markalar/maico/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
-| Vista | `/markalar/vista/` | Evet | 〃 | Evet | [DOĞRULAMA GEREKLİ] | Evet (satılıyor) |
+| Oticon | `/markalar/oticon/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Phonak | `/markalar/phonak/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| ReSound | `/markalar/resound/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| NuEar | `/markalar/nuear/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) (Starkey ile ilişkisi: §2) | Evet (satılıyor) |
+| Unitron | `/markalar/unitron/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Bernafon | `/markalar/bernafon/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Audio Service | `/markalar/audio-service/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Sonic | `/markalar/sonic/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Philips | `/markalar/philips-hearing/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| A&M | `/markalar/am/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Audifon | `/markalar/audifon/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Beltone | `/markalar/beltone/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Coselgi | `/markalar/coselgi/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Maico | `/markalar/maico/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
+| Vista | `/markalar/vista/` | Evet | 〃 | Evet | Belirli bir markaya ticari bağlılık yok (BUSINESS_SOT §0.5, 2026-11-25) | Evet (satılıyor) |
 
 *(〃 = [KULLANICIDAN BİLGİ GEREKLİ])*
 *("Satılıyor mu", "Servis" ve "Hâlâ çalışılıyor mu" sütunlarındaki "Evet" değerleri: [DOĞRULANDI] · İşletme sahibi · 2026-10-07)*

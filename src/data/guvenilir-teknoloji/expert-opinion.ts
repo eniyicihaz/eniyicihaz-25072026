@@ -10,7 +10,7 @@ export const guvenilirTeknolojiExpertOpinion: BrandPageExpertOpinionContent = {
   badge: "UZMAN YORUMU",
   heading: "Avrasya İşitme Uzman Ekibinin Değerlendirmesi",
   quote:
-    "Bir işitme cihazının performansı kadar, orijinal ve yetkili kanaldan alınmış olması da uzun vadeli güvenilirlik açısından önemlidir; bu nedenle müşterilerimize her zaman yetkili satış ve seri numarası doğrulamasının önemini vurguluyoruz.",
+    "Bir işitme cihazının performansı kadar, orijinal olması ve faturalı, garanti belgeli, seri numarası doğrulanabilir bir cihaz olması da uzun vadeli güvenilirlik açısından önemlidir. Ruhsatlı işitme cihazı merkezi olarak müşterilerimize her zaman fatura, garanti belgesi ve seri numarası kontrolünün önemini hatırlatıyoruz.",
   note: "Ürününüzün orijinalliğinden emin değilseniz, seri numarası doğrulaması için bizimle iletişime geçebilirsiniz.",
   accentColor: "#1d4ed8",
   accentColorBadgeBg: "rgb(29 78 216 / 0.08)",

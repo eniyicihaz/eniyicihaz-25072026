@@ -33,9 +33,9 @@ export const guvenilirTeknolojiIdealUser: BrandPageIdealUserContent = {
     },
     {
       icon: Store,
-      title: "Yetkili Satıcı Listesinde Bulunmayan Satıcılar",
-      description: "Üreticinin resmi yetkili satıcı listesinde yer almayan kaynaklardan alışveriş riskli olabilir.",
-      suggestedFamilies: ["Yetkili Bayi Kontrolü"],
+      title: "Üreticinin Satış Kanalı Dışından Gelen Ürünler",
+      description: "Üreticinin belirlediği satış kanalları dışından, farklı ülkelerden getirilen ürünler garanti ve destek açısından sorun yaşatabilir.",
+      suggestedFamilies: ["Fatura ve Seri No Kontrolü"],
     },
     {
       icon: WifiOff,

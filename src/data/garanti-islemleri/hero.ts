@@ -34,7 +34,7 @@ export const garantiIslemleriHero: BrandPageHeroContent = {
   headingLines: ["Garanti İşlemleri", "Nasıl Yürütülür?"],
   paragraphs: [
     "Garanti işlemleri, cihazınızda üretim kaynaklı bir sorun tespit edildiğinde başvurabileceğiniz, kapsamı ve koşulları net bir şekilde belirlenmiş resmi bir süreçtir.",
-    "Avrasya İşitme'de, garanti kapsamınızı netleştiriyor ve gerekli belgelerle süreci sizin için şeffaf bir şekilde yürütüyoruz.",
+    "Ruhsatlı bir işitme cihazı merkezi olarak Avrasya İşitme, garanti kapsamınızı netleştirir ve gerekli belgelerle süreci sizin için şeffaf biçimde takip eder; garanti koşulları ve gerekirse servis süreci üreticinin belirlediği şekilde işler.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },
@@ -52,10 +52,10 @@ export const garantiIslemleriHero: BrandPageHeroContent = {
       description: "Süreç, satın alma belgeleriniz üzerinden şeffaf bir şekilde takip edilir.",
     },
     {
-      label: "YETKİLİ KANAL GÜVENCESİ",
+      label: "ÜRETİCİ GARANTİ KOŞULLARI",
       accent: "#3730a3",
       title: "Orijinal Ürünlerde Geçerlidir",
-      description: "Garanti güvencesi, yetkili kanaldan alınan orijinal ürünlerde geçerlidir.",
+      description: "Garanti, orijinal ürünlerde üreticinin garanti koşullarına göre geçerlidir.",
     },
   ],
   image: {

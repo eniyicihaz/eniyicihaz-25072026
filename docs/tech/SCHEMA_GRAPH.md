@@ -45,7 +45,7 @@ Karar DECISIONS.md'ye işlenir; ardından bu belge "karar verildi" bölümüyle 
 4. **Sahte rating/review yok.** AggregateRating veya Review, uydurma ya da site içinde seçilmiş yorumlarla üretilmez.
 5. **Yalnızca görünür ve doğrulanmış bilgi.** Schema'daki her alan sayfada kullanıcıya görünür ve SoT'ta [DOĞRULANDI] durumundadır. [DOĞRULAMA GEREKLİ], [KULLANICIDAN BİLGİ GEREKLİ] veya resmî doğrulama bekleyen bilgi schema'ya girmez (QUALITY_GATES.md §4, §12.8).
 6. **Person yalnızca yayın rızasıyla.** Ekip bilgisi rıza tamamlanmadan Person olarak işaretlenmez (EEAT_AND_EDITORIAL.md §3).
-7. **Yetki iddiası yok.** Marka ilişkisi (ör. yetkili bayi) schema'da ifade edilmez; durum [DOĞRULAMA GEREKLİ] (PRODUCT_SOT §1).
+7. **Yetki iddiası yok.** Marka ilişkisi (ör. yetkili bayi) schema'da ifade edilmez; kamuya açık iddia olarak kullanılmaz (İşletme sahibi kararı, 2026-11-25; BUSINESS_SOT §0.5).
 8. **Tagline schema'ya taşınmaz** (BRAND_SOT §2).
 
 ## 4. İşletme Varlığı: Seçenekler

@@ -65,7 +65,7 @@ Kaynak gösterim biçimi (öneri): kurum adı, belge/sayfa adı, bağlantı ve e
 Kaynak: BRAND_SOT §3, BUSINESS_SOT §5, PRODUCT_SOT §1–§2.
 
 **Kilitlenmeyen ve kullanılmayan ifadeler (doğrulanmadan):**
-- "Yetkili bayi", "tüm markaların yetkili bayisi" ve benzeri yetki/ilişki iddiaları ([DOĞRULAMA GEREKLİ]).
+- "Yetkili bayi", "tüm markaların yetkili bayisi" ve benzeri yetki/ilişki iddiaları (kesin karar: kullanılmaz, İşletme sahibi, 2026-11-25; BUSINESS_SOT §0.5).
 - "En iyi", "en güvenilir", "en ileri", "tek", "ilk", "1 numara", "en büyük", "en kapsamlı" ve benzeri üstünlük ifadeleri.
 - "Türkiye geneli yaygın ağ" ve doğrulanmamış iş ortaklığı ifadeleri (BUSINESS_SOT §5).
 - NuEar–Starkey ilişkisine dair kurumsal/hukuki ifadeler ([DOĞRULAMA GEREKLİ], PRODUCT_SOT §2).

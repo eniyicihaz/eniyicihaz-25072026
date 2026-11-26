@@ -26,10 +26,10 @@ export const orijinalAksesuarEvolution: BrandPageTechEvolutionContent = {
       families: ["Aksesuar Seçimi"],
     },
     {
-      era: "Yetkili Kanaldan Temin Edin",
-      whatItBrought: "Seçtiğiniz aksesuarı yetkili satış noktasından orijinal olarak temin edin.",
+      era: "Orijinal Olarak Temin Edin",
+      whatItBrought: "Seçtiğiniz aksesuarın orijinal ve cihazınızın marka ve modeliyle uyumlu olduğundan emin olarak temin edin.",
       bestFor: "Orijinallik güvencesi",
-      families: ["Yetkili Temin"],
+      families: ["Orijinal Temin"],
     },
     {
       era: "Düzenli Değişim Takvimi Oluşturun",

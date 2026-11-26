@@ -33,9 +33,9 @@ export const kolayDegisimConsiderations: BrandPageIdealUserContent = {
     },
     {
       icon: Store,
-      title: "Yetkisiz Kanallarda Değişim Güvencesi Bulunmayabilir",
-      description: "Yetkisiz kaynaklardan alınan ürünlerde değişim hakkı genellikle sunulmaz.",
-      suggestedFamilies: ["Yetkili Kanal Tercihi"],
+      title: "Koşulları Belirsiz Satışlarda Değişim İmkânı Belirsiz Olabilir",
+      description: "Kaynağı veya satış koşulları net olmayan ürünlerde değişim imkânı belirsiz olabilir; değişim koşullarını satın almadan önce öğrenmeniz önerilir.",
+      suggestedFamilies: ["Net Koşul Kontrolü"],
     },
     {
       icon: Gauge,

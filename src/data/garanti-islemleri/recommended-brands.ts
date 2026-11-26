@@ -4,32 +4,32 @@
 // uses. Kept deliberately generic on exact warranty durations since
 // these vary by market and campaign and aren't independently
 // verifiable per brand; framed instead around each brand's own
-// authorized warranty coverage being available.
+// manufacturer warranty terms applying.
 
 import type { BrandPageRelatedContentContent } from "../../components/brand-page/BrandPageRelatedContent/BrandPageRelatedContent.astro";
 
 export const garantiIslemleriRecommendedBrands: BrandPageRelatedContentContent = {
   badge: "MARKALARA GÖRE İNCELEYİN",
-  heading: "Garanti İşlemlerinde Destek Verdiğimiz Markalardan Bazıları",
+  heading: "Garanti Süreci Hakkında Bilgi Alabileceğiniz Markalardan Bazıları",
   links: [
     {
       label: "Oticon",
-      description: "Oticon cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
+      description: "Oticon cihazlarında garanti, üreticinin garanti koşullarına göre işler.",
       href: "/markalar/oticon/",
     },
     {
       label: "Phonak",
-      description: "Phonak cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
+      description: "Phonak cihazlarında garanti, üreticinin garanti koşullarına göre işler.",
       href: "/markalar/phonak/",
     },
     {
       label: "ReSound",
-      description: "ReSound cihazları, yetkili kanaldan alındığında üretici garantisi kapsamındadır.",
+      description: "ReSound cihazlarında garanti, üreticinin garanti koşullarına göre işler.",
       href: "/markalar/resound/",
     },
     {
       label: "NuEar",
-      description: "NuEar'ın uygun fiyatlı modelleri de yetkili kanaldan alındığında garanti kapsamındadır.",
+      description: "NuEar'ın uygun fiyatlı modellerinde de garanti, üreticinin garanti koşullarına göre işler.",
       href: "/markalar/nuear/",
     },
   ],

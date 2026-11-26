@@ -82,7 +82,7 @@ Ayrıntılı önceki envanter: BRAND_SOT §5 (yalnızca referans; yeniden tarama
 | # | Madde | Hedef |
 |---|---|---|
 | C1 | Üstünlük ifadeleri (BRAND_SOT §3 listesi) | Kaldırılır |
-| C2 | "Yetkili bayi" ve benzeri yetki iddiaları | **Bu belge karar vermez.** Durum [DOĞRULAMA GEREKLİ] (PRODUCT_SOT §1). Sitede bulunursa "doğrulama bekleyen" sınıfına alınır ve karar kullanıcıya sunulur |
+| C2 | "Yetkili bayi" ve benzeri yetki iddiaları | Durum: **kullanılmaz** (İşletme sahibi kararı, 2026-11-25; BUSINESS_SOT §0.5). Sitede bulunursa kaldırılır veya öznesi üretici olan ifadeyle değiştirilir |
 | C3 | Deneme dili ("ücretsiz" ile nitelenmiş deneme ifadeleri) | SERVICE_SOT §1.5 kanonik ifadesi; merkezdeki demo ayrı anlatılır |
 | C4 | "Yaygın ağ" ifadesi ve ilgili sayfa | Doğrulanmadan kullanılmaz (BUSINESS_SOT §5) |
 | C5 | "Klinik" terimi | "Merkez" (CONTENT_ARCHITECTURE.md §9) |

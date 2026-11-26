@@ -26,8 +26,8 @@ export const kolayDegisimHero: BrandPageHeroContent = {
   badge: "MARKALAR · NEDEN ORİJİNAL · KOLAY DEĞİŞİM",
   headingLines: ["Kolay Değişim", "Nasıl Bir Güven Verir?"],
   paragraphs: [
-    "Seçtiğiniz cihaz beklentilerinizi karşılamadığında veya ihtiyaçlarınız zamanla değiştiğinde, orijinal ve yetkili kanaldan alınan cihazlarda değişim süreci çok daha net ve güvenilir işler.",
-    "Avrasya İşitme olarak, deneme süreci sonrasında veya ihtiyaç değişikliğinde cihazınızı kolayca değiştirebilmeniz için şeffaf bir değişim süreci sunuyoruz.",
+    "Seçtiğiniz cihaz beklentilerinizi karşılamadığında veya ihtiyaçlarınız zamanla değiştiğinde, değişim koşullarının satın almadan önce net olması süreci çok daha güvenilir ve öngörülebilir kılar.",
+    "Avrasya İşitme, ruhsatlı bir işitme cihazı merkezi olarak, deneme süreci sonrasında veya ihtiyaç değişikliğinde cihazınızı kolayca değiştirebilmeniz için şeffaf bir değişim süreci sunuyor.",
   ],
   ctaPrimary: { label: "Hemen Ara", href: contactConfig.phone.href },
   ctaSecondary: { label: "WhatsApp Yaz", href: contactConfig.whatsapp.href },

@@ -20,7 +20,7 @@ export const orijinalAksesuarIntro: BrandPageIntroContent = {
     { value: "Modele Özel Üretim", label: "Modele Uygunluk" },
     { value: "Düzenli Değişim", label: "Hijyen Önerisi" },
     { value: "Orijinal Kulak Ucu", label: "Sık Kullanılan Aksesuar" },
-    { value: "Yetkili Kanaldan Temin", label: "Güvenilir Kaynak" },
+    { value: "Güvenilir Kaynaktan Temin", label: "Orijinal Aksesuar" },
   ],
   accentColor: "#7c3aed",
   accentColorBadgeBg: "rgb(124 58 237 / 0.08)",

@@ -16,13 +16,13 @@ export const garantiIslemleriConsiderations: BrandPageIdealUserContent = {
     {
       icon: Droplets,
       title: "Kullanıcı Kaynaklı Hasarlar Kapsam Dışıdır",
-      description: "Su teması, düşme veya yetkisiz müdahale gibi kullanıcı kaynaklı hasarlar genellikle garanti kapsamı dışında kalır.",
+      description: "Su teması, düşme veya uygun olmayan müdahale gibi kullanıcı kaynaklı hasarlar genellikle garanti kapsamı dışında kalır.",
       suggestedFamilies: ["Kapsam Dışı Durumlar"],
     },
     {
       icon: AlertTriangle,
-      title: "Yetkisiz Servis Garantiyi Geçersiz Kılabilir",
-      description: "Cihazınızın yetkisiz bir yerde onarılması, kalan garanti hakkınızı geçersiz kılabilir.",
+      title: "Servis Süreci Garantiyi Etkileyebilir",
+      description: "Garanti kapsamındaki bir cihazda, üretici tarafından belirlenen servis süreci dışındaki müdahaleler, üretici garanti koşullarına göre kalan garanti hakkınızı etkileyebilir; onarım öncesinde garanti durumunu netleştirmeniz önerilir.",
       suggestedFamilies: ["Garanti Koşulu"],
     },
     {

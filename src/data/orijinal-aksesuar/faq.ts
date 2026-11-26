@@ -58,7 +58,7 @@ export const orijinalAksesuarFaq: BrandPageFaqContent = {
         {
           question: "Aksesuarlarımı nereden temin edebilirim?",
           answer:
-            "Tüm orijinal aksesuarları bizden veya yetkili satış noktalarından temin edebilirsiniz.",
+            "Merkezimizde pil ve aksesuar satışı yapılıyor; cihazınızın marka ve modeline uygun orijinal aksesuarın temin edilip edilemeyeceğini merkezimizden öğrenebilirsiniz.",
         },
       ],
     },

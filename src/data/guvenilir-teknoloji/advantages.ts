@@ -1,6 +1,6 @@
 // "Avantajları" bento section for the /neden-orijinal/
-// guvenilir-teknoloji page — framed as the advantages of buying through
-// an authorized, original channel rather than a generic device-feature
+// guvenilir-teknoloji page — framed as the advantages of buying an
+// original, manufacturer-warranted device rather than a generic device-feature
 // list. Renders through the shared BrandPageAdvantages component —
 // items must be exactly 5 entries: [slot1, slot2, slot3(wide),
 // slot4(wide), slot5(wide)], same contract every brand/category page's
@@ -12,12 +12,12 @@ import type { BrandPageAdvantagesContent } from "../../components/brand-page/Bra
 export const guvenilirTeknolojiAdvantages: BrandPageAdvantagesContent = {
   badge: "AVANTAJLARI",
   heading: "Orijinal Ürün Almanın Avantajları",
-  intro: "Yetkili kanaldan alınan orijinal bir cihazın sunduğu başlıca güvenceler.",
+  intro: "Orijinal bir işitme cihazının sunduğu başlıca güvenceler.",
   hero: {
     icon: ShieldCheck,
     category: "Üretici Garantisi",
     title: "Orijinal Ürünlerde Tam Güvence",
-    description: "Yetkili kanaldan alınan cihazlar, üretici garantisi ve resmi destekle güvence altındadır.",
+    description: "Orijinal cihazlarda üretici garanti koşulları geçerlidir; destek ve servis süreci üreticinin belirlediği koşullara göre işler.",
   },
   items: [
     {
@@ -41,8 +41,8 @@ export const guvenilirTeknolojiAdvantages: BrandPageAdvantagesContent = {
     {
       icon: RefreshCcw,
       category: "Kolay Değişim",
-      title: "Sorunlu Üründe Değişim ve İade Güvencesi",
-      description: "Yetkili satış kanalından alınan ürünlerde değişim ve iade süreçleri güvence altındadır.",
+      title: "Net Değişim ve İade Koşulları",
+      description: "Değişim ve iade koşulları ürüne ve satın alma biçimine göre değişir; satın almadan önce açıkça öğrenmeniz önerilir.",
     },
     {
       icon: Users,

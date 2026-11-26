@@ -71,7 +71,7 @@ export const ekonomikSeriFaq: BrandPageFaqContent = {
         {
           question: "Çok ucuz cihazlardan kaçınmalı mıyım?",
           answer:
-            "Piyasa ortalamasının çok altındaki fiyatlar, orijinal olmayan bir ürüne işaret edebilir; satın almadan önce satıcının yetkili olup olmadığını kontrol etmenizi öneririz.",
+            "Piyasa ortalamasının çok altındaki fiyatlar, orijinal olmayan bir ürüne işaret edebilir; satın almadan önce faturayı, garanti belgesini ve cihazın seri numarasının üretici sisteminde doğrulanıp doğrulanamadığını kontrol etmenizi öneririz.",
         },
       ],
     },

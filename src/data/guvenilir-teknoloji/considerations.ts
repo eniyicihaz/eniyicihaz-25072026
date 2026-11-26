@@ -12,7 +12,7 @@ import type { BrandPageIdealUserContent } from "../../components/brand-page/Bran
 export const guvenilirTeknolojiConsiderations: BrandPageIdealUserContent = {
   badge: "DİKKAT EDİLMESİ GEREKENLER",
   heading: "Orijinal Ürün Satın Alırken Dikkat Edilmesi Gereken Noktalar",
-  intro: "Doğru kanaldan alışveriş faydalı bir adımdır; yine de göz önünde bulundurulması gereken birkaç önemli nokta vardır.",
+  intro: "Bilinçli alışveriş faydalı bir adımdır; yine de göz önünde bulundurulması gereken birkaç önemli nokta vardır.",
   profiles: [
     {
       icon: AlertTriangle,
@@ -34,9 +34,9 @@ export const guvenilirTeknolojiConsiderations: BrandPageIdealUserContent = {
     },
     {
       icon: Store,
-      title: "Her Satıcı Yetkili Değildir",
-      description: "Ürünü satın almadan önce satıcının markanın resmi yetkili listesinde olduğunu kontrol etmek önemlidir.",
-      suggestedFamilies: ["Yetkili Bayi Doğrulama"],
+      title: "Seri Numarasını ve Kaynağı Kontrol Edin",
+      description: "Satın almadan önce cihazın seri numarasının üreticinin sisteminde doğrulanıp doğrulanamadığını ve ürünün kaynağını sormak önemlidir.",
+      suggestedFamilies: ["Seri Numarası Doğrulama"],
     },
     {
       icon: Gauge,
