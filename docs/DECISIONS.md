@@ -253,3 +253,13 @@
 - **Kapsam:** Altı içerik sayfası (`guvenilir-teknoloji`, `kolay-degisim`, `garanti-islemleri`, `orijinal-aksesuar`, `ekonomik-seri`, `uzun-omurlu-cihazlar`) ve üç sayfadaki SSS/JSON-LD metinleri. Kamuya açık siteye bayilik, ÜTS, mevzuat veya ürün alım prosedürü açıklaması eklenmedi.
 - **Değişmeyen:** MegaMenu, telefonlar, reklamlar, sitemap/robots yapısı, Organization ve diğer JSON-LD türleri; "Uzman Ekibinin Değerlendirmesi" başlığı (73 sayfada ortak şablon, ayrı karar bekliyor).
 - **Dayanak:** BUSINESS_SOT §0.5 (tek normatif kayıt); BRAND_SOT §3, PRODUCT_SOT §1, SERVICE_SOT §2.7 ve §4 bu kayda işaret eder.
+
+## 2026-11-26 (A4: İŞİTKOOP işletme profili referansı)
+
+> Kaynak: işletme sahibinin onayı.
+
+- **Karar:** `/hakkimizda/` sayfasının "Kuruluş ve Kurumsal Bilgiler" bölümünde, kartların altında İŞİTKOOP ortaklar sayfasındaki Avrasya İşitme (Darıca) profiline görünür bağlantı. Başka sayfaya ve altbilgiye eklenmez.
+- **Yapılandırılmış veri:** Profil adresi yalnız `/hakkimizda/` sayfasındaki `MedicalBusiness` (`#business`) düğümüne `sameAs` olarak eklendi: bağlantı o sayfada görünür (SCHEMA_GRAPH §3 madde 5) ve Google'ın Organization yönergesi tek bir tanıtım sayfasını yeterli sayar. Diğer sayfalardaki `#business` düğümleri değişmedi.
+- **Eklenmeyenler:** Site geneli `Organization` düğümü (profil Darıca kaydını anlatıyor; varlık modeli kararı açık, SCHEMA_GRAPH §1), `Person`, `OrganizationRole`, İŞİTKOOP düğümü. İŞİTKOOP ana sayfası ve yönetim kurulu sayfası Avrasya'nın `sameAs` adresi değildir.
+- **Değişmeyen:** Telefonlar, adres, saatler, mevcut `sameAs` (Facebook ve Instagram), Erdinç Kılıç'ın İŞİTKOOP görevleri ve yönetim kurulu bağlantısı. Yeni üyelik, ortaklık, ticari bağlılık veya yetki iddiası eklenmedi.
+- **Dayanak:** BUSINESS_SOT §3.1.

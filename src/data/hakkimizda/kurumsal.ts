@@ -5,8 +5,10 @@
 //     birbirine karıştırılmaz (BUSINESS_SOT §4: "2009'dan beri Darıca'da" gibi ifadeler yasaktır).
 //   • Erdinç Kılıç'ın İKİ görevi İŞİTKOOP'a aittir. Eğitim, unvan, sertifika, deneyim yılı, dil veya
 //     "işletme sahibi/kurucu" gibi yayımlanması onaylanmamış hiçbir kişisel özellik eklenmez.
+//   • Alttaki not, İŞİTKOOP ortaklar sayfasındaki İŞLETME profiline gider (BUSINESS_SOT §3.1). Karttaki yönetim
+//     kurulu bağlantısından ayrıdır; yeni üyelik, ticari bağlılık veya yetki iddiası taşımaz.
 import { CalendarDays, Handshake, MapPin } from "lucide-astro";
-import { ISITKOOP_BOARD_URL } from "../../lib/schema";
+import { ISITKOOP_BOARD_URL, ISITKOOP_PROFILE_URL } from "../../lib/schema";
 import type { ValueGridContent } from "../../components/shared/ValueGrid/ValueGrid.astro";
 
 export const hakkimizdaKurumsal: ValueGridContent = {
@@ -32,6 +34,11 @@ export const hakkimizdaKurumsal: ValueGridContent = {
       link: { label: "İŞİTKOOP yönetim kurulu sayfası (resmî kaynak)", href: ISITKOOP_BOARD_URL, external: true },
     },
   ],
+  footnote: {
+    label: "İŞİTKOOP ortaklar sayfasındaki Avrasya İşitme profilimizi inceleyebilirsiniz.",
+    href: ISITKOOP_PROFILE_URL,
+    external: true,
+  },
   accentColor: "#2563eb",
   accentColorBadgeBg: "rgb(37 99 235 / 0.08)",
   accentColorBadgeBorder: "rgb(37 99 235 / 0.35)",

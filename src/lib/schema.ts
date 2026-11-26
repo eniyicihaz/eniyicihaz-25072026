@@ -158,6 +158,14 @@ export const ISITKOOP_ID = "https://www.eniyicihaz.com/hakkimizda/#isitkoop";
 export const ISITKOOP_URL = "https://www.isitkoop.com/";
 /** İŞİTKOOP'un resmî yönetim kurulu sayfası — Person'ın iki görevinin kaynağı. */
 export const ISITKOOP_BOARD_URL = "https://www.isitkoop.com/yonetim-kurulu";
+/**
+ * İŞİTKOOP "Ortaklarımız" bölümündeki Avrasya İşitme Cihazları (Darıca) işletme profili (BUSINESS_SOT §3.1; ad, adres,
+ * ana telefon ve web sitesi eşleşmesi 2026-11-26'da kontrol edildi). `sameAs` olarak YALNIZCA bağlantının görünür
+ * olduğu /hakkimizda/ sayfasındaki MedicalBusiness düğümünde kullanılır. İŞİTKOOP ana sayfası (ISITKOOP_URL) ve
+ * yönetim kurulu sayfası (ISITKOOP_BOARD_URL) başka varlıkları anlatır; Avrasya'nın `sameAs` adresi yapılmaz.
+ */
+export const ISITKOOP_PROFILE_URL =
+  "https://www.isitkoop.com/ortaklarimiz/kocaeli-isitme-cihazlari/darica-avrasya-isitme-cihazlari";
 
 export function buildErdincKilicSchema() {
   return {

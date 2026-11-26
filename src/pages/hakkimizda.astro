@@ -84,8 +84,10 @@ const medicalBusinessSchema = {
   ],
   areaServed: SERVICE_AREA_NAMES,
   hasMap: BUSINESS_MAP_URL,
+  // İşletmenin dış profili; aynı bağlantı bu sayfada görünür (Kuruluş ve Kurumsal Bilgiler). Kapsam: lib/schema.ts.
+  sameAs: [ISITKOOP_PROFILE_URL],
 };
-import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BUSINESS_URL, SERVICE_AREA_NAMES, buildErdincKilicSchema } from "../lib/schema";
+import { BUSINESS_ID, BUSINESS_IMAGE, BUSINESS_MAP_URL, BUSINESS_POSTAL_CODE, BUSINESS_URL, ISITKOOP_PROFILE_URL, SERVICE_AREA_NAMES, buildErdincKilicSchema } from "../lib/schema";
 
 // Erdinç Kılıç (Person) + İŞİTKOOP (Organization): yalnızca bu sayfada; ilişki ve kapsam lib/schema.ts'te belgelidir.
 const erdincKilicSchema = buildErdincKilicSchema();

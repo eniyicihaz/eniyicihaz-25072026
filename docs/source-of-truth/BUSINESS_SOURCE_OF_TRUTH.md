@@ -1,6 +1,6 @@
 # BUSINESS_SOURCE_OF_TRUTH.md
 
-> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-25 (işletme statüsü, marka bağımsızlığı ve üretici kanalı ifadeleri, §0.5; önceki: 2026-11-14 marka çeşitliliği ve teknik destek ifadeleri; 2026-11-08 Facebook ve Instagram URL doğrulaması, §3)
+> **Durum:** ACTIVE · Faz 0 · Oluşturulma: 2026-10-06 · Son güncelleme: 2026-11-26 (doğrulanmış dış işletme profili: İŞİTKOOP, §3.1; önceki: 2026-11-25 işletme statüsü, marka bağımsızlığı ve üretici kanalı ifadeleri, §0.5; 2026-11-14 marka çeşitliliği ve teknik destek ifadeleri; 2026-11-08 Facebook ve Instagram URL doğrulaması, §3)
 > **Amaç:** Avrasya İşitme Cihazları için tek kaynak. Kapsadığı konular:
 > - İşletme kimliği ve tarihçesi
 > - Yasal yapı
@@ -158,6 +158,24 @@ Bilgiler çelişirse öncelik sırası şöyledir:
 | Kanal ve sayfa adlarının yeni markaya göre değişip değişmeyeceği | — | [KULLANICIDAN BİLGİ GEREKLİ] | — | — | BRAND_SOT | — |
 
 > **Not (2026-11-08):** Facebook ve Instagram URL'lerinin işletmeye ait ve işletme tarafından yönetilen resmî hesaplar olduğu işletme sahibi tarafından açıkça teyit edildi. İşletme sahibi ayrıca her iki profilde https://www.eniyicihaz.com/ bağlantısının bulunduğunu doğruladı (profilden siteye karşılıklı bağlantı). Bu teyide dayanarak yalnızca bu iki URL schema `Organization.sameAs` içinde kullanılır. **YouTube (`@EniyiCihaz`) için sahiplik teyidi yoktur**; YouTube `sameAs`'a eklenmez ve satırı [MEVCUT BELGELERDE VAR] / YENİDEN DOĞRULA olarak kalır.
+
+### 3.1 Doğrulanmış dış işletme profilleri
+
+> Bu bölüm yalnızca işletmenin kendisini temsil eden dış sayfaları kaydeder. Kayıt; üyelik, ortaklık, ticari bağlılık, marka bayiliği veya üretici servis yetkisi iddiası oluşturmaz (kooperatif iş ortaklığı satırının durumu için §5). Profildeki hizmet ve marka metinleri bu kayda alınmaz; site içeriği için Source of Truth geçerlidir.
+
+| Alan | Değer |
+|---|---|
+| Profil adı | İŞİTKOOP – Avrasya İşitme Darıca profili (sayfadaki işletme adı: "Avrasya İşitme Cihazları") |
+| Profil URL'si | https://www.isitkoop.com/ortaklarimiz/kocaeli-isitme-cihazlari/darica-avrasya-isitme-cihazlari |
+| Profildeki web sitesi bağlantısı | https://www.eniyicihaz.com (görünür bağlantı ve profil sayfasının yapılandırılmış verisi) |
+| Adres karşılaştırması | "Fevziçakmak Mah. Dr. Zeki Acar Cad. No:77/7 Asansör 1. Kat Darıca/Kocaeli": sitedeki adresle ve LOCAL_SOT §1 ile aynı |
+| Telefon karşılaştırması | Profilde işletme için yalnız 0533 773 31 99 (ana numara; telefon ve WhatsApp): aynı. 0543 386 63 60 ve 0262 656 32 77 profilde yer almıyor |
+| Diğer eşleşmeler | E-posta, çalışma saatleri (Pzt–Cum 08:45–19:00, Cmt 09:00–19:00) ve koordinat sitedekiyle aynı |
+| Erişim | Oturum açmadan açılıyor (HTTP 200), `index, follow`, İŞİTKOOP site haritasında yer alıyor (kalıcılık güvencesi değildir) |
+| Kontrol tarihi | 2026-11-26 |
+| Durum | [DOĞRULANDI]: işletme sahibinin sitede kullanım onayı (2026-11-26) ve sayfa kontrolü |
+| Kullanım | `/hakkimizda/`: görünür bağlantı ve yalnız o sayfadaki `MedicalBusiness` düğümünde `sameAs`. `Organization`, `Person`, `OrganizationRole` ve diğer sayfalarda kullanılmaz. İŞİTKOOP ana sayfası ve yönetim kurulu sayfası (§4 görev kaydının kaynağı) Avrasya'nın `sameAs` adresi değildir |
+| Freshness | YENİDEN DOĞRULA (yıllık veya profil ya da NAP değişince) |
 
 ## 4. Ekip / Uzmanlık / E-E-A-T
 

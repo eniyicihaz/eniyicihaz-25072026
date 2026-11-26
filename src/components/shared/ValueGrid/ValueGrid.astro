@@ -22,6 +22,8 @@ export interface ValueGridContent {
   heading: string;
   intro?: string;
   items: ValueGridItem[];
+  /** Opsiyonel: kartların altında, hiçbir karta ait olmayan tek bağlantı satırı. Yoksa bölüm önceki gibi çizilir. */
+  footnote?: { label: string; href: string; external?: boolean };
   accentColor: string;
   accentColorBadgeBg: string;
   accentColorBadgeBorder: string;
@@ -73,6 +75,19 @@ const titleId = domId("value-grid", data.heading);
         );
       })}
     </ul>
+
+    {data.footnote && (
+      <p class="value-grid__footnote">
+        <a
+          class="value-grid__link"
+          href={data.footnote.href}
+          {...(data.footnote.external ? { target: "_blank", rel: "noopener" } : {})}
+        >
+          {data.footnote.label}
+          {data.footnote.external && <span class="value-grid__link-note"> (yeni sekmede açılır)</span>}
+        </a>
+      </p>
+    )}
   </div>
 </section>
 
@@ -191,6 +206,11 @@ const titleId = domId("value-grid", data.heading);
 
   .value-grid__link:hover {
     text-decoration-thickness: 2px;
+  }
+
+  .value-grid__footnote {
+    margin: var(--space-6) 0 0;
+    text-align: center;
   }
 
   .value-grid__link:focus-visible {
