@@ -32,4 +32,5 @@ export const gebzeLocation: ContactLocationCardContent = {
   ],
   hoursNotes: ["Öğle arası vermiyoruz.", "Resmî tatillerde kapalıyız."],
   largeTargets: true,
+  deferMap: true,
 };

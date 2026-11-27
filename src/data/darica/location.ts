@@ -61,4 +61,5 @@ export const daricaVisitLocation: ContactLocationCardContent = {
     ],
   },
   largeTargets: true,
+  deferMap: true,
 };
