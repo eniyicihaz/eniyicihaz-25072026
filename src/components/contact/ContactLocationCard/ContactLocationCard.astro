@@ -57,6 +57,9 @@ export interface ContactLocationCardContent {
   /** Alternatif ofis hattını (company.phones[].alternate) da listeler. Varsayılan kapalı: yalnızca /iletisim açar;
    * diğer konum kartları önceki iki numarayı göstermeye devam eder (numara footer'da zaten görünür). */
   showAlternatePhone?: boolean;
+  /** Haritayı sayfa açılışında değil, haritaya yaklaşılınca (IntersectionObserver) yükler. Varsayılan kapalı: yalnızca açıkça
+   * `true` veren sayfa (Darıca, Gebze) etkilenir; diğer tüm sayfalar önceki `loading="lazy"` iframe'ini aynen kullanır. */
+  deferMap?: boolean;
 }
 
 interface Props {
@@ -64,6 +67,29 @@ interface Props {
 }
 
 const { data } = Astro.props;
+
+// deferMap betiği (yalnızca data.deferMap === true iken sayfaya yazılır). Harita, kapsayıcıya yaklaşılınca yüklenir
+// (tıklama gerekmez); IntersectionObserver yoksa hemen yüklenir. rootMargin görünüme göre seçilir: ≤900 px (tek sütun:
+// telefon/tablet) için 1200px, daha geniş (iki sütun: masaüstü) için 300px.
+const deferMapScript = `(function () {
+  var wrap = document.querySelector("[data-map-defer]");
+  var tpl = wrap && wrap.querySelector("template[data-map-template]");
+  if (!tpl) return;
+  var loaded = false;
+  function load() {
+    if (loaded) return;
+    loaded = true;
+    wrap.appendChild(tpl.content.cloneNode(true));
+  }
+  if (!("IntersectionObserver" in window) || !tpl.content) { load(); return; }
+  var wide = window.matchMedia && window.matchMedia("(min-width: 901px)").matches;
+  var io = new IntersectionObserver(function (entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) { io.disconnect(); load(); break; }
+    }
+  }, { rootMargin: (wide ? "300" : "1200") + "px 0px" });
+  io.observe(wrap);
+})();`;
 ---
 
 <section
@@ -163,15 +189,47 @@ const { data } = Astro.props;
       </div>
     </div>
 
-    <div class="contact-location__map-wrap" data-rise>
-      <!-- Harita otomatik yüklenir; loading="lazy": görünür alandaysa hemen, değilse alana yaklaşınca. -->
-      <iframe
-        class="contact-location__map"
-        src={data.company.mapEmbedSrc}
-        title={data.mapTitle}
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+    <div
+      class="contact-location__map-wrap"
+      data-rise
+      data-map-defer={data.deferMap ? "" : undefined}
+      style={data.deferMap ? "min-height: calc(22rem + 2px)" : undefined}
+    >
+      {data.deferMap ? (
+        <>
+          {/* deferMap: iframe <template> içinde durur (ağ isteği yok); aşağıdaki betik haritaya yaklaşılınca ekler.
+              JavaScript kapalıysa <noscript> aynı iframe'i (loading="lazy") verir. Kapsayıcı min-height'ı yeri baştan ayırır
+              (22rem iframe + 2 px kenarlık = yüklenmeden önce de sonra da aynı yükseklik → yerleşim kayması yok). */}
+          <template data-map-template>
+            <iframe
+              class="contact-location__map"
+              src={data.company.mapEmbedSrc}
+              title={data.mapTitle}
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </template>
+          <noscript>
+            <iframe
+              class="contact-location__map"
+              src={data.company.mapEmbedSrc}
+              title={data.mapTitle}
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </noscript>
+        </>
+      ) : (
+        <>
+          <!-- Harita otomatik yüklenir; loading="lazy": görünür alandaysa hemen, değilse alana yaklaşınca. -->
+          <iframe
+            class="contact-location__map"
+            src={data.company.mapEmbedSrc}
+            title={data.mapTitle}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </>
+      )}
     </div>
   </div>
 
@@ -226,6 +284,8 @@ const { data } = Astro.props;
     io.observe(section);
   })();
 </script>
+
+{data.deferMap && <script is:inline set:html={deferMapScript} />}
 
 <style>
   .contact-location {
